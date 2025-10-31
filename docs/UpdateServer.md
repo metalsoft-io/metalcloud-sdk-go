@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ManagementAddress** | Pointer to **string** | The Management Address of the server. | [optional] 
 **Username** | Pointer to **string** | The username to use. | [optional] 
 **ServerCleanupPolicyId** | Pointer to **float32** | The cleanup policy id of the server. | [optional] 
+**RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
 **ChassisRackId** | Pointer to **float32** | The chassis rack id of the server. | [optional] 
 **RackName** | Pointer to **string** | The chassis rack name of the server. | [optional] 
@@ -137,6 +138,31 @@ SetServerCleanupPolicyId sets ServerCleanupPolicyId field to given value.
 `func (o *UpdateServer) HasServerCleanupPolicyId() bool`
 
 HasServerCleanupPolicyId returns a boolean if a field has been set.
+
+### GetRegistrationProfileId
+
+`func (o *UpdateServer) GetRegistrationProfileId() float32`
+
+GetRegistrationProfileId returns the RegistrationProfileId field if non-nil, zero value otherwise.
+
+### GetRegistrationProfileIdOk
+
+`func (o *UpdateServer) GetRegistrationProfileIdOk() (*float32, bool)`
+
+GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationProfileId
+
+`func (o *UpdateServer) SetRegistrationProfileId(v float32)`
+
+SetRegistrationProfileId sets RegistrationProfileId field to given value.
+
+### HasRegistrationProfileId
+
+`func (o *UpdateServer) HasRegistrationProfileId() bool`
+
+HasRegistrationProfileId returns a boolean if a field has been set.
 
 ### GetServerComments
 

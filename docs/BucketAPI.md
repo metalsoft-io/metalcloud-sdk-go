@@ -38,7 +38,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createBucket := *openapiclient.NewCreateBucket(float32(123)) // CreateBucket | The Bucket create object
+	createBucket := *openapiclient.NewCreateBucket(float32(123), float32(123)) // CreateBucket | The Bucket create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **BmcMacAddress** | Pointer to **string** | The MAC address of the server. | [optional] 
 **Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
 **Model** | Pointer to **string** | The model of the server. | [optional] 
+**RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
 **Settings** | [**RegisterProductionServerSettings**](RegisterProductionServerSettings.md) | The additional settings for the production server. | 
 
@@ -228,6 +229,31 @@ SetModel sets Model field to given value.
 `func (o *RegisterProductionServer) HasModel() bool`
 
 HasModel returns a boolean if a field has been set.
+
+### GetRegistrationProfileId
+
+`func (o *RegisterProductionServer) GetRegistrationProfileId() float32`
+
+GetRegistrationProfileId returns the RegistrationProfileId field if non-nil, zero value otherwise.
+
+### GetRegistrationProfileIdOk
+
+`func (o *RegisterProductionServer) GetRegistrationProfileIdOk() (*float32, bool)`
+
+GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationProfileId
+
+`func (o *RegisterProductionServer) SetRegistrationProfileId(v float32)`
+
+SetRegistrationProfileId sets RegistrationProfileId field to given value.
+
+### HasRegistrationProfileId
+
+`func (o *RegisterProductionServer) HasRegistrationProfileId() bool`
+
+HasRegistrationProfileId returns a boolean if a field has been set.
 
 ### GetPassword
 

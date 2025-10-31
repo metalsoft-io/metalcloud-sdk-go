@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LogicalNetworkId** | **float32** | The ID of the logical network identifier this entity belongs to. | 
+**LogicalNetworkId** | **int32** | The ID of the logical network identifier this entity belongs to. | 
 
 ## Methods
 
 ### NewCreateExternalConnectionLogicalNetwork
 
-`func NewCreateExternalConnectionLogicalNetwork(logicalNetworkId float32, ) *CreateExternalConnectionLogicalNetwork`
+`func NewCreateExternalConnectionLogicalNetwork(logicalNetworkId int32, ) *CreateExternalConnectionLogicalNetwork`
 
 NewCreateExternalConnectionLogicalNetwork instantiates a new CreateExternalConnectionLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLogicalNetworkId
 
-`func (o *CreateExternalConnectionLogicalNetwork) GetLogicalNetworkId() float32`
+`func (o *CreateExternalConnectionLogicalNetwork) GetLogicalNetworkId() int32`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *CreateExternalConnectionLogicalNetwork) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *CreateExternalConnectionLogicalNetwork) GetLogicalNetworkIdOk() (*int32, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *CreateExternalConnectionLogicalNetwork) SetLogicalNetworkId(v float32)`
+`func (o *CreateExternalConnectionLogicalNetwork) SetLogicalNetworkId(v int32)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

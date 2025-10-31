@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EnableDataReduction** | Pointer to **float32** | Enable data reduction | [optional] 
-**EnableAdvancedDeduplication** | Pointer to **float32** | Enable advanced deduplication | [optional] 
+**EnableDataReduction** | Pointer to **bool** | Enable data reduction | [optional] 
+**EnableAdvancedDeduplication** | Pointer to **bool** | Enable advanced deduplication | [optional] 
 **VolumeName** | Pointer to **string** | Volume name | [optional] 
 **ArrayId** | Pointer to **string** | Array id to use (for certain storage drivers) | [optional] 
 **DirectorId** | Pointer to **string** | Director id to use (for certain storage drivers) | [optional] 
 **S3Hostname** | Pointer to **string** | S3 Hostname to use (for certain storage drivers) | [optional] 
 **S3Port** | Pointer to **float32** | Enable advanced deduplication | [optional] 
-**FibreChannelEnabled** | Pointer to **float32** | Fibre channel enabled | [optional] 
-**PortsToUse** | Pointer to [**[]StoragePortDto**](StoragePortDto.md) | Array of storage ports to use | [optional] 
+**FibreChannelEnabled** | Pointer to **bool** | Fibre channel enabled | [optional] 
+**PortsToUse** | Pointer to [**[]StoragePort**](StoragePort.md) | Array of storage ports to use | [optional] 
 
 ## Methods
 
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEnableDataReduction
 
-`func (o *UpdateStorageOptions) GetEnableDataReduction() float32`
+`func (o *UpdateStorageOptions) GetEnableDataReduction() bool`
 
 GetEnableDataReduction returns the EnableDataReduction field if non-nil, zero value otherwise.
 
 ### GetEnableDataReductionOk
 
-`func (o *UpdateStorageOptions) GetEnableDataReductionOk() (*float32, bool)`
+`func (o *UpdateStorageOptions) GetEnableDataReductionOk() (*bool, bool)`
 
 GetEnableDataReductionOk returns a tuple with the EnableDataReduction field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnableDataReduction
 
-`func (o *UpdateStorageOptions) SetEnableDataReduction(v float32)`
+`func (o *UpdateStorageOptions) SetEnableDataReduction(v bool)`
 
 SetEnableDataReduction sets EnableDataReduction field to given value.
 
@@ -60,20 +60,20 @@ HasEnableDataReduction returns a boolean if a field has been set.
 
 ### GetEnableAdvancedDeduplication
 
-`func (o *UpdateStorageOptions) GetEnableAdvancedDeduplication() float32`
+`func (o *UpdateStorageOptions) GetEnableAdvancedDeduplication() bool`
 
 GetEnableAdvancedDeduplication returns the EnableAdvancedDeduplication field if non-nil, zero value otherwise.
 
 ### GetEnableAdvancedDeduplicationOk
 
-`func (o *UpdateStorageOptions) GetEnableAdvancedDeduplicationOk() (*float32, bool)`
+`func (o *UpdateStorageOptions) GetEnableAdvancedDeduplicationOk() (*bool, bool)`
 
 GetEnableAdvancedDeduplicationOk returns a tuple with the EnableAdvancedDeduplication field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnableAdvancedDeduplication
 
-`func (o *UpdateStorageOptions) SetEnableAdvancedDeduplication(v float32)`
+`func (o *UpdateStorageOptions) SetEnableAdvancedDeduplication(v bool)`
 
 SetEnableAdvancedDeduplication sets EnableAdvancedDeduplication field to given value.
 
@@ -210,20 +210,20 @@ HasS3Port returns a boolean if a field has been set.
 
 ### GetFibreChannelEnabled
 
-`func (o *UpdateStorageOptions) GetFibreChannelEnabled() float32`
+`func (o *UpdateStorageOptions) GetFibreChannelEnabled() bool`
 
 GetFibreChannelEnabled returns the FibreChannelEnabled field if non-nil, zero value otherwise.
 
 ### GetFibreChannelEnabledOk
 
-`func (o *UpdateStorageOptions) GetFibreChannelEnabledOk() (*float32, bool)`
+`func (o *UpdateStorageOptions) GetFibreChannelEnabledOk() (*bool, bool)`
 
 GetFibreChannelEnabledOk returns a tuple with the FibreChannelEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFibreChannelEnabled
 
-`func (o *UpdateStorageOptions) SetFibreChannelEnabled(v float32)`
+`func (o *UpdateStorageOptions) SetFibreChannelEnabled(v bool)`
 
 SetFibreChannelEnabled sets FibreChannelEnabled field to given value.
 
@@ -235,20 +235,20 @@ HasFibreChannelEnabled returns a boolean if a field has been set.
 
 ### GetPortsToUse
 
-`func (o *UpdateStorageOptions) GetPortsToUse() []StoragePortDto`
+`func (o *UpdateStorageOptions) GetPortsToUse() []StoragePort`
 
 GetPortsToUse returns the PortsToUse field if non-nil, zero value otherwise.
 
 ### GetPortsToUseOk
 
-`func (o *UpdateStorageOptions) GetPortsToUseOk() (*[]StoragePortDto, bool)`
+`func (o *UpdateStorageOptions) GetPortsToUseOk() (*[]StoragePort, bool)`
 
 GetPortsToUseOk returns a tuple with the PortsToUse field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortsToUse
 
-`func (o *UpdateStorageOptions) SetPortsToUse(v []StoragePortDto)`
+`func (o *UpdateStorageOptions) SetPortsToUse(v []StoragePort)`
 
 SetPortsToUse sets PortsToUse field to given value.
 

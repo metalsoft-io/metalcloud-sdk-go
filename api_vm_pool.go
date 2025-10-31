@@ -2031,7 +2031,7 @@ func (r VMPoolAPIRefreshVMPoolInformationRequest) Execute() (*VMPool, *http.Resp
 /*
 RefreshVMPoolInformation Refresh VM Pool information
 
-Refresh VM Pool information
+Refresh VM Pool information. For example, on VMware VCF this function would report any new datastores
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param vmPoolId
@@ -2061,6 +2061,109 @@ func (a *VMPoolAPIService) RefreshVMPoolInformationExecute(r VMPoolAPIRefreshVMP
 	}
 
 	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/actions/refresh-information"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMPoolAPISyncVMPoolRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId float32
+}
+
+func (r VMPoolAPISyncVMPoolRequest) Execute() (*JobInfo, *http.Response, error) {
+	return r.ApiService.SyncVMPoolExecute(r)
+}
+
+/*
+SyncVMPool Sync VM Pool
+
+Sync VM Pool. For example, on VMware VCF this function would discover new Virtual Distributed Switches
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @return VMPoolAPISyncVMPoolRequest
+*/
+func (a *VMPoolAPIService) SyncVMPool(ctx context.Context, vmPoolId float32) VMPoolAPISyncVMPoolRequest {
+	return VMPoolAPISyncVMPoolRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+	}
+}
+
+// Execute executes the request
+//  @return JobInfo
+func (a *VMPoolAPIService) SyncVMPoolExecute(r VMPoolAPISyncVMPoolRequest) (*JobInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *JobInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.SyncVMPool")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/actions/sync"
 	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

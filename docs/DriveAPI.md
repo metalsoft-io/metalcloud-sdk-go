@@ -5,14 +5,18 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateDrive**](DriveAPI.md#CreateDrive) | **Post** /api/v2/infrastructures/{infrastructureId}/drives | Create a new Drive
+[**CreateDriveSnapshot**](DriveAPI.md#CreateDriveSnapshot) | **Post** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots | Create a snapshot of the specified Drive
 [**DeleteDrive**](DriveAPI.md#DeleteDrive) | **Delete** /api/v2/infrastructures/{infrastructureId}/drives/{driveId} | Deletes a Drive
+[**DeleteDriveSnapshot**](DriveAPI.md#DeleteDriveSnapshot) | **Delete** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots | Delete a snapshot of the specified Drive
 [**GetDrive**](DriveAPI.md#GetDrive) | **Get** /api/v2/drives/{driveId} | Get Drive information
 [**GetDriveConfigInfo**](DriveAPI.md#GetDriveConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/config | Get configuration information about the specified Drive
 [**GetDriveHosts**](DriveAPI.md#GetDriveHosts) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/hosts | Get the Hosts of Drive
+[**GetDriveSnapshots**](DriveAPI.md#GetDriveSnapshots) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots | Get snapshots of the specified Drive
 [**GetInfrastructureDrive**](DriveAPI.md#GetInfrastructureDrive) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId} | Get Drive information
 [**GetInfrastructureDrives**](DriveAPI.md#GetInfrastructureDrives) | **Get** /api/v2/infrastructures/{infrastructureId}/drives | Get all Drives on the infrastructure
 [**PatchDriveConfig**](DriveAPI.md#PatchDriveConfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/config | Updates the config of a Drive
 [**PatchDriveMeta**](DriveAPI.md#PatchDriveMeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/meta | Updates the meta of a Drive
+[**RestoreDriveToSnapshot**](DriveAPI.md#RestoreDriveToSnapshot) | **Post** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots/restore | Restore a Drive to a specified snapshot
 [**UpdateDriveServerInstanceGroupHostsBulk**](DriveAPI.md#UpdateDriveServerInstanceGroupHostsBulk) | **Post** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/actions/modify-server-instance-group-hosts-bulk | Updates Server Instance Group Hosts on the Drive
 
 
@@ -37,7 +41,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123)) // CreateSharedDrive | 
+	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123), float32(123), float32(123)) // CreateSharedDrive | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -80,6 +84,77 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateDriveSnapshot
+
+> SharedDriveSnapshot CreateDriveSnapshot(ctx, infrastructureId, driveId).Execute()
+
+Create a snapshot of the specified Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	driveId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DriveAPI.CreateDriveSnapshot(context.Background(), infrastructureId, driveId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.CreateDriveSnapshot``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateDriveSnapshot`: SharedDriveSnapshot
+	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.CreateDriveSnapshot`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**driveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDriveSnapshotRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**SharedDriveSnapshot**](SharedDriveSnapshot.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -151,6 +226,77 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteDriveSnapshot
+
+> DeleteDriveSnapshot(ctx, infrastructureId, driveId).DeleteSharedDriveSnapshot(deleteSharedDriveSnapshot).Execute()
+
+Delete a snapshot of the specified Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	driveId := float32(8.14) // float32 | 
+	deleteSharedDriveSnapshot := *openapiclient.NewDeleteSharedDriveSnapshot("Name_example") // DeleteSharedDriveSnapshot | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DriveAPI.DeleteDriveSnapshot(context.Background(), infrastructureId, driveId).DeleteSharedDriveSnapshot(deleteSharedDriveSnapshot).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.DeleteDriveSnapshot``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**driveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteDriveSnapshotRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **deleteSharedDriveSnapshot** | [**DeleteSharedDriveSnapshot**](DeleteSharedDriveSnapshot.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -357,6 +503,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SharedDriveHosts**](SharedDriveHosts.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDriveSnapshots
+
+> []SharedDriveSnapshot GetDriveSnapshots(ctx, infrastructureId, driveId).Execute()
+
+Get snapshots of the specified Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	driveId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DriveAPI.GetDriveSnapshots(context.Background(), infrastructureId, driveId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.GetDriveSnapshots``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDriveSnapshots`: []SharedDriveSnapshot
+	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.GetDriveSnapshots`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**driveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDriveSnapshotsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**[]SharedDriveSnapshot**](SharedDriveSnapshot.md)
 
 ### Authorization
 
@@ -695,6 +912,77 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RestoreDriveToSnapshot
+
+> RestoreDriveToSnapshot(ctx, infrastructureId, driveId).RestoreSharedDriveSnapshot(restoreSharedDriveSnapshot).Execute()
+
+Restore a Drive to a specified snapshot
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	driveId := float32(8.14) // float32 | 
+	restoreSharedDriveSnapshot := *openapiclient.NewRestoreSharedDriveSnapshot("Name_example") // RestoreSharedDriveSnapshot | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DriveAPI.RestoreDriveToSnapshot(context.Background(), infrastructureId, driveId).RestoreSharedDriveSnapshot(restoreSharedDriveSnapshot).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.RestoreDriveToSnapshot``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**driveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRestoreDriveToSnapshotRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **restoreSharedDriveSnapshot** | [**RestoreSharedDriveSnapshot**](RestoreSharedDriveSnapshot.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

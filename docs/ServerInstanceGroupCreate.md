@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **DefaultServerTypeId** | **int32** | The server type ID that will be assigned to newly created instances. | 
 **DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
+**ServerFilteringRules** | Pointer to [**[]ServerFilterRule**](ServerFilterRule.md) | Server filtering rules for allocating servers to instances. If provided, servers must match all rules to be eligible for allocation. | [optional] 
 
 ## Methods
 
@@ -642,6 +643,31 @@ SetDefaultCustomStorageProfile sets DefaultCustomStorageProfile field to given v
 `func (o *ServerInstanceGroupCreate) HasDefaultCustomStorageProfile() bool`
 
 HasDefaultCustomStorageProfile returns a boolean if a field has been set.
+
+### GetServerFilteringRules
+
+`func (o *ServerInstanceGroupCreate) GetServerFilteringRules() []ServerFilterRule`
+
+GetServerFilteringRules returns the ServerFilteringRules field if non-nil, zero value otherwise.
+
+### GetServerFilteringRulesOk
+
+`func (o *ServerInstanceGroupCreate) GetServerFilteringRulesOk() (*[]ServerFilterRule, bool)`
+
+GetServerFilteringRulesOk returns a tuple with the ServerFilteringRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerFilteringRules
+
+`func (o *ServerInstanceGroupCreate) SetServerFilteringRules(v []ServerFilterRule)`
+
+SetServerFilteringRules sets ServerFilteringRules field to given value.
+
+### HasServerFilteringRules
+
+`func (o *ServerInstanceGroupCreate) HasServerFilteringRules() bool`
+
+HasServerFilteringRules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

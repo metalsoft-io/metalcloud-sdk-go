@@ -47,10 +47,8 @@ type Storage struct {
 	IscsiPort *float32 `json:"iscsiPort,omitempty"`
 	// Management host
 	ManagementHost string `json:"managementHost"`
-	// Username
-	Username string `json:"username"`
-	// Password encrypted
-	PasswordEncrypted *string `json:"passwordEncrypted,omitempty"`
+	// The username to use.
+	Username *string `json:"username,omitempty"`
 	// Options for the storage
 	Options *StorageOptions `json:"options,omitempty"`
 	// Specifies if the storage is in maintenance
@@ -85,7 +83,7 @@ type _Storage Storage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, type_ string, status string, name string, managementHost string, username string, subnetType string) *Storage {
+func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, type_ string, status string, name string, managementHost string, subnetType string) *Storage {
 	this := Storage{}
 	this.Id = id
 	this.Revision = revision
@@ -97,7 +95,6 @@ func NewStorage(id float32, revision float32, siteId float32, datacenterName str
 	this.Status = status
 	this.Name = name
 	this.ManagementHost = managementHost
-	this.Username = username
 	this.SubnetType = subnetType
 	return &this
 }
@@ -446,60 +443,36 @@ func (o *Storage) SetManagementHost(v string) {
 	o.ManagementHost = v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *Storage) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
-func (o *Storage) SetUsername(v string) {
-	o.Username = v
-}
-
-// GetPasswordEncrypted returns the PasswordEncrypted field value if set, zero value otherwise.
-func (o *Storage) GetPasswordEncrypted() string {
-	if o == nil || IsNil(o.PasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.PasswordEncrypted
-}
-
-// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.PasswordEncrypted) {
-		return nil, false
-	}
-	return o.PasswordEncrypted, true
-}
-
-// HasPasswordEncrypted returns a boolean if a field has been set.
-func (o *Storage) HasPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.PasswordEncrypted) {
+// HasUsername returns a boolean if a field has been set.
+func (o *Storage) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
 	return false
 }
 
-// SetPasswordEncrypted gets a reference to the given string and assigns it to the PasswordEncrypted field.
-func (o *Storage) SetPasswordEncrypted(v string) {
-	o.PasswordEncrypted = &v
+// SetUsername gets a reference to the given string and assigns it to the Username field.
+func (o *Storage) SetUsername(v string) {
+	o.Username = &v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
@@ -939,9 +912,8 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 		toSerialize["iscsiPort"] = o.IscsiPort
 	}
 	toSerialize["managementHost"] = o.ManagementHost
-	toSerialize["username"] = o.Username
-	if !IsNil(o.PasswordEncrypted) {
-		toSerialize["passwordEncrypted"] = o.PasswordEncrypted
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
 	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
@@ -1003,7 +975,6 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		"status",
 		"name",
 		"managementHost",
-		"username",
 		"subnetType",
 	}
 
@@ -1048,7 +1019,6 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "iscsiPort")
 		delete(additionalProperties, "managementHost")
 		delete(additionalProperties, "username")
-		delete(additionalProperties, "passwordEncrypted")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "targetIQN")

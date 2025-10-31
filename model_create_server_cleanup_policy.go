@@ -27,6 +27,8 @@ type CreateServerCleanupPolicy struct {
 	CleanupDrivesForOobEnabledServer float32 `json:"cleanupDrivesForOobEnabledServer"`
 	// Recreate raid
 	RecreateRaid float32 `json:"recreateRaid"`
+	// Reset raid controllers to default
+	ResetRaidControllers float32 `json:"resetRaidControllers"`
 	// Disable embedded nics
 	DisableEmbeddedNics float32 `json:"disableEmbeddedNics"`
 	// Raid one drive
@@ -48,11 +50,12 @@ type _CreateServerCleanupPolicy CreateServerCleanupPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateServerCleanupPolicy(label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, skipRaidActions []string) *CreateServerCleanupPolicy {
+func NewCreateServerCleanupPolicy(label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, skipRaidActions []string) *CreateServerCleanupPolicy {
 	this := CreateServerCleanupPolicy{}
 	this.Label = label
 	this.CleanupDrivesForOobEnabledServer = cleanupDrivesForOobEnabledServer
 	this.RecreateRaid = recreateRaid
+	this.ResetRaidControllers = resetRaidControllers
 	this.DisableEmbeddedNics = disableEmbeddedNics
 	this.RaidOneDrive = raidOneDrive
 	this.RaidTwoDrives = raidTwoDrives
@@ -140,6 +143,30 @@ func (o *CreateServerCleanupPolicy) GetRecreateRaidOk() (*float32, bool) {
 // SetRecreateRaid sets field value
 func (o *CreateServerCleanupPolicy) SetRecreateRaid(v float32) {
 	o.RecreateRaid = v
+}
+
+// GetResetRaidControllers returns the ResetRaidControllers field value
+func (o *CreateServerCleanupPolicy) GetResetRaidControllers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ResetRaidControllers
+}
+
+// GetResetRaidControllersOk returns a tuple with the ResetRaidControllers field value
+// and a boolean to check if the value has been set.
+func (o *CreateServerCleanupPolicy) GetResetRaidControllersOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ResetRaidControllers, true
+}
+
+// SetResetRaidControllers sets field value
+func (o *CreateServerCleanupPolicy) SetResetRaidControllers(v float32) {
+	o.ResetRaidControllers = v
 }
 
 // GetDisableEmbeddedNics returns the DisableEmbeddedNics field value
@@ -299,6 +326,7 @@ func (o CreateServerCleanupPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["cleanupDrivesForOobEnabledServer"] = o.CleanupDrivesForOobEnabledServer
 	toSerialize["recreateRaid"] = o.RecreateRaid
+	toSerialize["resetRaidControllers"] = o.ResetRaidControllers
 	toSerialize["disableEmbeddedNics"] = o.DisableEmbeddedNics
 	toSerialize["raidOneDrive"] = o.RaidOneDrive
 	toSerialize["raidTwoDrives"] = o.RaidTwoDrives
@@ -321,6 +349,7 @@ func (o *CreateServerCleanupPolicy) UnmarshalJSON(data []byte) (err error) {
 		"label",
 		"cleanupDrivesForOobEnabledServer",
 		"recreateRaid",
+		"resetRaidControllers",
 		"disableEmbeddedNics",
 		"raidOneDrive",
 		"raidTwoDrives",
@@ -359,6 +388,7 @@ func (o *CreateServerCleanupPolicy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "cleanupDrivesForOobEnabledServer")
 		delete(additionalProperties, "recreateRaid")
+		delete(additionalProperties, "resetRaidControllers")
 		delete(additionalProperties, "disableEmbeddedNics")
 		delete(additionalProperties, "raidOneDrive")
 		delete(additionalProperties, "raidTwoDrives")

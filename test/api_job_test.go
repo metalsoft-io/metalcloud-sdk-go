@@ -22,6 +22,68 @@ func Test_sdk_JobAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test JobAPIService CreateCronJob", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.JobAPI.CreateCronJob(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test JobAPIService DeleteCronJob", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var cronJobId float32
+
+		httpRes, err := apiClient.JobAPI.DeleteCronJob(context.Background(), cronJobId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test JobAPIService GetCronJob", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var cronJobId float32
+
+		resp, httpRes, err := apiClient.JobAPI.GetCronJob(context.Background(), cronJobId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test JobAPIService GetCronJobs", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.JobAPI.GetCronJobs(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test JobAPIService GetCronJobsSupportedFunctions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.JobAPI.GetCronJobsSupportedFunctions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test JobAPIService GetJob", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -173,6 +235,19 @@ func Test_sdk_JobAPIService(t *testing.T) {
 		var jobId float32
 
 		httpRes, err := apiClient.JobAPI.SkipJob(context.Background(), jobId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test JobAPIService UpdateCronJob", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var cronJobId float32
+
+		httpRes, err := apiClient.JobAPI.UpdateCronJob(context.Background(), cronJobId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

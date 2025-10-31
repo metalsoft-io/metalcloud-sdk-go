@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **SerialNumber** | Pointer to **string** | The Serial Number of the server. | [optional] 
 **ManagementAddress** | Pointer to **string** | The Management Address of the server. | [optional] 
 **Username** | Pointer to **string** | The username to use. | [optional] 
-**PasswordEncrypted** | **string** | The encrypted password. | 
 **IpmiVersion** | Pointer to **string** | The ipmi version of the server. | [optional] 
 **RamGbytes** | Pointer to **float32** | The RAM GB of the server. | [optional] 
 **ProcessorCount** | Pointer to **float32** | The processor count of the server. | [optional] 
@@ -24,19 +23,18 @@ Name | Type | Description | Notes
 **ProcessorThreads** | Pointer to **float32** | The processor threads of the server. | [optional] 
 **DiskCount** | Pointer to **float32** | The disk count of the server. | [optional] 
 **MgmtSnmpPort** | Pointer to **float32** | The management snmp port of the server. | [optional] 
-**MgmtSnmpPasswordEncrypted** | Pointer to **string** | The management snmp password encrypted of the server. | [optional] 
 **BmcMacAddress** | Pointer to **string** | The MAC address of the server. | [optional] 
 **BdkDebug** | **float32** | The BDK debug flag. | 
-**ServerMetricsMetadata** | Pointer to [**map[string][]ServerMetricsInfo**](array.md) | The metrics metadata of the server. | [optional] 
+**ServerMetricsMetadata** | Pointer to [**map[string]ServerMetricsInfo**](ServerMetricsInfo.md) | The metrics metadata of the server. | [optional] 
 **InstanceCustomInfo** | Pointer to **map[string]interface{}** | The instance custom info of the server. | [optional] 
 **CustomInfo** | Pointer to **map[string]interface{}** | The custom info of the server. | [optional] 
 **Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
 **VendorSkuId** | Pointer to **string** | The vendor sku id of the server. | [optional] 
 **Model** | Pointer to **string** | The model of the server. | [optional] 
 **VncPort** | Pointer to **float32** | The VNC port of the server. | [optional] 
-**VncPasswordEncrypted** | Pointer to **string** | The VNC password encrypted of the server. | [optional] 
 **IsBasicCampusEndpoint** | Pointer to **float32** | Flag to indicate if the server is basic campus endpoint. | [optional] 
 **ServerCleanupPolicyId** | Pointer to **float32** | The cleanup policy id of the server. | [optional] 
+**RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
 **RequiresReRegister** | **float32** | Flag to indicate if the server required re-registration. | 
 **ServerSupportsSol** | Pointer to **float32** | Flag to indicate if the supports SOL. | [optional] 
 **ServerSupportsVirtualMedia** | Pointer to **float32** | Flag to indicate if the supports Virtual Media. | [optional] 
@@ -45,6 +43,7 @@ Name | Type | Description | Notes
 **BootingCustomIsoInProgress** | Pointer to **float32** | Flag to indicate if the server is booting a custom iso. | [optional] 
 **BiosInfo** | Pointer to [**ServerBiosInfo**](ServerBiosInfo.md) | The bios info of the server. | [optional] 
 **VendorInfo** | Pointer to [**ServerVendorInfo**](ServerVendorInfo.md) | The vendor info of the server. | [optional] 
+**RegistrationResult** | Pointer to [**ServerRegistrationResult**](ServerRegistrationResult.md) | The registration result of the server. | [optional] 
 **ServerClass** | **string** | The class of the server. | 
 **ServerStatus** | **string** | The status of the server. | 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
@@ -84,7 +83,7 @@ Name | Type | Description | Notes
 
 ### NewServer
 
-`func NewServer(serverId float32, revision float32, siteId float32, datacenterName string, passwordEncrypted string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string, ) *Server`
+`func NewServer(serverId float32, revision float32, siteId float32, datacenterName string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string, ) *Server`
 
 NewServer instantiates a new Server object
 This constructor will assign default values to properties that have it defined,
@@ -303,26 +302,6 @@ SetUsername sets Username field to given value.
 `func (o *Server) HasUsername() bool`
 
 HasUsername returns a boolean if a field has been set.
-
-### GetPasswordEncrypted
-
-`func (o *Server) GetPasswordEncrypted() string`
-
-GetPasswordEncrypted returns the PasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetPasswordEncryptedOk
-
-`func (o *Server) GetPasswordEncryptedOk() (*string, bool)`
-
-GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPasswordEncrypted
-
-`func (o *Server) SetPasswordEncrypted(v string)`
-
-SetPasswordEncrypted sets PasswordEncrypted field to given value.
-
 
 ### GetIpmiVersion
 
@@ -574,31 +553,6 @@ SetMgmtSnmpPort sets MgmtSnmpPort field to given value.
 
 HasMgmtSnmpPort returns a boolean if a field has been set.
 
-### GetMgmtSnmpPasswordEncrypted
-
-`func (o *Server) GetMgmtSnmpPasswordEncrypted() string`
-
-GetMgmtSnmpPasswordEncrypted returns the MgmtSnmpPasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetMgmtSnmpPasswordEncryptedOk
-
-`func (o *Server) GetMgmtSnmpPasswordEncryptedOk() (*string, bool)`
-
-GetMgmtSnmpPasswordEncryptedOk returns a tuple with the MgmtSnmpPasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMgmtSnmpPasswordEncrypted
-
-`func (o *Server) SetMgmtSnmpPasswordEncrypted(v string)`
-
-SetMgmtSnmpPasswordEncrypted sets MgmtSnmpPasswordEncrypted field to given value.
-
-### HasMgmtSnmpPasswordEncrypted
-
-`func (o *Server) HasMgmtSnmpPasswordEncrypted() bool`
-
-HasMgmtSnmpPasswordEncrypted returns a boolean if a field has been set.
-
 ### GetBmcMacAddress
 
 `func (o *Server) GetBmcMacAddress() string`
@@ -646,20 +600,20 @@ SetBdkDebug sets BdkDebug field to given value.
 
 ### GetServerMetricsMetadata
 
-`func (o *Server) GetServerMetricsMetadata() map[string][]ServerMetricsInfo`
+`func (o *Server) GetServerMetricsMetadata() map[string]ServerMetricsInfo`
 
 GetServerMetricsMetadata returns the ServerMetricsMetadata field if non-nil, zero value otherwise.
 
 ### GetServerMetricsMetadataOk
 
-`func (o *Server) GetServerMetricsMetadataOk() (*map[string][]ServerMetricsInfo, bool)`
+`func (o *Server) GetServerMetricsMetadataOk() (*map[string]ServerMetricsInfo, bool)`
 
 GetServerMetricsMetadataOk returns a tuple with the ServerMetricsMetadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerMetricsMetadata
 
-`func (o *Server) SetServerMetricsMetadata(v map[string][]ServerMetricsInfo)`
+`func (o *Server) SetServerMetricsMetadata(v map[string]ServerMetricsInfo)`
 
 SetServerMetricsMetadata sets ServerMetricsMetadata field to given value.
 
@@ -819,31 +773,6 @@ SetVncPort sets VncPort field to given value.
 
 HasVncPort returns a boolean if a field has been set.
 
-### GetVncPasswordEncrypted
-
-`func (o *Server) GetVncPasswordEncrypted() string`
-
-GetVncPasswordEncrypted returns the VncPasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetVncPasswordEncryptedOk
-
-`func (o *Server) GetVncPasswordEncryptedOk() (*string, bool)`
-
-GetVncPasswordEncryptedOk returns a tuple with the VncPasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVncPasswordEncrypted
-
-`func (o *Server) SetVncPasswordEncrypted(v string)`
-
-SetVncPasswordEncrypted sets VncPasswordEncrypted field to given value.
-
-### HasVncPasswordEncrypted
-
-`func (o *Server) HasVncPasswordEncrypted() bool`
-
-HasVncPasswordEncrypted returns a boolean if a field has been set.
-
 ### GetIsBasicCampusEndpoint
 
 `func (o *Server) GetIsBasicCampusEndpoint() float32`
@@ -893,6 +822,31 @@ SetServerCleanupPolicyId sets ServerCleanupPolicyId field to given value.
 `func (o *Server) HasServerCleanupPolicyId() bool`
 
 HasServerCleanupPolicyId returns a boolean if a field has been set.
+
+### GetRegistrationProfileId
+
+`func (o *Server) GetRegistrationProfileId() float32`
+
+GetRegistrationProfileId returns the RegistrationProfileId field if non-nil, zero value otherwise.
+
+### GetRegistrationProfileIdOk
+
+`func (o *Server) GetRegistrationProfileIdOk() (*float32, bool)`
+
+GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationProfileId
+
+`func (o *Server) SetRegistrationProfileId(v float32)`
+
+SetRegistrationProfileId sets RegistrationProfileId field to given value.
+
+### HasRegistrationProfileId
+
+`func (o *Server) HasRegistrationProfileId() bool`
+
+HasRegistrationProfileId returns a boolean if a field has been set.
 
 ### GetRequiresReRegister
 
@@ -1088,6 +1042,31 @@ SetVendorInfo sets VendorInfo field to given value.
 `func (o *Server) HasVendorInfo() bool`
 
 HasVendorInfo returns a boolean if a field has been set.
+
+### GetRegistrationResult
+
+`func (o *Server) GetRegistrationResult() ServerRegistrationResult`
+
+GetRegistrationResult returns the RegistrationResult field if non-nil, zero value otherwise.
+
+### GetRegistrationResultOk
+
+`func (o *Server) GetRegistrationResultOk() (*ServerRegistrationResult, bool)`
+
+GetRegistrationResultOk returns a tuple with the RegistrationResult field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationResult
+
+`func (o *Server) SetRegistrationResult(v ServerRegistrationResult)`
+
+SetRegistrationResult sets RegistrationResult field to given value.
+
+### HasRegistrationResult
+
+`func (o *Server) HasRegistrationResult() bool`
+
+HasRegistrationResult returns a boolean if a field has been set.
 
 ### GetServerClass
 

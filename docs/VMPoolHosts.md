@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **float32** | VM Pool Host ID | 
 **Name** | **string** | Name of the VM Pool Host | 
-**Address** | **string** | Address of the VM Pool Host | 
-**Port** | **float32** | Port of the VM Pool Host | 
-**PoolId** | **float32** | VM Pool ID | 
-**Roles** | **[]string** | Roles of the VM Pool Host | 
-**FailureDomain** | **string** | Failure domain of the VM Pool Host | 
-**Architecture** | **string** | Architecture of the VM Pool Host | 
-**Database** | **float32** | Flag specifying if the VM Pool Host is database | 
-**Status** | **string** | Status of the VM Pool Host | 
+**Address** | Pointer to **string** | Address of the VM Pool Host | [optional] 
+**Port** | Pointer to **float32** | Port of the VM Pool Host | [optional] 
+**PoolId** | Pointer to **float32** | VM Pool ID | [optional] 
+**Roles** | Pointer to **[]string** | Roles of the VM Pool Host | [optional] 
+**FailureDomain** | Pointer to **string** | Failure domain of the VM Pool Host | [optional] 
+**Architecture** | Pointer to **string** | Architecture of the VM Pool Host | [optional] 
+**Database** | Pointer to **float32** | Flag specifying if the VM Pool Host is database | [optional] 
+**Status** | Pointer to **string** | Status of the VM Pool Host | [optional] 
 **Description** | Pointer to **string** | Description of the VM Pool Host | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool Host was updated | 
 **Links** | **map[string]interface{}** | Links to other resources | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewVMPoolHosts
 
-`func NewVMPoolHosts(id float32, name string, address string, port float32, poolId float32, roles []string, failureDomain string, architecture string, database float32, status string, updatedTimestamp string, links map[string]interface{}, ) *VMPoolHosts`
+`func NewVMPoolHosts(id float32, name string, updatedTimestamp string, links map[string]interface{}, ) *VMPoolHosts`
 
 NewVMPoolHosts instantiates a new VMPoolHosts object
 This constructor will assign default values to properties that have it defined,
@@ -96,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *VMPoolHosts) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### GetPort
 
@@ -116,6 +121,11 @@ and a boolean to check if the value has been set.
 
 SetPort sets Port field to given value.
 
+### HasPort
+
+`func (o *VMPoolHosts) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
 
 ### GetPoolId
 
@@ -136,6 +146,11 @@ and a boolean to check if the value has been set.
 
 SetPoolId sets PoolId field to given value.
 
+### HasPoolId
+
+`func (o *VMPoolHosts) HasPoolId() bool`
+
+HasPoolId returns a boolean if a field has been set.
 
 ### GetRoles
 
@@ -156,6 +171,11 @@ and a boolean to check if the value has been set.
 
 SetRoles sets Roles field to given value.
 
+### HasRoles
+
+`func (o *VMPoolHosts) HasRoles() bool`
+
+HasRoles returns a boolean if a field has been set.
 
 ### GetFailureDomain
 
@@ -176,6 +196,11 @@ and a boolean to check if the value has been set.
 
 SetFailureDomain sets FailureDomain field to given value.
 
+### HasFailureDomain
+
+`func (o *VMPoolHosts) HasFailureDomain() bool`
+
+HasFailureDomain returns a boolean if a field has been set.
 
 ### GetArchitecture
 
@@ -196,6 +221,11 @@ and a boolean to check if the value has been set.
 
 SetArchitecture sets Architecture field to given value.
 
+### HasArchitecture
+
+`func (o *VMPoolHosts) HasArchitecture() bool`
+
+HasArchitecture returns a boolean if a field has been set.
 
 ### GetDatabase
 
@@ -216,6 +246,11 @@ and a boolean to check if the value has been set.
 
 SetDatabase sets Database field to given value.
 
+### HasDatabase
+
+`func (o *VMPoolHosts) HasDatabase() bool`
+
+HasDatabase returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -236,6 +271,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *VMPoolHosts) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetDescription
 

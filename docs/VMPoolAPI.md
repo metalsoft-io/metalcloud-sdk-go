@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**GetVmPoolStatistics**](VMPoolAPI.md#GetVmPoolStatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/statistics | Get VM Pool statistics
 [**ImportVMPoolVMs**](VMPoolAPI.md#ImportVMPoolVMs) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/import-vms | Import VMs into VM Pool
 [**RefreshVMPoolInformation**](VMPoolAPI.md#RefreshVMPoolInformation) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/refresh-information | Refresh VM Pool information
+[**SyncVMPool**](VMPoolAPI.md#SyncVMPool) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/sync | Sync VM Pool
 [**UpdateVMPool**](VMPoolAPI.md#UpdateVMPool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
 [**UpdateVMPoolClusterHostInterface**](VMPoolAPI.md#UpdateVMPoolClusterHostInterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
 
@@ -1135,6 +1136,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMPool**](VMPool.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SyncVMPool
+
+> JobInfo SyncVMPool(ctx, vmPoolId).Execute()
+
+Sync VM Pool
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMPoolAPI.SyncVMPool(context.Background(), vmPoolId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.SyncVMPool``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SyncVMPool`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.SyncVMPool`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSyncVMPoolRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**JobInfo**](JobInfo.md)
 
 ### Authorization
 

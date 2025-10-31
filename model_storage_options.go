@@ -21,9 +21,9 @@ var _ MappedNullable = &StorageOptions{}
 // StorageOptions struct for StorageOptions
 type StorageOptions struct {
 	// Enable data reduction
-	EnableDataReduction *float32 `json:"enableDataReduction,omitempty"`
+	EnableDataReduction *bool `json:"enableDataReduction,omitempty"`
 	// Enable advanced deduplication
-	EnableAdvancedDeduplication *float32 `json:"enableAdvancedDeduplication,omitempty"`
+	EnableAdvancedDeduplication *bool `json:"enableAdvancedDeduplication,omitempty"`
 	// Volume name
 	VolumeName *string `json:"volumeName,omitempty"`
 	// Array id to use (for certain storage drivers)
@@ -37,7 +37,7 @@ type StorageOptions struct {
 	// Default service level to use (for certain storage drivers)
 	DefaultServiceLevel *string `json:"defaultServiceLevel,omitempty"`
 	// Fibre channel enabled
-	FibreChannelEnabled *float32 `json:"fibreChannelEnabled,omitempty"`
+	FibreChannelEnabled *bool `json:"fibreChannelEnabled,omitempty"`
 	// Array of directors
 	Directors []string `json:"directors,omitempty"`
 	// Resource pool
@@ -53,17 +53,17 @@ type StorageOptions struct {
 	// Service level names
 	ServiceLevelNames []string `json:"serviceLevelNames,omitempty"`
 	// Fibre channel capable
-	FibreChannelCapable *float32 `json:"fibreChannelCapable,omitempty"`
+	FibreChannelCapable *bool `json:"fibreChannelCapable,omitempty"`
 	// ISCSI ports
-	PortsIscsi []StoragePortDto `json:"portsIscsi,omitempty"`
+	PortsIscsi []StoragePort `json:"portsIscsi,omitempty"`
 	// SCSI FC ports
-	PortsScsiFc []StoragePortDto `json:"portsScsiFc,omitempty"`
+	PortsScsiFc []StoragePort `json:"portsScsiFc,omitempty"`
 	// NVMe TCP ports
-	PortsNvmeTcp []StoragePortDto `json:"portsNvmeTcp,omitempty"`
+	PortsNvmeTcp []StoragePort `json:"portsNvmeTcp,omitempty"`
 	// NVMe FC ports
-	PortsNvmeFc []StoragePortDto `json:"portsNvmeFc,omitempty"`
+	PortsNvmeFc []StoragePort `json:"portsNvmeFc,omitempty"`
 	// Array of storage ports to use
-	PortsToUse []StoragePortDto `json:"portsToUse,omitempty"`
+	PortsToUse []StoragePort `json:"portsToUse,omitempty"`
 	// Error message when gathering storage info
 	InfoGatherError *string `json:"infoGatherError,omitempty"`
 	// Error message when configuring storage
@@ -91,9 +91,9 @@ func NewStorageOptionsWithDefaults() *StorageOptions {
 }
 
 // GetEnableDataReduction returns the EnableDataReduction field value if set, zero value otherwise.
-func (o *StorageOptions) GetEnableDataReduction() float32 {
+func (o *StorageOptions) GetEnableDataReduction() bool {
 	if o == nil || IsNil(o.EnableDataReduction) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.EnableDataReduction
@@ -101,7 +101,7 @@ func (o *StorageOptions) GetEnableDataReduction() float32 {
 
 // GetEnableDataReductionOk returns a tuple with the EnableDataReduction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetEnableDataReductionOk() (*float32, bool) {
+func (o *StorageOptions) GetEnableDataReductionOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableDataReduction) {
 		return nil, false
 	}
@@ -117,15 +117,15 @@ func (o *StorageOptions) HasEnableDataReduction() bool {
 	return false
 }
 
-// SetEnableDataReduction gets a reference to the given float32 and assigns it to the EnableDataReduction field.
-func (o *StorageOptions) SetEnableDataReduction(v float32) {
+// SetEnableDataReduction gets a reference to the given bool and assigns it to the EnableDataReduction field.
+func (o *StorageOptions) SetEnableDataReduction(v bool) {
 	o.EnableDataReduction = &v
 }
 
 // GetEnableAdvancedDeduplication returns the EnableAdvancedDeduplication field value if set, zero value otherwise.
-func (o *StorageOptions) GetEnableAdvancedDeduplication() float32 {
+func (o *StorageOptions) GetEnableAdvancedDeduplication() bool {
 	if o == nil || IsNil(o.EnableAdvancedDeduplication) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.EnableAdvancedDeduplication
@@ -133,7 +133,7 @@ func (o *StorageOptions) GetEnableAdvancedDeduplication() float32 {
 
 // GetEnableAdvancedDeduplicationOk returns a tuple with the EnableAdvancedDeduplication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetEnableAdvancedDeduplicationOk() (*float32, bool) {
+func (o *StorageOptions) GetEnableAdvancedDeduplicationOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableAdvancedDeduplication) {
 		return nil, false
 	}
@@ -149,8 +149,8 @@ func (o *StorageOptions) HasEnableAdvancedDeduplication() bool {
 	return false
 }
 
-// SetEnableAdvancedDeduplication gets a reference to the given float32 and assigns it to the EnableAdvancedDeduplication field.
-func (o *StorageOptions) SetEnableAdvancedDeduplication(v float32) {
+// SetEnableAdvancedDeduplication gets a reference to the given bool and assigns it to the EnableAdvancedDeduplication field.
+func (o *StorageOptions) SetEnableAdvancedDeduplication(v bool) {
 	o.EnableAdvancedDeduplication = &v
 }
 
@@ -347,9 +347,9 @@ func (o *StorageOptions) SetDefaultServiceLevel(v string) {
 }
 
 // GetFibreChannelEnabled returns the FibreChannelEnabled field value if set, zero value otherwise.
-func (o *StorageOptions) GetFibreChannelEnabled() float32 {
+func (o *StorageOptions) GetFibreChannelEnabled() bool {
 	if o == nil || IsNil(o.FibreChannelEnabled) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.FibreChannelEnabled
@@ -357,7 +357,7 @@ func (o *StorageOptions) GetFibreChannelEnabled() float32 {
 
 // GetFibreChannelEnabledOk returns a tuple with the FibreChannelEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetFibreChannelEnabledOk() (*float32, bool) {
+func (o *StorageOptions) GetFibreChannelEnabledOk() (*bool, bool) {
 	if o == nil || IsNil(o.FibreChannelEnabled) {
 		return nil, false
 	}
@@ -373,8 +373,8 @@ func (o *StorageOptions) HasFibreChannelEnabled() bool {
 	return false
 }
 
-// SetFibreChannelEnabled gets a reference to the given float32 and assigns it to the FibreChannelEnabled field.
-func (o *StorageOptions) SetFibreChannelEnabled(v float32) {
+// SetFibreChannelEnabled gets a reference to the given bool and assigns it to the FibreChannelEnabled field.
+func (o *StorageOptions) SetFibreChannelEnabled(v bool) {
 	o.FibreChannelEnabled = &v
 }
 
@@ -603,9 +603,9 @@ func (o *StorageOptions) SetServiceLevelNames(v []string) {
 }
 
 // GetFibreChannelCapable returns the FibreChannelCapable field value if set, zero value otherwise.
-func (o *StorageOptions) GetFibreChannelCapable() float32 {
+func (o *StorageOptions) GetFibreChannelCapable() bool {
 	if o == nil || IsNil(o.FibreChannelCapable) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.FibreChannelCapable
@@ -613,7 +613,7 @@ func (o *StorageOptions) GetFibreChannelCapable() float32 {
 
 // GetFibreChannelCapableOk returns a tuple with the FibreChannelCapable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetFibreChannelCapableOk() (*float32, bool) {
+func (o *StorageOptions) GetFibreChannelCapableOk() (*bool, bool) {
 	if o == nil || IsNil(o.FibreChannelCapable) {
 		return nil, false
 	}
@@ -629,15 +629,15 @@ func (o *StorageOptions) HasFibreChannelCapable() bool {
 	return false
 }
 
-// SetFibreChannelCapable gets a reference to the given float32 and assigns it to the FibreChannelCapable field.
-func (o *StorageOptions) SetFibreChannelCapable(v float32) {
+// SetFibreChannelCapable gets a reference to the given bool and assigns it to the FibreChannelCapable field.
+func (o *StorageOptions) SetFibreChannelCapable(v bool) {
 	o.FibreChannelCapable = &v
 }
 
 // GetPortsIscsi returns the PortsIscsi field value if set, zero value otherwise.
-func (o *StorageOptions) GetPortsIscsi() []StoragePortDto {
+func (o *StorageOptions) GetPortsIscsi() []StoragePort {
 	if o == nil || IsNil(o.PortsIscsi) {
-		var ret []StoragePortDto
+		var ret []StoragePort
 		return ret
 	}
 	return o.PortsIscsi
@@ -645,7 +645,7 @@ func (o *StorageOptions) GetPortsIscsi() []StoragePortDto {
 
 // GetPortsIscsiOk returns a tuple with the PortsIscsi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetPortsIscsiOk() ([]StoragePortDto, bool) {
+func (o *StorageOptions) GetPortsIscsiOk() ([]StoragePort, bool) {
 	if o == nil || IsNil(o.PortsIscsi) {
 		return nil, false
 	}
@@ -661,15 +661,15 @@ func (o *StorageOptions) HasPortsIscsi() bool {
 	return false
 }
 
-// SetPortsIscsi gets a reference to the given []StoragePortDto and assigns it to the PortsIscsi field.
-func (o *StorageOptions) SetPortsIscsi(v []StoragePortDto) {
+// SetPortsIscsi gets a reference to the given []StoragePort and assigns it to the PortsIscsi field.
+func (o *StorageOptions) SetPortsIscsi(v []StoragePort) {
 	o.PortsIscsi = v
 }
 
 // GetPortsScsiFc returns the PortsScsiFc field value if set, zero value otherwise.
-func (o *StorageOptions) GetPortsScsiFc() []StoragePortDto {
+func (o *StorageOptions) GetPortsScsiFc() []StoragePort {
 	if o == nil || IsNil(o.PortsScsiFc) {
-		var ret []StoragePortDto
+		var ret []StoragePort
 		return ret
 	}
 	return o.PortsScsiFc
@@ -677,7 +677,7 @@ func (o *StorageOptions) GetPortsScsiFc() []StoragePortDto {
 
 // GetPortsScsiFcOk returns a tuple with the PortsScsiFc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetPortsScsiFcOk() ([]StoragePortDto, bool) {
+func (o *StorageOptions) GetPortsScsiFcOk() ([]StoragePort, bool) {
 	if o == nil || IsNil(o.PortsScsiFc) {
 		return nil, false
 	}
@@ -693,15 +693,15 @@ func (o *StorageOptions) HasPortsScsiFc() bool {
 	return false
 }
 
-// SetPortsScsiFc gets a reference to the given []StoragePortDto and assigns it to the PortsScsiFc field.
-func (o *StorageOptions) SetPortsScsiFc(v []StoragePortDto) {
+// SetPortsScsiFc gets a reference to the given []StoragePort and assigns it to the PortsScsiFc field.
+func (o *StorageOptions) SetPortsScsiFc(v []StoragePort) {
 	o.PortsScsiFc = v
 }
 
 // GetPortsNvmeTcp returns the PortsNvmeTcp field value if set, zero value otherwise.
-func (o *StorageOptions) GetPortsNvmeTcp() []StoragePortDto {
+func (o *StorageOptions) GetPortsNvmeTcp() []StoragePort {
 	if o == nil || IsNil(o.PortsNvmeTcp) {
-		var ret []StoragePortDto
+		var ret []StoragePort
 		return ret
 	}
 	return o.PortsNvmeTcp
@@ -709,7 +709,7 @@ func (o *StorageOptions) GetPortsNvmeTcp() []StoragePortDto {
 
 // GetPortsNvmeTcpOk returns a tuple with the PortsNvmeTcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetPortsNvmeTcpOk() ([]StoragePortDto, bool) {
+func (o *StorageOptions) GetPortsNvmeTcpOk() ([]StoragePort, bool) {
 	if o == nil || IsNil(o.PortsNvmeTcp) {
 		return nil, false
 	}
@@ -725,15 +725,15 @@ func (o *StorageOptions) HasPortsNvmeTcp() bool {
 	return false
 }
 
-// SetPortsNvmeTcp gets a reference to the given []StoragePortDto and assigns it to the PortsNvmeTcp field.
-func (o *StorageOptions) SetPortsNvmeTcp(v []StoragePortDto) {
+// SetPortsNvmeTcp gets a reference to the given []StoragePort and assigns it to the PortsNvmeTcp field.
+func (o *StorageOptions) SetPortsNvmeTcp(v []StoragePort) {
 	o.PortsNvmeTcp = v
 }
 
 // GetPortsNvmeFc returns the PortsNvmeFc field value if set, zero value otherwise.
-func (o *StorageOptions) GetPortsNvmeFc() []StoragePortDto {
+func (o *StorageOptions) GetPortsNvmeFc() []StoragePort {
 	if o == nil || IsNil(o.PortsNvmeFc) {
-		var ret []StoragePortDto
+		var ret []StoragePort
 		return ret
 	}
 	return o.PortsNvmeFc
@@ -741,7 +741,7 @@ func (o *StorageOptions) GetPortsNvmeFc() []StoragePortDto {
 
 // GetPortsNvmeFcOk returns a tuple with the PortsNvmeFc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetPortsNvmeFcOk() ([]StoragePortDto, bool) {
+func (o *StorageOptions) GetPortsNvmeFcOk() ([]StoragePort, bool) {
 	if o == nil || IsNil(o.PortsNvmeFc) {
 		return nil, false
 	}
@@ -757,15 +757,15 @@ func (o *StorageOptions) HasPortsNvmeFc() bool {
 	return false
 }
 
-// SetPortsNvmeFc gets a reference to the given []StoragePortDto and assigns it to the PortsNvmeFc field.
-func (o *StorageOptions) SetPortsNvmeFc(v []StoragePortDto) {
+// SetPortsNvmeFc gets a reference to the given []StoragePort and assigns it to the PortsNvmeFc field.
+func (o *StorageOptions) SetPortsNvmeFc(v []StoragePort) {
 	o.PortsNvmeFc = v
 }
 
 // GetPortsToUse returns the PortsToUse field value if set, zero value otherwise.
-func (o *StorageOptions) GetPortsToUse() []StoragePortDto {
+func (o *StorageOptions) GetPortsToUse() []StoragePort {
 	if o == nil || IsNil(o.PortsToUse) {
-		var ret []StoragePortDto
+		var ret []StoragePort
 		return ret
 	}
 	return o.PortsToUse
@@ -773,7 +773,7 @@ func (o *StorageOptions) GetPortsToUse() []StoragePortDto {
 
 // GetPortsToUseOk returns a tuple with the PortsToUse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageOptions) GetPortsToUseOk() ([]StoragePortDto, bool) {
+func (o *StorageOptions) GetPortsToUseOk() ([]StoragePort, bool) {
 	if o == nil || IsNil(o.PortsToUse) {
 		return nil, false
 	}
@@ -789,8 +789,8 @@ func (o *StorageOptions) HasPortsToUse() bool {
 	return false
 }
 
-// SetPortsToUse gets a reference to the given []StoragePortDto and assigns it to the PortsToUse field.
-func (o *StorageOptions) SetPortsToUse(v []StoragePortDto) {
+// SetPortsToUse gets a reference to the given []StoragePort and assigns it to the PortsToUse field.
+func (o *StorageOptions) SetPortsToUse(v []StoragePort) {
 	o.PortsToUse = v
 }
 

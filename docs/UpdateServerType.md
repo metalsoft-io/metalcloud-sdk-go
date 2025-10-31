@@ -4,17 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | The label of the server type. | [optional] 
 **AllowedVendorSkuIds** | Pointer to **[]string** | The list of allowed SKU ids for the server type. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag specifying if the server type is experimental. | [optional] [default to 0]
 **Tags** | Pointer to **[]string** | The tags for the server type. | [optional] 
-**DisplayName** | Pointer to **string** | The display name of the server type. | [optional] 
+**Label** | **string** | The label for the server type (e.g., M.16.64.4G.v2). | 
+**Description** | Pointer to **string** | Description of the server type. | [optional] 
+**Name** | Pointer to **string** | The name of the server type. | [optional] 
 
 ## Methods
 
 ### NewUpdateServerType
 
-`func NewUpdateServerType() *UpdateServerType`
+`func NewUpdateServerType(label string, ) *UpdateServerType`
 
 NewUpdateServerType instantiates a new UpdateServerType object
 This constructor will assign default values to properties that have it defined,
@@ -28,31 +29,6 @@ will change when the set of required properties is changed
 NewUpdateServerTypeWithDefaults instantiates a new UpdateServerType object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetLabel
-
-`func (o *UpdateServerType) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *UpdateServerType) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *UpdateServerType) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-### HasLabel
-
-`func (o *UpdateServerType) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetAllowedVendorSkuIds
 
@@ -129,30 +105,75 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-### GetDisplayName
+### GetLabel
 
-`func (o *UpdateServerType) GetDisplayName() string`
+`func (o *UpdateServerType) GetLabel() string`
 
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetDisplayNameOk
+### GetLabelOk
 
-`func (o *UpdateServerType) GetDisplayNameOk() (*string, bool)`
+`func (o *UpdateServerType) GetLabelOk() (*string, bool)`
 
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDisplayName
+### SetLabel
 
-`func (o *UpdateServerType) SetDisplayName(v string)`
+`func (o *UpdateServerType) SetLabel(v string)`
 
-SetDisplayName sets DisplayName field to given value.
+SetLabel sets Label field to given value.
 
-### HasDisplayName
 
-`func (o *UpdateServerType) HasDisplayName() bool`
+### GetDescription
 
-HasDisplayName returns a boolean if a field has been set.
+`func (o *UpdateServerType) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *UpdateServerType) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *UpdateServerType) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *UpdateServerType) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *UpdateServerType) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *UpdateServerType) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *UpdateServerType) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *UpdateServerType) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

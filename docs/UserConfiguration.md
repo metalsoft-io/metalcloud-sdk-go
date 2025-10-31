@@ -28,12 +28,13 @@ Name | Type | Description | Notes
 **IsArchived** | **bool** | Whether the user is a archived | 
 **IsDatastorePublisher** | **bool** | Whether the user is a datastore publisher | 
 **AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**Provider** | **string** | The provider of the user | [default to "mysql"]
 
 ## Methods
 
 ### NewUserConfiguration
 
-`func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, ) *UserConfiguration`
+`func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, ) *UserConfiguration`
 
 NewUserConfiguration instantiates a new UserConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -552,6 +553,26 @@ SetAccountId sets AccountId field to given value.
 `func (o *UserConfiguration) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
+
+### GetProvider
+
+`func (o *UserConfiguration) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *UserConfiguration) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *UserConfiguration) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

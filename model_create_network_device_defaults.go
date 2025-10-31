@@ -53,7 +53,7 @@ type CreateNetworkDeviceDefaults struct {
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	// MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters).
 	MlagPartnerHostname *string `json:"mlagPartnerHostname,omitempty"`
-	// Indicates whether the device is part of an MLAG pair).
+	// Indicates whether the device is part of an MLAG pair.
 	IsPartOfMlagPair *bool `json:"isPartOfMlagPair,omitempty"`
 	// MLAG system MAC address in the format XX:XX:XX:XX:XX:XX.
 	MlagSystemMac *string `json:"mlagSystemMac,omitempty"`

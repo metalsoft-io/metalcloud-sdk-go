@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateServerType type satisfies the MappedNullable interface at compile time
@@ -20,16 +21,18 @@ var _ MappedNullable = &UpdateServerType{}
 
 // UpdateServerType struct for UpdateServerType
 type UpdateServerType struct {
-	// The label of the server type.
-	Label *string `json:"label,omitempty"`
 	// The list of allowed SKU ids for the server type.
 	AllowedVendorSkuIds []string `json:"allowedVendorSkuIds,omitempty"`
 	// Flag specifying if the server type is experimental.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
 	// The tags for the server type.
 	Tags []string `json:"tags,omitempty"`
-	// The display name of the server type.
-	DisplayName *string `json:"displayName,omitempty"`
+	// The label for the server type (e.g., M.16.64.4G.v2).
+	Label string `json:"label"`
+	// Description of the server type.
+	Description *string `json:"description,omitempty"`
+	// The name of the server type.
+	Name *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +42,11 @@ type _UpdateServerType UpdateServerType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateServerType() *UpdateServerType {
+func NewUpdateServerType(label string) *UpdateServerType {
 	this := UpdateServerType{}
 	var isExperimental float32 = 0
 	this.IsExperimental = &isExperimental
+	this.Label = label
 	return &this
 }
 
@@ -54,38 +58,6 @@ func NewUpdateServerTypeWithDefaults() *UpdateServerType {
 	var isExperimental float32 = 0
 	this.IsExperimental = &isExperimental
 	return &this
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *UpdateServerType) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateServerType) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *UpdateServerType) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *UpdateServerType) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetAllowedVendorSkuIds returns the AllowedVendorSkuIds field value if set, zero value otherwise.
@@ -184,36 +156,92 @@ func (o *UpdateServerType) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *UpdateServerType) GetDisplayName() string {
-	if o == nil || IsNil(o.DisplayName) {
+// GetLabel returns the Label field value
+func (o *UpdateServerType) GetLabel() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DisplayName
+
+	return o.Label
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *UpdateServerType) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
+func (o *UpdateServerType) GetLabelOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DisplayName, true
+	return &o.Label, true
 }
 
-// HasDisplayName returns a boolean if a field has been set.
-func (o *UpdateServerType) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+// SetLabel sets field value
+func (o *UpdateServerType) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *UpdateServerType) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServerType) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *UpdateServerType) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *UpdateServerType) SetDisplayName(v string) {
-	o.DisplayName = &v
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *UpdateServerType) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *UpdateServerType) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServerType) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *UpdateServerType) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *UpdateServerType) SetName(v string) {
+	o.Name = &v
 }
 
 func (o UpdateServerType) MarshalJSON() ([]byte, error) {
@@ -226,9 +254,6 @@ func (o UpdateServerType) MarshalJSON() ([]byte, error) {
 
 func (o UpdateServerType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
 	if !IsNil(o.AllowedVendorSkuIds) {
 		toSerialize["allowedVendorSkuIds"] = o.AllowedVendorSkuIds
 	}
@@ -238,8 +263,12 @@ func (o UpdateServerType) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	toSerialize["label"] = o.Label
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -250,6 +279,27 @@ func (o UpdateServerType) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateServerType) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateServerType := _UpdateServerType{}
 
 	err = json.Unmarshal(data, &varUpdateServerType)
@@ -263,11 +313,12 @@ func (o *UpdateServerType) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "allowedVendorSkuIds")
 		delete(additionalProperties, "isExperimental")
 		delete(additionalProperties, "tags")
-		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

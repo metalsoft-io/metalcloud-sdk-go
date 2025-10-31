@@ -28,7 +28,7 @@ type ExtensionInfrastructureLogicalNetwork struct {
 	// Extra IP allocation for the infrastructure.
 	IpAllocations []ExtensionInfrastructureIpAllocation `json:"ipAllocations,omitempty"`
 	// Extra IP allocation for the infrastructure.
-	IpRanges []ExtensionInfrastructureIpRangesDto `json:"ipRanges,omitempty"`
+	IpRanges []ExtensionInfrastructureIpRanges `json:"ipRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -134,9 +134,9 @@ func (o *ExtensionInfrastructureLogicalNetwork) SetIpAllocations(v []ExtensionIn
 }
 
 // GetIpRanges returns the IpRanges field value if set, zero value otherwise.
-func (o *ExtensionInfrastructureLogicalNetwork) GetIpRanges() []ExtensionInfrastructureIpRangesDto {
+func (o *ExtensionInfrastructureLogicalNetwork) GetIpRanges() []ExtensionInfrastructureIpRanges {
 	if o == nil || IsNil(o.IpRanges) {
-		var ret []ExtensionInfrastructureIpRangesDto
+		var ret []ExtensionInfrastructureIpRanges
 		return ret
 	}
 	return o.IpRanges
@@ -144,7 +144,7 @@ func (o *ExtensionInfrastructureLogicalNetwork) GetIpRanges() []ExtensionInfrast
 
 // GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInfrastructureLogicalNetwork) GetIpRangesOk() ([]ExtensionInfrastructureIpRangesDto, bool) {
+func (o *ExtensionInfrastructureLogicalNetwork) GetIpRangesOk() ([]ExtensionInfrastructureIpRanges, bool) {
 	if o == nil || IsNil(o.IpRanges) {
 		return nil, false
 	}
@@ -160,8 +160,8 @@ func (o *ExtensionInfrastructureLogicalNetwork) HasIpRanges() bool {
 	return false
 }
 
-// SetIpRanges gets a reference to the given []ExtensionInfrastructureIpRangesDto and assigns it to the IpRanges field.
-func (o *ExtensionInfrastructureLogicalNetwork) SetIpRanges(v []ExtensionInfrastructureIpRangesDto) {
+// SetIpRanges gets a reference to the given []ExtensionInfrastructureIpRanges and assigns it to the IpRanges field.
+func (o *ExtensionInfrastructureLogicalNetwork) SetIpRanges(v []ExtensionInfrastructureIpRanges) {
 	o.IpRanges = v
 }
 

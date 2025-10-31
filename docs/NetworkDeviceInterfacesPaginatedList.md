@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]NetworkDeviceInterfaceDto**](NetworkDeviceInterfaceDto.md) |  | 
+**Data** | [**[]NetworkDeviceInterface**](NetworkDeviceInterface.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | Pointer to [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceInterfacesPaginatedList
 
-`func NewNetworkDeviceInterfacesPaginatedList(data []NetworkDeviceInterfaceDto, meta PaginatedResponseMeta, ) *NetworkDeviceInterfacesPaginatedList`
+`func NewNetworkDeviceInterfacesPaginatedList(data []NetworkDeviceInterface, meta PaginatedResponseMeta, ) *NetworkDeviceInterfacesPaginatedList`
 
 NewNetworkDeviceInterfacesPaginatedList instantiates a new NetworkDeviceInterfacesPaginatedList object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *NetworkDeviceInterfacesPaginatedList) GetData() []NetworkDeviceInterfaceDto`
+`func (o *NetworkDeviceInterfacesPaginatedList) GetData() []NetworkDeviceInterface`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *NetworkDeviceInterfacesPaginatedList) GetDataOk() (*[]NetworkDeviceInterfaceDto, bool)`
+`func (o *NetworkDeviceInterfacesPaginatedList) GetDataOk() (*[]NetworkDeviceInterface, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *NetworkDeviceInterfacesPaginatedList) SetData(v []NetworkDeviceInterfaceDto)`
+`func (o *NetworkDeviceInterfacesPaginatedList) SetData(v []NetworkDeviceInterface)`
 
 SetData sets Data field to given value.
 

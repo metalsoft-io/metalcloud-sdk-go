@@ -28,12 +28,12 @@ type NetworkDeviceDefaultSecretsAPIService service
 type NetworkDeviceDefaultSecretsAPICreateNetworkDeviceDefaultSecretsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceDefaultSecretsAPIService
-	createNetworkDeviceDefaultSecretsDto *CreateNetworkDeviceDefaultSecretsDto
+	createNetworkDeviceDefaultSecrets *CreateNetworkDeviceDefaultSecrets
 }
 
 // The NetworkDevice Default Secrets create object
-func (r NetworkDeviceDefaultSecretsAPICreateNetworkDeviceDefaultSecretsRequest) CreateNetworkDeviceDefaultSecretsDto(createNetworkDeviceDefaultSecretsDto CreateNetworkDeviceDefaultSecretsDto) NetworkDeviceDefaultSecretsAPICreateNetworkDeviceDefaultSecretsRequest {
-	r.createNetworkDeviceDefaultSecretsDto = &createNetworkDeviceDefaultSecretsDto
+func (r NetworkDeviceDefaultSecretsAPICreateNetworkDeviceDefaultSecretsRequest) CreateNetworkDeviceDefaultSecrets(createNetworkDeviceDefaultSecrets CreateNetworkDeviceDefaultSecrets) NetworkDeviceDefaultSecretsAPICreateNetworkDeviceDefaultSecretsRequest {
+	r.createNetworkDeviceDefaultSecrets = &createNetworkDeviceDefaultSecrets
 	return r
 }
 
@@ -76,8 +76,8 @@ func (a *NetworkDeviceDefaultSecretsAPIService) CreateNetworkDeviceDefaultSecret
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkDeviceDefaultSecretsDto == nil {
-		return localVarReturnValue, nil, reportError("createNetworkDeviceDefaultSecretsDto is required and must be specified")
+	if r.createNetworkDeviceDefaultSecrets == nil {
+		return localVarReturnValue, nil, reportError("createNetworkDeviceDefaultSecrets is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (a *NetworkDeviceDefaultSecretsAPIService) CreateNetworkDeviceDefaultSecret
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkDeviceDefaultSecretsDto
+	localVarPostBody = r.createNetworkDeviceDefaultSecrets
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -657,12 +657,12 @@ type NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest stru
 	ctx context.Context
 	ApiService *NetworkDeviceDefaultSecretsAPIService
 	networkDeviceDefaultSecretsId float32
-	updateNetworkDeviceDefaultSecretsDto *UpdateNetworkDeviceDefaultSecretsDto
+	updateNetworkDeviceDefaultSecrets *UpdateNetworkDeviceDefaultSecrets
 }
 
 // The NetworkDevice Default Secrets update object
-func (r NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest) UpdateNetworkDeviceDefaultSecretsDto(updateNetworkDeviceDefaultSecretsDto UpdateNetworkDeviceDefaultSecretsDto) NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest {
-	r.updateNetworkDeviceDefaultSecretsDto = &updateNetworkDeviceDefaultSecretsDto
+func (r NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest) UpdateNetworkDeviceDefaultSecrets(updateNetworkDeviceDefaultSecrets UpdateNetworkDeviceDefaultSecrets) NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest {
+	r.updateNetworkDeviceDefaultSecrets = &updateNetworkDeviceDefaultSecrets
 	return r
 }
 
@@ -708,8 +708,8 @@ func (a *NetworkDeviceDefaultSecretsAPIService) UpdateNetworkDeviceDefaultSecret
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkDeviceDefaultSecretsDto == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkDeviceDefaultSecretsDto is required and must be specified")
+	if r.updateNetworkDeviceDefaultSecrets == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkDeviceDefaultSecrets is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -730,7 +730,7 @@ func (a *NetworkDeviceDefaultSecretsAPIService) UpdateNetworkDeviceDefaultSecret
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkDeviceDefaultSecretsDto
+	localVarPostBody = r.updateNetworkDeviceDefaultSecrets
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

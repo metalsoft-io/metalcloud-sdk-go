@@ -31,12 +31,12 @@ type ServerType struct {
 	ProcessorCoreMhz float32 `json:"processorCoreMhz"`
 	// The processor core count of the server type.
 	ProcessorCoreCount float32 `json:"processorCoreCount"`
-	// The display name of the server type.
+	// The human-readable name of the server type.
 	Name string `json:"name"`
-	// The display name of the server type.
-	DisplayName *string `json:"displayName,omitempty"`
+	// Description of the server type.
+	Description *string `json:"description,omitempty"`
 	// The label of the server type.
-	Label *string `json:"label,omitempty"`
+	Label string `json:"label"`
 	// The total network capacity of the server type.
 	NetworkTotalCapacityMbps float32 `json:"networkTotalCapacityMbps"`
 	// The number of interfaces of the server type.
@@ -79,7 +79,7 @@ type _ServerType ServerType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerType(id float32, ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, networkTotalCapacityMbps float32, networkInterfaceCount float32, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string) *ServerType {
+func NewServerType(id float32, ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, label string, networkTotalCapacityMbps float32, networkInterfaceCount float32, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string) *ServerType {
 	this := ServerType{}
 	this.Id = id
 	this.RamGbytes = ramGbytes
@@ -87,6 +87,7 @@ func NewServerType(id float32, ramGbytes float32, processorCount float32, proces
 	this.ProcessorCoreMhz = processorCoreMhz
 	this.ProcessorCoreCount = processorCoreCount
 	this.Name = name
+	this.Label = label
 	this.NetworkTotalCapacityMbps = networkTotalCapacityMbps
 	this.NetworkInterfaceCount = networkInterfaceCount
 	this.NetworkInterfaceSpeeds = networkInterfaceSpeeds
@@ -268,68 +269,60 @@ func (o *ServerType) SetName(v string) {
 	o.Name = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *ServerType) GetDisplayName() string {
-	if o == nil || IsNil(o.DisplayName) {
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *ServerType) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-	return *o.DisplayName
+	return *o.Description
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerType) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
+func (o *ServerType) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.DisplayName, true
+	return o.Description, true
 }
 
-// HasDisplayName returns a boolean if a field has been set.
-func (o *ServerType) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+// HasDescription returns a boolean if a field has been set.
+func (o *ServerType) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *ServerType) SetDisplayName(v string) {
-	o.DisplayName = &v
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *ServerType) SetDescription(v string) {
+	o.Description = &v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *ServerType) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *ServerType) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerType) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *ServerType) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetNetworkTotalCapacityMbps returns the NetworkTotalCapacityMbps field value
@@ -844,12 +837,10 @@ func (o ServerType) ToMap() (map[string]interface{}, error) {
 	toSerialize["processorCoreMhz"] = o.ProcessorCoreMhz
 	toSerialize["processorCoreCount"] = o.ProcessorCoreCount
 	toSerialize["name"] = o.Name
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	toSerialize["networkTotalCapacityMbps"] = o.NetworkTotalCapacityMbps
 	toSerialize["networkInterfaceCount"] = o.NetworkInterfaceCount
 	toSerialize["networkInterfaceSpeeds"] = o.NetworkInterfaceSpeeds
@@ -908,6 +899,7 @@ func (o *ServerType) UnmarshalJSON(data []byte) (err error) {
 		"processorCoreMhz",
 		"processorCoreCount",
 		"name",
+		"label",
 		"networkTotalCapacityMbps",
 		"networkInterfaceCount",
 		"networkInterfaceSpeeds",
@@ -949,7 +941,7 @@ func (o *ServerType) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "processorCoreMhz")
 		delete(additionalProperties, "processorCoreCount")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "networkTotalCapacityMbps")
 		delete(additionalProperties, "networkInterfaceCount")

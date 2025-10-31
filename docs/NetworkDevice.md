@@ -24,7 +24,6 @@ Name | Type | Description | Notes
 **ManagementPort** | **float32** | Management port of the network device | 
 **SyslogEnabled** | **float32** | Is the network device syslog enabled | 
 **Username** | **string** | Username used to connect to the network device | 
-**ManagementPassword** | **string** | Password used to connect to the network device | 
 **ManagementMacAddress** | **string** | MAC address of the management interface | 
 **SerialNumber** | **string** | Serial number of the network device | 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
@@ -51,13 +50,15 @@ Name | Type | Description | Notes
 **BootstrapReadinessCheckResult** | **map[string]interface{}** | Bootstrap readiness check result | 
 **IsGateway** | **bool** | Whether the network device is a gateway | 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the network device. | [optional] 
+**VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device. | [optional] 
+**SwitchControllerId** | Pointer to **float32** | ID of the network device controller if any. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -470,26 +471,6 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDevice) SetUsername(v string)`
 
 SetUsername sets Username field to given value.
-
-
-### GetManagementPassword
-
-`func (o *NetworkDevice) GetManagementPassword() string`
-
-GetManagementPassword returns the ManagementPassword field if non-nil, zero value otherwise.
-
-### GetManagementPasswordOk
-
-`func (o *NetworkDevice) GetManagementPasswordOk() (*string, bool)`
-
-GetManagementPasswordOk returns a tuple with the ManagementPassword field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManagementPassword
-
-`func (o *NetworkDevice) SetManagementPassword(v string)`
-
-SetManagementPassword sets ManagementPassword field to given value.
 
 
 ### GetManagementMacAddress
@@ -1036,6 +1017,56 @@ SetExtensionInfo sets ExtensionInfo field to given value.
 `func (o *NetworkDevice) HasExtensionInfo() bool`
 
 HasExtensionInfo returns a boolean if a field has been set.
+
+### GetVmPoolId
+
+`func (o *NetworkDevice) GetVmPoolId() float32`
+
+GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
+
+### GetVmPoolIdOk
+
+`func (o *NetworkDevice) GetVmPoolIdOk() (*float32, bool)`
+
+GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolId
+
+`func (o *NetworkDevice) SetVmPoolId(v float32)`
+
+SetVmPoolId sets VmPoolId field to given value.
+
+### HasVmPoolId
+
+`func (o *NetworkDevice) HasVmPoolId() bool`
+
+HasVmPoolId returns a boolean if a field has been set.
+
+### GetSwitchControllerId
+
+`func (o *NetworkDevice) GetSwitchControllerId() float32`
+
+GetSwitchControllerId returns the SwitchControllerId field if non-nil, zero value otherwise.
+
+### GetSwitchControllerIdOk
+
+`func (o *NetworkDevice) GetSwitchControllerIdOk() (*float32, bool)`
+
+GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchControllerId
+
+`func (o *NetworkDevice) SetSwitchControllerId(v float32)`
+
+SetSwitchControllerId sets SwitchControllerId field to given value.
+
+### HasSwitchControllerId
+
+`func (o *NetworkDevice) HasSwitchControllerId() bool`
+
+HasSwitchControllerId returns a boolean if a field has been set.
 
 ### GetLinks
 

@@ -28,15 +28,15 @@ type DNSZoneAPIService service
 type DNSZoneAPICreateDNSZoneRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
-	createDnsZoneDto *CreateDnsZoneDto
+	createDnsZone *CreateDnsZone
 }
 
-func (r DNSZoneAPICreateDNSZoneRequest) CreateDnsZoneDto(createDnsZoneDto CreateDnsZoneDto) DNSZoneAPICreateDNSZoneRequest {
-	r.createDnsZoneDto = &createDnsZoneDto
+func (r DNSZoneAPICreateDNSZoneRequest) CreateDnsZone(createDnsZone CreateDnsZone) DNSZoneAPICreateDNSZoneRequest {
+	r.createDnsZone = &createDnsZone
 	return r
 }
 
-func (r DNSZoneAPICreateDNSZoneRequest) Execute() (*DnsZoneDto, *http.Response, error) {
+func (r DNSZoneAPICreateDNSZoneRequest) Execute() (*DnsZone, *http.Response, error) {
 	return r.ApiService.CreateDNSZoneExecute(r)
 }
 
@@ -56,13 +56,13 @@ func (a *DNSZoneAPIService) CreateDNSZone(ctx context.Context) DNSZoneAPICreateD
 }
 
 // Execute executes the request
-//  @return DnsZoneDto
-func (a *DNSZoneAPIService) CreateDNSZoneExecute(r DNSZoneAPICreateDNSZoneRequest) (*DnsZoneDto, *http.Response, error) {
+//  @return DnsZone
+func (a *DNSZoneAPIService) CreateDNSZoneExecute(r DNSZoneAPICreateDNSZoneRequest) (*DnsZone, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DnsZoneDto
+		localVarReturnValue  *DnsZone
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DNSZoneAPIService.CreateDNSZone")
@@ -75,8 +75,8 @@ func (a *DNSZoneAPIService) CreateDNSZoneExecute(r DNSZoneAPICreateDNSZoneReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDnsZoneDto == nil {
-		return localVarReturnValue, nil, reportError("createDnsZoneDto is required and must be specified")
+	if r.createDnsZone == nil {
+		return localVarReturnValue, nil, reportError("createDnsZone is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -97,7 +97,7 @@ func (a *DNSZoneAPIService) CreateDNSZoneExecute(r DNSZoneAPICreateDNSZoneReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDnsZoneDto
+	localVarPostBody = r.createDnsZone
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -340,7 +340,7 @@ type DNSZoneAPIGetDNSZoneByIdRequest struct {
 	dnsZoneId float32
 }
 
-func (r DNSZoneAPIGetDNSZoneByIdRequest) Execute() (*DnsZoneDto, *http.Response, error) {
+func (r DNSZoneAPIGetDNSZoneByIdRequest) Execute() (*DnsZone, *http.Response, error) {
 	return r.ApiService.GetDNSZoneByIdExecute(r)
 }
 
@@ -362,13 +362,13 @@ func (a *DNSZoneAPIService) GetDNSZoneById(ctx context.Context, dnsZoneId float3
 }
 
 // Execute executes the request
-//  @return DnsZoneDto
-func (a *DNSZoneAPIService) GetDNSZoneByIdExecute(r DNSZoneAPIGetDNSZoneByIdRequest) (*DnsZoneDto, *http.Response, error) {
+//  @return DnsZone
+func (a *DNSZoneAPIService) GetDNSZoneByIdExecute(r DNSZoneAPIGetDNSZoneByIdRequest) (*DnsZone, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DnsZoneDto
+		localVarReturnValue  *DnsZone
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DNSZoneAPIService.GetDNSZoneById")
@@ -1096,15 +1096,15 @@ type DNSZoneAPIUpdateDNSZoneRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
 	dnsZoneId float32
-	updateDnsZoneDto *UpdateDnsZoneDto
+	updateDnsZone *UpdateDnsZone
 }
 
-func (r DNSZoneAPIUpdateDNSZoneRequest) UpdateDnsZoneDto(updateDnsZoneDto UpdateDnsZoneDto) DNSZoneAPIUpdateDNSZoneRequest {
-	r.updateDnsZoneDto = &updateDnsZoneDto
+func (r DNSZoneAPIUpdateDNSZoneRequest) UpdateDnsZone(updateDnsZone UpdateDnsZone) DNSZoneAPIUpdateDNSZoneRequest {
+	r.updateDnsZone = &updateDnsZone
 	return r
 }
 
-func (r DNSZoneAPIUpdateDNSZoneRequest) Execute() (*DnsZoneDto, *http.Response, error) {
+func (r DNSZoneAPIUpdateDNSZoneRequest) Execute() (*DnsZone, *http.Response, error) {
 	return r.ApiService.UpdateDNSZoneExecute(r)
 }
 
@@ -1126,13 +1126,13 @@ func (a *DNSZoneAPIService) UpdateDNSZone(ctx context.Context, dnsZoneId float32
 }
 
 // Execute executes the request
-//  @return DnsZoneDto
-func (a *DNSZoneAPIService) UpdateDNSZoneExecute(r DNSZoneAPIUpdateDNSZoneRequest) (*DnsZoneDto, *http.Response, error) {
+//  @return DnsZone
+func (a *DNSZoneAPIService) UpdateDNSZoneExecute(r DNSZoneAPIUpdateDNSZoneRequest) (*DnsZone, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DnsZoneDto
+		localVarReturnValue  *DnsZone
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DNSZoneAPIService.UpdateDNSZone")
@@ -1146,8 +1146,8 @@ func (a *DNSZoneAPIService) UpdateDNSZoneExecute(r DNSZoneAPIUpdateDNSZoneReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDnsZoneDto == nil {
-		return localVarReturnValue, nil, reportError("updateDnsZoneDto is required and must be specified")
+	if r.updateDnsZone == nil {
+		return localVarReturnValue, nil, reportError("updateDnsZone is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1168,7 +1168,7 @@ func (a *DNSZoneAPIService) UpdateDNSZoneExecute(r DNSZoneAPIUpdateDNSZoneReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDnsZoneDto
+	localVarPostBody = r.updateDnsZone
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

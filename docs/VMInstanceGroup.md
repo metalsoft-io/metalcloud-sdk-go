@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance Group. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance Group. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the VM Instance Group. | [optional] 
+**VmPoolId** | Pointer to **float32** | Id of the VM Pool used by the VM Instance Group. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp of the VM Instance Group creation. | 
 **Config** | [**VMInstanceGroupConfiguration**](VMInstanceGroupConfiguration.md) | The current changes to be deployed for the VM Instance Group. | 
 **Meta** | [**VMInstanceGroupMeta**](VMInstanceGroupMeta.md) | Meta information of the VM Instance Group. | 
@@ -377,6 +378,31 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 `func (o *VMInstanceGroup) HasDnsSubdomainPermanentId() bool`
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
+
+### GetVmPoolId
+
+`func (o *VMInstanceGroup) GetVmPoolId() float32`
+
+GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
+
+### GetVmPoolIdOk
+
+`func (o *VMInstanceGroup) GetVmPoolIdOk() (*float32, bool)`
+
+GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolId
+
+`func (o *VMInstanceGroup) SetVmPoolId(v float32)`
+
+SetVmPoolId sets VmPoolId field to given value.
+
+### HasVmPoolId
+
+`func (o *VMInstanceGroup) HasVmPoolId() bool`
+
+HasVmPoolId returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 

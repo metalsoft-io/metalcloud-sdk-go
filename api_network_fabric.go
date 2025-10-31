@@ -463,7 +463,7 @@ func (r NetworkFabricAPICreateNetworkFabricLinkRequest) CreateNetworkFabricLink(
 	return r
 }
 
-func (r NetworkFabricAPICreateNetworkFabricLinkRequest) Execute() (*NetworkFabricLinkDto, *http.Response, error) {
+func (r NetworkFabricAPICreateNetworkFabricLinkRequest) Execute() (*NetworkFabricLink, *http.Response, error) {
 	return r.ApiService.CreateNetworkFabricLinkExecute(r)
 }
 
@@ -483,13 +483,13 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricLink(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return NetworkFabricLinkDto
-func (a *NetworkFabricAPIService) CreateNetworkFabricLinkExecute(r NetworkFabricAPICreateNetworkFabricLinkRequest) (*NetworkFabricLinkDto, *http.Response, error) {
+//  @return NetworkFabricLink
+func (a *NetworkFabricAPIService) CreateNetworkFabricLinkExecute(r NetworkFabricAPICreateNetworkFabricLinkRequest) (*NetworkFabricLink, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkFabricLinkDto
+		localVarReturnValue  *NetworkFabricLink
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.CreateNetworkFabricLink")

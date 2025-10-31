@@ -16,12 +16,12 @@ Name | Type | Description | Notes
 **VmCpuCores** | **float32** | The number of CPU cores for the VM Instance. | 
 **VmRamGb** | **float32** | The RAM size of the VM Instance in GB. | 
 **VmTemplate** | **string** | The template used by the VM Instance. | 
-**VmNetName** | Pointer to **string** | The network name of the VM Instance. | [optional] 
-**VcenterNetNameInternal** | Pointer to **string** | The vCenter internal network name of the VM Instance. | [optional] 
+**NetworkConfigurations** | Pointer to [**[]VMInstanceNetworkConfigurationRecordSet**](VMInstanceNetworkConfigurationRecordSet.md) | The network configuration of the VM Instance. | [optional] 
 **VcenterDatacenter** | Pointer to **string** | The vCenter datacenter for the VM Instance. | [optional] 
 **VcenterCluster** | Pointer to **string** | The vCenter cluster for the VM Instance. | [optional] 
 **VcenterVmDestinationFolder** | Pointer to **string** | The vCenter VM destination folder for the VM Instance. | [optional] 
 **VcenterDiskDatastore** | Pointer to **string** | The vCenter datastore name for the VM Instance. | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables from the VM instance group | [optional] 
 
 ## Methods
 
@@ -302,55 +302,30 @@ and a boolean to check if the value has been set.
 SetVmTemplate sets VmTemplate field to given value.
 
 
-### GetVmNetName
+### GetNetworkConfigurations
 
-`func (o *VMInstanceRecordSet) GetVmNetName() string`
+`func (o *VMInstanceRecordSet) GetNetworkConfigurations() []VMInstanceNetworkConfigurationRecordSet`
 
-GetVmNetName returns the VmNetName field if non-nil, zero value otherwise.
+GetNetworkConfigurations returns the NetworkConfigurations field if non-nil, zero value otherwise.
 
-### GetVmNetNameOk
+### GetNetworkConfigurationsOk
 
-`func (o *VMInstanceRecordSet) GetVmNetNameOk() (*string, bool)`
+`func (o *VMInstanceRecordSet) GetNetworkConfigurationsOk() (*[]VMInstanceNetworkConfigurationRecordSet, bool)`
 
-GetVmNetNameOk returns a tuple with the VmNetName field if it's non-nil, zero value otherwise
+GetNetworkConfigurationsOk returns a tuple with the NetworkConfigurations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVmNetName
+### SetNetworkConfigurations
 
-`func (o *VMInstanceRecordSet) SetVmNetName(v string)`
+`func (o *VMInstanceRecordSet) SetNetworkConfigurations(v []VMInstanceNetworkConfigurationRecordSet)`
 
-SetVmNetName sets VmNetName field to given value.
+SetNetworkConfigurations sets NetworkConfigurations field to given value.
 
-### HasVmNetName
+### HasNetworkConfigurations
 
-`func (o *VMInstanceRecordSet) HasVmNetName() bool`
+`func (o *VMInstanceRecordSet) HasNetworkConfigurations() bool`
 
-HasVmNetName returns a boolean if a field has been set.
-
-### GetVcenterNetNameInternal
-
-`func (o *VMInstanceRecordSet) GetVcenterNetNameInternal() string`
-
-GetVcenterNetNameInternal returns the VcenterNetNameInternal field if non-nil, zero value otherwise.
-
-### GetVcenterNetNameInternalOk
-
-`func (o *VMInstanceRecordSet) GetVcenterNetNameInternalOk() (*string, bool)`
-
-GetVcenterNetNameInternalOk returns a tuple with the VcenterNetNameInternal field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVcenterNetNameInternal
-
-`func (o *VMInstanceRecordSet) SetVcenterNetNameInternal(v string)`
-
-SetVcenterNetNameInternal sets VcenterNetNameInternal field to given value.
-
-### HasVcenterNetNameInternal
-
-`func (o *VMInstanceRecordSet) HasVcenterNetNameInternal() bool`
-
-HasVcenterNetNameInternal returns a boolean if a field has been set.
+HasNetworkConfigurations returns a boolean if a field has been set.
 
 ### GetVcenterDatacenter
 
@@ -451,6 +426,31 @@ SetVcenterDiskDatastore sets VcenterDiskDatastore field to given value.
 `func (o *VMInstanceRecordSet) HasVcenterDiskDatastore() bool`
 
 HasVcenterDiskDatastore returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *VMInstanceRecordSet) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *VMInstanceRecordSet) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *VMInstanceRecordSet) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *VMInstanceRecordSet) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

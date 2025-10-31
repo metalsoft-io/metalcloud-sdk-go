@@ -23,11 +23,13 @@ var _ MappedNullable = &CreateFileShare{}
 type CreateFileShare struct {
 	// Disk size in GB for File Share
 	SizeGB float32 `json:"sizeGB"`
-	// Id of the Logical Network for the File Share.
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Display name of the File Share.
 	Label *string `json:"label,omitempty"`
 	Meta *FileShareMeta `json:"meta,omitempty"`
+	// Id of the Logical Network for the File Share.
+	LogicalNetworkId float32 `json:"logicalNetworkId"`
+	// Id of the storage pool the File Share is assigned to
+	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,9 +39,10 @@ type _CreateFileShare CreateFileShare
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateFileShare(sizeGB float32) *CreateFileShare {
+func NewCreateFileShare(sizeGB float32, logicalNetworkId float32) *CreateFileShare {
 	this := CreateFileShare{}
 	this.SizeGB = sizeGB
+	this.LogicalNetworkId = logicalNetworkId
 	return &this
 }
 
@@ -73,38 +76,6 @@ func (o *CreateFileShare) GetSizeGBOk() (*float32, bool) {
 // SetSizeGB sets field value
 func (o *CreateFileShare) SetSizeGB(v float32) {
 	o.SizeGB = v
-}
-
-// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *CreateFileShare) GetLogicalNetworkId() float32 {
-	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
-		return ret
-	}
-	return *o.LogicalNetworkId
-}
-
-// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateFileShare) GetLogicalNetworkIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.LogicalNetworkId) {
-		return nil, false
-	}
-	return o.LogicalNetworkId, true
-}
-
-// HasLogicalNetworkId returns a boolean if a field has been set.
-func (o *CreateFileShare) HasLogicalNetworkId() bool {
-	if o != nil && !IsNil(o.LogicalNetworkId) {
-		return true
-	}
-
-	return false
-}
-
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *CreateFileShare) SetLogicalNetworkId(v float32) {
-	o.LogicalNetworkId = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -171,6 +142,62 @@ func (o *CreateFileShare) SetMeta(v FileShareMeta) {
 	o.Meta = &v
 }
 
+// GetLogicalNetworkId returns the LogicalNetworkId field value
+func (o *CreateFileShare) GetLogicalNetworkId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value
+// and a boolean to check if the value has been set.
+func (o *CreateFileShare) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LogicalNetworkId, true
+}
+
+// SetLogicalNetworkId sets field value
+func (o *CreateFileShare) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = v
+}
+
+// GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
+func (o *CreateFileShare) GetStoragePoolId() float32 {
+	if o == nil || IsNil(o.StoragePoolId) {
+		var ret float32
+		return ret
+	}
+	return *o.StoragePoolId
+}
+
+// GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFileShare) GetStoragePoolIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.StoragePoolId) {
+		return nil, false
+	}
+	return o.StoragePoolId, true
+}
+
+// HasStoragePoolId returns a boolean if a field has been set.
+func (o *CreateFileShare) HasStoragePoolId() bool {
+	if o != nil && !IsNil(o.StoragePoolId) {
+		return true
+	}
+
+	return false
+}
+
+// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
+func (o *CreateFileShare) SetStoragePoolId(v float32) {
+	o.StoragePoolId = &v
+}
+
 func (o CreateFileShare) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -182,14 +209,15 @@ func (o CreateFileShare) MarshalJSON() ([]byte, error) {
 func (o CreateFileShare) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sizeGB"] = o.SizeGB
-	if !IsNil(o.LogicalNetworkId) {
-		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
-	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
 	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
+	}
+	toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	if !IsNil(o.StoragePoolId) {
+		toSerialize["storagePoolId"] = o.StoragePoolId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -205,6 +233,7 @@ func (o *CreateFileShare) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"sizeGB",
+		"logicalNetworkId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -235,9 +264,10 @@ func (o *CreateFileShare) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "sizeGB")
-		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "meta")
+		delete(additionalProperties, "logicalNetworkId")
+		delete(additionalProperties, "storagePoolId")
 		o.AdditionalProperties = additionalProperties
 	}
 

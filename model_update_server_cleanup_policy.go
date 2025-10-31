@@ -26,6 +26,8 @@ type UpdateServerCleanupPolicy struct {
 	CleanupDrivesForOobEnabledServer *float32 `json:"cleanupDrivesForOobEnabledServer,omitempty"`
 	// Recreate raid
 	RecreateRaid *float32 `json:"recreateRaid,omitempty"`
+	// Reset raid controllers to default
+	ResetRaidControllers *float32 `json:"resetRaidControllers,omitempty"`
 	// Disable embedded nics
 	DisableEmbeddedNics *float32 `json:"disableEmbeddedNics,omitempty"`
 	// Raid one drive
@@ -154,6 +156,38 @@ func (o *UpdateServerCleanupPolicy) HasRecreateRaid() bool {
 // SetRecreateRaid gets a reference to the given float32 and assigns it to the RecreateRaid field.
 func (o *UpdateServerCleanupPolicy) SetRecreateRaid(v float32) {
 	o.RecreateRaid = &v
+}
+
+// GetResetRaidControllers returns the ResetRaidControllers field value if set, zero value otherwise.
+func (o *UpdateServerCleanupPolicy) GetResetRaidControllers() float32 {
+	if o == nil || IsNil(o.ResetRaidControllers) {
+		var ret float32
+		return ret
+	}
+	return *o.ResetRaidControllers
+}
+
+// GetResetRaidControllersOk returns a tuple with the ResetRaidControllers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServerCleanupPolicy) GetResetRaidControllersOk() (*float32, bool) {
+	if o == nil || IsNil(o.ResetRaidControllers) {
+		return nil, false
+	}
+	return o.ResetRaidControllers, true
+}
+
+// HasResetRaidControllers returns a boolean if a field has been set.
+func (o *UpdateServerCleanupPolicy) HasResetRaidControllers() bool {
+	if o != nil && !IsNil(o.ResetRaidControllers) {
+		return true
+	}
+
+	return false
+}
+
+// SetResetRaidControllers gets a reference to the given float32 and assigns it to the ResetRaidControllers field.
+func (o *UpdateServerCleanupPolicy) SetResetRaidControllers(v float32) {
+	o.ResetRaidControllers = &v
 }
 
 // GetDisableEmbeddedNics returns the DisableEmbeddedNics field value if set, zero value otherwise.
@@ -367,6 +401,9 @@ func (o UpdateServerCleanupPolicy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RecreateRaid) {
 		toSerialize["recreateRaid"] = o.RecreateRaid
 	}
+	if !IsNil(o.ResetRaidControllers) {
+		toSerialize["resetRaidControllers"] = o.ResetRaidControllers
+	}
 	if !IsNil(o.DisableEmbeddedNics) {
 		toSerialize["disableEmbeddedNics"] = o.DisableEmbeddedNics
 	}
@@ -410,6 +447,7 @@ func (o *UpdateServerCleanupPolicy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "cleanupDrivesForOobEnabledServer")
 		delete(additionalProperties, "recreateRaid")
+		delete(additionalProperties, "resetRaidControllers")
 		delete(additionalProperties, "disableEmbeddedNics")
 		delete(additionalProperties, "raidOneDrive")
 		delete(additionalProperties, "raidTwoDrives")

@@ -25,6 +25,10 @@ type InfrastructureStatistics struct {
 	JobGroupStatistics *JobGroupStatistics `json:"jobGroupStatistics,omitempty"`
 	// List of server types statistics
 	ServerTypesForUsage []ServerTypesForUsage `json:"serverTypesForUsage"`
+	// List of VM Pools statistics
+	VmPoolsForUsage []VMPoolForUsage `json:"vmPoolsForUsage"`
+	// List of Storage Pools statistics
+	StoragePoolsForUsage []StoragePoolForUsage `json:"storagePoolsForUsage"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,9 +38,11 @@ type _InfrastructureStatistics InfrastructureStatistics
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureStatistics(serverTypesForUsage []ServerTypesForUsage) *InfrastructureStatistics {
+func NewInfrastructureStatistics(serverTypesForUsage []ServerTypesForUsage, vmPoolsForUsage []VMPoolForUsage, storagePoolsForUsage []StoragePoolForUsage) *InfrastructureStatistics {
 	this := InfrastructureStatistics{}
 	this.ServerTypesForUsage = serverTypesForUsage
+	this.VmPoolsForUsage = vmPoolsForUsage
+	this.StoragePoolsForUsage = storagePoolsForUsage
 	return &this
 }
 
@@ -104,6 +110,54 @@ func (o *InfrastructureStatistics) SetServerTypesForUsage(v []ServerTypesForUsag
 	o.ServerTypesForUsage = v
 }
 
+// GetVmPoolsForUsage returns the VmPoolsForUsage field value
+func (o *InfrastructureStatistics) GetVmPoolsForUsage() []VMPoolForUsage {
+	if o == nil {
+		var ret []VMPoolForUsage
+		return ret
+	}
+
+	return o.VmPoolsForUsage
+}
+
+// GetVmPoolsForUsageOk returns a tuple with the VmPoolsForUsage field value
+// and a boolean to check if the value has been set.
+func (o *InfrastructureStatistics) GetVmPoolsForUsageOk() ([]VMPoolForUsage, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VmPoolsForUsage, true
+}
+
+// SetVmPoolsForUsage sets field value
+func (o *InfrastructureStatistics) SetVmPoolsForUsage(v []VMPoolForUsage) {
+	o.VmPoolsForUsage = v
+}
+
+// GetStoragePoolsForUsage returns the StoragePoolsForUsage field value
+func (o *InfrastructureStatistics) GetStoragePoolsForUsage() []StoragePoolForUsage {
+	if o == nil {
+		var ret []StoragePoolForUsage
+		return ret
+	}
+
+	return o.StoragePoolsForUsage
+}
+
+// GetStoragePoolsForUsageOk returns a tuple with the StoragePoolsForUsage field value
+// and a boolean to check if the value has been set.
+func (o *InfrastructureStatistics) GetStoragePoolsForUsageOk() ([]StoragePoolForUsage, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StoragePoolsForUsage, true
+}
+
+// SetStoragePoolsForUsage sets field value
+func (o *InfrastructureStatistics) SetStoragePoolsForUsage(v []StoragePoolForUsage) {
+	o.StoragePoolsForUsage = v
+}
+
 func (o InfrastructureStatistics) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -118,6 +172,8 @@ func (o InfrastructureStatistics) ToMap() (map[string]interface{}, error) {
 		toSerialize["jobGroupStatistics"] = o.JobGroupStatistics
 	}
 	toSerialize["serverTypesForUsage"] = o.ServerTypesForUsage
+	toSerialize["vmPoolsForUsage"] = o.VmPoolsForUsage
+	toSerialize["storagePoolsForUsage"] = o.StoragePoolsForUsage
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -132,6 +188,8 @@ func (o *InfrastructureStatistics) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"serverTypesForUsage",
+		"vmPoolsForUsage",
+		"storagePoolsForUsage",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -163,6 +221,8 @@ func (o *InfrastructureStatistics) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "jobGroupStatistics")
 		delete(additionalProperties, "serverTypesForUsage")
+		delete(additionalProperties, "vmPoolsForUsage")
+		delete(additionalProperties, "storagePoolsForUsage")
 		o.AdditionalProperties = additionalProperties
 	}
 

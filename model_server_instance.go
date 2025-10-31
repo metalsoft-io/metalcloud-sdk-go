@@ -64,7 +64,7 @@ type ServerInstance struct {
 	IsEndpointInstance int32 `json:"isEndpointInstance"`
 	// The id of the Endpoint
 	EndpointId *int32 `json:"endpointId,omitempty"`
-	ClusterCustomInfo *ServerInstanceClusterCustomInfo `json:"clusterCustomInfo,omitempty"`
+	ClusterCustomInfo map[string]interface{} `json:"clusterCustomInfo,omitempty"`
 	// Last error message during OS install.
 	OsInstallError *string `json:"osInstallError,omitempty"`
 	// URL where the OS image is available.
@@ -81,14 +81,14 @@ type ServerInstance struct {
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
 	IscsiInitiatorUsername *string `json:"iscsiInitiatorUsername,omitempty"`
-	// iSCSI Initiator Password for the Instance Interface.
-	IscsiInitiatorPasswordEncrypted *string `json:"iscsiInitiatorPasswordEncrypted,omitempty"`
 	// Control panel url for the Instance Interface.
 	ControlPanelUrl *string `json:"controlPanelUrl,omitempty"`
 	Meta GenericMeta `json:"meta"`
 	Config *ServerInstanceConfiguration `json:"config,omitempty"`
 	// The network config allocated to this server instance.
 	AllocatedNetworkConfig *ServerInstanceAllocatedNetworkConfig `json:"allocatedNetworkConfig,omitempty"`
+	// The server info allocated to this server instance.
+	AllocatedServerInfo *ServerInstanceAllocatedServerInfo `json:"allocatedServerInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -813,19 +813,19 @@ func (o *ServerInstance) SetEndpointId(v int32) {
 }
 
 // GetClusterCustomInfo returns the ClusterCustomInfo field value if set, zero value otherwise.
-func (o *ServerInstance) GetClusterCustomInfo() ServerInstanceClusterCustomInfo {
+func (o *ServerInstance) GetClusterCustomInfo() map[string]interface{} {
 	if o == nil || IsNil(o.ClusterCustomInfo) {
-		var ret ServerInstanceClusterCustomInfo
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.ClusterCustomInfo
+	return o.ClusterCustomInfo
 }
 
 // GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetClusterCustomInfoOk() (*ServerInstanceClusterCustomInfo, bool) {
+func (o *ServerInstance) GetClusterCustomInfoOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.ClusterCustomInfo) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.ClusterCustomInfo, true
 }
@@ -839,9 +839,9 @@ func (o *ServerInstance) HasClusterCustomInfo() bool {
 	return false
 }
 
-// SetClusterCustomInfo gets a reference to the given ServerInstanceClusterCustomInfo and assigns it to the ClusterCustomInfo field.
-func (o *ServerInstance) SetClusterCustomInfo(v ServerInstanceClusterCustomInfo) {
-	o.ClusterCustomInfo = &v
+// SetClusterCustomInfo gets a reference to the given map[string]interface{} and assigns it to the ClusterCustomInfo field.
+func (o *ServerInstance) SetClusterCustomInfo(v map[string]interface{}) {
+	o.ClusterCustomInfo = v
 }
 
 // GetOsInstallError returns the OsInstallError field value if set, zero value otherwise.
@@ -1100,38 +1100,6 @@ func (o *ServerInstance) SetIscsiInitiatorUsername(v string) {
 	o.IscsiInitiatorUsername = &v
 }
 
-// GetIscsiInitiatorPasswordEncrypted returns the IscsiInitiatorPasswordEncrypted field value if set, zero value otherwise.
-func (o *ServerInstance) GetIscsiInitiatorPasswordEncrypted() string {
-	if o == nil || IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.IscsiInitiatorPasswordEncrypted
-}
-
-// GetIscsiInitiatorPasswordEncryptedOk returns a tuple with the IscsiInitiatorPasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetIscsiInitiatorPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		return nil, false
-	}
-	return o.IscsiInitiatorPasswordEncrypted, true
-}
-
-// HasIscsiInitiatorPasswordEncrypted returns a boolean if a field has been set.
-func (o *ServerInstance) HasIscsiInitiatorPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetIscsiInitiatorPasswordEncrypted gets a reference to the given string and assigns it to the IscsiInitiatorPasswordEncrypted field.
-func (o *ServerInstance) SetIscsiInitiatorPasswordEncrypted(v string) {
-	o.IscsiInitiatorPasswordEncrypted = &v
-}
-
 // GetControlPanelUrl returns the ControlPanelUrl field value if set, zero value otherwise.
 func (o *ServerInstance) GetControlPanelUrl() string {
 	if o == nil || IsNil(o.ControlPanelUrl) {
@@ -1250,6 +1218,38 @@ func (o *ServerInstance) HasAllocatedNetworkConfig() bool {
 // SetAllocatedNetworkConfig gets a reference to the given ServerInstanceAllocatedNetworkConfig and assigns it to the AllocatedNetworkConfig field.
 func (o *ServerInstance) SetAllocatedNetworkConfig(v ServerInstanceAllocatedNetworkConfig) {
 	o.AllocatedNetworkConfig = &v
+}
+
+// GetAllocatedServerInfo returns the AllocatedServerInfo field value if set, zero value otherwise.
+func (o *ServerInstance) GetAllocatedServerInfo() ServerInstanceAllocatedServerInfo {
+	if o == nil || IsNil(o.AllocatedServerInfo) {
+		var ret ServerInstanceAllocatedServerInfo
+		return ret
+	}
+	return *o.AllocatedServerInfo
+}
+
+// GetAllocatedServerInfoOk returns a tuple with the AllocatedServerInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetAllocatedServerInfoOk() (*ServerInstanceAllocatedServerInfo, bool) {
+	if o == nil || IsNil(o.AllocatedServerInfo) {
+		return nil, false
+	}
+	return o.AllocatedServerInfo, true
+}
+
+// HasAllocatedServerInfo returns a boolean if a field has been set.
+func (o *ServerInstance) HasAllocatedServerInfo() bool {
+	if o != nil && !IsNil(o.AllocatedServerInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocatedServerInfo gets a reference to the given ServerInstanceAllocatedServerInfo and assigns it to the AllocatedServerInfo field.
+func (o *ServerInstance) SetAllocatedServerInfo(v ServerInstanceAllocatedServerInfo) {
+	o.AllocatedServerInfo = &v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -1373,9 +1373,6 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IscsiInitiatorUsername) {
 		toSerialize["iscsiInitiatorUsername"] = o.IscsiInitiatorUsername
 	}
-	if !IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		toSerialize["iscsiInitiatorPasswordEncrypted"] = o.IscsiInitiatorPasswordEncrypted
-	}
 	if !IsNil(o.ControlPanelUrl) {
 		toSerialize["controlPanelUrl"] = o.ControlPanelUrl
 	}
@@ -1385,6 +1382,9 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AllocatedNetworkConfig) {
 		toSerialize["allocatedNetworkConfig"] = o.AllocatedNetworkConfig
+	}
+	if !IsNil(o.AllocatedServerInfo) {
+		toSerialize["allocatedServerInfo"] = o.AllocatedServerInfo
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -1475,11 +1475,11 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")
-		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")
 		delete(additionalProperties, "controlPanelUrl")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "allocatedNetworkConfig")
+		delete(additionalProperties, "allocatedServerInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

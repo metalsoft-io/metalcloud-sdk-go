@@ -40,7 +40,7 @@ import (
 )
 
 func main() {
-	bulkCreateEndpoints := *openapiclient.NewBulkCreateEndpoints([]openapiclient.CreateEndpoint{*openapiclient.NewCreateEndpoint(float32(123), "Server 1", "lan-finance-1")}) // BulkCreateEndpoints | An object containing an array of endpoints to create
+	bulkCreateEndpoints := *openapiclient.NewBulkCreateEndpoints([]openapiclient.CreateEndpoint{*openapiclient.NewCreateEndpoint(int32(123), "Server 1", "lan-finance-1")}) // BulkCreateEndpoints | An object containing an array of endpoints to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	createEndpoint := *openapiclient.NewCreateEndpoint(float32(123), "Server 1", "lan-finance-1") // CreateEndpoint | The endpoint to create
+	createEndpoint := *openapiclient.NewCreateEndpoint(int32(123), "Server 1", "lan-finance-1") // CreateEndpoint | The endpoint to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

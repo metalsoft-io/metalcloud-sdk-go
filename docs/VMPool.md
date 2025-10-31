@@ -12,10 +12,7 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the VM Pool | 
 **Description** | Pointer to **string** | Description of the VM Pool | [optional] 
 **Type** | **string** | Type of the VM Pool | 
-**Certificate** | Pointer to **string** | Certificate of the VM Pool | [optional] 
-**PrivateKeyEncrypted** | Pointer to **string** | Private key of the VM Pool | [optional] 
 **Username** | Pointer to **string** | Username of the VM Pool | [optional] 
-**PasswordEncrypted** | Pointer to **string** | Password of the VM Pool | [optional] 
 **Status** | **string** | Status of the VM Pool | 
 **ExternalIdentifier** | Pointer to **string** | External identifier of the VM Pool | [optional] 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
@@ -210,56 +207,6 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
-### GetCertificate
-
-`func (o *VMPool) GetCertificate() string`
-
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
-
-### GetCertificateOk
-
-`func (o *VMPool) GetCertificateOk() (*string, bool)`
-
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificate
-
-`func (o *VMPool) SetCertificate(v string)`
-
-SetCertificate sets Certificate field to given value.
-
-### HasCertificate
-
-`func (o *VMPool) HasCertificate() bool`
-
-HasCertificate returns a boolean if a field has been set.
-
-### GetPrivateKeyEncrypted
-
-`func (o *VMPool) GetPrivateKeyEncrypted() string`
-
-GetPrivateKeyEncrypted returns the PrivateKeyEncrypted field if non-nil, zero value otherwise.
-
-### GetPrivateKeyEncryptedOk
-
-`func (o *VMPool) GetPrivateKeyEncryptedOk() (*string, bool)`
-
-GetPrivateKeyEncryptedOk returns a tuple with the PrivateKeyEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrivateKeyEncrypted
-
-`func (o *VMPool) SetPrivateKeyEncrypted(v string)`
-
-SetPrivateKeyEncrypted sets PrivateKeyEncrypted field to given value.
-
-### HasPrivateKeyEncrypted
-
-`func (o *VMPool) HasPrivateKeyEncrypted() bool`
-
-HasPrivateKeyEncrypted returns a boolean if a field has been set.
-
 ### GetUsername
 
 `func (o *VMPool) GetUsername() string`
@@ -284,31 +231,6 @@ SetUsername sets Username field to given value.
 `func (o *VMPool) HasUsername() bool`
 
 HasUsername returns a boolean if a field has been set.
-
-### GetPasswordEncrypted
-
-`func (o *VMPool) GetPasswordEncrypted() string`
-
-GetPasswordEncrypted returns the PasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetPasswordEncryptedOk
-
-`func (o *VMPool) GetPasswordEncryptedOk() (*string, bool)`
-
-GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPasswordEncrypted
-
-`func (o *VMPool) SetPasswordEncrypted(v string)`
-
-SetPasswordEncrypted sets PasswordEncrypted field to given value.
-
-### HasPasswordEncrypted
-
-`func (o *VMPool) HasPasswordEncrypted() bool`
-
-HasPasswordEncrypted returns a boolean if a field has been set.
 
 ### GetStatus
 

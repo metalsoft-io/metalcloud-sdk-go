@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetInfrastructureVMInstance**](VMInstanceAPI.md#GetInfrastructureVMInstance) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId} | Get VM Instance information
 [**GetInfrastructureVMInstances**](VMInstanceAPI.md#GetInfrastructureVMInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances | Get all VM Instances on the infrastructure
 [**GetVMInstanceConfigInfo**](VMInstanceAPI.md#GetVMInstanceConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/config | Get configuration information about the specified VM Instance
+[**GetVMInstanceCredentials**](VMInstanceAPI.md#GetVMInstanceCredentials) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/credentials | Get VM Instance credentials
 [**GetVMInstancePowerStatus**](VMInstanceAPI.md#GetVMInstancePowerStatus) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/power-status | Retrieves the power status of the VM Instance
 [**GetVmInstanceVariables**](VMInstanceAPI.md#GetVmInstanceVariables) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/variables | Get VM instance variables
 [**PatchVMInstanceMeta**](VMInstanceAPI.md#PatchVMInstanceMeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/meta | Updates the meta of a VM Instance
@@ -464,6 +465,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMInstanceConfiguration**](VMInstanceConfiguration.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVMInstanceCredentials
+
+> ServerInstanceCredentials GetVMInstanceCredentials(ctx, infrastructureId, vmInstanceId).Execute()
+
+Get VM Instance credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	vmInstanceId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMInstanceAPI.GetVMInstanceCredentials(context.Background(), infrastructureId, vmInstanceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceAPI.GetVMInstanceCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVMInstanceCredentials`: ServerInstanceCredentials
+	fmt.Fprintf(os.Stdout, "Response from `VMInstanceAPI.GetVMInstanceCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+**vmInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVMInstanceCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**ServerInstanceCredentials**](ServerInstanceCredentials.md)
 
 ### Authorization
 

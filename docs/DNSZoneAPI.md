@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateDNSZone
 
-> DnsZoneDto CreateDNSZone(ctx).CreateDnsZoneDto(createDnsZoneDto).Execute()
+> DnsZone CreateDNSZone(ctx).CreateDnsZone(createDnsZone).Execute()
 
 Create a new DNS Zone
 
@@ -36,16 +36,16 @@ import (
 )
 
 func main() {
-	createDnsZoneDto := *openapiclient.NewCreateDnsZoneDto("example.com", true, []string{"NameServers_example"}) // CreateDnsZoneDto | 
+	createDnsZone := *openapiclient.NewCreateDnsZone("example.com", true, []string{"NameServers_example"}) // CreateDnsZone | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DNSZoneAPI.CreateDNSZone(context.Background()).CreateDnsZoneDto(createDnsZoneDto).Execute()
+	resp, r, err := apiClient.DNSZoneAPI.CreateDNSZone(context.Background()).CreateDnsZone(createDnsZone).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSZoneAPI.CreateDNSZone``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDNSZone`: DnsZoneDto
+	// response from `CreateDNSZone`: DnsZone
 	fmt.Fprintf(os.Stdout, "Response from `DNSZoneAPI.CreateDNSZone`: %v\n", resp)
 }
 ```
@@ -61,11 +61,11 @@ Other parameters are passed through a pointer to a apiCreateDNSZoneRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createDnsZoneDto** | [**CreateDnsZoneDto**](CreateDnsZoneDto.md) |  | 
+ **createDnsZone** | [**CreateDnsZone**](CreateDnsZone.md) |  | 
 
 ### Return type
 
-[**DnsZoneDto**](DnsZoneDto.md)
+[**DnsZone**](DnsZone.md)
 
 ### Authorization
 
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## GetDNSZoneById
 
-> DnsZoneDto GetDNSZoneById(ctx, dnsZoneId).Execute()
+> DnsZone GetDNSZoneById(ctx, dnsZoneId).Execute()
 
 Get a DNS Zone by ID
 
@@ -252,7 +252,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSZoneAPI.GetDNSZoneById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetDNSZoneById`: DnsZoneDto
+	// response from `GetDNSZoneById`: DnsZone
 	fmt.Fprintf(os.Stdout, "Response from `DNSZoneAPI.GetDNSZoneById`: %v\n", resp)
 }
 ```
@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DnsZoneDto**](DnsZoneDto.md)
+[**DnsZone**](DnsZone.md)
 
 ### Authorization
 
@@ -544,7 +544,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDNSZone
 
-> DnsZoneDto UpdateDNSZone(ctx, dnsZoneId).UpdateDnsZoneDto(updateDnsZoneDto).Execute()
+> DnsZone UpdateDNSZone(ctx, dnsZoneId).UpdateDnsZone(updateDnsZone).Execute()
 
 Update a DNS Zone by ID
 
@@ -564,16 +564,16 @@ import (
 
 func main() {
 	dnsZoneId := float32(8.14) // float32 | The ID of the DNS Zone
-	updateDnsZoneDto := *openapiclient.NewUpdateDnsZoneDto() // UpdateDnsZoneDto | 
+	updateDnsZone := *openapiclient.NewUpdateDnsZone() // UpdateDnsZone | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DNSZoneAPI.UpdateDNSZone(context.Background(), dnsZoneId).UpdateDnsZoneDto(updateDnsZoneDto).Execute()
+	resp, r, err := apiClient.DNSZoneAPI.UpdateDNSZone(context.Background(), dnsZoneId).UpdateDnsZone(updateDnsZone).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSZoneAPI.UpdateDNSZone``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateDNSZone`: DnsZoneDto
+	// response from `UpdateDNSZone`: DnsZone
 	fmt.Fprintf(os.Stdout, "Response from `DNSZoneAPI.UpdateDNSZone`: %v\n", resp)
 }
 ```
@@ -594,11 +594,11 @@ Other parameters are passed through a pointer to a apiUpdateDNSZoneRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDnsZoneDto** | [**UpdateDnsZoneDto**](UpdateDnsZoneDto.md) |  | 
+ **updateDnsZone** | [**UpdateDnsZone**](UpdateDnsZone.md) |  | 
 
 ### Return type
 
-[**DnsZoneDto**](DnsZoneDto.md)
+[**DnsZone**](DnsZone.md)
 
 ### Authorization
 

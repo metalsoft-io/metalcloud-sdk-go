@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateNetworkDeviceDefaultSecrets
 
-> NetworkDeviceDefaultSecrets CreateNetworkDeviceDefaultSecrets(ctx).CreateNetworkDeviceDefaultSecretsDto(createNetworkDeviceDefaultSecretsDto).Execute()
+> NetworkDeviceDefaultSecrets CreateNetworkDeviceDefaultSecrets(ctx).CreateNetworkDeviceDefaultSecrets(createNetworkDeviceDefaultSecrets).Execute()
 
 Creates a NetworkDevice Default Secrets
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-	createNetworkDeviceDefaultSecretsDto := *openapiclient.NewCreateNetworkDeviceDefaultSecretsDto(float32(123), "MacAddressOrSerialNumber_example", "SecretName_example", "SecretValue_example") // CreateNetworkDeviceDefaultSecretsDto | The NetworkDevice Default Secrets create object
+	createNetworkDeviceDefaultSecrets := *openapiclient.NewCreateNetworkDeviceDefaultSecrets(float32(123), "MacAddressOrSerialNumber_example", "SecretName_example", "SecretValue_example") // CreateNetworkDeviceDefaultSecrets | The NetworkDevice Default Secrets create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceDefaultSecretsAPI.CreateNetworkDeviceDefaultSecrets(context.Background()).CreateNetworkDeviceDefaultSecretsDto(createNetworkDeviceDefaultSecretsDto).Execute()
+	resp, r, err := apiClient.NetworkDeviceDefaultSecretsAPI.CreateNetworkDeviceDefaultSecrets(context.Background()).CreateNetworkDeviceDefaultSecrets(createNetworkDeviceDefaultSecrets).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceDefaultSecretsAPI.CreateNetworkDeviceDefaultSecrets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkDeviceDefault
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createNetworkDeviceDefaultSecretsDto** | [**CreateNetworkDeviceDefaultSecretsDto**](CreateNetworkDeviceDefaultSecretsDto.md) | The NetworkDevice Default Secrets create object | 
+ **createNetworkDeviceDefaultSecrets** | [**CreateNetworkDeviceDefaultSecrets**](CreateNetworkDeviceDefaultSecrets.md) | The NetworkDevice Default Secrets create object | 
 
 ### Return type
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkDeviceDefaultSecrets
 
-> NetworkDeviceDefaultSecrets UpdateNetworkDeviceDefaultSecrets(ctx, networkDeviceDefaultSecretsId).UpdateNetworkDeviceDefaultSecretsDto(updateNetworkDeviceDefaultSecretsDto).Execute()
+> NetworkDeviceDefaultSecrets UpdateNetworkDeviceDefaultSecrets(ctx, networkDeviceDefaultSecretsId).UpdateNetworkDeviceDefaultSecrets(updateNetworkDeviceDefaultSecrets).Execute()
 
 Updates a NetworkDevice Default Secrets
 
@@ -389,11 +389,11 @@ import (
 
 func main() {
 	networkDeviceDefaultSecretsId := float32(8.14) // float32 | 
-	updateNetworkDeviceDefaultSecretsDto := *openapiclient.NewUpdateNetworkDeviceDefaultSecretsDto() // UpdateNetworkDeviceDefaultSecretsDto | The NetworkDevice Default Secrets update object
+	updateNetworkDeviceDefaultSecrets := *openapiclient.NewUpdateNetworkDeviceDefaultSecrets() // UpdateNetworkDeviceDefaultSecrets | The NetworkDevice Default Secrets update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceDefaultSecretsAPI.UpdateNetworkDeviceDefaultSecrets(context.Background(), networkDeviceDefaultSecretsId).UpdateNetworkDeviceDefaultSecretsDto(updateNetworkDeviceDefaultSecretsDto).Execute()
+	resp, r, err := apiClient.NetworkDeviceDefaultSecretsAPI.UpdateNetworkDeviceDefaultSecrets(context.Background(), networkDeviceDefaultSecretsId).UpdateNetworkDeviceDefaultSecrets(updateNetworkDeviceDefaultSecrets).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceDefaultSecretsAPI.UpdateNetworkDeviceDefaultSecrets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -419,7 +419,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkDeviceDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkDeviceDefaultSecretsDto** | [**UpdateNetworkDeviceDefaultSecretsDto**](UpdateNetworkDeviceDefaultSecretsDto.md) | The NetworkDevice Default Secrets update object | 
+ **updateNetworkDeviceDefaultSecrets** | [**UpdateNetworkDeviceDefaultSecrets**](UpdateNetworkDeviceDefaultSecrets.md) | The NetworkDevice Default Secrets update object | 
 
 ### Return type
 

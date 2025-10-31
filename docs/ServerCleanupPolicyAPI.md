@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createServerCleanupPolicy := *openapiclient.NewCreateServerCleanupPolicy("Label_example", float32(1), float32(1), float32(1), "raid0", "raid1", "raid5", "raid10", []string{"SkipRaidActions_example"}) // CreateServerCleanupPolicy | The Server Cleanup Policy create object
+	createServerCleanupPolicy := *openapiclient.NewCreateServerCleanupPolicy("Label_example", float32(1), float32(1), float32(1), float32(1), "RAID0", "RAID1", "RAID5", "RAID10", []string{"SkipRaidActions_example"}) // CreateServerCleanupPolicy | The Server Cleanup Policy create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

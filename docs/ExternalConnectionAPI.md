@@ -43,7 +43,7 @@ import (
 )
 
 func main() {
-	createExternalConnection := *openapiclient.NewCreateExternalConnection("external-connection-1", "Server 1", float32(123)) // CreateExternalConnection | The external connection to create
+	createExternalConnection := *openapiclient.NewCreateExternalConnection("external-connection-1", "Server 1", int32(123)) // CreateExternalConnection | The external connection to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ import (
 
 func main() {
 	externalConnectionId := int32(56) // int32 | The id of the external connection
-	createExternalConnectionLogicalNetwork := *openapiclient.NewCreateExternalConnectionLogicalNetwork(float32(123)) // CreateExternalConnectionLogicalNetwork | The external connection logical network to create
+	createExternalConnectionLogicalNetwork := *openapiclient.NewCreateExternalConnectionLogicalNetwork(int32(123)) // CreateExternalConnectionLogicalNetwork | The external connection logical network to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

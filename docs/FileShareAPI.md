@@ -39,7 +39,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createFileShare := *openapiclient.NewCreateFileShare(float32(123)) // CreateFileShare | The File Share create object
+	createFileShare := *openapiclient.NewCreateFileShare(float32(123), float32(123)) // CreateFileShare | The File Share create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

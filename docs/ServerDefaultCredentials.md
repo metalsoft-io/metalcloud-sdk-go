@@ -9,19 +9,19 @@ Name | Type | Description | Notes
 **ServerSerialNumber** | **string** | The serial number of the server | 
 **ServerMacAddress** | **string** | The MAC address of the server | 
 **DefaultUsername** | **string** | The default username of the server | 
-**DefaultPasswordEncrypted** | **string** | The encrypted default password of the server | 
 **DefaultRackName** | Pointer to **string** | The default rack name of the server | [optional] 
 **DefaultRackPositionLowerUnit** | Pointer to **string** | The default rack position upper unit of the server | [optional] 
 **DefaultRackPositionUpperUnit** | Pointer to **string** | The default rack position upper unit of the server | [optional] 
 **DefaultInventoryId** | Pointer to **string** | The default inventory ID of the server | [optional] 
 **DefaultUuid** | Pointer to **string** | The default UUID of the server | [optional] 
+**DefaultRegistrationProfileId** | Pointer to **float32** | The default registration profile ID of the server | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewServerDefaultCredentials
 
-`func NewServerDefaultCredentials(id float32, siteId float32, serverSerialNumber string, serverMacAddress string, defaultUsername string, defaultPasswordEncrypted string, ) *ServerDefaultCredentials`
+`func NewServerDefaultCredentials(id float32, siteId float32, serverSerialNumber string, serverMacAddress string, defaultUsername string, ) *ServerDefaultCredentials`
 
 NewServerDefaultCredentials instantiates a new ServerDefaultCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -134,26 +134,6 @@ and a boolean to check if the value has been set.
 `func (o *ServerDefaultCredentials) SetDefaultUsername(v string)`
 
 SetDefaultUsername sets DefaultUsername field to given value.
-
-
-### GetDefaultPasswordEncrypted
-
-`func (o *ServerDefaultCredentials) GetDefaultPasswordEncrypted() string`
-
-GetDefaultPasswordEncrypted returns the DefaultPasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetDefaultPasswordEncryptedOk
-
-`func (o *ServerDefaultCredentials) GetDefaultPasswordEncryptedOk() (*string, bool)`
-
-GetDefaultPasswordEncryptedOk returns a tuple with the DefaultPasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultPasswordEncrypted
-
-`func (o *ServerDefaultCredentials) SetDefaultPasswordEncrypted(v string)`
-
-SetDefaultPasswordEncrypted sets DefaultPasswordEncrypted field to given value.
 
 
 ### GetDefaultRackName
@@ -280,6 +260,31 @@ SetDefaultUuid sets DefaultUuid field to given value.
 `func (o *ServerDefaultCredentials) HasDefaultUuid() bool`
 
 HasDefaultUuid returns a boolean if a field has been set.
+
+### GetDefaultRegistrationProfileId
+
+`func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileId() float32`
+
+GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field if non-nil, zero value otherwise.
+
+### GetDefaultRegistrationProfileIdOk
+
+`func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool)`
+
+GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultRegistrationProfileId
+
+`func (o *ServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32)`
+
+SetDefaultRegistrationProfileId sets DefaultRegistrationProfileId field to given value.
+
+### HasDefaultRegistrationProfileId
+
+`func (o *ServerDefaultCredentials) HasDefaultRegistrationProfileId() bool`
+
+HasDefaultRegistrationProfileId returns a boolean if a field has been set.
 
 ### GetLinks
 

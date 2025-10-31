@@ -856,6 +856,113 @@ func (a *VMInstanceAPIService) GetVMInstanceConfigInfoExecute(r VMInstanceAPIGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMInstanceAPIGetVMInstanceCredentialsRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceAPIService
+	infrastructureId int32
+	vmInstanceId int32
+}
+
+func (r VMInstanceAPIGetVMInstanceCredentialsRequest) Execute() (*ServerInstanceCredentials, *http.Response, error) {
+	return r.ApiService.GetVMInstanceCredentialsExecute(r)
+}
+
+/*
+GetVMInstanceCredentials Get VM Instance credentials
+
+Returns the credentials for various protocols including the IPs allocated
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceId
+ @return VMInstanceAPIGetVMInstanceCredentialsRequest
+*/
+func (a *VMInstanceAPIService) GetVMInstanceCredentials(ctx context.Context, infrastructureId int32, vmInstanceId int32) VMInstanceAPIGetVMInstanceCredentialsRequest {
+	return VMInstanceAPIGetVMInstanceCredentialsRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceId: vmInstanceId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerInstanceCredentials
+func (a *VMInstanceAPIService) GetVMInstanceCredentialsExecute(r VMInstanceAPIGetVMInstanceCredentialsRequest) (*ServerInstanceCredentials, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerInstanceCredentials
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.GetVMInstanceCredentials")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceId, "vmInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMInstanceAPIGetVMInstancePowerStatusRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService

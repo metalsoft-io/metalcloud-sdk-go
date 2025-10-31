@@ -17,8 +17,7 @@ Name | Type | Description | Notes
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
 **ManagementHost** | **string** | Management host | 
-**Username** | **string** | Username | 
-**PasswordEncrypted** | Pointer to **string** | Password encrypted | [optional] 
+**Username** | Pointer to **string** | The username to use. | [optional] 
 **Options** | Pointer to [**StorageOptions**](StorageOptions.md) | Options for the storage | [optional] 
 **InMaintenance** | Pointer to **float32** | Specifies if the storage is in maintenance | [optional] 
 **TargetIQN** | Pointer to **string** | Target IQN | [optional] 
@@ -37,7 +36,7 @@ Name | Type | Description | Notes
 
 ### NewStorage
 
-`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, type_ string, status string, name string, managementHost string, username string, subnetType string, ) *Storage`
+`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, type_ string, status string, name string, managementHost string, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -346,31 +345,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
 
-### GetPasswordEncrypted
+`func (o *Storage) HasUsername() bool`
 
-`func (o *Storage) GetPasswordEncrypted() string`
-
-GetPasswordEncrypted returns the PasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetPasswordEncryptedOk
-
-`func (o *Storage) GetPasswordEncryptedOk() (*string, bool)`
-
-GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPasswordEncrypted
-
-`func (o *Storage) SetPasswordEncrypted(v string)`
-
-SetPasswordEncrypted sets PasswordEncrypted field to given value.
-
-### HasPasswordEncrypted
-
-`func (o *Storage) HasPasswordEncrypted() bool`
-
-HasPasswordEncrypted returns a boolean if a field has been set.
+HasUsername returns a boolean if a field has been set.
 
 ### GetOptions
 

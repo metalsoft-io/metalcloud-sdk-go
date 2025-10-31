@@ -108,11 +108,15 @@ type APIClient struct {
 
 	NetworkDeviceAPI *NetworkDeviceAPIService
 
+	NetworkDeviceControllerAPI *NetworkDeviceControllerAPIService
+
 	NetworkDeviceDefaultSecretsAPI *NetworkDeviceDefaultSecretsAPIService
 
 	NetworkEndpointGroupAPI *NetworkEndpointGroupAPIService
 
 	NetworkFabricAPI *NetworkFabricAPIService
+
+	NetworkFabricInterconnectAPI *NetworkFabricInterconnectAPIService
 
 	OSTemplateAPI *OSTemplateAPIService
 
@@ -133,6 +137,8 @@ type APIClient struct {
 	ServerInstanceAPI *ServerInstanceAPIService
 
 	ServerInstanceGroupAPI *ServerInstanceGroupAPIService
+
+	ServerRegistrationProfileAPI *ServerRegistrationProfileAPIService
 
 	ServerTypeAPI *ServerTypeAPIService
 
@@ -210,9 +216,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogicalNetworkAPI = (*LogicalNetworkAPIService)(&c.common)
 	c.LogicalNetworkProfileAPI = (*LogicalNetworkProfileAPIService)(&c.common)
 	c.NetworkDeviceAPI = (*NetworkDeviceAPIService)(&c.common)
+	c.NetworkDeviceControllerAPI = (*NetworkDeviceControllerAPIService)(&c.common)
 	c.NetworkDeviceDefaultSecretsAPI = (*NetworkDeviceDefaultSecretsAPIService)(&c.common)
 	c.NetworkEndpointGroupAPI = (*NetworkEndpointGroupAPIService)(&c.common)
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
+	c.NetworkFabricInterconnectAPI = (*NetworkFabricInterconnectAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)
 	c.ResourcePoolAPI = (*ResourcePoolAPIService)(&c.common)
 	c.SecretsAPI = (*SecretsAPIService)(&c.common)
@@ -223,6 +231,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ServerFirmwareAPI = (*ServerFirmwareAPIService)(&c.common)
 	c.ServerInstanceAPI = (*ServerInstanceAPIService)(&c.common)
 	c.ServerInstanceGroupAPI = (*ServerInstanceGroupAPIService)(&c.common)
+	c.ServerRegistrationProfileAPI = (*ServerRegistrationProfileAPIService)(&c.common)
 	c.ServerTypeAPI = (*ServerTypeAPIService)(&c.common)
 	c.SiteAPI = (*SiteAPIService)(&c.common)
 	c.StorageAPI = (*StorageAPIService)(&c.common)

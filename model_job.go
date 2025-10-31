@@ -70,7 +70,7 @@ type Job struct {
 	// Whether the job requires confirmation before execution
 	RequiresConfirmation bool `json:"requiresConfirmation"`
 	// Options for the job
-	Options JobOptionsDto `json:"options"`
+	Options JobOptions `json:"options"`
 	// The timestamp when the job was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The timestamp when the job was last updated
@@ -92,7 +92,7 @@ type _Job Job
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *Job {
+func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptions, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *Job {
 	this := Job{}
 	this.JobId = jobId
 	this.Type = type_
@@ -817,9 +817,9 @@ func (o *Job) SetRequiresConfirmation(v bool) {
 }
 
 // GetOptions returns the Options field value
-func (o *Job) GetOptions() JobOptionsDto {
+func (o *Job) GetOptions() JobOptions {
 	if o == nil {
-		var ret JobOptionsDto
+		var ret JobOptions
 		return ret
 	}
 
@@ -828,7 +828,7 @@ func (o *Job) GetOptions() JobOptionsDto {
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *Job) GetOptionsOk() (*JobOptionsDto, bool) {
+func (o *Job) GetOptionsOk() (*JobOptions, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -836,7 +836,7 @@ func (o *Job) GetOptionsOk() (*JobOptionsDto, bool) {
 }
 
 // SetOptions sets field value
-func (o *Job) SetOptions(v JobOptionsDto) {
+func (o *Job) SetOptions(v JobOptions) {
 	o.Options = v
 }
 

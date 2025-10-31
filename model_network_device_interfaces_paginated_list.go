@@ -21,7 +21,7 @@ var _ MappedNullable = &NetworkDeviceInterfacesPaginatedList{}
 
 // NetworkDeviceInterfacesPaginatedList struct for NetworkDeviceInterfacesPaginatedList
 type NetworkDeviceInterfacesPaginatedList struct {
-	Data []NetworkDeviceInterfaceDto `json:"data"`
+	Data []NetworkDeviceInterface `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _NetworkDeviceInterfacesPaginatedList NetworkDeviceInterfacesPaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceInterfacesPaginatedList(data []NetworkDeviceInterfaceDto, meta PaginatedResponseMeta) *NetworkDeviceInterfacesPaginatedList {
+func NewNetworkDeviceInterfacesPaginatedList(data []NetworkDeviceInterface, meta PaginatedResponseMeta) *NetworkDeviceInterfacesPaginatedList {
 	this := NetworkDeviceInterfacesPaginatedList{}
 	this.Data = data
 	this.Meta = meta
@@ -51,9 +51,9 @@ func NewNetworkDeviceInterfacesPaginatedListWithDefaults() *NetworkDeviceInterfa
 }
 
 // GetData returns the Data field value
-func (o *NetworkDeviceInterfacesPaginatedList) GetData() []NetworkDeviceInterfaceDto {
+func (o *NetworkDeviceInterfacesPaginatedList) GetData() []NetworkDeviceInterface {
 	if o == nil {
-		var ret []NetworkDeviceInterfaceDto
+		var ret []NetworkDeviceInterface
 		return ret
 	}
 
@@ -62,7 +62,7 @@ func (o *NetworkDeviceInterfacesPaginatedList) GetData() []NetworkDeviceInterfac
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterfacesPaginatedList) GetDataOk() ([]NetworkDeviceInterfaceDto, bool) {
+func (o *NetworkDeviceInterfacesPaginatedList) GetDataOk() ([]NetworkDeviceInterface, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *NetworkDeviceInterfacesPaginatedList) GetDataOk() ([]NetworkDeviceInter
 }
 
 // SetData sets field value
-func (o *NetworkDeviceInterfacesPaginatedList) SetData(v []NetworkDeviceInterfaceDto) {
+func (o *NetworkDeviceInterfacesPaginatedList) SetData(v []NetworkDeviceInterface) {
 	o.Data = v
 }
 

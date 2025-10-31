@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **IsArchived** | Pointer to **bool** | Whether the user is a archived | [optional] 
 **IsDatastorePublisher** | Pointer to **bool** | Whether the user is a datastore publisher | [optional] 
 **AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**Provider** | Pointer to **string** | The provider of the user | [optional] [default to "mysql"]
 
 ## Methods
 
@@ -621,6 +622,31 @@ SetAccountId sets AccountId field to given value.
 `func (o *UpdateUser) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
+
+### GetProvider
+
+`func (o *UpdateUser) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *UpdateUser) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *UpdateUser) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
+### HasProvider
+
+`func (o *UpdateUser) HasProvider() bool`
+
+HasProvider returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

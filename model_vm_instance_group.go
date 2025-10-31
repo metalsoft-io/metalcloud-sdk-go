@@ -50,6 +50,8 @@ type VMInstanceGroup struct {
 	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the VM Instance Group.
 	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	// Id of the VM Pool used by the VM Instance Group.
+	VmPoolId *float32 `json:"vmPoolId,omitempty"`
 	// Timestamp of the VM Instance Group creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The current changes to be deployed for the VM Instance Group.
@@ -511,6 +513,38 @@ func (o *VMInstanceGroup) SetDnsSubdomainPermanentId(v float32) {
 	o.DnsSubdomainPermanentId = &v
 }
 
+// GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetVmPoolId() float32 {
+	if o == nil || IsNil(o.VmPoolId) {
+		var ret float32
+		return ret
+	}
+	return *o.VmPoolId
+}
+
+// GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetVmPoolIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.VmPoolId) {
+		return nil, false
+	}
+	return o.VmPoolId, true
+}
+
+// HasVmPoolId returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasVmPoolId() bool {
+	if o != nil && !IsNil(o.VmPoolId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmPoolId gets a reference to the given float32 and assigns it to the VmPoolId field.
+func (o *VMInstanceGroup) SetVmPoolId(v float32) {
+	o.VmPoolId = &v
+}
+
 // GetCreatedTimestamp returns the CreatedTimestamp field value
 func (o *VMInstanceGroup) GetCreatedTimestamp() string {
 	if o == nil {
@@ -654,6 +688,9 @@ func (o VMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
 	}
+	if !IsNil(o.VmPoolId) {
+		toSerialize["vmPoolId"] = o.VmPoolId
+	}
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
@@ -728,6 +765,7 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
+		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")

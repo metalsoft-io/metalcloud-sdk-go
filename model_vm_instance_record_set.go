@@ -45,10 +45,8 @@ type VMInstanceRecordSet struct {
 	VmRamGb float32 `json:"vm_ram_gb"`
 	// The template used by the VM Instance.
 	VmTemplate string `json:"vm_template"`
-	// The network name of the VM Instance.
-	VmNetName *string `json:"vm_net_name,omitempty"`
-	// The vCenter internal network name of the VM Instance.
-	VcenterNetNameInternal *string `json:"vcenter_net_name_internal,omitempty"`
+	// The network configuration of the VM Instance.
+	NetworkConfigurations []VMInstanceNetworkConfigurationRecordSet `json:"network_configurations,omitempty"`
 	// The vCenter datacenter for the VM Instance.
 	VcenterDatacenter *string `json:"vcenter_datacenter,omitempty"`
 	// The vCenter cluster for the VM Instance.
@@ -57,6 +55,8 @@ type VMInstanceRecordSet struct {
 	VcenterVmDestinationFolder *string `json:"vcenter_vm_destination_folder,omitempty"`
 	// The vCenter datastore name for the VM Instance.
 	VcenterDiskDatastore *string `json:"vcenter_disk_datastore,omitempty"`
+	// Custom variables from the VM instance group
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -407,68 +407,36 @@ func (o *VMInstanceRecordSet) SetVmTemplate(v string) {
 	o.VmTemplate = v
 }
 
-// GetVmNetName returns the VmNetName field value if set, zero value otherwise.
-func (o *VMInstanceRecordSet) GetVmNetName() string {
-	if o == nil || IsNil(o.VmNetName) {
-		var ret string
+// GetNetworkConfigurations returns the NetworkConfigurations field value if set, zero value otherwise.
+func (o *VMInstanceRecordSet) GetNetworkConfigurations() []VMInstanceNetworkConfigurationRecordSet {
+	if o == nil || IsNil(o.NetworkConfigurations) {
+		var ret []VMInstanceNetworkConfigurationRecordSet
 		return ret
 	}
-	return *o.VmNetName
+	return o.NetworkConfigurations
 }
 
-// GetVmNetNameOk returns a tuple with the VmNetName field value if set, nil otherwise
+// GetNetworkConfigurationsOk returns a tuple with the NetworkConfigurations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceRecordSet) GetVmNetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.VmNetName) {
+func (o *VMInstanceRecordSet) GetNetworkConfigurationsOk() ([]VMInstanceNetworkConfigurationRecordSet, bool) {
+	if o == nil || IsNil(o.NetworkConfigurations) {
 		return nil, false
 	}
-	return o.VmNetName, true
+	return o.NetworkConfigurations, true
 }
 
-// HasVmNetName returns a boolean if a field has been set.
-func (o *VMInstanceRecordSet) HasVmNetName() bool {
-	if o != nil && !IsNil(o.VmNetName) {
+// HasNetworkConfigurations returns a boolean if a field has been set.
+func (o *VMInstanceRecordSet) HasNetworkConfigurations() bool {
+	if o != nil && !IsNil(o.NetworkConfigurations) {
 		return true
 	}
 
 	return false
 }
 
-// SetVmNetName gets a reference to the given string and assigns it to the VmNetName field.
-func (o *VMInstanceRecordSet) SetVmNetName(v string) {
-	o.VmNetName = &v
-}
-
-// GetVcenterNetNameInternal returns the VcenterNetNameInternal field value if set, zero value otherwise.
-func (o *VMInstanceRecordSet) GetVcenterNetNameInternal() string {
-	if o == nil || IsNil(o.VcenterNetNameInternal) {
-		var ret string
-		return ret
-	}
-	return *o.VcenterNetNameInternal
-}
-
-// GetVcenterNetNameInternalOk returns a tuple with the VcenterNetNameInternal field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceRecordSet) GetVcenterNetNameInternalOk() (*string, bool) {
-	if o == nil || IsNil(o.VcenterNetNameInternal) {
-		return nil, false
-	}
-	return o.VcenterNetNameInternal, true
-}
-
-// HasVcenterNetNameInternal returns a boolean if a field has been set.
-func (o *VMInstanceRecordSet) HasVcenterNetNameInternal() bool {
-	if o != nil && !IsNil(o.VcenterNetNameInternal) {
-		return true
-	}
-
-	return false
-}
-
-// SetVcenterNetNameInternal gets a reference to the given string and assigns it to the VcenterNetNameInternal field.
-func (o *VMInstanceRecordSet) SetVcenterNetNameInternal(v string) {
-	o.VcenterNetNameInternal = &v
+// SetNetworkConfigurations gets a reference to the given []VMInstanceNetworkConfigurationRecordSet and assigns it to the NetworkConfigurations field.
+func (o *VMInstanceRecordSet) SetNetworkConfigurations(v []VMInstanceNetworkConfigurationRecordSet) {
+	o.NetworkConfigurations = v
 }
 
 // GetVcenterDatacenter returns the VcenterDatacenter field value if set, zero value otherwise.
@@ -599,6 +567,38 @@ func (o *VMInstanceRecordSet) SetVcenterDiskDatastore(v string) {
 	o.VcenterDiskDatastore = &v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *VMInstanceRecordSet) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceRecordSet) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *VMInstanceRecordSet) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *VMInstanceRecordSet) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 func (o VMInstanceRecordSet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -629,11 +629,8 @@ func (o VMInstanceRecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize["vm_cpu_cores"] = o.VmCpuCores
 	toSerialize["vm_ram_gb"] = o.VmRamGb
 	toSerialize["vm_template"] = o.VmTemplate
-	if !IsNil(o.VmNetName) {
-		toSerialize["vm_net_name"] = o.VmNetName
-	}
-	if !IsNil(o.VcenterNetNameInternal) {
-		toSerialize["vcenter_net_name_internal"] = o.VcenterNetNameInternal
+	if !IsNil(o.NetworkConfigurations) {
+		toSerialize["network_configurations"] = o.NetworkConfigurations
 	}
 	if !IsNil(o.VcenterDatacenter) {
 		toSerialize["vcenter_datacenter"] = o.VcenterDatacenter
@@ -646,6 +643,9 @@ func (o VMInstanceRecordSet) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.VcenterDiskDatastore) {
 		toSerialize["vcenter_disk_datastore"] = o.VcenterDiskDatastore
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -709,12 +709,12 @@ func (o *VMInstanceRecordSet) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vm_cpu_cores")
 		delete(additionalProperties, "vm_ram_gb")
 		delete(additionalProperties, "vm_template")
-		delete(additionalProperties, "vm_net_name")
-		delete(additionalProperties, "vcenter_net_name_internal")
+		delete(additionalProperties, "network_configurations")
 		delete(additionalProperties, "vcenter_datacenter")
 		delete(additionalProperties, "vcenter_cluster")
 		delete(additionalProperties, "vcenter_vm_destination_folder")
 		delete(additionalProperties, "vcenter_disk_datastore")
+		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}
 

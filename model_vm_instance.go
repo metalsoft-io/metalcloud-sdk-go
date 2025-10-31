@@ -69,6 +69,8 @@ type VMInstance struct {
 	Config VMInstanceConfiguration `json:"config"`
 	// Meta information of the VM Instance.
 	Meta VMInstanceMeta `json:"meta"`
+	// Information about the allocated VM Pool.
+	AllocatedVMPoolInfo *VMInstanceAllocatedVMPoolInfo `json:"allocatedVMPoolInfo,omitempty"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -757,6 +759,38 @@ func (o *VMInstance) SetMeta(v VMInstanceMeta) {
 	o.Meta = v
 }
 
+// GetAllocatedVMPoolInfo returns the AllocatedVMPoolInfo field value if set, zero value otherwise.
+func (o *VMInstance) GetAllocatedVMPoolInfo() VMInstanceAllocatedVMPoolInfo {
+	if o == nil || IsNil(o.AllocatedVMPoolInfo) {
+		var ret VMInstanceAllocatedVMPoolInfo
+		return ret
+	}
+	return *o.AllocatedVMPoolInfo
+}
+
+// GetAllocatedVMPoolInfoOk returns a tuple with the AllocatedVMPoolInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstance) GetAllocatedVMPoolInfoOk() (*VMInstanceAllocatedVMPoolInfo, bool) {
+	if o == nil || IsNil(o.AllocatedVMPoolInfo) {
+		return nil, false
+	}
+	return o.AllocatedVMPoolInfo, true
+}
+
+// HasAllocatedVMPoolInfo returns a boolean if a field has been set.
+func (o *VMInstance) HasAllocatedVMPoolInfo() bool {
+	if o != nil && !IsNil(o.AllocatedVMPoolInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocatedVMPoolInfo gets a reference to the given VMInstanceAllocatedVMPoolInfo and assigns it to the AllocatedVMPoolInfo field.
+func (o *VMInstance) SetAllocatedVMPoolInfo(v VMInstanceAllocatedVMPoolInfo) {
+	o.AllocatedVMPoolInfo = &v
+}
+
 // GetLinks returns the Links field value
 func (o *VMInstance) GetLinks() map[string]interface{} {
 	if o == nil {
@@ -833,6 +867,9 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
+	if !IsNil(o.AllocatedVMPoolInfo) {
+		toSerialize["allocatedVMPoolInfo"] = o.AllocatedVMPoolInfo
+	}
 	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
@@ -916,6 +953,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
+		delete(additionalProperties, "allocatedVMPoolInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -39,8 +39,6 @@ type CustomIso struct {
 	AccessUrl string `json:"accessUrl"`
 	// The username used to access the custom ISO
 	Username *string `json:"username,omitempty"`
-	// The password used to access the custom ISO
-	PasswordEncrypted *string `json:"passwordEncrypted,omitempty"`
 	// The timestamp when the custom ISO was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The timestamp when the custom ISO was last updated
@@ -317,38 +315,6 @@ func (o *CustomIso) SetUsername(v string) {
 	o.Username = &v
 }
 
-// GetPasswordEncrypted returns the PasswordEncrypted field value if set, zero value otherwise.
-func (o *CustomIso) GetPasswordEncrypted() string {
-	if o == nil || IsNil(o.PasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.PasswordEncrypted
-}
-
-// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomIso) GetPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.PasswordEncrypted) {
-		return nil, false
-	}
-	return o.PasswordEncrypted, true
-}
-
-// HasPasswordEncrypted returns a boolean if a field has been set.
-func (o *CustomIso) HasPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.PasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetPasswordEncrypted gets a reference to the given string and assigns it to the PasswordEncrypted field.
-func (o *CustomIso) SetPasswordEncrypted(v string) {
-	o.PasswordEncrypted = &v
-}
-
 // GetCreatedTimestamp returns the CreatedTimestamp field value
 func (o *CustomIso) GetCreatedTimestamp() string {
 	if o == nil {
@@ -454,9 +420,6 @@ func (o CustomIso) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
-	if !IsNil(o.PasswordEncrypted) {
-		toSerialize["passwordEncrypted"] = o.PasswordEncrypted
-	}
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.ImageUrl) {
@@ -521,7 +484,6 @@ func (o *CustomIso) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isPublic")
 		delete(additionalProperties, "accessUrl")
 		delete(additionalProperties, "username")
-		delete(additionalProperties, "passwordEncrypted")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "imageUrl")

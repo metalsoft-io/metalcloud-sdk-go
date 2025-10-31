@@ -66,6 +66,8 @@ type UpdateUser struct {
 	IsDatastorePublisher *bool `json:"isDatastorePublisher,omitempty"`
 	// The account ID of the user
 	AccountId *float32 `json:"accountId,omitempty"`
+	// The provider of the user
+	Provider *string `json:"provider,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,6 +83,8 @@ func NewUpdateUser() *UpdateUser {
 	this.Brand = &brand
 	var lastLoginType string = "md5"
 	this.LastLoginType = &lastLoginType
+	var provider string = "mysql"
+	this.Provider = &provider
 	return &this
 }
 
@@ -93,6 +97,8 @@ func NewUpdateUserWithDefaults() *UpdateUser {
 	this.Brand = &brand
 	var lastLoginType string = "md5"
 	this.LastLoginType = &lastLoginType
+	var provider string = "mysql"
+	this.Provider = &provider
 	return &this
 }
 
@@ -832,6 +838,38 @@ func (o *UpdateUser) SetAccountId(v float32) {
 	o.AccountId = &v
 }
 
+// GetProvider returns the Provider field value if set, zero value otherwise.
+func (o *UpdateUser) GetProvider() string {
+	if o == nil || IsNil(o.Provider) {
+		var ret string
+		return ret
+	}
+	return *o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetProviderOk() (*string, bool) {
+	if o == nil || IsNil(o.Provider) {
+		return nil, false
+	}
+	return o.Provider, true
+}
+
+// HasProvider returns a boolean if a field has been set.
+func (o *UpdateUser) HasProvider() bool {
+	if o != nil && !IsNil(o.Provider) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvider gets a reference to the given string and assigns it to the Provider field.
+func (o *UpdateUser) SetProvider(v string) {
+	o.Provider = &v
+}
+
 func (o UpdateUser) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -911,6 +949,9 @@ func (o UpdateUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccountId) {
 		toSerialize["accountId"] = o.AccountId
 	}
+	if !IsNil(o.Provider) {
+		toSerialize["provider"] = o.Provider
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -956,6 +997,7 @@ func (o *UpdateUser) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isArchived")
 		delete(additionalProperties, "isDatastorePublisher")
 		delete(additionalProperties, "accountId")
+		delete(additionalProperties, "provider")
 		o.AdditionalProperties = additionalProperties
 	}
 

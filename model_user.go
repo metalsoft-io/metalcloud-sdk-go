@@ -67,6 +67,8 @@ type User struct {
 	IsDatastorePublisher bool `json:"isDatastorePublisher"`
 	// The account ID of the user
 	AccountId *float32 `json:"accountId,omitempty"`
+	// The provider of the user
+	Provider string `json:"provider"`
 	// User ID
 	Id float32 `json:"id"`
 	// Revision of the user
@@ -79,11 +81,11 @@ type User struct {
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The plan type of the user
 	PlanType string `json:"planType"`
-	// The provider of the user
-	Provider string `json:"provider"`
 	// The permissions of the user
 	Permissions *UserPermissions `json:"permissions,omitempty"`
 	Limits *UserLimits `json:"limits,omitempty"`
+	// The disabled limits for the user, if list is empty all options are available
+	DisabledLimits *UserLimitsDisabled `json:"disabledLimits,omitempty"`
 	// The email addresses of the parent delegate users
 	ParentDelegates []string `json:"parentDelegates,omitempty"`
 	// The email addresses of the child delegate users
@@ -107,7 +109,7 @@ type _User User
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, provider string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta) *User {
+func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta) *User {
 	this := User{}
 	this.DisplayName = displayName
 	this.EmailStatus = emailStatus
@@ -127,13 +129,13 @@ func NewUser(displayName string, emailStatus string, language string, brand stri
 	this.IsTestAccount = isTestAccount
 	this.IsArchived = isArchived
 	this.IsDatastorePublisher = isDatastorePublisher
+	this.Provider = provider
 	this.Id = id
 	this.Revision = revision
 	this.Email = email
 	this.Franchise = franchise
 	this.CreatedTimestamp = createdTimestamp
 	this.PlanType = planType
-	this.Provider = provider
 	this.IsSuspended = isSuspended
 	this.AuthenticatorEnabled = authenticatorEnabled
 	this.Config = config
@@ -150,10 +152,10 @@ func NewUserWithDefaults() *User {
 	this.Brand = brand
 	var lastLoginType string = "md5"
 	this.LastLoginType = lastLoginType
+	var provider string = "mysql"
+	this.Provider = provider
 	var planType string = "vanilla"
 	this.PlanType = planType
-	var provider string = "default"
-	this.Provider = provider
 	return &this
 }
 
@@ -749,6 +751,30 @@ func (o *User) SetAccountId(v float32) {
 	o.AccountId = &v
 }
 
+// GetProvider returns the Provider field value
+func (o *User) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *User) GetProviderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *User) SetProvider(v string) {
+	o.Provider = v
+}
+
 // GetId returns the Id field value
 func (o *User) GetId() float32 {
 	if o == nil {
@@ -893,30 +919,6 @@ func (o *User) SetPlanType(v string) {
 	o.PlanType = v
 }
 
-// GetProvider returns the Provider field value
-func (o *User) GetProvider() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Provider
-}
-
-// GetProviderOk returns a tuple with the Provider field value
-// and a boolean to check if the value has been set.
-func (o *User) GetProviderOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Provider, true
-}
-
-// SetProvider sets field value
-func (o *User) SetProvider(v string) {
-	o.Provider = v
-}
-
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
 func (o *User) GetPermissions() UserPermissions {
 	if o == nil || IsNil(o.Permissions) {
@@ -979,6 +981,38 @@ func (o *User) HasLimits() bool {
 // SetLimits gets a reference to the given UserLimits and assigns it to the Limits field.
 func (o *User) SetLimits(v UserLimits) {
 	o.Limits = &v
+}
+
+// GetDisabledLimits returns the DisabledLimits field value if set, zero value otherwise.
+func (o *User) GetDisabledLimits() UserLimitsDisabled {
+	if o == nil || IsNil(o.DisabledLimits) {
+		var ret UserLimitsDisabled
+		return ret
+	}
+	return *o.DisabledLimits
+}
+
+// GetDisabledLimitsOk returns a tuple with the DisabledLimits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetDisabledLimitsOk() (*UserLimitsDisabled, bool) {
+	if o == nil || IsNil(o.DisabledLimits) {
+		return nil, false
+	}
+	return o.DisabledLimits, true
+}
+
+// HasDisabledLimits returns a boolean if a field has been set.
+func (o *User) HasDisabledLimits() bool {
+	if o != nil && !IsNil(o.DisabledLimits) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisabledLimits gets a reference to the given UserLimitsDisabled and assigns it to the DisabledLimits field.
+func (o *User) SetDisabledLimits(v UserLimitsDisabled) {
+	o.DisabledLimits = &v
 }
 
 // GetParentDelegates returns the ParentDelegates field value if set, zero value otherwise.
@@ -1216,18 +1250,21 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccountId) {
 		toSerialize["accountId"] = o.AccountId
 	}
+	toSerialize["provider"] = o.Provider
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["email"] = o.Email
 	toSerialize["franchise"] = o.Franchise
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["planType"] = o.PlanType
-	toSerialize["provider"] = o.Provider
 	if !IsNil(o.Permissions) {
 		toSerialize["permissions"] = o.Permissions
 	}
 	if !IsNil(o.Limits) {
 		toSerialize["limits"] = o.Limits
+	}
+	if !IsNil(o.DisabledLimits) {
+		toSerialize["disabledLimits"] = o.DisabledLimits
 	}
 	if !IsNil(o.ParentDelegates) {
 		toSerialize["parentDelegates"] = o.ParentDelegates
@@ -1273,13 +1310,13 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		"isTestAccount",
 		"isArchived",
 		"isDatastorePublisher",
+		"provider",
 		"id",
 		"revision",
 		"email",
 		"franchise",
 		"createdTimestamp",
 		"planType",
-		"provider",
 		"isSuspended",
 		"authenticatorEnabled",
 		"config",
@@ -1336,15 +1373,16 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isArchived")
 		delete(additionalProperties, "isDatastorePublisher")
 		delete(additionalProperties, "accountId")
+		delete(additionalProperties, "provider")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "franchise")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "planType")
-		delete(additionalProperties, "provider")
 		delete(additionalProperties, "permissions")
 		delete(additionalProperties, "limits")
+		delete(additionalProperties, "disabledLimits")
 		delete(additionalProperties, "parentDelegates")
 		delete(additionalProperties, "childDelegates")
 		delete(additionalProperties, "isSuspended")

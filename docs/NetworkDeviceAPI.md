@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkDeviceCredentials
 
-> GetNetworkDeviceCredentials(ctx, networkDeviceId).Execute()
+> NetworkDeviceCredentials GetNetworkDeviceCredentials(ctx, networkDeviceId).Execute()
 
 Get Network Device credentials
 
@@ -524,11 +524,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceCredentials(context.Background(), networkDeviceId).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceCredentials(context.Background(), networkDeviceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `GetNetworkDeviceCredentials`: NetworkDeviceCredentials
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceCredentials`: %v\n", resp)
 }
 ```
 
@@ -551,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**NetworkDeviceCredentials**](NetworkDeviceCredentials.md)
 
 ### Authorization
 
@@ -560,7 +562,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

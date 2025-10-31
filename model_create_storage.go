@@ -39,8 +39,8 @@ type CreateStorage struct {
 	IscsiPort *float32 `json:"iscsiPort,omitempty"`
 	// Management host
 	ManagementHost string `json:"managementHost"`
-	// Username
-	Username string `json:"username"`
+	// The username to use.
+	Username *string `json:"username,omitempty"`
 	// Specifies if the storage is in maintenance
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Target IQN
@@ -60,7 +60,15 @@ type CreateStorage struct {
 	// Options for the storage
 	Options *UpdateStorageOptions `json:"options,omitempty"`
 	// The password to use.
-	Password string `json:"password"`
+	Password *string `json:"password,omitempty"`
+	// The client ID to use (for certain storage drivers)
+	ClientId *string `json:"clientId,omitempty"`
+	// The key ID to use (for certain storage drivers)
+	KeyId *string `json:"keyId,omitempty"`
+	// The application issuer to use (for certain storage drivers)
+	Issuer *string `json:"issuer,omitempty"`
+	// The private key to use (for certain storage drivers)
+	PrivateKey *string `json:"privateKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,7 +78,7 @@ type _CreateStorage CreateStorage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorage(siteId float32, driver string, technologies []string, type_ string, name string, managementHost string, username string, subnetType string, password string) *CreateStorage {
+func NewCreateStorage(siteId float32, driver string, technologies []string, type_ string, name string, managementHost string, subnetType string) *CreateStorage {
 	this := CreateStorage{}
 	this.SiteId = siteId
 	this.Driver = driver
@@ -78,9 +86,7 @@ func NewCreateStorage(siteId float32, driver string, technologies []string, type
 	this.Type = type_
 	this.Name = name
 	this.ManagementHost = managementHost
-	this.Username = username
 	this.SubnetType = subnetType
-	this.Password = password
 	return &this
 }
 
@@ -332,28 +338,36 @@ func (o *CreateStorage) SetManagementHost(v string) {
 	o.ManagementHost = v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *CreateStorage) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStorage) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *CreateStorage) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *CreateStorage) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
 // GetInMaintenance returns the InMaintenance field value if set, zero value otherwise.
@@ -636,28 +650,164 @@ func (o *CreateStorage) SetOptions(v UpdateStorageOptions) {
 	o.Options = &v
 }
 
-// GetPassword returns the Password field value
+// GetPassword returns the Password field value if set, zero value otherwise.
 func (o *CreateStorage) GetPassword() string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
-
-	return o.Password
+	return *o.Password
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStorage) GetPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
-	return &o.Password, true
+	return o.Password, true
 }
 
-// SetPassword sets field value
+// HasPassword returns a boolean if a field has been set.
+func (o *CreateStorage) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *CreateStorage) SetPassword(v string) {
-	o.Password = v
+	o.Password = &v
+}
+
+// GetClientId returns the ClientId field value if set, zero value otherwise.
+func (o *CreateStorage) GetClientId() string {
+	if o == nil || IsNil(o.ClientId) {
+		var ret string
+		return ret
+	}
+	return *o.ClientId
+}
+
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStorage) GetClientIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ClientId) {
+		return nil, false
+	}
+	return o.ClientId, true
+}
+
+// HasClientId returns a boolean if a field has been set.
+func (o *CreateStorage) HasClientId() bool {
+	if o != nil && !IsNil(o.ClientId) {
+		return true
+	}
+
+	return false
+}
+
+// SetClientId gets a reference to the given string and assigns it to the ClientId field.
+func (o *CreateStorage) SetClientId(v string) {
+	o.ClientId = &v
+}
+
+// GetKeyId returns the KeyId field value if set, zero value otherwise.
+func (o *CreateStorage) GetKeyId() string {
+	if o == nil || IsNil(o.KeyId) {
+		var ret string
+		return ret
+	}
+	return *o.KeyId
+}
+
+// GetKeyIdOk returns a tuple with the KeyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStorage) GetKeyIdOk() (*string, bool) {
+	if o == nil || IsNil(o.KeyId) {
+		return nil, false
+	}
+	return o.KeyId, true
+}
+
+// HasKeyId returns a boolean if a field has been set.
+func (o *CreateStorage) HasKeyId() bool {
+	if o != nil && !IsNil(o.KeyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyId gets a reference to the given string and assigns it to the KeyId field.
+func (o *CreateStorage) SetKeyId(v string) {
+	o.KeyId = &v
+}
+
+// GetIssuer returns the Issuer field value if set, zero value otherwise.
+func (o *CreateStorage) GetIssuer() string {
+	if o == nil || IsNil(o.Issuer) {
+		var ret string
+		return ret
+	}
+	return *o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStorage) GetIssuerOk() (*string, bool) {
+	if o == nil || IsNil(o.Issuer) {
+		return nil, false
+	}
+	return o.Issuer, true
+}
+
+// HasIssuer returns a boolean if a field has been set.
+func (o *CreateStorage) HasIssuer() bool {
+	if o != nil && !IsNil(o.Issuer) {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuer gets a reference to the given string and assigns it to the Issuer field.
+func (o *CreateStorage) SetIssuer(v string) {
+	o.Issuer = &v
+}
+
+// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
+func (o *CreateStorage) GetPrivateKey() string {
+	if o == nil || IsNil(o.PrivateKey) {
+		var ret string
+		return ret
+	}
+	return *o.PrivateKey
+}
+
+// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStorage) GetPrivateKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.PrivateKey) {
+		return nil, false
+	}
+	return o.PrivateKey, true
+}
+
+// HasPrivateKey returns a boolean if a field has been set.
+func (o *CreateStorage) HasPrivateKey() bool {
+	if o != nil && !IsNil(o.PrivateKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
+func (o *CreateStorage) SetPrivateKey(v string) {
+	o.PrivateKey = &v
 }
 
 func (o CreateStorage) MarshalJSON() ([]byte, error) {
@@ -685,7 +835,9 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 		toSerialize["iscsiPort"] = o.IscsiPort
 	}
 	toSerialize["managementHost"] = o.ManagementHost
-	toSerialize["username"] = o.Username
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
 	if !IsNil(o.InMaintenance) {
 		toSerialize["inMaintenance"] = o.InMaintenance
 	}
@@ -711,7 +863,21 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
-	toSerialize["password"] = o.Password
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.ClientId) {
+		toSerialize["clientId"] = o.ClientId
+	}
+	if !IsNil(o.KeyId) {
+		toSerialize["keyId"] = o.KeyId
+	}
+	if !IsNil(o.Issuer) {
+		toSerialize["issuer"] = o.Issuer
+	}
+	if !IsNil(o.PrivateKey) {
+		toSerialize["privateKey"] = o.PrivateKey
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -731,9 +897,7 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		"type",
 		"name",
 		"managementHost",
-		"username",
 		"subnetType",
-		"password",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -783,6 +947,10 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subnetType")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "clientId")
+		delete(additionalProperties, "keyId")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "privateKey")
 		o.AdditionalProperties = additionalProperties
 	}
 

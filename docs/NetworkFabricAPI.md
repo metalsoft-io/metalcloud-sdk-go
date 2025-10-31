@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkFabricLink
 
-> NetworkFabricLinkDto CreateNetworkFabricLink(ctx, networkFabricId).CreateNetworkFabricLink(createNetworkFabricLink).Execute()
+> NetworkFabricLink CreateNetworkFabricLink(ctx, networkFabricId).CreateNetworkFabricLink(createNetworkFabricLink).Execute()
 
 Create a new network fabric link
 
@@ -323,7 +323,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.CreateNetworkFabricLink``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateNetworkFabricLink`: NetworkFabricLinkDto
+	// response from `CreateNetworkFabricLink`: NetworkFabricLink
 	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.CreateNetworkFabricLink`: %v\n", resp)
 }
 ```
@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NetworkFabricLinkDto**](NetworkFabricLinkDto.md)
+[**NetworkFabricLink**](NetworkFabricLink.md)
 
 ### Authorization
 

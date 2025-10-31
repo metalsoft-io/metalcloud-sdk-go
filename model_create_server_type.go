@@ -29,12 +29,12 @@ type CreateServerType struct {
 	ProcessorCoreMhz float32 `json:"processorCoreMhz"`
 	// The processor core count of the server type.
 	ProcessorCoreCount float32 `json:"processorCoreCount"`
-	// The display name of the server type.
+	// The human-readable name of the server type.
 	Name string `json:"name"`
-	// The display name of the server type.
-	DisplayName *string `json:"displayName,omitempty"`
+	// Description of the server type.
+	Description *string `json:"description,omitempty"`
 	// The label of the server type.
-	Label *string `json:"label,omitempty"`
+	Label string `json:"label"`
 	// The network speeds of each interface of the server type.
 	NetworkInterfaceSpeeds []float32 `json:"networkInterfaceSpeeds"`
 	// The name of each processor of the server type.
@@ -71,13 +71,14 @@ type _CreateServerType CreateServerType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateServerType(ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string) *CreateServerType {
+func NewCreateServerType(ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, label string, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string) *CreateServerType {
 	this := CreateServerType{}
 	this.RamGbytes = ramGbytes
 	this.ProcessorCount = processorCount
 	this.ProcessorCoreMhz = processorCoreMhz
 	this.ProcessorCoreCount = processorCoreCount
 	this.Name = name
+	this.Label = label
 	this.NetworkInterfaceSpeeds = networkInterfaceSpeeds
 	this.ProcessorNames = processorNames
 	this.DiskCount = diskCount
@@ -233,68 +234,60 @@ func (o *CreateServerType) SetName(v string) {
 	o.Name = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *CreateServerType) GetDisplayName() string {
-	if o == nil || IsNil(o.DisplayName) {
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *CreateServerType) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-	return *o.DisplayName
+	return *o.Description
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerType) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
+func (o *CreateServerType) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.DisplayName, true
+	return o.Description, true
 }
 
-// HasDisplayName returns a boolean if a field has been set.
-func (o *CreateServerType) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+// HasDescription returns a boolean if a field has been set.
+func (o *CreateServerType) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *CreateServerType) SetDisplayName(v string) {
-	o.DisplayName = &v
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *CreateServerType) SetDescription(v string) {
+	o.Description = &v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *CreateServerType) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *CreateServerType) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *CreateServerType) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *CreateServerType) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetNetworkInterfaceSpeeds returns the NetworkInterfaceSpeeds field value
@@ -728,12 +721,10 @@ func (o CreateServerType) ToMap() (map[string]interface{}, error) {
 	toSerialize["processorCoreMhz"] = o.ProcessorCoreMhz
 	toSerialize["processorCoreCount"] = o.ProcessorCoreCount
 	toSerialize["name"] = o.Name
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	toSerialize["networkInterfaceSpeeds"] = o.NetworkInterfaceSpeeds
 	toSerialize["processorNames"] = o.ProcessorNames
 	if !IsNil(o.AllowedVendorSkuIds) {
@@ -786,6 +777,7 @@ func (o *CreateServerType) UnmarshalJSON(data []byte) (err error) {
 		"processorCoreMhz",
 		"processorCoreCount",
 		"name",
+		"label",
 		"networkInterfaceSpeeds",
 		"processorNames",
 		"diskCount",
@@ -824,7 +816,7 @@ func (o *CreateServerType) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "processorCoreMhz")
 		delete(additionalProperties, "processorCoreCount")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "networkInterfaceSpeeds")
 		delete(additionalProperties, "processorNames")

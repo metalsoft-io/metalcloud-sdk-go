@@ -21,7 +21,7 @@ var _ MappedNullable = &NetworkFabricLinkPaginatedList{}
 
 // NetworkFabricLinkPaginatedList struct for NetworkFabricLinkPaginatedList
 type NetworkFabricLinkPaginatedList struct {
-	Data []NetworkFabricLinkDto `json:"data"`
+	Data []NetworkFabricLink `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _NetworkFabricLinkPaginatedList NetworkFabricLinkPaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricLinkPaginatedList(data []NetworkFabricLinkDto, meta PaginatedResponseMeta) *NetworkFabricLinkPaginatedList {
+func NewNetworkFabricLinkPaginatedList(data []NetworkFabricLink, meta PaginatedResponseMeta) *NetworkFabricLinkPaginatedList {
 	this := NetworkFabricLinkPaginatedList{}
 	this.Data = data
 	this.Meta = meta
@@ -51,9 +51,9 @@ func NewNetworkFabricLinkPaginatedListWithDefaults() *NetworkFabricLinkPaginated
 }
 
 // GetData returns the Data field value
-func (o *NetworkFabricLinkPaginatedList) GetData() []NetworkFabricLinkDto {
+func (o *NetworkFabricLinkPaginatedList) GetData() []NetworkFabricLink {
 	if o == nil {
-		var ret []NetworkFabricLinkDto
+		var ret []NetworkFabricLink
 		return ret
 	}
 
@@ -62,7 +62,7 @@ func (o *NetworkFabricLinkPaginatedList) GetData() []NetworkFabricLinkDto {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricLinkPaginatedList) GetDataOk() ([]NetworkFabricLinkDto, bool) {
+func (o *NetworkFabricLinkPaginatedList) GetDataOk() ([]NetworkFabricLink, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *NetworkFabricLinkPaginatedList) GetDataOk() ([]NetworkFabricLinkDto, bo
 }
 
 // SetData sets field value
-func (o *NetworkFabricLinkPaginatedList) SetData(v []NetworkFabricLinkDto) {
+func (o *NetworkFabricLinkPaginatedList) SetData(v []NetworkFabricLink) {
 	o.Data = v
 }
 

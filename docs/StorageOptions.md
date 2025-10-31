@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EnableDataReduction** | Pointer to **float32** | Enable data reduction | [optional] 
-**EnableAdvancedDeduplication** | Pointer to **float32** | Enable advanced deduplication | [optional] 
+**EnableDataReduction** | Pointer to **bool** | Enable data reduction | [optional] 
+**EnableAdvancedDeduplication** | Pointer to **bool** | Enable advanced deduplication | [optional] 
 **VolumeName** | Pointer to **string** | Volume name | [optional] 
 **ArrayId** | Pointer to **string** | Array id to use (for certain storage drivers) | [optional] 
 **DirectorId** | Pointer to **string** | Director id to use (for certain storage drivers) | [optional] 
 **S3Hostname** | Pointer to **string** | S3 Hostname to use (for certain storage drivers) | [optional] 
 **S3Port** | Pointer to **float32** | Enable advanced deduplication | [optional] 
 **DefaultServiceLevel** | Pointer to **string** | Default service level to use (for certain storage drivers) | [optional] 
-**FibreChannelEnabled** | Pointer to **float32** | Fibre channel enabled | [optional] 
+**FibreChannelEnabled** | Pointer to **bool** | Fibre channel enabled | [optional] 
 **Directors** | Pointer to **[]string** | Array of directors | [optional] 
 **ResourcePool** | Pointer to **string** | Resource pool | [optional] 
 **Version** | Pointer to **string** | Version of the storage | [optional] 
@@ -20,12 +20,12 @@ Name | Type | Description | Notes
 **Arrays** | Pointer to **[]string** | Arrays | [optional] 
 **Info** | Pointer to **map[string]interface{}** | Storage info | [optional] 
 **ServiceLevelNames** | Pointer to **[]string** | Service level names | [optional] 
-**FibreChannelCapable** | Pointer to **float32** | Fibre channel capable | [optional] 
-**PortsIscsi** | Pointer to [**[]StoragePortDto**](StoragePortDto.md) | ISCSI ports | [optional] 
-**PortsScsiFc** | Pointer to [**[]StoragePortDto**](StoragePortDto.md) | SCSI FC ports | [optional] 
-**PortsNvmeTcp** | Pointer to [**[]StoragePortDto**](StoragePortDto.md) | NVMe TCP ports | [optional] 
-**PortsNvmeFc** | Pointer to [**[]StoragePortDto**](StoragePortDto.md) | NVMe FC ports | [optional] 
-**PortsToUse** | Pointer to [**[]StoragePortDto**](StoragePortDto.md) | Array of storage ports to use | [optional] 
+**FibreChannelCapable** | Pointer to **bool** | Fibre channel capable | [optional] 
+**PortsIscsi** | Pointer to [**[]StoragePort**](StoragePort.md) | ISCSI ports | [optional] 
+**PortsScsiFc** | Pointer to [**[]StoragePort**](StoragePort.md) | SCSI FC ports | [optional] 
+**PortsNvmeTcp** | Pointer to [**[]StoragePort**](StoragePort.md) | NVMe TCP ports | [optional] 
+**PortsNvmeFc** | Pointer to [**[]StoragePort**](StoragePort.md) | NVMe FC ports | [optional] 
+**PortsToUse** | Pointer to [**[]StoragePort**](StoragePort.md) | Array of storage ports to use | [optional] 
 **InfoGatherError** | Pointer to **string** | Error message when gathering storage info | [optional] 
 **ConfigureError** | Pointer to **string** | Error message when configuring storage | [optional] 
 
@@ -50,20 +50,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEnableDataReduction
 
-`func (o *StorageOptions) GetEnableDataReduction() float32`
+`func (o *StorageOptions) GetEnableDataReduction() bool`
 
 GetEnableDataReduction returns the EnableDataReduction field if non-nil, zero value otherwise.
 
 ### GetEnableDataReductionOk
 
-`func (o *StorageOptions) GetEnableDataReductionOk() (*float32, bool)`
+`func (o *StorageOptions) GetEnableDataReductionOk() (*bool, bool)`
 
 GetEnableDataReductionOk returns a tuple with the EnableDataReduction field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnableDataReduction
 
-`func (o *StorageOptions) SetEnableDataReduction(v float32)`
+`func (o *StorageOptions) SetEnableDataReduction(v bool)`
 
 SetEnableDataReduction sets EnableDataReduction field to given value.
 
@@ -75,20 +75,20 @@ HasEnableDataReduction returns a boolean if a field has been set.
 
 ### GetEnableAdvancedDeduplication
 
-`func (o *StorageOptions) GetEnableAdvancedDeduplication() float32`
+`func (o *StorageOptions) GetEnableAdvancedDeduplication() bool`
 
 GetEnableAdvancedDeduplication returns the EnableAdvancedDeduplication field if non-nil, zero value otherwise.
 
 ### GetEnableAdvancedDeduplicationOk
 
-`func (o *StorageOptions) GetEnableAdvancedDeduplicationOk() (*float32, bool)`
+`func (o *StorageOptions) GetEnableAdvancedDeduplicationOk() (*bool, bool)`
 
 GetEnableAdvancedDeduplicationOk returns a tuple with the EnableAdvancedDeduplication field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnableAdvancedDeduplication
 
-`func (o *StorageOptions) SetEnableAdvancedDeduplication(v float32)`
+`func (o *StorageOptions) SetEnableAdvancedDeduplication(v bool)`
 
 SetEnableAdvancedDeduplication sets EnableAdvancedDeduplication field to given value.
 
@@ -250,20 +250,20 @@ HasDefaultServiceLevel returns a boolean if a field has been set.
 
 ### GetFibreChannelEnabled
 
-`func (o *StorageOptions) GetFibreChannelEnabled() float32`
+`func (o *StorageOptions) GetFibreChannelEnabled() bool`
 
 GetFibreChannelEnabled returns the FibreChannelEnabled field if non-nil, zero value otherwise.
 
 ### GetFibreChannelEnabledOk
 
-`func (o *StorageOptions) GetFibreChannelEnabledOk() (*float32, bool)`
+`func (o *StorageOptions) GetFibreChannelEnabledOk() (*bool, bool)`
 
 GetFibreChannelEnabledOk returns a tuple with the FibreChannelEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFibreChannelEnabled
 
-`func (o *StorageOptions) SetFibreChannelEnabled(v float32)`
+`func (o *StorageOptions) SetFibreChannelEnabled(v bool)`
 
 SetFibreChannelEnabled sets FibreChannelEnabled field to given value.
 
@@ -450,20 +450,20 @@ HasServiceLevelNames returns a boolean if a field has been set.
 
 ### GetFibreChannelCapable
 
-`func (o *StorageOptions) GetFibreChannelCapable() float32`
+`func (o *StorageOptions) GetFibreChannelCapable() bool`
 
 GetFibreChannelCapable returns the FibreChannelCapable field if non-nil, zero value otherwise.
 
 ### GetFibreChannelCapableOk
 
-`func (o *StorageOptions) GetFibreChannelCapableOk() (*float32, bool)`
+`func (o *StorageOptions) GetFibreChannelCapableOk() (*bool, bool)`
 
 GetFibreChannelCapableOk returns a tuple with the FibreChannelCapable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFibreChannelCapable
 
-`func (o *StorageOptions) SetFibreChannelCapable(v float32)`
+`func (o *StorageOptions) SetFibreChannelCapable(v bool)`
 
 SetFibreChannelCapable sets FibreChannelCapable field to given value.
 
@@ -475,20 +475,20 @@ HasFibreChannelCapable returns a boolean if a field has been set.
 
 ### GetPortsIscsi
 
-`func (o *StorageOptions) GetPortsIscsi() []StoragePortDto`
+`func (o *StorageOptions) GetPortsIscsi() []StoragePort`
 
 GetPortsIscsi returns the PortsIscsi field if non-nil, zero value otherwise.
 
 ### GetPortsIscsiOk
 
-`func (o *StorageOptions) GetPortsIscsiOk() (*[]StoragePortDto, bool)`
+`func (o *StorageOptions) GetPortsIscsiOk() (*[]StoragePort, bool)`
 
 GetPortsIscsiOk returns a tuple with the PortsIscsi field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortsIscsi
 
-`func (o *StorageOptions) SetPortsIscsi(v []StoragePortDto)`
+`func (o *StorageOptions) SetPortsIscsi(v []StoragePort)`
 
 SetPortsIscsi sets PortsIscsi field to given value.
 
@@ -500,20 +500,20 @@ HasPortsIscsi returns a boolean if a field has been set.
 
 ### GetPortsScsiFc
 
-`func (o *StorageOptions) GetPortsScsiFc() []StoragePortDto`
+`func (o *StorageOptions) GetPortsScsiFc() []StoragePort`
 
 GetPortsScsiFc returns the PortsScsiFc field if non-nil, zero value otherwise.
 
 ### GetPortsScsiFcOk
 
-`func (o *StorageOptions) GetPortsScsiFcOk() (*[]StoragePortDto, bool)`
+`func (o *StorageOptions) GetPortsScsiFcOk() (*[]StoragePort, bool)`
 
 GetPortsScsiFcOk returns a tuple with the PortsScsiFc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortsScsiFc
 
-`func (o *StorageOptions) SetPortsScsiFc(v []StoragePortDto)`
+`func (o *StorageOptions) SetPortsScsiFc(v []StoragePort)`
 
 SetPortsScsiFc sets PortsScsiFc field to given value.
 
@@ -525,20 +525,20 @@ HasPortsScsiFc returns a boolean if a field has been set.
 
 ### GetPortsNvmeTcp
 
-`func (o *StorageOptions) GetPortsNvmeTcp() []StoragePortDto`
+`func (o *StorageOptions) GetPortsNvmeTcp() []StoragePort`
 
 GetPortsNvmeTcp returns the PortsNvmeTcp field if non-nil, zero value otherwise.
 
 ### GetPortsNvmeTcpOk
 
-`func (o *StorageOptions) GetPortsNvmeTcpOk() (*[]StoragePortDto, bool)`
+`func (o *StorageOptions) GetPortsNvmeTcpOk() (*[]StoragePort, bool)`
 
 GetPortsNvmeTcpOk returns a tuple with the PortsNvmeTcp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortsNvmeTcp
 
-`func (o *StorageOptions) SetPortsNvmeTcp(v []StoragePortDto)`
+`func (o *StorageOptions) SetPortsNvmeTcp(v []StoragePort)`
 
 SetPortsNvmeTcp sets PortsNvmeTcp field to given value.
 
@@ -550,20 +550,20 @@ HasPortsNvmeTcp returns a boolean if a field has been set.
 
 ### GetPortsNvmeFc
 
-`func (o *StorageOptions) GetPortsNvmeFc() []StoragePortDto`
+`func (o *StorageOptions) GetPortsNvmeFc() []StoragePort`
 
 GetPortsNvmeFc returns the PortsNvmeFc field if non-nil, zero value otherwise.
 
 ### GetPortsNvmeFcOk
 
-`func (o *StorageOptions) GetPortsNvmeFcOk() (*[]StoragePortDto, bool)`
+`func (o *StorageOptions) GetPortsNvmeFcOk() (*[]StoragePort, bool)`
 
 GetPortsNvmeFcOk returns a tuple with the PortsNvmeFc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortsNvmeFc
 
-`func (o *StorageOptions) SetPortsNvmeFc(v []StoragePortDto)`
+`func (o *StorageOptions) SetPortsNvmeFc(v []StoragePort)`
 
 SetPortsNvmeFc sets PortsNvmeFc field to given value.
 
@@ -575,20 +575,20 @@ HasPortsNvmeFc returns a boolean if a field has been set.
 
 ### GetPortsToUse
 
-`func (o *StorageOptions) GetPortsToUse() []StoragePortDto`
+`func (o *StorageOptions) GetPortsToUse() []StoragePort`
 
 GetPortsToUse returns the PortsToUse field if non-nil, zero value otherwise.
 
 ### GetPortsToUseOk
 
-`func (o *StorageOptions) GetPortsToUseOk() (*[]StoragePortDto, bool)`
+`func (o *StorageOptions) GetPortsToUseOk() (*[]StoragePort, bool)`
 
 GetPortsToUseOk returns a tuple with the PortsToUse field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPortsToUse
 
-`func (o *StorageOptions) SetPortsToUse(v []StoragePortDto)`
+`func (o *StorageOptions) SetPortsToUse(v []StoragePort)`
 
 SetPortsToUse sets PortsToUse field to given value.
 

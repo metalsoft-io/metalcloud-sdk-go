@@ -36,6 +36,14 @@ type UpdateStorage struct {
 	Options *UpdateStorageOptions `json:"options,omitempty"`
 	// The password to use.
 	Password *string `json:"password,omitempty"`
+	// The client ID to use (for certain storage drivers)
+	ClientId *string `json:"clientId,omitempty"`
+	// The key ID to use (for certain storage drivers)
+	KeyId *string `json:"keyId,omitempty"`
+	// The application issuer to use (for certain storage drivers)
+	Issuer *string `json:"issuer,omitempty"`
+	// The private key to use (for certain storage drivers)
+	PrivateKey *string `json:"privateKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -314,6 +322,134 @@ func (o *UpdateStorage) SetPassword(v string) {
 	o.Password = &v
 }
 
+// GetClientId returns the ClientId field value if set, zero value otherwise.
+func (o *UpdateStorage) GetClientId() string {
+	if o == nil || IsNil(o.ClientId) {
+		var ret string
+		return ret
+	}
+	return *o.ClientId
+}
+
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorage) GetClientIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ClientId) {
+		return nil, false
+	}
+	return o.ClientId, true
+}
+
+// HasClientId returns a boolean if a field has been set.
+func (o *UpdateStorage) HasClientId() bool {
+	if o != nil && !IsNil(o.ClientId) {
+		return true
+	}
+
+	return false
+}
+
+// SetClientId gets a reference to the given string and assigns it to the ClientId field.
+func (o *UpdateStorage) SetClientId(v string) {
+	o.ClientId = &v
+}
+
+// GetKeyId returns the KeyId field value if set, zero value otherwise.
+func (o *UpdateStorage) GetKeyId() string {
+	if o == nil || IsNil(o.KeyId) {
+		var ret string
+		return ret
+	}
+	return *o.KeyId
+}
+
+// GetKeyIdOk returns a tuple with the KeyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorage) GetKeyIdOk() (*string, bool) {
+	if o == nil || IsNil(o.KeyId) {
+		return nil, false
+	}
+	return o.KeyId, true
+}
+
+// HasKeyId returns a boolean if a field has been set.
+func (o *UpdateStorage) HasKeyId() bool {
+	if o != nil && !IsNil(o.KeyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyId gets a reference to the given string and assigns it to the KeyId field.
+func (o *UpdateStorage) SetKeyId(v string) {
+	o.KeyId = &v
+}
+
+// GetIssuer returns the Issuer field value if set, zero value otherwise.
+func (o *UpdateStorage) GetIssuer() string {
+	if o == nil || IsNil(o.Issuer) {
+		var ret string
+		return ret
+	}
+	return *o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorage) GetIssuerOk() (*string, bool) {
+	if o == nil || IsNil(o.Issuer) {
+		return nil, false
+	}
+	return o.Issuer, true
+}
+
+// HasIssuer returns a boolean if a field has been set.
+func (o *UpdateStorage) HasIssuer() bool {
+	if o != nil && !IsNil(o.Issuer) {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuer gets a reference to the given string and assigns it to the Issuer field.
+func (o *UpdateStorage) SetIssuer(v string) {
+	o.Issuer = &v
+}
+
+// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
+func (o *UpdateStorage) GetPrivateKey() string {
+	if o == nil || IsNil(o.PrivateKey) {
+		var ret string
+		return ret
+	}
+	return *o.PrivateKey
+}
+
+// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorage) GetPrivateKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.PrivateKey) {
+		return nil, false
+	}
+	return o.PrivateKey, true
+}
+
+// HasPrivateKey returns a boolean if a field has been set.
+func (o *UpdateStorage) HasPrivateKey() bool {
+	if o != nil && !IsNil(o.PrivateKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
+func (o *UpdateStorage) SetPrivateKey(v string) {
+	o.PrivateKey = &v
+}
+
 func (o UpdateStorage) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -348,6 +484,18 @@ func (o UpdateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
+	if !IsNil(o.ClientId) {
+		toSerialize["clientId"] = o.ClientId
+	}
+	if !IsNil(o.KeyId) {
+		toSerialize["keyId"] = o.KeyId
+	}
+	if !IsNil(o.Issuer) {
+		toSerialize["issuer"] = o.Issuer
+	}
+	if !IsNil(o.PrivateKey) {
+		toSerialize["privateKey"] = o.PrivateKey
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -378,6 +526,10 @@ func (o *UpdateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "clientId")
+		delete(additionalProperties, "keyId")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "privateKey")
 		o.AdditionalProperties = additionalProperties
 	}
 

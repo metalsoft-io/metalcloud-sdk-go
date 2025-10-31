@@ -10,11 +10,11 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the VM Pool | 
 **Description** | Pointer to **string** | Description of the VM Pool | [optional] 
 **Type** | **string** | Type of the VM Pool | 
-**Certificate** | Pointer to **string** | Certificate of the VM Pool | [optional] 
 **Username** | Pointer to **string** | Username of the VM Pool | [optional] 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
+**Certificate** | Pointer to **string** | Certificate of the VM Pool | [optional] 
 **PrivateKey** | Pointer to **string** | Private key of the VM Pool | [optional] 
 **Password** | Pointer to **string** | Password of the VM Pool | [optional] 
 **Options** | Pointer to [**CreateVMPoolOptions**](CreateVMPoolOptions.md) | Options for the vm pool | [optional] 
@@ -163,31 +163,6 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
-### GetCertificate
-
-`func (o *CreateVMPool) GetCertificate() string`
-
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
-
-### GetCertificateOk
-
-`func (o *CreateVMPool) GetCertificateOk() (*string, bool)`
-
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificate
-
-`func (o *CreateVMPool) SetCertificate(v string)`
-
-SetCertificate sets Certificate field to given value.
-
-### HasCertificate
-
-`func (o *CreateVMPool) HasCertificate() bool`
-
-HasCertificate returns a boolean if a field has been set.
-
 ### GetUsername
 
 `func (o *CreateVMPool) GetUsername() string`
@@ -287,6 +262,31 @@ SetTags sets Tags field to given value.
 `func (o *CreateVMPool) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetCertificate
+
+`func (o *CreateVMPool) GetCertificate() string`
+
+GetCertificate returns the Certificate field if non-nil, zero value otherwise.
+
+### GetCertificateOk
+
+`func (o *CreateVMPool) GetCertificateOk() (*string, bool)`
+
+GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificate
+
+`func (o *CreateVMPool) SetCertificate(v string)`
+
+SetCertificate sets Certificate field to given value.
+
+### HasCertificate
+
+`func (o *CreateVMPool) HasCertificate() bool`
+
+HasCertificate returns a boolean if a field has been set.
 
 ### GetPrivateKey
 

@@ -61,8 +61,6 @@ type NetworkDevice struct {
 	SyslogEnabled float32 `json:"syslogEnabled"`
 	// Username used to connect to the network device
 	Username string `json:"username"`
-	// Password used to connect to the network device
-	ManagementPassword string `json:"managementPassword"`
 	// MAC address of the management interface
 	ManagementMacAddress string `json:"managementMacAddress"`
 	// Serial number of the network device
@@ -115,6 +113,10 @@ type NetworkDevice struct {
 	IsGateway bool `json:"isGateway"`
 	// The extension execution info of the network device.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
+	// ID of the VM pool associated with the network device.
+	VmPoolId *float32 `json:"vmPoolId,omitempty"`
+	// ID of the network device controller if any.
+	SwitchControllerId *float32 `json:"switchControllerId,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -126,7 +128,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -148,7 +150,6 @@ func NewNetworkDevice(id string, revision float32, status string, siteId float32
 	this.ManagementPort = managementPort
 	this.SyslogEnabled = syslogEnabled
 	this.Username = username
-	this.ManagementPassword = managementPassword
 	this.ManagementMacAddress = managementMacAddress
 	this.SerialNumber = serialNumber
 	this.Driver = driver
@@ -661,30 +662,6 @@ func (o *NetworkDevice) GetUsernameOk() (*string, bool) {
 // SetUsername sets field value
 func (o *NetworkDevice) SetUsername(v string) {
 	o.Username = v
-}
-
-// GetManagementPassword returns the ManagementPassword field value
-func (o *NetworkDevice) GetManagementPassword() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ManagementPassword
-}
-
-// GetManagementPasswordOk returns a tuple with the ManagementPassword field value
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetManagementPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ManagementPassword, true
-}
-
-// SetManagementPassword sets field value
-func (o *NetworkDevice) SetManagementPassword(v string) {
-	o.ManagementPassword = v
 }
 
 // GetManagementMacAddress returns the ManagementMacAddress field value
@@ -1337,6 +1314,70 @@ func (o *NetworkDevice) SetExtensionInfo(v ExtensionExecutionInfo) {
 	o.ExtensionInfo = &v
 }
 
+// GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
+func (o *NetworkDevice) GetVmPoolId() float32 {
+	if o == nil || IsNil(o.VmPoolId) {
+		var ret float32
+		return ret
+	}
+	return *o.VmPoolId
+}
+
+// GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetVmPoolIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.VmPoolId) {
+		return nil, false
+	}
+	return o.VmPoolId, true
+}
+
+// HasVmPoolId returns a boolean if a field has been set.
+func (o *NetworkDevice) HasVmPoolId() bool {
+	if o != nil && !IsNil(o.VmPoolId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmPoolId gets a reference to the given float32 and assigns it to the VmPoolId field.
+func (o *NetworkDevice) SetVmPoolId(v float32) {
+	o.VmPoolId = &v
+}
+
+// GetSwitchControllerId returns the SwitchControllerId field value if set, zero value otherwise.
+func (o *NetworkDevice) GetSwitchControllerId() float32 {
+	if o == nil || IsNil(o.SwitchControllerId) {
+		var ret float32
+		return ret
+	}
+	return *o.SwitchControllerId
+}
+
+// GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetSwitchControllerIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.SwitchControllerId) {
+		return nil, false
+	}
+	return o.SwitchControllerId, true
+}
+
+// HasSwitchControllerId returns a boolean if a field has been set.
+func (o *NetworkDevice) HasSwitchControllerId() bool {
+	if o != nil && !IsNil(o.SwitchControllerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSwitchControllerId gets a reference to the given float32 and assigns it to the SwitchControllerId field.
+func (o *NetworkDevice) SetSwitchControllerId(v float32) {
+	o.SwitchControllerId = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -1399,7 +1440,6 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["managementPort"] = o.ManagementPort
 	toSerialize["syslogEnabled"] = o.SyslogEnabled
 	toSerialize["username"] = o.Username
-	toSerialize["managementPassword"] = o.ManagementPassword
 	toSerialize["managementMacAddress"] = o.ManagementMacAddress
 	toSerialize["serialNumber"] = o.SerialNumber
 	toSerialize["driver"] = o.Driver
@@ -1433,6 +1473,12 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["isGateway"] = o.IsGateway
 	if !IsNil(o.ExtensionInfo) {
 		toSerialize["extensionInfo"] = o.ExtensionInfo
+	}
+	if !IsNil(o.VmPoolId) {
+		toSerialize["vmPoolId"] = o.VmPoolId
+	}
+	if !IsNil(o.SwitchControllerId) {
+		toSerialize["switchControllerId"] = o.SwitchControllerId
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -1470,7 +1516,6 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"managementPort",
 		"syslogEnabled",
 		"username",
-		"managementPassword",
 		"managementMacAddress",
 		"serialNumber",
 		"driver",
@@ -1543,7 +1588,6 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "syslogEnabled")
 		delete(additionalProperties, "username")
-		delete(additionalProperties, "managementPassword")
 		delete(additionalProperties, "managementMacAddress")
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "driver")
@@ -1570,6 +1614,8 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bootstrapReadinessCheckResult")
 		delete(additionalProperties, "isGateway")
 		delete(additionalProperties, "extensionInfo")
+		delete(additionalProperties, "vmPoolId")
+		delete(additionalProperties, "switchControllerId")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

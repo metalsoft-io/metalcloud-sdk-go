@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **ProcessorCount** | **float32** | The processor count of the server type. | 
 **ProcessorCoreMhz** | **float32** | The processor core Mhz of the server type. | 
 **ProcessorCoreCount** | **float32** | The processor core count of the server type. | 
-**Name** | **string** | The display name of the server type. | 
-**DisplayName** | Pointer to **string** | The display name of the server type. | [optional] 
-**Label** | Pointer to **string** | The label of the server type. | [optional] 
+**Name** | **string** | The human-readable name of the server type. | 
+**Description** | Pointer to **string** | Description of the server type. | [optional] 
+**Label** | **string** | The label of the server type. | 
 **NetworkInterfaceSpeeds** | **[]float32** | The network speeds of each interface of the server type. | 
 **ProcessorNames** | **[]string** | The name of each processor of the server type. | 
 **AllowedVendorSkuIds** | Pointer to **[]string** | The list of allowed SKU ids for the server type. | [optional] 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewCreateServerType
 
-`func NewCreateServerType(ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string, ) *CreateServerType`
+`func NewCreateServerType(ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, label string, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string, ) *CreateServerType`
 
 NewCreateServerType instantiates a new CreateServerType object
 This constructor will assign default values to properties that have it defined,
@@ -145,30 +145,30 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetDisplayName
+### GetDescription
 
-`func (o *CreateServerType) GetDisplayName() string`
+`func (o *CreateServerType) GetDescription() string`
 
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetDisplayNameOk
+### GetDescriptionOk
 
-`func (o *CreateServerType) GetDisplayNameOk() (*string, bool)`
+`func (o *CreateServerType) GetDescriptionOk() (*string, bool)`
 
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDisplayName
+### SetDescription
 
-`func (o *CreateServerType) SetDisplayName(v string)`
+`func (o *CreateServerType) SetDescription(v string)`
 
-SetDisplayName sets DisplayName field to given value.
+SetDescription sets Description field to given value.
 
-### HasDisplayName
+### HasDescription
 
-`func (o *CreateServerType) HasDisplayName() bool`
+`func (o *CreateServerType) HasDescription() bool`
 
-HasDisplayName returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
 ### GetLabel
 
@@ -189,11 +189,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *CreateServerType) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetNetworkInterfaceSpeeds
 

@@ -9,12 +9,13 @@ Name | Type | Description | Notes
 **TypeId** | **float32** | Id of the VM Type. | 
 **OsTemplateId** | **float32** | Id of the template used by the VM Instance Group. | 
 **Tags** | Pointer to **[]string** | Tags for the VM Instance Group. | [optional] 
+**VmPoolId** | **float32** | Id of the VM Pool on which the VM Instance Group will be provisioned. | 
 
 ## Methods
 
 ### NewCreateVMInstanceGroup
 
-`func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, osTemplateId float32, ) *CreateVMInstanceGroup`
+`func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, osTemplateId float32, vmPoolId float32, ) *CreateVMInstanceGroup`
 
 NewCreateVMInstanceGroup instantiates a new CreateVMInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -138,6 +139,26 @@ SetTags sets Tags field to given value.
 `func (o *CreateVMInstanceGroup) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetVmPoolId
+
+`func (o *CreateVMInstanceGroup) GetVmPoolId() float32`
+
+GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
+
+### GetVmPoolIdOk
+
+`func (o *CreateVMInstanceGroup) GetVmPoolIdOk() (*float32, bool)`
+
+GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolId
+
+`func (o *CreateVMInstanceGroup) SetVmPoolId(v float32)`
+
+SetVmPoolId sets VmPoolId field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**CreateUserAuthorized**](UsersAPI.md#CreateUserAuthorized) | **Post** /api/v2/users | Creates another user
 [**DeleteUserSshKey**](UsersAPI.md#DeleteUserSshKey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
 [**GetDefaultUserLimits**](UsersAPI.md#GetDefaultUserLimits) | **Get** /api/v2/users/{userId}/default-limits | Get default user limits
+[**GetDisabledUserLimits**](UsersAPI.md#GetDisabledUserLimits) | **Get** /api/v2/users/{userId}/disabled-limits | Get disabled user limits
 [**GetUser**](UsersAPI.md#GetUser) | **Get** /api/v2/users/{userId} | Get user
 [**GetUserChildDelegates**](UsersAPI.md#GetUserChildDelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 [**GetUserConfiguration**](UsersAPI.md#GetUserConfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
@@ -510,6 +511,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserLimits**](UserLimits.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDisabledUserLimits
+
+> UserLimitsDisabled GetDisabledUserLimits(ctx, userId).Execute()
+
+Get disabled user limits
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.GetDisabledUserLimits(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetDisabledUserLimits``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDisabledUserLimits`: UserLimitsDisabled
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetDisabledUserLimits`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDisabledUserLimitsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserLimitsDisabled**](UserLimitsDisabled.md)
 
 ### Authorization
 

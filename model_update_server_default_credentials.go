@@ -30,6 +30,8 @@ type UpdateServerDefaultCredentials struct {
 	DefaultInventoryId *string `json:"defaultInventoryId,omitempty"`
 	// The default UUID of the server
 	DefaultUuid *string `json:"defaultUuid,omitempty"`
+	// The default registration profile ID of the server
+	DefaultRegistrationProfileId *float32 `json:"defaultRegistrationProfileId,omitempty"`
 	// The default username of the server
 	DefaultUsername *string `json:"defaultUsername,omitempty"`
 	// The default password of the server
@@ -216,6 +218,38 @@ func (o *UpdateServerDefaultCredentials) SetDefaultUuid(v string) {
 	o.DefaultUuid = &v
 }
 
+// GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field value if set, zero value otherwise.
+func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileId() float32 {
+	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
+		var ret float32
+		return ret
+	}
+	return *o.DefaultRegistrationProfileId
+}
+
+// GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
+		return nil, false
+	}
+	return o.DefaultRegistrationProfileId, true
+}
+
+// HasDefaultRegistrationProfileId returns a boolean if a field has been set.
+func (o *UpdateServerDefaultCredentials) HasDefaultRegistrationProfileId() bool {
+	if o != nil && !IsNil(o.DefaultRegistrationProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultRegistrationProfileId gets a reference to the given float32 and assigns it to the DefaultRegistrationProfileId field.
+func (o *UpdateServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32) {
+	o.DefaultRegistrationProfileId = &v
+}
+
 // GetDefaultUsername returns the DefaultUsername field value if set, zero value otherwise.
 func (o *UpdateServerDefaultCredentials) GetDefaultUsername() string {
 	if o == nil || IsNil(o.DefaultUsername) {
@@ -305,6 +339,9 @@ func (o UpdateServerDefaultCredentials) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.DefaultUuid) {
 		toSerialize["defaultUuid"] = o.DefaultUuid
 	}
+	if !IsNil(o.DefaultRegistrationProfileId) {
+		toSerialize["defaultRegistrationProfileId"] = o.DefaultRegistrationProfileId
+	}
 	if !IsNil(o.DefaultUsername) {
 		toSerialize["defaultUsername"] = o.DefaultUsername
 	}
@@ -338,6 +375,7 @@ func (o *UpdateServerDefaultCredentials) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "defaultRackPositionUpperUnit")
 		delete(additionalProperties, "defaultInventoryId")
 		delete(additionalProperties, "defaultUuid")
+		delete(additionalProperties, "defaultRegistrationProfileId")
 		delete(additionalProperties, "defaultUsername")
 		delete(additionalProperties, "defaultPassword")
 		o.AdditionalProperties = additionalProperties

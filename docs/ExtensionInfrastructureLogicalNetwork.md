@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Label of the logical network. | 
 **ProfileLabel** | **string** | Logical network profile label. | 
 **IpAllocations** | Pointer to [**[]ExtensionInfrastructureIpAllocation**](ExtensionInfrastructureIpAllocation.md) | Extra IP allocation for the infrastructure. | [optional] 
-**IpRanges** | Pointer to [**[]ExtensionInfrastructureIpRangesDto**](ExtensionInfrastructureIpRangesDto.md) | Extra IP allocation for the infrastructure. | [optional] 
+**IpRanges** | Pointer to [**[]ExtensionInfrastructureIpRanges**](ExtensionInfrastructureIpRanges.md) | Extra IP allocation for the infrastructure. | [optional] 
 
 ## Methods
 
@@ -95,20 +95,20 @@ HasIpAllocations returns a boolean if a field has been set.
 
 ### GetIpRanges
 
-`func (o *ExtensionInfrastructureLogicalNetwork) GetIpRanges() []ExtensionInfrastructureIpRangesDto`
+`func (o *ExtensionInfrastructureLogicalNetwork) GetIpRanges() []ExtensionInfrastructureIpRanges`
 
 GetIpRanges returns the IpRanges field if non-nil, zero value otherwise.
 
 ### GetIpRangesOk
 
-`func (o *ExtensionInfrastructureLogicalNetwork) GetIpRangesOk() (*[]ExtensionInfrastructureIpRangesDto, bool)`
+`func (o *ExtensionInfrastructureLogicalNetwork) GetIpRangesOk() (*[]ExtensionInfrastructureIpRanges, bool)`
 
 GetIpRangesOk returns a tuple with the IpRanges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpRanges
 
-`func (o *ExtensionInfrastructureLogicalNetwork) SetIpRanges(v []ExtensionInfrastructureIpRangesDto)`
+`func (o *ExtensionInfrastructureLogicalNetwork) SetIpRanges(v []ExtensionInfrastructureIpRanges)`
 
 SetIpRanges sets IpRanges field to given value.
 

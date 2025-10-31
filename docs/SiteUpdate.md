@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Slug** | Pointer to **string** | The site unique slug | [optional] 
 **Name** | Pointer to **string** | The site name | [optional] 
-**Location** | Pointer to [**Location**](Location.md) | Location details | [optional] 
 **IsHidden** | Pointer to **bool** | True if the site is hidden | [optional] 
 **IsInMaintenance** | Pointer to **bool** | True if the site is in maintenance mode | [optional] 
 
@@ -78,31 +77,6 @@ SetName sets Name field to given value.
 `func (o *SiteUpdate) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### GetLocation
-
-`func (o *SiteUpdate) GetLocation() Location`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *SiteUpdate) GetLocationOk() (*Location, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *SiteUpdate) SetLocation(v Location)`
-
-SetLocation sets Location field to given value.
-
-### HasLocation
-
-`func (o *SiteUpdate) HasLocation() bool`
-
-HasLocation returns a boolean if a field has been set.
 
 ### GetIsHidden
 

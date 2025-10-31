@@ -14,7 +14,8 @@ Name | Type | Description | Notes
 **ServerInstanceRecordSet** | Pointer to [**ServerInstanceRecordSet**](ServerInstanceRecordSet.md) | The server instance. | [optional] 
 **VmInstanceRecordSet** | Pointer to [**VMInstanceRecordSet**](VMInstanceRecordSet.md) | The VM instance. | [optional] 
 **VmPoolRecordSet** | Pointer to [**VMPoolRecordSet**](VMPoolRecordSet.md) | The VM pool. | [optional] 
-**ServerDNSRecordSet** | Pointer to [**ServerDNSRecordSetDto**](ServerDNSRecordSetDto.md) | The server DNS record set. | [optional] 
+**VmPoolNetworkRecordSet** | Pointer to [**VMPoolNetworkRecordSet**](VMPoolNetworkRecordSet.md) | The VM pool network record set. | [optional] 
+**ServerDNSRecordSet** | Pointer to [**ServerDNSRecordSet**](ServerDNSRecordSet.md) | The server DNS record set. | [optional] 
 **SwitchDNSRecordSet** | Pointer to [**SwitchDNSRecordSet**](SwitchDNSRecordSet.md) | The switch DNS record set. | [optional] 
 
 ## Methods
@@ -286,22 +287,47 @@ SetVmPoolRecordSet sets VmPoolRecordSet field to given value.
 
 HasVmPoolRecordSet returns a boolean if a field has been set.
 
+### GetVmPoolNetworkRecordSet
+
+`func (o *RecordSet) GetVmPoolNetworkRecordSet() VMPoolNetworkRecordSet`
+
+GetVmPoolNetworkRecordSet returns the VmPoolNetworkRecordSet field if non-nil, zero value otherwise.
+
+### GetVmPoolNetworkRecordSetOk
+
+`func (o *RecordSet) GetVmPoolNetworkRecordSetOk() (*VMPoolNetworkRecordSet, bool)`
+
+GetVmPoolNetworkRecordSetOk returns a tuple with the VmPoolNetworkRecordSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolNetworkRecordSet
+
+`func (o *RecordSet) SetVmPoolNetworkRecordSet(v VMPoolNetworkRecordSet)`
+
+SetVmPoolNetworkRecordSet sets VmPoolNetworkRecordSet field to given value.
+
+### HasVmPoolNetworkRecordSet
+
+`func (o *RecordSet) HasVmPoolNetworkRecordSet() bool`
+
+HasVmPoolNetworkRecordSet returns a boolean if a field has been set.
+
 ### GetServerDNSRecordSet
 
-`func (o *RecordSet) GetServerDNSRecordSet() ServerDNSRecordSetDto`
+`func (o *RecordSet) GetServerDNSRecordSet() ServerDNSRecordSet`
 
 GetServerDNSRecordSet returns the ServerDNSRecordSet field if non-nil, zero value otherwise.
 
 ### GetServerDNSRecordSetOk
 
-`func (o *RecordSet) GetServerDNSRecordSetOk() (*ServerDNSRecordSetDto, bool)`
+`func (o *RecordSet) GetServerDNSRecordSetOk() (*ServerDNSRecordSet, bool)`
 
 GetServerDNSRecordSetOk returns a tuple with the ServerDNSRecordSet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerDNSRecordSet
 
-`func (o *RecordSet) SetServerDNSRecordSet(v ServerDNSRecordSetDto)`
+`func (o *RecordSet) SetServerDNSRecordSet(v ServerDNSRecordSet)`
 
 SetServerDNSRecordSet sets ServerDNSRecordSet field to given value.
 

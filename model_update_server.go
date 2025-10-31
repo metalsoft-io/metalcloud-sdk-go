@@ -28,6 +28,8 @@ type UpdateServer struct {
 	Username *string `json:"username,omitempty"`
 	// The cleanup policy id of the server.
 	ServerCleanupPolicyId *float32 `json:"serverCleanupPolicyId,omitempty"`
+	// The registration profile id of the server.
+	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
 	// The comments of the server.
 	ServerComments *string `json:"serverComments,omitempty"`
 	// The chassis rack id of the server.
@@ -196,6 +198,38 @@ func (o *UpdateServer) HasServerCleanupPolicyId() bool {
 // SetServerCleanupPolicyId gets a reference to the given float32 and assigns it to the ServerCleanupPolicyId field.
 func (o *UpdateServer) SetServerCleanupPolicyId(v float32) {
 	o.ServerCleanupPolicyId = &v
+}
+
+// GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
+func (o *UpdateServer) GetRegistrationProfileId() float32 {
+	if o == nil || IsNil(o.RegistrationProfileId) {
+		var ret float32
+		return ret
+	}
+	return *o.RegistrationProfileId
+}
+
+// GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServer) GetRegistrationProfileIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.RegistrationProfileId) {
+		return nil, false
+	}
+	return o.RegistrationProfileId, true
+}
+
+// HasRegistrationProfileId returns a boolean if a field has been set.
+func (o *UpdateServer) HasRegistrationProfileId() bool {
+	if o != nil && !IsNil(o.RegistrationProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationProfileId gets a reference to the given float32 and assigns it to the RegistrationProfileId field.
+func (o *UpdateServer) SetRegistrationProfileId(v float32) {
+	o.RegistrationProfileId = &v
 }
 
 // GetServerComments returns the ServerComments field value if set, zero value otherwise.
@@ -540,6 +574,9 @@ func (o UpdateServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerCleanupPolicyId) {
 		toSerialize["serverCleanupPolicyId"] = o.ServerCleanupPolicyId
 	}
+	if !IsNil(o.RegistrationProfileId) {
+		toSerialize["registrationProfileId"] = o.RegistrationProfileId
+	}
 	if !IsNil(o.ServerComments) {
 		toSerialize["serverComments"] = o.ServerComments
 	}
@@ -596,6 +633,7 @@ func (o *UpdateServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementAddress")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "serverCleanupPolicyId")
+		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "serverComments")
 		delete(additionalProperties, "chassisRackId")
 		delete(additionalProperties, "rackName")

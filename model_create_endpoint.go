@@ -24,7 +24,7 @@ type CreateEndpoint struct {
 	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
 	ExternalId *string `json:"externalId,omitempty"`
 	// The ID of the site where the entity is located.
-	SiteId float32 `json:"siteId"`
+	SiteId int32 `json:"siteId"`
 	// The endpoint name
 	Name string `json:"name"`
 	// The endpoint unique label
@@ -40,7 +40,7 @@ type _CreateEndpoint CreateEndpoint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateEndpoint(siteId float32, name string, label string) *CreateEndpoint {
+func NewCreateEndpoint(siteId int32, name string, label string) *CreateEndpoint {
 	this := CreateEndpoint{}
 	this.SiteId = siteId
 	this.Name = name
@@ -89,9 +89,9 @@ func (o *CreateEndpoint) SetExternalId(v string) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *CreateEndpoint) GetSiteId() float32 {
+func (o *CreateEndpoint) GetSiteId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *CreateEndpoint) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *CreateEndpoint) GetSiteIdOk() (*float32, bool) {
+func (o *CreateEndpoint) GetSiteIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *CreateEndpoint) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *CreateEndpoint) SetSiteId(v float32) {
+func (o *CreateEndpoint) SetSiteId(v int32) {
 	o.SiteId = v
 }
 

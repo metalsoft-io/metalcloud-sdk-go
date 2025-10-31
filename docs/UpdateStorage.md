@@ -12,6 +12,10 @@ Name | Type | Description | Notes
 **NetworkFabricId** | Pointer to **float32** | Network fabric ID this Storage is connected to | [optional] 
 **Options** | Pointer to [**UpdateStorageOptions**](UpdateStorageOptions.md) | Options for the storage | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
+**ClientId** | Pointer to **string** | The client ID to use (for certain storage drivers) | [optional] 
+**KeyId** | Pointer to **string** | The key ID to use (for certain storage drivers) | [optional] 
+**Issuer** | Pointer to **string** | The application issuer to use (for certain storage drivers) | [optional] 
+**PrivateKey** | Pointer to **string** | The private key to use (for certain storage drivers) | [optional] 
 
 ## Methods
 
@@ -231,6 +235,106 @@ SetPassword sets Password field to given value.
 `func (o *UpdateStorage) HasPassword() bool`
 
 HasPassword returns a boolean if a field has been set.
+
+### GetClientId
+
+`func (o *UpdateStorage) GetClientId() string`
+
+GetClientId returns the ClientId field if non-nil, zero value otherwise.
+
+### GetClientIdOk
+
+`func (o *UpdateStorage) GetClientIdOk() (*string, bool)`
+
+GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientId
+
+`func (o *UpdateStorage) SetClientId(v string)`
+
+SetClientId sets ClientId field to given value.
+
+### HasClientId
+
+`func (o *UpdateStorage) HasClientId() bool`
+
+HasClientId returns a boolean if a field has been set.
+
+### GetKeyId
+
+`func (o *UpdateStorage) GetKeyId() string`
+
+GetKeyId returns the KeyId field if non-nil, zero value otherwise.
+
+### GetKeyIdOk
+
+`func (o *UpdateStorage) GetKeyIdOk() (*string, bool)`
+
+GetKeyIdOk returns a tuple with the KeyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeyId
+
+`func (o *UpdateStorage) SetKeyId(v string)`
+
+SetKeyId sets KeyId field to given value.
+
+### HasKeyId
+
+`func (o *UpdateStorage) HasKeyId() bool`
+
+HasKeyId returns a boolean if a field has been set.
+
+### GetIssuer
+
+`func (o *UpdateStorage) GetIssuer() string`
+
+GetIssuer returns the Issuer field if non-nil, zero value otherwise.
+
+### GetIssuerOk
+
+`func (o *UpdateStorage) GetIssuerOk() (*string, bool)`
+
+GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuer
+
+`func (o *UpdateStorage) SetIssuer(v string)`
+
+SetIssuer sets Issuer field to given value.
+
+### HasIssuer
+
+`func (o *UpdateStorage) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
+
+### GetPrivateKey
+
+`func (o *UpdateStorage) GetPrivateKey() string`
+
+GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
+
+### GetPrivateKeyOk
+
+`func (o *UpdateStorage) GetPrivateKeyOk() (*string, bool)`
+
+GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrivateKey
+
+`func (o *UpdateStorage) SetPrivateKey(v string)`
+
+SetPrivateKey sets PrivateKey field to given value.
+
+### HasPrivateKey
+
+`func (o *UpdateStorage) HasPrivateKey() bool`
+
+HasPrivateKey returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
