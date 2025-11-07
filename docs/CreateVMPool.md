@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Username** | Pointer to **string** | Username of the VM Pool | [optional] 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
+**NetworkFabricId** | **float32** | The network fabric linked to the VM Pool. | 
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
 **Certificate** | Pointer to **string** | Certificate of the VM Pool | [optional] 
 **PrivateKey** | Pointer to **string** | Private key of the VM Pool | [optional] 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewCreateVMPool
 
-`func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, ) *CreateVMPool`
+`func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, networkFabricId float32, ) *CreateVMPool`
 
 NewCreateVMPool instantiates a new CreateVMPool object
 This constructor will assign default values to properties that have it defined,
@@ -237,6 +238,26 @@ SetIsExperimental sets IsExperimental field to given value.
 `func (o *CreateVMPool) HasIsExperimental() bool`
 
 HasIsExperimental returns a boolean if a field has been set.
+
+### GetNetworkFabricId
+
+`func (o *CreateVMPool) GetNetworkFabricId() float32`
+
+GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
+
+### GetNetworkFabricIdOk
+
+`func (o *CreateVMPool) GetNetworkFabricIdOk() (*float32, bool)`
+
+GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkFabricId
+
+`func (o *CreateVMPool) SetNetworkFabricId(v float32)`
+
+SetNetworkFabricId sets NetworkFabricId field to given value.
+
 
 ### GetTags
 

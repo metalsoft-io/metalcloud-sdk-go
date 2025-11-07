@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | Unique label for the network fabric interconnect | [optional] 
 **Name** | Pointer to **string** | Name of the network fabric interconnect | [optional] 
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
+**BgpConfigurationTemplate** | Pointer to **string** | BGP configuration template for the interconnect | [optional] 
+**BgpNeighborTemplate** | Pointer to **string** | BGP neighbor template for the interconnect | [optional] 
 
 ## Methods
 
@@ -101,6 +103,56 @@ SetDescription sets Description field to given value.
 `func (o *UpdateNetworkFabricInterconnect) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetBgpConfigurationTemplate
+
+`func (o *UpdateNetworkFabricInterconnect) GetBgpConfigurationTemplate() string`
+
+GetBgpConfigurationTemplate returns the BgpConfigurationTemplate field if non-nil, zero value otherwise.
+
+### GetBgpConfigurationTemplateOk
+
+`func (o *UpdateNetworkFabricInterconnect) GetBgpConfigurationTemplateOk() (*string, bool)`
+
+GetBgpConfigurationTemplateOk returns a tuple with the BgpConfigurationTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpConfigurationTemplate
+
+`func (o *UpdateNetworkFabricInterconnect) SetBgpConfigurationTemplate(v string)`
+
+SetBgpConfigurationTemplate sets BgpConfigurationTemplate field to given value.
+
+### HasBgpConfigurationTemplate
+
+`func (o *UpdateNetworkFabricInterconnect) HasBgpConfigurationTemplate() bool`
+
+HasBgpConfigurationTemplate returns a boolean if a field has been set.
+
+### GetBgpNeighborTemplate
+
+`func (o *UpdateNetworkFabricInterconnect) GetBgpNeighborTemplate() string`
+
+GetBgpNeighborTemplate returns the BgpNeighborTemplate field if non-nil, zero value otherwise.
+
+### GetBgpNeighborTemplateOk
+
+`func (o *UpdateNetworkFabricInterconnect) GetBgpNeighborTemplateOk() (*string, bool)`
+
+GetBgpNeighborTemplateOk returns a tuple with the BgpNeighborTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpNeighborTemplate
+
+`func (o *UpdateNetworkFabricInterconnect) SetBgpNeighborTemplate(v string)`
+
+SetBgpNeighborTemplate sets BgpNeighborTemplate field to given value.
+
+### HasBgpNeighborTemplate
+
+`func (o *UpdateNetworkFabricInterconnect) HasBgpNeighborTemplate() bool`
+
+HasBgpNeighborTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

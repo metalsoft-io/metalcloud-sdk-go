@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Server** | Pointer to [**Server**](Server.md) | The server data. | [optional] 
 **NetworkDevice** | Pointer to [**NetworkDevice**](NetworkDevice.md) | The network device. | [optional] 
-**BgpTemplateRecordSet** | Pointer to [**BgpTemplateRecordSet**](BgpTemplateRecordSet.md) | The BGP template record set. | [optional] 
+**NetworkDeviceConfigurationTemplateRecordSet** | Pointer to [**NetworkDeviceConfigurationTemplateRecordSet**](NetworkDeviceConfigurationTemplateRecordSet.md) | The Network Device Configuration Template record set. | [optional] 
 **ServerInstanceGroupDNSRecordSet** | Pointer to **map[string]interface{}** | The Instance Array DNS record set | [optional] 
 **ServerInstanceDNSRecordSet** | Pointer to **map[string]interface{}** | The Instance DNS record set | [optional] 
 **ClusterDNSRecordSet** | Pointer to **map[string]interface{}** | The Cluster DNS record set | [optional] 
@@ -87,30 +87,30 @@ SetNetworkDevice sets NetworkDevice field to given value.
 
 HasNetworkDevice returns a boolean if a field has been set.
 
-### GetBgpTemplateRecordSet
+### GetNetworkDeviceConfigurationTemplateRecordSet
 
-`func (o *RecordSet) GetBgpTemplateRecordSet() BgpTemplateRecordSet`
+`func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSet() NetworkDeviceConfigurationTemplateRecordSet`
 
-GetBgpTemplateRecordSet returns the BgpTemplateRecordSet field if non-nil, zero value otherwise.
+GetNetworkDeviceConfigurationTemplateRecordSet returns the NetworkDeviceConfigurationTemplateRecordSet field if non-nil, zero value otherwise.
 
-### GetBgpTemplateRecordSetOk
+### GetNetworkDeviceConfigurationTemplateRecordSetOk
 
-`func (o *RecordSet) GetBgpTemplateRecordSetOk() (*BgpTemplateRecordSet, bool)`
+`func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSetOk() (*NetworkDeviceConfigurationTemplateRecordSet, bool)`
 
-GetBgpTemplateRecordSetOk returns a tuple with the BgpTemplateRecordSet field if it's non-nil, zero value otherwise
+GetNetworkDeviceConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceConfigurationTemplateRecordSet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBgpTemplateRecordSet
+### SetNetworkDeviceConfigurationTemplateRecordSet
 
-`func (o *RecordSet) SetBgpTemplateRecordSet(v BgpTemplateRecordSet)`
+`func (o *RecordSet) SetNetworkDeviceConfigurationTemplateRecordSet(v NetworkDeviceConfigurationTemplateRecordSet)`
 
-SetBgpTemplateRecordSet sets BgpTemplateRecordSet field to given value.
+SetNetworkDeviceConfigurationTemplateRecordSet sets NetworkDeviceConfigurationTemplateRecordSet field to given value.
 
-### HasBgpTemplateRecordSet
+### HasNetworkDeviceConfigurationTemplateRecordSet
 
-`func (o *RecordSet) HasBgpTemplateRecordSet() bool`
+`func (o *RecordSet) HasNetworkDeviceConfigurationTemplateRecordSet() bool`
 
-HasBgpTemplateRecordSet returns a boolean if a field has been set.
+HasNetworkDeviceConfigurationTemplateRecordSet returns a boolean if a field has been set.
 
 ### GetServerInstanceGroupDNSRecordSet
 

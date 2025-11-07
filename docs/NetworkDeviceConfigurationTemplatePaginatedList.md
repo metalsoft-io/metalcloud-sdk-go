@@ -1,94 +1,94 @@
-# BgpTemplatePaginatedList
+# NetworkDeviceConfigurationTemplatePaginatedList
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]BgpTemplate**](BgpTemplate.md) |  | 
+**Data** | [**[]NetworkDeviceConfigurationTemplate**](NetworkDeviceConfigurationTemplate.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | Pointer to [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | [optional] 
 
 ## Methods
 
-### NewBgpTemplatePaginatedList
+### NewNetworkDeviceConfigurationTemplatePaginatedList
 
-`func NewBgpTemplatePaginatedList(data []BgpTemplate, meta PaginatedResponseMeta, ) *BgpTemplatePaginatedList`
+`func NewNetworkDeviceConfigurationTemplatePaginatedList(data []NetworkDeviceConfigurationTemplate, meta PaginatedResponseMeta, ) *NetworkDeviceConfigurationTemplatePaginatedList`
 
-NewBgpTemplatePaginatedList instantiates a new BgpTemplatePaginatedList object
+NewNetworkDeviceConfigurationTemplatePaginatedList instantiates a new NetworkDeviceConfigurationTemplatePaginatedList object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewBgpTemplatePaginatedListWithDefaults
+### NewNetworkDeviceConfigurationTemplatePaginatedListWithDefaults
 
-`func NewBgpTemplatePaginatedListWithDefaults() *BgpTemplatePaginatedList`
+`func NewNetworkDeviceConfigurationTemplatePaginatedListWithDefaults() *NetworkDeviceConfigurationTemplatePaginatedList`
 
-NewBgpTemplatePaginatedListWithDefaults instantiates a new BgpTemplatePaginatedList object
+NewNetworkDeviceConfigurationTemplatePaginatedListWithDefaults instantiates a new NetworkDeviceConfigurationTemplatePaginatedList object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *BgpTemplatePaginatedList) GetData() []BgpTemplate`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) GetData() []NetworkDeviceConfigurationTemplate`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *BgpTemplatePaginatedList) GetDataOk() (*[]BgpTemplate, bool)`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) GetDataOk() (*[]NetworkDeviceConfigurationTemplate, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *BgpTemplatePaginatedList) SetData(v []BgpTemplate)`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) SetData(v []NetworkDeviceConfigurationTemplate)`
 
 SetData sets Data field to given value.
 
 
 ### GetMeta
 
-`func (o *BgpTemplatePaginatedList) GetMeta() PaginatedResponseMeta`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) GetMeta() PaginatedResponseMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *BgpTemplatePaginatedList) GetMetaOk() (*PaginatedResponseMeta, bool)`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) GetMetaOk() (*PaginatedResponseMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *BgpTemplatePaginatedList) SetMeta(v PaginatedResponseMeta)`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) SetMeta(v PaginatedResponseMeta)`
 
 SetMeta sets Meta field to given value.
 
 
 ### GetLinks
 
-`func (o *BgpTemplatePaginatedList) GetLinks() PaginatedResponseLinks`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) GetLinks() PaginatedResponseLinks`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *BgpTemplatePaginatedList) GetLinksOk() (*PaginatedResponseLinks, bool)`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) GetLinksOk() (*PaginatedResponseLinks, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *BgpTemplatePaginatedList) SetLinks(v PaginatedResponseLinks)`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) SetLinks(v PaginatedResponseLinks)`
 
 SetLinks sets Links field to given value.
 
 ### HasLinks
 
-`func (o *BgpTemplatePaginatedList) HasLinks() bool`
+`func (o *NetworkDeviceConfigurationTemplatePaginatedList) HasLinks() bool`
 
 HasLinks returns a boolean if a field has been set.
 

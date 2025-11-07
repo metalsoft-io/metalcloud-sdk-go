@@ -4,7 +4,6 @@ api/openapi.yaml
 api_account.go
 api_ai.go
 api_authentication.go
-api_bgp_template.go
 api_bucket.go
 api_configuration.go
 api_custom_iso.go
@@ -30,6 +29,7 @@ api_job.go
 api_logical_network.go
 api_logical_network_profile.go
 api_network_device.go
+api_network_device_configuration_template.go
 api_network_device_controller.go
 api_network_device_default_secrets.go
 api_network_endpoint_group.go
@@ -100,15 +100,11 @@ docs/AutoIpv4SubnetAllocationStrategy.md
 docs/AutoIpv6SubnetAllocationStrategy.md
 docs/AutoVlanAllocationStrategy.md
 docs/AutoVniAllocationStrategy.md
-docs/BGPTemplateAPI.md
 docs/BaselineFilter.md
 docs/BaselineLevelType.md
 docs/BatchServerFirmwareUpgrade.md
 docs/BatchServerFirmwareUpgradeResponse.md
 docs/BgpNumberingType.md
-docs/BgpTemplate.md
-docs/BgpTemplatePaginatedList.md
-docs/BgpTemplateRecordSet.md
 docs/Bucket.md
 docs/BucketAPI.md
 docs/BucketConfiguration.md
@@ -127,7 +123,6 @@ docs/CreateAutoIpv4SubnetAllocationStrategy.md
 docs/CreateAutoIpv6SubnetAllocationStrategy.md
 docs/CreateAutoVlanAllocationStrategy.md
 docs/CreateAutoVniAllocationStrategy.md
-docs/CreateBgpTemplate.md
 docs/CreateBucket.md
 docs/CreateCronJob.md
 docs/CreateCustomIso.md
@@ -167,6 +162,7 @@ docs/CreateManualIpv6SubnetAllocationStrategy.md
 docs/CreateManualVlanAllocationStrategy.md
 docs/CreateManualVniAllocationStrategy.md
 docs/CreateNetworkDevice.md
+docs/CreateNetworkDeviceConfigurationTemplate.md
 docs/CreateNetworkDeviceController.md
 docs/CreateNetworkDeviceDefaultSecrets.md
 docs/CreateNetworkDeviceDefaults.md
@@ -225,6 +221,7 @@ docs/DNSRecordSetPaginatedList.md
 docs/DNSRecordType.md
 docs/DNSZoneAPI.md
 docs/DNSZonePaginatedList.md
+docs/DeleteFileShareSnapshot.md
 docs/DeleteSharedDriveSnapshot.md
 docs/DellComponentFilter.md
 docs/DetailedReportEntry.md
@@ -340,6 +337,7 @@ docs/FileShareHosts.md
 docs/FileShareHostsModifyBulk.md
 docs/FileShareMeta.md
 docs/FileSharePaginatedList.md
+docs/FileShareSnapshot.md
 docs/FileShareVariables.md
 docs/FirmwareBaseline.md
 docs/FirmwareBaselineAPI.md
@@ -457,6 +455,10 @@ docs/ManualVlanAllocationStrategy.md
 docs/ManualVniAllocationStrategy.md
 docs/NetworkDevice.md
 docs/NetworkDeviceAPI.md
+docs/NetworkDeviceConfigurationTemplate.md
+docs/NetworkDeviceConfigurationTemplateAPI.md
+docs/NetworkDeviceConfigurationTemplatePaginatedList.md
+docs/NetworkDeviceConfigurationTemplateRecordSet.md
 docs/NetworkDeviceController.md
 docs/NetworkDeviceControllerAPI.md
 docs/NetworkDeviceControllerCredentials.md
@@ -558,6 +560,7 @@ docs/ResourcePoolStatistics.md
 docs/ResourcePoolWithStats.md
 docs/ResourceScope.md
 docs/ResourceScopeKind.md
+docs/RestoreFileShareSnapshot.md
 docs/RestoreSharedDriveSnapshot.md
 docs/Role.md
 docs/RoleList.md
@@ -732,7 +735,6 @@ docs/TwoFactorAuthenticationSecret.md
 docs/TwoFactorAuthenticationToken.md
 docs/UnmanagedServersAPI.md
 docs/UpdateAccount.md
-docs/UpdateBgpTemplate.md
 docs/UpdateBucket.md
 docs/UpdateBucketMeta.md
 docs/UpdateCronJob.md
@@ -756,6 +758,7 @@ docs/UpdateLogicalNetworkACL.md
 docs/UpdateLogicalNetworkConfigGlobalSettings.md
 docs/UpdateLogicalNetworkProfile.md
 docs/UpdateNetworkDevice.md
+docs/UpdateNetworkDeviceConfigurationTemplate.md
 docs/UpdateNetworkDeviceController.md
 docs/UpdateNetworkDeviceDefaultSecrets.md
 docs/UpdateNetworkEndpointGroup.md
@@ -927,9 +930,6 @@ model_baseline_level_type.go
 model_batch_server_firmware_upgrade.go
 model_batch_server_firmware_upgrade_response.go
 model_bgp_numbering_type.go
-model_bgp_template.go
-model_bgp_template_paginated_list.go
-model_bgp_template_record_set.go
 model_bucket.go
 model_bucket_configuration.go
 model_bucket_credentials.go
@@ -946,7 +946,6 @@ model_create_auto_ipv4_subnet_allocation_strategy.go
 model_create_auto_ipv6_subnet_allocation_strategy.go
 model_create_auto_vlan_allocation_strategy.go
 model_create_auto_vni_allocation_strategy.go
-model_create_bgp_template.go
 model_create_bucket.go
 model_create_cron_job.go
 model_create_custom_iso.go
@@ -986,6 +985,7 @@ model_create_manual_ipv6_subnet_allocation_strategy.go
 model_create_manual_vlan_allocation_strategy.go
 model_create_manual_vni_allocation_strategy.go
 model_create_network_device.go
+model_create_network_device_configuration_template.go
 model_create_network_device_controller.go
 model_create_network_device_default_secrets.go
 model_create_network_device_defaults.go
@@ -1038,6 +1038,7 @@ model_custom_iso.go
 model_custom_iso_paginated_list.go
 model_custom_variable.go
 model_custom_variable_value.go
+model_delete_file_share_snapshot.go
 model_delete_shared_drive_snapshot.go
 model_dell_component_filter.go
 model_detailed_report_entry.go
@@ -1146,6 +1147,7 @@ model_file_share_hosts.go
 model_file_share_hosts_modify_bulk.go
 model_file_share_meta.go
 model_file_share_paginated_list.go
+model_file_share_snapshot.go
 model_file_share_variables.go
 model_firmware_baseline.go
 model_firmware_baseline_paginated_list.go
@@ -1253,6 +1255,9 @@ model_manual_ipv6_subnet_allocation_strategy.go
 model_manual_vlan_allocation_strategy.go
 model_manual_vni_allocation_strategy.go
 model_network_device.go
+model_network_device_configuration_template.go
+model_network_device_configuration_template_paginated_list.go
+model_network_device_configuration_template_record_set.go
 model_network_device_controller.go
 model_network_device_controller_credentials.go
 model_network_device_controller_paginated_list.go
@@ -1347,6 +1352,7 @@ model_resource_pool_statistics.go
 model_resource_pool_with_stats.go
 model_resource_scope.go
 model_resource_scope_kind.go
+model_restore_file_share_snapshot.go
 model_restore_shared_drive_snapshot.go
 model_role.go
 model_role_list.go
@@ -1505,7 +1511,6 @@ model_template_asset_paginated_list.go
 model_two_factor_authentication_secret.go
 model_two_factor_authentication_token.go
 model_update_account.go
-model_update_bgp_template.go
 model_update_bucket.go
 model_update_bucket_meta.go
 model_update_cron_job.go
@@ -1529,6 +1534,7 @@ model_update_logical_network_acl.go
 model_update_logical_network_config_global_settings.go
 model_update_logical_network_profile.go
 model_update_network_device.go
+model_update_network_device_configuration_template.go
 model_update_network_device_controller.go
 model_update_network_device_default_secrets.go
 model_update_network_endpoint_group.go
@@ -1656,7 +1662,6 @@ response.go
 test/api_account_test.go
 test/api_ai_test.go
 test/api_authentication_test.go
-test/api_bgp_template_test.go
 test/api_bucket_test.go
 test/api_configuration_test.go
 test/api_custom_iso_test.go
@@ -1681,6 +1686,7 @@ test/api_infrastructure_test.go
 test/api_job_test.go
 test/api_logical_network_profile_test.go
 test/api_logical_network_test.go
+test/api_network_device_configuration_template_test.go
 test/api_network_device_controller_test.go
 test/api_network_device_default_secrets_test.go
 test/api_network_device_test.go

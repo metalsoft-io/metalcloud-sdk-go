@@ -24,8 +24,8 @@ type RecordSet struct {
 	Server *Server `json:"server,omitempty"`
 	// The network device.
 	NetworkDevice *NetworkDevice `json:"networkDevice,omitempty"`
-	// The BGP template record set.
-	BgpTemplateRecordSet *BgpTemplateRecordSet `json:"bgpTemplateRecordSet,omitempty"`
+	// The Network Device Configuration Template record set.
+	NetworkDeviceConfigurationTemplateRecordSet *NetworkDeviceConfigurationTemplateRecordSet `json:"networkDeviceConfigurationTemplateRecordSet,omitempty"`
 	// The Instance Array DNS record set
 	ServerInstanceGroupDNSRecordSet map[string]interface{} `json:"serverInstanceGroupDNSRecordSet,omitempty"`
 	// The Instance DNS record set
@@ -132,36 +132,36 @@ func (o *RecordSet) SetNetworkDevice(v NetworkDevice) {
 	o.NetworkDevice = &v
 }
 
-// GetBgpTemplateRecordSet returns the BgpTemplateRecordSet field value if set, zero value otherwise.
-func (o *RecordSet) GetBgpTemplateRecordSet() BgpTemplateRecordSet {
-	if o == nil || IsNil(o.BgpTemplateRecordSet) {
-		var ret BgpTemplateRecordSet
+// GetNetworkDeviceConfigurationTemplateRecordSet returns the NetworkDeviceConfigurationTemplateRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSet() NetworkDeviceConfigurationTemplateRecordSet {
+	if o == nil || IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
+		var ret NetworkDeviceConfigurationTemplateRecordSet
 		return ret
 	}
-	return *o.BgpTemplateRecordSet
+	return *o.NetworkDeviceConfigurationTemplateRecordSet
 }
 
-// GetBgpTemplateRecordSetOk returns a tuple with the BgpTemplateRecordSet field value if set, nil otherwise
+// GetNetworkDeviceConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceConfigurationTemplateRecordSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetBgpTemplateRecordSetOk() (*BgpTemplateRecordSet, bool) {
-	if o == nil || IsNil(o.BgpTemplateRecordSet) {
+func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSetOk() (*NetworkDeviceConfigurationTemplateRecordSet, bool) {
+	if o == nil || IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
 		return nil, false
 	}
-	return o.BgpTemplateRecordSet, true
+	return o.NetworkDeviceConfigurationTemplateRecordSet, true
 }
 
-// HasBgpTemplateRecordSet returns a boolean if a field has been set.
-func (o *RecordSet) HasBgpTemplateRecordSet() bool {
-	if o != nil && !IsNil(o.BgpTemplateRecordSet) {
+// HasNetworkDeviceConfigurationTemplateRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasNetworkDeviceConfigurationTemplateRecordSet() bool {
+	if o != nil && !IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
 		return true
 	}
 
 	return false
 }
 
-// SetBgpTemplateRecordSet gets a reference to the given BgpTemplateRecordSet and assigns it to the BgpTemplateRecordSet field.
-func (o *RecordSet) SetBgpTemplateRecordSet(v BgpTemplateRecordSet) {
-	o.BgpTemplateRecordSet = &v
+// SetNetworkDeviceConfigurationTemplateRecordSet gets a reference to the given NetworkDeviceConfigurationTemplateRecordSet and assigns it to the NetworkDeviceConfigurationTemplateRecordSet field.
+func (o *RecordSet) SetNetworkDeviceConfigurationTemplateRecordSet(v NetworkDeviceConfigurationTemplateRecordSet) {
+	o.NetworkDeviceConfigurationTemplateRecordSet = &v
 }
 
 // GetServerInstanceGroupDNSRecordSet returns the ServerInstanceGroupDNSRecordSet field value if set, zero value otherwise.
@@ -500,8 +500,8 @@ func (o RecordSet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkDevice) {
 		toSerialize["networkDevice"] = o.NetworkDevice
 	}
-	if !IsNil(o.BgpTemplateRecordSet) {
-		toSerialize["bgpTemplateRecordSet"] = o.BgpTemplateRecordSet
+	if !IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
+		toSerialize["networkDeviceConfigurationTemplateRecordSet"] = o.NetworkDeviceConfigurationTemplateRecordSet
 	}
 	if !IsNil(o.ServerInstanceGroupDNSRecordSet) {
 		toSerialize["serverInstanceGroupDNSRecordSet"] = o.ServerInstanceGroupDNSRecordSet
@@ -557,7 +557,7 @@ func (o *RecordSet) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "server")
 		delete(additionalProperties, "networkDevice")
-		delete(additionalProperties, "bgpTemplateRecordSet")
+		delete(additionalProperties, "networkDeviceConfigurationTemplateRecordSet")
 		delete(additionalProperties, "serverInstanceGroupDNSRecordSet")
 		delete(additionalProperties, "serverInstanceDNSRecordSet")
 		delete(additionalProperties, "clusterDNSRecordSet")

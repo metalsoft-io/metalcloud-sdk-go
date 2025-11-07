@@ -29,8 +29,6 @@ type NetworkDeviceDefaultSecrets struct {
 	MacAddressOrSerialNumber string `json:"macAddressOrSerialNumber"`
 	// The name of the secret
 	SecretName string `json:"secretName"`
-	// The encrypted value of the secret
-	SecretValueEncrypted string `json:"secretValueEncrypted"`
 	// The timestamp when the secret was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The timestamp when the secret was updated
@@ -46,13 +44,12 @@ type _NetworkDeviceDefaultSecrets NetworkDeviceDefaultSecrets
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceDefaultSecrets(id float32, siteId float32, macAddressOrSerialNumber string, secretName string, secretValueEncrypted string, createdTimestamp string, updatedTimestamp string) *NetworkDeviceDefaultSecrets {
+func NewNetworkDeviceDefaultSecrets(id float32, siteId float32, macAddressOrSerialNumber string, secretName string, createdTimestamp string, updatedTimestamp string) *NetworkDeviceDefaultSecrets {
 	this := NetworkDeviceDefaultSecrets{}
 	this.Id = id
 	this.SiteId = siteId
 	this.MacAddressOrSerialNumber = macAddressOrSerialNumber
 	this.SecretName = secretName
-	this.SecretValueEncrypted = secretValueEncrypted
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	return &this
@@ -162,30 +159,6 @@ func (o *NetworkDeviceDefaultSecrets) SetSecretName(v string) {
 	o.SecretName = v
 }
 
-// GetSecretValueEncrypted returns the SecretValueEncrypted field value
-func (o *NetworkDeviceDefaultSecrets) GetSecretValueEncrypted() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SecretValueEncrypted
-}
-
-// GetSecretValueEncryptedOk returns a tuple with the SecretValueEncrypted field value
-// and a boolean to check if the value has been set.
-func (o *NetworkDeviceDefaultSecrets) GetSecretValueEncryptedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SecretValueEncrypted, true
-}
-
-// SetSecretValueEncrypted sets field value
-func (o *NetworkDeviceDefaultSecrets) SetSecretValueEncrypted(v string) {
-	o.SecretValueEncrypted = v
-}
-
 // GetCreatedTimestamp returns the CreatedTimestamp field value
 func (o *NetworkDeviceDefaultSecrets) GetCreatedTimestamp() string {
 	if o == nil {
@@ -280,7 +253,6 @@ func (o NetworkDeviceDefaultSecrets) ToMap() (map[string]interface{}, error) {
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["macAddressOrSerialNumber"] = o.MacAddressOrSerialNumber
 	toSerialize["secretName"] = o.SecretName
-	toSerialize["secretValueEncrypted"] = o.SecretValueEncrypted
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Links) {
@@ -303,7 +275,6 @@ func (o *NetworkDeviceDefaultSecrets) UnmarshalJSON(data []byte) (err error) {
 		"siteId",
 		"macAddressOrSerialNumber",
 		"secretName",
-		"secretValueEncrypted",
 		"createdTimestamp",
 		"updatedTimestamp",
 	}
@@ -339,7 +310,6 @@ func (o *NetworkDeviceDefaultSecrets) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "macAddressOrSerialNumber")
 		delete(additionalProperties, "secretName")
-		delete(additionalProperties, "secretValueEncrypted")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")

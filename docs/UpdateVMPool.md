@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Username** | Pointer to **string** | Username of the VM Pool | [optional] 
 **Password** | Pointer to **string** | Password of the VM Pool | [optional] 
 **Options** | Pointer to [**UpdateVMPoolOptions**](UpdateVMPoolOptions.md) | Options for the VM Pool | [optional] 
+**NetworkFabricId** | Pointer to **float32** | The network fabric linked to the VM Pool. | [optional] 
 
 ## Methods
 
@@ -309,6 +310,31 @@ SetOptions sets Options field to given value.
 `func (o *UpdateVMPool) HasOptions() bool`
 
 HasOptions returns a boolean if a field has been set.
+
+### GetNetworkFabricId
+
+`func (o *UpdateVMPool) GetNetworkFabricId() float32`
+
+GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
+
+### GetNetworkFabricIdOk
+
+`func (o *UpdateVMPool) GetNetworkFabricIdOk() (*float32, bool)`
+
+GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkFabricId
+
+`func (o *UpdateVMPool) SetNetworkFabricId(v float32)`
+
+SetNetworkFabricId sets NetworkFabricId field to given value.
+
+### HasNetworkFabricId
+
+`func (o *UpdateVMPool) HasNetworkFabricId() bool`
+
+HasNetworkFabricId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

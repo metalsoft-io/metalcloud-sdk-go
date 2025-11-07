@@ -1836,79 +1836,79 @@ type UsersAPIGetUsersRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r UsersAPIGetUsersRequest) Page(page float32) UsersAPIGetUsersRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r UsersAPIGetUsersRequest) Limit(limit float32) UsersAPIGetUsersRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterId(filterId []string) UsersAPIGetUsersRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by displayName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.displayName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.displayName&#x3D;$not:$like:John Doe&amp;filter.displayName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by displayName query param.  **Format:** filter.displayName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.displayName&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterDisplayName(filterDisplayName []string) UsersAPIGetUsersRequest {
 	r.filterDisplayName = &filterDisplayName
 	return r
 }
 
-// Filter by email query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.email&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.email&#x3D;$not:$like:John Doe&amp;filter.email&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by email query param.  **Format:** filter.email&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.email&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterEmail(filterEmail []string) UsersAPIGetUsersRequest {
 	r.filterEmail = &filterEmail
 	return r
 }
 
-// Filter by accountId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.accountId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.accountId&#x3D;$not:$like:John Doe&amp;filter.accountId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by accountId query param.  **Format:** filter.accountId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.accountId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterAccountId(filterAccountId []string) UsersAPIGetUsersRequest {
 	r.filterAccountId = &filterAccountId
 	return r
 }
 
-// Filter by archived query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.archived&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.archived&#x3D;$not:$like:John Doe&amp;filter.archived&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by archived query param.  **Format:** filter.archived&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.archived&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterArchived(filterArchived []string) UsersAPIGetUsersRequest {
 	r.filterArchived = &filterArchived
 	return r
 }
 
-// Filter by infrastructureIdDefault query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureIdDefault&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureIdDefault&#x3D;$not:$like:John Doe&amp;filter.infrastructureIdDefault&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by infrastructureIdDefault query param.  **Format:** filter.infrastructureIdDefault&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureIdDefault&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterInfrastructureIdDefault(filterInfrastructureIdDefault []string) UsersAPIGetUsersRequest {
 	r.filterInfrastructureIdDefault = &filterInfrastructureIdDefault
 	return r
 }
 
-// Filter by accessLevel query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.accessLevel&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.accessLevel&#x3D;$not:$like:John Doe&amp;filter.accessLevel&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by accessLevel query param.  **Format:** filter.accessLevel&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.accessLevel&#x3D;$eq:John Doe&amp;filter.accessLevel&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterAccessLevel(filterAccessLevel []string) UsersAPIGetUsersRequest {
 	r.filterAccessLevel = &filterAccessLevel
 	return r
 }
 
-// Filter by isBillable query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.isBillable&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.isBillable&#x3D;$not:$like:John Doe&amp;filter.isBillable&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by isBillable query param.  **Format:** filter.isBillable&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.isBillable&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r UsersAPIGetUsersRequest) FilterIsBillable(filterIsBillable []string) UsersAPIGetUsersRequest {
 	r.filterIsBillable = &filterIsBillable
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; displayName:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;displayName&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;displayName:DESC   **Default Value:** displayName:DESC  **Available Fields** - id  - displayName 
 func (r UsersAPIGetUsersRequest) SortBy(sortBy []string) UsersAPIGetUsersRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r UsersAPIGetUsersRequest) Search(search string) UsersAPIGetUsersRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; displayName,email           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;displayName&lt;/li&gt; &lt;li&gt;email&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** displayName,email   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - displayName  - email 
 func (r UsersAPIGetUsersRequest) SearchBy(searchBy []string) UsersAPIGetUsersRequest {
 	r.searchBy = &searchBy
 	return r

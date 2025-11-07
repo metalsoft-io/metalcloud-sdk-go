@@ -42,6 +42,8 @@ type UpdateVMPool struct {
 	Password *string `json:"password,omitempty"`
 	// Options for the VM Pool
 	Options *UpdateVMPoolOptions `json:"options,omitempty"`
+	// The network fabric linked to the VM Pool.
+	NetworkFabricId *float32 `json:"networkFabricId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -416,6 +418,38 @@ func (o *UpdateVMPool) SetOptions(v UpdateVMPoolOptions) {
 	o.Options = &v
 }
 
+// GetNetworkFabricId returns the NetworkFabricId field value if set, zero value otherwise.
+func (o *UpdateVMPool) GetNetworkFabricId() float32 {
+	if o == nil || IsNil(o.NetworkFabricId) {
+		var ret float32
+		return ret
+	}
+	return *o.NetworkFabricId
+}
+
+// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVMPool) GetNetworkFabricIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.NetworkFabricId) {
+		return nil, false
+	}
+	return o.NetworkFabricId, true
+}
+
+// HasNetworkFabricId returns a boolean if a field has been set.
+func (o *UpdateVMPool) HasNetworkFabricId() bool {
+	if o != nil && !IsNil(o.NetworkFabricId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkFabricId gets a reference to the given float32 and assigns it to the NetworkFabricId field.
+func (o *UpdateVMPool) SetNetworkFabricId(v float32) {
+	o.NetworkFabricId = &v
+}
+
 func (o UpdateVMPool) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -459,6 +493,9 @@ func (o UpdateVMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
+	if !IsNil(o.NetworkFabricId) {
+		toSerialize["networkFabricId"] = o.NetworkFabricId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -492,6 +529,7 @@ func (o *UpdateVMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
 		delete(additionalProperties, "options")
+		delete(additionalProperties, "networkFabricId")
 		o.AdditionalProperties = additionalProperties
 	}
 

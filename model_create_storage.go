@@ -30,7 +30,7 @@ type CreateStorage struct {
 	// Storage technology
 	Technologies []string `json:"technologies"`
 	// Storage type
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 	// Name of the storage
 	Name string `json:"name"`
 	// ISCSI host
@@ -78,12 +78,11 @@ type _CreateStorage CreateStorage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorage(siteId float32, driver string, technologies []string, type_ string, name string, managementHost string, subnetType string) *CreateStorage {
+func NewCreateStorage(siteId float32, driver string, technologies []string, name string, managementHost string, subnetType string) *CreateStorage {
 	this := CreateStorage{}
 	this.SiteId = siteId
 	this.Driver = driver
 	this.Technologies = technologies
-	this.Type = type_
 	this.Name = name
 	this.ManagementHost = managementHost
 	this.SubnetType = subnetType
@@ -202,28 +201,36 @@ func (o *CreateStorage) SetTechnologies(v []string) {
 	o.Technologies = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *CreateStorage) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStorage) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *CreateStorage) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *CreateStorage) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetName returns the Name field value
@@ -826,7 +833,9 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["driver"] = o.Driver
 	toSerialize["technologies"] = o.Technologies
-	toSerialize["type"] = o.Type
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.IscsiHost) {
 		toSerialize["iscsiHost"] = o.IscsiHost
@@ -894,7 +903,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		"siteId",
 		"driver",
 		"technologies",
-		"type",
 		"name",
 		"managementHost",
 		"subnetType",

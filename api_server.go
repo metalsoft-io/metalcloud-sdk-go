@@ -1079,127 +1079,127 @@ type ServerAPIGetServersRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r ServerAPIGetServersRequest) Page(page float32) ServerAPIGetServersRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r ServerAPIGetServersRequest) Limit(limit float32) ServerAPIGetServersRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by serverTypeId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverTypeId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverTypeId&#x3D;$not:$like:John Doe&amp;filter.serverTypeId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverTypeId query param.  **Format:** filter.serverTypeId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverTypeId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerTypeId(filterServerTypeId []string) ServerAPIGetServersRequest {
 	r.filterServerTypeId = &filterServerTypeId
 	return r
 }
 
-// Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerId(filterServerId []string) ServerAPIGetServersRequest {
 	r.filterServerId = &filterServerId
 	return r
 }
 
-// Filter by siteId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.siteId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.siteId&#x3D;$not:$like:John Doe&amp;filter.siteId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterSiteId(filterSiteId []string) ServerAPIGetServersRequest {
 	r.filterSiteId = &filterSiteId
 	return r
 }
 
-// Filter by vendor query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.vendor&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.vendor&#x3D;$not:$like:John Doe&amp;filter.vendor&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by vendor query param.  **Format:** filter.vendor&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.vendor&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterVendor(filterVendor []string) ServerAPIGetServersRequest {
 	r.filterVendor = &filterVendor
 	return r
 }
 
-// Filter by serialNumber query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serialNumber&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serialNumber&#x3D;$not:$like:John Doe&amp;filter.serialNumber&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serialNumber query param.  **Format:** filter.serialNumber&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serialNumber&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterSerialNumber(filterSerialNumber []string) ServerAPIGetServersRequest {
 	r.filterSerialNumber = &filterSerialNumber
 	return r
 }
 
-// Filter by managementAddress query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.managementAddress&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.managementAddress&#x3D;$not:$like:John Doe&amp;filter.managementAddress&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by managementAddress query param.  **Format:** filter.managementAddress&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.managementAddress&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterManagementAddress(filterManagementAddress []string) ServerAPIGetServersRequest {
 	r.filterManagementAddress = &filterManagementAddress
 	return r
 }
 
-// Filter by model query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.model&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.model&#x3D;$not:$like:John Doe&amp;filter.model&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by model query param.  **Format:** filter.model&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.model&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterModel(filterModel []string) ServerAPIGetServersRequest {
 	r.filterModel = &filterModel
 	return r
 }
 
-// Filter by administrationState query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.administrationState&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.administrationState&#x3D;$not:$like:John Doe&amp;filter.administrationState&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by administrationState query param.  **Format:** filter.administrationState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.administrationState&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterAdministrationState(filterAdministrationState []string) ServerAPIGetServersRequest {
 	r.filterAdministrationState = &filterAdministrationState
 	return r
 }
 
-// Filter by serverDiskWipe query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverDiskWipe&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverDiskWipe&#x3D;$not:$like:John Doe&amp;filter.serverDiskWipe&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverDiskWipe query param.  **Format:** filter.serverDiskWipe&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverDiskWipe&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerDiskWipe(filterServerDiskWipe []string) ServerAPIGetServersRequest {
 	r.filterServerDiskWipe = &filterServerDiskWipe
 	return r
 }
 
-// Filter by powerStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.powerStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.powerStatus&#x3D;$not:$like:John Doe&amp;filter.powerStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by powerStatus query param.  **Format:** filter.powerStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.powerStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterPowerStatus(filterPowerStatus []string) ServerAPIGetServersRequest {
 	r.filterPowerStatus = &filterPowerStatus
 	return r
 }
 
-// Filter by serverDhcpStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverDhcpStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverDhcpStatus&#x3D;$not:$like:John Doe&amp;filter.serverDhcpStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverDhcpStatus query param.  **Format:** filter.serverDhcpStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverDhcpStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerDhcpStatus(filterServerDhcpStatus []string) ServerAPIGetServersRequest {
 	r.filterServerDhcpStatus = &filterServerDhcpStatus
 	return r
 }
 
-// Filter by serverClass query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverClass&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverClass&#x3D;$not:$like:John Doe&amp;filter.serverClass&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverClass query param.  **Format:** filter.serverClass&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverClass&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerClass(filterServerClass []string) ServerAPIGetServersRequest {
 	r.filterServerClass = &filterServerClass
 	return r
 }
 
-// Filter by serverStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverStatus&#x3D;$not:$like:John Doe&amp;filter.serverStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerStatus(filterServerStatus []string) ServerAPIGetServersRequest {
 	r.filterServerStatus = &filterServerStatus
 	return r
 }
 
-// Filter by requiresManualCleaning query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.requiresManualCleaning&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.requiresManualCleaning&#x3D;$not:$like:John Doe&amp;filter.requiresManualCleaning&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by requiresManualCleaning query param.  **Format:** filter.requiresManualCleaning&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.requiresManualCleaning&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterRequiresManualCleaning(filterRequiresManualCleaning []string) ServerAPIGetServersRequest {
 	r.filterRequiresManualCleaning = &filterRequiresManualCleaning
 	return r
 }
 
-// Filter by instance.infrastructure.infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.instance.infrastructure.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.instance.infrastructure.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.instance.infrastructure.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by instance.infrastructure.infrastructureId query param.  **Format:** filter.instance.infrastructure.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.infrastructureId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterInstanceInfrastructureInfrastructureId(filterInstanceInfrastructureInfrastructureId []string) ServerAPIGetServersRequest {
 	r.filterInstanceInfrastructureInfrastructureId = &filterInstanceInfrastructureInfrastructureId
 	return r
 }
 
-// Filter by instance.infrastructure.userIdOwner query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.instance.infrastructure.userIdOwner&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.instance.infrastructure.userIdOwner&#x3D;$not:$like:John Doe&amp;filter.instance.infrastructure.userIdOwner&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by instance.infrastructure.userIdOwner query param.  **Format:** filter.instance.infrastructure.userIdOwner&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.userIdOwner&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterInstanceInfrastructureUserIdOwner(filterInstanceInfrastructureUserIdOwner []string) ServerAPIGetServersRequest {
 	r.filterInstanceInfrastructureUserIdOwner = &filterInstanceInfrastructureUserIdOwner
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; serverId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverId&lt;/li&gt; &lt;li&gt;serverTypeId&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;serverId:DESC&amp;sortBy&#x3D;serverTypeId:DESC   **Default Value:** serverId:DESC  **Available Fields** - serverId  - serverTypeId 
 func (r ServerAPIGetServersRequest) SortBy(sortBy []string) ServerAPIGetServersRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r ServerAPIGetServersRequest) Search(search string) ServerAPIGetServersRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; vendor,model           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;vendor&lt;/li&gt; &lt;li&gt;model&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** vendor,model   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - vendor  - model 
 func (r ServerAPIGetServersRequest) SearchBy(searchBy []string) ServerAPIGetServersRequest {
 	r.searchBy = &searchBy
 	return r

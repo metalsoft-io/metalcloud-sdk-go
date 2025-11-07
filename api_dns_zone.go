@@ -557,73 +557,73 @@ type DNSZoneAPIGetDNSZonesRequest struct {
 	select_ *string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r DNSZoneAPIGetDNSZonesRequest) Page(page float32) DNSZoneAPIGetDNSZonesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r DNSZoneAPIGetDNSZonesRequest) Limit(limit float32) DNSZoneAPIGetDNSZonesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt;
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe&amp;filter.label&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $null  - $ilike  - $and  - $or
 func (r DNSZoneAPIGetDNSZonesRequest) FilterLabel(filterLabel []string) DNSZoneAPIGetDNSZonesRequest {
 	r.filterLabel = &filterLabel
 	return r
 }
 
-// Filter by zoneName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.zoneName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.zoneName&#x3D;$not:$like:John Doe&amp;filter.zoneName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by zoneName query param.  **Format:** filter.zoneName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.zoneName&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DNSZoneAPIGetDNSZonesRequest) FilterZoneName(filterZoneName []string) DNSZoneAPIGetDNSZonesRequest {
 	r.filterZoneName = &filterZoneName
 	return r
 }
 
-// Filter by zoneType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.zoneType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.zoneType&#x3D;$not:$like:John Doe&amp;filter.zoneType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by zoneType query param.  **Format:** filter.zoneType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.zoneType&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DNSZoneAPIGetDNSZonesRequest) FilterZoneType(filterZoneType []string) DNSZoneAPIGetDNSZonesRequest {
 	r.filterZoneType = &filterZoneType
 	return r
 }
 
-// Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DNSZoneAPIGetDNSZonesRequest) FilterStatus(filterStatus []string) DNSZoneAPIGetDNSZonesRequest {
 	r.filterStatus = &filterStatus
 	return r
 }
 
-// Filter by isDefault query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.isDefault&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.isDefault&#x3D;$not:$like:John Doe&amp;filter.isDefault&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by isDefault query param.  **Format:** filter.isDefault&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.isDefault&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DNSZoneAPIGetDNSZonesRequest) FilterIsDefault(filterIsDefault []string) DNSZoneAPIGetDNSZonesRequest {
 	r.filterIsDefault = &filterIsDefault
 	return r
 }
 
-// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by tags query param.  **Format:** filter.tags&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.tags&#x3D;$eq:John Doe&amp;filter.tags&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $eq  - $and  - $or
 func (r DNSZoneAPIGetDNSZonesRequest) FilterTags(filterTags []string) DNSZoneAPIGetDNSZonesRequest {
 	r.filterTags = &filterTags
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; label:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;zoneName&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;isDefault&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;updatedBy&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;updatedAt&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;label:DESC   **Default Value:** label:DESC  **Available Fields** - id  - label  - zoneName  - status  - isDefault  - createdBy  - updatedBy  - createdAt  - updatedAt 
 func (r DNSZoneAPIGetDNSZonesRequest) SortBy(sortBy []string) DNSZoneAPIGetDNSZonesRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r DNSZoneAPIGetDNSZonesRequest) Search(search string) DNSZoneAPIGetDNSZonesRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,zoneName,status,createdBy           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;zoneName&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;updatedBy&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,label,zoneName,status,createdBy   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - zoneName  - status  - createdBy  - updatedBy 
 func (r DNSZoneAPIGetDNSZonesRequest) SearchBy(searchBy []string) DNSZoneAPIGetDNSZonesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,description,zoneName,zoneType           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.  **Example:** id,label,description,zoneName,zoneType   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
 func (r DNSZoneAPIGetDNSZonesRequest) Select_(select_ string) DNSZoneAPIGetDNSZonesRequest {
 	r.select_ = &select_
 	return r
@@ -840,67 +840,67 @@ type DNSZoneAPIListDNSRecordSetsByZoneIdRequest struct {
 	select_ *string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) Page(page float32) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) Limit(limit float32) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) FilterInfrastructureId(filterInfrastructureId []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
-// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt;
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe&amp;filter.name&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $ilike  - $and  - $or
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) FilterName(filterName []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.filterName = &filterName
 	return r
 }
 
-// Filter by zoneName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.zoneName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.zoneName&#x3D;$not:$like:John Doe&amp;filter.zoneName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by zoneName query param.  **Format:** filter.zoneName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.zoneName&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) FilterZoneName(filterZoneName []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.filterZoneName = &filterZoneName
 	return r
 }
 
-// Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) FilterStatus(filterStatus []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.filterStatus = &filterStatus
 	return r
 }
 
-// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by tags query param.  **Format:** filter.tags&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.tags&#x3D;$eq:John Doe&amp;filter.tags&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $eq  - $and  - $or
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) FilterTags(filterTags []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.filterTags = &filterTags
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; name:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;zoneName&lt;/li&gt; &lt;li&gt;type&lt;/li&gt; &lt;li&gt;ttl&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;status:DESC   **Default Value:** name:DESC  **Available Fields** - id  - status  - siteId  - infrastructureId  - name  - zoneName  - type  - ttl 
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) SortBy(sortBy []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) Search(search string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,siteId,infrastructureId,name,zoneName           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;zoneName&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,siteId,infrastructureId,name,zoneName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - siteId  - infrastructureId  - name  - zoneName 
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) SearchBy(searchBy []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,status,siteId,infrastructureId,name           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.  **Example:** id,status,siteId,infrastructureId,name   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) Select_(select_ string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.select_ = &select_
 	return r

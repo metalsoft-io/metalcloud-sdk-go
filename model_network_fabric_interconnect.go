@@ -32,6 +32,10 @@ type NetworkFabricInterconnect struct {
 	Name *string `json:"name,omitempty"`
 	// Short description of the network fabric interconnect
 	Description *string `json:"description,omitempty"`
+	// BGP configuration template for the interconnect
+	BgpConfigurationTemplate *string `json:"bgpConfigurationTemplate,omitempty"`
+	// BGP neighbor template for the interconnect
+	BgpNeighborTemplate *string `json:"bgpNeighborTemplate,omitempty"`
 	// Revision number of the entity
 	Revision string `json:"revision"`
 	// Entity creation timestamp
@@ -204,6 +208,70 @@ func (o *NetworkFabricInterconnect) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetBgpConfigurationTemplate returns the BgpConfigurationTemplate field value if set, zero value otherwise.
+func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplate() string {
+	if o == nil || IsNil(o.BgpConfigurationTemplate) {
+		var ret string
+		return ret
+	}
+	return *o.BgpConfigurationTemplate
+}
+
+// GetBgpConfigurationTemplateOk returns a tuple with the BgpConfigurationTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateOk() (*string, bool) {
+	if o == nil || IsNil(o.BgpConfigurationTemplate) {
+		return nil, false
+	}
+	return o.BgpConfigurationTemplate, true
+}
+
+// HasBgpConfigurationTemplate returns a boolean if a field has been set.
+func (o *NetworkFabricInterconnect) HasBgpConfigurationTemplate() bool {
+	if o != nil && !IsNil(o.BgpConfigurationTemplate) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpConfigurationTemplate gets a reference to the given string and assigns it to the BgpConfigurationTemplate field.
+func (o *NetworkFabricInterconnect) SetBgpConfigurationTemplate(v string) {
+	o.BgpConfigurationTemplate = &v
+}
+
+// GetBgpNeighborTemplate returns the BgpNeighborTemplate field value if set, zero value otherwise.
+func (o *NetworkFabricInterconnect) GetBgpNeighborTemplate() string {
+	if o == nil || IsNil(o.BgpNeighborTemplate) {
+		var ret string
+		return ret
+	}
+	return *o.BgpNeighborTemplate
+}
+
+// GetBgpNeighborTemplateOk returns a tuple with the BgpNeighborTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnect) GetBgpNeighborTemplateOk() (*string, bool) {
+	if o == nil || IsNil(o.BgpNeighborTemplate) {
+		return nil, false
+	}
+	return o.BgpNeighborTemplate, true
+}
+
+// HasBgpNeighborTemplate returns a boolean if a field has been set.
+func (o *NetworkFabricInterconnect) HasBgpNeighborTemplate() bool {
+	if o != nil && !IsNil(o.BgpNeighborTemplate) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpNeighborTemplate gets a reference to the given string and assigns it to the BgpNeighborTemplate field.
+func (o *NetworkFabricInterconnect) SetBgpNeighborTemplate(v string) {
+	o.BgpNeighborTemplate = &v
+}
+
 // GetRevision returns the Revision field value
 func (o *NetworkFabricInterconnect) GetRevision() string {
 	if o == nil {
@@ -327,6 +395,12 @@ func (o NetworkFabricInterconnect) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.BgpConfigurationTemplate) {
+		toSerialize["bgpConfigurationTemplate"] = o.BgpConfigurationTemplate
+	}
+	if !IsNil(o.BgpNeighborTemplate) {
+		toSerialize["bgpNeighborTemplate"] = o.BgpNeighborTemplate
+	}
 	toSerialize["revision"] = o.Revision
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
@@ -386,6 +460,8 @@ func (o *NetworkFabricInterconnect) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "bgpConfigurationTemplate")
+		delete(additionalProperties, "bgpNeighborTemplate")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")

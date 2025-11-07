@@ -9,15 +9,18 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Id** | **int32** | The ID of the network fabric interconnect link | 
-**Status** | [**NetworkFabricInterconnectLinkStatus**](NetworkFabricInterconnectLinkStatus.md) | The status of the network fabric interconnect link | 
-**FabricId** | **int32** | The ID of the network fabric to add to this interconnect | 
 **InterconnectId** | **int32** | The ID of the network fabric interconnect | 
+**Status** | [**NetworkFabricInterconnectLinkStatus**](NetworkFabricInterconnectLinkStatus.md) | The status of the network fabric interconnect link | 
+**FabricAId** | **int32** | The ID of the network fabric to add to this interconnect | 
+**FabricANetworkEquipmentId** | **int32** | The ID of the network equipment A | 
+**FabricBId** | **int32** | The ID of the network fabric to add to this interconnect | 
+**FabricBNetworkEquipmentId** | **int32** | The ID of the network equipment B | 
 
 ## Methods
 
 ### NewNetworkFabricInterconnectLink
 
-`func NewNetworkFabricInterconnectLink(revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id int32, status NetworkFabricInterconnectLinkStatus, fabricId int32, interconnectId int32, ) *NetworkFabricInterconnectLink`
+`func NewNetworkFabricInterconnectLink(revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id int32, interconnectId int32, status NetworkFabricInterconnectLinkStatus, fabricAId int32, fabricANetworkEquipmentId int32, fabricBId int32, fabricBNetworkEquipmentId int32, ) *NetworkFabricInterconnectLink`
 
 NewNetworkFabricInterconnectLink instantiates a new NetworkFabricInterconnectLink object
 This constructor will assign default values to properties that have it defined,
@@ -137,6 +140,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetInterconnectId
+
+`func (o *NetworkFabricInterconnectLink) GetInterconnectId() int32`
+
+GetInterconnectId returns the InterconnectId field if non-nil, zero value otherwise.
+
+### GetInterconnectIdOk
+
+`func (o *NetworkFabricInterconnectLink) GetInterconnectIdOk() (*int32, bool)`
+
+GetInterconnectIdOk returns a tuple with the InterconnectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterconnectId
+
+`func (o *NetworkFabricInterconnectLink) SetInterconnectId(v int32)`
+
+SetInterconnectId sets InterconnectId field to given value.
+
+
 ### GetStatus
 
 `func (o *NetworkFabricInterconnectLink) GetStatus() NetworkFabricInterconnectLinkStatus`
@@ -157,44 +180,84 @@ and a boolean to check if the value has been set.
 SetStatus sets Status field to given value.
 
 
-### GetFabricId
+### GetFabricAId
 
-`func (o *NetworkFabricInterconnectLink) GetFabricId() int32`
+`func (o *NetworkFabricInterconnectLink) GetFabricAId() int32`
 
-GetFabricId returns the FabricId field if non-nil, zero value otherwise.
+GetFabricAId returns the FabricAId field if non-nil, zero value otherwise.
 
-### GetFabricIdOk
+### GetFabricAIdOk
 
-`func (o *NetworkFabricInterconnectLink) GetFabricIdOk() (*int32, bool)`
+`func (o *NetworkFabricInterconnectLink) GetFabricAIdOk() (*int32, bool)`
 
-GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
+GetFabricAIdOk returns a tuple with the FabricAId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFabricId
+### SetFabricAId
 
-`func (o *NetworkFabricInterconnectLink) SetFabricId(v int32)`
+`func (o *NetworkFabricInterconnectLink) SetFabricAId(v int32)`
 
-SetFabricId sets FabricId field to given value.
+SetFabricAId sets FabricAId field to given value.
 
 
-### GetInterconnectId
+### GetFabricANetworkEquipmentId
 
-`func (o *NetworkFabricInterconnectLink) GetInterconnectId() int32`
+`func (o *NetworkFabricInterconnectLink) GetFabricANetworkEquipmentId() int32`
 
-GetInterconnectId returns the InterconnectId field if non-nil, zero value otherwise.
+GetFabricANetworkEquipmentId returns the FabricANetworkEquipmentId field if non-nil, zero value otherwise.
 
-### GetInterconnectIdOk
+### GetFabricANetworkEquipmentIdOk
 
-`func (o *NetworkFabricInterconnectLink) GetInterconnectIdOk() (*int32, bool)`
+`func (o *NetworkFabricInterconnectLink) GetFabricANetworkEquipmentIdOk() (*int32, bool)`
 
-GetInterconnectIdOk returns a tuple with the InterconnectId field if it's non-nil, zero value otherwise
+GetFabricANetworkEquipmentIdOk returns a tuple with the FabricANetworkEquipmentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInterconnectId
+### SetFabricANetworkEquipmentId
 
-`func (o *NetworkFabricInterconnectLink) SetInterconnectId(v int32)`
+`func (o *NetworkFabricInterconnectLink) SetFabricANetworkEquipmentId(v int32)`
 
-SetInterconnectId sets InterconnectId field to given value.
+SetFabricANetworkEquipmentId sets FabricANetworkEquipmentId field to given value.
+
+
+### GetFabricBId
+
+`func (o *NetworkFabricInterconnectLink) GetFabricBId() int32`
+
+GetFabricBId returns the FabricBId field if non-nil, zero value otherwise.
+
+### GetFabricBIdOk
+
+`func (o *NetworkFabricInterconnectLink) GetFabricBIdOk() (*int32, bool)`
+
+GetFabricBIdOk returns a tuple with the FabricBId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricBId
+
+`func (o *NetworkFabricInterconnectLink) SetFabricBId(v int32)`
+
+SetFabricBId sets FabricBId field to given value.
+
+
+### GetFabricBNetworkEquipmentId
+
+`func (o *NetworkFabricInterconnectLink) GetFabricBNetworkEquipmentId() int32`
+
+GetFabricBNetworkEquipmentId returns the FabricBNetworkEquipmentId field if non-nil, zero value otherwise.
+
+### GetFabricBNetworkEquipmentIdOk
+
+`func (o *NetworkFabricInterconnectLink) GetFabricBNetworkEquipmentIdOk() (*int32, bool)`
+
+GetFabricBNetworkEquipmentIdOk returns a tuple with the FabricBNetworkEquipmentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricBNetworkEquipmentId
+
+`func (o *NetworkFabricInterconnectLink) SetFabricBNetworkEquipmentId(v int32)`
+
+SetFabricBNetworkEquipmentId sets FabricBNetworkEquipmentId field to given value.
 
 
 

@@ -22,62 +22,62 @@ import (
 )
 
 
-// BGPTemplateAPIService BGPTemplateAPI service
-type BGPTemplateAPIService service
+// NetworkDeviceConfigurationTemplateAPIService NetworkDeviceConfigurationTemplateAPI service
+type NetworkDeviceConfigurationTemplateAPIService service
 
-type BGPTemplateAPICreateBgpTemplateRequest struct {
+type NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
-	ApiService *BGPTemplateAPIService
-	createBgpTemplate *CreateBgpTemplate
+	ApiService *NetworkDeviceConfigurationTemplateAPIService
+	createNetworkDeviceConfigurationTemplate *CreateNetworkDeviceConfigurationTemplate
 }
 
-// The BGP Template create object
-func (r BGPTemplateAPICreateBgpTemplateRequest) CreateBgpTemplate(createBgpTemplate CreateBgpTemplate) BGPTemplateAPICreateBgpTemplateRequest {
-	r.createBgpTemplate = &createBgpTemplate
+// The Network Device Configuration Template create object
+func (r NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest) CreateNetworkDeviceConfigurationTemplate(createNetworkDeviceConfigurationTemplate CreateNetworkDeviceConfigurationTemplate) NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest {
+	r.createNetworkDeviceConfigurationTemplate = &createNetworkDeviceConfigurationTemplate
 	return r
 }
 
-func (r BGPTemplateAPICreateBgpTemplateRequest) Execute() (*BgpTemplate, *http.Response, error) {
-	return r.ApiService.CreateBgpTemplateExecute(r)
+func (r NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest) Execute() (*NetworkDeviceConfigurationTemplate, *http.Response, error) {
+	return r.ApiService.CreateNetworkDeviceConfigurationTemplateExecute(r)
 }
 
 /*
-CreateBgpTemplate Creates a BGP Template
+CreateNetworkDeviceConfigurationTemplate Creates a Network Device Configuration Template
 
-Creates a BGP Template
+Creates a Network Device Configuration Template
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return BGPTemplateAPICreateBgpTemplateRequest
+ @return NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest
 */
-func (a *BGPTemplateAPIService) CreateBgpTemplate(ctx context.Context) BGPTemplateAPICreateBgpTemplateRequest {
-	return BGPTemplateAPICreateBgpTemplateRequest{
+func (a *NetworkDeviceConfigurationTemplateAPIService) CreateNetworkDeviceConfigurationTemplate(ctx context.Context) NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest {
+	return NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BgpTemplate
-func (a *BGPTemplateAPIService) CreateBgpTemplateExecute(r BGPTemplateAPICreateBgpTemplateRequest) (*BgpTemplate, *http.Response, error) {
+//  @return NetworkDeviceConfigurationTemplate
+func (a *NetworkDeviceConfigurationTemplateAPIService) CreateNetworkDeviceConfigurationTemplateExecute(r NetworkDeviceConfigurationTemplateAPICreateNetworkDeviceConfigurationTemplateRequest) (*NetworkDeviceConfigurationTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BgpTemplate
+		localVarReturnValue  *NetworkDeviceConfigurationTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPTemplateAPIService.CreateBgpTemplate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceConfigurationTemplateAPIService.CreateNetworkDeviceConfigurationTemplate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/bgp-templates"
+	localVarPath := localBasePath + "/api/v2/network-device-configuration-templates"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createBgpTemplate == nil {
-		return localVarReturnValue, nil, reportError("createBgpTemplate is required and must be specified")
+	if r.createNetworkDeviceConfigurationTemplate == nil {
+		return localVarReturnValue, nil, reportError("createNetworkDeviceConfigurationTemplate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (a *BGPTemplateAPIService) CreateBgpTemplateExecute(r BGPTemplateAPICreateB
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createBgpTemplate
+	localVarPostBody = r.createNetworkDeviceConfigurationTemplate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -136,48 +136,48 @@ func (a *BGPTemplateAPIService) CreateBgpTemplateExecute(r BGPTemplateAPICreateB
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type BGPTemplateAPIDeleteBgpTemplateRequest struct {
+type NetworkDeviceConfigurationTemplateAPIDeleteNetworkDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
-	ApiService *BGPTemplateAPIService
-	bgpTemplateId float32
+	ApiService *NetworkDeviceConfigurationTemplateAPIService
+	networkDeviceConfigurationTemplateId float32
 }
 
-func (r BGPTemplateAPIDeleteBgpTemplateRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteBgpTemplateExecute(r)
+func (r NetworkDeviceConfigurationTemplateAPIDeleteNetworkDeviceConfigurationTemplateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteNetworkDeviceConfigurationTemplateExecute(r)
 }
 
 /*
-DeleteBgpTemplate Deletes a BGP Template
+DeleteNetworkDeviceConfigurationTemplate Deletes a Network Device Configuration Template
 
-Deletes a BGP Template
+Deletes a Network Device Configuration Template
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bgpTemplateId
- @return BGPTemplateAPIDeleteBgpTemplateRequest
+ @param networkDeviceConfigurationTemplateId
+ @return NetworkDeviceConfigurationTemplateAPIDeleteNetworkDeviceConfigurationTemplateRequest
 */
-func (a *BGPTemplateAPIService) DeleteBgpTemplate(ctx context.Context, bgpTemplateId float32) BGPTemplateAPIDeleteBgpTemplateRequest {
-	return BGPTemplateAPIDeleteBgpTemplateRequest{
+func (a *NetworkDeviceConfigurationTemplateAPIService) DeleteNetworkDeviceConfigurationTemplate(ctx context.Context, networkDeviceConfigurationTemplateId float32) NetworkDeviceConfigurationTemplateAPIDeleteNetworkDeviceConfigurationTemplateRequest {
+	return NetworkDeviceConfigurationTemplateAPIDeleteNetworkDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
-		bgpTemplateId: bgpTemplateId,
+		networkDeviceConfigurationTemplateId: networkDeviceConfigurationTemplateId,
 	}
 }
 
 // Execute executes the request
-func (a *BGPTemplateAPIService) DeleteBgpTemplateExecute(r BGPTemplateAPIDeleteBgpTemplateRequest) (*http.Response, error) {
+func (a *NetworkDeviceConfigurationTemplateAPIService) DeleteNetworkDeviceConfigurationTemplateExecute(r NetworkDeviceConfigurationTemplateAPIDeleteNetworkDeviceConfigurationTemplateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPTemplateAPIService.DeleteBgpTemplate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceConfigurationTemplateAPIService.DeleteNetworkDeviceConfigurationTemplate")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/bgp-templates/{bgpTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"bgpTemplateId"+"}", url.PathEscape(parameterValueToString(r.bgpTemplateId, "bgpTemplateId")), -1)
+	localVarPath := localBasePath + "/api/v2/network-device-configuration-templates/{networkDeviceConfigurationTemplateId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceConfigurationTemplateId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceConfigurationTemplateId, "networkDeviceConfigurationTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -228,50 +228,50 @@ func (a *BGPTemplateAPIService) DeleteBgpTemplateExecute(r BGPTemplateAPIDeleteB
 	return localVarHTTPResponse, nil
 }
 
-type BGPTemplateAPIGetBgpTemplateRequest struct {
+type NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
-	ApiService *BGPTemplateAPIService
-	bgpTemplateId float32
+	ApiService *NetworkDeviceConfigurationTemplateAPIService
+	networkDeviceConfigurationTemplateId float32
 }
 
-func (r BGPTemplateAPIGetBgpTemplateRequest) Execute() (*BgpTemplate, *http.Response, error) {
-	return r.ApiService.GetBgpTemplateExecute(r)
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplateRequest) Execute() (*NetworkDeviceConfigurationTemplate, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceConfigurationTemplateExecute(r)
 }
 
 /*
-GetBgpTemplate Get BGP Template information
+GetNetworkDeviceConfigurationTemplate Get Network Device Configuration Template information
 
-Returns BGP Template information
+Returns Network Device Configuration Template information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bgpTemplateId
- @return BGPTemplateAPIGetBgpTemplateRequest
+ @param networkDeviceConfigurationTemplateId
+ @return NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplateRequest
 */
-func (a *BGPTemplateAPIService) GetBgpTemplate(ctx context.Context, bgpTemplateId float32) BGPTemplateAPIGetBgpTemplateRequest {
-	return BGPTemplateAPIGetBgpTemplateRequest{
+func (a *NetworkDeviceConfigurationTemplateAPIService) GetNetworkDeviceConfigurationTemplate(ctx context.Context, networkDeviceConfigurationTemplateId float32) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplateRequest {
+	return NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
-		bgpTemplateId: bgpTemplateId,
+		networkDeviceConfigurationTemplateId: networkDeviceConfigurationTemplateId,
 	}
 }
 
 // Execute executes the request
-//  @return BgpTemplate
-func (a *BGPTemplateAPIService) GetBgpTemplateExecute(r BGPTemplateAPIGetBgpTemplateRequest) (*BgpTemplate, *http.Response, error) {
+//  @return NetworkDeviceConfigurationTemplate
+func (a *NetworkDeviceConfigurationTemplateAPIService) GetNetworkDeviceConfigurationTemplateExecute(r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplateRequest) (*NetworkDeviceConfigurationTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BgpTemplate
+		localVarReturnValue  *NetworkDeviceConfigurationTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPTemplateAPIService.GetBgpTemplate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceConfigurationTemplateAPIService.GetNetworkDeviceConfigurationTemplate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/bgp-templates/{bgpTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"bgpTemplateId"+"}", url.PathEscape(parameterValueToString(r.bgpTemplateId, "bgpTemplateId")), -1)
+	localVarPath := localBasePath + "/api/v2/network-device-configuration-templates/{networkDeviceConfigurationTemplateId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceConfigurationTemplateId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceConfigurationTemplateId, "networkDeviceConfigurationTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -331,9 +331,9 @@ func (a *BGPTemplateAPIService) GetBgpTemplateExecute(r BGPTemplateAPIGetBgpTemp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type BGPTemplateAPIGetBgpTemplatesRequest struct {
+type NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest struct {
 	ctx context.Context
-	ApiService *BGPTemplateAPIService
+	ApiService *NetworkDeviceConfigurationTemplateAPIService
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -351,131 +351,131 @@ type BGPTemplateAPIGetBgpTemplatesRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
-func (r BGPTemplateAPIGetBgpTemplatesRequest) Page(page float32) BGPTemplateAPIGetBgpTemplatesRequest {
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) Page(page float32) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
-func (r BGPTemplateAPIGetBgpTemplatesRequest) Limit(limit float32) BGPTemplateAPIGetBgpTemplatesRequest {
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) Limit(limit float32) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterId(filterId []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterId(filterId []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by networkType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.networkType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.networkType&#x3D;$not:$like:John Doe&amp;filter.networkType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterNetworkType(filterNetworkType []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by networkType query param.  **Format:** filter.networkType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkType&#x3D;$eq:John Doe&amp;filter.networkType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterNetworkType(filterNetworkType []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterNetworkType = &filterNetworkType
 	return r
 }
 
-// Filter by networkDeviceDriver query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.networkDeviceDriver&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.networkDeviceDriver&#x3D;$not:$like:John Doe&amp;filter.networkDeviceDriver&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterNetworkDeviceDriver(filterNetworkDeviceDriver []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by networkDeviceDriver query param.  **Format:** filter.networkDeviceDriver&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkDeviceDriver&#x3D;$eq:John Doe&amp;filter.networkDeviceDriver&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterNetworkDeviceDriver(filterNetworkDeviceDriver []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterNetworkDeviceDriver = &filterNetworkDeviceDriver
 	return r
 }
 
-// Filter by networkDevicePosition query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.networkDevicePosition&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.networkDevicePosition&#x3D;$not:$like:John Doe&amp;filter.networkDevicePosition&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterNetworkDevicePosition(filterNetworkDevicePosition []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by networkDevicePosition query param.  **Format:** filter.networkDevicePosition&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkDevicePosition&#x3D;$eq:John Doe&amp;filter.networkDevicePosition&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterNetworkDevicePosition(filterNetworkDevicePosition []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterNetworkDevicePosition = &filterNetworkDevicePosition
 	return r
 }
 
-// Filter by remoteNetworkDevicePosition query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.remoteNetworkDevicePosition&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.remoteNetworkDevicePosition&#x3D;$not:$like:John Doe&amp;filter.remoteNetworkDevicePosition&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterRemoteNetworkDevicePosition(filterRemoteNetworkDevicePosition []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by remoteNetworkDevicePosition query param.  **Format:** filter.remoteNetworkDevicePosition&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.remoteNetworkDevicePosition&#x3D;$eq:John Doe&amp;filter.remoteNetworkDevicePosition&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterRemoteNetworkDevicePosition(filterRemoteNetworkDevicePosition []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterRemoteNetworkDevicePosition = &filterRemoteNetworkDevicePosition
 	return r
 }
 
-// Filter by mlagPair query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.mlagPair&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.mlagPair&#x3D;$not:$like:John Doe&amp;filter.mlagPair&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterMlagPair(filterMlagPair []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by mlagPair query param.  **Format:** filter.mlagPair&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.mlagPair&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterMlagPair(filterMlagPair []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterMlagPair = &filterMlagPair
 	return r
 }
 
-// Filter by bgpNumbering query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.bgpNumbering&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.bgpNumbering&#x3D;$not:$like:John Doe&amp;filter.bgpNumbering&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterBgpNumbering(filterBgpNumbering []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by bgpNumbering query param.  **Format:** filter.bgpNumbering&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.bgpNumbering&#x3D;$eq:John Doe&amp;filter.bgpNumbering&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterBgpNumbering(filterBgpNumbering []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterBgpNumbering = &filterBgpNumbering
 	return r
 }
 
-// Filter by bgpLinkConfiguration query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.bgpLinkConfiguration&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.bgpLinkConfiguration&#x3D;$not:$like:John Doe&amp;filter.bgpLinkConfiguration&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterBgpLinkConfiguration(filterBgpLinkConfiguration []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by bgpLinkConfiguration query param.  **Format:** filter.bgpLinkConfiguration&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.bgpLinkConfiguration&#x3D;$eq:John Doe&amp;filter.bgpLinkConfiguration&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterBgpLinkConfiguration(filterBgpLinkConfiguration []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterBgpLinkConfiguration = &filterBgpLinkConfiguration
 	return r
 }
 
-// Filter by executionType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.executionType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.executionType&#x3D;$not:$like:John Doe&amp;filter.executionType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterExecutionType(filterExecutionType []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by executionType query param.  **Format:** filter.executionType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.executionType&#x3D;$eq:John Doe&amp;filter.executionType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterExecutionType(filterExecutionType []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterExecutionType = &filterExecutionType
 	return r
 }
 
-// Filter by libraryLabel query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.libraryLabel&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.libraryLabel&#x3D;$not:$like:John Doe&amp;filter.libraryLabel&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
-func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterLibraryLabel(filterLibraryLabel []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Filter by libraryLabel query param.  **Format:** filter.libraryLabel&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.libraryLabel&#x3D;$eq:John Doe&amp;filter.libraryLabel&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) FilterLibraryLabel(filterLibraryLabel []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.filterLibraryLabel = &filterLibraryLabel
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;networkType&lt;/li&gt; &lt;li&gt;networkDeviceDriver&lt;/li&gt; &lt;li&gt;networkDevicePosition&lt;/li&gt; &lt;li&gt;remoteNetworkDevicePosition&lt;/li&gt; &lt;li&gt;mlagPair&lt;/li&gt; &lt;li&gt;bgpNumbering&lt;/li&gt; &lt;li&gt;bgpLinkConfiguration&lt;/li&gt; &lt;li&gt;executionType&lt;/li&gt; &lt;li&gt;libraryLabel&lt;/li&gt;&lt;/ul&gt;       
-func (r BGPTemplateAPIGetBgpTemplatesRequest) SortBy(sortBy []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;networkType:DESC   **Default Value:** id:DESC  **Available Fields** - id  - networkType  - networkDeviceDriver  - networkDevicePosition  - remoteNetworkDevicePosition  - mlagPair  - bgpNumbering  - bgpLinkConfiguration  - executionType  - libraryLabel 
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) SortBy(sortBy []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
-func (r BGPTemplateAPIGetBgpTemplatesRequest) Search(search string) BGPTemplateAPIGetBgpTemplatesRequest {
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) Search(search string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,networkType,networkDeviceDriver,networkDevicePosition,remoteNetworkDevicePosition           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;networkType&lt;/li&gt; &lt;li&gt;networkDeviceDriver&lt;/li&gt; &lt;li&gt;networkDevicePosition&lt;/li&gt; &lt;li&gt;remoteNetworkDevicePosition&lt;/li&gt; &lt;li&gt;mlagPair&lt;/li&gt; &lt;li&gt;bgpNumbering&lt;/li&gt; &lt;li&gt;bgpLinkConfiguration&lt;/li&gt; &lt;li&gt;executionType&lt;/li&gt; &lt;li&gt;libraryLabel&lt;/li&gt;&lt;/ul&gt;         
-func (r BGPTemplateAPIGetBgpTemplatesRequest) SearchBy(searchBy []string) BGPTemplateAPIGetBgpTemplatesRequest {
+// List of fields to search by term to filter result values  **Example:** id,networkType,networkDeviceDriver,networkDevicePosition,remoteNetworkDevicePosition   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - networkType  - networkDeviceDriver  - networkDevicePosition  - remoteNetworkDevicePosition  - mlagPair  - bgpNumbering  - bgpLinkConfiguration  - executionType  - libraryLabel 
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) SearchBy(searchBy []string) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r BGPTemplateAPIGetBgpTemplatesRequest) Execute() (*BgpTemplatePaginatedList, *http.Response, error) {
-	return r.ApiService.GetBgpTemplatesExecute(r)
+func (r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) Execute() (*NetworkDeviceConfigurationTemplatePaginatedList, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceConfigurationTemplatesExecute(r)
 }
 
 /*
-GetBgpTemplates Get all BGP Templates
+GetNetworkDeviceConfigurationTemplates Get all Network Device Configuration Templates
 
-Returns list of all BGP Templates
+Returns list of all Network Device Configuration Templates
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return BGPTemplateAPIGetBgpTemplatesRequest
+ @return NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest
 */
-func (a *BGPTemplateAPIService) GetBgpTemplates(ctx context.Context) BGPTemplateAPIGetBgpTemplatesRequest {
-	return BGPTemplateAPIGetBgpTemplatesRequest{
+func (a *NetworkDeviceConfigurationTemplateAPIService) GetNetworkDeviceConfigurationTemplates(ctx context.Context) NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest {
+	return NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BgpTemplatePaginatedList
-func (a *BGPTemplateAPIService) GetBgpTemplatesExecute(r BGPTemplateAPIGetBgpTemplatesRequest) (*BgpTemplatePaginatedList, *http.Response, error) {
+//  @return NetworkDeviceConfigurationTemplatePaginatedList
+func (a *NetworkDeviceConfigurationTemplateAPIService) GetNetworkDeviceConfigurationTemplatesExecute(r NetworkDeviceConfigurationTemplateAPIGetNetworkDeviceConfigurationTemplatesRequest) (*NetworkDeviceConfigurationTemplatePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BgpTemplatePaginatedList
+		localVarReturnValue  *NetworkDeviceConfigurationTemplatePaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPTemplateAPIService.GetBgpTemplates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceConfigurationTemplateAPIService.GetNetworkDeviceConfigurationTemplates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/bgp-templates"
+	localVarPath := localBasePath + "/api/v2/network-device-configuration-templates"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -676,63 +676,63 @@ func (a *BGPTemplateAPIService) GetBgpTemplatesExecute(r BGPTemplateAPIGetBgpTem
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type BGPTemplateAPIUpdateBgpTemplateRequest struct {
+type NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
-	ApiService *BGPTemplateAPIService
-	bgpTemplateId float32
-	updateBgpTemplate *UpdateBgpTemplate
+	ApiService *NetworkDeviceConfigurationTemplateAPIService
+	networkDeviceConfigurationTemplateId float32
+	updateNetworkDeviceConfigurationTemplate *UpdateNetworkDeviceConfigurationTemplate
 }
 
-// The BGP Template update object
-func (r BGPTemplateAPIUpdateBgpTemplateRequest) UpdateBgpTemplate(updateBgpTemplate UpdateBgpTemplate) BGPTemplateAPIUpdateBgpTemplateRequest {
-	r.updateBgpTemplate = &updateBgpTemplate
+// The Network Device Configuration Template update object
+func (r NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest) UpdateNetworkDeviceConfigurationTemplate(updateNetworkDeviceConfigurationTemplate UpdateNetworkDeviceConfigurationTemplate) NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest {
+	r.updateNetworkDeviceConfigurationTemplate = &updateNetworkDeviceConfigurationTemplate
 	return r
 }
 
-func (r BGPTemplateAPIUpdateBgpTemplateRequest) Execute() (*BgpTemplate, *http.Response, error) {
-	return r.ApiService.UpdateBgpTemplateExecute(r)
+func (r NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest) Execute() (*NetworkDeviceConfigurationTemplate, *http.Response, error) {
+	return r.ApiService.UpdateNetworkDeviceConfigurationTemplateExecute(r)
 }
 
 /*
-UpdateBgpTemplate Updates BGP Template information
+UpdateNetworkDeviceConfigurationTemplate Updates Network Device Configuration Template information
 
-Updates BGP Template information
+Updates Network Device Configuration Template information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bgpTemplateId
- @return BGPTemplateAPIUpdateBgpTemplateRequest
+ @param networkDeviceConfigurationTemplateId
+ @return NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest
 */
-func (a *BGPTemplateAPIService) UpdateBgpTemplate(ctx context.Context, bgpTemplateId float32) BGPTemplateAPIUpdateBgpTemplateRequest {
-	return BGPTemplateAPIUpdateBgpTemplateRequest{
+func (a *NetworkDeviceConfigurationTemplateAPIService) UpdateNetworkDeviceConfigurationTemplate(ctx context.Context, networkDeviceConfigurationTemplateId float32) NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest {
+	return NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
-		bgpTemplateId: bgpTemplateId,
+		networkDeviceConfigurationTemplateId: networkDeviceConfigurationTemplateId,
 	}
 }
 
 // Execute executes the request
-//  @return BgpTemplate
-func (a *BGPTemplateAPIService) UpdateBgpTemplateExecute(r BGPTemplateAPIUpdateBgpTemplateRequest) (*BgpTemplate, *http.Response, error) {
+//  @return NetworkDeviceConfigurationTemplate
+func (a *NetworkDeviceConfigurationTemplateAPIService) UpdateNetworkDeviceConfigurationTemplateExecute(r NetworkDeviceConfigurationTemplateAPIUpdateNetworkDeviceConfigurationTemplateRequest) (*NetworkDeviceConfigurationTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BgpTemplate
+		localVarReturnValue  *NetworkDeviceConfigurationTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BGPTemplateAPIService.UpdateBgpTemplate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceConfigurationTemplateAPIService.UpdateNetworkDeviceConfigurationTemplate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/bgp-templates/{bgpTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"bgpTemplateId"+"}", url.PathEscape(parameterValueToString(r.bgpTemplateId, "bgpTemplateId")), -1)
+	localVarPath := localBasePath + "/api/v2/network-device-configuration-templates/{networkDeviceConfigurationTemplateId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceConfigurationTemplateId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceConfigurationTemplateId, "networkDeviceConfigurationTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateBgpTemplate == nil {
-		return localVarReturnValue, nil, reportError("updateBgpTemplate is required and must be specified")
+	if r.updateNetworkDeviceConfigurationTemplate == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkDeviceConfigurationTemplate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -753,7 +753,7 @@ func (a *BGPTemplateAPIService) UpdateBgpTemplateExecute(r BGPTemplateAPIUpdateB
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateBgpTemplate
+	localVarPostBody = r.updateNetworkDeviceConfigurationTemplate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

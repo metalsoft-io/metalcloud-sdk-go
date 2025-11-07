@@ -71,6 +71,8 @@ type ServerInterface struct {
 	RedundancyGroupIndex *float32 `json:"redundancyGroupIndex,omitempty"`
 	// The LLDP information of the server interface.
 	LldpInfo *string `json:"lldpInfo,omitempty"`
+	// The link network technology of the server interface.
+	LinkNetworkTechnology *string `json:"linkNetworkTechnology,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -853,6 +855,38 @@ func (o *ServerInterface) SetLldpInfo(v string) {
 	o.LldpInfo = &v
 }
 
+// GetLinkNetworkTechnology returns the LinkNetworkTechnology field value if set, zero value otherwise.
+func (o *ServerInterface) GetLinkNetworkTechnology() string {
+	if o == nil || IsNil(o.LinkNetworkTechnology) {
+		var ret string
+		return ret
+	}
+	return *o.LinkNetworkTechnology
+}
+
+// GetLinkNetworkTechnologyOk returns a tuple with the LinkNetworkTechnology field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetLinkNetworkTechnologyOk() (*string, bool) {
+	if o == nil || IsNil(o.LinkNetworkTechnology) {
+		return nil, false
+	}
+	return o.LinkNetworkTechnology, true
+}
+
+// HasLinkNetworkTechnology returns a boolean if a field has been set.
+func (o *ServerInterface) HasLinkNetworkTechnology() bool {
+	if o != nil && !IsNil(o.LinkNetworkTechnology) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkNetworkTechnology gets a reference to the given string and assigns it to the LinkNetworkTechnology field.
+func (o *ServerInterface) SetLinkNetworkTechnology(v string) {
+	o.LinkNetworkTechnology = &v
+}
+
 func (o ServerInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -925,6 +959,9 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LldpInfo) {
 		toSerialize["lldpInfo"] = o.LldpInfo
+	}
+	if !IsNil(o.LinkNetworkTechnology) {
+		toSerialize["linkNetworkTechnology"] = o.LinkNetworkTechnology
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -999,6 +1036,7 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "defaultFabricId")
 		delete(additionalProperties, "redundancyGroupIndex")
 		delete(additionalProperties, "lldpInfo")
+		delete(additionalProperties, "linkNetworkTechnology")
 		o.AdditionalProperties = additionalProperties
 	}
 

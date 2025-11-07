@@ -56,8 +56,6 @@ type APIClient struct {
 
 	AuthenticationAPI *AuthenticationAPIService
 
-	BGPTemplateAPI *BGPTemplateAPIService
-
 	BucketAPI *BucketAPIService
 
 	ConfigurationAPI *ConfigurationAPIService
@@ -107,6 +105,8 @@ type APIClient struct {
 	LogicalNetworkProfileAPI *LogicalNetworkProfileAPIService
 
 	NetworkDeviceAPI *NetworkDeviceAPIService
+
+	NetworkDeviceConfigurationTemplateAPI *NetworkDeviceConfigurationTemplateAPIService
 
 	NetworkDeviceControllerAPI *NetworkDeviceControllerAPIService
 
@@ -190,7 +190,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AIAPI = (*AIAPIService)(&c.common)
 	c.AccountAPI = (*AccountAPIService)(&c.common)
 	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
-	c.BGPTemplateAPI = (*BGPTemplateAPIService)(&c.common)
 	c.BucketAPI = (*BucketAPIService)(&c.common)
 	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
@@ -216,6 +215,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogicalNetworkAPI = (*LogicalNetworkAPIService)(&c.common)
 	c.LogicalNetworkProfileAPI = (*LogicalNetworkProfileAPIService)(&c.common)
 	c.NetworkDeviceAPI = (*NetworkDeviceAPIService)(&c.common)
+	c.NetworkDeviceConfigurationTemplateAPI = (*NetworkDeviceConfigurationTemplateAPIService)(&c.common)
 	c.NetworkDeviceControllerAPI = (*NetworkDeviceControllerAPIService)(&c.common)
 	c.NetworkDeviceDefaultSecretsAPI = (*NetworkDeviceDefaultSecretsAPIService)(&c.common)
 	c.NetworkEndpointGroupAPI = (*NetworkEndpointGroupAPIService)(&c.common)

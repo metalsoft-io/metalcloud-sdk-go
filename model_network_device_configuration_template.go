@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the BgpTemplate type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BgpTemplate{}
+// checks if the NetworkDeviceConfigurationTemplate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkDeviceConfigurationTemplate{}
 
-// BgpTemplate struct for BgpTemplate
-type BgpTemplate struct {
+// NetworkDeviceConfigurationTemplate struct for NetworkDeviceConfigurationTemplate
+type NetworkDeviceConfigurationTemplate struct {
 	// Network type
 	NetworkType string `json:"networkType"`
 	// Network device driver
@@ -38,7 +38,7 @@ type BgpTemplate struct {
 	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
 	// Execution type
 	ExecutionType string `json:"executionType"`
-	// Library label for the BGP template
+	// Library label for the Network Device Configuration Template
 	LibraryLabel string `json:"libraryLabel"`
 	// Preparation commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1
 	Preparation *string `json:"preparation,omitempty"`
@@ -50,19 +50,19 @@ type BgpTemplate struct {
 	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
-	// BGP Template Id
+	// Network Device Configuration Template Id
 	Id float32 `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BgpTemplate BgpTemplate
+type _NetworkDeviceConfigurationTemplate NetworkDeviceConfigurationTemplate
 
-// NewBgpTemplate instantiates a new BgpTemplate object
+// NewNetworkDeviceConfigurationTemplate instantiates a new NetworkDeviceConfigurationTemplate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32) *BgpTemplate {
-	this := BgpTemplate{}
+func NewNetworkDeviceConfigurationTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32) *NetworkDeviceConfigurationTemplate {
+	this := NetworkDeviceConfigurationTemplate{}
 	this.NetworkType = networkType
 	this.NetworkDeviceDriver = networkDeviceDriver
 	this.NetworkDevicePosition = networkDevicePosition
@@ -79,16 +79,16 @@ func NewBgpTemplate(networkType string, networkDeviceDriver string, networkDevic
 	return &this
 }
 
-// NewBgpTemplateWithDefaults instantiates a new BgpTemplate object
+// NewNetworkDeviceConfigurationTemplateWithDefaults instantiates a new NetworkDeviceConfigurationTemplate object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBgpTemplateWithDefaults() *BgpTemplate {
-	this := BgpTemplate{}
+func NewNetworkDeviceConfigurationTemplateWithDefaults() *NetworkDeviceConfigurationTemplate {
+	this := NetworkDeviceConfigurationTemplate{}
 	return &this
 }
 
 // GetNetworkType returns the NetworkType field value
-func (o *BgpTemplate) GetNetworkType() string {
+func (o *NetworkDeviceConfigurationTemplate) GetNetworkType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -99,7 +99,7 @@ func (o *BgpTemplate) GetNetworkType() string {
 
 // GetNetworkTypeOk returns a tuple with the NetworkType field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetNetworkTypeOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetNetworkTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -107,12 +107,12 @@ func (o *BgpTemplate) GetNetworkTypeOk() (*string, bool) {
 }
 
 // SetNetworkType sets field value
-func (o *BgpTemplate) SetNetworkType(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetNetworkType(v string) {
 	o.NetworkType = v
 }
 
 // GetNetworkDeviceDriver returns the NetworkDeviceDriver field value
-func (o *BgpTemplate) GetNetworkDeviceDriver() string {
+func (o *NetworkDeviceConfigurationTemplate) GetNetworkDeviceDriver() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -123,7 +123,7 @@ func (o *BgpTemplate) GetNetworkDeviceDriver() string {
 
 // GetNetworkDeviceDriverOk returns a tuple with the NetworkDeviceDriver field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetNetworkDeviceDriverOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetNetworkDeviceDriverOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -131,12 +131,12 @@ func (o *BgpTemplate) GetNetworkDeviceDriverOk() (*string, bool) {
 }
 
 // SetNetworkDeviceDriver sets field value
-func (o *BgpTemplate) SetNetworkDeviceDriver(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetNetworkDeviceDriver(v string) {
 	o.NetworkDeviceDriver = v
 }
 
 // GetNetworkDevicePosition returns the NetworkDevicePosition field value
-func (o *BgpTemplate) GetNetworkDevicePosition() string {
+func (o *NetworkDeviceConfigurationTemplate) GetNetworkDevicePosition() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -147,7 +147,7 @@ func (o *BgpTemplate) GetNetworkDevicePosition() string {
 
 // GetNetworkDevicePositionOk returns a tuple with the NetworkDevicePosition field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetNetworkDevicePositionOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetNetworkDevicePositionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,12 +155,12 @@ func (o *BgpTemplate) GetNetworkDevicePositionOk() (*string, bool) {
 }
 
 // SetNetworkDevicePosition sets field value
-func (o *BgpTemplate) SetNetworkDevicePosition(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetNetworkDevicePosition(v string) {
 	o.NetworkDevicePosition = v
 }
 
 // GetRemoteNetworkDevicePosition returns the RemoteNetworkDevicePosition field value
-func (o *BgpTemplate) GetRemoteNetworkDevicePosition() string {
+func (o *NetworkDeviceConfigurationTemplate) GetRemoteNetworkDevicePosition() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -171,7 +171,7 @@ func (o *BgpTemplate) GetRemoteNetworkDevicePosition() string {
 
 // GetRemoteNetworkDevicePositionOk returns a tuple with the RemoteNetworkDevicePosition field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetRemoteNetworkDevicePositionOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetRemoteNetworkDevicePositionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,12 +179,12 @@ func (o *BgpTemplate) GetRemoteNetworkDevicePositionOk() (*string, bool) {
 }
 
 // SetRemoteNetworkDevicePosition sets field value
-func (o *BgpTemplate) SetRemoteNetworkDevicePosition(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetRemoteNetworkDevicePosition(v string) {
 	o.RemoteNetworkDevicePosition = v
 }
 
 // GetMlagPair returns the MlagPair field value
-func (o *BgpTemplate) GetMlagPair() float32 {
+func (o *NetworkDeviceConfigurationTemplate) GetMlagPair() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -195,7 +195,7 @@ func (o *BgpTemplate) GetMlagPair() float32 {
 
 // GetMlagPairOk returns a tuple with the MlagPair field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetMlagPairOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetMlagPairOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -203,12 +203,12 @@ func (o *BgpTemplate) GetMlagPairOk() (*float32, bool) {
 }
 
 // SetMlagPair sets field value
-func (o *BgpTemplate) SetMlagPair(v float32) {
+func (o *NetworkDeviceConfigurationTemplate) SetMlagPair(v float32) {
 	o.MlagPair = v
 }
 
 // GetBgpNumbering returns the BgpNumbering field value
-func (o *BgpTemplate) GetBgpNumbering() string {
+func (o *NetworkDeviceConfigurationTemplate) GetBgpNumbering() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -219,7 +219,7 @@ func (o *BgpTemplate) GetBgpNumbering() string {
 
 // GetBgpNumberingOk returns a tuple with the BgpNumbering field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetBgpNumberingOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetBgpNumberingOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -227,12 +227,12 @@ func (o *BgpTemplate) GetBgpNumberingOk() (*string, bool) {
 }
 
 // SetBgpNumbering sets field value
-func (o *BgpTemplate) SetBgpNumbering(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetBgpNumbering(v string) {
 	o.BgpNumbering = v
 }
 
 // GetBgpLinkConfiguration returns the BgpLinkConfiguration field value
-func (o *BgpTemplate) GetBgpLinkConfiguration() string {
+func (o *NetworkDeviceConfigurationTemplate) GetBgpLinkConfiguration() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -243,7 +243,7 @@ func (o *BgpTemplate) GetBgpLinkConfiguration() string {
 
 // GetBgpLinkConfigurationOk returns a tuple with the BgpLinkConfiguration field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetBgpLinkConfigurationOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetBgpLinkConfigurationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -251,12 +251,12 @@ func (o *BgpTemplate) GetBgpLinkConfigurationOk() (*string, bool) {
 }
 
 // SetBgpLinkConfiguration sets field value
-func (o *BgpTemplate) SetBgpLinkConfiguration(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetBgpLinkConfiguration(v string) {
 	o.BgpLinkConfiguration = v
 }
 
 // GetExecutionType returns the ExecutionType field value
-func (o *BgpTemplate) GetExecutionType() string {
+func (o *NetworkDeviceConfigurationTemplate) GetExecutionType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -267,7 +267,7 @@ func (o *BgpTemplate) GetExecutionType() string {
 
 // GetExecutionTypeOk returns a tuple with the ExecutionType field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetExecutionTypeOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetExecutionTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -275,12 +275,12 @@ func (o *BgpTemplate) GetExecutionTypeOk() (*string, bool) {
 }
 
 // SetExecutionType sets field value
-func (o *BgpTemplate) SetExecutionType(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetExecutionType(v string) {
 	o.ExecutionType = v
 }
 
 // GetLibraryLabel returns the LibraryLabel field value
-func (o *BgpTemplate) GetLibraryLabel() string {
+func (o *NetworkDeviceConfigurationTemplate) GetLibraryLabel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -291,7 +291,7 @@ func (o *BgpTemplate) GetLibraryLabel() string {
 
 // GetLibraryLabelOk returns a tuple with the LibraryLabel field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetLibraryLabelOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetLibraryLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -299,12 +299,12 @@ func (o *BgpTemplate) GetLibraryLabelOk() (*string, bool) {
 }
 
 // SetLibraryLabel sets field value
-func (o *BgpTemplate) SetLibraryLabel(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetLibraryLabel(v string) {
 	o.LibraryLabel = v
 }
 
 // GetPreparation returns the Preparation field value if set, zero value otherwise.
-func (o *BgpTemplate) GetPreparation() string {
+func (o *NetworkDeviceConfigurationTemplate) GetPreparation() string {
 	if o == nil || IsNil(o.Preparation) {
 		var ret string
 		return ret
@@ -314,7 +314,7 @@ func (o *BgpTemplate) GetPreparation() string {
 
 // GetPreparationOk returns a tuple with the Preparation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetPreparationOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetPreparationOk() (*string, bool) {
 	if o == nil || IsNil(o.Preparation) {
 		return nil, false
 	}
@@ -322,7 +322,7 @@ func (o *BgpTemplate) GetPreparationOk() (*string, bool) {
 }
 
 // HasPreparation returns a boolean if a field has been set.
-func (o *BgpTemplate) HasPreparation() bool {
+func (o *NetworkDeviceConfigurationTemplate) HasPreparation() bool {
 	if o != nil && !IsNil(o.Preparation) {
 		return true
 	}
@@ -331,12 +331,12 @@ func (o *BgpTemplate) HasPreparation() bool {
 }
 
 // SetPreparation gets a reference to the given string and assigns it to the Preparation field.
-func (o *BgpTemplate) SetPreparation(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetPreparation(v string) {
 	o.Preparation = &v
 }
 
 // GetConfiguration returns the Configuration field value
-func (o *BgpTemplate) GetConfiguration() string {
+func (o *NetworkDeviceConfigurationTemplate) GetConfiguration() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -347,7 +347,7 @@ func (o *BgpTemplate) GetConfiguration() string {
 
 // GetConfigurationOk returns a tuple with the Configuration field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetConfigurationOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetConfigurationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -355,12 +355,12 @@ func (o *BgpTemplate) GetConfigurationOk() (*string, bool) {
 }
 
 // SetConfiguration sets field value
-func (o *BgpTemplate) SetConfiguration(v string) {
+func (o *NetworkDeviceConfigurationTemplate) SetConfiguration(v string) {
 	o.Configuration = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *BgpTemplate) GetCreatedTimestamp() time.Time {
+func (o *NetworkDeviceConfigurationTemplate) GetCreatedTimestamp() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -371,7 +371,7 @@ func (o *BgpTemplate) GetCreatedTimestamp() time.Time {
 
 // GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetCreatedTimestampOk() (*time.Time, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetCreatedTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -379,12 +379,12 @@ func (o *BgpTemplate) GetCreatedTimestampOk() (*time.Time, bool) {
 }
 
 // SetCreatedTimestamp sets field value
-func (o *BgpTemplate) SetCreatedTimestamp(v time.Time) {
+func (o *NetworkDeviceConfigurationTemplate) SetCreatedTimestamp(v time.Time) {
 	o.CreatedTimestamp = v
 }
 
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
-func (o *BgpTemplate) GetUpdatedTimestamp() time.Time {
+func (o *NetworkDeviceConfigurationTemplate) GetUpdatedTimestamp() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -395,7 +395,7 @@ func (o *BgpTemplate) GetUpdatedTimestamp() time.Time {
 
 // GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetUpdatedTimestampOk() (*time.Time, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetUpdatedTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -403,12 +403,12 @@ func (o *BgpTemplate) GetUpdatedTimestampOk() (*time.Time, bool) {
 }
 
 // SetUpdatedTimestamp sets field value
-func (o *BgpTemplate) SetUpdatedTimestamp(v time.Time) {
+func (o *NetworkDeviceConfigurationTemplate) SetUpdatedTimestamp(v time.Time) {
 	o.UpdatedTimestamp = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *BgpTemplate) GetLinks() []Link {
+func (o *NetworkDeviceConfigurationTemplate) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
@@ -418,7 +418,7 @@ func (o *BgpTemplate) GetLinks() []Link {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetLinksOk() ([]Link, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetLinksOk() ([]Link, bool) {
 	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
@@ -426,7 +426,7 @@ func (o *BgpTemplate) GetLinksOk() ([]Link, bool) {
 }
 
 // HasLinks returns a boolean if a field has been set.
-func (o *BgpTemplate) HasLinks() bool {
+func (o *NetworkDeviceConfigurationTemplate) HasLinks() bool {
 	if o != nil && !IsNil(o.Links) {
 		return true
 	}
@@ -435,12 +435,12 @@ func (o *BgpTemplate) HasLinks() bool {
 }
 
 // SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *BgpTemplate) SetLinks(v []Link) {
+func (o *NetworkDeviceConfigurationTemplate) SetLinks(v []Link) {
 	o.Links = v
 }
 
 // GetId returns the Id field value
-func (o *BgpTemplate) GetId() float32 {
+func (o *NetworkDeviceConfigurationTemplate) GetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -451,7 +451,7 @@ func (o *BgpTemplate) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplate) GetIdOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplate) GetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -459,11 +459,11 @@ func (o *BgpTemplate) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *BgpTemplate) SetId(v float32) {
+func (o *NetworkDeviceConfigurationTemplate) SetId(v float32) {
 	o.Id = v
 }
 
-func (o BgpTemplate) MarshalJSON() ([]byte, error) {
+func (o NetworkDeviceConfigurationTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -471,7 +471,7 @@ func (o BgpTemplate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BgpTemplate) ToMap() (map[string]interface{}, error) {
+func (o NetworkDeviceConfigurationTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["networkType"] = o.NetworkType
 	toSerialize["networkDeviceDriver"] = o.NetworkDeviceDriver
@@ -500,7 +500,7 @@ func (o BgpTemplate) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BgpTemplate) UnmarshalJSON(data []byte) (err error) {
+func (o *NetworkDeviceConfigurationTemplate) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -534,15 +534,15 @@ func (o *BgpTemplate) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varBgpTemplate := _BgpTemplate{}
+	varNetworkDeviceConfigurationTemplate := _NetworkDeviceConfigurationTemplate{}
 
-	err = json.Unmarshal(data, &varBgpTemplate)
+	err = json.Unmarshal(data, &varNetworkDeviceConfigurationTemplate)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BgpTemplate(varBgpTemplate)
+	*o = NetworkDeviceConfigurationTemplate(varNetworkDeviceConfigurationTemplate)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -568,38 +568,38 @@ func (o *BgpTemplate) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableBgpTemplate struct {
-	value *BgpTemplate
+type NullableNetworkDeviceConfigurationTemplate struct {
+	value *NetworkDeviceConfigurationTemplate
 	isSet bool
 }
 
-func (v NullableBgpTemplate) Get() *BgpTemplate {
+func (v NullableNetworkDeviceConfigurationTemplate) Get() *NetworkDeviceConfigurationTemplate {
 	return v.value
 }
 
-func (v *NullableBgpTemplate) Set(val *BgpTemplate) {
+func (v *NullableNetworkDeviceConfigurationTemplate) Set(val *NetworkDeviceConfigurationTemplate) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBgpTemplate) IsSet() bool {
+func (v NullableNetworkDeviceConfigurationTemplate) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBgpTemplate) Unset() {
+func (v *NullableNetworkDeviceConfigurationTemplate) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBgpTemplate(val *BgpTemplate) *NullableBgpTemplate {
-	return &NullableBgpTemplate{value: val, isSet: true}
+func NewNullableNetworkDeviceConfigurationTemplate(val *NetworkDeviceConfigurationTemplate) *NullableNetworkDeviceConfigurationTemplate {
+	return &NullableNetworkDeviceConfigurationTemplate{value: val, isSet: true}
 }
 
-func (v NullableBgpTemplate) MarshalJSON() ([]byte, error) {
+func (v NullableNetworkDeviceConfigurationTemplate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBgpTemplate) UnmarshalJSON(src []byte) error {
+func (v *NullableNetworkDeviceConfigurationTemplate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -356,67 +356,67 @@ type SubnetAPIGetSubnetsRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r SubnetAPIGetSubnetsRequest) Page(page float32) SubnetAPIGetSubnetsRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1000           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 5000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 1000    **Max Value:** 5000   If provided value is greater than max value, max value will be applied. 
 func (r SubnetAPIGetSubnetsRequest) Limit(limit float32) SubnetAPIGetSubnetsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$gt:John Doe  **Available Operations** - $eq  - $in  - $gt  - $and  - $or
 func (r SubnetAPIGetSubnetsRequest) FilterId(filterId []string) SubnetAPIGetSubnetsRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r SubnetAPIGetSubnetsRequest) FilterLabel(filterLabel []string) SubnetAPIGetSubnetsRequest {
 	r.filterLabel = &filterLabel
 	return r
 }
 
-// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r SubnetAPIGetSubnetsRequest) FilterName(filterName []string) SubnetAPIGetSubnetsRequest {
 	r.filterName = &filterName
 	return r
 }
 
-// Filter by ipVersion query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.ipVersion&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.ipVersion&#x3D;$not:$like:John Doe&amp;filter.ipVersion&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by ipVersion query param.  **Format:** filter.ipVersion&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.ipVersion&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r SubnetAPIGetSubnetsRequest) FilterIpVersion(filterIpVersion []string) SubnetAPIGetSubnetsRequest {
 	r.filterIpVersion = &filterIpVersion
 	return r
 }
 
-// Filter by isPool query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.isPool&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.isPool&#x3D;$not:$like:John Doe&amp;filter.isPool&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by isPool query param.  **Format:** filter.isPool&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.isPool&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r SubnetAPIGetSubnetsRequest) FilterIsPool(filterIsPool []string) SubnetAPIGetSubnetsRequest {
 	r.filterIsPool = &filterIsPool
 	return r
 }
 
-// Filter by parentSubnetId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.parentSubnetId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.parentSubnetId&#x3D;$not:$like:John Doe&amp;filter.parentSubnetId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt;&lt;/ul&gt;
+// Filter by parentSubnetId query param.  **Format:** filter.parentSubnetId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.parentSubnetId&#x3D;$eq:John Doe&amp;filter.parentSubnetId&#x3D;$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or
 func (r SubnetAPIGetSubnetsRequest) FilterParentSubnetId(filterParentSubnetId []string) SubnetAPIGetSubnetsRequest {
 	r.filterParentSubnetId = &filterParentSubnetId
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
 func (r SubnetAPIGetSubnetsRequest) SortBy(sortBy []string) SubnetAPIGetSubnetsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r SubnetAPIGetSubnetsRequest) Search(search string) SubnetAPIGetSubnetsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; label,name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;label&lt;/li&gt; &lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - name 
 func (r SubnetAPIGetSubnetsRequest) SearchBy(searchBy []string) SubnetAPIGetSubnetsRequest {
 	r.searchBy = &searchBy
 	return r

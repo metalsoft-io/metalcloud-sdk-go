@@ -47,6 +47,8 @@ type VMPool struct {
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
+	// The network fabric linked to the VM Pool.
+	NetworkFabricId float32 `json:"networkFabricId"`
 	// Timestamp when the VM Pool was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp when the VM Pool was updated
@@ -66,7 +68,7 @@ type _VMPool VMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
+func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
 	this := VMPool{}
 	this.Id = id
 	this.SiteId = siteId
@@ -76,6 +78,7 @@ func NewVMPool(id float32, siteId float32, datacenterName string, managementHost
 	this.Name = name
 	this.Type = type_
 	this.Status = status
+	this.NetworkFabricId = networkFabricId
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Links = links
@@ -442,6 +445,30 @@ func (o *VMPool) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
 }
 
+// GetNetworkFabricId returns the NetworkFabricId field value
+func (o *VMPool) GetNetworkFabricId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetworkFabricId
+}
+
+// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
+// and a boolean to check if the value has been set.
+func (o *VMPool) GetNetworkFabricIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkFabricId, true
+}
+
+// SetNetworkFabricId sets field value
+func (o *VMPool) SetNetworkFabricId(v float32) {
+	o.NetworkFabricId = v
+}
+
 // GetCreatedTimestamp returns the CreatedTimestamp field value
 func (o *VMPool) GetCreatedTimestamp() string {
 	if o == nil {
@@ -611,6 +638,7 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
+	toSerialize["networkFabricId"] = o.NetworkFabricId
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Tags) {
@@ -641,6 +669,7 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"type",
 		"status",
+		"networkFabricId",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"links",
@@ -686,6 +715,7 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "externalIdentifier")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "isExperimental")
+		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "tags")

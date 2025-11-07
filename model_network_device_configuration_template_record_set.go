@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the BgpTemplateRecordSet type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BgpTemplateRecordSet{}
+// checks if the NetworkDeviceConfigurationTemplateRecordSet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkDeviceConfigurationTemplateRecordSet{}
 
-// BgpTemplateRecordSet struct for BgpTemplateRecordSet
-type BgpTemplateRecordSet struct {
+// NetworkDeviceConfigurationTemplateRecordSet struct for NetworkDeviceConfigurationTemplateRecordSet
+type NetworkDeviceConfigurationTemplateRecordSet struct {
 	// The ID of the local switch.
 	LocalSwitchId float32 `json:"local_switch_id"`
 	// The identifier of the local switch.
@@ -50,14 +50,14 @@ type BgpTemplateRecordSet struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _BgpTemplateRecordSet BgpTemplateRecordSet
+type _NetworkDeviceConfigurationTemplateRecordSet NetworkDeviceConfigurationTemplateRecordSet
 
-// NewBgpTemplateRecordSet instantiates a new BgpTemplateRecordSet object
+// NewNetworkDeviceConfigurationTemplateRecordSet instantiates a new NetworkDeviceConfigurationTemplateRecordSet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpTemplateRecordSet(localSwitchId float32, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId float32, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string) *BgpTemplateRecordSet {
-	this := BgpTemplateRecordSet{}
+func NewNetworkDeviceConfigurationTemplateRecordSet(localSwitchId float32, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId float32, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string) *NetworkDeviceConfigurationTemplateRecordSet {
+	this := NetworkDeviceConfigurationTemplateRecordSet{}
 	this.LocalSwitchId = localSwitchId
 	this.LocalSwitchIdentifier = localSwitchIdentifier
 	this.LocalSwitchRole = localSwitchRole
@@ -70,16 +70,16 @@ func NewBgpTemplateRecordSet(localSwitchId float32, localSwitchIdentifier string
 	return &this
 }
 
-// NewBgpTemplateRecordSetWithDefaults instantiates a new BgpTemplateRecordSet object
+// NewNetworkDeviceConfigurationTemplateRecordSetWithDefaults instantiates a new NetworkDeviceConfigurationTemplateRecordSet object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBgpTemplateRecordSetWithDefaults() *BgpTemplateRecordSet {
-	this := BgpTemplateRecordSet{}
+func NewNetworkDeviceConfigurationTemplateRecordSetWithDefaults() *NetworkDeviceConfigurationTemplateRecordSet {
+	this := NetworkDeviceConfigurationTemplateRecordSet{}
 	return &this
 }
 
 // GetLocalSwitchId returns the LocalSwitchId field value
-func (o *BgpTemplateRecordSet) GetLocalSwitchId() float32 {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -90,7 +90,7 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchId() float32 {
 
 // GetLocalSwitchIdOk returns a tuple with the LocalSwitchId field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetLocalSwitchIdOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,12 +98,12 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchIdOk() (*float32, bool) {
 }
 
 // SetLocalSwitchId sets field value
-func (o *BgpTemplateRecordSet) SetLocalSwitchId(v float32) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchId(v float32) {
 	o.LocalSwitchId = v
 }
 
 // GetLocalSwitchIdentifier returns the LocalSwitchIdentifier field value
-func (o *BgpTemplateRecordSet) GetLocalSwitchIdentifier() string {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchIdentifier() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -114,7 +114,7 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchIdentifier() string {
 
 // GetLocalSwitchIdentifierOk returns a tuple with the LocalSwitchIdentifier field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetLocalSwitchIdentifierOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchIdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,12 +122,12 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchIdentifierOk() (*string, bool) {
 }
 
 // SetLocalSwitchIdentifier sets field value
-func (o *BgpTemplateRecordSet) SetLocalSwitchIdentifier(v string) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchIdentifier(v string) {
 	o.LocalSwitchIdentifier = v
 }
 
 // GetLocalSwitchRole returns the LocalSwitchRole field value
-func (o *BgpTemplateRecordSet) GetLocalSwitchRole() string {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchRole() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -138,7 +138,7 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchRole() string {
 
 // GetLocalSwitchRoleOk returns a tuple with the LocalSwitchRole field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetLocalSwitchRoleOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchRoleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -146,12 +146,12 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchRoleOk() (*string, bool) {
 }
 
 // SetLocalSwitchRole sets field value
-func (o *BgpTemplateRecordSet) SetLocalSwitchRole(v string) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchRole(v string) {
 	o.LocalSwitchRole = v
 }
 
 // GetLocalSwitchInterfaceName returns the LocalSwitchInterfaceName field value
-func (o *BgpTemplateRecordSet) GetLocalSwitchInterfaceName() string {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchInterfaceName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -162,7 +162,7 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchInterfaceName() string {
 
 // GetLocalSwitchInterfaceNameOk returns a tuple with the LocalSwitchInterfaceName field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetLocalSwitchInterfaceNameOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchInterfaceNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -170,12 +170,12 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchInterfaceNameOk() (*string, bool) {
 }
 
 // SetLocalSwitchInterfaceName sets field value
-func (o *BgpTemplateRecordSet) SetLocalSwitchInterfaceName(v string) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchInterfaceName(v string) {
 	o.LocalSwitchInterfaceName = v
 }
 
 // GetLocalSwitchAsn returns the LocalSwitchAsn field value if set, zero value otherwise.
-func (o *BgpTemplateRecordSet) GetLocalSwitchAsn() float32 {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsn() float32 {
 	if o == nil || IsNil(o.LocalSwitchAsn) {
 		var ret float32
 		return ret
@@ -185,7 +185,7 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchAsn() float32 {
 
 // GetLocalSwitchAsnOk returns a tuple with the LocalSwitchAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetLocalSwitchAsnOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsnOk() (*float32, bool) {
 	if o == nil || IsNil(o.LocalSwitchAsn) {
 		return nil, false
 	}
@@ -193,7 +193,7 @@ func (o *BgpTemplateRecordSet) GetLocalSwitchAsnOk() (*float32, bool) {
 }
 
 // HasLocalSwitchAsn returns a boolean if a field has been set.
-func (o *BgpTemplateRecordSet) HasLocalSwitchAsn() bool {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) HasLocalSwitchAsn() bool {
 	if o != nil && !IsNil(o.LocalSwitchAsn) {
 		return true
 	}
@@ -202,12 +202,12 @@ func (o *BgpTemplateRecordSet) HasLocalSwitchAsn() bool {
 }
 
 // SetLocalSwitchAsn gets a reference to the given float32 and assigns it to the LocalSwitchAsn field.
-func (o *BgpTemplateRecordSet) SetLocalSwitchAsn(v float32) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchAsn(v float32) {
 	o.LocalSwitchAsn = &v
 }
 
 // GetRemoteSwitchId returns the RemoteSwitchId field value
-func (o *BgpTemplateRecordSet) GetRemoteSwitchId() float32 {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -218,7 +218,7 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchId() float32 {
 
 // GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetRemoteSwitchIdOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -226,12 +226,12 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchIdOk() (*float32, bool) {
 }
 
 // SetRemoteSwitchId sets field value
-func (o *BgpTemplateRecordSet) SetRemoteSwitchId(v float32) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchId(v float32) {
 	o.RemoteSwitchId = v
 }
 
 // GetRemoteSwitchIdentifier returns the RemoteSwitchIdentifier field value
-func (o *BgpTemplateRecordSet) GetRemoteSwitchIdentifier() string {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchIdentifier() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -242,7 +242,7 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchIdentifier() string {
 
 // GetRemoteSwitchIdentifierOk returns a tuple with the RemoteSwitchIdentifier field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetRemoteSwitchIdentifierOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchIdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -250,12 +250,12 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchIdentifierOk() (*string, bool) {
 }
 
 // SetRemoteSwitchIdentifier sets field value
-func (o *BgpTemplateRecordSet) SetRemoteSwitchIdentifier(v string) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchIdentifier(v string) {
 	o.RemoteSwitchIdentifier = v
 }
 
 // GetRemoteSwitchRole returns the RemoteSwitchRole field value
-func (o *BgpTemplateRecordSet) GetRemoteSwitchRole() string {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchRole() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -266,7 +266,7 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchRole() string {
 
 // GetRemoteSwitchRoleOk returns a tuple with the RemoteSwitchRole field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetRemoteSwitchRoleOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchRoleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -274,12 +274,12 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchRoleOk() (*string, bool) {
 }
 
 // SetRemoteSwitchRole sets field value
-func (o *BgpTemplateRecordSet) SetRemoteSwitchRole(v string) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchRole(v string) {
 	o.RemoteSwitchRole = v
 }
 
 // GetRemoteSwitchInterfaceName returns the RemoteSwitchInterfaceName field value
-func (o *BgpTemplateRecordSet) GetRemoteSwitchInterfaceName() string {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -290,7 +290,7 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchInterfaceName() string {
 
 // GetRemoteSwitchInterfaceNameOk returns a tuple with the RemoteSwitchInterfaceName field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetRemoteSwitchInterfaceNameOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -298,12 +298,12 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchInterfaceNameOk() (*string, bool) 
 }
 
 // SetRemoteSwitchInterfaceName sets field value
-func (o *BgpTemplateRecordSet) SetRemoteSwitchInterfaceName(v string) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceName(v string) {
 	o.RemoteSwitchInterfaceName = v
 }
 
 // GetRemoteSwitchAsn returns the RemoteSwitchAsn field value if set, zero value otherwise.
-func (o *BgpTemplateRecordSet) GetRemoteSwitchAsn() float32 {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsn() float32 {
 	if o == nil || IsNil(o.RemoteSwitchAsn) {
 		var ret float32
 		return ret
@@ -313,7 +313,7 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchAsn() float32 {
 
 // GetRemoteSwitchAsnOk returns a tuple with the RemoteSwitchAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetRemoteSwitchAsnOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsnOk() (*float32, bool) {
 	if o == nil || IsNil(o.RemoteSwitchAsn) {
 		return nil, false
 	}
@@ -321,7 +321,7 @@ func (o *BgpTemplateRecordSet) GetRemoteSwitchAsnOk() (*float32, bool) {
 }
 
 // HasRemoteSwitchAsn returns a boolean if a field has been set.
-func (o *BgpTemplateRecordSet) HasRemoteSwitchAsn() bool {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) HasRemoteSwitchAsn() bool {
 	if o != nil && !IsNil(o.RemoteSwitchAsn) {
 		return true
 	}
@@ -330,12 +330,12 @@ func (o *BgpTemplateRecordSet) HasRemoteSwitchAsn() bool {
 }
 
 // SetRemoteSwitchAsn gets a reference to the given float32 and assigns it to the RemoteSwitchAsn field.
-func (o *BgpTemplateRecordSet) SetRemoteSwitchAsn(v float32) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchAsn(v float32) {
 	o.RemoteSwitchAsn = &v
 }
 
 // GetBgpNumbering returns the BgpNumbering field value
-func (o *BgpTemplateRecordSet) GetBgpNumbering() string {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetBgpNumbering() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -346,7 +346,7 @@ func (o *BgpTemplateRecordSet) GetBgpNumbering() string {
 
 // GetBgpNumberingOk returns a tuple with the BgpNumbering field value
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetBgpNumberingOk() (*string, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetBgpNumberingOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -354,12 +354,12 @@ func (o *BgpTemplateRecordSet) GetBgpNumberingOk() (*string, bool) {
 }
 
 // SetBgpNumbering sets field value
-func (o *BgpTemplateRecordSet) SetBgpNumbering(v string) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetBgpNumbering(v string) {
 	o.BgpNumbering = v
 }
 
 // GetFabricCustomVariables returns the FabricCustomVariables field value if set, zero value otherwise.
-func (o *BgpTemplateRecordSet) GetFabricCustomVariables() map[string]interface{} {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetFabricCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.FabricCustomVariables) {
 		var ret map[string]interface{}
 		return ret
@@ -369,7 +369,7 @@ func (o *BgpTemplateRecordSet) GetFabricCustomVariables() map[string]interface{}
 
 // GetFabricCustomVariablesOk returns a tuple with the FabricCustomVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetFabricCustomVariablesOk() (map[string]interface{}, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetFabricCustomVariablesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.FabricCustomVariables) {
 		return map[string]interface{}{}, false
 	}
@@ -377,7 +377,7 @@ func (o *BgpTemplateRecordSet) GetFabricCustomVariablesOk() (map[string]interfac
 }
 
 // HasFabricCustomVariables returns a boolean if a field has been set.
-func (o *BgpTemplateRecordSet) HasFabricCustomVariables() bool {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) HasFabricCustomVariables() bool {
 	if o != nil && !IsNil(o.FabricCustomVariables) {
 		return true
 	}
@@ -386,12 +386,12 @@ func (o *BgpTemplateRecordSet) HasFabricCustomVariables() bool {
 }
 
 // SetFabricCustomVariables gets a reference to the given map[string]interface{} and assigns it to the FabricCustomVariables field.
-func (o *BgpTemplateRecordSet) SetFabricCustomVariables(v map[string]interface{}) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetFabricCustomVariables(v map[string]interface{}) {
 	o.FabricCustomVariables = v
 }
 
 // GetLinkCustomVariables returns the LinkCustomVariables field value if set, zero value otherwise.
-func (o *BgpTemplateRecordSet) GetLinkCustomVariables() map[string]interface{} {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLinkCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.LinkCustomVariables) {
 		var ret map[string]interface{}
 		return ret
@@ -401,7 +401,7 @@ func (o *BgpTemplateRecordSet) GetLinkCustomVariables() map[string]interface{} {
 
 // GetLinkCustomVariablesOk returns a tuple with the LinkCustomVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpTemplateRecordSet) GetLinkCustomVariablesOk() (map[string]interface{}, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLinkCustomVariablesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.LinkCustomVariables) {
 		return map[string]interface{}{}, false
 	}
@@ -409,7 +409,7 @@ func (o *BgpTemplateRecordSet) GetLinkCustomVariablesOk() (map[string]interface{
 }
 
 // HasLinkCustomVariables returns a boolean if a field has been set.
-func (o *BgpTemplateRecordSet) HasLinkCustomVariables() bool {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) HasLinkCustomVariables() bool {
 	if o != nil && !IsNil(o.LinkCustomVariables) {
 		return true
 	}
@@ -418,11 +418,11 @@ func (o *BgpTemplateRecordSet) HasLinkCustomVariables() bool {
 }
 
 // SetLinkCustomVariables gets a reference to the given map[string]interface{} and assigns it to the LinkCustomVariables field.
-func (o *BgpTemplateRecordSet) SetLinkCustomVariables(v map[string]interface{}) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLinkCustomVariables(v map[string]interface{}) {
 	o.LinkCustomVariables = v
 }
 
-func (o BgpTemplateRecordSet) MarshalJSON() ([]byte, error) {
+func (o NetworkDeviceConfigurationTemplateRecordSet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -430,7 +430,7 @@ func (o BgpTemplateRecordSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BgpTemplateRecordSet) ToMap() (map[string]interface{}, error) {
+func (o NetworkDeviceConfigurationTemplateRecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["local_switch_id"] = o.LocalSwitchId
 	toSerialize["local_switch_identifier"] = o.LocalSwitchIdentifier
@@ -461,7 +461,7 @@ func (o BgpTemplateRecordSet) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BgpTemplateRecordSet) UnmarshalJSON(data []byte) (err error) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -491,15 +491,15 @@ func (o *BgpTemplateRecordSet) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varBgpTemplateRecordSet := _BgpTemplateRecordSet{}
+	varNetworkDeviceConfigurationTemplateRecordSet := _NetworkDeviceConfigurationTemplateRecordSet{}
 
-	err = json.Unmarshal(data, &varBgpTemplateRecordSet)
+	err = json.Unmarshal(data, &varNetworkDeviceConfigurationTemplateRecordSet)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BgpTemplateRecordSet(varBgpTemplateRecordSet)
+	*o = NetworkDeviceConfigurationTemplateRecordSet(varNetworkDeviceConfigurationTemplateRecordSet)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -523,38 +523,38 @@ func (o *BgpTemplateRecordSet) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableBgpTemplateRecordSet struct {
-	value *BgpTemplateRecordSet
+type NullableNetworkDeviceConfigurationTemplateRecordSet struct {
+	value *NetworkDeviceConfigurationTemplateRecordSet
 	isSet bool
 }
 
-func (v NullableBgpTemplateRecordSet) Get() *BgpTemplateRecordSet {
+func (v NullableNetworkDeviceConfigurationTemplateRecordSet) Get() *NetworkDeviceConfigurationTemplateRecordSet {
 	return v.value
 }
 
-func (v *NullableBgpTemplateRecordSet) Set(val *BgpTemplateRecordSet) {
+func (v *NullableNetworkDeviceConfigurationTemplateRecordSet) Set(val *NetworkDeviceConfigurationTemplateRecordSet) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBgpTemplateRecordSet) IsSet() bool {
+func (v NullableNetworkDeviceConfigurationTemplateRecordSet) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBgpTemplateRecordSet) Unset() {
+func (v *NullableNetworkDeviceConfigurationTemplateRecordSet) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBgpTemplateRecordSet(val *BgpTemplateRecordSet) *NullableBgpTemplateRecordSet {
-	return &NullableBgpTemplateRecordSet{value: val, isSet: true}
+func NewNullableNetworkDeviceConfigurationTemplateRecordSet(val *NetworkDeviceConfigurationTemplateRecordSet) *NullableNetworkDeviceConfigurationTemplateRecordSet {
+	return &NullableNetworkDeviceConfigurationTemplateRecordSet{value: val, isSet: true}
 }
 
-func (v NullableBgpTemplateRecordSet) MarshalJSON() ([]byte, error) {
+func (v NullableNetworkDeviceConfigurationTemplateRecordSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBgpTemplateRecordSet) UnmarshalJSON(src []byte) error {
+func (v *NullableNetworkDeviceConfigurationTemplateRecordSet) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

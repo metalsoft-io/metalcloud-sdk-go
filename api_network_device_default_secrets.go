@@ -447,49 +447,49 @@ type NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest struct
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) Page(page float32) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) Limit(limit float32) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by siteId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.siteId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.siteId&#x3D;$not:$like:John Doe&amp;filter.siteId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) FilterSiteId(filterSiteId []string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.filterSiteId = &filterSiteId
 	return r
 }
 
-// Filter by macAddressOrSerialNumber query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.macAddressOrSerialNumber&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.macAddressOrSerialNumber&#x3D;$not:$like:John Doe&amp;filter.macAddressOrSerialNumber&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt;
+// Filter by macAddressOrSerialNumber query param.  **Format:** filter.macAddressOrSerialNumber&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.macAddressOrSerialNumber&#x3D;$eq:John Doe&amp;filter.macAddressOrSerialNumber&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $ilike  - $and  - $or
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) FilterMacAddressOrSerialNumber(filterMacAddressOrSerialNumber []string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.filterMacAddressOrSerialNumber = &filterMacAddressOrSerialNumber
 	return r
 }
 
-// Filter by secretName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.secretName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.secretName&#x3D;$not:$like:John Doe&amp;filter.secretName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt;
+// Filter by secretName query param.  **Format:** filter.secretName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.secretName&#x3D;$eq:John Doe&amp;filter.secretName&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $ilike  - $and  - $or
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) FilterSecretName(filterSecretName []string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.filterSecretName = &filterSecretName
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId 
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) SortBy(sortBy []string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) Search(search string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,siteId,macAddressOrSerialNumber,secretName           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;macAddressOrSerialNumber&lt;/li&gt; &lt;li&gt;secretName&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,siteId,macAddressOrSerialNumber,secretName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - siteId  - macAddressOrSerialNumber  - secretName 
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) SearchBy(searchBy []string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.searchBy = &searchBy
 	return r

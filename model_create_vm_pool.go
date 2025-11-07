@@ -39,6 +39,8 @@ type CreateVMPool struct {
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
+	// The network fabric linked to the VM Pool.
+	NetworkFabricId float32 `json:"networkFabricId"`
 	// Tags for the VM Pool.
 	Tags []string `json:"tags,omitempty"`
 	// Certificate of the VM Pool
@@ -58,13 +60,14 @@ type _CreateVMPool CreateVMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string) *CreateVMPool {
+func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, networkFabricId float32) *CreateVMPool {
 	this := CreateVMPool{}
 	this.SiteId = siteId
 	this.ManagementHost = managementHost
 	this.ManagementPort = managementPort
 	this.Name = name
 	this.Type = type_
+	this.NetworkFabricId = networkFabricId
 	return &this
 }
 
@@ -324,6 +327,30 @@ func (o *CreateVMPool) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
 }
 
+// GetNetworkFabricId returns the NetworkFabricId field value
+func (o *CreateVMPool) GetNetworkFabricId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetworkFabricId
+}
+
+// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
+// and a boolean to check if the value has been set.
+func (o *CreateVMPool) GetNetworkFabricIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkFabricId, true
+}
+
+// SetNetworkFabricId sets field value
+func (o *CreateVMPool) SetNetworkFabricId(v float32) {
+	o.NetworkFabricId = v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateVMPool) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -511,6 +538,7 @@ func (o CreateVMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
+	toSerialize["networkFabricId"] = o.NetworkFabricId
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -544,6 +572,7 @@ func (o *CreateVMPool) UnmarshalJSON(data []byte) (err error) {
 		"managementPort",
 		"name",
 		"type",
+		"networkFabricId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -582,6 +611,7 @@ func (o *CreateVMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "isExperimental")
+		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "privateKey")

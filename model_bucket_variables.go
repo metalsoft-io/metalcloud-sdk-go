@@ -53,10 +53,10 @@ type BucketVariables struct {
 	Endpoint *string `json:"endpoint,omitempty"`
 	// Endpoint of the Bucket.
 	AccessKeyId *string `json:"accessKeyId,omitempty"`
-	// Endpoint of the Bucket.
-	SecretKeyEncrypted *string `json:"secretKeyEncrypted,omitempty"`
 	// The current changes to be deployed for the Bucket.
 	Config BucketConfiguration `json:"config"`
+	// secret key of the Bucket.
+	SecretKeyEncrypted *string `json:"secretKeyEncrypted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -508,6 +508,30 @@ func (o *BucketVariables) SetAccessKeyId(v string) {
 	o.AccessKeyId = &v
 }
 
+// GetConfig returns the Config field value
+func (o *BucketVariables) GetConfig() BucketConfiguration {
+	if o == nil {
+		var ret BucketConfiguration
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *BucketVariables) GetConfigOk() (*BucketConfiguration, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// SetConfig sets field value
+func (o *BucketVariables) SetConfig(v BucketConfiguration) {
+	o.Config = v
+}
+
 // GetSecretKeyEncrypted returns the SecretKeyEncrypted field value if set, zero value otherwise.
 func (o *BucketVariables) GetSecretKeyEncrypted() string {
 	if o == nil || IsNil(o.SecretKeyEncrypted) {
@@ -538,30 +562,6 @@ func (o *BucketVariables) HasSecretKeyEncrypted() bool {
 // SetSecretKeyEncrypted gets a reference to the given string and assigns it to the SecretKeyEncrypted field.
 func (o *BucketVariables) SetSecretKeyEncrypted(v string) {
 	o.SecretKeyEncrypted = &v
-}
-
-// GetConfig returns the Config field value
-func (o *BucketVariables) GetConfig() BucketConfiguration {
-	if o == nil {
-		var ret BucketConfiguration
-		return ret
-	}
-
-	return o.Config
-}
-
-// GetConfigOk returns a tuple with the Config field value
-// and a boolean to check if the value has been set.
-func (o *BucketVariables) GetConfigOk() (*BucketConfiguration, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Config, true
-}
-
-// SetConfig sets field value
-func (o *BucketVariables) SetConfig(v BucketConfiguration) {
-	o.Config = v
 }
 
 func (o BucketVariables) MarshalJSON() ([]byte, error) {
@@ -598,10 +598,10 @@ func (o BucketVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccessKeyId) {
 		toSerialize["accessKeyId"] = o.AccessKeyId
 	}
+	toSerialize["config"] = o.Config
 	if !IsNil(o.SecretKeyEncrypted) {
 		toSerialize["secretKeyEncrypted"] = o.SecretKeyEncrypted
 	}
-	toSerialize["config"] = o.Config
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -673,8 +673,8 @@ func (o *BucketVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "accessKeyId")
-		delete(additionalProperties, "secretKeyEncrypted")
 		delete(additionalProperties, "config")
+		delete(additionalProperties, "secretKeyEncrypted")
 		o.AdditionalProperties = additionalProperties
 	}
 

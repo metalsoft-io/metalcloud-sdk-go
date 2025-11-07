@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **DnsSubdomainId** | **float32** | Id of the DNS subdomain for the Bucket. | 
 **Endpoint** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
 **AccessKeyId** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
-**SecretKeyEncrypted** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
 **Config** | [**BucketConfiguration**](BucketConfiguration.md) | The current changes to be deployed for the Bucket. | 
 **Meta** | [**BucketMeta**](BucketMeta.md) | Meta information of the Bucket. | 
 
@@ -382,31 +381,6 @@ SetAccessKeyId sets AccessKeyId field to given value.
 `func (o *Bucket) HasAccessKeyId() bool`
 
 HasAccessKeyId returns a boolean if a field has been set.
-
-### GetSecretKeyEncrypted
-
-`func (o *Bucket) GetSecretKeyEncrypted() string`
-
-GetSecretKeyEncrypted returns the SecretKeyEncrypted field if non-nil, zero value otherwise.
-
-### GetSecretKeyEncryptedOk
-
-`func (o *Bucket) GetSecretKeyEncryptedOk() (*string, bool)`
-
-GetSecretKeyEncryptedOk returns a tuple with the SecretKeyEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSecretKeyEncrypted
-
-`func (o *Bucket) SetSecretKeyEncrypted(v string)`
-
-SetSecretKeyEncrypted sets SecretKeyEncrypted field to given value.
-
-### HasSecretKeyEncrypted
-
-`func (o *Bucket) HasSecretKeyEncrypted() bool`
-
-HasSecretKeyEncrypted returns a boolean if a field has been set.
 
 ### GetConfig
 

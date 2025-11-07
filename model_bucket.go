@@ -53,8 +53,6 @@ type Bucket struct {
 	Endpoint *string `json:"endpoint,omitempty"`
 	// Endpoint of the Bucket.
 	AccessKeyId *string `json:"accessKeyId,omitempty"`
-	// Endpoint of the Bucket.
-	SecretKeyEncrypted *string `json:"secretKeyEncrypted,omitempty"`
 	// The current changes to be deployed for the Bucket.
 	Config BucketConfiguration `json:"config"`
 	// Meta information of the Bucket.
@@ -511,38 +509,6 @@ func (o *Bucket) SetAccessKeyId(v string) {
 	o.AccessKeyId = &v
 }
 
-// GetSecretKeyEncrypted returns the SecretKeyEncrypted field value if set, zero value otherwise.
-func (o *Bucket) GetSecretKeyEncrypted() string {
-	if o == nil || IsNil(o.SecretKeyEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.SecretKeyEncrypted
-}
-
-// GetSecretKeyEncryptedOk returns a tuple with the SecretKeyEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Bucket) GetSecretKeyEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.SecretKeyEncrypted) {
-		return nil, false
-	}
-	return o.SecretKeyEncrypted, true
-}
-
-// HasSecretKeyEncrypted returns a boolean if a field has been set.
-func (o *Bucket) HasSecretKeyEncrypted() bool {
-	if o != nil && !IsNil(o.SecretKeyEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetSecretKeyEncrypted gets a reference to the given string and assigns it to the SecretKeyEncrypted field.
-func (o *Bucket) SetSecretKeyEncrypted(v string) {
-	o.SecretKeyEncrypted = &v
-}
-
 // GetConfig returns the Config field value
 func (o *Bucket) GetConfig() BucketConfiguration {
 	if o == nil {
@@ -625,9 +591,6 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccessKeyId) {
 		toSerialize["accessKeyId"] = o.AccessKeyId
 	}
-	if !IsNil(o.SecretKeyEncrypted) {
-		toSerialize["secretKeyEncrypted"] = o.SecretKeyEncrypted
-	}
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
 
@@ -702,7 +665,6 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "accessKeyId")
-		delete(additionalProperties, "secretKeyEncrypted")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties

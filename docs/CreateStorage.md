@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **SiteId** | **float32** | Id of the site | 
 **Driver** | **string** | Storage driver | 
 **Technologies** | **[]string** | Storage technology | 
-**Type** | **string** | Storage type | 
+**Type** | Pointer to **string** | Storage type | [optional] 
 **Name** | **string** | Name of the storage | 
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewCreateStorage
 
-`func NewCreateStorage(siteId float32, driver string, technologies []string, type_ string, name string, managementHost string, subnetType string, ) *CreateStorage`
+`func NewCreateStorage(siteId float32, driver string, technologies []string, name string, managementHost string, subnetType string, ) *CreateStorage`
 
 NewCreateStorage instantiates a new CreateStorage object
 This constructor will assign default values to properties that have it defined,
@@ -152,6 +152,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *CreateStorage) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetName
 

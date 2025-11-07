@@ -98,11 +98,6 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**LoginSaml**](docs/AuthenticationAPI.md#loginsaml) | **Post** /api/v2/login-saml | User SAML login callback URL
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
 *AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
-*BGPTemplateAPI* | [**CreateBgpTemplate**](docs/BGPTemplateAPI.md#createbgptemplate) | **Post** /api/v2/bgp-templates | Creates a BGP Template
-*BGPTemplateAPI* | [**DeleteBgpTemplate**](docs/BGPTemplateAPI.md#deletebgptemplate) | **Delete** /api/v2/bgp-templates/{bgpTemplateId} | Deletes a BGP Template
-*BGPTemplateAPI* | [**GetBgpTemplate**](docs/BGPTemplateAPI.md#getbgptemplate) | **Get** /api/v2/bgp-templates/{bgpTemplateId} | Get BGP Template information
-*BGPTemplateAPI* | [**GetBgpTemplates**](docs/BGPTemplateAPI.md#getbgptemplates) | **Get** /api/v2/bgp-templates | Get all BGP Templates
-*BGPTemplateAPI* | [**UpdateBgpTemplate**](docs/BGPTemplateAPI.md#updatebgptemplate) | **Patch** /api/v2/bgp-templates/{bgpTemplateId} | Updates BGP Template information
 *BucketAPI* | [**CreateInfrastructureBucket**](docs/BucketAPI.md#createinfrastructurebucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
 *BucketAPI* | [**DeleteBucket**](docs/BucketAPI.md#deletebucket) | **Delete** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Deletes a Bucket
 *BucketAPI* | [**GetBucket**](docs/BucketAPI.md#getbucket) | **Get** /api/v2/buckets/{bucketId} | Get Bucket information
@@ -220,14 +215,18 @@ Class | Method | HTTP request | Description
 *ExternalConnectionAPI* | [**GetNetworkDeviceInterfacesAndExternalConnections**](docs/ExternalConnectionAPI.md#getnetworkdeviceinterfacesandexternalconnections) | **Get** /api/v2/external-connections/network-devices/{networkDeviceId}/interfaces | List network device interfaces associated with external connections
 *ExternalConnectionAPI* | [**UpdateExternalConnection**](docs/ExternalConnectionAPI.md#updateexternalconnection) | **Patch** /api/v2/external-connections/{externalConnectionId} | Update external connection
 *ExternalConnectionAPI* | [**UpdateExternalConnectionInterface**](docs/ExternalConnectionAPI.md#updateexternalconnectioninterface) | **Patch** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Update external connection interface
+*FileShareAPI* | [**CreateFileShareSnapshot**](docs/FileShareAPI.md#createfilesharesnapshot) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/snapshots | Create a snapshot of the specified File Share
 *FileShareAPI* | [**CreateInfrastructureFileShare**](docs/FileShareAPI.md#createinfrastructurefileshare) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares | Creates a File Share
 *FileShareAPI* | [**DeleteFileShare**](docs/FileShareAPI.md#deletefileshare) | **Delete** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Deletes a File Share
+*FileShareAPI* | [**DeleteFileShareSnapshot**](docs/FileShareAPI.md#deletefilesharesnapshot) | **Delete** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/snapshots | Delete a snapshot of the specified File Share
 *FileShareAPI* | [**GetFileShare**](docs/FileShareAPI.md#getfileshare) | **Get** /api/v2/file-shares/{fileShareId} | Get File Share information
 *FileShareAPI* | [**GetFileShareConfigInfo**](docs/FileShareAPI.md#getfileshareconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config | Get configuration information about the specified File Share
 *FileShareAPI* | [**GetFileShareHosts**](docs/FileShareAPI.md#getfilesharehosts) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/hosts | Get the Hosts of File Share
+*FileShareAPI* | [**GetFileShareSnapshots**](docs/FileShareAPI.md#getfilesharesnapshots) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/snapshots | Get snapshots of the specified File Share
 *FileShareAPI* | [**GetInfrastructureFileShare**](docs/FileShareAPI.md#getinfrastructurefileshare) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Get File Share information
 *FileShareAPI* | [**GetInfrastructureFileShares**](docs/FileShareAPI.md#getinfrastructurefileshares) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares | Get all File Shares
 *FileShareAPI* | [**PatchFileShareMeta**](docs/FileShareAPI.md#patchfilesharemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/meta | Updates the meta of a File Share
+*FileShareAPI* | [**RestoreFileShareToSnapshot**](docs/FileShareAPI.md#restorefilesharetosnapshot) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/snapshots/restore | Restore a File Share to a specified snapshot
 *FileShareAPI* | [**UpdateFileShareConfig**](docs/FileShareAPI.md#updatefileshareconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config | Updates File Share config information
 *FileShareAPI* | [**UpdateFileShareInstanceArrayHostsBulk**](docs/FileShareAPI.md#updatefileshareinstancearrayhostsbulk) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/actions/modify-instance-array-hosts-bulk | Updates Instance Array Hosts on the File Share
 *FirmwareBaselineAPI* | [**CreateFirmwareBaseline**](docs/FirmwareBaselineAPI.md#createfirmwarebaseline) | **Post** /api/v2/firmware/baseline | Create a new firmware baseline
@@ -370,6 +369,11 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**SetNetworkDeviceAsFailed**](docs/NetworkDeviceAPI.md#setnetworkdeviceasfailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 *NetworkDeviceAPI* | [**UpdateNetworkDevice**](docs/NetworkDeviceAPI.md#updatenetworkdevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
+*NetworkDeviceConfigurationTemplateAPI* | [**CreateNetworkDeviceConfigurationTemplate**](docs/NetworkDeviceConfigurationTemplateAPI.md#createnetworkdeviceconfigurationtemplate) | **Post** /api/v2/network-device-configuration-templates | Creates a Network Device Configuration Template
+*NetworkDeviceConfigurationTemplateAPI* | [**DeleteNetworkDeviceConfigurationTemplate**](docs/NetworkDeviceConfigurationTemplateAPI.md#deletenetworkdeviceconfigurationtemplate) | **Delete** /api/v2/network-device-configuration-templates/{networkDeviceConfigurationTemplateId} | Deletes a Network Device Configuration Template
+*NetworkDeviceConfigurationTemplateAPI* | [**GetNetworkDeviceConfigurationTemplate**](docs/NetworkDeviceConfigurationTemplateAPI.md#getnetworkdeviceconfigurationtemplate) | **Get** /api/v2/network-device-configuration-templates/{networkDeviceConfigurationTemplateId} | Get Network Device Configuration Template information
+*NetworkDeviceConfigurationTemplateAPI* | [**GetNetworkDeviceConfigurationTemplates**](docs/NetworkDeviceConfigurationTemplateAPI.md#getnetworkdeviceconfigurationtemplates) | **Get** /api/v2/network-device-configuration-templates | Get all Network Device Configuration Templates
+*NetworkDeviceConfigurationTemplateAPI* | [**UpdateNetworkDeviceConfigurationTemplate**](docs/NetworkDeviceConfigurationTemplateAPI.md#updatenetworkdeviceconfigurationtemplate) | **Patch** /api/v2/network-device-configuration-templates/{networkDeviceConfigurationTemplateId} | Updates Network Device Configuration Template information
 *NetworkDeviceControllerAPI* | [**CreateNetworkDeviceController**](docs/NetworkDeviceControllerAPI.md#createnetworkdevicecontroller) | **Post** /api/v2/network-device-controllers | Create Network Device Controller
 *NetworkDeviceControllerAPI* | [**DeleteNetworkDeviceController**](docs/NetworkDeviceControllerAPI.md#deletenetworkdevicecontroller) | **Delete** /api/v2/network-device-controllers/{networkDeviceControllerId} | Delete Network Device Controller
 *NetworkDeviceControllerAPI* | [**GetNetworkDeviceController**](docs/NetworkDeviceControllerAPI.md#getnetworkdevicecontroller) | **Get** /api/v2/network-device-controllers/{networkDeviceControllerId} | Get Network Device Controller
@@ -745,9 +749,6 @@ Class | Method | HTTP request | Description
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
  - [BatchServerFirmwareUpgradeResponse](docs/BatchServerFirmwareUpgradeResponse.md)
  - [BgpNumberingType](docs/BgpNumberingType.md)
- - [BgpTemplate](docs/BgpTemplate.md)
- - [BgpTemplatePaginatedList](docs/BgpTemplatePaginatedList.md)
- - [BgpTemplateRecordSet](docs/BgpTemplateRecordSet.md)
  - [Bucket](docs/Bucket.md)
  - [BucketConfiguration](docs/BucketConfiguration.md)
  - [BucketCredentials](docs/BucketCredentials.md)
@@ -764,7 +765,6 @@ Class | Method | HTTP request | Description
  - [CreateAutoIpv6SubnetAllocationStrategy](docs/CreateAutoIpv6SubnetAllocationStrategy.md)
  - [CreateAutoVlanAllocationStrategy](docs/CreateAutoVlanAllocationStrategy.md)
  - [CreateAutoVniAllocationStrategy](docs/CreateAutoVniAllocationStrategy.md)
- - [CreateBgpTemplate](docs/CreateBgpTemplate.md)
  - [CreateBucket](docs/CreateBucket.md)
  - [CreateCronJob](docs/CreateCronJob.md)
  - [CreateCustomIso](docs/CreateCustomIso.md)
@@ -804,6 +804,7 @@ Class | Method | HTTP request | Description
  - [CreateManualVlanAllocationStrategy](docs/CreateManualVlanAllocationStrategy.md)
  - [CreateManualVniAllocationStrategy](docs/CreateManualVniAllocationStrategy.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
+ - [CreateNetworkDeviceConfigurationTemplate](docs/CreateNetworkDeviceConfigurationTemplate.md)
  - [CreateNetworkDeviceController](docs/CreateNetworkDeviceController.md)
  - [CreateNetworkDeviceDefaultSecrets](docs/CreateNetworkDeviceDefaultSecrets.md)
  - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
@@ -859,6 +860,7 @@ Class | Method | HTTP request | Description
  - [DNSRecordSetPaginatedList](docs/DNSRecordSetPaginatedList.md)
  - [DNSRecordType](docs/DNSRecordType.md)
  - [DNSZonePaginatedList](docs/DNSZonePaginatedList.md)
+ - [DeleteFileShareSnapshot](docs/DeleteFileShareSnapshot.md)
  - [DeleteSharedDriveSnapshot](docs/DeleteSharedDriveSnapshot.md)
  - [DellComponentFilter](docs/DellComponentFilter.md)
  - [DetailedReportEntry](docs/DetailedReportEntry.md)
@@ -964,6 +966,7 @@ Class | Method | HTTP request | Description
  - [FileShareHostsModifyBulk](docs/FileShareHostsModifyBulk.md)
  - [FileShareMeta](docs/FileShareMeta.md)
  - [FileSharePaginatedList](docs/FileSharePaginatedList.md)
+ - [FileShareSnapshot](docs/FileShareSnapshot.md)
  - [FileShareVariables](docs/FileShareVariables.md)
  - [FirmwareBaseline](docs/FirmwareBaseline.md)
  - [FirmwareBaselinePaginatedList](docs/FirmwareBaselinePaginatedList.md)
@@ -1071,6 +1074,9 @@ Class | Method | HTTP request | Description
  - [ManualVlanAllocationStrategy](docs/ManualVlanAllocationStrategy.md)
  - [ManualVniAllocationStrategy](docs/ManualVniAllocationStrategy.md)
  - [NetworkDevice](docs/NetworkDevice.md)
+ - [NetworkDeviceConfigurationTemplate](docs/NetworkDeviceConfigurationTemplate.md)
+ - [NetworkDeviceConfigurationTemplatePaginatedList](docs/NetworkDeviceConfigurationTemplatePaginatedList.md)
+ - [NetworkDeviceConfigurationTemplateRecordSet](docs/NetworkDeviceConfigurationTemplateRecordSet.md)
  - [NetworkDeviceController](docs/NetworkDeviceController.md)
  - [NetworkDeviceControllerCredentials](docs/NetworkDeviceControllerCredentials.md)
  - [NetworkDeviceControllerPaginatedList](docs/NetworkDeviceControllerPaginatedList.md)
@@ -1165,6 +1171,7 @@ Class | Method | HTTP request | Description
  - [ResourcePoolWithStats](docs/ResourcePoolWithStats.md)
  - [ResourceScope](docs/ResourceScope.md)
  - [ResourceScopeKind](docs/ResourceScopeKind.md)
+ - [RestoreFileShareSnapshot](docs/RestoreFileShareSnapshot.md)
  - [RestoreSharedDriveSnapshot](docs/RestoreSharedDriveSnapshot.md)
  - [Role](docs/Role.md)
  - [RoleList](docs/RoleList.md)
@@ -1323,7 +1330,6 @@ Class | Method | HTTP request | Description
  - [TwoFactorAuthenticationSecret](docs/TwoFactorAuthenticationSecret.md)
  - [TwoFactorAuthenticationToken](docs/TwoFactorAuthenticationToken.md)
  - [UpdateAccount](docs/UpdateAccount.md)
- - [UpdateBgpTemplate](docs/UpdateBgpTemplate.md)
  - [UpdateBucket](docs/UpdateBucket.md)
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
  - [UpdateCronJob](docs/UpdateCronJob.md)
@@ -1347,6 +1353,7 @@ Class | Method | HTTP request | Description
  - [UpdateLogicalNetworkConfigGlobalSettings](docs/UpdateLogicalNetworkConfigGlobalSettings.md)
  - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
+ - [UpdateNetworkDeviceConfigurationTemplate](docs/UpdateNetworkDeviceConfigurationTemplate.md)
  - [UpdateNetworkDeviceController](docs/UpdateNetworkDeviceController.md)
  - [UpdateNetworkDeviceDefaultSecrets](docs/UpdateNetworkDeviceDefaultSecrets.md)
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)

@@ -454,91 +454,91 @@ type OSTemplateAPIGetOSTemplatesRequest struct {
 	select_ *string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r OSTemplateAPIGetOSTemplatesRequest) Page(page float32) OSTemplateAPIGetOSTemplatesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r OSTemplateAPIGetOSTemplatesRequest) Limit(limit float32) OSTemplateAPIGetOSTemplatesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by device.type query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.device.type&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.device.type&#x3D;$not:$like:John Doe&amp;filter.device.type&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by device.type query param.  **Format:** filter.device.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.device.type&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterDeviceType(filterDeviceType []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterDeviceType = &filterDeviceType
 	return r
 }
 
-// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt;
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe&amp;filter.label&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $null  - $ilike  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterLabel(filterLabel []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterLabel = &filterLabel
 	return r
 }
 
-// Filter by os.name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.os.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.os.name&#x3D;$not:$like:John Doe&amp;filter.os.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by os.name query param.  **Format:** filter.os.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.os.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterOsName(filterOsName []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterOsName = &filterOsName
 	return r
 }
 
-// Filter by install.onieStrings query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.install.onieStrings&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.install.onieStrings&#x3D;$not:$like:John Doe&amp;filter.install.onieStrings&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by install.onieStrings query param.  **Format:** filter.install.onieStrings&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.install.onieStrings&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterInstallOnieStrings(filterInstallOnieStrings []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterInstallOnieStrings = &filterInstallOnieStrings
 	return r
 }
 
-// Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterStatus(filterStatus []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterStatus = &filterStatus
 	return r
 }
 
-// Filter by visibility query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.visibility&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.visibility&#x3D;$not:$like:John Doe&amp;filter.visibility&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by visibility query param.  **Format:** filter.visibility&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.visibility&#x3D;$eq:John Doe&amp;filter.visibility&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterVisibility(filterVisibility []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterVisibility = &filterVisibility
 	return r
 }
 
-// Filter by createdBy query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdBy&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdBy&#x3D;$not:$like:John Doe&amp;filter.createdBy&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by createdBy query param.  **Format:** filter.createdBy&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdBy&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterCreatedBy(filterCreatedBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterCreatedBy = &filterCreatedBy
 	return r
 }
 
-// Filter by modifiedBy query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.modifiedBy&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.modifiedBy&#x3D;$not:$like:John Doe&amp;filter.modifiedBy&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by modifiedBy query param.  **Format:** filter.modifiedBy&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.modifiedBy&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterModifiedBy(filterModifiedBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterModifiedBy = &filterModifiedBy
 	return r
 }
 
-// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by tags query param.  **Format:** filter.tags&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.tags&#x3D;$eq:John Doe&amp;filter.tags&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $eq  - $and  - $or
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterTags(filterTags []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterTags = &filterTags
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;modifiedAt&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;device.type:DESC   **Default Value:** id:DESC  **Available Fields** - id  - device.type  - visibility  - status  - createdBy  - createdAt  - modifiedAt 
 func (r OSTemplateAPIGetOSTemplatesRequest) SortBy(sortBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r OSTemplateAPIGetOSTemplatesRequest) Search(search string) OSTemplateAPIGetOSTemplatesRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,label,device.type,os.name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt; &lt;li&gt;os.name&lt;/li&gt; &lt;li&gt;os.version&lt;/li&gt; &lt;li&gt;install.onieStrings&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,name,label,device.type,os.name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - label  - device.type  - os.name  - os.version  - install.onieStrings  - visibility  - status  - createdBy  - modifiedBy 
 func (r OSTemplateAPIGetOSTemplatesRequest) SearchBy(searchBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,description,label,device.type           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.  **Example:** id,name,description,label,device.type   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
 func (r OSTemplateAPIGetOSTemplatesRequest) Select_(select_ string) OSTemplateAPIGetOSTemplatesRequest {
 	r.select_ = &select_
 	return r

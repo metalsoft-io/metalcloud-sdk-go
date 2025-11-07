@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **DatacenterName** | **string** | The name of the datacenter where the storage is located. | 
 **Driver** | **string** | Storage driver | 
 **Technologies** | **[]string** | Storage technology | 
-**Type** | **string** | Storage type | 
+**Type** | Pointer to **string** | Storage type | [optional] 
 **Status** | **string** | Storage status | 
 **Name** | **string** | Name of the storage | 
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 
 ### NewStorage
 
-`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, type_ string, status string, name string, managementHost string, subnetType string, ) *Storage`
+`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, status string, name string, managementHost string, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -215,6 +215,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *Storage) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetStatus
 
