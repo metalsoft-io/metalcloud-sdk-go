@@ -341,7 +341,7 @@ type ServerTypeAPIGetServerTypesRequest struct {
 	filterRamGbytes *[]string
 	filterProcessorCount *[]string
 	filterProcessorCoreCount *[]string
-	filterDisplayName *[]string
+	filterDescription *[]string
 	filterNetworkTotalCapacityMbps *[]string
 	filterIsExperimental *[]string
 	filterForUnmanagedServersOnly *[]string
@@ -395,9 +395,9 @@ func (r ServerTypeAPIGetServerTypesRequest) FilterProcessorCoreCount(filterProce
 	return r
 }
 
-// Filter by displayName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.displayName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.displayName&#x3D;$not:$like:John Doe&amp;filter.displayName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r ServerTypeAPIGetServerTypesRequest) FilterDisplayName(filterDisplayName []string) ServerTypeAPIGetServerTypesRequest {
-	r.filterDisplayName = &filterDisplayName
+// Filter by description query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.description&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.description&#x3D;$not:$like:John Doe&amp;filter.description&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerTypeAPIGetServerTypesRequest) FilterDescription(filterDescription []string) ServerTypeAPIGetServerTypesRequest {
+	r.filterDescription = &filterDescription
 	return r
 }
 
@@ -449,7 +449,7 @@ func (r ServerTypeAPIGetServerTypesRequest) Search(search string) ServerTypeAPIG
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,label           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,label,description           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;description&lt;/li&gt;&lt;/ul&gt;         
 func (r ServerTypeAPIGetServerTypesRequest) SearchBy(searchBy []string) ServerTypeAPIGetServerTypesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -556,15 +556,15 @@ func (a *ServerTypeAPIService) GetServerTypesExecute(r ServerTypeAPIGetServerTyp
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.processorCoreCount", t, "form", "multi")
 		}
 	}
-	if r.filterDisplayName != nil {
-		t := *r.filterDisplayName
+	if r.filterDescription != nil {
+		t := *r.filterDescription
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.displayName", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.displayName", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", t, "form", "multi")
 		}
 	}
 	if r.filterNetworkTotalCapacityMbps != nil {

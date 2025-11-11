@@ -49,8 +49,6 @@ type JobArchive struct {
 	Status string `json:"status"`
 	// The name of the function that should be executed
 	FunctionName string `json:"functionName"`
-	// The parameters that should be passed to the function
-	Params map[string]interface{} `json:"params,omitempty"`
 	// The response of the function
 	Response map[string]interface{} `json:"response,omitempty"`
 	// The number of times the job has been called
@@ -80,7 +78,7 @@ type JobArchive struct {
 	// Mark the job for death
 	MarkForDeath *string `json:"markForDeath,omitempty"`
 	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	Links []Link `json:"links"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -90,7 +88,7 @@ type _JobArchive JobArchive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *JobArchive {
+func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link) *JobArchive {
 	this := JobArchive{}
 	this.JobId = jobId
 	this.Type = type_
@@ -534,38 +532,6 @@ func (o *JobArchive) SetFunctionName(v string) {
 	o.FunctionName = v
 }
 
-// GetParams returns the Params field value if set, zero value otherwise.
-func (o *JobArchive) GetParams() map[string]interface{} {
-	if o == nil || IsNil(o.Params) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Params
-}
-
-// GetParamsOk returns a tuple with the Params field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *JobArchive) GetParamsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Params) {
-		return map[string]interface{}{}, false
-	}
-	return o.Params, true
-}
-
-// HasParams returns a boolean if a field has been set.
-func (o *JobArchive) HasParams() bool {
-	if o != nil && !IsNil(o.Params) {
-		return true
-	}
-
-	return false
-}
-
-// SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
-func (o *JobArchive) SetParams(v map[string]interface{}) {
-	o.Params = v
-}
-
 // GetResponse returns the Response field value if set, zero value otherwise.
 func (o *JobArchive) GetResponse() map[string]interface{} {
 	if o == nil || IsNil(o.Response) {
@@ -951,9 +917,9 @@ func (o *JobArchive) SetMarkForDeath(v string) {
 }
 
 // GetLinks returns the Links field value
-func (o *JobArchive) GetLinks() map[string]interface{} {
+func (o *JobArchive) GetLinks() []Link {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []Link
 		return ret
 	}
 
@@ -962,15 +928,15 @@ func (o *JobArchive) GetLinks() map[string]interface{} {
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetLinksOk() (map[string]interface{}, bool) {
+func (o *JobArchive) GetLinksOk() ([]Link, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Links, true
 }
 
 // SetLinks sets field value
-func (o *JobArchive) SetLinks(v map[string]interface{}) {
+func (o *JobArchive) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -1018,9 +984,6 @@ func (o JobArchive) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["status"] = o.Status
 	toSerialize["functionName"] = o.FunctionName
-	if !IsNil(o.Params) {
-		toSerialize["params"] = o.Params
-	}
 	if !IsNil(o.Response) {
 		toSerialize["response"] = o.Response
 	}
@@ -1117,7 +1080,6 @@ func (o *JobArchive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "functionName")
-		delete(additionalProperties, "params")
 		delete(additionalProperties, "response")
 		delete(additionalProperties, "callCount")
 		delete(additionalProperties, "retryMax")

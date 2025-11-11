@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **Type** | **string** | The type of the job | 
 **Status** | **string** | The status of the job | 
 **FunctionName** | **string** | The name of the function that should be executed | 
-**Params** | Pointer to **map[string]interface{}** | The parameters that should be passed to the function | [optional] 
 **Response** | Pointer to **map[string]interface{}** | The response of the function | [optional] 
 **CallCount** | **int32** | The number of times the job has been called | 
 **RetryMax** | **int32** | The maximum number of times the job should be retried | 
@@ -34,13 +33,13 @@ Name | Type | Description | Notes
 **StartTimestamp** | Pointer to **string** | The timestamp when the job was started | [optional] 
 **MarkForDeath** | Pointer to **string** | Mark the job for death | [optional] 
 **UniqueIdentifier** | Pointer to **string** | The unique identifier of the job | [optional] 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | [**[]Link**](Link.md) | Links to other resources | 
 
 ## Methods
 
 ### NewJob
 
-`func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *Job`
+`func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link, ) *Job`
 
 NewJob instantiates a new Job object
 This constructor will assign default values to properties that have it defined,
@@ -385,31 +384,6 @@ and a boolean to check if the value has been set.
 SetFunctionName sets FunctionName field to given value.
 
 
-### GetParams
-
-`func (o *Job) GetParams() map[string]interface{}`
-
-GetParams returns the Params field if non-nil, zero value otherwise.
-
-### GetParamsOk
-
-`func (o *Job) GetParamsOk() (*map[string]interface{}, bool)`
-
-GetParamsOk returns a tuple with the Params field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetParams
-
-`func (o *Job) SetParams(v map[string]interface{})`
-
-SetParams sets Params field to given value.
-
-### HasParams
-
-`func (o *Job) HasParams() bool`
-
-HasParams returns a boolean if a field has been set.
-
 ### GetResponse
 
 `func (o *Job) GetResponse() map[string]interface{}`
@@ -747,20 +721,20 @@ HasUniqueIdentifier returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *Job) GetLinks() map[string]interface{}`
+`func (o *Job) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *Job) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *Job) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *Job) SetLinks(v map[string]interface{})`
+`func (o *Job) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 

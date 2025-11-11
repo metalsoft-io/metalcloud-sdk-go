@@ -294,6 +294,7 @@ docs/ExtensionInstanceArray.md
 docs/ExtensionInstanceArrayLogicalNetwork.md
 docs/ExtensionInstanceArrayLogicalNetworkConnection.md
 docs/ExtensionInstanceConfiguration.md
+docs/ExtensionInstanceCredentials.md
 docs/ExtensionInstancePaginatedList.md
 docs/ExtensionOutput.md
 docs/ExtensionPaginatedList.md
@@ -1060,6 +1061,7 @@ model_extension_instance_array.go
 model_extension_instance_array_logical_network.go
 model_extension_instance_array_logical_network_connection.go
 model_extension_instance_configuration.go
+model_extension_instance_credentials.go
 model_extension_instance_paginated_list.go
 model_extension_output.go
 model_extension_paginated_list.go

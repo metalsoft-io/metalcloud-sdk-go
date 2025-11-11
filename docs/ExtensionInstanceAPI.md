@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateExtensionInstance**](ExtensionInstanceAPI.md#CreateExtensionInstance) | **Post** /api/v2/infrastructures/{infrastructureId}/extension-instances | Add extension instance to an infrastructure
 [**DeleteExtensionInstance**](ExtensionInstanceAPI.md#DeleteExtensionInstance) | **Delete** /api/v2/extension-instances/{extensionInstanceId} | Delete extension instance
 [**GetExtensionInstance**](ExtensionInstanceAPI.md#GetExtensionInstance) | **Get** /api/v2/extension-instances/{extensionInstanceId} | Get extension instance details
+[**GetExtensionInstanceCredentials**](ExtensionInstanceAPI.md#GetExtensionInstanceCredentials) | **Get** /api/v2/extension-instances/{extensionInstanceId}/credentials | Get Extension Instance credentials
 [**GetExtensionInstances**](ExtensionInstanceAPI.md#GetExtensionInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/extension-instances | Get extension instances list
 [**UpdateExtensionInstance**](ExtensionInstanceAPI.md#UpdateExtensionInstance) | **Patch** /api/v2/extension-instances/{extensionInstanceId}/config | Update extension instance configuration
 
@@ -209,6 +210,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ExtensionInstance**](ExtensionInstance.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetExtensionInstanceCredentials
+
+> ExtensionInstanceCredentials GetExtensionInstanceCredentials(ctx, extensionInstanceId).Execute()
+
+Get Extension Instance credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	extensionInstanceId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExtensionInstanceAPI.GetExtensionInstanceCredentials(context.Background(), extensionInstanceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExtensionInstanceAPI.GetExtensionInstanceCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetExtensionInstanceCredentials`: ExtensionInstanceCredentials
+	fmt.Fprintf(os.Stdout, "Response from `ExtensionInstanceAPI.GetExtensionInstanceCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**extensionInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetExtensionInstanceCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ExtensionInstanceCredentials**](ExtensionInstanceCredentials.md)
 
 ### Authorization
 

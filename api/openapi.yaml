@@ -4317,6 +4317,37 @@ paths:
       summary: Get extension instance details
       tags:
       - Extension Instance
+  /api/v2/extension-instances/{extensionInstanceId}/credentials:
+    get:
+      description: Returns the credentials of the specified Extension Instance
+      operationId: getExtensionInstanceCredentials
+      parameters:
+      - explode: false
+        in: path
+        name: extensionInstanceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtensionInstanceCredentials'
+          description: The credentials of the specified Extension Instance
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Extension Instance not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Extension Instance credentials
+      tags:
+      - Extension Instance
   /api/v2/infrastructures/{infrastructureId}/extension-instances:
     get:
       description: Returns list of extension instances
@@ -25798,17 +25829,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by displayName query param.
+          Filter by description query param.
                     <p>
-                       <b>Format: </b> filter.displayName={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.description={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.displayName=$not:$like:John Doe&filter.displayName=like:John
+                       <b>Example: </b> filter.description=$not:$like:John Doe&filter.description=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
-        name: filter.displayName
+        name: filter.description
         required: false
         schema:
           items:
@@ -25957,11 +25988,11 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> name,label\n          </p>\n\
-          \        <p>\n             <b>Default Value: </b> By default all fields\
-          \ mentioned below will be used to search by term\n          </p>\n     \
-          \   <h4>Available Fields</h4><ul><li>name</li>\n<li>label</li></ul>\n  \
-          \      "
+          \       <p>\n             <b>Example: </b> name,label,description\n    \
+          \      </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>name</li>\n<li>label</li>\n<li>description</li></ul>\n\
+          \        "
         explode: true
         in: query
         name: searchBy
@@ -41432,9 +41463,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-10-14T14:03:50.271Z
+        createdTimestamp: 2025-11-11T13:58:46.766Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-10-14T14:03:50.271Z
+        updatedTimestamp: 2025-11-11T13:58:46.766Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41531,12 +41562,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-10-14T14:03:50.271Z
+          example: 2025-11-11T13:58:46.766Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-10-14T14:03:50.271Z
+          example: 2025-11-11T13:58:46.766Z
           format: date-time
           type: string
         links:
@@ -41568,9 +41599,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-10-14T14:03:50.271Z
+          createdTimestamp: 2025-11-11T13:58:46.766Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-10-14T14:03:50.271Z
+          updatedTimestamp: 2025-11-11T13:58:46.766Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41587,9 +41618,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-10-14T14:03:50.271Z
+          createdTimestamp: 2025-11-11T13:58:46.766Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-10-14T14:03:50.271Z
+          updatedTimestamp: 2025-11-11T13:58:46.766Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -43584,6 +43615,16 @@ components:
       - revision
       - serviceStatus
       - updatedTimestamp
+      type: object
+    ExtensionInstanceCredentials:
+      example:
+        inputVariables: "{}"
+      properties:
+        inputVariables:
+          description: Input variables values to be updated.
+          type: object
+      required:
+      - inputVariables
       type: object
     CreateExtensionInstance:
       example:
@@ -58346,7 +58387,11 @@ components:
         durationMilliseconds: 6
         instanceId: 1
         options: ""
-        links: "{}"
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
         storageId: 2
         uniqueIdentifier: uniqueIdentifier
         requiresConfirmation: false
@@ -58354,7 +58399,6 @@ components:
         retryCount: 1
         createdTimestamp: createdTimestamp
         jobIdBlocked: 3
-        params: "{}"
         markForDeath: kill
         jobId: 0
         infrastructureId: 9
@@ -58419,9 +58463,6 @@ components:
         functionName:
           description: The name of the function that should be executed
           type: string
-        params:
-          description: The parameters that should be passed to the function
-          type: object
         response:
           description: The response of the function
           type: object
@@ -58478,7 +58519,9 @@ components:
           type: string
         links:
           description: Links to other resources
-          type: object
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
       required:
       - callCount
       - createdTimestamp
@@ -58510,7 +58553,11 @@ components:
           durationMilliseconds: 6
           instanceId: 1
           options: ""
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           storageId: 2
           uniqueIdentifier: uniqueIdentifier
           requiresConfirmation: false
@@ -58518,7 +58565,6 @@ components:
           retryCount: 1
           createdTimestamp: createdTimestamp
           jobIdBlocked: 3
-          params: "{}"
           markForDeath: kill
           jobId: 0
           infrastructureId: 9
@@ -58541,7 +58587,11 @@ components:
           durationMilliseconds: 6
           instanceId: 1
           options: ""
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           storageId: 2
           uniqueIdentifier: uniqueIdentifier
           requiresConfirmation: false
@@ -58549,7 +58599,6 @@ components:
           retryCount: 1
           createdTimestamp: createdTimestamp
           jobIdBlocked: 3
-          params: "{}"
           markForDeath: kill
           jobId: 0
           infrastructureId: 9
@@ -58596,14 +58645,17 @@ components:
         durationMilliseconds: 6
         instanceId: 1
         options: ""
-        links: "{}"
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
         storageId: 2
         requiresConfirmation: false
         functionName: functionName
         retryCount: 1
         createdTimestamp: createdTimestamp
         jobIdBlocked: 3
-        params: "{}"
         markForDeath: kill
         jobId: 0
         infrastructureId: 9
@@ -58668,9 +58720,6 @@ components:
         functionName:
           description: The name of the function that should be executed
           type: string
-        params:
-          description: The parameters that should be passed to the function
-          type: object
         response:
           description: The response of the function
           type: object
@@ -58724,7 +58773,9 @@ components:
           type: string
         links:
           description: Links to other resources
-          type: object
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
       required:
       - callCount
       - createdTimestamp
@@ -58756,14 +58807,17 @@ components:
           durationMilliseconds: 6
           instanceId: 1
           options: ""
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           storageId: 2
           requiresConfirmation: false
           functionName: functionName
           retryCount: 1
           createdTimestamp: createdTimestamp
           jobIdBlocked: 3
-          params: "{}"
           markForDeath: kill
           jobId: 0
           infrastructureId: 9
@@ -58786,14 +58840,17 @@ components:
           durationMilliseconds: 6
           instanceId: 1
           options: ""
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           storageId: 2
           requiresConfirmation: false
           functionName: functionName
           retryCount: 1
           createdTimestamp: createdTimestamp
           jobIdBlocked: 3
-          params: "{}"
           markForDeath: kill
           jobId: 0
           infrastructureId: 9
@@ -64251,7 +64308,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-10-14T14:03:50.48Z
+        createdTimestamp: 2025-11-11T13:58:46.791Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -64260,7 +64317,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-10-14T14:03:50.48Z
+        updatedTimestamp: 2025-11-11T13:58:46.791Z
         revision: "1"
       properties:
         siteId:
@@ -64277,12 +64334,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-10-14T14:03:50.48Z
+          example: 2025-11-11T13:58:46.791Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-10-14T14:03:50.48Z
+          example: 2025-11-11T13:58:46.791Z
           format: date-time
           type: string
         links:
@@ -64304,7 +64361,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-10-14T14:03:50.48Z
+        - createdTimestamp: 2025-11-11T13:58:46.791Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -64313,9 +64370,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-10-14T14:03:50.48Z
+          updatedTimestamp: 2025-11-11T13:58:46.791Z
           revision: "1"
-        - createdTimestamp: 2025-10-14T14:03:50.48Z
+        - createdTimestamp: 2025-11-11T13:58:46.791Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -64324,7 +64381,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-10-14T14:03:50.48Z
+          updatedTimestamp: 2025-11-11T13:58:46.791Z
           revision: "1"
         meta: ""
         links: ""
@@ -64958,7 +65015,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-10-14T14:03:50.258Z
+        createdTimestamp: 2025-11-11T13:58:46.765Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -65006,7 +65063,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-10-14T14:03:50.258Z
+        updatedTimestamp: 2025-11-11T13:58:46.765Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -65154,12 +65211,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-10-14T14:03:50.258Z
+          example: 2025-11-11T13:58:46.765Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-10-14T14:03:50.258Z
+          example: 2025-11-11T13:58:46.765Z
           format: date-time
           type: string
         links:
@@ -65203,7 +65260,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-10-14T14:03:50.258Z
+        - createdTimestamp: 2025-11-11T13:58:46.765Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -65251,7 +65308,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-10-14T14:03:50.258Z
+          updatedTimestamp: 2025-11-11T13:58:46.765Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -65374,7 +65431,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-10-14T14:03:50.258Z
+        - createdTimestamp: 2025-11-11T13:58:46.765Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -65422,7 +65479,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-10-14T14:03:50.258Z
+          updatedTimestamp: 2025-11-11T13:58:46.765Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -65714,9 +65771,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-10-14T14:03:50.501Z
+        createdTimestamp: 2025-11-11T13:58:46.792Z
         mlagPair: 0
-        updatedTimestamp: 2025-10-14T14:03:50.501Z
+        updatedTimestamp: 2025-11-11T13:58:46.792Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -65729,12 +65786,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-10-14T14:03:50.501Z
+          example: 2025-11-11T13:58:46.792Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-10-14T14:03:50.501Z
+          example: 2025-11-11T13:58:46.792Z
           format: date-time
           type: string
         revision:
@@ -65812,9 +65869,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-10-14T14:03:50.501Z
+          createdTimestamp: 2025-11-11T13:58:46.792Z
           mlagPair: 0
-          updatedTimestamp: 2025-10-14T14:03:50.501Z
+          updatedTimestamp: 2025-11-11T13:58:46.792Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -65825,9 +65882,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-10-14T14:03:50.501Z
+          createdTimestamp: 2025-11-11T13:58:46.792Z
           mlagPair: 0
-          updatedTimestamp: 2025-10-14T14:03:50.501Z
+          updatedTimestamp: 2025-11-11T13:58:46.792Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -69364,10 +69421,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-10-14T14:03:50.492Z
+        createdTimestamp: 2025-11-11T13:58:46.792Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-10-14T14:03:50.493Z
+        updatedTimestamp: 2025-11-11T13:58:46.792Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -69441,12 +69498,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-10-14T14:03:50.492Z
+          example: 2025-11-11T13:58:46.792Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-10-14T14:03:50.493Z
+          example: 2025-11-11T13:58:46.792Z
           format: date-time
           type: string
         links:
@@ -75029,7 +75086,7 @@ components:
         allowedVendorSkuIds:
         - allowedVendorSkuIds
         - allowedVendorSkuIds
-        displayName: displayName
+        description: description
         diskCount: 3.616076749251911
         serverClass: unknown
         processorCoreMhz: 5.962133916683182
@@ -75094,10 +75151,10 @@ components:
           description: The processor core count of the server type.
           type: number
         name:
-          description: The display name of the server type.
+          description: The human-readable name of the server type.
           type: string
-        displayName:
-          description: The display name of the server type.
+        description:
+          description: Description of the server type.
           type: string
         label:
           description: The label of the server type.
@@ -75181,6 +75238,7 @@ components:
       required:
       - diskCount
       - id
+      - label
       - name
       - networkInterfaceCount
       - networkInterfaceSpeeds
@@ -75198,7 +75256,7 @@ components:
         - allowedVendorSkuIds:
           - allowedVendorSkuIds
           - allowedVendorSkuIds
-          displayName: displayName
+          description: description
           diskCount: 3.616076749251911
           serverClass: unknown
           processorCoreMhz: 5.962133916683182
@@ -75249,7 +75307,7 @@ components:
         - allowedVendorSkuIds:
           - allowedVendorSkuIds
           - allowedVendorSkuIds
-          displayName: displayName
+          description: description
           diskCount: 3.616076749251911
           serverClass: unknown
           processorCoreMhz: 5.962133916683182
@@ -75328,7 +75386,7 @@ components:
         - allowedVendorSkuIds
         - allowedVendorSkuIds
         processorCount: 6.027456183070403
-        displayName: displayName
+        description: description
         supportsOobProvisioning: 2.027123023002322
         label: label
         diskCount: 2.3021358869347655
@@ -75378,10 +75436,10 @@ components:
           description: The processor core count of the server type.
           type: number
         name:
-          description: The display name of the server type.
+          description: The human-readable name of the server type.
           type: string
-        displayName:
-          description: The display name of the server type.
+        description:
+          description: Description of the server type.
           type: string
         label:
           description: The label of the server type.
@@ -75453,6 +75511,7 @@ components:
           $ref: '#/components/schemas/ServerTypeDiskGroup'
       required:
       - diskCount
+      - label
       - name
       - networkInterfaceSpeeds
       - processorCoreCount
@@ -75468,15 +75527,13 @@ components:
         - allowedVendorSkuIds
         - allowedVendorSkuIds
         isExperimental: 0.8008281904610115
-        displayName: displayName
+        name: name
+        description: description
         label: label
         tags:
         - tags
         - tags
       properties:
-        label:
-          description: The label of the server type.
-          type: string
         allowedVendorSkuIds:
           description: The list of allowed SKU ids for the server type.
           items:
@@ -75491,9 +75548,17 @@ components:
           items:
             type: string
           type: array
-        displayName:
-          description: The display name of the server type.
+        label:
+          description: "The label for the server type (e.g., M.16.64.4G.v2)."
           type: string
+        description:
+          description: Description of the server type.
+          type: string
+        name:
+          description: The name of the server type.
+          type: string
+      required:
+      - label
       type: object
     ServerTypeStatisticsBatchOptions:
       example:
@@ -75675,7 +75740,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-10-14T14:03:50.474Z
+        createdTimestamp: 2025-11-11T13:58:46.79Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -75683,7 +75748,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-10-14T14:03:50.474Z
+        updatedTimestamp: 2025-11-11T13:58:46.79Z
         revision: "1"
       properties:
         id:
@@ -75712,12 +75777,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-10-14T14:03:50.474Z
+          example: 2025-11-11T13:58:46.79Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-10-14T14:03:50.474Z
+          example: 2025-11-11T13:58:46.79Z
           format: date-time
           type: string
         links:
@@ -75762,7 +75827,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-10-14T14:03:50.477Z
+        createdTimestamp: 2025-11-11T13:58:46.79Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -75773,7 +75838,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-10-14T14:03:50.477Z
+        updatedTimestamp: 2025-11-11T13:58:46.79Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -75808,12 +75873,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-10-14T14:03:50.477Z
+          example: 2025-11-11T13:58:46.79Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-10-14T14:03:50.477Z
+          example: 2025-11-11T13:58:46.79Z
           format: date-time
           type: string
         allocationInfo:
@@ -75837,7 +75902,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-10-14T14:03:50.477Z
+        - createdTimestamp: 2025-11-11T13:58:46.79Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -75848,10 +75913,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-10-14T14:03:50.477Z
+          updatedTimestamp: 2025-11-11T13:58:46.79Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2025-10-14T14:03:50.477Z
+        - createdTimestamp: 2025-11-11T13:58:46.79Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -75862,7 +75927,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-10-14T14:03:50.477Z
+          updatedTimestamp: 2025-11-11T13:58:46.79Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -76072,7 +76137,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-10-14T14:03:50.474Z
+          createdTimestamp: 2025-11-11T13:58:46.79Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -76080,12 +76145,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-10-14T14:03:50.474Z
+          updatedTimestamp: 2025-11-11T13:58:46.79Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-10-14T14:03:50.474Z
+          createdTimestamp: 2025-11-11T13:58:46.79Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -76093,7 +76158,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-10-14T14:03:50.474Z
+          updatedTimestamp: 2025-11-11T13:58:46.79Z
           revision: "1"
         meta: ""
         links: ""
