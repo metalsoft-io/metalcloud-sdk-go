@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **Type** | **string** | The type of the job | 
 **Status** | **string** | The status of the job | 
 **FunctionName** | **string** | The name of the function that should be executed | 
-**Params** | Pointer to **map[string]interface{}** | The parameters that should be passed to the function | [optional] 
 **Response** | Pointer to **map[string]interface{}** | The response of the function | [optional] 
 **CallCount** | **int32** | The number of times the job has been called | 
 **RetryMax** | **int32** | The maximum number of times the job should be retried | 
@@ -28,18 +27,18 @@ Name | Type | Description | Notes
 **ExtraInfo** | Pointer to **map[string]interface{}** | Extra information about the job | [optional] 
 **DurationMilliseconds** | Pointer to **int32** | The time in milliseconds that the job took to execute | [optional] 
 **RequiresConfirmation** | **bool** | Whether the job requires confirmation before execution | [default to false]
-**Options** | [**JobOptions**](JobOptions.md) | Options for the job | 
+**Options** | [**JobOptionsDto**](JobOptionsDto.md) | Options for the job | 
 **CreatedTimestamp** | **string** | The timestamp when the job was created | 
 **UpdatedTimestamp** | **string** | The timestamp when the job was last updated | 
 **StartTimestamp** | Pointer to **string** | The timestamp when the job was started | [optional] 
 **MarkForDeath** | Pointer to **string** | Mark the job for death | [optional] 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | [**[]Link**](Link.md) | Links to other resources | 
 
 ## Methods
 
 ### NewJobArchive
 
-`func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptions, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *JobArchive`
+`func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link, ) *JobArchive`
 
 NewJobArchive instantiates a new JobArchive object
 This constructor will assign default values to properties that have it defined,
@@ -384,31 +383,6 @@ and a boolean to check if the value has been set.
 SetFunctionName sets FunctionName field to given value.
 
 
-### GetParams
-
-`func (o *JobArchive) GetParams() map[string]interface{}`
-
-GetParams returns the Params field if non-nil, zero value otherwise.
-
-### GetParamsOk
-
-`func (o *JobArchive) GetParamsOk() (*map[string]interface{}, bool)`
-
-GetParamsOk returns a tuple with the Params field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetParams
-
-`func (o *JobArchive) SetParams(v map[string]interface{})`
-
-SetParams sets Params field to given value.
-
-### HasParams
-
-`func (o *JobArchive) HasParams() bool`
-
-HasParams returns a boolean if a field has been set.
-
 ### GetResponse
 
 `func (o *JobArchive) GetResponse() map[string]interface{}`
@@ -611,20 +585,20 @@ SetRequiresConfirmation sets RequiresConfirmation field to given value.
 
 ### GetOptions
 
-`func (o *JobArchive) GetOptions() JobOptions`
+`func (o *JobArchive) GetOptions() JobOptionsDto`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *JobArchive) GetOptionsOk() (*JobOptions, bool)`
+`func (o *JobArchive) GetOptionsOk() (*JobOptionsDto, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *JobArchive) SetOptions(v JobOptions)`
+`func (o *JobArchive) SetOptions(v JobOptionsDto)`
 
 SetOptions sets Options field to given value.
 
@@ -721,20 +695,20 @@ HasMarkForDeath returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *JobArchive) GetLinks() map[string]interface{}`
+`func (o *JobArchive) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *JobArchive) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *JobArchive) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *JobArchive) SetLinks(v map[string]interface{})`
+`func (o *JobArchive) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 

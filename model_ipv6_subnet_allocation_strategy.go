@@ -14,6 +14,7 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // Ipv6SubnetAllocationStrategy - struct for Ipv6SubnetAllocationStrategy
@@ -40,62 +41,52 @@ func ManualIpv6SubnetAllocationStrategyAsIpv6SubnetAllocationStrategy(v *ManualI
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Ipv6SubnetAllocationStrategy) UnmarshalJSON(data []byte) error {
 	var err error
-	// use discriminator value to speed up the lookup
-	var jsonDict map[string]interface{}
-	err = newStrictDecoder(data).Decode(&jsonDict)
-	if err != nil {
-		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
-	}
-
-	// check if the discriminator value is 'auto'
-	if jsonDict["kind"] == "auto" {
-		// try to unmarshal JSON data into AutoIpv6SubnetAllocationStrategy
-		err = json.Unmarshal(data, &dst.AutoIpv6SubnetAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.AutoIpv6SubnetAllocationStrategy, return on the first match
-		} else {
+	match := 0
+	// try to unmarshal data into AutoIpv6SubnetAllocationStrategy
+	err = newStrictDecoder(data).Decode(&dst.AutoIpv6SubnetAllocationStrategy)
+	if err == nil {
+		jsonAutoIpv6SubnetAllocationStrategy, _ := json.Marshal(dst.AutoIpv6SubnetAllocationStrategy)
+		if string(jsonAutoIpv6SubnetAllocationStrategy) == "{}" { // empty struct
 			dst.AutoIpv6SubnetAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal Ipv6SubnetAllocationStrategy as AutoIpv6SubnetAllocationStrategy: %s", err.Error())
+		} else {
+			if err = validator.Validate(dst.AutoIpv6SubnetAllocationStrategy); err != nil {
+				dst.AutoIpv6SubnetAllocationStrategy = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.AutoIpv6SubnetAllocationStrategy = nil
 	}
 
-	// check if the discriminator value is 'manual'
-	if jsonDict["kind"] == "manual" {
-		// try to unmarshal JSON data into ManualIpv6SubnetAllocationStrategy
-		err = json.Unmarshal(data, &dst.ManualIpv6SubnetAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.ManualIpv6SubnetAllocationStrategy, return on the first match
-		} else {
+	// try to unmarshal data into ManualIpv6SubnetAllocationStrategy
+	err = newStrictDecoder(data).Decode(&dst.ManualIpv6SubnetAllocationStrategy)
+	if err == nil {
+		jsonManualIpv6SubnetAllocationStrategy, _ := json.Marshal(dst.ManualIpv6SubnetAllocationStrategy)
+		if string(jsonManualIpv6SubnetAllocationStrategy) == "{}" { // empty struct
 			dst.ManualIpv6SubnetAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal Ipv6SubnetAllocationStrategy as ManualIpv6SubnetAllocationStrategy: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'AutoIpv6SubnetAllocationStrategy'
-	if jsonDict["kind"] == "AutoIpv6SubnetAllocationStrategy" {
-		// try to unmarshal JSON data into AutoIpv6SubnetAllocationStrategy
-		err = json.Unmarshal(data, &dst.AutoIpv6SubnetAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.AutoIpv6SubnetAllocationStrategy, return on the first match
 		} else {
-			dst.AutoIpv6SubnetAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal Ipv6SubnetAllocationStrategy as AutoIpv6SubnetAllocationStrategy: %s", err.Error())
+			if err = validator.Validate(dst.ManualIpv6SubnetAllocationStrategy); err != nil {
+				dst.ManualIpv6SubnetAllocationStrategy = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.ManualIpv6SubnetAllocationStrategy = nil
 	}
 
-	// check if the discriminator value is 'ManualIpv6SubnetAllocationStrategy'
-	if jsonDict["kind"] == "ManualIpv6SubnetAllocationStrategy" {
-		// try to unmarshal JSON data into ManualIpv6SubnetAllocationStrategy
-		err = json.Unmarshal(data, &dst.ManualIpv6SubnetAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.ManualIpv6SubnetAllocationStrategy, return on the first match
-		} else {
-			dst.ManualIpv6SubnetAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal Ipv6SubnetAllocationStrategy as ManualIpv6SubnetAllocationStrategy: %s", err.Error())
-		}
-	}
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AutoIpv6SubnetAllocationStrategy = nil
+		dst.ManualIpv6SubnetAllocationStrategy = nil
 
-	return nil
+		return fmt.Errorf("data matches more than one schema in oneOf(Ipv6SubnetAllocationStrategy)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(Ipv6SubnetAllocationStrategy)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

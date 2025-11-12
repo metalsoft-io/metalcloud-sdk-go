@@ -27,6 +27,7 @@ type FirmwareBaseline struct {
 	Description *string `json:"description,omitempty"`
 	Catalog []string `json:"catalog,omitempty"`
 	Level BaselineLevelType `json:"level"`
+	// Array of filter values. For datacenter/serverType/osTemplate: array of strings (e.g., [\"datacenter1\", \"datacenter2\"]). For vendorModel: array of objects with vendor and model properties (e.g., [{ vendor: \"Dell\", model: \"R740\" }, { vendor: \"HPE\", model: \"*\" }]). Use \"*\" for wildcards.
 	LevelFilter []string `json:"levelFilter"`
 	AdditionalProperties map[string]interface{}
 }

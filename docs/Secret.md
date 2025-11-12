@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Id** | **int32** | The secret ID. | 
 **UserIdOwner** | **float32** | ID of owner user. | 
 **Name** | **string** | The secret name. | 
-**ValueEncrypted** | **string** | The secret value encrypted. | 
 **Usage** | Pointer to [**VariableUsageType**](VariableUsageType.md) | Secret usage type. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp of creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of last update. | 
@@ -17,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewSecret
 
-`func NewSecret(id int32, userIdOwner float32, name string, valueEncrypted string, createdTimestamp string, updatedTimestamp string, ) *Secret`
+`func NewSecret(id int32, userIdOwner float32, name string, createdTimestamp string, updatedTimestamp string, ) *Secret`
 
 NewSecret instantiates a new Secret object
 This constructor will assign default values to properties that have it defined,
@@ -90,26 +89,6 @@ and a boolean to check if the value has been set.
 `func (o *Secret) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetValueEncrypted
-
-`func (o *Secret) GetValueEncrypted() string`
-
-GetValueEncrypted returns the ValueEncrypted field if non-nil, zero value otherwise.
-
-### GetValueEncryptedOk
-
-`func (o *Secret) GetValueEncryptedOk() (*string, bool)`
-
-GetValueEncryptedOk returns a tuple with the ValueEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValueEncrypted
-
-`func (o *Secret) SetValueEncrypted(v string)`
-
-SetValueEncrypted sets ValueEncrypted field to given value.
 
 
 ### GetUsage

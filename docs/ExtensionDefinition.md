@@ -14,21 +14,21 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description of the extension. | [optional] 
 **Icon** | **string** | Icon of the extension. | 
 **Dependencies** | [**ExtensionDependency**](ExtensionDependency.md) |  | 
-**Inputs** | [**[]ExtensionDefinitionInputsDataItem**](ExtensionDefinitionInputsDataItem.md) | List of inputs for the platform service. | 
+**Inputs** | [**[]ExtensionDefinitionInputsInner**](ExtensionDefinitionInputsInner.md) | List of inputs for the platform service. | 
 **Outputs** | [**[]ExtensionOutput**](ExtensionOutput.md) | List of outputs for the platform service. | 
 **Infrastructure** | Pointer to [**ExtensionInfrastructure**](ExtensionInfrastructure.md) |  | [optional] 
 **Assets** | [**[]ExtensionAsset**](ExtensionAsset.md) | List of assets for the platform service. | 
 **OnCreate** | Pointer to [**[]InfrastructureExtensionActions**](InfrastructureExtensionActions.md) | Actions for the onCreate event. | [optional] 
 **OnEdit** | Pointer to [**[]InfrastructureExtensionActions**](InfrastructureExtensionActions.md) | Actions for the onEdit event. | [optional] 
 **OnDelete** | Pointer to [**[]InfrastructureExtensionActions**](InfrastructureExtensionActions.md) | Actions for the onDelete event. | [optional] 
-**Actions** | Pointer to [**[]InfrastructureExtensionActionsTasksDataItem**](InfrastructureExtensionActionsTasksDataItem.md) | Actions. Only for extensions of kind action | [optional] 
+**Actions** | Pointer to [**[]InfrastructureExtensionActionsTasksInner**](InfrastructureExtensionActionsTasksInner.md) | Actions. Only for extensions of kind action | [optional] 
 **OnAssetChange** | Pointer to [**[]AssetExtensionActions**](AssetExtensionActions.md) | Tasks to be executed when an asset changes. Only for extensions of kind workflow | [optional] 
 
 ## Methods
 
 ### NewExtensionDefinition
 
-`func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionDefinitionInputsDataItem, outputs []ExtensionOutput, assets []ExtensionAsset, ) *ExtensionDefinition`
+`func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionDefinitionInputsInner, outputs []ExtensionOutput, assets []ExtensionAsset, ) *ExtensionDefinition`
 
 NewExtensionDefinition instantiates a new ExtensionDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -250,20 +250,20 @@ SetDependencies sets Dependencies field to given value.
 
 ### GetInputs
 
-`func (o *ExtensionDefinition) GetInputs() []ExtensionDefinitionInputsDataItem`
+`func (o *ExtensionDefinition) GetInputs() []ExtensionDefinitionInputsInner`
 
 GetInputs returns the Inputs field if non-nil, zero value otherwise.
 
 ### GetInputsOk
 
-`func (o *ExtensionDefinition) GetInputsOk() (*[]ExtensionDefinitionInputsDataItem, bool)`
+`func (o *ExtensionDefinition) GetInputsOk() (*[]ExtensionDefinitionInputsInner, bool)`
 
 GetInputsOk returns a tuple with the Inputs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputs
 
-`func (o *ExtensionDefinition) SetInputs(v []ExtensionDefinitionInputsDataItem)`
+`func (o *ExtensionDefinition) SetInputs(v []ExtensionDefinitionInputsInner)`
 
 SetInputs sets Inputs field to given value.
 
@@ -410,20 +410,20 @@ HasOnDelete returns a boolean if a field has been set.
 
 ### GetActions
 
-`func (o *ExtensionDefinition) GetActions() []InfrastructureExtensionActionsTasksDataItem`
+`func (o *ExtensionDefinition) GetActions() []InfrastructureExtensionActionsTasksInner`
 
 GetActions returns the Actions field if non-nil, zero value otherwise.
 
 ### GetActionsOk
 
-`func (o *ExtensionDefinition) GetActionsOk() (*[]InfrastructureExtensionActionsTasksDataItem, bool)`
+`func (o *ExtensionDefinition) GetActionsOk() (*[]InfrastructureExtensionActionsTasksInner, bool)`
 
 GetActionsOk returns a tuple with the Actions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActions
 
-`func (o *ExtensionDefinition) SetActions(v []InfrastructureExtensionActionsTasksDataItem)`
+`func (o *ExtensionDefinition) SetActions(v []InfrastructureExtensionActionsTasksInner)`
 
 SetActions sets Actions field to given value.
 

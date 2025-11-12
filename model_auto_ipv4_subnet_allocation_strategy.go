@@ -57,7 +57,7 @@ func NewAutoIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedA
 // but it doesn't guarantee that properties required by API are set
 func NewAutoIpv4SubnetAllocationStrategyWithDefaults() *AutoIpv4SubnetAllocationStrategy {
 	this := AutoIpv4SubnetAllocationStrategy{}
-	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	var gatewayPlacement SubnetGatewayPlacement = DEFAULT
 	this.GatewayPlacement = gatewayPlacement
 	return &this
 }

@@ -21,8 +21,8 @@ type CatalogUpdateType string
 
 // List of CatalogUpdateType
 const (
-	CATALOGUPDATETYPE_ONLINE CatalogUpdateType = "online"
-	CATALOGUPDATETYPE_OFFLINE CatalogUpdateType = "offline"
+	ONLINE CatalogUpdateType = "online"
+	OFFLINE CatalogUpdateType = "offline"
 )
 
 // All allowed values of CatalogUpdateType enum

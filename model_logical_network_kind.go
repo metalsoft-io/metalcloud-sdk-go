@@ -21,8 +21,8 @@ type LogicalNetworkKind string
 
 // List of LogicalNetworkKind
 const (
-	LOGICALNETWORKKIND_VLAN LogicalNetworkKind = "vlan"
-	LOGICALNETWORKKIND_VXLAN LogicalNetworkKind = "vxlan"
+	VLAN LogicalNetworkKind = "vlan"
+	VXLAN LogicalNetworkKind = "vxlan"
 )
 
 // All allowed values of LogicalNetworkKind enum

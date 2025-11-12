@@ -21,11 +21,11 @@ type SwitchPosition string
 
 // List of SwitchPosition
 const (
-	SWITCHPOSITION_TOR SwitchPosition = "tor"
-	SWITCHPOSITION_NORTH SwitchPosition = "north"
-	SWITCHPOSITION_SPINE SwitchPosition = "spine"
-	SWITCHPOSITION_LEAF SwitchPosition = "leaf"
-	SWITCHPOSITION_OTHER SwitchPosition = "other"
+	TOR SwitchPosition = "tor"
+	NORTH SwitchPosition = "north"
+	SPINE SwitchPosition = "spine"
+	LEAF SwitchPosition = "leaf"
+	OTHER SwitchPosition = "other"
 )
 
 // All allowed values of SwitchPosition enum

@@ -21,18 +21,18 @@ type AssetExtensionActionStage string
 
 // List of AssetExtensionActionStage
 const (
-	ASSETEXTENSIONACTIONSTAGE_SERVER_REGISTERED AssetExtensionActionStage = "serverRegistered"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_DECOMMISSIONED AssetExtensionActionStage = "serverDecommissioned"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_CREATE_DNS AssetExtensionActionStage = "serverCreateDNS"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_DELETE_DNS AssetExtensionActionStage = "serverDeleteDNS"
-	ASSETEXTENSIONACTIONSTAGE_SWITCH_REGISTERED AssetExtensionActionStage = "switchRegistered"
-	ASSETEXTENSIONACTIONSTAGE_SWITCH_DECOMMISSIONED AssetExtensionActionStage = "switchDecommissioned"
-	ASSETEXTENSIONACTIONSTAGE_SWITCH_CREATE_DNS AssetExtensionActionStage = "switchCreateDNS"
-	ASSETEXTENSIONACTIONSTAGE_SWITCH_DELETE_DNS AssetExtensionActionStage = "switchDeleteDNS"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_UPDATE_DNS AssetExtensionActionStage = "serverInstanceGroupUpdateDNS"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_UPDATE_DNS AssetExtensionActionStage = "serverInstanceUpdateDNS"
-	ASSETEXTENSIONACTIONSTAGE_CLUSTER_UPDATE_DNS AssetExtensionActionStage = "clusterUpdateDNS"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_UPDATE AssetExtensionActionStage = "serverInstanceUpdate"
+	SERVER_REGISTERED AssetExtensionActionStage = "serverRegistered"
+	SERVER_DECOMMISSIONED AssetExtensionActionStage = "serverDecommissioned"
+	SERVER_CREATE_DNS AssetExtensionActionStage = "serverCreateDNS"
+	SERVER_DELETE_DNS AssetExtensionActionStage = "serverDeleteDNS"
+	SWITCH_REGISTERED AssetExtensionActionStage = "switchRegistered"
+	SWITCH_DECOMMISSIONED AssetExtensionActionStage = "switchDecommissioned"
+	SWITCH_CREATE_DNS AssetExtensionActionStage = "switchCreateDNS"
+	SWITCH_DELETE_DNS AssetExtensionActionStage = "switchDeleteDNS"
+	SERVER_INSTANCE_GROUP_UPDATE_DNS AssetExtensionActionStage = "serverInstanceGroupUpdateDNS"
+	SERVER_INSTANCE_UPDATE_DNS AssetExtensionActionStage = "serverInstanceUpdateDNS"
+	CLUSTER_UPDATE_DNS AssetExtensionActionStage = "clusterUpdateDNS"
+	SERVER_INSTANCE_UPDATE AssetExtensionActionStage = "serverInstanceUpdate"
 )
 
 // All allowed values of AssetExtensionActionStage enum

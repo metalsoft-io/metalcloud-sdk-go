@@ -55,7 +55,7 @@ func NewManualIpv6SubnetAllocationStrategy(id int32, createdAt time.Time, update
 // but it doesn't guarantee that properties required by API are set
 func NewManualIpv6SubnetAllocationStrategyWithDefaults() *ManualIpv6SubnetAllocationStrategy {
 	this := ManualIpv6SubnetAllocationStrategy{}
-	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	var gatewayPlacement SubnetGatewayPlacement = DEFAULT
 	this.GatewayPlacement = gatewayPlacement
 	return &this
 }

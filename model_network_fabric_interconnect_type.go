@@ -21,7 +21,7 @@ type NetworkFabricInterconnectType string
 
 // List of NetworkFabricInterconnectType
 const (
-	NETWORKFABRICINTERCONNECTTYPE_DCI_EVPN NetworkFabricInterconnectType = "dci-evpn"
+	DCI_EVPN NetworkFabricInterconnectType = "dci-evpn"
 )
 
 // All allowed values of NetworkFabricInterconnectType enum

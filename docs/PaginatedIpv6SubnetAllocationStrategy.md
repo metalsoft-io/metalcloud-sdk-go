@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]Ipv6SubnetAllocationStrategy1DataItem**](Ipv6SubnetAllocationStrategy1DataItem.md) |  | 
+**Data** | [**[]Ipv6SubnetAllocationStrategy1Inner**](Ipv6SubnetAllocationStrategy1Inner.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewPaginatedIpv6SubnetAllocationStrategy
 
-`func NewPaginatedIpv6SubnetAllocationStrategy(data []Ipv6SubnetAllocationStrategy1DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedIpv6SubnetAllocationStrategy`
+`func NewPaginatedIpv6SubnetAllocationStrategy(data []Ipv6SubnetAllocationStrategy1Inner, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedIpv6SubnetAllocationStrategy`
 
 NewPaginatedIpv6SubnetAllocationStrategy instantiates a new PaginatedIpv6SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *PaginatedIpv6SubnetAllocationStrategy) GetData() []Ipv6SubnetAllocationStrategy1DataItem`
+`func (o *PaginatedIpv6SubnetAllocationStrategy) GetData() []Ipv6SubnetAllocationStrategy1Inner`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PaginatedIpv6SubnetAllocationStrategy) GetDataOk() (*[]Ipv6SubnetAllocationStrategy1DataItem, bool)`
+`func (o *PaginatedIpv6SubnetAllocationStrategy) GetDataOk() (*[]Ipv6SubnetAllocationStrategy1Inner, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PaginatedIpv6SubnetAllocationStrategy) SetData(v []Ipv6SubnetAllocationStrategy1DataItem)`
+`func (o *PaginatedIpv6SubnetAllocationStrategy) SetData(v []Ipv6SubnetAllocationStrategy1Inner)`
 
 SetData sets Data field to given value.
 

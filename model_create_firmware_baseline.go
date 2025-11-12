@@ -24,8 +24,14 @@ type CreateFirmwareBaseline struct {
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
 	Catalog []string `json:"catalog,omitempty"`
+	// Level type: datacenter, serverType, osTemplate for infrastructure-based baselines, or vendorModel for hardware-based baselines
 	Level BaselineLevelType `json:"level"`
+	// Array of filter values. For datacenter/serverType/osTemplate: array of strings (e.g., [\"datacenter1\", \"datacenter2\"]). For vendorModel: array of objects with vendor and model properties (e.g., [{ vendor: \"Dell\", model: \"R740\" }, { vendor: \"HPE\", model: \"*\" }]). Use \"*\" for wildcards.
 	LevelFilter []string `json:"levelFilter"`
+	// Array of minimum firmware version requirements for this baseline
+	MinimumVersions []FirmwareMinimumVersion `json:"minimumVersions,omitempty"`
+	// Whether to apply this baseline during server registration process
+	ApplyOnServerRegistration *bool `json:"applyOnServerRegistration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -187,6 +193,70 @@ func (o *CreateFirmwareBaseline) SetLevelFilter(v []string) {
 	o.LevelFilter = v
 }
 
+// GetMinimumVersions returns the MinimumVersions field value if set, zero value otherwise.
+func (o *CreateFirmwareBaseline) GetMinimumVersions() []FirmwareMinimumVersion {
+	if o == nil || IsNil(o.MinimumVersions) {
+		var ret []FirmwareMinimumVersion
+		return ret
+	}
+	return o.MinimumVersions
+}
+
+// GetMinimumVersionsOk returns a tuple with the MinimumVersions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFirmwareBaseline) GetMinimumVersionsOk() ([]FirmwareMinimumVersion, bool) {
+	if o == nil || IsNil(o.MinimumVersions) {
+		return nil, false
+	}
+	return o.MinimumVersions, true
+}
+
+// HasMinimumVersions returns a boolean if a field has been set.
+func (o *CreateFirmwareBaseline) HasMinimumVersions() bool {
+	if o != nil && !IsNil(o.MinimumVersions) {
+		return true
+	}
+
+	return false
+}
+
+// SetMinimumVersions gets a reference to the given []FirmwareMinimumVersion and assigns it to the MinimumVersions field.
+func (o *CreateFirmwareBaseline) SetMinimumVersions(v []FirmwareMinimumVersion) {
+	o.MinimumVersions = v
+}
+
+// GetApplyOnServerRegistration returns the ApplyOnServerRegistration field value if set, zero value otherwise.
+func (o *CreateFirmwareBaseline) GetApplyOnServerRegistration() bool {
+	if o == nil || IsNil(o.ApplyOnServerRegistration) {
+		var ret bool
+		return ret
+	}
+	return *o.ApplyOnServerRegistration
+}
+
+// GetApplyOnServerRegistrationOk returns a tuple with the ApplyOnServerRegistration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFirmwareBaseline) GetApplyOnServerRegistrationOk() (*bool, bool) {
+	if o == nil || IsNil(o.ApplyOnServerRegistration) {
+		return nil, false
+	}
+	return o.ApplyOnServerRegistration, true
+}
+
+// HasApplyOnServerRegistration returns a boolean if a field has been set.
+func (o *CreateFirmwareBaseline) HasApplyOnServerRegistration() bool {
+	if o != nil && !IsNil(o.ApplyOnServerRegistration) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplyOnServerRegistration gets a reference to the given bool and assigns it to the ApplyOnServerRegistration field.
+func (o *CreateFirmwareBaseline) SetApplyOnServerRegistration(v bool) {
+	o.ApplyOnServerRegistration = &v
+}
+
 func (o CreateFirmwareBaseline) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -206,6 +276,12 @@ func (o CreateFirmwareBaseline) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["level"] = o.Level
 	toSerialize["levelFilter"] = o.LevelFilter
+	if !IsNil(o.MinimumVersions) {
+		toSerialize["minimumVersions"] = o.MinimumVersions
+	}
+	if !IsNil(o.ApplyOnServerRegistration) {
+		toSerialize["applyOnServerRegistration"] = o.ApplyOnServerRegistration
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -256,6 +332,8 @@ func (o *CreateFirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "catalog")
 		delete(additionalProperties, "level")
 		delete(additionalProperties, "levelFilter")
+		delete(additionalProperties, "minimumVersions")
+		delete(additionalProperties, "applyOnServerRegistration")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,12 +21,12 @@ type ExtensionInputType string
 
 // List of ExtensionInputType
 const (
-	EXTENSIONINPUTTYPE_EXTENSION_INPUT_STRING ExtensionInputType = "ExtensionInputString"
-	EXTENSIONINPUTTYPE_EXTENSION_INPUT_INTEGER ExtensionInputType = "ExtensionInputInteger"
-	EXTENSIONINPUTTYPE_EXTENSION_INPUT_BOOLEAN ExtensionInputType = "ExtensionInputBoolean"
-	EXTENSIONINPUTTYPE_EXTENSION_INPUT_SERVER_TYPE ExtensionInputType = "ExtensionInputServerType"
-	EXTENSIONINPUTTYPE_EXTENSION_INPUT_OS_TEMPLATE ExtensionInputType = "ExtensionInputOsTemplate"
-	EXTENSIONINPUTTYPE_EXTENSION_INPUT_NETWORK_PROFILE ExtensionInputType = "ExtensionInputNetworkProfile"
+	EXTENSION_INPUT_STRING ExtensionInputType = "ExtensionInputString"
+	EXTENSION_INPUT_INTEGER ExtensionInputType = "ExtensionInputInteger"
+	EXTENSION_INPUT_BOOLEAN ExtensionInputType = "ExtensionInputBoolean"
+	EXTENSION_INPUT_SERVER_TYPE ExtensionInputType = "ExtensionInputServerType"
+	EXTENSION_INPUT_OS_TEMPLATE ExtensionInputType = "ExtensionInputOsTemplate"
+	EXTENSION_INPUT_NETWORK_PROFILE ExtensionInputType = "ExtensionInputNetworkProfile"
 )
 
 // All allowed values of ExtensionInputType enum

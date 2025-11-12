@@ -21,8 +21,8 @@ type IpVersion string
 
 // List of IpVersion
 const (
-	IPVERSION_IPV4 IpVersion = "ipv4"
-	IPVERSION_IPV6 IpVersion = "ipv6"
+	IPV4 IpVersion = "ipv4"
+	IPV6 IpVersion = "ipv6"
 )
 
 // All allowed values of IpVersion enum

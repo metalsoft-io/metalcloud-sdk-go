@@ -21,8 +21,8 @@ type AllocationStrategyKind string
 
 // List of AllocationStrategyKind
 const (
-	ALLOCATIONSTRATEGYKIND_MANUAL AllocationStrategyKind = "manual"
-	ALLOCATIONSTRATEGYKIND_AUTO AllocationStrategyKind = "auto"
+	MANUAL AllocationStrategyKind = "manual"
+	AUTO AllocationStrategyKind = "auto"
 )
 
 // All allowed values of AllocationStrategyKind enum

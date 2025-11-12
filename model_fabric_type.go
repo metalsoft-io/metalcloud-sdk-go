@@ -21,8 +21,8 @@ type FabricType string
 
 // List of FabricType
 const (
-	FABRICTYPE_ETHERNET FabricType = "ethernet"
-	FABRICTYPE_FIBRE_CHANNEL FabricType = "fibre_channel"
+	ETHERNET FabricType = "ethernet"
+	FIBRE_CHANNEL FabricType = "fibre_channel"
 )
 
 // All allowed values of FabricType enum

@@ -21,22 +21,23 @@ type NetworkDeviceDriver string
 
 // List of NetworkDeviceDriver
 const (
-	NETWORKDEVICEDRIVER_CISCO_ACI51 NetworkDeviceDriver = "cisco_aci51"
-	NETWORKDEVICEDRIVER_NEXUS9000 NetworkDeviceDriver = "nexus9000"
-	NETWORKDEVICEDRIVER_CUMULUS42 NetworkDeviceDriver = "cumulus42"
-	NETWORKDEVICEDRIVER_ARISTA_EOS NetworkDeviceDriver = "arista_eos"
-	NETWORKDEVICEDRIVER_DELL_S4048 NetworkDeviceDriver = "dell_s4048"
-	NETWORKDEVICEDRIVER_HP5800 NetworkDeviceDriver = "hp5800"
-	NETWORKDEVICEDRIVER_HP5900 NetworkDeviceDriver = "hp5900"
-	NETWORKDEVICEDRIVER_HP5950 NetworkDeviceDriver = "hp5950"
-	NETWORKDEVICEDRIVER_DUMMY NetworkDeviceDriver = "dummy"
-	NETWORKDEVICEDRIVER_JUNOS NetworkDeviceDriver = "junos"
-	NETWORKDEVICEDRIVER_OS_10 NetworkDeviceDriver = "os_10"
-	NETWORKDEVICEDRIVER_SONIC_ENTERPRISE NetworkDeviceDriver = "sonic_enterprise"
-	NETWORKDEVICEDRIVER_VMWARE_VDS NetworkDeviceDriver = "vmware_vds"
-	NETWORKDEVICEDRIVER_DELL_S4000 NetworkDeviceDriver = "dell_s4000"
-	NETWORKDEVICEDRIVER_DELL_S6010 NetworkDeviceDriver = "dell_s6010"
-	NETWORKDEVICEDRIVER_JUNOS18 NetworkDeviceDriver = "junos18"
+	CISCO_ACI51 NetworkDeviceDriver = "cisco_aci51"
+	NEXUS9000 NetworkDeviceDriver = "nexus9000"
+	CUMULUS42 NetworkDeviceDriver = "cumulus42"
+	ARISTA_EOS NetworkDeviceDriver = "arista_eos"
+	DELL_S4048 NetworkDeviceDriver = "dell_s4048"
+	HP5800 NetworkDeviceDriver = "hp5800"
+	HP5900 NetworkDeviceDriver = "hp5900"
+	HP5950 NetworkDeviceDriver = "hp5950"
+	DUMMY NetworkDeviceDriver = "dummy"
+	JUNOS NetworkDeviceDriver = "junos"
+	OS_10 NetworkDeviceDriver = "os_10"
+	SONIC_ENTERPRISE NetworkDeviceDriver = "sonic_enterprise"
+	VMWARE_VDS NetworkDeviceDriver = "vmware_vds"
+	CUMULUS_LINUX NetworkDeviceDriver = "cumulus_linux"
+	DELL_S4000 NetworkDeviceDriver = "dell_s4000"
+	DELL_S6010 NetworkDeviceDriver = "dell_s6010"
+	JUNOS18 NetworkDeviceDriver = "junos18"
 )
 
 // All allowed values of NetworkDeviceDriver enum
@@ -54,6 +55,7 @@ var AllowedNetworkDeviceDriverEnumValues = []NetworkDeviceDriver{
 	"os_10",
 	"sonic_enterprise",
 	"vmware_vds",
+	"cumulus_linux",
 	"dell_s4000",
 	"dell_s6010",
 	"junos18",

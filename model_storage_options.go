@@ -64,6 +64,8 @@ type StorageOptions struct {
 	PortsNvmeFc []StoragePort `json:"portsNvmeFc,omitempty"`
 	// Array of storage ports to use
 	PortsToUse []StoragePort `json:"portsToUse,omitempty"`
+	// Array of storage servers
+	Servers []StoragePort `json:"servers,omitempty"`
 	// Error message when gathering storage info
 	InfoGatherError *string `json:"infoGatherError,omitempty"`
 	// Error message when configuring storage
@@ -794,6 +796,38 @@ func (o *StorageOptions) SetPortsToUse(v []StoragePort) {
 	o.PortsToUse = v
 }
 
+// GetServers returns the Servers field value if set, zero value otherwise.
+func (o *StorageOptions) GetServers() []StoragePort {
+	if o == nil || IsNil(o.Servers) {
+		var ret []StoragePort
+		return ret
+	}
+	return o.Servers
+}
+
+// GetServersOk returns a tuple with the Servers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageOptions) GetServersOk() ([]StoragePort, bool) {
+	if o == nil || IsNil(o.Servers) {
+		return nil, false
+	}
+	return o.Servers, true
+}
+
+// HasServers returns a boolean if a field has been set.
+func (o *StorageOptions) HasServers() bool {
+	if o != nil && !IsNil(o.Servers) {
+		return true
+	}
+
+	return false
+}
+
+// SetServers gets a reference to the given []StoragePort and assigns it to the Servers field.
+func (o *StorageOptions) SetServers(v []StoragePort) {
+	o.Servers = v
+}
+
 // GetInfoGatherError returns the InfoGatherError field value if set, zero value otherwise.
 func (o *StorageOptions) GetInfoGatherError() string {
 	if o == nil || IsNil(o.InfoGatherError) {
@@ -934,6 +968,9 @@ func (o StorageOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PortsToUse) {
 		toSerialize["portsToUse"] = o.PortsToUse
 	}
+	if !IsNil(o.Servers) {
+		toSerialize["servers"] = o.Servers
+	}
 	if !IsNil(o.InfoGatherError) {
 		toSerialize["infoGatherError"] = o.InfoGatherError
 	}
@@ -984,6 +1021,7 @@ func (o *StorageOptions) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portsNvmeTcp")
 		delete(additionalProperties, "portsNvmeFc")
 		delete(additionalProperties, "portsToUse")
+		delete(additionalProperties, "servers")
 		delete(additionalProperties, "infoGatherError")
 		delete(additionalProperties, "configureError")
 		o.AdditionalProperties = additionalProperties

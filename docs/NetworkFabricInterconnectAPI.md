@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**GetInterconnectLink**](NetworkFabricInterconnectAPI.md#GetInterconnectLink) | **Get** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Get a specific fabric interconnect link
 [**GetInterconnectLinks**](NetworkFabricInterconnectAPI.md#GetInterconnectLinks) | **Get** /api/v2/network-fabric-interconnects/{id}/links | Get all fabric interconnect links
 [**GetNetworkFabricInterconnectById**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectById) | **Get** /api/v2/network-fabric-interconnects/{id} | Get a network fabric interconnect by ID
+[**GetNetworkFabricInterconnectTemplateByType**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectTemplateByType) | **Get** /api/v2/network-fabric-interconnects/template/{interconnectType} | Get a network fabric interconnect template configuration by type
 [**GetNetworkFabricInterconnects**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnects) | **Get** /api/v2/network-fabric-interconnects | Get all network fabric interconnects
 [**UpdateNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#UpdateNetworkFabricInterconnect) | **Patch** /api/v2/network-fabric-interconnects/{id} | Update a network fabric interconnect
 
@@ -677,6 +678,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NetworkFabricInterconnect**](NetworkFabricInterconnect.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkFabricInterconnectTemplateByType
+
+> NetworkFabricInterconnectTemplate GetNetworkFabricInterconnectTemplateByType(ctx, interconnectType).Execute()
+
+Get a network fabric interconnect template configuration by type
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	interconnectType := openapiclient.NetworkFabricInterconnectType("dci-evpn") // NetworkFabricInterconnectType | The type of the network fabric interconnect (e.g., dci-evpn)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectTemplateByType(context.Background(), interconnectType).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectTemplateByType``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkFabricInterconnectTemplateByType`: NetworkFabricInterconnectTemplate
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectTemplateByType`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**interconnectType** | [**NetworkFabricInterconnectType**](.md) | The type of the network fabric interconnect (e.g., dci-evpn) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkFabricInterconnectTemplateByTypeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NetworkFabricInterconnectTemplate**](NetworkFabricInterconnectTemplate.md)
 
 ### Authorization
 

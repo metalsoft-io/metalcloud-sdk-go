@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the GenerateFirmwareUpgradeAudit type satisfies the MappedNullable interface at compile time
@@ -22,7 +21,11 @@ var _ MappedNullable = &GenerateFirmwareUpgradeAudit{}
 // GenerateFirmwareUpgradeAudit struct for GenerateFirmwareUpgradeAudit
 type GenerateFirmwareUpgradeAudit struct {
 	// The list of server ids for which firmware upgrade audit should be generated.
-	ServerIds []float32 `json:"serverIds"`
+	ServerIds []float32 `json:"serverIds,omitempty"`
+	// Vendor name pattern to match servers (e.g., \"HPE\", \"Dell\"). Used with vendorModelPattern. Cannot be used with serverIds.
+	VendorPattern *string `json:"vendorPattern,omitempty"`
+	// Model name pattern with wildcards to match servers (e.g., \"DL360*\", \"*Gen10\", \"PowerEdge.*\"). Used with vendorPattern. Cannot be used with serverIds.
+	ModelPattern *string `json:"modelPattern,omitempty"`
 	// Filter the available firmware upgrades using the specified baseline id.
 	BaselineId *float32 `json:"baselineId,omitempty"`
 	// Filter the available firmware upgrades using the specified os template label.
@@ -40,9 +43,8 @@ type _GenerateFirmwareUpgradeAudit GenerateFirmwareUpgradeAudit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenerateFirmwareUpgradeAudit(serverIds []float32) *GenerateFirmwareUpgradeAudit {
+func NewGenerateFirmwareUpgradeAudit() *GenerateFirmwareUpgradeAudit {
 	this := GenerateFirmwareUpgradeAudit{}
-	this.ServerIds = serverIds
 	return &this
 }
 
@@ -54,28 +56,100 @@ func NewGenerateFirmwareUpgradeAuditWithDefaults() *GenerateFirmwareUpgradeAudit
 	return &this
 }
 
-// GetServerIds returns the ServerIds field value
+// GetServerIds returns the ServerIds field value if set, zero value otherwise.
 func (o *GenerateFirmwareUpgradeAudit) GetServerIds() []float32 {
-	if o == nil {
+	if o == nil || IsNil(o.ServerIds) {
 		var ret []float32
 		return ret
 	}
-
 	return o.ServerIds
 }
 
-// GetServerIdsOk returns a tuple with the ServerIds field value
+// GetServerIdsOk returns a tuple with the ServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenerateFirmwareUpgradeAudit) GetServerIdsOk() ([]float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ServerIds) {
 		return nil, false
 	}
 	return o.ServerIds, true
 }
 
-// SetServerIds sets field value
+// HasServerIds returns a boolean if a field has been set.
+func (o *GenerateFirmwareUpgradeAudit) HasServerIds() bool {
+	if o != nil && !IsNil(o.ServerIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerIds gets a reference to the given []float32 and assigns it to the ServerIds field.
 func (o *GenerateFirmwareUpgradeAudit) SetServerIds(v []float32) {
 	o.ServerIds = v
+}
+
+// GetVendorPattern returns the VendorPattern field value if set, zero value otherwise.
+func (o *GenerateFirmwareUpgradeAudit) GetVendorPattern() string {
+	if o == nil || IsNil(o.VendorPattern) {
+		var ret string
+		return ret
+	}
+	return *o.VendorPattern
+}
+
+// GetVendorPatternOk returns a tuple with the VendorPattern field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenerateFirmwareUpgradeAudit) GetVendorPatternOk() (*string, bool) {
+	if o == nil || IsNil(o.VendorPattern) {
+		return nil, false
+	}
+	return o.VendorPattern, true
+}
+
+// HasVendorPattern returns a boolean if a field has been set.
+func (o *GenerateFirmwareUpgradeAudit) HasVendorPattern() bool {
+	if o != nil && !IsNil(o.VendorPattern) {
+		return true
+	}
+
+	return false
+}
+
+// SetVendorPattern gets a reference to the given string and assigns it to the VendorPattern field.
+func (o *GenerateFirmwareUpgradeAudit) SetVendorPattern(v string) {
+	o.VendorPattern = &v
+}
+
+// GetModelPattern returns the ModelPattern field value if set, zero value otherwise.
+func (o *GenerateFirmwareUpgradeAudit) GetModelPattern() string {
+	if o == nil || IsNil(o.ModelPattern) {
+		var ret string
+		return ret
+	}
+	return *o.ModelPattern
+}
+
+// GetModelPatternOk returns a tuple with the ModelPattern field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenerateFirmwareUpgradeAudit) GetModelPatternOk() (*string, bool) {
+	if o == nil || IsNil(o.ModelPattern) {
+		return nil, false
+	}
+	return o.ModelPattern, true
+}
+
+// HasModelPattern returns a boolean if a field has been set.
+func (o *GenerateFirmwareUpgradeAudit) HasModelPattern() bool {
+	if o != nil && !IsNil(o.ModelPattern) {
+		return true
+	}
+
+	return false
+}
+
+// SetModelPattern gets a reference to the given string and assigns it to the ModelPattern field.
+func (o *GenerateFirmwareUpgradeAudit) SetModelPattern(v string) {
+	o.ModelPattern = &v
 }
 
 // GetBaselineId returns the BaselineId field value if set, zero value otherwise.
@@ -216,7 +290,15 @@ func (o GenerateFirmwareUpgradeAudit) MarshalJSON() ([]byte, error) {
 
 func (o GenerateFirmwareUpgradeAudit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["serverIds"] = o.ServerIds
+	if !IsNil(o.ServerIds) {
+		toSerialize["serverIds"] = o.ServerIds
+	}
+	if !IsNil(o.VendorPattern) {
+		toSerialize["vendorPattern"] = o.VendorPattern
+	}
+	if !IsNil(o.ModelPattern) {
+		toSerialize["modelPattern"] = o.ModelPattern
+	}
 	if !IsNil(o.BaselineId) {
 		toSerialize["baselineId"] = o.BaselineId
 	}
@@ -238,27 +320,6 @@ func (o GenerateFirmwareUpgradeAudit) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *GenerateFirmwareUpgradeAudit) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"serverIds",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varGenerateFirmwareUpgradeAudit := _GenerateFirmwareUpgradeAudit{}
 
 	err = json.Unmarshal(data, &varGenerateFirmwareUpgradeAudit)
@@ -273,6 +334,8 @@ func (o *GenerateFirmwareUpgradeAudit) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "serverIds")
+		delete(additionalProperties, "vendorPattern")
+		delete(additionalProperties, "modelPattern")
 		delete(additionalProperties, "baselineId")
 		delete(additionalProperties, "osTemplateLabel")
 		delete(additionalProperties, "serverTypeName")

@@ -49,8 +49,6 @@ type Job struct {
 	Status string `json:"status"`
 	// The name of the function that should be executed
 	FunctionName string `json:"functionName"`
-	// The parameters that should be passed to the function
-	Params map[string]interface{} `json:"params,omitempty"`
 	// The response of the function
 	Response map[string]interface{} `json:"response,omitempty"`
 	// The number of times the job has been called
@@ -70,7 +68,7 @@ type Job struct {
 	// Whether the job requires confirmation before execution
 	RequiresConfirmation bool `json:"requiresConfirmation"`
 	// Options for the job
-	Options JobOptions `json:"options"`
+	Options JobOptionsDto `json:"options"`
 	// The timestamp when the job was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The timestamp when the job was last updated
@@ -82,7 +80,7 @@ type Job struct {
 	// The unique identifier of the job
 	UniqueIdentifier *string `json:"uniqueIdentifier,omitempty"`
 	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	Links []Link `json:"links"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -92,7 +90,7 @@ type _Job Job
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptions, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *Job {
+func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link) *Job {
 	this := Job{}
 	this.JobId = jobId
 	this.Type = type_
@@ -536,38 +534,6 @@ func (o *Job) SetFunctionName(v string) {
 	o.FunctionName = v
 }
 
-// GetParams returns the Params field value if set, zero value otherwise.
-func (o *Job) GetParams() map[string]interface{} {
-	if o == nil || IsNil(o.Params) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Params
-}
-
-// GetParamsOk returns a tuple with the Params field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Job) GetParamsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Params) {
-		return map[string]interface{}{}, false
-	}
-	return o.Params, true
-}
-
-// HasParams returns a boolean if a field has been set.
-func (o *Job) HasParams() bool {
-	if o != nil && !IsNil(o.Params) {
-		return true
-	}
-
-	return false
-}
-
-// SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
-func (o *Job) SetParams(v map[string]interface{}) {
-	o.Params = v
-}
-
 // GetResponse returns the Response field value if set, zero value otherwise.
 func (o *Job) GetResponse() map[string]interface{} {
 	if o == nil || IsNil(o.Response) {
@@ -817,9 +783,9 @@ func (o *Job) SetRequiresConfirmation(v bool) {
 }
 
 // GetOptions returns the Options field value
-func (o *Job) GetOptions() JobOptions {
+func (o *Job) GetOptions() JobOptionsDto {
 	if o == nil {
-		var ret JobOptions
+		var ret JobOptionsDto
 		return ret
 	}
 
@@ -828,7 +794,7 @@ func (o *Job) GetOptions() JobOptions {
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *Job) GetOptionsOk() (*JobOptions, bool) {
+func (o *Job) GetOptionsOk() (*JobOptionsDto, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -836,7 +802,7 @@ func (o *Job) GetOptionsOk() (*JobOptions, bool) {
 }
 
 // SetOptions sets field value
-func (o *Job) SetOptions(v JobOptions) {
+func (o *Job) SetOptions(v JobOptionsDto) {
 	o.Options = v
 }
 
@@ -985,9 +951,9 @@ func (o *Job) SetUniqueIdentifier(v string) {
 }
 
 // GetLinks returns the Links field value
-func (o *Job) GetLinks() map[string]interface{} {
+func (o *Job) GetLinks() []Link {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []Link
 		return ret
 	}
 
@@ -996,15 +962,15 @@ func (o *Job) GetLinks() map[string]interface{} {
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
-func (o *Job) GetLinksOk() (map[string]interface{}, bool) {
+func (o *Job) GetLinksOk() ([]Link, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Links, true
 }
 
 // SetLinks sets field value
-func (o *Job) SetLinks(v map[string]interface{}) {
+func (o *Job) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -1052,9 +1018,6 @@ func (o Job) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["status"] = o.Status
 	toSerialize["functionName"] = o.FunctionName
-	if !IsNil(o.Params) {
-		toSerialize["params"] = o.Params
-	}
 	if !IsNil(o.Response) {
 		toSerialize["response"] = o.Response
 	}
@@ -1154,7 +1117,6 @@ func (o *Job) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "functionName")
-		delete(additionalProperties, "params")
 		delete(additionalProperties, "response")
 		delete(additionalProperties, "callCount")
 		delete(additionalProperties, "retryMax")

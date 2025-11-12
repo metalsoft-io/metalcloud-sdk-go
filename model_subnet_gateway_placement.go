@@ -21,8 +21,8 @@ type SubnetGatewayPlacement string
 
 // List of SubnetGatewayPlacement
 const (
-	SUBNETGATEWAYPLACEMENT_DEFAULT SubnetGatewayPlacement = "default"
-	SUBNETGATEWAYPLACEMENT_EXTERNAL SubnetGatewayPlacement = "external"
+	DEFAULT SubnetGatewayPlacement = "default"
+	EXTERNAL SubnetGatewayPlacement = "external"
 )
 
 // All allowed values of SubnetGatewayPlacement enum

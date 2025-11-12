@@ -21,10 +21,10 @@ type ACLEnforcementPoint string
 
 // List of ACLEnforcementPoint
 const (
-	ACLENFORCEMENTPOINT_SVI ACLEnforcementPoint = "svi"
-	ACLENFORCEMENTPOINT_PHYSICAL_INTERFACE_VLAN_SCOPED ACLEnforcementPoint = "physical-interface-vlan-scoped"
-	ACLENFORCEMENTPOINT_PHYSICAL_INTERFACE ACLEnforcementPoint = "physical-interface"
-	ACLENFORCEMENTPOINT_VLAN ACLEnforcementPoint = "vlan"
+	SVI ACLEnforcementPoint = "svi"
+	PHYSICAL_INTERFACE_VLAN_SCOPED ACLEnforcementPoint = "physical-interface-vlan-scoped"
+	PHYSICAL_INTERFACE ACLEnforcementPoint = "physical-interface"
+	VLAN ACLEnforcementPoint = "vlan"
 )
 
 // All allowed values of ACLEnforcementPoint enum

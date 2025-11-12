@@ -21,9 +21,9 @@ type ExtensionTaskType string
 
 // List of ExtensionTaskType
 const (
-	EXTENSIONTASKTYPE_EXTENSION_TASK_ANSIBLE ExtensionTaskType = "ExtensionTaskAnsible"
-	EXTENSIONTASKTYPE_EXTENSION_TASK_WEBHOOK ExtensionTaskType = "ExtensionTaskWebhook"
-	EXTENSIONTASKTYPE_EXTENSION_TASK_SSH ExtensionTaskType = "ExtensionTaskSsh"
+	EXTENSION_TASK_ANSIBLE ExtensionTaskType = "ExtensionTaskAnsible"
+	EXTENSION_TASK_WEBHOOK ExtensionTaskType = "ExtensionTaskWebhook"
+	EXTENSION_TASK_SSH ExtensionTaskType = "ExtensionTaskSsh"
 )
 
 // All allowed values of ExtensionTaskType enum

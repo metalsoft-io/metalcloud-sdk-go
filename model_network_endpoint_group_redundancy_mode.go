@@ -21,8 +21,8 @@ type NetworkEndpointGroupRedundancyMode string
 
 // List of NetworkEndpointGroupRedundancyMode
 const (
-	NETWORKENDPOINTGROUPREDUNDANCYMODE_ACTIVE_BACKUP NetworkEndpointGroupRedundancyMode = "active-backup"
-	NETWORKENDPOINTGROUPREDUNDANCYMODE_ACTIVE_ACTIVE NetworkEndpointGroupRedundancyMode = "active-active"
+	ACTIVE_BACKUP NetworkEndpointGroupRedundancyMode = "active-backup"
+	ACTIVE_ACTIVE NetworkEndpointGroupRedundancyMode = "active-active"
 )
 
 // All allowed values of NetworkEndpointGroupRedundancyMode enum

@@ -21,10 +21,10 @@ type AsnAllocationStrategy string
 
 // List of AsnAllocationStrategy
 const (
-	ASNALLOCATIONSTRATEGY_SAME_ASN_ALL AsnAllocationStrategy = "same_asn_all"
-	ASNALLOCATIONSTRATEGY_UNIQUE_ASN_ALL AsnAllocationStrategy = "unique_asn_all"
-	ASNALLOCATIONSTRATEGY_UNIQUE_ASN_LEAFS_SAME_ASN_SPINES AsnAllocationStrategy = "unique_asn_leafs_same_asn_spines"
-	ASNALLOCATIONSTRATEGY_UNIQUE_ASN_MLAG_LEAF_PAIRS_SAME_ASN_SPINES AsnAllocationStrategy = "unique_asn_mlag_leaf_pairs_same_asn_spines"
+	SAME_ASN_ALL AsnAllocationStrategy = "same_asn_all"
+	UNIQUE_ASN_ALL AsnAllocationStrategy = "unique_asn_all"
+	UNIQUE_ASN_LEAFS_SAME_ASN_SPINES AsnAllocationStrategy = "unique_asn_leafs_same_asn_spines"
+	UNIQUE_ASN_MLAG_LEAF_PAIRS_SAME_ASN_SPINES AsnAllocationStrategy = "unique_asn_mlag_leaf_pairs_same_asn_spines"
 )
 
 // All allowed values of AsnAllocationStrategy enum

@@ -21,8 +21,8 @@ type LinkDuplex string
 
 // List of LinkDuplex
 const (
-	LINKDUPLEX_HALF LinkDuplex = "half"
-	LINKDUPLEX_FULL LinkDuplex = "full"
+	HALF LinkDuplex = "half"
+	FULL LinkDuplex = "full"
 )
 
 // All allowed values of LinkDuplex enum

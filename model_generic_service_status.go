@@ -21,11 +21,11 @@ type GenericServiceStatus string
 
 // List of GenericServiceStatus
 const (
-	GENERICSERVICESTATUS_ORDERED GenericServiceStatus = "ordered"
-	GENERICSERVICESTATUS_ACTIVE GenericServiceStatus = "active"
-	GENERICSERVICESTATUS_DELETED GenericServiceStatus = "deleted"
-	GENERICSERVICESTATUS_STOPPED GenericServiceStatus = "stopped"
-	GENERICSERVICESTATUS_SUSPENDED GenericServiceStatus = "suspended"
+	ORDERED GenericServiceStatus = "ordered"
+	ACTIVE GenericServiceStatus = "active"
+	DELETED GenericServiceStatus = "deleted"
+	STOPPED GenericServiceStatus = "stopped"
+	SUSPENDED GenericServiceStatus = "suspended"
 )
 
 // All allowed values of GenericServiceStatus enum

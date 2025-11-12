@@ -27,8 +27,6 @@ type Secret struct {
 	UserIdOwner float32 `json:"userIdOwner"`
 	// The secret name.
 	Name string `json:"name"`
-	// The secret value encrypted.
-	ValueEncrypted string `json:"valueEncrypted"`
 	// Secret usage type.
 	Usage *VariableUsageType `json:"usage,omitempty"`
 	// Timestamp of creation.
@@ -46,12 +44,11 @@ type _Secret Secret
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSecret(id int32, userIdOwner float32, name string, valueEncrypted string, createdTimestamp string, updatedTimestamp string) *Secret {
+func NewSecret(id int32, userIdOwner float32, name string, createdTimestamp string, updatedTimestamp string) *Secret {
 	this := Secret{}
 	this.Id = id
 	this.UserIdOwner = userIdOwner
 	this.Name = name
-	this.ValueEncrypted = valueEncrypted
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	return &this
@@ -135,30 +132,6 @@ func (o *Secret) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *Secret) SetName(v string) {
 	o.Name = v
-}
-
-// GetValueEncrypted returns the ValueEncrypted field value
-func (o *Secret) GetValueEncrypted() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ValueEncrypted
-}
-
-// GetValueEncryptedOk returns a tuple with the ValueEncrypted field value
-// and a boolean to check if the value has been set.
-func (o *Secret) GetValueEncryptedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ValueEncrypted, true
-}
-
-// SetValueEncrypted sets field value
-func (o *Secret) SetValueEncrypted(v string) {
-	o.ValueEncrypted = v
 }
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
@@ -286,7 +259,6 @@ func (o Secret) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["userIdOwner"] = o.UserIdOwner
 	toSerialize["name"] = o.Name
-	toSerialize["valueEncrypted"] = o.ValueEncrypted
 	if !IsNil(o.Usage) {
 		toSerialize["usage"] = o.Usage
 	}
@@ -311,7 +283,6 @@ func (o *Secret) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"userIdOwner",
 		"name",
-		"valueEncrypted",
 		"createdTimestamp",
 		"updatedTimestamp",
 	}
@@ -346,7 +317,6 @@ func (o *Secret) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "userIdOwner")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "valueEncrypted")
 		delete(additionalProperties, "usage")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")

@@ -107,7 +107,7 @@ import (
 )
 
 func main() {
-	generateFirmwareUpgradeAudit := *openapiclient.NewGenerateFirmwareUpgradeAudit([]float32{float32(123)}) // GenerateFirmwareUpgradeAudit | The Firmware Upgrade Audit options
+	generateFirmwareUpgradeAudit := *openapiclient.NewGenerateFirmwareUpgradeAudit() // GenerateFirmwareUpgradeAudit | The Firmware Upgrade Audit options
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

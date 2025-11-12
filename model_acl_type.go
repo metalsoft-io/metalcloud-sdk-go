@@ -21,9 +21,9 @@ type ACLType string
 
 // List of ACLType
 const (
-	ACLTYPE_IPV4 ACLType = "ipv4"
-	ACLTYPE_IPV6 ACLType = "ipv6"
-	ACLTYPE_MAC ACLType = "mac"
+	IPV4 ACLType = "ipv4"
+	IPV6 ACLType = "ipv6"
+	MAC ACLType = "mac"
 )
 
 // All allowed values of ACLType enum

@@ -21,7 +21,7 @@ var _ MappedNullable = &PaginatedLogicalNetworkProfile{}
 
 // PaginatedLogicalNetworkProfile struct for PaginatedLogicalNetworkProfile
 type PaginatedLogicalNetworkProfile struct {
-	Data []LogicalNetworkProfile1DataItem `json:"data"`
+	Data []LogicalNetworkProfile1Inner `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _PaginatedLogicalNetworkProfile PaginatedLogicalNetworkProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedLogicalNetworkProfile(data []LogicalNetworkProfile1DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedLogicalNetworkProfile {
+func NewPaginatedLogicalNetworkProfile(data []LogicalNetworkProfile1Inner, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedLogicalNetworkProfile {
 	this := PaginatedLogicalNetworkProfile{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewPaginatedLogicalNetworkProfileWithDefaults() *PaginatedLogicalNetworkPro
 }
 
 // GetData returns the Data field value
-func (o *PaginatedLogicalNetworkProfile) GetData() []LogicalNetworkProfile1DataItem {
+func (o *PaginatedLogicalNetworkProfile) GetData() []LogicalNetworkProfile1Inner {
 	if o == nil {
-		var ret []LogicalNetworkProfile1DataItem
+		var ret []LogicalNetworkProfile1Inner
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *PaginatedLogicalNetworkProfile) GetData() []LogicalNetworkProfile1DataI
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *PaginatedLogicalNetworkProfile) GetDataOk() ([]LogicalNetworkProfile1DataItem, bool) {
+func (o *PaginatedLogicalNetworkProfile) GetDataOk() ([]LogicalNetworkProfile1Inner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *PaginatedLogicalNetworkProfile) GetDataOk() ([]LogicalNetworkProfile1Da
 }
 
 // SetData sets field value
-func (o *PaginatedLogicalNetworkProfile) SetData(v []LogicalNetworkProfile1DataItem) {
+func (o *PaginatedLogicalNetworkProfile) SetData(v []LogicalNetworkProfile1Inner) {
 	o.Data = v
 }
 

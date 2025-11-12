@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Stage** | [**AssetExtensionActionStage**](AssetExtensionActionStage.md) |  | 
-**Tasks** | Pointer to [**[]InfrastructureExtensionActionsTasksDataItem**](InfrastructureExtensionActionsTasksDataItem.md) | Tasks. | [optional] 
+**Tasks** | Pointer to [**[]InfrastructureExtensionActionsTasksInner**](InfrastructureExtensionActionsTasksInner.md) | Tasks. | [optional] 
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetStage sets Stage field to given value.
 
 ### GetTasks
 
-`func (o *AssetExtensionActions) GetTasks() []InfrastructureExtensionActionsTasksDataItem`
+`func (o *AssetExtensionActions) GetTasks() []InfrastructureExtensionActionsTasksInner`
 
 GetTasks returns the Tasks field if non-nil, zero value otherwise.
 
 ### GetTasksOk
 
-`func (o *AssetExtensionActions) GetTasksOk() (*[]InfrastructureExtensionActionsTasksDataItem, bool)`
+`func (o *AssetExtensionActions) GetTasksOk() (*[]InfrastructureExtensionActionsTasksInner, bool)`
 
 GetTasksOk returns a tuple with the Tasks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTasks
 
-`func (o *AssetExtensionActions) SetTasks(v []InfrastructureExtensionActionsTasksDataItem)`
+`func (o *AssetExtensionActions) SetTasks(v []InfrastructureExtensionActionsTasksInner)`
 
 SetTasks sets Tasks field to given value.
 

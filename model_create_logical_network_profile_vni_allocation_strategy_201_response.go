@@ -14,6 +14,7 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // CreateLogicalNetworkProfileVniAllocationStrategy201Response - struct for CreateLogicalNetworkProfileVniAllocationStrategy201Response
@@ -40,38 +41,52 @@ func ManualVniAllocationStrategyAsCreateLogicalNetworkProfileVniAllocationStrate
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateLogicalNetworkProfileVniAllocationStrategy201Response) UnmarshalJSON(data []byte) error {
 	var err error
-	// use discriminator value to speed up the lookup
-	var jsonDict map[string]interface{}
-	err = newStrictDecoder(data).Decode(&jsonDict)
-	if err != nil {
-		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
-	}
-
-	// check if the discriminator value is 'AutoVniAllocationStrategy'
-	if jsonDict["kind"] == "AutoVniAllocationStrategy" {
-		// try to unmarshal JSON data into AutoVniAllocationStrategy
-		err = json.Unmarshal(data, &dst.AutoVniAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.AutoVniAllocationStrategy, return on the first match
-		} else {
+	match := 0
+	// try to unmarshal data into AutoVniAllocationStrategy
+	err = newStrictDecoder(data).Decode(&dst.AutoVniAllocationStrategy)
+	if err == nil {
+		jsonAutoVniAllocationStrategy, _ := json.Marshal(dst.AutoVniAllocationStrategy)
+		if string(jsonAutoVniAllocationStrategy) == "{}" { // empty struct
 			dst.AutoVniAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal CreateLogicalNetworkProfileVniAllocationStrategy201Response as AutoVniAllocationStrategy: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ManualVniAllocationStrategy'
-	if jsonDict["kind"] == "ManualVniAllocationStrategy" {
-		// try to unmarshal JSON data into ManualVniAllocationStrategy
-		err = json.Unmarshal(data, &dst.ManualVniAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.ManualVniAllocationStrategy, return on the first match
 		} else {
-			dst.ManualVniAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal CreateLogicalNetworkProfileVniAllocationStrategy201Response as ManualVniAllocationStrategy: %s", err.Error())
+			if err = validator.Validate(dst.AutoVniAllocationStrategy); err != nil {
+				dst.AutoVniAllocationStrategy = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.AutoVniAllocationStrategy = nil
 	}
 
-	return nil
+	// try to unmarshal data into ManualVniAllocationStrategy
+	err = newStrictDecoder(data).Decode(&dst.ManualVniAllocationStrategy)
+	if err == nil {
+		jsonManualVniAllocationStrategy, _ := json.Marshal(dst.ManualVniAllocationStrategy)
+		if string(jsonManualVniAllocationStrategy) == "{}" { // empty struct
+			dst.ManualVniAllocationStrategy = nil
+		} else {
+			if err = validator.Validate(dst.ManualVniAllocationStrategy); err != nil {
+				dst.ManualVniAllocationStrategy = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ManualVniAllocationStrategy = nil
+	}
+
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AutoVniAllocationStrategy = nil
+		dst.ManualVniAllocationStrategy = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(CreateLogicalNetworkProfileVniAllocationStrategy201Response)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(CreateLogicalNetworkProfileVniAllocationStrategy201Response)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

@@ -21,7 +21,7 @@ type NetworkEndpointGroupAllowedAccessMode string
 
 // List of NetworkEndpointGroupAllowedAccessMode
 const (
-	NETWORKENDPOINTGROUPALLOWEDACCESSMODE_L2 NetworkEndpointGroupAllowedAccessMode = "l2"
+	L2 NetworkEndpointGroupAllowedAccessMode = "l2"
 )
 
 // All allowed values of NetworkEndpointGroupAllowedAccessMode enum

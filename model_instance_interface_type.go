@@ -21,9 +21,9 @@ type InstanceInterfaceType string
 
 // List of InstanceInterfaceType
 const (
-	INSTANCEINTERFACETYPE_PHYSICAL InstanceInterfaceType = "physical"
-	INSTANCEINTERFACETYPE_BOND InstanceInterfaceType = "bond"
-	INSTANCEINTERFACETYPE_VLAN InstanceInterfaceType = "vlan"
+	PHYSICAL InstanceInterfaceType = "physical"
+	BOND InstanceInterfaceType = "bond"
+	VLAN InstanceInterfaceType = "vlan"
 )
 
 // All allowed values of InstanceInterfaceType enum

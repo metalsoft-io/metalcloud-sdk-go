@@ -38,7 +38,7 @@ func NewCreateManualIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, sc
 	this := CreateManualIpv4SubnetAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
-	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	var gatewayPlacement SubnetGatewayPlacement = DEFAULT
 	this.GatewayPlacement = &gatewayPlacement
 	this.SubnetId = subnetId
 	return &this
@@ -49,7 +49,7 @@ func NewCreateManualIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, sc
 // but it doesn't guarantee that properties required by API are set
 func NewCreateManualIpv4SubnetAllocationStrategyWithDefaults() *CreateManualIpv4SubnetAllocationStrategy {
 	this := CreateManualIpv4SubnetAllocationStrategy{}
-	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	var gatewayPlacement SubnetGatewayPlacement = DEFAULT
 	this.GatewayPlacement = &gatewayPlacement
 	return &this
 }

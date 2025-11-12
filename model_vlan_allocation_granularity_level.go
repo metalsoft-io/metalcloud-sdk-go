@@ -21,7 +21,7 @@ type VlanAllocationGranularityLevel string
 
 // List of VlanAllocationGranularityLevel
 const (
-	VLANALLOCATIONGRANULARITYLEVEL_NETWORK_DEVICE VlanAllocationGranularityLevel = "network_device"
+	NETWORK_DEVICE VlanAllocationGranularityLevel = "network_device"
 )
 
 // All allowed values of VlanAllocationGranularityLevel enum

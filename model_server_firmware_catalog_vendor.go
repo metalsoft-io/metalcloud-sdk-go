@@ -21,9 +21,9 @@ type ServerFirmwareCatalogVendor string
 
 // List of ServerFirmwareCatalogVendor
 const (
-	SERVERFIRMWARECATALOGVENDOR_DELL ServerFirmwareCatalogVendor = "dell"
-	SERVERFIRMWARECATALOGVENDOR_LENOVO ServerFirmwareCatalogVendor = "lenovo"
-	SERVERFIRMWARECATALOGVENDOR_HP ServerFirmwareCatalogVendor = "hp"
+	DELL ServerFirmwareCatalogVendor = "dell"
+	LENOVO ServerFirmwareCatalogVendor = "lenovo"
+	HP ServerFirmwareCatalogVendor = "hp"
 )
 
 // All allowed values of ServerFirmwareCatalogVendor enum

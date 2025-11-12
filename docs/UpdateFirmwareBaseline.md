@@ -7,8 +7,10 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Catalog** | Pointer to **[]string** |  | [optional] 
-**Level** | [**BaselineLevelType**](BaselineLevelType.md) |  | 
-**LevelFilter** | **[]string** |  | 
+**Level** | [**BaselineLevelType**](BaselineLevelType.md) | Level type: datacenter, serverType, osTemplate for infrastructure-based baselines, or vendorModel for hardware-based baselines | 
+**LevelFilter** | **[]string** | Array of filter values. For datacenter/serverType/osTemplate: array of strings (e.g., [\&quot;datacenter1\&quot;, \&quot;datacenter2\&quot;]). For vendorModel: array of objects with vendor and model properties (e.g., [{ vendor: \&quot;Dell\&quot;, model: \&quot;R740\&quot; }, { vendor: \&quot;HPE\&quot;, model: \&quot;*\&quot; }]). Use \&quot;*\&quot; for wildcards. | 
+**MinimumVersions** | Pointer to [**[]FirmwareMinimumVersion**](FirmwareMinimumVersion.md) | Array of minimum firmware version requirements for this baseline | [optional] 
+**ApplyOnServerRegistration** | Pointer to **bool** | Whether to apply this baseline during server registration process | [optional] 
 
 ## Methods
 
@@ -138,6 +140,56 @@ and a boolean to check if the value has been set.
 
 SetLevelFilter sets LevelFilter field to given value.
 
+
+### GetMinimumVersions
+
+`func (o *UpdateFirmwareBaseline) GetMinimumVersions() []FirmwareMinimumVersion`
+
+GetMinimumVersions returns the MinimumVersions field if non-nil, zero value otherwise.
+
+### GetMinimumVersionsOk
+
+`func (o *UpdateFirmwareBaseline) GetMinimumVersionsOk() (*[]FirmwareMinimumVersion, bool)`
+
+GetMinimumVersionsOk returns a tuple with the MinimumVersions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinimumVersions
+
+`func (o *UpdateFirmwareBaseline) SetMinimumVersions(v []FirmwareMinimumVersion)`
+
+SetMinimumVersions sets MinimumVersions field to given value.
+
+### HasMinimumVersions
+
+`func (o *UpdateFirmwareBaseline) HasMinimumVersions() bool`
+
+HasMinimumVersions returns a boolean if a field has been set.
+
+### GetApplyOnServerRegistration
+
+`func (o *UpdateFirmwareBaseline) GetApplyOnServerRegistration() bool`
+
+GetApplyOnServerRegistration returns the ApplyOnServerRegistration field if non-nil, zero value otherwise.
+
+### GetApplyOnServerRegistrationOk
+
+`func (o *UpdateFirmwareBaseline) GetApplyOnServerRegistrationOk() (*bool, bool)`
+
+GetApplyOnServerRegistrationOk returns a tuple with the ApplyOnServerRegistration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplyOnServerRegistration
+
+`func (o *UpdateFirmwareBaseline) SetApplyOnServerRegistration(v bool)`
+
+SetApplyOnServerRegistration sets ApplyOnServerRegistration field to given value.
+
+### HasApplyOnServerRegistration
+
+`func (o *UpdateFirmwareBaseline) HasApplyOnServerRegistration() bool`
+
+HasApplyOnServerRegistration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

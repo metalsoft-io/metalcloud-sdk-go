@@ -21,9 +21,9 @@ type FabricTopologyType string
 
 // List of FabricTopologyType
 const (
-	FABRICTOPOLOGYTYPE_DIRECTOR FabricTopologyType = "director"
-	FABRICTOPOLOGYTYPE_CORE_EDGE FabricTopologyType = "core-edge"
-	FABRICTOPOLOGYTYPE_MESH FabricTopologyType = "mesh"
+	DIRECTOR FabricTopologyType = "director"
+	CORE_EDGE FabricTopologyType = "core-edge"
+	MESH FabricTopologyType = "mesh"
 )
 
 // All allowed values of FabricTopologyType enum
