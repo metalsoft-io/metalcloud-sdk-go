@@ -18,8 +18,16 @@ import (
 
 // LogicalNetworkProfile1DataItem - struct for LogicalNetworkProfile1DataItem
 type LogicalNetworkProfile1DataItem struct {
+	InfinibandLogicalNetworkProfile *InfinibandLogicalNetworkProfile
 	VlanLogicalNetworkProfile *VlanLogicalNetworkProfile
 	VxlanLogicalNetworkProfile *VxlanLogicalNetworkProfile
+}
+
+// InfinibandLogicalNetworkProfileAsLogicalNetworkProfile1DataItem is a convenience function that returns InfinibandLogicalNetworkProfile wrapped in LogicalNetworkProfile1DataItem
+func InfinibandLogicalNetworkProfileAsLogicalNetworkProfile1DataItem(v *InfinibandLogicalNetworkProfile) LogicalNetworkProfile1DataItem {
+	return LogicalNetworkProfile1DataItem{
+		InfinibandLogicalNetworkProfile: v,
+	}
 }
 
 // VlanLogicalNetworkProfileAsLogicalNetworkProfile1DataItem is a convenience function that returns VlanLogicalNetworkProfile wrapped in LogicalNetworkProfile1DataItem
@@ -47,6 +55,18 @@ func (dst *LogicalNetworkProfile1DataItem) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
+	// check if the discriminator value is 'infiniband'
+	if jsonDict["kind"] == "infiniband" {
+		// try to unmarshal JSON data into InfinibandLogicalNetworkProfile
+		err = json.Unmarshal(data, &dst.InfinibandLogicalNetworkProfile)
+		if err == nil {
+			return nil // data stored in dst.InfinibandLogicalNetworkProfile, return on the first match
+		} else {
+			dst.InfinibandLogicalNetworkProfile = nil
+			return fmt.Errorf("failed to unmarshal LogicalNetworkProfile1DataItem as InfinibandLogicalNetworkProfile: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'vlan'
 	if jsonDict["kind"] == "vlan" {
 		// try to unmarshal JSON data into VlanLogicalNetworkProfile
@@ -68,6 +88,18 @@ func (dst *LogicalNetworkProfile1DataItem) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.VxlanLogicalNetworkProfile = nil
 			return fmt.Errorf("failed to unmarshal LogicalNetworkProfile1DataItem as VxlanLogicalNetworkProfile: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'InfinibandLogicalNetworkProfile'
+	if jsonDict["kind"] == "InfinibandLogicalNetworkProfile" {
+		// try to unmarshal JSON data into InfinibandLogicalNetworkProfile
+		err = json.Unmarshal(data, &dst.InfinibandLogicalNetworkProfile)
+		if err == nil {
+			return nil // data stored in dst.InfinibandLogicalNetworkProfile, return on the first match
+		} else {
+			dst.InfinibandLogicalNetworkProfile = nil
+			return fmt.Errorf("failed to unmarshal LogicalNetworkProfile1DataItem as InfinibandLogicalNetworkProfile: %s", err.Error())
 		}
 	}
 
@@ -100,6 +132,10 @@ func (dst *LogicalNetworkProfile1DataItem) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src LogicalNetworkProfile1DataItem) MarshalJSON() ([]byte, error) {
+	if src.InfinibandLogicalNetworkProfile != nil {
+		return json.Marshal(&src.InfinibandLogicalNetworkProfile)
+	}
+
 	if src.VlanLogicalNetworkProfile != nil {
 		return json.Marshal(&src.VlanLogicalNetworkProfile)
 	}
@@ -116,6 +152,10 @@ func (obj *LogicalNetworkProfile1DataItem) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.InfinibandLogicalNetworkProfile != nil {
+		return obj.InfinibandLogicalNetworkProfile
+	}
+
 	if obj.VlanLogicalNetworkProfile != nil {
 		return obj.VlanLogicalNetworkProfile
 	}
@@ -130,6 +170,10 @@ func (obj *LogicalNetworkProfile1DataItem) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj LogicalNetworkProfile1DataItem) GetActualInstanceValue() (interface{}) {
+	if obj.InfinibandLogicalNetworkProfile != nil {
+		return *obj.InfinibandLogicalNetworkProfile
+	}
+
 	if obj.VlanLogicalNetworkProfile != nil {
 		return *obj.VlanLogicalNetworkProfile
 	}

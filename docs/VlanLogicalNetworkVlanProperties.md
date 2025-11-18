@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vlans** | [**[]VlanAllocation**](VlanAllocation.md) |  | 
-**VlanAllocationStrategies** | [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | 
+**VlanAllocationStrategies** | [**[]VlanAllocationStrategy1**](VlanAllocationStrategy1.md) |  | 
 
 ## Methods
 
 ### NewVlanLogicalNetworkVlanProperties
 
-`func NewVlanLogicalNetworkVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy, ) *VlanLogicalNetworkVlanProperties`
+`func NewVlanLogicalNetworkVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy1, ) *VlanLogicalNetworkVlanProperties`
 
 NewVlanLogicalNetworkVlanProperties instantiates a new VlanLogicalNetworkVlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetVlans sets Vlans field to given value.
 
 ### GetVlanAllocationStrategies
 
-`func (o *VlanLogicalNetworkVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy`
+`func (o *VlanLogicalNetworkVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy1`
 
 GetVlanAllocationStrategies returns the VlanAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVlanAllocationStrategiesOk
 
-`func (o *VlanLogicalNetworkVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy, bool)`
+`func (o *VlanLogicalNetworkVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy1, bool)`
 
 GetVlanAllocationStrategiesOk returns a tuple with the VlanAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanAllocationStrategies
 
-`func (o *VlanLogicalNetworkVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy)`
+`func (o *VlanLogicalNetworkVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy1)`
 
 SetVlanAllocationStrategies sets VlanAllocationStrategies field to given value.
 

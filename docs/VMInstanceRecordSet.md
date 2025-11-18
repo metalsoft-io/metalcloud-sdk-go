@@ -6,10 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VmPoolId** | **float32** | The ID of the VM Pool. | 
 **Hostname** | **string** | The hostname of the VM Pool. | 
-**Username** | Pointer to **string** | The username for the VM Instance. | [optional] 
-**Password** | Pointer to **string** | The password for the VM Instance. | [optional] 
-**Certificate** | Pointer to **string** | The certificate for the VM Instance. | [optional] 
-**PrivateKey** | Pointer to **string** | The private key for the VM Instance. | [optional] 
 **Operation** | **string** | The operation to be performed on the VM Instance. | 
 **VmName** | **string** | The name of the VM Instance. | 
 **VmDiskGb** | **float32** | The disk size of the VM Instance in GB. | 
@@ -21,6 +17,7 @@ Name | Type | Description | Notes
 **VcenterCluster** | Pointer to **string** | The vCenter cluster for the VM Instance. | [optional] 
 **VcenterVmDestinationFolder** | Pointer to **string** | The vCenter VM destination folder for the VM Instance. | [optional] 
 **VcenterDiskDatastore** | Pointer to **string** | The vCenter datastore name for the VM Instance. | [optional] 
+**OnlyRemoveNetworks** | Pointer to **bool** | Flag to indicate if the only operation to be done is the removal of networks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables from the VM instance group | [optional] 
 
 ## Methods
@@ -81,106 +78,6 @@ and a boolean to check if the value has been set.
 
 SetHostname sets Hostname field to given value.
 
-
-### GetUsername
-
-`func (o *VMInstanceRecordSet) GetUsername() string`
-
-GetUsername returns the Username field if non-nil, zero value otherwise.
-
-### GetUsernameOk
-
-`func (o *VMInstanceRecordSet) GetUsernameOk() (*string, bool)`
-
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsername
-
-`func (o *VMInstanceRecordSet) SetUsername(v string)`
-
-SetUsername sets Username field to given value.
-
-### HasUsername
-
-`func (o *VMInstanceRecordSet) HasUsername() bool`
-
-HasUsername returns a boolean if a field has been set.
-
-### GetPassword
-
-`func (o *VMInstanceRecordSet) GetPassword() string`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *VMInstanceRecordSet) GetPasswordOk() (*string, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *VMInstanceRecordSet) SetPassword(v string)`
-
-SetPassword sets Password field to given value.
-
-### HasPassword
-
-`func (o *VMInstanceRecordSet) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
-
-### GetCertificate
-
-`func (o *VMInstanceRecordSet) GetCertificate() string`
-
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
-
-### GetCertificateOk
-
-`func (o *VMInstanceRecordSet) GetCertificateOk() (*string, bool)`
-
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificate
-
-`func (o *VMInstanceRecordSet) SetCertificate(v string)`
-
-SetCertificate sets Certificate field to given value.
-
-### HasCertificate
-
-`func (o *VMInstanceRecordSet) HasCertificate() bool`
-
-HasCertificate returns a boolean if a field has been set.
-
-### GetPrivateKey
-
-`func (o *VMInstanceRecordSet) GetPrivateKey() string`
-
-GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
-
-### GetPrivateKeyOk
-
-`func (o *VMInstanceRecordSet) GetPrivateKeyOk() (*string, bool)`
-
-GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrivateKey
-
-`func (o *VMInstanceRecordSet) SetPrivateKey(v string)`
-
-SetPrivateKey sets PrivateKey field to given value.
-
-### HasPrivateKey
-
-`func (o *VMInstanceRecordSet) HasPrivateKey() bool`
-
-HasPrivateKey returns a boolean if a field has been set.
 
 ### GetOperation
 
@@ -426,6 +323,31 @@ SetVcenterDiskDatastore sets VcenterDiskDatastore field to given value.
 `func (o *VMInstanceRecordSet) HasVcenterDiskDatastore() bool`
 
 HasVcenterDiskDatastore returns a boolean if a field has been set.
+
+### GetOnlyRemoveNetworks
+
+`func (o *VMInstanceRecordSet) GetOnlyRemoveNetworks() bool`
+
+GetOnlyRemoveNetworks returns the OnlyRemoveNetworks field if non-nil, zero value otherwise.
+
+### GetOnlyRemoveNetworksOk
+
+`func (o *VMInstanceRecordSet) GetOnlyRemoveNetworksOk() (*bool, bool)`
+
+GetOnlyRemoveNetworksOk returns a tuple with the OnlyRemoveNetworks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnlyRemoveNetworks
+
+`func (o *VMInstanceRecordSet) SetOnlyRemoveNetworks(v bool)`
+
+SetOnlyRemoveNetworks sets OnlyRemoveNetworks field to given value.
+
+### HasOnlyRemoveNetworks
+
+`func (o *VMInstanceRecordSet) HasOnlyRemoveNetworks() bool`
+
+HasOnlyRemoveNetworks returns a boolean if a field has been set.
 
 ### GetCustomVariables
 

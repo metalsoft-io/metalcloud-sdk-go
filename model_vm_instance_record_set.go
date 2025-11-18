@@ -25,14 +25,6 @@ type VMInstanceRecordSet struct {
 	VmPoolId float32 `json:"vmPoolId"`
 	// The hostname of the VM Pool.
 	Hostname string `json:"hostname"`
-	// The username for the VM Instance.
-	Username *string `json:"username,omitempty"`
-	// The password for the VM Instance.
-	Password *string `json:"password,omitempty"`
-	// The certificate for the VM Instance.
-	Certificate *string `json:"certificate,omitempty"`
-	// The private key for the VM Instance.
-	PrivateKey *string `json:"privateKey,omitempty"`
 	// The operation to be performed on the VM Instance.
 	Operation string `json:"operation"`
 	// The name of the VM Instance.
@@ -55,6 +47,8 @@ type VMInstanceRecordSet struct {
 	VcenterVmDestinationFolder *string `json:"vcenter_vm_destination_folder,omitempty"`
 	// The vCenter datastore name for the VM Instance.
 	VcenterDiskDatastore *string `json:"vcenter_disk_datastore,omitempty"`
+	// Flag to indicate if the only operation to be done is the removal of networks.
+	OnlyRemoveNetworks *bool `json:"only_remove_networks,omitempty"`
 	// Custom variables from the VM instance group
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -133,134 +127,6 @@ func (o *VMInstanceRecordSet) GetHostnameOk() (*string, bool) {
 // SetHostname sets field value
 func (o *VMInstanceRecordSet) SetHostname(v string) {
 	o.Hostname = v
-}
-
-// GetUsername returns the Username field value if set, zero value otherwise.
-func (o *VMInstanceRecordSet) GetUsername() string {
-	if o == nil || IsNil(o.Username) {
-		var ret string
-		return ret
-	}
-	return *o.Username
-}
-
-// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceRecordSet) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
-}
-
-// HasUsername returns a boolean if a field has been set.
-func (o *VMInstanceRecordSet) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
-}
-
-// SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *VMInstanceRecordSet) SetUsername(v string) {
-	o.Username = &v
-}
-
-// GetPassword returns the Password field value if set, zero value otherwise.
-func (o *VMInstanceRecordSet) GetPassword() string {
-	if o == nil || IsNil(o.Password) {
-		var ret string
-		return ret
-	}
-	return *o.Password
-}
-
-// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceRecordSet) GetPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.Password) {
-		return nil, false
-	}
-	return o.Password, true
-}
-
-// HasPassword returns a boolean if a field has been set.
-func (o *VMInstanceRecordSet) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
-		return true
-	}
-
-	return false
-}
-
-// SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *VMInstanceRecordSet) SetPassword(v string) {
-	o.Password = &v
-}
-
-// GetCertificate returns the Certificate field value if set, zero value otherwise.
-func (o *VMInstanceRecordSet) GetCertificate() string {
-	if o == nil || IsNil(o.Certificate) {
-		var ret string
-		return ret
-	}
-	return *o.Certificate
-}
-
-// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceRecordSet) GetCertificateOk() (*string, bool) {
-	if o == nil || IsNil(o.Certificate) {
-		return nil, false
-	}
-	return o.Certificate, true
-}
-
-// HasCertificate returns a boolean if a field has been set.
-func (o *VMInstanceRecordSet) HasCertificate() bool {
-	if o != nil && !IsNil(o.Certificate) {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificate gets a reference to the given string and assigns it to the Certificate field.
-func (o *VMInstanceRecordSet) SetCertificate(v string) {
-	o.Certificate = &v
-}
-
-// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
-func (o *VMInstanceRecordSet) GetPrivateKey() string {
-	if o == nil || IsNil(o.PrivateKey) {
-		var ret string
-		return ret
-	}
-	return *o.PrivateKey
-}
-
-// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceRecordSet) GetPrivateKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.PrivateKey) {
-		return nil, false
-	}
-	return o.PrivateKey, true
-}
-
-// HasPrivateKey returns a boolean if a field has been set.
-func (o *VMInstanceRecordSet) HasPrivateKey() bool {
-	if o != nil && !IsNil(o.PrivateKey) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
-func (o *VMInstanceRecordSet) SetPrivateKey(v string) {
-	o.PrivateKey = &v
 }
 
 // GetOperation returns the Operation field value
@@ -567,6 +433,38 @@ func (o *VMInstanceRecordSet) SetVcenterDiskDatastore(v string) {
 	o.VcenterDiskDatastore = &v
 }
 
+// GetOnlyRemoveNetworks returns the OnlyRemoveNetworks field value if set, zero value otherwise.
+func (o *VMInstanceRecordSet) GetOnlyRemoveNetworks() bool {
+	if o == nil || IsNil(o.OnlyRemoveNetworks) {
+		var ret bool
+		return ret
+	}
+	return *o.OnlyRemoveNetworks
+}
+
+// GetOnlyRemoveNetworksOk returns a tuple with the OnlyRemoveNetworks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceRecordSet) GetOnlyRemoveNetworksOk() (*bool, bool) {
+	if o == nil || IsNil(o.OnlyRemoveNetworks) {
+		return nil, false
+	}
+	return o.OnlyRemoveNetworks, true
+}
+
+// HasOnlyRemoveNetworks returns a boolean if a field has been set.
+func (o *VMInstanceRecordSet) HasOnlyRemoveNetworks() bool {
+	if o != nil && !IsNil(o.OnlyRemoveNetworks) {
+		return true
+	}
+
+	return false
+}
+
+// SetOnlyRemoveNetworks gets a reference to the given bool and assigns it to the OnlyRemoveNetworks field.
+func (o *VMInstanceRecordSet) SetOnlyRemoveNetworks(v bool) {
+	o.OnlyRemoveNetworks = &v
+}
+
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
 func (o *VMInstanceRecordSet) GetCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.CustomVariables) {
@@ -611,18 +509,6 @@ func (o VMInstanceRecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["vmPoolId"] = o.VmPoolId
 	toSerialize["hostname"] = o.Hostname
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !IsNil(o.Password) {
-		toSerialize["password"] = o.Password
-	}
-	if !IsNil(o.Certificate) {
-		toSerialize["certificate"] = o.Certificate
-	}
-	if !IsNil(o.PrivateKey) {
-		toSerialize["privateKey"] = o.PrivateKey
-	}
 	toSerialize["operation"] = o.Operation
 	toSerialize["vm_name"] = o.VmName
 	toSerialize["vm_disk_gb"] = o.VmDiskGb
@@ -643,6 +529,9 @@ func (o VMInstanceRecordSet) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.VcenterDiskDatastore) {
 		toSerialize["vcenter_disk_datastore"] = o.VcenterDiskDatastore
+	}
+	if !IsNil(o.OnlyRemoveNetworks) {
+		toSerialize["only_remove_networks"] = o.OnlyRemoveNetworks
 	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
@@ -699,10 +588,6 @@ func (o *VMInstanceRecordSet) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "hostname")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "password")
-		delete(additionalProperties, "certificate")
-		delete(additionalProperties, "privateKey")
 		delete(additionalProperties, "operation")
 		delete(additionalProperties, "vm_name")
 		delete(additionalProperties, "vm_disk_gb")
@@ -714,6 +599,7 @@ func (o *VMInstanceRecordSet) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vcenter_cluster")
 		delete(additionalProperties, "vcenter_vm_destination_folder")
 		delete(additionalProperties, "vcenter_disk_datastore")
+		delete(additionalProperties, "only_remove_networks")
 		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}

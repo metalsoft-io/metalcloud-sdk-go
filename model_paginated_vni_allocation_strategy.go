@@ -21,7 +21,7 @@ var _ MappedNullable = &PaginatedVniAllocationStrategy{}
 
 // PaginatedVniAllocationStrategy struct for PaginatedVniAllocationStrategy
 type PaginatedVniAllocationStrategy struct {
-	Data []VniAllocationStrategy1Inner `json:"data"`
+	Data []VniAllocationStrategy2DataItem `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _PaginatedVniAllocationStrategy PaginatedVniAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedVniAllocationStrategy(data []VniAllocationStrategy1Inner, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedVniAllocationStrategy {
+func NewPaginatedVniAllocationStrategy(data []VniAllocationStrategy2DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedVniAllocationStrategy {
 	this := PaginatedVniAllocationStrategy{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewPaginatedVniAllocationStrategyWithDefaults() *PaginatedVniAllocationStra
 }
 
 // GetData returns the Data field value
-func (o *PaginatedVniAllocationStrategy) GetData() []VniAllocationStrategy1Inner {
+func (o *PaginatedVniAllocationStrategy) GetData() []VniAllocationStrategy2DataItem {
 	if o == nil {
-		var ret []VniAllocationStrategy1Inner
+		var ret []VniAllocationStrategy2DataItem
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *PaginatedVniAllocationStrategy) GetData() []VniAllocationStrategy1Inner
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *PaginatedVniAllocationStrategy) GetDataOk() ([]VniAllocationStrategy1Inner, bool) {
+func (o *PaginatedVniAllocationStrategy) GetDataOk() ([]VniAllocationStrategy2DataItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *PaginatedVniAllocationStrategy) GetDataOk() ([]VniAllocationStrategy1In
 }
 
 // SetData sets field value
-func (o *PaginatedVniAllocationStrategy) SetData(v []VniAllocationStrategy1Inner) {
+func (o *PaginatedVniAllocationStrategy) SetData(v []VniAllocationStrategy2DataItem) {
 	o.Data = v
 }
 

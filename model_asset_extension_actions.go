@@ -23,7 +23,7 @@ var _ MappedNullable = &AssetExtensionActions{}
 type AssetExtensionActions struct {
 	Stage AssetExtensionActionStage `json:"stage"`
 	// Tasks.
-	Tasks []InfrastructureExtensionActionsTasksInner `json:"tasks,omitempty"`
+	Tasks []InfrastructureExtensionActionsTasksDataItem `json:"tasks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,9 +72,9 @@ func (o *AssetExtensionActions) SetStage(v AssetExtensionActionStage) {
 }
 
 // GetTasks returns the Tasks field value if set, zero value otherwise.
-func (o *AssetExtensionActions) GetTasks() []InfrastructureExtensionActionsTasksInner {
+func (o *AssetExtensionActions) GetTasks() []InfrastructureExtensionActionsTasksDataItem {
 	if o == nil || IsNil(o.Tasks) {
-		var ret []InfrastructureExtensionActionsTasksInner
+		var ret []InfrastructureExtensionActionsTasksDataItem
 		return ret
 	}
 	return o.Tasks
@@ -82,7 +82,7 @@ func (o *AssetExtensionActions) GetTasks() []InfrastructureExtensionActionsTasks
 
 // GetTasksOk returns a tuple with the Tasks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetExtensionActions) GetTasksOk() ([]InfrastructureExtensionActionsTasksInner, bool) {
+func (o *AssetExtensionActions) GetTasksOk() ([]InfrastructureExtensionActionsTasksDataItem, bool) {
 	if o == nil || IsNil(o.Tasks) {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *AssetExtensionActions) HasTasks() bool {
 	return false
 }
 
-// SetTasks gets a reference to the given []InfrastructureExtensionActionsTasksInner and assigns it to the Tasks field.
-func (o *AssetExtensionActions) SetTasks(v []InfrastructureExtensionActionsTasksInner) {
+// SetTasks gets a reference to the given []InfrastructureExtensionActionsTasksDataItem and assigns it to the Tasks field.
+func (o *AssetExtensionActions) SetTasks(v []InfrastructureExtensionActionsTasksDataItem) {
 	o.Tasks = v
 }
 

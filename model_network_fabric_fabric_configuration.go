@@ -14,13 +14,13 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // NetworkFabricFabricConfiguration - Network fabric configuration with type-specific properties based on the fabricType discriminator
 type NetworkFabricFabricConfiguration struct {
 	EthernetFabric *EthernetFabric
 	FibreChannelFabric *FibreChannelFabric
+	InfinibandFabric *InfinibandFabric
 }
 
 // EthernetFabricAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetFabric wrapped in NetworkFabricFabricConfiguration
@@ -37,56 +37,97 @@ func FibreChannelFabricAsNetworkFabricFabricConfiguration(v *FibreChannelFabric)
 	}
 }
 
+// InfinibandFabricAsNetworkFabricFabricConfiguration is a convenience function that returns InfinibandFabric wrapped in NetworkFabricFabricConfiguration
+func InfinibandFabricAsNetworkFabricFabricConfiguration(v *InfinibandFabric) NetworkFabricFabricConfiguration {
+	return NetworkFabricFabricConfiguration{
+		InfinibandFabric: v,
+	}
+}
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NetworkFabricFabricConfiguration) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into EthernetFabric
-	err = newStrictDecoder(data).Decode(&dst.EthernetFabric)
-	if err == nil {
-		jsonEthernetFabric, _ := json.Marshal(dst.EthernetFabric)
-		if string(jsonEthernetFabric) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'ethernet'
+	if jsonDict["fabricType"] == "ethernet" {
+		// try to unmarshal JSON data into EthernetFabric
+		err = json.Unmarshal(data, &dst.EthernetFabric)
+		if err == nil {
+			return nil // data stored in dst.EthernetFabric, return on the first match
+		} else {
 			dst.EthernetFabric = nil
-		} else {
-			if err = validator.Validate(dst.EthernetFabric); err != nil {
-				dst.EthernetFabric = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as EthernetFabric: %s", err.Error())
 		}
-	} else {
-		dst.EthernetFabric = nil
 	}
 
-	// try to unmarshal data into FibreChannelFabric
-	err = newStrictDecoder(data).Decode(&dst.FibreChannelFabric)
-	if err == nil {
-		jsonFibreChannelFabric, _ := json.Marshal(dst.FibreChannelFabric)
-		if string(jsonFibreChannelFabric) == "{}" { // empty struct
+	// check if the discriminator value is 'fibre_channel'
+	if jsonDict["fabricType"] == "fibre_channel" {
+		// try to unmarshal JSON data into FibreChannelFabric
+		err = json.Unmarshal(data, &dst.FibreChannelFabric)
+		if err == nil {
+			return nil // data stored in dst.FibreChannelFabric, return on the first match
+		} else {
 			dst.FibreChannelFabric = nil
-		} else {
-			if err = validator.Validate(dst.FibreChannelFabric); err != nil {
-				dst.FibreChannelFabric = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as FibreChannelFabric: %s", err.Error())
 		}
-	} else {
-		dst.FibreChannelFabric = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.EthernetFabric = nil
-		dst.FibreChannelFabric = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(NetworkFabricFabricConfiguration)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(NetworkFabricFabricConfiguration)")
+	// check if the discriminator value is 'infiniband'
+	if jsonDict["fabricType"] == "infiniband" {
+		// try to unmarshal JSON data into InfinibandFabric
+		err = json.Unmarshal(data, &dst.InfinibandFabric)
+		if err == nil {
+			return nil // data stored in dst.InfinibandFabric, return on the first match
+		} else {
+			dst.InfinibandFabric = nil
+			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as InfinibandFabric: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'EthernetFabric'
+	if jsonDict["fabricType"] == "EthernetFabric" {
+		// try to unmarshal JSON data into EthernetFabric
+		err = json.Unmarshal(data, &dst.EthernetFabric)
+		if err == nil {
+			return nil // data stored in dst.EthernetFabric, return on the first match
+		} else {
+			dst.EthernetFabric = nil
+			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as EthernetFabric: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'FibreChannelFabric'
+	if jsonDict["fabricType"] == "FibreChannelFabric" {
+		// try to unmarshal JSON data into FibreChannelFabric
+		err = json.Unmarshal(data, &dst.FibreChannelFabric)
+		if err == nil {
+			return nil // data stored in dst.FibreChannelFabric, return on the first match
+		} else {
+			dst.FibreChannelFabric = nil
+			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as FibreChannelFabric: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'InfinibandFabric'
+	if jsonDict["fabricType"] == "InfinibandFabric" {
+		// try to unmarshal JSON data into InfinibandFabric
+		err = json.Unmarshal(data, &dst.InfinibandFabric)
+		if err == nil {
+			return nil // data stored in dst.InfinibandFabric, return on the first match
+		} else {
+			dst.InfinibandFabric = nil
+			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as InfinibandFabric: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
@@ -97,6 +138,10 @@ func (src NetworkFabricFabricConfiguration) MarshalJSON() ([]byte, error) {
 
 	if src.FibreChannelFabric != nil {
 		return json.Marshal(&src.FibreChannelFabric)
+	}
+
+	if src.InfinibandFabric != nil {
+		return json.Marshal(&src.InfinibandFabric)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -115,6 +160,10 @@ func (obj *NetworkFabricFabricConfiguration) GetActualInstance() (interface{}) {
 		return obj.FibreChannelFabric
 	}
 
+	if obj.InfinibandFabric != nil {
+		return obj.InfinibandFabric
+	}
+
 	// all schemas are nil
 	return nil
 }
@@ -127,6 +176,10 @@ func (obj NetworkFabricFabricConfiguration) GetActualInstanceValue() (interface{
 
 	if obj.FibreChannelFabric != nil {
 		return *obj.FibreChannelFabric
+	}
+
+	if obj.InfinibandFabric != nil {
+		return *obj.InfinibandFabric
 	}
 
 	// all schemas are nil

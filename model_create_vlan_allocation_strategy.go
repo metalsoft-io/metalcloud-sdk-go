@@ -14,7 +14,6 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // CreateVlanAllocationStrategy - struct for CreateVlanAllocationStrategy
@@ -41,52 +40,62 @@ func CreateManualVlanAllocationStrategyAsCreateVlanAllocationStrategy(v *CreateM
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateVlanAllocationStrategy) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into CreateAutoVlanAllocationStrategy
-	err = newStrictDecoder(data).Decode(&dst.CreateAutoVlanAllocationStrategy)
-	if err == nil {
-		jsonCreateAutoVlanAllocationStrategy, _ := json.Marshal(dst.CreateAutoVlanAllocationStrategy)
-		if string(jsonCreateAutoVlanAllocationStrategy) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'auto'
+	if jsonDict["kind"] == "auto" {
+		// try to unmarshal JSON data into CreateAutoVlanAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateAutoVlanAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateAutoVlanAllocationStrategy, return on the first match
+		} else {
 			dst.CreateAutoVlanAllocationStrategy = nil
-		} else {
-			if err = validator.Validate(dst.CreateAutoVlanAllocationStrategy); err != nil {
-				dst.CreateAutoVlanAllocationStrategy = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateVlanAllocationStrategy as CreateAutoVlanAllocationStrategy: %s", err.Error())
 		}
-	} else {
-		dst.CreateAutoVlanAllocationStrategy = nil
 	}
 
-	// try to unmarshal data into CreateManualVlanAllocationStrategy
-	err = newStrictDecoder(data).Decode(&dst.CreateManualVlanAllocationStrategy)
-	if err == nil {
-		jsonCreateManualVlanAllocationStrategy, _ := json.Marshal(dst.CreateManualVlanAllocationStrategy)
-		if string(jsonCreateManualVlanAllocationStrategy) == "{}" { // empty struct
+	// check if the discriminator value is 'manual'
+	if jsonDict["kind"] == "manual" {
+		// try to unmarshal JSON data into CreateManualVlanAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateManualVlanAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateManualVlanAllocationStrategy, return on the first match
+		} else {
 			dst.CreateManualVlanAllocationStrategy = nil
-		} else {
-			if err = validator.Validate(dst.CreateManualVlanAllocationStrategy); err != nil {
-				dst.CreateManualVlanAllocationStrategy = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateVlanAllocationStrategy as CreateManualVlanAllocationStrategy: %s", err.Error())
 		}
-	} else {
-		dst.CreateManualVlanAllocationStrategy = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.CreateAutoVlanAllocationStrategy = nil
-		dst.CreateManualVlanAllocationStrategy = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(CreateVlanAllocationStrategy)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateVlanAllocationStrategy)")
+	// check if the discriminator value is 'CreateAutoVlanAllocationStrategy'
+	if jsonDict["kind"] == "CreateAutoVlanAllocationStrategy" {
+		// try to unmarshal JSON data into CreateAutoVlanAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateAutoVlanAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateAutoVlanAllocationStrategy, return on the first match
+		} else {
+			dst.CreateAutoVlanAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateVlanAllocationStrategy as CreateAutoVlanAllocationStrategy: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'CreateManualVlanAllocationStrategy'
+	if jsonDict["kind"] == "CreateManualVlanAllocationStrategy" {
+		// try to unmarshal JSON data into CreateManualVlanAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateManualVlanAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateManualVlanAllocationStrategy, return on the first match
+		} else {
+			dst.CreateManualVlanAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateVlanAllocationStrategy as CreateManualVlanAllocationStrategy: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

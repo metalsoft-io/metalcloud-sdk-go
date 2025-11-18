@@ -24,6 +24,8 @@ type UpdateNetworkDeviceController struct {
 	DatacenterName *string `json:"datacenterName,omitempty"`
 	// Unique identifier string for the network device controller
 	IdentifierString *string `json:"identifierString,omitempty"`
+	// Driver software used to communicate with the network device controller
+	Driver *SwitchControllerDriver `json:"driver,omitempty"`
 	// The IP address used to manage the network device controller
 	ManagementAddress *string `json:"managementAddress,omitempty"`
 	// The port number used for management connections
@@ -118,6 +120,38 @@ func (o *UpdateNetworkDeviceController) HasIdentifierString() bool {
 // SetIdentifierString gets a reference to the given string and assigns it to the IdentifierString field.
 func (o *UpdateNetworkDeviceController) SetIdentifierString(v string) {
 	o.IdentifierString = &v
+}
+
+// GetDriver returns the Driver field value if set, zero value otherwise.
+func (o *UpdateNetworkDeviceController) GetDriver() SwitchControllerDriver {
+	if o == nil || IsNil(o.Driver) {
+		var ret SwitchControllerDriver
+		return ret
+	}
+	return *o.Driver
+}
+
+// GetDriverOk returns a tuple with the Driver field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDeviceController) GetDriverOk() (*SwitchControllerDriver, bool) {
+	if o == nil || IsNil(o.Driver) {
+		return nil, false
+	}
+	return o.Driver, true
+}
+
+// HasDriver returns a boolean if a field has been set.
+func (o *UpdateNetworkDeviceController) HasDriver() bool {
+	if o != nil && !IsNil(o.Driver) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriver gets a reference to the given SwitchControllerDriver and assigns it to the Driver field.
+func (o *UpdateNetworkDeviceController) SetDriver(v SwitchControllerDriver) {
+	o.Driver = &v
 }
 
 // GetManagementAddress returns the ManagementAddress field value if set, zero value otherwise.
@@ -296,6 +330,9 @@ func (o UpdateNetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IdentifierString) {
 		toSerialize["identifierString"] = o.IdentifierString
 	}
+	if !IsNil(o.Driver) {
+		toSerialize["driver"] = o.Driver
+	}
 	if !IsNil(o.ManagementAddress) {
 		toSerialize["managementAddress"] = o.ManagementAddress
 	}
@@ -335,6 +372,7 @@ func (o *UpdateNetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "identifierString")
+		delete(additionalProperties, "driver")
 		delete(additionalProperties, "managementAddress")
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "username")

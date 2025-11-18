@@ -21,9 +21,9 @@ type ResourceAllocationStatus string
 
 // List of ResourceAllocationStatus
 const (
-	ALLOCATED ResourceAllocationStatus = "allocated"
-	PENDING_ALLOCATION ResourceAllocationStatus = "pending_allocation"
-	DELETING ResourceAllocationStatus = "deleting"
+	RESOURCEALLOCATIONSTATUS_ALLOCATED ResourceAllocationStatus = "allocated"
+	RESOURCEALLOCATIONSTATUS_PENDING_ALLOCATION ResourceAllocationStatus = "pending_allocation"
+	RESOURCEALLOCATIONSTATUS_DELETING ResourceAllocationStatus = "deleting"
 )
 
 // All allowed values of ResourceAllocationStatus enum

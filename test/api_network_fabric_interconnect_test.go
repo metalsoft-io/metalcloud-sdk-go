@@ -146,6 +146,20 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricInterconnectAPIService GetNetworkFabricInterconnectTemplateByType", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var interconnectType NetworkFabricInterconnectType
+
+		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectTemplateByType(context.Background(), interconnectType).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricInterconnectAPIService GetNetworkFabricInterconnects", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

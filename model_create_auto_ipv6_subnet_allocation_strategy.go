@@ -39,7 +39,7 @@ func NewCreateAutoIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scop
 	this := CreateAutoIpv6SubnetAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
-	var gatewayPlacement SubnetGatewayPlacement = DEFAULT
+	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
 	this.GatewayPlacement = &gatewayPlacement
 	this.SubnetPoolIds = subnetPoolIds
 	this.PrefixLength = prefixLength
@@ -51,7 +51,7 @@ func NewCreateAutoIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scop
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAutoIpv6SubnetAllocationStrategyWithDefaults() *CreateAutoIpv6SubnetAllocationStrategy {
 	this := CreateAutoIpv6SubnetAllocationStrategy{}
-	var gatewayPlacement SubnetGatewayPlacement = DEFAULT
+	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
 	this.GatewayPlacement = &gatewayPlacement
 	return &this
 }

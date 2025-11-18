@@ -21,8 +21,8 @@ type InfrastructureExtensionActionStage string
 
 // List of InfrastructureExtensionActionStage
 const (
-	PRE_DEPLOY InfrastructureExtensionActionStage = "preDeploy"
-	POST_DEPLOY InfrastructureExtensionActionStage = "postDeploy"
+	INFRASTRUCTUREEXTENSIONACTIONSTAGE_PRE_DEPLOY InfrastructureExtensionActionStage = "preDeploy"
+	INFRASTRUCTUREEXTENSIONACTIONSTAGE_POST_DEPLOY InfrastructureExtensionActionStage = "postDeploy"
 )
 
 // All allowed values of InfrastructureExtensionActionStage enum

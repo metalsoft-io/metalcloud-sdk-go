@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **DatacenterName** | **string** | Name of the datacenter | 
 **IdentifierString** | Pointer to **string** | Unique identifier string for the network device controller | [optional] 
 **OverwriteWithHostnameFromFetchedSwitchController** | Pointer to **bool** | Whether to overwrite the hostname with the one fetched from the controller | [optional] 
+**Driver** | [**SwitchControllerDriver**](SwitchControllerDriver.md) | Driver software used to communicate with the network device controller | 
 **ManagementAddress** | **string** | The IP address used to manage the network device controller | 
 **ManagementPort** | **int32** | The port number used for management connections | 
 **Username** | **string** | The username used for management authentication | 
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewCreateNetworkDeviceController
 
-`func NewCreateNetworkDeviceController(datacenterName string, managementAddress string, managementPort int32, username string, managementPassword string, ) *CreateNetworkDeviceController`
+`func NewCreateNetworkDeviceController(datacenterName string, driver SwitchControllerDriver, managementAddress string, managementPort int32, username string, managementPassword string, ) *CreateNetworkDeviceController`
 
 NewCreateNetworkDeviceController instantiates a new CreateNetworkDeviceController object
 This constructor will assign default values to properties that have it defined,
@@ -101,6 +102,26 @@ SetOverwriteWithHostnameFromFetchedSwitchController sets OverwriteWithHostnameFr
 `func (o *CreateNetworkDeviceController) HasOverwriteWithHostnameFromFetchedSwitchController() bool`
 
 HasOverwriteWithHostnameFromFetchedSwitchController returns a boolean if a field has been set.
+
+### GetDriver
+
+`func (o *CreateNetworkDeviceController) GetDriver() SwitchControllerDriver`
+
+GetDriver returns the Driver field if non-nil, zero value otherwise.
+
+### GetDriverOk
+
+`func (o *CreateNetworkDeviceController) GetDriverOk() (*SwitchControllerDriver, bool)`
+
+GetDriverOk returns a tuple with the Driver field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriver
+
+`func (o *CreateNetworkDeviceController) SetDriver(v SwitchControllerDriver)`
+
+SetDriver sets Driver field to given value.
+
 
 ### GetManagementAddress
 

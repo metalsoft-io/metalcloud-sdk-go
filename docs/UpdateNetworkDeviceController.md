@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DatacenterName** | Pointer to **string** | Name of the datacenter | [optional] 
 **IdentifierString** | Pointer to **string** | Unique identifier string for the network device controller | [optional] 
+**Driver** | Pointer to [**SwitchControllerDriver**](SwitchControllerDriver.md) | Driver software used to communicate with the network device controller | [optional] 
 **ManagementAddress** | Pointer to **string** | The IP address used to manage the network device controller | [optional] 
 **ManagementPort** | Pointer to **int32** | The port number used for management connections | [optional] 
 **Username** | Pointer to **string** | The username used for management authentication | [optional] 
@@ -80,6 +81,31 @@ SetIdentifierString sets IdentifierString field to given value.
 `func (o *UpdateNetworkDeviceController) HasIdentifierString() bool`
 
 HasIdentifierString returns a boolean if a field has been set.
+
+### GetDriver
+
+`func (o *UpdateNetworkDeviceController) GetDriver() SwitchControllerDriver`
+
+GetDriver returns the Driver field if non-nil, zero value otherwise.
+
+### GetDriverOk
+
+`func (o *UpdateNetworkDeviceController) GetDriverOk() (*SwitchControllerDriver, bool)`
+
+GetDriverOk returns a tuple with the Driver field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriver
+
+`func (o *UpdateNetworkDeviceController) SetDriver(v SwitchControllerDriver)`
+
+SetDriver sets Driver field to given value.
+
+### HasDriver
+
+`func (o *UpdateNetworkDeviceController) HasDriver() bool`
+
+HasDriver returns a boolean if a field has been set.
 
 ### GetManagementAddress
 

@@ -21,9 +21,9 @@ type NetworkEndpointGroupRedundancyImplementationType string
 
 // List of NetworkEndpointGroupRedundancyImplementationType
 const (
-	LINK_AGGREGATION NetworkEndpointGroupRedundancyImplementationType = "link-aggregation"
-	DISTRIBUTED_LINK_AGGREGATION NetworkEndpointGroupRedundancyImplementationType = "distributed-link-aggregation"
-	ECMP NetworkEndpointGroupRedundancyImplementationType = "ecmp"
+	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_LINK_AGGREGATION NetworkEndpointGroupRedundancyImplementationType = "link-aggregation"
+	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_DISTRIBUTED_LINK_AGGREGATION NetworkEndpointGroupRedundancyImplementationType = "distributed-link-aggregation"
+	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_ECMP NetworkEndpointGroupRedundancyImplementationType = "ecmp"
 )
 
 // All allowed values of NetworkEndpointGroupRedundancyImplementationType enum

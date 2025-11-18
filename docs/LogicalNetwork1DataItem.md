@@ -18,19 +18,20 @@ Name | Type | Description | Notes
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
 **LastAppliedLogicalNetworkProfileId** | **NullableInt32** |  | 
 **LastLogicalNetworkProfileAppliedAt** | **time.Time** |  | 
-**Config** | [**VxlanLogicalNetworkConfig**](VxlanLogicalNetworkConfig.md) |  | 
+**Config** | [**InfinibandLogicalNetworkConfig**](InfinibandLogicalNetworkConfig.md) |  | 
 **Vlan** | [**VxlanLogicalNetworkVlanProperties**](VxlanLogicalNetworkVlanProperties.md) |  | 
-**Ipv4** | [**VxlanLogicalNetworkIpv4Properties**](VxlanLogicalNetworkIpv4Properties.md) |  | 
-**Ipv6** | [**VxlanLogicalNetworkIpv6Properties**](VxlanLogicalNetworkIpv6Properties.md) |  | 
+**Ipv4** | [**InfinibandLogicalNetworkIpv4Properties**](InfinibandLogicalNetworkIpv4Properties.md) |  | 
+**Ipv6** | [**InfinibandLogicalNetworkIpv6Properties**](InfinibandLogicalNetworkIpv6Properties.md) |  | 
 **RouteDomainId** | **NullableInt32** |  | 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vxlan** | [**VxlanLogicalNetworkVxlanProperties**](VxlanLogicalNetworkVxlanProperties.md) |  | 
+**Pkey** | [**InfinibandLogicalNetworkPkeyProperties**](InfinibandLogicalNetworkPkeyProperties.md) |  | 
 
 ## Methods
 
 ### NewLogicalNetwork1DataItem
 
-`func NewLogicalNetwork1DataItem(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VxlanLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, ipv4 VxlanLogicalNetworkIpv4Properties, ipv6 VxlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32, vxlan VxlanLogicalNetworkVxlanProperties, ) *LogicalNetwork1DataItem`
+`func NewLogicalNetwork1DataItem(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config InfinibandLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, ipv4 InfinibandLogicalNetworkIpv4Properties, ipv6 InfinibandLogicalNetworkIpv6Properties, routeDomainId NullableInt32, vxlan VxlanLogicalNetworkVxlanProperties, pkey InfinibandLogicalNetworkPkeyProperties, ) *LogicalNetwork1DataItem`
 
 NewLogicalNetwork1DataItem instantiates a new LogicalNetwork1DataItem object
 This constructor will assign default values to properties that have it defined,
@@ -362,20 +363,20 @@ SetLastLogicalNetworkProfileAppliedAt sets LastLogicalNetworkProfileAppliedAt fi
 
 ### GetConfig
 
-`func (o *LogicalNetwork1DataItem) GetConfig() VxlanLogicalNetworkConfig`
+`func (o *LogicalNetwork1DataItem) GetConfig() InfinibandLogicalNetworkConfig`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *LogicalNetwork1DataItem) GetConfigOk() (*VxlanLogicalNetworkConfig, bool)`
+`func (o *LogicalNetwork1DataItem) GetConfigOk() (*InfinibandLogicalNetworkConfig, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *LogicalNetwork1DataItem) SetConfig(v VxlanLogicalNetworkConfig)`
+`func (o *LogicalNetwork1DataItem) SetConfig(v InfinibandLogicalNetworkConfig)`
 
 SetConfig sets Config field to given value.
 
@@ -402,40 +403,40 @@ SetVlan sets Vlan field to given value.
 
 ### GetIpv4
 
-`func (o *LogicalNetwork1DataItem) GetIpv4() VxlanLogicalNetworkIpv4Properties`
+`func (o *LogicalNetwork1DataItem) GetIpv4() InfinibandLogicalNetworkIpv4Properties`
 
 GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
 
 ### GetIpv4Ok
 
-`func (o *LogicalNetwork1DataItem) GetIpv4Ok() (*VxlanLogicalNetworkIpv4Properties, bool)`
+`func (o *LogicalNetwork1DataItem) GetIpv4Ok() (*InfinibandLogicalNetworkIpv4Properties, bool)`
 
 GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv4
 
-`func (o *LogicalNetwork1DataItem) SetIpv4(v VxlanLogicalNetworkIpv4Properties)`
+`func (o *LogicalNetwork1DataItem) SetIpv4(v InfinibandLogicalNetworkIpv4Properties)`
 
 SetIpv4 sets Ipv4 field to given value.
 
 
 ### GetIpv6
 
-`func (o *LogicalNetwork1DataItem) GetIpv6() VxlanLogicalNetworkIpv6Properties`
+`func (o *LogicalNetwork1DataItem) GetIpv6() InfinibandLogicalNetworkIpv6Properties`
 
 GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
 
 ### GetIpv6Ok
 
-`func (o *LogicalNetwork1DataItem) GetIpv6Ok() (*VxlanLogicalNetworkIpv6Properties, bool)`
+`func (o *LogicalNetwork1DataItem) GetIpv6Ok() (*InfinibandLogicalNetworkIpv6Properties, bool)`
 
 GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv6
 
-`func (o *LogicalNetwork1DataItem) SetIpv6(v VxlanLogicalNetworkIpv6Properties)`
+`func (o *LogicalNetwork1DataItem) SetIpv6(v InfinibandLogicalNetworkIpv6Properties)`
 
 SetIpv6 sets Ipv6 field to given value.
 
@@ -523,6 +524,26 @@ and a boolean to check if the value has been set.
 `func (o *LogicalNetwork1DataItem) SetVxlan(v VxlanLogicalNetworkVxlanProperties)`
 
 SetVxlan sets Vxlan field to given value.
+
+
+### GetPkey
+
+`func (o *LogicalNetwork1DataItem) GetPkey() InfinibandLogicalNetworkPkeyProperties`
+
+GetPkey returns the Pkey field if non-nil, zero value otherwise.
+
+### GetPkeyOk
+
+`func (o *LogicalNetwork1DataItem) GetPkeyOk() (*InfinibandLogicalNetworkPkeyProperties, bool)`
+
+GetPkeyOk returns a tuple with the Pkey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkey
+
+`func (o *LogicalNetwork1DataItem) SetPkey(v InfinibandLogicalNetworkPkeyProperties)`
+
+SetPkey sets Pkey field to given value.
 
 
 

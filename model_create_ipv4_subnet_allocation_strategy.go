@@ -14,7 +14,6 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // CreateIpv4SubnetAllocationStrategy - struct for CreateIpv4SubnetAllocationStrategy
@@ -41,52 +40,62 @@ func CreateManualIpv4SubnetAllocationStrategyAsCreateIpv4SubnetAllocationStrateg
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateIpv4SubnetAllocationStrategy) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into CreateAutoIpv4SubnetAllocationStrategy
-	err = newStrictDecoder(data).Decode(&dst.CreateAutoIpv4SubnetAllocationStrategy)
-	if err == nil {
-		jsonCreateAutoIpv4SubnetAllocationStrategy, _ := json.Marshal(dst.CreateAutoIpv4SubnetAllocationStrategy)
-		if string(jsonCreateAutoIpv4SubnetAllocationStrategy) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'auto'
+	if jsonDict["kind"] == "auto" {
+		// try to unmarshal JSON data into CreateAutoIpv4SubnetAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateAutoIpv4SubnetAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateAutoIpv4SubnetAllocationStrategy, return on the first match
+		} else {
 			dst.CreateAutoIpv4SubnetAllocationStrategy = nil
-		} else {
-			if err = validator.Validate(dst.CreateAutoIpv4SubnetAllocationStrategy); err != nil {
-				dst.CreateAutoIpv4SubnetAllocationStrategy = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateIpv4SubnetAllocationStrategy as CreateAutoIpv4SubnetAllocationStrategy: %s", err.Error())
 		}
-	} else {
-		dst.CreateAutoIpv4SubnetAllocationStrategy = nil
 	}
 
-	// try to unmarshal data into CreateManualIpv4SubnetAllocationStrategy
-	err = newStrictDecoder(data).Decode(&dst.CreateManualIpv4SubnetAllocationStrategy)
-	if err == nil {
-		jsonCreateManualIpv4SubnetAllocationStrategy, _ := json.Marshal(dst.CreateManualIpv4SubnetAllocationStrategy)
-		if string(jsonCreateManualIpv4SubnetAllocationStrategy) == "{}" { // empty struct
+	// check if the discriminator value is 'manual'
+	if jsonDict["kind"] == "manual" {
+		// try to unmarshal JSON data into CreateManualIpv4SubnetAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateManualIpv4SubnetAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateManualIpv4SubnetAllocationStrategy, return on the first match
+		} else {
 			dst.CreateManualIpv4SubnetAllocationStrategy = nil
-		} else {
-			if err = validator.Validate(dst.CreateManualIpv4SubnetAllocationStrategy); err != nil {
-				dst.CreateManualIpv4SubnetAllocationStrategy = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateIpv4SubnetAllocationStrategy as CreateManualIpv4SubnetAllocationStrategy: %s", err.Error())
 		}
-	} else {
-		dst.CreateManualIpv4SubnetAllocationStrategy = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.CreateAutoIpv4SubnetAllocationStrategy = nil
-		dst.CreateManualIpv4SubnetAllocationStrategy = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(CreateIpv4SubnetAllocationStrategy)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateIpv4SubnetAllocationStrategy)")
+	// check if the discriminator value is 'CreateAutoIpv4SubnetAllocationStrategy'
+	if jsonDict["kind"] == "CreateAutoIpv4SubnetAllocationStrategy" {
+		// try to unmarshal JSON data into CreateAutoIpv4SubnetAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateAutoIpv4SubnetAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateAutoIpv4SubnetAllocationStrategy, return on the first match
+		} else {
+			dst.CreateAutoIpv4SubnetAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateIpv4SubnetAllocationStrategy as CreateAutoIpv4SubnetAllocationStrategy: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'CreateManualIpv4SubnetAllocationStrategy'
+	if jsonDict["kind"] == "CreateManualIpv4SubnetAllocationStrategy" {
+		// try to unmarshal JSON data into CreateManualIpv4SubnetAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateManualIpv4SubnetAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateManualIpv4SubnetAllocationStrategy, return on the first match
+		} else {
+			dst.CreateManualIpv4SubnetAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateIpv4SubnetAllocationStrategy as CreateManualIpv4SubnetAllocationStrategy: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

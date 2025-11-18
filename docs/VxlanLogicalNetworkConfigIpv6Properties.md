@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubnetAllocationStrategies** | [**[]Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md) |  | 
+**SubnetAllocationStrategies** | [**[]Ipv6SubnetAllocationStrategy1**](Ipv6SubnetAllocationStrategy1.md) |  | 
 
 ## Methods
 
 ### NewVxlanLogicalNetworkConfigIpv6Properties
 
-`func NewVxlanLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy, ) *VxlanLogicalNetworkConfigIpv6Properties`
+`func NewVxlanLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy1, ) *VxlanLogicalNetworkConfigIpv6Properties`
 
 NewVxlanLogicalNetworkConfigIpv6Properties instantiates a new VxlanLogicalNetworkConfigIpv6Properties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSubnetAllocationStrategies
 
-`func (o *VxlanLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy`
+`func (o *VxlanLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy1`
 
 GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetSubnetAllocationStrategiesOk
 
-`func (o *VxlanLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv6SubnetAllocationStrategy, bool)`
+`func (o *VxlanLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv6SubnetAllocationStrategy1, bool)`
 
 GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetAllocationStrategies
 
-`func (o *VxlanLogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy)`
+`func (o *VxlanLogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy1)`
 
 SetSubnetAllocationStrategies sets SubnetAllocationStrategies field to given value.
 

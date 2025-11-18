@@ -14,7 +14,6 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // AuthenticationRequestProperties - Input options.
@@ -43,34 +42,26 @@ func (dst *AuthenticationRequestProperties) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into AuthenticationRequestPropertiesLdap
-	err = newStrictDecoder(data).Decode(&dst.AuthenticationRequestPropertiesLdap)
+	err = json.Unmarshal(data, &dst.AuthenticationRequestPropertiesLdap)
 	if err == nil {
 		jsonAuthenticationRequestPropertiesLdap, _ := json.Marshal(dst.AuthenticationRequestPropertiesLdap)
 		if string(jsonAuthenticationRequestPropertiesLdap) == "{}" { // empty struct
 			dst.AuthenticationRequestPropertiesLdap = nil
 		} else {
-			if err = validator.Validate(dst.AuthenticationRequestPropertiesLdap); err != nil {
-				dst.AuthenticationRequestPropertiesLdap = nil
-			} else {
-				match++
-			}
+			match++
 		}
 	} else {
 		dst.AuthenticationRequestPropertiesLdap = nil
 	}
 
 	// try to unmarshal data into AuthenticationRequestPropertiesMySql
-	err = newStrictDecoder(data).Decode(&dst.AuthenticationRequestPropertiesMySql)
+	err = json.Unmarshal(data, &dst.AuthenticationRequestPropertiesMySql)
 	if err == nil {
 		jsonAuthenticationRequestPropertiesMySql, _ := json.Marshal(dst.AuthenticationRequestPropertiesMySql)
 		if string(jsonAuthenticationRequestPropertiesMySql) == "{}" { // empty struct
 			dst.AuthenticationRequestPropertiesMySql = nil
 		} else {
-			if err = validator.Validate(dst.AuthenticationRequestPropertiesMySql); err != nil {
-				dst.AuthenticationRequestPropertiesMySql = nil
-			} else {
-				match++
-			}
+			match++
 		}
 	} else {
 		dst.AuthenticationRequestPropertiesMySql = nil

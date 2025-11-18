@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **time.Time** |  | 
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
-**GatewayPlacement** | [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [default to DEFAULT]
+**GatewayPlacement** | [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
 **SubnetId** | **int32** |  | 
 **SubnetPoolIds** | **[]int32** |  | 
 **PrefixLength** | **int32** |  | 

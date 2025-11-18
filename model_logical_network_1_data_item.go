@@ -18,8 +18,16 @@ import (
 
 // LogicalNetwork1DataItem - struct for LogicalNetwork1DataItem
 type LogicalNetwork1DataItem struct {
+	InfinibandLogicalNetwork *InfinibandLogicalNetwork
 	VlanLogicalNetwork *VlanLogicalNetwork
 	VxlanLogicalNetwork *VxlanLogicalNetwork
+}
+
+// InfinibandLogicalNetworkAsLogicalNetwork1DataItem is a convenience function that returns InfinibandLogicalNetwork wrapped in LogicalNetwork1DataItem
+func InfinibandLogicalNetworkAsLogicalNetwork1DataItem(v *InfinibandLogicalNetwork) LogicalNetwork1DataItem {
+	return LogicalNetwork1DataItem{
+		InfinibandLogicalNetwork: v,
+	}
 }
 
 // VlanLogicalNetworkAsLogicalNetwork1DataItem is a convenience function that returns VlanLogicalNetwork wrapped in LogicalNetwork1DataItem
@@ -47,6 +55,18 @@ func (dst *LogicalNetwork1DataItem) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
+	// check if the discriminator value is 'infiniband'
+	if jsonDict["kind"] == "infiniband" {
+		// try to unmarshal JSON data into InfinibandLogicalNetwork
+		err = json.Unmarshal(data, &dst.InfinibandLogicalNetwork)
+		if err == nil {
+			return nil // data stored in dst.InfinibandLogicalNetwork, return on the first match
+		} else {
+			dst.InfinibandLogicalNetwork = nil
+			return fmt.Errorf("failed to unmarshal LogicalNetwork1DataItem as InfinibandLogicalNetwork: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'vlan'
 	if jsonDict["kind"] == "vlan" {
 		// try to unmarshal JSON data into VlanLogicalNetwork
@@ -68,6 +88,18 @@ func (dst *LogicalNetwork1DataItem) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.VxlanLogicalNetwork = nil
 			return fmt.Errorf("failed to unmarshal LogicalNetwork1DataItem as VxlanLogicalNetwork: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'InfinibandLogicalNetwork'
+	if jsonDict["kind"] == "InfinibandLogicalNetwork" {
+		// try to unmarshal JSON data into InfinibandLogicalNetwork
+		err = json.Unmarshal(data, &dst.InfinibandLogicalNetwork)
+		if err == nil {
+			return nil // data stored in dst.InfinibandLogicalNetwork, return on the first match
+		} else {
+			dst.InfinibandLogicalNetwork = nil
+			return fmt.Errorf("failed to unmarshal LogicalNetwork1DataItem as InfinibandLogicalNetwork: %s", err.Error())
 		}
 	}
 
@@ -100,6 +132,10 @@ func (dst *LogicalNetwork1DataItem) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src LogicalNetwork1DataItem) MarshalJSON() ([]byte, error) {
+	if src.InfinibandLogicalNetwork != nil {
+		return json.Marshal(&src.InfinibandLogicalNetwork)
+	}
+
 	if src.VlanLogicalNetwork != nil {
 		return json.Marshal(&src.VlanLogicalNetwork)
 	}
@@ -116,6 +152,10 @@ func (obj *LogicalNetwork1DataItem) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.InfinibandLogicalNetwork != nil {
+		return obj.InfinibandLogicalNetwork
+	}
+
 	if obj.VlanLogicalNetwork != nil {
 		return obj.VlanLogicalNetwork
 	}
@@ -130,6 +170,10 @@ func (obj *LogicalNetwork1DataItem) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj LogicalNetwork1DataItem) GetActualInstanceValue() (interface{}) {
+	if obj.InfinibandLogicalNetwork != nil {
+		return *obj.InfinibandLogicalNetwork
+	}
+
 	if obj.VlanLogicalNetwork != nil {
 		return *obj.VlanLogicalNetwork
 	}

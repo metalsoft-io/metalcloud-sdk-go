@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **ManagementAddress** | **string** | Management address of the network device controller | 
 **ManagementPort** | **int32** | Management port of the network device controller | 
 **Username** | **string** | Username used to connect to the network device controller | 
+**Driver** | [**SwitchControllerDriver**](SwitchControllerDriver.md) | Driver software used to communicate with the network device controller | 
 **Tags** | **[]string** | Tags associated with the network device controller for categorization and filtering | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -20,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceController
 
-`func NewNetworkDeviceController(id string, revision int32, status string, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, tags []string, ) *NetworkDeviceController`
+`func NewNetworkDeviceController(id string, revision int32, status string, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string, ) *NetworkDeviceController`
 
 NewNetworkDeviceController instantiates a new NetworkDeviceController object
 This constructor will assign default values to properties that have it defined,
@@ -223,6 +224,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDeviceController) SetUsername(v string)`
 
 SetUsername sets Username field to given value.
+
+
+### GetDriver
+
+`func (o *NetworkDeviceController) GetDriver() SwitchControllerDriver`
+
+GetDriver returns the Driver field if non-nil, zero value otherwise.
+
+### GetDriverOk
+
+`func (o *NetworkDeviceController) GetDriverOk() (*SwitchControllerDriver, bool)`
+
+GetDriverOk returns a tuple with the Driver field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriver
+
+`func (o *NetworkDeviceController) SetDriver(v SwitchControllerDriver)`
+
+SetDriver sets Driver field to given value.
 
 
 ### GetTags

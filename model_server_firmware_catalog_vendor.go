@@ -21,9 +21,10 @@ type ServerFirmwareCatalogVendor string
 
 // List of ServerFirmwareCatalogVendor
 const (
-	DELL ServerFirmwareCatalogVendor = "dell"
-	LENOVO ServerFirmwareCatalogVendor = "lenovo"
-	HP ServerFirmwareCatalogVendor = "hp"
+	SERVERFIRMWARECATALOGVENDOR_DELL ServerFirmwareCatalogVendor = "dell"
+	SERVERFIRMWARECATALOGVENDOR_LENOVO ServerFirmwareCatalogVendor = "lenovo"
+	SERVERFIRMWARECATALOGVENDOR_HP ServerFirmwareCatalogVendor = "hp"
+	SERVERFIRMWARECATALOGVENDOR_SUPERMICRO ServerFirmwareCatalogVendor = "supermicro"
 )
 
 // All allowed values of ServerFirmwareCatalogVendor enum
@@ -31,6 +32,7 @@ var AllowedServerFirmwareCatalogVendorEnumValues = []ServerFirmwareCatalogVendor
 	"dell",
 	"lenovo",
 	"hp",
+	"supermicro",
 }
 
 func (v *ServerFirmwareCatalogVendor) UnmarshalJSON(src []byte) error {

@@ -41,7 +41,7 @@ type ExtensionDefinition struct {
 	Icon string `json:"icon"`
 	Dependencies ExtensionDependency `json:"dependencies"`
 	// List of inputs for the platform service.
-	Inputs []ExtensionDefinitionInputsInner `json:"inputs"`
+	Inputs []ExtensionDefinitionInputsDataItem `json:"inputs"`
 	// List of outputs for the platform service.
 	Outputs []ExtensionOutput `json:"outputs"`
 	Infrastructure *ExtensionInfrastructure `json:"infrastructure,omitempty"`
@@ -54,7 +54,7 @@ type ExtensionDefinition struct {
 	// Actions for the onDelete event.
 	OnDelete []InfrastructureExtensionActions `json:"onDelete,omitempty"`
 	// Actions. Only for extensions of kind action
-	Actions []InfrastructureExtensionActionsTasksInner `json:"actions,omitempty"`
+	Actions []InfrastructureExtensionActionsTasksDataItem `json:"actions,omitempty"`
 	// Tasks to be executed when an asset changes. Only for extensions of kind workflow
 	OnAssetChange []AssetExtensionActions `json:"onAssetChange,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -66,7 +66,7 @@ type _ExtensionDefinition ExtensionDefinition
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionDefinitionInputsInner, outputs []ExtensionOutput, assets []ExtensionAsset) *ExtensionDefinition {
+func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionDefinitionInputsDataItem, outputs []ExtensionOutput, assets []ExtensionAsset) *ExtensionDefinition {
 	this := ExtensionDefinition{}
 	this.Kind = kind
 	this.SchemaVersion = schemaVersion
@@ -340,9 +340,9 @@ func (o *ExtensionDefinition) SetDependencies(v ExtensionDependency) {
 }
 
 // GetInputs returns the Inputs field value
-func (o *ExtensionDefinition) GetInputs() []ExtensionDefinitionInputsInner {
+func (o *ExtensionDefinition) GetInputs() []ExtensionDefinitionInputsDataItem {
 	if o == nil {
-		var ret []ExtensionDefinitionInputsInner
+		var ret []ExtensionDefinitionInputsDataItem
 		return ret
 	}
 
@@ -351,7 +351,7 @@ func (o *ExtensionDefinition) GetInputs() []ExtensionDefinitionInputsInner {
 
 // GetInputsOk returns a tuple with the Inputs field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionDefinition) GetInputsOk() ([]ExtensionDefinitionInputsInner, bool) {
+func (o *ExtensionDefinition) GetInputsOk() ([]ExtensionDefinitionInputsDataItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -359,7 +359,7 @@ func (o *ExtensionDefinition) GetInputsOk() ([]ExtensionDefinitionInputsInner, b
 }
 
 // SetInputs sets field value
-func (o *ExtensionDefinition) SetInputs(v []ExtensionDefinitionInputsInner) {
+func (o *ExtensionDefinition) SetInputs(v []ExtensionDefinitionInputsDataItem) {
 	o.Inputs = v
 }
 
@@ -540,9 +540,9 @@ func (o *ExtensionDefinition) SetOnDelete(v []InfrastructureExtensionActions) {
 }
 
 // GetActions returns the Actions field value if set, zero value otherwise.
-func (o *ExtensionDefinition) GetActions() []InfrastructureExtensionActionsTasksInner {
+func (o *ExtensionDefinition) GetActions() []InfrastructureExtensionActionsTasksDataItem {
 	if o == nil || IsNil(o.Actions) {
-		var ret []InfrastructureExtensionActionsTasksInner
+		var ret []InfrastructureExtensionActionsTasksDataItem
 		return ret
 	}
 	return o.Actions
@@ -550,7 +550,7 @@ func (o *ExtensionDefinition) GetActions() []InfrastructureExtensionActionsTasks
 
 // GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionDefinition) GetActionsOk() ([]InfrastructureExtensionActionsTasksInner, bool) {
+func (o *ExtensionDefinition) GetActionsOk() ([]InfrastructureExtensionActionsTasksDataItem, bool) {
 	if o == nil || IsNil(o.Actions) {
 		return nil, false
 	}
@@ -566,8 +566,8 @@ func (o *ExtensionDefinition) HasActions() bool {
 	return false
 }
 
-// SetActions gets a reference to the given []InfrastructureExtensionActionsTasksInner and assigns it to the Actions field.
-func (o *ExtensionDefinition) SetActions(v []InfrastructureExtensionActionsTasksInner) {
+// SetActions gets a reference to the given []InfrastructureExtensionActionsTasksDataItem and assigns it to the Actions field.
+func (o *ExtensionDefinition) SetActions(v []InfrastructureExtensionActionsTasksDataItem) {
 	o.Actions = v
 }
 

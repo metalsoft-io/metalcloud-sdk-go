@@ -5,6 +5,8 @@
 
 * `CISCO_ACI51` (value: `"cisco_aci51"`)
 
+* `NVIDIA_UFM` (value: `"nvidia_ufm"`)
+
 * `NEXUS9000` (value: `"nexus9000"`)
 
 * `CUMULUS42` (value: `"cumulus42"`)

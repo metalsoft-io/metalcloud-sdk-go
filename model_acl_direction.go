@@ -21,8 +21,8 @@ type ACLDirection string
 
 // List of ACLDirection
 const (
-	IN ACLDirection = "in"
-	OUT ACLDirection = "out"
+	ACLDIRECTION_IN ACLDirection = "in"
+	ACLDIRECTION_OUT ACLDirection = "out"
 )
 
 // All allowed values of ACLDirection enum

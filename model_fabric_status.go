@@ -21,8 +21,8 @@ type FabricStatus string
 
 // List of FabricStatus
 const (
-	DRAFT FabricStatus = "draft"
-	ACTIVE FabricStatus = "active"
+	FABRICSTATUS_DRAFT FabricStatus = "draft"
+	FABRICSTATUS_ACTIVE FabricStatus = "active"
 )
 
 // All allowed values of FabricStatus enum

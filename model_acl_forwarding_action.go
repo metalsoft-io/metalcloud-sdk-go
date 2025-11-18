@@ -21,10 +21,10 @@ type ACLForwardingAction string
 
 // List of ACLForwardingAction
 const (
-	ALLOW ACLForwardingAction = "allow"
-	DENY ACLForwardingAction = "deny"
-	TRANSIT ACLForwardingAction = "transit"
-	DISCARD ACLForwardingAction = "discard"
+	ACLFORWARDINGACTION_ALLOW ACLForwardingAction = "allow"
+	ACLFORWARDINGACTION_DENY ACLForwardingAction = "deny"
+	ACLFORWARDINGACTION_TRANSIT ACLForwardingAction = "transit"
+	ACLFORWARDINGACTION_DISCARD ACLForwardingAction = "discard"
 )
 
 // All allowed values of ACLForwardingAction enum

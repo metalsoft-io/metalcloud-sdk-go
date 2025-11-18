@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubnetAllocationStrategies** | [**[]Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md) |  | 
+**SubnetAllocationStrategies** | [**[]Ipv4SubnetAllocationStrategy1**](Ipv4SubnetAllocationStrategy1.md) |  | 
 
 ## Methods
 
 ### NewVxlanLogicalNetworkProfileIpv4Properties
 
-`func NewVxlanLogicalNetworkProfileIpv4Properties(subnetAllocationStrategies []Ipv4SubnetAllocationStrategy, ) *VxlanLogicalNetworkProfileIpv4Properties`
+`func NewVxlanLogicalNetworkProfileIpv4Properties(subnetAllocationStrategies []Ipv4SubnetAllocationStrategy1, ) *VxlanLogicalNetworkProfileIpv4Properties`
 
 NewVxlanLogicalNetworkProfileIpv4Properties instantiates a new VxlanLogicalNetworkProfileIpv4Properties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSubnetAllocationStrategies
 
-`func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy`
+`func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy1`
 
 GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetSubnetAllocationStrategiesOk
 
-`func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv4SubnetAllocationStrategy, bool)`
+`func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv4SubnetAllocationStrategy1, bool)`
 
 GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetAllocationStrategies
 
-`func (o *VxlanLogicalNetworkProfileIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy)`
+`func (o *VxlanLogicalNetworkProfileIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy1)`
 
 SetSubnetAllocationStrategies sets SubnetAllocationStrategies field to given value.
 

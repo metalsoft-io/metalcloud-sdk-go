@@ -39,6 +39,8 @@ type NetworkDeviceController struct {
 	ManagementPort int32 `json:"managementPort"`
 	// Username used to connect to the network device controller
 	Username string `json:"username"`
+	// Driver software used to communicate with the network device controller
+	Driver SwitchControllerDriver `json:"driver"`
 	// Tags associated with the network device controller for categorization and filtering
 	Tags []string `json:"tags"`
 	// Reference links
@@ -52,7 +54,7 @@ type _NetworkDeviceController NetworkDeviceController
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceController(id string, revision int32, status string, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, tags []string) *NetworkDeviceController {
+func NewNetworkDeviceController(id string, revision int32, status string, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string) *NetworkDeviceController {
 	this := NetworkDeviceController{}
 	this.Id = id
 	this.Revision = revision
@@ -63,6 +65,7 @@ func NewNetworkDeviceController(id string, revision int32, status string, identi
 	this.ManagementAddress = managementAddress
 	this.ManagementPort = managementPort
 	this.Username = username
+	this.Driver = driver
 	this.Tags = tags
 	return &this
 }
@@ -293,6 +296,30 @@ func (o *NetworkDeviceController) SetUsername(v string) {
 	o.Username = v
 }
 
+// GetDriver returns the Driver field value
+func (o *NetworkDeviceController) GetDriver() SwitchControllerDriver {
+	if o == nil {
+		var ret SwitchControllerDriver
+		return ret
+	}
+
+	return o.Driver
+}
+
+// GetDriverOk returns a tuple with the Driver field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceController) GetDriverOk() (*SwitchControllerDriver, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Driver, true
+}
+
+// SetDriver sets field value
+func (o *NetworkDeviceController) SetDriver(v SwitchControllerDriver) {
+	o.Driver = v
+}
+
 // GetTags returns the Tags field value
 // If the value is explicit nil, the zero value for []string will be returned
 func (o *NetworkDeviceController) GetTags() []string {
@@ -370,6 +397,7 @@ func (o NetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	toSerialize["managementAddress"] = o.ManagementAddress
 	toSerialize["managementPort"] = o.ManagementPort
 	toSerialize["username"] = o.Username
+	toSerialize["driver"] = o.Driver
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -398,6 +426,7 @@ func (o *NetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 		"managementAddress",
 		"managementPort",
 		"username",
+		"driver",
 		"tags",
 	}
 
@@ -437,6 +466,7 @@ func (o *NetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementAddress")
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "username")
+		delete(additionalProperties, "driver")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

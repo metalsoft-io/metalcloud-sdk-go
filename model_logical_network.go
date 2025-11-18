@@ -39,6 +39,7 @@ type LogicalNetwork struct {
 	Config LogicalNetworkConfig `json:"config"`
 	Vlan *LogicalNetworkVlanProperties `json:"vlan,omitempty"`
 	Vxlan *LogicalNetworkVxlanProperties `json:"vxlan,omitempty"`
+	Pkey *LogicalNetworkPkeyProperties `json:"pkey,omitempty"`
 	Ipv4 *LogicalNetworkIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *LogicalNetworkIpv6Properties `json:"ipv6,omitempty"`
 	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
@@ -526,6 +527,38 @@ func (o *LogicalNetwork) SetVxlan(v LogicalNetworkVxlanProperties) {
 	o.Vxlan = &v
 }
 
+// GetPkey returns the Pkey field value if set, zero value otherwise.
+func (o *LogicalNetwork) GetPkey() LogicalNetworkPkeyProperties {
+	if o == nil || IsNil(o.Pkey) {
+		var ret LogicalNetworkPkeyProperties
+		return ret
+	}
+	return *o.Pkey
+}
+
+// GetPkeyOk returns a tuple with the Pkey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogicalNetwork) GetPkeyOk() (*LogicalNetworkPkeyProperties, bool) {
+	if o == nil || IsNil(o.Pkey) {
+		return nil, false
+	}
+	return o.Pkey, true
+}
+
+// HasPkey returns a boolean if a field has been set.
+func (o *LogicalNetwork) HasPkey() bool {
+	if o != nil && !IsNil(o.Pkey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPkey gets a reference to the given LogicalNetworkPkeyProperties and assigns it to the Pkey field.
+func (o *LogicalNetwork) SetPkey(v LogicalNetworkPkeyProperties) {
+	o.Pkey = &v
+}
+
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *LogicalNetwork) GetIpv4() LogicalNetworkIpv4Properties {
 	if o == nil || IsNil(o.Ipv4) {
@@ -707,6 +740,9 @@ func (o LogicalNetwork) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
+	if !IsNil(o.Pkey) {
+		toSerialize["pkey"] = o.Pkey
+	}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
@@ -792,6 +828,7 @@ func (o *LogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")
+		delete(additionalProperties, "pkey")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VlanAllocationStrategies** | [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | 
+**VlanAllocationStrategies** | [**[]VlanAllocationStrategy1**](VlanAllocationStrategy1.md) |  | 
 
 ## Methods
 
 ### NewLogicalNetworkProfileVlanProperties
 
-`func NewLogicalNetworkProfileVlanProperties(vlanAllocationStrategies []VlanAllocationStrategy, ) *LogicalNetworkProfileVlanProperties`
+`func NewLogicalNetworkProfileVlanProperties(vlanAllocationStrategies []VlanAllocationStrategy1, ) *LogicalNetworkProfileVlanProperties`
 
 NewLogicalNetworkProfileVlanProperties instantiates a new LogicalNetworkProfileVlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVlanAllocationStrategies
 
-`func (o *LogicalNetworkProfileVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy`
+`func (o *LogicalNetworkProfileVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy1`
 
 GetVlanAllocationStrategies returns the VlanAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVlanAllocationStrategiesOk
 
-`func (o *LogicalNetworkProfileVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy, bool)`
+`func (o *LogicalNetworkProfileVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy1, bool)`
 
 GetVlanAllocationStrategiesOk returns a tuple with the VlanAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanAllocationStrategies
 
-`func (o *LogicalNetworkProfileVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy)`
+`func (o *LogicalNetworkProfileVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy1)`
 
 SetVlanAllocationStrategies sets VlanAllocationStrategies field to given value.
 

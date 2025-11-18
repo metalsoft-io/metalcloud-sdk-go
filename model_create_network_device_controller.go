@@ -27,6 +27,8 @@ type CreateNetworkDeviceController struct {
 	IdentifierString *string `json:"identifierString,omitempty"`
 	// Whether to overwrite the hostname with the one fetched from the controller
 	OverwriteWithHostnameFromFetchedSwitchController *bool `json:"overwriteWithHostnameFromFetchedSwitchController,omitempty"`
+	// Driver software used to communicate with the network device controller
+	Driver SwitchControllerDriver `json:"driver"`
 	// The IP address used to manage the network device controller
 	ManagementAddress string `json:"managementAddress"`
 	// The port number used for management connections
@@ -46,9 +48,10 @@ type _CreateNetworkDeviceController CreateNetworkDeviceController
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkDeviceController(datacenterName string, managementAddress string, managementPort int32, username string, managementPassword string) *CreateNetworkDeviceController {
+func NewCreateNetworkDeviceController(datacenterName string, driver SwitchControllerDriver, managementAddress string, managementPort int32, username string, managementPassword string) *CreateNetworkDeviceController {
 	this := CreateNetworkDeviceController{}
 	this.DatacenterName = datacenterName
+	this.Driver = driver
 	this.ManagementAddress = managementAddress
 	this.ManagementPort = managementPort
 	this.Username = username
@@ -150,6 +153,30 @@ func (o *CreateNetworkDeviceController) HasOverwriteWithHostnameFromFetchedSwitc
 // SetOverwriteWithHostnameFromFetchedSwitchController gets a reference to the given bool and assigns it to the OverwriteWithHostnameFromFetchedSwitchController field.
 func (o *CreateNetworkDeviceController) SetOverwriteWithHostnameFromFetchedSwitchController(v bool) {
 	o.OverwriteWithHostnameFromFetchedSwitchController = &v
+}
+
+// GetDriver returns the Driver field value
+func (o *CreateNetworkDeviceController) GetDriver() SwitchControllerDriver {
+	if o == nil {
+		var ret SwitchControllerDriver
+		return ret
+	}
+
+	return o.Driver
+}
+
+// GetDriverOk returns a tuple with the Driver field value
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDeviceController) GetDriverOk() (*SwitchControllerDriver, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Driver, true
+}
+
+// SetDriver sets field value
+func (o *CreateNetworkDeviceController) SetDriver(v SwitchControllerDriver) {
+	o.Driver = v
 }
 
 // GetManagementAddress returns the ManagementAddress field value
@@ -297,6 +324,7 @@ func (o CreateNetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OverwriteWithHostnameFromFetchedSwitchController) {
 		toSerialize["overwriteWithHostnameFromFetchedSwitchController"] = o.OverwriteWithHostnameFromFetchedSwitchController
 	}
+	toSerialize["driver"] = o.Driver
 	toSerialize["managementAddress"] = o.ManagementAddress
 	toSerialize["managementPort"] = o.ManagementPort
 	toSerialize["username"] = o.Username
@@ -318,6 +346,7 @@ func (o *CreateNetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"datacenterName",
+		"driver",
 		"managementAddress",
 		"managementPort",
 		"username",
@@ -354,6 +383,7 @@ func (o *CreateNetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitchController")
+		delete(additionalProperties, "driver")
 		delete(additionalProperties, "managementAddress")
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "username")

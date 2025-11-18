@@ -35,6 +35,7 @@ type LogicalNetworkConfig struct {
 	Mtu NullableInt32 `json:"mtu,omitempty"`
 	Vlan *LogicalNetworkConfigVlanProperties `json:"vlan,omitempty"`
 	Vxlan *LogicalNetworkConfigVxlanProperties `json:"vxlan,omitempty"`
+	Pkey *LogicalNetworkConfigPkeyProperties `json:"pkey,omitempty"`
 	Ipv4 *LogicalNetworkConfigIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *LogicalNetworkConfigIpv6Properties `json:"ipv6,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -340,6 +341,38 @@ func (o *LogicalNetworkConfig) SetVxlan(v LogicalNetworkConfigVxlanProperties) {
 	o.Vxlan = &v
 }
 
+// GetPkey returns the Pkey field value if set, zero value otherwise.
+func (o *LogicalNetworkConfig) GetPkey() LogicalNetworkConfigPkeyProperties {
+	if o == nil || IsNil(o.Pkey) {
+		var ret LogicalNetworkConfigPkeyProperties
+		return ret
+	}
+	return *o.Pkey
+}
+
+// GetPkeyOk returns a tuple with the Pkey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogicalNetworkConfig) GetPkeyOk() (*LogicalNetworkConfigPkeyProperties, bool) {
+	if o == nil || IsNil(o.Pkey) {
+		return nil, false
+	}
+	return o.Pkey, true
+}
+
+// HasPkey returns a boolean if a field has been set.
+func (o *LogicalNetworkConfig) HasPkey() bool {
+	if o != nil && !IsNil(o.Pkey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPkey gets a reference to the given LogicalNetworkConfigPkeyProperties and assigns it to the Pkey field.
+func (o *LogicalNetworkConfig) SetPkey(v LogicalNetworkConfigPkeyProperties) {
+	o.Pkey = &v
+}
+
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *LogicalNetworkConfig) GetIpv4() LogicalNetworkConfigIpv4Properties {
 	if o == nil || IsNil(o.Ipv4) {
@@ -430,6 +463,9 @@ func (o LogicalNetworkConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
+	if !IsNil(o.Pkey) {
+		toSerialize["pkey"] = o.Pkey
+	}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
@@ -495,6 +531,7 @@ func (o *LogicalNetworkConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")
+		delete(additionalProperties, "pkey")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		o.AdditionalProperties = additionalProperties

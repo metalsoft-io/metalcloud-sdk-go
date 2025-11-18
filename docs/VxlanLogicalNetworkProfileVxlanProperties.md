@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VniAllocationStrategies** | [**[]VniAllocationStrategy**](VniAllocationStrategy.md) |  | 
+**VniAllocationStrategies** | [**[]VniAllocationStrategy1**](VniAllocationStrategy1.md) |  | 
 
 ## Methods
 
 ### NewVxlanLogicalNetworkProfileVxlanProperties
 
-`func NewVxlanLogicalNetworkProfileVxlanProperties(vniAllocationStrategies []VniAllocationStrategy, ) *VxlanLogicalNetworkProfileVxlanProperties`
+`func NewVxlanLogicalNetworkProfileVxlanProperties(vniAllocationStrategies []VniAllocationStrategy1, ) *VxlanLogicalNetworkProfileVxlanProperties`
 
 NewVxlanLogicalNetworkProfileVxlanProperties instantiates a new VxlanLogicalNetworkProfileVxlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVniAllocationStrategies
 
-`func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy`
+`func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy1`
 
 GetVniAllocationStrategies returns the VniAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVniAllocationStrategiesOk
 
-`func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategiesOk() (*[]VniAllocationStrategy, bool)`
+`func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategiesOk() (*[]VniAllocationStrategy1, bool)`
 
 GetVniAllocationStrategiesOk returns a tuple with the VniAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVniAllocationStrategies
 
-`func (o *VxlanLogicalNetworkProfileVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy)`
+`func (o *VxlanLogicalNetworkProfileVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy1)`
 
 SetVniAllocationStrategies sets VniAllocationStrategies field to given value.
 

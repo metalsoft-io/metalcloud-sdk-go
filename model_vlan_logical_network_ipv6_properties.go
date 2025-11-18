@@ -22,7 +22,7 @@ var _ MappedNullable = &VlanLogicalNetworkIpv6Properties{}
 // VlanLogicalNetworkIpv6Properties struct for VlanLogicalNetworkIpv6Properties
 type VlanLogicalNetworkIpv6Properties struct {
 	Subnets []Ipv6SubnetAllocation `json:"subnets"`
-	SubnetAllocationStrategies []Ipv6SubnetAllocationStrategy `json:"subnetAllocationStrategies"`
+	SubnetAllocationStrategies []Ipv6SubnetAllocationStrategy1 `json:"subnetAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _VlanLogicalNetworkIpv6Properties VlanLogicalNetworkIpv6Properties
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVlanLogicalNetworkIpv6Properties(subnets []Ipv6SubnetAllocation, subnetAllocationStrategies []Ipv6SubnetAllocationStrategy) *VlanLogicalNetworkIpv6Properties {
+func NewVlanLogicalNetworkIpv6Properties(subnets []Ipv6SubnetAllocation, subnetAllocationStrategies []Ipv6SubnetAllocationStrategy1) *VlanLogicalNetworkIpv6Properties {
 	this := VlanLogicalNetworkIpv6Properties{}
 	this.Subnets = subnets
 	this.SubnetAllocationStrategies = subnetAllocationStrategies
@@ -72,9 +72,9 @@ func (o *VlanLogicalNetworkIpv6Properties) SetSubnets(v []Ipv6SubnetAllocation) 
 }
 
 // GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field value
-func (o *VlanLogicalNetworkIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy {
+func (o *VlanLogicalNetworkIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy1 {
 	if o == nil {
-		var ret []Ipv6SubnetAllocationStrategy
+		var ret []Ipv6SubnetAllocationStrategy1
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *VlanLogicalNetworkIpv6Properties) GetSubnetAllocationStrategies() []Ipv
 
 // GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *VlanLogicalNetworkIpv6Properties) GetSubnetAllocationStrategiesOk() ([]Ipv6SubnetAllocationStrategy, bool) {
+func (o *VlanLogicalNetworkIpv6Properties) GetSubnetAllocationStrategiesOk() ([]Ipv6SubnetAllocationStrategy1, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *VlanLogicalNetworkIpv6Properties) GetSubnetAllocationStrategiesOk() ([]
 }
 
 // SetSubnetAllocationStrategies sets field value
-func (o *VlanLogicalNetworkIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy) {
+func (o *VlanLogicalNetworkIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy1) {
 	o.SubnetAllocationStrategies = v
 }
 

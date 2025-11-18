@@ -21,7 +21,7 @@ var _ MappedNullable = &PaginatedLogicalNetwork{}
 
 // PaginatedLogicalNetwork struct for PaginatedLogicalNetwork
 type PaginatedLogicalNetwork struct {
-	Data []LogicalNetwork1Inner `json:"data"`
+	Data []LogicalNetwork1DataItem `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _PaginatedLogicalNetwork PaginatedLogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedLogicalNetwork(data []LogicalNetwork1Inner, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedLogicalNetwork {
+func NewPaginatedLogicalNetwork(data []LogicalNetwork1DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedLogicalNetwork {
 	this := PaginatedLogicalNetwork{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewPaginatedLogicalNetworkWithDefaults() *PaginatedLogicalNetwork {
 }
 
 // GetData returns the Data field value
-func (o *PaginatedLogicalNetwork) GetData() []LogicalNetwork1Inner {
+func (o *PaginatedLogicalNetwork) GetData() []LogicalNetwork1DataItem {
 	if o == nil {
-		var ret []LogicalNetwork1Inner
+		var ret []LogicalNetwork1DataItem
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *PaginatedLogicalNetwork) GetData() []LogicalNetwork1Inner {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *PaginatedLogicalNetwork) GetDataOk() ([]LogicalNetwork1Inner, bool) {
+func (o *PaginatedLogicalNetwork) GetDataOk() ([]LogicalNetwork1DataItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *PaginatedLogicalNetwork) GetDataOk() ([]LogicalNetwork1Inner, bool) {
 }
 
 // SetData sets field value
-func (o *PaginatedLogicalNetwork) SetData(v []LogicalNetwork1Inner) {
+func (o *PaginatedLogicalNetwork) SetData(v []LogicalNetwork1DataItem) {
 	o.Data = v
 }
 

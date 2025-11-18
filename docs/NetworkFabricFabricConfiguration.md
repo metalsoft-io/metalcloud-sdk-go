@@ -34,6 +34,9 @@ Name | Type | Description | Notes
 **QosConfiguration** | Pointer to **map[string]interface{}** | Quality of Service (QoS) configuration | [optional] 
 **TrunkingConfiguration** | Pointer to **map[string]interface{}** | Trunking configuration for ISLs (Inter-Switch Links) | [optional] 
 **PortChannelConfiguration** | Pointer to **map[string]interface{}** | Port channel configuration for ISLs | [optional] 
+**PreventPKeyCleanup** | Pointer to **[]string** | PKey ranges that should be prevented from automatic cleanup. Format must be \&quot;start-end\&quot;. | [optional] 
+**ReservedPkeys** | Pointer to **[]string** | Reserved PKey ranges that are excluded from general allocation. Must follow the \&quot;start-end\&quot; format. | [optional] 
+**PkeyRanges** | Pointer to **[]string** | Array of PKey range strings in \&quot;start-end\&quot; format to be used in configuration. | [optional] 
 
 ## Methods
 
@@ -793,6 +796,81 @@ SetPortChannelConfiguration sets PortChannelConfiguration field to given value.
 `func (o *NetworkFabricFabricConfiguration) HasPortChannelConfiguration() bool`
 
 HasPortChannelConfiguration returns a boolean if a field has been set.
+
+### GetPreventPKeyCleanup
+
+`func (o *NetworkFabricFabricConfiguration) GetPreventPKeyCleanup() []string`
+
+GetPreventPKeyCleanup returns the PreventPKeyCleanup field if non-nil, zero value otherwise.
+
+### GetPreventPKeyCleanupOk
+
+`func (o *NetworkFabricFabricConfiguration) GetPreventPKeyCleanupOk() (*[]string, bool)`
+
+GetPreventPKeyCleanupOk returns a tuple with the PreventPKeyCleanup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreventPKeyCleanup
+
+`func (o *NetworkFabricFabricConfiguration) SetPreventPKeyCleanup(v []string)`
+
+SetPreventPKeyCleanup sets PreventPKeyCleanup field to given value.
+
+### HasPreventPKeyCleanup
+
+`func (o *NetworkFabricFabricConfiguration) HasPreventPKeyCleanup() bool`
+
+HasPreventPKeyCleanup returns a boolean if a field has been set.
+
+### GetReservedPkeys
+
+`func (o *NetworkFabricFabricConfiguration) GetReservedPkeys() []string`
+
+GetReservedPkeys returns the ReservedPkeys field if non-nil, zero value otherwise.
+
+### GetReservedPkeysOk
+
+`func (o *NetworkFabricFabricConfiguration) GetReservedPkeysOk() (*[]string, bool)`
+
+GetReservedPkeysOk returns a tuple with the ReservedPkeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReservedPkeys
+
+`func (o *NetworkFabricFabricConfiguration) SetReservedPkeys(v []string)`
+
+SetReservedPkeys sets ReservedPkeys field to given value.
+
+### HasReservedPkeys
+
+`func (o *NetworkFabricFabricConfiguration) HasReservedPkeys() bool`
+
+HasReservedPkeys returns a boolean if a field has been set.
+
+### GetPkeyRanges
+
+`func (o *NetworkFabricFabricConfiguration) GetPkeyRanges() []string`
+
+GetPkeyRanges returns the PkeyRanges field if non-nil, zero value otherwise.
+
+### GetPkeyRangesOk
+
+`func (o *NetworkFabricFabricConfiguration) GetPkeyRangesOk() (*[]string, bool)`
+
+GetPkeyRangesOk returns a tuple with the PkeyRanges field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkeyRanges
+
+`func (o *NetworkFabricFabricConfiguration) SetPkeyRanges(v []string)`
+
+SetPkeyRanges sets PkeyRanges field to given value.
+
+### HasPkeyRanges
+
+`func (o *NetworkFabricFabricConfiguration) HasPkeyRanges() bool`
+
+HasPkeyRanges returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

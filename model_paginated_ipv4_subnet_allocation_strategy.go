@@ -21,7 +21,7 @@ var _ MappedNullable = &PaginatedIpv4SubnetAllocationStrategy{}
 
 // PaginatedIpv4SubnetAllocationStrategy struct for PaginatedIpv4SubnetAllocationStrategy
 type PaginatedIpv4SubnetAllocationStrategy struct {
-	Data []Ipv4SubnetAllocationStrategy1Inner `json:"data"`
+	Data []Ipv4SubnetAllocationStrategy2DataItem `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _PaginatedIpv4SubnetAllocationStrategy PaginatedIpv4SubnetAllocationStrateg
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedIpv4SubnetAllocationStrategy(data []Ipv4SubnetAllocationStrategy1Inner, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedIpv4SubnetAllocationStrategy {
+func NewPaginatedIpv4SubnetAllocationStrategy(data []Ipv4SubnetAllocationStrategy2DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedIpv4SubnetAllocationStrategy {
 	this := PaginatedIpv4SubnetAllocationStrategy{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewPaginatedIpv4SubnetAllocationStrategyWithDefaults() *PaginatedIpv4Subnet
 }
 
 // GetData returns the Data field value
-func (o *PaginatedIpv4SubnetAllocationStrategy) GetData() []Ipv4SubnetAllocationStrategy1Inner {
+func (o *PaginatedIpv4SubnetAllocationStrategy) GetData() []Ipv4SubnetAllocationStrategy2DataItem {
 	if o == nil {
-		var ret []Ipv4SubnetAllocationStrategy1Inner
+		var ret []Ipv4SubnetAllocationStrategy2DataItem
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *PaginatedIpv4SubnetAllocationStrategy) GetData() []Ipv4SubnetAllocation
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *PaginatedIpv4SubnetAllocationStrategy) GetDataOk() ([]Ipv4SubnetAllocationStrategy1Inner, bool) {
+func (o *PaginatedIpv4SubnetAllocationStrategy) GetDataOk() ([]Ipv4SubnetAllocationStrategy2DataItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *PaginatedIpv4SubnetAllocationStrategy) GetDataOk() ([]Ipv4SubnetAllocat
 }
 
 // SetData sets field value
-func (o *PaginatedIpv4SubnetAllocationStrategy) SetData(v []Ipv4SubnetAllocationStrategy1Inner) {
+func (o *PaginatedIpv4SubnetAllocationStrategy) SetData(v []Ipv4SubnetAllocationStrategy2DataItem) {
 	o.Data = v
 }
 

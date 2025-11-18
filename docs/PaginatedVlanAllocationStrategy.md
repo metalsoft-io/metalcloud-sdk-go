@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]VlanAllocationStrategy1Inner**](VlanAllocationStrategy1Inner.md) |  | 
+**Data** | [**[]VlanAllocationStrategy2DataItem**](VlanAllocationStrategy2DataItem.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewPaginatedVlanAllocationStrategy
 
-`func NewPaginatedVlanAllocationStrategy(data []VlanAllocationStrategy1Inner, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedVlanAllocationStrategy`
+`func NewPaginatedVlanAllocationStrategy(data []VlanAllocationStrategy2DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedVlanAllocationStrategy`
 
 NewPaginatedVlanAllocationStrategy instantiates a new PaginatedVlanAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *PaginatedVlanAllocationStrategy) GetData() []VlanAllocationStrategy1Inner`
+`func (o *PaginatedVlanAllocationStrategy) GetData() []VlanAllocationStrategy2DataItem`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PaginatedVlanAllocationStrategy) GetDataOk() (*[]VlanAllocationStrategy1Inner, bool)`
+`func (o *PaginatedVlanAllocationStrategy) GetDataOk() (*[]VlanAllocationStrategy2DataItem, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PaginatedVlanAllocationStrategy) SetData(v []VlanAllocationStrategy1Inner)`
+`func (o *PaginatedVlanAllocationStrategy) SetData(v []VlanAllocationStrategy2DataItem)`
 
 SetData sets Data field to given value.
 

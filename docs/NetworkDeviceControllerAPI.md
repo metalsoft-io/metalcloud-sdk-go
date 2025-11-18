@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	createNetworkDeviceController := *openapiclient.NewCreateNetworkDeviceController("DC-North", "192.168.1.10", int32(22), "admin", "ManagementPassword_example") // CreateNetworkDeviceController | The Network Device Controller create object
+	createNetworkDeviceController := *openapiclient.NewCreateNetworkDeviceController("DC-North", openapiclient.SwitchControllerDriver("cisco_aci51"), "192.168.1.10", int32(22), "admin", "ManagementPassword_example") // CreateNetworkDeviceController | The Network Device Controller create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -21,8 +21,8 @@ type NetworkFabricInterconnectLinkStatus string
 
 // List of NetworkFabricInterconnectLinkStatus
 const (
-	DRAFT NetworkFabricInterconnectLinkStatus = "draft"
-	ACTIVE NetworkFabricInterconnectLinkStatus = "active"
+	NETWORKFABRICINTERCONNECTLINKSTATUS_DRAFT NetworkFabricInterconnectLinkStatus = "draft"
+	NETWORKFABRICINTERCONNECTLINKSTATUS_ACTIVE NetworkFabricInterconnectLinkStatus = "active"
 )
 
 // All allowed values of NetworkFabricInterconnectLinkStatus enum

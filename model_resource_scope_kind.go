@@ -21,14 +21,14 @@ type ResourceScopeKind string
 
 // List of ResourceScopeKind
 const (
-	GLOBAL ResourceScopeKind = "global"
-	SITE_GROUP ResourceScopeKind = "site_group"
-	SITE ResourceScopeKind = "site"
-	FABRIC_GROUP ResourceScopeKind = "fabric_group"
-	FABRIC ResourceScopeKind = "fabric"
-	RACK ResourceScopeKind = "rack"
-	DEVICE_GROUP ResourceScopeKind = "device_group"
-	NETWORK_DEVICE ResourceScopeKind = "network_device"
+	RESOURCESCOPEKIND_GLOBAL ResourceScopeKind = "global"
+	RESOURCESCOPEKIND_SITE_GROUP ResourceScopeKind = "site_group"
+	RESOURCESCOPEKIND_SITE ResourceScopeKind = "site"
+	RESOURCESCOPEKIND_FABRIC_GROUP ResourceScopeKind = "fabric_group"
+	RESOURCESCOPEKIND_FABRIC ResourceScopeKind = "fabric"
+	RESOURCESCOPEKIND_RACK ResourceScopeKind = "rack"
+	RESOURCESCOPEKIND_DEVICE_GROUP ResourceScopeKind = "device_group"
+	RESOURCESCOPEKIND_NETWORK_DEVICE ResourceScopeKind = "network_device"
 )
 
 // All allowed values of ResourceScopeKind enum

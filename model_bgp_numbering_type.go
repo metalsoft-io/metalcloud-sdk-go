@@ -21,8 +21,8 @@ type BgpNumberingType string
 
 // List of BgpNumberingType
 const (
-	NUMBERED BgpNumberingType = "numbered"
-	UNNUMBERED BgpNumberingType = "unnumbered"
+	BGPNUMBERINGTYPE_NUMBERED BgpNumberingType = "numbered"
+	BGPNUMBERINGTYPE_UNNUMBERED BgpNumberingType = "unnumbered"
 )
 
 // All allowed values of BgpNumberingType enum

@@ -14,17 +14,18 @@ Name | Type | Description | Notes
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
 **FabricId** | **int32** |  | 
 **Vlan** | [**VxlanLogicalNetworkProfileVlanProperties**](VxlanLogicalNetworkProfileVlanProperties.md) |  | 
-**Ipv4** | [**VxlanLogicalNetworkProfileIpv4Properties**](VxlanLogicalNetworkProfileIpv4Properties.md) |  | 
-**Ipv6** | [**VxlanLogicalNetworkProfileIpv6Properties**](VxlanLogicalNetworkProfileIpv6Properties.md) |  | 
+**Ipv4** | [**InfinibandLogicalNetworkProfileIpv4Properties**](InfinibandLogicalNetworkProfileIpv4Properties.md) |  | 
+**Ipv6** | [**InfinibandLogicalNetworkProfileIpv6Properties**](InfinibandLogicalNetworkProfileIpv6Properties.md) |  | 
 **RouteDomainId** | **NullableInt32** |  | 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vxlan** | [**VxlanLogicalNetworkProfileVxlanProperties**](VxlanLogicalNetworkProfileVxlanProperties.md) |  | 
+**Pkey** | [**InfinibandLogicalNetworkProfilePkeyProperties**](InfinibandLogicalNetworkProfilePkeyProperties.md) |  | 
 
 ## Methods
 
 ### NewLogicalNetworkProfile1DataItem
 
-`func NewLogicalNetworkProfile1DataItem(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, vlan VxlanLogicalNetworkProfileVlanProperties, ipv4 VxlanLogicalNetworkProfileIpv4Properties, ipv6 VxlanLogicalNetworkProfileIpv6Properties, routeDomainId NullableInt32, vxlan VxlanLogicalNetworkProfileVxlanProperties, ) *LogicalNetworkProfile1DataItem`
+`func NewLogicalNetworkProfile1DataItem(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, vlan VxlanLogicalNetworkProfileVlanProperties, ipv4 InfinibandLogicalNetworkProfileIpv4Properties, ipv6 InfinibandLogicalNetworkProfileIpv6Properties, routeDomainId NullableInt32, vxlan VxlanLogicalNetworkProfileVxlanProperties, pkey InfinibandLogicalNetworkProfilePkeyProperties, ) *LogicalNetworkProfile1DataItem`
 
 NewLogicalNetworkProfile1DataItem instantiates a new LogicalNetworkProfile1DataItem object
 This constructor will assign default values to properties that have it defined,
@@ -241,40 +242,40 @@ SetVlan sets Vlan field to given value.
 
 ### GetIpv4
 
-`func (o *LogicalNetworkProfile1DataItem) GetIpv4() VxlanLogicalNetworkProfileIpv4Properties`
+`func (o *LogicalNetworkProfile1DataItem) GetIpv4() InfinibandLogicalNetworkProfileIpv4Properties`
 
 GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
 
 ### GetIpv4Ok
 
-`func (o *LogicalNetworkProfile1DataItem) GetIpv4Ok() (*VxlanLogicalNetworkProfileIpv4Properties, bool)`
+`func (o *LogicalNetworkProfile1DataItem) GetIpv4Ok() (*InfinibandLogicalNetworkProfileIpv4Properties, bool)`
 
 GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv4
 
-`func (o *LogicalNetworkProfile1DataItem) SetIpv4(v VxlanLogicalNetworkProfileIpv4Properties)`
+`func (o *LogicalNetworkProfile1DataItem) SetIpv4(v InfinibandLogicalNetworkProfileIpv4Properties)`
 
 SetIpv4 sets Ipv4 field to given value.
 
 
 ### GetIpv6
 
-`func (o *LogicalNetworkProfile1DataItem) GetIpv6() VxlanLogicalNetworkProfileIpv6Properties`
+`func (o *LogicalNetworkProfile1DataItem) GetIpv6() InfinibandLogicalNetworkProfileIpv6Properties`
 
 GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
 
 ### GetIpv6Ok
 
-`func (o *LogicalNetworkProfile1DataItem) GetIpv6Ok() (*VxlanLogicalNetworkProfileIpv6Properties, bool)`
+`func (o *LogicalNetworkProfile1DataItem) GetIpv6Ok() (*InfinibandLogicalNetworkProfileIpv6Properties, bool)`
 
 GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv6
 
-`func (o *LogicalNetworkProfile1DataItem) SetIpv6(v VxlanLogicalNetworkProfileIpv6Properties)`
+`func (o *LogicalNetworkProfile1DataItem) SetIpv6(v InfinibandLogicalNetworkProfileIpv6Properties)`
 
 SetIpv6 sets Ipv6 field to given value.
 
@@ -362,6 +363,26 @@ and a boolean to check if the value has been set.
 `func (o *LogicalNetworkProfile1DataItem) SetVxlan(v VxlanLogicalNetworkProfileVxlanProperties)`
 
 SetVxlan sets Vxlan field to given value.
+
+
+### GetPkey
+
+`func (o *LogicalNetworkProfile1DataItem) GetPkey() InfinibandLogicalNetworkProfilePkeyProperties`
+
+GetPkey returns the Pkey field if non-nil, zero value otherwise.
+
+### GetPkeyOk
+
+`func (o *LogicalNetworkProfile1DataItem) GetPkeyOk() (*InfinibandLogicalNetworkProfilePkeyProperties, bool)`
+
+GetPkeyOk returns a tuple with the Pkey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkey
+
+`func (o *LogicalNetworkProfile1DataItem) SetPkey(v InfinibandLogicalNetworkProfilePkeyProperties)`
+
+SetPkey sets Pkey field to given value.
 
 
 

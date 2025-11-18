@@ -1,0 +1,51 @@
+# LogicalNetworkConfigPkeyProperties
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**PkeyAllocationStrategies** | [**[]PkeyAllocationStrategy1**](PkeyAllocationStrategy1.md) |  | 
+
+## Methods
+
+### NewLogicalNetworkConfigPkeyProperties
+
+`func NewLogicalNetworkConfigPkeyProperties(pkeyAllocationStrategies []PkeyAllocationStrategy1, ) *LogicalNetworkConfigPkeyProperties`
+
+NewLogicalNetworkConfigPkeyProperties instantiates a new LogicalNetworkConfigPkeyProperties object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewLogicalNetworkConfigPkeyPropertiesWithDefaults
+
+`func NewLogicalNetworkConfigPkeyPropertiesWithDefaults() *LogicalNetworkConfigPkeyProperties`
+
+NewLogicalNetworkConfigPkeyPropertiesWithDefaults instantiates a new LogicalNetworkConfigPkeyProperties object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetPkeyAllocationStrategies
+
+`func (o *LogicalNetworkConfigPkeyProperties) GetPkeyAllocationStrategies() []PkeyAllocationStrategy1`
+
+GetPkeyAllocationStrategies returns the PkeyAllocationStrategies field if non-nil, zero value otherwise.
+
+### GetPkeyAllocationStrategiesOk
+
+`func (o *LogicalNetworkConfigPkeyProperties) GetPkeyAllocationStrategiesOk() (*[]PkeyAllocationStrategy1, bool)`
+
+GetPkeyAllocationStrategiesOk returns a tuple with the PkeyAllocationStrategies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkeyAllocationStrategies
+
+`func (o *LogicalNetworkConfigPkeyProperties) SetPkeyAllocationStrategies(v []PkeyAllocationStrategy1)`
+
+SetPkeyAllocationStrategies sets PkeyAllocationStrategies field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

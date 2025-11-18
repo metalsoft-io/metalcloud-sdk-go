@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vlan** | Pointer to [**LogicalNetworkConfigVlanProperties**](LogicalNetworkConfigVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**LogicalNetworkConfigVxlanProperties**](LogicalNetworkConfigVxlanProperties.md) |  | [optional] 
+**Pkey** | Pointer to [**LogicalNetworkConfigPkeyProperties**](LogicalNetworkConfigPkeyProperties.md) |  | [optional] 
 **Ipv4** | Pointer to [**LogicalNetworkConfigIpv4Properties**](LogicalNetworkConfigIpv4Properties.md) |  | [optional] 
 **Ipv6** | Pointer to [**LogicalNetworkConfigIpv6Properties**](LogicalNetworkConfigIpv6Properties.md) |  | [optional] 
 
@@ -260,6 +261,31 @@ SetVxlan sets Vxlan field to given value.
 `func (o *LogicalNetworkConfig) HasVxlan() bool`
 
 HasVxlan returns a boolean if a field has been set.
+
+### GetPkey
+
+`func (o *LogicalNetworkConfig) GetPkey() LogicalNetworkConfigPkeyProperties`
+
+GetPkey returns the Pkey field if non-nil, zero value otherwise.
+
+### GetPkeyOk
+
+`func (o *LogicalNetworkConfig) GetPkeyOk() (*LogicalNetworkConfigPkeyProperties, bool)`
+
+GetPkeyOk returns a tuple with the Pkey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkey
+
+`func (o *LogicalNetworkConfig) SetPkey(v LogicalNetworkConfigPkeyProperties)`
+
+SetPkey sets Pkey field to given value.
+
+### HasPkey
+
+`func (o *LogicalNetworkConfig) HasPkey() bool`
+
+HasPkey returns a boolean if a field has been set.
 
 ### GetIpv4
 

@@ -14,7 +14,6 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // SearchFirmwareBinaryServerComponentFilter - Input options for server component filters.
@@ -49,70 +48,86 @@ func LenovoComponentFilterAsSearchFirmwareBinaryServerComponentFilter(v *LenovoC
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *SearchFirmwareBinaryServerComponentFilter) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into DellComponentFilter
-	err = newStrictDecoder(data).Decode(&dst.DellComponentFilter)
-	if err == nil {
-		jsonDellComponentFilter, _ := json.Marshal(dst.DellComponentFilter)
-		if string(jsonDellComponentFilter) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'dell'
+	if jsonDict["vendor"] == "dell" {
+		// try to unmarshal JSON data into DellComponentFilter
+		err = json.Unmarshal(data, &dst.DellComponentFilter)
+		if err == nil {
+			return nil // data stored in dst.DellComponentFilter, return on the first match
+		} else {
 			dst.DellComponentFilter = nil
-		} else {
-			if err = validator.Validate(dst.DellComponentFilter); err != nil {
-				dst.DellComponentFilter = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as DellComponentFilter: %s", err.Error())
 		}
-	} else {
-		dst.DellComponentFilter = nil
 	}
 
-	// try to unmarshal data into HpeComponentFilter
-	err = newStrictDecoder(data).Decode(&dst.HpeComponentFilter)
-	if err == nil {
-		jsonHpeComponentFilter, _ := json.Marshal(dst.HpeComponentFilter)
-		if string(jsonHpeComponentFilter) == "{}" { // empty struct
+	// check if the discriminator value is 'hp'
+	if jsonDict["vendor"] == "hp" {
+		// try to unmarshal JSON data into HpeComponentFilter
+		err = json.Unmarshal(data, &dst.HpeComponentFilter)
+		if err == nil {
+			return nil // data stored in dst.HpeComponentFilter, return on the first match
+		} else {
 			dst.HpeComponentFilter = nil
-		} else {
-			if err = validator.Validate(dst.HpeComponentFilter); err != nil {
-				dst.HpeComponentFilter = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as HpeComponentFilter: %s", err.Error())
 		}
-	} else {
-		dst.HpeComponentFilter = nil
 	}
 
-	// try to unmarshal data into LenovoComponentFilter
-	err = newStrictDecoder(data).Decode(&dst.LenovoComponentFilter)
-	if err == nil {
-		jsonLenovoComponentFilter, _ := json.Marshal(dst.LenovoComponentFilter)
-		if string(jsonLenovoComponentFilter) == "{}" { // empty struct
+	// check if the discriminator value is 'lenovo'
+	if jsonDict["vendor"] == "lenovo" {
+		// try to unmarshal JSON data into LenovoComponentFilter
+		err = json.Unmarshal(data, &dst.LenovoComponentFilter)
+		if err == nil {
+			return nil // data stored in dst.LenovoComponentFilter, return on the first match
+		} else {
 			dst.LenovoComponentFilter = nil
-		} else {
-			if err = validator.Validate(dst.LenovoComponentFilter); err != nil {
-				dst.LenovoComponentFilter = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as LenovoComponentFilter: %s", err.Error())
 		}
-	} else {
-		dst.LenovoComponentFilter = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.DellComponentFilter = nil
-		dst.HpeComponentFilter = nil
-		dst.LenovoComponentFilter = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(SearchFirmwareBinaryServerComponentFilter)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(SearchFirmwareBinaryServerComponentFilter)")
+	// check if the discriminator value is 'DellComponentFilter'
+	if jsonDict["vendor"] == "DellComponentFilter" {
+		// try to unmarshal JSON data into DellComponentFilter
+		err = json.Unmarshal(data, &dst.DellComponentFilter)
+		if err == nil {
+			return nil // data stored in dst.DellComponentFilter, return on the first match
+		} else {
+			dst.DellComponentFilter = nil
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as DellComponentFilter: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'HpeComponentFilter'
+	if jsonDict["vendor"] == "HpeComponentFilter" {
+		// try to unmarshal JSON data into HpeComponentFilter
+		err = json.Unmarshal(data, &dst.HpeComponentFilter)
+		if err == nil {
+			return nil // data stored in dst.HpeComponentFilter, return on the first match
+		} else {
+			dst.HpeComponentFilter = nil
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as HpeComponentFilter: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'LenovoComponentFilter'
+	if jsonDict["vendor"] == "LenovoComponentFilter" {
+		// try to unmarshal JSON data into LenovoComponentFilter
+		err = json.Unmarshal(data, &dst.LenovoComponentFilter)
+		if err == nil {
+			return nil // data stored in dst.LenovoComponentFilter, return on the first match
+		} else {
+			dst.LenovoComponentFilter = nil
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as LenovoComponentFilter: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

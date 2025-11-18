@@ -21,9 +21,9 @@ type ExtensionStatus string
 
 // List of ExtensionStatus
 const (
-	DRAFT ExtensionStatus = "draft"
-	ACTIVE ExtensionStatus = "active"
-	ARCHIVED ExtensionStatus = "archived"
+	EXTENSIONSTATUS_DRAFT ExtensionStatus = "draft"
+	EXTENSIONSTATUS_ACTIVE ExtensionStatus = "active"
+	EXTENSIONSTATUS_ARCHIVED ExtensionStatus = "archived"
 )
 
 // All allowed values of ExtensionStatus enum

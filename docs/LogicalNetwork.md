@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Config** | [**LogicalNetworkConfig**](LogicalNetworkConfig.md) |  | 
 **Vlan** | Pointer to [**LogicalNetworkVlanProperties**](LogicalNetworkVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**LogicalNetworkVxlanProperties**](LogicalNetworkVxlanProperties.md) |  | [optional] 
+**Pkey** | Pointer to [**LogicalNetworkPkeyProperties**](LogicalNetworkPkeyProperties.md) |  | [optional] 
 **Ipv4** | Pointer to [**LogicalNetworkIpv4Properties**](LogicalNetworkIpv4Properties.md) |  | [optional] 
 **Ipv6** | Pointer to [**LogicalNetworkIpv6Properties**](LogicalNetworkIpv6Properties.md) |  | [optional] 
 **RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
@@ -429,6 +430,31 @@ SetVxlan sets Vxlan field to given value.
 `func (o *LogicalNetwork) HasVxlan() bool`
 
 HasVxlan returns a boolean if a field has been set.
+
+### GetPkey
+
+`func (o *LogicalNetwork) GetPkey() LogicalNetworkPkeyProperties`
+
+GetPkey returns the Pkey field if non-nil, zero value otherwise.
+
+### GetPkeyOk
+
+`func (o *LogicalNetwork) GetPkeyOk() (*LogicalNetworkPkeyProperties, bool)`
+
+GetPkeyOk returns a tuple with the Pkey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkey
+
+`func (o *LogicalNetwork) SetPkey(v LogicalNetworkPkeyProperties)`
+
+SetPkey sets Pkey field to given value.
+
+### HasPkey
+
+`func (o *LogicalNetwork) HasPkey() bool`
+
+HasPkey returns a boolean if a field has been set.
 
 ### GetIpv4
 

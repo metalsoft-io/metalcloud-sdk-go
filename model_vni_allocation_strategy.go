@@ -14,7 +14,6 @@ package sdk
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // VniAllocationStrategy - struct for VniAllocationStrategy
@@ -41,52 +40,38 @@ func ManualVniAllocationStrategyAsVniAllocationStrategy(v *ManualVniAllocationSt
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *VniAllocationStrategy) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into AutoVniAllocationStrategy
-	err = newStrictDecoder(data).Decode(&dst.AutoVniAllocationStrategy)
-	if err == nil {
-		jsonAutoVniAllocationStrategy, _ := json.Marshal(dst.AutoVniAllocationStrategy)
-		if string(jsonAutoVniAllocationStrategy) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'AutoVniAllocationStrategy'
+	if jsonDict["kind"] == "AutoVniAllocationStrategy" {
+		// try to unmarshal JSON data into AutoVniAllocationStrategy
+		err = json.Unmarshal(data, &dst.AutoVniAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.AutoVniAllocationStrategy, return on the first match
+		} else {
 			dst.AutoVniAllocationStrategy = nil
-		} else {
-			if err = validator.Validate(dst.AutoVniAllocationStrategy); err != nil {
-				dst.AutoVniAllocationStrategy = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal VniAllocationStrategy as AutoVniAllocationStrategy: %s", err.Error())
 		}
-	} else {
-		dst.AutoVniAllocationStrategy = nil
 	}
 
-	// try to unmarshal data into ManualVniAllocationStrategy
-	err = newStrictDecoder(data).Decode(&dst.ManualVniAllocationStrategy)
-	if err == nil {
-		jsonManualVniAllocationStrategy, _ := json.Marshal(dst.ManualVniAllocationStrategy)
-		if string(jsonManualVniAllocationStrategy) == "{}" { // empty struct
+	// check if the discriminator value is 'ManualVniAllocationStrategy'
+	if jsonDict["kind"] == "ManualVniAllocationStrategy" {
+		// try to unmarshal JSON data into ManualVniAllocationStrategy
+		err = json.Unmarshal(data, &dst.ManualVniAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.ManualVniAllocationStrategy, return on the first match
+		} else {
 			dst.ManualVniAllocationStrategy = nil
-		} else {
-			if err = validator.Validate(dst.ManualVniAllocationStrategy); err != nil {
-				dst.ManualVniAllocationStrategy = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal VniAllocationStrategy as ManualVniAllocationStrategy: %s", err.Error())
 		}
-	} else {
-		dst.ManualVniAllocationStrategy = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.AutoVniAllocationStrategy = nil
-		dst.ManualVniAllocationStrategy = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(VniAllocationStrategy)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(VniAllocationStrategy)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

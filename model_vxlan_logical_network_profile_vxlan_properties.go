@@ -21,7 +21,7 @@ var _ MappedNullable = &VxlanLogicalNetworkProfileVxlanProperties{}
 
 // VxlanLogicalNetworkProfileVxlanProperties struct for VxlanLogicalNetworkProfileVxlanProperties
 type VxlanLogicalNetworkProfileVxlanProperties struct {
-	VniAllocationStrategies []VniAllocationStrategy `json:"vniAllocationStrategies"`
+	VniAllocationStrategies []VniAllocationStrategy1 `json:"vniAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _VxlanLogicalNetworkProfileVxlanProperties VxlanLogicalNetworkProfileVxlanP
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVxlanLogicalNetworkProfileVxlanProperties(vniAllocationStrategies []VniAllocationStrategy) *VxlanLogicalNetworkProfileVxlanProperties {
+func NewVxlanLogicalNetworkProfileVxlanProperties(vniAllocationStrategies []VniAllocationStrategy1) *VxlanLogicalNetworkProfileVxlanProperties {
 	this := VxlanLogicalNetworkProfileVxlanProperties{}
 	this.VniAllocationStrategies = vniAllocationStrategies
 	return &this
@@ -46,9 +46,9 @@ func NewVxlanLogicalNetworkProfileVxlanPropertiesWithDefaults() *VxlanLogicalNet
 }
 
 // GetVniAllocationStrategies returns the VniAllocationStrategies field value
-func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy {
+func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy1 {
 	if o == nil {
-		var ret []VniAllocationStrategy
+		var ret []VniAllocationStrategy1
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategies()
 
 // GetVniAllocationStrategiesOk returns a tuple with the VniAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategiesOk() ([]VniAllocationStrategy, bool) {
+func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategiesOk() ([]VniAllocationStrategy1, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVniAllocationStrategiesOk
 }
 
 // SetVniAllocationStrategies sets field value
-func (o *VxlanLogicalNetworkProfileVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy) {
+func (o *VxlanLogicalNetworkProfileVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy1) {
 	o.VniAllocationStrategies = v
 }
 
