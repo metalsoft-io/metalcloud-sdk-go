@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]VniAllocationStrategy2DataItem**](VniAllocationStrategy2DataItem.md) |  | 
+**Data** | [**[]VniAllocationStrategy**](VniAllocationStrategy.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewPaginatedVniAllocationStrategy
 
-`func NewPaginatedVniAllocationStrategy(data []VniAllocationStrategy2DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedVniAllocationStrategy`
+`func NewPaginatedVniAllocationStrategy(data []VniAllocationStrategy, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedVniAllocationStrategy`
 
 NewPaginatedVniAllocationStrategy instantiates a new PaginatedVniAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *PaginatedVniAllocationStrategy) GetData() []VniAllocationStrategy2DataItem`
+`func (o *PaginatedVniAllocationStrategy) GetData() []VniAllocationStrategy`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PaginatedVniAllocationStrategy) GetDataOk() (*[]VniAllocationStrategy2DataItem, bool)`
+`func (o *PaginatedVniAllocationStrategy) GetDataOk() (*[]VniAllocationStrategy, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PaginatedVniAllocationStrategy) SetData(v []VniAllocationStrategy2DataItem)`
+`func (o *PaginatedVniAllocationStrategy) SetData(v []VniAllocationStrategy)`
 
 SetData sets Data field to given value.
 

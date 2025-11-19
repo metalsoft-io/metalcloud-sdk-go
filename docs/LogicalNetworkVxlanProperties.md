@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vnis** | [**[]VniAllocation**](VniAllocation.md) |  | 
-**VniAllocationStrategies** | [**[]VniAllocationStrategy1**](VniAllocationStrategy1.md) |  | 
+**VniAllocationStrategies** | [**[]VniAllocationStrategy**](VniAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewLogicalNetworkVxlanProperties
 
-`func NewLogicalNetworkVxlanProperties(vnis []VniAllocation, vniAllocationStrategies []VniAllocationStrategy1, ) *LogicalNetworkVxlanProperties`
+`func NewLogicalNetworkVxlanProperties(vnis []VniAllocation, vniAllocationStrategies []VniAllocationStrategy, ) *LogicalNetworkVxlanProperties`
 
 NewLogicalNetworkVxlanProperties instantiates a new LogicalNetworkVxlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetVnis sets Vnis field to given value.
 
 ### GetVniAllocationStrategies
 
-`func (o *LogicalNetworkVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy1`
+`func (o *LogicalNetworkVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy`
 
 GetVniAllocationStrategies returns the VniAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVniAllocationStrategiesOk
 
-`func (o *LogicalNetworkVxlanProperties) GetVniAllocationStrategiesOk() (*[]VniAllocationStrategy1, bool)`
+`func (o *LogicalNetworkVxlanProperties) GetVniAllocationStrategiesOk() (*[]VniAllocationStrategy, bool)`
 
 GetVniAllocationStrategiesOk returns a tuple with the VniAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVniAllocationStrategies
 
-`func (o *LogicalNetworkVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy1)`
+`func (o *LogicalNetworkVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy)`
 
 SetVniAllocationStrategies sets VniAllocationStrategies field to given value.
 

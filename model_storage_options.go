@@ -24,6 +24,8 @@ type StorageOptions struct {
 	EnableDataReduction *bool `json:"enableDataReduction,omitempty"`
 	// Enable advanced deduplication
 	EnableAdvancedDeduplication *bool `json:"enableAdvancedDeduplication,omitempty"`
+	// Enable data reduction on a newly created shared volume
+	EnableDataReductionSharedVolume *bool `json:"enableDataReductionSharedVolume,omitempty"`
 	// Volume name
 	VolumeName *string `json:"volumeName,omitempty"`
 	// Array id to use (for certain storage drivers)
@@ -154,6 +156,38 @@ func (o *StorageOptions) HasEnableAdvancedDeduplication() bool {
 // SetEnableAdvancedDeduplication gets a reference to the given bool and assigns it to the EnableAdvancedDeduplication field.
 func (o *StorageOptions) SetEnableAdvancedDeduplication(v bool) {
 	o.EnableAdvancedDeduplication = &v
+}
+
+// GetEnableDataReductionSharedVolume returns the EnableDataReductionSharedVolume field value if set, zero value otherwise.
+func (o *StorageOptions) GetEnableDataReductionSharedVolume() bool {
+	if o == nil || IsNil(o.EnableDataReductionSharedVolume) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableDataReductionSharedVolume
+}
+
+// GetEnableDataReductionSharedVolumeOk returns a tuple with the EnableDataReductionSharedVolume field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageOptions) GetEnableDataReductionSharedVolumeOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableDataReductionSharedVolume) {
+		return nil, false
+	}
+	return o.EnableDataReductionSharedVolume, true
+}
+
+// HasEnableDataReductionSharedVolume returns a boolean if a field has been set.
+func (o *StorageOptions) HasEnableDataReductionSharedVolume() bool {
+	if o != nil && !IsNil(o.EnableDataReductionSharedVolume) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableDataReductionSharedVolume gets a reference to the given bool and assigns it to the EnableDataReductionSharedVolume field.
+func (o *StorageOptions) SetEnableDataReductionSharedVolume(v bool) {
+	o.EnableDataReductionSharedVolume = &v
 }
 
 // GetVolumeName returns the VolumeName field value if set, zero value otherwise.
@@ -908,6 +942,9 @@ func (o StorageOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EnableAdvancedDeduplication) {
 		toSerialize["enableAdvancedDeduplication"] = o.EnableAdvancedDeduplication
 	}
+	if !IsNil(o.EnableDataReductionSharedVolume) {
+		toSerialize["enableDataReductionSharedVolume"] = o.EnableDataReductionSharedVolume
+	}
 	if !IsNil(o.VolumeName) {
 		toSerialize["volumeName"] = o.VolumeName
 	}
@@ -1001,6 +1038,7 @@ func (o *StorageOptions) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "enableDataReduction")
 		delete(additionalProperties, "enableAdvancedDeduplication")
+		delete(additionalProperties, "enableDataReductionSharedVolume")
 		delete(additionalProperties, "volumeName")
 		delete(additionalProperties, "arrayId")
 		delete(additionalProperties, "directorId")

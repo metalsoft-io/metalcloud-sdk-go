@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vnis** | [**[]VniAllocation**](VniAllocation.md) |  | 
-**VniAllocationStrategies** | [**[]VniAllocationStrategy1**](VniAllocationStrategy1.md) |  | 
+**VniAllocationStrategies** | [**[]VniAllocationStrategy**](VniAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewVxlanLogicalNetworkVxlanProperties
 
-`func NewVxlanLogicalNetworkVxlanProperties(vnis []VniAllocation, vniAllocationStrategies []VniAllocationStrategy1, ) *VxlanLogicalNetworkVxlanProperties`
+`func NewVxlanLogicalNetworkVxlanProperties(vnis []VniAllocation, vniAllocationStrategies []VniAllocationStrategy, ) *VxlanLogicalNetworkVxlanProperties`
 
 NewVxlanLogicalNetworkVxlanProperties instantiates a new VxlanLogicalNetworkVxlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetVnis sets Vnis field to given value.
 
 ### GetVniAllocationStrategies
 
-`func (o *VxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy1`
+`func (o *VxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategies() []VniAllocationStrategy`
 
 GetVniAllocationStrategies returns the VniAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVniAllocationStrategiesOk
 
-`func (o *VxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategiesOk() (*[]VniAllocationStrategy1, bool)`
+`func (o *VxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategiesOk() (*[]VniAllocationStrategy, bool)`
 
 GetVniAllocationStrategiesOk returns a tuple with the VniAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVniAllocationStrategies
 
-`func (o *VxlanLogicalNetworkVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy1)`
+`func (o *VxlanLogicalNetworkVxlanProperties) SetVniAllocationStrategies(v []VniAllocationStrategy)`
 
 SetVniAllocationStrategies sets VniAllocationStrategies field to given value.
 

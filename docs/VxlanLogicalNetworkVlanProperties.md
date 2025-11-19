@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vlans** | [**[]VlanAllocation**](VlanAllocation.md) |  | 
-**VlanAllocationStrategies** | [**[]VlanAllocationStrategy1**](VlanAllocationStrategy1.md) |  | 
+**VlanAllocationStrategies** | [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewVxlanLogicalNetworkVlanProperties
 
-`func NewVxlanLogicalNetworkVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy1, ) *VxlanLogicalNetworkVlanProperties`
+`func NewVxlanLogicalNetworkVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy, ) *VxlanLogicalNetworkVlanProperties`
 
 NewVxlanLogicalNetworkVlanProperties instantiates a new VxlanLogicalNetworkVlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetVlans sets Vlans field to given value.
 
 ### GetVlanAllocationStrategies
 
-`func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy1`
+`func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy`
 
 GetVlanAllocationStrategies returns the VlanAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVlanAllocationStrategiesOk
 
-`func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy1, bool)`
+`func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy, bool)`
 
 GetVlanAllocationStrategiesOk returns a tuple with the VlanAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanAllocationStrategies
 
-`func (o *VxlanLogicalNetworkVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy1)`
+`func (o *VxlanLogicalNetworkVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy)`
 
 SetVlanAllocationStrategies sets VlanAllocationStrategies field to given value.
 

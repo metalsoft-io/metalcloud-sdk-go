@@ -22,7 +22,7 @@ var _ MappedNullable = &VxlanLogicalNetworkVlanProperties{}
 // VxlanLogicalNetworkVlanProperties struct for VxlanLogicalNetworkVlanProperties
 type VxlanLogicalNetworkVlanProperties struct {
 	Vlans []VlanAllocation `json:"vlans"`
-	VlanAllocationStrategies []VlanAllocationStrategy1 `json:"vlanAllocationStrategies"`
+	VlanAllocationStrategies []VlanAllocationStrategy `json:"vlanAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _VxlanLogicalNetworkVlanProperties VxlanLogicalNetworkVlanProperties
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVxlanLogicalNetworkVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy1) *VxlanLogicalNetworkVlanProperties {
+func NewVxlanLogicalNetworkVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy) *VxlanLogicalNetworkVlanProperties {
 	this := VxlanLogicalNetworkVlanProperties{}
 	this.Vlans = vlans
 	this.VlanAllocationStrategies = vlanAllocationStrategies
@@ -72,9 +72,9 @@ func (o *VxlanLogicalNetworkVlanProperties) SetVlans(v []VlanAllocation) {
 }
 
 // GetVlanAllocationStrategies returns the VlanAllocationStrategies field value
-func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy1 {
+func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy {
 	if o == nil {
-		var ret []VlanAllocationStrategy1
+		var ret []VlanAllocationStrategy
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategies() []Vlan
 
 // GetVlanAllocationStrategiesOk returns a tuple with the VlanAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategiesOk() ([]VlanAllocationStrategy1, bool) {
+func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategiesOk() ([]VlanAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *VxlanLogicalNetworkVlanProperties) GetVlanAllocationStrategiesOk() ([]V
 }
 
 // SetVlanAllocationStrategies sets field value
-func (o *VxlanLogicalNetworkVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy1) {
+func (o *VxlanLogicalNetworkVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy) {
 	o.VlanAllocationStrategies = v
 }
 

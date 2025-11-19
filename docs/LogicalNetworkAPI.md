@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy
 
-> GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+> Ipv4SubnetAllocationStrategy CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 
 Create Ipv4 Subnet allocation strategy.
 
@@ -201,16 +201,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfileIpv4SubnetAllocationStrategy_request{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest | 
+	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy`: GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response
+	// response from `CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy`: Ipv4SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -232,11 +232,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest**](ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv4SubnetAllocationStrategy** | [**CreateIpv4SubnetAllocationStrategy**](CreateIpv4SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response**](GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response.md)
+[**Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy
 
-> GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+> Ipv6SubnetAllocationStrategy CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 
 Create Ipv6 Subnet allocation strategy.
 
@@ -273,16 +273,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfileIpv6SubnetAllocationStrategy_request{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest | 
+	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy`: GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response
+	// response from `CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy`: Ipv6SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -304,11 +304,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest**](ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv6SubnetAllocationStrategy** | [**CreateIpv6SubnetAllocationStrategy**](CreateIpv6SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response**](GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response.md)
+[**Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigPkeyAllocationStrategy
 
-> GetLogicalNetworkProfilePkeyAllocationStrategy200Response CreateLogicalNetworkConfigPkeyAllocationStrategy(ctx, id).IfMatch(ifMatch).ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest(replaceLogicalNetworkProfilePkeyAllocationStrategyRequest).Execute()
+> PkeyAllocationStrategy CreateLogicalNetworkConfigPkeyAllocationStrategy(ctx, id).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
 
 Create Pkey allocation strategy.
 
@@ -345,16 +345,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfilePkeyAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfilePkeyAllocationStrategy_request{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest | 
+	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreatePkeyAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id).IfMatch(ifMatch).ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest(replaceLogicalNetworkProfilePkeyAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigPkeyAllocationStrategy`: GetLogicalNetworkProfilePkeyAllocationStrategy200Response
+	// response from `CreateLogicalNetworkConfigPkeyAllocationStrategy`: PkeyAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -376,11 +376,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfilePkeyAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest**](ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest.md) |  | 
+ **createPkeyAllocationStrategy** | [**CreatePkeyAllocationStrategy**](CreatePkeyAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfilePkeyAllocationStrategy200Response**](GetLogicalNetworkProfilePkeyAllocationStrategy200Response.md)
+[**PkeyAllocationStrategy**](PkeyAllocationStrategy.md)
 
 ### Authorization
 
@@ -398,7 +398,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigVlanAllocationStrategy
 
-> GetLogicalNetworkProfileVlanAllocationStrategy200Response CreateLogicalNetworkConfigVlanAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateLogicalNetworkConfigVlanAllocationStrategyRequest(createLogicalNetworkConfigVlanAllocationStrategyRequest).Execute()
+> VlanAllocationStrategy CreateLogicalNetworkConfigVlanAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 
 Create Vlan allocation strategy.
 
@@ -417,16 +417,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkConfigVlanAllocationStrategyRequest := openapiclient.createLogicalNetworkConfigVlanAllocationStrategy_request{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkConfigVlanAllocationStrategyRequest | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateLogicalNetworkConfigVlanAllocationStrategyRequest(createLogicalNetworkConfigVlanAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigVlanAllocationStrategy`: GetLogicalNetworkProfileVlanAllocationStrategy200Response
+	// response from `CreateLogicalNetworkConfigVlanAllocationStrategy`: VlanAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -448,11 +448,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkConfigVlanAllocationStrategyRequest** | [**CreateLogicalNetworkConfigVlanAllocationStrategyRequest**](CreateLogicalNetworkConfigVlanAllocationStrategyRequest.md) |  | 
+ **createVlanAllocationStrategy** | [**CreateVlanAllocationStrategy**](CreateVlanAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileVlanAllocationStrategy200Response**](GetLogicalNetworkProfileVlanAllocationStrategy200Response.md)
+[**VlanAllocationStrategy**](VlanAllocationStrategy.md)
 
 ### Authorization
 
@@ -470,7 +470,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigVniAllocationStrategy
 
-> GetLogicalNetworkProfileVniAllocationStrategy200Response CreateLogicalNetworkConfigVniAllocationStrategy(ctx, id).IfMatch(ifMatch).ReplaceLogicalNetworkProfileVniAllocationStrategyRequest(replaceLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+> VniAllocationStrategy CreateLogicalNetworkConfigVniAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 
 Create Vni allocation strategy.
 
@@ -489,16 +489,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfileVniAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfileVniAllocationStrategy_request{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // ReplaceLogicalNetworkProfileVniAllocationStrategyRequest | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy(context.Background(), id).IfMatch(ifMatch).ReplaceLogicalNetworkProfileVniAllocationStrategyRequest(replaceLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigVniAllocationStrategy`: GetLogicalNetworkProfileVniAllocationStrategy200Response
+	// response from `CreateLogicalNetworkConfigVniAllocationStrategy`: VniAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -520,11 +520,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfileVniAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfileVniAllocationStrategyRequest**](ReplaceLogicalNetworkProfileVniAllocationStrategyRequest.md) |  | 
+ **createVniAllocationStrategy** | [**CreateVniAllocationStrategy**](CreateVniAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileVniAllocationStrategy200Response**](GetLogicalNetworkProfileVniAllocationStrategy200Response.md)
+[**VniAllocationStrategy**](VniAllocationStrategy.md)
 
 ### Authorization
 
@@ -1484,7 +1484,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigIpv4SubnetAllocationStrategy
 
-> GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response GetLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> Ipv4SubnetAllocationStrategy GetLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Ipv4 Subnet allocation strategy.
 
@@ -1511,7 +1511,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigIpv4SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigIpv4SubnetAllocationStrategy`: GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response
+	// response from `GetLogicalNetworkConfigIpv4SubnetAllocationStrategy`: Ipv4SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigIpv4SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1537,7 +1537,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response**](GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response.md)
+[**Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -1633,7 +1633,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigIpv6SubnetAllocationStrategy
 
-> GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response GetLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> Ipv6SubnetAllocationStrategy GetLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Ipv6 Subnet allocation strategy.
 
@@ -1660,7 +1660,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigIpv6SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigIpv6SubnetAllocationStrategy`: GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response
+	// response from `GetLogicalNetworkConfigIpv6SubnetAllocationStrategy`: Ipv6SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigIpv6SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1686,7 +1686,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response**](GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response.md)
+[**Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -1782,7 +1782,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigPkeyAllocationStrategy
 
-> GetLogicalNetworkProfilePkeyAllocationStrategy200Response GetLogicalNetworkConfigPkeyAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> PkeyAllocationStrategy GetLogicalNetworkConfigPkeyAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Pkey allocation strategy.
 
@@ -1809,7 +1809,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigPkeyAllocationStrategy`: GetLogicalNetworkProfilePkeyAllocationStrategy200Response
+	// response from `GetLogicalNetworkConfigPkeyAllocationStrategy`: PkeyAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1835,7 +1835,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkProfilePkeyAllocationStrategy200Response**](GetLogicalNetworkProfilePkeyAllocationStrategy200Response.md)
+[**PkeyAllocationStrategy**](PkeyAllocationStrategy.md)
 
 ### Authorization
 
@@ -1931,7 +1931,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigVlanAllocationStrategy
 
-> GetLogicalNetworkProfileVlanAllocationStrategy200Response GetLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> VlanAllocationStrategy GetLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Vlan allocation strategy.
 
@@ -1958,7 +1958,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigVlanAllocationStrategy`: GetLogicalNetworkProfileVlanAllocationStrategy200Response
+	// response from `GetLogicalNetworkConfigVlanAllocationStrategy`: VlanAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1984,7 +1984,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkProfileVlanAllocationStrategy200Response**](GetLogicalNetworkProfileVlanAllocationStrategy200Response.md)
+[**VlanAllocationStrategy**](VlanAllocationStrategy.md)
 
 ### Authorization
 
@@ -2080,7 +2080,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigVniAllocationStrategy
 
-> GetLogicalNetworkProfileVniAllocationStrategy200Response GetLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> VniAllocationStrategy GetLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Vni allocation strategy.
 
@@ -2107,7 +2107,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigVniAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigVniAllocationStrategy`: GetLogicalNetworkProfileVniAllocationStrategy200Response
+	// response from `GetLogicalNetworkConfigVniAllocationStrategy`: VniAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigVniAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2133,7 +2133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkProfileVniAllocationStrategy200Response**](GetLogicalNetworkProfileVniAllocationStrategy200Response.md)
+[**VniAllocationStrategy**](VniAllocationStrategy.md)
 
 ### Authorization
 
@@ -2241,7 +2241,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy
 
-> GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+> Ipv4SubnetAllocationStrategy ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 
 Replace Ipv4 Subnet allocation strategy
 
@@ -2261,16 +2261,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfileIpv4SubnetAllocationStrategy_request{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest | 
+	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy`: GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response
+	// response from `ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy`: Ipv4SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2294,11 +2294,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest**](ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv4SubnetAllocationStrategy** | [**CreateIpv4SubnetAllocationStrategy**](CreateIpv4SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response**](GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response.md)
+[**Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -2316,7 +2316,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy
 
-> GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+> Ipv6SubnetAllocationStrategy ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 
 Replace Ipv6 Subnet allocation strategy
 
@@ -2336,16 +2336,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfileIpv6SubnetAllocationStrategy_request{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest | 
+	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy`: GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response
+	// response from `ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy`: Ipv6SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2369,11 +2369,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest**](ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv6SubnetAllocationStrategy** | [**CreateIpv6SubnetAllocationStrategy**](CreateIpv6SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response**](GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response.md)
+[**Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -2391,7 +2391,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigPkeyAllocationStrategy
 
-> GetLogicalNetworkProfilePkeyAllocationStrategy200Response ReplaceLogicalNetworkConfigPkeyAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest(replaceLogicalNetworkProfilePkeyAllocationStrategyRequest).Execute()
+> PkeyAllocationStrategy ReplaceLogicalNetworkConfigPkeyAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
 
 Replace Pkey allocation strategy
 
@@ -2411,16 +2411,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfilePkeyAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfilePkeyAllocationStrategy_request{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest | 
+	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreatePkeyAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest(replaceLogicalNetworkProfilePkeyAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigPkeyAllocationStrategy`: GetLogicalNetworkProfilePkeyAllocationStrategy200Response
+	// response from `ReplaceLogicalNetworkConfigPkeyAllocationStrategy`: PkeyAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2444,11 +2444,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfilePkeyAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest**](ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest.md) |  | 
+ **createPkeyAllocationStrategy** | [**CreatePkeyAllocationStrategy**](CreatePkeyAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfilePkeyAllocationStrategy200Response**](GetLogicalNetworkProfilePkeyAllocationStrategy200Response.md)
+[**PkeyAllocationStrategy**](PkeyAllocationStrategy.md)
 
 ### Authorization
 
@@ -2466,7 +2466,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigVlanAllocationStrategy
 
-> GetLogicalNetworkProfileVlanAllocationStrategy200Response ReplaceLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkConfigVlanAllocationStrategyRequest(createLogicalNetworkConfigVlanAllocationStrategyRequest).Execute()
+> VlanAllocationStrategy ReplaceLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 
 Replace Vlan allocation strategy
 
@@ -2486,16 +2486,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkConfigVlanAllocationStrategyRequest := openapiclient.createLogicalNetworkConfigVlanAllocationStrategy_request{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkConfigVlanAllocationStrategyRequest | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkConfigVlanAllocationStrategyRequest(createLogicalNetworkConfigVlanAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigVlanAllocationStrategy`: GetLogicalNetworkProfileVlanAllocationStrategy200Response
+	// response from `ReplaceLogicalNetworkConfigVlanAllocationStrategy`: VlanAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2519,11 +2519,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkConfigVlanAllocationStrategyRequest** | [**CreateLogicalNetworkConfigVlanAllocationStrategyRequest**](CreateLogicalNetworkConfigVlanAllocationStrategyRequest.md) |  | 
+ **createVlanAllocationStrategy** | [**CreateVlanAllocationStrategy**](CreateVlanAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileVlanAllocationStrategy200Response**](GetLogicalNetworkProfileVlanAllocationStrategy200Response.md)
+[**VlanAllocationStrategy**](VlanAllocationStrategy.md)
 
 ### Authorization
 
@@ -2541,7 +2541,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigVniAllocationStrategy
 
-> GetLogicalNetworkProfileVniAllocationStrategy200Response ReplaceLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfileVniAllocationStrategyRequest(replaceLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+> VniAllocationStrategy ReplaceLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 
 Replace Vni allocation strategy
 
@@ -2561,16 +2561,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	replaceLogicalNetworkProfileVniAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfileVniAllocationStrategy_request{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // ReplaceLogicalNetworkProfileVniAllocationStrategyRequest | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).ReplaceLogicalNetworkProfileVniAllocationStrategyRequest(replaceLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigVniAllocationStrategy`: GetLogicalNetworkProfileVniAllocationStrategy200Response
+	// response from `ReplaceLogicalNetworkConfigVniAllocationStrategy`: VniAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2594,11 +2594,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **replaceLogicalNetworkProfileVniAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfileVniAllocationStrategyRequest**](ReplaceLogicalNetworkProfileVniAllocationStrategyRequest.md) |  | 
+ **createVniAllocationStrategy** | [**CreateVniAllocationStrategy**](CreateVniAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileVniAllocationStrategy200Response**](GetLogicalNetworkProfileVniAllocationStrategy200Response.md)
+[**VniAllocationStrategy**](VniAllocationStrategy.md)
 
 ### Authorization
 

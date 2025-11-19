@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateInfinibandLogicalNetworkIpv4Properties{}
 
 // CreateInfinibandLogicalNetworkIpv4Properties struct for CreateInfinibandLogicalNetworkIpv4Properties
 type CreateInfinibandLogicalNetworkIpv4Properties struct {
-	SubnetAllocationStrategies []CreateIpv4SubnetAllocationStrategy1 `json:"subnetAllocationStrategies"`
+	SubnetAllocationStrategies []CreateIpv4SubnetAllocationStrategy `json:"subnetAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _CreateInfinibandLogicalNetworkIpv4Properties CreateInfinibandLogicalNetwor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInfinibandLogicalNetworkIpv4Properties(subnetAllocationStrategies []CreateIpv4SubnetAllocationStrategy1) *CreateInfinibandLogicalNetworkIpv4Properties {
+func NewCreateInfinibandLogicalNetworkIpv4Properties(subnetAllocationStrategies []CreateIpv4SubnetAllocationStrategy) *CreateInfinibandLogicalNetworkIpv4Properties {
 	this := CreateInfinibandLogicalNetworkIpv4Properties{}
 	this.SubnetAllocationStrategies = subnetAllocationStrategies
 	return &this
@@ -46,9 +46,9 @@ func NewCreateInfinibandLogicalNetworkIpv4PropertiesWithDefaults() *CreateInfini
 }
 
 // GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field value
-func (o *CreateInfinibandLogicalNetworkIpv4Properties) GetSubnetAllocationStrategies() []CreateIpv4SubnetAllocationStrategy1 {
+func (o *CreateInfinibandLogicalNetworkIpv4Properties) GetSubnetAllocationStrategies() []CreateIpv4SubnetAllocationStrategy {
 	if o == nil {
-		var ret []CreateIpv4SubnetAllocationStrategy1
+		var ret []CreateIpv4SubnetAllocationStrategy
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *CreateInfinibandLogicalNetworkIpv4Properties) GetSubnetAllocationStrate
 
 // GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *CreateInfinibandLogicalNetworkIpv4Properties) GetSubnetAllocationStrategiesOk() ([]CreateIpv4SubnetAllocationStrategy1, bool) {
+func (o *CreateInfinibandLogicalNetworkIpv4Properties) GetSubnetAllocationStrategiesOk() ([]CreateIpv4SubnetAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *CreateInfinibandLogicalNetworkIpv4Properties) GetSubnetAllocationStrate
 }
 
 // SetSubnetAllocationStrategies sets field value
-func (o *CreateInfinibandLogicalNetworkIpv4Properties) SetSubnetAllocationStrategies(v []CreateIpv4SubnetAllocationStrategy1) {
+func (o *CreateInfinibandLogicalNetworkIpv4Properties) SetSubnetAllocationStrategies(v []CreateIpv4SubnetAllocationStrategy) {
 	o.SubnetAllocationStrategies = v
 }
 

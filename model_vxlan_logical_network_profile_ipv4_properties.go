@@ -21,7 +21,7 @@ var _ MappedNullable = &VxlanLogicalNetworkProfileIpv4Properties{}
 
 // VxlanLogicalNetworkProfileIpv4Properties struct for VxlanLogicalNetworkProfileIpv4Properties
 type VxlanLogicalNetworkProfileIpv4Properties struct {
-	SubnetAllocationStrategies []Ipv4SubnetAllocationStrategy1 `json:"subnetAllocationStrategies"`
+	SubnetAllocationStrategies []Ipv4SubnetAllocationStrategy `json:"subnetAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _VxlanLogicalNetworkProfileIpv4Properties VxlanLogicalNetworkProfileIpv4Pro
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVxlanLogicalNetworkProfileIpv4Properties(subnetAllocationStrategies []Ipv4SubnetAllocationStrategy1) *VxlanLogicalNetworkProfileIpv4Properties {
+func NewVxlanLogicalNetworkProfileIpv4Properties(subnetAllocationStrategies []Ipv4SubnetAllocationStrategy) *VxlanLogicalNetworkProfileIpv4Properties {
 	this := VxlanLogicalNetworkProfileIpv4Properties{}
 	this.SubnetAllocationStrategies = subnetAllocationStrategies
 	return &this
@@ -46,9 +46,9 @@ func NewVxlanLogicalNetworkProfileIpv4PropertiesWithDefaults() *VxlanLogicalNetw
 }
 
 // GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field value
-func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy1 {
+func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy {
 	if o == nil {
-		var ret []Ipv4SubnetAllocationStrategy1
+		var ret []Ipv4SubnetAllocationStrategy
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies
 
 // GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategiesOk() ([]Ipv4SubnetAllocationStrategy1, bool) {
+func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategiesOk() ([]Ipv4SubnetAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *VxlanLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies
 }
 
 // SetSubnetAllocationStrategies sets field value
-func (o *VxlanLogicalNetworkProfileIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy1) {
+func (o *VxlanLogicalNetworkProfileIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy) {
 	o.SubnetAllocationStrategies = v
 }
 

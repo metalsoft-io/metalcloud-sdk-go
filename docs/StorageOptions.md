@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EnableDataReduction** | Pointer to **bool** | Enable data reduction | [optional] 
 **EnableAdvancedDeduplication** | Pointer to **bool** | Enable advanced deduplication | [optional] 
+**EnableDataReductionSharedVolume** | Pointer to **bool** | Enable data reduction on a newly created shared volume | [optional] 
 **VolumeName** | Pointer to **string** | Volume name | [optional] 
 **ArrayId** | Pointer to **string** | Array id to use (for certain storage drivers) | [optional] 
 **DirectorId** | Pointer to **string** | Director id to use (for certain storage drivers) | [optional] 
@@ -98,6 +99,31 @@ SetEnableAdvancedDeduplication sets EnableAdvancedDeduplication field to given v
 `func (o *StorageOptions) HasEnableAdvancedDeduplication() bool`
 
 HasEnableAdvancedDeduplication returns a boolean if a field has been set.
+
+### GetEnableDataReductionSharedVolume
+
+`func (o *StorageOptions) GetEnableDataReductionSharedVolume() bool`
+
+GetEnableDataReductionSharedVolume returns the EnableDataReductionSharedVolume field if non-nil, zero value otherwise.
+
+### GetEnableDataReductionSharedVolumeOk
+
+`func (o *StorageOptions) GetEnableDataReductionSharedVolumeOk() (*bool, bool)`
+
+GetEnableDataReductionSharedVolumeOk returns a tuple with the EnableDataReductionSharedVolume field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableDataReductionSharedVolume
+
+`func (o *StorageOptions) SetEnableDataReductionSharedVolume(v bool)`
+
+SetEnableDataReductionSharedVolume sets EnableDataReductionSharedVolume field to given value.
+
+### HasEnableDataReductionSharedVolume
+
+`func (o *StorageOptions) HasEnableDataReductionSharedVolume() bool`
+
+HasEnableDataReductionSharedVolume returns a boolean if a field has been set.
 
 ### GetVolumeName
 

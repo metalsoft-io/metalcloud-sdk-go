@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateInfinibandLogicalNetworkPkeyProperties{}
 
 // CreateInfinibandLogicalNetworkPkeyProperties struct for CreateInfinibandLogicalNetworkPkeyProperties
 type CreateInfinibandLogicalNetworkPkeyProperties struct {
-	PkeyAllocationStrategies []CreatePkeyAllocationStrategy1 `json:"pkeyAllocationStrategies"`
+	PkeyAllocationStrategies []CreatePkeyAllocationStrategy `json:"pkeyAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _CreateInfinibandLogicalNetworkPkeyProperties CreateInfinibandLogicalNetwor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInfinibandLogicalNetworkPkeyProperties(pkeyAllocationStrategies []CreatePkeyAllocationStrategy1) *CreateInfinibandLogicalNetworkPkeyProperties {
+func NewCreateInfinibandLogicalNetworkPkeyProperties(pkeyAllocationStrategies []CreatePkeyAllocationStrategy) *CreateInfinibandLogicalNetworkPkeyProperties {
 	this := CreateInfinibandLogicalNetworkPkeyProperties{}
 	this.PkeyAllocationStrategies = pkeyAllocationStrategies
 	return &this
@@ -46,9 +46,9 @@ func NewCreateInfinibandLogicalNetworkPkeyPropertiesWithDefaults() *CreateInfini
 }
 
 // GetPkeyAllocationStrategies returns the PkeyAllocationStrategies field value
-func (o *CreateInfinibandLogicalNetworkPkeyProperties) GetPkeyAllocationStrategies() []CreatePkeyAllocationStrategy1 {
+func (o *CreateInfinibandLogicalNetworkPkeyProperties) GetPkeyAllocationStrategies() []CreatePkeyAllocationStrategy {
 	if o == nil {
-		var ret []CreatePkeyAllocationStrategy1
+		var ret []CreatePkeyAllocationStrategy
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *CreateInfinibandLogicalNetworkPkeyProperties) GetPkeyAllocationStrategi
 
 // GetPkeyAllocationStrategiesOk returns a tuple with the PkeyAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *CreateInfinibandLogicalNetworkPkeyProperties) GetPkeyAllocationStrategiesOk() ([]CreatePkeyAllocationStrategy1, bool) {
+func (o *CreateInfinibandLogicalNetworkPkeyProperties) GetPkeyAllocationStrategiesOk() ([]CreatePkeyAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *CreateInfinibandLogicalNetworkPkeyProperties) GetPkeyAllocationStrategi
 }
 
 // SetPkeyAllocationStrategies sets field value
-func (o *CreateInfinibandLogicalNetworkPkeyProperties) SetPkeyAllocationStrategies(v []CreatePkeyAllocationStrategy1) {
+func (o *CreateInfinibandLogicalNetworkPkeyProperties) SetPkeyAllocationStrategies(v []CreatePkeyAllocationStrategy) {
 	o.PkeyAllocationStrategies = v
 }
 

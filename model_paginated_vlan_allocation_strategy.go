@@ -21,7 +21,7 @@ var _ MappedNullable = &PaginatedVlanAllocationStrategy{}
 
 // PaginatedVlanAllocationStrategy struct for PaginatedVlanAllocationStrategy
 type PaginatedVlanAllocationStrategy struct {
-	Data []VlanAllocationStrategy2DataItem `json:"data"`
+	Data []VlanAllocationStrategy `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _PaginatedVlanAllocationStrategy PaginatedVlanAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedVlanAllocationStrategy(data []VlanAllocationStrategy2DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedVlanAllocationStrategy {
+func NewPaginatedVlanAllocationStrategy(data []VlanAllocationStrategy, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedVlanAllocationStrategy {
 	this := PaginatedVlanAllocationStrategy{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewPaginatedVlanAllocationStrategyWithDefaults() *PaginatedVlanAllocationSt
 }
 
 // GetData returns the Data field value
-func (o *PaginatedVlanAllocationStrategy) GetData() []VlanAllocationStrategy2DataItem {
+func (o *PaginatedVlanAllocationStrategy) GetData() []VlanAllocationStrategy {
 	if o == nil {
-		var ret []VlanAllocationStrategy2DataItem
+		var ret []VlanAllocationStrategy
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *PaginatedVlanAllocationStrategy) GetData() []VlanAllocationStrategy2Dat
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *PaginatedVlanAllocationStrategy) GetDataOk() ([]VlanAllocationStrategy2DataItem, bool) {
+func (o *PaginatedVlanAllocationStrategy) GetDataOk() ([]VlanAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *PaginatedVlanAllocationStrategy) GetDataOk() ([]VlanAllocationStrategy2
 }
 
 // SetData sets field value
-func (o *PaginatedVlanAllocationStrategy) SetData(v []VlanAllocationStrategy2DataItem) {
+func (o *PaginatedVlanAllocationStrategy) SetData(v []VlanAllocationStrategy) {
 	o.Data = v
 }
 

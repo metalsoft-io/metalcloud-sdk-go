@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]Ipv4SubnetAllocationStrategy2DataItem**](Ipv4SubnetAllocationStrategy2DataItem.md) |  | 
+**Data** | [**[]Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewPaginatedIpv4SubnetAllocationStrategy
 
-`func NewPaginatedIpv4SubnetAllocationStrategy(data []Ipv4SubnetAllocationStrategy2DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedIpv4SubnetAllocationStrategy`
+`func NewPaginatedIpv4SubnetAllocationStrategy(data []Ipv4SubnetAllocationStrategy, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedIpv4SubnetAllocationStrategy`
 
 NewPaginatedIpv4SubnetAllocationStrategy instantiates a new PaginatedIpv4SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *PaginatedIpv4SubnetAllocationStrategy) GetData() []Ipv4SubnetAllocationStrategy2DataItem`
+`func (o *PaginatedIpv4SubnetAllocationStrategy) GetData() []Ipv4SubnetAllocationStrategy`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PaginatedIpv4SubnetAllocationStrategy) GetDataOk() (*[]Ipv4SubnetAllocationStrategy2DataItem, bool)`
+`func (o *PaginatedIpv4SubnetAllocationStrategy) GetDataOk() (*[]Ipv4SubnetAllocationStrategy, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PaginatedIpv4SubnetAllocationStrategy) SetData(v []Ipv4SubnetAllocationStrategy2DataItem)`
+`func (o *PaginatedIpv4SubnetAllocationStrategy) SetData(v []Ipv4SubnetAllocationStrategy)`
 
 SetData sets Data field to given value.
 

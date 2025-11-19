@@ -21,7 +21,7 @@ var _ MappedNullable = &LogicalNetworkConfigIpv6Properties{}
 
 // LogicalNetworkConfigIpv6Properties struct for LogicalNetworkConfigIpv6Properties
 type LogicalNetworkConfigIpv6Properties struct {
-	SubnetAllocationStrategies []Ipv6SubnetAllocationStrategy1 `json:"subnetAllocationStrategies"`
+	SubnetAllocationStrategies []Ipv6SubnetAllocationStrategy `json:"subnetAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _LogicalNetworkConfigIpv6Properties LogicalNetworkConfigIpv6Properties
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy1) *LogicalNetworkConfigIpv6Properties {
+func NewLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy) *LogicalNetworkConfigIpv6Properties {
 	this := LogicalNetworkConfigIpv6Properties{}
 	this.SubnetAllocationStrategies = subnetAllocationStrategies
 	return &this
@@ -46,9 +46,9 @@ func NewLogicalNetworkConfigIpv6PropertiesWithDefaults() *LogicalNetworkConfigIp
 }
 
 // GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field value
-func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy1 {
+func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy {
 	if o == nil {
-		var ret []Ipv6SubnetAllocationStrategy1
+		var ret []Ipv6SubnetAllocationStrategy
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []I
 
 // GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() ([]Ipv6SubnetAllocationStrategy1, bool) {
+func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() ([]Ipv6SubnetAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() (
 }
 
 // SetSubnetAllocationStrategies sets field value
-func (o *LogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy1) {
+func (o *LogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy) {
 	o.SubnetAllocationStrategies = v
 }
 

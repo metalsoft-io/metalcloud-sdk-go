@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pkeys** | [**[]PkeyAllocation**](PkeyAllocation.md) |  | 
-**PkeyAllocationStrategies** | [**[]PkeyAllocationStrategy1**](PkeyAllocationStrategy1.md) |  | 
+**PkeyAllocationStrategies** | [**[]PkeyAllocationStrategy**](PkeyAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewLogicalNetworkPkeyProperties
 
-`func NewLogicalNetworkPkeyProperties(pkeys []PkeyAllocation, pkeyAllocationStrategies []PkeyAllocationStrategy1, ) *LogicalNetworkPkeyProperties`
+`func NewLogicalNetworkPkeyProperties(pkeys []PkeyAllocation, pkeyAllocationStrategies []PkeyAllocationStrategy, ) *LogicalNetworkPkeyProperties`
 
 NewLogicalNetworkPkeyProperties instantiates a new LogicalNetworkPkeyProperties object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetPkeys sets Pkeys field to given value.
 
 ### GetPkeyAllocationStrategies
 
-`func (o *LogicalNetworkPkeyProperties) GetPkeyAllocationStrategies() []PkeyAllocationStrategy1`
+`func (o *LogicalNetworkPkeyProperties) GetPkeyAllocationStrategies() []PkeyAllocationStrategy`
 
 GetPkeyAllocationStrategies returns the PkeyAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetPkeyAllocationStrategiesOk
 
-`func (o *LogicalNetworkPkeyProperties) GetPkeyAllocationStrategiesOk() (*[]PkeyAllocationStrategy1, bool)`
+`func (o *LogicalNetworkPkeyProperties) GetPkeyAllocationStrategiesOk() (*[]PkeyAllocationStrategy, bool)`
 
 GetPkeyAllocationStrategiesOk returns a tuple with the PkeyAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPkeyAllocationStrategies
 
-`func (o *LogicalNetworkPkeyProperties) SetPkeyAllocationStrategies(v []PkeyAllocationStrategy1)`
+`func (o *LogicalNetworkPkeyProperties) SetPkeyAllocationStrategies(v []PkeyAllocationStrategy)`
 
 SetPkeyAllocationStrategies sets PkeyAllocationStrategies field to given value.
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PkeyAllocationStrategies** | [**[]CreatePkeyAllocationStrategy1**](CreatePkeyAllocationStrategy1.md) |  | 
+**PkeyAllocationStrategies** | [**[]CreatePkeyAllocationStrategy**](CreatePkeyAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewCreateLogicalNetworkPkeyProperties
 
-`func NewCreateLogicalNetworkPkeyProperties(pkeyAllocationStrategies []CreatePkeyAllocationStrategy1, ) *CreateLogicalNetworkPkeyProperties`
+`func NewCreateLogicalNetworkPkeyProperties(pkeyAllocationStrategies []CreatePkeyAllocationStrategy, ) *CreateLogicalNetworkPkeyProperties`
 
 NewCreateLogicalNetworkPkeyProperties instantiates a new CreateLogicalNetworkPkeyProperties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPkeyAllocationStrategies
 
-`func (o *CreateLogicalNetworkPkeyProperties) GetPkeyAllocationStrategies() []CreatePkeyAllocationStrategy1`
+`func (o *CreateLogicalNetworkPkeyProperties) GetPkeyAllocationStrategies() []CreatePkeyAllocationStrategy`
 
 GetPkeyAllocationStrategies returns the PkeyAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetPkeyAllocationStrategiesOk
 
-`func (o *CreateLogicalNetworkPkeyProperties) GetPkeyAllocationStrategiesOk() (*[]CreatePkeyAllocationStrategy1, bool)`
+`func (o *CreateLogicalNetworkPkeyProperties) GetPkeyAllocationStrategiesOk() (*[]CreatePkeyAllocationStrategy, bool)`
 
 GetPkeyAllocationStrategiesOk returns a tuple with the PkeyAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPkeyAllocationStrategies
 
-`func (o *CreateLogicalNetworkPkeyProperties) SetPkeyAllocationStrategies(v []CreatePkeyAllocationStrategy1)`
+`func (o *CreateLogicalNetworkPkeyProperties) SetPkeyAllocationStrategies(v []CreatePkeyAllocationStrategy)`
 
 SetPkeyAllocationStrategies sets PkeyAllocationStrategies field to given value.
 

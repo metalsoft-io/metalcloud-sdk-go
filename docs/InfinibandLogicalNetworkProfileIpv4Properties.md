@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubnetAllocationStrategies** | [**[]Ipv4SubnetAllocationStrategy1**](Ipv4SubnetAllocationStrategy1.md) |  | 
+**SubnetAllocationStrategies** | [**[]Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewInfinibandLogicalNetworkProfileIpv4Properties
 
-`func NewInfinibandLogicalNetworkProfileIpv4Properties(subnetAllocationStrategies []Ipv4SubnetAllocationStrategy1, ) *InfinibandLogicalNetworkProfileIpv4Properties`
+`func NewInfinibandLogicalNetworkProfileIpv4Properties(subnetAllocationStrategies []Ipv4SubnetAllocationStrategy, ) *InfinibandLogicalNetworkProfileIpv4Properties`
 
 NewInfinibandLogicalNetworkProfileIpv4Properties instantiates a new InfinibandLogicalNetworkProfileIpv4Properties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSubnetAllocationStrategies
 
-`func (o *InfinibandLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy1`
+`func (o *InfinibandLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy`
 
 GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetSubnetAllocationStrategiesOk
 
-`func (o *InfinibandLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv4SubnetAllocationStrategy1, bool)`
+`func (o *InfinibandLogicalNetworkProfileIpv4Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv4SubnetAllocationStrategy, bool)`
 
 GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetAllocationStrategies
 
-`func (o *InfinibandLogicalNetworkProfileIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy1)`
+`func (o *InfinibandLogicalNetworkProfileIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy)`
 
 SetSubnetAllocationStrategies sets SubnetAllocationStrategies field to given value.
 

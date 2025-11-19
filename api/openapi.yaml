@@ -15722,7 +15722,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VlanAllocationStrategy'
           description: The details of the specified Vlan allocation strategy.
         "401":
           description: Unauthorized
@@ -15767,7 +15767,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateVlanAllocationStrategy'
+              $ref: '#/components/schemas/CreateVlanAllocationStrategy'
         required: true
       responses:
         "200":
@@ -16094,7 +16094,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVniAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VniAllocationStrategy'
           description: The details of the specified Vni allocation strategy.
         "401":
           description: Unauthorized
@@ -16139,14 +16139,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileVniAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateVniAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVniAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VniAllocationStrategy'
           description: Vni allocation strategy replaced.
         "401":
           description: Unauthorized
@@ -16466,7 +16466,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfilePkeyAllocationStrategy_200_response'
+                $ref: '#/components/schemas/PkeyAllocationStrategy'
           description: The details of the specified Pkey allocation strategy.
         "401":
           description: Unauthorized
@@ -16511,14 +16511,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfilePkeyAllocationStrategy_request'
+              $ref: '#/components/schemas/CreatePkeyAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfilePkeyAllocationStrategy_200_response'
+                $ref: '#/components/schemas/PkeyAllocationStrategy'
           description: Pkey allocation strategy replaced.
         "401":
           description: Unauthorized
@@ -16838,7 +16838,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv4SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           description: The details of the specified Ipv4 Subnet allocation strategy.
         "401":
           description: Unauthorized
@@ -16883,14 +16883,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileIpv4SubnetAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv4SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           description: Ipv4 Subnet allocation strategy replaced.
         "401":
           description: Unauthorized
@@ -17210,7 +17210,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv6SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           description: The details of the specified Ipv6 Subnet allocation strategy.
         "401":
           description: Unauthorized
@@ -17255,14 +17255,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileIpv6SubnetAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv6SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           description: Ipv6 Subnet allocation strategy replaced.
         "401":
           description: Unauthorized
@@ -18754,14 +18754,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createLogicalNetworkConfigVlanAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateVlanAllocationStrategy'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VlanAllocationStrategy'
           description: Vlan allocation strategy created.
           headers:
             ETag:
@@ -18857,7 +18857,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VlanAllocationStrategy'
           description: The details of the specified Vlan allocation strategy.
           headers:
             ETag:
@@ -18909,14 +18909,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createLogicalNetworkConfigVlanAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateVlanAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VlanAllocationStrategy'
           description: Vlan allocation strategy replaced.
           headers:
             ETag:
@@ -19153,14 +19153,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileVniAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateVniAllocationStrategy'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVniAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VniAllocationStrategy'
           description: Vni allocation strategy created.
           headers:
             ETag:
@@ -19256,7 +19256,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVniAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VniAllocationStrategy'
           description: The details of the specified Vni allocation strategy.
           headers:
             ETag:
@@ -19308,14 +19308,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileVniAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateVniAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVniAllocationStrategy_200_response'
+                $ref: '#/components/schemas/VniAllocationStrategy'
           description: Vni allocation strategy replaced.
           headers:
             ETag:
@@ -19552,14 +19552,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfilePkeyAllocationStrategy_request'
+              $ref: '#/components/schemas/CreatePkeyAllocationStrategy'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfilePkeyAllocationStrategy_200_response'
+                $ref: '#/components/schemas/PkeyAllocationStrategy'
           description: Pkey allocation strategy created.
           headers:
             ETag:
@@ -19655,7 +19655,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfilePkeyAllocationStrategy_200_response'
+                $ref: '#/components/schemas/PkeyAllocationStrategy'
           description: The details of the specified Pkey allocation strategy.
           headers:
             ETag:
@@ -19707,14 +19707,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfilePkeyAllocationStrategy_request'
+              $ref: '#/components/schemas/CreatePkeyAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfilePkeyAllocationStrategy_200_response'
+                $ref: '#/components/schemas/PkeyAllocationStrategy'
           description: Pkey allocation strategy replaced.
           headers:
             ETag:
@@ -19951,14 +19951,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileIpv4SubnetAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv4SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           description: Ipv4 Subnet allocation strategy created.
           headers:
             ETag:
@@ -20054,7 +20054,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv4SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           description: The details of the specified Ipv4 Subnet allocation strategy.
           headers:
             ETag:
@@ -20106,14 +20106,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileIpv4SubnetAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv4SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           description: Ipv4 Subnet allocation strategy replaced.
           headers:
             ETag:
@@ -20350,14 +20350,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileIpv6SubnetAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv6SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           description: Ipv6 Subnet allocation strategy created.
           headers:
             ETag:
@@ -20453,7 +20453,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv6SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           description: The details of the specified Ipv6 Subnet allocation strategy.
           headers:
             ETag:
@@ -20505,14 +20505,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileIpv6SubnetAllocationStrategy_request'
+              $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileIpv6SubnetAllocationStrategy_200_response'
+                $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           description: Ipv6 Subnet allocation strategy replaced.
           headers:
             ETag:
@@ -41340,7 +41340,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getSiteControllerOneLiner_200_response'
+                $ref: '#/components/schemas/SiteControllerOneliner'
           description: Returns a one-liner command to install site controller
         "400":
           description: Bad request
@@ -53752,9 +53752,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-11-17T13:10:07.081Z
+        createdTimestamp: 2025-11-18T22:17:56.275Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-11-17T13:10:07.081Z
+        updatedTimestamp: 2025-11-18T22:17:56.275Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -53853,12 +53853,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.081Z
+          example: 2025-11-18T22:17:56.275Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.081Z
+          example: 2025-11-18T22:17:56.275Z
           format: date-time
           type: string
         links:
@@ -53890,9 +53890,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-11-17T13:10:07.081Z
+          createdTimestamp: 2025-11-18T22:17:56.275Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-11-17T13:10:07.081Z
+          updatedTimestamp: 2025-11-18T22:17:56.275Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -53909,9 +53909,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-11-17T13:10:07.081Z
+          createdTimestamp: 2025-11-18T22:17:56.275Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-11-17T13:10:07.081Z
+          updatedTimestamp: 2025-11-18T22:17:56.275Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -72055,7 +72055,7 @@ components:
       properties:
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreatePkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/CreatePkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -72064,7 +72064,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72073,7 +72073,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72119,7 +72119,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateVlanAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateVlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -72128,7 +72128,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72137,7 +72137,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72183,7 +72183,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateVlanAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateVlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -72192,7 +72192,7 @@ components:
       properties:
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateVniAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateVniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -72201,7 +72201,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72210,7 +72210,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72259,7 +72259,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -72268,7 +72268,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72277,7 +72277,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72342,7 +72342,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -72351,7 +72351,7 @@ components:
       properties:
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VniAllocationStrategy_1'
+            $ref: '#/components/schemas/VniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -72360,7 +72360,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72369,7 +72369,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -72868,7 +72868,7 @@ components:
       properties:
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreatePkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/CreatePkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -72898,7 +72898,7 @@ components:
           type: array
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/PkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -73106,7 +73106,7 @@ components:
       properties:
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/PkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -73115,7 +73115,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -73124,7 +73124,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -73189,8 +73189,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/LogicalNetworkProfile_1DataItem'
-          title: LogicalNetworkProfile
+            $ref: '#/components/schemas/LogicalNetworkProfile_1'
           type: array
         meta:
           allOf:
@@ -73231,7 +73230,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -73258,7 +73257,7 @@ components:
       properties:
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VniAllocationStrategy_1'
+            $ref: '#/components/schemas/VniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -73285,7 +73284,7 @@ components:
       properties:
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/PkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -73314,7 +73313,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -73343,7 +73342,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -73772,7 +73771,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateVlanAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateVlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -73793,7 +73792,7 @@ components:
       properties:
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateVniAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateVniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -73816,7 +73815,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -73839,7 +73838,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74013,8 +74012,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_2DataItem'
-          title: VlanAllocationStrategy
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
         meta:
           allOf:
@@ -74055,8 +74053,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/VniAllocationStrategy_2DataItem'
-          title: VniAllocationStrategy
+            $ref: '#/components/schemas/VniAllocationStrategy'
           type: array
         meta:
           allOf:
@@ -74097,8 +74094,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy_2DataItem'
-          title: PkeyAllocationStrategy
+            $ref: '#/components/schemas/PkeyAllocationStrategy'
           type: array
         meta:
           allOf:
@@ -74141,8 +74137,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_2DataItem'
-          title: Ipv4SubnetAllocationStrategy
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
         meta:
           allOf:
@@ -74185,8 +74180,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_2DataItem'
-          title: Ipv6SubnetAllocationStrategy
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
         meta:
           allOf:
@@ -74330,7 +74324,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -74339,7 +74333,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74348,7 +74342,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74416,7 +74410,7 @@ components:
           type: array
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -74430,7 +74424,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74444,7 +74438,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74532,7 +74526,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -74541,7 +74535,7 @@ components:
       properties:
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VniAllocationStrategy_1'
+            $ref: '#/components/schemas/VniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -74550,7 +74544,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74559,7 +74553,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74630,7 +74624,7 @@ components:
           type: array
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -74644,7 +74638,7 @@ components:
           type: array
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VniAllocationStrategy_1'
+            $ref: '#/components/schemas/VniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -74658,7 +74652,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74672,7 +74666,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74887,7 +74881,7 @@ components:
       properties:
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/PkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -74896,7 +74890,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74905,7 +74899,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -74973,7 +74967,7 @@ components:
           type: array
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/PkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -74987,7 +74981,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -75001,7 +74995,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -75089,8 +75083,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/LogicalNetwork_1DataItem'
-          title: LogicalNetwork
+            $ref: '#/components/schemas/LogicalNetwork_1'
           type: array
         meta:
           allOf:
@@ -75176,7 +75169,7 @@ components:
       properties:
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -75203,7 +75196,7 @@ components:
       properties:
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VniAllocationStrategy_1'
+            $ref: '#/components/schemas/VniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -75230,7 +75223,7 @@ components:
       properties:
         pkeyAllocationStrategies:
           items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy_1'
+            $ref: '#/components/schemas/PkeyAllocationStrategy'
           type: array
       required:
       - pkeyAllocationStrategies
@@ -75259,7 +75252,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -75288,7 +75281,7 @@ components:
       properties:
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -75479,7 +75472,7 @@ components:
           type: array
         vlanAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VlanAllocationStrategy_1'
+            $ref: '#/components/schemas/VlanAllocationStrategy'
           type: array
       required:
       - vlanAllocationStrategies
@@ -75510,7 +75503,7 @@ components:
           type: array
         vniAllocationStrategies:
           items:
-            $ref: '#/components/schemas/VniAllocationStrategy_1'
+            $ref: '#/components/schemas/VniAllocationStrategy'
           type: array
       required:
       - vniAllocationStrategies
@@ -75547,7 +75540,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -75584,7 +75577,7 @@ components:
           type: array
         subnetAllocationStrategies:
           items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy_1'
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
           type: array
       required:
       - subnetAllocationStrategies
@@ -78399,7 +78392,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-11-17T13:10:07.148Z
+        createdTimestamp: 2025-11-18T22:17:56.371Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -78408,7 +78401,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-11-17T13:10:07.148Z
+        updatedTimestamp: 2025-11-18T22:17:56.371Z
         revision: "1"
       properties:
         siteId:
@@ -78424,12 +78417,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.148Z
+          example: 2025-11-18T22:17:56.371Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.148Z
+          example: 2025-11-18T22:17:56.371Z
           format: date-time
           type: string
         links:
@@ -78451,7 +78444,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-11-17T13:10:07.148Z
+        - createdTimestamp: 2025-11-18T22:17:56.371Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -78460,9 +78453,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-11-17T13:10:07.148Z
+          updatedTimestamp: 2025-11-18T22:17:56.371Z
           revision: "1"
-        - createdTimestamp: 2025-11-17T13:10:07.148Z
+        - createdTimestamp: 2025-11-18T22:17:56.371Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -78471,7 +78464,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-11-17T13:10:07.148Z
+          updatedTimestamp: 2025-11-18T22:17:56.371Z
           revision: "1"
         meta: ""
         links: ""
@@ -79172,7 +79165,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-11-17T13:10:07.078Z
+        createdTimestamp: 2025-11-18T22:17:56.273Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -79220,7 +79213,7 @@ components:
           preparationPreview: preparationPreview
           configurationPreview: configurationPreview
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-11-17T13:10:07.078Z
+        updatedTimestamp: 2025-11-18T22:17:56.273Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -79369,12 +79362,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.078Z
+          example: 2025-11-18T22:17:56.273Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.078Z
+          example: 2025-11-18T22:17:56.273Z
           format: date-time
           type: string
         links:
@@ -79418,7 +79411,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-11-17T13:10:07.078Z
+        - createdTimestamp: 2025-11-18T22:17:56.273Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -79466,7 +79459,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-17T13:10:07.078Z
+          updatedTimestamp: 2025-11-18T22:17:56.273Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -79591,7 +79584,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-11-17T13:10:07.078Z
+        - createdTimestamp: 2025-11-18T22:17:56.273Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -79639,7 +79632,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-17T13:10:07.078Z
+          updatedTimestamp: 2025-11-18T22:17:56.273Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -79795,7 +79788,7 @@ components:
       example:
         interconnectType: dci-evpn
         bgpConfigurationTemplate: bgpConfigurationTemplate
-        createdTimestamp: 2025-11-17T13:10:07.16Z
+        createdTimestamp: 2025-11-18T22:17:56.377Z
         name: Primary DCI EVPN Interconnect
         description: Data center interconnect using EVPN
         links:
@@ -79806,7 +79799,7 @@ components:
         id: "1"
         label: dci-evpn-interconnect-01
         bgpNeighborTemplate: bgpNeighborTemplate
-        updatedTimestamp: 2025-11-17T13:10:07.16Z
+        updatedTimestamp: 2025-11-18T22:17:56.377Z
         revision: "1"
       properties:
         id:
@@ -79850,12 +79843,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.16Z
+          example: 2025-11-18T22:17:56.377Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.16Z
+          example: 2025-11-18T22:17:56.377Z
           format: date-time
           type: string
         links:
@@ -79876,7 +79869,7 @@ components:
         data:
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
-          createdTimestamp: 2025-11-17T13:10:07.16Z
+          createdTimestamp: 2025-11-18T22:17:56.377Z
           name: Primary DCI EVPN Interconnect
           description: Data center interconnect using EVPN
           links:
@@ -79887,11 +79880,11 @@ components:
           id: "1"
           label: dci-evpn-interconnect-01
           bgpNeighborTemplate: bgpNeighborTemplate
-          updatedTimestamp: 2025-11-17T13:10:07.16Z
+          updatedTimestamp: 2025-11-18T22:17:56.377Z
           revision: "1"
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
-          createdTimestamp: 2025-11-17T13:10:07.16Z
+          createdTimestamp: 2025-11-18T22:17:56.377Z
           name: Primary DCI EVPN Interconnect
           description: Data center interconnect using EVPN
           links:
@@ -79902,7 +79895,7 @@ components:
           id: "1"
           label: dci-evpn-interconnect-01
           bgpNeighborTemplate: bgpNeighborTemplate
-          updatedTimestamp: 2025-11-17T13:10:07.16Z
+          updatedTimestamp: 2025-11-18T22:17:56.377Z
           revision: "1"
         meta: ""
         links: ""
@@ -79937,7 +79930,7 @@ components:
         fabricAId: 2
         fabricANetworkEquipmentId: 1
         interconnectId: 2
-        createdTimestamp: 2025-11-17T13:10:07.161Z
+        createdTimestamp: 2025-11-18T22:17:56.378Z
         fabricBNetworkEquipmentId: 1
         links:
         - rel: self
@@ -79945,7 +79938,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-11-17T13:10:07.162Z
+        updatedTimestamp: 2025-11-18T22:17:56.378Z
         revision: "1"
         status: active
         fabricBId: 3
@@ -79956,12 +79949,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.161Z
+          example: 2025-11-18T22:17:56.378Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.162Z
+          example: 2025-11-18T22:17:56.378Z
           format: date-time
           type: string
         links:
@@ -80112,7 +80105,7 @@ components:
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2025-11-17T13:10:07.161Z
+          createdTimestamp: 2025-11-18T22:17:56.378Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -80120,14 +80113,14 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-17T13:10:07.162Z
+          updatedTimestamp: 2025-11-18T22:17:56.378Z
           revision: "1"
           status: active
           fabricBId: 3
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2025-11-17T13:10:07.161Z
+          createdTimestamp: 2025-11-18T22:17:56.378Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -80135,7 +80128,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-17T13:10:07.162Z
+          updatedTimestamp: 2025-11-18T22:17:56.378Z
           revision: "1"
           status: active
           fabricBId: 3
@@ -80195,7 +80188,7 @@ components:
     NetworkFabricList:
       example:
         data:
-        - createdTimestamp: 2025-11-17T13:10:07.078Z
+        - createdTimestamp: 2025-11-18T22:17:56.273Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -80243,7 +80236,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-17T13:10:07.078Z
+          updatedTimestamp: 2025-11-18T22:17:56.273Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -80368,7 +80361,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-11-17T13:10:07.078Z
+        - createdTimestamp: 2025-11-18T22:17:56.273Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -80416,7 +80409,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-17T13:10:07.078Z
+          updatedTimestamp: 2025-11-18T22:17:56.273Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -80705,9 +80698,9 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-11-17T13:10:07.162Z
+        createdTimestamp: 2025-11-18T22:17:56.378Z
         mlagPair: 0
-        updatedTimestamp: 2025-11-17T13:10:07.162Z
+        updatedTimestamp: 2025-11-18T22:17:56.379Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -80720,12 +80713,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.162Z
+          example: 2025-11-18T22:17:56.378Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.162Z
+          example: 2025-11-18T22:17:56.379Z
           format: date-time
           type: string
         revision:
@@ -80803,9 +80796,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-11-17T13:10:07.162Z
+          createdTimestamp: 2025-11-18T22:17:56.378Z
           mlagPair: 0
-          updatedTimestamp: 2025-11-17T13:10:07.162Z
+          updatedTimestamp: 2025-11-18T22:17:56.379Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -80816,9 +80809,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-11-17T13:10:07.162Z
+          createdTimestamp: 2025-11-18T22:17:56.378Z
           mlagPair: 0
-          updatedTimestamp: 2025-11-17T13:10:07.162Z
+          updatedTimestamp: 2025-11-18T22:17:56.379Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -83249,7 +83242,7 @@ components:
     ServerRegistrationProfile:
       example:
         settings: ""
-        createdTimestamp: 2025-11-17T13:10:07.5Z
+        createdTimestamp: 2025-11-18T22:17:56.666Z
         name: name
         links:
         - rel: self
@@ -83257,17 +83250,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
-        updatedTimestamp: 2025-11-17T13:10:07.501Z
+        updatedTimestamp: 2025-11-18T22:17:56.666Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.5Z
+          example: 2025-11-18T22:17:56.666Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.501Z
+          example: 2025-11-18T22:17:56.666Z
           format: date-time
           type: string
         revision:
@@ -83302,7 +83295,7 @@ components:
       example:
         data:
         - settings: ""
-          createdTimestamp: 2025-11-17T13:10:07.5Z
+          createdTimestamp: 2025-11-18T22:17:56.666Z
           name: name
           links:
           - rel: self
@@ -83310,10 +83303,10 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2025-11-17T13:10:07.501Z
+          updatedTimestamp: 2025-11-18T22:17:56.666Z
           revision: "1"
         - settings: ""
-          createdTimestamp: 2025-11-17T13:10:07.5Z
+          createdTimestamp: 2025-11-18T22:17:56.666Z
           name: name
           links:
           - rel: self
@@ -83321,7 +83314,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2025-11-17T13:10:07.501Z
+          updatedTimestamp: 2025-11-18T22:17:56.666Z
           revision: "1"
         meta: ""
         links: ""
@@ -84726,10 +84719,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-11-17T13:10:07.156Z
+        createdTimestamp: 2025-11-18T22:17:56.374Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-11-17T13:10:07.156Z
+        updatedTimestamp: 2025-11-18T22:17:56.374Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -84803,12 +84796,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.156Z
+          example: 2025-11-18T22:17:56.374Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.156Z
+          example: 2025-11-18T22:17:56.374Z
           format: date-time
           type: string
         links:
@@ -90959,7 +90952,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-11-17T13:10:07.143Z
+        createdTimestamp: 2025-11-18T22:17:56.362Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -90967,7 +90960,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-11-17T13:10:07.143Z
+        updatedTimestamp: 2025-11-18T22:17:56.362Z
         revision: "1"
       properties:
         id:
@@ -90996,12 +90989,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.143Z
+          example: 2025-11-18T22:17:56.362Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.143Z
+          example: 2025-11-18T22:17:56.362Z
           format: date-time
           type: string
         links:
@@ -91046,7 +91039,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-11-17T13:10:07.146Z
+        createdTimestamp: 2025-11-18T22:17:56.366Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -91057,7 +91050,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-11-17T13:10:07.146Z
+        updatedTimestamp: 2025-11-18T22:17:56.366Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -91091,12 +91084,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-17T13:10:07.146Z
+          example: 2025-11-18T22:17:56.366Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-17T13:10:07.146Z
+          example: 2025-11-18T22:17:56.366Z
           format: date-time
           type: string
         allocationInfo:
@@ -91120,7 +91113,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-11-17T13:10:07.146Z
+        - createdTimestamp: 2025-11-18T22:17:56.366Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -91131,10 +91124,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-11-17T13:10:07.146Z
+          updatedTimestamp: 2025-11-18T22:17:56.366Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2025-11-17T13:10:07.146Z
+        - createdTimestamp: 2025-11-18T22:17:56.366Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -91145,7 +91138,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-11-17T13:10:07.146Z
+          updatedTimestamp: 2025-11-18T22:17:56.366Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -91354,7 +91347,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-11-17T13:10:07.143Z
+          createdTimestamp: 2025-11-18T22:17:56.362Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -91362,12 +91355,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-17T13:10:07.143Z
+          updatedTimestamp: 2025-11-18T22:17:56.362Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-11-17T13:10:07.143Z
+          createdTimestamp: 2025-11-18T22:17:56.362Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -91375,7 +91368,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-17T13:10:07.143Z
+          updatedTimestamp: 2025-11-18T22:17:56.362Z
           revision: "1"
         meta: ""
         links: ""
@@ -93022,6 +93015,9 @@ components:
         enableAdvancedDeduplication:
           description: Enable advanced deduplication
           type: boolean
+        enableDataReductionSharedVolume:
+          description: Enable data reduction on a newly created shared volume
+          type: boolean
         volumeName:
           description: Volume name
           type: string
@@ -93449,6 +93445,9 @@ components:
           type: boolean
         enableAdvancedDeduplication:
           description: Enable advanced deduplication
+          type: boolean
+        enableDataReductionSharedVolume:
+          description: Enable data reduction on a newly created shared volume
           type: boolean
         volumeName:
           description: Volume name
@@ -98039,7 +98038,6 @@ components:
       - $ref: '#/components/schemas/CreateManualVlanAllocationStrategy'
       - $ref: '#/components/schemas/CreateAutoVlanAllocationStrategy'
       title: CreateVlanAllocationStrategy
-      type: object
     VlanAllocationStrategy:
       discriminator:
         propertyName: kind
@@ -98047,23 +98045,6 @@ components:
       - $ref: '#/components/schemas/ManualVlanAllocationStrategy'
       - $ref: '#/components/schemas/AutoVlanAllocationStrategy'
       title: VlanAllocationStrategy
-    getLogicalNetworkProfileVlanAllocationStrategy_200_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualVlanAllocationStrategy'
-      - $ref: '#/components/schemas/AutoVlanAllocationStrategy'
-    UpdateVlanAllocationStrategy:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualVlanAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoVlanAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualVlanAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoVlanAllocationStrategy'
-      title: UpdateVlanAllocationStrategy
-      type: object
     CreateVniAllocationStrategy:
       discriminator:
         mapping:
@@ -98074,7 +98055,6 @@ components:
       - $ref: '#/components/schemas/CreateManualVniAllocationStrategy'
       - $ref: '#/components/schemas/CreateAutoVniAllocationStrategy'
       title: CreateVniAllocationStrategy
-      type: object
     VniAllocationStrategy:
       discriminator:
         propertyName: kind
@@ -98082,22 +98062,6 @@ components:
       - $ref: '#/components/schemas/ManualVniAllocationStrategy'
       - $ref: '#/components/schemas/AutoVniAllocationStrategy'
       title: VniAllocationStrategy
-    getLogicalNetworkProfileVniAllocationStrategy_200_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualVniAllocationStrategy'
-      - $ref: '#/components/schemas/AutoVniAllocationStrategy'
-    replaceLogicalNetworkProfileVniAllocationStrategy_request:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualVniAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoVniAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualVniAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoVniAllocationStrategy'
-      type: object
     CreatePkeyAllocationStrategy:
       discriminator:
         mapping:
@@ -98108,7 +98072,6 @@ components:
       - $ref: '#/components/schemas/CreateManualPkeyAllocationStrategy'
       - $ref: '#/components/schemas/CreateAutoPkeyAllocationStrategy'
       title: CreatePkeyAllocationStrategy
-      type: object
     PkeyAllocationStrategy:
       discriminator:
         propertyName: kind
@@ -98116,22 +98079,6 @@ components:
       - $ref: '#/components/schemas/ManualPkeyAllocationStrategy'
       - $ref: '#/components/schemas/AutoPkeyAllocationStrategy'
       title: PkeyAllocationStrategy
-    getLogicalNetworkProfilePkeyAllocationStrategy_200_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualPkeyAllocationStrategy'
-      - $ref: '#/components/schemas/AutoPkeyAllocationStrategy'
-    replaceLogicalNetworkProfilePkeyAllocationStrategy_request:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualPkeyAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoPkeyAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualPkeyAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoPkeyAllocationStrategy'
-      type: object
     CreateIpv4SubnetAllocationStrategy:
       discriminator:
         mapping:
@@ -98142,7 +98089,6 @@ components:
       - $ref: '#/components/schemas/CreateManualIpv4SubnetAllocationStrategy'
       - $ref: '#/components/schemas/CreateAutoIpv4SubnetAllocationStrategy'
       title: CreateIpv4SubnetAllocationStrategy
-      type: object
     Ipv4SubnetAllocationStrategy:
       discriminator:
         propertyName: kind
@@ -98150,22 +98096,6 @@ components:
       - $ref: '#/components/schemas/ManualIpv4SubnetAllocationStrategy'
       - $ref: '#/components/schemas/AutoIpv4SubnetAllocationStrategy'
       title: Ipv4SubnetAllocationStrategy
-    getLogicalNetworkProfileIpv4SubnetAllocationStrategy_200_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualIpv4SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/AutoIpv4SubnetAllocationStrategy'
-    replaceLogicalNetworkProfileIpv4SubnetAllocationStrategy_request:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualIpv4SubnetAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoIpv4SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualIpv4SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoIpv4SubnetAllocationStrategy'
-      type: object
     CreateIpv6SubnetAllocationStrategy:
       discriminator:
         mapping:
@@ -98176,7 +98106,6 @@ components:
       - $ref: '#/components/schemas/CreateManualIpv6SubnetAllocationStrategy'
       - $ref: '#/components/schemas/CreateAutoIpv6SubnetAllocationStrategy'
       title: CreateIpv6SubnetAllocationStrategy
-      type: object
     Ipv6SubnetAllocationStrategy:
       discriminator:
         propertyName: kind
@@ -98184,38 +98113,13 @@ components:
       - $ref: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
       - $ref: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
       title: Ipv6SubnetAllocationStrategy
-    getLogicalNetworkProfileIpv6SubnetAllocationStrategy_200_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
-    replaceLogicalNetworkProfileIpv6SubnetAllocationStrategy_request:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualIpv6SubnetAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoIpv6SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualIpv6SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoIpv6SubnetAllocationStrategy'
-      type: object
-    createLogicalNetworkConfigVlanAllocationStrategy_request:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualVlanAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoVlanAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualVlanAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoVlanAllocationStrategy'
-      type: object
-    getSiteControllerOneLiner_200_response:
+    SiteControllerOneliner:
       example:
         command: command
       properties:
         command:
           type: string
+      title: SiteControllerOneliner
       type: object
     AuthenticationRequest_properties:
       description: Input options.
@@ -98298,173 +98202,22 @@ components:
       - $ref: '#/components/schemas/DellComponentFilter'
       - $ref: '#/components/schemas/LenovoComponentFilter'
       - $ref: '#/components/schemas/HpeComponentFilter'
-    CreatePkeyAllocationStrategy_1:
+    LogicalNetworkProfile_1:
       discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualPkeyAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoPkeyAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualPkeyAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoPkeyAllocationStrategy'
-      title: CreatePkeyAllocationStrategy
-    CreateIpv4SubnetAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualIpv4SubnetAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoIpv4SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualIpv4SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoIpv4SubnetAllocationStrategy'
-      title: CreateIpv4SubnetAllocationStrategy
-    CreateIpv6SubnetAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualIpv6SubnetAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoIpv6SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualIpv6SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoIpv6SubnetAllocationStrategy'
-      title: CreateIpv6SubnetAllocationStrategy
-    CreateVlanAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualVlanAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoVlanAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualVlanAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoVlanAllocationStrategy'
-      title: CreateVlanAllocationStrategy
-    CreateVniAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/CreateManualVniAllocationStrategy'
-          auto: '#/components/schemas/CreateAutoVniAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateManualVniAllocationStrategy'
-      - $ref: '#/components/schemas/CreateAutoVniAllocationStrategy'
-      title: CreateVniAllocationStrategy
-    VlanAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualVlanAllocationStrategy'
-          auto: '#/components/schemas/AutoVlanAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualVlanAllocationStrategy'
-      - $ref: '#/components/schemas/AutoVlanAllocationStrategy'
-      title: VlanAllocationStrategy
-    Ipv4SubnetAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualIpv4SubnetAllocationStrategy'
-          auto: '#/components/schemas/AutoIpv4SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualIpv4SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/AutoIpv4SubnetAllocationStrategy'
-      title: Ipv4SubnetAllocationStrategy
-    Ipv6SubnetAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
-          auto: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
-      title: Ipv6SubnetAllocationStrategy
-    VniAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualVniAllocationStrategy'
-          auto: '#/components/schemas/AutoVniAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualVniAllocationStrategy'
-      - $ref: '#/components/schemas/AutoVniAllocationStrategy'
-      title: VniAllocationStrategy
-    PkeyAllocationStrategy_1:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualPkeyAllocationStrategy'
-          auto: '#/components/schemas/AutoPkeyAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualPkeyAllocationStrategy'
-      - $ref: '#/components/schemas/AutoPkeyAllocationStrategy'
-      title: PkeyAllocationStrategy
-    LogicalNetworkProfile_1DataItem:
-      discriminator:
-        mapping:
-          vlan: '#/components/schemas/VlanLogicalNetworkProfile'
-          vxlan: '#/components/schemas/VxlanLogicalNetworkProfile'
-          infiniband: '#/components/schemas/InfinibandLogicalNetworkProfile'
         propertyName: kind
       oneOf:
       - $ref: '#/components/schemas/VlanLogicalNetworkProfile'
       - $ref: '#/components/schemas/VxlanLogicalNetworkProfile'
       - $ref: '#/components/schemas/InfinibandLogicalNetworkProfile'
-    VlanAllocationStrategy_2DataItem:
+      title: LogicalNetworkProfile
+    LogicalNetwork_1:
       discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualVlanAllocationStrategy'
-          auto: '#/components/schemas/AutoVlanAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualVlanAllocationStrategy'
-      - $ref: '#/components/schemas/AutoVlanAllocationStrategy'
-    VniAllocationStrategy_2DataItem:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualVniAllocationStrategy'
-          auto: '#/components/schemas/AutoVniAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualVniAllocationStrategy'
-      - $ref: '#/components/schemas/AutoVniAllocationStrategy'
-    PkeyAllocationStrategy_2DataItem:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualPkeyAllocationStrategy'
-          auto: '#/components/schemas/AutoPkeyAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualPkeyAllocationStrategy'
-      - $ref: '#/components/schemas/AutoPkeyAllocationStrategy'
-    Ipv4SubnetAllocationStrategy_2DataItem:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualIpv4SubnetAllocationStrategy'
-          auto: '#/components/schemas/AutoIpv4SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualIpv4SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/AutoIpv4SubnetAllocationStrategy'
-    Ipv6SubnetAllocationStrategy_2DataItem:
-      discriminator:
-        mapping:
-          manual: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
-          auto: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
-      - $ref: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
-    LogicalNetwork_1DataItem:
-      discriminator:
-        mapping:
-          vlan: '#/components/schemas/VlanLogicalNetwork'
-          vxlan: '#/components/schemas/VxlanLogicalNetwork'
-          infiniband: '#/components/schemas/InfinibandLogicalNetwork'
         propertyName: kind
       oneOf:
       - $ref: '#/components/schemas/VlanLogicalNetwork'
       - $ref: '#/components/schemas/VxlanLogicalNetwork'
       - $ref: '#/components/schemas/InfinibandLogicalNetwork'
+      title: LogicalNetwork
     NetworkFabric_fabricConfiguration:
       description: Network fabric configuration with type-specific properties based
         on the fabricType discriminator

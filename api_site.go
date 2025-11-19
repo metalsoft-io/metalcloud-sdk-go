@@ -659,7 +659,7 @@ func (r SiteAPIGetSiteControllerOneLinerRequest) GenerateSiteControllerOneliner(
 	return r
 }
 
-func (r SiteAPIGetSiteControllerOneLinerRequest) Execute() (*GetSiteControllerOneLiner200Response, *http.Response, error) {
+func (r SiteAPIGetSiteControllerOneLinerRequest) Execute() (*SiteControllerOneliner, *http.Response, error) {
 	return r.ApiService.GetSiteControllerOneLinerExecute(r)
 }
 
@@ -681,13 +681,13 @@ func (a *SiteAPIService) GetSiteControllerOneLiner(ctx context.Context, siteId f
 }
 
 // Execute executes the request
-//  @return GetSiteControllerOneLiner200Response
-func (a *SiteAPIService) GetSiteControllerOneLinerExecute(r SiteAPIGetSiteControllerOneLinerRequest) (*GetSiteControllerOneLiner200Response, *http.Response, error) {
+//  @return SiteControllerOneliner
+func (a *SiteAPIService) GetSiteControllerOneLinerExecute(r SiteAPIGetSiteControllerOneLinerRequest) (*SiteControllerOneliner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetSiteControllerOneLiner200Response
+		localVarReturnValue  *SiteControllerOneliner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.GetSiteControllerOneLiner")

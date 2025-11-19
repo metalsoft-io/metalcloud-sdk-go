@@ -21,7 +21,7 @@ var _ MappedNullable = &PaginatedPkeyAllocationStrategy{}
 
 // PaginatedPkeyAllocationStrategy struct for PaginatedPkeyAllocationStrategy
 type PaginatedPkeyAllocationStrategy struct {
-	Data []PkeyAllocationStrategy2DataItem `json:"data"`
+	Data []PkeyAllocationStrategy `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _PaginatedPkeyAllocationStrategy PaginatedPkeyAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedPkeyAllocationStrategy(data []PkeyAllocationStrategy2DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedPkeyAllocationStrategy {
+func NewPaginatedPkeyAllocationStrategy(data []PkeyAllocationStrategy, meta PaginatedResponseMeta, links PaginatedResponseLinks) *PaginatedPkeyAllocationStrategy {
 	this := PaginatedPkeyAllocationStrategy{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewPaginatedPkeyAllocationStrategyWithDefaults() *PaginatedPkeyAllocationSt
 }
 
 // GetData returns the Data field value
-func (o *PaginatedPkeyAllocationStrategy) GetData() []PkeyAllocationStrategy2DataItem {
+func (o *PaginatedPkeyAllocationStrategy) GetData() []PkeyAllocationStrategy {
 	if o == nil {
-		var ret []PkeyAllocationStrategy2DataItem
+		var ret []PkeyAllocationStrategy
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *PaginatedPkeyAllocationStrategy) GetData() []PkeyAllocationStrategy2Dat
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *PaginatedPkeyAllocationStrategy) GetDataOk() ([]PkeyAllocationStrategy2DataItem, bool) {
+func (o *PaginatedPkeyAllocationStrategy) GetDataOk() ([]PkeyAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *PaginatedPkeyAllocationStrategy) GetDataOk() ([]PkeyAllocationStrategy2
 }
 
 // SetData sets field value
-func (o *PaginatedPkeyAllocationStrategy) SetData(v []PkeyAllocationStrategy2DataItem) {
+func (o *PaginatedPkeyAllocationStrategy) SetData(v []PkeyAllocationStrategy) {
 	o.Data = v
 }
 

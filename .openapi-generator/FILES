@@ -147,12 +147,9 @@ docs/CreateInfinibandLogicalNetworkIpv6Properties.md
 docs/CreateInfinibandLogicalNetworkPkeyProperties.md
 docs/CreateInfinibandLogicalNetworkProfile.md
 docs/CreateIpv4SubnetAllocationStrategy.md
-docs/CreateIpv4SubnetAllocationStrategy1.md
 docs/CreateIpv6SubnetAllocationStrategy.md
-docs/CreateIpv6SubnetAllocationStrategy1.md
 docs/CreateLogicalNetwork.md
 docs/CreateLogicalNetworkACL.md
-docs/CreateLogicalNetworkConfigVlanAllocationStrategyRequest.md
 docs/CreateLogicalNetworkFromProfile.md
 docs/CreateLogicalNetworkIpv4Properties.md
 docs/CreateLogicalNetworkIpv6Properties.md
@@ -178,7 +175,6 @@ docs/CreateNetworkFabricInterconnectLink.md
 docs/CreateNetworkFabricLink.md
 docs/CreatePermission.md
 docs/CreatePkeyAllocationStrategy.md
-docs/CreatePkeyAllocationStrategy1.md
 docs/CreateResourcePool.md
 docs/CreateResourceScope.md
 docs/CreateRole.md
@@ -202,14 +198,12 @@ docs/CreateVMPoolOptions.md
 docs/CreateVMType.md
 docs/CreateVariable.md
 docs/CreateVlanAllocationStrategy.md
-docs/CreateVlanAllocationStrategy1.md
 docs/CreateVlanLogicalNetwork.md
 docs/CreateVlanLogicalNetworkIpv4Properties.md
 docs/CreateVlanLogicalNetworkIpv6Properties.md
 docs/CreateVlanLogicalNetworkProfile.md
 docs/CreateVlanLogicalNetworkVlanProperties.md
 docs/CreateVniAllocationStrategy.md
-docs/CreateVniAllocationStrategy1.md
 docs/CreateVxlanLogicalNetwork.md
 docs/CreateVxlanLogicalNetworkIpv4Properties.md
 docs/CreateVxlanLogicalNetworkIpv6Properties.md
@@ -368,14 +362,8 @@ docs/GenericDNSZoneInformation.md
 docs/GenericGUISettings.md
 docs/GenericMeta.md
 docs/GenericServiceStatus.md
-docs/GetLogicalNetworkProfileIpv4SubnetAllocationStrategy200Response.md
-docs/GetLogicalNetworkProfileIpv6SubnetAllocationStrategy200Response.md
-docs/GetLogicalNetworkProfilePkeyAllocationStrategy200Response.md
-docs/GetLogicalNetworkProfileVlanAllocationStrategy200Response.md
-docs/GetLogicalNetworkProfileVniAllocationStrategy200Response.md
 docs/GetResourceUtilizationDetailed.md
 docs/GetResourceUtilizationSummarized.md
-docs/GetSiteControllerOneLiner200Response.md
 docs/GlobalFirmwareUpgradeConfiguration.md
 docs/HpeComponentFilter.md
 docs/IServerFirmwareBinaryResponse.md
@@ -428,12 +416,8 @@ docs/InstancesSetPowerState.md
 docs/IpVersion.md
 docs/Ipv4SubnetAllocation.md
 docs/Ipv4SubnetAllocationStrategy.md
-docs/Ipv4SubnetAllocationStrategy1.md
-docs/Ipv4SubnetAllocationStrategy2DataItem.md
 docs/Ipv6SubnetAllocation.md
 docs/Ipv6SubnetAllocationStrategy.md
-docs/Ipv6SubnetAllocationStrategy1.md
-docs/Ipv6SubnetAllocationStrategy2DataItem.md
 docs/Job.md
 docs/JobAPI.md
 docs/JobArchive.md
@@ -457,7 +441,7 @@ docs/Link.md
 docs/LinkDuplex.md
 docs/Location.md
 docs/LogicalNetwork.md
-docs/LogicalNetwork1DataItem.md
+docs/LogicalNetwork1.md
 docs/LogicalNetworkACL.md
 docs/LogicalNetworkAPI.md
 docs/LogicalNetworkConfig.md
@@ -471,7 +455,7 @@ docs/LogicalNetworkIpv6Properties.md
 docs/LogicalNetworkKind.md
 docs/LogicalNetworkPkeyProperties.md
 docs/LogicalNetworkProfile.md
-docs/LogicalNetworkProfile1DataItem.md
+docs/LogicalNetworkProfile1.md
 docs/LogicalNetworkProfileAPI.md
 docs/LogicalNetworkProfileIpv4Properties.md
 docs/LogicalNetworkProfileIpv6Properties.md
@@ -573,8 +557,6 @@ docs/Permission.md
 docs/PermissionList.md
 docs/PkeyAllocation.md
 docs/PkeyAllocationStrategy.md
-docs/PkeyAllocationStrategy1.md
-docs/PkeyAllocationStrategy2DataItem.md
 docs/PolicyEntry.md
 docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
@@ -587,10 +569,6 @@ docs/RegisterServer.md
 docs/RegisterServerResponse.md
 docs/RegisterStorageResponse.md
 docs/RemoteConsoleInfo.md
-docs/ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md
-docs/ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md
-docs/ReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest.md
-docs/ReplaceLogicalNetworkProfileVniAllocationStrategyRequest.md
 docs/Repo.md
 docs/ResendUserVerificationEmail.md
 docs/ReservationInstallments.md
@@ -742,6 +720,7 @@ docs/SiteConfig.md
 docs/SiteConfigOSInstallationData.md
 docs/SiteConfigUpdate.md
 docs/SiteConfigVariables.md
+docs/SiteControllerOneliner.md
 docs/SiteControllerSeenAliveStatus.md
 docs/SiteCreate.md
 docs/SiteOSInstallationData.md
@@ -837,7 +816,6 @@ docs/UpdateVMPoolHostInterface.md
 docs/UpdateVMPoolOptions.md
 docs/UpdateVMType.md
 docs/UpdateVariable.md
-docs/UpdateVlanAllocationStrategy.md
 docs/User.md
 docs/UserAPI.md
 docs/UserApiKey.md
@@ -903,8 +881,6 @@ docs/Version.md
 docs/VlanAllocation.md
 docs/VlanAllocationGranularityLevel.md
 docs/VlanAllocationStrategy.md
-docs/VlanAllocationStrategy1.md
-docs/VlanAllocationStrategy2DataItem.md
 docs/VlanLogicalNetwork.md
 docs/VlanLogicalNetworkConfig.md
 docs/VlanLogicalNetworkConfigIpv4Properties.md
@@ -920,8 +896,6 @@ docs/VlanLogicalNetworkVlanProperties.md
 docs/VmInstanceContextVariables.md
 docs/VniAllocation.md
 docs/VniAllocationStrategy.md
-docs/VniAllocationStrategy1.md
-docs/VniAllocationStrategy2DataItem.md
 docs/VxlanLogicalNetwork.md
 docs/VxlanLogicalNetworkConfig.md
 docs/VxlanLogicalNetworkConfigIpv4Properties.md
@@ -1017,12 +991,9 @@ model_create_infiniband_logical_network_ipv6_properties.go
 model_create_infiniband_logical_network_pkey_properties.go
 model_create_infiniband_logical_network_profile.go
 model_create_ipv4_subnet_allocation_strategy.go
-model_create_ipv4_subnet_allocation_strategy_1.go
 model_create_ipv6_subnet_allocation_strategy.go
-model_create_ipv6_subnet_allocation_strategy_1.go
 model_create_logical_network.go
 model_create_logical_network_acl.go
-model_create_logical_network_config_vlan_allocation_strategy_request.go
 model_create_logical_network_from_profile.go
 model_create_logical_network_ipv4_properties.go
 model_create_logical_network_ipv6_properties.go
@@ -1048,7 +1019,6 @@ model_create_network_fabric_interconnect_link.go
 model_create_network_fabric_link.go
 model_create_permission.go
 model_create_pkey_allocation_strategy.go
-model_create_pkey_allocation_strategy_1.go
 model_create_resource_pool.go
 model_create_resource_scope.go
 model_create_role.go
@@ -1066,7 +1036,6 @@ model_create_user.go
 model_create_user_ssh_key.go
 model_create_variable.go
 model_create_vlan_allocation_strategy.go
-model_create_vlan_allocation_strategy_1.go
 model_create_vlan_logical_network.go
 model_create_vlan_logical_network_ipv4_properties.go
 model_create_vlan_logical_network_ipv6_properties.go
@@ -1079,7 +1048,6 @@ model_create_vm_pool.go
 model_create_vm_pool_options.go
 model_create_vm_type.go
 model_create_vni_allocation_strategy.go
-model_create_vni_allocation_strategy_1.go
 model_create_vxlan_logical_network.go
 model_create_vxlan_logical_network_ipv4_properties.go
 model_create_vxlan_logical_network_ipv6_properties.go
@@ -1220,14 +1188,8 @@ model_generic_dns_zone_information.go
 model_generic_gui_settings.go
 model_generic_meta.go
 model_generic_service_status.go
-model_get_logical_network_profile_ipv4_subnet_allocation_strategy_200_response.go
-model_get_logical_network_profile_ipv6_subnet_allocation_strategy_200_response.go
-model_get_logical_network_profile_pkey_allocation_strategy_200_response.go
-model_get_logical_network_profile_vlan_allocation_strategy_200_response.go
-model_get_logical_network_profile_vni_allocation_strategy_200_response.go
 model_get_resource_utilization_detailed.go
 model_get_resource_utilization_summarized.go
-model_get_site_controller_one_liner_200_response.go
 model_global_firmware_upgrade_configuration.go
 model_hpe_component_filter.go
 model_i_server_firmware_binary_response.go
@@ -1279,12 +1241,8 @@ model_instances_set_power_state.go
 model_ip_version.go
 model_ipv4_subnet_allocation.go
 model_ipv4_subnet_allocation_strategy.go
-model_ipv4_subnet_allocation_strategy_1.go
-model_ipv4_subnet_allocation_strategy_2_data_item.go
 model_ipv6_subnet_allocation.go
 model_ipv6_subnet_allocation_strategy.go
-model_ipv6_subnet_allocation_strategy_1.go
-model_ipv6_subnet_allocation_strategy_2_data_item.go
 model_job.go
 model_job_archive.go
 model_job_archive_paginated_list.go
@@ -1307,7 +1265,7 @@ model_link.go
 model_link_duplex.go
 model_location.go
 model_logical_network.go
-model_logical_network_1_data_item.go
+model_logical_network_1.go
 model_logical_network_acl.go
 model_logical_network_config.go
 model_logical_network_config_ipv4_properties.go
@@ -1320,7 +1278,7 @@ model_logical_network_ipv6_properties.go
 model_logical_network_kind.go
 model_logical_network_pkey_properties.go
 model_logical_network_profile.go
-model_logical_network_profile_1_data_item.go
+model_logical_network_profile_1.go
 model_logical_network_profile_ipv4_properties.go
 model_logical_network_profile_ipv6_properties.go
 model_logical_network_profile_pkey_properties.go
@@ -1413,8 +1371,6 @@ model_permission.go
 model_permission_list.go
 model_pkey_allocation.go
 model_pkey_allocation_strategy.go
-model_pkey_allocation_strategy_1.go
-model_pkey_allocation_strategy_2_data_item.go
 model_policy_entry.go
 model_public_signup_disabled.go
 model_re_register_server_response.go
@@ -1427,10 +1383,6 @@ model_register_server.go
 model_register_server_response.go
 model_register_storage_response.go
 model_remote_console_info.go
-model_replace_logical_network_profile_ipv4_subnet_allocation_strategy_request.go
-model_replace_logical_network_profile_ipv6_subnet_allocation_strategy_request.go
-model_replace_logical_network_profile_pkey_allocation_strategy_request.go
-model_replace_logical_network_profile_vni_allocation_strategy_request.go
 model_repo.go
 model_resend_user_verification_email.go
 model_reservation_installments.go
@@ -1570,6 +1522,7 @@ model_site_config.go
 model_site_config_os_installation_data.go
 model_site_config_update.go
 model_site_config_variables.go
+model_site_controller_oneliner.go
 model_site_controller_seen_alive_status.go
 model_site_create.go
 model_site_os_installation_data.go
@@ -1650,7 +1603,6 @@ model_update_subnet.go
 model_update_user.go
 model_update_user_permissions.go
 model_update_variable.go
-model_update_vlan_allocation_strategy.go
 model_update_vm.go
 model_update_vm_instance.go
 model_update_vm_instance_group.go
@@ -1685,8 +1637,6 @@ model_version.go
 model_vlan_allocation.go
 model_vlan_allocation_granularity_level.go
 model_vlan_allocation_strategy.go
-model_vlan_allocation_strategy_1.go
-model_vlan_allocation_strategy_2_data_item.go
 model_vlan_logical_network.go
 model_vlan_logical_network_config.go
 model_vlan_logical_network_config_ipv4_properties.go
@@ -1735,8 +1685,6 @@ model_vm_type.go
 model_vm_type_paginated_list.go
 model_vni_allocation.go
 model_vni_allocation_strategy.go
-model_vni_allocation_strategy_1.go
-model_vni_allocation_strategy_2_data_item.go
 model_vxlan_logical_network.go
 model_vxlan_logical_network_config.go
 model_vxlan_logical_network_config_ipv4_properties.go

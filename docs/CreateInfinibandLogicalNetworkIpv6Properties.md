@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubnetAllocationStrategies** | [**[]CreateIpv6SubnetAllocationStrategy1**](CreateIpv6SubnetAllocationStrategy1.md) |  | 
+**SubnetAllocationStrategies** | [**[]CreateIpv6SubnetAllocationStrategy**](CreateIpv6SubnetAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewCreateInfinibandLogicalNetworkIpv6Properties
 
-`func NewCreateInfinibandLogicalNetworkIpv6Properties(subnetAllocationStrategies []CreateIpv6SubnetAllocationStrategy1, ) *CreateInfinibandLogicalNetworkIpv6Properties`
+`func NewCreateInfinibandLogicalNetworkIpv6Properties(subnetAllocationStrategies []CreateIpv6SubnetAllocationStrategy, ) *CreateInfinibandLogicalNetworkIpv6Properties`
 
 NewCreateInfinibandLogicalNetworkIpv6Properties instantiates a new CreateInfinibandLogicalNetworkIpv6Properties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSubnetAllocationStrategies
 
-`func (o *CreateInfinibandLogicalNetworkIpv6Properties) GetSubnetAllocationStrategies() []CreateIpv6SubnetAllocationStrategy1`
+`func (o *CreateInfinibandLogicalNetworkIpv6Properties) GetSubnetAllocationStrategies() []CreateIpv6SubnetAllocationStrategy`
 
 GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetSubnetAllocationStrategiesOk
 
-`func (o *CreateInfinibandLogicalNetworkIpv6Properties) GetSubnetAllocationStrategiesOk() (*[]CreateIpv6SubnetAllocationStrategy1, bool)`
+`func (o *CreateInfinibandLogicalNetworkIpv6Properties) GetSubnetAllocationStrategiesOk() (*[]CreateIpv6SubnetAllocationStrategy, bool)`
 
 GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetAllocationStrategies
 
-`func (o *CreateInfinibandLogicalNetworkIpv6Properties) SetSubnetAllocationStrategies(v []CreateIpv6SubnetAllocationStrategy1)`
+`func (o *CreateInfinibandLogicalNetworkIpv6Properties) SetSubnetAllocationStrategies(v []CreateIpv6SubnetAllocationStrategy)`
 
 SetSubnetAllocationStrategies sets SubnetAllocationStrategies field to given value.
 

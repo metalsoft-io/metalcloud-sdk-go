@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Subnets** | [**[]Ipv4SubnetAllocation**](Ipv4SubnetAllocation.md) |  | 
-**SubnetAllocationStrategies** | [**[]Ipv4SubnetAllocationStrategy1**](Ipv4SubnetAllocationStrategy1.md) |  | 
+**SubnetAllocationStrategies** | [**[]Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewLogicalNetworkIpv4Properties
 
-`func NewLogicalNetworkIpv4Properties(subnets []Ipv4SubnetAllocation, subnetAllocationStrategies []Ipv4SubnetAllocationStrategy1, ) *LogicalNetworkIpv4Properties`
+`func NewLogicalNetworkIpv4Properties(subnets []Ipv4SubnetAllocation, subnetAllocationStrategies []Ipv4SubnetAllocationStrategy, ) *LogicalNetworkIpv4Properties`
 
 NewLogicalNetworkIpv4Properties instantiates a new LogicalNetworkIpv4Properties object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetSubnets sets Subnets field to given value.
 
 ### GetSubnetAllocationStrategies
 
-`func (o *LogicalNetworkIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy1`
+`func (o *LogicalNetworkIpv4Properties) GetSubnetAllocationStrategies() []Ipv4SubnetAllocationStrategy`
 
 GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetSubnetAllocationStrategiesOk
 
-`func (o *LogicalNetworkIpv4Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv4SubnetAllocationStrategy1, bool)`
+`func (o *LogicalNetworkIpv4Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv4SubnetAllocationStrategy, bool)`
 
 GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetAllocationStrategies
 
-`func (o *LogicalNetworkIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy1)`
+`func (o *LogicalNetworkIpv4Properties) SetSubnetAllocationStrategies(v []Ipv4SubnetAllocationStrategy)`
 
 SetSubnetAllocationStrategies sets SubnetAllocationStrategies field to given value.
 

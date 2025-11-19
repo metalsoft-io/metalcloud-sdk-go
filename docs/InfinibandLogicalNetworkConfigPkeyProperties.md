@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PkeyAllocationStrategies** | [**[]PkeyAllocationStrategy1**](PkeyAllocationStrategy1.md) |  | 
+**PkeyAllocationStrategies** | [**[]PkeyAllocationStrategy**](PkeyAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewInfinibandLogicalNetworkConfigPkeyProperties
 
-`func NewInfinibandLogicalNetworkConfigPkeyProperties(pkeyAllocationStrategies []PkeyAllocationStrategy1, ) *InfinibandLogicalNetworkConfigPkeyProperties`
+`func NewInfinibandLogicalNetworkConfigPkeyProperties(pkeyAllocationStrategies []PkeyAllocationStrategy, ) *InfinibandLogicalNetworkConfigPkeyProperties`
 
 NewInfinibandLogicalNetworkConfigPkeyProperties instantiates a new InfinibandLogicalNetworkConfigPkeyProperties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPkeyAllocationStrategies
 
-`func (o *InfinibandLogicalNetworkConfigPkeyProperties) GetPkeyAllocationStrategies() []PkeyAllocationStrategy1`
+`func (o *InfinibandLogicalNetworkConfigPkeyProperties) GetPkeyAllocationStrategies() []PkeyAllocationStrategy`
 
 GetPkeyAllocationStrategies returns the PkeyAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetPkeyAllocationStrategiesOk
 
-`func (o *InfinibandLogicalNetworkConfigPkeyProperties) GetPkeyAllocationStrategiesOk() (*[]PkeyAllocationStrategy1, bool)`
+`func (o *InfinibandLogicalNetworkConfigPkeyProperties) GetPkeyAllocationStrategiesOk() (*[]PkeyAllocationStrategy, bool)`
 
 GetPkeyAllocationStrategiesOk returns a tuple with the PkeyAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPkeyAllocationStrategies
 
-`func (o *InfinibandLogicalNetworkConfigPkeyProperties) SetPkeyAllocationStrategies(v []PkeyAllocationStrategy1)`
+`func (o *InfinibandLogicalNetworkConfigPkeyProperties) SetPkeyAllocationStrategies(v []PkeyAllocationStrategy)`
 
 SetPkeyAllocationStrategies sets PkeyAllocationStrategies field to given value.
 

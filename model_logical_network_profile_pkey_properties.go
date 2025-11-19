@@ -21,7 +21,7 @@ var _ MappedNullable = &LogicalNetworkProfilePkeyProperties{}
 
 // LogicalNetworkProfilePkeyProperties struct for LogicalNetworkProfilePkeyProperties
 type LogicalNetworkProfilePkeyProperties struct {
-	PkeyAllocationStrategies []PkeyAllocationStrategy1 `json:"pkeyAllocationStrategies"`
+	PkeyAllocationStrategies []PkeyAllocationStrategy `json:"pkeyAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _LogicalNetworkProfilePkeyProperties LogicalNetworkProfilePkeyProperties
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogicalNetworkProfilePkeyProperties(pkeyAllocationStrategies []PkeyAllocationStrategy1) *LogicalNetworkProfilePkeyProperties {
+func NewLogicalNetworkProfilePkeyProperties(pkeyAllocationStrategies []PkeyAllocationStrategy) *LogicalNetworkProfilePkeyProperties {
 	this := LogicalNetworkProfilePkeyProperties{}
 	this.PkeyAllocationStrategies = pkeyAllocationStrategies
 	return &this
@@ -46,9 +46,9 @@ func NewLogicalNetworkProfilePkeyPropertiesWithDefaults() *LogicalNetworkProfile
 }
 
 // GetPkeyAllocationStrategies returns the PkeyAllocationStrategies field value
-func (o *LogicalNetworkProfilePkeyProperties) GetPkeyAllocationStrategies() []PkeyAllocationStrategy1 {
+func (o *LogicalNetworkProfilePkeyProperties) GetPkeyAllocationStrategies() []PkeyAllocationStrategy {
 	if o == nil {
-		var ret []PkeyAllocationStrategy1
+		var ret []PkeyAllocationStrategy
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *LogicalNetworkProfilePkeyProperties) GetPkeyAllocationStrategies() []Pk
 
 // GetPkeyAllocationStrategiesOk returns a tuple with the PkeyAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkProfilePkeyProperties) GetPkeyAllocationStrategiesOk() ([]PkeyAllocationStrategy1, bool) {
+func (o *LogicalNetworkProfilePkeyProperties) GetPkeyAllocationStrategiesOk() ([]PkeyAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *LogicalNetworkProfilePkeyProperties) GetPkeyAllocationStrategiesOk() ([
 }
 
 // SetPkeyAllocationStrategies sets field value
-func (o *LogicalNetworkProfilePkeyProperties) SetPkeyAllocationStrategies(v []PkeyAllocationStrategy1) {
+func (o *LogicalNetworkProfilePkeyProperties) SetPkeyAllocationStrategies(v []PkeyAllocationStrategy) {
 	o.PkeyAllocationStrategies = v
 }
 

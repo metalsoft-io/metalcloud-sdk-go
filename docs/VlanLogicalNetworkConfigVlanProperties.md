@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VlanAllocationStrategies** | [**[]VlanAllocationStrategy1**](VlanAllocationStrategy1.md) |  | 
+**VlanAllocationStrategies** | [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewVlanLogicalNetworkConfigVlanProperties
 
-`func NewVlanLogicalNetworkConfigVlanProperties(vlanAllocationStrategies []VlanAllocationStrategy1, ) *VlanLogicalNetworkConfigVlanProperties`
+`func NewVlanLogicalNetworkConfigVlanProperties(vlanAllocationStrategies []VlanAllocationStrategy, ) *VlanLogicalNetworkConfigVlanProperties`
 
 NewVlanLogicalNetworkConfigVlanProperties instantiates a new VlanLogicalNetworkConfigVlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVlanAllocationStrategies
 
-`func (o *VlanLogicalNetworkConfigVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy1`
+`func (o *VlanLogicalNetworkConfigVlanProperties) GetVlanAllocationStrategies() []VlanAllocationStrategy`
 
 GetVlanAllocationStrategies returns the VlanAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVlanAllocationStrategiesOk
 
-`func (o *VlanLogicalNetworkConfigVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy1, bool)`
+`func (o *VlanLogicalNetworkConfigVlanProperties) GetVlanAllocationStrategiesOk() (*[]VlanAllocationStrategy, bool)`
 
 GetVlanAllocationStrategiesOk returns a tuple with the VlanAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanAllocationStrategies
 
-`func (o *VlanLogicalNetworkConfigVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy1)`
+`func (o *VlanLogicalNetworkConfigVlanProperties) SetVlanAllocationStrategies(v []VlanAllocationStrategy)`
 
 SetVlanAllocationStrategies sets VlanAllocationStrategies field to given value.
 

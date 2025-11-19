@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 
 ## GetSiteControllerOneLiner
 
-> GetSiteControllerOneLiner200Response GetSiteControllerOneLiner(ctx, siteId).GenerateSiteControllerOneliner(generateSiteControllerOneliner).Execute()
+> SiteControllerOneliner GetSiteControllerOneLiner(ctx, siteId).GenerateSiteControllerOneliner(generateSiteControllerOneliner).Execute()
 
 Get a one liner to configure a site controller
 
@@ -456,7 +456,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SiteAPI.GetSiteControllerOneLiner``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetSiteControllerOneLiner`: GetSiteControllerOneLiner200Response
+	// response from `GetSiteControllerOneLiner`: SiteControllerOneliner
 	fmt.Fprintf(os.Stdout, "Response from `SiteAPI.GetSiteControllerOneLiner`: %v\n", resp)
 }
 ```
@@ -481,7 +481,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSiteControllerOneLiner200Response**](GetSiteControllerOneLiner200Response.md)
+[**SiteControllerOneliner**](SiteControllerOneliner.md)
 
 ### Authorization
 

@@ -21,7 +21,7 @@ var _ MappedNullable = &InfinibandLogicalNetworkConfigIpv6Properties{}
 
 // InfinibandLogicalNetworkConfigIpv6Properties struct for InfinibandLogicalNetworkConfigIpv6Properties
 type InfinibandLogicalNetworkConfigIpv6Properties struct {
-	SubnetAllocationStrategies []Ipv6SubnetAllocationStrategy1 `json:"subnetAllocationStrategies"`
+	SubnetAllocationStrategies []Ipv6SubnetAllocationStrategy `json:"subnetAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _InfinibandLogicalNetworkConfigIpv6Properties InfinibandLogicalNetworkConfi
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfinibandLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy1) *InfinibandLogicalNetworkConfigIpv6Properties {
+func NewInfinibandLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy) *InfinibandLogicalNetworkConfigIpv6Properties {
 	this := InfinibandLogicalNetworkConfigIpv6Properties{}
 	this.SubnetAllocationStrategies = subnetAllocationStrategies
 	return &this
@@ -46,9 +46,9 @@ func NewInfinibandLogicalNetworkConfigIpv6PropertiesWithDefaults() *InfinibandLo
 }
 
 // GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field value
-func (o *InfinibandLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy1 {
+func (o *InfinibandLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy {
 	if o == nil {
-		var ret []Ipv6SubnetAllocationStrategy1
+		var ret []Ipv6SubnetAllocationStrategy
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *InfinibandLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrate
 
 // GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field value
 // and a boolean to check if the value has been set.
-func (o *InfinibandLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() ([]Ipv6SubnetAllocationStrategy1, bool) {
+func (o *InfinibandLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() ([]Ipv6SubnetAllocationStrategy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *InfinibandLogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrate
 }
 
 // SetSubnetAllocationStrategies sets field value
-func (o *InfinibandLogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy1) {
+func (o *InfinibandLogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy) {
 	o.SubnetAllocationStrategies = v
 }
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubnetAllocationStrategies** | [**[]Ipv6SubnetAllocationStrategy1**](Ipv6SubnetAllocationStrategy1.md) |  | 
+**SubnetAllocationStrategies** | [**[]Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewLogicalNetworkConfigIpv6Properties
 
-`func NewLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy1, ) *LogicalNetworkConfigIpv6Properties`
+`func NewLogicalNetworkConfigIpv6Properties(subnetAllocationStrategies []Ipv6SubnetAllocationStrategy, ) *LogicalNetworkConfigIpv6Properties`
 
 NewLogicalNetworkConfigIpv6Properties instantiates a new LogicalNetworkConfigIpv6Properties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSubnetAllocationStrategies
 
-`func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy1`
+`func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategies() []Ipv6SubnetAllocationStrategy`
 
 GetSubnetAllocationStrategies returns the SubnetAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetSubnetAllocationStrategiesOk
 
-`func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv6SubnetAllocationStrategy1, bool)`
+`func (o *LogicalNetworkConfigIpv6Properties) GetSubnetAllocationStrategiesOk() (*[]Ipv6SubnetAllocationStrategy, bool)`
 
 GetSubnetAllocationStrategiesOk returns a tuple with the SubnetAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetAllocationStrategies
 
-`func (o *LogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy1)`
+`func (o *LogicalNetworkConfigIpv6Properties) SetSubnetAllocationStrategies(v []Ipv6SubnetAllocationStrategy)`
 
 SetSubnetAllocationStrategies sets SubnetAllocationStrategies field to given value.
 

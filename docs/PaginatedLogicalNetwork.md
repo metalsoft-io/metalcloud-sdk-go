@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]LogicalNetwork1DataItem**](LogicalNetwork1DataItem.md) |  | 
+**Data** | [**[]LogicalNetwork1**](LogicalNetwork1.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewPaginatedLogicalNetwork
 
-`func NewPaginatedLogicalNetwork(data []LogicalNetwork1DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedLogicalNetwork`
+`func NewPaginatedLogicalNetwork(data []LogicalNetwork1, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedLogicalNetwork`
 
 NewPaginatedLogicalNetwork instantiates a new PaginatedLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *PaginatedLogicalNetwork) GetData() []LogicalNetwork1DataItem`
+`func (o *PaginatedLogicalNetwork) GetData() []LogicalNetwork1`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PaginatedLogicalNetwork) GetDataOk() (*[]LogicalNetwork1DataItem, bool)`
+`func (o *PaginatedLogicalNetwork) GetDataOk() (*[]LogicalNetwork1, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PaginatedLogicalNetwork) SetData(v []LogicalNetwork1DataItem)`
+`func (o *PaginatedLogicalNetwork) SetData(v []LogicalNetwork1)`
 
 SetData sets Data field to given value.
 

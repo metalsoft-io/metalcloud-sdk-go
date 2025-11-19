@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VniAllocationStrategies** | [**[]CreateVniAllocationStrategy1**](CreateVniAllocationStrategy1.md) |  | 
+**VniAllocationStrategies** | [**[]CreateVniAllocationStrategy**](CreateVniAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewCreateVxlanLogicalNetworkVxlanProperties
 
-`func NewCreateVxlanLogicalNetworkVxlanProperties(vniAllocationStrategies []CreateVniAllocationStrategy1, ) *CreateVxlanLogicalNetworkVxlanProperties`
+`func NewCreateVxlanLogicalNetworkVxlanProperties(vniAllocationStrategies []CreateVniAllocationStrategy, ) *CreateVxlanLogicalNetworkVxlanProperties`
 
 NewCreateVxlanLogicalNetworkVxlanProperties instantiates a new CreateVxlanLogicalNetworkVxlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVniAllocationStrategies
 
-`func (o *CreateVxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategies() []CreateVniAllocationStrategy1`
+`func (o *CreateVxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategies() []CreateVniAllocationStrategy`
 
 GetVniAllocationStrategies returns the VniAllocationStrategies field if non-nil, zero value otherwise.
 
 ### GetVniAllocationStrategiesOk
 
-`func (o *CreateVxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategiesOk() (*[]CreateVniAllocationStrategy1, bool)`
+`func (o *CreateVxlanLogicalNetworkVxlanProperties) GetVniAllocationStrategiesOk() (*[]CreateVniAllocationStrategy, bool)`
 
 GetVniAllocationStrategiesOk returns a tuple with the VniAllocationStrategies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVniAllocationStrategies
 
-`func (o *CreateVxlanLogicalNetworkVxlanProperties) SetVniAllocationStrategies(v []CreateVniAllocationStrategy1)`
+`func (o *CreateVxlanLogicalNetworkVxlanProperties) SetVniAllocationStrategies(v []CreateVniAllocationStrategy)`
 
 SetVniAllocationStrategies sets VniAllocationStrategies field to given value.
 
