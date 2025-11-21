@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InterfaceId** | **string** | The ID of the network equipment interface | 
-**NetworkDeviceId** | **string** | The ID of the network device | 
+**InterfaceId** | **float32** | The ID of the network equipment interface | 
+**NetworkDeviceId** | **float32** | The ID of the network device | 
 **InterfaceName** | **string** | The name of the network equipment interface | 
 **InterfaceIndex** | Pointer to **float32** | The index of the network interface | [optional] 
 **LagIdentifier** | Pointer to **float32** | LAG identifier | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceInterface
 
-`func NewNetworkDeviceInterface(interfaceId string, networkDeviceId string, interfaceName string, dirtyBit float32, cachedUpdatedTimestamp string, ) *NetworkDeviceInterface`
+`func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, interfaceName string, dirtyBit float32, cachedUpdatedTimestamp string, ) *NetworkDeviceInterface`
 
 NewNetworkDeviceInterface instantiates a new NetworkDeviceInterface object
 This constructor will assign default values to properties that have it defined,
@@ -40,40 +40,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInterfaceId
 
-`func (o *NetworkDeviceInterface) GetInterfaceId() string`
+`func (o *NetworkDeviceInterface) GetInterfaceId() float32`
 
 GetInterfaceId returns the InterfaceId field if non-nil, zero value otherwise.
 
 ### GetInterfaceIdOk
 
-`func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*string, bool)`
+`func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*float32, bool)`
 
 GetInterfaceIdOk returns a tuple with the InterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInterfaceId
 
-`func (o *NetworkDeviceInterface) SetInterfaceId(v string)`
+`func (o *NetworkDeviceInterface) SetInterfaceId(v float32)`
 
 SetInterfaceId sets InterfaceId field to given value.
 
 
 ### GetNetworkDeviceId
 
-`func (o *NetworkDeviceInterface) GetNetworkDeviceId() string`
+`func (o *NetworkDeviceInterface) GetNetworkDeviceId() float32`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*string, bool)`
+`func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*float32, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *NetworkDeviceInterface) SetNetworkDeviceId(v string)`
+`func (o *NetworkDeviceInterface) SetNetworkDeviceId(v float32)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 

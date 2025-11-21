@@ -22,9 +22,9 @@ var _ MappedNullable = &NetworkDeviceInterface{}
 // NetworkDeviceInterface struct for NetworkDeviceInterface
 type NetworkDeviceInterface struct {
 	// The ID of the network equipment interface
-	InterfaceId string `json:"interfaceId"`
+	InterfaceId float32 `json:"interfaceId"`
 	// The ID of the network device
-	NetworkDeviceId string `json:"networkDeviceId"`
+	NetworkDeviceId float32 `json:"networkDeviceId"`
 	// The name of the network equipment interface
 	InterfaceName string `json:"interfaceName"`
 	// The index of the network interface
@@ -58,7 +58,7 @@ type _NetworkDeviceInterface NetworkDeviceInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceInterface(interfaceId string, networkDeviceId string, interfaceName string, dirtyBit float32, cachedUpdatedTimestamp string) *NetworkDeviceInterface {
+func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, interfaceName string, dirtyBit float32, cachedUpdatedTimestamp string) *NetworkDeviceInterface {
 	this := NetworkDeviceInterface{}
 	this.InterfaceId = interfaceId
 	this.NetworkDeviceId = networkDeviceId
@@ -77,9 +77,9 @@ func NewNetworkDeviceInterfaceWithDefaults() *NetworkDeviceInterface {
 }
 
 // GetInterfaceId returns the InterfaceId field value
-func (o *NetworkDeviceInterface) GetInterfaceId() string {
+func (o *NetworkDeviceInterface) GetInterfaceId() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
@@ -88,7 +88,7 @@ func (o *NetworkDeviceInterface) GetInterfaceId() string {
 
 // GetInterfaceIdOk returns a tuple with the InterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*string, bool) {
+func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,14 +96,14 @@ func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*string, bool) {
 }
 
 // SetInterfaceId sets field value
-func (o *NetworkDeviceInterface) SetInterfaceId(v string) {
+func (o *NetworkDeviceInterface) SetInterfaceId(v float32) {
 	o.InterfaceId = v
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *NetworkDeviceInterface) GetNetworkDeviceId() string {
+func (o *NetworkDeviceInterface) GetNetworkDeviceId() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
@@ -112,7 +112,7 @@ func (o *NetworkDeviceInterface) GetNetworkDeviceId() string {
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*string, bool) {
+func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,7 +120,7 @@ func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*string, bool) {
 }
 
 // SetNetworkDeviceId sets field value
-func (o *NetworkDeviceInterface) SetNetworkDeviceId(v string) {
+func (o *NetworkDeviceInterface) SetNetworkDeviceId(v float32) {
 	o.NetworkDeviceId = v
 }
 
