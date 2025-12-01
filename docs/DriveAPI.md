@@ -41,7 +41,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123), float32(123), float32(123)) // CreateSharedDrive | 
+	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123), float32(123)) // CreateSharedDrive | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

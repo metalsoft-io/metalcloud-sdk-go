@@ -74,6 +74,8 @@ type SharedDriveVariables struct {
 	Config SharedDriveConfiguration `json:"config"`
 	// Timestamp of the Drive creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
+	// Discover information for the Drive.
+	DiscoverInformation []GenericDriveDiscoverInformation `json:"discoverInformation,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -864,6 +866,38 @@ func (o *SharedDriveVariables) SetCreatedTimestamp(v string) {
 	o.CreatedTimestamp = v
 }
 
+// GetDiscoverInformation returns the DiscoverInformation field value if set, zero value otherwise.
+func (o *SharedDriveVariables) GetDiscoverInformation() []GenericDriveDiscoverInformation {
+	if o == nil || IsNil(o.DiscoverInformation) {
+		var ret []GenericDriveDiscoverInformation
+		return ret
+	}
+	return o.DiscoverInformation
+}
+
+// GetDiscoverInformationOk returns a tuple with the DiscoverInformation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SharedDriveVariables) GetDiscoverInformationOk() ([]GenericDriveDiscoverInformation, bool) {
+	if o == nil || IsNil(o.DiscoverInformation) {
+		return nil, false
+	}
+	return o.DiscoverInformation, true
+}
+
+// HasDiscoverInformation returns a boolean if a field has been set.
+func (o *SharedDriveVariables) HasDiscoverInformation() bool {
+	if o != nil && !IsNil(o.DiscoverInformation) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoverInformation gets a reference to the given []GenericDriveDiscoverInformation and assigns it to the DiscoverInformation field.
+func (o *SharedDriveVariables) SetDiscoverInformation(v []GenericDriveDiscoverInformation) {
+	o.DiscoverInformation = v
+}
+
 func (o SharedDriveVariables) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -927,6 +961,9 @@ func (o SharedDriveVariables) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	if !IsNil(o.DiscoverInformation) {
+		toSerialize["discoverInformation"] = o.DiscoverInformation
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1010,6 +1047,7 @@ func (o *SharedDriveVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainPermanentId")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "discoverInformation")
 		o.AdditionalProperties = additionalProperties
 	}
 

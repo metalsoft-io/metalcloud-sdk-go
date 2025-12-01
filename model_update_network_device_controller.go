@@ -20,6 +20,8 @@ var _ MappedNullable = &UpdateNetworkDeviceController{}
 
 // UpdateNetworkDeviceController struct for UpdateNetworkDeviceController
 type UpdateNetworkDeviceController struct {
+	// Site identifier
+	SiteId *int32 `json:"siteId,omitempty"`
 	// Name of the datacenter
 	DatacenterName *string `json:"datacenterName,omitempty"`
 	// Unique identifier string for the network device controller
@@ -56,6 +58,38 @@ func NewUpdateNetworkDeviceController() *UpdateNetworkDeviceController {
 func NewUpdateNetworkDeviceControllerWithDefaults() *UpdateNetworkDeviceController {
 	this := UpdateNetworkDeviceController{}
 	return &this
+}
+
+// GetSiteId returns the SiteId field value if set, zero value otherwise.
+func (o *UpdateNetworkDeviceController) GetSiteId() int32 {
+	if o == nil || IsNil(o.SiteId) {
+		var ret int32
+		return ret
+	}
+	return *o.SiteId
+}
+
+// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDeviceController) GetSiteIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.SiteId) {
+		return nil, false
+	}
+	return o.SiteId, true
+}
+
+// HasSiteId returns a boolean if a field has been set.
+func (o *UpdateNetworkDeviceController) HasSiteId() bool {
+	if o != nil && !IsNil(o.SiteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
+func (o *UpdateNetworkDeviceController) SetSiteId(v int32) {
+	o.SiteId = &v
 }
 
 // GetDatacenterName returns the DatacenterName field value if set, zero value otherwise.
@@ -324,6 +358,9 @@ func (o UpdateNetworkDeviceController) MarshalJSON() ([]byte, error) {
 
 func (o UpdateNetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SiteId) {
+		toSerialize["siteId"] = o.SiteId
+	}
 	if !IsNil(o.DatacenterName) {
 		toSerialize["datacenterName"] = o.DatacenterName
 	}
@@ -370,6 +407,7 @@ func (o *UpdateNetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "driver")

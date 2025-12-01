@@ -74,6 +74,8 @@ type SharedDrive struct {
 	Config SharedDriveConfiguration `json:"config"`
 	// Timestamp of the Drive creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
+	// Discover information for the Drive.
+	DiscoverInformation []GenericDriveDiscoverInformation `json:"discoverInformation,omitempty"`
 	// Meta information of the Drive.
 	Meta SharedDriveMeta `json:"meta"`
 	AdditionalProperties map[string]interface{}
@@ -867,6 +869,38 @@ func (o *SharedDrive) SetCreatedTimestamp(v string) {
 	o.CreatedTimestamp = v
 }
 
+// GetDiscoverInformation returns the DiscoverInformation field value if set, zero value otherwise.
+func (o *SharedDrive) GetDiscoverInformation() []GenericDriveDiscoverInformation {
+	if o == nil || IsNil(o.DiscoverInformation) {
+		var ret []GenericDriveDiscoverInformation
+		return ret
+	}
+	return o.DiscoverInformation
+}
+
+// GetDiscoverInformationOk returns a tuple with the DiscoverInformation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SharedDrive) GetDiscoverInformationOk() ([]GenericDriveDiscoverInformation, bool) {
+	if o == nil || IsNil(o.DiscoverInformation) {
+		return nil, false
+	}
+	return o.DiscoverInformation, true
+}
+
+// HasDiscoverInformation returns a boolean if a field has been set.
+func (o *SharedDrive) HasDiscoverInformation() bool {
+	if o != nil && !IsNil(o.DiscoverInformation) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoverInformation gets a reference to the given []GenericDriveDiscoverInformation and assigns it to the DiscoverInformation field.
+func (o *SharedDrive) SetDiscoverInformation(v []GenericDriveDiscoverInformation) {
+	o.DiscoverInformation = v
+}
+
 // GetMeta returns the Meta field value
 func (o *SharedDrive) GetMeta() SharedDriveMeta {
 	if o == nil {
@@ -954,6 +988,9 @@ func (o SharedDrive) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	if !IsNil(o.DiscoverInformation) {
+		toSerialize["discoverInformation"] = o.DiscoverInformation
+	}
 	toSerialize["meta"] = o.Meta
 
 	for key, value := range o.AdditionalProperties {
@@ -1039,6 +1076,7 @@ func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainPermanentId")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "discoverInformation")
 		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}

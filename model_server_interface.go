@@ -73,6 +73,8 @@ type ServerInterface struct {
 	LldpInfo *string `json:"lldpInfo,omitempty"`
 	// The link network technology of the server interface.
 	LinkNetworkTechnology *string `json:"linkNetworkTechnology,omitempty"`
+	// The port GUID of the server interface (for InfiniBand interfaces).
+	InfinibandGuid *string `json:"infinibandGuid,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -887,6 +889,38 @@ func (o *ServerInterface) SetLinkNetworkTechnology(v string) {
 	o.LinkNetworkTechnology = &v
 }
 
+// GetInfinibandGuid returns the InfinibandGuid field value if set, zero value otherwise.
+func (o *ServerInterface) GetInfinibandGuid() string {
+	if o == nil || IsNil(o.InfinibandGuid) {
+		var ret string
+		return ret
+	}
+	return *o.InfinibandGuid
+}
+
+// GetInfinibandGuidOk returns a tuple with the InfinibandGuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetInfinibandGuidOk() (*string, bool) {
+	if o == nil || IsNil(o.InfinibandGuid) {
+		return nil, false
+	}
+	return o.InfinibandGuid, true
+}
+
+// HasInfinibandGuid returns a boolean if a field has been set.
+func (o *ServerInterface) HasInfinibandGuid() bool {
+	if o != nil && !IsNil(o.InfinibandGuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfinibandGuid gets a reference to the given string and assigns it to the InfinibandGuid field.
+func (o *ServerInterface) SetInfinibandGuid(v string) {
+	o.InfinibandGuid = &v
+}
+
 func (o ServerInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -963,6 +997,9 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LinkNetworkTechnology) {
 		toSerialize["linkNetworkTechnology"] = o.LinkNetworkTechnology
 	}
+	if !IsNil(o.InfinibandGuid) {
+		toSerialize["infinibandGuid"] = o.InfinibandGuid
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1037,6 +1074,7 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "redundancyGroupIndex")
 		delete(additionalProperties, "lldpInfo")
 		delete(additionalProperties, "linkNetworkTechnology")
+		delete(additionalProperties, "infinibandGuid")
 		o.AdditionalProperties = additionalProperties
 	}
 

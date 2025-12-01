@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **SizeMb** | **float32** | Disk size in MiB for Drive | 
 **Label** | Pointer to **string** | Label of the Drive. | [optional] 
 **Meta** | Pointer to [**SharedDriveMeta**](SharedDriveMeta.md) |  | [optional] 
-**LogicalNetworkId** | **float32** | Id of the Logical Network for the Drive. | 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
 **StoragePoolId** | **float32** | Id of the storage pool the Drive is assigned to | 
 
 ## Methods
 
 ### NewCreateSharedDrive
 
-`func NewCreateSharedDrive(sizeMb float32, logicalNetworkId float32, storagePoolId float32, ) *CreateSharedDrive`
+`func NewCreateSharedDrive(sizeMb float32, storagePoolId float32, ) *CreateSharedDrive`
 
 NewCreateSharedDrive instantiates a new CreateSharedDrive object
 This constructor will assign default values to properties that have it defined,
@@ -118,6 +118,11 @@ and a boolean to check if the value has been set.
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
+### HasLogicalNetworkId
+
+`func (o *CreateSharedDrive) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 

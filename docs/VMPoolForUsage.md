@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Id** | **float32** | Id of the VM Pool | 
 **Name** | **string** | Name of the VM Pool | 
 **Driver** | **string** | Driver of the VM Pool | 
+**FabricId** | **float32** | Fabric ID of the VM Pool | 
 
 ## Methods
 
 ### NewVMPoolForUsage
 
-`func NewVMPoolForUsage(id float32, name string, driver string, ) *VMPoolForUsage`
+`func NewVMPoolForUsage(id float32, name string, driver string, fabricId float32, ) *VMPoolForUsage`
 
 NewVMPoolForUsage instantiates a new VMPoolForUsage object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *VMPoolForUsage) SetDriver(v string)`
 
 SetDriver sets Driver field to given value.
+
+
+### GetFabricId
+
+`func (o *VMPoolForUsage) GetFabricId() float32`
+
+GetFabricId returns the FabricId field if non-nil, zero value otherwise.
+
+### GetFabricIdOk
+
+`func (o *VMPoolForUsage) GetFabricIdOk() (*float32, bool)`
+
+GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricId
+
+`func (o *VMPoolForUsage) SetFabricId(v float32)`
+
+SetFabricId sets FabricId field to given value.
 
 
 

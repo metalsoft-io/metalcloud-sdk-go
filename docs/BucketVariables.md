@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 **ServiceStatus** | **string** | Service status of the Bucket | 
 **SubdomainPermanent** | **string** | Subdomain permanent of the Bucket. | 
 **DnsSubdomainId** | **float32** | Id of the DNS subdomain for the Bucket. | 
-**Endpoint** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
-**AccessKeyId** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
+**DiscoverInformation** | Pointer to [**GenericBucketDiscoverInformation**](GenericBucketDiscoverInformation.md) | Discover information of the Bucket. | [optional] 
+**AccessKeyId** | Pointer to **string** | Access Key ID of the Bucket. | [optional] 
 **Config** | [**BucketConfiguration**](BucketConfiguration.md) | The current changes to be deployed for the Bucket. | 
 **SecretKeyEncrypted** | Pointer to **string** | secret key of the Bucket. | [optional] 
 
@@ -332,30 +332,30 @@ and a boolean to check if the value has been set.
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
 
-### GetEndpoint
+### GetDiscoverInformation
 
-`func (o *BucketVariables) GetEndpoint() string`
+`func (o *BucketVariables) GetDiscoverInformation() GenericBucketDiscoverInformation`
 
-GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+GetDiscoverInformation returns the DiscoverInformation field if non-nil, zero value otherwise.
 
-### GetEndpointOk
+### GetDiscoverInformationOk
 
-`func (o *BucketVariables) GetEndpointOk() (*string, bool)`
+`func (o *BucketVariables) GetDiscoverInformationOk() (*GenericBucketDiscoverInformation, bool)`
 
-GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+GetDiscoverInformationOk returns a tuple with the DiscoverInformation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndpoint
+### SetDiscoverInformation
 
-`func (o *BucketVariables) SetEndpoint(v string)`
+`func (o *BucketVariables) SetDiscoverInformation(v GenericBucketDiscoverInformation)`
 
-SetEndpoint sets Endpoint field to given value.
+SetDiscoverInformation sets DiscoverInformation field to given value.
 
-### HasEndpoint
+### HasDiscoverInformation
 
-`func (o *BucketVariables) HasEndpoint() bool`
+`func (o *BucketVariables) HasDiscoverInformation() bool`
 
-HasEndpoint returns a boolean if a field has been set.
+HasDiscoverInformation returns a boolean if a field has been set.
 
 ### GetAccessKeyId
 

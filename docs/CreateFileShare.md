@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **SizeGB** | **float32** | Disk size in GB for File Share | 
 **Label** | Pointer to **string** | Display name of the File Share. | [optional] 
 **Meta** | Pointer to [**FileShareMeta**](FileShareMeta.md) |  | [optional] 
-**LogicalNetworkId** | **float32** | Id of the Logical Network for the File Share. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the File Share is assigned to | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
+**StoragePoolId** | **float32** | Id of the storage pool the File Share is assigned to | 
 
 ## Methods
 
 ### NewCreateFileShare
 
-`func NewCreateFileShare(sizeGB float32, logicalNetworkId float32, ) *CreateFileShare`
+`func NewCreateFileShare(sizeGB float32, storagePoolId float32, ) *CreateFileShare`
 
 NewCreateFileShare instantiates a new CreateFileShare object
 This constructor will assign default values to properties that have it defined,
@@ -118,6 +118,11 @@ and a boolean to check if the value has been set.
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
+### HasLogicalNetworkId
+
+`func (o *CreateFileShare) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 
@@ -138,11 +143,6 @@ and a boolean to check if the value has been set.
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
-### HasStoragePoolId
-
-`func (o *CreateFileShare) HasStoragePoolId() bool`
-
-HasStoragePoolId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

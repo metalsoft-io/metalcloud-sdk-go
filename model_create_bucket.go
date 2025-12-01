@@ -27,9 +27,9 @@ type CreateBucket struct {
 	Label *string `json:"label,omitempty"`
 	Meta *BucketMeta `json:"meta,omitempty"`
 	// Id of the Logical Network for the Bucket.
-	LogicalNetworkId float32 `json:"logicalNetworkId"`
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Id of the storage pool the Bucket is assigned to
-	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
+	StoragePoolId float32 `json:"storagePoolId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +39,10 @@ type _CreateBucket CreateBucket
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBucket(sizeGB float32, logicalNetworkId float32) *CreateBucket {
+func NewCreateBucket(sizeGB float32, storagePoolId float32) *CreateBucket {
 	this := CreateBucket{}
 	this.SizeGB = sizeGB
-	this.LogicalNetworkId = logicalNetworkId
+	this.StoragePoolId = storagePoolId
 	return &this
 }
 
@@ -142,60 +142,60 @@ func (o *CreateBucket) SetMeta(v BucketMeta) {
 	o.Meta = &v
 }
 
-// GetLogicalNetworkId returns the LogicalNetworkId field value
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
 func (o *CreateBucket) GetLogicalNetworkId() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.LogicalNetworkId) {
 		var ret float32
 		return ret
 	}
-
-	return o.LogicalNetworkId
+	return *o.LogicalNetworkId
 }
 
-// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateBucket) GetLogicalNetworkIdOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
-	return &o.LogicalNetworkId, true
+	return o.LogicalNetworkId, true
 }
 
-// SetLogicalNetworkId sets field value
-func (o *CreateBucket) SetLogicalNetworkId(v float32) {
-	o.LogicalNetworkId = v
-}
-
-// GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *CreateBucket) GetStoragePoolId() float32 {
-	if o == nil || IsNil(o.StoragePoolId) {
-		var ret float32
-		return ret
-	}
-	return *o.StoragePoolId
-}
-
-// GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateBucket) GetStoragePoolIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.StoragePoolId) {
-		return nil, false
-	}
-	return o.StoragePoolId, true
-}
-
-// HasStoragePoolId returns a boolean if a field has been set.
-func (o *CreateBucket) HasStoragePoolId() bool {
-	if o != nil && !IsNil(o.StoragePoolId) {
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *CreateBucket) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
 		return true
 	}
 
 	return false
 }
 
-// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *CreateBucket) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
+// GetStoragePoolId returns the StoragePoolId field value
+func (o *CreateBucket) GetStoragePoolId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.StoragePoolId
+}
+
+// GetStoragePoolIdOk returns a tuple with the StoragePoolId field value
+// and a boolean to check if the value has been set.
+func (o *CreateBucket) GetStoragePoolIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StoragePoolId, true
+}
+
+// SetStoragePoolId sets field value
 func (o *CreateBucket) SetStoragePoolId(v float32) {
-	o.StoragePoolId = &v
+	o.StoragePoolId = v
 }
 
 func (o CreateBucket) MarshalJSON() ([]byte, error) {
@@ -215,10 +215,10 @@ func (o CreateBucket) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	toSerialize["logicalNetworkId"] = o.LogicalNetworkId
-	if !IsNil(o.StoragePoolId) {
-		toSerialize["storagePoolId"] = o.StoragePoolId
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	}
+	toSerialize["storagePoolId"] = o.StoragePoolId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -233,7 +233,7 @@ func (o *CreateBucket) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"sizeGB",
-		"logicalNetworkId",
+		"storagePoolId",
 	}
 
 	allProperties := make(map[string]interface{})

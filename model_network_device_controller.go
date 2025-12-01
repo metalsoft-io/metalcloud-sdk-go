@@ -27,6 +27,8 @@ type NetworkDeviceController struct {
 	Revision int32 `json:"revision"`
 	// Current status of the network device controller
 	Status string `json:"status"`
+	// Site ID
+	SiteId float32 `json:"siteId"`
 	// Hostname of the network device controller
 	IdentifierString string `json:"identifierString"`
 	// Description of the network device controller
@@ -54,11 +56,12 @@ type _NetworkDeviceController NetworkDeviceController
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceController(id string, revision int32, status string, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string) *NetworkDeviceController {
+func NewNetworkDeviceController(id string, revision int32, status string, siteId float32, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string) *NetworkDeviceController {
 	this := NetworkDeviceController{}
 	this.Id = id
 	this.Revision = revision
 	this.Status = status
+	this.SiteId = siteId
 	this.IdentifierString = identifierString
 	this.Description = description
 	this.DatacenterName = datacenterName
@@ -148,6 +151,30 @@ func (o *NetworkDeviceController) GetStatusOk() (*string, bool) {
 // SetStatus sets field value
 func (o *NetworkDeviceController) SetStatus(v string) {
 	o.Status = v
+}
+
+// GetSiteId returns the SiteId field value
+func (o *NetworkDeviceController) GetSiteId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SiteId
+}
+
+// GetSiteIdOk returns a tuple with the SiteId field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceController) GetSiteIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SiteId, true
+}
+
+// SetSiteId sets field value
+func (o *NetworkDeviceController) SetSiteId(v float32) {
+	o.SiteId = v
 }
 
 // GetIdentifierString returns the IdentifierString field value
@@ -391,6 +418,7 @@ func (o NetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["status"] = o.Status
+	toSerialize["siteId"] = o.SiteId
 	toSerialize["identifierString"] = o.IdentifierString
 	toSerialize["description"] = o.Description.Get()
 	toSerialize["datacenterName"] = o.DatacenterName
@@ -420,6 +448,7 @@ func (o *NetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"status",
+		"siteId",
 		"identifierString",
 		"description",
 		"datacenterName",
@@ -460,6 +489,7 @@ func (o *NetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "datacenterName")

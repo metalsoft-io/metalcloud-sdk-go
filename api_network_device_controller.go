@@ -444,6 +444,7 @@ type NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterSiteId *[]string
 	filterDatacenterName *[]string
 	filterManagementAddress *[]string
 	filterManagementPort *[]string
@@ -468,6 +469,12 @@ func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) Limit(limi
 // Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) FilterId(filterId []string) NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest {
 	r.filterId = &filterId
+	return r
+}
+
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) FilterSiteId(filterSiteId []string) NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest {
+	r.filterSiteId = &filterSiteId
 	return r
 }
 
@@ -566,6 +573,17 @@ func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceControllersExecute(r
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
 		}
 	}
 	if r.filterDatacenterName != nil {

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | Unique identifier for the network device controller. | 
 **Revision** | **int32** | Revision number | 
 **Status** | **string** | Current status of the network device controller | 
+**SiteId** | **float32** | Site ID | 
 **IdentifierString** | **string** | Hostname of the network device controller | 
 **Description** | **NullableString** | Description of the network device controller | 
 **DatacenterName** | **string** | Datacenter metadata | 
@@ -21,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceController
 
-`func NewNetworkDeviceController(id string, revision int32, status string, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string, ) *NetworkDeviceController`
+`func NewNetworkDeviceController(id string, revision int32, status string, siteId float32, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string, ) *NetworkDeviceController`
 
 NewNetworkDeviceController instantiates a new NetworkDeviceController object
 This constructor will assign default values to properties that have it defined,
@@ -94,6 +95,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDeviceController) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
+
+
+### GetSiteId
+
+`func (o *NetworkDeviceController) GetSiteId() float32`
+
+GetSiteId returns the SiteId field if non-nil, zero value otherwise.
+
+### GetSiteIdOk
+
+`func (o *NetworkDeviceController) GetSiteIdOk() (*float32, bool)`
+
+GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSiteId
+
+`func (o *NetworkDeviceController) SetSiteId(v float32)`
+
+SetSiteId sets SiteId field to given value.
 
 
 ### GetIdentifierString

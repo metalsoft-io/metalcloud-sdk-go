@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ## DiscoverNetworkDevice
 
-> DiscoverNetworkDevice(ctx, networkDeviceId).Body(body).Execute()
+> DiscoverNetworkDevice(ctx, networkDeviceId).DiscoveryQuery(discoveryQuery).Execute()
 
 Discover network device interfaces, hardware and software configuration
 
@@ -315,11 +315,11 @@ import (
 
 func main() {
 	networkDeviceId := float32(8.14) // float32 | Network device identifier
-	body := map[string]interface{}{ ... } // map[string]interface{} | 
+	discoveryQuery := *openapiclient.NewDiscoveryQuery([]string{"Discover_example"}, false) // DiscoveryQuery | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.DiscoverNetworkDevice(context.Background(), networkDeviceId).Body(body).Execute()
+	r, err := apiClient.NetworkDeviceAPI.DiscoverNetworkDevice(context.Background(), networkDeviceId).DiscoveryQuery(discoveryQuery).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.DiscoverNetworkDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -343,7 +343,7 @@ Other parameters are passed through a pointer to a apiDiscoverNetworkDeviceReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** |  | 
+ **discoveryQuery** | [**DiscoveryQuery**](DiscoveryQuery.md) |  | 
 
 ### Return type
 

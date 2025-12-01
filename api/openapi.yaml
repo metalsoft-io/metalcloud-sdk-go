@@ -22787,6 +22787,52 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by siteId query param.
+
+          **Format:** filter.siteId={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.siteId=$btw:John Doe&filter.siteId=$contains:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $gt
+
+          - $gte
+
+          - $in
+
+          - $null
+
+          - $lt
+
+          - $lte
+
+          - $btw
+
+          - $ilike
+
+          - $sw
+
+          - $contains
+
+          - $not
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.siteId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by datacenterName query param.
 
           **Format:** filter.datacenterName={$not}:OPERATION:VALUE
@@ -53439,6 +53485,35 @@ components:
       required:
       - id
       type: object
+    GenericBucketMountingInformation:
+      properties:
+        fullPath:
+          description: Full path of the Bucket
+          type: string
+        host:
+          description: Host where the Bucket can be accessed
+          type: string
+        port:
+          description: Port where the Bucket can be accessed
+          type: number
+      required:
+      - fullPath
+      - host
+      type: object
+    GenericBucketDiscoverInformation:
+      properties:
+        path:
+          description: Path of the Bucket
+          type: string
+        mountingInformation:
+          description: Mounting information of the Bucket
+          items:
+            $ref: '#/components/schemas/GenericBucketMountingInformation'
+          type: array
+      required:
+      - mountingInformation
+      - path
+      type: object
     BucketConfiguration:
       example:
         sizeGB: 6.027456183070403
@@ -53524,12 +53599,12 @@ components:
         sizeGB: 0.8008281904610115
         dnsSubdomainId: 7.061401241503109
         logicalNetworkId: 1.4658129805029452
+        discoverInformation: ""
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
         revision: 5.637376656633329
-        endpoint: endpoint
         infrastructureId: 2.3021358869347655
         infrastructure: ""
         serviceStatus: ordered
@@ -53588,11 +53663,12 @@ components:
         dnsSubdomainId:
           description: Id of the DNS subdomain for the Bucket.
           type: number
-        endpoint:
-          description: Endpoint of the Bucket.
-          type: string
+        discoverInformation:
+          allOf:
+          - $ref: '#/components/schemas/GenericBucketDiscoverInformation'
+          description: Discover information of the Bucket.
         accessKeyId:
-          description: Endpoint of the Bucket.
+          description: Access Key ID of the Bucket.
           type: string
         config:
           allOf:
@@ -53642,8 +53718,8 @@ components:
           description: Id of the storage pool the Bucket is assigned to
           type: number
       required:
-      - logicalNetworkId
       - sizeGB
+      - storagePoolId
       type: object
     BucketPaginatedList:
       example:
@@ -53652,12 +53728,12 @@ components:
           sizeGB: 0.8008281904610115
           dnsSubdomainId: 7.061401241503109
           logicalNetworkId: 1.4658129805029452
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 5.637376656633329
-          endpoint: endpoint
           infrastructureId: 2.3021358869347655
           infrastructure: ""
           serviceStatus: ordered
@@ -53670,12 +53746,12 @@ components:
           sizeGB: 0.8008281904610115
           dnsSubdomainId: 7.061401241503109
           logicalNetworkId: 1.4658129805029452
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 5.637376656633329
-          endpoint: endpoint
           infrastructureId: 2.3021358869347655
           infrastructure: ""
           serviceStatus: ordered
@@ -53752,9 +53828,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-11-20T08:04:41.773Z
+        createdTimestamp: 2025-11-27T13:32:16.614Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-11-20T08:04:41.773Z
+        updatedTimestamp: 2025-11-27T13:32:16.614Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -53853,12 +53929,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.773Z
+          example: 2025-11-27T13:32:16.614Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.773Z
+          example: 2025-11-27T13:32:16.614Z
           format: date-time
           type: string
         links:
@@ -53890,9 +53966,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-11-20T08:04:41.773Z
+          createdTimestamp: 2025-11-27T13:32:16.614Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-11-20T08:04:41.773Z
+          updatedTimestamp: 2025-11-27T13:32:16.614Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -53909,9 +53985,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-11-20T08:04:41.773Z
+          createdTimestamp: 2025-11-27T13:32:16.614Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-11-20T08:04:41.773Z
+          updatedTimestamp: 2025-11-27T13:32:16.614Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -56128,6 +56204,7 @@ components:
     ServerInterface:
       example:
         networkDevice: "{}"
+        infinibandGuid: infinibandGuid
         description: description
         ipv6Addresses:
         - 2001:db8::1
@@ -56258,6 +56335,9 @@ components:
           - FibreChannel
           - InfiniBand
           example: Ethernet
+          type: string
+        infinibandGuid:
+          description: The port GUID of the server interface (for InfiniBand interfaces).
           type: string
       required:
       - index
@@ -56572,6 +56652,7 @@ components:
         ipmiCredentialsNeedUpdate: 5.944895607614016
         interfaces:
         - networkDevice: "{}"
+          infinibandGuid: infinibandGuid
           description: description
           ipv6Addresses:
           - 2001:db8::1
@@ -56602,6 +56683,7 @@ components:
           defaultFabricId: 4.652396432933246
           switchPortId: switchPortId
         - networkDevice: "{}"
+          infinibandGuid: infinibandGuid
           description: description
           ipv6Addresses:
           - 2001:db8::1
@@ -57028,6 +57110,7 @@ components:
         managementAddress: managementAddress
         subnetOobIndex: 2.027123023002322
         chassisIdentifier: chassisIdentifier
+        externalId: externalId
         readyForInitialConfiguration: 7.061401241503109
         syslogEnabled: 5.637376656633329
         managementPort: 5.962133916683182
@@ -57207,6 +57290,9 @@ components:
         switchControllerId:
           description: ID of the network device controller if any.
           type: number
+        externalId:
+          description: External ID of the network device.
+          type: string
         links:
           description: Reference links
           items:
@@ -64786,6 +64872,45 @@ components:
       - description
       - name
       type: object
+    GenericFileShareMountingInformation:
+      properties:
+        fullPath:
+          description: Full path of the File Share
+          type: string
+        host:
+          description: Host where the File Share can be accessed
+          type: string
+        port:
+          description: Port where the File Share can be accessed
+          type: number
+        serverName:
+          description: Server name that handles NFS traffic for the File Share (for
+            certain storages)
+          type: string
+        serverPorts:
+          description: List of server ports that handle NFS traffic for the File Share
+            (for certain storages)
+          items:
+            type: string
+          type: array
+      required:
+      - fullPath
+      - host
+      type: object
+    GenericFileShareDiscoverInformation:
+      properties:
+        path:
+          description: Path of the File Share
+          type: string
+        mountingInformation:
+          description: Mounting information of the File Share
+          items:
+            $ref: '#/components/schemas/GenericFileShareMountingInformation'
+          type: array
+      required:
+      - mountingInformation
+      - path
+      type: object
     FileShareConfiguration:
       example:
         sizeGB: 6.027456183070403
@@ -64869,12 +64994,12 @@ components:
         sizeGB: 0.8008281904610115
         dnsSubdomainId: 7.061401241503109
         logicalNetworkId: 1.4658129805029452
+        discoverInformation: ""
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
         revision: 5.637376656633329
-        endpoint: endpoint
         infrastructureId: 2.3021358869347655
         infrastructure: ""
         serviceStatus: ordered
@@ -64937,9 +65062,10 @@ components:
         networkVlanId:
           description: Id of the VLAN for the File Share.
           type: number
-        endpoint:
-          description: Endpoint of the File Share.
-          type: string
+        discoverInformation:
+          allOf:
+          - $ref: '#/components/schemas/GenericFileShareDiscoverInformation'
+          description: Discover information of the File Share.
         config:
           allOf:
           - $ref: '#/components/schemas/FileShareConfiguration'
@@ -64985,8 +65111,8 @@ components:
           description: Id of the storage pool the File Share is assigned to
           type: number
       required:
-      - logicalNetworkId
       - sizeGB
+      - storagePoolId
       type: object
     FileSharePaginatedList:
       example:
@@ -64994,12 +65120,12 @@ components:
         - sizeGB: 0.8008281904610115
           dnsSubdomainId: 7.061401241503109
           logicalNetworkId: 1.4658129805029452
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 5.637376656633329
-          endpoint: endpoint
           infrastructureId: 2.3021358869347655
           infrastructure: ""
           serviceStatus: ordered
@@ -65012,12 +65138,12 @@ components:
         - sizeGB: 0.8008281904610115
           dnsSubdomainId: 7.061401241503109
           logicalNetworkId: 1.4658129805029452
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 5.637376656633329
-          endpoint: endpoint
           infrastructureId: 2.3021358869347655
           infrastructure: ""
           serviceStatus: ordered
@@ -67566,6 +67692,7 @@ components:
     VMPoolForUsage:
       example:
         driver: incus
+        fabricId: 5.962133916683182
         name: name
         id: 1.4658129805029452
       properties:
@@ -67581,8 +67708,12 @@ components:
           - incus
           - vmware_vcf
           type: string
+        fabricId:
+          description: Fabric ID of the VM Pool
+          type: number
       required:
       - driver
+      - fabricId
       - id
       - name
       type: object
@@ -67591,8 +67722,9 @@ components:
         technologies:
         - block
         driver: power_flex
+        fabricId: 2.3021358869347655
         name: name
-        id: 5.962133916683182
+        id: 5.637376656633329
       properties:
         id:
           description: Id of the Storage Pool
@@ -67623,8 +67755,12 @@ components:
           - hitachi_vsp
           - hitachi_hcsf_weka
           type: string
+        fabricId:
+          description: Fabric ID of the Storage Pool
+          type: number
       required:
       - driver
+      - fabricId
       - id
       - name
       - technologies
@@ -67641,22 +67777,26 @@ components:
           id: 0.8008281904610115
         vmPoolsForUsage:
         - driver: incus
+          fabricId: 5.962133916683182
           name: name
           id: 1.4658129805029452
         - driver: incus
+          fabricId: 5.962133916683182
           name: name
           id: 1.4658129805029452
         storagePoolsForUsage:
         - technologies:
           - block
           driver: power_flex
+          fabricId: 2.3021358869347655
           name: name
-          id: 5.962133916683182
+          id: 5.637376656633329
         - technologies:
           - block
           driver: power_flex
+          fabricId: 2.3021358869347655
           name: name
-          id: 5.962133916683182
+          id: 5.637376656633329
       properties:
         jobGroupStatistics:
           allOf:
@@ -73102,110 +73242,6 @@ components:
       - kind
       - scope
       type: object
-    InfinibandLogicalNetworkProfilePkeyProperties:
-      properties:
-        pkeyAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy'
-          type: array
-      required:
-      - pkeyAllocationStrategies
-      type: object
-    InfinibandLogicalNetworkProfileIpv4Properties:
-      properties:
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
-          type: array
-      required:
-      - subnetAllocationStrategies
-      type: object
-    InfinibandLogicalNetworkProfileIpv6Properties:
-      properties:
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
-          type: array
-      required:
-      - subnetAllocationStrategies
-      type: object
-    InfinibandLogicalNetworkProfile:
-      properties:
-        id:
-          type: integer
-        label:
-          maxLength: 63
-          type: string
-        name:
-          maxLength: 63
-          type: string
-        annotations:
-          additionalProperties:
-            type: string
-          type: object
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        revision:
-          type: integer
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/LogicalNetworkKind'
-        fabricId:
-          type: integer
-        pkey:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkProfilePkeyProperties'
-        ipv4:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkProfileIpv4Properties'
-        ipv6:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkProfileIpv6Properties'
-        routeDomainId:
-          nullable: true
-          type: integer
-        mtu:
-          description: Maximum Transmission Unit (MTU) in bytes
-          example: 1500
-          nullable: true
-          type: integer
-      required:
-      - annotations
-      - createdAt
-      - fabricId
-      - id
-      - ipv4
-      - ipv6
-      - kind
-      - label
-      - name
-      - pkey
-      - revision
-      - routeDomainId
-      - updatedAt
-      type: object
-    PaginatedLogicalNetworkProfile:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/LogicalNetworkProfile_1'
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - links
-      - meta
-      type: object
     LogicalNetworkProfileVlanProperties:
       example:
         vlanAllocationStrategies:
@@ -74876,229 +74912,6 @@ components:
       - prefixLength
       - scope
       - status
-      type: object
-    InfinibandLogicalNetworkConfigPkeyProperties:
-      properties:
-        pkeyAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy'
-          type: array
-      required:
-      - pkeyAllocationStrategies
-      type: object
-    InfinibandLogicalNetworkConfigIpv4Properties:
-      properties:
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
-          type: array
-      required:
-      - subnetAllocationStrategies
-      type: object
-    InfinibandLogicalNetworkConfigIpv6Properties:
-      properties:
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
-          type: array
-      required:
-      - subnetAllocationStrategies
-      type: object
-    InfinibandLogicalNetworkConfig:
-      properties:
-        id:
-          type: integer
-        deployType:
-          enum:
-          - create
-          - delete
-          - edit
-          - start
-          - stop
-          - suspend
-          type: string
-        deployStatus:
-          enum:
-          - not_started
-          - ongoing
-          - finished
-          type: string
-        createdAt:
-          description: Creation timestamp for the entity.
-          format: date-time
-          type: string
-        updatedAt:
-          description: Last update timestamp for the entity.
-          format: date-time
-          type: string
-        revision:
-          type: integer
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/LogicalNetworkKind'
-        mtu:
-          description: Maximum Transmission Unit (MTU) in bytes
-          example: 1500
-          nullable: true
-          type: integer
-        pkey:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkConfigPkeyProperties'
-        ipv4:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkConfigIpv4Properties'
-        ipv6:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkConfigIpv6Properties'
-      required:
-      - createdAt
-      - deployStatus
-      - deployType
-      - id
-      - ipv4
-      - ipv6
-      - kind
-      - pkey
-      - revision
-      - updatedAt
-      type: object
-    InfinibandLogicalNetworkPkeyProperties:
-      properties:
-        pkeys:
-          items:
-            $ref: '#/components/schemas/PkeyAllocation'
-          type: array
-        pkeyAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/PkeyAllocationStrategy'
-          type: array
-      required:
-      - pkeyAllocationStrategies
-      - pkeys
-      type: object
-    InfinibandLogicalNetworkIpv4Properties:
-      properties:
-        subnets:
-          items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocation'
-          type: array
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
-          type: array
-      required:
-      - subnetAllocationStrategies
-      - subnets
-      type: object
-    InfinibandLogicalNetworkIpv6Properties:
-      properties:
-        subnets:
-          items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocation'
-          type: array
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
-          type: array
-      required:
-      - subnetAllocationStrategies
-      - subnets
-      type: object
-    InfinibandLogicalNetwork:
-      properties:
-        id:
-          type: integer
-        label:
-          maxLength: 63
-          type: string
-        name:
-          maxLength: 63
-          type: string
-        annotations:
-          additionalProperties:
-            type: string
-          type: object
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        revision:
-          type: integer
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/LogicalNetworkKind'
-        fabricId:
-          type: integer
-        infrastructureId:
-          nullable: true
-          type: integer
-        extensionInstanceId:
-          nullable: true
-          type: integer
-        serviceStatus:
-          allOf:
-          - $ref: '#/components/schemas/GenericServiceStatus'
-        lastAppliedLogicalNetworkProfileId:
-          nullable: true
-          type: integer
-        lastLogicalNetworkProfileAppliedAt:
-          format: date-time
-          type: string
-        config:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkConfig'
-        pkey:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkPkeyProperties'
-        ipv4:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkIpv4Properties'
-        ipv6:
-          $ref: '#/components/schemas/InfinibandLogicalNetworkIpv6Properties'
-        routeDomainId:
-          nullable: true
-          type: integer
-        mtu:
-          description: Maximum Transmission Unit (MTU) in bytes
-          example: 1500
-          nullable: true
-          type: integer
-      required:
-      - annotations
-      - config
-      - createdAt
-      - fabricId
-      - id
-      - infrastructureId
-      - ipv4
-      - ipv6
-      - kind
-      - label
-      - lastAppliedLogicalNetworkProfileId
-      - lastLogicalNetworkProfileAppliedAt
-      - name
-      - pkey
-      - revision
-      - routeDomainId
-      - serviceStatus
-      - updatedAt
-      type: object
-    PaginatedLogicalNetwork:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/LogicalNetwork_1'
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - links
-      - meta
       type: object
     CreateLogicalNetworkFromProfile:
       example:
@@ -76963,6 +76776,7 @@ components:
           managementAddress: managementAddress
           subnetOobIndex: 2.027123023002322
           chassisIdentifier: chassisIdentifier
+          externalId: externalId
           readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -77019,6 +76833,7 @@ components:
           managementAddress: managementAddress
           subnetOobIndex: 2.027123023002322
           chassisIdentifier: chassisIdentifier
+          externalId: externalId
           readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -78100,7 +77915,32 @@ components:
       - status
       type: object
     DiscoveryQuery:
-      properties: {}
+      example:
+        discover:
+        - hardware
+        - software
+        - ports
+        returnData: true
+        persistData: true
+      properties:
+        discover:
+          description: Types of discovery to perform
+          example:
+          - hardware
+          - software
+          - ports
+          items:
+            type: string
+          type: array
+        returnData:
+          description: Whether to return the discovered data in the response
+          type: boolean
+        persistData:
+          description: Whether to persist the discovered data
+          type: boolean
+      required:
+      - discover
+      - persistData
       type: object
     NetworkDeviceControllerCredentials:
       example:
@@ -78145,22 +77985,23 @@ components:
       example:
         managementAddress: managementAddress
         datacenterName: datacenterName
-        managementPort: 0
+        description: description
+        revision: 1
+        tags:
+        - tags
+        - tags
+        managementPort: 6
         driver: cisco_aci51
         identifierString: identifierString
-        description: description
+        siteId: 0.8008281904610115
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: id
-        revision: 1
         status: active
         username: username
-        tags:
-        - tags
-        - tags
       properties:
         id:
           description: Unique identifier for the network device controller.
@@ -78176,6 +78017,9 @@ components:
           - decommissioned
           example: active
           type: string
+        siteId:
+          description: Site ID
+          type: number
         identifierString:
           description: Hostname of the network device controller
           type: string
@@ -78222,6 +78066,7 @@ components:
       - managementAddress
       - managementPort
       - revision
+      - siteId
       - status
       - tags
       - username
@@ -78231,40 +78076,42 @@ components:
         data:
         - managementAddress: managementAddress
           datacenterName: datacenterName
-          managementPort: 0
+          description: description
+          revision: 1
+          tags:
+          - tags
+          - tags
+          managementPort: 6
           driver: cisco_aci51
           identifierString: identifierString
-          description: description
+          siteId: 0.8008281904610115
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          revision: 1
           status: active
           username: username
-          tags:
-          - tags
-          - tags
         - managementAddress: managementAddress
           datacenterName: datacenterName
-          managementPort: 0
+          description: description
+          revision: 1
+          tags:
+          - tags
+          - tags
+          managementPort: 6
           driver: cisco_aci51
           identifierString: identifierString
-          description: description
+          siteId: 0.8008281904610115
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          revision: 1
           status: active
           username: username
-          tags:
-          - tags
-          - tags
         meta: ""
         links: ""
       properties:
@@ -78296,9 +78143,14 @@ components:
         identifierString: switch-dc1-rack3-01
         managementPassword: managementPassword
         overwriteWithHostnameFromFetchedSwitchController: false
+        siteId: 1
         description: Primary datacenter core switch
         username: admin
       properties:
+        siteId:
+          description: Site identifier
+          example: 1
+          type: integer
         datacenterName:
           description: Name of the datacenter
           example: DC-North
@@ -78353,9 +78205,14 @@ components:
         managementPort: 22
         identifierString: switch-dc1-rack3-01
         managementPassword: managementPassword
+        siteId: 1
         description: Primary datacenter core switch
         username: admin
       properties:
+        siteId:
+          description: Site identifier
+          example: 1
+          type: integer
         datacenterName:
           description: Name of the datacenter
           example: DC-North
@@ -78392,7 +78249,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-11-20T08:04:41.835Z
+        createdTimestamp: 2025-11-27T13:32:16.695Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -78401,7 +78258,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-11-20T08:04:41.835Z
+        updatedTimestamp: 2025-11-27T13:32:16.695Z
         revision: "1"
       properties:
         siteId:
@@ -78417,12 +78274,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.835Z
+          example: 2025-11-27T13:32:16.695Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.835Z
+          example: 2025-11-27T13:32:16.695Z
           format: date-time
           type: string
         links:
@@ -78444,7 +78301,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-11-20T08:04:41.835Z
+        - createdTimestamp: 2025-11-27T13:32:16.695Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -78453,9 +78310,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-11-20T08:04:41.835Z
+          updatedTimestamp: 2025-11-27T13:32:16.695Z
           revision: "1"
-        - createdTimestamp: 2025-11-20T08:04:41.835Z
+        - createdTimestamp: 2025-11-27T13:32:16.695Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -78464,7 +78321,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-11-20T08:04:41.835Z
+          updatedTimestamp: 2025-11-27T13:32:16.695Z
           revision: "1"
         meta: ""
         links: ""
@@ -79165,7 +79022,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-11-20T08:04:41.77Z
+        createdTimestamp: 2025-11-27T13:32:16.611Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -79213,7 +79070,7 @@ components:
           preparationPreview: preparationPreview
           configurationPreview: configurationPreview
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-11-20T08:04:41.771Z
+        updatedTimestamp: 2025-11-27T13:32:16.612Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -79264,6 +79121,7 @@ components:
           managementAddress: managementAddress
           subnetOobIndex: 2.027123023002322
           chassisIdentifier: chassisIdentifier
+          externalId: externalId
           readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -79320,6 +79178,7 @@ components:
           managementAddress: managementAddress
           subnetOobIndex: 2.027123023002322
           chassisIdentifier: chassisIdentifier
+          externalId: externalId
           readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -79362,12 +79221,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.77Z
+          example: 2025-11-27T13:32:16.611Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.771Z
+          example: 2025-11-27T13:32:16.612Z
           format: date-time
           type: string
         links:
@@ -79411,7 +79270,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-11-20T08:04:41.77Z
+        - createdTimestamp: 2025-11-27T13:32:16.611Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -79459,7 +79318,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-20T08:04:41.771Z
+          updatedTimestamp: 2025-11-27T13:32:16.612Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -79510,6 +79369,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -79566,6 +79426,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -79584,7 +79445,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-11-20T08:04:41.77Z
+        - createdTimestamp: 2025-11-27T13:32:16.611Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -79632,7 +79493,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-20T08:04:41.771Z
+          updatedTimestamp: 2025-11-27T13:32:16.612Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -79683,6 +79544,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -79739,6 +79601,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -79788,7 +79651,7 @@ components:
       example:
         interconnectType: dci-evpn
         bgpConfigurationTemplate: bgpConfigurationTemplate
-        createdTimestamp: 2025-11-20T08:04:41.847Z
+        createdTimestamp: 2025-11-27T13:32:16.703Z
         name: Primary DCI EVPN Interconnect
         description: Data center interconnect using EVPN
         links:
@@ -79799,7 +79662,7 @@ components:
         id: "1"
         label: dci-evpn-interconnect-01
         bgpNeighborTemplate: bgpNeighborTemplate
-        updatedTimestamp: 2025-11-20T08:04:41.847Z
+        updatedTimestamp: 2025-11-27T13:32:16.703Z
         revision: "1"
       properties:
         id:
@@ -79843,12 +79706,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.847Z
+          example: 2025-11-27T13:32:16.703Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.847Z
+          example: 2025-11-27T13:32:16.703Z
           format: date-time
           type: string
         links:
@@ -79869,7 +79732,7 @@ components:
         data:
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
-          createdTimestamp: 2025-11-20T08:04:41.847Z
+          createdTimestamp: 2025-11-27T13:32:16.703Z
           name: Primary DCI EVPN Interconnect
           description: Data center interconnect using EVPN
           links:
@@ -79880,11 +79743,11 @@ components:
           id: "1"
           label: dci-evpn-interconnect-01
           bgpNeighborTemplate: bgpNeighborTemplate
-          updatedTimestamp: 2025-11-20T08:04:41.847Z
+          updatedTimestamp: 2025-11-27T13:32:16.703Z
           revision: "1"
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
-          createdTimestamp: 2025-11-20T08:04:41.847Z
+          createdTimestamp: 2025-11-27T13:32:16.703Z
           name: Primary DCI EVPN Interconnect
           description: Data center interconnect using EVPN
           links:
@@ -79895,7 +79758,7 @@ components:
           id: "1"
           label: dci-evpn-interconnect-01
           bgpNeighborTemplate: bgpNeighborTemplate
-          updatedTimestamp: 2025-11-20T08:04:41.847Z
+          updatedTimestamp: 2025-11-27T13:32:16.703Z
           revision: "1"
         meta: ""
         links: ""
@@ -79930,7 +79793,7 @@ components:
         fabricAId: 2
         fabricANetworkEquipmentId: 1
         interconnectId: 2
-        createdTimestamp: 2025-11-20T08:04:41.848Z
+        createdTimestamp: 2025-11-27T13:32:16.704Z
         fabricBNetworkEquipmentId: 1
         links:
         - rel: self
@@ -79938,7 +79801,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-11-20T08:04:41.848Z
+        updatedTimestamp: 2025-11-27T13:32:16.704Z
         revision: "1"
         status: active
         fabricBId: 3
@@ -79949,12 +79812,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.848Z
+          example: 2025-11-27T13:32:16.704Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.848Z
+          example: 2025-11-27T13:32:16.704Z
           format: date-time
           type: string
         links:
@@ -80105,7 +79968,7 @@ components:
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2025-11-20T08:04:41.848Z
+          createdTimestamp: 2025-11-27T13:32:16.704Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -80113,14 +79976,14 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-20T08:04:41.848Z
+          updatedTimestamp: 2025-11-27T13:32:16.704Z
           revision: "1"
           status: active
           fabricBId: 3
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2025-11-20T08:04:41.848Z
+          createdTimestamp: 2025-11-27T13:32:16.704Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -80128,7 +79991,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-20T08:04:41.848Z
+          updatedTimestamp: 2025-11-27T13:32:16.704Z
           revision: "1"
           status: active
           fabricBId: 3
@@ -80188,7 +80051,7 @@ components:
     NetworkFabricList:
       example:
         data:
-        - createdTimestamp: 2025-11-20T08:04:41.77Z
+        - createdTimestamp: 2025-11-27T13:32:16.611Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -80236,7 +80099,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-20T08:04:41.771Z
+          updatedTimestamp: 2025-11-27T13:32:16.612Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -80287,6 +80150,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -80343,6 +80207,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -80361,7 +80226,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-11-20T08:04:41.77Z
+        - createdTimestamp: 2025-11-27T13:32:16.611Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -80409,7 +80274,7 @@ components:
             preparationPreview: preparationPreview
             configurationPreview: configurationPreview
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-11-20T08:04:41.771Z
+          updatedTimestamp: 2025-11-27T13:32:16.612Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -80460,6 +80325,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -80516,6 +80382,7 @@ components:
             managementAddress: managementAddress
             subnetOobIndex: 2.027123023002322
             chassisIdentifier: chassisIdentifier
+            externalId: externalId
             readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -80698,9 +80565,9 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-11-20T08:04:41.849Z
+        createdTimestamp: 2025-11-27T13:32:16.705Z
         mlagPair: 0
-        updatedTimestamp: 2025-11-20T08:04:41.849Z
+        updatedTimestamp: 2025-11-27T13:32:16.705Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -80713,12 +80580,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.849Z
+          example: 2025-11-27T13:32:16.705Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.849Z
+          example: 2025-11-27T13:32:16.705Z
           format: date-time
           type: string
         revision:
@@ -80796,9 +80663,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-11-20T08:04:41.849Z
+          createdTimestamp: 2025-11-27T13:32:16.705Z
           mlagPair: 0
-          updatedTimestamp: 2025-11-20T08:04:41.849Z
+          updatedTimestamp: 2025-11-27T13:32:16.705Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -80809,9 +80676,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-11-20T08:04:41.849Z
+          createdTimestamp: 2025-11-27T13:32:16.705Z
           mlagPair: 0
-          updatedTimestamp: 2025-11-20T08:04:41.849Z
+          updatedTimestamp: 2025-11-27T13:32:16.705Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -83242,7 +83109,7 @@ components:
     ServerRegistrationProfile:
       example:
         settings: ""
-        createdTimestamp: 2025-11-20T08:04:42.195Z
+        createdTimestamp: 2025-11-27T13:32:17.149Z
         name: name
         links:
         - rel: self
@@ -83250,17 +83117,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
-        updatedTimestamp: 2025-11-20T08:04:42.195Z
+        updatedTimestamp: 2025-11-27T13:32:17.149Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:42.195Z
+          example: 2025-11-27T13:32:17.149Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:42.195Z
+          example: 2025-11-27T13:32:17.149Z
           format: date-time
           type: string
         revision:
@@ -83295,7 +83162,7 @@ components:
       example:
         data:
         - settings: ""
-          createdTimestamp: 2025-11-20T08:04:42.195Z
+          createdTimestamp: 2025-11-27T13:32:17.149Z
           name: name
           links:
           - rel: self
@@ -83303,10 +83170,10 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2025-11-20T08:04:42.195Z
+          updatedTimestamp: 2025-11-27T13:32:17.149Z
           revision: "1"
         - settings: ""
-          createdTimestamp: 2025-11-20T08:04:42.195Z
+          createdTimestamp: 2025-11-27T13:32:17.149Z
           name: name
           links:
           - rel: self
@@ -83314,7 +83181,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2025-11-20T08:04:42.195Z
+          updatedTimestamp: 2025-11-27T13:32:17.149Z
           revision: "1"
         meta: ""
         links: ""
@@ -84719,10 +84586,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-11-20T08:04:41.843Z
+        createdTimestamp: 2025-11-27T13:32:16.698Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-11-20T08:04:41.843Z
+        updatedTimestamp: 2025-11-27T13:32:16.698Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -84796,12 +84663,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.843Z
+          example: 2025-11-27T13:32:16.698Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.843Z
+          example: 2025-11-27T13:32:16.698Z
           format: date-time
           type: string
         links:
@@ -87079,12 +86946,12 @@ components:
         sizeGB: 4.965218492984954
         dnsSubdomainId: 9.018348186070783
         logicalNetworkId: 9.965781217890562
+        discoverInformation: ""
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
         revision: 6.683562403749608
-        endpoint: endpoint
         infrastructureId: 8.762042012749001
         infrastructure: ""
         serviceStatus: ordered
@@ -87146,9 +87013,10 @@ components:
         networkVlanId:
           description: Id of the VLAN for the File Share.
           type: number
-        endpoint:
-          description: Endpoint of the File Share.
-          type: string
+        discoverInformation:
+          allOf:
+          - $ref: '#/components/schemas/GenericFileShareDiscoverInformation'
+          description: Discover information of the File Share.
         config:
           allOf:
           - $ref: '#/components/schemas/FileShareConfiguration'
@@ -87171,12 +87039,12 @@ components:
         sizeGB: 3.5571952270680973
         dnsSubdomainId: 5.944895607614016
         logicalNetworkId: 1.284659006116532
+        discoverInformation: ""
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
         revision: 6.778324963048013
-        endpoint: endpoint
         infrastructureId: 6.878052220127876
         infrastructure: ""
         serviceStatus: ordered
@@ -87235,11 +87103,12 @@ components:
         dnsSubdomainId:
           description: Id of the DNS subdomain for the Bucket.
           type: number
-        endpoint:
-          description: Endpoint of the Bucket.
-          type: string
+        discoverInformation:
+          allOf:
+          - $ref: '#/components/schemas/GenericBucketDiscoverInformation'
+          description: Discover information of the Bucket.
         accessKeyId:
-          description: Endpoint of the Bucket.
+          description: Access Key ID of the Bucket.
           type: string
         config:
           allOf:
@@ -87348,9 +87217,50 @@ components:
       - storageType
       - updatedTimestamp
       type: object
+    GenericDriveDiscoverInformation:
+      example:
+        discoverPort: 3.0205796992916243
+        driveType: iscsi
+        discoverIpAddress: discoverIpAddress
+        discoverWwn: discoverWwn
+        isFibreChannel: true
+      properties:
+        discoverIpAddress:
+          description: The IP address used to discover the drive.
+          type: string
+        discoverPort:
+          description: The port used to discover the drive.
+          type: number
+        discoverWwn:
+          description: The WWN used to discover the drive.
+          type: string
+        driveType:
+          description: The type of the drive.
+          enum:
+          - iscsi
+          - nvme_tcp
+          type: string
+        isFibreChannel:
+          description: Indicates if the drive is using Fibre Channel.
+          type: boolean
+      required:
+      - driveType
+      - isFibreChannel
+      type: object
     SharedDriveVariables:
       example:
         logicalNetworkId: 3.0937452626664474
+        discoverInformation:
+        - discoverPort: 3.0205796992916243
+          driveType: iscsi
+          discoverIpAddress: discoverIpAddress
+          discoverWwn: discoverWwn
+          isFibreChannel: true
+        - discoverPort: 3.0205796992916243
+          driveType: iscsi
+          discoverIpAddress: discoverIpAddress
+          discoverWwn: discoverWwn
+          isFibreChannel: true
         sizeMb: 3.353193347011243
         updatedTimestamp: updatedTimestamp
         targets:
@@ -87482,6 +87392,11 @@ components:
         createdTimestamp:
           description: Timestamp of the Drive creation.
           type: string
+        discoverInformation:
+          description: Discover information for the Drive.
+          items:
+            $ref: '#/components/schemas/GenericDriveDiscoverInformation'
+          type: array
       required:
       - allocationAffinity
       - config
@@ -87511,7 +87426,7 @@ components:
         isDefaultGateway: true
         cidr: cidr
         gateway: gateway
-        maskBits: 3.2588565619047607
+        maskBits: 4.078845849666752
       properties:
         ip:
           type: string
@@ -87537,7 +87452,7 @@ components:
         netmask: netmask
         ip: ip
         cidr: cidr
-        maskBits: 4.078845849666752
+        maskBits: 0.2025324113236393
       properties:
         ip:
           type: string
@@ -87569,7 +87484,7 @@ components:
     InstanceInterfaceMemberVariables:
       example:
         interfaceType: ""
-        id: 0.2025324113236393
+        id: 6.628464275087742
       properties:
         id:
           type: number
@@ -87583,7 +87498,7 @@ components:
     InstanceInterfaceLinkVariables:
       example:
         interfaceType: ""
-        id: 6.628464275087742
+        id: 4.258773108174356
       properties:
         id:
           type: number
@@ -87602,27 +87517,27 @@ components:
           isDefaultGateway: true
           cidr: cidr
           gateway: gateway
-          maskBits: 3.2588565619047607
+          maskBits: 4.078845849666752
         - netmask: netmask
           ip: ip
           isDefaultGateway: true
           cidr: cidr
           gateway: gateway
-          maskBits: 3.2588565619047607
-        logicalNetworkId: 3.0205796992916243
-        vlanId: 5.533258397034986
+          maskBits: 4.078845849666752
+        logicalNetworkId: 3.0576100241049344
+        vlanId: 3.2588565619047607
         logicalNetworkName: logicalNetworkName
         logicalNetworkLabel: logicalNetworkLabel
         ipv6Addresses:
         - netmask: netmask
           ip: ip
           cidr: cidr
-          maskBits: 4.078845849666752
+          maskBits: 0.2025324113236393
         - netmask: netmask
           ip: ip
           cidr: cidr
-          maskBits: 4.078845849666752
-        mtu: 7.04836565559697
+          maskBits: 0.2025324113236393
+        mtu: 5.533258397034986
         interfaceType: ""
         routes:
         - to: to
@@ -87632,15 +87547,15 @@ components:
         macAddress: macAddress
         members:
         - interfaceType: ""
-          id: 0.2025324113236393
+          id: 6.628464275087742
         - interfaceType: ""
-          id: 0.2025324113236393
-        typeInterfaceId: 3.0576100241049344
+          id: 6.628464275087742
+        typeInterfaceId: 7.04836565559697
         links:
         - interfaceType: ""
-          id: 6.628464275087742
+          id: 4.258773108174356
         - interfaceType: ""
-          id: 6.628464275087742
+          id: 4.258773108174356
       properties:
         interfaceType:
           allOf:
@@ -87692,27 +87607,27 @@ components:
             isDefaultGateway: true
             cidr: cidr
             gateway: gateway
-            maskBits: 3.2588565619047607
+            maskBits: 4.078845849666752
           - netmask: netmask
             ip: ip
             isDefaultGateway: true
             cidr: cidr
             gateway: gateway
-            maskBits: 3.2588565619047607
-          logicalNetworkId: 3.0205796992916243
-          vlanId: 5.533258397034986
+            maskBits: 4.078845849666752
+          logicalNetworkId: 3.0576100241049344
+          vlanId: 3.2588565619047607
           logicalNetworkName: logicalNetworkName
           logicalNetworkLabel: logicalNetworkLabel
           ipv6Addresses:
           - netmask: netmask
             ip: ip
             cidr: cidr
-            maskBits: 4.078845849666752
+            maskBits: 0.2025324113236393
           - netmask: netmask
             ip: ip
             cidr: cidr
-            maskBits: 4.078845849666752
-          mtu: 7.04836565559697
+            maskBits: 0.2025324113236393
+          mtu: 5.533258397034986
           interfaceType: ""
           routes:
           - to: to
@@ -87722,42 +87637,42 @@ components:
           macAddress: macAddress
           members:
           - interfaceType: ""
-            id: 0.2025324113236393
+            id: 6.628464275087742
           - interfaceType: ""
-            id: 0.2025324113236393
-          typeInterfaceId: 3.0576100241049344
+            id: 6.628464275087742
+          typeInterfaceId: 7.04836565559697
           links:
           - interfaceType: ""
-            id: 6.628464275087742
+            id: 4.258773108174356
           - interfaceType: ""
-            id: 6.628464275087742
+            id: 4.258773108174356
         - ipv4Addresses:
           - netmask: netmask
             ip: ip
             isDefaultGateway: true
             cidr: cidr
             gateway: gateway
-            maskBits: 3.2588565619047607
+            maskBits: 4.078845849666752
           - netmask: netmask
             ip: ip
             isDefaultGateway: true
             cidr: cidr
             gateway: gateway
-            maskBits: 3.2588565619047607
-          logicalNetworkId: 3.0205796992916243
-          vlanId: 5.533258397034986
+            maskBits: 4.078845849666752
+          logicalNetworkId: 3.0576100241049344
+          vlanId: 3.2588565619047607
           logicalNetworkName: logicalNetworkName
           logicalNetworkLabel: logicalNetworkLabel
           ipv6Addresses:
           - netmask: netmask
             ip: ip
             cidr: cidr
-            maskBits: 4.078845849666752
+            maskBits: 0.2025324113236393
           - netmask: netmask
             ip: ip
             cidr: cidr
-            maskBits: 4.078845849666752
-          mtu: 7.04836565559697
+            maskBits: 0.2025324113236393
+          mtu: 5.533258397034986
           interfaceType: ""
           routes:
           - to: to
@@ -87767,15 +87682,15 @@ components:
           macAddress: macAddress
           members:
           - interfaceType: ""
-            id: 0.2025324113236393
+            id: 6.628464275087742
           - interfaceType: ""
-            id: 0.2025324113236393
-          typeInterfaceId: 3.0576100241049344
+            id: 6.628464275087742
+          typeInterfaceId: 7.04836565559697
           links:
           - interfaceType: ""
-            id: 6.628464275087742
+            id: 4.258773108174356
           - interfaceType: ""
-            id: 6.628464275087742
+            id: 4.258773108174356
       properties:
         interfaces:
           description: Network variables for the instance interfaces.
@@ -87837,12 +87752,12 @@ components:
         - sizeGB: 4.965218492984954
           dnsSubdomainId: 9.018348186070783
           logicalNetworkId: 9.965781217890562
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.683562403749608
-          endpoint: endpoint
           infrastructureId: 8.762042012749001
           infrastructure: ""
           serviceStatus: ordered
@@ -87854,12 +87769,12 @@ components:
         - sizeGB: 4.965218492984954
           dnsSubdomainId: 9.018348186070783
           logicalNetworkId: 9.965781217890562
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.683562403749608
-          endpoint: endpoint
           infrastructureId: 8.762042012749001
           infrastructure: ""
           serviceStatus: ordered
@@ -87871,6 +87786,17 @@ components:
         variables: "{}"
         sharedDrives:
         - logicalNetworkId: 3.0937452626664474
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
@@ -87900,6 +87826,17 @@ components:
           subdomain: subdomain
           config: ""
         - logicalNetworkId: 3.0937452626664474
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
@@ -87934,12 +87871,12 @@ components:
           sizeGB: 3.5571952270680973
           dnsSubdomainId: 5.944895607614016
           logicalNetworkId: 1.284659006116532
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.778324963048013
-          endpoint: endpoint
           infrastructureId: 6.878052220127876
           infrastructure: ""
           serviceStatus: ordered
@@ -87952,12 +87889,12 @@ components:
           sizeGB: 3.5571952270680973
           dnsSubdomainId: 5.944895607614016
           logicalNetworkId: 1.284659006116532
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.778324963048013
-          endpoint: endpoint
           infrastructureId: 6.878052220127876
           infrastructure: ""
           serviceStatus: ordered
@@ -87976,27 +87913,27 @@ components:
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88006,42 +87943,42 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88051,15 +87988,15 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
         - interfaces:
           - ipv4Addresses:
             - netmask: netmask
@@ -88067,27 +88004,27 @@ components:
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88097,42 +88034,42 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88142,15 +88079,15 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -88621,12 +88558,12 @@ components:
         - sizeGB: 4.965218492984954
           dnsSubdomainId: 9.018348186070783
           logicalNetworkId: 9.965781217890562
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.683562403749608
-          endpoint: endpoint
           infrastructureId: 8.762042012749001
           infrastructure: ""
           serviceStatus: ordered
@@ -88638,12 +88575,12 @@ components:
         - sizeGB: 4.965218492984954
           dnsSubdomainId: 9.018348186070783
           logicalNetworkId: 9.965781217890562
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.683562403749608
-          endpoint: endpoint
           infrastructureId: 8.762042012749001
           infrastructure: ""
           serviceStatus: ordered
@@ -88655,6 +88592,17 @@ components:
         variables: "{}"
         sharedDrives:
         - logicalNetworkId: 3.0937452626664474
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
@@ -88684,6 +88632,17 @@ components:
           subdomain: subdomain
           config: ""
         - logicalNetworkId: 3.0937452626664474
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
@@ -88718,12 +88677,12 @@ components:
           sizeGB: 3.5571952270680973
           dnsSubdomainId: 5.944895607614016
           logicalNetworkId: 1.284659006116532
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.778324963048013
-          endpoint: endpoint
           infrastructureId: 6.878052220127876
           infrastructure: ""
           serviceStatus: ordered
@@ -88736,12 +88695,12 @@ components:
           sizeGB: 3.5571952270680973
           dnsSubdomainId: 5.944895607614016
           logicalNetworkId: 1.284659006116532
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.778324963048013
-          endpoint: endpoint
           infrastructureId: 6.878052220127876
           infrastructure: ""
           serviceStatus: ordered
@@ -88760,27 +88719,27 @@ components:
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88790,42 +88749,42 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88835,15 +88794,15 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
         - interfaces:
           - ipv4Addresses:
             - netmask: netmask
@@ -88851,27 +88810,27 @@ components:
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88881,42 +88840,42 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -88926,15 +88885,15 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -89654,6 +89613,7 @@ components:
           ipmiCredentialsNeedUpdate: 5.944895607614016
           interfaces:
           - networkDevice: "{}"
+            infinibandGuid: infinibandGuid
             description: description
             ipv6Addresses:
             - 2001:db8::1
@@ -89684,6 +89644,7 @@ components:
             defaultFabricId: 4.652396432933246
             switchPortId: switchPortId
           - networkDevice: "{}"
+            infinibandGuid: infinibandGuid
             description: description
             ipv6Addresses:
             - 2001:db8::1
@@ -89841,6 +89802,7 @@ components:
           ipmiCredentialsNeedUpdate: 5.944895607614016
           interfaces:
           - networkDevice: "{}"
+            infinibandGuid: infinibandGuid
             description: description
             ipv6Addresses:
             - 2001:db8::1
@@ -89871,6 +89833,7 @@ components:
             defaultFabricId: 4.652396432933246
             switchPortId: switchPortId
           - networkDevice: "{}"
+            infinibandGuid: infinibandGuid
             description: description
             ipv6Addresses:
             - 2001:db8::1
@@ -90952,7 +90915,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-11-20T08:04:41.83Z
+        createdTimestamp: 2025-11-27T13:32:16.674Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -90960,7 +90923,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-11-20T08:04:41.83Z
+        updatedTimestamp: 2025-11-27T13:32:16.674Z
         revision: "1"
       properties:
         id:
@@ -90989,12 +90952,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.83Z
+          example: 2025-11-27T13:32:16.674Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.83Z
+          example: 2025-11-27T13:32:16.674Z
           format: date-time
           type: string
         links:
@@ -91039,7 +91002,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-11-20T08:04:41.833Z
+        createdTimestamp: 2025-11-27T13:32:16.692Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -91050,7 +91013,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-11-20T08:04:41.833Z
+        updatedTimestamp: 2025-11-27T13:32:16.692Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -91084,12 +91047,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-11-20T08:04:41.833Z
+          example: 2025-11-27T13:32:16.692Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-11-20T08:04:41.833Z
+          example: 2025-11-27T13:32:16.692Z
           format: date-time
           type: string
         allocationInfo:
@@ -91113,7 +91076,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-11-20T08:04:41.833Z
+        - createdTimestamp: 2025-11-27T13:32:16.692Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -91124,10 +91087,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-11-20T08:04:41.833Z
+          updatedTimestamp: 2025-11-27T13:32:16.692Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2025-11-20T08:04:41.833Z
+        - createdTimestamp: 2025-11-27T13:32:16.692Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -91138,7 +91101,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-11-20T08:04:41.833Z
+          updatedTimestamp: 2025-11-27T13:32:16.692Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -91347,7 +91310,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-11-20T08:04:41.83Z
+          createdTimestamp: 2025-11-27T13:32:16.674Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -91355,12 +91318,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-20T08:04:41.83Z
+          updatedTimestamp: 2025-11-27T13:32:16.674Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-11-20T08:04:41.83Z
+          createdTimestamp: 2025-11-27T13:32:16.674Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -91368,7 +91331,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-11-20T08:04:41.83Z
+          updatedTimestamp: 2025-11-27T13:32:16.674Z
           revision: "1"
         meta: ""
         links: ""
@@ -91861,6 +91824,17 @@ components:
     SharedDrive:
       example:
         logicalNetworkId: 1.4658129805029452
+        discoverInformation:
+        - discoverPort: 3.0205796992916243
+          driveType: iscsi
+          discoverIpAddress: discoverIpAddress
+          discoverWwn: discoverWwn
+          isFibreChannel: true
+        - discoverPort: 3.0205796992916243
+          driveType: iscsi
+          discoverIpAddress: discoverIpAddress
+          discoverWwn: discoverWwn
+          isFibreChannel: true
         sizeMb: 6.027456183070403
         updatedTimestamp: updatedTimestamp
         targets:
@@ -91993,6 +91967,11 @@ components:
         createdTimestamp:
           description: Timestamp of the Drive creation.
           type: string
+        discoverInformation:
+          description: Discover information for the Drive.
+          items:
+            $ref: '#/components/schemas/GenericDriveDiscoverInformation'
+          type: array
         meta:
           allOf:
           - $ref: '#/components/schemas/SharedDriveMeta'
@@ -92018,6 +91997,17 @@ components:
       example:
         data:
         - logicalNetworkId: 1.4658129805029452
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 6.027456183070403
           updatedTimestamp: updatedTimestamp
           targets:
@@ -92048,6 +92038,17 @@ components:
           subdomain: subdomain
           config: ""
         - logicalNetworkId: 1.4658129805029452
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 6.027456183070403
           updatedTimestamp: updatedTimestamp
           targets:
@@ -92138,7 +92139,6 @@ components:
           description: Id of the storage pool the Drive is assigned to
           type: number
       required:
-      - logicalNetworkId
       - sizeMb
       - storagePoolId
       type: object
@@ -95912,12 +95912,12 @@ components:
         - sizeGB: 4.965218492984954
           dnsSubdomainId: 9.018348186070783
           logicalNetworkId: 9.965781217890562
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.683562403749608
-          endpoint: endpoint
           infrastructureId: 8.762042012749001
           infrastructure: ""
           serviceStatus: ordered
@@ -95929,12 +95929,12 @@ components:
         - sizeGB: 4.965218492984954
           dnsSubdomainId: 9.018348186070783
           logicalNetworkId: 9.965781217890562
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.683562403749608
-          endpoint: endpoint
           infrastructureId: 8.762042012749001
           infrastructure: ""
           serviceStatus: ordered
@@ -95946,6 +95946,17 @@ components:
         variables: "{}"
         sharedDrives:
         - logicalNetworkId: 3.0937452626664474
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
@@ -95975,6 +95986,17 @@ components:
           subdomain: subdomain
           config: ""
         - logicalNetworkId: 3.0937452626664474
+          discoverInformation:
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
+          - discoverPort: 3.0205796992916243
+            driveType: iscsi
+            discoverIpAddress: discoverIpAddress
+            discoverWwn: discoverWwn
+            isFibreChannel: true
           sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
@@ -96009,12 +96031,12 @@ components:
           sizeGB: 3.5571952270680973
           dnsSubdomainId: 5.944895607614016
           logicalNetworkId: 1.284659006116532
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.778324963048013
-          endpoint: endpoint
           infrastructureId: 6.878052220127876
           infrastructure: ""
           serviceStatus: ordered
@@ -96027,12 +96049,12 @@ components:
           sizeGB: 3.5571952270680973
           dnsSubdomainId: 5.944895607614016
           logicalNetworkId: 1.284659006116532
+          discoverInformation: ""
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 6.778324963048013
-          endpoint: endpoint
           infrastructureId: 6.878052220127876
           infrastructure: ""
           serviceStatus: ordered
@@ -96051,27 +96073,27 @@ components:
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -96081,42 +96103,42 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -96126,15 +96148,15 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
         - interfaces:
           - ipv4Addresses:
             - netmask: netmask
@@ -96142,27 +96164,27 @@ components:
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -96172,42 +96194,42 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
+              maskBits: 4.078845849666752
             - netmask: netmask
               ip: ip
               isDefaultGateway: true
               cidr: cidr
               gateway: gateway
-              maskBits: 3.2588565619047607
-            logicalNetworkId: 3.0205796992916243
-            vlanId: 5.533258397034986
+              maskBits: 4.078845849666752
+            logicalNetworkId: 3.0576100241049344
+            vlanId: 3.2588565619047607
             logicalNetworkName: logicalNetworkName
             logicalNetworkLabel: logicalNetworkLabel
             ipv6Addresses:
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
+              maskBits: 0.2025324113236393
             - netmask: netmask
               ip: ip
               cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
+              maskBits: 0.2025324113236393
+            mtu: 5.533258397034986
             interfaceType: ""
             routes:
             - to: to
@@ -96217,15 +96239,15 @@ components:
             macAddress: macAddress
             members:
             - interfaceType: ""
-              id: 0.2025324113236393
+              id: 6.628464275087742
             - interfaceType: ""
-              id: 0.2025324113236393
-            typeInterfaceId: 3.0576100241049344
+              id: 6.628464275087742
+            typeInterfaceId: 7.04836565559697
             links:
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
             - interfaceType: ""
-              id: 6.628464275087742
+              id: 4.258773108174356
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -98202,22 +98224,6 @@ components:
       - $ref: '#/components/schemas/DellComponentFilter'
       - $ref: '#/components/schemas/LenovoComponentFilter'
       - $ref: '#/components/schemas/HpeComponentFilter'
-    LogicalNetworkProfile_1:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/VlanLogicalNetworkProfile'
-      - $ref: '#/components/schemas/VxlanLogicalNetworkProfile'
-      - $ref: '#/components/schemas/InfinibandLogicalNetworkProfile'
-      title: LogicalNetworkProfile
-    LogicalNetwork_1:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/VlanLogicalNetwork'
-      - $ref: '#/components/schemas/VxlanLogicalNetwork'
-      - $ref: '#/components/schemas/InfinibandLogicalNetwork'
-      title: LogicalNetwork
     NetworkFabric_fabricConfiguration:
       description: Network fabric configuration with type-specific properties based
         on the fabricType discriminator

@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the Storage Pool | 
 **Technologies** | **[]string** | Storage technology | 
 **Driver** | **string** | Driver of the Storage Pool | 
+**FabricId** | **float32** | Fabric ID of the Storage Pool | 
 
 ## Methods
 
 ### NewStoragePoolForUsage
 
-`func NewStoragePoolForUsage(id float32, name string, technologies []string, driver string, ) *StoragePoolForUsage`
+`func NewStoragePoolForUsage(id float32, name string, technologies []string, driver string, fabricId float32, ) *StoragePoolForUsage`
 
 NewStoragePoolForUsage instantiates a new StoragePoolForUsage object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +107,26 @@ and a boolean to check if the value has been set.
 `func (o *StoragePoolForUsage) SetDriver(v string)`
 
 SetDriver sets Driver field to given value.
+
+
+### GetFabricId
+
+`func (o *StoragePoolForUsage) GetFabricId() float32`
+
+GetFabricId returns the FabricId field if non-nil, zero value otherwise.
+
+### GetFabricIdOk
+
+`func (o *StoragePoolForUsage) GetFabricIdOk() (*float32, bool)`
+
+GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricId
+
+`func (o *StoragePoolForUsage) SetFabricId(v float32)`
+
+SetFabricId sets FabricId field to given value.
 
 
 

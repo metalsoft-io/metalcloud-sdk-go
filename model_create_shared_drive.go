@@ -27,7 +27,7 @@ type CreateSharedDrive struct {
 	Label *string `json:"label,omitempty"`
 	Meta *SharedDriveMeta `json:"meta,omitempty"`
 	// Id of the Logical Network for the Drive.
-	LogicalNetworkId float32 `json:"logicalNetworkId"`
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Id of the storage pool the Drive is assigned to
 	StoragePoolId float32 `json:"storagePoolId"`
 	AdditionalProperties map[string]interface{}
@@ -39,10 +39,9 @@ type _CreateSharedDrive CreateSharedDrive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSharedDrive(sizeMb float32, logicalNetworkId float32, storagePoolId float32) *CreateSharedDrive {
+func NewCreateSharedDrive(sizeMb float32, storagePoolId float32) *CreateSharedDrive {
 	this := CreateSharedDrive{}
 	this.SizeMb = sizeMb
-	this.LogicalNetworkId = logicalNetworkId
 	this.StoragePoolId = storagePoolId
 	return &this
 }
@@ -143,28 +142,36 @@ func (o *CreateSharedDrive) SetMeta(v SharedDriveMeta) {
 	o.Meta = &v
 }
 
-// GetLogicalNetworkId returns the LogicalNetworkId field value
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
 func (o *CreateSharedDrive) GetLogicalNetworkId() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.LogicalNetworkId) {
 		var ret float32
 		return ret
 	}
-
-	return o.LogicalNetworkId
+	return *o.LogicalNetworkId
 }
 
-// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateSharedDrive) GetLogicalNetworkIdOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
-	return &o.LogicalNetworkId, true
+	return o.LogicalNetworkId, true
 }
 
-// SetLogicalNetworkId sets field value
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *CreateSharedDrive) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
 func (o *CreateSharedDrive) SetLogicalNetworkId(v float32) {
-	o.LogicalNetworkId = v
+	o.LogicalNetworkId = &v
 }
 
 // GetStoragePoolId returns the StoragePoolId field value
@@ -208,7 +215,9 @@ func (o CreateSharedDrive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
-	toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	}
 	toSerialize["storagePoolId"] = o.StoragePoolId
 
 	for key, value := range o.AdditionalProperties {
@@ -224,7 +233,6 @@ func (o *CreateSharedDrive) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"sizeMb",
-		"logicalNetworkId",
 		"storagePoolId",
 	}
 

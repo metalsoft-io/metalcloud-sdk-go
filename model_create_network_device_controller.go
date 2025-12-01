@@ -21,6 +21,8 @@ var _ MappedNullable = &CreateNetworkDeviceController{}
 
 // CreateNetworkDeviceController struct for CreateNetworkDeviceController
 type CreateNetworkDeviceController struct {
+	// Site identifier
+	SiteId *int32 `json:"siteId,omitempty"`
 	// Name of the datacenter
 	DatacenterName string `json:"datacenterName"`
 	// Unique identifier string for the network device controller
@@ -65,6 +67,38 @@ func NewCreateNetworkDeviceController(datacenterName string, driver SwitchContro
 func NewCreateNetworkDeviceControllerWithDefaults() *CreateNetworkDeviceController {
 	this := CreateNetworkDeviceController{}
 	return &this
+}
+
+// GetSiteId returns the SiteId field value if set, zero value otherwise.
+func (o *CreateNetworkDeviceController) GetSiteId() int32 {
+	if o == nil || IsNil(o.SiteId) {
+		var ret int32
+		return ret
+	}
+	return *o.SiteId
+}
+
+// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDeviceController) GetSiteIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.SiteId) {
+		return nil, false
+	}
+	return o.SiteId, true
+}
+
+// HasSiteId returns a boolean if a field has been set.
+func (o *CreateNetworkDeviceController) HasSiteId() bool {
+	if o != nil && !IsNil(o.SiteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
+func (o *CreateNetworkDeviceController) SetSiteId(v int32) {
+	o.SiteId = &v
 }
 
 // GetDatacenterName returns the DatacenterName field value
@@ -317,6 +351,9 @@ func (o CreateNetworkDeviceController) MarshalJSON() ([]byte, error) {
 
 func (o CreateNetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SiteId) {
+		toSerialize["siteId"] = o.SiteId
+	}
 	toSerialize["datacenterName"] = o.DatacenterName
 	if !IsNil(o.IdentifierString) {
 		toSerialize["identifierString"] = o.IdentifierString
@@ -380,6 +417,7 @@ func (o *CreateNetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitchController")

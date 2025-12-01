@@ -117,6 +117,8 @@ type NetworkDevice struct {
 	VmPoolId *float32 `json:"vmPoolId,omitempty"`
 	// ID of the network device controller if any.
 	SwitchControllerId *float32 `json:"switchControllerId,omitempty"`
+	// External ID of the network device.
+	ExternalId *string `json:"externalId,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -1378,6 +1380,38 @@ func (o *NetworkDevice) SetSwitchControllerId(v float32) {
 	o.SwitchControllerId = &v
 }
 
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *NetworkDevice) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalId) {
+		return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *NetworkDevice) HasExternalId() bool {
+	if o != nil && !IsNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *NetworkDevice) SetExternalId(v string) {
+	o.ExternalId = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -1479,6 +1513,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SwitchControllerId) {
 		toSerialize["switchControllerId"] = o.SwitchControllerId
+	}
+	if !IsNil(o.ExternalId) {
+		toSerialize["externalId"] = o.ExternalId
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -1616,6 +1653,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "switchControllerId")
+		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

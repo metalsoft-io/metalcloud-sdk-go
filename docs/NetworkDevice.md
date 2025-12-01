@@ -52,6 +52,7 @@ Name | Type | Description | Notes
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the network device. | [optional] 
 **VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device. | [optional] 
 **SwitchControllerId** | Pointer to **float32** | ID of the network device controller if any. | [optional] 
+**ExternalId** | Pointer to **string** | External ID of the network device. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -1067,6 +1068,31 @@ SetSwitchControllerId sets SwitchControllerId field to given value.
 `func (o *NetworkDevice) HasSwitchControllerId() bool`
 
 HasSwitchControllerId returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *NetworkDevice) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *NetworkDevice) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *NetworkDevice) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *NetworkDevice) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 ### GetLinks
 

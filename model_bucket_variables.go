@@ -49,9 +49,9 @@ type BucketVariables struct {
 	SubdomainPermanent string `json:"subdomainPermanent"`
 	// Id of the DNS subdomain for the Bucket.
 	DnsSubdomainId float32 `json:"dnsSubdomainId"`
-	// Endpoint of the Bucket.
-	Endpoint *string `json:"endpoint,omitempty"`
-	// Endpoint of the Bucket.
+	// Discover information of the Bucket.
+	DiscoverInformation *GenericBucketDiscoverInformation `json:"discoverInformation,omitempty"`
+	// Access Key ID of the Bucket.
 	AccessKeyId *string `json:"accessKeyId,omitempty"`
 	// The current changes to be deployed for the Bucket.
 	Config BucketConfiguration `json:"config"`
@@ -444,36 +444,36 @@ func (o *BucketVariables) SetDnsSubdomainId(v float32) {
 	o.DnsSubdomainId = v
 }
 
-// GetEndpoint returns the Endpoint field value if set, zero value otherwise.
-func (o *BucketVariables) GetEndpoint() string {
-	if o == nil || IsNil(o.Endpoint) {
-		var ret string
+// GetDiscoverInformation returns the DiscoverInformation field value if set, zero value otherwise.
+func (o *BucketVariables) GetDiscoverInformation() GenericBucketDiscoverInformation {
+	if o == nil || IsNil(o.DiscoverInformation) {
+		var ret GenericBucketDiscoverInformation
 		return ret
 	}
-	return *o.Endpoint
+	return *o.DiscoverInformation
 }
 
-// GetEndpointOk returns a tuple with the Endpoint field value if set, nil otherwise
+// GetDiscoverInformationOk returns a tuple with the DiscoverInformation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BucketVariables) GetEndpointOk() (*string, bool) {
-	if o == nil || IsNil(o.Endpoint) {
+func (o *BucketVariables) GetDiscoverInformationOk() (*GenericBucketDiscoverInformation, bool) {
+	if o == nil || IsNil(o.DiscoverInformation) {
 		return nil, false
 	}
-	return o.Endpoint, true
+	return o.DiscoverInformation, true
 }
 
-// HasEndpoint returns a boolean if a field has been set.
-func (o *BucketVariables) HasEndpoint() bool {
-	if o != nil && !IsNil(o.Endpoint) {
+// HasDiscoverInformation returns a boolean if a field has been set.
+func (o *BucketVariables) HasDiscoverInformation() bool {
+	if o != nil && !IsNil(o.DiscoverInformation) {
 		return true
 	}
 
 	return false
 }
 
-// SetEndpoint gets a reference to the given string and assigns it to the Endpoint field.
-func (o *BucketVariables) SetEndpoint(v string) {
-	o.Endpoint = &v
+// SetDiscoverInformation gets a reference to the given GenericBucketDiscoverInformation and assigns it to the DiscoverInformation field.
+func (o *BucketVariables) SetDiscoverInformation(v GenericBucketDiscoverInformation) {
+	o.DiscoverInformation = &v
 }
 
 // GetAccessKeyId returns the AccessKeyId field value if set, zero value otherwise.
@@ -592,8 +592,8 @@ func (o BucketVariables) ToMap() (map[string]interface{}, error) {
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["subdomainPermanent"] = o.SubdomainPermanent
 	toSerialize["dnsSubdomainId"] = o.DnsSubdomainId
-	if !IsNil(o.Endpoint) {
-		toSerialize["endpoint"] = o.Endpoint
+	if !IsNil(o.DiscoverInformation) {
+		toSerialize["discoverInformation"] = o.DiscoverInformation
 	}
 	if !IsNil(o.AccessKeyId) {
 		toSerialize["accessKeyId"] = o.AccessKeyId
@@ -671,7 +671,7 @@ func (o *BucketVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
-		delete(additionalProperties, "endpoint")
+		delete(additionalProperties, "discoverInformation")
 		delete(additionalProperties, "accessKeyId")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "secretKeyEncrypted")

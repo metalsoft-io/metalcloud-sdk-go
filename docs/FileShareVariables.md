@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the File Share. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the File Share. | [optional] 
 **NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the File Share. | [optional] 
-**Endpoint** | Pointer to **string** | Endpoint of the File Share. | [optional] 
+**DiscoverInformation** | Pointer to [**GenericFileShareDiscoverInformation**](GenericFileShareDiscoverInformation.md) | Discover information of the File Share. | [optional] 
 **Config** | [**FileShareConfiguration**](FileShareConfiguration.md) | The current changes to be deployed for the File Share. | 
 
 ## Methods
@@ -371,30 +371,30 @@ SetNetworkVlanId sets NetworkVlanId field to given value.
 
 HasNetworkVlanId returns a boolean if a field has been set.
 
-### GetEndpoint
+### GetDiscoverInformation
 
-`func (o *FileShareVariables) GetEndpoint() string`
+`func (o *FileShareVariables) GetDiscoverInformation() GenericFileShareDiscoverInformation`
 
-GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+GetDiscoverInformation returns the DiscoverInformation field if non-nil, zero value otherwise.
 
-### GetEndpointOk
+### GetDiscoverInformationOk
 
-`func (o *FileShareVariables) GetEndpointOk() (*string, bool)`
+`func (o *FileShareVariables) GetDiscoverInformationOk() (*GenericFileShareDiscoverInformation, bool)`
 
-GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+GetDiscoverInformationOk returns a tuple with the DiscoverInformation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndpoint
+### SetDiscoverInformation
 
-`func (o *FileShareVariables) SetEndpoint(v string)`
+`func (o *FileShareVariables) SetDiscoverInformation(v GenericFileShareDiscoverInformation)`
 
-SetEndpoint sets Endpoint field to given value.
+SetDiscoverInformation sets DiscoverInformation field to given value.
 
-### HasEndpoint
+### HasDiscoverInformation
 
-`func (o *FileShareVariables) HasEndpoint() bool`
+`func (o *FileShareVariables) HasDiscoverInformation() bool`
 
-HasEndpoint returns a boolean if a field has been set.
+HasDiscoverInformation returns a boolean if a field has been set.
 
 ### GetConfig
 

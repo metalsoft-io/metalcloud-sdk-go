@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **SizeGB** | **float32** | Disk size in GB for Bucket | 
 **Label** | Pointer to **string** | Label of the Bucket. | [optional] 
 **Meta** | Pointer to [**BucketMeta**](BucketMeta.md) |  | [optional] 
-**LogicalNetworkId** | **float32** | Id of the Logical Network for the Bucket. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Bucket is assigned to | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Bucket. | [optional] 
+**StoragePoolId** | **float32** | Id of the storage pool the Bucket is assigned to | 
 
 ## Methods
 
 ### NewCreateBucket
 
-`func NewCreateBucket(sizeGB float32, logicalNetworkId float32, ) *CreateBucket`
+`func NewCreateBucket(sizeGB float32, storagePoolId float32, ) *CreateBucket`
 
 NewCreateBucket instantiates a new CreateBucket object
 This constructor will assign default values to properties that have it defined,
@@ -118,6 +118,11 @@ and a boolean to check if the value has been set.
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
+### HasLogicalNetworkId
+
+`func (o *CreateBucket) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 
@@ -138,11 +143,6 @@ and a boolean to check if the value has been set.
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
-### HasStoragePoolId
-
-`func (o *CreateBucket) HasStoragePoolId() bool`
-
-HasStoragePoolId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

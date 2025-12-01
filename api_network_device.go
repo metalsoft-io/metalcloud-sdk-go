@@ -448,11 +448,11 @@ type NetworkDeviceAPIDiscoverNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
 	networkDeviceId float32
-	body *map[string]interface{}
+	discoveryQuery *DiscoveryQuery
 }
 
-func (r NetworkDeviceAPIDiscoverNetworkDeviceRequest) Body(body map[string]interface{}) NetworkDeviceAPIDiscoverNetworkDeviceRequest {
-	r.body = &body
+func (r NetworkDeviceAPIDiscoverNetworkDeviceRequest) DiscoveryQuery(discoveryQuery DiscoveryQuery) NetworkDeviceAPIDiscoverNetworkDeviceRequest {
+	r.discoveryQuery = &discoveryQuery
 	return r
 }
 
@@ -496,8 +496,8 @@ func (a *NetworkDeviceAPIService) DiscoverNetworkDeviceExecute(r NetworkDeviceAP
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.discoveryQuery == nil {
+		return nil, reportError("discoveryQuery is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -518,7 +518,7 @@ func (a *NetworkDeviceAPIService) DiscoverNetworkDeviceExecute(r NetworkDeviceAP
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.discoveryQuery
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
