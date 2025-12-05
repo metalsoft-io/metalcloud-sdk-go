@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The network external connection id. | 
 **Label** | **string** | The external connection unique label | 
 **Name** | **string** | The external connection name | 
-**FabricId** | **float32** | The ID of the Fabric identifier this entity belongs to. | 
+**FabricId** | **int32** | The ID of the Fabric identifier this entity belongs to. | 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedAt** | **time.Time** | The date and time the entity was created | [readonly] 
 **UpdatedAt** | **time.Time** | The date and time the entity was last updated | [readonly] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewExternalConnection
 
-`func NewExternalConnection(id string, label string, name string, fabricId float32, revision string, createdAt time.Time, updatedAt time.Time, ) *ExternalConnection`
+`func NewExternalConnection(id string, label string, name string, fabricId int32, revision string, createdAt time.Time, updatedAt time.Time, ) *ExternalConnection`
 
 NewExternalConnection instantiates a new ExternalConnection object
 This constructor will assign default values to properties that have it defined,
@@ -94,20 +94,20 @@ SetName sets Name field to given value.
 
 ### GetFabricId
 
-`func (o *ExternalConnection) GetFabricId() float32`
+`func (o *ExternalConnection) GetFabricId() int32`
 
 GetFabricId returns the FabricId field if non-nil, zero value otherwise.
 
 ### GetFabricIdOk
 
-`func (o *ExternalConnection) GetFabricIdOk() (*float32, bool)`
+`func (o *ExternalConnection) GetFabricIdOk() (*int32, bool)`
 
 GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricId
 
-`func (o *ExternalConnection) SetFabricId(v float32)`
+`func (o *ExternalConnection) SetFabricId(v int32)`
 
 SetFabricId sets FabricId field to given value.
 

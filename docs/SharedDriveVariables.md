@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive. | [optional] 
 **Config** | [**SharedDriveConfiguration**](SharedDriveConfiguration.md) | The current changes to be deployed for the Drive. | 
 **CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
+**DiscoverInformation** | Pointer to [**[]GenericDriveDiscoverInformation**](GenericDriveDiscoverInformation.md) | Discover information for the Drive. | [optional] 
 
 ## Methods
 
@@ -655,6 +656,31 @@ and a boolean to check if the value has been set.
 
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
+
+### GetDiscoverInformation
+
+`func (o *SharedDriveVariables) GetDiscoverInformation() []GenericDriveDiscoverInformation`
+
+GetDiscoverInformation returns the DiscoverInformation field if non-nil, zero value otherwise.
+
+### GetDiscoverInformationOk
+
+`func (o *SharedDriveVariables) GetDiscoverInformationOk() (*[]GenericDriveDiscoverInformation, bool)`
+
+GetDiscoverInformationOk returns a tuple with the DiscoverInformation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiscoverInformation
+
+`func (o *SharedDriveVariables) SetDiscoverInformation(v []GenericDriveDiscoverInformation)`
+
+SetDiscoverInformation sets DiscoverInformation field to given value.
+
+### HasDiscoverInformation
+
+`func (o *SharedDriveVariables) HasDiscoverInformation() bool`
+
+HasDiscoverInformation returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

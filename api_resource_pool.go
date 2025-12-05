@@ -943,61 +943,61 @@ type ResourcePoolAPIGetResourcePoolsRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r ResourcePoolAPIGetResourcePoolsRequest) Page(page float32) ResourcePoolAPIGetResourcePoolsRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r ResourcePoolAPIGetResourcePoolsRequest) Limit(limit float32) ResourcePoolAPIGetResourcePoolsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by resourcePoolId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.resourcePoolId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.resourcePoolId&#x3D;$not:$like:John Doe&amp;filter.resourcePoolId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by resourcePoolId query param.  **Format:** filter.resourcePoolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.resourcePoolId&#x3D;$btw:John Doe&amp;filter.resourcePoolId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ResourcePoolAPIGetResourcePoolsRequest) FilterResourcePoolId(filterResourcePoolId []string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.filterResourcePoolId = &filterResourcePoolId
 	return r
 }
 
-// Filter by resourcePoolLabel query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.resourcePoolLabel&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.resourcePoolLabel&#x3D;$not:$like:John Doe&amp;filter.resourcePoolLabel&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by resourcePoolLabel query param.  **Format:** filter.resourcePoolLabel&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.resourcePoolLabel&#x3D;$btw:John Doe&amp;filter.resourcePoolLabel&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ResourcePoolAPIGetResourcePoolsRequest) FilterResourcePoolLabel(filterResourcePoolLabel []string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.filterResourcePoolLabel = &filterResourcePoolLabel
 	return r
 }
 
-// Filter by resourcePoolDescription query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.resourcePoolDescription&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.resourcePoolDescription&#x3D;$not:$like:John Doe&amp;filter.resourcePoolDescription&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by resourcePoolDescription query param.  **Format:** filter.resourcePoolDescription&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.resourcePoolDescription&#x3D;$btw:John Doe&amp;filter.resourcePoolDescription&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ResourcePoolAPIGetResourcePoolsRequest) FilterResourcePoolDescription(filterResourcePoolDescription []string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.filterResourcePoolDescription = &filterResourcePoolDescription
 	return r
 }
 
-// Filter by resourcePoolCreatedTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.resourcePoolCreatedTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.resourcePoolCreatedTimestamp&#x3D;$not:$like:John Doe&amp;filter.resourcePoolCreatedTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by resourcePoolCreatedTimestamp query param.  **Format:** filter.resourcePoolCreatedTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.resourcePoolCreatedTimestamp&#x3D;$btw:John Doe&amp;filter.resourcePoolCreatedTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ResourcePoolAPIGetResourcePoolsRequest) FilterResourcePoolCreatedTimestamp(filterResourcePoolCreatedTimestamp []string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.filterResourcePoolCreatedTimestamp = &filterResourcePoolCreatedTimestamp
 	return r
 }
 
-// Filter by resourcePoolUpdatedTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.resourcePoolUpdatedTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.resourcePoolUpdatedTimestamp&#x3D;$not:$like:John Doe&amp;filter.resourcePoolUpdatedTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by resourcePoolUpdatedTimestamp query param.  **Format:** filter.resourcePoolUpdatedTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.resourcePoolUpdatedTimestamp&#x3D;$btw:John Doe&amp;filter.resourcePoolUpdatedTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ResourcePoolAPIGetResourcePoolsRequest) FilterResourcePoolUpdatedTimestamp(filterResourcePoolUpdatedTimestamp []string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.filterResourcePoolUpdatedTimestamp = &filterResourcePoolUpdatedTimestamp
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; resourcePoolId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;resourcePoolId&lt;/li&gt; &lt;li&gt;resourcePoolLabel&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;resourcePoolId:DESC&amp;sortBy&#x3D;resourcePoolLabel:DESC   **Default Value:** resourcePoolId:DESC  **Available Fields** - resourcePoolId  - resourcePoolLabel 
 func (r ResourcePoolAPIGetResourcePoolsRequest) SortBy(sortBy []string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r ResourcePoolAPIGetResourcePoolsRequest) Search(search string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; resourcePoolLabel,resourcePoolDescription           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;resourcePoolLabel&lt;/li&gt; &lt;li&gt;resourcePoolDescription&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** resourcePoolLabel,resourcePoolDescription   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - resourcePoolLabel  - resourcePoolDescription 
 func (r ResourcePoolAPIGetResourcePoolsRequest) SearchBy(searchBy []string) ResourcePoolAPIGetResourcePoolsRequest {
 	r.searchBy = &searchBy
 	return r

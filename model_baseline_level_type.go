@@ -24,6 +24,7 @@ const (
 	BASELINELEVELTYPE_DATACENTER BaselineLevelType = "datacenter"
 	BASELINELEVELTYPE_SERVER_TYPE BaselineLevelType = "serverType"
 	BASELINELEVELTYPE_OS_TEMPLATE BaselineLevelType = "osTemplate"
+	BASELINELEVELTYPE_VENDOR_MODEL BaselineLevelType = "vendorModel"
 )
 
 // All allowed values of BaselineLevelType enum
@@ -31,6 +32,7 @@ var AllowedBaselineLevelTypeEnumValues = []BaselineLevelType{
 	"datacenter",
 	"serverType",
 	"osTemplate",
+	"vendorModel",
 }
 
 func (v *BaselineLevelType) UnmarshalJSON(src []byte) error {

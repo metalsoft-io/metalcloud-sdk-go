@@ -4,18 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RegisterCredentials** | Pointer to **string** | Server registration password settings | [optional] 
-**MinimumNumberOfConnectedInterfaces** | Pointer to **float32** | Minimum number of switch-connected interfaces required | [optional] 
+**DefaultServerRegistrationProfileId** | Pointer to **float32** | ID of the default server registration profile | [optional] 
 **DhcpOption82ToIPMapping** | Pointer to **map[string]interface{}** | Option82 to IP mapping | [optional] 
 **DhcpBmcMacAddressWhitelistEnabled** | Pointer to **bool** | Whether to enable DHCP BMC MAC address whitelist | [optional] 
 **DhcpBmcMacAddressWhitelist** | Pointer to **[]string** | List of DHCP BMC MAC address whitelist | [optional] 
-**DisableTpmAfterRegistration** | Pointer to **bool** | Whether to disable TPM after registration | [optional] 
-**SyslogMonitoringEnabled** | Pointer to **bool** | Whether syslog monitoring is enabled | [optional] 
 **DefaultServerCleanupPolicyID** | Pointer to **float32** | Default server cleanup policy ID | [optional] 
 **AutomaticallyAllocateServerTypes** | Pointer to **bool** | Automatically allocate server types | [optional] 
 **AutomaticallySetServersAsAvailable** | Pointer to **bool** | Automatically set servers as available | [optional] 
-**MakeHttpTheDefaultProtocolForVirtualMedia** | Pointer to **bool** | Whether to make HTTP the default protocol for virtual media | [optional] 
-**ServerRegistrationBiosProfile** | Pointer to [**[]PartialServerRegistrationBiosProfile**](PartialServerRegistrationBiosProfile.md) | Server registration BIOS profile | [optional] 
 
 ## Methods
 
@@ -36,55 +31,30 @@ NewServerPolicyUpdateWithDefaults instantiates a new ServerPolicyUpdate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRegisterCredentials
+### GetDefaultServerRegistrationProfileId
 
-`func (o *ServerPolicyUpdate) GetRegisterCredentials() string`
+`func (o *ServerPolicyUpdate) GetDefaultServerRegistrationProfileId() float32`
 
-GetRegisterCredentials returns the RegisterCredentials field if non-nil, zero value otherwise.
+GetDefaultServerRegistrationProfileId returns the DefaultServerRegistrationProfileId field if non-nil, zero value otherwise.
 
-### GetRegisterCredentialsOk
+### GetDefaultServerRegistrationProfileIdOk
 
-`func (o *ServerPolicyUpdate) GetRegisterCredentialsOk() (*string, bool)`
+`func (o *ServerPolicyUpdate) GetDefaultServerRegistrationProfileIdOk() (*float32, bool)`
 
-GetRegisterCredentialsOk returns a tuple with the RegisterCredentials field if it's non-nil, zero value otherwise
+GetDefaultServerRegistrationProfileIdOk returns a tuple with the DefaultServerRegistrationProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRegisterCredentials
+### SetDefaultServerRegistrationProfileId
 
-`func (o *ServerPolicyUpdate) SetRegisterCredentials(v string)`
+`func (o *ServerPolicyUpdate) SetDefaultServerRegistrationProfileId(v float32)`
 
-SetRegisterCredentials sets RegisterCredentials field to given value.
+SetDefaultServerRegistrationProfileId sets DefaultServerRegistrationProfileId field to given value.
 
-### HasRegisterCredentials
+### HasDefaultServerRegistrationProfileId
 
-`func (o *ServerPolicyUpdate) HasRegisterCredentials() bool`
+`func (o *ServerPolicyUpdate) HasDefaultServerRegistrationProfileId() bool`
 
-HasRegisterCredentials returns a boolean if a field has been set.
-
-### GetMinimumNumberOfConnectedInterfaces
-
-`func (o *ServerPolicyUpdate) GetMinimumNumberOfConnectedInterfaces() float32`
-
-GetMinimumNumberOfConnectedInterfaces returns the MinimumNumberOfConnectedInterfaces field if non-nil, zero value otherwise.
-
-### GetMinimumNumberOfConnectedInterfacesOk
-
-`func (o *ServerPolicyUpdate) GetMinimumNumberOfConnectedInterfacesOk() (*float32, bool)`
-
-GetMinimumNumberOfConnectedInterfacesOk returns a tuple with the MinimumNumberOfConnectedInterfaces field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMinimumNumberOfConnectedInterfaces
-
-`func (o *ServerPolicyUpdate) SetMinimumNumberOfConnectedInterfaces(v float32)`
-
-SetMinimumNumberOfConnectedInterfaces sets MinimumNumberOfConnectedInterfaces field to given value.
-
-### HasMinimumNumberOfConnectedInterfaces
-
-`func (o *ServerPolicyUpdate) HasMinimumNumberOfConnectedInterfaces() bool`
-
-HasMinimumNumberOfConnectedInterfaces returns a boolean if a field has been set.
+HasDefaultServerRegistrationProfileId returns a boolean if a field has been set.
 
 ### GetDhcpOption82ToIPMapping
 
@@ -161,56 +131,6 @@ SetDhcpBmcMacAddressWhitelist sets DhcpBmcMacAddressWhitelist field to given val
 
 HasDhcpBmcMacAddressWhitelist returns a boolean if a field has been set.
 
-### GetDisableTpmAfterRegistration
-
-`func (o *ServerPolicyUpdate) GetDisableTpmAfterRegistration() bool`
-
-GetDisableTpmAfterRegistration returns the DisableTpmAfterRegistration field if non-nil, zero value otherwise.
-
-### GetDisableTpmAfterRegistrationOk
-
-`func (o *ServerPolicyUpdate) GetDisableTpmAfterRegistrationOk() (*bool, bool)`
-
-GetDisableTpmAfterRegistrationOk returns a tuple with the DisableTpmAfterRegistration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisableTpmAfterRegistration
-
-`func (o *ServerPolicyUpdate) SetDisableTpmAfterRegistration(v bool)`
-
-SetDisableTpmAfterRegistration sets DisableTpmAfterRegistration field to given value.
-
-### HasDisableTpmAfterRegistration
-
-`func (o *ServerPolicyUpdate) HasDisableTpmAfterRegistration() bool`
-
-HasDisableTpmAfterRegistration returns a boolean if a field has been set.
-
-### GetSyslogMonitoringEnabled
-
-`func (o *ServerPolicyUpdate) GetSyslogMonitoringEnabled() bool`
-
-GetSyslogMonitoringEnabled returns the SyslogMonitoringEnabled field if non-nil, zero value otherwise.
-
-### GetSyslogMonitoringEnabledOk
-
-`func (o *ServerPolicyUpdate) GetSyslogMonitoringEnabledOk() (*bool, bool)`
-
-GetSyslogMonitoringEnabledOk returns a tuple with the SyslogMonitoringEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSyslogMonitoringEnabled
-
-`func (o *ServerPolicyUpdate) SetSyslogMonitoringEnabled(v bool)`
-
-SetSyslogMonitoringEnabled sets SyslogMonitoringEnabled field to given value.
-
-### HasSyslogMonitoringEnabled
-
-`func (o *ServerPolicyUpdate) HasSyslogMonitoringEnabled() bool`
-
-HasSyslogMonitoringEnabled returns a boolean if a field has been set.
-
 ### GetDefaultServerCleanupPolicyID
 
 `func (o *ServerPolicyUpdate) GetDefaultServerCleanupPolicyID() float32`
@@ -285,56 +205,6 @@ SetAutomaticallySetServersAsAvailable sets AutomaticallySetServersAsAvailable fi
 `func (o *ServerPolicyUpdate) HasAutomaticallySetServersAsAvailable() bool`
 
 HasAutomaticallySetServersAsAvailable returns a boolean if a field has been set.
-
-### GetMakeHttpTheDefaultProtocolForVirtualMedia
-
-`func (o *ServerPolicyUpdate) GetMakeHttpTheDefaultProtocolForVirtualMedia() bool`
-
-GetMakeHttpTheDefaultProtocolForVirtualMedia returns the MakeHttpTheDefaultProtocolForVirtualMedia field if non-nil, zero value otherwise.
-
-### GetMakeHttpTheDefaultProtocolForVirtualMediaOk
-
-`func (o *ServerPolicyUpdate) GetMakeHttpTheDefaultProtocolForVirtualMediaOk() (*bool, bool)`
-
-GetMakeHttpTheDefaultProtocolForVirtualMediaOk returns a tuple with the MakeHttpTheDefaultProtocolForVirtualMedia field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMakeHttpTheDefaultProtocolForVirtualMedia
-
-`func (o *ServerPolicyUpdate) SetMakeHttpTheDefaultProtocolForVirtualMedia(v bool)`
-
-SetMakeHttpTheDefaultProtocolForVirtualMedia sets MakeHttpTheDefaultProtocolForVirtualMedia field to given value.
-
-### HasMakeHttpTheDefaultProtocolForVirtualMedia
-
-`func (o *ServerPolicyUpdate) HasMakeHttpTheDefaultProtocolForVirtualMedia() bool`
-
-HasMakeHttpTheDefaultProtocolForVirtualMedia returns a boolean if a field has been set.
-
-### GetServerRegistrationBiosProfile
-
-`func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfile() []PartialServerRegistrationBiosProfile`
-
-GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field if non-nil, zero value otherwise.
-
-### GetServerRegistrationBiosProfileOk
-
-`func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfileOk() (*[]PartialServerRegistrationBiosProfile, bool)`
-
-GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerRegistrationBiosProfile
-
-`func (o *ServerPolicyUpdate) SetServerRegistrationBiosProfile(v []PartialServerRegistrationBiosProfile)`
-
-SetServerRegistrationBiosProfile sets ServerRegistrationBiosProfile field to given value.
-
-### HasServerRegistrationBiosProfile
-
-`func (o *ServerPolicyUpdate) HasServerRegistrationBiosProfile() bool`
-
-HasServerRegistrationBiosProfile returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -37,6 +37,8 @@ type RegisterServer struct {
 	Vendor *string `json:"vendor,omitempty"`
 	// The model of the server.
 	Model *string `json:"model,omitempty"`
+	// The registration profile id of the server.
+	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
 	// The password to use.
 	Password *string `json:"password,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -310,6 +312,38 @@ func (o *RegisterServer) SetModel(v string) {
 	o.Model = &v
 }
 
+// GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
+func (o *RegisterServer) GetRegistrationProfileId() float32 {
+	if o == nil || IsNil(o.RegistrationProfileId) {
+		var ret float32
+		return ret
+	}
+	return *o.RegistrationProfileId
+}
+
+// GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegisterServer) GetRegistrationProfileIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.RegistrationProfileId) {
+		return nil, false
+	}
+	return o.RegistrationProfileId, true
+}
+
+// HasRegistrationProfileId returns a boolean if a field has been set.
+func (o *RegisterServer) HasRegistrationProfileId() bool {
+	if o != nil && !IsNil(o.RegistrationProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationProfileId gets a reference to the given float32 and assigns it to the RegistrationProfileId field.
+func (o *RegisterServer) SetRegistrationProfileId(v float32) {
+	o.RegistrationProfileId = &v
+}
+
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *RegisterServer) GetPassword() string {
 	if o == nil || IsNil(o.Password) {
@@ -374,6 +408,9 @@ func (o RegisterServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Model) {
 		toSerialize["model"] = o.Model
 	}
+	if !IsNil(o.RegistrationProfileId) {
+		toSerialize["registrationProfileId"] = o.RegistrationProfileId
+	}
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
@@ -428,6 +465,7 @@ func (o *RegisterServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bmcMacAddress")
 		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "model")
+		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties
 	}

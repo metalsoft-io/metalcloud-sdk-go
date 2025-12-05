@@ -23,12 +23,14 @@ type LogicalNetworkKind string
 const (
 	LOGICALNETWORKKIND_VLAN LogicalNetworkKind = "vlan"
 	LOGICALNETWORKKIND_VXLAN LogicalNetworkKind = "vxlan"
+	LOGICALNETWORKKIND_INFINIBAND LogicalNetworkKind = "infiniband"
 )
 
 // All allowed values of LogicalNetworkKind enum
 var AllowedLogicalNetworkKindEnumValues = []LogicalNetworkKind{
 	"vlan",
 	"vxlan",
+	"infiniband",
 }
 
 func (v *LogicalNetworkKind) UnmarshalJSON(src []byte) error {

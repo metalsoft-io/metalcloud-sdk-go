@@ -36,6 +36,21 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DriveAPIService CreateDriveSnapshot", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.CreateDriveSnapshot(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DriveAPIService DeleteDrive", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -44,6 +59,20 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 		var driveId float32
 
 		httpRes, err := apiClient.DriveAPI.DeleteDrive(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService DeleteDriveSnapshot", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		httpRes, err := apiClient.DriveAPI.DeleteDriveSnapshot(context.Background(), infrastructureId, driveId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -87,6 +116,21 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 		var driveId float32
 
 		resp, httpRes, err := apiClient.DriveAPI.GetDriveHosts(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService GetDriveSnapshots", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.GetDriveSnapshots(context.Background(), infrastructureId, driveId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -149,6 +193,20 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService RestoreDriveToSnapshot", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		httpRes, err := apiClient.DriveAPI.RestoreDriveToSnapshot(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

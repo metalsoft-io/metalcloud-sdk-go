@@ -355,85 +355,85 @@ type ServerFirmwareAPIGetServerComponentsRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r ServerFirmwareAPIGetServerComponentsRequest) Page(page float32) ServerFirmwareAPIGetServerComponentsRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r ServerFirmwareAPIGetServerComponentsRequest) Limit(limit float32) ServerFirmwareAPIGetServerComponentsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterId(filterId []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by externalId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.externalId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.externalId&#x3D;$not:$like:John Doe&amp;filter.externalId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by externalId query param.  **Format:** filter.externalId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.externalId&#x3D;$btw:John Doe&amp;filter.externalId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterExternalId(filterExternalId []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterExternalId = &filterExternalId
 	return r
 }
 
-// Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterServerId(filterServerId []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterServerId = &filterServerId
 	return r
 }
 
-// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterName(filterName []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterName = &filterName
 	return r
 }
 
-// Filter by firmwareTargetVersion query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.firmwareTargetVersion&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.firmwareTargetVersion&#x3D;$not:$like:John Doe&amp;filter.firmwareTargetVersion&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by firmwareTargetVersion query param.  **Format:** filter.firmwareTargetVersion&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareTargetVersion&#x3D;$btw:John Doe&amp;filter.firmwareTargetVersion&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterFirmwareTargetVersion(filterFirmwareTargetVersion []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterFirmwareTargetVersion = &filterFirmwareTargetVersion
 	return r
 }
 
-// Filter by firmwareVersion query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.firmwareVersion&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.firmwareVersion&#x3D;$not:$like:John Doe&amp;filter.firmwareVersion&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by firmwareVersion query param.  **Format:** filter.firmwareVersion&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareVersion&#x3D;$btw:John Doe&amp;filter.firmwareVersion&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterFirmwareVersion(filterFirmwareVersion []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterFirmwareVersion = &filterFirmwareVersion
 	return r
 }
 
-// Filter by firmwareUpdateTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.firmwareUpdateTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.firmwareUpdateTimestamp&#x3D;$not:$like:John Doe&amp;filter.firmwareUpdateTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by firmwareUpdateTimestamp query param.  **Format:** filter.firmwareUpdateTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareUpdateTimestamp&#x3D;$btw:John Doe&amp;filter.firmwareUpdateTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterFirmwareUpdateTimestamp(filterFirmwareUpdateTimestamp []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterFirmwareUpdateTimestamp = &filterFirmwareUpdateTimestamp
 	return r
 }
 
-// Filter by firmwareScheduledTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.firmwareScheduledTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.firmwareScheduledTimestamp&#x3D;$not:$like:John Doe&amp;filter.firmwareScheduledTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by firmwareScheduledTimestamp query param.  **Format:** filter.firmwareScheduledTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareScheduledTimestamp&#x3D;$btw:John Doe&amp;filter.firmwareScheduledTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterFirmwareScheduledTimestamp(filterFirmwareScheduledTimestamp []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterFirmwareScheduledTimestamp = &filterFirmwareScheduledTimestamp
 	return r
 }
 
-// Filter by firmwareStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.firmwareStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.firmwareStatus&#x3D;$not:$like:John Doe&amp;filter.firmwareStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by firmwareStatus query param.  **Format:** filter.firmwareStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareStatus&#x3D;$btw:John Doe&amp;filter.firmwareStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ServerFirmwareAPIGetServerComponentsRequest) FilterFirmwareStatus(filterFirmwareStatus []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.filterFirmwareStatus = &filterFirmwareStatus
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;externalId&lt;/li&gt; &lt;li&gt;serverId&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;firmwareVersion&lt;/li&gt; &lt;li&gt;firmwareScheduledTimestamp&lt;/li&gt; &lt;li&gt;firmwareStatus&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;externalId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - externalId  - serverId  - name  - firmwareVersion  - firmwareScheduledTimestamp  - firmwareStatus 
 func (r ServerFirmwareAPIGetServerComponentsRequest) SortBy(sortBy []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r ServerFirmwareAPIGetServerComponentsRequest) Search(search string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,externalId,serverId,name,firmwareVersion           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;externalId&lt;/li&gt; &lt;li&gt;serverId&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;firmwareVersion&lt;/li&gt; &lt;li&gt;firmwareScheduledTimestamp&lt;/li&gt; &lt;li&gt;firmwareStatus&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,externalId,serverId,name,firmwareVersion   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - externalId  - serverId  - name  - firmwareVersion  - firmwareScheduledTimestamp  - firmwareStatus 
 func (r ServerFirmwareAPIGetServerComponentsRequest) SearchBy(searchBy []string) ServerFirmwareAPIGetServerComponentsRequest {
 	r.searchBy = &searchBy
 	return r

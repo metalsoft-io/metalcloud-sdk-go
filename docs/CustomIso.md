@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **IsPublic** | **float32** | Flag to indicate if the custom ISO is public | 
 **AccessUrl** | **string** | The access URL of the custom ISO | 
 **Username** | Pointer to **string** | The username used to access the custom ISO | [optional] 
-**PasswordEncrypted** | Pointer to **string** | The password used to access the custom ISO | [optional] 
 **CreatedTimestamp** | **string** | The timestamp when the custom ISO was created | 
 **UpdatedTimestamp** | **string** | The timestamp when the custom ISO was last updated | 
 **ImageUrl** | Pointer to **string** | The URL to the image of the custom ISO for mounting on the server | [optional] 
@@ -231,31 +230,6 @@ SetUsername sets Username field to given value.
 `func (o *CustomIso) HasUsername() bool`
 
 HasUsername returns a boolean if a field has been set.
-
-### GetPasswordEncrypted
-
-`func (o *CustomIso) GetPasswordEncrypted() string`
-
-GetPasswordEncrypted returns the PasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetPasswordEncryptedOk
-
-`func (o *CustomIso) GetPasswordEncryptedOk() (*string, bool)`
-
-GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPasswordEncrypted
-
-`func (o *CustomIso) SetPasswordEncrypted(v string)`
-
-SetPasswordEncrypted sets PasswordEncrypted field to given value.
-
-### HasPasswordEncrypted
-
-`func (o *CustomIso) HasPasswordEncrypted() bool`
-
-HasPasswordEncrypted returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 

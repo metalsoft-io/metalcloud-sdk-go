@@ -8,12 +8,14 @@ Method | HTTP request | Description
 [**CreateLogicalNetwork**](LogicalNetworkAPI.md#CreateLogicalNetwork) | **Post** /api/v2/logical-networks | Create a Logical Network.
 [**CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies | Create Ipv4 Subnet allocation strategy.
 [**CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies | Create Ipv6 Subnet allocation strategy.
+[**CreateLogicalNetworkConfigPkeyAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigPkeyAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies | Create Pkey allocation strategy.
 [**CreateLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigVlanAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies | Create Vlan allocation strategy.
 [**CreateLogicalNetworkConfigVniAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigVniAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Create Vni allocation strategy.
 [**CreateLogicalNetworkFromProfile**](LogicalNetworkAPI.md#CreateLogicalNetworkFromProfile) | **Post** /api/v2/logical-networks/actions/create-from-profile | Create a Logical Network from a profile.
 [**DeleteLogicalNetwork**](LogicalNetworkAPI.md#DeleteLogicalNetwork) | **Delete** /api/v2/logical-networks/{id} | Delete a Logical Network.
 [**DeleteLogicalNetworkConfigIpv4SubnetAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigIpv4SubnetAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv4 Subnet allocation strategy.
 [**DeleteLogicalNetworkConfigIpv6SubnetAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigIpv6SubnetAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv6 Subnet allocation strategy.
+[**DeleteLogicalNetworkConfigPkeyAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigPkeyAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId} | Delete Pkey allocation strategy.
 [**DeleteLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigVlanAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Delete Vlan allocation strategy.
 [**DeleteLogicalNetworkConfigVniAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigVniAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Delete Vni allocation strategy.
 [**DetachExternalConnectionLogicalNetwork**](LogicalNetworkAPI.md#DetachExternalConnectionLogicalNetwork) | **Delete** /api/v2/logical-networks/{id}/external-connections/{externalConnectionId} | Detaches an external connection from a logical network
@@ -25,6 +27,8 @@ Method | HTTP request | Description
 [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigIpv4SubnetAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv4 Subnet allocation strategy.
 [**GetLogicalNetworkConfigIpv6SubnetAllocationStrategies**](LogicalNetworkAPI.md#GetLogicalNetworkConfigIpv6SubnetAllocationStrategies) | **Get** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies | Get all Ipv6 Subnet allocation strategies.
 [**GetLogicalNetworkConfigIpv6SubnetAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigIpv6SubnetAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv6 Subnet allocation strategy.
+[**GetLogicalNetworkConfigPkeyAllocationStrategies**](LogicalNetworkAPI.md#GetLogicalNetworkConfigPkeyAllocationStrategies) | **Get** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies | Get all Pkey allocation strategies.
+[**GetLogicalNetworkConfigPkeyAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigPkeyAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId} | Get a Pkey allocation strategy.
 [**GetLogicalNetworkConfigVlanAllocationStrategies**](LogicalNetworkAPI.md#GetLogicalNetworkConfigVlanAllocationStrategies) | **Get** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies | Get all Vlan allocation strategies.
 [**GetLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigVlanAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Get a Vlan allocation strategy.
 [**GetLogicalNetworkConfigVniAllocationStrategies**](LogicalNetworkAPI.md#GetLogicalNetworkConfigVniAllocationStrategies) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Get all Vni allocation strategies.
@@ -32,6 +36,7 @@ Method | HTTP request | Description
 [**GetLogicalNetworks**](LogicalNetworkAPI.md#GetLogicalNetworks) | **Get** /api/v2/logical-networks | Get all Logical Networks
 [**ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv4 Subnet allocation strategy
 [**ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv6 Subnet allocation strategy
+[**ReplaceLogicalNetworkConfigPkeyAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigPkeyAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId} | Replace Pkey allocation strategy
 [**ReplaceLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigVlanAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Replace Vlan allocation strategy
 [**ReplaceLogicalNetworkConfigVniAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigVniAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Replace Vni allocation strategy
 [**UpdateLogicalNetwork**](LogicalNetworkAPI.md#UpdateLogicalNetwork) | **Patch** /api/v2/logical-networks/{id} | Update Logical Network
@@ -177,7 +182,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy
 
-> CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+> Ipv4SubnetAllocationStrategy CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 
 Create Ipv4 Subnet allocation strategy.
 
@@ -196,16 +201,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileIpv4SubnetAllocationStrategy_request{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest | 
+	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy`: CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
+	// response from `CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy`: Ipv4SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -227,11 +232,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest** | [**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest**](CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv4SubnetAllocationStrategy** | [**CreateIpv4SubnetAllocationStrategy**](CreateIpv4SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response**](CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response.md)
+[**Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -249,7 +254,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy
 
-> CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+> Ipv6SubnetAllocationStrategy CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 
 Create Ipv6 Subnet allocation strategy.
 
@@ -268,16 +273,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileIpv6SubnetAllocationStrategy_request{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest | 
+	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy`: CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
+	// response from `CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy`: Ipv6SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -299,11 +304,83 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest** | [**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest**](CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv6SubnetAllocationStrategy** | [**CreateIpv6SubnetAllocationStrategy**](CreateIpv6SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response**](CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response.md)
+[**Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateLogicalNetworkConfigPkeyAllocationStrategy
+
+> PkeyAllocationStrategy CreateLogicalNetworkConfigPkeyAllocationStrategy(ctx, id).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
+
+Create Pkey allocation strategy.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreatePkeyAllocationStrategy | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateLogicalNetworkConfigPkeyAllocationStrategy`: PkeyAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateLogicalNetworkConfigPkeyAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+ **createPkeyAllocationStrategy** | [**CreatePkeyAllocationStrategy**](CreatePkeyAllocationStrategy.md) |  | 
+
+### Return type
+
+[**PkeyAllocationStrategy**](PkeyAllocationStrategy.md)
 
 ### Authorization
 
@@ -321,7 +398,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigVlanAllocationStrategy
 
-> CreateLogicalNetworkProfileVlanAllocationStrategy201Response CreateLogicalNetworkConfigVlanAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).Execute()
+> VlanAllocationStrategy CreateLogicalNetworkConfigVlanAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 
 Create Vlan allocation strategy.
 
@@ -340,16 +417,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileVlanAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileVlanAllocationStrategy_request{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkProfileVlanAllocationStrategyRequest | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigVlanAllocationStrategy`: CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+	// response from `CreateLogicalNetworkConfigVlanAllocationStrategy`: VlanAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -371,11 +448,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileVlanAllocationStrategyRequest** | [**CreateLogicalNetworkProfileVlanAllocationStrategyRequest**](CreateLogicalNetworkProfileVlanAllocationStrategyRequest.md) |  | 
+ **createVlanAllocationStrategy** | [**CreateVlanAllocationStrategy**](CreateVlanAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileVlanAllocationStrategy201Response**](CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md)
+[**VlanAllocationStrategy**](VlanAllocationStrategy.md)
 
 ### Authorization
 
@@ -393,7 +470,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkConfigVniAllocationStrategy
 
-> CreateLogicalNetworkProfileVniAllocationStrategy201Response CreateLogicalNetworkConfigVniAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateLogicalNetworkProfileVniAllocationStrategyRequest(createLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+> VniAllocationStrategy CreateLogicalNetworkConfigVniAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 
 Create Vni allocation strategy.
 
@@ -412,16 +489,16 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileVniAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileVniAllocationStrategy_request{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkProfileVniAllocationStrategyRequest | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateLogicalNetworkProfileVniAllocationStrategyRequest(createLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkConfigVniAllocationStrategy`: CreateLogicalNetworkProfileVniAllocationStrategy201Response
+	// response from `CreateLogicalNetworkConfigVniAllocationStrategy`: VniAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -443,11 +520,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileVniAllocationStrategyRequest** | [**CreateLogicalNetworkProfileVniAllocationStrategyRequest**](CreateLogicalNetworkProfileVniAllocationStrategyRequest.md) |  | 
+ **createVniAllocationStrategy** | [**CreateVniAllocationStrategy**](CreateVniAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileVniAllocationStrategy201Response**](CreateLogicalNetworkProfileVniAllocationStrategy201Response.md)
+[**VniAllocationStrategy**](VniAllocationStrategy.md)
 
 ### Authorization
 
@@ -711,6 +788,77 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteLogicalNetworkConfigPkeyAllocationStrategy
+
+> DeleteLogicalNetworkConfigPkeyAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).Execute()
+
+Delete Pkey allocation strategy.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	allocationStrategyId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.DeleteLogicalNetworkConfigPkeyAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+**allocationStrategyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -1040,13 +1188,13 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterExternalConnectionId := []string{"Inner_example"} // []string | Filter by externalConnectionId query param.           <p>              <b>Format: </b> filter.externalConnectionId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.externalConnectionId=$not:$like:John Doe&filter.externalConnectionId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	filterCreatedAt := []string{"Inner_example"} // []string | Filter by createdAt query param.           <p>              <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.createdAt=$not:$like:John Doe&filter.createdAt=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterUpdatedAt := []string{"Inner_example"} // []string | Filter by updatedAt query param.           <p>              <b>Format: </b> filter.updatedAt={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.updatedAt=$not:$like:John Doe&filter.updatedAt=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>createdAt</li> <li>updatedAt</li> <li>externalConnectionId</li> <li>logicalNetworkId</li></ul>        (optional)
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterExternalConnectionId := []string{"Inner_example"} // []string | Filter by externalConnectionId query param.  **Format:** filter.externalConnectionId={$not}:OPERATION:VALUE    **Example:** filter.externalConnectionId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterCreatedAt := []string{"Inner_example"} // []string | Filter by createdAt query param.  **Format:** filter.createdAt={$not}:OPERATION:VALUE    **Example:** filter.createdAt=$btw:John Doe&filter.createdAt=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterUpdatedAt := []string{"Inner_example"} // []string | Filter by updatedAt query param.  **Format:** filter.updatedAt={$not}:OPERATION:VALUE    **Example:** filter.updatedAt=$btw:John Doe&filter.updatedAt=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt  - externalConnectionId  - logicalNetworkId  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1076,13 +1224,13 @@ Other parameters are passed through a pointer to a apiGetLogicalNetworkAttachedE
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterExternalConnectionId** | **[]string** | Filter by externalConnectionId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.externalConnectionId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.externalConnectionId&#x3D;$not:$like:John Doe&amp;filter.externalConnectionId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **filterCreatedAt** | **[]string** | Filter by createdAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdAt&#x3D;$not:$like:John Doe&amp;filter.createdAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterUpdatedAt** | **[]string** | Filter by updatedAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.updatedAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.updatedAt&#x3D;$not:$like:John Doe&amp;filter.updatedAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;updatedAt&lt;/li&gt; &lt;li&gt;externalConnectionId&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt;&lt;/ul&gt;        | 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterExternalConnectionId** | **[]string** | Filter by externalConnectionId query param.  **Format:** filter.externalConnectionId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.externalConnectionId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterCreatedAt** | **[]string** | Filter by createdAt query param.  **Format:** filter.createdAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdAt&#x3D;$btw:John Doe&amp;filter.createdAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterUpdatedAt** | **[]string** | Filter by updatedAt query param.  **Format:** filter.updatedAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedAt&#x3D;$btw:John Doe&amp;filter.updatedAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt  - externalConnectionId  - logicalNetworkId  | 
 
 ### Return type
 
@@ -1124,14 +1272,14 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterFabricId := []string{"Inner_example"} // []string | Filter by fabricId query param.           <p>              <b>Format: </b> filter.fabricId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	filterCreatedAt := []string{"Inner_example"} // []string | Filter by createdAt query param.           <p>              <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.createdAt=$not:$like:John Doe&filter.createdAt=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterUpdatedAt := []string{"Inner_example"} // []string | Filter by updatedAt query param.           <p>              <b>Format: </b> filter.updatedAt={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.updatedAt=$not:$like:John Doe&filter.updatedAt=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>createdAt</li> <li>updatedAt</li></ul>        (optional)
-	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> name,label           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>name</li> <li>label</li></ul>          (optional)
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterFabricId := []string{"Inner_example"} // []string | Filter by fabricId query param.  **Format:** filter.fabricId={$not}:OPERATION:VALUE    **Example:** filter.fabricId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterCreatedAt := []string{"Inner_example"} // []string | Filter by createdAt query param.  **Format:** filter.createdAt={$not}:OPERATION:VALUE    **Example:** filter.createdAt=$btw:John Doe&filter.createdAt=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterUpdatedAt := []string{"Inner_example"} // []string | Filter by updatedAt query param.  **Format:** filter.updatedAt={$not}:OPERATION:VALUE    **Example:** filter.updatedAt=$btw:John Doe&filter.updatedAt=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1161,14 +1309,14 @@ Other parameters are passed through a pointer to a apiGetLogicalNetworkAttachedE
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterFabricId** | **[]string** | Filter by fabricId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricId&#x3D;$not:$like:John Doe&amp;filter.fabricId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **filterCreatedAt** | **[]string** | Filter by createdAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdAt&#x3D;$not:$like:John Doe&amp;filter.createdAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterUpdatedAt** | **[]string** | Filter by updatedAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.updatedAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.updatedAt&#x3D;$not:$like:John Doe&amp;filter.updatedAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;updatedAt&lt;/li&gt;&lt;/ul&gt;        | 
- **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,label           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;          | 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterFabricId** | **[]string** | Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterCreatedAt** | **[]string** | Filter by createdAt query param.  **Format:** filter.createdAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdAt&#x3D;$btw:John Doe&amp;filter.createdAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterUpdatedAt** | **[]string** | Filter by updatedAt query param.  **Format:** filter.updatedAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedAt&#x3D;$btw:John Doe&amp;filter.updatedAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  | 
 
 ### Return type
 
@@ -1276,11 +1424,11 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 100           </p>       <p>              <b>Max Value: </b> 1000           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.           <p>              <b>Format: </b> filter.kind={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.kind=$not:$like:John Doe&filter.kind=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:ASC           </p>       <h4>Available Fields</h4><ul><li>id</li></ul>        (optional)
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$btw:John Doe&filter.kind=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1310,11 +1458,11 @@ Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigIpv
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterKind** | **[]string** | Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;        | 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
 
 ### Return type
 
@@ -1336,7 +1484,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigIpv4SubnetAllocationStrategy
 
-> CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response GetLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> Ipv4SubnetAllocationStrategy GetLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Ipv4 Subnet allocation strategy.
 
@@ -1363,7 +1511,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigIpv4SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigIpv4SubnetAllocationStrategy`: CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
+	// response from `GetLogicalNetworkConfigIpv4SubnetAllocationStrategy`: Ipv4SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigIpv4SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1389,7 +1537,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response**](CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response.md)
+[**Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -1425,11 +1573,11 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 100           </p>       <p>              <b>Max Value: </b> 1000           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.           <p>              <b>Format: </b> filter.kind={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.kind=$not:$like:John Doe&filter.kind=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:ASC           </p>       <h4>Available Fields</h4><ul><li>id</li></ul>        (optional)
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$btw:John Doe&filter.kind=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1459,11 +1607,11 @@ Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigIpv
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterKind** | **[]string** | Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;        | 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
 
 ### Return type
 
@@ -1485,7 +1633,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigIpv6SubnetAllocationStrategy
 
-> CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response GetLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> Ipv6SubnetAllocationStrategy GetLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Ipv6 Subnet allocation strategy.
 
@@ -1512,7 +1660,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigIpv6SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigIpv6SubnetAllocationStrategy`: CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
+	// response from `GetLogicalNetworkConfigIpv6SubnetAllocationStrategy`: Ipv6SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigIpv6SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1538,7 +1686,156 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response**](CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response.md)
+[**Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLogicalNetworkConfigPkeyAllocationStrategies
+
+> PaginatedPkeyAllocationStrategy GetLogicalNetworkConfigPkeyAllocationStrategies(ctx, id).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).SortBy(sortBy).Execute()
+
+Get all Pkey allocation strategies.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$btw:John Doe&filter.kind=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategies(context.Background(), id).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).SortBy(sortBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategies``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetLogicalNetworkConfigPkeyAllocationStrategies`: PaginatedPkeyAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategies`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigPkeyAllocationStrategiesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
+
+### Return type
+
+[**PaginatedPkeyAllocationStrategy**](PaginatedPkeyAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLogicalNetworkConfigPkeyAllocationStrategy
+
+> PkeyAllocationStrategy GetLogicalNetworkConfigPkeyAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+
+Get a Pkey allocation strategy.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	allocationStrategyId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetLogicalNetworkConfigPkeyAllocationStrategy`: PkeyAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+**allocationStrategyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigPkeyAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**PkeyAllocationStrategy**](PkeyAllocationStrategy.md)
 
 ### Authorization
 
@@ -1574,11 +1871,11 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 100           </p>       <p>              <b>Max Value: </b> 1000           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.           <p>              <b>Format: </b> filter.kind={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.kind=$not:$like:John Doe&filter.kind=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:ASC           </p>       <h4>Available Fields</h4><ul><li>id</li></ul>        (optional)
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$btw:John Doe&filter.kind=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1608,11 +1905,11 @@ Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigVla
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterKind** | **[]string** | Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;        | 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
 
 ### Return type
 
@@ -1634,7 +1931,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigVlanAllocationStrategy
 
-> CreateLogicalNetworkProfileVlanAllocationStrategy201Response GetLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> VlanAllocationStrategy GetLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Vlan allocation strategy.
 
@@ -1661,7 +1958,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigVlanAllocationStrategy`: CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+	// response from `GetLogicalNetworkConfigVlanAllocationStrategy`: VlanAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1687,7 +1984,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateLogicalNetworkProfileVlanAllocationStrategy201Response**](CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md)
+[**VlanAllocationStrategy**](VlanAllocationStrategy.md)
 
 ### Authorization
 
@@ -1723,11 +2020,11 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 100           </p>       <p>              <b>Max Value: </b> 1000           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.           <p>              <b>Format: </b> filter.kind={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.kind=$not:$like:John Doe&filter.kind=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:ASC           </p>       <h4>Available Fields</h4><ul><li>id</li></ul>        (optional)
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$btw:John Doe&filter.kind=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1757,11 +2054,11 @@ Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigVni
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterKind** | **[]string** | Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;        | 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
 
 ### Return type
 
@@ -1783,7 +2080,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfigVniAllocationStrategy
 
-> CreateLogicalNetworkProfileVniAllocationStrategy201Response GetLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> VniAllocationStrategy GetLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Vni allocation strategy.
 
@@ -1810,7 +2107,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigVniAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfigVniAllocationStrategy`: CreateLogicalNetworkProfileVniAllocationStrategy201Response
+	// response from `GetLogicalNetworkConfigVniAllocationStrategy`: VniAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigVniAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1836,7 +2133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateLogicalNetworkProfileVniAllocationStrategy201Response**](CreateLogicalNetworkProfileVniAllocationStrategy201Response.md)
+[**VniAllocationStrategy**](VniAllocationStrategy.md)
 
 ### Authorization
 
@@ -1871,20 +2168,20 @@ import (
 )
 
 func main() {
-	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> -1           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
-	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.           <p>              <b>Format: </b> filter.kind={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.kind=$not:$like:John Doe&filter.kind=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
-	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.           <p>              <b>Format: </b> filter.label={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	filterName := []string{"Inner_example"} // []string | Filter by name query param.           <p>              <b>Format: </b> filter.name={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	filterFabricId := []string{"Inner_example"} // []string | Filter by fabricId query param.           <p>              <b>Format: </b> filter.fabricId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
-	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.           <p>              <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li> <li>$not</li> <li>$null</li></ul> (optional)
-	filterServiceStatus := []string{"Inner_example"} // []string | Filter by serviceStatus query param.           <p>              <b>Format: </b> filter.serviceStatus={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
-	filterConfigDeployStatus := []string{"Inner_example"} // []string | Filter by config.deployStatus query param.           <p>              <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
-	filterConfigDeployType := []string{"Inner_example"} // []string | Filter by config.deployType query param.           <p>              <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:ASC           </p>       <h4>Available Fields</h4><ul><li>id</li></ul>        (optional)
-	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> id,label,name           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>id</li> <li>label</li> <li>name</li></ul>          (optional)
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** -1   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe&filter.id=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$eq:John Doe&filter.kind=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterName := []string{"Inner_example"} // []string | Filter by name query param.  **Format:** filter.name={$not}:OPERATION:VALUE    **Example:** filter.name=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterFabricId := []string{"Inner_example"} // []string | Filter by fabricId query param.  **Format:** filter.fabricId={$not}:OPERATION:VALUE    **Example:** filter.fabricId=$eq:John Doe&filter.fabricId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$eq:John Doe&filter.infrastructureId=$in:John Doe  **Available Operations** - $eq  - $in  - $not  - $null  - $and  - $or (optional)
+	filterServiceStatus := []string{"Inner_example"} // []string | Filter by serviceStatus query param.  **Format:** filter.serviceStatus={$not}:OPERATION:VALUE    **Example:** filter.serviceStatus=$eq:John Doe&filter.serviceStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterConfigDeployStatus := []string{"Inner_example"} // []string | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus={$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus=$eq:John Doe&filter.config.deployStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterConfigDeployType := []string{"Inner_example"} // []string | Filter by config.deployType query param.  **Format:** filter.config.deployType={$not}:OPERATION:VALUE    **Example:** filter.config.deployType=$eq:John Doe&filter.config.deployType=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1909,20 +2206,20 @@ Other parameters are passed through a pointer to a apiGetLogicalNetworksRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; -1           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
- **filterKind** | **[]string** | Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
- **filterLabel** | **[]string** | Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **filterName** | **[]string** | Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **filterFabricId** | **[]string** | Filter by fabricId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricId&#x3D;$not:$like:John Doe&amp;filter.fabricId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
- **filterInfrastructureId** | **[]string** | Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt;&lt;/ul&gt; | 
- **filterServiceStatus** | **[]string** | Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
- **filterConfigDeployStatus** | **[]string** | Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
- **filterConfigDeployType** | **[]string** | Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;        | 
- **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;          | 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** -1   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$eq:John Doe&amp;filter.kind&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterLabel** | **[]string** | Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterName** | **[]string** | Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterFabricId** | **[]string** | Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe&amp;filter.fabricId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterInfrastructureId** | **[]string** | Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$eq:John Doe&amp;filter.infrastructureId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $not  - $null  - $and  - $or | 
+ **filterServiceStatus** | **[]string** | Filter by serviceStatus query param.  **Format:** filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serviceStatus&#x3D;$eq:John Doe&amp;filter.serviceStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterConfigDeployStatus** | **[]string** | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus&#x3D;$eq:John Doe&amp;filter.config.deployStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterConfigDeployType** | **[]string** | Filter by config.deployType query param.  **Format:** filter.config.deployType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployType&#x3D;$eq:John Doe&amp;filter.config.deployType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name  | 
 
 ### Return type
 
@@ -1944,7 +2241,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy
 
-> CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+> Ipv4SubnetAllocationStrategy ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 
 Replace Ipv4 Subnet allocation strategy
 
@@ -1964,16 +2261,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileIpv4SubnetAllocationStrategy_request{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest | 
+	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy`: CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
+	// response from `ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy`: Ipv4SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1997,11 +2294,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest** | [**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest**](CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv4SubnetAllocationStrategy** | [**CreateIpv4SubnetAllocationStrategy**](CreateIpv4SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response**](CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response.md)
+[**Ipv4SubnetAllocationStrategy**](Ipv4SubnetAllocationStrategy.md)
 
 ### Authorization
 
@@ -2019,7 +2316,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy
 
-> CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+> Ipv6SubnetAllocationStrategy ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 
 Replace Ipv6 Subnet allocation strategy
 
@@ -2039,16 +2336,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileIpv6SubnetAllocationStrategy_request{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest | 
+	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy`: CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
+	// response from `ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy`: Ipv6SubnetAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2072,11 +2369,86 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest** | [**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest**](CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md) |  | 
+ **createIpv6SubnetAllocationStrategy** | [**CreateIpv6SubnetAllocationStrategy**](CreateIpv6SubnetAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response**](CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response.md)
+[**Ipv6SubnetAllocationStrategy**](Ipv6SubnetAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReplaceLogicalNetworkConfigPkeyAllocationStrategy
+
+> PkeyAllocationStrategy ReplaceLogicalNetworkConfigPkeyAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
+
+Replace Pkey allocation strategy
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	allocationStrategyId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreatePkeyAllocationStrategy | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreatePkeyAllocationStrategy(createPkeyAllocationStrategy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ReplaceLogicalNetworkConfigPkeyAllocationStrategy`: PkeyAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+**allocationStrategyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **ifMatch** | **string** | Entity tag | 
+ **createPkeyAllocationStrategy** | [**CreatePkeyAllocationStrategy**](CreatePkeyAllocationStrategy.md) |  | 
+
+### Return type
+
+[**PkeyAllocationStrategy**](PkeyAllocationStrategy.md)
 
 ### Authorization
 
@@ -2094,7 +2466,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigVlanAllocationStrategy
 
-> CreateLogicalNetworkProfileVlanAllocationStrategy201Response ReplaceLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).Execute()
+> VlanAllocationStrategy ReplaceLogicalNetworkConfigVlanAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 
 Replace Vlan allocation strategy
 
@@ -2114,16 +2486,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileVlanAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileVlanAllocationStrategy_request{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkProfileVlanAllocationStrategyRequest | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateVlanAllocationStrategy(createVlanAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigVlanAllocationStrategy`: CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+	// response from `ReplaceLogicalNetworkConfigVlanAllocationStrategy`: VlanAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2147,11 +2519,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileVlanAllocationStrategyRequest** | [**CreateLogicalNetworkProfileVlanAllocationStrategyRequest**](CreateLogicalNetworkProfileVlanAllocationStrategyRequest.md) |  | 
+ **createVlanAllocationStrategy** | [**CreateVlanAllocationStrategy**](CreateVlanAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileVlanAllocationStrategy201Response**](CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md)
+[**VlanAllocationStrategy**](VlanAllocationStrategy.md)
 
 ### Authorization
 
@@ -2169,7 +2541,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceLogicalNetworkConfigVniAllocationStrategy
 
-> CreateLogicalNetworkProfileVniAllocationStrategy201Response ReplaceLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileVniAllocationStrategyRequest(createLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+> VniAllocationStrategy ReplaceLogicalNetworkConfigVniAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 
 Replace Vni allocation strategy
 
@@ -2189,16 +2561,16 @@ func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createLogicalNetworkProfileVniAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileVniAllocationStrategy_request{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkProfileVniAllocationStrategyRequest | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateLogicalNetworkProfileVniAllocationStrategyRequest(createLogicalNetworkProfileVniAllocationStrategyRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateVniAllocationStrategy(createVniAllocationStrategy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkConfigVniAllocationStrategy`: CreateLogicalNetworkProfileVniAllocationStrategy201Response
+	// response from `ReplaceLogicalNetworkConfigVniAllocationStrategy`: VniAllocationStrategy
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -2222,11 +2594,11 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
- **createLogicalNetworkProfileVniAllocationStrategyRequest** | [**CreateLogicalNetworkProfileVniAllocationStrategyRequest**](CreateLogicalNetworkProfileVniAllocationStrategyRequest.md) |  | 
+ **createVniAllocationStrategy** | [**CreateVniAllocationStrategy**](CreateVniAllocationStrategy.md) |  | 
 
 ### Return type
 
-[**CreateLogicalNetworkProfileVniAllocationStrategy201Response**](CreateLogicalNetworkProfileVniAllocationStrategy201Response.md)
+[**VniAllocationStrategy**](VniAllocationStrategy.md)
 
 ### Authorization
 

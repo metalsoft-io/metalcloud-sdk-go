@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **SiteId** | **float32** | The site ID of the network device default secrets | 
 **MacAddressOrSerialNumber** | **string** | The MAC address or serial number of the network device | 
 **SecretName** | **string** | The name of the secret | 
-**SecretValueEncrypted** | **string** | The encrypted value of the secret | 
 **CreatedTimestamp** | **string** | The timestamp when the secret was created | 
 **UpdatedTimestamp** | **string** | The timestamp when the secret was updated | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -17,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceDefaultSecrets
 
-`func NewNetworkDeviceDefaultSecrets(id float32, siteId float32, macAddressOrSerialNumber string, secretName string, secretValueEncrypted string, createdTimestamp string, updatedTimestamp string, ) *NetworkDeviceDefaultSecrets`
+`func NewNetworkDeviceDefaultSecrets(id float32, siteId float32, macAddressOrSerialNumber string, secretName string, createdTimestamp string, updatedTimestamp string, ) *NetworkDeviceDefaultSecrets`
 
 NewNetworkDeviceDefaultSecrets instantiates a new NetworkDeviceDefaultSecrets object
 This constructor will assign default values to properties that have it defined,
@@ -110,26 +109,6 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDeviceDefaultSecrets) SetSecretName(v string)`
 
 SetSecretName sets SecretName field to given value.
-
-
-### GetSecretValueEncrypted
-
-`func (o *NetworkDeviceDefaultSecrets) GetSecretValueEncrypted() string`
-
-GetSecretValueEncrypted returns the SecretValueEncrypted field if non-nil, zero value otherwise.
-
-### GetSecretValueEncryptedOk
-
-`func (o *NetworkDeviceDefaultSecrets) GetSecretValueEncryptedOk() (*string, bool)`
-
-GetSecretValueEncryptedOk returns a tuple with the SecretValueEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSecretValueEncrypted
-
-`func (o *NetworkDeviceDefaultSecrets) SetSecretValueEncrypted(v string)`
-
-SetSecretValueEncrypted sets SecretValueEncrypted field to given value.
 
 
 ### GetCreatedTimestamp

@@ -50,8 +50,6 @@ type ServerInstanceConfiguration struct {
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
 	IscsiInitiatorUsername *string `json:"iscsiInitiatorUsername,omitempty"`
-	// iSCSI Initiator Password for the Instance Interface.
-	IscsiInitiatorPasswordEncrypted *string `json:"iscsiInitiatorPasswordEncrypted,omitempty"`
 	// Control panel url for the Instance Interface.
 	ControlPanelUrl *string `json:"controlPanelUrl,omitempty"`
 	// Id of the DNS subdomain for the Product Instance
@@ -576,38 +574,6 @@ func (o *ServerInstanceConfiguration) SetIscsiInitiatorUsername(v string) {
 	o.IscsiInitiatorUsername = &v
 }
 
-// GetIscsiInitiatorPasswordEncrypted returns the IscsiInitiatorPasswordEncrypted field value if set, zero value otherwise.
-func (o *ServerInstanceConfiguration) GetIscsiInitiatorPasswordEncrypted() string {
-	if o == nil || IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.IscsiInitiatorPasswordEncrypted
-}
-
-// GetIscsiInitiatorPasswordEncryptedOk returns a tuple with the IscsiInitiatorPasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceConfiguration) GetIscsiInitiatorPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		return nil, false
-	}
-	return o.IscsiInitiatorPasswordEncrypted, true
-}
-
-// HasIscsiInitiatorPasswordEncrypted returns a boolean if a field has been set.
-func (o *ServerInstanceConfiguration) HasIscsiInitiatorPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetIscsiInitiatorPasswordEncrypted gets a reference to the given string and assigns it to the IscsiInitiatorPasswordEncrypted field.
-func (o *ServerInstanceConfiguration) SetIscsiInitiatorPasswordEncrypted(v string) {
-	o.IscsiInitiatorPasswordEncrypted = &v
-}
-
 // GetControlPanelUrl returns the ControlPanelUrl field value if set, zero value otherwise.
 func (o *ServerInstanceConfiguration) GetControlPanelUrl() string {
 	if o == nil || IsNil(o.ControlPanelUrl) {
@@ -834,9 +800,6 @@ func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IscsiInitiatorUsername) {
 		toSerialize["iscsiInitiatorUsername"] = o.IscsiInitiatorUsername
 	}
-	if !IsNil(o.IscsiInitiatorPasswordEncrypted) {
-		toSerialize["iscsiInitiatorPasswordEncrypted"] = o.IscsiInitiatorPasswordEncrypted
-	}
 	if !IsNil(o.ControlPanelUrl) {
 		toSerialize["controlPanelUrl"] = o.ControlPanelUrl
 	}
@@ -915,7 +878,6 @@ func (o *ServerInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")
-		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")
 		delete(additionalProperties, "controlPanelUrl")
 		delete(additionalProperties, "dnsSubdomainChangeId")
 		delete(additionalProperties, "infrastructureDeployId")

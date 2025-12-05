@@ -149,97 +149,97 @@ type EventAPIGetEventsRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r EventAPIGetEventsRequest) Page(page float32) EventAPIGetEventsRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r EventAPIGetEventsRequest) Limit(limit float32) EventAPIGetEventsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterId(filterId []string) EventAPIGetEventsRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by userIdAuthenticated query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.userIdAuthenticated&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.userIdAuthenticated&#x3D;$not:$like:John Doe&amp;filter.userIdAuthenticated&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by userIdAuthenticated query param.  **Format:** filter.userIdAuthenticated&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.userIdAuthenticated&#x3D;$eq:John Doe&amp;filter.userIdAuthenticated&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterUserIdAuthenticated(filterUserIdAuthenticated []string) EventAPIGetEventsRequest {
 	r.filterUserIdAuthenticated = &filterUserIdAuthenticated
 	return r
 }
 
-// Filter by type query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.type&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.type&#x3D;$not:$like:John Doe&amp;filter.type&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe&amp;filter.type&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterType(filterType []string) EventAPIGetEventsRequest {
 	r.filterType = &filterType
 	return r
 }
 
-// Filter by severity query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.severity&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.severity&#x3D;$not:$like:John Doe&amp;filter.severity&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by severity query param.  **Format:** filter.severity&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.severity&#x3D;$eq:John Doe&amp;filter.severity&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterSeverity(filterSeverity []string) EventAPIGetEventsRequest {
 	r.filterSeverity = &filterSeverity
 	return r
 }
 
-// Filter by visibility query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.visibility&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.visibility&#x3D;$not:$like:John Doe&amp;filter.visibility&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by visibility query param.  **Format:** filter.visibility&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.visibility&#x3D;$eq:John Doe&amp;filter.visibility&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterVisibility(filterVisibility []string) EventAPIGetEventsRequest {
 	r.filterVisibility = &filterVisibility
 	return r
 }
 
-// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$eq:John Doe&amp;filter.infrastructureId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterInfrastructureId(filterInfrastructureId []string) EventAPIGetEventsRequest {
 	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
-// Filter by userId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.userId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.userId&#x3D;$not:$like:John Doe&amp;filter.userId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by userId query param.  **Format:** filter.userId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.userId&#x3D;$eq:John Doe&amp;filter.userId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterUserId(filterUserId []string) EventAPIGetEventsRequest {
 	r.filterUserId = &filterUserId
 	return r
 }
 
-// Filter by storagePoolId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.storagePoolId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.storagePoolId&#x3D;$not:$like:John Doe&amp;filter.storagePoolId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by storagePoolId query param.  **Format:** filter.storagePoolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.storagePoolId&#x3D;$eq:John Doe&amp;filter.storagePoolId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterStoragePoolId(filterStoragePoolId []string) EventAPIGetEventsRequest {
 	r.filterStoragePoolId = &filterStoragePoolId
 	return r
 }
 
-// Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$eq:John Doe&amp;filter.serverId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterServerId(filterServerId []string) EventAPIGetEventsRequest {
 	r.filterServerId = &filterServerId
 	return r
 }
 
-// Filter by jobId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.jobId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.jobId&#x3D;$not:$like:John Doe&amp;filter.jobId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by jobId query param.  **Format:** filter.jobId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.jobId&#x3D;$eq:John Doe&amp;filter.jobId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterJobId(filterJobId []string) EventAPIGetEventsRequest {
 	r.filterJobId = &filterJobId
 	return r
 }
 
-// Filter by siteId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.siteId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.siteId&#x3D;$not:$like:John Doe&amp;filter.siteId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$eq:John Doe&amp;filter.siteId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterSiteId(filterSiteId []string) EventAPIGetEventsRequest {
 	r.filterSiteId = &filterSiteId
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:DESC  **Available Fields** - id 
 func (r EventAPIGetEventsRequest) SortBy(sortBy []string) EventAPIGetEventsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r EventAPIGetEventsRequest) Search(search string) EventAPIGetEventsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,type,severity,visibility,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;type&lt;/li&gt; &lt;li&gt;severity&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;serverId&lt;/li&gt; &lt;li&gt;jobId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;title&lt;/li&gt; &lt;li&gt;message&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,type,severity,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - severity  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message 
 func (r EventAPIGetEventsRequest) SearchBy(searchBy []string) EventAPIGetEventsRequest {
 	r.searchBy = &searchBy
 	return r

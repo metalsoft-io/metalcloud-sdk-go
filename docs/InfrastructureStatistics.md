@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **JobGroupStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) | Statistics of job group for the infrastructure | [optional] 
 **ServerTypesForUsage** | [**[]ServerTypesForUsage**](ServerTypesForUsage.md) | List of server types statistics | 
+**VmPoolsForUsage** | [**[]VMPoolForUsage**](VMPoolForUsage.md) | List of VM Pools statistics | 
+**StoragePoolsForUsage** | [**[]StoragePoolForUsage**](StoragePoolForUsage.md) | List of Storage Pools statistics | 
 
 ## Methods
 
 ### NewInfrastructureStatistics
 
-`func NewInfrastructureStatistics(serverTypesForUsage []ServerTypesForUsage, ) *InfrastructureStatistics`
+`func NewInfrastructureStatistics(serverTypesForUsage []ServerTypesForUsage, vmPoolsForUsage []VMPoolForUsage, storagePoolsForUsage []StoragePoolForUsage, ) *InfrastructureStatistics`
 
 NewInfrastructureStatistics instantiates a new InfrastructureStatistics object
 This constructor will assign default values to properties that have it defined,
@@ -69,6 +71,46 @@ and a boolean to check if the value has been set.
 `func (o *InfrastructureStatistics) SetServerTypesForUsage(v []ServerTypesForUsage)`
 
 SetServerTypesForUsage sets ServerTypesForUsage field to given value.
+
+
+### GetVmPoolsForUsage
+
+`func (o *InfrastructureStatistics) GetVmPoolsForUsage() []VMPoolForUsage`
+
+GetVmPoolsForUsage returns the VmPoolsForUsage field if non-nil, zero value otherwise.
+
+### GetVmPoolsForUsageOk
+
+`func (o *InfrastructureStatistics) GetVmPoolsForUsageOk() (*[]VMPoolForUsage, bool)`
+
+GetVmPoolsForUsageOk returns a tuple with the VmPoolsForUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolsForUsage
+
+`func (o *InfrastructureStatistics) SetVmPoolsForUsage(v []VMPoolForUsage)`
+
+SetVmPoolsForUsage sets VmPoolsForUsage field to given value.
+
+
+### GetStoragePoolsForUsage
+
+`func (o *InfrastructureStatistics) GetStoragePoolsForUsage() []StoragePoolForUsage`
+
+GetStoragePoolsForUsage returns the StoragePoolsForUsage field if non-nil, zero value otherwise.
+
+### GetStoragePoolsForUsageOk
+
+`func (o *InfrastructureStatistics) GetStoragePoolsForUsageOk() (*[]StoragePoolForUsage, bool)`
+
+GetStoragePoolsForUsageOk returns a tuple with the StoragePoolsForUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStoragePoolsForUsage
+
+`func (o *InfrastructureStatistics) SetStoragePoolsForUsage(v []StoragePoolForUsage)`
+
+SetStoragePoolsForUsage sets StoragePoolsForUsage field to given value.
 
 
 

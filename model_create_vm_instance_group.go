@@ -30,6 +30,8 @@ type CreateVMInstanceGroup struct {
 	OsTemplateId float32 `json:"osTemplateId"`
 	// Tags for the VM Instance Group.
 	Tags []string `json:"tags,omitempty"`
+	// Id of the VM Pool on which the VM Instance Group will be provisioned.
+	VmPoolId float32 `json:"vmPoolId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,13 +41,14 @@ type _CreateVMInstanceGroup CreateVMInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, osTemplateId float32) *CreateVMInstanceGroup {
+func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, osTemplateId float32, vmPoolId float32) *CreateVMInstanceGroup {
 	this := CreateVMInstanceGroup{}
 	var instanceCount float32 = 1
 	this.InstanceCount = &instanceCount
 	this.DiskSizeGB = diskSizeGB
 	this.TypeId = typeId
 	this.OsTemplateId = osTemplateId
+	this.VmPoolId = vmPoolId
 	return &this
 }
 
@@ -195,6 +198,30 @@ func (o *CreateVMInstanceGroup) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetVmPoolId returns the VmPoolId field value
+func (o *CreateVMInstanceGroup) GetVmPoolId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.VmPoolId
+}
+
+// GetVmPoolIdOk returns a tuple with the VmPoolId field value
+// and a boolean to check if the value has been set.
+func (o *CreateVMInstanceGroup) GetVmPoolIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VmPoolId, true
+}
+
+// SetVmPoolId sets field value
+func (o *CreateVMInstanceGroup) SetVmPoolId(v float32) {
+	o.VmPoolId = v
+}
+
 func (o CreateVMInstanceGroup) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -214,6 +241,7 @@ func (o CreateVMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+	toSerialize["vmPoolId"] = o.VmPoolId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -230,6 +258,7 @@ func (o *CreateVMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"diskSizeGB",
 		"typeId",
 		"osTemplateId",
+		"vmPoolId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -264,6 +293,7 @@ func (o *CreateVMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "typeId")
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "vmPoolId")
 		o.AdditionalProperties = additionalProperties
 	}
 

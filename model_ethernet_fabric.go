@@ -37,7 +37,7 @@ type EthernetFabric struct {
 	AsnRanges []string `json:"asnRanges,omitempty"`
 	AsnAllocationStrategy *AsnAllocationStrategy `json:"asnAllocationStrategy,omitempty"`
 	BgpNumbering *BgpNumberingType `json:"bgpNumbering,omitempty"`
-	// Library label for the Ethernet fabric configuration, used to identify the BGP templates that can be used for deploy.
+	// Library label for the Ethernet fabric configuration, used to identify the Network Device Configuration Templates that can be used for deploy.
 	LibraryLabel *string `json:"libraryLabel,omitempty"`
 	// Default VLAN ID. Must be a number between 1 and 4096.
 	DefaultVlan *int32 `json:"defaultVlan,omitempty"`

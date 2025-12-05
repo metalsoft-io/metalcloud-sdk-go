@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]VlanAllocationStrategy1DataItem**](VlanAllocationStrategy1DataItem.md) |  | 
+**Data** | [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewPaginatedVlanAllocationStrategy
 
-`func NewPaginatedVlanAllocationStrategy(data []VlanAllocationStrategy1DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedVlanAllocationStrategy`
+`func NewPaginatedVlanAllocationStrategy(data []VlanAllocationStrategy, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedVlanAllocationStrategy`
 
 NewPaginatedVlanAllocationStrategy instantiates a new PaginatedVlanAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *PaginatedVlanAllocationStrategy) GetData() []VlanAllocationStrategy1DataItem`
+`func (o *PaginatedVlanAllocationStrategy) GetData() []VlanAllocationStrategy`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PaginatedVlanAllocationStrategy) GetDataOk() (*[]VlanAllocationStrategy1DataItem, bool)`
+`func (o *PaginatedVlanAllocationStrategy) GetDataOk() (*[]VlanAllocationStrategy, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PaginatedVlanAllocationStrategy) SetData(v []VlanAllocationStrategy1DataItem)`
+`func (o *PaginatedVlanAllocationStrategy) SetData(v []VlanAllocationStrategy)`
 
 SetData sets Data field to given value.
 

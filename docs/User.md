@@ -27,15 +27,16 @@ Name | Type | Description | Notes
 **IsArchived** | **bool** | Whether the user is a archived | 
 **IsDatastorePublisher** | **bool** | Whether the user is a datastore publisher | 
 **AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**Provider** | **string** | The provider of the user | [default to "mysql"]
 **Id** | **float32** | User ID | 
 **Revision** | **float32** | Revision of the user | 
 **Email** | **string** | The email address of the user | 
 **Franchise** | **string** | The franchise of the user | 
 **CreatedTimestamp** | **string** | The timestamp when the user was created | 
 **PlanType** | **string** | The plan type of the user | [default to "vanilla"]
-**Provider** | **string** | The provider of the user | [default to "default"]
 **Permissions** | Pointer to [**UserPermissions**](UserPermissions.md) | The permissions of the user | [optional] 
 **Limits** | Pointer to [**UserLimits**](UserLimits.md) |  | [optional] 
+**DisabledLimits** | Pointer to [**UserLimitsDisabled**](UserLimitsDisabled.md) | The disabled limits for the user, if list is empty all options are available | [optional] 
 **ParentDelegates** | Pointer to **[]string** | The email addresses of the parent delegate users | [optional] 
 **ChildDelegates** | Pointer to **[]string** | The email addresses of the child delegate users | [optional] 
 **IsSuspended** | **bool** | Whether the user is suspended | 
@@ -48,7 +49,7 @@ Name | Type | Description | Notes
 
 ### NewUser
 
-`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, provider string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta, ) *User`
+`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta, ) *User`
 
 NewUser instantiates a new User object
 This constructor will assign default values to properties that have it defined,
@@ -548,6 +549,26 @@ SetAccountId sets AccountId field to given value.
 
 HasAccountId returns a boolean if a field has been set.
 
+### GetProvider
+
+`func (o *User) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *User) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *User) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
+
 ### GetId
 
 `func (o *User) GetId() float32`
@@ -668,26 +689,6 @@ and a boolean to check if the value has been set.
 SetPlanType sets PlanType field to given value.
 
 
-### GetProvider
-
-`func (o *User) GetProvider() string`
-
-GetProvider returns the Provider field if non-nil, zero value otherwise.
-
-### GetProviderOk
-
-`func (o *User) GetProviderOk() (*string, bool)`
-
-GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProvider
-
-`func (o *User) SetProvider(v string)`
-
-SetProvider sets Provider field to given value.
-
-
 ### GetPermissions
 
 `func (o *User) GetPermissions() UserPermissions`
@@ -737,6 +738,31 @@ SetLimits sets Limits field to given value.
 `func (o *User) HasLimits() bool`
 
 HasLimits returns a boolean if a field has been set.
+
+### GetDisabledLimits
+
+`func (o *User) GetDisabledLimits() UserLimitsDisabled`
+
+GetDisabledLimits returns the DisabledLimits field if non-nil, zero value otherwise.
+
+### GetDisabledLimitsOk
+
+`func (o *User) GetDisabledLimitsOk() (*UserLimitsDisabled, bool)`
+
+GetDisabledLimitsOk returns a tuple with the DisabledLimits field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabledLimits
+
+`func (o *User) SetDisabledLimits(v UserLimitsDisabled)`
+
+SetDisabledLimits sets DisabledLimits field to given value.
+
+### HasDisabledLimits
+
+`func (o *User) HasDisabledLimits() bool`
+
+HasDisabledLimits returns a boolean if a field has been set.
 
 ### GetParentDelegates
 

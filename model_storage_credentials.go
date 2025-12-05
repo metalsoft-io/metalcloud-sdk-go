@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the StorageCredentials type satisfies the MappedNullable interface at compile time
@@ -22,9 +21,17 @@ var _ MappedNullable = &StorageCredentials{}
 // StorageCredentials struct for StorageCredentials
 type StorageCredentials struct {
 	// The username to use.
-	Username string `json:"username"`
+	Username *string `json:"username,omitempty"`
 	// The password to use.
-	Password string `json:"password"`
+	Password *string `json:"password,omitempty"`
+	// The client ID to use (for certain storage drivers)
+	ClientId *string `json:"clientId,omitempty"`
+	// The key ID to use (for certain storage drivers)
+	KeyId *string `json:"keyId,omitempty"`
+	// The application issuer to use (for certain storage drivers)
+	Issuer *string `json:"issuer,omitempty"`
+	// The private key to use (for certain storage drivers)
+	PrivateKey *string `json:"privateKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +41,8 @@ type _StorageCredentials StorageCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageCredentials(username string, password string) *StorageCredentials {
+func NewStorageCredentials() *StorageCredentials {
 	this := StorageCredentials{}
-	this.Username = username
-	this.Password = password
 	return &this
 }
 
@@ -49,52 +54,196 @@ func NewStorageCredentialsWithDefaults() *StorageCredentials {
 	return &this
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *StorageCredentials) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageCredentials) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *StorageCredentials) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *StorageCredentials) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
-// GetPassword returns the Password field value
+// GetPassword returns the Password field value if set, zero value otherwise.
 func (o *StorageCredentials) GetPassword() string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
-
-	return o.Password
+	return *o.Password
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StorageCredentials) GetPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
-	return &o.Password, true
+	return o.Password, true
 }
 
-// SetPassword sets field value
+// HasPassword returns a boolean if a field has been set.
+func (o *StorageCredentials) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *StorageCredentials) SetPassword(v string) {
-	o.Password = v
+	o.Password = &v
+}
+
+// GetClientId returns the ClientId field value if set, zero value otherwise.
+func (o *StorageCredentials) GetClientId() string {
+	if o == nil || IsNil(o.ClientId) {
+		var ret string
+		return ret
+	}
+	return *o.ClientId
+}
+
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageCredentials) GetClientIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ClientId) {
+		return nil, false
+	}
+	return o.ClientId, true
+}
+
+// HasClientId returns a boolean if a field has been set.
+func (o *StorageCredentials) HasClientId() bool {
+	if o != nil && !IsNil(o.ClientId) {
+		return true
+	}
+
+	return false
+}
+
+// SetClientId gets a reference to the given string and assigns it to the ClientId field.
+func (o *StorageCredentials) SetClientId(v string) {
+	o.ClientId = &v
+}
+
+// GetKeyId returns the KeyId field value if set, zero value otherwise.
+func (o *StorageCredentials) GetKeyId() string {
+	if o == nil || IsNil(o.KeyId) {
+		var ret string
+		return ret
+	}
+	return *o.KeyId
+}
+
+// GetKeyIdOk returns a tuple with the KeyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageCredentials) GetKeyIdOk() (*string, bool) {
+	if o == nil || IsNil(o.KeyId) {
+		return nil, false
+	}
+	return o.KeyId, true
+}
+
+// HasKeyId returns a boolean if a field has been set.
+func (o *StorageCredentials) HasKeyId() bool {
+	if o != nil && !IsNil(o.KeyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyId gets a reference to the given string and assigns it to the KeyId field.
+func (o *StorageCredentials) SetKeyId(v string) {
+	o.KeyId = &v
+}
+
+// GetIssuer returns the Issuer field value if set, zero value otherwise.
+func (o *StorageCredentials) GetIssuer() string {
+	if o == nil || IsNil(o.Issuer) {
+		var ret string
+		return ret
+	}
+	return *o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageCredentials) GetIssuerOk() (*string, bool) {
+	if o == nil || IsNil(o.Issuer) {
+		return nil, false
+	}
+	return o.Issuer, true
+}
+
+// HasIssuer returns a boolean if a field has been set.
+func (o *StorageCredentials) HasIssuer() bool {
+	if o != nil && !IsNil(o.Issuer) {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuer gets a reference to the given string and assigns it to the Issuer field.
+func (o *StorageCredentials) SetIssuer(v string) {
+	o.Issuer = &v
+}
+
+// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
+func (o *StorageCredentials) GetPrivateKey() string {
+	if o == nil || IsNil(o.PrivateKey) {
+		var ret string
+		return ret
+	}
+	return *o.PrivateKey
+}
+
+// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageCredentials) GetPrivateKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.PrivateKey) {
+		return nil, false
+	}
+	return o.PrivateKey, true
+}
+
+// HasPrivateKey returns a boolean if a field has been set.
+func (o *StorageCredentials) HasPrivateKey() bool {
+	if o != nil && !IsNil(o.PrivateKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
+func (o *StorageCredentials) SetPrivateKey(v string) {
+	o.PrivateKey = &v
 }
 
 func (o StorageCredentials) MarshalJSON() ([]byte, error) {
@@ -107,8 +256,24 @@ func (o StorageCredentials) MarshalJSON() ([]byte, error) {
 
 func (o StorageCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["username"] = o.Username
-	toSerialize["password"] = o.Password
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.ClientId) {
+		toSerialize["clientId"] = o.ClientId
+	}
+	if !IsNil(o.KeyId) {
+		toSerialize["keyId"] = o.KeyId
+	}
+	if !IsNil(o.Issuer) {
+		toSerialize["issuer"] = o.Issuer
+	}
+	if !IsNil(o.PrivateKey) {
+		toSerialize["privateKey"] = o.PrivateKey
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -118,28 +283,6 @@ func (o StorageCredentials) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *StorageCredentials) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"username",
-		"password",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varStorageCredentials := _StorageCredentials{}
 
 	err = json.Unmarshal(data, &varStorageCredentials)
@@ -155,6 +298,10 @@ func (o *StorageCredentials) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "clientId")
+		delete(additionalProperties, "keyId")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "privateKey")
 		o.AdditionalProperties = additionalProperties
 	}
 

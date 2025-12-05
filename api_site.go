@@ -659,7 +659,7 @@ func (r SiteAPIGetSiteControllerOneLinerRequest) GenerateSiteControllerOneliner(
 	return r
 }
 
-func (r SiteAPIGetSiteControllerOneLinerRequest) Execute() (*GetSiteControllerOneLiner200Response, *http.Response, error) {
+func (r SiteAPIGetSiteControllerOneLinerRequest) Execute() (*SiteControllerOneliner, *http.Response, error) {
 	return r.ApiService.GetSiteControllerOneLinerExecute(r)
 }
 
@@ -681,13 +681,13 @@ func (a *SiteAPIService) GetSiteControllerOneLiner(ctx context.Context, siteId f
 }
 
 // Execute executes the request
-//  @return GetSiteControllerOneLiner200Response
-func (a *SiteAPIService) GetSiteControllerOneLinerExecute(r SiteAPIGetSiteControllerOneLinerRequest) (*GetSiteControllerOneLiner200Response, *http.Response, error) {
+//  @return SiteControllerOneliner
+func (a *SiteAPIService) GetSiteControllerOneLinerExecute(r SiteAPIGetSiteControllerOneLinerRequest) (*SiteControllerOneliner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetSiteControllerOneLiner200Response
+		localVarReturnValue  *SiteControllerOneliner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.GetSiteControllerOneLiner")
@@ -774,49 +774,49 @@ type SiteAPIGetSitesRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r SiteAPIGetSitesRequest) Page(page float32) SiteAPIGetSitesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r SiteAPIGetSitesRequest) Limit(limit float32) SiteAPIGetSitesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r SiteAPIGetSitesRequest) FilterId(filterId []string) SiteAPIGetSitesRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r SiteAPIGetSitesRequest) FilterName(filterName []string) SiteAPIGetSitesRequest {
 	r.filterName = &filterName
 	return r
 }
 
-// Filter by slug query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.slug&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.slug&#x3D;$not:$like:John Doe&amp;filter.slug&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by slug query param.  **Format:** filter.slug&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.slug&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r SiteAPIGetSitesRequest) FilterSlug(filterSlug []string) SiteAPIGetSitesRequest {
 	r.filterSlug = &filterSlug
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:DESC  **Available Fields** - id 
 func (r SiteAPIGetSitesRequest) SortBy(sortBy []string) SiteAPIGetSitesRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r SiteAPIGetSitesRequest) Search(search string) SiteAPIGetSitesRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,slug           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;slug&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,name,slug   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - slug 
 func (r SiteAPIGetSitesRequest) SearchBy(searchBy []string) SiteAPIGetSitesRequest {
 	r.searchBy = &searchBy
 	return r

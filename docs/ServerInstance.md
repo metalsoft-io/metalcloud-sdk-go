@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **VmInstanceId** | Pointer to **int32** | The id of the linked VM instance | [optional] 
 **IsEndpointInstance** | **int32** | Flag to indicate if this is an Endpoint Instance | 
 **EndpointId** | Pointer to **int32** | The id of the Endpoint | [optional] 
-**ClusterCustomInfo** | Pointer to [**ServerInstanceClusterCustomInfo**](ServerInstanceClusterCustomInfo.md) |  | [optional] 
+**ClusterCustomInfo** | Pointer to **map[string]interface{}** |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
 **OsInstallImageBuildError** | Pointer to **string** | Last error message during OS image build. | [optional] 
@@ -37,11 +37,11 @@ Name | Type | Description | Notes
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
-**IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
 **Meta** | [**GenericMeta**](GenericMeta.md) |  | 
 **Config** | Pointer to [**ServerInstanceConfiguration**](ServerInstanceConfiguration.md) |  | [optional] 
 **AllocatedNetworkConfig** | Pointer to [**ServerInstanceAllocatedNetworkConfig**](ServerInstanceAllocatedNetworkConfig.md) | The network config allocated to this server instance. | [optional] 
+**AllocatedServerInfo** | Pointer to [**ServerInstanceAllocatedServerInfo**](ServerInstanceAllocatedServerInfo.md) | The server info allocated to this server instance. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -615,20 +615,20 @@ HasEndpointId returns a boolean if a field has been set.
 
 ### GetClusterCustomInfo
 
-`func (o *ServerInstance) GetClusterCustomInfo() ServerInstanceClusterCustomInfo`
+`func (o *ServerInstance) GetClusterCustomInfo() map[string]interface{}`
 
 GetClusterCustomInfo returns the ClusterCustomInfo field if non-nil, zero value otherwise.
 
 ### GetClusterCustomInfoOk
 
-`func (o *ServerInstance) GetClusterCustomInfoOk() (*ServerInstanceClusterCustomInfo, bool)`
+`func (o *ServerInstance) GetClusterCustomInfoOk() (*map[string]interface{}, bool)`
 
 GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClusterCustomInfo
 
-`func (o *ServerInstance) SetClusterCustomInfo(v ServerInstanceClusterCustomInfo)`
+`func (o *ServerInstance) SetClusterCustomInfo(v map[string]interface{})`
 
 SetClusterCustomInfo sets ClusterCustomInfo field to given value.
 
@@ -838,31 +838,6 @@ SetIscsiInitiatorUsername sets IscsiInitiatorUsername field to given value.
 
 HasIscsiInitiatorUsername returns a boolean if a field has been set.
 
-### GetIscsiInitiatorPasswordEncrypted
-
-`func (o *ServerInstance) GetIscsiInitiatorPasswordEncrypted() string`
-
-GetIscsiInitiatorPasswordEncrypted returns the IscsiInitiatorPasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetIscsiInitiatorPasswordEncryptedOk
-
-`func (o *ServerInstance) GetIscsiInitiatorPasswordEncryptedOk() (*string, bool)`
-
-GetIscsiInitiatorPasswordEncryptedOk returns a tuple with the IscsiInitiatorPasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIscsiInitiatorPasswordEncrypted
-
-`func (o *ServerInstance) SetIscsiInitiatorPasswordEncrypted(v string)`
-
-SetIscsiInitiatorPasswordEncrypted sets IscsiInitiatorPasswordEncrypted field to given value.
-
-### HasIscsiInitiatorPasswordEncrypted
-
-`func (o *ServerInstance) HasIscsiInitiatorPasswordEncrypted() bool`
-
-HasIscsiInitiatorPasswordEncrypted returns a boolean if a field has been set.
-
 ### GetControlPanelUrl
 
 `func (o *ServerInstance) GetControlPanelUrl() string`
@@ -957,6 +932,31 @@ SetAllocatedNetworkConfig sets AllocatedNetworkConfig field to given value.
 `func (o *ServerInstance) HasAllocatedNetworkConfig() bool`
 
 HasAllocatedNetworkConfig returns a boolean if a field has been set.
+
+### GetAllocatedServerInfo
+
+`func (o *ServerInstance) GetAllocatedServerInfo() ServerInstanceAllocatedServerInfo`
+
+GetAllocatedServerInfo returns the AllocatedServerInfo field if non-nil, zero value otherwise.
+
+### GetAllocatedServerInfoOk
+
+`func (o *ServerInstance) GetAllocatedServerInfoOk() (*ServerInstanceAllocatedServerInfo, bool)`
+
+GetAllocatedServerInfoOk returns a tuple with the AllocatedServerInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocatedServerInfo
+
+`func (o *ServerInstance) SetAllocatedServerInfo(v ServerInstanceAllocatedServerInfo)`
+
+SetAllocatedServerInfo sets AllocatedServerInfo field to given value.
+
+### HasAllocatedServerInfo
+
+`func (o *ServerInstance) HasAllocatedServerInfo() bool`
+
+HasAllocatedServerInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

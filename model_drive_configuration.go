@@ -40,8 +40,6 @@ type DriveConfiguration struct {
 	TemplateId *float32 `json:"templateId,omitempty"`
 	// The OS Admin Username the Drive will use.
 	OsAdminUsername *string `json:"osAdminUsername,omitempty"`
-	// The OS Admin Password the Drive will use.
-	OsAdminPasswordEncrypted *string `json:"osAdminPasswordEncrypted,omitempty"`
 	// Storage type of the Drive
 	StorageType string `json:"storageType"`
 	// Subdomain of the Drive.
@@ -386,38 +384,6 @@ func (o *DriveConfiguration) SetOsAdminUsername(v string) {
 	o.OsAdminUsername = &v
 }
 
-// GetOsAdminPasswordEncrypted returns the OsAdminPasswordEncrypted field value if set, zero value otherwise.
-func (o *DriveConfiguration) GetOsAdminPasswordEncrypted() string {
-	if o == nil || IsNil(o.OsAdminPasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.OsAdminPasswordEncrypted
-}
-
-// GetOsAdminPasswordEncryptedOk returns a tuple with the OsAdminPasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DriveConfiguration) GetOsAdminPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.OsAdminPasswordEncrypted) {
-		return nil, false
-	}
-	return o.OsAdminPasswordEncrypted, true
-}
-
-// HasOsAdminPasswordEncrypted returns a boolean if a field has been set.
-func (o *DriveConfiguration) HasOsAdminPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.OsAdminPasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetOsAdminPasswordEncrypted gets a reference to the given string and assigns it to the OsAdminPasswordEncrypted field.
-func (o *DriveConfiguration) SetOsAdminPasswordEncrypted(v string) {
-	o.OsAdminPasswordEncrypted = &v
-}
-
 // GetStorageType returns the StorageType field value
 func (o *DriveConfiguration) GetStorageType() string {
 	if o == nil {
@@ -738,9 +704,6 @@ func (o DriveConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OsAdminUsername) {
 		toSerialize["osAdminUsername"] = o.OsAdminUsername
 	}
-	if !IsNil(o.OsAdminPasswordEncrypted) {
-		toSerialize["osAdminPasswordEncrypted"] = o.OsAdminPasswordEncrypted
-	}
 	toSerialize["storageType"] = o.StorageType
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
@@ -823,7 +786,6 @@ func (o *DriveConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "iscsiIndexHex")
 		delete(additionalProperties, "templateId")
 		delete(additionalProperties, "osAdminUsername")
-		delete(additionalProperties, "osAdminPasswordEncrypted")
 		delete(additionalProperties, "storageType")
 		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "updatedTimestamp")

@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
 **DeployType** | **string** | Product Instance deploy type | [default to "create"]
 **DeployStatus** | **string** | Product Instance deploy status | [default to "not_started"]
+**ServerFilteringRules** | Pointer to [**[]ServerFilterRule**](ServerFilterRule.md) | Server filtering rules for allocating servers to instances. | [optional] 
 
 ## Methods
 
@@ -759,6 +760,31 @@ and a boolean to check if the value has been set.
 
 SetDeployStatus sets DeployStatus field to given value.
 
+
+### GetServerFilteringRules
+
+`func (o *ServerInstanceGroupConfiguration) GetServerFilteringRules() []ServerFilterRule`
+
+GetServerFilteringRules returns the ServerFilteringRules field if non-nil, zero value otherwise.
+
+### GetServerFilteringRulesOk
+
+`func (o *ServerInstanceGroupConfiguration) GetServerFilteringRulesOk() (*[]ServerFilterRule, bool)`
+
+GetServerFilteringRulesOk returns a tuple with the ServerFilteringRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerFilteringRules
+
+`func (o *ServerInstanceGroupConfiguration) SetServerFilteringRules(v []ServerFilterRule)`
+
+SetServerFilteringRules sets ServerFilteringRules field to given value.
+
+### HasServerFilteringRules
+
+`func (o *ServerInstanceGroupConfiguration) HasServerFilteringRules() bool`
+
+HasServerFilteringRules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -33,16 +33,18 @@ type CreateVMPool struct {
 	Description *string `json:"description,omitempty"`
 	// Type of the VM Pool
 	Type string `json:"type"`
-	// Certificate of the VM Pool
-	Certificate *string `json:"certificate,omitempty"`
 	// Username of the VM Pool
 	Username *string `json:"username,omitempty"`
 	// Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0.
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
+	// The network fabric linked to the VM Pool.
+	NetworkFabricId float32 `json:"networkFabricId"`
 	// Tags for the VM Pool.
 	Tags []string `json:"tags,omitempty"`
+	// Certificate of the VM Pool
+	Certificate *string `json:"certificate,omitempty"`
 	// Private key of the VM Pool
 	PrivateKey *string `json:"privateKey,omitempty"`
 	// Password of the VM Pool
@@ -58,13 +60,14 @@ type _CreateVMPool CreateVMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string) *CreateVMPool {
+func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, networkFabricId float32) *CreateVMPool {
 	this := CreateVMPool{}
 	this.SiteId = siteId
 	this.ManagementHost = managementHost
 	this.ManagementPort = managementPort
 	this.Name = name
 	this.Type = type_
+	this.NetworkFabricId = networkFabricId
 	return &this
 }
 
@@ -228,38 +231,6 @@ func (o *CreateVMPool) SetType(v string) {
 	o.Type = v
 }
 
-// GetCertificate returns the Certificate field value if set, zero value otherwise.
-func (o *CreateVMPool) GetCertificate() string {
-	if o == nil || IsNil(o.Certificate) {
-		var ret string
-		return ret
-	}
-	return *o.Certificate
-}
-
-// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMPool) GetCertificateOk() (*string, bool) {
-	if o == nil || IsNil(o.Certificate) {
-		return nil, false
-	}
-	return o.Certificate, true
-}
-
-// HasCertificate returns a boolean if a field has been set.
-func (o *CreateVMPool) HasCertificate() bool {
-	if o != nil && !IsNil(o.Certificate) {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificate gets a reference to the given string and assigns it to the Certificate field.
-func (o *CreateVMPool) SetCertificate(v string) {
-	o.Certificate = &v
-}
-
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *CreateVMPool) GetUsername() string {
 	if o == nil || IsNil(o.Username) {
@@ -356,6 +327,30 @@ func (o *CreateVMPool) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
 }
 
+// GetNetworkFabricId returns the NetworkFabricId field value
+func (o *CreateVMPool) GetNetworkFabricId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetworkFabricId
+}
+
+// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
+// and a boolean to check if the value has been set.
+func (o *CreateVMPool) GetNetworkFabricIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkFabricId, true
+}
+
+// SetNetworkFabricId sets field value
+func (o *CreateVMPool) SetNetworkFabricId(v float32) {
+	o.NetworkFabricId = v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateVMPool) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -386,6 +381,38 @@ func (o *CreateVMPool) HasTags() bool {
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *CreateVMPool) SetTags(v []string) {
 	o.Tags = v
+}
+
+// GetCertificate returns the Certificate field value if set, zero value otherwise.
+func (o *CreateVMPool) GetCertificate() string {
+	if o == nil || IsNil(o.Certificate) {
+		var ret string
+		return ret
+	}
+	return *o.Certificate
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateVMPool) GetCertificateOk() (*string, bool) {
+	if o == nil || IsNil(o.Certificate) {
+		return nil, false
+	}
+	return o.Certificate, true
+}
+
+// HasCertificate returns a boolean if a field has been set.
+func (o *CreateVMPool) HasCertificate() bool {
+	if o != nil && !IsNil(o.Certificate) {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificate gets a reference to the given string and assigns it to the Certificate field.
+func (o *CreateVMPool) SetCertificate(v string) {
+	o.Certificate = &v
 }
 
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
@@ -502,9 +529,6 @@ func (o CreateVMPool) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["type"] = o.Type
-	if !IsNil(o.Certificate) {
-		toSerialize["certificate"] = o.Certificate
-	}
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
@@ -514,8 +538,12 @@ func (o CreateVMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
+	toSerialize["networkFabricId"] = o.NetworkFabricId
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Certificate) {
+		toSerialize["certificate"] = o.Certificate
 	}
 	if !IsNil(o.PrivateKey) {
 		toSerialize["privateKey"] = o.PrivateKey
@@ -544,6 +572,7 @@ func (o *CreateVMPool) UnmarshalJSON(data []byte) (err error) {
 		"managementPort",
 		"name",
 		"type",
+		"networkFabricId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -579,11 +608,12 @@ func (o *CreateVMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "isExperimental")
+		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "privateKey")
 		delete(additionalProperties, "password")
 		delete(additionalProperties, "options")

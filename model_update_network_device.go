@@ -92,6 +92,8 @@ type UpdateNetworkDevice struct {
 	RequiresOsInstall *bool `json:"requiresOsInstall,omitempty"`
 	// Whether to overwrite the hostname with the one fetched from the device
 	OverwriteWithHostnameFromFetchedSwitch NullableBool `json:"overwriteWithHostnameFromFetchedSwitch,omitempty"`
+	// ID of the VM pool associated with the network device
+	VmPoolId *float32 `json:"vmPoolId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1441,6 +1443,38 @@ func (o *UpdateNetworkDevice) UnsetOverwriteWithHostnameFromFetchedSwitch() {
 	o.OverwriteWithHostnameFromFetchedSwitch.Unset()
 }
 
+// GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetVmPoolId() float32 {
+	if o == nil || IsNil(o.VmPoolId) {
+		var ret float32
+		return ret
+	}
+	return *o.VmPoolId
+}
+
+// GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetVmPoolIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.VmPoolId) {
+		return nil, false
+	}
+	return o.VmPoolId, true
+}
+
+// HasVmPoolId returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasVmPoolId() bool {
+	if o != nil && !IsNil(o.VmPoolId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmPoolId gets a reference to the given float32 and assigns it to the VmPoolId field.
+func (o *UpdateNetworkDevice) SetVmPoolId(v float32) {
+	o.VmPoolId = &v
+}
+
 func (o UpdateNetworkDevice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1556,6 +1590,9 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.OverwriteWithHostnameFromFetchedSwitch.IsSet() {
 		toSerialize["overwriteWithHostnameFromFetchedSwitch"] = o.OverwriteWithHostnameFromFetchedSwitch.Get()
 	}
+	if !IsNil(o.VmPoolId) {
+		toSerialize["vmPoolId"] = o.VmPoolId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1613,6 +1650,7 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "requiresOsInstall")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")
+		delete(additionalProperties, "vmPoolId")
 		o.AdditionalProperties = additionalProperties
 	}
 

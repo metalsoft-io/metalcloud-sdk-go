@@ -5,6 +5,8 @@
 
 * `CISCO_ACI51` (value: `"cisco_aci51"`)
 
+* `NVIDIA_UFM` (value: `"nvidia_ufm"`)
+
 * `NEXUS9000` (value: `"nexus9000"`)
 
 * `CUMULUS42` (value: `"cumulus42"`)
@@ -28,6 +30,8 @@
 * `SONIC_ENTERPRISE` (value: `"sonic_enterprise"`)
 
 * `VMWARE_VDS` (value: `"vmware_vds"`)
+
+* `CUMULUS_LINUX` (value: `"cumulus_linux"`)
 
 * `DELL_S4000` (value: `"dell_s4000"`)
 

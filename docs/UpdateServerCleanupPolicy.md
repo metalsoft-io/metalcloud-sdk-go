@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | Server cleanup policy label | [optional] 
 **CleanupDrivesForOobEnabledServer** | Pointer to **float32** | Cleanup drives for oob enabled server | [optional] 
 **RecreateRaid** | Pointer to **float32** | Recreate raid | [optional] 
+**ResetRaidControllers** | Pointer to **float32** | Reset raid controllers to default | [optional] 
 **DisableEmbeddedNics** | Pointer to **float32** | Disable embedded nics | [optional] 
 **RaidOneDrive** | Pointer to **string** | Raid one drive | [optional] 
 **RaidTwoDrives** | Pointer to **string** | Raid two drives | [optional] 
@@ -107,6 +108,31 @@ SetRecreateRaid sets RecreateRaid field to given value.
 `func (o *UpdateServerCleanupPolicy) HasRecreateRaid() bool`
 
 HasRecreateRaid returns a boolean if a field has been set.
+
+### GetResetRaidControllers
+
+`func (o *UpdateServerCleanupPolicy) GetResetRaidControllers() float32`
+
+GetResetRaidControllers returns the ResetRaidControllers field if non-nil, zero value otherwise.
+
+### GetResetRaidControllersOk
+
+`func (o *UpdateServerCleanupPolicy) GetResetRaidControllersOk() (*float32, bool)`
+
+GetResetRaidControllersOk returns a tuple with the ResetRaidControllers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResetRaidControllers
+
+`func (o *UpdateServerCleanupPolicy) SetResetRaidControllers(v float32)`
+
+SetResetRaidControllers sets ResetRaidControllers field to given value.
+
+### HasResetRaidControllers
+
+`func (o *UpdateServerCleanupPolicy) HasResetRaidControllers() bool`
+
+HasResetRaidControllers returns a boolean if a field has been set.
 
 ### GetDisableEmbeddedNics
 

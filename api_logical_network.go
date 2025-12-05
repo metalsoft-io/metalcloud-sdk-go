@@ -262,7 +262,7 @@ type LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequ
 	ApiService *LogicalNetworkAPIService
 	id float32
 	ifMatch *string
-	createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest *CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
+	createIpv4SubnetAllocationStrategy *CreateIpv4SubnetAllocationStrategy
 }
 
 // Entity tag
@@ -271,12 +271,12 @@ func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyR
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest) LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest {
-	r.createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest = &createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
+func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy CreateIpv4SubnetAllocationStrategy) LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest {
+	r.createIpv4SubnetAllocationStrategy = &createIpv4SubnetAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) Execute() (*Ipv4SubnetAllocationStrategy, *http.Response, error) {
 	return r.ApiService.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r)
 }
 
@@ -296,13 +296,13 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv4SubnetAllocatio
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) (*CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response, *http.Response, error) {
+//  @return Ipv4SubnetAllocationStrategy
+func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) (*Ipv4SubnetAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
+		localVarReturnValue  *Ipv4SubnetAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy")
@@ -319,8 +319,8 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv4SubnetAllocatio
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest is required and must be specified")
+	if r.createIpv4SubnetAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createIpv4SubnetAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -342,7 +342,7 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv4SubnetAllocatio
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
+	localVarPostBody = r.createIpv4SubnetAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -385,7 +385,7 @@ type LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequ
 	ApiService *LogicalNetworkAPIService
 	id float32
 	ifMatch *string
-	createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
+	createIpv6SubnetAllocationStrategy *CreateIpv6SubnetAllocationStrategy
 }
 
 // Entity tag
@@ -394,12 +394,12 @@ func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyR
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest) LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest {
-	r.createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest = &createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
+func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy CreateIpv6SubnetAllocationStrategy) LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest {
+	r.createIpv6SubnetAllocationStrategy = &createIpv6SubnetAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) Execute() (*Ipv6SubnetAllocationStrategy, *http.Response, error) {
 	return r.ApiService.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r)
 }
 
@@ -419,13 +419,13 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv6SubnetAllocatio
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) (*CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response, *http.Response, error) {
+//  @return Ipv6SubnetAllocationStrategy
+func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) (*Ipv6SubnetAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
+		localVarReturnValue  *Ipv6SubnetAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy")
@@ -442,8 +442,8 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv6SubnetAllocatio
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest is required and must be specified")
+	if r.createIpv6SubnetAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createIpv6SubnetAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -465,7 +465,130 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigIpv6SubnetAllocatio
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
+	localVarPostBody = r.createIpv6SubnetAllocationStrategy
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkAPIService
+	id float32
+	ifMatch *string
+	createPkeyAllocationStrategy *CreatePkeyAllocationStrategy
+}
+
+// Entity tag
+func (r LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest) IfMatch(ifMatch string) LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest) CreatePkeyAllocationStrategy(createPkeyAllocationStrategy CreatePkeyAllocationStrategy) LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	r.createPkeyAllocationStrategy = &createPkeyAllocationStrategy
+	return r
+}
+
+func (r LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest) Execute() (*PkeyAllocationStrategy, *http.Response, error) {
+	return r.ApiService.CreateLogicalNetworkConfigPkeyAllocationStrategyExecute(r)
+}
+
+/*
+CreateLogicalNetworkConfigPkeyAllocationStrategy Create Pkey allocation strategy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest
+*/
+func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigPkeyAllocationStrategy(ctx context.Context, id float32) LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	return LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return PkeyAllocationStrategy
+func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigPkeyAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigPkeyAllocationStrategyRequest) (*PkeyAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PkeyAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.CreateLogicalNetworkConfigPkeyAllocationStrategy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
+	}
+	if r.createPkeyAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createPkeyAllocationStrategy is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	// body params
+	localVarPostBody = r.createPkeyAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -508,7 +631,7 @@ type LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest st
 	ApiService *LogicalNetworkAPIService
 	id float32
 	ifMatch *string
-	createLogicalNetworkProfileVlanAllocationStrategyRequest *CreateLogicalNetworkProfileVlanAllocationStrategyRequest
+	createVlanAllocationStrategy *CreateVlanAllocationStrategy
 }
 
 // Entity tag
@@ -517,12 +640,12 @@ func (r LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest) CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest CreateLogicalNetworkProfileVlanAllocationStrategyRequest) LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest {
-	r.createLogicalNetworkProfileVlanAllocationStrategyRequest = &createLogicalNetworkProfileVlanAllocationStrategyRequest
+func (r LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest) CreateVlanAllocationStrategy(createVlanAllocationStrategy CreateVlanAllocationStrategy) LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest {
+	r.createVlanAllocationStrategy = &createVlanAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest) Execute() (*VlanAllocationStrategy, *http.Response, error) {
 	return r.ApiService.CreateLogicalNetworkConfigVlanAllocationStrategyExecute(r)
 }
 
@@ -542,13 +665,13 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVlanAllocationStrat
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileVlanAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVlanAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest) (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+//  @return VlanAllocationStrategy
+func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVlanAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigVlanAllocationStrategyRequest) (*VlanAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+		localVarReturnValue  *VlanAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.CreateLogicalNetworkConfigVlanAllocationStrategy")
@@ -565,8 +688,8 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVlanAllocationStrat
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileVlanAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileVlanAllocationStrategyRequest is required and must be specified")
+	if r.createVlanAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createVlanAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -588,7 +711,7 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVlanAllocationStrat
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileVlanAllocationStrategyRequest
+	localVarPostBody = r.createVlanAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -631,7 +754,7 @@ type LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest str
 	ApiService *LogicalNetworkAPIService
 	id float32
 	ifMatch *string
-	createLogicalNetworkProfileVniAllocationStrategyRequest *CreateLogicalNetworkProfileVniAllocationStrategyRequest
+	createVniAllocationStrategy *CreateVniAllocationStrategy
 }
 
 // Entity tag
@@ -640,12 +763,12 @@ func (r LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest)
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest) CreateLogicalNetworkProfileVniAllocationStrategyRequest(createLogicalNetworkProfileVniAllocationStrategyRequest CreateLogicalNetworkProfileVniAllocationStrategyRequest) LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest {
-	r.createLogicalNetworkProfileVniAllocationStrategyRequest = &createLogicalNetworkProfileVniAllocationStrategyRequest
+func (r LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest) CreateVniAllocationStrategy(createVniAllocationStrategy CreateVniAllocationStrategy) LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest {
+	r.createVniAllocationStrategy = &createVniAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVniAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest) Execute() (*VniAllocationStrategy, *http.Response, error) {
 	return r.ApiService.CreateLogicalNetworkConfigVniAllocationStrategyExecute(r)
 }
 
@@ -665,13 +788,13 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVniAllocationStrate
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileVniAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVniAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest) (*CreateLogicalNetworkProfileVniAllocationStrategy201Response, *http.Response, error) {
+//  @return VniAllocationStrategy
+func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVniAllocationStrategyExecute(r LogicalNetworkAPICreateLogicalNetworkConfigVniAllocationStrategyRequest) (*VniAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileVniAllocationStrategy201Response
+		localVarReturnValue  *VniAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.CreateLogicalNetworkConfigVniAllocationStrategy")
@@ -688,8 +811,8 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVniAllocationStrate
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileVniAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileVniAllocationStrategyRequest is required and must be specified")
+	if r.createVniAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createVniAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -711,7 +834,7 @@ func (a *LogicalNetworkAPIService) CreateLogicalNetworkConfigVniAllocationStrate
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileVniAllocationStrategyRequest
+	localVarPostBody = r.createVniAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1112,6 +1235,111 @@ func (a *LogicalNetworkAPIService) DeleteLogicalNetworkConfigIpv6SubnetAllocatio
 	}
 
 	localVarPath := localBasePath + "/api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return nil, reportError("ifMatch is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkAPIService
+	id float32
+	allocationStrategyId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest) IfMatch(ifMatch string) LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteLogicalNetworkConfigPkeyAllocationStrategyExecute(r)
+}
+
+/*
+DeleteLogicalNetworkConfigPkeyAllocationStrategy Delete Pkey allocation strategy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @param allocationStrategyId
+ @return LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest
+*/
+func (a *LogicalNetworkAPIService) DeleteLogicalNetworkConfigPkeyAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	return LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		allocationStrategyId: allocationStrategyId,
+	}
+}
+
+// Execute executes the request
+func (a *LogicalNetworkAPIService) DeleteLogicalNetworkConfigPkeyAllocationStrategyExecute(r LogicalNetworkAPIDeleteLogicalNetworkConfigPkeyAllocationStrategyRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.DeleteLogicalNetworkConfigPkeyAllocationStrategy")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
 
@@ -1588,43 +1816,43 @@ type LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworks
 	sortBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest) FilterId(filterId []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by externalConnectionId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.externalConnectionId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.externalConnectionId&#x3D;$not:$like:John Doe&amp;filter.externalConnectionId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by externalConnectionId query param.  **Format:** filter.externalConnectionId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.externalConnectionId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest) FilterExternalConnectionId(filterExternalConnectionId []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest {
 	r.filterExternalConnectionId = &filterExternalConnectionId
 	return r
 }
 
-// Filter by createdAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdAt&#x3D;$not:$like:John Doe&amp;filter.createdAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by createdAt query param.  **Format:** filter.createdAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdAt&#x3D;$btw:John Doe&amp;filter.createdAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest) FilterCreatedAt(filterCreatedAt []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest {
 	r.filterCreatedAt = &filterCreatedAt
 	return r
 }
 
-// Filter by updatedAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.updatedAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.updatedAt&#x3D;$not:$like:John Doe&amp;filter.updatedAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by updatedAt query param.  **Format:** filter.updatedAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedAt&#x3D;$btw:John Doe&amp;filter.updatedAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest) FilterUpdatedAt(filterUpdatedAt []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest {
 	r.filterUpdatedAt = &filterUpdatedAt
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;updatedAt&lt;/li&gt; &lt;li&gt;externalConnectionId&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt  - externalConnectionId  - logicalNetworkId 
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionLogicalNetworksRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1802,49 +2030,49 @@ type LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest struct
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by fabricId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricId&#x3D;$not:$like:John Doe&amp;filter.fabricId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) FilterFabricId(filterFabricId []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.filterFabricId = &filterFabricId
 	return r
 }
 
-// Filter by createdAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdAt&#x3D;$not:$like:John Doe&amp;filter.createdAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by createdAt query param.  **Format:** filter.createdAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdAt&#x3D;$btw:John Doe&amp;filter.createdAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) FilterCreatedAt(filterCreatedAt []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.filterCreatedAt = &filterCreatedAt
 	return r
 }
 
-// Filter by updatedAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.updatedAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.updatedAt&#x3D;$not:$like:John Doe&amp;filter.updatedAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by updatedAt query param.  **Format:** filter.updatedAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedAt&#x3D;$btw:John Doe&amp;filter.updatedAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) FilterUpdatedAt(filterUpdatedAt []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.filterUpdatedAt = &filterUpdatedAt
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;updatedAt&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt 
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) Search(search string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,label           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label 
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) SearchBy(searchBy []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -2123,31 +2351,31 @@ type LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesReque
 	sortBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied. 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest) FilterId(filterId []string) LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest) FilterKind(filterKind []string) LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest {
 	r.filterKind = &filterKind
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategiesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -2294,7 +2522,7 @@ type LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest
 	allocationStrategyId float32
 }
 
-func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) Execute() (*Ipv4SubnetAllocationStrategy, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r)
 }
 
@@ -2316,13 +2544,13 @@ func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigIpv4SubnetAllocationSt
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) (*CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response, *http.Response, error) {
+//  @return Ipv4SubnetAllocationStrategy
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) (*Ipv4SubnetAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
+		localVarReturnValue  *Ipv4SubnetAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.GetLogicalNetworkConfigIpv4SubnetAllocationStrategy")
@@ -2403,31 +2631,31 @@ type LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesReque
 	sortBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied. 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest) FilterId(filterId []string) LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest) FilterKind(filterKind []string) LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest {
 	r.filterKind = &filterKind
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategiesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -2574,7 +2802,7 @@ type LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest
 	allocationStrategyId float32
 }
 
-func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) Execute() (*Ipv6SubnetAllocationStrategy, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r)
 }
 
@@ -2596,13 +2824,13 @@ func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigIpv6SubnetAllocationSt
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) (*CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response, *http.Response, error) {
+//  @return Ipv6SubnetAllocationStrategy
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) (*Ipv6SubnetAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
+		localVarReturnValue  *Ipv6SubnetAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.GetLogicalNetworkConfigIpv6SubnetAllocationStrategy")
@@ -2611,6 +2839,286 @@ func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigIpv6SubnetAllocationSt
 	}
 
 	localVarPath := localBasePath + "/api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkAPIService
+	id float32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterKind *[]string
+	sortBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied. 
+func (r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest) FilterId(filterId []string) LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest) FilterKind(filterKind []string) LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest {
+	r.filterKind = &filterKind
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+func (r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+func (r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest) Execute() (*PaginatedPkeyAllocationStrategy, *http.Response, error) {
+	return r.ApiService.GetLogicalNetworkConfigPkeyAllocationStrategiesExecute(r)
+}
+
+/*
+GetLogicalNetworkConfigPkeyAllocationStrategies Get all Pkey allocation strategies.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest
+*/
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigPkeyAllocationStrategies(ctx context.Context, id float32) LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest {
+	return LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedPkeyAllocationStrategy
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigPkeyAllocationStrategiesExecute(r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategiesRequest) (*PaginatedPkeyAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedPkeyAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.GetLogicalNetworkConfigPkeyAllocationStrategies")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterKind != nil {
+		t := *r.filterKind
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkAPIService
+	id float32
+	allocationStrategyId float32
+}
+
+func (r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategyRequest) Execute() (*PkeyAllocationStrategy, *http.Response, error) {
+	return r.ApiService.GetLogicalNetworkConfigPkeyAllocationStrategyExecute(r)
+}
+
+/*
+GetLogicalNetworkConfigPkeyAllocationStrategy Get a Pkey allocation strategy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @param allocationStrategyId
+ @return LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategyRequest
+*/
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigPkeyAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	return LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		allocationStrategyId: allocationStrategyId,
+	}
+}
+
+// Execute executes the request
+//  @return PkeyAllocationStrategy
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigPkeyAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigPkeyAllocationStrategyRequest) (*PkeyAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PkeyAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.GetLogicalNetworkConfigPkeyAllocationStrategy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
 
@@ -2683,31 +3191,31 @@ type LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest str
 	sortBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied. 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest) FilterId(filterId []string) LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest) FilterKind(filterKind []string) LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest {
 	r.filterKind = &filterKind
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategiesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -2854,7 +3362,7 @@ type LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategyRequest struc
 	allocationStrategyId float32
 }
 
-func (r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategyRequest) Execute() (*VlanAllocationStrategy, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkConfigVlanAllocationStrategyExecute(r)
 }
 
@@ -2876,13 +3384,13 @@ func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigVlanAllocationStrategy
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileVlanAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigVlanAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategyRequest) (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+//  @return VlanAllocationStrategy
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigVlanAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigVlanAllocationStrategyRequest) (*VlanAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+		localVarReturnValue  *VlanAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.GetLogicalNetworkConfigVlanAllocationStrategy")
@@ -2963,31 +3471,31 @@ type LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest stru
 	sortBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 100           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 1000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied. 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest) FilterId(filterId []string) LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest) FilterKind(filterKind []string) LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest {
 	r.filterKind = &filterKind
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
 func (r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategiesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -3134,7 +3642,7 @@ type LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategyRequest struct
 	allocationStrategyId float32
 }
 
-func (r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVniAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategyRequest) Execute() (*VniAllocationStrategy, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkConfigVniAllocationStrategyExecute(r)
 }
 
@@ -3156,13 +3664,13 @@ func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigVniAllocationStrategy(
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileVniAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigVniAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategyRequest) (*CreateLogicalNetworkProfileVniAllocationStrategy201Response, *http.Response, error) {
+//  @return VniAllocationStrategy
+func (a *LogicalNetworkAPIService) GetLogicalNetworkConfigVniAllocationStrategyExecute(r LogicalNetworkAPIGetLogicalNetworkConfigVniAllocationStrategyRequest) (*VniAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileVniAllocationStrategy201Response
+		localVarReturnValue  *VniAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.GetLogicalNetworkConfigVniAllocationStrategy")
@@ -3251,85 +3759,85 @@ type LogicalNetworkAPIGetLogicalNetworksRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) Page(page float32) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; -1           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** -1   If provided value is greater than max value, max value will be applied. 
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterId(filterId []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by kind query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.kind&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.kind&#x3D;$not:$like:John Doe&amp;filter.kind&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$eq:John Doe&amp;filter.kind&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterKind(filterKind []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterKind = &filterKind
 	return r
 }
 
-// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterLabel(filterLabel []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterLabel = &filterLabel
 	return r
 }
 
-// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterName(filterName []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterName = &filterName
 	return r
 }
 
-// Filter by fabricId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricId&#x3D;$not:$like:John Doe&amp;filter.fabricId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe&amp;filter.fabricId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterFabricId(filterFabricId []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterFabricId = &filterFabricId
 	return r
 }
 
-// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt;&lt;/ul&gt;
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$eq:John Doe&amp;filter.infrastructureId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $not  - $null  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterInfrastructureId(filterInfrastructureId []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
-// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by serviceStatus query param.  **Format:** filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serviceStatus&#x3D;$eq:John Doe&amp;filter.serviceStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterServiceStatus(filterServiceStatus []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterServiceStatus = &filterServiceStatus
 	return r
 }
 
-// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus&#x3D;$eq:John Doe&amp;filter.config.deployStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterConfigDeployStatus = &filterConfigDeployStatus
 	return r
 }
 
-// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by config.deployType query param.  **Format:** filter.config.deployType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployType&#x3D;$eq:John Doe&amp;filter.config.deployType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) FilterConfigDeployType(filterConfigDeployType []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.filterConfigDeployType = &filterConfigDeployType
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) Search(search string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name 
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) SearchBy(searchBy []string) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.searchBy = &searchBy
 	return r
@@ -3563,7 +4071,7 @@ type LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyReq
 	id float32
 	allocationStrategyId float32
 	ifMatch *string
-	createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest *CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
+	createIpv4SubnetAllocationStrategy *CreateIpv4SubnetAllocationStrategy
 }
 
 // Entity tag
@@ -3572,12 +4080,12 @@ func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest) LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest {
-	r.createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest = &createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) CreateIpv4SubnetAllocationStrategy(createIpv4SubnetAllocationStrategy CreateIpv4SubnetAllocationStrategy) LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest {
+	r.createIpv4SubnetAllocationStrategy = &createIpv4SubnetAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) Execute() (*Ipv4SubnetAllocationStrategy, *http.Response, error) {
 	return r.ApiService.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r)
 }
 
@@ -3599,13 +4107,13 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv4SubnetAllocati
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) (*CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response, *http.Response, error) {
+//  @return Ipv4SubnetAllocationStrategy
+func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategyRequest) (*Ipv4SubnetAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response
+		localVarReturnValue  *Ipv4SubnetAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy")
@@ -3623,8 +4131,8 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv4SubnetAllocati
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest is required and must be specified")
+	if r.createIpv4SubnetAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createIpv4SubnetAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3646,7 +4154,7 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv4SubnetAllocati
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
+	localVarPostBody = r.createIpv4SubnetAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3690,7 +4198,7 @@ type LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyReq
 	id float32
 	allocationStrategyId float32
 	ifMatch *string
-	createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
+	createIpv6SubnetAllocationStrategy *CreateIpv6SubnetAllocationStrategy
 }
 
 // Entity tag
@@ -3699,12 +4207,12 @@ func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest(createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest) LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest {
-	r.createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest = &createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) CreateIpv6SubnetAllocationStrategy(createIpv6SubnetAllocationStrategy CreateIpv6SubnetAllocationStrategy) LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest {
+	r.createIpv6SubnetAllocationStrategy = &createIpv6SubnetAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) Execute() (*Ipv6SubnetAllocationStrategy, *http.Response, error) {
 	return r.ApiService.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r)
 }
 
@@ -3726,13 +4234,13 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv6SubnetAllocati
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) (*CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response, *http.Response, error) {
+//  @return Ipv6SubnetAllocationStrategy
+func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategyRequest) (*Ipv6SubnetAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response
+		localVarReturnValue  *Ipv6SubnetAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy")
@@ -3750,8 +4258,8 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv6SubnetAllocati
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest is required and must be specified")
+	if r.createIpv6SubnetAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createIpv6SubnetAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3773,7 +4281,134 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigIpv6SubnetAllocati
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
+	localVarPostBody = r.createIpv6SubnetAllocationStrategy
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkAPIService
+	id float32
+	allocationStrategyId float32
+	ifMatch *string
+	createPkeyAllocationStrategy *CreatePkeyAllocationStrategy
+}
+
+// Entity tag
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest) IfMatch(ifMatch string) LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest) CreatePkeyAllocationStrategy(createPkeyAllocationStrategy CreatePkeyAllocationStrategy) LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	r.createPkeyAllocationStrategy = &createPkeyAllocationStrategy
+	return r
+}
+
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest) Execute() (*PkeyAllocationStrategy, *http.Response, error) {
+	return r.ApiService.ReplaceLogicalNetworkConfigPkeyAllocationStrategyExecute(r)
+}
+
+/*
+ReplaceLogicalNetworkConfigPkeyAllocationStrategy Replace Pkey allocation strategy
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @param allocationStrategyId
+ @return LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest
+*/
+func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigPkeyAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest {
+	return LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		allocationStrategyId: allocationStrategyId,
+	}
+}
+
+// Execute executes the request
+//  @return PkeyAllocationStrategy
+func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigPkeyAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigPkeyAllocationStrategyRequest) (*PkeyAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PkeyAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.ReplaceLogicalNetworkConfigPkeyAllocationStrategy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
+	}
+	if r.createPkeyAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createPkeyAllocationStrategy is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	// body params
+	localVarPostBody = r.createPkeyAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3817,7 +4452,7 @@ type LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest s
 	id float32
 	allocationStrategyId float32
 	ifMatch *string
-	createLogicalNetworkProfileVlanAllocationStrategyRequest *CreateLogicalNetworkProfileVlanAllocationStrategyRequest
+	createVlanAllocationStrategy *CreateVlanAllocationStrategy
 }
 
 // Entity tag
@@ -3826,12 +4461,12 @@ func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyReques
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest) CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest CreateLogicalNetworkProfileVlanAllocationStrategyRequest) LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest {
-	r.createLogicalNetworkProfileVlanAllocationStrategyRequest = &createLogicalNetworkProfileVlanAllocationStrategyRequest
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest) CreateVlanAllocationStrategy(createVlanAllocationStrategy CreateVlanAllocationStrategy) LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest {
+	r.createVlanAllocationStrategy = &createVlanAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest) Execute() (*VlanAllocationStrategy, *http.Response, error) {
 	return r.ApiService.ReplaceLogicalNetworkConfigVlanAllocationStrategyExecute(r)
 }
 
@@ -3853,13 +4488,13 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVlanAllocationStra
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileVlanAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVlanAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest) (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+//  @return VlanAllocationStrategy
+func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVlanAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigVlanAllocationStrategyRequest) (*VlanAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+		localVarReturnValue  *VlanAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.ReplaceLogicalNetworkConfigVlanAllocationStrategy")
@@ -3877,8 +4512,8 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVlanAllocationStra
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileVlanAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileVlanAllocationStrategyRequest is required and must be specified")
+	if r.createVlanAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createVlanAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3900,7 +4535,7 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVlanAllocationStra
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileVlanAllocationStrategyRequest
+	localVarPostBody = r.createVlanAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3944,7 +4579,7 @@ type LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest st
 	id float32
 	allocationStrategyId float32
 	ifMatch *string
-	createLogicalNetworkProfileVniAllocationStrategyRequest *CreateLogicalNetworkProfileVniAllocationStrategyRequest
+	createVniAllocationStrategy *CreateVniAllocationStrategy
 }
 
 // Entity tag
@@ -3953,12 +4588,12 @@ func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest) CreateLogicalNetworkProfileVniAllocationStrategyRequest(createLogicalNetworkProfileVniAllocationStrategyRequest CreateLogicalNetworkProfileVniAllocationStrategyRequest) LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest {
-	r.createLogicalNetworkProfileVniAllocationStrategyRequest = &createLogicalNetworkProfileVniAllocationStrategyRequest
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest) CreateVniAllocationStrategy(createVniAllocationStrategy CreateVniAllocationStrategy) LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest {
+	r.createVniAllocationStrategy = &createVniAllocationStrategy
 	return r
 }
 
-func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVniAllocationStrategy201Response, *http.Response, error) {
+func (r LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest) Execute() (*VniAllocationStrategy, *http.Response, error) {
 	return r.ApiService.ReplaceLogicalNetworkConfigVniAllocationStrategyExecute(r)
 }
 
@@ -3980,13 +4615,13 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVniAllocationStrat
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfileVniAllocationStrategy201Response
-func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVniAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest) (*CreateLogicalNetworkProfileVniAllocationStrategy201Response, *http.Response, error) {
+//  @return VniAllocationStrategy
+func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVniAllocationStrategyExecute(r LogicalNetworkAPIReplaceLogicalNetworkConfigVniAllocationStrategyRequest) (*VniAllocationStrategy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfileVniAllocationStrategy201Response
+		localVarReturnValue  *VniAllocationStrategy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkAPIService.ReplaceLogicalNetworkConfigVniAllocationStrategy")
@@ -4004,8 +4639,8 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVniAllocationStrat
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.createLogicalNetworkProfileVniAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileVniAllocationStrategyRequest is required and must be specified")
+	if r.createVniAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createVniAllocationStrategy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4027,7 +4662,7 @@ func (a *LogicalNetworkAPIService) ReplaceLogicalNetworkConfigVniAllocationStrat
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileVniAllocationStrategyRequest
+	localVarPostBody = r.createVniAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

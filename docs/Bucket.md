@@ -18,9 +18,8 @@ Name | Type | Description | Notes
 **ServiceStatus** | **string** | Service status of the Bucket | 
 **SubdomainPermanent** | **string** | Subdomain permanent of the Bucket. | 
 **DnsSubdomainId** | **float32** | Id of the DNS subdomain for the Bucket. | 
-**Endpoint** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
-**AccessKeyId** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
-**SecretKeyEncrypted** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
+**DiscoverInformation** | Pointer to [**GenericBucketDiscoverInformation**](GenericBucketDiscoverInformation.md) | Discover information of the Bucket. | [optional] 
+**AccessKeyId** | Pointer to **string** | Access Key ID of the Bucket. | [optional] 
 **Config** | [**BucketConfiguration**](BucketConfiguration.md) | The current changes to be deployed for the Bucket. | 
 **Meta** | [**BucketMeta**](BucketMeta.md) | Meta information of the Bucket. | 
 
@@ -333,30 +332,30 @@ and a boolean to check if the value has been set.
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
 
-### GetEndpoint
+### GetDiscoverInformation
 
-`func (o *Bucket) GetEndpoint() string`
+`func (o *Bucket) GetDiscoverInformation() GenericBucketDiscoverInformation`
 
-GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+GetDiscoverInformation returns the DiscoverInformation field if non-nil, zero value otherwise.
 
-### GetEndpointOk
+### GetDiscoverInformationOk
 
-`func (o *Bucket) GetEndpointOk() (*string, bool)`
+`func (o *Bucket) GetDiscoverInformationOk() (*GenericBucketDiscoverInformation, bool)`
 
-GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+GetDiscoverInformationOk returns a tuple with the DiscoverInformation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndpoint
+### SetDiscoverInformation
 
-`func (o *Bucket) SetEndpoint(v string)`
+`func (o *Bucket) SetDiscoverInformation(v GenericBucketDiscoverInformation)`
 
-SetEndpoint sets Endpoint field to given value.
+SetDiscoverInformation sets DiscoverInformation field to given value.
 
-### HasEndpoint
+### HasDiscoverInformation
 
-`func (o *Bucket) HasEndpoint() bool`
+`func (o *Bucket) HasDiscoverInformation() bool`
 
-HasEndpoint returns a boolean if a field has been set.
+HasDiscoverInformation returns a boolean if a field has been set.
 
 ### GetAccessKeyId
 
@@ -382,31 +381,6 @@ SetAccessKeyId sets AccessKeyId field to given value.
 `func (o *Bucket) HasAccessKeyId() bool`
 
 HasAccessKeyId returns a boolean if a field has been set.
-
-### GetSecretKeyEncrypted
-
-`func (o *Bucket) GetSecretKeyEncrypted() string`
-
-GetSecretKeyEncrypted returns the SecretKeyEncrypted field if non-nil, zero value otherwise.
-
-### GetSecretKeyEncryptedOk
-
-`func (o *Bucket) GetSecretKeyEncryptedOk() (*string, bool)`
-
-GetSecretKeyEncryptedOk returns a tuple with the SecretKeyEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSecretKeyEncrypted
-
-`func (o *Bucket) SetSecretKeyEncrypted(v string)`
-
-SetSecretKeyEncrypted sets SecretKeyEncrypted field to given value.
-
-### HasSecretKeyEncrypted
-
-`func (o *Bucket) HasSecretKeyEncrypted() bool`
-
-HasSecretKeyEncrypted returns a boolean if a field has been set.
 
 ### GetConfig
 

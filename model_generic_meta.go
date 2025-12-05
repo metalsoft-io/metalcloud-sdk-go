@@ -20,7 +20,7 @@ var _ MappedNullable = &GenericMeta{}
 
 // GenericMeta struct for GenericMeta
 type GenericMeta struct {
-	// List of tags representative for the associated product.
+	// List of tags associated with the object.
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

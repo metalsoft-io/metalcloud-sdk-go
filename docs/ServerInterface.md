@@ -29,6 +29,8 @@ Name | Type | Description | Notes
 **DefaultFabricId** | Pointer to **float32** | The default fabric ID of the server interface. | [optional] 
 **RedundancyGroupIndex** | Pointer to **float32** | The redundancy group index of the server interface. | [optional] 
 **LldpInfo** | Pointer to **string** | The LLDP information of the server interface. | [optional] 
+**LinkNetworkTechnology** | Pointer to **string** | The link network technology of the server interface. | [optional] 
+**InfinibandGuid** | Pointer to **string** | The port GUID of the server interface (for InfiniBand interfaces). | [optional] 
 
 ## Methods
 
@@ -643,6 +645,56 @@ SetLldpInfo sets LldpInfo field to given value.
 `func (o *ServerInterface) HasLldpInfo() bool`
 
 HasLldpInfo returns a boolean if a field has been set.
+
+### GetLinkNetworkTechnology
+
+`func (o *ServerInterface) GetLinkNetworkTechnology() string`
+
+GetLinkNetworkTechnology returns the LinkNetworkTechnology field if non-nil, zero value otherwise.
+
+### GetLinkNetworkTechnologyOk
+
+`func (o *ServerInterface) GetLinkNetworkTechnologyOk() (*string, bool)`
+
+GetLinkNetworkTechnologyOk returns a tuple with the LinkNetworkTechnology field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkNetworkTechnology
+
+`func (o *ServerInterface) SetLinkNetworkTechnology(v string)`
+
+SetLinkNetworkTechnology sets LinkNetworkTechnology field to given value.
+
+### HasLinkNetworkTechnology
+
+`func (o *ServerInterface) HasLinkNetworkTechnology() bool`
+
+HasLinkNetworkTechnology returns a boolean if a field has been set.
+
+### GetInfinibandGuid
+
+`func (o *ServerInterface) GetInfinibandGuid() string`
+
+GetInfinibandGuid returns the InfinibandGuid field if non-nil, zero value otherwise.
+
+### GetInfinibandGuidOk
+
+`func (o *ServerInterface) GetInfinibandGuidOk() (*string, bool)`
+
+GetInfinibandGuidOk returns a tuple with the InfinibandGuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfinibandGuid
+
+`func (o *ServerInterface) SetInfinibandGuid(v string)`
+
+SetInfinibandGuid sets InfinibandGuid field to given value.
+
+### HasInfinibandGuid
+
+`func (o *ServerInterface) HasInfinibandGuid() bool`
+
+HasInfinibandGuid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

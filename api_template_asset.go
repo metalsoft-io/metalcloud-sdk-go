@@ -346,61 +346,61 @@ type TemplateAssetAPIGetTemplateAssetsRequest struct {
 	select_ *string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r TemplateAssetAPIGetTemplateAssetsRequest) Page(page float32) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r TemplateAssetAPIGetTemplateAssetsRequest) Limit(limit float32) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by templateId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.templateId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.templateId&#x3D;$not:$like:John Doe&amp;filter.templateId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by templateId query param.  **Format:** filter.templateId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.templateId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterTemplateId(filterTemplateId []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.filterTemplateId = &filterTemplateId
 	return r
 }
 
-// Filter by usage query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.usage&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.usage&#x3D;$not:$like:John Doe&amp;filter.usage&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by usage query param.  **Format:** filter.usage&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.usage&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterUsage(filterUsage []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.filterUsage = &filterUsage
 	return r
 }
 
-// Filter by file.mimeType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.file.mimeType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.file.mimeType&#x3D;$not:$like:John Doe&amp;filter.file.mimeType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by file.mimeType query param.  **Format:** filter.file.mimeType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.file.mimeType&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterFileMimeType(filterFileMimeType []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.filterFileMimeType = &filterFileMimeType
 	return r
 }
 
-// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by tags query param.  **Format:** filter.tags&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.tags&#x3D;$eq:John Doe&amp;filter.tags&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $eq  - $and  - $or
 func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterTags(filterTags []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.filterTags = &filterTags
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; templateId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;modifiedAt&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;templateId:DESC   **Default Value:** templateId:DESC  **Available Fields** - id  - templateId  - usage  - file.mimeType  - createdAt  - modifiedAt 
 func (r TemplateAssetAPIGetTemplateAssetsRequest) SortBy(sortBy []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r TemplateAssetAPIGetTemplateAssetsRequest) Search(search string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,templateId,usage,file.name,file.mimeType           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.name&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,templateId,usage,file.name,file.mimeType   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - templateId  - usage  - file.name  - file.mimeType  - createdBy  - modifiedBy 
 func (r TemplateAssetAPIGetTemplateAssetsRequest) SearchBy(searchBy []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,templateId,usage,file.name,file.mimeType           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.  **Example:** id,templateId,usage,file.name,file.mimeType   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
 func (r TemplateAssetAPIGetTemplateAssetsRequest) Select_(select_ string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.select_ = &select_
 	return r

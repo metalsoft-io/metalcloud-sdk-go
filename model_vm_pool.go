@@ -37,14 +37,8 @@ type VMPool struct {
 	Description *string `json:"description,omitempty"`
 	// Type of the VM Pool
 	Type string `json:"type"`
-	// Certificate of the VM Pool
-	Certificate *string `json:"certificate,omitempty"`
-	// Private key of the VM Pool
-	PrivateKeyEncrypted *string `json:"privateKeyEncrypted,omitempty"`
 	// Username of the VM Pool
 	Username *string `json:"username,omitempty"`
-	// Password of the VM Pool
-	PasswordEncrypted *string `json:"passwordEncrypted,omitempty"`
 	// Status of the VM Pool
 	Status string `json:"status"`
 	// External identifier of the VM Pool
@@ -53,6 +47,8 @@ type VMPool struct {
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
+	// The network fabric linked to the VM Pool.
+	NetworkFabricId float32 `json:"networkFabricId"`
 	// Timestamp when the VM Pool was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp when the VM Pool was updated
@@ -72,7 +68,7 @@ type _VMPool VMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
+func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
 	this := VMPool{}
 	this.Id = id
 	this.SiteId = siteId
@@ -82,6 +78,7 @@ func NewVMPool(id float32, siteId float32, datacenterName string, managementHost
 	this.Name = name
 	this.Type = type_
 	this.Status = status
+	this.NetworkFabricId = networkFabricId
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Links = links
@@ -296,70 +293,6 @@ func (o *VMPool) SetType(v string) {
 	o.Type = v
 }
 
-// GetCertificate returns the Certificate field value if set, zero value otherwise.
-func (o *VMPool) GetCertificate() string {
-	if o == nil || IsNil(o.Certificate) {
-		var ret string
-		return ret
-	}
-	return *o.Certificate
-}
-
-// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetCertificateOk() (*string, bool) {
-	if o == nil || IsNil(o.Certificate) {
-		return nil, false
-	}
-	return o.Certificate, true
-}
-
-// HasCertificate returns a boolean if a field has been set.
-func (o *VMPool) HasCertificate() bool {
-	if o != nil && !IsNil(o.Certificate) {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificate gets a reference to the given string and assigns it to the Certificate field.
-func (o *VMPool) SetCertificate(v string) {
-	o.Certificate = &v
-}
-
-// GetPrivateKeyEncrypted returns the PrivateKeyEncrypted field value if set, zero value otherwise.
-func (o *VMPool) GetPrivateKeyEncrypted() string {
-	if o == nil || IsNil(o.PrivateKeyEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.PrivateKeyEncrypted
-}
-
-// GetPrivateKeyEncryptedOk returns a tuple with the PrivateKeyEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetPrivateKeyEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.PrivateKeyEncrypted) {
-		return nil, false
-	}
-	return o.PrivateKeyEncrypted, true
-}
-
-// HasPrivateKeyEncrypted returns a boolean if a field has been set.
-func (o *VMPool) HasPrivateKeyEncrypted() bool {
-	if o != nil && !IsNil(o.PrivateKeyEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrivateKeyEncrypted gets a reference to the given string and assigns it to the PrivateKeyEncrypted field.
-func (o *VMPool) SetPrivateKeyEncrypted(v string) {
-	o.PrivateKeyEncrypted = &v
-}
-
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *VMPool) GetUsername() string {
 	if o == nil || IsNil(o.Username) {
@@ -390,38 +323,6 @@ func (o *VMPool) HasUsername() bool {
 // SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *VMPool) SetUsername(v string) {
 	o.Username = &v
-}
-
-// GetPasswordEncrypted returns the PasswordEncrypted field value if set, zero value otherwise.
-func (o *VMPool) GetPasswordEncrypted() string {
-	if o == nil || IsNil(o.PasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.PasswordEncrypted
-}
-
-// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.PasswordEncrypted) {
-		return nil, false
-	}
-	return o.PasswordEncrypted, true
-}
-
-// HasPasswordEncrypted returns a boolean if a field has been set.
-func (o *VMPool) HasPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.PasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetPasswordEncrypted gets a reference to the given string and assigns it to the PasswordEncrypted field.
-func (o *VMPool) SetPasswordEncrypted(v string) {
-	o.PasswordEncrypted = &v
 }
 
 // GetStatus returns the Status field value
@@ -542,6 +443,30 @@ func (o *VMPool) HasIsExperimental() bool {
 // SetIsExperimental gets a reference to the given float32 and assigns it to the IsExperimental field.
 func (o *VMPool) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
+}
+
+// GetNetworkFabricId returns the NetworkFabricId field value
+func (o *VMPool) GetNetworkFabricId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetworkFabricId
+}
+
+// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
+// and a boolean to check if the value has been set.
+func (o *VMPool) GetNetworkFabricIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkFabricId, true
+}
+
+// SetNetworkFabricId sets field value
+func (o *VMPool) SetNetworkFabricId(v float32) {
+	o.NetworkFabricId = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -700,17 +625,8 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["type"] = o.Type
-	if !IsNil(o.Certificate) {
-		toSerialize["certificate"] = o.Certificate
-	}
-	if !IsNil(o.PrivateKeyEncrypted) {
-		toSerialize["privateKeyEncrypted"] = o.PrivateKeyEncrypted
-	}
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
-	}
-	if !IsNil(o.PasswordEncrypted) {
-		toSerialize["passwordEncrypted"] = o.PasswordEncrypted
 	}
 	toSerialize["status"] = o.Status
 	if !IsNil(o.ExternalIdentifier) {
@@ -722,6 +638,7 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
+	toSerialize["networkFabricId"] = o.NetworkFabricId
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Tags) {
@@ -752,6 +669,7 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"type",
 		"status",
+		"networkFabricId",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"links",
@@ -792,14 +710,12 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "certificate")
-		delete(additionalProperties, "privateKeyEncrypted")
 		delete(additionalProperties, "username")
-		delete(additionalProperties, "passwordEncrypted")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "externalIdentifier")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "isExperimental")
+		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "tags")

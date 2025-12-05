@@ -26,21 +26,21 @@ type VMPoolHosts struct {
 	// Name of the VM Pool Host
 	Name string `json:"name"`
 	// Address of the VM Pool Host
-	Address string `json:"address"`
+	Address *string `json:"address,omitempty"`
 	// Port of the VM Pool Host
-	Port float32 `json:"port"`
+	Port *float32 `json:"port,omitempty"`
 	// VM Pool ID
-	PoolId float32 `json:"poolId"`
+	PoolId *float32 `json:"poolId,omitempty"`
 	// Roles of the VM Pool Host
-	Roles []string `json:"roles"`
+	Roles []string `json:"roles,omitempty"`
 	// Failure domain of the VM Pool Host
-	FailureDomain string `json:"failureDomain"`
+	FailureDomain *string `json:"failureDomain,omitempty"`
 	// Architecture of the VM Pool Host
-	Architecture string `json:"architecture"`
+	Architecture *string `json:"architecture,omitempty"`
 	// Flag specifying if the VM Pool Host is database
-	Database float32 `json:"database"`
+	Database *float32 `json:"database,omitempty"`
 	// Status of the VM Pool Host
-	Status string `json:"status"`
+	Status *string `json:"status,omitempty"`
 	// Description of the VM Pool Host
 	Description *string `json:"description,omitempty"`
 	// Timestamp when the VM Pool Host was updated
@@ -56,18 +56,10 @@ type _VMPoolHosts VMPoolHosts
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHosts(id float32, name string, address string, port float32, poolId float32, roles []string, failureDomain string, architecture string, database float32, status string, updatedTimestamp string, links map[string]interface{}) *VMPoolHosts {
+func NewVMPoolHosts(id float32, name string, updatedTimestamp string, links map[string]interface{}) *VMPoolHosts {
 	this := VMPoolHosts{}
 	this.Id = id
 	this.Name = name
-	this.Address = address
-	this.Port = port
-	this.PoolId = poolId
-	this.Roles = roles
-	this.FailureDomain = failureDomain
-	this.Architecture = architecture
-	this.Database = database
-	this.Status = status
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Links = links
 	return &this
@@ -129,196 +121,260 @@ func (o *VMPoolHosts) SetName(v string) {
 	o.Name = v
 }
 
-// GetAddress returns the Address field value
+// GetAddress returns the Address field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.Address
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.Address, true
 }
 
-// SetAddress sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasAddress() bool {
+	if o != nil && !IsNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *VMPoolHosts) SetAddress(v string) {
-	o.Address = v
+	o.Address = &v
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetPort() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.Port) {
 		var ret float32
 		return ret
 	}
-
-	return o.Port
+	return *o.Port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetPortOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
-	return &o.Port, true
+	return o.Port, true
 }
 
-// SetPort sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasPort() bool {
+	if o != nil && !IsNil(o.Port) {
+		return true
+	}
+
+	return false
+}
+
+// SetPort gets a reference to the given float32 and assigns it to the Port field.
 func (o *VMPoolHosts) SetPort(v float32) {
-	o.Port = v
+	o.Port = &v
 }
 
-// GetPoolId returns the PoolId field value
+// GetPoolId returns the PoolId field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetPoolId() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.PoolId) {
 		var ret float32
 		return ret
 	}
-
-	return o.PoolId
+	return *o.PoolId
 }
 
-// GetPoolIdOk returns a tuple with the PoolId field value
+// GetPoolIdOk returns a tuple with the PoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetPoolIdOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PoolId) {
 		return nil, false
 	}
-	return &o.PoolId, true
+	return o.PoolId, true
 }
 
-// SetPoolId sets field value
+// HasPoolId returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasPoolId() bool {
+	if o != nil && !IsNil(o.PoolId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPoolId gets a reference to the given float32 and assigns it to the PoolId field.
 func (o *VMPoolHosts) SetPoolId(v float32) {
-	o.PoolId = v
+	o.PoolId = &v
 }
 
-// GetRoles returns the Roles field value
+// GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetRoles() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
-
 	return o.Roles
 }
 
-// GetRolesOk returns a tuple with the Roles field value
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetRolesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
 	return o.Roles, true
 }
 
-// SetRoles sets field value
+// HasRoles returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasRoles() bool {
+	if o != nil && !IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
 func (o *VMPoolHosts) SetRoles(v []string) {
 	o.Roles = v
 }
 
-// GetFailureDomain returns the FailureDomain field value
+// GetFailureDomain returns the FailureDomain field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetFailureDomain() string {
-	if o == nil {
+	if o == nil || IsNil(o.FailureDomain) {
 		var ret string
 		return ret
 	}
-
-	return o.FailureDomain
+	return *o.FailureDomain
 }
 
-// GetFailureDomainOk returns a tuple with the FailureDomain field value
+// GetFailureDomainOk returns a tuple with the FailureDomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetFailureDomainOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FailureDomain) {
 		return nil, false
 	}
-	return &o.FailureDomain, true
+	return o.FailureDomain, true
 }
 
-// SetFailureDomain sets field value
+// HasFailureDomain returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasFailureDomain() bool {
+	if o != nil && !IsNil(o.FailureDomain) {
+		return true
+	}
+
+	return false
+}
+
+// SetFailureDomain gets a reference to the given string and assigns it to the FailureDomain field.
 func (o *VMPoolHosts) SetFailureDomain(v string) {
-	o.FailureDomain = v
+	o.FailureDomain = &v
 }
 
-// GetArchitecture returns the Architecture field value
+// GetArchitecture returns the Architecture field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetArchitecture() string {
-	if o == nil {
+	if o == nil || IsNil(o.Architecture) {
 		var ret string
 		return ret
 	}
-
-	return o.Architecture
+	return *o.Architecture
 }
 
-// GetArchitectureOk returns a tuple with the Architecture field value
+// GetArchitectureOk returns a tuple with the Architecture field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetArchitectureOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Architecture) {
 		return nil, false
 	}
-	return &o.Architecture, true
+	return o.Architecture, true
 }
 
-// SetArchitecture sets field value
+// HasArchitecture returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasArchitecture() bool {
+	if o != nil && !IsNil(o.Architecture) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchitecture gets a reference to the given string and assigns it to the Architecture field.
 func (o *VMPoolHosts) SetArchitecture(v string) {
-	o.Architecture = v
+	o.Architecture = &v
 }
 
-// GetDatabase returns the Database field value
+// GetDatabase returns the Database field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetDatabase() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.Database) {
 		var ret float32
 		return ret
 	}
-
-	return o.Database
+	return *o.Database
 }
 
-// GetDatabaseOk returns a tuple with the Database field value
+// GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetDatabaseOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Database) {
 		return nil, false
 	}
-	return &o.Database, true
+	return o.Database, true
 }
 
-// SetDatabase sets field value
+// HasDatabase returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasDatabase() bool {
+	if o != nil && !IsNil(o.Database) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabase gets a reference to the given float32 and assigns it to the Database field.
 func (o *VMPoolHosts) SetDatabase(v float32) {
-	o.Database = v
+	o.Database = &v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetStatus() string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolHosts) GetStatusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *VMPoolHosts) SetStatus(v string) {
-	o.Status = v
+	o.Status = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -413,14 +469,30 @@ func (o VMPoolHosts) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
-	toSerialize["address"] = o.Address
-	toSerialize["port"] = o.Port
-	toSerialize["poolId"] = o.PoolId
-	toSerialize["roles"] = o.Roles
-	toSerialize["failureDomain"] = o.FailureDomain
-	toSerialize["architecture"] = o.Architecture
-	toSerialize["database"] = o.Database
-	toSerialize["status"] = o.Status
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.PoolId) {
+		toSerialize["poolId"] = o.PoolId
+	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !IsNil(o.FailureDomain) {
+		toSerialize["failureDomain"] = o.FailureDomain
+	}
+	if !IsNil(o.Architecture) {
+		toSerialize["architecture"] = o.Architecture
+	}
+	if !IsNil(o.Database) {
+		toSerialize["database"] = o.Database
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -441,14 +513,6 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
-		"address",
-		"port",
-		"poolId",
-		"roles",
-		"failureDomain",
-		"architecture",
-		"database",
-		"status",
 		"updatedTimestamp",
 		"links",
 	}

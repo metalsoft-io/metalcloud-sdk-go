@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **string** | Timestamp of the VM Instance creation. | 
 **Config** | [**VMInstanceConfiguration**](VMInstanceConfiguration.md) | The current changes to be deployed for the VM Instance. | 
 **Meta** | [**VMInstanceMeta**](VMInstanceMeta.md) | Meta information of the VM Instance. | 
+**AllocatedVMPoolInfo** | Pointer to [**VMInstanceAllocatedVMPoolInfo**](VMInstanceAllocatedVMPoolInfo.md) | Information about the allocated VM Pool. | [optional] 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
@@ -573,6 +574,31 @@ and a boolean to check if the value has been set.
 
 SetMeta sets Meta field to given value.
 
+
+### GetAllocatedVMPoolInfo
+
+`func (o *VMInstance) GetAllocatedVMPoolInfo() VMInstanceAllocatedVMPoolInfo`
+
+GetAllocatedVMPoolInfo returns the AllocatedVMPoolInfo field if non-nil, zero value otherwise.
+
+### GetAllocatedVMPoolInfoOk
+
+`func (o *VMInstance) GetAllocatedVMPoolInfoOk() (*VMInstanceAllocatedVMPoolInfo, bool)`
+
+GetAllocatedVMPoolInfoOk returns a tuple with the AllocatedVMPoolInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocatedVMPoolInfo
+
+`func (o *VMInstance) SetAllocatedVMPoolInfo(v VMInstanceAllocatedVMPoolInfo)`
+
+SetAllocatedVMPoolInfo sets AllocatedVMPoolInfo field to given value.
+
+### HasAllocatedVMPoolInfo
+
+`func (o *VMInstance) HasAllocatedVMPoolInfo() bool`
+
+HasAllocatedVMPoolInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

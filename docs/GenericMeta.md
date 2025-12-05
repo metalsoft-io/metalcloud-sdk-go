@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** | List of tags representative for the associated product. | [optional] [default to []]
+**Tags** | Pointer to **[]string** | List of tags associated with the object. | [optional] 
 
 ## Methods
 

@@ -110,6 +110,21 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMInstanceAPIService GetVMInstanceCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceId int32
+
+		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstanceCredentials(context.Background(), infrastructureId, vmInstanceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMInstanceAPIService GetVMInstancePowerStatus", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -118,6 +133,21 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 		var vmInstanceId float32
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstancePowerStatus(context.Background(), infrastructureId, vmInstanceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceAPIService GetVmInstanceOSInstallationData", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceId int32
+
+		resp, httpRes, err := apiClient.VMInstanceAPI.GetVmInstanceOSInstallationData(context.Background(), infrastructureId, vmInstanceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

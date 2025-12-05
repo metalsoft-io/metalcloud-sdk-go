@@ -137,6 +137,111 @@ func (a *DriveAPIService) CreateDriveExecute(r DriveAPICreateDriveRequest) (*Sha
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type DriveAPICreateDriveSnapshotRequest struct {
+	ctx context.Context
+	ApiService *DriveAPIService
+	infrastructureId float32
+	driveId float32
+}
+
+func (r DriveAPICreateDriveSnapshotRequest) Execute() (*SharedDriveSnapshot, *http.Response, error) {
+	return r.ApiService.CreateDriveSnapshotExecute(r)
+}
+
+/*
+CreateDriveSnapshot Create a snapshot of the specified Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveId
+ @return DriveAPICreateDriveSnapshotRequest
+*/
+func (a *DriveAPIService) CreateDriveSnapshot(ctx context.Context, infrastructureId float32, driveId float32) DriveAPICreateDriveSnapshotRequest {
+	return DriveAPICreateDriveSnapshotRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveId: driveId,
+	}
+}
+
+// Execute executes the request
+//  @return SharedDriveSnapshot
+func (a *DriveAPIService) CreateDriveSnapshotExecute(r DriveAPICreateDriveSnapshotRequest) (*SharedDriveSnapshot, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SharedDriveSnapshot
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.CreateDriveSnapshot")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveId"+"}", url.PathEscape(parameterValueToString(r.driveId, "driveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DriveAPIDeleteDriveRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
@@ -213,6 +318,111 @@ func (a *DriveAPIService) DeleteDriveExecute(r DriveAPIDeleteDriveRequest) (*htt
 	if r.ifMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type DriveAPIDeleteDriveSnapshotRequest struct {
+	ctx context.Context
+	ApiService *DriveAPIService
+	infrastructureId float32
+	driveId float32
+	deleteSharedDriveSnapshot *DeleteSharedDriveSnapshot
+}
+
+func (r DriveAPIDeleteDriveSnapshotRequest) DeleteSharedDriveSnapshot(deleteSharedDriveSnapshot DeleteSharedDriveSnapshot) DriveAPIDeleteDriveSnapshotRequest {
+	r.deleteSharedDriveSnapshot = &deleteSharedDriveSnapshot
+	return r
+}
+
+func (r DriveAPIDeleteDriveSnapshotRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteDriveSnapshotExecute(r)
+}
+
+/*
+DeleteDriveSnapshot Delete a snapshot of the specified Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveId
+ @return DriveAPIDeleteDriveSnapshotRequest
+*/
+func (a *DriveAPIService) DeleteDriveSnapshot(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIDeleteDriveSnapshotRequest {
+	return DriveAPIDeleteDriveSnapshotRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveId: driveId,
+	}
+}
+
+// Execute executes the request
+func (a *DriveAPIService) DeleteDriveSnapshotExecute(r DriveAPIDeleteDriveSnapshotRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.DeleteDriveSnapshot")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveId"+"}", url.PathEscape(parameterValueToString(r.driveId, "driveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.deleteSharedDriveSnapshot == nil {
+		return nil, reportError("deleteSharedDriveSnapshot is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.deleteSharedDriveSnapshot
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -556,6 +766,111 @@ func (a *DriveAPIService) GetDriveHostsExecute(r DriveAPIGetDriveHostsRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type DriveAPIGetDriveSnapshotsRequest struct {
+	ctx context.Context
+	ApiService *DriveAPIService
+	infrastructureId float32
+	driveId float32
+}
+
+func (r DriveAPIGetDriveSnapshotsRequest) Execute() ([]SharedDriveSnapshot, *http.Response, error) {
+	return r.ApiService.GetDriveSnapshotsExecute(r)
+}
+
+/*
+GetDriveSnapshots Get snapshots of the specified Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveId
+ @return DriveAPIGetDriveSnapshotsRequest
+*/
+func (a *DriveAPIService) GetDriveSnapshots(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIGetDriveSnapshotsRequest {
+	return DriveAPIGetDriveSnapshotsRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveId: driveId,
+	}
+}
+
+// Execute executes the request
+//  @return []SharedDriveSnapshot
+func (a *DriveAPIService) GetDriveSnapshotsExecute(r DriveAPIGetDriveSnapshotsRequest) ([]SharedDriveSnapshot, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SharedDriveSnapshot
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.GetDriveSnapshots")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveId"+"}", url.PathEscape(parameterValueToString(r.driveId, "driveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DriveAPIGetInfrastructureDriveRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
@@ -688,115 +1003,115 @@ type DriveAPIGetInfrastructureDrivesRequest struct {
 	searchBy *[]string
 }
 
-// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
 func (r DriveAPIGetInfrastructureDrivesRequest) Page(page float32) DriveAPIGetInfrastructureDrivesRequest {
 	r.page = &page
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
 func (r DriveAPIGetInfrastructureDrivesRequest) Limit(limit float32) DriveAPIGetInfrastructureDrivesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterLabel(filterLabel []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterLabel = &filterLabel
 	return r
 }
 
-// Filter by subdomain query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.subdomain&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.subdomain&#x3D;$not:$like:John Doe&amp;filter.subdomain&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by subdomain query param.  **Format:** filter.subdomain&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.subdomain&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterSubdomain(filterSubdomain []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterSubdomain = &filterSubdomain
 	return r
 }
 
-// Filter by subdomainPermanent query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.subdomainPermanent&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.subdomainPermanent&#x3D;$not:$like:John Doe&amp;filter.subdomainPermanent&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by subdomainPermanent query param.  **Format:** filter.subdomainPermanent&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.subdomainPermanent&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterSubdomainPermanent(filterSubdomainPermanent []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterSubdomainPermanent = &filterSubdomainPermanent
 	return r
 }
 
-// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterInfrastructureId(filterInfrastructureId []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
-// Filter by storagePoolId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.storagePoolId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.storagePoolId&#x3D;$not:$like:John Doe&amp;filter.storagePoolId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by storagePoolId query param.  **Format:** filter.storagePoolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.storagePoolId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterStoragePoolId(filterStoragePoolId []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterStoragePoolId = &filterStoragePoolId
 	return r
 }
 
-// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by serviceStatus query param.  **Format:** filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serviceStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterServiceStatus(filterServiceStatus []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterServiceStatus = &filterServiceStatus
 	return r
 }
 
-// Filter by wwn query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.wwn&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.wwn&#x3D;$not:$like:John Doe&amp;filter.wwn&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by wwn query param.  **Format:** filter.wwn&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.wwn&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterWwn(filterWwn []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterWwn = &filterWwn
 	return r
 }
 
-// Filter by qoS query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.qoS&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.qoS&#x3D;$not:$like:John Doe&amp;filter.qoS&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by qoS query param.  **Format:** filter.qoS&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.qoS&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterQoS(filterQoS []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterQoS = &filterQoS
 	return r
 }
 
-// Filter by logicalNetworkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.logicalNetworkId&#x3D;$not:$like:John Doe&amp;filter.logicalNetworkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by logicalNetworkId query param.  **Format:** filter.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.logicalNetworkId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterLogicalNetworkId(filterLogicalNetworkId []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterLogicalNetworkId = &filterLogicalNetworkId
 	return r
 }
 
-// Filter by allocationAffinity query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.allocationAffinity&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.allocationAffinity&#x3D;$not:$like:John Doe&amp;filter.allocationAffinity&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by allocationAffinity query param.  **Format:** filter.allocationAffinity&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.allocationAffinity&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterAllocationAffinity(filterAllocationAffinity []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterAllocationAffinity = &filterAllocationAffinity
 	return r
 }
 
-// Filter by provisioningProtocol query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.provisioningProtocol&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.provisioningProtocol&#x3D;$not:$like:John Doe&amp;filter.provisioningProtocol&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by provisioningProtocol query param.  **Format:** filter.provisioningProtocol&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.provisioningProtocol&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterProvisioningProtocol(filterProvisioningProtocol []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterProvisioningProtocol = &filterProvisioningProtocol
 	return r
 }
 
-// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus&#x3D;$eq:John Doe&amp;filter.config.deployStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterConfigDeployStatus = &filterConfigDeployStatus
 	return r
 }
 
-// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+// Filter by config.deployType query param.  **Format:** filter.config.deployType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployType&#x3D;$eq:John Doe&amp;filter.config.deployType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterConfigDeployType(filterConfigDeployType []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterConfigDeployType = &filterConfigDeployType
 	return r
 }
 
-// Filter by config.logicalNetworkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.logicalNetworkId&#x3D;$not:$like:John Doe&amp;filter.config.logicalNetworkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by config.logicalNetworkId query param.  **Format:** filter.config.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.logicalNetworkId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r DriveAPIGetInfrastructureDrivesRequest) FilterConfigLogicalNetworkId(filterConfigLogicalNetworkId []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.filterConfigLogicalNetworkId = &filterConfigLogicalNetworkId
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;storagePoolId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - storagePoolId  - infrastructureId  - serviceStatus  - config.deployStatus  - config.deployType 
 func (r DriveAPIGetInfrastructureDrivesRequest) SortBy(sortBy []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
 func (r DriveAPIGetInfrastructureDrivesRequest) Search(search string) DriveAPIGetInfrastructureDrivesRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;wwn&lt;/li&gt; &lt;li&gt;qoS&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt; &lt;li&gt;allocationAffinity&lt;/li&gt; &lt;li&gt;provisioningProtocol&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.logicalNetworkId&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values  **Example:** id,label,subdomain,subdomainPermanent,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - subdomain  - subdomainPermanent  - infrastructureId  - storagePoolId  - serviceStatus  - wwn  - qoS  - logicalNetworkId  - allocationAffinity  - provisioningProtocol  - config.deployStatus  - config.deployType  - config.logicalNetworkId 
 func (r DriveAPIGetInfrastructureDrivesRequest) SearchBy(searchBy []string) DriveAPIGetInfrastructureDrivesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1324,6 +1639,111 @@ func (a *DriveAPIService) PatchDriveMetaExecute(r DriveAPIPatchDriveMetaRequest)
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DriveAPIRestoreDriveToSnapshotRequest struct {
+	ctx context.Context
+	ApiService *DriveAPIService
+	infrastructureId float32
+	driveId float32
+	restoreSharedDriveSnapshot *RestoreSharedDriveSnapshot
+}
+
+func (r DriveAPIRestoreDriveToSnapshotRequest) RestoreSharedDriveSnapshot(restoreSharedDriveSnapshot RestoreSharedDriveSnapshot) DriveAPIRestoreDriveToSnapshotRequest {
+	r.restoreSharedDriveSnapshot = &restoreSharedDriveSnapshot
+	return r
+}
+
+func (r DriveAPIRestoreDriveToSnapshotRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RestoreDriveToSnapshotExecute(r)
+}
+
+/*
+RestoreDriveToSnapshot Restore a Drive to a specified snapshot
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveId
+ @return DriveAPIRestoreDriveToSnapshotRequest
+*/
+func (a *DriveAPIService) RestoreDriveToSnapshot(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIRestoreDriveToSnapshotRequest {
+	return DriveAPIRestoreDriveToSnapshotRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveId: driveId,
+	}
+}
+
+// Execute executes the request
+func (a *DriveAPIService) RestoreDriveToSnapshotExecute(r DriveAPIRestoreDriveToSnapshotRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.RestoreDriveToSnapshot")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drives/{driveId}/snapshots/restore"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveId"+"}", url.PathEscape(parameterValueToString(r.driveId, "driveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.restoreSharedDriveSnapshot == nil {
+		return nil, reportError("restoreSharedDriveSnapshot is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.restoreSharedDriveSnapshot
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest struct {

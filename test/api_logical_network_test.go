@@ -76,6 +76,20 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test LogicalNetworkAPIService CreateLogicalNetworkConfigPkeyAllocationStrategy", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test LogicalNetworkAPIService CreateLogicalNetworkConfigVlanAllocationStrategy", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -151,6 +165,20 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 		var allocationStrategyId float32
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LogicalNetworkAPIService DeleteLogicalNetworkConfigPkeyAllocationStrategy", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+		var allocationStrategyId float32
+
+		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -313,6 +341,35 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkConfigPkeyAllocationStrategies", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategies(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkConfigPkeyAllocationStrategy", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+		var allocationStrategyId float32
+
+		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkConfigVlanAllocationStrategies", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -406,6 +463,21 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 		var allocationStrategyId float32
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LogicalNetworkAPIService ReplaceLogicalNetworkConfigPkeyAllocationStrategy", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+		var allocationStrategyId float32
+
+		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

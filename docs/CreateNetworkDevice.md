@@ -39,6 +39,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags for categorizing and filtering network devices | [optional] 
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
+**VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device | [optional] 
 
 ## Methods
 
@@ -1124,6 +1125,31 @@ HasOverwriteWithHostnameFromFetchedSwitch returns a boolean if a field has been 
 `func (o *CreateNetworkDevice) UnsetOverwriteWithHostnameFromFetchedSwitch()`
 
 UnsetOverwriteWithHostnameFromFetchedSwitch ensures that no value is present for OverwriteWithHostnameFromFetchedSwitch, not even an explicit nil
+### GetVmPoolId
+
+`func (o *CreateNetworkDevice) GetVmPoolId() float32`
+
+GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
+
+### GetVmPoolIdOk
+
+`func (o *CreateNetworkDevice) GetVmPoolIdOk() (*float32, bool)`
+
+GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolId
+
+`func (o *CreateNetworkDevice) SetVmPoolId(v float32)`
+
+SetVmPoolId sets VmPoolId field to given value.
+
+### HasVmPoolId
+
+`func (o *CreateNetworkDevice) HasVmPoolId() bool`
+
+HasVmPoolId returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

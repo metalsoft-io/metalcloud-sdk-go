@@ -47,30 +47,6 @@ func (dst *VlanAllocationStrategy) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	// check if the discriminator value is 'auto'
-	if jsonDict["kind"] == "auto" {
-		// try to unmarshal JSON data into AutoVlanAllocationStrategy
-		err = json.Unmarshal(data, &dst.AutoVlanAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.AutoVlanAllocationStrategy, return on the first match
-		} else {
-			dst.AutoVlanAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal VlanAllocationStrategy as AutoVlanAllocationStrategy: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'manual'
-	if jsonDict["kind"] == "manual" {
-		// try to unmarshal JSON data into ManualVlanAllocationStrategy
-		err = json.Unmarshal(data, &dst.ManualVlanAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.ManualVlanAllocationStrategy, return on the first match
-		} else {
-			dst.ManualVlanAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal VlanAllocationStrategy as ManualVlanAllocationStrategy: %s", err.Error())
-		}
-	}
-
 	// check if the discriminator value is 'AutoVlanAllocationStrategy'
 	if jsonDict["kind"] == "AutoVlanAllocationStrategy" {
 		// try to unmarshal JSON data into AutoVlanAllocationStrategy

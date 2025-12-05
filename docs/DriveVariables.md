@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **IscsiIndexHex** | Pointer to **string** | The iSCSI Index in hex format of the Drive. | [optional] 
 **TemplateId** | Pointer to **float32** | Template Id | [optional] 
 **OsAdminUsername** | Pointer to **string** | The OS Admin Username the Drive will use. | [optional] 
-**OsAdminPasswordEncrypted** | Pointer to **string** | The OS Admin Password the Drive will use. | [optional] 
 **StorageType** | **string** | Storage type of the Drive | [default to "iscsi_ssd"]
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Drive last update. | 
@@ -269,31 +268,6 @@ SetOsAdminUsername sets OsAdminUsername field to given value.
 `func (o *DriveVariables) HasOsAdminUsername() bool`
 
 HasOsAdminUsername returns a boolean if a field has been set.
-
-### GetOsAdminPasswordEncrypted
-
-`func (o *DriveVariables) GetOsAdminPasswordEncrypted() string`
-
-GetOsAdminPasswordEncrypted returns the OsAdminPasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetOsAdminPasswordEncryptedOk
-
-`func (o *DriveVariables) GetOsAdminPasswordEncryptedOk() (*string, bool)`
-
-GetOsAdminPasswordEncryptedOk returns a tuple with the OsAdminPasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOsAdminPasswordEncrypted
-
-`func (o *DriveVariables) SetOsAdminPasswordEncrypted(v string)`
-
-SetOsAdminPasswordEncrypted sets OsAdminPasswordEncrypted field to given value.
-
-### HasOsAdminPasswordEncrypted
-
-`func (o *DriveVariables) HasOsAdminPasswordEncrypted() bool`
-
-HasOsAdminPasswordEncrypted returns a boolean if a field has been set.
 
 ### GetStorageType
 

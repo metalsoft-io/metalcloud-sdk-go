@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
-**IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
 **DnsSubdomainChangeId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
 **InfrastructureDeployId** | Pointer to **int32** | Id of the deployment for the Product Instance | [optional] 
@@ -426,31 +425,6 @@ SetIscsiInitiatorUsername sets IscsiInitiatorUsername field to given value.
 `func (o *ServerInstanceConfiguration) HasIscsiInitiatorUsername() bool`
 
 HasIscsiInitiatorUsername returns a boolean if a field has been set.
-
-### GetIscsiInitiatorPasswordEncrypted
-
-`func (o *ServerInstanceConfiguration) GetIscsiInitiatorPasswordEncrypted() string`
-
-GetIscsiInitiatorPasswordEncrypted returns the IscsiInitiatorPasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetIscsiInitiatorPasswordEncryptedOk
-
-`func (o *ServerInstanceConfiguration) GetIscsiInitiatorPasswordEncryptedOk() (*string, bool)`
-
-GetIscsiInitiatorPasswordEncryptedOk returns a tuple with the IscsiInitiatorPasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIscsiInitiatorPasswordEncrypted
-
-`func (o *ServerInstanceConfiguration) SetIscsiInitiatorPasswordEncrypted(v string)`
-
-SetIscsiInitiatorPasswordEncrypted sets IscsiInitiatorPasswordEncrypted field to given value.
-
-### HasIscsiInitiatorPasswordEncrypted
-
-`func (o *ServerInstanceConfiguration) HasIscsiInitiatorPasswordEncrypted() bool`
-
-HasIscsiInitiatorPasswordEncrypted returns a boolean if a field has been set.
 
 ### GetControlPanelUrl
 

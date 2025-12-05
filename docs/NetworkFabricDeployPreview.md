@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NetworkDeviceId** | **float32** | Unique identifier for the network device. | 
 **NetworkFabricLinkId** | **float32** | Unique identifier for the network fabric link | 
-**BgpTemplateId** | **float32** | Unique identifier for the BGP template | 
+**NetworkDeviceConfigurationTemplateId** | **float32** | Unique identifier for the Network Device Configuration Template | 
 **PreparationPreview** | Pointer to **string** | Preview of the BGP preparation for the network device encoded in base64 format | [optional] 
 **ConfigurationPreview** | Pointer to **string** | Preview of the BGP configuration for the network device encoded in base64 format | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricDeployPreview
 
-`func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, bgpTemplateId float32, ) *NetworkFabricDeployPreview`
+`func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, networkDeviceConfigurationTemplateId float32, ) *NetworkFabricDeployPreview`
 
 NewNetworkFabricDeployPreview instantiates a new NetworkFabricDeployPreview object
 This constructor will assign default values to properties that have it defined,
@@ -69,24 +69,24 @@ and a boolean to check if the value has been set.
 SetNetworkFabricLinkId sets NetworkFabricLinkId field to given value.
 
 
-### GetBgpTemplateId
+### GetNetworkDeviceConfigurationTemplateId
 
-`func (o *NetworkFabricDeployPreview) GetBgpTemplateId() float32`
+`func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateId() float32`
 
-GetBgpTemplateId returns the BgpTemplateId field if non-nil, zero value otherwise.
+GetNetworkDeviceConfigurationTemplateId returns the NetworkDeviceConfigurationTemplateId field if non-nil, zero value otherwise.
 
-### GetBgpTemplateIdOk
+### GetNetworkDeviceConfigurationTemplateIdOk
 
-`func (o *NetworkFabricDeployPreview) GetBgpTemplateIdOk() (*float32, bool)`
+`func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateIdOk() (*float32, bool)`
 
-GetBgpTemplateIdOk returns a tuple with the BgpTemplateId field if it's non-nil, zero value otherwise
+GetNetworkDeviceConfigurationTemplateIdOk returns a tuple with the NetworkDeviceConfigurationTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBgpTemplateId
+### SetNetworkDeviceConfigurationTemplateId
 
-`func (o *NetworkFabricDeployPreview) SetBgpTemplateId(v float32)`
+`func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateId(v float32)`
 
-SetBgpTemplateId sets BgpTemplateId field to given value.
+SetNetworkDeviceConfigurationTemplateId sets NetworkDeviceConfigurationTemplateId field to given value.
 
 
 ### GetPreparationPreview

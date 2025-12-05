@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The network endpoint id. | 
 **Revision** | **string** | Revision number of the entity | 
 **ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
-**SiteId** | **float32** | The ID of the site where the entity is located. | 
+**SiteId** | **int32** | The ID of the site where the entity is located. | 
 **Name** | **string** | The endpoint name | 
 **Label** | **string** | The endpoint unique label | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewEndpoint
 
-`func NewEndpoint(id string, revision string, siteId float32, name string, label string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *Endpoint`
+`func NewEndpoint(id string, revision string, siteId int32, name string, label string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *Endpoint`
 
 NewEndpoint instantiates a new Endpoint object
 This constructor will assign default values to properties that have it defined,
@@ -101,20 +101,20 @@ HasExternalId returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *Endpoint) GetSiteId() float32`
+`func (o *Endpoint) GetSiteId() int32`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *Endpoint) GetSiteIdOk() (*float32, bool)`
+`func (o *Endpoint) GetSiteIdOk() (*int32, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *Endpoint) SetSiteId(v float32)`
+`func (o *Endpoint) SetSiteId(v int32)`
 
 SetSiteId sets SiteId field to given value.
 

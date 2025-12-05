@@ -39,8 +39,6 @@ type ServerVariables struct {
 	ManagementAddress *string `json:"managementAddress,omitempty"`
 	// The username to use.
 	Username *string `json:"username,omitempty"`
-	// The encrypted password.
-	PasswordEncrypted string `json:"passwordEncrypted"`
 	// The ipmi version of the server.
 	IpmiVersion *string `json:"ipmiVersion,omitempty"`
 	// The RAM GB of the server.
@@ -61,14 +59,12 @@ type ServerVariables struct {
 	DiskCount *float32 `json:"diskCount,omitempty"`
 	// The management snmp port of the server.
 	MgmtSnmpPort *float32 `json:"mgmtSnmpPort,omitempty"`
-	// The management snmp password encrypted of the server.
-	MgmtSnmpPasswordEncrypted *string `json:"mgmtSnmpPasswordEncrypted,omitempty"`
 	// The MAC address of the server.
 	BmcMacAddress *string `json:"bmcMacAddress,omitempty"`
 	// The BDK debug flag.
 	BdkDebug float32 `json:"bdkDebug"`
 	// The metrics metadata of the server.
-	ServerMetricsMetadata *map[string][]ServerMetricsInfo `json:"serverMetricsMetadata,omitempty"`
+	ServerMetricsMetadata *map[string]ServerMetricsInfo `json:"serverMetricsMetadata,omitempty"`
 	// The instance custom info of the server.
 	InstanceCustomInfo map[string]interface{} `json:"instanceCustomInfo,omitempty"`
 	// The custom info of the server.
@@ -81,12 +77,12 @@ type ServerVariables struct {
 	Model *string `json:"model,omitempty"`
 	// The VNC port of the server.
 	VncPort *float32 `json:"vncPort,omitempty"`
-	// The VNC password encrypted of the server.
-	VncPasswordEncrypted *string `json:"vncPasswordEncrypted,omitempty"`
 	// Flag to indicate if the server is basic campus endpoint.
 	IsBasicCampusEndpoint *float32 `json:"isBasicCampusEndpoint,omitempty"`
 	// The cleanup policy id of the server.
 	ServerCleanupPolicyId *float32 `json:"serverCleanupPolicyId,omitempty"`
+	// The registration profile id of the server.
+	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
 	// Flag to indicate if the server required re-registration.
 	RequiresReRegister float32 `json:"requiresReRegister"`
 	// Flag to indicate if the supports SOL.
@@ -103,6 +99,8 @@ type ServerVariables struct {
 	BiosInfo *ServerBiosInfo `json:"biosInfo,omitempty"`
 	// The vendor info of the server.
 	VendorInfo *ServerVendorInfo `json:"vendorInfo,omitempty"`
+	// The registration result of the server.
+	RegistrationResult *ServerRegistrationResult `json:"registrationResult,omitempty"`
 	// The class of the server.
 	ServerClass string `json:"serverClass"`
 	// The status of the server.
@@ -168,6 +166,12 @@ type ServerVariables struct {
 	AllocationInfo *ServerAllocationInfo `json:"allocationInfo,omitempty"`
 	// The extension execution info of the server.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
+	// The ipmi password encrypted.
+	PasswordEncrypted *string `json:"passwordEncrypted,omitempty"`
+	// The management SNMP password encrypted.
+	MgmtSnmpPasswordEncrypted *string `json:"mgmtSnmpPasswordEncrypted,omitempty"`
+	// The VNC password encrypted.
+	VncPasswordEncrypted *string `json:"vncPasswordEncrypted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -177,13 +181,12 @@ type _ServerVariables ServerVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerVariables(serverId float32, revision float32, siteId float32, datacenterName string, passwordEncrypted string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string) *ServerVariables {
+func NewServerVariables(serverId float32, revision float32, siteId float32, datacenterName string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string) *ServerVariables {
 	this := ServerVariables{}
 	this.ServerId = serverId
 	this.Revision = revision
 	this.SiteId = siteId
 	this.DatacenterName = datacenterName
-	this.PasswordEncrypted = passwordEncrypted
 	this.BdkDebug = bdkDebug
 	this.RequiresReRegister = requiresReRegister
 	this.ServerClass = serverClass
@@ -459,30 +462,6 @@ func (o *ServerVariables) HasUsername() bool {
 // SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *ServerVariables) SetUsername(v string) {
 	o.Username = &v
-}
-
-// GetPasswordEncrypted returns the PasswordEncrypted field value
-func (o *ServerVariables) GetPasswordEncrypted() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PasswordEncrypted
-}
-
-// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value
-// and a boolean to check if the value has been set.
-func (o *ServerVariables) GetPasswordEncryptedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PasswordEncrypted, true
-}
-
-// SetPasswordEncrypted sets field value
-func (o *ServerVariables) SetPasswordEncrypted(v string) {
-	o.PasswordEncrypted = v
 }
 
 // GetIpmiVersion returns the IpmiVersion field value if set, zero value otherwise.
@@ -805,38 +784,6 @@ func (o *ServerVariables) SetMgmtSnmpPort(v float32) {
 	o.MgmtSnmpPort = &v
 }
 
-// GetMgmtSnmpPasswordEncrypted returns the MgmtSnmpPasswordEncrypted field value if set, zero value otherwise.
-func (o *ServerVariables) GetMgmtSnmpPasswordEncrypted() string {
-	if o == nil || IsNil(o.MgmtSnmpPasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.MgmtSnmpPasswordEncrypted
-}
-
-// GetMgmtSnmpPasswordEncryptedOk returns a tuple with the MgmtSnmpPasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerVariables) GetMgmtSnmpPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.MgmtSnmpPasswordEncrypted) {
-		return nil, false
-	}
-	return o.MgmtSnmpPasswordEncrypted, true
-}
-
-// HasMgmtSnmpPasswordEncrypted returns a boolean if a field has been set.
-func (o *ServerVariables) HasMgmtSnmpPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.MgmtSnmpPasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetMgmtSnmpPasswordEncrypted gets a reference to the given string and assigns it to the MgmtSnmpPasswordEncrypted field.
-func (o *ServerVariables) SetMgmtSnmpPasswordEncrypted(v string) {
-	o.MgmtSnmpPasswordEncrypted = &v
-}
-
 // GetBmcMacAddress returns the BmcMacAddress field value if set, zero value otherwise.
 func (o *ServerVariables) GetBmcMacAddress() string {
 	if o == nil || IsNil(o.BmcMacAddress) {
@@ -894,9 +841,9 @@ func (o *ServerVariables) SetBdkDebug(v float32) {
 }
 
 // GetServerMetricsMetadata returns the ServerMetricsMetadata field value if set, zero value otherwise.
-func (o *ServerVariables) GetServerMetricsMetadata() map[string][]ServerMetricsInfo {
+func (o *ServerVariables) GetServerMetricsMetadata() map[string]ServerMetricsInfo {
 	if o == nil || IsNil(o.ServerMetricsMetadata) {
-		var ret map[string][]ServerMetricsInfo
+		var ret map[string]ServerMetricsInfo
 		return ret
 	}
 	return *o.ServerMetricsMetadata
@@ -904,7 +851,7 @@ func (o *ServerVariables) GetServerMetricsMetadata() map[string][]ServerMetricsI
 
 // GetServerMetricsMetadataOk returns a tuple with the ServerMetricsMetadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetServerMetricsMetadataOk() (*map[string][]ServerMetricsInfo, bool) {
+func (o *ServerVariables) GetServerMetricsMetadataOk() (*map[string]ServerMetricsInfo, bool) {
 	if o == nil || IsNil(o.ServerMetricsMetadata) {
 		return nil, false
 	}
@@ -920,8 +867,8 @@ func (o *ServerVariables) HasServerMetricsMetadata() bool {
 	return false
 }
 
-// SetServerMetricsMetadata gets a reference to the given map[string][]ServerMetricsInfo and assigns it to the ServerMetricsMetadata field.
-func (o *ServerVariables) SetServerMetricsMetadata(v map[string][]ServerMetricsInfo) {
+// SetServerMetricsMetadata gets a reference to the given map[string]ServerMetricsInfo and assigns it to the ServerMetricsMetadata field.
+func (o *ServerVariables) SetServerMetricsMetadata(v map[string]ServerMetricsInfo) {
 	o.ServerMetricsMetadata = &v
 }
 
@@ -1117,38 +1064,6 @@ func (o *ServerVariables) SetVncPort(v float32) {
 	o.VncPort = &v
 }
 
-// GetVncPasswordEncrypted returns the VncPasswordEncrypted field value if set, zero value otherwise.
-func (o *ServerVariables) GetVncPasswordEncrypted() string {
-	if o == nil || IsNil(o.VncPasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.VncPasswordEncrypted
-}
-
-// GetVncPasswordEncryptedOk returns a tuple with the VncPasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerVariables) GetVncPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.VncPasswordEncrypted) {
-		return nil, false
-	}
-	return o.VncPasswordEncrypted, true
-}
-
-// HasVncPasswordEncrypted returns a boolean if a field has been set.
-func (o *ServerVariables) HasVncPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.VncPasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetVncPasswordEncrypted gets a reference to the given string and assigns it to the VncPasswordEncrypted field.
-func (o *ServerVariables) SetVncPasswordEncrypted(v string) {
-	o.VncPasswordEncrypted = &v
-}
-
 // GetIsBasicCampusEndpoint returns the IsBasicCampusEndpoint field value if set, zero value otherwise.
 func (o *ServerVariables) GetIsBasicCampusEndpoint() float32 {
 	if o == nil || IsNil(o.IsBasicCampusEndpoint) {
@@ -1211,6 +1126,38 @@ func (o *ServerVariables) HasServerCleanupPolicyId() bool {
 // SetServerCleanupPolicyId gets a reference to the given float32 and assigns it to the ServerCleanupPolicyId field.
 func (o *ServerVariables) SetServerCleanupPolicyId(v float32) {
 	o.ServerCleanupPolicyId = &v
+}
+
+// GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
+func (o *ServerVariables) GetRegistrationProfileId() float32 {
+	if o == nil || IsNil(o.RegistrationProfileId) {
+		var ret float32
+		return ret
+	}
+	return *o.RegistrationProfileId
+}
+
+// GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetRegistrationProfileIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.RegistrationProfileId) {
+		return nil, false
+	}
+	return o.RegistrationProfileId, true
+}
+
+// HasRegistrationProfileId returns a boolean if a field has been set.
+func (o *ServerVariables) HasRegistrationProfileId() bool {
+	if o != nil && !IsNil(o.RegistrationProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationProfileId gets a reference to the given float32 and assigns it to the RegistrationProfileId field.
+func (o *ServerVariables) SetRegistrationProfileId(v float32) {
+	o.RegistrationProfileId = &v
 }
 
 // GetRequiresReRegister returns the RequiresReRegister field value
@@ -1459,6 +1406,38 @@ func (o *ServerVariables) HasVendorInfo() bool {
 // SetVendorInfo gets a reference to the given ServerVendorInfo and assigns it to the VendorInfo field.
 func (o *ServerVariables) SetVendorInfo(v ServerVendorInfo) {
 	o.VendorInfo = &v
+}
+
+// GetRegistrationResult returns the RegistrationResult field value if set, zero value otherwise.
+func (o *ServerVariables) GetRegistrationResult() ServerRegistrationResult {
+	if o == nil || IsNil(o.RegistrationResult) {
+		var ret ServerRegistrationResult
+		return ret
+	}
+	return *o.RegistrationResult
+}
+
+// GetRegistrationResultOk returns a tuple with the RegistrationResult field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetRegistrationResultOk() (*ServerRegistrationResult, bool) {
+	if o == nil || IsNil(o.RegistrationResult) {
+		return nil, false
+	}
+	return o.RegistrationResult, true
+}
+
+// HasRegistrationResult returns a boolean if a field has been set.
+func (o *ServerVariables) HasRegistrationResult() bool {
+	if o != nil && !IsNil(o.RegistrationResult) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationResult gets a reference to the given ServerRegistrationResult and assigns it to the RegistrationResult field.
+func (o *ServerVariables) SetRegistrationResult(v ServerRegistrationResult) {
+	o.RegistrationResult = &v
 }
 
 // GetServerClass returns the ServerClass field value
@@ -2453,6 +2432,102 @@ func (o *ServerVariables) SetExtensionInfo(v ExtensionExecutionInfo) {
 	o.ExtensionInfo = &v
 }
 
+// GetPasswordEncrypted returns the PasswordEncrypted field value if set, zero value otherwise.
+func (o *ServerVariables) GetPasswordEncrypted() string {
+	if o == nil || IsNil(o.PasswordEncrypted) {
+		var ret string
+		return ret
+	}
+	return *o.PasswordEncrypted
+}
+
+// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetPasswordEncryptedOk() (*string, bool) {
+	if o == nil || IsNil(o.PasswordEncrypted) {
+		return nil, false
+	}
+	return o.PasswordEncrypted, true
+}
+
+// HasPasswordEncrypted returns a boolean if a field has been set.
+func (o *ServerVariables) HasPasswordEncrypted() bool {
+	if o != nil && !IsNil(o.PasswordEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordEncrypted gets a reference to the given string and assigns it to the PasswordEncrypted field.
+func (o *ServerVariables) SetPasswordEncrypted(v string) {
+	o.PasswordEncrypted = &v
+}
+
+// GetMgmtSnmpPasswordEncrypted returns the MgmtSnmpPasswordEncrypted field value if set, zero value otherwise.
+func (o *ServerVariables) GetMgmtSnmpPasswordEncrypted() string {
+	if o == nil || IsNil(o.MgmtSnmpPasswordEncrypted) {
+		var ret string
+		return ret
+	}
+	return *o.MgmtSnmpPasswordEncrypted
+}
+
+// GetMgmtSnmpPasswordEncryptedOk returns a tuple with the MgmtSnmpPasswordEncrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetMgmtSnmpPasswordEncryptedOk() (*string, bool) {
+	if o == nil || IsNil(o.MgmtSnmpPasswordEncrypted) {
+		return nil, false
+	}
+	return o.MgmtSnmpPasswordEncrypted, true
+}
+
+// HasMgmtSnmpPasswordEncrypted returns a boolean if a field has been set.
+func (o *ServerVariables) HasMgmtSnmpPasswordEncrypted() bool {
+	if o != nil && !IsNil(o.MgmtSnmpPasswordEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetMgmtSnmpPasswordEncrypted gets a reference to the given string and assigns it to the MgmtSnmpPasswordEncrypted field.
+func (o *ServerVariables) SetMgmtSnmpPasswordEncrypted(v string) {
+	o.MgmtSnmpPasswordEncrypted = &v
+}
+
+// GetVncPasswordEncrypted returns the VncPasswordEncrypted field value if set, zero value otherwise.
+func (o *ServerVariables) GetVncPasswordEncrypted() string {
+	if o == nil || IsNil(o.VncPasswordEncrypted) {
+		var ret string
+		return ret
+	}
+	return *o.VncPasswordEncrypted
+}
+
+// GetVncPasswordEncryptedOk returns a tuple with the VncPasswordEncrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetVncPasswordEncryptedOk() (*string, bool) {
+	if o == nil || IsNil(o.VncPasswordEncrypted) {
+		return nil, false
+	}
+	return o.VncPasswordEncrypted, true
+}
+
+// HasVncPasswordEncrypted returns a boolean if a field has been set.
+func (o *ServerVariables) HasVncPasswordEncrypted() bool {
+	if o != nil && !IsNil(o.VncPasswordEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetVncPasswordEncrypted gets a reference to the given string and assigns it to the VncPasswordEncrypted field.
+func (o *ServerVariables) SetVncPasswordEncrypted(v string) {
+	o.VncPasswordEncrypted = &v
+}
+
 func (o ServerVariables) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -2482,7 +2557,6 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
-	toSerialize["passwordEncrypted"] = o.PasswordEncrypted
 	if !IsNil(o.IpmiVersion) {
 		toSerialize["ipmiVersion"] = o.IpmiVersion
 	}
@@ -2513,9 +2587,6 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MgmtSnmpPort) {
 		toSerialize["mgmtSnmpPort"] = o.MgmtSnmpPort
 	}
-	if !IsNil(o.MgmtSnmpPasswordEncrypted) {
-		toSerialize["mgmtSnmpPasswordEncrypted"] = o.MgmtSnmpPasswordEncrypted
-	}
 	if !IsNil(o.BmcMacAddress) {
 		toSerialize["bmcMacAddress"] = o.BmcMacAddress
 	}
@@ -2541,14 +2612,14 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VncPort) {
 		toSerialize["vncPort"] = o.VncPort
 	}
-	if !IsNil(o.VncPasswordEncrypted) {
-		toSerialize["vncPasswordEncrypted"] = o.VncPasswordEncrypted
-	}
 	if !IsNil(o.IsBasicCampusEndpoint) {
 		toSerialize["isBasicCampusEndpoint"] = o.IsBasicCampusEndpoint
 	}
 	if !IsNil(o.ServerCleanupPolicyId) {
 		toSerialize["serverCleanupPolicyId"] = o.ServerCleanupPolicyId
+	}
+	if !IsNil(o.RegistrationProfileId) {
+		toSerialize["registrationProfileId"] = o.RegistrationProfileId
 	}
 	toSerialize["requiresReRegister"] = o.RequiresReRegister
 	if !IsNil(o.ServerSupportsSol) {
@@ -2571,6 +2642,9 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.VendorInfo) {
 		toSerialize["vendorInfo"] = o.VendorInfo
+	}
+	if !IsNil(o.RegistrationResult) {
+		toSerialize["registrationResult"] = o.RegistrationResult
 	}
 	toSerialize["serverClass"] = o.ServerClass
 	toSerialize["serverStatus"] = o.ServerStatus
@@ -2655,6 +2729,15 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExtensionInfo) {
 		toSerialize["extensionInfo"] = o.ExtensionInfo
 	}
+	if !IsNil(o.PasswordEncrypted) {
+		toSerialize["passwordEncrypted"] = o.PasswordEncrypted
+	}
+	if !IsNil(o.MgmtSnmpPasswordEncrypted) {
+		toSerialize["mgmtSnmpPasswordEncrypted"] = o.MgmtSnmpPasswordEncrypted
+	}
+	if !IsNil(o.VncPasswordEncrypted) {
+		toSerialize["vncPasswordEncrypted"] = o.VncPasswordEncrypted
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -2672,7 +2755,6 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		"revision",
 		"siteId",
 		"datacenterName",
-		"passwordEncrypted",
 		"bdkDebug",
 		"requiresReRegister",
 		"serverClass",
@@ -2721,7 +2803,6 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "managementAddress")
 		delete(additionalProperties, "username")
-		delete(additionalProperties, "passwordEncrypted")
 		delete(additionalProperties, "ipmiVersion")
 		delete(additionalProperties, "ramGbytes")
 		delete(additionalProperties, "processorCount")
@@ -2732,7 +2813,6 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "processorThreads")
 		delete(additionalProperties, "diskCount")
 		delete(additionalProperties, "mgmtSnmpPort")
-		delete(additionalProperties, "mgmtSnmpPasswordEncrypted")
 		delete(additionalProperties, "bmcMacAddress")
 		delete(additionalProperties, "bdkDebug")
 		delete(additionalProperties, "serverMetricsMetadata")
@@ -2742,9 +2822,9 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vendorSkuId")
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "vncPort")
-		delete(additionalProperties, "vncPasswordEncrypted")
 		delete(additionalProperties, "isBasicCampusEndpoint")
 		delete(additionalProperties, "serverCleanupPolicyId")
+		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "requiresReRegister")
 		delete(additionalProperties, "serverSupportsSol")
 		delete(additionalProperties, "serverSupportsVirtualMedia")
@@ -2753,6 +2833,7 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bootingCustomIsoInProgress")
 		delete(additionalProperties, "biosInfo")
 		delete(additionalProperties, "vendorInfo")
+		delete(additionalProperties, "registrationResult")
 		delete(additionalProperties, "serverClass")
 		delete(additionalProperties, "serverStatus")
 		delete(additionalProperties, "serverComments")
@@ -2786,6 +2867,9 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "allocationInfo")
 		delete(additionalProperties, "extensionInfo")
+		delete(additionalProperties, "passwordEncrypted")
+		delete(additionalProperties, "mgmtSnmpPasswordEncrypted")
+		delete(additionalProperties, "vncPasswordEncrypted")
 		o.AdditionalProperties = additionalProperties
 	}
 

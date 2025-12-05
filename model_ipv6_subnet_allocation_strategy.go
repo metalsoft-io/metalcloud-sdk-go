@@ -47,30 +47,6 @@ func (dst *Ipv6SubnetAllocationStrategy) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	// check if the discriminator value is 'auto'
-	if jsonDict["kind"] == "auto" {
-		// try to unmarshal JSON data into AutoIpv6SubnetAllocationStrategy
-		err = json.Unmarshal(data, &dst.AutoIpv6SubnetAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.AutoIpv6SubnetAllocationStrategy, return on the first match
-		} else {
-			dst.AutoIpv6SubnetAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal Ipv6SubnetAllocationStrategy as AutoIpv6SubnetAllocationStrategy: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'manual'
-	if jsonDict["kind"] == "manual" {
-		// try to unmarshal JSON data into ManualIpv6SubnetAllocationStrategy
-		err = json.Unmarshal(data, &dst.ManualIpv6SubnetAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.ManualIpv6SubnetAllocationStrategy, return on the first match
-		} else {
-			dst.ManualIpv6SubnetAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal Ipv6SubnetAllocationStrategy as ManualIpv6SubnetAllocationStrategy: %s", err.Error())
-		}
-	}
-
 	// check if the discriminator value is 'AutoIpv6SubnetAllocationStrategy'
 	if jsonDict["kind"] == "AutoIpv6SubnetAllocationStrategy" {
 		// try to unmarshal JSON data into AutoIpv6SubnetAllocationStrategy

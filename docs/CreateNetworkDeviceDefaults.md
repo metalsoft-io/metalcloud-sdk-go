@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **OrderIndex** | Pointer to **int32** | Order index used for sorting or prioritization. | [optional] 
 **OsTemplateId** | Pointer to **int32** | ID of the volume template associated with the network device. | [optional] 
 **MlagPartnerHostname** | Pointer to **string** | MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters). | [optional] 
-**IsPartOfMlagPair** | Pointer to **bool** | Indicates whether the device is part of an MLAG pair). | [optional] 
+**IsPartOfMlagPair** | Pointer to **bool** | Indicates whether the device is part of an MLAG pair. | [optional] 
 **MlagSystemMac** | Pointer to **string** | MLAG system MAC address in the format XX:XX:XX:XX:XX:XX. | [optional] 
 **MlagPeerLinkPortChannelId** | Pointer to **int32** | MLAG peer link Port-Channel ID, must be between 1 and 4096. | [optional] 
 **MlagPartnerVlanId** | Pointer to **int32** | MLAG partner VLAN ID, must be between 1 and 4096. | [optional] 

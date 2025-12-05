@@ -18,10 +18,10 @@ Name | Type | Description | Notes
 **ServiceStatus** | **string** | Service status of the Bucket | 
 **SubdomainPermanent** | **string** | Subdomain permanent of the Bucket. | 
 **DnsSubdomainId** | **float32** | Id of the DNS subdomain for the Bucket. | 
-**Endpoint** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
-**AccessKeyId** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
-**SecretKeyEncrypted** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
+**DiscoverInformation** | Pointer to [**GenericBucketDiscoverInformation**](GenericBucketDiscoverInformation.md) | Discover information of the Bucket. | [optional] 
+**AccessKeyId** | Pointer to **string** | Access Key ID of the Bucket. | [optional] 
 **Config** | [**BucketConfiguration**](BucketConfiguration.md) | The current changes to be deployed for the Bucket. | 
+**SecretKeyEncrypted** | Pointer to **string** | secret key of the Bucket. | [optional] 
 
 ## Methods
 
@@ -332,30 +332,30 @@ and a boolean to check if the value has been set.
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
 
-### GetEndpoint
+### GetDiscoverInformation
 
-`func (o *BucketVariables) GetEndpoint() string`
+`func (o *BucketVariables) GetDiscoverInformation() GenericBucketDiscoverInformation`
 
-GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+GetDiscoverInformation returns the DiscoverInformation field if non-nil, zero value otherwise.
 
-### GetEndpointOk
+### GetDiscoverInformationOk
 
-`func (o *BucketVariables) GetEndpointOk() (*string, bool)`
+`func (o *BucketVariables) GetDiscoverInformationOk() (*GenericBucketDiscoverInformation, bool)`
 
-GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+GetDiscoverInformationOk returns a tuple with the DiscoverInformation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndpoint
+### SetDiscoverInformation
 
-`func (o *BucketVariables) SetEndpoint(v string)`
+`func (o *BucketVariables) SetDiscoverInformation(v GenericBucketDiscoverInformation)`
 
-SetEndpoint sets Endpoint field to given value.
+SetDiscoverInformation sets DiscoverInformation field to given value.
 
-### HasEndpoint
+### HasDiscoverInformation
 
-`func (o *BucketVariables) HasEndpoint() bool`
+`func (o *BucketVariables) HasDiscoverInformation() bool`
 
-HasEndpoint returns a boolean if a field has been set.
+HasDiscoverInformation returns a boolean if a field has been set.
 
 ### GetAccessKeyId
 
@@ -382,6 +382,26 @@ SetAccessKeyId sets AccessKeyId field to given value.
 
 HasAccessKeyId returns a boolean if a field has been set.
 
+### GetConfig
+
+`func (o *BucketVariables) GetConfig() BucketConfiguration`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *BucketVariables) GetConfigOk() (*BucketConfiguration, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *BucketVariables) SetConfig(v BucketConfiguration)`
+
+SetConfig sets Config field to given value.
+
+
 ### GetSecretKeyEncrypted
 
 `func (o *BucketVariables) GetSecretKeyEncrypted() string`
@@ -406,26 +426,6 @@ SetSecretKeyEncrypted sets SecretKeyEncrypted field to given value.
 `func (o *BucketVariables) HasSecretKeyEncrypted() bool`
 
 HasSecretKeyEncrypted returns a boolean if a field has been set.
-
-### GetConfig
-
-`func (o *BucketVariables) GetConfig() BucketConfiguration`
-
-GetConfig returns the Config field if non-nil, zero value otherwise.
-
-### GetConfigOk
-
-`func (o *BucketVariables) GetConfigOk() (*BucketConfiguration, bool)`
-
-GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConfig
-
-`func (o *BucketVariables) SetConfig(v BucketConfiguration)`
-
-SetConfig sets Config field to given value.
-
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

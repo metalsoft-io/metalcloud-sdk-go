@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]DnsZoneDto**](DnsZoneDto.md) |  | 
+**Data** | [**[]DnsZone**](DnsZone.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | Pointer to [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewDNSZonePaginatedList
 
-`func NewDNSZonePaginatedList(data []DnsZoneDto, meta PaginatedResponseMeta, ) *DNSZonePaginatedList`
+`func NewDNSZonePaginatedList(data []DnsZone, meta PaginatedResponseMeta, ) *DNSZonePaginatedList`
 
 NewDNSZonePaginatedList instantiates a new DNSZonePaginatedList object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *DNSZonePaginatedList) GetData() []DnsZoneDto`
+`func (o *DNSZonePaginatedList) GetData() []DnsZone`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *DNSZonePaginatedList) GetDataOk() (*[]DnsZoneDto, bool)`
+`func (o *DNSZonePaginatedList) GetDataOk() (*[]DnsZone, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *DNSZonePaginatedList) SetData(v []DnsZoneDto)`
+`func (o *DNSZonePaginatedList) SetData(v []DnsZone)`
 
 SetData sets Data field to given value.
 

@@ -26,7 +26,7 @@ type CreateExternalConnection struct {
 	// The external connection name
 	Name string `json:"name"`
 	// The ID of the Fabric identifier this entity belongs to.
-	FabricId float32 `json:"fabricId"`
+	FabricId int32 `json:"fabricId"`
 	// The external connection interfaces associated with this external connection
 	ExternalConnectionInterfaces []CreateExternalConnectionInterface `json:"externalConnectionInterfaces,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -38,7 +38,7 @@ type _CreateExternalConnection CreateExternalConnection
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateExternalConnection(label string, name string, fabricId float32) *CreateExternalConnection {
+func NewCreateExternalConnection(label string, name string, fabricId int32) *CreateExternalConnection {
 	this := CreateExternalConnection{}
 	this.Label = label
 	this.Name = name
@@ -103,9 +103,9 @@ func (o *CreateExternalConnection) SetName(v string) {
 }
 
 // GetFabricId returns the FabricId field value
-func (o *CreateExternalConnection) GetFabricId() float32 {
+func (o *CreateExternalConnection) GetFabricId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -114,7 +114,7 @@ func (o *CreateExternalConnection) GetFabricId() float32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *CreateExternalConnection) GetFabricIdOk() (*float32, bool) {
+func (o *CreateExternalConnection) GetFabricIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *CreateExternalConnection) GetFabricIdOk() (*float32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *CreateExternalConnection) SetFabricId(v float32) {
+func (o *CreateExternalConnection) SetFabricId(v int32) {
 	o.FabricId = v
 }
 

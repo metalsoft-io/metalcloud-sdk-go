@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Server cleanup policy label | 
 **CleanupDrivesForOobEnabledServer** | **float32** | Cleanup drives for oob enabled server | 
 **RecreateRaid** | **float32** | Recreate raid | 
+**ResetRaidControllers** | **float32** | Reset raid controllers to default | 
 **DisableEmbeddedNics** | **float32** | Disable embedded nics | 
 **RaidOneDrive** | **string** | Raid one drive | 
 **RaidTwoDrives** | **string** | Raid two drives | 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewServerCleanupPolicy
 
-`func NewServerCleanupPolicy(id float32, label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string, ) *ServerCleanupPolicy`
+`func NewServerCleanupPolicy(id float32, label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string, ) *ServerCleanupPolicy`
 
 NewServerCleanupPolicy instantiates a new ServerCleanupPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -115,6 +116,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerCleanupPolicy) SetRecreateRaid(v float32)`
 
 SetRecreateRaid sets RecreateRaid field to given value.
+
+
+### GetResetRaidControllers
+
+`func (o *ServerCleanupPolicy) GetResetRaidControllers() float32`
+
+GetResetRaidControllers returns the ResetRaidControllers field if non-nil, zero value otherwise.
+
+### GetResetRaidControllersOk
+
+`func (o *ServerCleanupPolicy) GetResetRaidControllersOk() (*float32, bool)`
+
+GetResetRaidControllersOk returns a tuple with the ResetRaidControllers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResetRaidControllers
+
+`func (o *ServerCleanupPolicy) SetResetRaidControllers(v float32)`
+
+SetResetRaidControllers sets ResetRaidControllers field to given value.
 
 
 ### GetDisableEmbeddedNics

@@ -81,6 +81,8 @@ type ServerInstanceGroupConfiguration struct {
 	DeployType string `json:"deployType"`
 	// Product Instance deploy status
 	DeployStatus string `json:"deployStatus"`
+	// Server filtering rules for allocating servers to instances.
+	ServerFilteringRules []ServerFilterRule `json:"serverFilteringRules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1010,6 +1012,38 @@ func (o *ServerInstanceGroupConfiguration) SetDeployStatus(v string) {
 	o.DeployStatus = v
 }
 
+// GetServerFilteringRules returns the ServerFilteringRules field value if set, zero value otherwise.
+func (o *ServerInstanceGroupConfiguration) GetServerFilteringRules() []ServerFilterRule {
+	if o == nil || IsNil(o.ServerFilteringRules) {
+		var ret []ServerFilterRule
+		return ret
+	}
+	return o.ServerFilteringRules
+}
+
+// GetServerFilteringRulesOk returns a tuple with the ServerFilteringRules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupConfiguration) GetServerFilteringRulesOk() ([]ServerFilterRule, bool) {
+	if o == nil || IsNil(o.ServerFilteringRules) {
+		return nil, false
+	}
+	return o.ServerFilteringRules, true
+}
+
+// HasServerFilteringRules returns a boolean if a field has been set.
+func (o *ServerInstanceGroupConfiguration) HasServerFilteringRules() bool {
+	if o != nil && !IsNil(o.ServerFilteringRules) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerFilteringRules gets a reference to the given []ServerFilterRule and assigns it to the ServerFilteringRules field.
+func (o *ServerInstanceGroupConfiguration) SetServerFilteringRules(v []ServerFilterRule) {
+	o.ServerFilteringRules = v
+}
+
 func (o ServerInstanceGroupConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1081,6 +1115,9 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 	}
 	toSerialize["deployType"] = o.DeployType
 	toSerialize["deployStatus"] = o.DeployStatus
+	if !IsNil(o.ServerFilteringRules) {
+		toSerialize["serverFilteringRules"] = o.ServerFilteringRules
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1170,6 +1207,7 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "emptyEdit")
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")
+		delete(additionalProperties, "serverFilteringRules")
 		o.AdditionalProperties = additionalProperties
 	}
 

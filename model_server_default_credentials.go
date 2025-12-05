@@ -31,8 +31,6 @@ type ServerDefaultCredentials struct {
 	ServerMacAddress string `json:"serverMacAddress"`
 	// The default username of the server
 	DefaultUsername string `json:"defaultUsername"`
-	// The encrypted default password of the server
-	DefaultPasswordEncrypted string `json:"defaultPasswordEncrypted"`
 	// The default rack name of the server
 	DefaultRackName *string `json:"defaultRackName,omitempty"`
 	// The default rack position upper unit of the server
@@ -43,6 +41,8 @@ type ServerDefaultCredentials struct {
 	DefaultInventoryId *string `json:"defaultInventoryId,omitempty"`
 	// The default UUID of the server
 	DefaultUuid *string `json:"defaultUuid,omitempty"`
+	// The default registration profile ID of the server
+	DefaultRegistrationProfileId *float32 `json:"defaultRegistrationProfileId,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -54,14 +54,13 @@ type _ServerDefaultCredentials ServerDefaultCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerDefaultCredentials(id float32, siteId float32, serverSerialNumber string, serverMacAddress string, defaultUsername string, defaultPasswordEncrypted string) *ServerDefaultCredentials {
+func NewServerDefaultCredentials(id float32, siteId float32, serverSerialNumber string, serverMacAddress string, defaultUsername string) *ServerDefaultCredentials {
 	this := ServerDefaultCredentials{}
 	this.Id = id
 	this.SiteId = siteId
 	this.ServerSerialNumber = serverSerialNumber
 	this.ServerMacAddress = serverMacAddress
 	this.DefaultUsername = defaultUsername
-	this.DefaultPasswordEncrypted = defaultPasswordEncrypted
 	return &this
 }
 
@@ -191,30 +190,6 @@ func (o *ServerDefaultCredentials) GetDefaultUsernameOk() (*string, bool) {
 // SetDefaultUsername sets field value
 func (o *ServerDefaultCredentials) SetDefaultUsername(v string) {
 	o.DefaultUsername = v
-}
-
-// GetDefaultPasswordEncrypted returns the DefaultPasswordEncrypted field value
-func (o *ServerDefaultCredentials) GetDefaultPasswordEncrypted() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DefaultPasswordEncrypted
-}
-
-// GetDefaultPasswordEncryptedOk returns a tuple with the DefaultPasswordEncrypted field value
-// and a boolean to check if the value has been set.
-func (o *ServerDefaultCredentials) GetDefaultPasswordEncryptedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DefaultPasswordEncrypted, true
-}
-
-// SetDefaultPasswordEncrypted sets field value
-func (o *ServerDefaultCredentials) SetDefaultPasswordEncrypted(v string) {
-	o.DefaultPasswordEncrypted = v
 }
 
 // GetDefaultRackName returns the DefaultRackName field value if set, zero value otherwise.
@@ -377,6 +352,38 @@ func (o *ServerDefaultCredentials) SetDefaultUuid(v string) {
 	o.DefaultUuid = &v
 }
 
+// GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field value if set, zero value otherwise.
+func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileId() float32 {
+	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
+		var ret float32
+		return ret
+	}
+	return *o.DefaultRegistrationProfileId
+}
+
+// GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
+		return nil, false
+	}
+	return o.DefaultRegistrationProfileId, true
+}
+
+// HasDefaultRegistrationProfileId returns a boolean if a field has been set.
+func (o *ServerDefaultCredentials) HasDefaultRegistrationProfileId() bool {
+	if o != nil && !IsNil(o.DefaultRegistrationProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultRegistrationProfileId gets a reference to the given float32 and assigns it to the DefaultRegistrationProfileId field.
+func (o *ServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32) {
+	o.DefaultRegistrationProfileId = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ServerDefaultCredentials) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -424,7 +431,6 @@ func (o ServerDefaultCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize["serverSerialNumber"] = o.ServerSerialNumber
 	toSerialize["serverMacAddress"] = o.ServerMacAddress
 	toSerialize["defaultUsername"] = o.DefaultUsername
-	toSerialize["defaultPasswordEncrypted"] = o.DefaultPasswordEncrypted
 	if !IsNil(o.DefaultRackName) {
 		toSerialize["defaultRackName"] = o.DefaultRackName
 	}
@@ -439,6 +445,9 @@ func (o ServerDefaultCredentials) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DefaultUuid) {
 		toSerialize["defaultUuid"] = o.DefaultUuid
+	}
+	if !IsNil(o.DefaultRegistrationProfileId) {
+		toSerialize["defaultRegistrationProfileId"] = o.DefaultRegistrationProfileId
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -461,7 +470,6 @@ func (o *ServerDefaultCredentials) UnmarshalJSON(data []byte) (err error) {
 		"serverSerialNumber",
 		"serverMacAddress",
 		"defaultUsername",
-		"defaultPasswordEncrypted",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -496,12 +504,12 @@ func (o *ServerDefaultCredentials) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverSerialNumber")
 		delete(additionalProperties, "serverMacAddress")
 		delete(additionalProperties, "defaultUsername")
-		delete(additionalProperties, "defaultPasswordEncrypted")
 		delete(additionalProperties, "defaultRackName")
 		delete(additionalProperties, "defaultRackPositionLowerUnit")
 		delete(additionalProperties, "defaultRackPositionUpperUnit")
 		delete(additionalProperties, "defaultInventoryId")
 		delete(additionalProperties, "defaultUuid")
+		delete(additionalProperties, "defaultRegistrationProfileId")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

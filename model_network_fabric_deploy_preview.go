@@ -25,8 +25,8 @@ type NetworkFabricDeployPreview struct {
 	NetworkDeviceId float32 `json:"networkDeviceId"`
 	// Unique identifier for the network fabric link
 	NetworkFabricLinkId float32 `json:"networkFabricLinkId"`
-	// Unique identifier for the BGP template
-	BgpTemplateId float32 `json:"bgpTemplateId"`
+	// Unique identifier for the Network Device Configuration Template
+	NetworkDeviceConfigurationTemplateId float32 `json:"networkDeviceConfigurationTemplateId"`
 	// Preview of the BGP preparation for the network device encoded in base64 format
 	PreparationPreview *string `json:"preparationPreview,omitempty"`
 	// Preview of the BGP configuration for the network device encoded in base64 format
@@ -40,11 +40,11 @@ type _NetworkFabricDeployPreview NetworkFabricDeployPreview
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, bgpTemplateId float32) *NetworkFabricDeployPreview {
+func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, networkDeviceConfigurationTemplateId float32) *NetworkFabricDeployPreview {
 	this := NetworkFabricDeployPreview{}
 	this.NetworkDeviceId = networkDeviceId
 	this.NetworkFabricLinkId = networkFabricLinkId
-	this.BgpTemplateId = bgpTemplateId
+	this.NetworkDeviceConfigurationTemplateId = networkDeviceConfigurationTemplateId
 	return &this
 }
 
@@ -104,28 +104,28 @@ func (o *NetworkFabricDeployPreview) SetNetworkFabricLinkId(v float32) {
 	o.NetworkFabricLinkId = v
 }
 
-// GetBgpTemplateId returns the BgpTemplateId field value
-func (o *NetworkFabricDeployPreview) GetBgpTemplateId() float32 {
+// GetNetworkDeviceConfigurationTemplateId returns the NetworkDeviceConfigurationTemplateId field value
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.BgpTemplateId
+	return o.NetworkDeviceConfigurationTemplateId
 }
 
-// GetBgpTemplateIdOk returns a tuple with the BgpTemplateId field value
+// GetNetworkDeviceConfigurationTemplateIdOk returns a tuple with the NetworkDeviceConfigurationTemplateId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricDeployPreview) GetBgpTemplateIdOk() (*float32, bool) {
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BgpTemplateId, true
+	return &o.NetworkDeviceConfigurationTemplateId, true
 }
 
-// SetBgpTemplateId sets field value
-func (o *NetworkFabricDeployPreview) SetBgpTemplateId(v float32) {
-	o.BgpTemplateId = v
+// SetNetworkDeviceConfigurationTemplateId sets field value
+func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateId(v float32) {
+	o.NetworkDeviceConfigurationTemplateId = v
 }
 
 // GetPreparationPreview returns the PreparationPreview field value if set, zero value otherwise.
@@ -204,7 +204,7 @@ func (o NetworkFabricDeployPreview) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["networkDeviceId"] = o.NetworkDeviceId
 	toSerialize["networkFabricLinkId"] = o.NetworkFabricLinkId
-	toSerialize["bgpTemplateId"] = o.BgpTemplateId
+	toSerialize["networkDeviceConfigurationTemplateId"] = o.NetworkDeviceConfigurationTemplateId
 	if !IsNil(o.PreparationPreview) {
 		toSerialize["preparationPreview"] = o.PreparationPreview
 	}
@@ -226,7 +226,7 @@ func (o *NetworkFabricDeployPreview) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"networkDeviceId",
 		"networkFabricLinkId",
-		"bgpTemplateId",
+		"networkDeviceConfigurationTemplateId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -258,7 +258,7 @@ func (o *NetworkFabricDeployPreview) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "networkDeviceId")
 		delete(additionalProperties, "networkFabricLinkId")
-		delete(additionalProperties, "bgpTemplateId")
+		delete(additionalProperties, "networkDeviceConfigurationTemplateId")
 		delete(additionalProperties, "preparationPreview")
 		delete(additionalProperties, "configurationPreview")
 		o.AdditionalProperties = additionalProperties

@@ -21,30 +21,20 @@ var _ MappedNullable = &ServerPolicy{}
 
 // ServerPolicy struct for ServerPolicy
 type ServerPolicy struct {
-	// Server registration password settings
-	RegisterCredentials string `json:"registerCredentials"`
-	// Minimum number of switch-connected interfaces required
-	MinimumNumberOfConnectedInterfaces float32 `json:"minimumNumberOfConnectedInterfaces"`
+	// ID of the default server registration profile
+	DefaultServerRegistrationProfileId *float32 `json:"defaultServerRegistrationProfileId,omitempty"`
 	// Option82 to IP mapping
 	DhcpOption82ToIPMapping map[string]interface{} `json:"dhcpOption82ToIPMapping"`
 	// Whether to enable DHCP BMC MAC address whitelist
 	DhcpBmcMacAddressWhitelistEnabled bool `json:"dhcpBmcMacAddressWhitelistEnabled"`
 	// List of DHCP BMC MAC address whitelist
 	DhcpBmcMacAddressWhitelist []string `json:"dhcpBmcMacAddressWhitelist"`
-	// Whether to disable TPM after registration
-	DisableTpmAfterRegistration bool `json:"disableTpmAfterRegistration"`
-	// Whether syslog monitoring is enabled
-	SyslogMonitoringEnabled bool `json:"syslogMonitoringEnabled"`
 	// Default server cleanup policy ID
 	DefaultServerCleanupPolicyID *float32 `json:"defaultServerCleanupPolicyID,omitempty"`
 	// Automatically allocate server types
 	AutomaticallyAllocateServerTypes bool `json:"automaticallyAllocateServerTypes"`
 	// Automatically set servers as available
 	AutomaticallySetServersAsAvailable bool `json:"automaticallySetServersAsAvailable"`
-	// Server registration BIOS profile
-	ServerRegistrationBiosProfile []ServerRegistrationBiosProfile `json:"serverRegistrationBiosProfile"`
-	// Whether to make HTTP the default protocol for virtual media
-	MakeHttpTheDefaultProtocolForVirtualMedia *bool `json:"makeHttpTheDefaultProtocolForVirtualMedia,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,18 +44,13 @@ type _ServerPolicy ServerPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile) *ServerPolicy {
+func NewServerPolicy(dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool) *ServerPolicy {
 	this := ServerPolicy{}
-	this.RegisterCredentials = registerCredentials
-	this.MinimumNumberOfConnectedInterfaces = minimumNumberOfConnectedInterfaces
 	this.DhcpOption82ToIPMapping = dhcpOption82ToIPMapping
 	this.DhcpBmcMacAddressWhitelistEnabled = dhcpBmcMacAddressWhitelistEnabled
 	this.DhcpBmcMacAddressWhitelist = dhcpBmcMacAddressWhitelist
-	this.DisableTpmAfterRegistration = disableTpmAfterRegistration
-	this.SyslogMonitoringEnabled = syslogMonitoringEnabled
 	this.AutomaticallyAllocateServerTypes = automaticallyAllocateServerTypes
 	this.AutomaticallySetServersAsAvailable = automaticallySetServersAsAvailable
-	this.ServerRegistrationBiosProfile = serverRegistrationBiosProfile
 	return &this
 }
 
@@ -77,52 +62,36 @@ func NewServerPolicyWithDefaults() *ServerPolicy {
 	return &this
 }
 
-// GetRegisterCredentials returns the RegisterCredentials field value
-func (o *ServerPolicy) GetRegisterCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RegisterCredentials
-}
-
-// GetRegisterCredentialsOk returns a tuple with the RegisterCredentials field value
-// and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetRegisterCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RegisterCredentials, true
-}
-
-// SetRegisterCredentials sets field value
-func (o *ServerPolicy) SetRegisterCredentials(v string) {
-	o.RegisterCredentials = v
-}
-
-// GetMinimumNumberOfConnectedInterfaces returns the MinimumNumberOfConnectedInterfaces field value
-func (o *ServerPolicy) GetMinimumNumberOfConnectedInterfaces() float32 {
-	if o == nil {
+// GetDefaultServerRegistrationProfileId returns the DefaultServerRegistrationProfileId field value if set, zero value otherwise.
+func (o *ServerPolicy) GetDefaultServerRegistrationProfileId() float32 {
+	if o == nil || IsNil(o.DefaultServerRegistrationProfileId) {
 		var ret float32
 		return ret
 	}
-
-	return o.MinimumNumberOfConnectedInterfaces
+	return *o.DefaultServerRegistrationProfileId
 }
 
-// GetMinimumNumberOfConnectedInterfacesOk returns a tuple with the MinimumNumberOfConnectedInterfaces field value
+// GetDefaultServerRegistrationProfileIdOk returns a tuple with the DefaultServerRegistrationProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetMinimumNumberOfConnectedInterfacesOk() (*float32, bool) {
-	if o == nil {
+func (o *ServerPolicy) GetDefaultServerRegistrationProfileIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.DefaultServerRegistrationProfileId) {
 		return nil, false
 	}
-	return &o.MinimumNumberOfConnectedInterfaces, true
+	return o.DefaultServerRegistrationProfileId, true
 }
 
-// SetMinimumNumberOfConnectedInterfaces sets field value
-func (o *ServerPolicy) SetMinimumNumberOfConnectedInterfaces(v float32) {
-	o.MinimumNumberOfConnectedInterfaces = v
+// HasDefaultServerRegistrationProfileId returns a boolean if a field has been set.
+func (o *ServerPolicy) HasDefaultServerRegistrationProfileId() bool {
+	if o != nil && !IsNil(o.DefaultServerRegistrationProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultServerRegistrationProfileId gets a reference to the given float32 and assigns it to the DefaultServerRegistrationProfileId field.
+func (o *ServerPolicy) SetDefaultServerRegistrationProfileId(v float32) {
+	o.DefaultServerRegistrationProfileId = &v
 }
 
 // GetDhcpOption82ToIPMapping returns the DhcpOption82ToIPMapping field value
@@ -195,54 +164,6 @@ func (o *ServerPolicy) GetDhcpBmcMacAddressWhitelistOk() ([]string, bool) {
 // SetDhcpBmcMacAddressWhitelist sets field value
 func (o *ServerPolicy) SetDhcpBmcMacAddressWhitelist(v []string) {
 	o.DhcpBmcMacAddressWhitelist = v
-}
-
-// GetDisableTpmAfterRegistration returns the DisableTpmAfterRegistration field value
-func (o *ServerPolicy) GetDisableTpmAfterRegistration() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.DisableTpmAfterRegistration
-}
-
-// GetDisableTpmAfterRegistrationOk returns a tuple with the DisableTpmAfterRegistration field value
-// and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetDisableTpmAfterRegistrationOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DisableTpmAfterRegistration, true
-}
-
-// SetDisableTpmAfterRegistration sets field value
-func (o *ServerPolicy) SetDisableTpmAfterRegistration(v bool) {
-	o.DisableTpmAfterRegistration = v
-}
-
-// GetSyslogMonitoringEnabled returns the SyslogMonitoringEnabled field value
-func (o *ServerPolicy) GetSyslogMonitoringEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.SyslogMonitoringEnabled
-}
-
-// GetSyslogMonitoringEnabledOk returns a tuple with the SyslogMonitoringEnabled field value
-// and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetSyslogMonitoringEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SyslogMonitoringEnabled, true
-}
-
-// SetSyslogMonitoringEnabled sets field value
-func (o *ServerPolicy) SetSyslogMonitoringEnabled(v bool) {
-	o.SyslogMonitoringEnabled = v
 }
 
 // GetDefaultServerCleanupPolicyID returns the DefaultServerCleanupPolicyID field value if set, zero value otherwise.
@@ -325,62 +246,6 @@ func (o *ServerPolicy) SetAutomaticallySetServersAsAvailable(v bool) {
 	o.AutomaticallySetServersAsAvailable = v
 }
 
-// GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field value
-func (o *ServerPolicy) GetServerRegistrationBiosProfile() []ServerRegistrationBiosProfile {
-	if o == nil {
-		var ret []ServerRegistrationBiosProfile
-		return ret
-	}
-
-	return o.ServerRegistrationBiosProfile
-}
-
-// GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field value
-// and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() ([]ServerRegistrationBiosProfile, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ServerRegistrationBiosProfile, true
-}
-
-// SetServerRegistrationBiosProfile sets field value
-func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []ServerRegistrationBiosProfile) {
-	o.ServerRegistrationBiosProfile = v
-}
-
-// GetMakeHttpTheDefaultProtocolForVirtualMedia returns the MakeHttpTheDefaultProtocolForVirtualMedia field value if set, zero value otherwise.
-func (o *ServerPolicy) GetMakeHttpTheDefaultProtocolForVirtualMedia() bool {
-	if o == nil || IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
-		var ret bool
-		return ret
-	}
-	return *o.MakeHttpTheDefaultProtocolForVirtualMedia
-}
-
-// GetMakeHttpTheDefaultProtocolForVirtualMediaOk returns a tuple with the MakeHttpTheDefaultProtocolForVirtualMedia field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetMakeHttpTheDefaultProtocolForVirtualMediaOk() (*bool, bool) {
-	if o == nil || IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
-		return nil, false
-	}
-	return o.MakeHttpTheDefaultProtocolForVirtualMedia, true
-}
-
-// HasMakeHttpTheDefaultProtocolForVirtualMedia returns a boolean if a field has been set.
-func (o *ServerPolicy) HasMakeHttpTheDefaultProtocolForVirtualMedia() bool {
-	if o != nil && !IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
-		return true
-	}
-
-	return false
-}
-
-// SetMakeHttpTheDefaultProtocolForVirtualMedia gets a reference to the given bool and assigns it to the MakeHttpTheDefaultProtocolForVirtualMedia field.
-func (o *ServerPolicy) SetMakeHttpTheDefaultProtocolForVirtualMedia(v bool) {
-	o.MakeHttpTheDefaultProtocolForVirtualMedia = &v
-}
-
 func (o ServerPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -391,22 +256,17 @@ func (o ServerPolicy) MarshalJSON() ([]byte, error) {
 
 func (o ServerPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["registerCredentials"] = o.RegisterCredentials
-	toSerialize["minimumNumberOfConnectedInterfaces"] = o.MinimumNumberOfConnectedInterfaces
+	if !IsNil(o.DefaultServerRegistrationProfileId) {
+		toSerialize["defaultServerRegistrationProfileId"] = o.DefaultServerRegistrationProfileId
+	}
 	toSerialize["dhcpOption82ToIPMapping"] = o.DhcpOption82ToIPMapping
 	toSerialize["dhcpBmcMacAddressWhitelistEnabled"] = o.DhcpBmcMacAddressWhitelistEnabled
 	toSerialize["dhcpBmcMacAddressWhitelist"] = o.DhcpBmcMacAddressWhitelist
-	toSerialize["disableTpmAfterRegistration"] = o.DisableTpmAfterRegistration
-	toSerialize["syslogMonitoringEnabled"] = o.SyslogMonitoringEnabled
 	if !IsNil(o.DefaultServerCleanupPolicyID) {
 		toSerialize["defaultServerCleanupPolicyID"] = o.DefaultServerCleanupPolicyID
 	}
 	toSerialize["automaticallyAllocateServerTypes"] = o.AutomaticallyAllocateServerTypes
 	toSerialize["automaticallySetServersAsAvailable"] = o.AutomaticallySetServersAsAvailable
-	toSerialize["serverRegistrationBiosProfile"] = o.ServerRegistrationBiosProfile
-	if !IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
-		toSerialize["makeHttpTheDefaultProtocolForVirtualMedia"] = o.MakeHttpTheDefaultProtocolForVirtualMedia
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -420,16 +280,11 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"registerCredentials",
-		"minimumNumberOfConnectedInterfaces",
 		"dhcpOption82ToIPMapping",
 		"dhcpBmcMacAddressWhitelistEnabled",
 		"dhcpBmcMacAddressWhitelist",
-		"disableTpmAfterRegistration",
-		"syslogMonitoringEnabled",
 		"automaticallyAllocateServerTypes",
 		"automaticallySetServersAsAvailable",
-		"serverRegistrationBiosProfile",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -459,18 +314,13 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "registerCredentials")
-		delete(additionalProperties, "minimumNumberOfConnectedInterfaces")
+		delete(additionalProperties, "defaultServerRegistrationProfileId")
 		delete(additionalProperties, "dhcpOption82ToIPMapping")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelistEnabled")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelist")
-		delete(additionalProperties, "disableTpmAfterRegistration")
-		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "defaultServerCleanupPolicyID")
 		delete(additionalProperties, "automaticallyAllocateServerTypes")
 		delete(additionalProperties, "automaticallySetServersAsAvailable")
-		delete(additionalProperties, "serverRegistrationBiosProfile")
-		delete(additionalProperties, "makeHttpTheDefaultProtocolForVirtualMedia")
 		o.AdditionalProperties = additionalProperties
 	}
 

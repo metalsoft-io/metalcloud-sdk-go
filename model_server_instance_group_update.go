@@ -61,6 +61,8 @@ type ServerInstanceGroupUpdate struct {
 	DefaultServerTypeId *int32 `json:"defaultServerTypeId,omitempty"`
 	// Default Custom Storage Profile for the newly created Instances.
 	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
+	// Server filtering rules for allocating servers to instances. If provided, servers must match all rules to be eligible for allocation.
+	ServerFilteringRules []ServerFilterRule `json:"serverFilteringRules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -795,6 +797,38 @@ func (o *ServerInstanceGroupUpdate) SetDefaultCustomStorageProfile(v ServerInsta
 	o.DefaultCustomStorageProfile = &v
 }
 
+// GetServerFilteringRules returns the ServerFilteringRules field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetServerFilteringRules() []ServerFilterRule {
+	if o == nil || IsNil(o.ServerFilteringRules) {
+		var ret []ServerFilterRule
+		return ret
+	}
+	return o.ServerFilteringRules
+}
+
+// GetServerFilteringRulesOk returns a tuple with the ServerFilteringRules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetServerFilteringRulesOk() ([]ServerFilterRule, bool) {
+	if o == nil || IsNil(o.ServerFilteringRules) {
+		return nil, false
+	}
+	return o.ServerFilteringRules, true
+}
+
+// HasServerFilteringRules returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasServerFilteringRules() bool {
+	if o != nil && !IsNil(o.ServerFilteringRules) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerFilteringRules gets a reference to the given []ServerFilterRule and assigns it to the ServerFilteringRules field.
+func (o *ServerInstanceGroupUpdate) SetServerFilteringRules(v []ServerFilterRule) {
+	o.ServerFilteringRules = v
+}
+
 func (o ServerInstanceGroupUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -868,6 +902,9 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DefaultCustomStorageProfile) {
 		toSerialize["defaultCustomStorageProfile"] = o.DefaultCustomStorageProfile
 	}
+	if !IsNil(o.ServerFilteringRules) {
+		toSerialize["serverFilteringRules"] = o.ServerFilteringRules
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -911,6 +948,7 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
 		delete(additionalProperties, "defaultServerTypeId")
 		delete(additionalProperties, "defaultCustomStorageProfile")
+		delete(additionalProperties, "serverFilteringRules")
 		o.AdditionalProperties = additionalProperties
 	}
 

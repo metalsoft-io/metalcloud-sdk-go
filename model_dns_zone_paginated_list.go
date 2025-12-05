@@ -21,7 +21,7 @@ var _ MappedNullable = &DNSZonePaginatedList{}
 
 // DNSZonePaginatedList struct for DNSZonePaginatedList
 type DNSZonePaginatedList struct {
-	Data []DnsZoneDto `json:"data"`
+	Data []DnsZone `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _DNSZonePaginatedList DNSZonePaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDNSZonePaginatedList(data []DnsZoneDto, meta PaginatedResponseMeta) *DNSZonePaginatedList {
+func NewDNSZonePaginatedList(data []DnsZone, meta PaginatedResponseMeta) *DNSZonePaginatedList {
 	this := DNSZonePaginatedList{}
 	this.Data = data
 	this.Meta = meta
@@ -51,9 +51,9 @@ func NewDNSZonePaginatedListWithDefaults() *DNSZonePaginatedList {
 }
 
 // GetData returns the Data field value
-func (o *DNSZonePaginatedList) GetData() []DnsZoneDto {
+func (o *DNSZonePaginatedList) GetData() []DnsZone {
 	if o == nil {
-		var ret []DnsZoneDto
+		var ret []DnsZone
 		return ret
 	}
 
@@ -62,7 +62,7 @@ func (o *DNSZonePaginatedList) GetData() []DnsZoneDto {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DNSZonePaginatedList) GetDataOk() ([]DnsZoneDto, bool) {
+func (o *DNSZonePaginatedList) GetDataOk() ([]DnsZone, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *DNSZonePaginatedList) GetDataOk() ([]DnsZoneDto, bool) {
 }
 
 // SetData sets field value
-func (o *DNSZonePaginatedList) SetData(v []DnsZoneDto) {
+func (o *DNSZonePaginatedList) SetData(v []DnsZone) {
 	o.Data = v
 }
 

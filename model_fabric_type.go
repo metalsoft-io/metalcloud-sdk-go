@@ -23,12 +23,14 @@ type FabricType string
 const (
 	FABRICTYPE_ETHERNET FabricType = "ethernet"
 	FABRICTYPE_FIBRE_CHANNEL FabricType = "fibre_channel"
+	FABRICTYPE_INFINIBAND FabricType = "infiniband"
 )
 
 // All allowed values of FabricType enum
 var AllowedFabricTypeEnumValues = []FabricType{
 	"ethernet",
 	"fibre_channel",
+	"infiniband",
 }
 
 func (v *FabricType) UnmarshalJSON(src []byte) error {

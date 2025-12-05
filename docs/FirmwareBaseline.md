@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Catalog** | Pointer to **[]string** |  | [optional] 
 **Level** | [**BaselineLevelType**](BaselineLevelType.md) |  | 
-**LevelFilter** | **[]string** |  | 
+**LevelFilter** | **[]string** | Array of filter values. For datacenter/serverType/osTemplate: array of strings (e.g., [\&quot;datacenter1\&quot;, \&quot;datacenter2\&quot;]). For vendorModel: array of objects with vendor and model properties (e.g., [{ vendor: \&quot;Dell\&quot;, model: \&quot;R740\&quot; }, { vendor: \&quot;HPE\&quot;, model: \&quot;*\&quot; }]). Use \&quot;*\&quot; for wildcards. | 
 
 ## Methods
 

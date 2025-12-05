@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]NetworkFabricLinkDto**](NetworkFabricLinkDto.md) |  | 
+**Data** | [**[]NetworkFabricLink**](NetworkFabricLink.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | Pointer to [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricLinkPaginatedList
 
-`func NewNetworkFabricLinkPaginatedList(data []NetworkFabricLinkDto, meta PaginatedResponseMeta, ) *NetworkFabricLinkPaginatedList`
+`func NewNetworkFabricLinkPaginatedList(data []NetworkFabricLink, meta PaginatedResponseMeta, ) *NetworkFabricLinkPaginatedList`
 
 NewNetworkFabricLinkPaginatedList instantiates a new NetworkFabricLinkPaginatedList object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *NetworkFabricLinkPaginatedList) GetData() []NetworkFabricLinkDto`
+`func (o *NetworkFabricLinkPaginatedList) GetData() []NetworkFabricLink`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *NetworkFabricLinkPaginatedList) GetDataOk() (*[]NetworkFabricLinkDto, bool)`
+`func (o *NetworkFabricLinkPaginatedList) GetDataOk() (*[]NetworkFabricLink, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *NetworkFabricLinkPaginatedList) SetData(v []NetworkFabricLinkDto)`
+`func (o *NetworkFabricLinkPaginatedList) SetData(v []NetworkFabricLink)`
 
 SetData sets Data field to given value.
 

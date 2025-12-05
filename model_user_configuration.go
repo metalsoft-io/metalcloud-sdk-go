@@ -69,6 +69,8 @@ type UserConfiguration struct {
 	IsDatastorePublisher bool `json:"isDatastorePublisher"`
 	// The account ID of the user
 	AccountId *float32 `json:"accountId,omitempty"`
+	// The provider of the user
+	Provider string `json:"provider"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,7 +80,7 @@ type _UserConfiguration UserConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool) *UserConfiguration {
+func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string) *UserConfiguration {
 	this := UserConfiguration{}
 	this.Revision = revision
 	this.DisplayName = displayName
@@ -99,6 +101,7 @@ func NewUserConfiguration(revision float32, displayName string, emailStatus stri
 	this.IsTestAccount = isTestAccount
 	this.IsArchived = isArchived
 	this.IsDatastorePublisher = isDatastorePublisher
+	this.Provider = provider
 	return &this
 }
 
@@ -111,6 +114,8 @@ func NewUserConfigurationWithDefaults() *UserConfiguration {
 	this.Brand = brand
 	var lastLoginType string = "md5"
 	this.LastLoginType = lastLoginType
+	var provider string = "mysql"
+	this.Provider = provider
 	return &this
 }
 
@@ -730,6 +735,30 @@ func (o *UserConfiguration) SetAccountId(v float32) {
 	o.AccountId = &v
 }
 
+// GetProvider returns the Provider field value
+func (o *UserConfiguration) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *UserConfiguration) GetProviderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *UserConfiguration) SetProvider(v string) {
+	o.Provider = v
+}
+
 func (o UserConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -774,6 +803,7 @@ func (o UserConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccountId) {
 		toSerialize["accountId"] = o.AccountId
 	}
+	toSerialize["provider"] = o.Provider
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -806,6 +836,7 @@ func (o *UserConfiguration) UnmarshalJSON(data []byte) (err error) {
 		"isTestAccount",
 		"isArchived",
 		"isDatastorePublisher",
+		"provider",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -859,6 +890,7 @@ func (o *UserConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isArchived")
 		delete(additionalProperties, "isDatastorePublisher")
 		delete(additionalProperties, "accountId")
+		delete(additionalProperties, "provider")
 		o.AdditionalProperties = additionalProperties
 	}
 

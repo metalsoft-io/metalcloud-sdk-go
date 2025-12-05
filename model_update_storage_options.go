@@ -21,9 +21,11 @@ var _ MappedNullable = &UpdateStorageOptions{}
 // UpdateStorageOptions struct for UpdateStorageOptions
 type UpdateStorageOptions struct {
 	// Enable data reduction
-	EnableDataReduction *float32 `json:"enableDataReduction,omitempty"`
+	EnableDataReduction *bool `json:"enableDataReduction,omitempty"`
 	// Enable advanced deduplication
-	EnableAdvancedDeduplication *float32 `json:"enableAdvancedDeduplication,omitempty"`
+	EnableAdvancedDeduplication *bool `json:"enableAdvancedDeduplication,omitempty"`
+	// Enable data reduction on a newly created shared volume
+	EnableDataReductionSharedVolume *bool `json:"enableDataReductionSharedVolume,omitempty"`
 	// Volume name
 	VolumeName *string `json:"volumeName,omitempty"`
 	// Array id to use (for certain storage drivers)
@@ -35,9 +37,9 @@ type UpdateStorageOptions struct {
 	// Enable advanced deduplication
 	S3Port *float32 `json:"s3Port,omitempty"`
 	// Fibre channel enabled
-	FibreChannelEnabled *float32 `json:"fibreChannelEnabled,omitempty"`
+	FibreChannelEnabled *bool `json:"fibreChannelEnabled,omitempty"`
 	// Array of storage ports to use
-	PortsToUse []StoragePortDto `json:"portsToUse,omitempty"`
+	PortsToUse []StoragePort `json:"portsToUse,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,9 +63,9 @@ func NewUpdateStorageOptionsWithDefaults() *UpdateStorageOptions {
 }
 
 // GetEnableDataReduction returns the EnableDataReduction field value if set, zero value otherwise.
-func (o *UpdateStorageOptions) GetEnableDataReduction() float32 {
+func (o *UpdateStorageOptions) GetEnableDataReduction() bool {
 	if o == nil || IsNil(o.EnableDataReduction) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.EnableDataReduction
@@ -71,7 +73,7 @@ func (o *UpdateStorageOptions) GetEnableDataReduction() float32 {
 
 // GetEnableDataReductionOk returns a tuple with the EnableDataReduction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorageOptions) GetEnableDataReductionOk() (*float32, bool) {
+func (o *UpdateStorageOptions) GetEnableDataReductionOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableDataReduction) {
 		return nil, false
 	}
@@ -87,15 +89,15 @@ func (o *UpdateStorageOptions) HasEnableDataReduction() bool {
 	return false
 }
 
-// SetEnableDataReduction gets a reference to the given float32 and assigns it to the EnableDataReduction field.
-func (o *UpdateStorageOptions) SetEnableDataReduction(v float32) {
+// SetEnableDataReduction gets a reference to the given bool and assigns it to the EnableDataReduction field.
+func (o *UpdateStorageOptions) SetEnableDataReduction(v bool) {
 	o.EnableDataReduction = &v
 }
 
 // GetEnableAdvancedDeduplication returns the EnableAdvancedDeduplication field value if set, zero value otherwise.
-func (o *UpdateStorageOptions) GetEnableAdvancedDeduplication() float32 {
+func (o *UpdateStorageOptions) GetEnableAdvancedDeduplication() bool {
 	if o == nil || IsNil(o.EnableAdvancedDeduplication) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.EnableAdvancedDeduplication
@@ -103,7 +105,7 @@ func (o *UpdateStorageOptions) GetEnableAdvancedDeduplication() float32 {
 
 // GetEnableAdvancedDeduplicationOk returns a tuple with the EnableAdvancedDeduplication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorageOptions) GetEnableAdvancedDeduplicationOk() (*float32, bool) {
+func (o *UpdateStorageOptions) GetEnableAdvancedDeduplicationOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableAdvancedDeduplication) {
 		return nil, false
 	}
@@ -119,9 +121,41 @@ func (o *UpdateStorageOptions) HasEnableAdvancedDeduplication() bool {
 	return false
 }
 
-// SetEnableAdvancedDeduplication gets a reference to the given float32 and assigns it to the EnableAdvancedDeduplication field.
-func (o *UpdateStorageOptions) SetEnableAdvancedDeduplication(v float32) {
+// SetEnableAdvancedDeduplication gets a reference to the given bool and assigns it to the EnableAdvancedDeduplication field.
+func (o *UpdateStorageOptions) SetEnableAdvancedDeduplication(v bool) {
 	o.EnableAdvancedDeduplication = &v
+}
+
+// GetEnableDataReductionSharedVolume returns the EnableDataReductionSharedVolume field value if set, zero value otherwise.
+func (o *UpdateStorageOptions) GetEnableDataReductionSharedVolume() bool {
+	if o == nil || IsNil(o.EnableDataReductionSharedVolume) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableDataReductionSharedVolume
+}
+
+// GetEnableDataReductionSharedVolumeOk returns a tuple with the EnableDataReductionSharedVolume field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageOptions) GetEnableDataReductionSharedVolumeOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableDataReductionSharedVolume) {
+		return nil, false
+	}
+	return o.EnableDataReductionSharedVolume, true
+}
+
+// HasEnableDataReductionSharedVolume returns a boolean if a field has been set.
+func (o *UpdateStorageOptions) HasEnableDataReductionSharedVolume() bool {
+	if o != nil && !IsNil(o.EnableDataReductionSharedVolume) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableDataReductionSharedVolume gets a reference to the given bool and assigns it to the EnableDataReductionSharedVolume field.
+func (o *UpdateStorageOptions) SetEnableDataReductionSharedVolume(v bool) {
+	o.EnableDataReductionSharedVolume = &v
 }
 
 // GetVolumeName returns the VolumeName field value if set, zero value otherwise.
@@ -285,9 +319,9 @@ func (o *UpdateStorageOptions) SetS3Port(v float32) {
 }
 
 // GetFibreChannelEnabled returns the FibreChannelEnabled field value if set, zero value otherwise.
-func (o *UpdateStorageOptions) GetFibreChannelEnabled() float32 {
+func (o *UpdateStorageOptions) GetFibreChannelEnabled() bool {
 	if o == nil || IsNil(o.FibreChannelEnabled) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.FibreChannelEnabled
@@ -295,7 +329,7 @@ func (o *UpdateStorageOptions) GetFibreChannelEnabled() float32 {
 
 // GetFibreChannelEnabledOk returns a tuple with the FibreChannelEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorageOptions) GetFibreChannelEnabledOk() (*float32, bool) {
+func (o *UpdateStorageOptions) GetFibreChannelEnabledOk() (*bool, bool) {
 	if o == nil || IsNil(o.FibreChannelEnabled) {
 		return nil, false
 	}
@@ -311,15 +345,15 @@ func (o *UpdateStorageOptions) HasFibreChannelEnabled() bool {
 	return false
 }
 
-// SetFibreChannelEnabled gets a reference to the given float32 and assigns it to the FibreChannelEnabled field.
-func (o *UpdateStorageOptions) SetFibreChannelEnabled(v float32) {
+// SetFibreChannelEnabled gets a reference to the given bool and assigns it to the FibreChannelEnabled field.
+func (o *UpdateStorageOptions) SetFibreChannelEnabled(v bool) {
 	o.FibreChannelEnabled = &v
 }
 
 // GetPortsToUse returns the PortsToUse field value if set, zero value otherwise.
-func (o *UpdateStorageOptions) GetPortsToUse() []StoragePortDto {
+func (o *UpdateStorageOptions) GetPortsToUse() []StoragePort {
 	if o == nil || IsNil(o.PortsToUse) {
-		var ret []StoragePortDto
+		var ret []StoragePort
 		return ret
 	}
 	return o.PortsToUse
@@ -327,7 +361,7 @@ func (o *UpdateStorageOptions) GetPortsToUse() []StoragePortDto {
 
 // GetPortsToUseOk returns a tuple with the PortsToUse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorageOptions) GetPortsToUseOk() ([]StoragePortDto, bool) {
+func (o *UpdateStorageOptions) GetPortsToUseOk() ([]StoragePort, bool) {
 	if o == nil || IsNil(o.PortsToUse) {
 		return nil, false
 	}
@@ -343,8 +377,8 @@ func (o *UpdateStorageOptions) HasPortsToUse() bool {
 	return false
 }
 
-// SetPortsToUse gets a reference to the given []StoragePortDto and assigns it to the PortsToUse field.
-func (o *UpdateStorageOptions) SetPortsToUse(v []StoragePortDto) {
+// SetPortsToUse gets a reference to the given []StoragePort and assigns it to the PortsToUse field.
+func (o *UpdateStorageOptions) SetPortsToUse(v []StoragePort) {
 	o.PortsToUse = v
 }
 
@@ -363,6 +397,9 @@ func (o UpdateStorageOptions) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EnableAdvancedDeduplication) {
 		toSerialize["enableAdvancedDeduplication"] = o.EnableAdvancedDeduplication
+	}
+	if !IsNil(o.EnableDataReductionSharedVolume) {
+		toSerialize["enableDataReductionSharedVolume"] = o.EnableDataReductionSharedVolume
 	}
 	if !IsNil(o.VolumeName) {
 		toSerialize["volumeName"] = o.VolumeName
@@ -409,6 +446,7 @@ func (o *UpdateStorageOptions) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "enableDataReduction")
 		delete(additionalProperties, "enableAdvancedDeduplication")
+		delete(additionalProperties, "enableDataReductionSharedVolume")
 		delete(additionalProperties, "volumeName")
 		delete(additionalProperties, "arrayId")
 		delete(additionalProperties, "directorId")

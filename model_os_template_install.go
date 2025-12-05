@@ -21,12 +21,14 @@ var _ MappedNullable = &OSTemplateInstall{}
 
 // OSTemplateInstall struct for OSTemplateInstall
 type OSTemplateInstall struct {
-	// The OS template installation method                     OOB - Out of Band (virtual media)                     ONIE - Open Network Install Environment                     DS_LXD - Cloud-init with datasource LXD
+	// The OS template installation method                     OOB - Out of Band (virtual media)                     ONIE - Open Network Install Environment                     DS_LXD - Cloud-init with datasource LXD                     COPY - Creates a copy of the VM Template configured on the service
 	Method string `json:"method"`
 	// The OS template installation drive type
 	DriveType string `json:"driveType"`
 	// The OS template installation ready method,                     The \"ready method\" is used to determine when the OS installation is complete.
 	ReadyMethod string `json:"readyMethod"`
+	// The preferred boot order to set for the server before OS installation
+	ServerPreferredBootOrder []string `json:"serverPreferredBootOrder,omitempty"`
 	// Used for selecting the OS template during network device ZTP
 	OnieStrings []string `json:"onieStrings,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -126,6 +128,38 @@ func (o *OSTemplateInstall) SetReadyMethod(v string) {
 	o.ReadyMethod = v
 }
 
+// GetServerPreferredBootOrder returns the ServerPreferredBootOrder field value if set, zero value otherwise.
+func (o *OSTemplateInstall) GetServerPreferredBootOrder() []string {
+	if o == nil || IsNil(o.ServerPreferredBootOrder) {
+		var ret []string
+		return ret
+	}
+	return o.ServerPreferredBootOrder
+}
+
+// GetServerPreferredBootOrderOk returns a tuple with the ServerPreferredBootOrder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OSTemplateInstall) GetServerPreferredBootOrderOk() ([]string, bool) {
+	if o == nil || IsNil(o.ServerPreferredBootOrder) {
+		return nil, false
+	}
+	return o.ServerPreferredBootOrder, true
+}
+
+// HasServerPreferredBootOrder returns a boolean if a field has been set.
+func (o *OSTemplateInstall) HasServerPreferredBootOrder() bool {
+	if o != nil && !IsNil(o.ServerPreferredBootOrder) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerPreferredBootOrder gets a reference to the given []string and assigns it to the ServerPreferredBootOrder field.
+func (o *OSTemplateInstall) SetServerPreferredBootOrder(v []string) {
+	o.ServerPreferredBootOrder = v
+}
+
 // GetOnieStrings returns the OnieStrings field value if set, zero value otherwise.
 func (o *OSTemplateInstall) GetOnieStrings() []string {
 	if o == nil || IsNil(o.OnieStrings) {
@@ -171,6 +205,9 @@ func (o OSTemplateInstall) ToMap() (map[string]interface{}, error) {
 	toSerialize["method"] = o.Method
 	toSerialize["driveType"] = o.DriveType
 	toSerialize["readyMethod"] = o.ReadyMethod
+	if !IsNil(o.ServerPreferredBootOrder) {
+		toSerialize["serverPreferredBootOrder"] = o.ServerPreferredBootOrder
+	}
 	if !IsNil(o.OnieStrings) {
 		toSerialize["onieStrings"] = o.OnieStrings
 	}
@@ -222,6 +259,7 @@ func (o *OSTemplateInstall) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "driveType")
 		delete(additionalProperties, "readyMethod")
+		delete(additionalProperties, "serverPreferredBootOrder")
 		delete(additionalProperties, "onieStrings")
 		o.AdditionalProperties = additionalProperties
 	}

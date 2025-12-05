@@ -51,8 +51,8 @@ type FileShareVariables struct {
 	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the VLAN for the File Share.
 	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
-	// Endpoint of the File Share.
-	Endpoint *string `json:"endpoint,omitempty"`
+	// Discover information of the File Share.
+	DiscoverInformation *GenericFileShareDiscoverInformation `json:"discoverInformation,omitempty"`
 	// The current changes to be deployed for the File Share.
 	Config FileShareConfiguration `json:"config"`
 	AdditionalProperties map[string]interface{}
@@ -495,36 +495,36 @@ func (o *FileShareVariables) SetNetworkVlanId(v float32) {
 	o.NetworkVlanId = &v
 }
 
-// GetEndpoint returns the Endpoint field value if set, zero value otherwise.
-func (o *FileShareVariables) GetEndpoint() string {
-	if o == nil || IsNil(o.Endpoint) {
-		var ret string
+// GetDiscoverInformation returns the DiscoverInformation field value if set, zero value otherwise.
+func (o *FileShareVariables) GetDiscoverInformation() GenericFileShareDiscoverInformation {
+	if o == nil || IsNil(o.DiscoverInformation) {
+		var ret GenericFileShareDiscoverInformation
 		return ret
 	}
-	return *o.Endpoint
+	return *o.DiscoverInformation
 }
 
-// GetEndpointOk returns a tuple with the Endpoint field value if set, nil otherwise
+// GetDiscoverInformationOk returns a tuple with the DiscoverInformation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetEndpointOk() (*string, bool) {
-	if o == nil || IsNil(o.Endpoint) {
+func (o *FileShareVariables) GetDiscoverInformationOk() (*GenericFileShareDiscoverInformation, bool) {
+	if o == nil || IsNil(o.DiscoverInformation) {
 		return nil, false
 	}
-	return o.Endpoint, true
+	return o.DiscoverInformation, true
 }
 
-// HasEndpoint returns a boolean if a field has been set.
-func (o *FileShareVariables) HasEndpoint() bool {
-	if o != nil && !IsNil(o.Endpoint) {
+// HasDiscoverInformation returns a boolean if a field has been set.
+func (o *FileShareVariables) HasDiscoverInformation() bool {
+	if o != nil && !IsNil(o.DiscoverInformation) {
 		return true
 	}
 
 	return false
 }
 
-// SetEndpoint gets a reference to the given string and assigns it to the Endpoint field.
-func (o *FileShareVariables) SetEndpoint(v string) {
-	o.Endpoint = &v
+// SetDiscoverInformation gets a reference to the given GenericFileShareDiscoverInformation and assigns it to the DiscoverInformation field.
+func (o *FileShareVariables) SetDiscoverInformation(v GenericFileShareDiscoverInformation) {
+	o.DiscoverInformation = &v
 }
 
 // GetConfig returns the Config field value
@@ -588,8 +588,8 @@ func (o FileShareVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkVlanId) {
 		toSerialize["networkVlanId"] = o.NetworkVlanId
 	}
-	if !IsNil(o.Endpoint) {
-		toSerialize["endpoint"] = o.Endpoint
+	if !IsNil(o.DiscoverInformation) {
+		toSerialize["discoverInformation"] = o.DiscoverInformation
 	}
 	toSerialize["config"] = o.Config
 
@@ -659,7 +659,7 @@ func (o *FileShareVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "networkVlanId")
-		delete(additionalProperties, "endpoint")
+		delete(additionalProperties, "discoverInformation")
 		delete(additionalProperties, "config")
 		o.AdditionalProperties = additionalProperties
 	}

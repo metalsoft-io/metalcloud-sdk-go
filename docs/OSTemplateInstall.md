@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Method** | **string** | The OS template installation method                     OOB - Out of Band (virtual media)                     ONIE - Open Network Install Environment                     DS_LXD - Cloud-init with datasource LXD | 
+**Method** | **string** | The OS template installation method                     OOB - Out of Band (virtual media)                     ONIE - Open Network Install Environment                     DS_LXD - Cloud-init with datasource LXD                     COPY - Creates a copy of the VM Template configured on the service | 
 **DriveType** | **string** | The OS template installation drive type | 
 **ReadyMethod** | **string** | The OS template installation ready method,                     The \&quot;ready method\&quot; is used to determine when the OS installation is complete. | 
+**ServerPreferredBootOrder** | Pointer to **[]string** | The preferred boot order to set for the server before OS installation | [optional] 
 **OnieStrings** | Pointer to **[]string** | Used for selecting the OS template during network device ZTP | [optional] 
 
 ## Methods
@@ -87,6 +88,31 @@ and a boolean to check if the value has been set.
 
 SetReadyMethod sets ReadyMethod field to given value.
 
+
+### GetServerPreferredBootOrder
+
+`func (o *OSTemplateInstall) GetServerPreferredBootOrder() []string`
+
+GetServerPreferredBootOrder returns the ServerPreferredBootOrder field if non-nil, zero value otherwise.
+
+### GetServerPreferredBootOrderOk
+
+`func (o *OSTemplateInstall) GetServerPreferredBootOrderOk() (*[]string, bool)`
+
+GetServerPreferredBootOrderOk returns a tuple with the ServerPreferredBootOrder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerPreferredBootOrder
+
+`func (o *OSTemplateInstall) SetServerPreferredBootOrder(v []string)`
+
+SetServerPreferredBootOrder sets ServerPreferredBootOrder field to given value.
+
+### HasServerPreferredBootOrder
+
+`func (o *OSTemplateInstall) HasServerPreferredBootOrder() bool`
+
+HasServerPreferredBootOrder returns a boolean if a field has been set.
 
 ### GetOnieStrings
 

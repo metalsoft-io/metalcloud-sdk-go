@@ -28,6 +28,7 @@ type CreateLogicalNetworkProfile struct {
 	FabricId int32 `json:"fabricId"`
 	Vlan *CreateLogicalNetworkVlanProperties `json:"vlan,omitempty"`
 	Vxlan *CreateLogicalNetworkVxlanProperties `json:"vxlan,omitempty"`
+	Pkey *CreateLogicalNetworkPkeyProperties `json:"pkey,omitempty"`
 	Ipv4 *CreateLogicalNetworkIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *CreateLogicalNetworkIpv6Properties `json:"ipv6,omitempty"`
 	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
@@ -265,6 +266,38 @@ func (o *CreateLogicalNetworkProfile) SetVxlan(v CreateLogicalNetworkVxlanProper
 	o.Vxlan = &v
 }
 
+// GetPkey returns the Pkey field value if set, zero value otherwise.
+func (o *CreateLogicalNetworkProfile) GetPkey() CreateLogicalNetworkPkeyProperties {
+	if o == nil || IsNil(o.Pkey) {
+		var ret CreateLogicalNetworkPkeyProperties
+		return ret
+	}
+	return *o.Pkey
+}
+
+// GetPkeyOk returns a tuple with the Pkey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetworkProfile) GetPkeyOk() (*CreateLogicalNetworkPkeyProperties, bool) {
+	if o == nil || IsNil(o.Pkey) {
+		return nil, false
+	}
+	return o.Pkey, true
+}
+
+// HasPkey returns a boolean if a field has been set.
+func (o *CreateLogicalNetworkProfile) HasPkey() bool {
+	if o != nil && !IsNil(o.Pkey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPkey gets a reference to the given CreateLogicalNetworkPkeyProperties and assigns it to the Pkey field.
+func (o *CreateLogicalNetworkProfile) SetPkey(v CreateLogicalNetworkPkeyProperties) {
+	o.Pkey = &v
+}
+
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *CreateLogicalNetworkProfile) GetIpv4() CreateLogicalNetworkIpv4Properties {
 	if o == nil || IsNil(o.Ipv4) {
@@ -440,6 +473,9 @@ func (o CreateLogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
+	if !IsNil(o.Pkey) {
+		toSerialize["pkey"] = o.Pkey
+	}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
@@ -503,6 +539,7 @@ func (o *CreateLogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fabricId")
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")
+		delete(additionalProperties, "pkey")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")

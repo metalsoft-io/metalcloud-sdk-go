@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | Pointer to **float32** | The ID of the site where the entity is located. | [optional] 
+**SiteId** | Pointer to **int32** | The ID of the site where the entity is located. | [optional] 
 **Name** | **string** | The name of the network endpoint group | 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *CreateNetworkEndpointGroup) GetSiteId() float32`
+`func (o *CreateNetworkEndpointGroup) GetSiteId() int32`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *CreateNetworkEndpointGroup) GetSiteIdOk() (*float32, bool)`
+`func (o *CreateNetworkEndpointGroup) GetSiteIdOk() (*int32, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *CreateNetworkEndpointGroup) SetSiteId(v float32)`
+`func (o *CreateNetworkEndpointGroup) SetSiteId(v int32)`
 
 SetSiteId sets SiteId field to given value.
 
