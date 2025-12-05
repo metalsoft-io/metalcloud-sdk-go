@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **DiscoverIpAddress** | Pointer to **string** | The IP address used to discover the drive. | [optional] 
 **DiscoverPort** | Pointer to **float32** | The port used to discover the drive. | [optional] 
 **DiscoverWwn** | Pointer to **string** | The WWN used to discover the drive. | [optional] 
+**TargetIqn** | Pointer to **string** | The IQN of the target storage. | [optional] 
+**TargetNqn** | Pointer to **string** | The NQN of the target storage. | [optional] 
 **DriveType** | **string** | The type of the drive. | 
 **IsFibreChannel** | **bool** | Indicates if the drive is using Fibre Channel. | 
 
@@ -103,6 +105,56 @@ SetDiscoverWwn sets DiscoverWwn field to given value.
 `func (o *GenericDriveDiscoverInformation) HasDiscoverWwn() bool`
 
 HasDiscoverWwn returns a boolean if a field has been set.
+
+### GetTargetIqn
+
+`func (o *GenericDriveDiscoverInformation) GetTargetIqn() string`
+
+GetTargetIqn returns the TargetIqn field if non-nil, zero value otherwise.
+
+### GetTargetIqnOk
+
+`func (o *GenericDriveDiscoverInformation) GetTargetIqnOk() (*string, bool)`
+
+GetTargetIqnOk returns a tuple with the TargetIqn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetIqn
+
+`func (o *GenericDriveDiscoverInformation) SetTargetIqn(v string)`
+
+SetTargetIqn sets TargetIqn field to given value.
+
+### HasTargetIqn
+
+`func (o *GenericDriveDiscoverInformation) HasTargetIqn() bool`
+
+HasTargetIqn returns a boolean if a field has been set.
+
+### GetTargetNqn
+
+`func (o *GenericDriveDiscoverInformation) GetTargetNqn() string`
+
+GetTargetNqn returns the TargetNqn field if non-nil, zero value otherwise.
+
+### GetTargetNqnOk
+
+`func (o *GenericDriveDiscoverInformation) GetTargetNqnOk() (*string, bool)`
+
+GetTargetNqnOk returns a tuple with the TargetNqn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetNqn
+
+`func (o *GenericDriveDiscoverInformation) SetTargetNqn(v string)`
+
+SetTargetNqn sets TargetNqn field to given value.
+
+### HasTargetNqn
+
+`func (o *GenericDriveDiscoverInformation) HasTargetNqn() bool`
+
+HasTargetNqn returns a boolean if a field has been set.
 
 ### GetDriveType
 

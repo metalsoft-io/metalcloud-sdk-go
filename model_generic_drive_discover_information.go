@@ -27,6 +27,10 @@ type GenericDriveDiscoverInformation struct {
 	DiscoverPort *float32 `json:"discoverPort,omitempty"`
 	// The WWN used to discover the drive.
 	DiscoverWwn *string `json:"discoverWwn,omitempty"`
+	// The IQN of the target storage.
+	TargetIqn *string `json:"targetIqn,omitempty"`
+	// The NQN of the target storage.
+	TargetNqn *string `json:"targetNqn,omitempty"`
 	// The type of the drive.
 	DriveType string `json:"driveType"`
 	// Indicates if the drive is using Fibre Channel.
@@ -151,6 +155,70 @@ func (o *GenericDriveDiscoverInformation) SetDiscoverWwn(v string) {
 	o.DiscoverWwn = &v
 }
 
+// GetTargetIqn returns the TargetIqn field value if set, zero value otherwise.
+func (o *GenericDriveDiscoverInformation) GetTargetIqn() string {
+	if o == nil || IsNil(o.TargetIqn) {
+		var ret string
+		return ret
+	}
+	return *o.TargetIqn
+}
+
+// GetTargetIqnOk returns a tuple with the TargetIqn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericDriveDiscoverInformation) GetTargetIqnOk() (*string, bool) {
+	if o == nil || IsNil(o.TargetIqn) {
+		return nil, false
+	}
+	return o.TargetIqn, true
+}
+
+// HasTargetIqn returns a boolean if a field has been set.
+func (o *GenericDriveDiscoverInformation) HasTargetIqn() bool {
+	if o != nil && !IsNil(o.TargetIqn) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetIqn gets a reference to the given string and assigns it to the TargetIqn field.
+func (o *GenericDriveDiscoverInformation) SetTargetIqn(v string) {
+	o.TargetIqn = &v
+}
+
+// GetTargetNqn returns the TargetNqn field value if set, zero value otherwise.
+func (o *GenericDriveDiscoverInformation) GetTargetNqn() string {
+	if o == nil || IsNil(o.TargetNqn) {
+		var ret string
+		return ret
+	}
+	return *o.TargetNqn
+}
+
+// GetTargetNqnOk returns a tuple with the TargetNqn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericDriveDiscoverInformation) GetTargetNqnOk() (*string, bool) {
+	if o == nil || IsNil(o.TargetNqn) {
+		return nil, false
+	}
+	return o.TargetNqn, true
+}
+
+// HasTargetNqn returns a boolean if a field has been set.
+func (o *GenericDriveDiscoverInformation) HasTargetNqn() bool {
+	if o != nil && !IsNil(o.TargetNqn) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetNqn gets a reference to the given string and assigns it to the TargetNqn field.
+func (o *GenericDriveDiscoverInformation) SetTargetNqn(v string) {
+	o.TargetNqn = &v
+}
+
 // GetDriveType returns the DriveType field value
 func (o *GenericDriveDiscoverInformation) GetDriveType() string {
 	if o == nil {
@@ -218,6 +286,12 @@ func (o GenericDriveDiscoverInformation) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.DiscoverWwn) {
 		toSerialize["discoverWwn"] = o.DiscoverWwn
 	}
+	if !IsNil(o.TargetIqn) {
+		toSerialize["targetIqn"] = o.TargetIqn
+	}
+	if !IsNil(o.TargetNqn) {
+		toSerialize["targetNqn"] = o.TargetNqn
+	}
 	toSerialize["driveType"] = o.DriveType
 	toSerialize["isFibreChannel"] = o.IsFibreChannel
 
@@ -267,6 +341,8 @@ func (o *GenericDriveDiscoverInformation) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "discoverIpAddress")
 		delete(additionalProperties, "discoverPort")
 		delete(additionalProperties, "discoverWwn")
+		delete(additionalProperties, "targetIqn")
+		delete(additionalProperties, "targetNqn")
 		delete(additionalProperties, "driveType")
 		delete(additionalProperties, "isFibreChannel")
 		o.AdditionalProperties = additionalProperties

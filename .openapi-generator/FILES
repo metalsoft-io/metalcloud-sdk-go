@@ -883,6 +883,7 @@ docs/VlanLogicalNetworkProfileIpv4Properties.md
 docs/VlanLogicalNetworkProfileIpv6Properties.md
 docs/VlanLogicalNetworkProfileVlanProperties.md
 docs/VlanLogicalNetworkVlanProperties.md
+docs/VmInstanceContextOSInstallationData.md
 docs/VmInstanceContextVariables.md
 docs/VniAllocation.md
 docs/VniAllocationStrategy.md
@@ -1634,6 +1635,7 @@ model_vm_disk.go
 model_vm_instance.go
 model_vm_instance_allocated_vm_pool_info.go
 model_vm_instance_configuration.go
+model_vm_instance_context_os_installation_data.go
 model_vm_instance_context_variables.go
 model_vm_instance_group.go
 model_vm_instance_group_configuration.go

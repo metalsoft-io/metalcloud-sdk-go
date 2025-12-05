@@ -1070,6 +1070,131 @@ func (a *VMInstanceAPIService) GetVMInstancePowerStatusExecute(r VMInstanceAPIGe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMInstanceAPIGetVmInstanceOSInstallationDataRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceAPIService
+	infrastructureId int32
+	vmInstanceId int32
+	usage *VariableUsageType
+	removeEmpty *int32
+}
+
+// Filter by variable usage
+func (r VMInstanceAPIGetVmInstanceOSInstallationDataRequest) Usage(usage VariableUsageType) VMInstanceAPIGetVmInstanceOSInstallationDataRequest {
+	r.usage = &usage
+	return r
+}
+
+// Remove empty fields from the response
+func (r VMInstanceAPIGetVmInstanceOSInstallationDataRequest) RemoveEmpty(removeEmpty int32) VMInstanceAPIGetVmInstanceOSInstallationDataRequest {
+	r.removeEmpty = &removeEmpty
+	return r
+}
+
+func (r VMInstanceAPIGetVmInstanceOSInstallationDataRequest) Execute() (*VmInstanceContextOSInstallationData, *http.Response, error) {
+	return r.ApiService.GetVmInstanceOSInstallationDataExecute(r)
+}
+
+/*
+GetVmInstanceOSInstallationData Get VM instance OS installation data
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceId
+ @return VMInstanceAPIGetVmInstanceOSInstallationDataRequest
+*/
+func (a *VMInstanceAPIService) GetVmInstanceOSInstallationData(ctx context.Context, infrastructureId int32, vmInstanceId int32) VMInstanceAPIGetVmInstanceOSInstallationDataRequest {
+	return VMInstanceAPIGetVmInstanceOSInstallationDataRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceId: vmInstanceId,
+	}
+}
+
+// Execute executes the request
+//  @return VmInstanceContextOSInstallationData
+func (a *VMInstanceAPIService) GetVmInstanceOSInstallationDataExecute(r VMInstanceAPIGetVmInstanceOSInstallationDataRequest) (*VmInstanceContextOSInstallationData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VmInstanceContextOSInstallationData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.GetVmInstanceOSInstallationData")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/os-installation-data"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceId, "vmInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.usage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "usage", r.usage, "form", "")
+	}
+	if r.removeEmpty != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removeEmpty", r.removeEmpty, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMInstanceAPIGetVmInstanceVariablesRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService

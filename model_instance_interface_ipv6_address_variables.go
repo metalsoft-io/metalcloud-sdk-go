@@ -23,6 +23,8 @@ var _ MappedNullable = &InstanceInterfaceIpv6AddressVariables{}
 type InstanceInterfaceIpv6AddressVariables struct {
 	Ip string `json:"ip"`
 	Cidr string `json:"cidr"`
+	Gateway *string `json:"gateway,omitempty"`
+	IsDefaultGateway bool `json:"isDefaultGateway"`
 	Netmask string `json:"netmask"`
 	MaskBits float32 `json:"maskBits"`
 	AdditionalProperties map[string]interface{}
@@ -34,10 +36,11 @@ type _InstanceInterfaceIpv6AddressVariables InstanceInterfaceIpv6AddressVariable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceInterfaceIpv6AddressVariables(ip string, cidr string, netmask string, maskBits float32) *InstanceInterfaceIpv6AddressVariables {
+func NewInstanceInterfaceIpv6AddressVariables(ip string, cidr string, isDefaultGateway bool, netmask string, maskBits float32) *InstanceInterfaceIpv6AddressVariables {
 	this := InstanceInterfaceIpv6AddressVariables{}
 	this.Ip = ip
 	this.Cidr = cidr
+	this.IsDefaultGateway = isDefaultGateway
 	this.Netmask = netmask
 	this.MaskBits = maskBits
 	return &this
@@ -97,6 +100,62 @@ func (o *InstanceInterfaceIpv6AddressVariables) GetCidrOk() (*string, bool) {
 // SetCidr sets field value
 func (o *InstanceInterfaceIpv6AddressVariables) SetCidr(v string) {
 	o.Cidr = v
+}
+
+// GetGateway returns the Gateway field value if set, zero value otherwise.
+func (o *InstanceInterfaceIpv6AddressVariables) GetGateway() string {
+	if o == nil || IsNil(o.Gateway) {
+		var ret string
+		return ret
+	}
+	return *o.Gateway
+}
+
+// GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceInterfaceIpv6AddressVariables) GetGatewayOk() (*string, bool) {
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
+	}
+	return o.Gateway, true
+}
+
+// HasGateway returns a boolean if a field has been set.
+func (o *InstanceInterfaceIpv6AddressVariables) HasGateway() bool {
+	if o != nil && !IsNil(o.Gateway) {
+		return true
+	}
+
+	return false
+}
+
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
+func (o *InstanceInterfaceIpv6AddressVariables) SetGateway(v string) {
+	o.Gateway = &v
+}
+
+// GetIsDefaultGateway returns the IsDefaultGateway field value
+func (o *InstanceInterfaceIpv6AddressVariables) GetIsDefaultGateway() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsDefaultGateway
+}
+
+// GetIsDefaultGatewayOk returns a tuple with the IsDefaultGateway field value
+// and a boolean to check if the value has been set.
+func (o *InstanceInterfaceIpv6AddressVariables) GetIsDefaultGatewayOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsDefaultGateway, true
+}
+
+// SetIsDefaultGateway sets field value
+func (o *InstanceInterfaceIpv6AddressVariables) SetIsDefaultGateway(v bool) {
+	o.IsDefaultGateway = v
 }
 
 // GetNetmask returns the Netmask field value
@@ -159,6 +218,10 @@ func (o InstanceInterfaceIpv6AddressVariables) ToMap() (map[string]interface{}, 
 	toSerialize := map[string]interface{}{}
 	toSerialize["ip"] = o.Ip
 	toSerialize["cidr"] = o.Cidr
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	toSerialize["isDefaultGateway"] = o.IsDefaultGateway
 	toSerialize["netmask"] = o.Netmask
 	toSerialize["maskBits"] = o.MaskBits
 
@@ -176,6 +239,7 @@ func (o *InstanceInterfaceIpv6AddressVariables) UnmarshalJSON(data []byte) (err 
 	requiredProperties := []string{
 		"ip",
 		"cidr",
+		"isDefaultGateway",
 		"netmask",
 		"maskBits",
 	}
@@ -209,6 +273,8 @@ func (o *InstanceInterfaceIpv6AddressVariables) UnmarshalJSON(data []byte) (err 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "ip")
 		delete(additionalProperties, "cidr")
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "isDefaultGateway")
 		delete(additionalProperties, "netmask")
 		delete(additionalProperties, "maskBits")
 		o.AdditionalProperties = additionalProperties

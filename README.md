@@ -665,6 +665,7 @@ Class | Method | HTTP request | Description
 *VMInstanceAPI* | [**GetVMInstanceConfigInfo**](docs/VMInstanceAPI.md#getvminstanceconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/config | Get configuration information about the specified VM Instance
 *VMInstanceAPI* | [**GetVMInstanceCredentials**](docs/VMInstanceAPI.md#getvminstancecredentials) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/credentials | Get VM Instance credentials
 *VMInstanceAPI* | [**GetVMInstancePowerStatus**](docs/VMInstanceAPI.md#getvminstancepowerstatus) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/power-status | Retrieves the power status of the VM Instance
+*VMInstanceAPI* | [**GetVmInstanceOSInstallationData**](docs/VMInstanceAPI.md#getvminstanceosinstallationdata) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/os-installation-data | Get VM instance OS installation data
 *VMInstanceAPI* | [**GetVmInstanceVariables**](docs/VMInstanceAPI.md#getvminstancevariables) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/variables | Get VM instance variables
 *VMInstanceAPI* | [**PatchVMInstanceMeta**](docs/VMInstanceAPI.md#patchvminstancemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/meta | Updates the meta of a VM Instance
 *VMInstanceAPI* | [**RebootVMInstance**](docs/VMInstanceAPI.md#rebootvminstance) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/reboot | Reboots the VM Instance
@@ -1481,6 +1482,7 @@ Class | Method | HTTP request | Description
  - [VlanLogicalNetworkProfileIpv6Properties](docs/VlanLogicalNetworkProfileIpv6Properties.md)
  - [VlanLogicalNetworkProfileVlanProperties](docs/VlanLogicalNetworkProfileVlanProperties.md)
  - [VlanLogicalNetworkVlanProperties](docs/VlanLogicalNetworkVlanProperties.md)
+ - [VmInstanceContextOSInstallationData](docs/VmInstanceContextOSInstallationData.md)
  - [VmInstanceContextVariables](docs/VmInstanceContextVariables.md)
  - [VniAllocation](docs/VniAllocation.md)
  - [VniAllocationStrategy](docs/VniAllocationStrategy.md)
