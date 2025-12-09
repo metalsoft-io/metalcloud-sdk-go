@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 **BootstrapExpectedPartnerHostname** | **string** | Expected partner hostname during bootstrap | 
 **LoopbackAddressIpv4** | Pointer to **string** | Loopback IPv4 address | [optional] 
 **LoopbackAddressIpv6** | **string** | Loopback IPv6 address | 
-**Asn** | **float32** | ASN of the network device | 
+**Asn** | **int64** | Autonomous System Number of the network device | 
 **VtepAddressIpv4** | Pointer to **string** | VTEP IPv4 address | [optional] 
 **VtepAddressIpv6** | **string** | VTEP IPv6 address | 
 **MlagSystemMac** | **string** | MLAG system MAC address | 
@@ -59,7 +59,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -791,20 +791,20 @@ SetLoopbackAddressIpv6 sets LoopbackAddressIpv6 field to given value.
 
 ### GetAsn
 
-`func (o *NetworkDevice) GetAsn() float32`
+`func (o *NetworkDevice) GetAsn() int64`
 
 GetAsn returns the Asn field if non-nil, zero value otherwise.
 
 ### GetAsnOk
 
-`func (o *NetworkDevice) GetAsnOk() (*float32, bool)`
+`func (o *NetworkDevice) GetAsnOk() (*int64, bool)`
 
 GetAsnOk returns a tuple with the Asn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAsn
 
-`func (o *NetworkDevice) SetAsn(v float32)`
+`func (o *NetworkDevice) SetAsn(v int64)`
 
 SetAsn sets Asn field to given value.
 

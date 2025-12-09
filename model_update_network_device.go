@@ -65,7 +65,7 @@ type UpdateNetworkDevice struct {
 	// VTEP Address
 	VtepAddress NullableString `json:"vtepAddress,omitempty"`
 	// The Autonomous System Number for BGP routing
-	Asn NullableFloat32 `json:"asn,omitempty"`
+	Asn NullableInt64 `json:"asn,omitempty"`
 	// Additional description or notes about the network device
 	Description NullableString `json:"description,omitempty"`
 	// The country where the network device is located
@@ -895,9 +895,9 @@ func (o *UpdateNetworkDevice) UnsetVtepAddress() {
 }
 
 // GetAsn returns the Asn field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateNetworkDevice) GetAsn() float32 {
+func (o *UpdateNetworkDevice) GetAsn() int64 {
 	if o == nil || IsNil(o.Asn.Get()) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.Asn.Get()
@@ -906,7 +906,7 @@ func (o *UpdateNetworkDevice) GetAsn() float32 {
 // GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateNetworkDevice) GetAsnOk() (*float32, bool) {
+func (o *UpdateNetworkDevice) GetAsnOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -922,8 +922,8 @@ func (o *UpdateNetworkDevice) HasAsn() bool {
 	return false
 }
 
-// SetAsn gets a reference to the given NullableFloat32 and assigns it to the Asn field.
-func (o *UpdateNetworkDevice) SetAsn(v float32) {
+// SetAsn gets a reference to the given NullableInt64 and assigns it to the Asn field.
+func (o *UpdateNetworkDevice) SetAsn(v int64) {
 	o.Asn.Set(&v)
 }
 // SetAsnNil sets the value for Asn to be an explicit nil

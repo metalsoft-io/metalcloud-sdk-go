@@ -29,8 +29,8 @@ type NetworkDeviceConfigurationTemplateRecordSet struct {
 	LocalSwitchRole string `json:"local_switch_role"`
 	// The name of the local switch interface.
 	LocalSwitchInterfaceName string `json:"local_switch_interface_name"`
-	// The ASN of the local switch.
-	LocalSwitchAsn *float32 `json:"local_switch_asn,omitempty"`
+	// The Autonomous System Number of the local switch.
+	LocalSwitchAsn *int64 `json:"local_switch_asn,omitempty"`
 	// The ID of the remote switch.
 	RemoteSwitchId float32 `json:"remote_switch_id"`
 	// The identifier of the remote switch.
@@ -39,8 +39,8 @@ type NetworkDeviceConfigurationTemplateRecordSet struct {
 	RemoteSwitchRole string `json:"remote_switch_role"`
 	// The name of the remote switch interface.
 	RemoteSwitchInterfaceName string `json:"remote_switch_interface_name"`
-	// The ASN of the remote switch.
-	RemoteSwitchAsn *float32 `json:"remote_switch_asn,omitempty"`
+	// The Autonomous System Number of the remote switch.
+	RemoteSwitchAsn *int64 `json:"remote_switch_asn,omitempty"`
 	// BGP numbering
 	BgpNumbering string `json:"bgp_numbering"`
 	// Custom variables for the fabric.
@@ -175,9 +175,9 @@ func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchInterfaceNam
 }
 
 // GetLocalSwitchAsn returns the LocalSwitchAsn field value if set, zero value otherwise.
-func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsn() float32 {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsn() int64 {
 	if o == nil || IsNil(o.LocalSwitchAsn) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LocalSwitchAsn
@@ -185,7 +185,7 @@ func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsn() float3
 
 // GetLocalSwitchAsnOk returns a tuple with the LocalSwitchAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsnOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.LocalSwitchAsn) {
 		return nil, false
 	}
@@ -201,8 +201,8 @@ func (o *NetworkDeviceConfigurationTemplateRecordSet) HasLocalSwitchAsn() bool {
 	return false
 }
 
-// SetLocalSwitchAsn gets a reference to the given float32 and assigns it to the LocalSwitchAsn field.
-func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchAsn(v float32) {
+// SetLocalSwitchAsn gets a reference to the given int64 and assigns it to the LocalSwitchAsn field.
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchAsn(v int64) {
 	o.LocalSwitchAsn = &v
 }
 
@@ -303,9 +303,9 @@ func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceNa
 }
 
 // GetRemoteSwitchAsn returns the RemoteSwitchAsn field value if set, zero value otherwise.
-func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsn() float32 {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsn() int64 {
 	if o == nil || IsNil(o.RemoteSwitchAsn) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.RemoteSwitchAsn
@@ -313,7 +313,7 @@ func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsn() float
 
 // GetRemoteSwitchAsnOk returns a tuple with the RemoteSwitchAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsnOk() (*float32, bool) {
+func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.RemoteSwitchAsn) {
 		return nil, false
 	}
@@ -329,8 +329,8 @@ func (o *NetworkDeviceConfigurationTemplateRecordSet) HasRemoteSwitchAsn() bool 
 	return false
 }
 
-// SetRemoteSwitchAsn gets a reference to the given float32 and assigns it to the RemoteSwitchAsn field.
-func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchAsn(v float32) {
+// SetRemoteSwitchAsn gets a reference to the given int64 and assigns it to the RemoteSwitchAsn field.
+func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchAsn(v int64) {
 	o.RemoteSwitchAsn = &v
 }
 

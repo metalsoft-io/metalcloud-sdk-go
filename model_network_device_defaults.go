@@ -33,8 +33,8 @@ type NetworkDeviceDefaults struct {
 	Position *string `json:"position,omitempty"`
 	// Identifier string (1-63 characters, letters, digits, . _ -)
 	IdentifierString *string `json:"identifierString,omitempty"`
-	// Autonomous System Number (ASN)
-	Asn *int32 `json:"asn,omitempty"`
+	// Autonomous System Number (ASN) of the network device
+	Asn *int64 `json:"asn,omitempty"`
 	// Whether device is part of an MLAG pair
 	IsPartOfMlagPair *bool `json:"isPartOfMlagPair,omitempty"`
 	// MLAG system MAC address
@@ -264,9 +264,9 @@ func (o *NetworkDeviceDefaults) SetIdentifierString(v string) {
 }
 
 // GetAsn returns the Asn field value if set, zero value otherwise.
-func (o *NetworkDeviceDefaults) GetAsn() int32 {
+func (o *NetworkDeviceDefaults) GetAsn() int64 {
 	if o == nil || IsNil(o.Asn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Asn
@@ -274,7 +274,7 @@ func (o *NetworkDeviceDefaults) GetAsn() int32 {
 
 // GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceDefaults) GetAsnOk() (*int32, bool) {
+func (o *NetworkDeviceDefaults) GetAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.Asn) {
 		return nil, false
 	}
@@ -290,8 +290,8 @@ func (o *NetworkDeviceDefaults) HasAsn() bool {
 	return false
 }
 
-// SetAsn gets a reference to the given int32 and assigns it to the Asn field.
-func (o *NetworkDeviceDefaults) SetAsn(v int32) {
+// SetAsn gets a reference to the given int64 and assigns it to the Asn field.
+func (o *NetworkDeviceDefaults) SetAsn(v int64) {
 	o.Asn = &v
 }
 

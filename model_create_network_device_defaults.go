@@ -31,8 +31,8 @@ type CreateNetworkDeviceDefaults struct {
 	Position *string `json:"position,omitempty"`
 	// Identifier string of the network device. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters).
 	IdentifierString *string `json:"identifierString,omitempty"`
-	// ASN of the network device
-	Asn *int32 `json:"asn,omitempty"`
+	// Autonomous System Number for the network device defaults
+	Asn *int64 `json:"asn,omitempty"`
 	// Skip initial configuration
 	SkipInitialConfiguration *bool `json:"skipInitialConfiguration,omitempty"`
 	// Custom variables associated with the network device, stored as key-value pairs.
@@ -230,9 +230,9 @@ func (o *CreateNetworkDeviceDefaults) SetIdentifierString(v string) {
 }
 
 // GetAsn returns the Asn field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetAsn() int32 {
+func (o *CreateNetworkDeviceDefaults) GetAsn() int64 {
 	if o == nil || IsNil(o.Asn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Asn
@@ -240,7 +240,7 @@ func (o *CreateNetworkDeviceDefaults) GetAsn() int32 {
 
 // GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetAsnOk() (*int32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.Asn) {
 		return nil, false
 	}
@@ -256,8 +256,8 @@ func (o *CreateNetworkDeviceDefaults) HasAsn() bool {
 	return false
 }
 
-// SetAsn gets a reference to the given int32 and assigns it to the Asn field.
-func (o *CreateNetworkDeviceDefaults) SetAsn(v int32) {
+// SetAsn gets a reference to the given int64 and assigns it to the Asn field.
+func (o *CreateNetworkDeviceDefaults) SetAsn(v int64) {
 	o.Asn = &v
 }
 

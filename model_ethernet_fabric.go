@@ -33,7 +33,7 @@ type EthernetFabric struct {
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
 	// Enables zero-touch provisioning for automatic device configuration.
 	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
-	// ASN ranges in the format \"start-end\", where each range is an ordered pair with values between 1 and 4294967295.
+	// Autonomous System Number ranges in the format \"start-end\" where each range is an ordered pair with values between 1 and 4294967294.
 	AsnRanges []string `json:"asnRanges,omitempty"`
 	AsnAllocationStrategy *AsnAllocationStrategy `json:"asnAllocationStrategy,omitempty"`
 	BgpNumbering *BgpNumberingType `json:"bgpNumbering,omitempty"`

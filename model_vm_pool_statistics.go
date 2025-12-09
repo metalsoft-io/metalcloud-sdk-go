@@ -33,6 +33,8 @@ type VMPoolStatistics struct {
 	UsedSpaceGB float32 `json:"usedSpaceGB"`
 	// Free disk space in GB
 	FreeSpaceGB float32 `json:"freeSpaceGB"`
+	// GPU information
+	GpuInfo []VMTypeGPUInfo `json:"gpuInfo,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -205,6 +207,38 @@ func (o *VMPoolStatistics) SetFreeSpaceGB(v float32) {
 	o.FreeSpaceGB = v
 }
 
+// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
+func (o *VMPoolStatistics) GetGpuInfo() []VMTypeGPUInfo {
+	if o == nil || IsNil(o.GpuInfo) {
+		var ret []VMTypeGPUInfo
+		return ret
+	}
+	return o.GpuInfo
+}
+
+// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolStatistics) GetGpuInfoOk() ([]VMTypeGPUInfo, bool) {
+	if o == nil || IsNil(o.GpuInfo) {
+		return nil, false
+	}
+	return o.GpuInfo, true
+}
+
+// HasGpuInfo returns a boolean if a field has been set.
+func (o *VMPoolStatistics) HasGpuInfo() bool {
+	if o != nil && !IsNil(o.GpuInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuInfo gets a reference to the given []VMTypeGPUInfo and assigns it to the GpuInfo field.
+func (o *VMPoolStatistics) SetGpuInfo(v []VMTypeGPUInfo) {
+	o.GpuInfo = v
+}
+
 func (o VMPoolStatistics) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -221,6 +255,9 @@ func (o VMPoolStatistics) ToMap() (map[string]interface{}, error) {
 	toSerialize["totalSpaceGB"] = o.TotalSpaceGB
 	toSerialize["usedSpaceGB"] = o.UsedSpaceGB
 	toSerialize["freeSpaceGB"] = o.FreeSpaceGB
+	if !IsNil(o.GpuInfo) {
+		toSerialize["gpuInfo"] = o.GpuInfo
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -275,6 +312,7 @@ func (o *VMPoolStatistics) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "totalSpaceGB")
 		delete(additionalProperties, "usedSpaceGB")
 		delete(additionalProperties, "freeSpaceGB")
+		delete(additionalProperties, "gpuInfo")
 		o.AdditionalProperties = additionalProperties
 	}
 

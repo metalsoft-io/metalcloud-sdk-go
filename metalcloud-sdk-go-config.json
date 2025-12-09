@@ -1,0 +1,9 @@
+{
+    "packageName": "sdk",
+    "packageVersion": "7.1.0",
+    "disallowAdditionalPropertiesIfNotPresent": false,
+    "useOneOfDiscriminatorLookup": true,
+    "structPrefix": true,
+    "enumClassPrefix": true,
+    "withGoMod": false
+}
