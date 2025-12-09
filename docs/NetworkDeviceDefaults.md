@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **ManagementMacAddress** | Pointer to **string** | Management MAC address | [optional] 
 **Position** | Pointer to **string** | Physical position in the rack | [optional] 
 **IdentifierString** | Pointer to **string** | Identifier string (1-63 characters, letters, digits, . _ -) | [optional] 
-**Asn** | Pointer to **int32** | Autonomous System Number (ASN) | [optional] 
+**Asn** | Pointer to **int64** | Autonomous System Number (ASN) of the network device | [optional] 
 **IsPartOfMlagPair** | Pointer to **bool** | Whether device is part of an MLAG pair | [optional] 
 **MlagSystemMac** | Pointer to **string** | MLAG system MAC address | [optional] 
 **MlagDomainId** | Pointer to **int32** | MLAG domain ID | [optional] 
@@ -187,20 +187,20 @@ HasIdentifierString returns a boolean if a field has been set.
 
 ### GetAsn
 
-`func (o *NetworkDeviceDefaults) GetAsn() int32`
+`func (o *NetworkDeviceDefaults) GetAsn() int64`
 
 GetAsn returns the Asn field if non-nil, zero value otherwise.
 
 ### GetAsnOk
 
-`func (o *NetworkDeviceDefaults) GetAsnOk() (*int32, bool)`
+`func (o *NetworkDeviceDefaults) GetAsnOk() (*int64, bool)`
 
 GetAsnOk returns a tuple with the Asn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAsn
 
-`func (o *NetworkDeviceDefaults) SetAsn(v int32)`
+`func (o *NetworkDeviceDefaults) SetAsn(v int64)`
 
 SetAsn sets Asn field to given value.
 

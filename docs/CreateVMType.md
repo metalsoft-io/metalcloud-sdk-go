@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the VM Type. | [optional] 
 **ForUnmanagedVMsOnly** | Pointer to **float32** | Flag to indicate if the VM Pool is for unmanaged VMs only. 1 for true, 0 for false. Default is 0. | [optional] 
+**GpuInfo** | Pointer to [**[]VMTypeGPUInfo**](VMTypeGPUInfo.md) | Information about GPUs available for this VM Type | [optional] 
 
 ## Methods
 
@@ -216,6 +217,31 @@ SetForUnmanagedVMsOnly sets ForUnmanagedVMsOnly field to given value.
 `func (o *CreateVMType) HasForUnmanagedVMsOnly() bool`
 
 HasForUnmanagedVMsOnly returns a boolean if a field has been set.
+
+### GetGpuInfo
+
+`func (o *CreateVMType) GetGpuInfo() []VMTypeGPUInfo`
+
+GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
+
+### GetGpuInfoOk
+
+`func (o *CreateVMType) GetGpuInfoOk() (*[]VMTypeGPUInfo, bool)`
+
+GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpuInfo
+
+`func (o *CreateVMType) SetGpuInfo(v []VMTypeGPUInfo)`
+
+SetGpuInfo sets GpuInfo field to given value.
+
+### HasGpuInfo
+
+`func (o *CreateVMType) HasGpuInfo() bool`
+
+HasGpuInfo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -91,42 +91,6 @@ func (dst *NetworkFabricFabricConfiguration) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'EthernetFabric'
-	if jsonDict["fabricType"] == "EthernetFabric" {
-		// try to unmarshal JSON data into EthernetFabric
-		err = json.Unmarshal(data, &dst.EthernetFabric)
-		if err == nil {
-			return nil // data stored in dst.EthernetFabric, return on the first match
-		} else {
-			dst.EthernetFabric = nil
-			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as EthernetFabric: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'FibreChannelFabric'
-	if jsonDict["fabricType"] == "FibreChannelFabric" {
-		// try to unmarshal JSON data into FibreChannelFabric
-		err = json.Unmarshal(data, &dst.FibreChannelFabric)
-		if err == nil {
-			return nil // data stored in dst.FibreChannelFabric, return on the first match
-		} else {
-			dst.FibreChannelFabric = nil
-			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as FibreChannelFabric: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'InfinibandFabric'
-	if jsonDict["fabricType"] == "InfinibandFabric" {
-		// try to unmarshal JSON data into InfinibandFabric
-		err = json.Unmarshal(data, &dst.InfinibandFabric)
-		if err == nil {
-			return nil // data stored in dst.InfinibandFabric, return on the first match
-		} else {
-			dst.InfinibandFabric = nil
-			return fmt.Errorf("failed to unmarshal NetworkFabricFabricConfiguration as InfinibandFabric: %s", err.Error())
-		}
-	}
-
 	return nil
 }
 

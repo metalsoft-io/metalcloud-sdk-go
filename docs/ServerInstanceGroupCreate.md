@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **RamGbytes** | Pointer to **int32** | The minimum RAM capacity of each instance. | [optional] [default to 1]
 **DiskCount** | Pointer to **int32** | The minimum number of physical disks. | [optional] [default to 0]
 **DiskSizeMbytes** | Pointer to **int32** | The minimum size of a single disk. | [optional] [default to 0]
-**DiskTypes** | Pointer to **[]string** | The types of physical disks. | [optional] [default to []]
+**DiskTypes** | Pointer to **[]string** | The types of physical disks. | [optional] [default to {}]
 **VirtualInterfacesEnabled** | Pointer to **int32** | Enable virtual interfaces | [optional] [default to 0]
 **AdditionalWanIpv4Json** | Pointer to **map[string]interface{}** | Contains info about additional ips to be assigned to the WAN interfaces. | [optional] 
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 

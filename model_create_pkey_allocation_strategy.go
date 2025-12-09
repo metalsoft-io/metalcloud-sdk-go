@@ -71,30 +71,6 @@ func (dst *CreatePkeyAllocationStrategy) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'CreateAutoPkeyAllocationStrategy'
-	if jsonDict["kind"] == "CreateAutoPkeyAllocationStrategy" {
-		// try to unmarshal JSON data into CreateAutoPkeyAllocationStrategy
-		err = json.Unmarshal(data, &dst.CreateAutoPkeyAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.CreateAutoPkeyAllocationStrategy, return on the first match
-		} else {
-			dst.CreateAutoPkeyAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal CreatePkeyAllocationStrategy as CreateAutoPkeyAllocationStrategy: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'CreateManualPkeyAllocationStrategy'
-	if jsonDict["kind"] == "CreateManualPkeyAllocationStrategy" {
-		// try to unmarshal JSON data into CreateManualPkeyAllocationStrategy
-		err = json.Unmarshal(data, &dst.CreateManualPkeyAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.CreateManualPkeyAllocationStrategy, return on the first match
-		} else {
-			dst.CreateManualPkeyAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal CreatePkeyAllocationStrategy as CreateManualPkeyAllocationStrategy: %s", err.Error())
-		}
-	}
-
 	return nil
 }
 

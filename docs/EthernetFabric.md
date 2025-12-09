@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **ServerOnlyOperationEnabled** | Pointer to **bool** | Enables server-only operation mode on the network fabric. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
-**AsnRanges** | Pointer to **[]string** | ASN ranges in the format \&quot;start-end\&quot;, where each range is an ordered pair with values between 1 and 4294967295. | [optional] 
+**AsnRanges** | Pointer to **[]string** | Autonomous System Number ranges in the format \&quot;start-end\&quot; where each range is an ordered pair with values between 1 and 4294967294. | [optional] 
 **AsnAllocationStrategy** | Pointer to [**AsnAllocationStrategy**](AsnAllocationStrategy.md) |  | [optional] 
 **BgpNumbering** | Pointer to [**BgpNumberingType**](BgpNumberingType.md) |  | [optional] 
 **LibraryLabel** | Pointer to **string** | Library label for the Ethernet fabric configuration, used to identify the Network Device Configuration Templates that can be used for deploy. | [optional] 

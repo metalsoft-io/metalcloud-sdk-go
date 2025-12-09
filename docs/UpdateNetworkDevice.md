@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **ManagementMAC** | Pointer to **NullableString** | The MAC address of the management interface | [optional] 
 **LoopbackAddress** | Pointer to **NullableString** | Loopback Address | [optional] 
 **VtepAddress** | Pointer to **NullableString** | VTEP Address | [optional] 
-**Asn** | Pointer to **NullableFloat32** | The Autonomous System Number for BGP routing | [optional] 
+**Asn** | Pointer to **NullableInt64** | The Autonomous System Number for BGP routing | [optional] 
 **Description** | Pointer to **NullableString** | Additional description or notes about the network device | [optional] 
 **Country** | Pointer to **NullableString** | The country where the network device is located | [optional] 
 **City** | Pointer to **NullableString** | The city where the network device is located | [optional] 
@@ -687,20 +687,20 @@ HasVtepAddress returns a boolean if a field has been set.
 UnsetVtepAddress ensures that no value is present for VtepAddress, not even an explicit nil
 ### GetAsn
 
-`func (o *UpdateNetworkDevice) GetAsn() float32`
+`func (o *UpdateNetworkDevice) GetAsn() int64`
 
 GetAsn returns the Asn field if non-nil, zero value otherwise.
 
 ### GetAsnOk
 
-`func (o *UpdateNetworkDevice) GetAsnOk() (*float32, bool)`
+`func (o *UpdateNetworkDevice) GetAsnOk() (*int64, bool)`
 
 GetAsnOk returns a tuple with the Asn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAsn
 
-`func (o *UpdateNetworkDevice) SetAsn(v float32)`
+`func (o *UpdateNetworkDevice) SetAsn(v int64)`
 
 SetAsn sets Asn field to given value.
 

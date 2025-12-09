@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **LocalSwitchIdentifier** | **string** | The identifier of the local switch. | 
 **LocalSwitchRole** | **string** | The role of the local switch. | 
 **LocalSwitchInterfaceName** | **string** | The name of the local switch interface. | 
-**LocalSwitchAsn** | Pointer to **float32** | The ASN of the local switch. | [optional] 
+**LocalSwitchAsn** | Pointer to **int64** | The Autonomous System Number of the local switch. | [optional] 
 **RemoteSwitchId** | **float32** | The ID of the remote switch. | 
 **RemoteSwitchIdentifier** | **string** | The identifier of the remote switch. | 
 **RemoteSwitchRole** | **string** | The role of the remote switch. | 
 **RemoteSwitchInterfaceName** | **string** | The name of the remote switch interface. | 
-**RemoteSwitchAsn** | Pointer to **float32** | The ASN of the remote switch. | [optional] 
+**RemoteSwitchAsn** | Pointer to **int64** | The Autonomous System Number of the remote switch. | [optional] 
 **BgpNumbering** | **string** | BGP numbering | 
 **FabricCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the fabric. | [optional] 
 **LinkCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the link. | [optional] 
@@ -119,20 +119,20 @@ SetLocalSwitchInterfaceName sets LocalSwitchInterfaceName field to given value.
 
 ### GetLocalSwitchAsn
 
-`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsn() float32`
+`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsn() int64`
 
 GetLocalSwitchAsn returns the LocalSwitchAsn field if non-nil, zero value otherwise.
 
 ### GetLocalSwitchAsnOk
 
-`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsnOk() (*float32, bool)`
+`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetLocalSwitchAsnOk() (*int64, bool)`
 
 GetLocalSwitchAsnOk returns a tuple with the LocalSwitchAsn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalSwitchAsn
 
-`func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchAsn(v float32)`
+`func (o *NetworkDeviceConfigurationTemplateRecordSet) SetLocalSwitchAsn(v int64)`
 
 SetLocalSwitchAsn sets LocalSwitchAsn field to given value.
 
@@ -224,20 +224,20 @@ SetRemoteSwitchInterfaceName sets RemoteSwitchInterfaceName field to given value
 
 ### GetRemoteSwitchAsn
 
-`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsn() float32`
+`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsn() int64`
 
 GetRemoteSwitchAsn returns the RemoteSwitchAsn field if non-nil, zero value otherwise.
 
 ### GetRemoteSwitchAsnOk
 
-`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsnOk() (*float32, bool)`
+`func (o *NetworkDeviceConfigurationTemplateRecordSet) GetRemoteSwitchAsnOk() (*int64, bool)`
 
 GetRemoteSwitchAsnOk returns a tuple with the RemoteSwitchAsn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteSwitchAsn
 
-`func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchAsn(v float32)`
+`func (o *NetworkDeviceConfigurationTemplateRecordSet) SetRemoteSwitchAsn(v int64)`
 
 SetRemoteSwitchAsn sets RemoteSwitchAsn field to given value.
 
