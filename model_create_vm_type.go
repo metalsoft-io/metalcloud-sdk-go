@@ -37,8 +37,6 @@ type CreateVMType struct {
 	Tags []string `json:"tags,omitempty"`
 	// Flag to indicate if the VM Pool is for unmanaged VMs only. 1 for true, 0 for false. Default is 0.
 	ForUnmanagedVMsOnly *float32 `json:"forUnmanagedVMsOnly,omitempty"`
-	// Information about GPUs available for this VM Type
-	GpuInfo []VMTypeGPUInfo `json:"gpuInfo,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -296,38 +294,6 @@ func (o *CreateVMType) SetForUnmanagedVMsOnly(v float32) {
 	o.ForUnmanagedVMsOnly = &v
 }
 
-// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
-func (o *CreateVMType) GetGpuInfo() []VMTypeGPUInfo {
-	if o == nil || IsNil(o.GpuInfo) {
-		var ret []VMTypeGPUInfo
-		return ret
-	}
-	return o.GpuInfo
-}
-
-// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMType) GetGpuInfoOk() ([]VMTypeGPUInfo, bool) {
-	if o == nil || IsNil(o.GpuInfo) {
-		return nil, false
-	}
-	return o.GpuInfo, true
-}
-
-// HasGpuInfo returns a boolean if a field has been set.
-func (o *CreateVMType) HasGpuInfo() bool {
-	if o != nil && !IsNil(o.GpuInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetGpuInfo gets a reference to the given []VMTypeGPUInfo and assigns it to the GpuInfo field.
-func (o *CreateVMType) SetGpuInfo(v []VMTypeGPUInfo) {
-	o.GpuInfo = v
-}
-
 func (o CreateVMType) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -355,9 +321,6 @@ func (o CreateVMType) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ForUnmanagedVMsOnly) {
 		toSerialize["forUnmanagedVMsOnly"] = o.ForUnmanagedVMsOnly
-	}
-	if !IsNil(o.GpuInfo) {
-		toSerialize["gpuInfo"] = o.GpuInfo
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -412,7 +375,6 @@ func (o *CreateVMType) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isExperimental")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "forUnmanagedVMsOnly")
-		delete(additionalProperties, "gpuInfo")
 		o.AdditionalProperties = additionalProperties
 	}
 

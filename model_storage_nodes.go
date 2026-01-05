@@ -16,41 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the VMTypeGPUInfo type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &VMTypeGPUInfo{}
+// checks if the StorageNodes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StorageNodes{}
 
-// VMTypeGPUInfo struct for VMTypeGPUInfo
-type VMTypeGPUInfo struct {
-	// Name of the GPU as it appears in the PCI device list
+// StorageNodes struct for StorageNodes
+type StorageNodes struct {
+	// The name of the node.
 	Name string `json:"name"`
-	// Number of GPU units available for this VM Type
-	Count float32 `json:"count"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _VMTypeGPUInfo VMTypeGPUInfo
+type _StorageNodes StorageNodes
 
-// NewVMTypeGPUInfo instantiates a new VMTypeGPUInfo object
+// NewStorageNodes instantiates a new StorageNodes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMTypeGPUInfo(name string, count float32) *VMTypeGPUInfo {
-	this := VMTypeGPUInfo{}
+func NewStorageNodes(name string) *StorageNodes {
+	this := StorageNodes{}
 	this.Name = name
-	this.Count = count
 	return &this
 }
 
-// NewVMTypeGPUInfoWithDefaults instantiates a new VMTypeGPUInfo object
+// NewStorageNodesWithDefaults instantiates a new StorageNodes object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVMTypeGPUInfoWithDefaults() *VMTypeGPUInfo {
-	this := VMTypeGPUInfo{}
+func NewStorageNodesWithDefaults() *StorageNodes {
+	this := StorageNodes{}
 	return &this
 }
 
 // GetName returns the Name field value
-func (o *VMTypeGPUInfo) GetName() string {
+func (o *StorageNodes) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -61,7 +58,7 @@ func (o *VMTypeGPUInfo) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *VMTypeGPUInfo) GetNameOk() (*string, bool) {
+func (o *StorageNodes) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,35 +66,11 @@ func (o *VMTypeGPUInfo) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *VMTypeGPUInfo) SetName(v string) {
+func (o *StorageNodes) SetName(v string) {
 	o.Name = v
 }
 
-// GetCount returns the Count field value
-func (o *VMTypeGPUInfo) GetCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Count
-}
-
-// GetCountOk returns a tuple with the Count field value
-// and a boolean to check if the value has been set.
-func (o *VMTypeGPUInfo) GetCountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Count, true
-}
-
-// SetCount sets field value
-func (o *VMTypeGPUInfo) SetCount(v float32) {
-	o.Count = v
-}
-
-func (o VMTypeGPUInfo) MarshalJSON() ([]byte, error) {
+func (o StorageNodes) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -105,10 +78,9 @@ func (o VMTypeGPUInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o VMTypeGPUInfo) ToMap() (map[string]interface{}, error) {
+func (o StorageNodes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	toSerialize["count"] = o.Count
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,13 +89,12 @@ func (o VMTypeGPUInfo) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VMTypeGPUInfo) UnmarshalJSON(data []byte) (err error) {
+func (o *StorageNodes) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"count",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -140,59 +111,58 @@ func (o *VMTypeGPUInfo) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varVMTypeGPUInfo := _VMTypeGPUInfo{}
+	varStorageNodes := _StorageNodes{}
 
-	err = json.Unmarshal(data, &varVMTypeGPUInfo)
+	err = json.Unmarshal(data, &varStorageNodes)
 
 	if err != nil {
 		return err
 	}
 
-	*o = VMTypeGPUInfo(varVMTypeGPUInfo)
+	*o = StorageNodes(varStorageNodes)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "count")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableVMTypeGPUInfo struct {
-	value *VMTypeGPUInfo
+type NullableStorageNodes struct {
+	value *StorageNodes
 	isSet bool
 }
 
-func (v NullableVMTypeGPUInfo) Get() *VMTypeGPUInfo {
+func (v NullableStorageNodes) Get() *StorageNodes {
 	return v.value
 }
 
-func (v *NullableVMTypeGPUInfo) Set(val *VMTypeGPUInfo) {
+func (v *NullableStorageNodes) Set(val *StorageNodes) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVMTypeGPUInfo) IsSet() bool {
+func (v NullableStorageNodes) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVMTypeGPUInfo) Unset() {
+func (v *NullableStorageNodes) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVMTypeGPUInfo(val *VMTypeGPUInfo) *NullableVMTypeGPUInfo {
-	return &NullableVMTypeGPUInfo{value: val, isSet: true}
+func NewNullableStorageNodes(val *StorageNodes) *NullableStorageNodes {
+	return &NullableStorageNodes{value: val, isSet: true}
 }
 
-func (v NullableVMTypeGPUInfo) MarshalJSON() ([]byte, error) {
+func (v NullableStorageNodes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVMTypeGPUInfo) UnmarshalJSON(src []byte) error {
+func (v *NullableStorageNodes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

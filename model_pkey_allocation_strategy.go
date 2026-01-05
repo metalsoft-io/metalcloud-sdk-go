@@ -47,6 +47,30 @@ func (dst *PkeyAllocationStrategy) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
+	// check if the discriminator value is 'auto'
+	if jsonDict["kind"] == "auto" {
+		// try to unmarshal JSON data into AutoPkeyAllocationStrategy
+		err = json.Unmarshal(data, &dst.AutoPkeyAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.AutoPkeyAllocationStrategy, return on the first match
+		} else {
+			dst.AutoPkeyAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal PkeyAllocationStrategy as AutoPkeyAllocationStrategy: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'manual'
+	if jsonDict["kind"] == "manual" {
+		// try to unmarshal JSON data into ManualPkeyAllocationStrategy
+		err = json.Unmarshal(data, &dst.ManualPkeyAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.ManualPkeyAllocationStrategy, return on the first match
+		} else {
+			dst.ManualPkeyAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal PkeyAllocationStrategy as ManualPkeyAllocationStrategy: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'AutoPkeyAllocationStrategy'
 	if jsonDict["kind"] == "AutoPkeyAllocationStrategy" {
 		// try to unmarshal JSON data into AutoPkeyAllocationStrategy

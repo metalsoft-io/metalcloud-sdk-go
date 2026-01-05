@@ -25,6 +25,8 @@ type StoragePort struct {
 	PortId string `json:"portId"`
 	// Director id to use (for certain storage drivers)
 	DirectorId *string `json:"directorId,omitempty"`
+	// Node id on which the port is located (for certain storage drivers)
+	NodeId *string `json:"nodeId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,6 +106,38 @@ func (o *StoragePort) SetDirectorId(v string) {
 	o.DirectorId = &v
 }
 
+// GetNodeId returns the NodeId field value if set, zero value otherwise.
+func (o *StoragePort) GetNodeId() string {
+	if o == nil || IsNil(o.NodeId) {
+		var ret string
+		return ret
+	}
+	return *o.NodeId
+}
+
+// GetNodeIdOk returns a tuple with the NodeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StoragePort) GetNodeIdOk() (*string, bool) {
+	if o == nil || IsNil(o.NodeId) {
+		return nil, false
+	}
+	return o.NodeId, true
+}
+
+// HasNodeId returns a boolean if a field has been set.
+func (o *StoragePort) HasNodeId() bool {
+	if o != nil && !IsNil(o.NodeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNodeId gets a reference to the given string and assigns it to the NodeId field.
+func (o *StoragePort) SetNodeId(v string) {
+	o.NodeId = &v
+}
+
 func (o StoragePort) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -117,6 +151,9 @@ func (o StoragePort) ToMap() (map[string]interface{}, error) {
 	toSerialize["portId"] = o.PortId
 	if !IsNil(o.DirectorId) {
 		toSerialize["directorId"] = o.DirectorId
+	}
+	if !IsNil(o.NodeId) {
+		toSerialize["nodeId"] = o.NodeId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -163,6 +200,7 @@ func (o *StoragePort) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "portId")
 		delete(additionalProperties, "directorId")
+		delete(additionalProperties, "nodeId")
 		o.AdditionalProperties = additionalProperties
 	}
 

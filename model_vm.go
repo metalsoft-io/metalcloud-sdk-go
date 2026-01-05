@@ -49,8 +49,6 @@ type VM struct {
 	RamGB float32 `json:"ramGB"`
 	// Disk size in GB for the VM
 	DiskSizeGB float32 `json:"diskSizeGB"`
-	// Information about GPUs assigned to this VM
-	GpuInfo []VMGpuInfoDto `json:"gpuInfo,omitempty"`
 	// The id of the VM Type. This is a number.
 	TypeId float32 `json:"typeId"`
 	// The id of the VM Pool. This is a number.
@@ -453,38 +451,6 @@ func (o *VM) SetDiskSizeGB(v float32) {
 	o.DiskSizeGB = v
 }
 
-// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
-func (o *VM) GetGpuInfo() []VMGpuInfoDto {
-	if o == nil || IsNil(o.GpuInfo) {
-		var ret []VMGpuInfoDto
-		return ret
-	}
-	return o.GpuInfo
-}
-
-// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VM) GetGpuInfoOk() ([]VMGpuInfoDto, bool) {
-	if o == nil || IsNil(o.GpuInfo) {
-		return nil, false
-	}
-	return o.GpuInfo, true
-}
-
-// HasGpuInfo returns a boolean if a field has been set.
-func (o *VM) HasGpuInfo() bool {
-	if o != nil && !IsNil(o.GpuInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetGpuInfo gets a reference to the given []VMGpuInfoDto and assigns it to the GpuInfo field.
-func (o *VM) SetGpuInfo(v []VMGpuInfoDto) {
-	o.GpuInfo = v
-}
-
 // GetTypeId returns the TypeId field value
 func (o *VM) GetTypeId() float32 {
 	if o == nil {
@@ -797,9 +763,6 @@ func (o VM) ToMap() (map[string]interface{}, error) {
 	toSerialize["cpuCores"] = o.CpuCores
 	toSerialize["ramGB"] = o.RamGB
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
-	if !IsNil(o.GpuInfo) {
-		toSerialize["gpuInfo"] = o.GpuInfo
-	}
 	toSerialize["typeId"] = o.TypeId
 	toSerialize["poolId"] = o.PoolId
 	toSerialize["administrationState"] = o.AdministrationState
@@ -895,7 +858,6 @@ func (o *VM) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "cpuCores")
 		delete(additionalProperties, "ramGB")
 		delete(additionalProperties, "diskSizeGB")
-		delete(additionalProperties, "gpuInfo")
 		delete(additionalProperties, "typeId")
 		delete(additionalProperties, "poolId")
 		delete(additionalProperties, "administrationState")

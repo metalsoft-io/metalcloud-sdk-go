@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **PortsNvmeFc** | Pointer to [**[]StoragePort**](StoragePort.md) | NVMe FC ports | [optional] 
 **PortsToUse** | Pointer to [**[]StoragePort**](StoragePort.md) | Array of storage ports to use | [optional] 
 **Servers** | Pointer to [**[]StoragePort**](StoragePort.md) | Array of storage servers | [optional] 
+**Nodes** | Pointer to [**[]StorageNodes**](StorageNodes.md) | Array of storage nodes | [optional] 
 **InfoGatherError** | Pointer to **string** | Error message when gathering storage info | [optional] 
 **ConfigureError** | Pointer to **string** | Error message when configuring storage | [optional] 
 
@@ -649,6 +650,31 @@ SetServers sets Servers field to given value.
 `func (o *StorageOptions) HasServers() bool`
 
 HasServers returns a boolean if a field has been set.
+
+### GetNodes
+
+`func (o *StorageOptions) GetNodes() []StorageNodes`
+
+GetNodes returns the Nodes field if non-nil, zero value otherwise.
+
+### GetNodesOk
+
+`func (o *StorageOptions) GetNodesOk() (*[]StorageNodes, bool)`
+
+GetNodesOk returns a tuple with the Nodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNodes
+
+`func (o *StorageOptions) SetNodes(v []StorageNodes)`
+
+SetNodes sets Nodes field to given value.
+
+### HasNodes
+
+`func (o *StorageOptions) HasNodes() bool`
+
+HasNodes returns a boolean if a field has been set.
 
 ### GetInfoGatherError
 

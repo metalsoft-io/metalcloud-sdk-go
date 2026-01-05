@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **DiskSizeGB** | **float32** | Disk size in GB of the VM Instance. | 
 **RamGB** | **float32** | RAM size in GB of the VM Instance. | 
 **CpuCores** | **float32** | Number of CPU cores for the VM Instance. | 
-**GpuInfo** | Pointer to [**[]VMTypeGPUInfo**](VMTypeGPUInfo.md) | Information about GPUs available for this VM Instance | [optional] 
 **OsTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the VM Instance. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the VM Instance last update. | 
@@ -325,31 +324,6 @@ and a boolean to check if the value has been set.
 
 SetCpuCores sets CpuCores field to given value.
 
-
-### GetGpuInfo
-
-`func (o *VMInstanceConfiguration) GetGpuInfo() []VMTypeGPUInfo`
-
-GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
-
-### GetGpuInfoOk
-
-`func (o *VMInstanceConfiguration) GetGpuInfoOk() (*[]VMTypeGPUInfo, bool)`
-
-GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGpuInfo
-
-`func (o *VMInstanceConfiguration) SetGpuInfo(v []VMTypeGPUInfo)`
-
-SetGpuInfo sets GpuInfo field to given value.
-
-### HasGpuInfo
-
-`func (o *VMInstanceConfiguration) HasGpuInfo() bool`
-
-HasGpuInfo returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 

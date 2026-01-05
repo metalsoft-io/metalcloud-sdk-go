@@ -723,6 +723,7 @@ docs/Storage.md
 docs/StorageAPI.md
 docs/StorageCredentials.md
 docs/StorageNetworkDeviceConfiguration.md
+docs/StorageNodes.md
 docs/StorageOptions.md
 docs/StoragePaginatedList.md
 docs/StoragePoolForUsage.md
@@ -828,7 +829,6 @@ docs/UtilizationData.md
 docs/VM.md
 docs/VMAPI.md
 docs/VMDisk.md
-docs/VMGpuInfoDto.md
 docs/VMInstance.md
 docs/VMInstanceAPI.md
 docs/VMInstanceAllocatedVMPoolInfo.md
@@ -863,7 +863,6 @@ docs/VMPoolRecordSet.md
 docs/VMPoolStatistics.md
 docs/VMType.md
 docs/VMTypeAPI.md
-docs/VMTypeGPUInfo.md
 docs/VMTypePaginatedList.md
 docs/Variable.md
 docs/VariablePaginatedList.md
@@ -1517,6 +1516,7 @@ model_special_permissions.go
 model_storage.go
 model_storage_credentials.go
 model_storage_network_device_configuration.go
+model_storage_nodes.go
 model_storage_options.go
 model_storage_paginated_list.go
 model_storage_pool_for_usage.go
@@ -1634,7 +1634,6 @@ model_vlan_logical_network_profile_vlan_properties.go
 model_vlan_logical_network_vlan_properties.go
 model_vm.go
 model_vm_disk.go
-model_vm_gpu_info_dto.go
 model_vm_instance.go
 model_vm_instance_allocated_vm_pool_info.go
 model_vm_instance_configuration.go
@@ -1667,7 +1666,6 @@ model_vm_pool_paginated_list.go
 model_vm_pool_record_set.go
 model_vm_pool_statistics.go
 model_vm_type.go
-model_vm_type_gpu_info.go
 model_vm_type_paginated_list.go
 model_vni_allocation.go
 model_vni_allocation_strategy.go

@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **CpuCores** | **float32** | Number of CPU cores for the VM | 
 **RamGB** | **float32** | RAM in GB for the VM | 
 **DiskSizeGB** | **float32** | Disk size in GB for the VM | 
-**GpuInfo** | Pointer to [**[]VMGpuInfoDto**](VMGpuInfoDto.md) | Information about GPUs assigned to this VM | [optional] 
 **TypeId** | **float32** | The id of the VM Type. This is a number. | 
 **PoolId** | **float32** | The id of the VM Pool. This is a number. | 
 **AdministrationState** | **string** | The administration state of the VM. | 
@@ -329,31 +328,6 @@ and a boolean to check if the value has been set.
 
 SetDiskSizeGB sets DiskSizeGB field to given value.
 
-
-### GetGpuInfo
-
-`func (o *VM) GetGpuInfo() []VMGpuInfoDto`
-
-GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
-
-### GetGpuInfoOk
-
-`func (o *VM) GetGpuInfoOk() (*[]VMGpuInfoDto, bool)`
-
-GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGpuInfo
-
-`func (o *VM) SetGpuInfo(v []VMGpuInfoDto)`
-
-SetGpuInfo sets GpuInfo field to given value.
-
-### HasGpuInfo
-
-`func (o *VM) HasGpuInfo() bool`
-
-HasGpuInfo returns a boolean if a field has been set.
 
 ### GetTypeId
 

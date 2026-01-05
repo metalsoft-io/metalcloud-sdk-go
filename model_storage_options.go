@@ -68,6 +68,8 @@ type StorageOptions struct {
 	PortsToUse []StoragePort `json:"portsToUse,omitempty"`
 	// Array of storage servers
 	Servers []StoragePort `json:"servers,omitempty"`
+	// Array of storage nodes
+	Nodes []StorageNodes `json:"nodes,omitempty"`
 	// Error message when gathering storage info
 	InfoGatherError *string `json:"infoGatherError,omitempty"`
 	// Error message when configuring storage
@@ -862,6 +864,38 @@ func (o *StorageOptions) SetServers(v []StoragePort) {
 	o.Servers = v
 }
 
+// GetNodes returns the Nodes field value if set, zero value otherwise.
+func (o *StorageOptions) GetNodes() []StorageNodes {
+	if o == nil || IsNil(o.Nodes) {
+		var ret []StorageNodes
+		return ret
+	}
+	return o.Nodes
+}
+
+// GetNodesOk returns a tuple with the Nodes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageOptions) GetNodesOk() ([]StorageNodes, bool) {
+	if o == nil || IsNil(o.Nodes) {
+		return nil, false
+	}
+	return o.Nodes, true
+}
+
+// HasNodes returns a boolean if a field has been set.
+func (o *StorageOptions) HasNodes() bool {
+	if o != nil && !IsNil(o.Nodes) {
+		return true
+	}
+
+	return false
+}
+
+// SetNodes gets a reference to the given []StorageNodes and assigns it to the Nodes field.
+func (o *StorageOptions) SetNodes(v []StorageNodes) {
+	o.Nodes = v
+}
+
 // GetInfoGatherError returns the InfoGatherError field value if set, zero value otherwise.
 func (o *StorageOptions) GetInfoGatherError() string {
 	if o == nil || IsNil(o.InfoGatherError) {
@@ -1008,6 +1042,9 @@ func (o StorageOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
+	if !IsNil(o.Nodes) {
+		toSerialize["nodes"] = o.Nodes
+	}
 	if !IsNil(o.InfoGatherError) {
 		toSerialize["infoGatherError"] = o.InfoGatherError
 	}
@@ -1060,6 +1097,7 @@ func (o *StorageOptions) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portsNvmeFc")
 		delete(additionalProperties, "portsToUse")
 		delete(additionalProperties, "servers")
+		delete(additionalProperties, "nodes")
 		delete(additionalProperties, "infoGatherError")
 		delete(additionalProperties, "configureError")
 		o.AdditionalProperties = additionalProperties

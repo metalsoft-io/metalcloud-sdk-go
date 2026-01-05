@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **TotalSpaceGB** | **float32** | Total disk space in GB | 
 **UsedSpaceGB** | **float32** | Used disk space in GB | 
 **FreeSpaceGB** | **float32** | Free disk space in GB | 
-**GpuInfo** | Pointer to [**[]VMTypeGPUInfo**](VMTypeGPUInfo.md) | GPU information | [optional] 
 
 ## Methods
 
@@ -150,31 +149,6 @@ and a boolean to check if the value has been set.
 
 SetFreeSpaceGB sets FreeSpaceGB field to given value.
 
-
-### GetGpuInfo
-
-`func (o *VMPoolStatistics) GetGpuInfo() []VMTypeGPUInfo`
-
-GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
-
-### GetGpuInfoOk
-
-`func (o *VMPoolStatistics) GetGpuInfoOk() (*[]VMTypeGPUInfo, bool)`
-
-GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGpuInfo
-
-`func (o *VMPoolStatistics) SetGpuInfo(v []VMTypeGPUInfo)`
-
-SetGpuInfo sets GpuInfo field to given value.
-
-### HasGpuInfo
-
-`func (o *VMPoolStatistics) HasGpuInfo() bool`
-
-HasGpuInfo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

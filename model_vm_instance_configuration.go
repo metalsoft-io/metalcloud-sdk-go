@@ -47,8 +47,6 @@ type VMInstanceConfiguration struct {
 	RamGB float32 `json:"ramGB"`
 	// Number of CPU cores for the VM Instance.
 	CpuCores float32 `json:"cpuCores"`
-	// Information about GPUs available for this VM Instance
-	GpuInfo []VMTypeGPUInfo `json:"gpuInfo,omitempty"`
 	// Id of the template used by the VM Instance.
 	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
 	// Custom variables for the VM Instance.
@@ -442,38 +440,6 @@ func (o *VMInstanceConfiguration) SetCpuCores(v float32) {
 	o.CpuCores = v
 }
 
-// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
-func (o *VMInstanceConfiguration) GetGpuInfo() []VMTypeGPUInfo {
-	if o == nil || IsNil(o.GpuInfo) {
-		var ret []VMTypeGPUInfo
-		return ret
-	}
-	return o.GpuInfo
-}
-
-// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetGpuInfoOk() ([]VMTypeGPUInfo, bool) {
-	if o == nil || IsNil(o.GpuInfo) {
-		return nil, false
-	}
-	return o.GpuInfo, true
-}
-
-// HasGpuInfo returns a boolean if a field has been set.
-func (o *VMInstanceConfiguration) HasGpuInfo() bool {
-	if o != nil && !IsNil(o.GpuInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetGpuInfo gets a reference to the given []VMTypeGPUInfo and assigns it to the GpuInfo field.
-func (o *VMInstanceConfiguration) SetGpuInfo(v []VMTypeGPUInfo) {
-	o.GpuInfo = v
-}
-
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
 func (o *VMInstanceConfiguration) GetOsTemplateId() float32 {
 	if o == nil || IsNil(o.OsTemplateId) {
@@ -595,9 +561,6 @@ func (o VMInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
 	toSerialize["ramGB"] = o.RamGB
 	toSerialize["cpuCores"] = o.CpuCores
-	if !IsNil(o.GpuInfo) {
-		toSerialize["gpuInfo"] = o.GpuInfo
-	}
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
@@ -669,7 +632,6 @@ func (o *VMInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "diskSizeGB")
 		delete(additionalProperties, "ramGB")
 		delete(additionalProperties, "cpuCores")
-		delete(additionalProperties, "gpuInfo")
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "updatedTimestamp")

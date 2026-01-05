@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | Label of the VM Pool type | [optional] 
 **CpuCores** | **float32** | Number of CPU cores for the VM Pool type | 
 **RamGB** | **float32** | RAM in GB for the VM Pool type | 
-**GpuInfo** | Pointer to [**[]VMTypeGPUInfo**](VMTypeGPUInfo.md) | Information about GPUs available for this VM Type | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the VM Type. | [optional] 
 **ForUnmanagedVMsOnly** | Pointer to **float32** | Flag to indicate if the VM Pool is for unmanaged VMs only. 1 for true, 0 for false. Default is 0. | [optional] 
@@ -164,31 +163,6 @@ and a boolean to check if the value has been set.
 
 SetRamGB sets RamGB field to given value.
 
-
-### GetGpuInfo
-
-`func (o *VMType) GetGpuInfo() []VMTypeGPUInfo`
-
-GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
-
-### GetGpuInfoOk
-
-`func (o *VMType) GetGpuInfoOk() (*[]VMTypeGPUInfo, bool)`
-
-GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGpuInfo
-
-`func (o *VMType) SetGpuInfo(v []VMTypeGPUInfo)`
-
-SetGpuInfo sets GpuInfo field to given value.
-
-### HasGpuInfo
-
-`func (o *VMType) HasGpuInfo() bool`
-
-HasGpuInfo returns a boolean if a field has been set.
 
 ### GetIsExperimental
 

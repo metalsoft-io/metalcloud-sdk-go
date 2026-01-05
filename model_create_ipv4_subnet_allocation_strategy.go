@@ -71,6 +71,30 @@ func (dst *CreateIpv4SubnetAllocationStrategy) UnmarshalJSON(data []byte) error 
 		}
 	}
 
+	// check if the discriminator value is 'CreateAutoIpv4SubnetAllocationStrategy'
+	if jsonDict["kind"] == "CreateAutoIpv4SubnetAllocationStrategy" {
+		// try to unmarshal JSON data into CreateAutoIpv4SubnetAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateAutoIpv4SubnetAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateAutoIpv4SubnetAllocationStrategy, return on the first match
+		} else {
+			dst.CreateAutoIpv4SubnetAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateIpv4SubnetAllocationStrategy as CreateAutoIpv4SubnetAllocationStrategy: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CreateManualIpv4SubnetAllocationStrategy'
+	if jsonDict["kind"] == "CreateManualIpv4SubnetAllocationStrategy" {
+		// try to unmarshal JSON data into CreateManualIpv4SubnetAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateManualIpv4SubnetAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateManualIpv4SubnetAllocationStrategy, return on the first match
+		} else {
+			dst.CreateManualIpv4SubnetAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateIpv4SubnetAllocationStrategy as CreateManualIpv4SubnetAllocationStrategy: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 

@@ -71,6 +71,30 @@ func (dst *CreateVlanAllocationStrategy) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'CreateAutoVlanAllocationStrategy'
+	if jsonDict["kind"] == "CreateAutoVlanAllocationStrategy" {
+		// try to unmarshal JSON data into CreateAutoVlanAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateAutoVlanAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateAutoVlanAllocationStrategy, return on the first match
+		} else {
+			dst.CreateAutoVlanAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateVlanAllocationStrategy as CreateAutoVlanAllocationStrategy: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CreateManualVlanAllocationStrategy'
+	if jsonDict["kind"] == "CreateManualVlanAllocationStrategy" {
+		// try to unmarshal JSON data into CreateManualVlanAllocationStrategy
+		err = json.Unmarshal(data, &dst.CreateManualVlanAllocationStrategy)
+		if err == nil {
+			return nil // data stored in dst.CreateManualVlanAllocationStrategy, return on the first match
+		} else {
+			dst.CreateManualVlanAllocationStrategy = nil
+			return fmt.Errorf("failed to unmarshal CreateVlanAllocationStrategy as CreateManualVlanAllocationStrategy: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 
