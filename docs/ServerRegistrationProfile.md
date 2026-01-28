@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **Id** | **float32** | Unique identifier for the server registration profile | 
 **Name** | **string** | Name of the server registration profile | 
 **Settings** | [**ServerRegistrationProfileSettings**](ServerRegistrationProfileSettings.md) | Server registration profile settings | 
+**IsDefault** | **bool** | Whether this is the default server registration profile | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewServerRegistrationProfile
 
-`func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, name string, settings ServerRegistrationProfileSettings, ) *ServerRegistrationProfile`
+`func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, name string, settings ServerRegistrationProfileSettings, isDefault bool, ) *ServerRegistrationProfile`
 
 NewServerRegistrationProfile instantiates a new ServerRegistrationProfile object
 This constructor will assign default values to properties that have it defined,
@@ -149,6 +150,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerRegistrationProfile) SetSettings(v ServerRegistrationProfileSettings)`
 
 SetSettings sets Settings field to given value.
+
+
+### GetIsDefault
+
+`func (o *ServerRegistrationProfile) GetIsDefault() bool`
+
+GetIsDefault returns the IsDefault field if non-nil, zero value otherwise.
+
+### GetIsDefaultOk
+
+`func (o *ServerRegistrationProfile) GetIsDefaultOk() (*bool, bool)`
+
+GetIsDefaultOk returns a tuple with the IsDefault field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsDefault
+
+`func (o *ServerRegistrationProfile) SetIsDefault(v bool)`
+
+SetIsDefault sets IsDefault field to given value.
 
 
 ### GetLinks

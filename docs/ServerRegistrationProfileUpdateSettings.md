@@ -6,9 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RegisterCredentials** | Pointer to **string** | Server registration password settings. If using \&quot;user\&quot; then the password remains unchanged at the end of the registration process. If using \&quot;random\&quot; then a random password will be generated and set on the server during registration. | [optional] 
 **MinimumNumberOfConnectedInterfaces** | Pointer to **float32** | Minimum number of switch-connected interfaces required | [optional] 
+**AlwaysDiscoverInterfacesWithBDK** | Pointer to **bool** | Whether to always attempt to discover interfaces with BDK | [optional] 
 **EnableTpm** | Pointer to **bool** | Whether to enable TPM | [optional] 
 **EnableIntelTxt** | Pointer to **bool** | Whether to enable Intel TXT | [optional] 
 **EnableSyslogMonitoring** | Pointer to **bool** | Whether to enable syslog monitoring | [optional] 
+**DisableTpmAfterRegistration** | Pointer to **bool** | Whether to disable TPM after registration | [optional] 
 **DefaultVirtualMediaProtocol** | Pointer to **string** | Default protocol for virtual media | [optional] 
 **ResetRaidControllers** | Pointer to **bool** | Whether to reset RAID controllers to factory defaults | [optional] 
 **CleanupDrives** | Pointer to **bool** | Whether to cleanup drives | [optional] 
@@ -89,6 +91,31 @@ SetMinimumNumberOfConnectedInterfaces sets MinimumNumberOfConnectedInterfaces fi
 
 HasMinimumNumberOfConnectedInterfaces returns a boolean if a field has been set.
 
+### GetAlwaysDiscoverInterfacesWithBDK
+
+`func (o *ServerRegistrationProfileUpdateSettings) GetAlwaysDiscoverInterfacesWithBDK() bool`
+
+GetAlwaysDiscoverInterfacesWithBDK returns the AlwaysDiscoverInterfacesWithBDK field if non-nil, zero value otherwise.
+
+### GetAlwaysDiscoverInterfacesWithBDKOk
+
+`func (o *ServerRegistrationProfileUpdateSettings) GetAlwaysDiscoverInterfacesWithBDKOk() (*bool, bool)`
+
+GetAlwaysDiscoverInterfacesWithBDKOk returns a tuple with the AlwaysDiscoverInterfacesWithBDK field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlwaysDiscoverInterfacesWithBDK
+
+`func (o *ServerRegistrationProfileUpdateSettings) SetAlwaysDiscoverInterfacesWithBDK(v bool)`
+
+SetAlwaysDiscoverInterfacesWithBDK sets AlwaysDiscoverInterfacesWithBDK field to given value.
+
+### HasAlwaysDiscoverInterfacesWithBDK
+
+`func (o *ServerRegistrationProfileUpdateSettings) HasAlwaysDiscoverInterfacesWithBDK() bool`
+
+HasAlwaysDiscoverInterfacesWithBDK returns a boolean if a field has been set.
+
 ### GetEnableTpm
 
 `func (o *ServerRegistrationProfileUpdateSettings) GetEnableTpm() bool`
@@ -163,6 +190,31 @@ SetEnableSyslogMonitoring sets EnableSyslogMonitoring field to given value.
 `func (o *ServerRegistrationProfileUpdateSettings) HasEnableSyslogMonitoring() bool`
 
 HasEnableSyslogMonitoring returns a boolean if a field has been set.
+
+### GetDisableTpmAfterRegistration
+
+`func (o *ServerRegistrationProfileUpdateSettings) GetDisableTpmAfterRegistration() bool`
+
+GetDisableTpmAfterRegistration returns the DisableTpmAfterRegistration field if non-nil, zero value otherwise.
+
+### GetDisableTpmAfterRegistrationOk
+
+`func (o *ServerRegistrationProfileUpdateSettings) GetDisableTpmAfterRegistrationOk() (*bool, bool)`
+
+GetDisableTpmAfterRegistrationOk returns a tuple with the DisableTpmAfterRegistration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableTpmAfterRegistration
+
+`func (o *ServerRegistrationProfileUpdateSettings) SetDisableTpmAfterRegistration(v bool)`
+
+SetDisableTpmAfterRegistration sets DisableTpmAfterRegistration field to given value.
+
+### HasDisableTpmAfterRegistration
+
+`func (o *ServerRegistrationProfileUpdateSettings) HasDisableTpmAfterRegistration() bool`
+
+HasDisableTpmAfterRegistration returns a boolean if a field has been set.
 
 ### GetDefaultVirtualMediaProtocol
 

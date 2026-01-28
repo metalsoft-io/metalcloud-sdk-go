@@ -24,12 +24,16 @@ type ServerRegistrationProfileUpdateSettings struct {
 	RegisterCredentials *string `json:"registerCredentials,omitempty"`
 	// Minimum number of switch-connected interfaces required
 	MinimumNumberOfConnectedInterfaces *float32 `json:"minimumNumberOfConnectedInterfaces,omitempty"`
+	// Whether to always attempt to discover interfaces with BDK
+	AlwaysDiscoverInterfacesWithBDK *bool `json:"alwaysDiscoverInterfacesWithBDK,omitempty"`
 	// Whether to enable TPM
 	EnableTpm *bool `json:"enableTpm,omitempty"`
 	// Whether to enable Intel TXT
 	EnableIntelTxt *bool `json:"enableIntelTxt,omitempty"`
 	// Whether to enable syslog monitoring
 	EnableSyslogMonitoring *bool `json:"enableSyslogMonitoring,omitempty"`
+	// Whether to disable TPM after registration
+	DisableTpmAfterRegistration *bool `json:"disableTpmAfterRegistration,omitempty"`
 	// Default protocol for virtual media
 	DefaultVirtualMediaProtocol *string `json:"defaultVirtualMediaProtocol,omitempty"`
 	// Whether to reset RAID controllers to factory defaults
@@ -136,6 +140,38 @@ func (o *ServerRegistrationProfileUpdateSettings) SetMinimumNumberOfConnectedInt
 	o.MinimumNumberOfConnectedInterfaces = &v
 }
 
+// GetAlwaysDiscoverInterfacesWithBDK returns the AlwaysDiscoverInterfacesWithBDK field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileUpdateSettings) GetAlwaysDiscoverInterfacesWithBDK() bool {
+	if o == nil || IsNil(o.AlwaysDiscoverInterfacesWithBDK) {
+		var ret bool
+		return ret
+	}
+	return *o.AlwaysDiscoverInterfacesWithBDK
+}
+
+// GetAlwaysDiscoverInterfacesWithBDKOk returns a tuple with the AlwaysDiscoverInterfacesWithBDK field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfileUpdateSettings) GetAlwaysDiscoverInterfacesWithBDKOk() (*bool, bool) {
+	if o == nil || IsNil(o.AlwaysDiscoverInterfacesWithBDK) {
+		return nil, false
+	}
+	return o.AlwaysDiscoverInterfacesWithBDK, true
+}
+
+// HasAlwaysDiscoverInterfacesWithBDK returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileUpdateSettings) HasAlwaysDiscoverInterfacesWithBDK() bool {
+	if o != nil && !IsNil(o.AlwaysDiscoverInterfacesWithBDK) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlwaysDiscoverInterfacesWithBDK gets a reference to the given bool and assigns it to the AlwaysDiscoverInterfacesWithBDK field.
+func (o *ServerRegistrationProfileUpdateSettings) SetAlwaysDiscoverInterfacesWithBDK(v bool) {
+	o.AlwaysDiscoverInterfacesWithBDK = &v
+}
+
 // GetEnableTpm returns the EnableTpm field value if set, zero value otherwise.
 func (o *ServerRegistrationProfileUpdateSettings) GetEnableTpm() bool {
 	if o == nil || IsNil(o.EnableTpm) {
@@ -230,6 +266,38 @@ func (o *ServerRegistrationProfileUpdateSettings) HasEnableSyslogMonitoring() bo
 // SetEnableSyslogMonitoring gets a reference to the given bool and assigns it to the EnableSyslogMonitoring field.
 func (o *ServerRegistrationProfileUpdateSettings) SetEnableSyslogMonitoring(v bool) {
 	o.EnableSyslogMonitoring = &v
+}
+
+// GetDisableTpmAfterRegistration returns the DisableTpmAfterRegistration field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileUpdateSettings) GetDisableTpmAfterRegistration() bool {
+	if o == nil || IsNil(o.DisableTpmAfterRegistration) {
+		var ret bool
+		return ret
+	}
+	return *o.DisableTpmAfterRegistration
+}
+
+// GetDisableTpmAfterRegistrationOk returns a tuple with the DisableTpmAfterRegistration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfileUpdateSettings) GetDisableTpmAfterRegistrationOk() (*bool, bool) {
+	if o == nil || IsNil(o.DisableTpmAfterRegistration) {
+		return nil, false
+	}
+	return o.DisableTpmAfterRegistration, true
+}
+
+// HasDisableTpmAfterRegistration returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileUpdateSettings) HasDisableTpmAfterRegistration() bool {
+	if o != nil && !IsNil(o.DisableTpmAfterRegistration) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableTpmAfterRegistration gets a reference to the given bool and assigns it to the DisableTpmAfterRegistration field.
+func (o *ServerRegistrationProfileUpdateSettings) SetDisableTpmAfterRegistration(v bool) {
+	o.DisableTpmAfterRegistration = &v
 }
 
 // GetDefaultVirtualMediaProtocol returns the DefaultVirtualMediaProtocol field value if set, zero value otherwise.
@@ -568,6 +636,9 @@ func (o ServerRegistrationProfileUpdateSettings) ToMap() (map[string]interface{}
 	if !IsNil(o.MinimumNumberOfConnectedInterfaces) {
 		toSerialize["minimumNumberOfConnectedInterfaces"] = o.MinimumNumberOfConnectedInterfaces
 	}
+	if !IsNil(o.AlwaysDiscoverInterfacesWithBDK) {
+		toSerialize["alwaysDiscoverInterfacesWithBDK"] = o.AlwaysDiscoverInterfacesWithBDK
+	}
 	if !IsNil(o.EnableTpm) {
 		toSerialize["enableTpm"] = o.EnableTpm
 	}
@@ -576,6 +647,9 @@ func (o ServerRegistrationProfileUpdateSettings) ToMap() (map[string]interface{}
 	}
 	if !IsNil(o.EnableSyslogMonitoring) {
 		toSerialize["enableSyslogMonitoring"] = o.EnableSyslogMonitoring
+	}
+	if !IsNil(o.DisableTpmAfterRegistration) {
+		toSerialize["disableTpmAfterRegistration"] = o.DisableTpmAfterRegistration
 	}
 	if !IsNil(o.DefaultVirtualMediaProtocol) {
 		toSerialize["defaultVirtualMediaProtocol"] = o.DefaultVirtualMediaProtocol
@@ -631,9 +705,11 @@ func (o *ServerRegistrationProfileUpdateSettings) UnmarshalJSON(data []byte) (er
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "registerCredentials")
 		delete(additionalProperties, "minimumNumberOfConnectedInterfaces")
+		delete(additionalProperties, "alwaysDiscoverInterfacesWithBDK")
 		delete(additionalProperties, "enableTpm")
 		delete(additionalProperties, "enableIntelTxt")
 		delete(additionalProperties, "enableSyslogMonitoring")
+		delete(additionalProperties, "disableTpmAfterRegistration")
 		delete(additionalProperties, "defaultVirtualMediaProtocol")
 		delete(additionalProperties, "resetRaidControllers")
 		delete(additionalProperties, "cleanupDrives")

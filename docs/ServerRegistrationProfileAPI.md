@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeleteServerRegistrationProfile**](ServerRegistrationProfileAPI.md#DeleteServerRegistrationProfile) | **Delete** /api/v2/servers/registration-profiles/{serverRegistrationProfileId} | Deletes a Server Registration Profile
 [**GetServerRegistrationProfileInfo**](ServerRegistrationProfileAPI.md#GetServerRegistrationProfileInfo) | **Get** /api/v2/servers/registration-profiles/{serverRegistrationProfileId} | Get Server Registration Profile information
 [**GetServerRegistrationProfileInfoForServer**](ServerRegistrationProfileAPI.md#GetServerRegistrationProfileInfoForServer) | **Get** /api/v2/servers/registration-profiles/search/for-server/{serverId} | Get Server Registration Profile information for specific server
+[**GetServerRegistrationProfileSystemDefaults**](ServerRegistrationProfileAPI.md#GetServerRegistrationProfileSystemDefaults) | **Get** /api/v2/servers/registration-profiles/system-defaults | Get server registration profile system defaults
 [**GetServerRegistrationProfiles**](ServerRegistrationProfileAPI.md#GetServerRegistrationProfiles) | **Get** /api/v2/servers/registration-profiles | Get a list of Server Registration Profiles
 [**SearchServerRegistrationProfileInfo**](ServerRegistrationProfileAPI.md#SearchServerRegistrationProfileInfo) | **Get** /api/v2/servers/registration-profiles/search | Search for a Server Registration Profile by data to match
 [**UpdateServerRegistrationProfile**](ServerRegistrationProfileAPI.md#UpdateServerRegistrationProfile) | **Patch** /api/v2/servers/registration-profiles/{serverRegistrationProfileId} | Updates a Server Registration Profile
@@ -275,6 +276,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServerRegistrationProfile**](ServerRegistrationProfile.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerRegistrationProfileSystemDefaults
+
+> ServerRegistrationProfileSettings GetServerRegistrationProfileSystemDefaults(ctx).Execute()
+
+Get server registration profile system defaults
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerRegistrationProfileAPI.GetServerRegistrationProfileSystemDefaults(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerRegistrationProfileAPI.GetServerRegistrationProfileSystemDefaults``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerRegistrationProfileSystemDefaults`: ServerRegistrationProfileSettings
+	fmt.Fprintf(os.Stdout, "Response from `ServerRegistrationProfileAPI.GetServerRegistrationProfileSystemDefaults`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerRegistrationProfileSystemDefaultsRequest struct via the builder pattern
+
+
+### Return type
+
+[**ServerRegistrationProfileSettings**](ServerRegistrationProfileSettings.md)
 
 ### Authorization
 

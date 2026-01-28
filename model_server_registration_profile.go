@@ -34,6 +34,8 @@ type ServerRegistrationProfile struct {
 	Name string `json:"name"`
 	// Server registration profile settings
 	Settings ServerRegistrationProfileSettings `json:"settings"`
+	// Whether this is the default server registration profile
+	IsDefault bool `json:"isDefault"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -45,7 +47,7 @@ type _ServerRegistrationProfile ServerRegistrationProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, name string, settings ServerRegistrationProfileSettings) *ServerRegistrationProfile {
+func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, name string, settings ServerRegistrationProfileSettings, isDefault bool) *ServerRegistrationProfile {
 	this := ServerRegistrationProfile{}
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -53,6 +55,7 @@ func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp t
 	this.Id = id
 	this.Name = name
 	this.Settings = settings
+	this.IsDefault = isDefault
 	return &this
 }
 
@@ -208,6 +211,30 @@ func (o *ServerRegistrationProfile) SetSettings(v ServerRegistrationProfileSetti
 	o.Settings = v
 }
 
+// GetIsDefault returns the IsDefault field value
+func (o *ServerRegistrationProfile) GetIsDefault() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsDefault
+}
+
+// GetIsDefaultOk returns a tuple with the IsDefault field value
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfile) GetIsDefaultOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsDefault, true
+}
+
+// SetIsDefault sets field value
+func (o *ServerRegistrationProfile) SetIsDefault(v bool) {
+	o.IsDefault = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ServerRegistrationProfile) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -256,6 +283,7 @@ func (o ServerRegistrationProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["settings"] = o.Settings
+	toSerialize["isDefault"] = o.IsDefault
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -278,6 +306,7 @@ func (o *ServerRegistrationProfile) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"settings",
+		"isDefault",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -313,6 +342,7 @@ func (o *ServerRegistrationProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "settings")
+		delete(additionalProperties, "isDefault")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
