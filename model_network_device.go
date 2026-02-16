@@ -83,8 +83,6 @@ type NetworkDevice struct {
 	SubnetOobIndex float32 `json:"subnetOobIndex"`
 	// Whether the device requires OS installation
 	RequiresOsInstall bool `json:"requiresOsInstall"`
-	// Whether to skip initial configuration during bootstrap
-	BootstrapSkipInitialConfiguration float32 `json:"bootstrapSkipInitialConfiguration"`
 	// Expected partner hostname during bootstrap
 	BootstrapExpectedPartnerHostname string `json:"bootstrapExpectedPartnerHostname"`
 	// Loopback IPv4 address
@@ -97,6 +95,8 @@ type NetworkDevice struct {
 	VtepAddressIpv4 *string `json:"vtepAddressIpv4,omitempty"`
 	// VTEP IPv6 address
 	VtepAddressIpv6 string `json:"vtepAddressIpv6"`
+	// External VTEP IPv4 address
+	ExternalVtepAddressIpv4 *string `json:"externalVtepAddressIpv4,omitempty"`
 	// MLAG system MAC address
 	MlagSystemMac string `json:"mlagSystemMac"`
 	// MLAG domain ID
@@ -119,6 +119,8 @@ type NetworkDevice struct {
 	SwitchControllerId *float32 `json:"switchControllerId,omitempty"`
 	// External ID of the network device.
 	ExternalId *string `json:"externalId,omitempty"`
+	// Custom variables for the network device
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -130,7 +132,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -163,7 +165,6 @@ func NewNetworkDevice(id string, revision float32, status string, siteId float32
 	this.SubnetOobId = subnetOobId
 	this.SubnetOobIndex = subnetOobIndex
 	this.RequiresOsInstall = requiresOsInstall
-	this.BootstrapSkipInitialConfiguration = bootstrapSkipInitialConfiguration
 	this.BootstrapExpectedPartnerHostname = bootstrapExpectedPartnerHostname
 	this.LoopbackAddressIpv6 = loopbackAddressIpv6
 	this.Asn = asn
@@ -932,30 +933,6 @@ func (o *NetworkDevice) SetRequiresOsInstall(v bool) {
 	o.RequiresOsInstall = v
 }
 
-// GetBootstrapSkipInitialConfiguration returns the BootstrapSkipInitialConfiguration field value
-func (o *NetworkDevice) GetBootstrapSkipInitialConfiguration() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.BootstrapSkipInitialConfiguration
-}
-
-// GetBootstrapSkipInitialConfigurationOk returns a tuple with the BootstrapSkipInitialConfiguration field value
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetBootstrapSkipInitialConfigurationOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BootstrapSkipInitialConfiguration, true
-}
-
-// SetBootstrapSkipInitialConfiguration sets field value
-func (o *NetworkDevice) SetBootstrapSkipInitialConfiguration(v float32) {
-	o.BootstrapSkipInitialConfiguration = v
-}
-
 // GetBootstrapExpectedPartnerHostname returns the BootstrapExpectedPartnerHostname field value
 func (o *NetworkDevice) GetBootstrapExpectedPartnerHostname() string {
 	if o == nil {
@@ -1114,6 +1091,38 @@ func (o *NetworkDevice) GetVtepAddressIpv6Ok() (*string, bool) {
 // SetVtepAddressIpv6 sets field value
 func (o *NetworkDevice) SetVtepAddressIpv6(v string) {
 	o.VtepAddressIpv6 = v
+}
+
+// GetExternalVtepAddressIpv4 returns the ExternalVtepAddressIpv4 field value if set, zero value otherwise.
+func (o *NetworkDevice) GetExternalVtepAddressIpv4() string {
+	if o == nil || IsNil(o.ExternalVtepAddressIpv4) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalVtepAddressIpv4
+}
+
+// GetExternalVtepAddressIpv4Ok returns a tuple with the ExternalVtepAddressIpv4 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetExternalVtepAddressIpv4Ok() (*string, bool) {
+	if o == nil || IsNil(o.ExternalVtepAddressIpv4) {
+		return nil, false
+	}
+	return o.ExternalVtepAddressIpv4, true
+}
+
+// HasExternalVtepAddressIpv4 returns a boolean if a field has been set.
+func (o *NetworkDevice) HasExternalVtepAddressIpv4() bool {
+	if o != nil && !IsNil(o.ExternalVtepAddressIpv4) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalVtepAddressIpv4 gets a reference to the given string and assigns it to the ExternalVtepAddressIpv4 field.
+func (o *NetworkDevice) SetExternalVtepAddressIpv4(v string) {
+	o.ExternalVtepAddressIpv4 = &v
 }
 
 // GetMlagSystemMac returns the MlagSystemMac field value
@@ -1412,6 +1421,38 @@ func (o *NetworkDevice) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *NetworkDevice) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *NetworkDevice) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *NetworkDevice) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -1487,7 +1528,6 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["subnetOobId"] = o.SubnetOobId
 	toSerialize["subnetOobIndex"] = o.SubnetOobIndex
 	toSerialize["requiresOsInstall"] = o.RequiresOsInstall
-	toSerialize["bootstrapSkipInitialConfiguration"] = o.BootstrapSkipInitialConfiguration
 	toSerialize["bootstrapExpectedPartnerHostname"] = o.BootstrapExpectedPartnerHostname
 	if !IsNil(o.LoopbackAddressIpv4) {
 		toSerialize["loopbackAddressIpv4"] = o.LoopbackAddressIpv4
@@ -1498,6 +1538,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 		toSerialize["vtepAddressIpv4"] = o.VtepAddressIpv4
 	}
 	toSerialize["vtepAddressIpv6"] = o.VtepAddressIpv6
+	if !IsNil(o.ExternalVtepAddressIpv4) {
+		toSerialize["externalVtepAddressIpv4"] = o.ExternalVtepAddressIpv4
+	}
 	toSerialize["mlagSystemMac"] = o.MlagSystemMac
 	toSerialize["mlagDomainId"] = o.MlagDomainId
 	toSerialize["quarantineVlan"] = o.QuarantineVlan
@@ -1516,6 +1559,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ExternalId) {
 		toSerialize["externalId"] = o.ExternalId
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -1564,7 +1610,6 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"subnetOobId",
 		"subnetOobIndex",
 		"requiresOsInstall",
-		"bootstrapSkipInitialConfiguration",
 		"bootstrapExpectedPartnerHostname",
 		"loopbackAddressIpv6",
 		"asn",
@@ -1636,13 +1681,13 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subnetOobId")
 		delete(additionalProperties, "subnetOobIndex")
 		delete(additionalProperties, "requiresOsInstall")
-		delete(additionalProperties, "bootstrapSkipInitialConfiguration")
 		delete(additionalProperties, "bootstrapExpectedPartnerHostname")
 		delete(additionalProperties, "loopbackAddressIpv4")
 		delete(additionalProperties, "loopbackAddressIpv6")
 		delete(additionalProperties, "asn")
 		delete(additionalProperties, "vtepAddressIpv4")
 		delete(additionalProperties, "vtepAddressIpv6")
+		delete(additionalProperties, "externalVtepAddressIpv4")
 		delete(additionalProperties, "mlagSystemMac")
 		delete(additionalProperties, "mlagDomainId")
 		delete(additionalProperties, "quarantineVlan")
@@ -1654,6 +1699,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "switchControllerId")
 		delete(additionalProperties, "externalId")
+		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

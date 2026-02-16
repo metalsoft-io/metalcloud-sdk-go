@@ -23,46 +23,31 @@ var _ MappedNullable = &EthernetFabric{}
 type EthernetFabric struct {
 	// The type of network fabric
 	FabricType FabricType `json:"fabricType"`
-	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
-	DefaultNetworkProfileId *int32 `json:"defaultNetworkProfileId,omitempty"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
 	// Enables server-only operation mode on the network fabric.
 	ServerOnlyOperationEnabled *bool `json:"serverOnlyOperationEnabled,omitempty"`
 	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
-	// Enables zero-touch provisioning for automatic device configuration.
-	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
-	// Autonomous System Number ranges in the format \"start-end\" where each range is an ordered pair with values between 1 and 4294967294.
-	AsnRanges []string `json:"asnRanges,omitempty"`
-	AsnAllocationStrategy *AsnAllocationStrategy `json:"asnAllocationStrategy,omitempty"`
 	BgpNumbering *BgpNumberingType `json:"bgpNumbering,omitempty"`
 	// Library label for the Ethernet fabric configuration, used to identify the Network Device Configuration Templates that can be used for deploy.
 	LibraryLabel *string `json:"libraryLabel,omitempty"`
-	// Default VLAN ID. Must be a number between 1 and 4096.
-	DefaultVlan *int32 `json:"defaultVlan,omitempty"`
-	// Extra internal IPs allocated per subnet; valid range is between 1 and 1000.
-	ExtraInternalIPsPerSubnet *int32 `json:"extraInternalIPsPerSubnet,omitempty"`
 	// Link Aggregation (LAG) ranges in the format \"start-end\"; each range must be within the bounds of 1 to 4096.
 	LagRanges []string `json:"lagRanges,omitempty"`
-	// Indicates if leaf switches have MLAG pairs.
-	LeafSwitchesHaveMlagPairs *bool `json:"leafSwitchesHaveMlagPairs,omitempty"`
 	// MLAG ID ranges. Each range must be provided in \"start-end\" format with values between 1 and 4096.
 	MlagRanges []string `json:"mlagRanges,omitempty"`
-	// Number of spines adjacent to leaf switches. Must be a positive number.
-	NumberOfSpinesNextToLeafSwitches *int32 `json:"numberOfSpinesNextToLeafSwitches,omitempty"`
 	// VLAN ranges that should be prevented from automatic cleanup. Format must be \"start-end\".
 	PreventVlanCleanup []string `json:"preventVlanCleanup,omitempty"`
-	// Flag indicating whether cleanup from uplink interfaces should be prevented.
-	PreventCleanupFromUplinks *bool `json:"preventCleanupFromUplinks,omitempty"`
 	// Reserved VLAN ranges that are excluded from general allocation. Must follow the \"start-end\" format.
 	ReservedVlans []string `json:"reservedVlans,omitempty"`
 	// Array of VLAN range strings in \"start-end\" format to be used in configuration.
 	VlanRanges []string `json:"vlanRanges,omitempty"`
-	// The VNI prefix for the EVPN VXLAN fabric.
-	VniPrefix *int32 `json:"vniPrefix,omitempty"`
 	// VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \"start-end\" format.
 	VrfVlanRanges []string `json:"vrfVlanRanges,omitempty"`
+	// The VNI prefix for the EVPN VXLAN fabric.
+	VniPrefix *int32 `json:"vniPrefix,omitempty"`
+	// The L3 VNI prefix for the EVPN VXLAN fabric.
+	L3VniPrefix *int32 `json:"l3VniPrefix,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -108,38 +93,6 @@ func (o *EthernetFabric) GetFabricTypeOk() (*FabricType, bool) {
 // SetFabricType sets field value
 func (o *EthernetFabric) SetFabricType(v FabricType) {
 	o.FabricType = v
-}
-
-// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value if set, zero value otherwise.
-func (o *EthernetFabric) GetDefaultNetworkProfileId() int32 {
-	if o == nil || IsNil(o.DefaultNetworkProfileId) {
-		var ret int32
-		return ret
-	}
-	return *o.DefaultNetworkProfileId
-}
-
-// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetDefaultNetworkProfileIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.DefaultNetworkProfileId) {
-		return nil, false
-	}
-	return o.DefaultNetworkProfileId, true
-}
-
-// HasDefaultNetworkProfileId returns a boolean if a field has been set.
-func (o *EthernetFabric) HasDefaultNetworkProfileId() bool {
-	if o != nil && !IsNil(o.DefaultNetworkProfileId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultNetworkProfileId gets a reference to the given int32 and assigns it to the DefaultNetworkProfileId field.
-func (o *EthernetFabric) SetDefaultNetworkProfileId(v int32) {
-	o.DefaultNetworkProfileId = &v
 }
 
 // GetGnmiMonitoringEnabled returns the GnmiMonitoringEnabled field value if set, zero value otherwise.
@@ -238,102 +191,6 @@ func (o *EthernetFabric) SetSyslogMonitoringEnabled(v bool) {
 	o.SyslogMonitoringEnabled = &v
 }
 
-// GetZeroTouchEnabled returns the ZeroTouchEnabled field value if set, zero value otherwise.
-func (o *EthernetFabric) GetZeroTouchEnabled() bool {
-	if o == nil || IsNil(o.ZeroTouchEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.ZeroTouchEnabled
-}
-
-// GetZeroTouchEnabledOk returns a tuple with the ZeroTouchEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetZeroTouchEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.ZeroTouchEnabled) {
-		return nil, false
-	}
-	return o.ZeroTouchEnabled, true
-}
-
-// HasZeroTouchEnabled returns a boolean if a field has been set.
-func (o *EthernetFabric) HasZeroTouchEnabled() bool {
-	if o != nil && !IsNil(o.ZeroTouchEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetZeroTouchEnabled gets a reference to the given bool and assigns it to the ZeroTouchEnabled field.
-func (o *EthernetFabric) SetZeroTouchEnabled(v bool) {
-	o.ZeroTouchEnabled = &v
-}
-
-// GetAsnRanges returns the AsnRanges field value if set, zero value otherwise.
-func (o *EthernetFabric) GetAsnRanges() []string {
-	if o == nil || IsNil(o.AsnRanges) {
-		var ret []string
-		return ret
-	}
-	return o.AsnRanges
-}
-
-// GetAsnRangesOk returns a tuple with the AsnRanges field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetAsnRangesOk() ([]string, bool) {
-	if o == nil || IsNil(o.AsnRanges) {
-		return nil, false
-	}
-	return o.AsnRanges, true
-}
-
-// HasAsnRanges returns a boolean if a field has been set.
-func (o *EthernetFabric) HasAsnRanges() bool {
-	if o != nil && !IsNil(o.AsnRanges) {
-		return true
-	}
-
-	return false
-}
-
-// SetAsnRanges gets a reference to the given []string and assigns it to the AsnRanges field.
-func (o *EthernetFabric) SetAsnRanges(v []string) {
-	o.AsnRanges = v
-}
-
-// GetAsnAllocationStrategy returns the AsnAllocationStrategy field value if set, zero value otherwise.
-func (o *EthernetFabric) GetAsnAllocationStrategy() AsnAllocationStrategy {
-	if o == nil || IsNil(o.AsnAllocationStrategy) {
-		var ret AsnAllocationStrategy
-		return ret
-	}
-	return *o.AsnAllocationStrategy
-}
-
-// GetAsnAllocationStrategyOk returns a tuple with the AsnAllocationStrategy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetAsnAllocationStrategyOk() (*AsnAllocationStrategy, bool) {
-	if o == nil || IsNil(o.AsnAllocationStrategy) {
-		return nil, false
-	}
-	return o.AsnAllocationStrategy, true
-}
-
-// HasAsnAllocationStrategy returns a boolean if a field has been set.
-func (o *EthernetFabric) HasAsnAllocationStrategy() bool {
-	if o != nil && !IsNil(o.AsnAllocationStrategy) {
-		return true
-	}
-
-	return false
-}
-
-// SetAsnAllocationStrategy gets a reference to the given AsnAllocationStrategy and assigns it to the AsnAllocationStrategy field.
-func (o *EthernetFabric) SetAsnAllocationStrategy(v AsnAllocationStrategy) {
-	o.AsnAllocationStrategy = &v
-}
-
 // GetBgpNumbering returns the BgpNumbering field value if set, zero value otherwise.
 func (o *EthernetFabric) GetBgpNumbering() BgpNumberingType {
 	if o == nil || IsNil(o.BgpNumbering) {
@@ -398,70 +255,6 @@ func (o *EthernetFabric) SetLibraryLabel(v string) {
 	o.LibraryLabel = &v
 }
 
-// GetDefaultVlan returns the DefaultVlan field value if set, zero value otherwise.
-func (o *EthernetFabric) GetDefaultVlan() int32 {
-	if o == nil || IsNil(o.DefaultVlan) {
-		var ret int32
-		return ret
-	}
-	return *o.DefaultVlan
-}
-
-// GetDefaultVlanOk returns a tuple with the DefaultVlan field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetDefaultVlanOk() (*int32, bool) {
-	if o == nil || IsNil(o.DefaultVlan) {
-		return nil, false
-	}
-	return o.DefaultVlan, true
-}
-
-// HasDefaultVlan returns a boolean if a field has been set.
-func (o *EthernetFabric) HasDefaultVlan() bool {
-	if o != nil && !IsNil(o.DefaultVlan) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultVlan gets a reference to the given int32 and assigns it to the DefaultVlan field.
-func (o *EthernetFabric) SetDefaultVlan(v int32) {
-	o.DefaultVlan = &v
-}
-
-// GetExtraInternalIPsPerSubnet returns the ExtraInternalIPsPerSubnet field value if set, zero value otherwise.
-func (o *EthernetFabric) GetExtraInternalIPsPerSubnet() int32 {
-	if o == nil || IsNil(o.ExtraInternalIPsPerSubnet) {
-		var ret int32
-		return ret
-	}
-	return *o.ExtraInternalIPsPerSubnet
-}
-
-// GetExtraInternalIPsPerSubnetOk returns a tuple with the ExtraInternalIPsPerSubnet field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetExtraInternalIPsPerSubnetOk() (*int32, bool) {
-	if o == nil || IsNil(o.ExtraInternalIPsPerSubnet) {
-		return nil, false
-	}
-	return o.ExtraInternalIPsPerSubnet, true
-}
-
-// HasExtraInternalIPsPerSubnet returns a boolean if a field has been set.
-func (o *EthernetFabric) HasExtraInternalIPsPerSubnet() bool {
-	if o != nil && !IsNil(o.ExtraInternalIPsPerSubnet) {
-		return true
-	}
-
-	return false
-}
-
-// SetExtraInternalIPsPerSubnet gets a reference to the given int32 and assigns it to the ExtraInternalIPsPerSubnet field.
-func (o *EthernetFabric) SetExtraInternalIPsPerSubnet(v int32) {
-	o.ExtraInternalIPsPerSubnet = &v
-}
-
 // GetLagRanges returns the LagRanges field value if set, zero value otherwise.
 func (o *EthernetFabric) GetLagRanges() []string {
 	if o == nil || IsNil(o.LagRanges) {
@@ -492,38 +285,6 @@ func (o *EthernetFabric) HasLagRanges() bool {
 // SetLagRanges gets a reference to the given []string and assigns it to the LagRanges field.
 func (o *EthernetFabric) SetLagRanges(v []string) {
 	o.LagRanges = v
-}
-
-// GetLeafSwitchesHaveMlagPairs returns the LeafSwitchesHaveMlagPairs field value if set, zero value otherwise.
-func (o *EthernetFabric) GetLeafSwitchesHaveMlagPairs() bool {
-	if o == nil || IsNil(o.LeafSwitchesHaveMlagPairs) {
-		var ret bool
-		return ret
-	}
-	return *o.LeafSwitchesHaveMlagPairs
-}
-
-// GetLeafSwitchesHaveMlagPairsOk returns a tuple with the LeafSwitchesHaveMlagPairs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetLeafSwitchesHaveMlagPairsOk() (*bool, bool) {
-	if o == nil || IsNil(o.LeafSwitchesHaveMlagPairs) {
-		return nil, false
-	}
-	return o.LeafSwitchesHaveMlagPairs, true
-}
-
-// HasLeafSwitchesHaveMlagPairs returns a boolean if a field has been set.
-func (o *EthernetFabric) HasLeafSwitchesHaveMlagPairs() bool {
-	if o != nil && !IsNil(o.LeafSwitchesHaveMlagPairs) {
-		return true
-	}
-
-	return false
-}
-
-// SetLeafSwitchesHaveMlagPairs gets a reference to the given bool and assigns it to the LeafSwitchesHaveMlagPairs field.
-func (o *EthernetFabric) SetLeafSwitchesHaveMlagPairs(v bool) {
-	o.LeafSwitchesHaveMlagPairs = &v
 }
 
 // GetMlagRanges returns the MlagRanges field value if set, zero value otherwise.
@@ -558,38 +319,6 @@ func (o *EthernetFabric) SetMlagRanges(v []string) {
 	o.MlagRanges = v
 }
 
-// GetNumberOfSpinesNextToLeafSwitches returns the NumberOfSpinesNextToLeafSwitches field value if set, zero value otherwise.
-func (o *EthernetFabric) GetNumberOfSpinesNextToLeafSwitches() int32 {
-	if o == nil || IsNil(o.NumberOfSpinesNextToLeafSwitches) {
-		var ret int32
-		return ret
-	}
-	return *o.NumberOfSpinesNextToLeafSwitches
-}
-
-// GetNumberOfSpinesNextToLeafSwitchesOk returns a tuple with the NumberOfSpinesNextToLeafSwitches field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetNumberOfSpinesNextToLeafSwitchesOk() (*int32, bool) {
-	if o == nil || IsNil(o.NumberOfSpinesNextToLeafSwitches) {
-		return nil, false
-	}
-	return o.NumberOfSpinesNextToLeafSwitches, true
-}
-
-// HasNumberOfSpinesNextToLeafSwitches returns a boolean if a field has been set.
-func (o *EthernetFabric) HasNumberOfSpinesNextToLeafSwitches() bool {
-	if o != nil && !IsNil(o.NumberOfSpinesNextToLeafSwitches) {
-		return true
-	}
-
-	return false
-}
-
-// SetNumberOfSpinesNextToLeafSwitches gets a reference to the given int32 and assigns it to the NumberOfSpinesNextToLeafSwitches field.
-func (o *EthernetFabric) SetNumberOfSpinesNextToLeafSwitches(v int32) {
-	o.NumberOfSpinesNextToLeafSwitches = &v
-}
-
 // GetPreventVlanCleanup returns the PreventVlanCleanup field value if set, zero value otherwise.
 func (o *EthernetFabric) GetPreventVlanCleanup() []string {
 	if o == nil || IsNil(o.PreventVlanCleanup) {
@@ -620,38 +349,6 @@ func (o *EthernetFabric) HasPreventVlanCleanup() bool {
 // SetPreventVlanCleanup gets a reference to the given []string and assigns it to the PreventVlanCleanup field.
 func (o *EthernetFabric) SetPreventVlanCleanup(v []string) {
 	o.PreventVlanCleanup = v
-}
-
-// GetPreventCleanupFromUplinks returns the PreventCleanupFromUplinks field value if set, zero value otherwise.
-func (o *EthernetFabric) GetPreventCleanupFromUplinks() bool {
-	if o == nil || IsNil(o.PreventCleanupFromUplinks) {
-		var ret bool
-		return ret
-	}
-	return *o.PreventCleanupFromUplinks
-}
-
-// GetPreventCleanupFromUplinksOk returns a tuple with the PreventCleanupFromUplinks field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetPreventCleanupFromUplinksOk() (*bool, bool) {
-	if o == nil || IsNil(o.PreventCleanupFromUplinks) {
-		return nil, false
-	}
-	return o.PreventCleanupFromUplinks, true
-}
-
-// HasPreventCleanupFromUplinks returns a boolean if a field has been set.
-func (o *EthernetFabric) HasPreventCleanupFromUplinks() bool {
-	if o != nil && !IsNil(o.PreventCleanupFromUplinks) {
-		return true
-	}
-
-	return false
-}
-
-// SetPreventCleanupFromUplinks gets a reference to the given bool and assigns it to the PreventCleanupFromUplinks field.
-func (o *EthernetFabric) SetPreventCleanupFromUplinks(v bool) {
-	o.PreventCleanupFromUplinks = &v
 }
 
 // GetReservedVlans returns the ReservedVlans field value if set, zero value otherwise.
@@ -718,38 +415,6 @@ func (o *EthernetFabric) SetVlanRanges(v []string) {
 	o.VlanRanges = v
 }
 
-// GetVniPrefix returns the VniPrefix field value if set, zero value otherwise.
-func (o *EthernetFabric) GetVniPrefix() int32 {
-	if o == nil || IsNil(o.VniPrefix) {
-		var ret int32
-		return ret
-	}
-	return *o.VniPrefix
-}
-
-// GetVniPrefixOk returns a tuple with the VniPrefix field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetVniPrefixOk() (*int32, bool) {
-	if o == nil || IsNil(o.VniPrefix) {
-		return nil, false
-	}
-	return o.VniPrefix, true
-}
-
-// HasVniPrefix returns a boolean if a field has been set.
-func (o *EthernetFabric) HasVniPrefix() bool {
-	if o != nil && !IsNil(o.VniPrefix) {
-		return true
-	}
-
-	return false
-}
-
-// SetVniPrefix gets a reference to the given int32 and assigns it to the VniPrefix field.
-func (o *EthernetFabric) SetVniPrefix(v int32) {
-	o.VniPrefix = &v
-}
-
 // GetVrfVlanRanges returns the VrfVlanRanges field value if set, zero value otherwise.
 func (o *EthernetFabric) GetVrfVlanRanges() []string {
 	if o == nil || IsNil(o.VrfVlanRanges) {
@@ -782,6 +447,70 @@ func (o *EthernetFabric) SetVrfVlanRanges(v []string) {
 	o.VrfVlanRanges = v
 }
 
+// GetVniPrefix returns the VniPrefix field value if set, zero value otherwise.
+func (o *EthernetFabric) GetVniPrefix() int32 {
+	if o == nil || IsNil(o.VniPrefix) {
+		var ret int32
+		return ret
+	}
+	return *o.VniPrefix
+}
+
+// GetVniPrefixOk returns a tuple with the VniPrefix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetVniPrefixOk() (*int32, bool) {
+	if o == nil || IsNil(o.VniPrefix) {
+		return nil, false
+	}
+	return o.VniPrefix, true
+}
+
+// HasVniPrefix returns a boolean if a field has been set.
+func (o *EthernetFabric) HasVniPrefix() bool {
+	if o != nil && !IsNil(o.VniPrefix) {
+		return true
+	}
+
+	return false
+}
+
+// SetVniPrefix gets a reference to the given int32 and assigns it to the VniPrefix field.
+func (o *EthernetFabric) SetVniPrefix(v int32) {
+	o.VniPrefix = &v
+}
+
+// GetL3VniPrefix returns the L3VniPrefix field value if set, zero value otherwise.
+func (o *EthernetFabric) GetL3VniPrefix() int32 {
+	if o == nil || IsNil(o.L3VniPrefix) {
+		var ret int32
+		return ret
+	}
+	return *o.L3VniPrefix
+}
+
+// GetL3VniPrefixOk returns a tuple with the L3VniPrefix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetL3VniPrefixOk() (*int32, bool) {
+	if o == nil || IsNil(o.L3VniPrefix) {
+		return nil, false
+	}
+	return o.L3VniPrefix, true
+}
+
+// HasL3VniPrefix returns a boolean if a field has been set.
+func (o *EthernetFabric) HasL3VniPrefix() bool {
+	if o != nil && !IsNil(o.L3VniPrefix) {
+		return true
+	}
+
+	return false
+}
+
+// SetL3VniPrefix gets a reference to the given int32 and assigns it to the L3VniPrefix field.
+func (o *EthernetFabric) SetL3VniPrefix(v int32) {
+	o.L3VniPrefix = &v
+}
+
 func (o EthernetFabric) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -793,9 +522,6 @@ func (o EthernetFabric) MarshalJSON() ([]byte, error) {
 func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fabricType"] = o.FabricType
-	if !IsNil(o.DefaultNetworkProfileId) {
-		toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
-	}
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
 	}
@@ -805,44 +531,20 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SyslogMonitoringEnabled) {
 		toSerialize["syslogMonitoringEnabled"] = o.SyslogMonitoringEnabled
 	}
-	if !IsNil(o.ZeroTouchEnabled) {
-		toSerialize["zeroTouchEnabled"] = o.ZeroTouchEnabled
-	}
-	if !IsNil(o.AsnRanges) {
-		toSerialize["asnRanges"] = o.AsnRanges
-	}
-	if !IsNil(o.AsnAllocationStrategy) {
-		toSerialize["asnAllocationStrategy"] = o.AsnAllocationStrategy
-	}
 	if !IsNil(o.BgpNumbering) {
 		toSerialize["bgpNumbering"] = o.BgpNumbering
 	}
 	if !IsNil(o.LibraryLabel) {
 		toSerialize["libraryLabel"] = o.LibraryLabel
 	}
-	if !IsNil(o.DefaultVlan) {
-		toSerialize["defaultVlan"] = o.DefaultVlan
-	}
-	if !IsNil(o.ExtraInternalIPsPerSubnet) {
-		toSerialize["extraInternalIPsPerSubnet"] = o.ExtraInternalIPsPerSubnet
-	}
 	if !IsNil(o.LagRanges) {
 		toSerialize["lagRanges"] = o.LagRanges
-	}
-	if !IsNil(o.LeafSwitchesHaveMlagPairs) {
-		toSerialize["leafSwitchesHaveMlagPairs"] = o.LeafSwitchesHaveMlagPairs
 	}
 	if !IsNil(o.MlagRanges) {
 		toSerialize["mlagRanges"] = o.MlagRanges
 	}
-	if !IsNil(o.NumberOfSpinesNextToLeafSwitches) {
-		toSerialize["numberOfSpinesNextToLeafSwitches"] = o.NumberOfSpinesNextToLeafSwitches
-	}
 	if !IsNil(o.PreventVlanCleanup) {
 		toSerialize["preventVlanCleanup"] = o.PreventVlanCleanup
-	}
-	if !IsNil(o.PreventCleanupFromUplinks) {
-		toSerialize["preventCleanupFromUplinks"] = o.PreventCleanupFromUplinks
 	}
 	if !IsNil(o.ReservedVlans) {
 		toSerialize["reservedVlans"] = o.ReservedVlans
@@ -850,11 +552,14 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VlanRanges) {
 		toSerialize["vlanRanges"] = o.VlanRanges
 	}
+	if !IsNil(o.VrfVlanRanges) {
+		toSerialize["vrfVlanRanges"] = o.VrfVlanRanges
+	}
 	if !IsNil(o.VniPrefix) {
 		toSerialize["vniPrefix"] = o.VniPrefix
 	}
-	if !IsNil(o.VrfVlanRanges) {
-		toSerialize["vrfVlanRanges"] = o.VrfVlanRanges
+	if !IsNil(o.L3VniPrefix) {
+		toSerialize["l3VniPrefix"] = o.L3VniPrefix
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -900,27 +605,19 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "fabricType")
-		delete(additionalProperties, "defaultNetworkProfileId")
 		delete(additionalProperties, "gnmiMonitoringEnabled")
 		delete(additionalProperties, "serverOnlyOperationEnabled")
 		delete(additionalProperties, "syslogMonitoringEnabled")
-		delete(additionalProperties, "zeroTouchEnabled")
-		delete(additionalProperties, "asnRanges")
-		delete(additionalProperties, "asnAllocationStrategy")
 		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "libraryLabel")
-		delete(additionalProperties, "defaultVlan")
-		delete(additionalProperties, "extraInternalIPsPerSubnet")
 		delete(additionalProperties, "lagRanges")
-		delete(additionalProperties, "leafSwitchesHaveMlagPairs")
 		delete(additionalProperties, "mlagRanges")
-		delete(additionalProperties, "numberOfSpinesNextToLeafSwitches")
 		delete(additionalProperties, "preventVlanCleanup")
-		delete(additionalProperties, "preventCleanupFromUplinks")
 		delete(additionalProperties, "reservedVlans")
 		delete(additionalProperties, "vlanRanges")
-		delete(additionalProperties, "vniPrefix")
 		delete(additionalProperties, "vrfVlanRanges")
+		delete(additionalProperties, "vniPrefix")
+		delete(additionalProperties, "l3VniPrefix")
 		o.AdditionalProperties = additionalProperties
 	}
 

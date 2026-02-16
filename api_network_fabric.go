@@ -450,6 +450,119 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricExecute(r NetworkFabricAPIC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkFabricAPICreateNetworkFabricBgpSessionRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	createNetworkFabricBGPSession *CreateNetworkFabricBGPSession
+}
+
+// The network fabric BGP session object
+func (r NetworkFabricAPICreateNetworkFabricBgpSessionRequest) CreateNetworkFabricBGPSession(createNetworkFabricBGPSession CreateNetworkFabricBGPSession) NetworkFabricAPICreateNetworkFabricBgpSessionRequest {
+	r.createNetworkFabricBGPSession = &createNetworkFabricBGPSession
+	return r
+}
+
+func (r NetworkFabricAPICreateNetworkFabricBgpSessionRequest) Execute() (*NetworkFabricBGPSession, *http.Response, error) {
+	return r.ApiService.CreateNetworkFabricBgpSessionExecute(r)
+}
+
+/*
+CreateNetworkFabricBgpSession Create a new network fabric BGP session
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @return NetworkFabricAPICreateNetworkFabricBgpSessionRequest
+*/
+func (a *NetworkFabricAPIService) CreateNetworkFabricBgpSession(ctx context.Context, networkFabricId int32) NetworkFabricAPICreateNetworkFabricBgpSessionRequest {
+	return NetworkFabricAPICreateNetworkFabricBgpSessionRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricBGPSession
+func (a *NetworkFabricAPIService) CreateNetworkFabricBgpSessionExecute(r NetworkFabricAPICreateNetworkFabricBgpSessionRequest) (*NetworkFabricBGPSession, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricBGPSession
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.CreateNetworkFabricBgpSession")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/bgp-sessions"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createNetworkFabricBGPSession == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFabricBGPSession is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createNetworkFabricBGPSession
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkFabricAPICreateNetworkFabricLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
@@ -526,6 +639,119 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricLinkExecute(r NetworkFabric
 	}
 	// body params
 	localVarPostBody = r.createNetworkFabricLink
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPICreateNetworkFabricLinkAggregationRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	createNetworkFabricLinkAggregation *CreateNetworkFabricLinkAggregation
+}
+
+// The network fabric link aggregation object
+func (r NetworkFabricAPICreateNetworkFabricLinkAggregationRequest) CreateNetworkFabricLinkAggregation(createNetworkFabricLinkAggregation CreateNetworkFabricLinkAggregation) NetworkFabricAPICreateNetworkFabricLinkAggregationRequest {
+	r.createNetworkFabricLinkAggregation = &createNetworkFabricLinkAggregation
+	return r
+}
+
+func (r NetworkFabricAPICreateNetworkFabricLinkAggregationRequest) Execute() (*NetworkFabricLinkAggregation, *http.Response, error) {
+	return r.ApiService.CreateNetworkFabricLinkAggregationExecute(r)
+}
+
+/*
+CreateNetworkFabricLinkAggregation Create a new network fabric link aggregation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @return NetworkFabricAPICreateNetworkFabricLinkAggregationRequest
+*/
+func (a *NetworkFabricAPIService) CreateNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32) NetworkFabricAPICreateNetworkFabricLinkAggregationRequest {
+	return NetworkFabricAPICreateNetworkFabricLinkAggregationRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricLinkAggregation
+func (a *NetworkFabricAPIService) CreateNetworkFabricLinkAggregationExecute(r NetworkFabricAPICreateNetworkFabricLinkAggregationRequest) (*NetworkFabricLinkAggregation, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricLinkAggregation
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.CreateNetworkFabricLinkAggregation")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/link-aggregations"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createNetworkFabricLinkAggregation == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFabricLinkAggregation is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createNetworkFabricLinkAggregation
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -653,6 +879,100 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricExecute(r NetworkFabricAPID
 	return localVarHTTPResponse, nil
 }
 
+type NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	bgpSessionId int32
+}
+
+func (r NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteNetworkFabricBgpSessionExecute(r)
+}
+
+/*
+DeleteNetworkFabricBgpSession Remove a network fabric BGP session
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric to remove the network device from
+ @param bgpSessionId The ID of the network fabric BGP session
+ @return NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest
+*/
+func (a *NetworkFabricAPIService) DeleteNetworkFabricBgpSession(ctx context.Context, networkFabricId int32, bgpSessionId int32) NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest {
+	return NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		bgpSessionId: bgpSessionId,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkFabricAPIService) DeleteNetworkFabricBgpSessionExecute(r NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.DeleteNetworkFabricBgpSession")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/bgp-sessions/{bgpSessionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bgpSessionId"+"}", url.PathEscape(parameterValueToString(r.bgpSessionId, "bgpSessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type NetworkFabricAPIDeleteNetworkFabricLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
@@ -697,6 +1017,100 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricLinkExecute(r NetworkFabric
 	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/links/{networkFabricLinkId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricLinkId"+"}", url.PathEscape(parameterValueToString(r.networkFabricLinkId, "networkFabricLinkId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	linkAggregationId int32
+}
+
+func (r NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteNetworkFabricLinkAggregationExecute(r)
+}
+
+/*
+DeleteNetworkFabricLinkAggregation Remove a network fabric link aggregation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric to remove the network device from
+ @param linkAggregationId The ID of the network fabric link aggregation
+ @return NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest
+*/
+func (a *NetworkFabricAPIService) DeleteNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32, linkAggregationId int32) NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest {
+	return NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		linkAggregationId: linkAggregationId,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkFabricAPIService) DeleteNetworkFabricLinkAggregationExecute(r NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.DeleteNetworkFabricLinkAggregation")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/link-aggregations/{linkAggregationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"linkAggregationId"+"}", url.PathEscape(parameterValueToString(r.linkAggregationId, "linkAggregationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1209,6 +1623,625 @@ func (a *NetworkFabricAPIService) GetFabricNetworkDevicesExecute(r NetworkFabric
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterLabel *[]string
+	filterName *[]string
+	filterDescription *[]string
+	filterStatus *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) Page(page float32) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) Limit(limit float32) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) FilterId(filterId []string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$btw:John Doe&amp;filter.label&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) FilterLabel(filterLabel []string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) FilterName(filterName []string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by description query param.  **Format:** filter.description&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.description&#x3D;$btw:John Doe&amp;filter.description&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) FilterDescription(filterDescription []string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.filterDescription = &filterDescription
+	return r
+}
+
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) FilterStatus(filterStatus []string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.filterStatus = &filterStatus
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - createdTimestamp  - updatedTimestamp 
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) SortBy(sortBy []string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) Search(search string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description 
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) SearchBy(searchBy []string) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) Execute() (*NetworkFabricInterconnectPaginatedList, *http.Response, error) {
+	return r.ApiService.GetFabricsNetworkFabricInterconnectsExecute(r)
+}
+
+/*
+GetFabricsNetworkFabricInterconnects Get a paginated list of network fabric interconnects that this network fabric is associated with
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the network fabric
+ @return NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest
+*/
+func (a *NetworkFabricAPIService) GetFabricsNetworkFabricInterconnects(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+	return NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricInterconnectPaginatedList
+func (a *NetworkFabricAPIService) GetFabricsNetworkFabricInterconnectsExecute(r NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest) (*NetworkFabricInterconnectPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricInterconnectPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetFabricsNetworkFabricInterconnects")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-fabric-interconnects"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterDescription != nil {
+		t := *r.filterDescription
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", t, "form", "multi")
+		}
+	}
+	if r.filterStatus != nil {
+		t := *r.filterStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIGetNetworkFabricBGPSessionRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	bgpSessionId int32
+}
+
+func (r NetworkFabricAPIGetNetworkFabricBGPSessionRequest) Execute() (*NetworkFabricBGPSession, *http.Response, error) {
+	return r.ApiService.GetNetworkFabricBGPSessionExecute(r)
+}
+
+/*
+GetNetworkFabricBGPSession Get a specific Network Fabric BGP Session
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @param bgpSessionId The ID of the network fabric BGP session
+ @return NetworkFabricAPIGetNetworkFabricBGPSessionRequest
+*/
+func (a *NetworkFabricAPIService) GetNetworkFabricBGPSession(ctx context.Context, networkFabricId int32, bgpSessionId int32) NetworkFabricAPIGetNetworkFabricBGPSessionRequest {
+	return NetworkFabricAPIGetNetworkFabricBGPSessionRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		bgpSessionId: bgpSessionId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricBGPSession
+func (a *NetworkFabricAPIService) GetNetworkFabricBGPSessionExecute(r NetworkFabricAPIGetNetworkFabricBGPSessionRequest) (*NetworkFabricBGPSession, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricBGPSession
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetNetworkFabricBGPSession")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/bgp-sessions/{bgpSessionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bgpSessionId"+"}", url.PathEscape(parameterValueToString(r.bgpSessionId, "bgpSessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIGetNetworkFabricBgpSessionsRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterNetworkFabricId *[]string
+	filterBgpNumbering *[]string
+	filterBgpLinkConfiguration *[]string
+	filterStatus *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) Page(page float32) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) Limit(limit float32) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) FilterId(filterId []string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$btw:John Doe&amp;filter.networkFabricId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) FilterNetworkFabricId(filterNetworkFabricId []string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.filterNetworkFabricId = &filterNetworkFabricId
+	return r
+}
+
+// Filter by bgpNumbering query param.  **Format:** filter.bgpNumbering&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.bgpNumbering&#x3D;$btw:John Doe&amp;filter.bgpNumbering&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) FilterBgpNumbering(filterBgpNumbering []string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.filterBgpNumbering = &filterBgpNumbering
+	return r
+}
+
+// Filter by bgpLinkConfiguration query param.  **Format:** filter.bgpLinkConfiguration&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.bgpLinkConfiguration&#x3D;$btw:John Doe&amp;filter.bgpLinkConfiguration&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) FilterBgpLinkConfiguration(filterBgpLinkConfiguration []string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.filterBgpLinkConfiguration = &filterBgpLinkConfiguration
+	return r
+}
+
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) FilterStatus(filterStatus []string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.filterStatus = &filterStatus
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;networkFabricId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - networkFabricId  - status  - bgpNumbering  - bgpLinkConfiguration 
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) SortBy(sortBy []string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) Search(search string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:**    **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields**  
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) SearchBy(searchBy []string) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) Execute() (*NetworkFabricBGPSessionPaginatedList, *http.Response, error) {
+	return r.ApiService.GetNetworkFabricBgpSessionsExecute(r)
+}
+
+/*
+GetNetworkFabricBgpSessions Get paginated Network Fabric BGP Sessions
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @return NetworkFabricAPIGetNetworkFabricBgpSessionsRequest
+*/
+func (a *NetworkFabricAPIService) GetNetworkFabricBgpSessions(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+	return NetworkFabricAPIGetNetworkFabricBgpSessionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricBGPSessionPaginatedList
+func (a *NetworkFabricAPIService) GetNetworkFabricBgpSessionsExecute(r NetworkFabricAPIGetNetworkFabricBgpSessionsRequest) (*NetworkFabricBGPSessionPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricBGPSessionPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetNetworkFabricBgpSessions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/bgp-sessions"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkFabricId != nil {
+		t := *r.filterNetworkFabricId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", t, "form", "multi")
+		}
+	}
+	if r.filterBgpNumbering != nil {
+		t := *r.filterBgpNumbering
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.bgpNumbering", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.bgpNumbering", t, "form", "multi")
+		}
+	}
+	if r.filterBgpLinkConfiguration != nil {
+		t := *r.filterBgpLinkConfiguration
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.bgpLinkConfiguration", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.bgpLinkConfiguration", t, "form", "multi")
+		}
+	}
+	if r.filterStatus != nil {
+		t := *r.filterStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkFabricAPIGetNetworkFabricByIdRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
@@ -1310,6 +2343,455 @@ func (a *NetworkFabricAPIService) GetNetworkFabricByIdExecute(r NetworkFabricAPI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkFabricAPIGetNetworkFabricLinkRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	networkFabricLinkId int32
+}
+
+func (r NetworkFabricAPIGetNetworkFabricLinkRequest) Execute() (*NetworkFabricLink, *http.Response, error) {
+	return r.ApiService.GetNetworkFabricLinkExecute(r)
+}
+
+/*
+GetNetworkFabricLink Get a specific Network Fabric Link
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @param networkFabricLinkId The ID of the network fabric link
+ @return NetworkFabricAPIGetNetworkFabricLinkRequest
+*/
+func (a *NetworkFabricAPIService) GetNetworkFabricLink(ctx context.Context, networkFabricId int32, networkFabricLinkId int32) NetworkFabricAPIGetNetworkFabricLinkRequest {
+	return NetworkFabricAPIGetNetworkFabricLinkRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		networkFabricLinkId: networkFabricLinkId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricLink
+func (a *NetworkFabricAPIService) GetNetworkFabricLinkExecute(r NetworkFabricAPIGetNetworkFabricLinkRequest) (*NetworkFabricLink, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricLink
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetNetworkFabricLink")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/links/{networkFabricLinkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricLinkId"+"}", url.PathEscape(parameterValueToString(r.networkFabricLinkId, "networkFabricLinkId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIGetNetworkFabricLinkAggregationRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	linkAggregationId int32
+}
+
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationRequest) Execute() (*NetworkFabricLinkAggregation, *http.Response, error) {
+	return r.ApiService.GetNetworkFabricLinkAggregationExecute(r)
+}
+
+/*
+GetNetworkFabricLinkAggregation Get a specific Network Fabric Link Aggregation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @param linkAggregationId The ID of the network fabric link aggregation
+ @return NetworkFabricAPIGetNetworkFabricLinkAggregationRequest
+*/
+func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32, linkAggregationId int32) NetworkFabricAPIGetNetworkFabricLinkAggregationRequest {
+	return NetworkFabricAPIGetNetworkFabricLinkAggregationRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		linkAggregationId: linkAggregationId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricLinkAggregation
+func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregationExecute(r NetworkFabricAPIGetNetworkFabricLinkAggregationRequest) (*NetworkFabricLinkAggregation, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricLinkAggregation
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetNetworkFabricLinkAggregation")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/link-aggregations/{linkAggregationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"linkAggregationId"+"}", url.PathEscape(parameterValueToString(r.linkAggregationId, "linkAggregationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterNetworkFabricId *[]string
+	filterType *[]string
+	filterStatus *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) Page(page float32) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) Limit(limit float32) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) FilterId(filterId []string) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$btw:John Doe&amp;filter.networkFabricId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) FilterNetworkFabricId(filterNetworkFabricId []string) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.filterNetworkFabricId = &filterNetworkFabricId
+	return r
+}
+
+// Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$btw:John Doe&amp;filter.type&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) FilterType(filterType []string) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.filterType = &filterType
+	return r
+}
+
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) FilterStatus(filterStatus []string) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.filterStatus = &filterStatus
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;networkFabricId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - networkFabricId  - status  - type 
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) SortBy(sortBy []string) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) Search(search string) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:**    **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields**  
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) SearchBy(searchBy []string) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) Execute() (*NetworkFabricLinkAggregationPaginatedList, *http.Response, error) {
+	return r.ApiService.GetNetworkFabricLinkAggregationsExecute(r)
+}
+
+/*
+GetNetworkFabricLinkAggregations Get paginated Network Fabric Link Aggregations
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @return NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest
+*/
+func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregations(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+	return NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricLinkAggregationPaginatedList
+func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregationsExecute(r NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest) (*NetworkFabricLinkAggregationPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricLinkAggregationPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetNetworkFabricLinkAggregations")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/link-aggregations"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkFabricId != nil {
+		t := *r.filterNetworkFabricId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", t, "form", "multi")
+		}
+	}
+	if r.filterType != nil {
+		t := *r.filterType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", t, "form", "multi")
+		}
+	}
+	if r.filterStatus != nil {
+		t := *r.filterStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkFabricAPIGetNetworkFabricLinksRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
@@ -1319,6 +2801,7 @@ type NetworkFabricAPIGetNetworkFabricLinksRequest struct {
 	filterId *[]string
 	filterNetworkFabricId *[]string
 	filterStatus *[]string
+	filterConfigStatus *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1351,6 +2834,12 @@ func (r NetworkFabricAPIGetNetworkFabricLinksRequest) FilterNetworkFabricId(filt
 // Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r NetworkFabricAPIGetNetworkFabricLinksRequest) FilterStatus(filterStatus []string) NetworkFabricAPIGetNetworkFabricLinksRequest {
 	r.filterStatus = &filterStatus
+	return r
+}
+
+// Filter by config.status query param.  **Format:** filter.config.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.status&#x3D;$btw:John Doe&amp;filter.config.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetNetworkFabricLinksRequest) FilterConfigStatus(filterConfigStatus []string) NetworkFabricAPIGetNetworkFabricLinksRequest {
+	r.filterConfigStatus = &filterConfigStatus
 	return r
 }
 
@@ -1450,6 +2939,17 @@ func (a *NetworkFabricAPIService) GetNetworkFabricLinksExecute(r NetworkFabricAP
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
+		}
+	}
+	if r.filterConfigStatus != nil {
+		t := *r.filterConfigStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.status", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.status", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -2085,6 +3585,123 @@ func (a *NetworkFabricAPIService) UpdateNetworkFabricExecute(r NetworkFabricAPIU
 	}
 	// body params
 	localVarPostBody = r.updateNetworkFabric
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	linkAggregationId int32
+	updateNetworkFabricLinkAggregation *UpdateNetworkFabricLinkAggregation
+}
+
+// The network fabric link aggregation object
+func (r NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest) UpdateNetworkFabricLinkAggregation(updateNetworkFabricLinkAggregation UpdateNetworkFabricLinkAggregation) NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest {
+	r.updateNetworkFabricLinkAggregation = &updateNetworkFabricLinkAggregation
+	return r
+}
+
+func (r NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest) Execute() (*NetworkFabricLinkAggregation, *http.Response, error) {
+	return r.ApiService.UpdateNetworkFabricLinkAggregationExecute(r)
+}
+
+/*
+UpdateNetworkFabricLinkAggregation Update a network fabric link aggregation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @param linkAggregationId The ID of the network fabric link aggregation
+ @return NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest
+*/
+func (a *NetworkFabricAPIService) UpdateNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32, linkAggregationId int32) NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest {
+	return NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		linkAggregationId: linkAggregationId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricLinkAggregation
+func (a *NetworkFabricAPIService) UpdateNetworkFabricLinkAggregationExecute(r NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest) (*NetworkFabricLinkAggregation, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricLinkAggregation
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.UpdateNetworkFabricLinkAggregation")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/link-aggregations/{linkAggregationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"linkAggregationId"+"}", url.PathEscape(parameterValueToString(r.linkAggregationId, "linkAggregationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateNetworkFabricLinkAggregation == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkFabricLinkAggregation is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateNetworkFabricLinkAggregation
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

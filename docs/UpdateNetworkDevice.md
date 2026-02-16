@@ -23,8 +23,11 @@ Name | Type | Description | Notes
 **ManagementAddressGateway** | Pointer to **NullableString** | The gateway IP address for the management network | [optional] 
 **ManagementAddressMask** | Pointer to **NullableString** | The subnet mask for the management network | [optional] 
 **ManagementMAC** | Pointer to **NullableString** | The MAC address of the management interface | [optional] 
-**LoopbackAddress** | Pointer to **NullableString** | Loopback Address | [optional] 
-**VtepAddress** | Pointer to **NullableString** | VTEP Address | [optional] 
+**LoopbackAddress** | Pointer to **NullableString** | The loopback IPv4 address assigned to the network device | [optional] 
+**LoopbackAddressIpv6** | Pointer to **NullableString** | The loopback IPv6 address assigned to the network device | [optional] 
+**VtepAddress** | Pointer to **NullableString** | The VTEP (VXLAN Tunnel Endpoint) IPv4 address for overlay networking | [optional] 
+**VtepAddressIpv6** | Pointer to **NullableString** | The VTEP (VXLAN Tunnel Endpoint) IPv6 address for overlay networking | [optional] 
+**ExternalVtepAddress** | Pointer to **NullableString** | The external VTEP (VXLAN Tunnel Endpoint) IPv4 address for overlay networking DCI | [optional] 
 **Asn** | Pointer to **NullableInt64** | The Autonomous System Number for BGP routing | [optional] 
 **Description** | Pointer to **NullableString** | Additional description or notes about the network device | [optional] 
 **Country** | Pointer to **NullableString** | The country where the network device is located | [optional] 
@@ -40,6 +43,7 @@ Name | Type | Description | Notes
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
 **VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
 
 ## Methods
 
@@ -650,6 +654,41 @@ HasLoopbackAddress returns a boolean if a field has been set.
 `func (o *UpdateNetworkDevice) UnsetLoopbackAddress()`
 
 UnsetLoopbackAddress ensures that no value is present for LoopbackAddress, not even an explicit nil
+### GetLoopbackAddressIpv6
+
+`func (o *UpdateNetworkDevice) GetLoopbackAddressIpv6() string`
+
+GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field if non-nil, zero value otherwise.
+
+### GetLoopbackAddressIpv6Ok
+
+`func (o *UpdateNetworkDevice) GetLoopbackAddressIpv6Ok() (*string, bool)`
+
+GetLoopbackAddressIpv6Ok returns a tuple with the LoopbackAddressIpv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoopbackAddressIpv6
+
+`func (o *UpdateNetworkDevice) SetLoopbackAddressIpv6(v string)`
+
+SetLoopbackAddressIpv6 sets LoopbackAddressIpv6 field to given value.
+
+### HasLoopbackAddressIpv6
+
+`func (o *UpdateNetworkDevice) HasLoopbackAddressIpv6() bool`
+
+HasLoopbackAddressIpv6 returns a boolean if a field has been set.
+
+### SetLoopbackAddressIpv6Nil
+
+`func (o *UpdateNetworkDevice) SetLoopbackAddressIpv6Nil(b bool)`
+
+ SetLoopbackAddressIpv6Nil sets the value for LoopbackAddressIpv6 to be an explicit nil
+
+### UnsetLoopbackAddressIpv6
+`func (o *UpdateNetworkDevice) UnsetLoopbackAddressIpv6()`
+
+UnsetLoopbackAddressIpv6 ensures that no value is present for LoopbackAddressIpv6, not even an explicit nil
 ### GetVtepAddress
 
 `func (o *UpdateNetworkDevice) GetVtepAddress() string`
@@ -685,6 +724,76 @@ HasVtepAddress returns a boolean if a field has been set.
 `func (o *UpdateNetworkDevice) UnsetVtepAddress()`
 
 UnsetVtepAddress ensures that no value is present for VtepAddress, not even an explicit nil
+### GetVtepAddressIpv6
+
+`func (o *UpdateNetworkDevice) GetVtepAddressIpv6() string`
+
+GetVtepAddressIpv6 returns the VtepAddressIpv6 field if non-nil, zero value otherwise.
+
+### GetVtepAddressIpv6Ok
+
+`func (o *UpdateNetworkDevice) GetVtepAddressIpv6Ok() (*string, bool)`
+
+GetVtepAddressIpv6Ok returns a tuple with the VtepAddressIpv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVtepAddressIpv6
+
+`func (o *UpdateNetworkDevice) SetVtepAddressIpv6(v string)`
+
+SetVtepAddressIpv6 sets VtepAddressIpv6 field to given value.
+
+### HasVtepAddressIpv6
+
+`func (o *UpdateNetworkDevice) HasVtepAddressIpv6() bool`
+
+HasVtepAddressIpv6 returns a boolean if a field has been set.
+
+### SetVtepAddressIpv6Nil
+
+`func (o *UpdateNetworkDevice) SetVtepAddressIpv6Nil(b bool)`
+
+ SetVtepAddressIpv6Nil sets the value for VtepAddressIpv6 to be an explicit nil
+
+### UnsetVtepAddressIpv6
+`func (o *UpdateNetworkDevice) UnsetVtepAddressIpv6()`
+
+UnsetVtepAddressIpv6 ensures that no value is present for VtepAddressIpv6, not even an explicit nil
+### GetExternalVtepAddress
+
+`func (o *UpdateNetworkDevice) GetExternalVtepAddress() string`
+
+GetExternalVtepAddress returns the ExternalVtepAddress field if non-nil, zero value otherwise.
+
+### GetExternalVtepAddressOk
+
+`func (o *UpdateNetworkDevice) GetExternalVtepAddressOk() (*string, bool)`
+
+GetExternalVtepAddressOk returns a tuple with the ExternalVtepAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalVtepAddress
+
+`func (o *UpdateNetworkDevice) SetExternalVtepAddress(v string)`
+
+SetExternalVtepAddress sets ExternalVtepAddress field to given value.
+
+### HasExternalVtepAddress
+
+`func (o *UpdateNetworkDevice) HasExternalVtepAddress() bool`
+
+HasExternalVtepAddress returns a boolean if a field has been set.
+
+### SetExternalVtepAddressNil
+
+`func (o *UpdateNetworkDevice) SetExternalVtepAddressNil(b bool)`
+
+ SetExternalVtepAddressNil sets the value for ExternalVtepAddress to be an explicit nil
+
+### UnsetExternalVtepAddress
+`func (o *UpdateNetworkDevice) UnsetExternalVtepAddress()`
+
+UnsetExternalVtepAddress ensures that no value is present for ExternalVtepAddress, not even an explicit nil
 ### GetAsn
 
 `func (o *UpdateNetworkDevice) GetAsn() int64`
@@ -1169,6 +1278,31 @@ SetVmPoolId sets VmPoolId field to given value.
 `func (o *UpdateNetworkDevice) HasVmPoolId() bool`
 
 HasVmPoolId returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *UpdateNetworkDevice) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *UpdateNetworkDevice) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *UpdateNetworkDevice) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *UpdateNetworkDevice) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

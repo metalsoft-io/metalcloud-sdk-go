@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **IsDatastorePublisher** | **bool** | Whether the user is a datastore publisher | 
 **AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
 **Provider** | **string** | The provider of the user | [default to "mysql"]
+**PasswordLastChangedTimestamp** | **string** | The timestamp when the user last changed their password | 
 **Id** | **float32** | User ID | 
 **Revision** | **float32** | Revision of the user | 
 **Email** | **string** | The email address of the user | 
@@ -49,7 +50,7 @@ Name | Type | Description | Notes
 
 ### NewUser
 
-`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta, ) *User`
+`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta, ) *User`
 
 NewUser instantiates a new User object
 This constructor will assign default values to properties that have it defined,
@@ -567,6 +568,26 @@ and a boolean to check if the value has been set.
 `func (o *User) SetProvider(v string)`
 
 SetProvider sets Provider field to given value.
+
+
+### GetPasswordLastChangedTimestamp
+
+`func (o *User) GetPasswordLastChangedTimestamp() string`
+
+GetPasswordLastChangedTimestamp returns the PasswordLastChangedTimestamp field if non-nil, zero value otherwise.
+
+### GetPasswordLastChangedTimestampOk
+
+`func (o *User) GetPasswordLastChangedTimestampOk() (*string, bool)`
+
+GetPasswordLastChangedTimestampOk returns a tuple with the PasswordLastChangedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasswordLastChangedTimestamp
+
+`func (o *User) SetPasswordLastChangedTimestamp(v string)`
+
+SetPasswordLastChangedTimestamp sets PasswordLastChangedTimestamp field to given value.
 
 
 ### GetId

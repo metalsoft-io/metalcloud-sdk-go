@@ -7,6 +7,8 @@
 
 * `VXLAN` (value: `"vxlan"`)
 
+* `FIBRE_CHANNEL` (value: `"fibre_channel"`)
+
 * `INFINIBAND` (value: `"infiniband"`)
 
 

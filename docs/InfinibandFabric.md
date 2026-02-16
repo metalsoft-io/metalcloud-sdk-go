@@ -5,11 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FabricType** | [**FabricType**](FabricType.md) | The type of network fabric | 
-**DefaultNetworkProfileId** | Pointer to **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | [optional] 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **ServerOnlyOperationEnabled** | Pointer to **bool** | Enables server-only operation mode on the network fabric. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
-**ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
 **LagRanges** | Pointer to **[]string** | Link Aggregation (LAG) ranges in the format \&quot;start-end\&quot;; each range must be within the bounds of 1 to 4096. | [optional] 
 **PreventPKeyCleanup** | Pointer to **[]string** | PKey ranges that should be prevented from automatic cleanup. Format must be \&quot;start-end\&quot;. | [optional] 
 **ReservedPkeys** | Pointer to **[]string** | Reserved PKey ranges that are excluded from general allocation. Must follow the \&quot;start-end\&quot; format. | [optional] 
@@ -53,31 +51,6 @@ and a boolean to check if the value has been set.
 
 SetFabricType sets FabricType field to given value.
 
-
-### GetDefaultNetworkProfileId
-
-`func (o *InfinibandFabric) GetDefaultNetworkProfileId() int32`
-
-GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field if non-nil, zero value otherwise.
-
-### GetDefaultNetworkProfileIdOk
-
-`func (o *InfinibandFabric) GetDefaultNetworkProfileIdOk() (*int32, bool)`
-
-GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultNetworkProfileId
-
-`func (o *InfinibandFabric) SetDefaultNetworkProfileId(v int32)`
-
-SetDefaultNetworkProfileId sets DefaultNetworkProfileId field to given value.
-
-### HasDefaultNetworkProfileId
-
-`func (o *InfinibandFabric) HasDefaultNetworkProfileId() bool`
-
-HasDefaultNetworkProfileId returns a boolean if a field has been set.
 
 ### GetGnmiMonitoringEnabled
 
@@ -153,31 +126,6 @@ SetSyslogMonitoringEnabled sets SyslogMonitoringEnabled field to given value.
 `func (o *InfinibandFabric) HasSyslogMonitoringEnabled() bool`
 
 HasSyslogMonitoringEnabled returns a boolean if a field has been set.
-
-### GetZeroTouchEnabled
-
-`func (o *InfinibandFabric) GetZeroTouchEnabled() bool`
-
-GetZeroTouchEnabled returns the ZeroTouchEnabled field if non-nil, zero value otherwise.
-
-### GetZeroTouchEnabledOk
-
-`func (o *InfinibandFabric) GetZeroTouchEnabledOk() (*bool, bool)`
-
-GetZeroTouchEnabledOk returns a tuple with the ZeroTouchEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetZeroTouchEnabled
-
-`func (o *InfinibandFabric) SetZeroTouchEnabled(v bool)`
-
-SetZeroTouchEnabled sets ZeroTouchEnabled field to given value.
-
-### HasZeroTouchEnabled
-
-`func (o *InfinibandFabric) HasZeroTouchEnabled() bool`
-
-HasZeroTouchEnabled returns a boolean if a field has been set.
 
 ### GetLagRanges
 

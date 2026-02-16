@@ -5,20 +5,19 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateStorage**](StorageAPI.md#CreateStorage) | **Post** /api/v2/storages | Creates a Storage
-[**CreateStorageNetworkDeviceConfiguration**](StorageAPI.md#CreateStorageNetworkDeviceConfiguration) | **Post** /api/v2/storages/{storageId}/network-device-configurations | Creates a Storage Network Device Configuration
 [**DeleteStorage**](StorageAPI.md#DeleteStorage) | **Delete** /api/v2/storages/{storageId} | Deletes a Storage
-[**DeleteStorageNetworkDeviceConfiguration**](StorageAPI.md#DeleteStorageNetworkDeviceConfiguration) | **Delete** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Deletes a Storage Network Device Configuration
 [**GetStorage**](StorageAPI.md#GetStorage) | **Get** /api/v2/storages/{storageId} | Retrieves a Storage
 [**GetStorageBuckets**](StorageAPI.md#GetStorageBuckets) | **Get** /api/v2/storages/{storageId}/buckets | Get all Buckets linked to the specified storage
 [**GetStorageCredentials**](StorageAPI.md#GetStorageCredentials) | **Get** /api/v2/storages/{storageId}/credentials | Get Storage credentials
 [**GetStorageDrives**](StorageAPI.md#GetStorageDrives) | **Get** /api/v2/storages/{storageId}/drives | Get all Drives linked to the specified storage
 [**GetStorageFileShares**](StorageAPI.md#GetStorageFileShares) | **Get** /api/v2/storages/{storageId}/file-shares | Get all File Shares linked to the specified storage
-[**GetStorageNetworkDeviceConfigurations**](StorageAPI.md#GetStorageNetworkDeviceConfigurations) | **Get** /api/v2/storages/{storageId}/network-device-configurations | Retrieves Storage Network Device Configurations
+[**GetStorageInterface**](StorageAPI.md#GetStorageInterface) | **Get** /api/v2/storages/{storageId}/interfaces/{interfaceId} | Retrieves a Storage Interface
+[**GetStorageInterfaces**](StorageAPI.md#GetStorageInterfaces) | **Get** /api/v2/storages/{storageId}/interfaces | Retrieves Storage interfaces
 [**GetStorageStatistics**](StorageAPI.md#GetStorageStatistics) | **Get** /api/v2/storages/{storageId}/statistics | Get Storages statistics
 [**GetStorages**](StorageAPI.md#GetStorages) | **Get** /api/v2/storages | Get a list of Storages
 [**GetStoragesStatistics**](StorageAPI.md#GetStoragesStatistics) | **Get** /api/v2/storages/statistics | Get statistics for all Storages
 [**UpdateStorage**](StorageAPI.md#UpdateStorage) | **Patch** /api/v2/storages/{storageId} | Updates a Storage
-[**UpdateStorageNetworkDeviceConfiguration**](StorageAPI.md#UpdateStorageNetworkDeviceConfiguration) | **Patch** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Updates a Storage Network Device Configuration
+[**UpdateStorageInterface**](StorageAPI.md#UpdateStorageInterface) | **Patch** /api/v2/storages/{storageId}/interfaces/{interfaceId} | Updates a Storage Interface
 
 
 
@@ -88,76 +87,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateStorageNetworkDeviceConfiguration
-
-> CreateStorageNetworkDeviceConfiguration(ctx, storageId).CreateStorageNetworkDeviceConfiguration(createStorageNetworkDeviceConfiguration).Execute()
-
-Creates a Storage Network Device Configuration
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	storageId := float32(8.14) // float32 | 
-	createStorageNetworkDeviceConfiguration := *openapiclient.NewCreateStorageNetworkDeviceConfiguration(float32(123), "StoragePhysicalInterfaceIdentifier_example", "NetworkDeviceInterfaceIdentifier_example") // CreateStorageNetworkDeviceConfiguration | The new Storage Network Device Configuration object
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StorageAPI.CreateStorageNetworkDeviceConfiguration(context.Background(), storageId).CreateStorageNetworkDeviceConfiguration(createStorageNetworkDeviceConfiguration).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.CreateStorageNetworkDeviceConfiguration``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**storageId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateStorageNetworkDeviceConfigurationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **createStorageNetworkDeviceConfiguration** | [**CreateStorageNetworkDeviceConfiguration**](CreateStorageNetworkDeviceConfiguration.md) | The new Storage Network Device Configuration object | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## DeleteStorage
 
 > DeleteStorage(ctx, storageId).IfMatch(ifMatch).Execute()
@@ -209,77 +138,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteStorageNetworkDeviceConfiguration
-
-> DeleteStorageNetworkDeviceConfiguration(ctx, storageId, storageNetworkDeviceConfigurationId).Execute()
-
-Deletes a Storage Network Device Configuration
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	storageId := float32(8.14) // float32 | 
-	storageNetworkDeviceConfigurationId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StorageAPI.DeleteStorageNetworkDeviceConfiguration(context.Background(), storageId, storageNetworkDeviceConfigurationId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.DeleteStorageNetworkDeviceConfiguration``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**storageId** | **float32** |  | 
-**storageNetworkDeviceConfigurationId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteStorageNetworkDeviceConfigurationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
 
 ### Return type
 
@@ -739,11 +597,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetStorageNetworkDeviceConfigurations
+## GetStorageInterface
 
-> []StorageNetworkDeviceConfiguration GetStorageNetworkDeviceConfigurations(ctx, storageId).Execute()
+> StorageInterface GetStorageInterface(ctx, storageId, interfaceId).Execute()
 
-Retrieves Storage Network Device Configurations
+Retrieves a Storage Interface
 
 
 
@@ -761,16 +619,99 @@ import (
 
 func main() {
 	storageId := float32(8.14) // float32 | 
+	interfaceId := float32(8.14) // float32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.GetStorageNetworkDeviceConfigurations(context.Background(), storageId).Execute()
+	resp, r, err := apiClient.StorageAPI.GetStorageInterface(context.Background(), storageId, interfaceId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageNetworkDeviceConfigurations``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageInterface``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetStorageNetworkDeviceConfigurations`: []StorageNetworkDeviceConfiguration
-	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageNetworkDeviceConfigurations`: %v\n", resp)
+	// response from `GetStorageInterface`: StorageInterface
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageInterface`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storageId** | **float32** |  | 
+**interfaceId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStorageInterfaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**StorageInterface**](StorageInterface.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStorageInterfaces
+
+> StorageInterfacePaginatedList GetStorageInterfaces(ctx, storageId).Page(page).Limit(limit).FilterId(filterId).FilterStorageId(filterStorageId).FilterProtocols(filterProtocols).FilterNodeIds(filterNodeIds).FilterName(filterName).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+
+Retrieves Storage interfaces
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	storageId := float32(8.14) // float32 | 
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterStorageId := []string{"Inner_example"} // []string | Filter by storageId query param.  **Format:** filter.storageId={$not}:OPERATION:VALUE    **Example:** filter.storageId=$btw:John Doe&filter.storageId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterProtocols := []string{"Inner_example"} // []string | Filter by protocols query param.  **Format:** filter.protocols={$not}:OPERATION:VALUE    **Example:** filter.protocols=$in:John Doe  **Available Operations** - $in  - $and  - $or (optional)
+	filterNodeIds := []string{"Inner_example"} // []string | Filter by nodeIds query param.  **Format:** filter.nodeIds={$not}:OPERATION:VALUE    **Example:** filter.nodeIds=$in:John Doe  **Available Operations** - $in  - $and  - $or (optional)
+	filterName := []string{"Inner_example"} // []string | Filter by name query param.  **Format:** filter.name={$not}:OPERATION:VALUE    **Example:** filter.name=$btw:John Doe&filter.name=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=storageId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - storageId  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,storageId,protocols,nodeIds,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - storageId  - protocols  - nodeIds  - name  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StorageAPI.GetStorageInterfaces(context.Background(), storageId).Page(page).Limit(limit).FilterId(filterId).FilterStorageId(filterStorageId).FilterProtocols(filterProtocols).FilterNodeIds(filterNodeIds).FilterName(filterName).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageInterfaces``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetStorageInterfaces`: StorageInterfacePaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageInterfaces`: %v\n", resp)
 }
 ```
 
@@ -784,16 +725,26 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetStorageNetworkDeviceConfigurationsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetStorageInterfacesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterStorageId** | **[]string** | Filter by storageId query param.  **Format:** filter.storageId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.storageId&#x3D;$btw:John Doe&amp;filter.storageId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterProtocols** | **[]string** | Filter by protocols query param.  **Format:** filter.protocols&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.protocols&#x3D;$in:John Doe  **Available Operations** - $in  - $and  - $or | 
+ **filterNodeIds** | **[]string** | Filter by nodeIds query param.  **Format:** filter.nodeIds&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.nodeIds&#x3D;$in:John Doe  **Available Operations** - $in  - $and  - $or | 
+ **filterName** | **[]string** | Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;storageId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - storageId  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,storageId,protocols,nodeIds,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - storageId  - protocols  - nodeIds  - name  | 
 
 ### Return type
 
-[**[]StorageNetworkDeviceConfiguration**](StorageNetworkDeviceConfiguration.md)
+[**StorageInterfacePaginatedList**](StorageInterfacePaginatedList.md)
 
 ### Authorization
 
@@ -1105,11 +1056,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateStorageNetworkDeviceConfiguration
+## UpdateStorageInterface
 
-> UpdateStorageNetworkDeviceConfiguration(ctx, storageId, storageNetworkDeviceConfigurationId).UpdateStorageNetworkDeviceConfiguration(updateStorageNetworkDeviceConfiguration).Execute()
+> StorageInterface UpdateStorageInterface(ctx, storageId, interfaceId).UpdateStorageInterface(updateStorageInterface).IfMatch(ifMatch).Execute()
 
-Updates a Storage Network Device Configuration
+Updates a Storage Interface
 
 
 
@@ -1127,16 +1078,19 @@ import (
 
 func main() {
 	storageId := float32(8.14) // float32 | 
-	storageNetworkDeviceConfigurationId := float32(8.14) // float32 | 
-	updateStorageNetworkDeviceConfiguration := *openapiclient.NewUpdateStorageNetworkDeviceConfiguration() // UpdateStorageNetworkDeviceConfiguration | The updated Storage Network Device Configuration object
+	interfaceId := float32(8.14) // float32 | 
+	updateStorageInterface := *openapiclient.NewUpdateStorageInterface() // UpdateStorageInterface | The Storage Interface update object
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StorageAPI.UpdateStorageNetworkDeviceConfiguration(context.Background(), storageId, storageNetworkDeviceConfigurationId).UpdateStorageNetworkDeviceConfiguration(updateStorageNetworkDeviceConfiguration).Execute()
+	resp, r, err := apiClient.StorageAPI.UpdateStorageInterface(context.Background(), storageId, interfaceId).UpdateStorageInterface(updateStorageInterface).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.UpdateStorageNetworkDeviceConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.UpdateStorageInterface``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `UpdateStorageInterface`: StorageInterface
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.UpdateStorageInterface`: %v\n", resp)
 }
 ```
 
@@ -1147,22 +1101,23 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **storageId** | **float32** |  | 
-**storageNetworkDeviceConfigurationId** | **float32** |  | 
+**interfaceId** | **float32** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateStorageNetworkDeviceConfigurationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateStorageInterfaceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateStorageNetworkDeviceConfiguration** | [**UpdateStorageNetworkDeviceConfiguration**](UpdateStorageNetworkDeviceConfiguration.md) | The updated Storage Network Device Configuration object | 
+ **updateStorageInterface** | [**UpdateStorageInterface**](UpdateStorageInterface.md) | The Storage Interface update object | 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
- (empty response body)
+[**StorageInterface**](StorageInterface.md)
 
 ### Authorization
 
@@ -1171,7 +1126,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

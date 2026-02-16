@@ -27,6 +27,7 @@ type ManualVniAllocationStrategy struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope ResourceScope `json:"scope"`
+	GranularityLevel NullableVniAllocationGranularityLevel `json:"granularityLevel,omitempty"`
 	Vni int32 `json:"vni"`
 	AdditionalProperties map[string]interface{}
 }
@@ -176,6 +177,48 @@ func (o *ManualVniAllocationStrategy) SetScope(v ResourceScope) {
 	o.Scope = v
 }
 
+// GetGranularityLevel returns the GranularityLevel field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManualVniAllocationStrategy) GetGranularityLevel() VniAllocationGranularityLevel {
+	if o == nil || IsNil(o.GranularityLevel.Get()) {
+		var ret VniAllocationGranularityLevel
+		return ret
+	}
+	return *o.GranularityLevel.Get()
+}
+
+// GetGranularityLevelOk returns a tuple with the GranularityLevel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManualVniAllocationStrategy) GetGranularityLevelOk() (*VniAllocationGranularityLevel, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GranularityLevel.Get(), o.GranularityLevel.IsSet()
+}
+
+// HasGranularityLevel returns a boolean if a field has been set.
+func (o *ManualVniAllocationStrategy) HasGranularityLevel() bool {
+	if o != nil && o.GranularityLevel.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGranularityLevel gets a reference to the given NullableVniAllocationGranularityLevel and assigns it to the GranularityLevel field.
+func (o *ManualVniAllocationStrategy) SetGranularityLevel(v VniAllocationGranularityLevel) {
+	o.GranularityLevel.Set(&v)
+}
+// SetGranularityLevelNil sets the value for GranularityLevel to be an explicit nil
+func (o *ManualVniAllocationStrategy) SetGranularityLevelNil() {
+	o.GranularityLevel.Set(nil)
+}
+
+// UnsetGranularityLevel ensures that no value is present for GranularityLevel, not even an explicit nil
+func (o *ManualVniAllocationStrategy) UnsetGranularityLevel() {
+	o.GranularityLevel.Unset()
+}
+
 // GetVni returns the Vni field value
 func (o *ManualVniAllocationStrategy) GetVni() int32 {
 	if o == nil {
@@ -215,6 +258,9 @@ func (o ManualVniAllocationStrategy) ToMap() (map[string]interface{}, error) {
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["kind"] = o.Kind
 	toSerialize["scope"] = o.Scope
+	if o.GranularityLevel.IsSet() {
+		toSerialize["granularityLevel"] = o.GranularityLevel.Get()
+	}
 	toSerialize["vni"] = o.Vni
 
 	for key, value := range o.AdditionalProperties {
@@ -269,6 +315,7 @@ func (o *ManualVniAllocationStrategy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedAt")
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "scope")
+		delete(additionalProperties, "granularityLevel")
 		delete(additionalProperties, "vni")
 		o.AdditionalProperties = additionalProperties
 	}

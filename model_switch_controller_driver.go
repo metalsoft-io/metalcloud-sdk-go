@@ -23,12 +23,14 @@ type SwitchControllerDriver string
 const (
 	SWITCHCONTROLLERDRIVER_CISCO_ACI51 SwitchControllerDriver = "cisco_aci51"
 	SWITCHCONTROLLERDRIVER_NVIDIA_UFM SwitchControllerDriver = "nvidia_ufm"
+	SWITCHCONTROLLERDRIVER_BROCADE SwitchControllerDriver = "brocade"
 )
 
 // All allowed values of SwitchControllerDriver enum
 var AllowedSwitchControllerDriverEnumValues = []SwitchControllerDriver{
 	"cisco_aci51",
 	"nvidia_ufm",
+	"brocade",
 }
 
 func (v *SwitchControllerDriver) UnmarshalJSON(src []byte) error {

@@ -23,16 +23,12 @@ var _ MappedNullable = &InfinibandFabric{}
 type InfinibandFabric struct {
 	// The type of network fabric
 	FabricType FabricType `json:"fabricType"`
-	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
-	DefaultNetworkProfileId *int32 `json:"defaultNetworkProfileId,omitempty"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
 	// Enables server-only operation mode on the network fabric.
 	ServerOnlyOperationEnabled *bool `json:"serverOnlyOperationEnabled,omitempty"`
 	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
-	// Enables zero-touch provisioning for automatic device configuration.
-	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
 	// Link Aggregation (LAG) ranges in the format \"start-end\"; each range must be within the bounds of 1 to 4096.
 	LagRanges []string `json:"lagRanges,omitempty"`
 	// PKey ranges that should be prevented from automatic cleanup. Format must be \"start-end\".
@@ -86,38 +82,6 @@ func (o *InfinibandFabric) GetFabricTypeOk() (*FabricType, bool) {
 // SetFabricType sets field value
 func (o *InfinibandFabric) SetFabricType(v FabricType) {
 	o.FabricType = v
-}
-
-// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value if set, zero value otherwise.
-func (o *InfinibandFabric) GetDefaultNetworkProfileId() int32 {
-	if o == nil || IsNil(o.DefaultNetworkProfileId) {
-		var ret int32
-		return ret
-	}
-	return *o.DefaultNetworkProfileId
-}
-
-// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfinibandFabric) GetDefaultNetworkProfileIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.DefaultNetworkProfileId) {
-		return nil, false
-	}
-	return o.DefaultNetworkProfileId, true
-}
-
-// HasDefaultNetworkProfileId returns a boolean if a field has been set.
-func (o *InfinibandFabric) HasDefaultNetworkProfileId() bool {
-	if o != nil && !IsNil(o.DefaultNetworkProfileId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultNetworkProfileId gets a reference to the given int32 and assigns it to the DefaultNetworkProfileId field.
-func (o *InfinibandFabric) SetDefaultNetworkProfileId(v int32) {
-	o.DefaultNetworkProfileId = &v
 }
 
 // GetGnmiMonitoringEnabled returns the GnmiMonitoringEnabled field value if set, zero value otherwise.
@@ -214,38 +178,6 @@ func (o *InfinibandFabric) HasSyslogMonitoringEnabled() bool {
 // SetSyslogMonitoringEnabled gets a reference to the given bool and assigns it to the SyslogMonitoringEnabled field.
 func (o *InfinibandFabric) SetSyslogMonitoringEnabled(v bool) {
 	o.SyslogMonitoringEnabled = &v
-}
-
-// GetZeroTouchEnabled returns the ZeroTouchEnabled field value if set, zero value otherwise.
-func (o *InfinibandFabric) GetZeroTouchEnabled() bool {
-	if o == nil || IsNil(o.ZeroTouchEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.ZeroTouchEnabled
-}
-
-// GetZeroTouchEnabledOk returns a tuple with the ZeroTouchEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfinibandFabric) GetZeroTouchEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.ZeroTouchEnabled) {
-		return nil, false
-	}
-	return o.ZeroTouchEnabled, true
-}
-
-// HasZeroTouchEnabled returns a boolean if a field has been set.
-func (o *InfinibandFabric) HasZeroTouchEnabled() bool {
-	if o != nil && !IsNil(o.ZeroTouchEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetZeroTouchEnabled gets a reference to the given bool and assigns it to the ZeroTouchEnabled field.
-func (o *InfinibandFabric) SetZeroTouchEnabled(v bool) {
-	o.ZeroTouchEnabled = &v
 }
 
 // GetLagRanges returns the LagRanges field value if set, zero value otherwise.
@@ -387,9 +319,6 @@ func (o InfinibandFabric) MarshalJSON() ([]byte, error) {
 func (o InfinibandFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fabricType"] = o.FabricType
-	if !IsNil(o.DefaultNetworkProfileId) {
-		toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
-	}
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
 	}
@@ -398,9 +327,6 @@ func (o InfinibandFabric) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SyslogMonitoringEnabled) {
 		toSerialize["syslogMonitoringEnabled"] = o.SyslogMonitoringEnabled
-	}
-	if !IsNil(o.ZeroTouchEnabled) {
-		toSerialize["zeroTouchEnabled"] = o.ZeroTouchEnabled
 	}
 	if !IsNil(o.LagRanges) {
 		toSerialize["lagRanges"] = o.LagRanges
@@ -458,11 +384,9 @@ func (o *InfinibandFabric) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "fabricType")
-		delete(additionalProperties, "defaultNetworkProfileId")
 		delete(additionalProperties, "gnmiMonitoringEnabled")
 		delete(additionalProperties, "serverOnlyOperationEnabled")
 		delete(additionalProperties, "syslogMonitoringEnabled")
-		delete(additionalProperties, "zeroTouchEnabled")
 		delete(additionalProperties, "lagRanges")
 		delete(additionalProperties, "preventPKeyCleanup")
 		delete(additionalProperties, "reservedPkeys")

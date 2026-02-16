@@ -33,8 +33,6 @@ type CreateNetworkDeviceDefaults struct {
 	IdentifierString *string `json:"identifierString,omitempty"`
 	// Autonomous System Number for the network device defaults
 	Asn *int64 `json:"asn,omitempty"`
-	// Skip initial configuration
-	SkipInitialConfiguration *bool `json:"skipInitialConfiguration,omitempty"`
 	// Custom variables associated with the network device, stored as key-value pairs.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// MLAG domain ID, must be between 1 and 4096.
@@ -259,38 +257,6 @@ func (o *CreateNetworkDeviceDefaults) HasAsn() bool {
 // SetAsn gets a reference to the given int64 and assigns it to the Asn field.
 func (o *CreateNetworkDeviceDefaults) SetAsn(v int64) {
 	o.Asn = &v
-}
-
-// GetSkipInitialConfiguration returns the SkipInitialConfiguration field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfiguration() bool {
-	if o == nil || IsNil(o.SkipInitialConfiguration) {
-		var ret bool
-		return ret
-	}
-	return *o.SkipInitialConfiguration
-}
-
-// GetSkipInitialConfigurationOk returns a tuple with the SkipInitialConfiguration field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*bool, bool) {
-	if o == nil || IsNil(o.SkipInitialConfiguration) {
-		return nil, false
-	}
-	return o.SkipInitialConfiguration, true
-}
-
-// HasSkipInitialConfiguration returns a boolean if a field has been set.
-func (o *CreateNetworkDeviceDefaults) HasSkipInitialConfiguration() bool {
-	if o != nil && !IsNil(o.SkipInitialConfiguration) {
-		return true
-	}
-
-	return false
-}
-
-// SetSkipInitialConfiguration gets a reference to the given bool and assigns it to the SkipInitialConfiguration field.
-func (o *CreateNetworkDeviceDefaults) SetSkipInitialConfiguration(v bool) {
-	o.SkipInitialConfiguration = &v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -733,9 +699,6 @@ func (o CreateNetworkDeviceDefaults) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Asn) {
 		toSerialize["asn"] = o.Asn
 	}
-	if !IsNil(o.SkipInitialConfiguration) {
-		toSerialize["skipInitialConfiguration"] = o.SkipInitialConfiguration
-	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
@@ -825,7 +788,6 @@ func (o *CreateNetworkDeviceDefaults) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "position")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "asn")
-		delete(additionalProperties, "skipInitialConfiguration")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "mlagDomainId")
 		delete(additionalProperties, "loopbackAddressIpv4")

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Device** | [**OSTemplateDevice**](OSTemplateDevice.md) |  | 
 **Install** | [**OSTemplateInstall**](OSTemplateInstall.md) |  | 
 **ImageBuild** | Pointer to [**OSTemplateImageBuild**](OSTemplateImageBuild.md) |  | [optional] 
+**ImageCertSerialNumber** | Pointer to **string** | The image boot certificate serial number associated with the OS template. Used for secure boot | [optional] 
 **Os** | [**OSTemplateOs**](OSTemplateOs.md) |  | 
 **Visibility** | **string** | The visibility of the OS template.                     If the visibility is PUBLIC any user can use the OS template in deployments                     If the visibility is PRIVATE the OS template can be used in deployments only                     by the user who created and/or updated the template | [default to "private"]
 **Status** | **string** | The status, let the user to decide with templates to delete and when,                     and how much to keep them in the history (archived status). Also, it allows the user to                     resurrect the archived templates if needed.                     Status: READY                         - is the initial status of the template                         - the OS template is ready for deployment                         - the OS template can be deleted, use in deployments and updated                     Status: ACTIVE                         - the OS template is part of at least one ongoing deployment                         - can&#39;t be deleted (the template service will have validation for this)                         - the status can&#39;t be changed to ARCHIVED (the template service will have validation for this)                     Status: USED                         - the OS Template is part of at least one finished deployment, that is not deleted                         - can&#39;t be deleted (the template service will have validation for this)                         - can be updated, deploy or ARCHIVED                     Status: ARCHIVED                         - the OS Template is kept in the system for historical reasons                         - can&#39;t be deleted (the template service will have validation for this)                         - can&#39;t be updated or deployed                         - the status can be changed to READY or USED, if it needs to be used again or deleted | [default to "ready"]
@@ -196,6 +197,31 @@ SetImageBuild sets ImageBuild field to given value.
 `func (o *OSTemplate) HasImageBuild() bool`
 
 HasImageBuild returns a boolean if a field has been set.
+
+### GetImageCertSerialNumber
+
+`func (o *OSTemplate) GetImageCertSerialNumber() string`
+
+GetImageCertSerialNumber returns the ImageCertSerialNumber field if non-nil, zero value otherwise.
+
+### GetImageCertSerialNumberOk
+
+`func (o *OSTemplate) GetImageCertSerialNumberOk() (*string, bool)`
+
+GetImageCertSerialNumberOk returns a tuple with the ImageCertSerialNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImageCertSerialNumber
+
+`func (o *OSTemplate) SetImageCertSerialNumber(v string)`
+
+SetImageCertSerialNumber sets ImageCertSerialNumber field to given value.
+
+### HasImageCertSerialNumber
+
+`func (o *OSTemplate) HasImageCertSerialNumber() bool`
+
+HasImageCertSerialNumber returns a boolean if a field has been set.
 
 ### GetOs
 

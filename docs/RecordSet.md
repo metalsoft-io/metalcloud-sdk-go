@@ -6,7 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Server** | Pointer to [**Server**](Server.md) | The server data. | [optional] 
 **NetworkDevice** | Pointer to [**NetworkDevice**](NetworkDevice.md) | The network device. | [optional] 
-**NetworkDeviceConfigurationTemplateRecordSet** | Pointer to [**NetworkDeviceConfigurationTemplateRecordSet**](NetworkDeviceConfigurationTemplateRecordSet.md) | The Network Device Configuration Template record set. | [optional] 
+**NetworkDeviceLinkAggregationConfigurationTemplateRecordSet** | Pointer to [**NetworkDeviceLinkAggregationConfigurationTemplateRecordSet**](NetworkDeviceLinkAggregationConfigurationTemplateRecordSet.md) | The Network Device Link Aggregation Configuration Template record set. | [optional] 
+**NetworkDeviceBGPConfigurationTemplateRecordSet** | Pointer to [**NetworkDeviceBGPConfigurationTemplateRecordSet**](NetworkDeviceBGPConfigurationTemplateRecordSet.md) | The Network Device BGP Configuration Template record set. | [optional] 
+**NetworkDeviceInterconnectTemplateRecordSet** | Pointer to [**NetworkDeviceInterconnectTemplateRecordSet**](NetworkDeviceInterconnectTemplateRecordSet.md) | The Network Device Interconnect Template record set. | [optional] 
 **ServerInstanceGroupDNSRecordSet** | Pointer to **map[string]interface{}** | The Instance Array DNS record set | [optional] 
 **ServerInstanceDNSRecordSet** | Pointer to **map[string]interface{}** | The Instance DNS record set | [optional] 
 **ClusterDNSRecordSet** | Pointer to **map[string]interface{}** | The Cluster DNS record set | [optional] 
@@ -87,30 +89,80 @@ SetNetworkDevice sets NetworkDevice field to given value.
 
 HasNetworkDevice returns a boolean if a field has been set.
 
-### GetNetworkDeviceConfigurationTemplateRecordSet
+### GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet
 
-`func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSet() NetworkDeviceConfigurationTemplateRecordSet`
+`func (o *RecordSet) GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet() NetworkDeviceLinkAggregationConfigurationTemplateRecordSet`
 
-GetNetworkDeviceConfigurationTemplateRecordSet returns the NetworkDeviceConfigurationTemplateRecordSet field if non-nil, zero value otherwise.
+GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet returns the NetworkDeviceLinkAggregationConfigurationTemplateRecordSet field if non-nil, zero value otherwise.
 
-### GetNetworkDeviceConfigurationTemplateRecordSetOk
+### GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSetOk
 
-`func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSetOk() (*NetworkDeviceConfigurationTemplateRecordSet, bool)`
+`func (o *RecordSet) GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSetOk() (*NetworkDeviceLinkAggregationConfigurationTemplateRecordSet, bool)`
 
-GetNetworkDeviceConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceConfigurationTemplateRecordSet field if it's non-nil, zero value otherwise
+GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceLinkAggregationConfigurationTemplateRecordSet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkDeviceConfigurationTemplateRecordSet
+### SetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet
 
-`func (o *RecordSet) SetNetworkDeviceConfigurationTemplateRecordSet(v NetworkDeviceConfigurationTemplateRecordSet)`
+`func (o *RecordSet) SetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(v NetworkDeviceLinkAggregationConfigurationTemplateRecordSet)`
 
-SetNetworkDeviceConfigurationTemplateRecordSet sets NetworkDeviceConfigurationTemplateRecordSet field to given value.
+SetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet sets NetworkDeviceLinkAggregationConfigurationTemplateRecordSet field to given value.
 
-### HasNetworkDeviceConfigurationTemplateRecordSet
+### HasNetworkDeviceLinkAggregationConfigurationTemplateRecordSet
 
-`func (o *RecordSet) HasNetworkDeviceConfigurationTemplateRecordSet() bool`
+`func (o *RecordSet) HasNetworkDeviceLinkAggregationConfigurationTemplateRecordSet() bool`
 
-HasNetworkDeviceConfigurationTemplateRecordSet returns a boolean if a field has been set.
+HasNetworkDeviceLinkAggregationConfigurationTemplateRecordSet returns a boolean if a field has been set.
+
+### GetNetworkDeviceBGPConfigurationTemplateRecordSet
+
+`func (o *RecordSet) GetNetworkDeviceBGPConfigurationTemplateRecordSet() NetworkDeviceBGPConfigurationTemplateRecordSet`
+
+GetNetworkDeviceBGPConfigurationTemplateRecordSet returns the NetworkDeviceBGPConfigurationTemplateRecordSet field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceBGPConfigurationTemplateRecordSetOk
+
+`func (o *RecordSet) GetNetworkDeviceBGPConfigurationTemplateRecordSetOk() (*NetworkDeviceBGPConfigurationTemplateRecordSet, bool)`
+
+GetNetworkDeviceBGPConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceBGPConfigurationTemplateRecordSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceBGPConfigurationTemplateRecordSet
+
+`func (o *RecordSet) SetNetworkDeviceBGPConfigurationTemplateRecordSet(v NetworkDeviceBGPConfigurationTemplateRecordSet)`
+
+SetNetworkDeviceBGPConfigurationTemplateRecordSet sets NetworkDeviceBGPConfigurationTemplateRecordSet field to given value.
+
+### HasNetworkDeviceBGPConfigurationTemplateRecordSet
+
+`func (o *RecordSet) HasNetworkDeviceBGPConfigurationTemplateRecordSet() bool`
+
+HasNetworkDeviceBGPConfigurationTemplateRecordSet returns a boolean if a field has been set.
+
+### GetNetworkDeviceInterconnectTemplateRecordSet
+
+`func (o *RecordSet) GetNetworkDeviceInterconnectTemplateRecordSet() NetworkDeviceInterconnectTemplateRecordSet`
+
+GetNetworkDeviceInterconnectTemplateRecordSet returns the NetworkDeviceInterconnectTemplateRecordSet field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceInterconnectTemplateRecordSetOk
+
+`func (o *RecordSet) GetNetworkDeviceInterconnectTemplateRecordSetOk() (*NetworkDeviceInterconnectTemplateRecordSet, bool)`
+
+GetNetworkDeviceInterconnectTemplateRecordSetOk returns a tuple with the NetworkDeviceInterconnectTemplateRecordSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceInterconnectTemplateRecordSet
+
+`func (o *RecordSet) SetNetworkDeviceInterconnectTemplateRecordSet(v NetworkDeviceInterconnectTemplateRecordSet)`
+
+SetNetworkDeviceInterconnectTemplateRecordSet sets NetworkDeviceInterconnectTemplateRecordSet field to given value.
+
+### HasNetworkDeviceInterconnectTemplateRecordSet
+
+`func (o *RecordSet) HasNetworkDeviceInterconnectTemplateRecordSet() bool`
+
+HasNetworkDeviceInterconnectTemplateRecordSet returns a boolean if a field has been set.
 
 ### GetServerInstanceGroupDNSRecordSet
 

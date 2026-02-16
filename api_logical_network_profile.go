@@ -743,6 +743,128 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVniAllocati
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkProfileAPIService
+	id float32
+	createZoneAllocationStrategy *CreateZoneAllocationStrategy
+	ifMatch *string
+}
+
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest) CreateZoneAllocationStrategy(createZoneAllocationStrategy CreateZoneAllocationStrategy) LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest {
+	r.createZoneAllocationStrategy = &createZoneAllocationStrategy
+	return r
+}
+
+// Entity tag
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest) IfMatch(ifMatch string) LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest) Execute() (*ZoneAllocationStrategy, *http.Response, error) {
+	return r.ApiService.CreateLogicalNetworkProfileZoneAllocationStrategyExecute(r)
+}
+
+/*
+CreateLogicalNetworkProfileZoneAllocationStrategy Create Zone allocation strategy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest
+*/
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest {
+	return LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ZoneAllocationStrategy
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileZoneAllocationStrategyExecute(r LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest) (*ZoneAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ZoneAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.CreateLogicalNetworkProfileZoneAllocationStrategy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-network-profiles/{id}/zone/zone-allocation-strategies"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createZoneAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createZoneAllocationStrategy is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.createZoneAllocationStrategy
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
@@ -1308,6 +1430,110 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileVniAllocati
 	}
 
 	localVarPath := localBasePath + "/api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies/{allocationStrategyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkProfileAPIService
+	id float32
+	allocationStrategyId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest) IfMatch(ifMatch string) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteLogicalNetworkProfileZoneAllocationStrategyExecute(r)
+}
+
+/*
+DeleteLogicalNetworkProfileZoneAllocationStrategy Delete Zone allocation strategy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @param allocationStrategyId
+ @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest
+*/
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest {
+	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		allocationStrategyId: allocationStrategyId,
+	}
+}
+
+// Execute executes the request
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileZoneAllocationStrategyExecute(r LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.DeleteLogicalNetworkProfileZoneAllocationStrategy")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-network-profiles/{id}/zone/zone-allocation-strategies/{allocationStrategyId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
 
@@ -2864,6 +3090,286 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVniAllocationS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkProfileAPIService
+	id float32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterKind *[]string
+	sortBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest) Page(page float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied. 
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest) Limit(limit float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest) FilterId(filterId []string) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest) FilterKind(filterKind []string) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
+	r.filterKind = &filterKind
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest) SortBy(sortBy []string) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest) Execute() (*PaginatedZoneAllocationStrategy, *http.Response, error) {
+	return r.ApiService.GetLogicalNetworkProfileZoneAllocationStrategiesExecute(r)
+}
+
+/*
+GetLogicalNetworkProfileZoneAllocationStrategies Get all Zone allocation strategies.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest
+*/
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategies(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
+	return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedZoneAllocationStrategy
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategiesExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest) (*PaginatedZoneAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedZoneAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.GetLogicalNetworkProfileZoneAllocationStrategies")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-network-profiles/{id}/zone/zone-allocation-strategies"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterKind != nil {
+		t := *r.filterKind
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkProfileAPIService
+	id float32
+	allocationStrategyId float32
+}
+
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest) Execute() (*ZoneAllocationStrategy, *http.Response, error) {
+	return r.ApiService.GetLogicalNetworkProfileZoneAllocationStrategyExecute(r)
+}
+
+/*
+GetLogicalNetworkProfileZoneAllocationStrategy Get a Zone allocation strategy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @param allocationStrategyId
+ @return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest
+*/
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest {
+	return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		allocationStrategyId: allocationStrategyId,
+	}
+}
+
+// Execute executes the request
+//  @return ZoneAllocationStrategy
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategyExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest) (*ZoneAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ZoneAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.GetLogicalNetworkProfileZoneAllocationStrategy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-network-profiles/{id}/zone/zone-allocation-strategies/{allocationStrategyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
@@ -2874,6 +3380,7 @@ type LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest struct {
 	filterLabel *[]string
 	filterName *[]string
 	filterFabricId *[]string
+	filterRouteDomainId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -2918,6 +3425,12 @@ func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) FilterName(fil
 // Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe&amp;filter.fabricId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) FilterFabricId(filterFabricId []string) LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest {
 	r.filterFabricId = &filterFabricId
+	return r
+}
+
+// Filter by routeDomainId query param.  **Format:** filter.routeDomainId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.routeDomainId&#x3D;$eq:John Doe&amp;filter.routeDomainId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $not  - $null  - $and  - $or
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) FilterRouteDomainId(filterRouteDomainId []string) LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest {
+	r.filterRouteDomainId = &filterRouteDomainId
 	return r
 }
 
@@ -3036,6 +3549,17 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilesExecute(r Log
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricId", t, "form", "multi")
+		}
+	}
+	if r.filterRouteDomainId != nil {
+		t := *r.filterRouteDomainId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.routeDomainId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.routeDomainId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -3710,6 +4234,132 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVniAllocat
 	}
 	// body params
 	localVarPostBody = r.createVniAllocationStrategy
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkProfileAPIService
+	id float32
+	allocationStrategyId float32
+	createZoneAllocationStrategy *CreateZoneAllocationStrategy
+	ifMatch *string
+}
+
+func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest) CreateZoneAllocationStrategy(createZoneAllocationStrategy CreateZoneAllocationStrategy) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest {
+	r.createZoneAllocationStrategy = &createZoneAllocationStrategy
+	return r
+}
+
+// Entity tag
+func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest) IfMatch(ifMatch string) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest) Execute() (*ZoneAllocationStrategy, *http.Response, error) {
+	return r.ApiService.ReplaceLogicalNetworkProfileZoneAllocationStrategyExecute(r)
+}
+
+/*
+ReplaceLogicalNetworkProfileZoneAllocationStrategy Replace Zone allocation strategy
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @param allocationStrategyId
+ @return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest
+*/
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest {
+	return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		allocationStrategyId: allocationStrategyId,
+	}
+}
+
+// Execute executes the request
+//  @return ZoneAllocationStrategy
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileZoneAllocationStrategyExecute(r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest) (*ZoneAllocationStrategy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ZoneAllocationStrategy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.ReplaceLogicalNetworkProfileZoneAllocationStrategy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-network-profiles/{id}/zone/zone-allocation-strategies/{allocationStrategyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"allocationStrategyId"+"}", url.PathEscape(parameterValueToString(r.allocationStrategyId, "allocationStrategyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createZoneAllocationStrategy == nil {
+		return localVarReturnValue, nil, reportError("createZoneAllocationStrategy is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.createZoneAllocationStrategy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

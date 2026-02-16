@@ -27,6 +27,8 @@ type NetworkFabricDeployPreview struct {
 	NetworkFabricLinkId float32 `json:"networkFabricLinkId"`
 	// Unique identifier for the Network Device Configuration Template
 	NetworkDeviceConfigurationTemplateId float32 `json:"networkDeviceConfigurationTemplateId"`
+	// Type of the Network Device Configuration Template
+	NetworkDeviceConfigurationTemplateType NetworkDeviceConfigurationTemplateType `json:"networkDeviceConfigurationTemplateType"`
 	// Preview of the BGP preparation for the network device encoded in base64 format
 	PreparationPreview *string `json:"preparationPreview,omitempty"`
 	// Preview of the BGP configuration for the network device encoded in base64 format
@@ -40,11 +42,12 @@ type _NetworkFabricDeployPreview NetworkFabricDeployPreview
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, networkDeviceConfigurationTemplateId float32) *NetworkFabricDeployPreview {
+func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, networkDeviceConfigurationTemplateId float32, networkDeviceConfigurationTemplateType NetworkDeviceConfigurationTemplateType) *NetworkFabricDeployPreview {
 	this := NetworkFabricDeployPreview{}
 	this.NetworkDeviceId = networkDeviceId
 	this.NetworkFabricLinkId = networkFabricLinkId
 	this.NetworkDeviceConfigurationTemplateId = networkDeviceConfigurationTemplateId
+	this.NetworkDeviceConfigurationTemplateType = networkDeviceConfigurationTemplateType
 	return &this
 }
 
@@ -128,6 +131,30 @@ func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateId(v f
 	o.NetworkDeviceConfigurationTemplateId = v
 }
 
+// GetNetworkDeviceConfigurationTemplateType returns the NetworkDeviceConfigurationTemplateType field value
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateType() NetworkDeviceConfigurationTemplateType {
+	if o == nil {
+		var ret NetworkDeviceConfigurationTemplateType
+		return ret
+	}
+
+	return o.NetworkDeviceConfigurationTemplateType
+}
+
+// GetNetworkDeviceConfigurationTemplateTypeOk returns a tuple with the NetworkDeviceConfigurationTemplateType field value
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateTypeOk() (*NetworkDeviceConfigurationTemplateType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkDeviceConfigurationTemplateType, true
+}
+
+// SetNetworkDeviceConfigurationTemplateType sets field value
+func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateType(v NetworkDeviceConfigurationTemplateType) {
+	o.NetworkDeviceConfigurationTemplateType = v
+}
+
 // GetPreparationPreview returns the PreparationPreview field value if set, zero value otherwise.
 func (o *NetworkFabricDeployPreview) GetPreparationPreview() string {
 	if o == nil || IsNil(o.PreparationPreview) {
@@ -205,6 +232,7 @@ func (o NetworkFabricDeployPreview) ToMap() (map[string]interface{}, error) {
 	toSerialize["networkDeviceId"] = o.NetworkDeviceId
 	toSerialize["networkFabricLinkId"] = o.NetworkFabricLinkId
 	toSerialize["networkDeviceConfigurationTemplateId"] = o.NetworkDeviceConfigurationTemplateId
+	toSerialize["networkDeviceConfigurationTemplateType"] = o.NetworkDeviceConfigurationTemplateType
 	if !IsNil(o.PreparationPreview) {
 		toSerialize["preparationPreview"] = o.PreparationPreview
 	}
@@ -227,6 +255,7 @@ func (o *NetworkFabricDeployPreview) UnmarshalJSON(data []byte) (err error) {
 		"networkDeviceId",
 		"networkFabricLinkId",
 		"networkDeviceConfigurationTemplateId",
+		"networkDeviceConfigurationTemplateType",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -259,6 +288,7 @@ func (o *NetworkFabricDeployPreview) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkDeviceId")
 		delete(additionalProperties, "networkFabricLinkId")
 		delete(additionalProperties, "networkDeviceConfigurationTemplateId")
+		delete(additionalProperties, "networkDeviceConfigurationTemplateType")
 		delete(additionalProperties, "preparationPreview")
 		delete(additionalProperties, "configurationPreview")
 		o.AdditionalProperties = additionalProperties

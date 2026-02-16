@@ -71,6 +71,8 @@ type UserConfiguration struct {
 	AccountId *float32 `json:"accountId,omitempty"`
 	// The provider of the user
 	Provider string `json:"provider"`
+	// The timestamp when the user last changed their password
+	PasswordLastChangedTimestamp string `json:"passwordLastChangedTimestamp"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,7 +82,7 @@ type _UserConfiguration UserConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string) *UserConfiguration {
+func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string) *UserConfiguration {
 	this := UserConfiguration{}
 	this.Revision = revision
 	this.DisplayName = displayName
@@ -102,6 +104,7 @@ func NewUserConfiguration(revision float32, displayName string, emailStatus stri
 	this.IsArchived = isArchived
 	this.IsDatastorePublisher = isDatastorePublisher
 	this.Provider = provider
+	this.PasswordLastChangedTimestamp = passwordLastChangedTimestamp
 	return &this
 }
 
@@ -759,6 +762,30 @@ func (o *UserConfiguration) SetProvider(v string) {
 	o.Provider = v
 }
 
+// GetPasswordLastChangedTimestamp returns the PasswordLastChangedTimestamp field value
+func (o *UserConfiguration) GetPasswordLastChangedTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PasswordLastChangedTimestamp
+}
+
+// GetPasswordLastChangedTimestampOk returns a tuple with the PasswordLastChangedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *UserConfiguration) GetPasswordLastChangedTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PasswordLastChangedTimestamp, true
+}
+
+// SetPasswordLastChangedTimestamp sets field value
+func (o *UserConfiguration) SetPasswordLastChangedTimestamp(v string) {
+	o.PasswordLastChangedTimestamp = v
+}
+
 func (o UserConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -804,6 +831,7 @@ func (o UserConfiguration) ToMap() (map[string]interface{}, error) {
 		toSerialize["accountId"] = o.AccountId
 	}
 	toSerialize["provider"] = o.Provider
+	toSerialize["passwordLastChangedTimestamp"] = o.PasswordLastChangedTimestamp
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -837,6 +865,7 @@ func (o *UserConfiguration) UnmarshalJSON(data []byte) (err error) {
 		"isArchived",
 		"isDatastorePublisher",
 		"provider",
+		"passwordLastChangedTimestamp",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -891,6 +920,7 @@ func (o *UserConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isDatastorePublisher")
 		delete(additionalProperties, "accountId")
 		delete(additionalProperties, "provider")
+		delete(additionalProperties, "passwordLastChangedTimestamp")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **InfrastructureId** | **float32** | Id of the Infrastructure. | 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Service status of the VM Instance. | 
+**GpuInfo** | Pointer to [**[]VMTypeGPUInfo**](VMTypeGPUInfo.md) | Information about GPUs available for this VM Instance | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the VM Instance. | [optional] 
@@ -414,6 +415,31 @@ and a boolean to check if the value has been set.
 
 SetServiceStatus sets ServiceStatus field to given value.
 
+
+### GetGpuInfo
+
+`func (o *VMInstance) GetGpuInfo() []VMTypeGPUInfo`
+
+GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
+
+### GetGpuInfoOk
+
+`func (o *VMInstance) GetGpuInfoOk() (*[]VMTypeGPUInfo, bool)`
+
+GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpuInfo
+
+`func (o *VMInstance) SetGpuInfo(v []VMTypeGPUInfo)`
+
+SetGpuInfo sets GpuInfo field to given value.
+
+### HasGpuInfo
+
+`func (o *VMInstance) HasGpuInfo() bool`
+
+HasGpuInfo returns a boolean if a field has been set.
 
 ### GetSubdomainPermanent
 

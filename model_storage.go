@@ -67,6 +67,8 @@ type Storage struct {
 	Tags []string `json:"tags,omitempty"`
 	// Subnet type
 	SubnetType string `json:"subnetType"`
+	// Interfaces of the Storage
+	Interfaces []StorageInterface `json:"interfaces,omitempty"`
 	// Network fabric ID this Storage is connected to
 	NetworkFabricId *float32 `json:"networkFabricId,omitempty"`
 	JobStatistics *JobGroupStatistics `json:"jobStatistics,omitempty"`
@@ -762,6 +764,38 @@ func (o *Storage) SetSubnetType(v string) {
 	o.SubnetType = v
 }
 
+// GetInterfaces returns the Interfaces field value if set, zero value otherwise.
+func (o *Storage) GetInterfaces() []StorageInterface {
+	if o == nil || IsNil(o.Interfaces) {
+		var ret []StorageInterface
+		return ret
+	}
+	return o.Interfaces
+}
+
+// GetInterfacesOk returns a tuple with the Interfaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Storage) GetInterfacesOk() ([]StorageInterface, bool) {
+	if o == nil || IsNil(o.Interfaces) {
+		return nil, false
+	}
+	return o.Interfaces, true
+}
+
+// HasInterfaces returns a boolean if a field has been set.
+func (o *Storage) HasInterfaces() bool {
+	if o != nil && !IsNil(o.Interfaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaces gets a reference to the given []StorageInterface and assigns it to the Interfaces field.
+func (o *Storage) SetInterfaces(v []StorageInterface) {
+	o.Interfaces = v
+}
+
 // GetNetworkFabricId returns the NetworkFabricId field value if set, zero value otherwise.
 func (o *Storage) GetNetworkFabricId() float32 {
 	if o == nil || IsNil(o.NetworkFabricId) {
@@ -949,6 +983,9 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["subnetType"] = o.SubnetType
+	if !IsNil(o.Interfaces) {
+		toSerialize["interfaces"] = o.Interfaces
+	}
 	if !IsNil(o.NetworkFabricId) {
 		toSerialize["networkFabricId"] = o.NetworkFabricId
 	}
@@ -1036,6 +1073,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "alternateSanIPs")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "subnetType")
+		delete(additionalProperties, "interfaces")
 		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "jobStatistics")
 		delete(additionalProperties, "extensionInfo")

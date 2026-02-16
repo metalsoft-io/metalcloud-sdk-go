@@ -43,10 +43,14 @@ type NetworkFabric struct {
 	Status *FabricStatus `json:"status,omitempty"`
 	// The deploy ID of the network fabric, if it is being deployed.
 	DeployId *int32 `json:"deployId,omitempty"`
+	// The deploy ID of the network fabric, if it is being deployed.
+	TransportId NullableInt32 `json:"transportId,omitempty"`
 	// The deploy preview for the network fabric, if it is being deployed.
 	DeployPreview []NetworkFabricDeployPreview `json:"deployPreview,omitempty"`
 	// The network equipments in the fabric
 	NetworkEquipment []NetworkDevice `json:"networkEquipment,omitempty"`
+	// Custom variables for the network fabric
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -379,6 +383,48 @@ func (o *NetworkFabric) SetDeployId(v int32) {
 	o.DeployId = &v
 }
 
+// GetTransportId returns the TransportId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkFabric) GetTransportId() int32 {
+	if o == nil || IsNil(o.TransportId.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.TransportId.Get()
+}
+
+// GetTransportIdOk returns a tuple with the TransportId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkFabric) GetTransportIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TransportId.Get(), o.TransportId.IsSet()
+}
+
+// HasTransportId returns a boolean if a field has been set.
+func (o *NetworkFabric) HasTransportId() bool {
+	if o != nil && o.TransportId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTransportId gets a reference to the given NullableInt32 and assigns it to the TransportId field.
+func (o *NetworkFabric) SetTransportId(v int32) {
+	o.TransportId.Set(&v)
+}
+// SetTransportIdNil sets the value for TransportId to be an explicit nil
+func (o *NetworkFabric) SetTransportIdNil() {
+	o.TransportId.Set(nil)
+}
+
+// UnsetTransportId ensures that no value is present for TransportId, not even an explicit nil
+func (o *NetworkFabric) UnsetTransportId() {
+	o.TransportId.Unset()
+}
+
 // GetDeployPreview returns the DeployPreview field value if set, zero value otherwise.
 func (o *NetworkFabric) GetDeployPreview() []NetworkFabricDeployPreview {
 	if o == nil || IsNil(o.DeployPreview) {
@@ -443,6 +489,38 @@ func (o *NetworkFabric) SetNetworkEquipment(v []NetworkDevice) {
 	o.NetworkEquipment = v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *NetworkFabric) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *NetworkFabric) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *NetworkFabric) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 func (o NetworkFabric) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -474,11 +552,17 @@ func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DeployId) {
 		toSerialize["deployId"] = o.DeployId
 	}
+	if o.TransportId.IsSet() {
+		toSerialize["transportId"] = o.TransportId.Get()
+	}
 	if !IsNil(o.DeployPreview) {
 		toSerialize["deployPreview"] = o.DeployPreview
 	}
 	if !IsNil(o.NetworkEquipment) {
 		toSerialize["networkEquipment"] = o.NetworkEquipment
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -539,8 +623,10 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "deployId")
+		delete(additionalProperties, "transportId")
 		delete(additionalProperties, "deployPreview")
 		delete(additionalProperties, "networkEquipment")
+		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}
 

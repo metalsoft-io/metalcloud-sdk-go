@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **AlternateSanIPs** | Pointer to **[]string** | Alternate SAN IPs | [optional] 
 **Tags** | Pointer to **[]string** | Tags | [optional] 
 **SubnetType** | **string** | Subnet type | 
+**Interfaces** | Pointer to [**[]StorageInterface**](StorageInterface.md) | Interfaces of the Storage | [optional] 
 **NetworkFabricId** | Pointer to **float32** | Network fabric ID this Storage is connected to | [optional] 
 **JobStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) |  | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
@@ -575,6 +576,31 @@ and a boolean to check if the value has been set.
 
 SetSubnetType sets SubnetType field to given value.
 
+
+### GetInterfaces
+
+`func (o *Storage) GetInterfaces() []StorageInterface`
+
+GetInterfaces returns the Interfaces field if non-nil, zero value otherwise.
+
+### GetInterfacesOk
+
+`func (o *Storage) GetInterfacesOk() (*[]StorageInterface, bool)`
+
+GetInterfacesOk returns a tuple with the Interfaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaces
+
+`func (o *Storage) SetInterfaces(v []StorageInterface)`
+
+SetInterfaces sets Interfaces field to given value.
+
+### HasInterfaces
+
+`func (o *Storage) HasInterfaces() bool`
+
+HasInterfaces returns a boolean if a field has been set.
 
 ### GetNetworkFabricId
 

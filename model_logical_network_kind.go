@@ -23,6 +23,7 @@ type LogicalNetworkKind string
 const (
 	LOGICALNETWORKKIND_VLAN LogicalNetworkKind = "vlan"
 	LOGICALNETWORKKIND_VXLAN LogicalNetworkKind = "vxlan"
+	LOGICALNETWORKKIND_FIBRE_CHANNEL LogicalNetworkKind = "fibre_channel"
 	LOGICALNETWORKKIND_INFINIBAND LogicalNetworkKind = "infiniband"
 )
 
@@ -30,6 +31,7 @@ const (
 var AllowedLogicalNetworkKindEnumValues = []LogicalNetworkKind{
 	"vlan",
 	"vxlan",
+	"fibre_channel",
 	"infiniband",
 }
 

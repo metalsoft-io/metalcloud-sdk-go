@@ -64,8 +64,6 @@ type StorageOptions struct {
 	PortsNvmeTcp []StoragePort `json:"portsNvmeTcp,omitempty"`
 	// NVMe FC ports
 	PortsNvmeFc []StoragePort `json:"portsNvmeFc,omitempty"`
-	// Array of storage ports to use
-	PortsToUse []StoragePort `json:"portsToUse,omitempty"`
 	// Array of storage servers
 	Servers []StoragePort `json:"servers,omitempty"`
 	// Array of storage nodes
@@ -800,38 +798,6 @@ func (o *StorageOptions) SetPortsNvmeFc(v []StoragePort) {
 	o.PortsNvmeFc = v
 }
 
-// GetPortsToUse returns the PortsToUse field value if set, zero value otherwise.
-func (o *StorageOptions) GetPortsToUse() []StoragePort {
-	if o == nil || IsNil(o.PortsToUse) {
-		var ret []StoragePort
-		return ret
-	}
-	return o.PortsToUse
-}
-
-// GetPortsToUseOk returns a tuple with the PortsToUse field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *StorageOptions) GetPortsToUseOk() ([]StoragePort, bool) {
-	if o == nil || IsNil(o.PortsToUse) {
-		return nil, false
-	}
-	return o.PortsToUse, true
-}
-
-// HasPortsToUse returns a boolean if a field has been set.
-func (o *StorageOptions) HasPortsToUse() bool {
-	if o != nil && !IsNil(o.PortsToUse) {
-		return true
-	}
-
-	return false
-}
-
-// SetPortsToUse gets a reference to the given []StoragePort and assigns it to the PortsToUse field.
-func (o *StorageOptions) SetPortsToUse(v []StoragePort) {
-	o.PortsToUse = v
-}
-
 // GetServers returns the Servers field value if set, zero value otherwise.
 func (o *StorageOptions) GetServers() []StoragePort {
 	if o == nil || IsNil(o.Servers) {
@@ -1036,9 +1002,6 @@ func (o StorageOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PortsNvmeFc) {
 		toSerialize["portsNvmeFc"] = o.PortsNvmeFc
 	}
-	if !IsNil(o.PortsToUse) {
-		toSerialize["portsToUse"] = o.PortsToUse
-	}
 	if !IsNil(o.Servers) {
 		toSerialize["servers"] = o.Servers
 	}
@@ -1095,7 +1058,6 @@ func (o *StorageOptions) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portsScsiFc")
 		delete(additionalProperties, "portsNvmeTcp")
 		delete(additionalProperties, "portsNvmeFc")
-		delete(additionalProperties, "portsToUse")
 		delete(additionalProperties, "servers")
 		delete(additionalProperties, "nodes")
 		delete(additionalProperties, "infoGatherError")

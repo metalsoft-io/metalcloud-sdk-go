@@ -16,12 +16,13 @@ Name | Type | Description | Notes
 **DhcpOobEnabled** | **bool** | DHCP OOB capability status | 
 **NetconfEnabled** | **bool** | NETCONF capability status | 
 **AnsibleRunnerEnabled** | **bool** | Ansible runner capability status | 
+**BuildImageEnabled** | **bool** | Build image capability status | 
 
 ## Methods
 
 ### NewAgentCapabilities
 
-`func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool, ) *AgentCapabilities`
+`func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool, buildImageEnabled bool, ) *AgentCapabilities`
 
 NewAgentCapabilities instantiates a new AgentCapabilities object
 This constructor will assign default values to properties that have it defined,
@@ -274,6 +275,26 @@ and a boolean to check if the value has been set.
 `func (o *AgentCapabilities) SetAnsibleRunnerEnabled(v bool)`
 
 SetAnsibleRunnerEnabled sets AnsibleRunnerEnabled field to given value.
+
+
+### GetBuildImageEnabled
+
+`func (o *AgentCapabilities) GetBuildImageEnabled() bool`
+
+GetBuildImageEnabled returns the BuildImageEnabled field if non-nil, zero value otherwise.
+
+### GetBuildImageEnabledOk
+
+`func (o *AgentCapabilities) GetBuildImageEnabledOk() (*bool, bool)`
+
+GetBuildImageEnabledOk returns a tuple with the BuildImageEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBuildImageEnabled
+
+`func (o *AgentCapabilities) SetBuildImageEnabled(v bool)`
+
+SetBuildImageEnabled sets BuildImageEnabled field to given value.
 
 
 

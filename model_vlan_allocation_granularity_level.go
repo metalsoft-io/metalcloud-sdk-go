@@ -21,11 +21,13 @@ type VlanAllocationGranularityLevel string
 
 // List of VlanAllocationGranularityLevel
 const (
+	VLANALLOCATIONGRANULARITYLEVEL_FABRIC VlanAllocationGranularityLevel = "fabric"
 	VLANALLOCATIONGRANULARITYLEVEL_NETWORK_DEVICE VlanAllocationGranularityLevel = "network_device"
 )
 
 // All allowed values of VlanAllocationGranularityLevel enum
 var AllowedVlanAllocationGranularityLevelEnumValues = []VlanAllocationGranularityLevel{
+	"fabric",
 	"network_device",
 }
 

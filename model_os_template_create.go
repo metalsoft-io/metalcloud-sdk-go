@@ -30,6 +30,8 @@ type OSTemplateCreate struct {
 	Device OSTemplateDevice `json:"device"`
 	Install OSTemplateInstall `json:"install"`
 	ImageBuild OSTemplateImageBuild `json:"imageBuild"`
+	// The image boot certificate serial number associated with the OS template. Used for secure boot
+	ImageCertSerialNumber *string `json:"imageCertSerialNumber,omitempty"`
 	Os OSTemplateOs `json:"os"`
 	// The visibility of the OS template.                     If the visibility is PUBLIC any user can use the OS template in deployments                     If the visibility is PRIVATE the OS template can be used in deployments only                     by the user who created and/or updated the template
 	Visibility *string `json:"visibility,omitempty"`
@@ -226,6 +228,38 @@ func (o *OSTemplateCreate) SetImageBuild(v OSTemplateImageBuild) {
 	o.ImageBuild = v
 }
 
+// GetImageCertSerialNumber returns the ImageCertSerialNumber field value if set, zero value otherwise.
+func (o *OSTemplateCreate) GetImageCertSerialNumber() string {
+	if o == nil || IsNil(o.ImageCertSerialNumber) {
+		var ret string
+		return ret
+	}
+	return *o.ImageCertSerialNumber
+}
+
+// GetImageCertSerialNumberOk returns a tuple with the ImageCertSerialNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OSTemplateCreate) GetImageCertSerialNumberOk() (*string, bool) {
+	if o == nil || IsNil(o.ImageCertSerialNumber) {
+		return nil, false
+	}
+	return o.ImageCertSerialNumber, true
+}
+
+// HasImageCertSerialNumber returns a boolean if a field has been set.
+func (o *OSTemplateCreate) HasImageCertSerialNumber() bool {
+	if o != nil && !IsNil(o.ImageCertSerialNumber) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageCertSerialNumber gets a reference to the given string and assigns it to the ImageCertSerialNumber field.
+func (o *OSTemplateCreate) SetImageCertSerialNumber(v string) {
+	o.ImageCertSerialNumber = &v
+}
+
 // GetOs returns the Os field value
 func (o *OSTemplateCreate) GetOs() OSTemplateOs {
 	if o == nil {
@@ -334,6 +368,9 @@ func (o OSTemplateCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize["device"] = o.Device
 	toSerialize["install"] = o.Install
 	toSerialize["imageBuild"] = o.ImageBuild
+	if !IsNil(o.ImageCertSerialNumber) {
+		toSerialize["imageCertSerialNumber"] = o.ImageCertSerialNumber
+	}
 	toSerialize["os"] = o.Os
 	if !IsNil(o.Visibility) {
 		toSerialize["visibility"] = o.Visibility
@@ -394,6 +431,7 @@ func (o *OSTemplateCreate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "device")
 		delete(additionalProperties, "install")
 		delete(additionalProperties, "imageBuild")
+		delete(additionalProperties, "imageCertSerialNumber")
 		delete(additionalProperties, "os")
 		delete(additionalProperties, "visibility")
 		delete(additionalProperties, "tags")

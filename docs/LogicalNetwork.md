@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **Vlan** | Pointer to [**LogicalNetworkVlanProperties**](LogicalNetworkVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**LogicalNetworkVxlanProperties**](LogicalNetworkVxlanProperties.md) |  | [optional] 
 **Pkey** | Pointer to [**LogicalNetworkPkeyProperties**](LogicalNetworkPkeyProperties.md) |  | [optional] 
+**Zone** | Pointer to [**LogicalNetworkZoneProperties**](LogicalNetworkZoneProperties.md) |  | [optional] 
 **Ipv4** | Pointer to [**LogicalNetworkIpv4Properties**](LogicalNetworkIpv4Properties.md) |  | [optional] 
 **Ipv6** | Pointer to [**LogicalNetworkIpv6Properties**](LogicalNetworkIpv6Properties.md) |  | [optional] 
 **RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
@@ -455,6 +456,31 @@ SetPkey sets Pkey field to given value.
 `func (o *LogicalNetwork) HasPkey() bool`
 
 HasPkey returns a boolean if a field has been set.
+
+### GetZone
+
+`func (o *LogicalNetwork) GetZone() LogicalNetworkZoneProperties`
+
+GetZone returns the Zone field if non-nil, zero value otherwise.
+
+### GetZoneOk
+
+`func (o *LogicalNetwork) GetZoneOk() (*LogicalNetworkZoneProperties, bool)`
+
+GetZoneOk returns a tuple with the Zone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetZone
+
+`func (o *LogicalNetwork) SetZone(v LogicalNetworkZoneProperties)`
+
+SetZone sets Zone field to given value.
+
+### HasZone
+
+`func (o *LogicalNetwork) HasZone() bool`
+
+HasZone returns a boolean if a field has been set.
 
 ### GetIpv4
 

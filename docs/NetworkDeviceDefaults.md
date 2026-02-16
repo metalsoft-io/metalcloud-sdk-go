@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **LoopbackAddressIpv6** | Pointer to **string** | Loopback IPv6 address | [optional] 
 **VtepAddressIpv4** | Pointer to **string** | VTEP IPv4 address | [optional] 
 **VtepAddressIpv6** | Pointer to **string** | VTEP IPv6 address | [optional] 
-**SkipInitialConfiguration** | Pointer to **bool** | Skip initial configuration flag | [optional] 
 **OsTemplateId** | Pointer to **int32** | Volume template ID | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for device configuration | [optional] 
 **OrderIndex** | Pointer to **int32** | Order index for display or processing | [optional] 
@@ -459,31 +458,6 @@ SetVtepAddressIpv6 sets VtepAddressIpv6 field to given value.
 `func (o *NetworkDeviceDefaults) HasVtepAddressIpv6() bool`
 
 HasVtepAddressIpv6 returns a boolean if a field has been set.
-
-### GetSkipInitialConfiguration
-
-`func (o *NetworkDeviceDefaults) GetSkipInitialConfiguration() bool`
-
-GetSkipInitialConfiguration returns the SkipInitialConfiguration field if non-nil, zero value otherwise.
-
-### GetSkipInitialConfigurationOk
-
-`func (o *NetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*bool, bool)`
-
-GetSkipInitialConfigurationOk returns a tuple with the SkipInitialConfiguration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSkipInitialConfiguration
-
-`func (o *NetworkDeviceDefaults) SetSkipInitialConfiguration(v bool)`
-
-SetSkipInitialConfiguration sets SkipInitialConfiguration field to given value.
-
-### HasSkipInitialConfiguration
-
-`func (o *NetworkDeviceDefaults) HasSkipInitialConfiguration() bool`
-
-HasSkipInitialConfiguration returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 

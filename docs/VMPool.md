@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool was updated | 
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
 **Options** | Pointer to [**VMPoolOptions**](VMPoolOptions.md) | Options for the vm pool | [optional] 
+**Gpus** | Pointer to [**[]VMPoolGPU**](VMPoolGPU.md) | The GPUs registered inside the VM Pool. | [optional] 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
@@ -437,6 +438,31 @@ SetOptions sets Options field to given value.
 `func (o *VMPool) HasOptions() bool`
 
 HasOptions returns a boolean if a field has been set.
+
+### GetGpus
+
+`func (o *VMPool) GetGpus() []VMPoolGPU`
+
+GetGpus returns the Gpus field if non-nil, zero value otherwise.
+
+### GetGpusOk
+
+`func (o *VMPool) GetGpusOk() (*[]VMPoolGPU, bool)`
+
+GetGpusOk returns a tuple with the Gpus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpus
+
+`func (o *VMPool) SetGpus(v []VMPoolGPU)`
+
+SetGpus sets Gpus field to given value.
+
+### HasGpus
+
+`func (o *VMPool) HasGpus() bool`
+
+HasGpus returns a boolean if a field has been set.
 
 ### GetLinks
 

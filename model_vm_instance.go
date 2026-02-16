@@ -55,6 +55,8 @@ type VMInstance struct {
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Service status of the VM Instance.
 	ServiceStatus string `json:"serviceStatus"`
+	// Information about GPUs available for this VM Instance
+	GpuInfo []VMTypeGPUInfo `json:"gpuInfo,omitempty"`
 	// Subdomain permanent of the VM Instance.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the VM Instance.
@@ -559,6 +561,38 @@ func (o *VMInstance) SetServiceStatus(v string) {
 	o.ServiceStatus = v
 }
 
+// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
+func (o *VMInstance) GetGpuInfo() []VMTypeGPUInfo {
+	if o == nil || IsNil(o.GpuInfo) {
+		var ret []VMTypeGPUInfo
+		return ret
+	}
+	return o.GpuInfo
+}
+
+// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstance) GetGpuInfoOk() ([]VMTypeGPUInfo, bool) {
+	if o == nil || IsNil(o.GpuInfo) {
+		return nil, false
+	}
+	return o.GpuInfo, true
+}
+
+// HasGpuInfo returns a boolean if a field has been set.
+func (o *VMInstance) HasGpuInfo() bool {
+	if o != nil && !IsNil(o.GpuInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuInfo gets a reference to the given []VMTypeGPUInfo and assigns it to the GpuInfo field.
+func (o *VMInstance) SetGpuInfo(v []VMTypeGPUInfo) {
+	o.GpuInfo = v
+}
+
 // GetSubdomainPermanent returns the SubdomainPermanent field value if set, zero value otherwise.
 func (o *VMInstance) GetSubdomainPermanent() string {
 	if o == nil || IsNil(o.SubdomainPermanent) {
@@ -852,6 +886,9 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
+	if !IsNil(o.GpuInfo) {
+		toSerialize["gpuInfo"] = o.GpuInfo
+	}
 	if !IsNil(o.SubdomainPermanent) {
 		toSerialize["subdomainPermanent"] = o.SubdomainPermanent
 	}
@@ -946,6 +983,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
+		delete(additionalProperties, "gpuInfo")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")

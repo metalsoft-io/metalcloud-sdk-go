@@ -11,10 +11,11 @@ package sdk
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
 )
 
 func Test_sdk_StorageAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService CreateStorage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.CreateStorage(context.Background()).Execute()
 
@@ -34,22 +35,9 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test StorageAPIService CreateStorageNetworkDeviceConfiguration", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var storageId float32
-
-		httpRes, err := apiClient.StorageAPI.CreateStorageNetworkDeviceConfiguration(context.Background(), storageId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test StorageAPIService DeleteStorage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -60,23 +48,9 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test StorageAPIService DeleteStorageNetworkDeviceConfiguration", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var storageId float32
-		var storageNetworkDeviceConfigurationId float32
-
-		httpRes, err := apiClient.StorageAPI.DeleteStorageNetworkDeviceConfiguration(context.Background(), storageId, storageNetworkDeviceConfigurationId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test StorageAPIService GetStorage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -90,7 +64,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageBuckets", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -104,7 +78,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageCredentials", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -118,7 +92,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageDrives", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -132,7 +106,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageFileShares", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -144,23 +118,9 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test StorageAPIService GetStorageNetworkDeviceConfigurations", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var storageId float32
-
-		resp, httpRes, err := apiClient.StorageAPI.GetStorageNetworkDeviceConfigurations(context.Background(), storageId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test StorageAPIService GetStorageStatistics", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -174,7 +134,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorages", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorages(context.Background()).Execute()
 
@@ -186,7 +146,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStoragesStatistics", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStoragesStatistics(context.Background()).Execute()
 
@@ -198,7 +158,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService UpdateStorage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var storageId float32
 
@@ -206,20 +166,6 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test StorageAPIService UpdateStorageNetworkDeviceConfiguration", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var storageId float32
-		var storageNetworkDeviceConfigurationId float32
-
-		httpRes, err := apiClient.StorageAPI.UpdateStorageNetworkDeviceConfiguration(context.Background(), storageId, storageNetworkDeviceConfigurationId).Execute()
-
-		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

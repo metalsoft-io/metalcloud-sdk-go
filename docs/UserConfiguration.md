@@ -29,12 +29,13 @@ Name | Type | Description | Notes
 **IsDatastorePublisher** | **bool** | Whether the user is a datastore publisher | 
 **AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
 **Provider** | **string** | The provider of the user | [default to "mysql"]
+**PasswordLastChangedTimestamp** | **string** | The timestamp when the user last changed their password | 
 
 ## Methods
 
 ### NewUserConfiguration
 
-`func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, ) *UserConfiguration`
+`func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string, ) *UserConfiguration`
 
 NewUserConfiguration instantiates a new UserConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -572,6 +573,26 @@ and a boolean to check if the value has been set.
 `func (o *UserConfiguration) SetProvider(v string)`
 
 SetProvider sets Provider field to given value.
+
+
+### GetPasswordLastChangedTimestamp
+
+`func (o *UserConfiguration) GetPasswordLastChangedTimestamp() string`
+
+GetPasswordLastChangedTimestamp returns the PasswordLastChangedTimestamp field if non-nil, zero value otherwise.
+
+### GetPasswordLastChangedTimestampOk
+
+`func (o *UserConfiguration) GetPasswordLastChangedTimestampOk() (*string, bool)`
+
+GetPasswordLastChangedTimestampOk returns a tuple with the PasswordLastChangedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasswordLastChangedTimestamp
+
+`func (o *UserConfiguration) SetPasswordLastChangedTimestamp(v string)`
+
+SetPasswordLastChangedTimestamp sets PasswordLastChangedTimestamp field to given value.
 
 
 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **NetworkDeviceId** | **float32** | Unique identifier for the network device. | 
 **NetworkFabricLinkId** | **float32** | Unique identifier for the network fabric link | 
 **NetworkDeviceConfigurationTemplateId** | **float32** | Unique identifier for the Network Device Configuration Template | 
+**NetworkDeviceConfigurationTemplateType** | [**NetworkDeviceConfigurationTemplateType**](NetworkDeviceConfigurationTemplateType.md) | Type of the Network Device Configuration Template | 
 **PreparationPreview** | Pointer to **string** | Preview of the BGP preparation for the network device encoded in base64 format | [optional] 
 **ConfigurationPreview** | Pointer to **string** | Preview of the BGP configuration for the network device encoded in base64 format | [optional] 
 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricDeployPreview
 
-`func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, networkDeviceConfigurationTemplateId float32, ) *NetworkFabricDeployPreview`
+`func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, networkDeviceConfigurationTemplateId float32, networkDeviceConfigurationTemplateType NetworkDeviceConfigurationTemplateType, ) *NetworkFabricDeployPreview`
 
 NewNetworkFabricDeployPreview instantiates a new NetworkFabricDeployPreview object
 This constructor will assign default values to properties that have it defined,
@@ -87,6 +88,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateId(v float32)`
 
 SetNetworkDeviceConfigurationTemplateId sets NetworkDeviceConfigurationTemplateId field to given value.
+
+
+### GetNetworkDeviceConfigurationTemplateType
+
+`func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateType() NetworkDeviceConfigurationTemplateType`
+
+GetNetworkDeviceConfigurationTemplateType returns the NetworkDeviceConfigurationTemplateType field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceConfigurationTemplateTypeOk
+
+`func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateTypeOk() (*NetworkDeviceConfigurationTemplateType, bool)`
+
+GetNetworkDeviceConfigurationTemplateTypeOk returns a tuple with the NetworkDeviceConfigurationTemplateType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceConfigurationTemplateType
+
+`func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateType(v NetworkDeviceConfigurationTemplateType)`
+
+SetNetworkDeviceConfigurationTemplateType sets NetworkDeviceConfigurationTemplateType field to given value.
 
 
 ### GetPreparationPreview

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **DirtyBit** | **float32** | Dirty bit flag | 
 **LldpInformation** | Pointer to **string** | LLDP information | [optional] 
 **MacAddress** | Pointer to **string** | MAC address | [optional] 
+**Wwn** | Pointer to **string** | WWPN | [optional] 
 **DriverDumpCachedJson** | Pointer to **map[string]interface{}** | Driver dump cached JSON | [optional] 
 **CachedUpdatedTimestamp** | **string** | Cached update timestamp | 
 **InterfaceLLDPInformationServerInterface** | Pointer to **map[string]interface{}** | LLDP information of server interface in JSON format | [optional] 
@@ -267,6 +268,31 @@ SetMacAddress sets MacAddress field to given value.
 `func (o *NetworkDeviceInterface) HasMacAddress() bool`
 
 HasMacAddress returns a boolean if a field has been set.
+
+### GetWwn
+
+`func (o *NetworkDeviceInterface) GetWwn() string`
+
+GetWwn returns the Wwn field if non-nil, zero value otherwise.
+
+### GetWwnOk
+
+`func (o *NetworkDeviceInterface) GetWwnOk() (*string, bool)`
+
+GetWwnOk returns a tuple with the Wwn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWwn
+
+`func (o *NetworkDeviceInterface) SetWwn(v string)`
+
+SetWwn sets Wwn field to given value.
+
+### HasWwn
+
+`func (o *NetworkDeviceInterface) HasWwn() bool`
+
+HasWwn returns a boolean if a field has been set.
 
 ### GetDriverDumpCachedJson
 

@@ -67,6 +67,10 @@ type GenerateSiteControllerOneliner struct {
 	HttpRequest bool `json:"httpRequest"`
 	// Enable SSH command capability
 	SshCommand bool `json:"sshCommand"`
+	// Enable image building capability
+	BuildImage bool `json:"buildImage"`
+	// Enable inband WebMKS capability
+	InbandWebmks bool `json:"inbandWebmks"`
 	// Second IP address
 	SecondIp *string `json:"secondIp,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -78,7 +82,7 @@ type _GenerateSiteControllerOneliner GenerateSiteControllerOneliner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool) *GenerateSiteControllerOneliner {
+func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool) *GenerateSiteControllerOneliner {
 	this := GenerateSiteControllerOneliner{}
 	this.UsePodman = usePodman
 	this.InbandMode = inbandMode
@@ -103,6 +107,8 @@ func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEn
 	this.AnsibleRunner = ansibleRunner
 	this.HttpRequest = httpRequest
 	this.SshCommand = sshCommand
+	this.BuildImage = buildImage
+	this.InbandWebmks = inbandWebmks
 	return &this
 }
 
@@ -149,6 +155,12 @@ func NewGenerateSiteControllerOnelinerWithDefaults() *GenerateSiteControllerOnel
 	this.AnsibleRunner = ansibleRunner
 	var httpRequest bool = false
 	this.HttpRequest = httpRequest
+	var sshCommand bool = false
+	this.SshCommand = sshCommand
+	var buildImage bool = false
+	this.BuildImage = buildImage
+	var inbandWebmks bool = false
+	this.InbandWebmks = inbandWebmks
 	return &this
 }
 
@@ -704,6 +716,54 @@ func (o *GenerateSiteControllerOneliner) SetSshCommand(v bool) {
 	o.SshCommand = v
 }
 
+// GetBuildImage returns the BuildImage field value
+func (o *GenerateSiteControllerOneliner) GetBuildImage() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.BuildImage
+}
+
+// GetBuildImageOk returns a tuple with the BuildImage field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetBuildImageOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BuildImage, true
+}
+
+// SetBuildImage sets field value
+func (o *GenerateSiteControllerOneliner) SetBuildImage(v bool) {
+	o.BuildImage = v
+}
+
+// GetInbandWebmks returns the InbandWebmks field value
+func (o *GenerateSiteControllerOneliner) GetInbandWebmks() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.InbandWebmks
+}
+
+// GetInbandWebmksOk returns a tuple with the InbandWebmks field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetInbandWebmksOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InbandWebmks, true
+}
+
+// SetInbandWebmks sets field value
+func (o *GenerateSiteControllerOneliner) SetInbandWebmks(v bool) {
+	o.InbandWebmks = v
+}
+
 // GetSecondIp returns the SecondIp field value if set, zero value otherwise.
 func (o *GenerateSiteControllerOneliner) GetSecondIp() string {
 	if o == nil || IsNil(o.SecondIp) {
@@ -769,6 +829,8 @@ func (o GenerateSiteControllerOneliner) ToMap() (map[string]interface{}, error) 
 	toSerialize["ansibleRunner"] = o.AnsibleRunner
 	toSerialize["httpRequest"] = o.HttpRequest
 	toSerialize["sshCommand"] = o.SshCommand
+	toSerialize["buildImage"] = o.BuildImage
+	toSerialize["inbandWebmks"] = o.InbandWebmks
 	if !IsNil(o.SecondIp) {
 		toSerialize["secondIp"] = o.SecondIp
 	}
@@ -808,6 +870,8 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		"ansibleRunner",
 		"httpRequest",
 		"sshCommand",
+		"buildImage",
+		"inbandWebmks",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -860,6 +924,8 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "ansibleRunner")
 		delete(additionalProperties, "httpRequest")
 		delete(additionalProperties, "sshCommand")
+		delete(additionalProperties, "buildImage")
+		delete(additionalProperties, "inbandWebmks")
 		delete(additionalProperties, "secondIp")
 		o.AdditionalProperties = additionalProperties
 	}

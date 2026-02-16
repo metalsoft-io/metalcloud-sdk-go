@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | **string** | The path of the OS image. | 
-**FileName** | **string** | The filename of the OS image. | 
+**Path** | Pointer to **string** | The path of the OS image. | [optional] 
+**FileName** | Pointer to **string** | The filename of the OS image. | [optional] 
+**Location** | Pointer to **string** | The location of the OS image. | [optional] 
 
 ## Methods
 
 ### NewServerInstanceOsInstallImageBuildInfo
 
-`func NewServerInstanceOsInstallImageBuildInfo(path string, fileName string, ) *ServerInstanceOsInstallImageBuildInfo`
+`func NewServerInstanceOsInstallImageBuildInfo() *ServerInstanceOsInstallImageBuildInfo`
 
 NewServerInstanceOsInstallImageBuildInfo instantiates a new ServerInstanceOsInstallImageBuildInfo object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetPath sets Path field to given value.
 
+### HasPath
+
+`func (o *ServerInstanceOsInstallImageBuildInfo) HasPath() bool`
+
+HasPath returns a boolean if a field has been set.
 
 ### GetFileName
 
@@ -65,6 +71,36 @@ and a boolean to check if the value has been set.
 
 SetFileName sets FileName field to given value.
 
+### HasFileName
+
+`func (o *ServerInstanceOsInstallImageBuildInfo) HasFileName() bool`
+
+HasFileName returns a boolean if a field has been set.
+
+### GetLocation
+
+`func (o *ServerInstanceOsInstallImageBuildInfo) GetLocation() string`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *ServerInstanceOsInstallImageBuildInfo) GetLocationOk() (*string, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *ServerInstanceOsInstallImageBuildInfo) SetLocation(v string)`
+
+SetLocation sets Location field to given value.
+
+### HasLocation
+
+`func (o *ServerInstanceOsInstallImageBuildInfo) HasLocation() bool`
+
+HasLocation returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

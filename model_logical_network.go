@@ -40,6 +40,7 @@ type LogicalNetwork struct {
 	Vlan *LogicalNetworkVlanProperties `json:"vlan,omitempty"`
 	Vxlan *LogicalNetworkVxlanProperties `json:"vxlan,omitempty"`
 	Pkey *LogicalNetworkPkeyProperties `json:"pkey,omitempty"`
+	Zone *LogicalNetworkZoneProperties `json:"zone,omitempty"`
 	Ipv4 *LogicalNetworkIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *LogicalNetworkIpv6Properties `json:"ipv6,omitempty"`
 	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
@@ -559,6 +560,38 @@ func (o *LogicalNetwork) SetPkey(v LogicalNetworkPkeyProperties) {
 	o.Pkey = &v
 }
 
+// GetZone returns the Zone field value if set, zero value otherwise.
+func (o *LogicalNetwork) GetZone() LogicalNetworkZoneProperties {
+	if o == nil || IsNil(o.Zone) {
+		var ret LogicalNetworkZoneProperties
+		return ret
+	}
+	return *o.Zone
+}
+
+// GetZoneOk returns a tuple with the Zone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogicalNetwork) GetZoneOk() (*LogicalNetworkZoneProperties, bool) {
+	if o == nil || IsNil(o.Zone) {
+		return nil, false
+	}
+	return o.Zone, true
+}
+
+// HasZone returns a boolean if a field has been set.
+func (o *LogicalNetwork) HasZone() bool {
+	if o != nil && !IsNil(o.Zone) {
+		return true
+	}
+
+	return false
+}
+
+// SetZone gets a reference to the given LogicalNetworkZoneProperties and assigns it to the Zone field.
+func (o *LogicalNetwork) SetZone(v LogicalNetworkZoneProperties) {
+	o.Zone = &v
+}
+
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *LogicalNetwork) GetIpv4() LogicalNetworkIpv4Properties {
 	if o == nil || IsNil(o.Ipv4) {
@@ -743,6 +776,9 @@ func (o LogicalNetwork) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Pkey) {
 		toSerialize["pkey"] = o.Pkey
 	}
+	if !IsNil(o.Zone) {
+		toSerialize["zone"] = o.Zone
+	}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
@@ -829,6 +865,7 @@ func (o *LogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")
 		delete(additionalProperties, "pkey")
+		delete(additionalProperties, "zone")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**CreateLogicalNetworkConfigPkeyAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigPkeyAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies | Create Pkey allocation strategy.
 [**CreateLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigVlanAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies | Create Vlan allocation strategy.
 [**CreateLogicalNetworkConfigVniAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigVniAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Create Vni allocation strategy.
+[**CreateLogicalNetworkConfigZoneAllocationStrategy**](LogicalNetworkAPI.md#CreateLogicalNetworkConfigZoneAllocationStrategy) | **Post** /api/v2/logical-networks/{id}/config/zone/zone-allocation-strategies | Create Zone allocation strategy.
 [**CreateLogicalNetworkFromProfile**](LogicalNetworkAPI.md#CreateLogicalNetworkFromProfile) | **Post** /api/v2/logical-networks/actions/create-from-profile | Create a Logical Network from a profile.
 [**DeleteLogicalNetwork**](LogicalNetworkAPI.md#DeleteLogicalNetwork) | **Delete** /api/v2/logical-networks/{id} | Delete a Logical Network.
 [**DeleteLogicalNetworkConfigIpv4SubnetAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigIpv4SubnetAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv4 Subnet allocation strategy.
@@ -18,10 +19,12 @@ Method | HTTP request | Description
 [**DeleteLogicalNetworkConfigPkeyAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigPkeyAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId} | Delete Pkey allocation strategy.
 [**DeleteLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigVlanAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Delete Vlan allocation strategy.
 [**DeleteLogicalNetworkConfigVniAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigVniAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Delete Vni allocation strategy.
+[**DeleteLogicalNetworkConfigZoneAllocationStrategy**](LogicalNetworkAPI.md#DeleteLogicalNetworkConfigZoneAllocationStrategy) | **Delete** /api/v2/logical-networks/{id}/config/zone/zone-allocation-strategies/{allocationStrategyId} | Delete Zone allocation strategy.
 [**DetachExternalConnectionLogicalNetwork**](LogicalNetworkAPI.md#DetachExternalConnectionLogicalNetwork) | **Delete** /api/v2/logical-networks/{id}/external-connections/{externalConnectionId} | Detaches an external connection from a logical network
 [**GetLogicalNetwork**](LogicalNetworkAPI.md#GetLogicalNetwork) | **Get** /api/v2/logical-networks/{id} | Get a Logical Network.
 [**GetLogicalNetworkAttachedExternalConnectionLogicalNetworks**](LogicalNetworkAPI.md#GetLogicalNetworkAttachedExternalConnectionLogicalNetworks) | **Get** /api/v2/logical-networks/{id}/external-connection-logical-networks | Get all external connection logical networks
 [**GetLogicalNetworkAttachedExternalConnections**](LogicalNetworkAPI.md#GetLogicalNetworkAttachedExternalConnections) | **Get** /api/v2/logical-networks/{id}/external-connections | List external connections attached to a logical network
+[**GetLogicalNetworkAttachedLogicalNetworkInterconnects**](LogicalNetworkAPI.md#GetLogicalNetworkAttachedLogicalNetworkInterconnects) | **Get** /api/v2/logical-networks/{id}/logical-network-interconnects | List logical network interconnects that this logical network is attached to
 [**GetLogicalNetworkConfig**](LogicalNetworkAPI.md#GetLogicalNetworkConfig) | **Get** /api/v2/logical-networks/{id}/config | Get the config for a Logical Network.
 [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategies**](LogicalNetworkAPI.md#GetLogicalNetworkConfigIpv4SubnetAllocationStrategies) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies | Get all Ipv4 Subnet allocation strategies.
 [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigIpv4SubnetAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv4 Subnet allocation strategy.
@@ -33,12 +36,15 @@ Method | HTTP request | Description
 [**GetLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigVlanAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Get a Vlan allocation strategy.
 [**GetLogicalNetworkConfigVniAllocationStrategies**](LogicalNetworkAPI.md#GetLogicalNetworkConfigVniAllocationStrategies) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Get all Vni allocation strategies.
 [**GetLogicalNetworkConfigVniAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigVniAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Get a Vni allocation strategy.
+[**GetLogicalNetworkConfigZoneAllocationStrategies**](LogicalNetworkAPI.md#GetLogicalNetworkConfigZoneAllocationStrategies) | **Get** /api/v2/logical-networks/{id}/config/zone/zone-allocation-strategies | Get all Zone allocation strategies.
+[**GetLogicalNetworkConfigZoneAllocationStrategy**](LogicalNetworkAPI.md#GetLogicalNetworkConfigZoneAllocationStrategy) | **Get** /api/v2/logical-networks/{id}/config/zone/zone-allocation-strategies/{allocationStrategyId} | Get a Zone allocation strategy.
 [**GetLogicalNetworks**](LogicalNetworkAPI.md#GetLogicalNetworks) | **Get** /api/v2/logical-networks | Get all Logical Networks
 [**ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv4 Subnet allocation strategy
 [**ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv6 Subnet allocation strategy
 [**ReplaceLogicalNetworkConfigPkeyAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigPkeyAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/pkey/pkey-allocation-strategies/{allocationStrategyId} | Replace Pkey allocation strategy
 [**ReplaceLogicalNetworkConfigVlanAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigVlanAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Replace Vlan allocation strategy
 [**ReplaceLogicalNetworkConfigVniAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigVniAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Replace Vni allocation strategy
+[**ReplaceLogicalNetworkConfigZoneAllocationStrategy**](LogicalNetworkAPI.md#ReplaceLogicalNetworkConfigZoneAllocationStrategy) | **Put** /api/v2/logical-networks/{id}/config/zone/zone-allocation-strategies/{allocationStrategyId} | Replace Zone allocation strategy
 [**UpdateLogicalNetwork**](LogicalNetworkAPI.md#UpdateLogicalNetwork) | **Patch** /api/v2/logical-networks/{id} | Update Logical Network
 [**UpdateLogicalNetworkConfig**](LogicalNetworkAPI.md#UpdateLogicalNetworkConfig) | **Patch** /api/v2/logical-networks/{id}/config | Update Logical Network config
 
@@ -525,6 +531,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VniAllocationStrategy**](VniAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateLogicalNetworkConfigZoneAllocationStrategy
+
+> ZoneAllocationStrategy CreateLogicalNetworkConfigZoneAllocationStrategy(ctx, id).IfMatch(ifMatch).CreateZoneAllocationStrategy(createZoneAllocationStrategy).Execute()
+
+Create Zone allocation strategy.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+	createZoneAllocationStrategy := openapiclient.CreateZoneAllocationStrategy{CreateAutoZoneAllocationStrategy: openapiclient.NewCreateAutoZoneAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateZoneAllocationStrategy | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id).IfMatch(ifMatch).CreateZoneAllocationStrategy(createZoneAllocationStrategy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkConfigZoneAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateLogicalNetworkConfigZoneAllocationStrategy`: ZoneAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkConfigZoneAllocationStrategy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateLogicalNetworkConfigZoneAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+ **createZoneAllocationStrategy** | [**CreateZoneAllocationStrategy**](CreateZoneAllocationStrategy.md) |  | 
+
+### Return type
+
+[**ZoneAllocationStrategy**](ZoneAllocationStrategy.md)
 
 ### Authorization
 
@@ -1027,6 +1105,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteLogicalNetworkConfigZoneAllocationStrategy
+
+> DeleteLogicalNetworkConfigZoneAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).Execute()
+
+Delete Zone allocation strategy.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	allocationStrategyId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.DeleteLogicalNetworkConfigZoneAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+**allocationStrategyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteLogicalNetworkConfigZoneAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DetachExternalConnectionLogicalNetwork
 
 > DetachExternalConnectionLogicalNetwork(ctx, id, externalConnectionId).Execute()
@@ -1321,6 +1470,100 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ExternalConnectionPaginatedList**](ExternalConnectionPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLogicalNetworkAttachedLogicalNetworkInterconnects
+
+> LogicalNetworkInterconnectPaginatedList GetLogicalNetworkAttachedLogicalNetworkInterconnects(ctx, id).Page(page).Limit(limit).FilterId(filterId).FilterLabel(filterLabel).FilterName(filterName).FilterKind(filterKind).FilterStatus(filterStatus).FilterFabricInterconnectId(filterFabricInterconnectId).FilterTransportId(filterTransportId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+
+List logical network interconnects that this logical network is attached to
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$btw:John Doe&filter.label=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterName := []string{"Inner_example"} // []string | Filter by name query param.  **Format:** filter.name={$not}:OPERATION:VALUE    **Example:** filter.name=$btw:John Doe&filter.name=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$btw:John Doe&filter.kind=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterStatus := []string{"Inner_example"} // []string | Filter by status query param.  **Format:** filter.status={$not}:OPERATION:VALUE    **Example:** filter.status=$btw:John Doe&filter.status=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterFabricInterconnectId := []string{"Inner_example"} // []string | Filter by fabricInterconnectId query param.  **Format:** filter.fabricInterconnectId={$not}:OPERATION:VALUE    **Example:** filter.fabricInterconnectId=$btw:John Doe&filter.fabricInterconnectId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterTransportId := []string{"Inner_example"} // []string | Filter by transportId query param.  **Format:** filter.transportId={$not}:OPERATION:VALUE    **Example:** filter.transportId=$btw:John Doe&filter.transportId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - createdAt  - updatedAt  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkAttachedLogicalNetworkInterconnects(context.Background(), id).Page(page).Limit(limit).FilterId(filterId).FilterLabel(filterLabel).FilterName(filterName).FilterKind(filterKind).FilterStatus(filterStatus).FilterFabricInterconnectId(filterFabricInterconnectId).FilterTransportId(filterTransportId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkAttachedLogicalNetworkInterconnects``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetLogicalNetworkAttachedLogicalNetworkInterconnects`: LogicalNetworkInterconnectPaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkAttachedLogicalNetworkInterconnects`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLogicalNetworkAttachedLogicalNetworkInterconnectsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterLabel** | **[]string** | Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$btw:John Doe&amp;filter.label&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterName** | **[]string** | Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterStatus** | **[]string** | Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterFabricInterconnectId** | **[]string** | Filter by fabricInterconnectId query param.  **Format:** filter.fabricInterconnectId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricInterconnectId&#x3D;$btw:John Doe&amp;filter.fabricInterconnectId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterTransportId** | **[]string** | Filter by transportId query param.  **Format:** filter.transportId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.transportId&#x3D;$btw:John Doe&amp;filter.transportId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - createdAt  - updatedAt  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  | 
+
+### Return type
+
+[**LogicalNetworkInterconnectPaginatedList**](LogicalNetworkInterconnectPaginatedList.md)
 
 ### Authorization
 
@@ -2149,9 +2392,158 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetLogicalNetworkConfigZoneAllocationStrategies
+
+> PaginatedZoneAllocationStrategy GetLogicalNetworkConfigZoneAllocationStrategies(ctx, id).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).SortBy(sortBy).Execute()
+
+Get all Zone allocation strategies.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterKind := []string{"Inner_example"} // []string | Filter by kind query param.  **Format:** filter.kind={$not}:OPERATION:VALUE    **Example:** filter.kind=$btw:John Doe&filter.kind=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategies(context.Background(), id).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).SortBy(sortBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategies``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetLogicalNetworkConfigZoneAllocationStrategies`: PaginatedZoneAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategies`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigZoneAllocationStrategiesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterKind** | **[]string** | Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$btw:John Doe&amp;filter.kind&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
+
+### Return type
+
+[**PaginatedZoneAllocationStrategy**](PaginatedZoneAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLogicalNetworkConfigZoneAllocationStrategy
+
+> ZoneAllocationStrategy GetLogicalNetworkConfigZoneAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+
+Get a Zone allocation strategy.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	allocationStrategyId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetLogicalNetworkConfigZoneAllocationStrategy`: ZoneAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+**allocationStrategyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLogicalNetworkConfigZoneAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**ZoneAllocationStrategy**](ZoneAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetLogicalNetworks
 
-> PaginatedLogicalNetworkList GetLogicalNetworks(ctx).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).FilterLabel(filterLabel).FilterName(filterName).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> PaginatedLogicalNetworkList GetLogicalNetworks(ctx).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).FilterLabel(filterLabel).FilterName(filterName).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterRouteDomainId(filterRouteDomainId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all Logical Networks
 
@@ -2179,13 +2571,14 @@ func main() {
 	filterServiceStatus := []string{"Inner_example"} // []string | Filter by serviceStatus query param.  **Format:** filter.serviceStatus={$not}:OPERATION:VALUE    **Example:** filter.serviceStatus=$eq:John Doe&filter.serviceStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterConfigDeployStatus := []string{"Inner_example"} // []string | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus={$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus=$eq:John Doe&filter.config.deployStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterConfigDeployType := []string{"Inner_example"} // []string | Filter by config.deployType query param.  **Format:** filter.config.deployType={$not}:OPERATION:VALUE    **Example:** filter.config.deployType=$eq:John Doe&filter.config.deployType=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterRouteDomainId := []string{"Inner_example"} // []string | Filter by routeDomainId query param.  **Format:** filter.routeDomainId={$not}:OPERATION:VALUE    **Example:** filter.routeDomainId=$eq:John Doe&filter.routeDomainId=$in:John Doe  **Available Operations** - $eq  - $in  - $not  - $null  - $and  - $or (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.GetLogicalNetworks(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).FilterLabel(filterLabel).FilterName(filterName).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.GetLogicalNetworks(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).FilterLabel(filterLabel).FilterName(filterName).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterRouteDomainId(filterRouteDomainId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2217,6 +2610,7 @@ Name | Type | Description  | Notes
  **filterServiceStatus** | **[]string** | Filter by serviceStatus query param.  **Format:** filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serviceStatus&#x3D;$eq:John Doe&amp;filter.serviceStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterConfigDeployStatus** | **[]string** | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus&#x3D;$eq:John Doe&amp;filter.config.deployStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterConfigDeployType** | **[]string** | Filter by config.deployType query param.  **Format:** filter.config.deployType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployType&#x3D;$eq:John Doe&amp;filter.config.deployType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterRouteDomainId** | **[]string** | Filter by routeDomainId query param.  **Format:** filter.routeDomainId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.routeDomainId&#x3D;$eq:John Doe&amp;filter.routeDomainId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $not  - $null  - $and  - $or | 
  **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name  | 
@@ -2599,6 +2993,81 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VniAllocationStrategy**](VniAllocationStrategy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReplaceLogicalNetworkConfigZoneAllocationStrategy
+
+> ZoneAllocationStrategy ReplaceLogicalNetworkConfigZoneAllocationStrategy(ctx, id, allocationStrategyId).IfMatch(ifMatch).CreateZoneAllocationStrategy(createZoneAllocationStrategy).Execute()
+
+Replace Zone allocation strategy
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	allocationStrategyId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+	createZoneAllocationStrategy := openapiclient.CreateZoneAllocationStrategy{CreateAutoZoneAllocationStrategy: openapiclient.NewCreateAutoZoneAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateZoneAllocationStrategy | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id, allocationStrategyId).IfMatch(ifMatch).CreateZoneAllocationStrategy(createZoneAllocationStrategy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ReplaceLogicalNetworkConfigZoneAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ReplaceLogicalNetworkConfigZoneAllocationStrategy`: ZoneAllocationStrategy
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ReplaceLogicalNetworkConfigZoneAllocationStrategy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+**allocationStrategyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReplaceLogicalNetworkConfigZoneAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **ifMatch** | **string** | Entity tag | 
+ **createZoneAllocationStrategy** | [**CreateZoneAllocationStrategy**](CreateZoneAllocationStrategy.md) |  | 
+
+### Return type
+
+[**ZoneAllocationStrategy**](ZoneAllocationStrategy.md)
 
 ### Authorization
 

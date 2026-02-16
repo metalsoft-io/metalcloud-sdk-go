@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
 **BgpConfigurationTemplate** | Pointer to **string** | BGP configuration template for the interconnect | [optional] 
 **BgpNeighborTemplate** | Pointer to **string** | BGP neighbor template for the interconnect | [optional] 
+**TransportId** | Pointer to **int32** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
 
 ## Methods
 
@@ -169,6 +170,31 @@ SetBgpNeighborTemplate sets BgpNeighborTemplate field to given value.
 `func (o *CreateNetworkFabricInterconnect) HasBgpNeighborTemplate() bool`
 
 HasBgpNeighborTemplate returns a boolean if a field has been set.
+
+### GetTransportId
+
+`func (o *CreateNetworkFabricInterconnect) GetTransportId() int32`
+
+GetTransportId returns the TransportId field if non-nil, zero value otherwise.
+
+### GetTransportIdOk
+
+`func (o *CreateNetworkFabricInterconnect) GetTransportIdOk() (*int32, bool)`
+
+GetTransportIdOk returns a tuple with the TransportId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransportId
+
+`func (o *CreateNetworkFabricInterconnect) SetTransportId(v int32)`
+
+SetTransportId sets TransportId field to given value.
+
+### HasTransportId
+
+`func (o *CreateNetworkFabricInterconnect) HasTransportId() bool`
+
+HasTransportId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

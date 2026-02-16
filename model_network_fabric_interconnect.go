@@ -36,6 +36,8 @@ type NetworkFabricInterconnect struct {
 	BgpConfigurationTemplate *string `json:"bgpConfigurationTemplate,omitempty"`
 	// BGP neighbor template for the interconnect
 	BgpNeighborTemplate *string `json:"bgpNeighborTemplate,omitempty"`
+	// Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending)
+	TransportId *int32 `json:"transportId,omitempty"`
 	// Revision number of the entity
 	Revision string `json:"revision"`
 	// Entity creation timestamp
@@ -44,6 +46,12 @@ type NetworkFabricInterconnect struct {
 	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
+	// The deploy ID of the network fabric interconnect, if it is being deployed.
+	DeployId *int32 `json:"deployId,omitempty"`
+	// The deploy preview for the network fabric interconnect, if it is being deployed.
+	DeployPreview []NetworkFabricInterconnectDeployPreview `json:"deployPreview,omitempty"`
+	// The status of the network interconnect, by default it is in draft mode.
+	Status *InterconnectStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -272,6 +280,38 @@ func (o *NetworkFabricInterconnect) SetBgpNeighborTemplate(v string) {
 	o.BgpNeighborTemplate = &v
 }
 
+// GetTransportId returns the TransportId field value if set, zero value otherwise.
+func (o *NetworkFabricInterconnect) GetTransportId() int32 {
+	if o == nil || IsNil(o.TransportId) {
+		var ret int32
+		return ret
+	}
+	return *o.TransportId
+}
+
+// GetTransportIdOk returns a tuple with the TransportId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnect) GetTransportIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.TransportId) {
+		return nil, false
+	}
+	return o.TransportId, true
+}
+
+// HasTransportId returns a boolean if a field has been set.
+func (o *NetworkFabricInterconnect) HasTransportId() bool {
+	if o != nil && !IsNil(o.TransportId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransportId gets a reference to the given int32 and assigns it to the TransportId field.
+func (o *NetworkFabricInterconnect) SetTransportId(v int32) {
+	o.TransportId = &v
+}
+
 // GetRevision returns the Revision field value
 func (o *NetworkFabricInterconnect) GetRevision() string {
 	if o == nil {
@@ -376,6 +416,102 @@ func (o *NetworkFabricInterconnect) SetLinks(v []Link) {
 	o.Links = v
 }
 
+// GetDeployId returns the DeployId field value if set, zero value otherwise.
+func (o *NetworkFabricInterconnect) GetDeployId() int32 {
+	if o == nil || IsNil(o.DeployId) {
+		var ret int32
+		return ret
+	}
+	return *o.DeployId
+}
+
+// GetDeployIdOk returns a tuple with the DeployId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnect) GetDeployIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.DeployId) {
+		return nil, false
+	}
+	return o.DeployId, true
+}
+
+// HasDeployId returns a boolean if a field has been set.
+func (o *NetworkFabricInterconnect) HasDeployId() bool {
+	if o != nil && !IsNil(o.DeployId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeployId gets a reference to the given int32 and assigns it to the DeployId field.
+func (o *NetworkFabricInterconnect) SetDeployId(v int32) {
+	o.DeployId = &v
+}
+
+// GetDeployPreview returns the DeployPreview field value if set, zero value otherwise.
+func (o *NetworkFabricInterconnect) GetDeployPreview() []NetworkFabricInterconnectDeployPreview {
+	if o == nil || IsNil(o.DeployPreview) {
+		var ret []NetworkFabricInterconnectDeployPreview
+		return ret
+	}
+	return o.DeployPreview
+}
+
+// GetDeployPreviewOk returns a tuple with the DeployPreview field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnect) GetDeployPreviewOk() ([]NetworkFabricInterconnectDeployPreview, bool) {
+	if o == nil || IsNil(o.DeployPreview) {
+		return nil, false
+	}
+	return o.DeployPreview, true
+}
+
+// HasDeployPreview returns a boolean if a field has been set.
+func (o *NetworkFabricInterconnect) HasDeployPreview() bool {
+	if o != nil && !IsNil(o.DeployPreview) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeployPreview gets a reference to the given []NetworkFabricInterconnectDeployPreview and assigns it to the DeployPreview field.
+func (o *NetworkFabricInterconnect) SetDeployPreview(v []NetworkFabricInterconnectDeployPreview) {
+	o.DeployPreview = v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *NetworkFabricInterconnect) GetStatus() InterconnectStatus {
+	if o == nil || IsNil(o.Status) {
+		var ret InterconnectStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnect) GetStatusOk() (*InterconnectStatus, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *NetworkFabricInterconnect) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given InterconnectStatus and assigns it to the Status field.
+func (o *NetworkFabricInterconnect) SetStatus(v InterconnectStatus) {
+	o.Status = &v
+}
+
 func (o NetworkFabricInterconnect) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -401,11 +537,23 @@ func (o NetworkFabricInterconnect) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BgpNeighborTemplate) {
 		toSerialize["bgpNeighborTemplate"] = o.BgpNeighborTemplate
 	}
+	if !IsNil(o.TransportId) {
+		toSerialize["transportId"] = o.TransportId
+	}
 	toSerialize["revision"] = o.Revision
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
+	}
+	if !IsNil(o.DeployId) {
+		toSerialize["deployId"] = o.DeployId
+	}
+	if !IsNil(o.DeployPreview) {
+		toSerialize["deployPreview"] = o.DeployPreview
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -462,10 +610,14 @@ func (o *NetworkFabricInterconnect) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "bgpConfigurationTemplate")
 		delete(additionalProperties, "bgpNeighborTemplate")
+		delete(additionalProperties, "transportId")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
+		delete(additionalProperties, "deployId")
+		delete(additionalProperties, "deployPreview")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

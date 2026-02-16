@@ -60,10 +60,16 @@ type UpdateNetworkDevice struct {
 	ManagementAddressMask NullableString `json:"managementAddressMask,omitempty"`
 	// The MAC address of the management interface
 	ManagementMAC NullableString `json:"managementMAC,omitempty"`
-	// Loopback Address
+	// The loopback IPv4 address assigned to the network device
 	LoopbackAddress NullableString `json:"loopbackAddress,omitempty"`
-	// VTEP Address
+	// The loopback IPv6 address assigned to the network device
+	LoopbackAddressIpv6 NullableString `json:"loopbackAddressIpv6,omitempty"`
+	// The VTEP (VXLAN Tunnel Endpoint) IPv4 address for overlay networking
 	VtepAddress NullableString `json:"vtepAddress,omitempty"`
+	// The VTEP (VXLAN Tunnel Endpoint) IPv6 address for overlay networking
+	VtepAddressIpv6 NullableString `json:"vtepAddressIpv6,omitempty"`
+	// The external VTEP (VXLAN Tunnel Endpoint) IPv4 address for overlay networking DCI
+	ExternalVtepAddress NullableString `json:"externalVtepAddress,omitempty"`
 	// The Autonomous System Number for BGP routing
 	Asn NullableInt64 `json:"asn,omitempty"`
 	// Additional description or notes about the network device
@@ -94,6 +100,8 @@ type UpdateNetworkDevice struct {
 	OverwriteWithHostnameFromFetchedSwitch NullableBool `json:"overwriteWithHostnameFromFetchedSwitch,omitempty"`
 	// ID of the VM pool associated with the network device
 	VmPoolId *float32 `json:"vmPoolId,omitempty"`
+	// Custom variables for the network device
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -852,6 +860,48 @@ func (o *UpdateNetworkDevice) UnsetLoopbackAddress() {
 	o.LoopbackAddress.Unset()
 }
 
+// GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkDevice) GetLoopbackAddressIpv6() string {
+	if o == nil || IsNil(o.LoopbackAddressIpv6.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.LoopbackAddressIpv6.Get()
+}
+
+// GetLoopbackAddressIpv6Ok returns a tuple with the LoopbackAddressIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkDevice) GetLoopbackAddressIpv6Ok() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LoopbackAddressIpv6.Get(), o.LoopbackAddressIpv6.IsSet()
+}
+
+// HasLoopbackAddressIpv6 returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasLoopbackAddressIpv6() bool {
+	if o != nil && o.LoopbackAddressIpv6.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLoopbackAddressIpv6 gets a reference to the given NullableString and assigns it to the LoopbackAddressIpv6 field.
+func (o *UpdateNetworkDevice) SetLoopbackAddressIpv6(v string) {
+	o.LoopbackAddressIpv6.Set(&v)
+}
+// SetLoopbackAddressIpv6Nil sets the value for LoopbackAddressIpv6 to be an explicit nil
+func (o *UpdateNetworkDevice) SetLoopbackAddressIpv6Nil() {
+	o.LoopbackAddressIpv6.Set(nil)
+}
+
+// UnsetLoopbackAddressIpv6 ensures that no value is present for LoopbackAddressIpv6, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetLoopbackAddressIpv6() {
+	o.LoopbackAddressIpv6.Unset()
+}
+
 // GetVtepAddress returns the VtepAddress field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetVtepAddress() string {
 	if o == nil || IsNil(o.VtepAddress.Get()) {
@@ -892,6 +942,90 @@ func (o *UpdateNetworkDevice) SetVtepAddressNil() {
 // UnsetVtepAddress ensures that no value is present for VtepAddress, not even an explicit nil
 func (o *UpdateNetworkDevice) UnsetVtepAddress() {
 	o.VtepAddress.Unset()
+}
+
+// GetVtepAddressIpv6 returns the VtepAddressIpv6 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkDevice) GetVtepAddressIpv6() string {
+	if o == nil || IsNil(o.VtepAddressIpv6.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.VtepAddressIpv6.Get()
+}
+
+// GetVtepAddressIpv6Ok returns a tuple with the VtepAddressIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkDevice) GetVtepAddressIpv6Ok() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VtepAddressIpv6.Get(), o.VtepAddressIpv6.IsSet()
+}
+
+// HasVtepAddressIpv6 returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasVtepAddressIpv6() bool {
+	if o != nil && o.VtepAddressIpv6.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVtepAddressIpv6 gets a reference to the given NullableString and assigns it to the VtepAddressIpv6 field.
+func (o *UpdateNetworkDevice) SetVtepAddressIpv6(v string) {
+	o.VtepAddressIpv6.Set(&v)
+}
+// SetVtepAddressIpv6Nil sets the value for VtepAddressIpv6 to be an explicit nil
+func (o *UpdateNetworkDevice) SetVtepAddressIpv6Nil() {
+	o.VtepAddressIpv6.Set(nil)
+}
+
+// UnsetVtepAddressIpv6 ensures that no value is present for VtepAddressIpv6, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetVtepAddressIpv6() {
+	o.VtepAddressIpv6.Unset()
+}
+
+// GetExternalVtepAddress returns the ExternalVtepAddress field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkDevice) GetExternalVtepAddress() string {
+	if o == nil || IsNil(o.ExternalVtepAddress.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalVtepAddress.Get()
+}
+
+// GetExternalVtepAddressOk returns a tuple with the ExternalVtepAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkDevice) GetExternalVtepAddressOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExternalVtepAddress.Get(), o.ExternalVtepAddress.IsSet()
+}
+
+// HasExternalVtepAddress returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasExternalVtepAddress() bool {
+	if o != nil && o.ExternalVtepAddress.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalVtepAddress gets a reference to the given NullableString and assigns it to the ExternalVtepAddress field.
+func (o *UpdateNetworkDevice) SetExternalVtepAddress(v string) {
+	o.ExternalVtepAddress.Set(&v)
+}
+// SetExternalVtepAddressNil sets the value for ExternalVtepAddress to be an explicit nil
+func (o *UpdateNetworkDevice) SetExternalVtepAddressNil() {
+	o.ExternalVtepAddress.Set(nil)
+}
+
+// UnsetExternalVtepAddress ensures that no value is present for ExternalVtepAddress, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetExternalVtepAddress() {
+	o.ExternalVtepAddress.Unset()
 }
 
 // GetAsn returns the Asn field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1475,6 +1609,38 @@ func (o *UpdateNetworkDevice) SetVmPoolId(v float32) {
 	o.VmPoolId = &v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *UpdateNetworkDevice) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 func (o UpdateNetworkDevice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1545,8 +1711,17 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.LoopbackAddress.IsSet() {
 		toSerialize["loopbackAddress"] = o.LoopbackAddress.Get()
 	}
+	if o.LoopbackAddressIpv6.IsSet() {
+		toSerialize["loopbackAddressIpv6"] = o.LoopbackAddressIpv6.Get()
+	}
 	if o.VtepAddress.IsSet() {
 		toSerialize["vtepAddress"] = o.VtepAddress.Get()
+	}
+	if o.VtepAddressIpv6.IsSet() {
+		toSerialize["vtepAddressIpv6"] = o.VtepAddressIpv6.Get()
+	}
+	if o.ExternalVtepAddress.IsSet() {
+		toSerialize["externalVtepAddress"] = o.ExternalVtepAddress.Get()
 	}
 	if o.Asn.IsSet() {
 		toSerialize["asn"] = o.Asn.Get()
@@ -1593,6 +1768,9 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VmPoolId) {
 		toSerialize["vmPoolId"] = o.VmPoolId
 	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1635,7 +1813,10 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementAddressMask")
 		delete(additionalProperties, "managementMAC")
 		delete(additionalProperties, "loopbackAddress")
+		delete(additionalProperties, "loopbackAddressIpv6")
 		delete(additionalProperties, "vtepAddress")
+		delete(additionalProperties, "vtepAddressIpv6")
+		delete(additionalProperties, "externalVtepAddress")
 		delete(additionalProperties, "asn")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "country")
@@ -1651,6 +1832,7 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "requiresOsInstall")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")
 		delete(additionalProperties, "vmPoolId")
+		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}
 

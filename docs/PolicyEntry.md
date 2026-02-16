@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Action** | **[]string** | Policy action(s) | 
 **Conditions** | Pointer to **string** | Policy condition(s) | [optional] 
 **Fields** | Pointer to **[]string** | Policy subject field(s) | [optional] 
+**Inverted** | Pointer to **bool** | Indicates whether rule allows or forbids something | [optional] 
 
 ## Methods
 
@@ -117,6 +118,31 @@ SetFields sets Fields field to given value.
 `func (o *PolicyEntry) HasFields() bool`
 
 HasFields returns a boolean if a field has been set.
+
+### GetInverted
+
+`func (o *PolicyEntry) GetInverted() bool`
+
+GetInverted returns the Inverted field if non-nil, zero value otherwise.
+
+### GetInvertedOk
+
+`func (o *PolicyEntry) GetInvertedOk() (*bool, bool)`
+
+GetInvertedOk returns a tuple with the Inverted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInverted
+
+`func (o *PolicyEntry) SetInverted(v bool)`
+
+SetInverted sets Inverted field to given value.
+
+### HasInverted
+
+`func (o *PolicyEntry) HasInverted() bool`
+
+HasInverted returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

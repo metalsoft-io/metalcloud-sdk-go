@@ -15,8 +15,10 @@ Name | Type | Description | Notes
 **Id** | **string** | The network fabric ID. | 
 **Status** | Pointer to [**FabricStatus**](FabricStatus.md) | The status of the network fabric, by default it is in draft mode. | [optional] 
 **DeployId** | Pointer to **int32** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
+**TransportId** | Pointer to **NullableInt32** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
 **DeployPreview** | Pointer to [**[]NetworkFabricDeployPreview**](NetworkFabricDeployPreview.md) | The deploy preview for the network fabric, if it is being deployed. | [optional] 
 **NetworkEquipment** | Pointer to [**[]NetworkDevice**](NetworkDevice.md) | The network equipments in the fabric | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network fabric | [optional] 
 
 ## Methods
 
@@ -282,6 +284,41 @@ SetDeployId sets DeployId field to given value.
 
 HasDeployId returns a boolean if a field has been set.
 
+### GetTransportId
+
+`func (o *NetworkFabric) GetTransportId() int32`
+
+GetTransportId returns the TransportId field if non-nil, zero value otherwise.
+
+### GetTransportIdOk
+
+`func (o *NetworkFabric) GetTransportIdOk() (*int32, bool)`
+
+GetTransportIdOk returns a tuple with the TransportId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransportId
+
+`func (o *NetworkFabric) SetTransportId(v int32)`
+
+SetTransportId sets TransportId field to given value.
+
+### HasTransportId
+
+`func (o *NetworkFabric) HasTransportId() bool`
+
+HasTransportId returns a boolean if a field has been set.
+
+### SetTransportIdNil
+
+`func (o *NetworkFabric) SetTransportIdNil(b bool)`
+
+ SetTransportIdNil sets the value for TransportId to be an explicit nil
+
+### UnsetTransportId
+`func (o *NetworkFabric) UnsetTransportId()`
+
+UnsetTransportId ensures that no value is present for TransportId, not even an explicit nil
 ### GetDeployPreview
 
 `func (o *NetworkFabric) GetDeployPreview() []NetworkFabricDeployPreview`
@@ -331,6 +368,31 @@ SetNetworkEquipment sets NetworkEquipment field to given value.
 `func (o *NetworkFabric) HasNetworkEquipment() bool`
 
 HasNetworkEquipment returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *NetworkFabric) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *NetworkFabric) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *NetworkFabric) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *NetworkFabric) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

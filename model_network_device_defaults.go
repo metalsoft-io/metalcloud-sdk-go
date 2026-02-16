@@ -55,8 +55,6 @@ type NetworkDeviceDefaults struct {
 	VtepAddressIpv4 *string `json:"vtepAddressIpv4,omitempty"`
 	// VTEP IPv6 address
 	VtepAddressIpv6 *string `json:"vtepAddressIpv6,omitempty"`
-	// Skip initial configuration flag
-	SkipInitialConfiguration *bool `json:"skipInitialConfiguration,omitempty"`
 	// Volume template ID
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	// Custom variables for device configuration
@@ -615,38 +613,6 @@ func (o *NetworkDeviceDefaults) SetVtepAddressIpv6(v string) {
 	o.VtepAddressIpv6 = &v
 }
 
-// GetSkipInitialConfiguration returns the SkipInitialConfiguration field value if set, zero value otherwise.
-func (o *NetworkDeviceDefaults) GetSkipInitialConfiguration() bool {
-	if o == nil || IsNil(o.SkipInitialConfiguration) {
-		var ret bool
-		return ret
-	}
-	return *o.SkipInitialConfiguration
-}
-
-// GetSkipInitialConfigurationOk returns a tuple with the SkipInitialConfiguration field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*bool, bool) {
-	if o == nil || IsNil(o.SkipInitialConfiguration) {
-		return nil, false
-	}
-	return o.SkipInitialConfiguration, true
-}
-
-// HasSkipInitialConfiguration returns a boolean if a field has been set.
-func (o *NetworkDeviceDefaults) HasSkipInitialConfiguration() bool {
-	if o != nil && !IsNil(o.SkipInitialConfiguration) {
-		return true
-	}
-
-	return false
-}
-
-// SetSkipInitialConfiguration gets a reference to the given bool and assigns it to the SkipInitialConfiguration field.
-func (o *NetworkDeviceDefaults) SetSkipInitialConfiguration(v bool) {
-	o.SkipInitialConfiguration = &v
-}
-
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
 func (o *NetworkDeviceDefaults) GetOsTemplateId() int32 {
 	if o == nil || IsNil(o.OsTemplateId) {
@@ -800,9 +766,6 @@ func (o NetworkDeviceDefaults) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VtepAddressIpv6) {
 		toSerialize["vtepAddressIpv6"] = o.VtepAddressIpv6
 	}
-	if !IsNil(o.SkipInitialConfiguration) {
-		toSerialize["skipInitialConfiguration"] = o.SkipInitialConfiguration
-	}
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
@@ -873,7 +836,6 @@ func (o *NetworkDeviceDefaults) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "loopbackAddressIpv6")
 		delete(additionalProperties, "vtepAddressIpv4")
 		delete(additionalProperties, "vtepAddressIpv6")
-		delete(additionalProperties, "skipInitialConfiguration")
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "orderIndex")

@@ -340,6 +340,488 @@ func (a *SubnetAPIService) GetSubnetExecute(r SubnetAPIGetSubnetRequest) (*Subne
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type SubnetAPIGetSubnetIpRangesRequest struct {
+	ctx context.Context
+	ApiService *SubnetAPIService
+	subnetId float32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterName *[]string
+	filterIpVersion *[]string
+	filterSubnetId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SubnetAPIGetSubnetIpRangesRequest) Page(page float32) SubnetAPIGetSubnetIpRangesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 1000    **Max Value:** 5000   If provided value is greater than max value, max value will be applied. 
+func (r SubnetAPIGetSubnetIpRangesRequest) Limit(limit float32) SubnetAPIGetSubnetIpRangesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$gt:John Doe  **Available Operations** - $eq  - $in  - $gt  - $and  - $or
+func (r SubnetAPIGetSubnetIpRangesRequest) FilterId(filterId []string) SubnetAPIGetSubnetIpRangesRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SubnetAPIGetSubnetIpRangesRequest) FilterName(filterName []string) SubnetAPIGetSubnetIpRangesRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by ipVersion query param.  **Format:** filter.ipVersion&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.ipVersion&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SubnetAPIGetSubnetIpRangesRequest) FilterIpVersion(filterIpVersion []string) SubnetAPIGetSubnetIpRangesRequest {
+	r.filterIpVersion = &filterIpVersion
+	return r
+}
+
+// Filter by subnetId query param.  **Format:** filter.subnetId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.subnetId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SubnetAPIGetSubnetIpRangesRequest) FilterSubnetId(filterSubnetId []string) SubnetAPIGetSubnetIpRangesRequest {
+	r.filterSubnetId = &filterSubnetId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+func (r SubnetAPIGetSubnetIpRangesRequest) SortBy(sortBy []string) SubnetAPIGetSubnetIpRangesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SubnetAPIGetSubnetIpRangesRequest) Search(search string) SubnetAPIGetSubnetIpRangesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name 
+func (r SubnetAPIGetSubnetIpRangesRequest) SearchBy(searchBy []string) SubnetAPIGetSubnetIpRangesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SubnetAPIGetSubnetIpRangesRequest) Execute() (*PaginatedIpRangeList, *http.Response, error) {
+	return r.ApiService.GetSubnetIpRangesExecute(r)
+}
+
+/*
+GetSubnetIpRanges List all Subnet IP Ranges
+
+Returns list of all Subnet IP Ranges
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subnetId
+ @return SubnetAPIGetSubnetIpRangesRequest
+*/
+func (a *SubnetAPIService) GetSubnetIpRanges(ctx context.Context, subnetId float32) SubnetAPIGetSubnetIpRangesRequest {
+	return SubnetAPIGetSubnetIpRangesRequest{
+		ApiService: a,
+		ctx: ctx,
+		subnetId: subnetId,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedIpRangeList
+func (a *SubnetAPIService) GetSubnetIpRangesExecute(r SubnetAPIGetSubnetIpRangesRequest) (*PaginatedIpRangeList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedIpRangeList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.GetSubnetIpRanges")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/subnets/{subnetId}/ip-ranges"
+	localVarPath = strings.Replace(localVarPath, "{"+"subnetId"+"}", url.PathEscape(parameterValueToString(r.subnetId, "subnetId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterIpVersion != nil {
+		t := *r.filterIpVersion
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipVersion", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipVersion", t, "form", "multi")
+		}
+	}
+	if r.filterSubnetId != nil {
+		t := *r.filterSubnetId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subnetId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subnetId", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SubnetAPIGetSubnetIpsRequest struct {
+	ctx context.Context
+	ApiService *SubnetAPIService
+	subnetId float32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterName *[]string
+	filterIpVersion *[]string
+	filterSubnetId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SubnetAPIGetSubnetIpsRequest) Page(page float32) SubnetAPIGetSubnetIpsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 1000    **Max Value:** 5000   If provided value is greater than max value, max value will be applied. 
+func (r SubnetAPIGetSubnetIpsRequest) Limit(limit float32) SubnetAPIGetSubnetIpsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$gt:John Doe  **Available Operations** - $eq  - $in  - $gt  - $and  - $or
+func (r SubnetAPIGetSubnetIpsRequest) FilterId(filterId []string) SubnetAPIGetSubnetIpsRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SubnetAPIGetSubnetIpsRequest) FilterName(filterName []string) SubnetAPIGetSubnetIpsRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by ipVersion query param.  **Format:** filter.ipVersion&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.ipVersion&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SubnetAPIGetSubnetIpsRequest) FilterIpVersion(filterIpVersion []string) SubnetAPIGetSubnetIpsRequest {
+	r.filterIpVersion = &filterIpVersion
+	return r
+}
+
+// Filter by subnetId query param.  **Format:** filter.subnetId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.subnetId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SubnetAPIGetSubnetIpsRequest) FilterSubnetId(filterSubnetId []string) SubnetAPIGetSubnetIpsRequest {
+	r.filterSubnetId = &filterSubnetId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+func (r SubnetAPIGetSubnetIpsRequest) SortBy(sortBy []string) SubnetAPIGetSubnetIpsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SubnetAPIGetSubnetIpsRequest) Search(search string) SubnetAPIGetSubnetIpsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name 
+func (r SubnetAPIGetSubnetIpsRequest) SearchBy(searchBy []string) SubnetAPIGetSubnetIpsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SubnetAPIGetSubnetIpsRequest) Execute() (*PaginatedIpList, *http.Response, error) {
+	return r.ApiService.GetSubnetIpsExecute(r)
+}
+
+/*
+GetSubnetIps List all Subnet IPs
+
+Returns list of all Subnet IPs
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subnetId
+ @return SubnetAPIGetSubnetIpsRequest
+*/
+func (a *SubnetAPIService) GetSubnetIps(ctx context.Context, subnetId float32) SubnetAPIGetSubnetIpsRequest {
+	return SubnetAPIGetSubnetIpsRequest{
+		ApiService: a,
+		ctx: ctx,
+		subnetId: subnetId,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedIpList
+func (a *SubnetAPIService) GetSubnetIpsExecute(r SubnetAPIGetSubnetIpsRequest) (*PaginatedIpList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedIpList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.GetSubnetIps")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/subnets/{subnetId}/ips"
+	localVarPath = strings.Replace(localVarPath, "{"+"subnetId"+"}", url.PathEscape(parameterValueToString(r.subnetId, "subnetId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterIpVersion != nil {
+		t := *r.filterIpVersion
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipVersion", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipVersion", t, "form", "multi")
+		}
+	}
+	if r.filterSubnetId != nil {
+		t := *r.filterSubnetId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subnetId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subnetId", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SubnetAPIGetSubnetsRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService

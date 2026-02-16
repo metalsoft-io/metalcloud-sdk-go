@@ -57,6 +57,8 @@ type VMPool struct {
 	Tags []string `json:"tags,omitempty"`
 	// Options for the vm pool
 	Options *VMPoolOptions `json:"options,omitempty"`
+	// The GPUs registered inside the VM Pool.
+	Gpus []VMPoolGPU `json:"gpus,omitempty"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -581,6 +583,38 @@ func (o *VMPool) SetOptions(v VMPoolOptions) {
 	o.Options = &v
 }
 
+// GetGpus returns the Gpus field value if set, zero value otherwise.
+func (o *VMPool) GetGpus() []VMPoolGPU {
+	if o == nil || IsNil(o.Gpus) {
+		var ret []VMPoolGPU
+		return ret
+	}
+	return o.Gpus
+}
+
+// GetGpusOk returns a tuple with the Gpus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPool) GetGpusOk() ([]VMPoolGPU, bool) {
+	if o == nil || IsNil(o.Gpus) {
+		return nil, false
+	}
+	return o.Gpus, true
+}
+
+// HasGpus returns a boolean if a field has been set.
+func (o *VMPool) HasGpus() bool {
+	if o != nil && !IsNil(o.Gpus) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpus gets a reference to the given []VMPoolGPU and assigns it to the Gpus field.
+func (o *VMPool) SetGpus(v []VMPoolGPU) {
+	o.Gpus = v
+}
+
 // GetLinks returns the Links field value
 func (o *VMPool) GetLinks() map[string]interface{} {
 	if o == nil {
@@ -646,6 +680,9 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
+	}
+	if !IsNil(o.Gpus) {
+		toSerialize["gpus"] = o.Gpus
 	}
 	toSerialize["links"] = o.Links
 
@@ -720,6 +757,7 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "options")
+		delete(additionalProperties, "gpus")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

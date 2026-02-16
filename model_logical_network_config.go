@@ -36,6 +36,7 @@ type LogicalNetworkConfig struct {
 	Vlan *LogicalNetworkConfigVlanProperties `json:"vlan,omitempty"`
 	Vxlan *LogicalNetworkConfigVxlanProperties `json:"vxlan,omitempty"`
 	Pkey *LogicalNetworkConfigPkeyProperties `json:"pkey,omitempty"`
+	Zone *LogicalNetworkConfigZoneProperties `json:"zone,omitempty"`
 	Ipv4 *LogicalNetworkConfigIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *LogicalNetworkConfigIpv6Properties `json:"ipv6,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -373,6 +374,38 @@ func (o *LogicalNetworkConfig) SetPkey(v LogicalNetworkConfigPkeyProperties) {
 	o.Pkey = &v
 }
 
+// GetZone returns the Zone field value if set, zero value otherwise.
+func (o *LogicalNetworkConfig) GetZone() LogicalNetworkConfigZoneProperties {
+	if o == nil || IsNil(o.Zone) {
+		var ret LogicalNetworkConfigZoneProperties
+		return ret
+	}
+	return *o.Zone
+}
+
+// GetZoneOk returns a tuple with the Zone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogicalNetworkConfig) GetZoneOk() (*LogicalNetworkConfigZoneProperties, bool) {
+	if o == nil || IsNil(o.Zone) {
+		return nil, false
+	}
+	return o.Zone, true
+}
+
+// HasZone returns a boolean if a field has been set.
+func (o *LogicalNetworkConfig) HasZone() bool {
+	if o != nil && !IsNil(o.Zone) {
+		return true
+	}
+
+	return false
+}
+
+// SetZone gets a reference to the given LogicalNetworkConfigZoneProperties and assigns it to the Zone field.
+func (o *LogicalNetworkConfig) SetZone(v LogicalNetworkConfigZoneProperties) {
+	o.Zone = &v
+}
+
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *LogicalNetworkConfig) GetIpv4() LogicalNetworkConfigIpv4Properties {
 	if o == nil || IsNil(o.Ipv4) {
@@ -466,6 +499,9 @@ func (o LogicalNetworkConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Pkey) {
 		toSerialize["pkey"] = o.Pkey
 	}
+	if !IsNil(o.Zone) {
+		toSerialize["zone"] = o.Zone
+	}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
@@ -532,6 +568,7 @@ func (o *LogicalNetworkConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")
 		delete(additionalProperties, "pkey")
+		delete(additionalProperties, "zone")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		o.AdditionalProperties = additionalProperties

@@ -36,6 +36,7 @@ const (
 	NETWORKDEVICEDRIVER_SONIC_ENTERPRISE NetworkDeviceDriver = "sonic_enterprise"
 	NETWORKDEVICEDRIVER_VMWARE_VDS NetworkDeviceDriver = "vmware_vds"
 	NETWORKDEVICEDRIVER_CUMULUS_LINUX NetworkDeviceDriver = "cumulus_linux"
+	NETWORKDEVICEDRIVER_BROCADE NetworkDeviceDriver = "brocade"
 	NETWORKDEVICEDRIVER_DELL_S4000 NetworkDeviceDriver = "dell_s4000"
 	NETWORKDEVICEDRIVER_DELL_S6010 NetworkDeviceDriver = "dell_s6010"
 	NETWORKDEVICEDRIVER_JUNOS18 NetworkDeviceDriver = "junos18"
@@ -58,6 +59,7 @@ var AllowedNetworkDeviceDriverEnumValues = []NetworkDeviceDriver{
 	"sonic_enterprise",
 	"vmware_vds",
 	"cumulus_linux",
+	"brocade",
 	"dell_s4000",
 	"dell_s6010",
 	"junos18",

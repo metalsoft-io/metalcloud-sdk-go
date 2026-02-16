@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **S3Hostname** | Pointer to **string** | S3 Hostname to use (for certain storage drivers) | [optional] 
 **S3Port** | Pointer to **float32** | Enable advanced deduplication | [optional] 
 **FibreChannelEnabled** | Pointer to **bool** | Fibre channel enabled | [optional] 
-**PortsToUse** | Pointer to [**[]StoragePort**](StoragePort.md) | Array of storage ports to use | [optional] 
 
 ## Methods
 
@@ -258,31 +257,6 @@ SetFibreChannelEnabled sets FibreChannelEnabled field to given value.
 `func (o *UpdateStorageOptions) HasFibreChannelEnabled() bool`
 
 HasFibreChannelEnabled returns a boolean if a field has been set.
-
-### GetPortsToUse
-
-`func (o *UpdateStorageOptions) GetPortsToUse() []StoragePort`
-
-GetPortsToUse returns the PortsToUse field if non-nil, zero value otherwise.
-
-### GetPortsToUseOk
-
-`func (o *UpdateStorageOptions) GetPortsToUseOk() (*[]StoragePort, bool)`
-
-GetPortsToUseOk returns a tuple with the PortsToUse field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPortsToUse
-
-`func (o *UpdateStorageOptions) SetPortsToUse(v []StoragePort)`
-
-SetPortsToUse sets PortsToUse field to given value.
-
-### HasPortsToUse
-
-`func (o *UpdateStorageOptions) HasPortsToUse() bool`
-
-HasPortsToUse returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

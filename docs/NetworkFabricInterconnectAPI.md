@@ -4,10 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AcceptNetworkFabricInterconnectDeploy**](NetworkFabricInterconnectAPI.md#AcceptNetworkFabricInterconnectDeploy) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/accept-deploy | Accepts the deployment of the specified network fabric interconnect
 [**CreateInterconnectLink**](NetworkFabricInterconnectAPI.md#CreateInterconnectLink) | **Post** /api/v2/network-fabric-interconnects/{id}/links | Create a new link within an interconnect
 [**CreateNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#CreateNetworkFabricInterconnect) | **Post** /api/v2/network-fabric-interconnects | Create a new network fabric interconnect
 [**DeleteInterconnectLink**](NetworkFabricInterconnectAPI.md#DeleteInterconnectLink) | **Delete** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Delete a specific fabric interconnect link
 [**DeleteNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#DeleteNetworkFabricInterconnect) | **Delete** /api/v2/network-fabric-interconnects/{id} | Delete a network fabric interconnect by ID
+[**DeployNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#DeployNetworkFabricInterconnect) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/deploy | Deploys the specified network fabric interconnect
 [**GetFabricInterconnectAvailableFabrics**](NetworkFabricInterconnectAPI.md#GetFabricInterconnectAvailableFabrics) | **Get** /api/v2/network-fabric-interconnects/{id}/fabrics-available | Get the available fabrics for a fabric interconnect
 [**GetFabricInterconnectFabrics**](NetworkFabricInterconnectAPI.md#GetFabricInterconnectFabrics) | **Get** /api/v2/network-fabric-interconnects/{id}/fabrics | Get the fabrics for a fabric interconnect
 [**GetInterconnectLink**](NetworkFabricInterconnectAPI.md#GetInterconnectLink) | **Get** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Get a specific fabric interconnect link
@@ -15,8 +17,77 @@ Method | HTTP request | Description
 [**GetNetworkFabricInterconnectById**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectById) | **Get** /api/v2/network-fabric-interconnects/{id} | Get a network fabric interconnect by ID
 [**GetNetworkFabricInterconnectTemplateByType**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectTemplateByType) | **Get** /api/v2/network-fabric-interconnects/template/{interconnectType} | Get a network fabric interconnect template configuration by type
 [**GetNetworkFabricInterconnects**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnects) | **Get** /api/v2/network-fabric-interconnects | Get all network fabric interconnects
+[**RejectNetworkFabricInterconnectDeploy**](NetworkFabricInterconnectAPI.md#RejectNetworkFabricInterconnectDeploy) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/reject-deploy | Rejects the deployment of the specified network fabric interconnect
 [**UpdateNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#UpdateNetworkFabricInterconnect) | **Patch** /api/v2/network-fabric-interconnects/{id} | Update a network fabric interconnect
 
+
+
+## AcceptNetworkFabricInterconnectDeploy
+
+> AcceptNetworkFabricInterconnectDeploy(ctx, id).Execute()
+
+Accepts the deployment of the specified network fabric interconnect
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkFabricInterconnectAPI.AcceptNetworkFabricInterconnectDeploy(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.AcceptNetworkFabricInterconnectDeploy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAcceptNetworkFabricInterconnectDeployRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateInterconnectLink
@@ -288,6 +359,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeployNetworkFabricInterconnect
+
+> JobInfo DeployNetworkFabricInterconnect(ctx, id).NetworkFabricInterconnectDeployOptions(networkFabricInterconnectDeployOptions).Execute()
+
+Deploys the specified network fabric interconnect
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	networkFabricInterconnectDeployOptions := *openapiclient.NewNetworkFabricInterconnectDeployOptions(true) // NetworkFabricInterconnectDeployOptions | Network fabric interconnect deploy options
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.DeployNetworkFabricInterconnect(context.Background(), id).NetworkFabricInterconnectDeployOptions(networkFabricInterconnectDeployOptions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.DeployNetworkFabricInterconnect``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeployNetworkFabricInterconnect`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricInterconnectAPI.DeployNetworkFabricInterconnect`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeployNetworkFabricInterconnectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **networkFabricInterconnectDeployOptions** | [**NetworkFabricInterconnectDeployOptions**](NetworkFabricInterconnectDeployOptions.md) | Network fabric interconnect deploy options | 
+
+### Return type
+
+[**JobInfo**](JobInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -841,6 +984,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RejectNetworkFabricInterconnectDeploy
+
+> RejectNetworkFabricInterconnectDeploy(ctx, id).Execute()
+
+Rejects the deployment of the specified network fabric interconnect
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkFabricInterconnectAPI.RejectNetworkFabricInterconnectDeploy(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.RejectNetworkFabricInterconnectDeploy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRejectNetworkFabricInterconnectDeployRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -32,22 +32,26 @@ type NetworkFabricLink struct {
 	Id float32 `json:"id"`
 	// Unique identifier for the network fabric
 	NetworkFabricId float32 `json:"networkFabricId"`
+	// Unique identifier for the network fabric link aggregation
+	NetworkFabricLinkAggregationId *float32 `json:"networkFabricLinkAggregationId,omitempty"`
 	// Unique identifier for the network device A interface
 	NetworkDeviceAInterfaceId float32 `json:"networkDeviceAInterfaceId"`
 	// Unique identifier for the network device B interface
 	NetworkDeviceBInterfaceId float32 `json:"networkDeviceBInterfaceId"`
 	// Type of the network fabric link
 	LinkType string `json:"linkType"`
-	// Is the link part of an MLAG pair
-	MlagPair float32 `json:"mlagPair"`
-	// BGP numbering type for the link
-	BgpNumbering string `json:"bgpNumbering"`
-	// BGP link configuration type
-	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
 	// Status of the network fabric link
 	Status string `json:"status"`
 	// Custom variables for the network fabric link
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// Configuration of the network fabric link
+	Config *NetworkFabricLinkConfig `json:"config,omitempty"`
+	// Network Fabric Link Aggregation associated with this link
+	LinkAggregation *NetworkFabricLinkAggregation `json:"linkAggregation,omitempty"`
+	// Network Fabric BGP Session associated with this link
+	BgpSession *NetworkFabricBGPSession `json:"bgpSession,omitempty"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,7 +61,7 @@ type _NetworkFabricLink NetworkFabricLink
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, status string) *NetworkFabricLink {
+func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, status string) *NetworkFabricLink {
 	this := NetworkFabricLink{}
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -67,9 +71,6 @@ func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time
 	this.NetworkDeviceAInterfaceId = networkDeviceAInterfaceId
 	this.NetworkDeviceBInterfaceId = networkDeviceBInterfaceId
 	this.LinkType = linkType
-	this.MlagPair = mlagPair
-	this.BgpNumbering = bgpNumbering
-	this.BgpLinkConfiguration = bgpLinkConfiguration
 	this.Status = status
 	return &this
 }
@@ -202,6 +203,38 @@ func (o *NetworkFabricLink) SetNetworkFabricId(v float32) {
 	o.NetworkFabricId = v
 }
 
+// GetNetworkFabricLinkAggregationId returns the NetworkFabricLinkAggregationId field value if set, zero value otherwise.
+func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationId() float32 {
+	if o == nil || IsNil(o.NetworkFabricLinkAggregationId) {
+		var ret float32
+		return ret
+	}
+	return *o.NetworkFabricLinkAggregationId
+}
+
+// GetNetworkFabricLinkAggregationIdOk returns a tuple with the NetworkFabricLinkAggregationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.NetworkFabricLinkAggregationId) {
+		return nil, false
+	}
+	return o.NetworkFabricLinkAggregationId, true
+}
+
+// HasNetworkFabricLinkAggregationId returns a boolean if a field has been set.
+func (o *NetworkFabricLink) HasNetworkFabricLinkAggregationId() bool {
+	if o != nil && !IsNil(o.NetworkFabricLinkAggregationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkFabricLinkAggregationId gets a reference to the given float32 and assigns it to the NetworkFabricLinkAggregationId field.
+func (o *NetworkFabricLink) SetNetworkFabricLinkAggregationId(v float32) {
+	o.NetworkFabricLinkAggregationId = &v
+}
+
 // GetNetworkDeviceAInterfaceId returns the NetworkDeviceAInterfaceId field value
 func (o *NetworkFabricLink) GetNetworkDeviceAInterfaceId() float32 {
 	if o == nil {
@@ -274,78 +307,6 @@ func (o *NetworkFabricLink) SetLinkType(v string) {
 	o.LinkType = v
 }
 
-// GetMlagPair returns the MlagPair field value
-func (o *NetworkFabricLink) GetMlagPair() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.MlagPair
-}
-
-// GetMlagPairOk returns a tuple with the MlagPair field value
-// and a boolean to check if the value has been set.
-func (o *NetworkFabricLink) GetMlagPairOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.MlagPair, true
-}
-
-// SetMlagPair sets field value
-func (o *NetworkFabricLink) SetMlagPair(v float32) {
-	o.MlagPair = v
-}
-
-// GetBgpNumbering returns the BgpNumbering field value
-func (o *NetworkFabricLink) GetBgpNumbering() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BgpNumbering
-}
-
-// GetBgpNumberingOk returns a tuple with the BgpNumbering field value
-// and a boolean to check if the value has been set.
-func (o *NetworkFabricLink) GetBgpNumberingOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BgpNumbering, true
-}
-
-// SetBgpNumbering sets field value
-func (o *NetworkFabricLink) SetBgpNumbering(v string) {
-	o.BgpNumbering = v
-}
-
-// GetBgpLinkConfiguration returns the BgpLinkConfiguration field value
-func (o *NetworkFabricLink) GetBgpLinkConfiguration() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BgpLinkConfiguration
-}
-
-// GetBgpLinkConfigurationOk returns a tuple with the BgpLinkConfiguration field value
-// and a boolean to check if the value has been set.
-func (o *NetworkFabricLink) GetBgpLinkConfigurationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BgpLinkConfiguration, true
-}
-
-// SetBgpLinkConfiguration sets field value
-func (o *NetworkFabricLink) SetBgpLinkConfiguration(v string) {
-	o.BgpLinkConfiguration = v
-}
-
 // GetStatus returns the Status field value
 func (o *NetworkFabricLink) GetStatus() string {
 	if o == nil {
@@ -402,6 +363,134 @@ func (o *NetworkFabricLink) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
 }
 
+// GetConfig returns the Config field value if set, zero value otherwise.
+func (o *NetworkFabricLink) GetConfig() NetworkFabricLinkConfig {
+	if o == nil || IsNil(o.Config) {
+		var ret NetworkFabricLinkConfig
+		return ret
+	}
+	return *o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricLink) GetConfigOk() (*NetworkFabricLinkConfig, bool) {
+	if o == nil || IsNil(o.Config) {
+		return nil, false
+	}
+	return o.Config, true
+}
+
+// HasConfig returns a boolean if a field has been set.
+func (o *NetworkFabricLink) HasConfig() bool {
+	if o != nil && !IsNil(o.Config) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfig gets a reference to the given NetworkFabricLinkConfig and assigns it to the Config field.
+func (o *NetworkFabricLink) SetConfig(v NetworkFabricLinkConfig) {
+	o.Config = &v
+}
+
+// GetLinkAggregation returns the LinkAggregation field value if set, zero value otherwise.
+func (o *NetworkFabricLink) GetLinkAggregation() NetworkFabricLinkAggregation {
+	if o == nil || IsNil(o.LinkAggregation) {
+		var ret NetworkFabricLinkAggregation
+		return ret
+	}
+	return *o.LinkAggregation
+}
+
+// GetLinkAggregationOk returns a tuple with the LinkAggregation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricLink) GetLinkAggregationOk() (*NetworkFabricLinkAggregation, bool) {
+	if o == nil || IsNil(o.LinkAggregation) {
+		return nil, false
+	}
+	return o.LinkAggregation, true
+}
+
+// HasLinkAggregation returns a boolean if a field has been set.
+func (o *NetworkFabricLink) HasLinkAggregation() bool {
+	if o != nil && !IsNil(o.LinkAggregation) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkAggregation gets a reference to the given NetworkFabricLinkAggregation and assigns it to the LinkAggregation field.
+func (o *NetworkFabricLink) SetLinkAggregation(v NetworkFabricLinkAggregation) {
+	o.LinkAggregation = &v
+}
+
+// GetBgpSession returns the BgpSession field value if set, zero value otherwise.
+func (o *NetworkFabricLink) GetBgpSession() NetworkFabricBGPSession {
+	if o == nil || IsNil(o.BgpSession) {
+		var ret NetworkFabricBGPSession
+		return ret
+	}
+	return *o.BgpSession
+}
+
+// GetBgpSessionOk returns a tuple with the BgpSession field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricLink) GetBgpSessionOk() (*NetworkFabricBGPSession, bool) {
+	if o == nil || IsNil(o.BgpSession) {
+		return nil, false
+	}
+	return o.BgpSession, true
+}
+
+// HasBgpSession returns a boolean if a field has been set.
+func (o *NetworkFabricLink) HasBgpSession() bool {
+	if o != nil && !IsNil(o.BgpSession) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpSession gets a reference to the given NetworkFabricBGPSession and assigns it to the BgpSession field.
+func (o *NetworkFabricLink) SetBgpSession(v NetworkFabricBGPSession) {
+	o.BgpSession = &v
+}
+
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *NetworkFabricLink) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricLink) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *NetworkFabricLink) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *NetworkFabricLink) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o NetworkFabricLink) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -417,15 +506,27 @@ func (o NetworkFabricLink) ToMap() (map[string]interface{}, error) {
 	toSerialize["revision"] = o.Revision
 	toSerialize["id"] = o.Id
 	toSerialize["networkFabricId"] = o.NetworkFabricId
+	if !IsNil(o.NetworkFabricLinkAggregationId) {
+		toSerialize["networkFabricLinkAggregationId"] = o.NetworkFabricLinkAggregationId
+	}
 	toSerialize["networkDeviceAInterfaceId"] = o.NetworkDeviceAInterfaceId
 	toSerialize["networkDeviceBInterfaceId"] = o.NetworkDeviceBInterfaceId
 	toSerialize["linkType"] = o.LinkType
-	toSerialize["mlagPair"] = o.MlagPair
-	toSerialize["bgpNumbering"] = o.BgpNumbering
-	toSerialize["bgpLinkConfiguration"] = o.BgpLinkConfiguration
 	toSerialize["status"] = o.Status
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
+	}
+	if !IsNil(o.Config) {
+		toSerialize["config"] = o.Config
+	}
+	if !IsNil(o.LinkAggregation) {
+		toSerialize["linkAggregation"] = o.LinkAggregation
+	}
+	if !IsNil(o.BgpSession) {
+		toSerialize["bgpSession"] = o.BgpSession
+	}
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -448,9 +549,6 @@ func (o *NetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 		"networkDeviceAInterfaceId",
 		"networkDeviceBInterfaceId",
 		"linkType",
-		"mlagPair",
-		"bgpNumbering",
-		"bgpLinkConfiguration",
 		"status",
 	}
 
@@ -486,14 +584,16 @@ func (o *NetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "networkFabricId")
+		delete(additionalProperties, "networkFabricLinkAggregationId")
 		delete(additionalProperties, "networkDeviceAInterfaceId")
 		delete(additionalProperties, "networkDeviceBInterfaceId")
 		delete(additionalProperties, "linkType")
-		delete(additionalProperties, "mlagPair")
-		delete(additionalProperties, "bgpNumbering")
-		delete(additionalProperties, "bgpLinkConfiguration")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "linkAggregation")
+		delete(additionalProperties, "bgpSession")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

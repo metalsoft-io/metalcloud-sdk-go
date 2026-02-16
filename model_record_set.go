@@ -24,8 +24,12 @@ type RecordSet struct {
 	Server *Server `json:"server,omitempty"`
 	// The network device.
 	NetworkDevice *NetworkDevice `json:"networkDevice,omitempty"`
-	// The Network Device Configuration Template record set.
-	NetworkDeviceConfigurationTemplateRecordSet *NetworkDeviceConfigurationTemplateRecordSet `json:"networkDeviceConfigurationTemplateRecordSet,omitempty"`
+	// The Network Device Link Aggregation Configuration Template record set.
+	NetworkDeviceLinkAggregationConfigurationTemplateRecordSet *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet `json:"networkDeviceLinkAggregationConfigurationTemplateRecordSet,omitempty"`
+	// The Network Device BGP Configuration Template record set.
+	NetworkDeviceBGPConfigurationTemplateRecordSet *NetworkDeviceBGPConfigurationTemplateRecordSet `json:"networkDeviceBGPConfigurationTemplateRecordSet,omitempty"`
+	// The Network Device Interconnect Template record set.
+	NetworkDeviceInterconnectTemplateRecordSet *NetworkDeviceInterconnectTemplateRecordSet `json:"networkDeviceInterconnectTemplateRecordSet,omitempty"`
 	// The Instance Array DNS record set
 	ServerInstanceGroupDNSRecordSet map[string]interface{} `json:"serverInstanceGroupDNSRecordSet,omitempty"`
 	// The Instance DNS record set
@@ -132,36 +136,100 @@ func (o *RecordSet) SetNetworkDevice(v NetworkDevice) {
 	o.NetworkDevice = &v
 }
 
-// GetNetworkDeviceConfigurationTemplateRecordSet returns the NetworkDeviceConfigurationTemplateRecordSet field value if set, zero value otherwise.
-func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSet() NetworkDeviceConfigurationTemplateRecordSet {
-	if o == nil || IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
-		var ret NetworkDeviceConfigurationTemplateRecordSet
+// GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet returns the NetworkDeviceLinkAggregationConfigurationTemplateRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet() NetworkDeviceLinkAggregationConfigurationTemplateRecordSet {
+	if o == nil || IsNil(o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) {
+		var ret NetworkDeviceLinkAggregationConfigurationTemplateRecordSet
 		return ret
 	}
-	return *o.NetworkDeviceConfigurationTemplateRecordSet
+	return *o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet
 }
 
-// GetNetworkDeviceConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceConfigurationTemplateRecordSet field value if set, nil otherwise
+// GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceLinkAggregationConfigurationTemplateRecordSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetNetworkDeviceConfigurationTemplateRecordSetOk() (*NetworkDeviceConfigurationTemplateRecordSet, bool) {
-	if o == nil || IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
+func (o *RecordSet) GetNetworkDeviceLinkAggregationConfigurationTemplateRecordSetOk() (*NetworkDeviceLinkAggregationConfigurationTemplateRecordSet, bool) {
+	if o == nil || IsNil(o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) {
 		return nil, false
 	}
-	return o.NetworkDeviceConfigurationTemplateRecordSet, true
+	return o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet, true
 }
 
-// HasNetworkDeviceConfigurationTemplateRecordSet returns a boolean if a field has been set.
-func (o *RecordSet) HasNetworkDeviceConfigurationTemplateRecordSet() bool {
-	if o != nil && !IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
+// HasNetworkDeviceLinkAggregationConfigurationTemplateRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasNetworkDeviceLinkAggregationConfigurationTemplateRecordSet() bool {
+	if o != nil && !IsNil(o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) {
 		return true
 	}
 
 	return false
 }
 
-// SetNetworkDeviceConfigurationTemplateRecordSet gets a reference to the given NetworkDeviceConfigurationTemplateRecordSet and assigns it to the NetworkDeviceConfigurationTemplateRecordSet field.
-func (o *RecordSet) SetNetworkDeviceConfigurationTemplateRecordSet(v NetworkDeviceConfigurationTemplateRecordSet) {
-	o.NetworkDeviceConfigurationTemplateRecordSet = &v
+// SetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet gets a reference to the given NetworkDeviceLinkAggregationConfigurationTemplateRecordSet and assigns it to the NetworkDeviceLinkAggregationConfigurationTemplateRecordSet field.
+func (o *RecordSet) SetNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(v NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) {
+	o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet = &v
+}
+
+// GetNetworkDeviceBGPConfigurationTemplateRecordSet returns the NetworkDeviceBGPConfigurationTemplateRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetNetworkDeviceBGPConfigurationTemplateRecordSet() NetworkDeviceBGPConfigurationTemplateRecordSet {
+	if o == nil || IsNil(o.NetworkDeviceBGPConfigurationTemplateRecordSet) {
+		var ret NetworkDeviceBGPConfigurationTemplateRecordSet
+		return ret
+	}
+	return *o.NetworkDeviceBGPConfigurationTemplateRecordSet
+}
+
+// GetNetworkDeviceBGPConfigurationTemplateRecordSetOk returns a tuple with the NetworkDeviceBGPConfigurationTemplateRecordSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetNetworkDeviceBGPConfigurationTemplateRecordSetOk() (*NetworkDeviceBGPConfigurationTemplateRecordSet, bool) {
+	if o == nil || IsNil(o.NetworkDeviceBGPConfigurationTemplateRecordSet) {
+		return nil, false
+	}
+	return o.NetworkDeviceBGPConfigurationTemplateRecordSet, true
+}
+
+// HasNetworkDeviceBGPConfigurationTemplateRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasNetworkDeviceBGPConfigurationTemplateRecordSet() bool {
+	if o != nil && !IsNil(o.NetworkDeviceBGPConfigurationTemplateRecordSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceBGPConfigurationTemplateRecordSet gets a reference to the given NetworkDeviceBGPConfigurationTemplateRecordSet and assigns it to the NetworkDeviceBGPConfigurationTemplateRecordSet field.
+func (o *RecordSet) SetNetworkDeviceBGPConfigurationTemplateRecordSet(v NetworkDeviceBGPConfigurationTemplateRecordSet) {
+	o.NetworkDeviceBGPConfigurationTemplateRecordSet = &v
+}
+
+// GetNetworkDeviceInterconnectTemplateRecordSet returns the NetworkDeviceInterconnectTemplateRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetNetworkDeviceInterconnectTemplateRecordSet() NetworkDeviceInterconnectTemplateRecordSet {
+	if o == nil || IsNil(o.NetworkDeviceInterconnectTemplateRecordSet) {
+		var ret NetworkDeviceInterconnectTemplateRecordSet
+		return ret
+	}
+	return *o.NetworkDeviceInterconnectTemplateRecordSet
+}
+
+// GetNetworkDeviceInterconnectTemplateRecordSetOk returns a tuple with the NetworkDeviceInterconnectTemplateRecordSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetNetworkDeviceInterconnectTemplateRecordSetOk() (*NetworkDeviceInterconnectTemplateRecordSet, bool) {
+	if o == nil || IsNil(o.NetworkDeviceInterconnectTemplateRecordSet) {
+		return nil, false
+	}
+	return o.NetworkDeviceInterconnectTemplateRecordSet, true
+}
+
+// HasNetworkDeviceInterconnectTemplateRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasNetworkDeviceInterconnectTemplateRecordSet() bool {
+	if o != nil && !IsNil(o.NetworkDeviceInterconnectTemplateRecordSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceInterconnectTemplateRecordSet gets a reference to the given NetworkDeviceInterconnectTemplateRecordSet and assigns it to the NetworkDeviceInterconnectTemplateRecordSet field.
+func (o *RecordSet) SetNetworkDeviceInterconnectTemplateRecordSet(v NetworkDeviceInterconnectTemplateRecordSet) {
+	o.NetworkDeviceInterconnectTemplateRecordSet = &v
 }
 
 // GetServerInstanceGroupDNSRecordSet returns the ServerInstanceGroupDNSRecordSet field value if set, zero value otherwise.
@@ -500,8 +568,14 @@ func (o RecordSet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkDevice) {
 		toSerialize["networkDevice"] = o.NetworkDevice
 	}
-	if !IsNil(o.NetworkDeviceConfigurationTemplateRecordSet) {
-		toSerialize["networkDeviceConfigurationTemplateRecordSet"] = o.NetworkDeviceConfigurationTemplateRecordSet
+	if !IsNil(o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) {
+		toSerialize["networkDeviceLinkAggregationConfigurationTemplateRecordSet"] = o.NetworkDeviceLinkAggregationConfigurationTemplateRecordSet
+	}
+	if !IsNil(o.NetworkDeviceBGPConfigurationTemplateRecordSet) {
+		toSerialize["networkDeviceBGPConfigurationTemplateRecordSet"] = o.NetworkDeviceBGPConfigurationTemplateRecordSet
+	}
+	if !IsNil(o.NetworkDeviceInterconnectTemplateRecordSet) {
+		toSerialize["networkDeviceInterconnectTemplateRecordSet"] = o.NetworkDeviceInterconnectTemplateRecordSet
 	}
 	if !IsNil(o.ServerInstanceGroupDNSRecordSet) {
 		toSerialize["serverInstanceGroupDNSRecordSet"] = o.ServerInstanceGroupDNSRecordSet
@@ -557,7 +631,9 @@ func (o *RecordSet) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "server")
 		delete(additionalProperties, "networkDevice")
-		delete(additionalProperties, "networkDeviceConfigurationTemplateRecordSet")
+		delete(additionalProperties, "networkDeviceLinkAggregationConfigurationTemplateRecordSet")
+		delete(additionalProperties, "networkDeviceBGPConfigurationTemplateRecordSet")
+		delete(additionalProperties, "networkDeviceInterconnectTemplateRecordSet")
 		delete(additionalProperties, "serverInstanceGroupDNSRecordSet")
 		delete(additionalProperties, "serverInstanceDNSRecordSet")
 		delete(additionalProperties, "clusterDNSRecordSet")

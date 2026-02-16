@@ -27,14 +27,12 @@ type CreateNetworkFabricLink struct {
 	NetworkDeviceBInterfaceId float32 `json:"networkDeviceBInterfaceId"`
 	// Type of the network fabric link
 	LinkType string `json:"linkType"`
-	// Is the link part of an MLAG pair
-	MlagPair float32 `json:"mlagPair"`
-	// BGP numbering type for the link
-	BgpNumbering string `json:"bgpNumbering"`
-	// BGP link configuration type
-	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
 	// Custom variables for the network fabric link
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// Configuration of the network fabric link
+	Config *NetworkFabricLinkConfig `json:"config,omitempty"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,14 +42,11 @@ type _CreateNetworkFabricLink CreateNetworkFabricLink
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkFabricLink(networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string) *CreateNetworkFabricLink {
+func NewCreateNetworkFabricLink(networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string) *CreateNetworkFabricLink {
 	this := CreateNetworkFabricLink{}
 	this.NetworkDeviceAInterfaceId = networkDeviceAInterfaceId
 	this.NetworkDeviceBInterfaceId = networkDeviceBInterfaceId
 	this.LinkType = linkType
-	this.MlagPair = mlagPair
-	this.BgpNumbering = bgpNumbering
-	this.BgpLinkConfiguration = bgpLinkConfiguration
 	return &this
 }
 
@@ -135,78 +130,6 @@ func (o *CreateNetworkFabricLink) SetLinkType(v string) {
 	o.LinkType = v
 }
 
-// GetMlagPair returns the MlagPair field value
-func (o *CreateNetworkFabricLink) GetMlagPair() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.MlagPair
-}
-
-// GetMlagPairOk returns a tuple with the MlagPair field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLink) GetMlagPairOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.MlagPair, true
-}
-
-// SetMlagPair sets field value
-func (o *CreateNetworkFabricLink) SetMlagPair(v float32) {
-	o.MlagPair = v
-}
-
-// GetBgpNumbering returns the BgpNumbering field value
-func (o *CreateNetworkFabricLink) GetBgpNumbering() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BgpNumbering
-}
-
-// GetBgpNumberingOk returns a tuple with the BgpNumbering field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLink) GetBgpNumberingOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BgpNumbering, true
-}
-
-// SetBgpNumbering sets field value
-func (o *CreateNetworkFabricLink) SetBgpNumbering(v string) {
-	o.BgpNumbering = v
-}
-
-// GetBgpLinkConfiguration returns the BgpLinkConfiguration field value
-func (o *CreateNetworkFabricLink) GetBgpLinkConfiguration() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BgpLinkConfiguration
-}
-
-// GetBgpLinkConfigurationOk returns a tuple with the BgpLinkConfiguration field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLink) GetBgpLinkConfigurationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BgpLinkConfiguration, true
-}
-
-// SetBgpLinkConfiguration sets field value
-func (o *CreateNetworkFabricLink) SetBgpLinkConfiguration(v string) {
-	o.BgpLinkConfiguration = v
-}
-
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
 func (o *CreateNetworkFabricLink) GetCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.CustomVariables) {
@@ -239,6 +162,70 @@ func (o *CreateNetworkFabricLink) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
 }
 
+// GetConfig returns the Config field value if set, zero value otherwise.
+func (o *CreateNetworkFabricLink) GetConfig() NetworkFabricLinkConfig {
+	if o == nil || IsNil(o.Config) {
+		var ret NetworkFabricLinkConfig
+		return ret
+	}
+	return *o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricLink) GetConfigOk() (*NetworkFabricLinkConfig, bool) {
+	if o == nil || IsNil(o.Config) {
+		return nil, false
+	}
+	return o.Config, true
+}
+
+// HasConfig returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLink) HasConfig() bool {
+	if o != nil && !IsNil(o.Config) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfig gets a reference to the given NetworkFabricLinkConfig and assigns it to the Config field.
+func (o *CreateNetworkFabricLink) SetConfig(v NetworkFabricLinkConfig) {
+	o.Config = &v
+}
+
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *CreateNetworkFabricLink) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricLink) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLink) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *CreateNetworkFabricLink) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o CreateNetworkFabricLink) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -252,11 +239,14 @@ func (o CreateNetworkFabricLink) ToMap() (map[string]interface{}, error) {
 	toSerialize["networkDeviceAInterfaceId"] = o.NetworkDeviceAInterfaceId
 	toSerialize["networkDeviceBInterfaceId"] = o.NetworkDeviceBInterfaceId
 	toSerialize["linkType"] = o.LinkType
-	toSerialize["mlagPair"] = o.MlagPair
-	toSerialize["bgpNumbering"] = o.BgpNumbering
-	toSerialize["bgpLinkConfiguration"] = o.BgpLinkConfiguration
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
+	}
+	if !IsNil(o.Config) {
+		toSerialize["config"] = o.Config
+	}
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -274,9 +264,6 @@ func (o *CreateNetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 		"networkDeviceAInterfaceId",
 		"networkDeviceBInterfaceId",
 		"linkType",
-		"mlagPair",
-		"bgpNumbering",
-		"bgpLinkConfiguration",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -309,10 +296,9 @@ func (o *CreateNetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkDeviceAInterfaceId")
 		delete(additionalProperties, "networkDeviceBInterfaceId")
 		delete(additionalProperties, "linkType")
-		delete(additionalProperties, "mlagPair")
-		delete(additionalProperties, "bgpNumbering")
-		delete(additionalProperties, "bgpLinkConfiguration")
 		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

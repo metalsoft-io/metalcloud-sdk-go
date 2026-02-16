@@ -68,6 +68,8 @@ type UpdateUser struct {
 	AccountId *float32 `json:"accountId,omitempty"`
 	// The provider of the user
 	Provider *string `json:"provider,omitempty"`
+	// The timestamp when the user last changed their password
+	PasswordLastChangedTimestamp *string `json:"passwordLastChangedTimestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -870,6 +872,38 @@ func (o *UpdateUser) SetProvider(v string) {
 	o.Provider = &v
 }
 
+// GetPasswordLastChangedTimestamp returns the PasswordLastChangedTimestamp field value if set, zero value otherwise.
+func (o *UpdateUser) GetPasswordLastChangedTimestamp() string {
+	if o == nil || IsNil(o.PasswordLastChangedTimestamp) {
+		var ret string
+		return ret
+	}
+	return *o.PasswordLastChangedTimestamp
+}
+
+// GetPasswordLastChangedTimestampOk returns a tuple with the PasswordLastChangedTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetPasswordLastChangedTimestampOk() (*string, bool) {
+	if o == nil || IsNil(o.PasswordLastChangedTimestamp) {
+		return nil, false
+	}
+	return o.PasswordLastChangedTimestamp, true
+}
+
+// HasPasswordLastChangedTimestamp returns a boolean if a field has been set.
+func (o *UpdateUser) HasPasswordLastChangedTimestamp() bool {
+	if o != nil && !IsNil(o.PasswordLastChangedTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordLastChangedTimestamp gets a reference to the given string and assigns it to the PasswordLastChangedTimestamp field.
+func (o *UpdateUser) SetPasswordLastChangedTimestamp(v string) {
+	o.PasswordLastChangedTimestamp = &v
+}
+
 func (o UpdateUser) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -952,6 +986,9 @@ func (o UpdateUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Provider) {
 		toSerialize["provider"] = o.Provider
 	}
+	if !IsNil(o.PasswordLastChangedTimestamp) {
+		toSerialize["passwordLastChangedTimestamp"] = o.PasswordLastChangedTimestamp
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -998,6 +1035,7 @@ func (o *UpdateUser) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isDatastorePublisher")
 		delete(additionalProperties, "accountId")
 		delete(additionalProperties, "provider")
+		delete(additionalProperties, "passwordLastChangedTimestamp")
 		o.AdditionalProperties = additionalProperties
 	}
 

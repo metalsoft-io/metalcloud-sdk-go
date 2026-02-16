@@ -9,20 +9,22 @@ Name | Type | Description | Notes
 **Revision** | **string** | Revision number of the entity | 
 **Id** | **float32** | Unique identifier for the network fabric link | 
 **NetworkFabricId** | **float32** | Unique identifier for the network fabric | 
+**NetworkFabricLinkAggregationId** | Pointer to **float32** | Unique identifier for the network fabric link aggregation | [optional] 
 **NetworkDeviceAInterfaceId** | **float32** | Unique identifier for the network device A interface | 
 **NetworkDeviceBInterfaceId** | **float32** | Unique identifier for the network device B interface | 
 **LinkType** | **string** | Type of the network fabric link | 
-**MlagPair** | **float32** | Is the link part of an MLAG pair | 
-**BgpNumbering** | **string** | BGP numbering type for the link | 
-**BgpLinkConfiguration** | **string** | BGP link configuration type | 
 **Status** | **string** | Status of the network fabric link | 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network fabric link | [optional] 
+**Config** | Pointer to [**NetworkFabricLinkConfig**](NetworkFabricLinkConfig.md) | Configuration of the network fabric link | [optional] 
+**LinkAggregation** | Pointer to [**NetworkFabricLinkAggregation**](NetworkFabricLinkAggregation.md) | Network Fabric Link Aggregation associated with this link | [optional] 
+**BgpSession** | Pointer to [**NetworkFabricBGPSession**](NetworkFabricBGPSession.md) | Network Fabric BGP Session associated with this link | [optional] 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewNetworkFabricLink
 
-`func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, status string, ) *NetworkFabricLink`
+`func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, status string, ) *NetworkFabricLink`
 
 NewNetworkFabricLink instantiates a new NetworkFabricLink object
 This constructor will assign default values to properties that have it defined,
@@ -137,6 +139,31 @@ and a boolean to check if the value has been set.
 SetNetworkFabricId sets NetworkFabricId field to given value.
 
 
+### GetNetworkFabricLinkAggregationId
+
+`func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationId() float32`
+
+GetNetworkFabricLinkAggregationId returns the NetworkFabricLinkAggregationId field if non-nil, zero value otherwise.
+
+### GetNetworkFabricLinkAggregationIdOk
+
+`func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationIdOk() (*float32, bool)`
+
+GetNetworkFabricLinkAggregationIdOk returns a tuple with the NetworkFabricLinkAggregationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkFabricLinkAggregationId
+
+`func (o *NetworkFabricLink) SetNetworkFabricLinkAggregationId(v float32)`
+
+SetNetworkFabricLinkAggregationId sets NetworkFabricLinkAggregationId field to given value.
+
+### HasNetworkFabricLinkAggregationId
+
+`func (o *NetworkFabricLink) HasNetworkFabricLinkAggregationId() bool`
+
+HasNetworkFabricLinkAggregationId returns a boolean if a field has been set.
+
 ### GetNetworkDeviceAInterfaceId
 
 `func (o *NetworkFabricLink) GetNetworkDeviceAInterfaceId() float32`
@@ -197,66 +224,6 @@ and a boolean to check if the value has been set.
 SetLinkType sets LinkType field to given value.
 
 
-### GetMlagPair
-
-`func (o *NetworkFabricLink) GetMlagPair() float32`
-
-GetMlagPair returns the MlagPair field if non-nil, zero value otherwise.
-
-### GetMlagPairOk
-
-`func (o *NetworkFabricLink) GetMlagPairOk() (*float32, bool)`
-
-GetMlagPairOk returns a tuple with the MlagPair field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMlagPair
-
-`func (o *NetworkFabricLink) SetMlagPair(v float32)`
-
-SetMlagPair sets MlagPair field to given value.
-
-
-### GetBgpNumbering
-
-`func (o *NetworkFabricLink) GetBgpNumbering() string`
-
-GetBgpNumbering returns the BgpNumbering field if non-nil, zero value otherwise.
-
-### GetBgpNumberingOk
-
-`func (o *NetworkFabricLink) GetBgpNumberingOk() (*string, bool)`
-
-GetBgpNumberingOk returns a tuple with the BgpNumbering field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBgpNumbering
-
-`func (o *NetworkFabricLink) SetBgpNumbering(v string)`
-
-SetBgpNumbering sets BgpNumbering field to given value.
-
-
-### GetBgpLinkConfiguration
-
-`func (o *NetworkFabricLink) GetBgpLinkConfiguration() string`
-
-GetBgpLinkConfiguration returns the BgpLinkConfiguration field if non-nil, zero value otherwise.
-
-### GetBgpLinkConfigurationOk
-
-`func (o *NetworkFabricLink) GetBgpLinkConfigurationOk() (*string, bool)`
-
-GetBgpLinkConfigurationOk returns a tuple with the BgpLinkConfiguration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBgpLinkConfiguration
-
-`func (o *NetworkFabricLink) SetBgpLinkConfiguration(v string)`
-
-SetBgpLinkConfiguration sets BgpLinkConfiguration field to given value.
-
-
 ### GetStatus
 
 `func (o *NetworkFabricLink) GetStatus() string`
@@ -301,6 +268,106 @@ SetCustomVariables sets CustomVariables field to given value.
 `func (o *NetworkFabricLink) HasCustomVariables() bool`
 
 HasCustomVariables returns a boolean if a field has been set.
+
+### GetConfig
+
+`func (o *NetworkFabricLink) GetConfig() NetworkFabricLinkConfig`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *NetworkFabricLink) GetConfigOk() (*NetworkFabricLinkConfig, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *NetworkFabricLink) SetConfig(v NetworkFabricLinkConfig)`
+
+SetConfig sets Config field to given value.
+
+### HasConfig
+
+`func (o *NetworkFabricLink) HasConfig() bool`
+
+HasConfig returns a boolean if a field has been set.
+
+### GetLinkAggregation
+
+`func (o *NetworkFabricLink) GetLinkAggregation() NetworkFabricLinkAggregation`
+
+GetLinkAggregation returns the LinkAggregation field if non-nil, zero value otherwise.
+
+### GetLinkAggregationOk
+
+`func (o *NetworkFabricLink) GetLinkAggregationOk() (*NetworkFabricLinkAggregation, bool)`
+
+GetLinkAggregationOk returns a tuple with the LinkAggregation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkAggregation
+
+`func (o *NetworkFabricLink) SetLinkAggregation(v NetworkFabricLinkAggregation)`
+
+SetLinkAggregation sets LinkAggregation field to given value.
+
+### HasLinkAggregation
+
+`func (o *NetworkFabricLink) HasLinkAggregation() bool`
+
+HasLinkAggregation returns a boolean if a field has been set.
+
+### GetBgpSession
+
+`func (o *NetworkFabricLink) GetBgpSession() NetworkFabricBGPSession`
+
+GetBgpSession returns the BgpSession field if non-nil, zero value otherwise.
+
+### GetBgpSessionOk
+
+`func (o *NetworkFabricLink) GetBgpSessionOk() (*NetworkFabricBGPSession, bool)`
+
+GetBgpSessionOk returns a tuple with the BgpSession field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpSession
+
+`func (o *NetworkFabricLink) SetBgpSession(v NetworkFabricBGPSession)`
+
+SetBgpSession sets BgpSession field to given value.
+
+### HasBgpSession
+
+`func (o *NetworkFabricLink) HasBgpSession() bool`
+
+HasBgpSession returns a boolean if a field has been set.
+
+### GetLinks
+
+`func (o *NetworkFabricLink) GetLinks() []Link`
+
+GetLinks returns the Links field if non-nil, zero value otherwise.
+
+### GetLinksOk
+
+`func (o *NetworkFabricLink) GetLinksOk() (*[]Link, bool)`
+
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinks
+
+`func (o *NetworkFabricLink) SetLinks(v []Link)`
+
+SetLinks sets Links field to given value.
+
+### HasLinks
+
+`func (o *NetworkFabricLink) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

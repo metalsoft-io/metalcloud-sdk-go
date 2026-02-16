@@ -26,14 +26,16 @@ Name | Type | Description | Notes
 **DhcpOob** | **bool** | Enable DHCP OOB capability | [default to false]
 **AnsibleRunner** | **bool** | Enable Ansible runner capability | [default to false]
 **HttpRequest** | **bool** | Enable HTTP request capability | [default to false]
-**SshCommand** | **bool** | Enable SSH command capability | 
+**SshCommand** | **bool** | Enable SSH command capability | [default to false]
+**BuildImage** | **bool** | Enable image building capability | [default to false]
+**InbandWebmks** | **bool** | Enable inband WebMKS capability | [default to false]
 **SecondIp** | Pointer to **string** | Second IP address | [optional] 
 
 ## Methods
 
 ### NewGenerateSiteControllerOneliner
 
-`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, ) *GenerateSiteControllerOneliner`
+`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool, ) *GenerateSiteControllerOneliner`
 
 NewGenerateSiteControllerOneliner instantiates a new GenerateSiteControllerOneliner object
 This constructor will assign default values to properties that have it defined,
@@ -506,6 +508,46 @@ and a boolean to check if the value has been set.
 `func (o *GenerateSiteControllerOneliner) SetSshCommand(v bool)`
 
 SetSshCommand sets SshCommand field to given value.
+
+
+### GetBuildImage
+
+`func (o *GenerateSiteControllerOneliner) GetBuildImage() bool`
+
+GetBuildImage returns the BuildImage field if non-nil, zero value otherwise.
+
+### GetBuildImageOk
+
+`func (o *GenerateSiteControllerOneliner) GetBuildImageOk() (*bool, bool)`
+
+GetBuildImageOk returns a tuple with the BuildImage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBuildImage
+
+`func (o *GenerateSiteControllerOneliner) SetBuildImage(v bool)`
+
+SetBuildImage sets BuildImage field to given value.
+
+
+### GetInbandWebmks
+
+`func (o *GenerateSiteControllerOneliner) GetInbandWebmks() bool`
+
+GetInbandWebmks returns the InbandWebmks field if non-nil, zero value otherwise.
+
+### GetInbandWebmksOk
+
+`func (o *GenerateSiteControllerOneliner) GetInbandWebmksOk() (*bool, bool)`
+
+GetInbandWebmksOk returns a tuple with the InbandWebmks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInbandWebmks
+
+`func (o *GenerateSiteControllerOneliner) SetInbandWebmks(v bool)`
+
+SetInbandWebmks sets InbandWebmks field to given value.
 
 
 ### GetSecondIp

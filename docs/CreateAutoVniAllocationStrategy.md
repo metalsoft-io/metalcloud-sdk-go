@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
+**GranularityLevel** | Pointer to [**NullableVniAllocationGranularityLevel**](VniAllocationGranularityLevel.md) |  | [optional] 
 
 ## Methods
 
@@ -66,6 +67,41 @@ and a boolean to check if the value has been set.
 SetScope sets Scope field to given value.
 
 
+### GetGranularityLevel
+
+`func (o *CreateAutoVniAllocationStrategy) GetGranularityLevel() VniAllocationGranularityLevel`
+
+GetGranularityLevel returns the GranularityLevel field if non-nil, zero value otherwise.
+
+### GetGranularityLevelOk
+
+`func (o *CreateAutoVniAllocationStrategy) GetGranularityLevelOk() (*VniAllocationGranularityLevel, bool)`
+
+GetGranularityLevelOk returns a tuple with the GranularityLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGranularityLevel
+
+`func (o *CreateAutoVniAllocationStrategy) SetGranularityLevel(v VniAllocationGranularityLevel)`
+
+SetGranularityLevel sets GranularityLevel field to given value.
+
+### HasGranularityLevel
+
+`func (o *CreateAutoVniAllocationStrategy) HasGranularityLevel() bool`
+
+HasGranularityLevel returns a boolean if a field has been set.
+
+### SetGranularityLevelNil
+
+`func (o *CreateAutoVniAllocationStrategy) SetGranularityLevelNil(b bool)`
+
+ SetGranularityLevelNil sets the value for GranularityLevel to be an explicit nil
+
+### UnsetGranularityLevel
+`func (o *CreateAutoVniAllocationStrategy) UnsetGranularityLevel()`
+
+UnsetGranularityLevel ensures that no value is present for GranularityLevel, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

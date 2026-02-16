@@ -69,6 +69,8 @@ type User struct {
 	AccountId *float32 `json:"accountId,omitempty"`
 	// The provider of the user
 	Provider string `json:"provider"`
+	// The timestamp when the user last changed their password
+	PasswordLastChangedTimestamp string `json:"passwordLastChangedTimestamp"`
 	// User ID
 	Id float32 `json:"id"`
 	// Revision of the user
@@ -109,7 +111,7 @@ type _User User
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta) *User {
+func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta) *User {
 	this := User{}
 	this.DisplayName = displayName
 	this.EmailStatus = emailStatus
@@ -130,6 +132,7 @@ func NewUser(displayName string, emailStatus string, language string, brand stri
 	this.IsArchived = isArchived
 	this.IsDatastorePublisher = isDatastorePublisher
 	this.Provider = provider
+	this.PasswordLastChangedTimestamp = passwordLastChangedTimestamp
 	this.Id = id
 	this.Revision = revision
 	this.Email = email
@@ -775,6 +778,30 @@ func (o *User) SetProvider(v string) {
 	o.Provider = v
 }
 
+// GetPasswordLastChangedTimestamp returns the PasswordLastChangedTimestamp field value
+func (o *User) GetPasswordLastChangedTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PasswordLastChangedTimestamp
+}
+
+// GetPasswordLastChangedTimestampOk returns a tuple with the PasswordLastChangedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *User) GetPasswordLastChangedTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PasswordLastChangedTimestamp, true
+}
+
+// SetPasswordLastChangedTimestamp sets field value
+func (o *User) SetPasswordLastChangedTimestamp(v string) {
+	o.PasswordLastChangedTimestamp = v
+}
+
 // GetId returns the Id field value
 func (o *User) GetId() float32 {
 	if o == nil {
@@ -1251,6 +1278,7 @@ func (o User) ToMap() (map[string]interface{}, error) {
 		toSerialize["accountId"] = o.AccountId
 	}
 	toSerialize["provider"] = o.Provider
+	toSerialize["passwordLastChangedTimestamp"] = o.PasswordLastChangedTimestamp
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["email"] = o.Email
@@ -1311,6 +1339,7 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		"isArchived",
 		"isDatastorePublisher",
 		"provider",
+		"passwordLastChangedTimestamp",
 		"id",
 		"revision",
 		"email",
@@ -1374,6 +1403,7 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isDatastorePublisher")
 		delete(additionalProperties, "accountId")
 		delete(additionalProperties, "provider")
+		delete(additionalProperties, "passwordLastChangedTimestamp")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "email")

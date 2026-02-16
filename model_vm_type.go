@@ -33,6 +33,8 @@ type VMType struct {
 	CpuCores float32 `json:"cpuCores"`
 	// RAM in GB for the VM Pool type
 	RamGB float32 `json:"ramGB"`
+	// Information about GPUs available for this VM Type
+	GpuInfo []VMTypeGPUInfo `json:"gpuInfo,omitempty"`
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
 	// Tags for the VM Type.
@@ -227,6 +229,38 @@ func (o *VMType) SetRamGB(v float32) {
 	o.RamGB = v
 }
 
+// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
+func (o *VMType) GetGpuInfo() []VMTypeGPUInfo {
+	if o == nil || IsNil(o.GpuInfo) {
+		var ret []VMTypeGPUInfo
+		return ret
+	}
+	return o.GpuInfo
+}
+
+// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMType) GetGpuInfoOk() ([]VMTypeGPUInfo, bool) {
+	if o == nil || IsNil(o.GpuInfo) {
+		return nil, false
+	}
+	return o.GpuInfo, true
+}
+
+// HasGpuInfo returns a boolean if a field has been set.
+func (o *VMType) HasGpuInfo() bool {
+	if o != nil && !IsNil(o.GpuInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuInfo gets a reference to the given []VMTypeGPUInfo and assigns it to the GpuInfo field.
+func (o *VMType) SetGpuInfo(v []VMTypeGPUInfo) {
+	o.GpuInfo = v
+}
+
 // GetIsExperimental returns the IsExperimental field value if set, zero value otherwise.
 func (o *VMType) GetIsExperimental() float32 {
 	if o == nil || IsNil(o.IsExperimental) {
@@ -375,6 +409,9 @@ func (o VMType) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["cpuCores"] = o.CpuCores
 	toSerialize["ramGB"] = o.RamGB
+	if !IsNil(o.GpuInfo) {
+		toSerialize["gpuInfo"] = o.GpuInfo
+	}
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
@@ -439,6 +476,7 @@ func (o *VMType) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "cpuCores")
 		delete(additionalProperties, "ramGB")
+		delete(additionalProperties, "gpuInfo")
 		delete(additionalProperties, "isExperimental")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "forUnmanagedVMsOnly")

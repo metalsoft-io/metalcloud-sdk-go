@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **Position** | Pointer to **string** | Position of the network device | [optional] 
 **IdentifierString** | Pointer to **string** | Identifier string of the network device. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters). | [optional] 
 **Asn** | Pointer to **int64** | Autonomous System Number for the network device defaults | [optional] 
-**SkipInitialConfiguration** | Pointer to **bool** | Skip initial configuration | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables associated with the network device, stored as key-value pairs. | [optional] 
 **MlagDomainId** | Pointer to **int32** | MLAG domain ID, must be between 1 and 4096. | [optional] 
 **LoopbackAddressIpv4** | Pointer to **string** | IPv4 address assigned to the loopback interface. | [optional] 
@@ -183,31 +182,6 @@ SetAsn sets Asn field to given value.
 `func (o *CreateNetworkDeviceDefaults) HasAsn() bool`
 
 HasAsn returns a boolean if a field has been set.
-
-### GetSkipInitialConfiguration
-
-`func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfiguration() bool`
-
-GetSkipInitialConfiguration returns the SkipInitialConfiguration field if non-nil, zero value otherwise.
-
-### GetSkipInitialConfigurationOk
-
-`func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*bool, bool)`
-
-GetSkipInitialConfigurationOk returns a tuple with the SkipInitialConfiguration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSkipInitialConfiguration
-
-`func (o *CreateNetworkDeviceDefaults) SetSkipInitialConfiguration(v bool)`
-
-SetSkipInitialConfiguration sets SkipInitialConfiguration field to given value.
-
-### HasSkipInitialConfiguration
-
-`func (o *CreateNetworkDeviceDefaults) HasSkipInitialConfiguration() bool`
-
-HasSkipInitialConfiguration returns a boolean if a field has been set.
 
 ### GetCustomVariables
 

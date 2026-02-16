@@ -23,6 +23,7 @@ var _ MappedNullable = &CreateAutoVniAllocationStrategy{}
 type CreateAutoVniAllocationStrategy struct {
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
+	GranularityLevel NullableVniAllocationGranularityLevel `json:"granularityLevel,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -95,6 +96,48 @@ func (o *CreateAutoVniAllocationStrategy) SetScope(v CreateResourceScope) {
 	o.Scope = v
 }
 
+// GetGranularityLevel returns the GranularityLevel field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateAutoVniAllocationStrategy) GetGranularityLevel() VniAllocationGranularityLevel {
+	if o == nil || IsNil(o.GranularityLevel.Get()) {
+		var ret VniAllocationGranularityLevel
+		return ret
+	}
+	return *o.GranularityLevel.Get()
+}
+
+// GetGranularityLevelOk returns a tuple with the GranularityLevel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateAutoVniAllocationStrategy) GetGranularityLevelOk() (*VniAllocationGranularityLevel, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GranularityLevel.Get(), o.GranularityLevel.IsSet()
+}
+
+// HasGranularityLevel returns a boolean if a field has been set.
+func (o *CreateAutoVniAllocationStrategy) HasGranularityLevel() bool {
+	if o != nil && o.GranularityLevel.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGranularityLevel gets a reference to the given NullableVniAllocationGranularityLevel and assigns it to the GranularityLevel field.
+func (o *CreateAutoVniAllocationStrategy) SetGranularityLevel(v VniAllocationGranularityLevel) {
+	o.GranularityLevel.Set(&v)
+}
+// SetGranularityLevelNil sets the value for GranularityLevel to be an explicit nil
+func (o *CreateAutoVniAllocationStrategy) SetGranularityLevelNil() {
+	o.GranularityLevel.Set(nil)
+}
+
+// UnsetGranularityLevel ensures that no value is present for GranularityLevel, not even an explicit nil
+func (o *CreateAutoVniAllocationStrategy) UnsetGranularityLevel() {
+	o.GranularityLevel.Unset()
+}
+
 func (o CreateAutoVniAllocationStrategy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -107,6 +150,9 @@ func (o CreateAutoVniAllocationStrategy) ToMap() (map[string]interface{}, error)
 	toSerialize := map[string]interface{}{}
 	toSerialize["kind"] = o.Kind
 	toSerialize["scope"] = o.Scope
+	if o.GranularityLevel.IsSet() {
+		toSerialize["granularityLevel"] = o.GranularityLevel.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -153,6 +199,7 @@ func (o *CreateAutoVniAllocationStrategy) UnmarshalJSON(data []byte) (err error)
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "scope")
+		delete(additionalProperties, "granularityLevel")
 		o.AdditionalProperties = additionalProperties
 	}
 

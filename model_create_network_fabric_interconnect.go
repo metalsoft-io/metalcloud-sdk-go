@@ -33,6 +33,8 @@ type CreateNetworkFabricInterconnect struct {
 	BgpConfigurationTemplate *string `json:"bgpConfigurationTemplate,omitempty"`
 	// BGP neighbor template for the interconnect
 	BgpNeighborTemplate *string `json:"bgpNeighborTemplate,omitempty"`
+	// Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending)
+	TransportId *int32 `json:"transportId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -233,6 +235,38 @@ func (o *CreateNetworkFabricInterconnect) SetBgpNeighborTemplate(v string) {
 	o.BgpNeighborTemplate = &v
 }
 
+// GetTransportId returns the TransportId field value if set, zero value otherwise.
+func (o *CreateNetworkFabricInterconnect) GetTransportId() int32 {
+	if o == nil || IsNil(o.TransportId) {
+		var ret int32
+		return ret
+	}
+	return *o.TransportId
+}
+
+// GetTransportIdOk returns a tuple with the TransportId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricInterconnect) GetTransportIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.TransportId) {
+		return nil, false
+	}
+	return o.TransportId, true
+}
+
+// HasTransportId returns a boolean if a field has been set.
+func (o *CreateNetworkFabricInterconnect) HasTransportId() bool {
+	if o != nil && !IsNil(o.TransportId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransportId gets a reference to the given int32 and assigns it to the TransportId field.
+func (o *CreateNetworkFabricInterconnect) SetTransportId(v int32) {
+	o.TransportId = &v
+}
+
 func (o CreateNetworkFabricInterconnect) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -256,6 +290,9 @@ func (o CreateNetworkFabricInterconnect) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.BgpNeighborTemplate) {
 		toSerialize["bgpNeighborTemplate"] = o.BgpNeighborTemplate
+	}
+	if !IsNil(o.TransportId) {
+		toSerialize["transportId"] = o.TransportId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -307,6 +344,7 @@ func (o *CreateNetworkFabricInterconnect) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "bgpConfigurationTemplate")
 		delete(additionalProperties, "bgpNeighborTemplate")
+		delete(additionalProperties, "transportId")
 		o.AdditionalProperties = additionalProperties
 	}
 

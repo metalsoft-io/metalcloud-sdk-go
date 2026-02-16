@@ -25,6 +25,8 @@ type ServerGpuInfo struct {
 	Model string `json:"model"`
 	// The vendor of the GPU
 	Vendor string `json:"vendor"`
+	// The name of the GPU as shown by the PCI Device
+	Name *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -97,6 +99,38 @@ func (o *ServerGpuInfo) SetVendor(v string) {
 	o.Vendor = v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ServerGpuInfo) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerGpuInfo) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ServerGpuInfo) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ServerGpuInfo) SetName(v string) {
+	o.Name = &v
+}
+
 func (o ServerGpuInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -109,6 +143,9 @@ func (o ServerGpuInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["model"] = o.Model
 	toSerialize["vendor"] = o.Vendor
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -155,6 +192,7 @@ func (o *ServerGpuInfo) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "vendor")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

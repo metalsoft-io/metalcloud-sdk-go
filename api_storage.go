@@ -136,110 +136,6 @@ func (a *StorageAPIService) CreateStorageExecute(r StorageAPICreateStorageReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type StorageAPICreateStorageNetworkDeviceConfigurationRequest struct {
-	ctx context.Context
-	ApiService *StorageAPIService
-	storageId float32
-	createStorageNetworkDeviceConfiguration *CreateStorageNetworkDeviceConfiguration
-}
-
-// The new Storage Network Device Configuration object
-func (r StorageAPICreateStorageNetworkDeviceConfigurationRequest) CreateStorageNetworkDeviceConfiguration(createStorageNetworkDeviceConfiguration CreateStorageNetworkDeviceConfiguration) StorageAPICreateStorageNetworkDeviceConfigurationRequest {
-	r.createStorageNetworkDeviceConfiguration = &createStorageNetworkDeviceConfiguration
-	return r
-}
-
-func (r StorageAPICreateStorageNetworkDeviceConfigurationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateStorageNetworkDeviceConfigurationExecute(r)
-}
-
-/*
-CreateStorageNetworkDeviceConfiguration Creates a Storage Network Device Configuration
-
-Creates a Storage Network Device Configuration
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param storageId
- @return StorageAPICreateStorageNetworkDeviceConfigurationRequest
-*/
-func (a *StorageAPIService) CreateStorageNetworkDeviceConfiguration(ctx context.Context, storageId float32) StorageAPICreateStorageNetworkDeviceConfigurationRequest {
-	return StorageAPICreateStorageNetworkDeviceConfigurationRequest{
-		ApiService: a,
-		ctx: ctx,
-		storageId: storageId,
-	}
-}
-
-// Execute executes the request
-func (a *StorageAPIService) CreateStorageNetworkDeviceConfigurationExecute(r StorageAPICreateStorageNetworkDeviceConfigurationRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.CreateStorageNetworkDeviceConfiguration")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/storages/{storageId}/network-device-configurations"
-	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.createStorageNetworkDeviceConfiguration == nil {
-		return nil, reportError("createStorageNetworkDeviceConfiguration is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createStorageNetworkDeviceConfiguration
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type StorageAPIDeleteStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
@@ -313,102 +209,6 @@ func (a *StorageAPIService) DeleteStorageExecute(r StorageAPIDeleteStorageReques
 	}
 	if r.ifMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type StorageAPIDeleteStorageNetworkDeviceConfigurationRequest struct {
-	ctx context.Context
-	ApiService *StorageAPIService
-	storageId float32
-	storageNetworkDeviceConfigurationId float32
-}
-
-func (r StorageAPIDeleteStorageNetworkDeviceConfigurationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteStorageNetworkDeviceConfigurationExecute(r)
-}
-
-/*
-DeleteStorageNetworkDeviceConfiguration Deletes a Storage Network Device Configuration
-
-Deletes a Storage Network Device Configuration
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param storageId
- @param storageNetworkDeviceConfigurationId
- @return StorageAPIDeleteStorageNetworkDeviceConfigurationRequest
-*/
-func (a *StorageAPIService) DeleteStorageNetworkDeviceConfiguration(ctx context.Context, storageId float32, storageNetworkDeviceConfigurationId float32) StorageAPIDeleteStorageNetworkDeviceConfigurationRequest {
-	return StorageAPIDeleteStorageNetworkDeviceConfigurationRequest{
-		ApiService: a,
-		ctx: ctx,
-		storageId: storageId,
-		storageNetworkDeviceConfigurationId: storageNetworkDeviceConfigurationId,
-	}
-}
-
-// Execute executes the request
-func (a *StorageAPIService) DeleteStorageNetworkDeviceConfigurationExecute(r StorageAPIDeleteStorageNetworkDeviceConfigurationRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.DeleteStorageNetworkDeviceConfiguration")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"storageNetworkDeviceConfigurationId"+"}", url.PathEscape(parameterValueToString(r.storageNetworkDeviceConfigurationId, "storageNetworkDeviceConfigurationId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1691,27 +1491,204 @@ func (a *StorageAPIService) GetStorageFileSharesExecute(r StorageAPIGetStorageFi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type StorageAPIGetStorageNetworkDeviceConfigurationsRequest struct {
+type StorageAPIGetStorageInterfaceRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
 	storageId float32
+	interfaceId float32
 }
 
-func (r StorageAPIGetStorageNetworkDeviceConfigurationsRequest) Execute() ([]StorageNetworkDeviceConfiguration, *http.Response, error) {
-	return r.ApiService.GetStorageNetworkDeviceConfigurationsExecute(r)
+func (r StorageAPIGetStorageInterfaceRequest) Execute() (*StorageInterface, *http.Response, error) {
+	return r.ApiService.GetStorageInterfaceExecute(r)
 }
 
 /*
-GetStorageNetworkDeviceConfigurations Retrieves Storage Network Device Configurations
+GetStorageInterface Retrieves a Storage Interface
 
-Retrieves Storage Network Device Configurations
+Retrieves a Storage Interface
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param storageId
- @return StorageAPIGetStorageNetworkDeviceConfigurationsRequest
+ @param interfaceId
+ @return StorageAPIGetStorageInterfaceRequest
 */
-func (a *StorageAPIService) GetStorageNetworkDeviceConfigurations(ctx context.Context, storageId float32) StorageAPIGetStorageNetworkDeviceConfigurationsRequest {
-	return StorageAPIGetStorageNetworkDeviceConfigurationsRequest{
+func (a *StorageAPIService) GetStorageInterface(ctx context.Context, storageId float32, interfaceId float32) StorageAPIGetStorageInterfaceRequest {
+	return StorageAPIGetStorageInterfaceRequest{
+		ApiService: a,
+		ctx: ctx,
+		storageId: storageId,
+		interfaceId: interfaceId,
+	}
+}
+
+// Execute executes the request
+//  @return StorageInterface
+func (a *StorageAPIService) GetStorageInterfaceExecute(r StorageAPIGetStorageInterfaceRequest) (*StorageInterface, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageInterface
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageInterface")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/interfaces/{interfaceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type StorageAPIGetStorageInterfacesRequest struct {
+	ctx context.Context
+	ApiService *StorageAPIService
+	storageId float32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterStorageId *[]string
+	filterProtocols *[]string
+	filterNodeIds *[]string
+	filterName *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r StorageAPIGetStorageInterfacesRequest) Page(page float32) StorageAPIGetStorageInterfacesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r StorageAPIGetStorageInterfacesRequest) Limit(limit float32) StorageAPIGetStorageInterfacesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r StorageAPIGetStorageInterfacesRequest) FilterId(filterId []string) StorageAPIGetStorageInterfacesRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by storageId query param.  **Format:** filter.storageId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.storageId&#x3D;$btw:John Doe&amp;filter.storageId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r StorageAPIGetStorageInterfacesRequest) FilterStorageId(filterStorageId []string) StorageAPIGetStorageInterfacesRequest {
+	r.filterStorageId = &filterStorageId
+	return r
+}
+
+// Filter by protocols query param.  **Format:** filter.protocols&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.protocols&#x3D;$in:John Doe  **Available Operations** - $in  - $and  - $or
+func (r StorageAPIGetStorageInterfacesRequest) FilterProtocols(filterProtocols []string) StorageAPIGetStorageInterfacesRequest {
+	r.filterProtocols = &filterProtocols
+	return r
+}
+
+// Filter by nodeIds query param.  **Format:** filter.nodeIds&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.nodeIds&#x3D;$in:John Doe  **Available Operations** - $in  - $and  - $or
+func (r StorageAPIGetStorageInterfacesRequest) FilterNodeIds(filterNodeIds []string) StorageAPIGetStorageInterfacesRequest {
+	r.filterNodeIds = &filterNodeIds
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r StorageAPIGetStorageInterfacesRequest) FilterName(filterName []string) StorageAPIGetStorageInterfacesRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;storageId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - storageId 
+func (r StorageAPIGetStorageInterfacesRequest) SortBy(sortBy []string) StorageAPIGetStorageInterfacesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r StorageAPIGetStorageInterfacesRequest) Search(search string) StorageAPIGetStorageInterfacesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,storageId,protocols,nodeIds,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - storageId  - protocols  - nodeIds  - name 
+func (r StorageAPIGetStorageInterfacesRequest) SearchBy(searchBy []string) StorageAPIGetStorageInterfacesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r StorageAPIGetStorageInterfacesRequest) Execute() (*StorageInterfacePaginatedList, *http.Response, error) {
+	return r.ApiService.GetStorageInterfacesExecute(r)
+}
+
+/*
+GetStorageInterfaces Retrieves Storage interfaces
+
+Retrieves Storage interfaces
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param storageId
+ @return StorageAPIGetStorageInterfacesRequest
+*/
+func (a *StorageAPIService) GetStorageInterfaces(ctx context.Context, storageId float32) StorageAPIGetStorageInterfacesRequest {
+	return StorageAPIGetStorageInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
 		storageId: storageId,
@@ -1719,27 +1696,113 @@ func (a *StorageAPIService) GetStorageNetworkDeviceConfigurations(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []StorageNetworkDeviceConfiguration
-func (a *StorageAPIService) GetStorageNetworkDeviceConfigurationsExecute(r StorageAPIGetStorageNetworkDeviceConfigurationsRequest) ([]StorageNetworkDeviceConfiguration, *http.Response, error) {
+//  @return StorageInterfacePaginatedList
+func (a *StorageAPIService) GetStorageInterfacesExecute(r StorageAPIGetStorageInterfacesRequest) (*StorageInterfacePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []StorageNetworkDeviceConfiguration
+		localVarReturnValue  *StorageInterfacePaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageNetworkDeviceConfigurations")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageInterfaces")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/storages/{storageId}/network-device-configurations"
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/interfaces"
 	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterStorageId != nil {
+		t := *r.filterStorageId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storageId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storageId", t, "form", "multi")
+		}
+	}
+	if r.filterProtocols != nil {
+		t := *r.filterProtocols
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.protocols", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.protocols", t, "form", "multi")
+		}
+	}
+	if r.filterNodeIds != nil {
+		t := *r.filterNodeIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.nodeIds", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.nodeIds", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2388,65 +2451,74 @@ func (a *StorageAPIService) UpdateStorageExecute(r StorageAPIUpdateStorageReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type StorageAPIUpdateStorageNetworkDeviceConfigurationRequest struct {
+type StorageAPIUpdateStorageInterfaceRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
 	storageId float32
-	storageNetworkDeviceConfigurationId float32
-	updateStorageNetworkDeviceConfiguration *UpdateStorageNetworkDeviceConfiguration
+	interfaceId float32
+	updateStorageInterface *UpdateStorageInterface
+	ifMatch *string
 }
 
-// The updated Storage Network Device Configuration object
-func (r StorageAPIUpdateStorageNetworkDeviceConfigurationRequest) UpdateStorageNetworkDeviceConfiguration(updateStorageNetworkDeviceConfiguration UpdateStorageNetworkDeviceConfiguration) StorageAPIUpdateStorageNetworkDeviceConfigurationRequest {
-	r.updateStorageNetworkDeviceConfiguration = &updateStorageNetworkDeviceConfiguration
+// The Storage Interface update object
+func (r StorageAPIUpdateStorageInterfaceRequest) UpdateStorageInterface(updateStorageInterface UpdateStorageInterface) StorageAPIUpdateStorageInterfaceRequest {
+	r.updateStorageInterface = &updateStorageInterface
 	return r
 }
 
-func (r StorageAPIUpdateStorageNetworkDeviceConfigurationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UpdateStorageNetworkDeviceConfigurationExecute(r)
+// Entity tag
+func (r StorageAPIUpdateStorageInterfaceRequest) IfMatch(ifMatch string) StorageAPIUpdateStorageInterfaceRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r StorageAPIUpdateStorageInterfaceRequest) Execute() (*StorageInterface, *http.Response, error) {
+	return r.ApiService.UpdateStorageInterfaceExecute(r)
 }
 
 /*
-UpdateStorageNetworkDeviceConfiguration Updates a Storage Network Device Configuration
+UpdateStorageInterface Updates a Storage Interface
 
-Updates a Storage Network Device Configuration
+Updates a Storage Interface
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param storageId
- @param storageNetworkDeviceConfigurationId
- @return StorageAPIUpdateStorageNetworkDeviceConfigurationRequest
+ @param interfaceId
+ @return StorageAPIUpdateStorageInterfaceRequest
 */
-func (a *StorageAPIService) UpdateStorageNetworkDeviceConfiguration(ctx context.Context, storageId float32, storageNetworkDeviceConfigurationId float32) StorageAPIUpdateStorageNetworkDeviceConfigurationRequest {
-	return StorageAPIUpdateStorageNetworkDeviceConfigurationRequest{
+func (a *StorageAPIService) UpdateStorageInterface(ctx context.Context, storageId float32, interfaceId float32) StorageAPIUpdateStorageInterfaceRequest {
+	return StorageAPIUpdateStorageInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
 		storageId: storageId,
-		storageNetworkDeviceConfigurationId: storageNetworkDeviceConfigurationId,
+		interfaceId: interfaceId,
 	}
 }
 
 // Execute executes the request
-func (a *StorageAPIService) UpdateStorageNetworkDeviceConfigurationExecute(r StorageAPIUpdateStorageNetworkDeviceConfigurationRequest) (*http.Response, error) {
+//  @return StorageInterface
+func (a *StorageAPIService) UpdateStorageInterfaceExecute(r StorageAPIUpdateStorageInterfaceRequest) (*StorageInterface, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *StorageInterface
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.UpdateStorageNetworkDeviceConfiguration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.UpdateStorageInterface")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId}"
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/interfaces/{interfaceId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"storageNetworkDeviceConfigurationId"+"}", url.PathEscape(parameterValueToString(r.storageNetworkDeviceConfigurationId, "storageNetworkDeviceConfigurationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateStorageNetworkDeviceConfiguration == nil {
-		return nil, reportError("updateStorageNetworkDeviceConfiguration is required and must be specified")
+	if r.updateStorageInterface == nil {
+		return localVarReturnValue, nil, reportError("updateStorageInterface is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2459,30 +2531,33 @@ func (a *StorageAPIService) UpdateStorageNetworkDeviceConfigurationExecute(r Sto
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
 	// body params
-	localVarPostBody = r.updateStorageNetworkDeviceConfiguration
+	localVarPostBody = r.updateStorageInterface
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2490,8 +2565,17 @@ func (a *StorageAPIService) UpdateStorageNetworkDeviceConfigurationExecute(r Sto
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

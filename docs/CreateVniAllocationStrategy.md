@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
+**GranularityLevel** | Pointer to [**NullableVniAllocationGranularityLevel**](VniAllocationGranularityLevel.md) |  | [optional] 
 **Vni** | **int32** |  | 
 
 ## Methods
@@ -67,6 +68,41 @@ and a boolean to check if the value has been set.
 SetScope sets Scope field to given value.
 
 
+### GetGranularityLevel
+
+`func (o *CreateVniAllocationStrategy) GetGranularityLevel() VniAllocationGranularityLevel`
+
+GetGranularityLevel returns the GranularityLevel field if non-nil, zero value otherwise.
+
+### GetGranularityLevelOk
+
+`func (o *CreateVniAllocationStrategy) GetGranularityLevelOk() (*VniAllocationGranularityLevel, bool)`
+
+GetGranularityLevelOk returns a tuple with the GranularityLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGranularityLevel
+
+`func (o *CreateVniAllocationStrategy) SetGranularityLevel(v VniAllocationGranularityLevel)`
+
+SetGranularityLevel sets GranularityLevel field to given value.
+
+### HasGranularityLevel
+
+`func (o *CreateVniAllocationStrategy) HasGranularityLevel() bool`
+
+HasGranularityLevel returns a boolean if a field has been set.
+
+### SetGranularityLevelNil
+
+`func (o *CreateVniAllocationStrategy) SetGranularityLevelNil(b bool)`
+
+ SetGranularityLevelNil sets the value for GranularityLevel to be an explicit nil
+
+### UnsetGranularityLevel
+`func (o *CreateVniAllocationStrategy) UnsetGranularityLevel()`
+
+UnsetGranularityLevel ensures that no value is present for GranularityLevel, not even an explicit nil
 ### GetVni
 
 `func (o *CreateVniAllocationStrategy) GetVni() int32`

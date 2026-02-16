@@ -33,6 +33,8 @@
 
 * `CUMULUS_LINUX` (value: `"cumulus_linux"`)
 
+* `BROCADE` (value: `"brocade"`)
+
 * `DELL_S4000` (value: `"dell_s4000"`)
 
 * `DELL_S6010` (value: `"dell_s6010"`)

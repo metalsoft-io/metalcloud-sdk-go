@@ -41,6 +41,8 @@ type NetworkDeviceInterface struct {
 	LldpInformation *string `json:"lldpInformation,omitempty"`
 	// MAC address
 	MacAddress *string `json:"macAddress,omitempty"`
+	// WWPN
+	Wwn *string `json:"wwn,omitempty"`
 	// Driver dump cached JSON
 	DriverDumpCachedJson map[string]interface{} `json:"driverDumpCachedJson,omitempty"`
 	// Cached update timestamp
@@ -364,6 +366,38 @@ func (o *NetworkDeviceInterface) SetMacAddress(v string) {
 	o.MacAddress = &v
 }
 
+// GetWwn returns the Wwn field value if set, zero value otherwise.
+func (o *NetworkDeviceInterface) GetWwn() string {
+	if o == nil || IsNil(o.Wwn) {
+		var ret string
+		return ret
+	}
+	return *o.Wwn
+}
+
+// GetWwnOk returns a tuple with the Wwn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetWwnOk() (*string, bool) {
+	if o == nil || IsNil(o.Wwn) {
+		return nil, false
+	}
+	return o.Wwn, true
+}
+
+// HasWwn returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasWwn() bool {
+	if o != nil && !IsNil(o.Wwn) {
+		return true
+	}
+
+	return false
+}
+
+// SetWwn gets a reference to the given string and assigns it to the Wwn field.
+func (o *NetworkDeviceInterface) SetWwn(v string) {
+	o.Wwn = &v
+}
+
 // GetDriverDumpCachedJson returns the DriverDumpCachedJson field value if set, zero value otherwise.
 func (o *NetworkDeviceInterface) GetDriverDumpCachedJson() map[string]interface{} {
 	if o == nil || IsNil(o.DriverDumpCachedJson) {
@@ -516,6 +550,9 @@ func (o NetworkDeviceInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MacAddress) {
 		toSerialize["macAddress"] = o.MacAddress
 	}
+	if !IsNil(o.Wwn) {
+		toSerialize["wwn"] = o.Wwn
+	}
 	if !IsNil(o.DriverDumpCachedJson) {
 		toSerialize["driverDumpCachedJson"] = o.DriverDumpCachedJson
 	}
@@ -583,6 +620,7 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dirtyBit")
 		delete(additionalProperties, "lldpInformation")
 		delete(additionalProperties, "macAddress")
+		delete(additionalProperties, "wwn")
 		delete(additionalProperties, "driverDumpCachedJson")
 		delete(additionalProperties, "cachedUpdatedTimestamp")
 		delete(additionalProperties, "interfaceLLDPInformationServerInterface")

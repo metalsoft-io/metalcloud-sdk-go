@@ -11,10 +11,14 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
 **BgpConfigurationTemplate** | Pointer to **string** | BGP configuration template for the interconnect | [optional] 
 **BgpNeighborTemplate** | Pointer to **string** | BGP neighbor template for the interconnect | [optional] 
+**TransportId** | Pointer to **int32** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
+**DeployId** | Pointer to **int32** | The deploy ID of the network fabric interconnect, if it is being deployed. | [optional] 
+**DeployPreview** | Pointer to [**[]NetworkFabricInterconnectDeployPreview**](NetworkFabricInterconnectDeployPreview.md) | The deploy preview for the network fabric interconnect, if it is being deployed. | [optional] 
+**Status** | Pointer to [**InterconnectStatus**](InterconnectStatus.md) | The status of the network interconnect, by default it is in draft mode. | [optional] 
 
 ## Methods
 
@@ -195,6 +199,31 @@ SetBgpNeighborTemplate sets BgpNeighborTemplate field to given value.
 
 HasBgpNeighborTemplate returns a boolean if a field has been set.
 
+### GetTransportId
+
+`func (o *NetworkFabricInterconnect) GetTransportId() int32`
+
+GetTransportId returns the TransportId field if non-nil, zero value otherwise.
+
+### GetTransportIdOk
+
+`func (o *NetworkFabricInterconnect) GetTransportIdOk() (*int32, bool)`
+
+GetTransportIdOk returns a tuple with the TransportId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransportId
+
+`func (o *NetworkFabricInterconnect) SetTransportId(v int32)`
+
+SetTransportId sets TransportId field to given value.
+
+### HasTransportId
+
+`func (o *NetworkFabricInterconnect) HasTransportId() bool`
+
+HasTransportId returns a boolean if a field has been set.
+
 ### GetRevision
 
 `func (o *NetworkFabricInterconnect) GetRevision() string`
@@ -279,6 +308,81 @@ SetLinks sets Links field to given value.
 `func (o *NetworkFabricInterconnect) HasLinks() bool`
 
 HasLinks returns a boolean if a field has been set.
+
+### GetDeployId
+
+`func (o *NetworkFabricInterconnect) GetDeployId() int32`
+
+GetDeployId returns the DeployId field if non-nil, zero value otherwise.
+
+### GetDeployIdOk
+
+`func (o *NetworkFabricInterconnect) GetDeployIdOk() (*int32, bool)`
+
+GetDeployIdOk returns a tuple with the DeployId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployId
+
+`func (o *NetworkFabricInterconnect) SetDeployId(v int32)`
+
+SetDeployId sets DeployId field to given value.
+
+### HasDeployId
+
+`func (o *NetworkFabricInterconnect) HasDeployId() bool`
+
+HasDeployId returns a boolean if a field has been set.
+
+### GetDeployPreview
+
+`func (o *NetworkFabricInterconnect) GetDeployPreview() []NetworkFabricInterconnectDeployPreview`
+
+GetDeployPreview returns the DeployPreview field if non-nil, zero value otherwise.
+
+### GetDeployPreviewOk
+
+`func (o *NetworkFabricInterconnect) GetDeployPreviewOk() (*[]NetworkFabricInterconnectDeployPreview, bool)`
+
+GetDeployPreviewOk returns a tuple with the DeployPreview field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployPreview
+
+`func (o *NetworkFabricInterconnect) SetDeployPreview(v []NetworkFabricInterconnectDeployPreview)`
+
+SetDeployPreview sets DeployPreview field to given value.
+
+### HasDeployPreview
+
+`func (o *NetworkFabricInterconnect) HasDeployPreview() bool`
+
+HasDeployPreview returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *NetworkFabricInterconnect) GetStatus() InterconnectStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *NetworkFabricInterconnect) GetStatusOk() (*InterconnectStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *NetworkFabricInterconnect) SetStatus(v InterconnectStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *NetworkFabricInterconnect) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

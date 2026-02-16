@@ -35,13 +35,13 @@ Name | Type | Description | Notes
 **SubnetOobId** | **float32** | Subnet ID for OOB management | 
 **SubnetOobIndex** | **float32** | Subnet OOB index | 
 **RequiresOsInstall** | **bool** | Whether the device requires OS installation | 
-**BootstrapSkipInitialConfiguration** | **float32** | Whether to skip initial configuration during bootstrap | 
 **BootstrapExpectedPartnerHostname** | **string** | Expected partner hostname during bootstrap | 
 **LoopbackAddressIpv4** | Pointer to **string** | Loopback IPv4 address | [optional] 
 **LoopbackAddressIpv6** | **string** | Loopback IPv6 address | 
 **Asn** | **int64** | Autonomous System Number of the network device | 
 **VtepAddressIpv4** | Pointer to **string** | VTEP IPv4 address | [optional] 
 **VtepAddressIpv6** | **string** | VTEP IPv6 address | 
+**ExternalVtepAddressIpv4** | Pointer to **string** | External VTEP IPv4 address | [optional] 
 **MlagSystemMac** | **string** | MLAG system MAC address | 
 **MlagDomainId** | **float32** | MLAG domain ID | 
 **QuarantineVlan** | **float32** | Quarantine VLAN ID | 
@@ -53,13 +53,14 @@ Name | Type | Description | Notes
 **VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device. | [optional] 
 **SwitchControllerId** | Pointer to **float32** | ID of the network device controller if any. | [optional] 
 **ExternalId** | Pointer to **string** | External ID of the network device. | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -704,26 +705,6 @@ and a boolean to check if the value has been set.
 SetRequiresOsInstall sets RequiresOsInstall field to given value.
 
 
-### GetBootstrapSkipInitialConfiguration
-
-`func (o *NetworkDevice) GetBootstrapSkipInitialConfiguration() float32`
-
-GetBootstrapSkipInitialConfiguration returns the BootstrapSkipInitialConfiguration field if non-nil, zero value otherwise.
-
-### GetBootstrapSkipInitialConfigurationOk
-
-`func (o *NetworkDevice) GetBootstrapSkipInitialConfigurationOk() (*float32, bool)`
-
-GetBootstrapSkipInitialConfigurationOk returns a tuple with the BootstrapSkipInitialConfiguration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBootstrapSkipInitialConfiguration
-
-`func (o *NetworkDevice) SetBootstrapSkipInitialConfiguration(v float32)`
-
-SetBootstrapSkipInitialConfiguration sets BootstrapSkipInitialConfiguration field to given value.
-
-
 ### GetBootstrapExpectedPartnerHostname
 
 `func (o *NetworkDevice) GetBootstrapExpectedPartnerHostname() string`
@@ -853,6 +834,31 @@ and a boolean to check if the value has been set.
 
 SetVtepAddressIpv6 sets VtepAddressIpv6 field to given value.
 
+
+### GetExternalVtepAddressIpv4
+
+`func (o *NetworkDevice) GetExternalVtepAddressIpv4() string`
+
+GetExternalVtepAddressIpv4 returns the ExternalVtepAddressIpv4 field if non-nil, zero value otherwise.
+
+### GetExternalVtepAddressIpv4Ok
+
+`func (o *NetworkDevice) GetExternalVtepAddressIpv4Ok() (*string, bool)`
+
+GetExternalVtepAddressIpv4Ok returns a tuple with the ExternalVtepAddressIpv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalVtepAddressIpv4
+
+`func (o *NetworkDevice) SetExternalVtepAddressIpv4(v string)`
+
+SetExternalVtepAddressIpv4 sets ExternalVtepAddressIpv4 field to given value.
+
+### HasExternalVtepAddressIpv4
+
+`func (o *NetworkDevice) HasExternalVtepAddressIpv4() bool`
+
+HasExternalVtepAddressIpv4 returns a boolean if a field has been set.
 
 ### GetMlagSystemMac
 
@@ -1093,6 +1099,31 @@ SetExternalId sets ExternalId field to given value.
 `func (o *NetworkDevice) HasExternalId() bool`
 
 HasExternalId returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *NetworkDevice) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *NetworkDevice) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *NetworkDevice) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *NetworkDevice) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 ### GetLinks
 

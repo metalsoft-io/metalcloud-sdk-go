@@ -29,6 +29,7 @@ type CreateLogicalNetworkProfile struct {
 	Vlan *CreateLogicalNetworkVlanProperties `json:"vlan,omitempty"`
 	Vxlan *CreateLogicalNetworkVxlanProperties `json:"vxlan,omitempty"`
 	Pkey *CreateLogicalNetworkPkeyProperties `json:"pkey,omitempty"`
+	Zone *CreateLogicalNetworkZoneProperties `json:"zone,omitempty"`
 	Ipv4 *CreateLogicalNetworkIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *CreateLogicalNetworkIpv6Properties `json:"ipv6,omitempty"`
 	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
@@ -298,6 +299,38 @@ func (o *CreateLogicalNetworkProfile) SetPkey(v CreateLogicalNetworkPkeyProperti
 	o.Pkey = &v
 }
 
+// GetZone returns the Zone field value if set, zero value otherwise.
+func (o *CreateLogicalNetworkProfile) GetZone() CreateLogicalNetworkZoneProperties {
+	if o == nil || IsNil(o.Zone) {
+		var ret CreateLogicalNetworkZoneProperties
+		return ret
+	}
+	return *o.Zone
+}
+
+// GetZoneOk returns a tuple with the Zone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetworkProfile) GetZoneOk() (*CreateLogicalNetworkZoneProperties, bool) {
+	if o == nil || IsNil(o.Zone) {
+		return nil, false
+	}
+	return o.Zone, true
+}
+
+// HasZone returns a boolean if a field has been set.
+func (o *CreateLogicalNetworkProfile) HasZone() bool {
+	if o != nil && !IsNil(o.Zone) {
+		return true
+	}
+
+	return false
+}
+
+// SetZone gets a reference to the given CreateLogicalNetworkZoneProperties and assigns it to the Zone field.
+func (o *CreateLogicalNetworkProfile) SetZone(v CreateLogicalNetworkZoneProperties) {
+	o.Zone = &v
+}
+
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *CreateLogicalNetworkProfile) GetIpv4() CreateLogicalNetworkIpv4Properties {
 	if o == nil || IsNil(o.Ipv4) {
@@ -476,6 +509,9 @@ func (o CreateLogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Pkey) {
 		toSerialize["pkey"] = o.Pkey
 	}
+	if !IsNil(o.Zone) {
+		toSerialize["zone"] = o.Zone
+	}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
@@ -540,6 +576,7 @@ func (o *CreateLogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")
 		delete(additionalProperties, "pkey")
+		delete(additionalProperties, "zone")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")

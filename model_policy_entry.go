@@ -29,6 +29,8 @@ type PolicyEntry struct {
 	Conditions *string `json:"conditions,omitempty"`
 	// Policy subject field(s)
 	Fields []string `json:"fields,omitempty"`
+	// Indicates whether rule allows or forbids something
+	Inverted *bool `json:"inverted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -165,6 +167,38 @@ func (o *PolicyEntry) SetFields(v []string) {
 	o.Fields = v
 }
 
+// GetInverted returns the Inverted field value if set, zero value otherwise.
+func (o *PolicyEntry) GetInverted() bool {
+	if o == nil || IsNil(o.Inverted) {
+		var ret bool
+		return ret
+	}
+	return *o.Inverted
+}
+
+// GetInvertedOk returns a tuple with the Inverted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PolicyEntry) GetInvertedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Inverted) {
+		return nil, false
+	}
+	return o.Inverted, true
+}
+
+// HasInverted returns a boolean if a field has been set.
+func (o *PolicyEntry) HasInverted() bool {
+	if o != nil && !IsNil(o.Inverted) {
+		return true
+	}
+
+	return false
+}
+
+// SetInverted gets a reference to the given bool and assigns it to the Inverted field.
+func (o *PolicyEntry) SetInverted(v bool) {
+	o.Inverted = &v
+}
+
 func (o PolicyEntry) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -182,6 +216,9 @@ func (o PolicyEntry) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Fields) {
 		toSerialize["fields"] = o.Fields
+	}
+	if !IsNil(o.Inverted) {
+		toSerialize["inverted"] = o.Inverted
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -231,6 +268,7 @@ func (o *PolicyEntry) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "action")
 		delete(additionalProperties, "conditions")
 		delete(additionalProperties, "fields")
+		delete(additionalProperties, "inverted")
 		o.AdditionalProperties = additionalProperties
 	}
 

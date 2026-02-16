@@ -3,6 +3,8 @@
 ## Enum
 
 
+* `FABRIC` (value: `"fabric"`)
+
 * `NETWORK_DEVICE` (value: `"network_device"`)
 
 

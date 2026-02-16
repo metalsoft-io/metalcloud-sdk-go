@@ -45,6 +45,8 @@ type AgentCapabilities struct {
 	NetconfEnabled bool `json:"netconfEnabled"`
 	// Ansible runner capability status
 	AnsibleRunnerEnabled bool `json:"ansibleRunnerEnabled"`
+	// Build image capability status
+	BuildImageEnabled bool `json:"buildImageEnabled"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,7 +56,7 @@ type _AgentCapabilities AgentCapabilities
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool) *AgentCapabilities {
+func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool, buildImageEnabled bool) *AgentCapabilities {
 	this := AgentCapabilities{}
 	this.HttpProxyEnabled = httpProxyEnabled
 	this.InbandHttpProxyEnabled = inbandHttpProxyEnabled
@@ -68,6 +70,7 @@ func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fi
 	this.DhcpOobEnabled = dhcpOobEnabled
 	this.NetconfEnabled = netconfEnabled
 	this.AnsibleRunnerEnabled = ansibleRunnerEnabled
+	this.BuildImageEnabled = buildImageEnabled
 	return &this
 }
 
@@ -367,6 +370,30 @@ func (o *AgentCapabilities) SetAnsibleRunnerEnabled(v bool) {
 	o.AnsibleRunnerEnabled = v
 }
 
+// GetBuildImageEnabled returns the BuildImageEnabled field value
+func (o *AgentCapabilities) GetBuildImageEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.BuildImageEnabled
+}
+
+// GetBuildImageEnabledOk returns a tuple with the BuildImageEnabled field value
+// and a boolean to check if the value has been set.
+func (o *AgentCapabilities) GetBuildImageEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BuildImageEnabled, true
+}
+
+// SetBuildImageEnabled sets field value
+func (o *AgentCapabilities) SetBuildImageEnabled(v bool) {
+	o.BuildImageEnabled = v
+}
+
 func (o AgentCapabilities) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -389,6 +416,7 @@ func (o AgentCapabilities) ToMap() (map[string]interface{}, error) {
 	toSerialize["dhcpOobEnabled"] = o.DhcpOobEnabled
 	toSerialize["netconfEnabled"] = o.NetconfEnabled
 	toSerialize["ansibleRunnerEnabled"] = o.AnsibleRunnerEnabled
+	toSerialize["buildImageEnabled"] = o.BuildImageEnabled
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -414,6 +442,7 @@ func (o *AgentCapabilities) UnmarshalJSON(data []byte) (err error) {
 		"dhcpOobEnabled",
 		"netconfEnabled",
 		"ansibleRunnerEnabled",
+		"buildImageEnabled",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -455,6 +484,7 @@ func (o *AgentCapabilities) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dhcpOobEnabled")
 		delete(additionalProperties, "netconfEnabled")
 		delete(additionalProperties, "ansibleRunnerEnabled")
+		delete(additionalProperties, "buildImageEnabled")
 		o.AdditionalProperties = additionalProperties
 	}
 
