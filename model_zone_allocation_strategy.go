@@ -71,30 +71,6 @@ func (dst *ZoneAllocationStrategy) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'AutoZoneAllocationStrategy'
-	if jsonDict["kind"] == "AutoZoneAllocationStrategy" {
-		// try to unmarshal JSON data into AutoZoneAllocationStrategy
-		err = json.Unmarshal(data, &dst.AutoZoneAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.AutoZoneAllocationStrategy, return on the first match
-		} else {
-			dst.AutoZoneAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal ZoneAllocationStrategy as AutoZoneAllocationStrategy: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ManualZoneAllocationStrategy'
-	if jsonDict["kind"] == "ManualZoneAllocationStrategy" {
-		// try to unmarshal JSON data into ManualZoneAllocationStrategy
-		err = json.Unmarshal(data, &dst.ManualZoneAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.ManualZoneAllocationStrategy, return on the first match
-		} else {
-			dst.ManualZoneAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal ZoneAllocationStrategy as ManualZoneAllocationStrategy: %s", err.Error())
-		}
-	}
-
 	return nil
 }
 

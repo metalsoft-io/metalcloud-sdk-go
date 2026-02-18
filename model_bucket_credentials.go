@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BucketCredentials type satisfies the MappedNullable interface at compile time
@@ -22,9 +21,9 @@ var _ MappedNullable = &BucketCredentials{}
 // BucketCredentials struct for BucketCredentials
 type BucketCredentials struct {
 	// Access Key ID for the Bucket.
-	AccessKeyId string `json:"accessKeyId"`
+	AccessKeyId *string `json:"accessKeyId,omitempty"`
 	// Secret Key for the Bucket.
-	SecretKey string `json:"secretKey"`
+	SecretKey *string `json:"secretKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +33,8 @@ type _BucketCredentials BucketCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketCredentials(accessKeyId string, secretKey string) *BucketCredentials {
+func NewBucketCredentials() *BucketCredentials {
 	this := BucketCredentials{}
-	this.AccessKeyId = accessKeyId
-	this.SecretKey = secretKey
 	return &this
 }
 
@@ -49,52 +46,68 @@ func NewBucketCredentialsWithDefaults() *BucketCredentials {
 	return &this
 }
 
-// GetAccessKeyId returns the AccessKeyId field value
+// GetAccessKeyId returns the AccessKeyId field value if set, zero value otherwise.
 func (o *BucketCredentials) GetAccessKeyId() string {
-	if o == nil {
+	if o == nil || IsNil(o.AccessKeyId) {
 		var ret string
 		return ret
 	}
-
-	return o.AccessKeyId
+	return *o.AccessKeyId
 }
 
-// GetAccessKeyIdOk returns a tuple with the AccessKeyId field value
+// GetAccessKeyIdOk returns a tuple with the AccessKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketCredentials) GetAccessKeyIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessKeyId) {
 		return nil, false
 	}
-	return &o.AccessKeyId, true
+	return o.AccessKeyId, true
 }
 
-// SetAccessKeyId sets field value
+// HasAccessKeyId returns a boolean if a field has been set.
+func (o *BucketCredentials) HasAccessKeyId() bool {
+	if o != nil && !IsNil(o.AccessKeyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessKeyId gets a reference to the given string and assigns it to the AccessKeyId field.
 func (o *BucketCredentials) SetAccessKeyId(v string) {
-	o.AccessKeyId = v
+	o.AccessKeyId = &v
 }
 
-// GetSecretKey returns the SecretKey field value
+// GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *BucketCredentials) GetSecretKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.SecretKey) {
 		var ret string
 		return ret
 	}
-
-	return o.SecretKey
+	return *o.SecretKey
 }
 
-// GetSecretKeyOk returns a tuple with the SecretKey field value
+// GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketCredentials) GetSecretKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SecretKey) {
 		return nil, false
 	}
-	return &o.SecretKey, true
+	return o.SecretKey, true
 }
 
-// SetSecretKey sets field value
+// HasSecretKey returns a boolean if a field has been set.
+func (o *BucketCredentials) HasSecretKey() bool {
+	if o != nil && !IsNil(o.SecretKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecretKey gets a reference to the given string and assigns it to the SecretKey field.
 func (o *BucketCredentials) SetSecretKey(v string) {
-	o.SecretKey = v
+	o.SecretKey = &v
 }
 
 func (o BucketCredentials) MarshalJSON() ([]byte, error) {
@@ -107,8 +120,12 @@ func (o BucketCredentials) MarshalJSON() ([]byte, error) {
 
 func (o BucketCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["accessKeyId"] = o.AccessKeyId
-	toSerialize["secretKey"] = o.SecretKey
+	if !IsNil(o.AccessKeyId) {
+		toSerialize["accessKeyId"] = o.AccessKeyId
+	}
+	if !IsNil(o.SecretKey) {
+		toSerialize["secretKey"] = o.SecretKey
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -118,28 +135,6 @@ func (o BucketCredentials) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BucketCredentials) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"accessKeyId",
-		"secretKey",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varBucketCredentials := _BucketCredentials{}
 
 	err = json.Unmarshal(data, &varBucketCredentials)

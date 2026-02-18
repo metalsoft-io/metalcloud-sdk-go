@@ -67,7 +67,7 @@ func NewServerRegistrationProfileSettings() *ServerRegistrationProfileSettings {
 	this := ServerRegistrationProfileSettings{}
 	var registerCredentials string = "user"
 	this.RegisterCredentials = &registerCredentials
-	var minimumNumberOfConnectedInterfaces float32 = 0
+	var minimumNumberOfConnectedInterfaces float32 = 1
 	this.MinimumNumberOfConnectedInterfaces = &minimumNumberOfConnectedInterfaces
 	var alwaysDiscoverInterfacesWithBDK bool = true
 	this.AlwaysDiscoverInterfacesWithBDK = &alwaysDiscoverInterfacesWithBDK
@@ -107,7 +107,7 @@ func NewServerRegistrationProfileSettingsWithDefaults() *ServerRegistrationProfi
 	this := ServerRegistrationProfileSettings{}
 	var registerCredentials string = "user"
 	this.RegisterCredentials = &registerCredentials
-	var minimumNumberOfConnectedInterfaces float32 = 0
+	var minimumNumberOfConnectedInterfaces float32 = 1
 	this.MinimumNumberOfConnectedInterfaces = &minimumNumberOfConnectedInterfaces
 	var alwaysDiscoverInterfacesWithBDK bool = true
 	this.AlwaysDiscoverInterfacesWithBDK = &alwaysDiscoverInterfacesWithBDK

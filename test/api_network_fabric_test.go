@@ -75,6 +75,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricAPIService CreateNetworkFabricBgpSession", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.CreateNetworkFabricBgpSession(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService CreateNetworkFabricLink", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -82,6 +96,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 		var networkFabricId int32
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.CreateNetworkFabricLink(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService CreateNetworkFabricLinkAggregation", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.CreateNetworkFabricLinkAggregation(context.Background(), networkFabricId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -102,6 +130,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricAPIService DeleteNetworkFabricBgpSession", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var bgpSessionId int32
+
+		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabricBgpSession(context.Background(), networkFabricId, bgpSessionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService DeleteNetworkFabricLink", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -110,6 +152,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 		var networkFabricLinkId int32
 
 		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabricLink(context.Background(), networkFabricId, networkFabricLinkId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService DeleteNetworkFabricLinkAggregation", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var linkAggregationId int32
+
+		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabricLinkAggregation(context.Background(), networkFabricId, linkAggregationId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -144,6 +200,49 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricAPIService GetFabricsNetworkFabricInterconnects", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricsNetworkFabricInterconnects(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService GetNetworkFabricBGPSession", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var bgpSessionId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricBGPSession(context.Background(), networkFabricId, bgpSessionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService GetNetworkFabricBgpSessions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricBgpSessions(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService GetNetworkFabricById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -151,6 +250,50 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 		var networkFabricId float32
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricById(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService GetNetworkFabricLink", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var networkFabricLinkId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLink(context.Background(), networkFabricId, networkFabricLinkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService GetNetworkFabricLinkAggregation", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var linkAggregationId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLinkAggregation(context.Background(), networkFabricId, linkAggregationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService GetNetworkFabricLinkAggregations", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLinkAggregations(context.Background(), networkFabricId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -219,6 +362,21 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 		var networkFabricId int32
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.UpdateNetworkFabric(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService UpdateNetworkFabricLinkAggregation", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var linkAggregationId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.UpdateNetworkFabricLinkAggregation(context.Background(), networkFabricId, linkAggregationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

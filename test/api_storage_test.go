@@ -11,11 +11,10 @@ package sdk
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
 )
 
 func Test_sdk_StorageAPIService(t *testing.T) {
@@ -25,7 +24,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService CreateStorage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.CreateStorage(context.Background()).Execute()
 
@@ -37,7 +36,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService DeleteStorage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
@@ -50,7 +49,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
@@ -64,7 +63,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageBuckets", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
@@ -78,7 +77,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageCredentials", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
@@ -92,7 +91,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageDrives", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
@@ -106,7 +105,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorageFileShares", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
@@ -118,9 +117,38 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test StorageAPIService GetStorageInterface", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var storageId float32
+		var interfaceId float32
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStorageInterface(context.Background(), storageId, interfaceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test StorageAPIService GetStorageInterfaces", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var storageId float32
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStorageInterfaces(context.Background(), storageId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test StorageAPIService GetStorageStatistics", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
@@ -134,7 +162,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStorages", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorages(context.Background()).Execute()
 
@@ -146,7 +174,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService GetStoragesStatistics", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStoragesStatistics(context.Background()).Execute()
 
@@ -158,11 +186,26 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService UpdateStorage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var storageId float32
 
 		resp, httpRes, err := apiClient.StorageAPI.UpdateStorage(context.Background(), storageId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test StorageAPIService UpdateStorageInterface", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var storageId float32
+		var interfaceId float32
+
+		resp, httpRes, err := apiClient.StorageAPI.UpdateStorageInterface(context.Background(), storageId, interfaceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

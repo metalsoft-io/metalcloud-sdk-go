@@ -71,30 +71,6 @@ func (dst *VniAllocationStrategy) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'AutoVniAllocationStrategy'
-	if jsonDict["kind"] == "AutoVniAllocationStrategy" {
-		// try to unmarshal JSON data into AutoVniAllocationStrategy
-		err = json.Unmarshal(data, &dst.AutoVniAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.AutoVniAllocationStrategy, return on the first match
-		} else {
-			dst.AutoVniAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal VniAllocationStrategy as AutoVniAllocationStrategy: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ManualVniAllocationStrategy'
-	if jsonDict["kind"] == "ManualVniAllocationStrategy" {
-		// try to unmarshal JSON data into ManualVniAllocationStrategy
-		err = json.Unmarshal(data, &dst.ManualVniAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.ManualVniAllocationStrategy, return on the first match
-		} else {
-			dst.ManualVniAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal VniAllocationStrategy as ManualVniAllocationStrategy: %s", err.Error())
-		}
-	}
-
 	return nil
 }
 

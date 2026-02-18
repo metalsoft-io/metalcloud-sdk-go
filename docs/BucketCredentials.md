@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessKeyId** | **string** | Access Key ID for the Bucket. | 
-**SecretKey** | **string** | Secret Key for the Bucket. | 
+**AccessKeyId** | Pointer to **string** | Access Key ID for the Bucket. | [optional] 
+**SecretKey** | Pointer to **string** | Secret Key for the Bucket. | [optional] 
 
 ## Methods
 
 ### NewBucketCredentials
 
-`func NewBucketCredentials(accessKeyId string, secretKey string, ) *BucketCredentials`
+`func NewBucketCredentials() *BucketCredentials`
 
 NewBucketCredentials instantiates a new BucketCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetAccessKeyId sets AccessKeyId field to given value.
 
+### HasAccessKeyId
+
+`func (o *BucketCredentials) HasAccessKeyId() bool`
+
+HasAccessKeyId returns a boolean if a field has been set.
 
 ### GetSecretKey
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetSecretKey sets SecretKey field to given value.
 
+### HasSecretKey
+
+`func (o *BucketCredentials) HasSecretKey() bool`
+
+HasSecretKey returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

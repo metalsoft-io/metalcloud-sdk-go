@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RegisterCredentials** | Pointer to **string** | Server registration password settings. If using \&quot;user\&quot; then the password remains unchanged at the end of the registration process. If using \&quot;random\&quot; then a random password will be generated and set on the server during registration. | [optional] [default to "user"]
-**MinimumNumberOfConnectedInterfaces** | Pointer to **float32** | Minimum number of switch-connected interfaces required | [optional] [default to 0]
+**MinimumNumberOfConnectedInterfaces** | Pointer to **float32** | Minimum number of switch-connected interfaces required | [optional] [default to 1]
 **AlwaysDiscoverInterfacesWithBDK** | Pointer to **bool** | Whether to always attempt to discover interfaces with BDK | [optional] [default to true]
 **EnableTpm** | Pointer to **bool** | Whether to enable TPM | [optional] [default to true]
 **EnableIntelTxt** | Pointer to **bool** | Whether to enable Intel TXT | [optional] [default to true]

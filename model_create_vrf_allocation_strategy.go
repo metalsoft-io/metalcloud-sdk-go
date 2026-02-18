@@ -51,18 +51,6 @@ func (dst *CreateVrfAllocationStrategy) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'CreateManualVrfAllocationStrategy'
-	if jsonDict["kind"] == "CreateManualVrfAllocationStrategy" {
-		// try to unmarshal JSON data into CreateManualVrfAllocationStrategy
-		err = json.Unmarshal(data, &dst.CreateManualVrfAllocationStrategy)
-		if err == nil {
-			return nil // data stored in dst.CreateManualVrfAllocationStrategy, return on the first match
-		} else {
-			dst.CreateManualVrfAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal CreateVrfAllocationStrategy as CreateManualVrfAllocationStrategy: %s", err.Error())
-		}
-	}
-
 	return nil
 }
 
