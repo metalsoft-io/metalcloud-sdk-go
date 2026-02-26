@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | Type of the network fabric link aggregation | 
+**MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain (applicable only for mlag-peer-link type) | [optional] 
 **LinkIds** | **[]float32** | List of link IDs to be associated with the link aggregation | 
 
 ## Methods
@@ -45,6 +46,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetMlagDomainIdentifier
+
+`func (o *CreateNetworkFabricLinkAggregation) GetMlagDomainIdentifier() string`
+
+GetMlagDomainIdentifier returns the MlagDomainIdentifier field if non-nil, zero value otherwise.
+
+### GetMlagDomainIdentifierOk
+
+`func (o *CreateNetworkFabricLinkAggregation) GetMlagDomainIdentifierOk() (*string, bool)`
+
+GetMlagDomainIdentifierOk returns a tuple with the MlagDomainIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMlagDomainIdentifier
+
+`func (o *CreateNetworkFabricLinkAggregation) SetMlagDomainIdentifier(v string)`
+
+SetMlagDomainIdentifier sets MlagDomainIdentifier field to given value.
+
+### HasMlagDomainIdentifier
+
+`func (o *CreateNetworkFabricLinkAggregation) HasMlagDomainIdentifier() bool`
+
+HasMlagDomainIdentifier returns a boolean if a field has been set.
 
 ### GetLinkIds
 

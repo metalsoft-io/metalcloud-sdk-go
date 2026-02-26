@@ -23,6 +23,8 @@ var _ MappedNullable = &NetworkDeviceLinkAggregationConfigurationTemplateRecordS
 type NetworkDeviceLinkAggregationConfigurationTemplateRecordSet struct {
 	// The type of link aggregation
 	AggregationType string `json:"aggregation_type"`
+	// Identifier for the MLAG domain (applicable only for mlag-peer-link type)
+	MlagDomainIdentifier *string `json:"mlag_domain_identifier,omitempty"`
 	// The ID of the local switch.
 	LocalSwitchId float32 `json:"local_switch_id"`
 	// The identifier of the local switch.
@@ -106,6 +108,38 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetAggregat
 // SetAggregationType sets field value
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetAggregationType(v string) {
 	o.AggregationType = v
+}
+
+// GetMlagDomainIdentifier returns the MlagDomainIdentifier field value if set, zero value otherwise.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetMlagDomainIdentifier() string {
+	if o == nil || IsNil(o.MlagDomainIdentifier) {
+		var ret string
+		return ret
+	}
+	return *o.MlagDomainIdentifier
+}
+
+// GetMlagDomainIdentifierOk returns a tuple with the MlagDomainIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetMlagDomainIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.MlagDomainIdentifier) {
+		return nil, false
+	}
+	return o.MlagDomainIdentifier, true
+}
+
+// HasMlagDomainIdentifier returns a boolean if a field has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasMlagDomainIdentifier() bool {
+	if o != nil && !IsNil(o.MlagDomainIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetMlagDomainIdentifier gets a reference to the given string and assigns it to the MlagDomainIdentifier field.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetMlagDomainIdentifier(v string) {
+	o.MlagDomainIdentifier = &v
 }
 
 // GetLocalSwitchId returns the LocalSwitchId field value
@@ -487,6 +521,9 @@ func (o NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) MarshalJSON(
 func (o NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["aggregation_type"] = o.AggregationType
+	if !IsNil(o.MlagDomainIdentifier) {
+		toSerialize["mlag_domain_identifier"] = o.MlagDomainIdentifier
+	}
 	toSerialize["local_switch_id"] = o.LocalSwitchId
 	toSerialize["local_switch_identifier"] = o.LocalSwitchIdentifier
 	toSerialize["local_switch_role"] = o.LocalSwitchRole
@@ -563,6 +600,7 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) UnmarshalJS
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "aggregation_type")
+		delete(additionalProperties, "mlag_domain_identifier")
 		delete(additionalProperties, "local_switch_id")
 		delete(additionalProperties, "local_switch_identifier")
 		delete(additionalProperties, "local_switch_role")

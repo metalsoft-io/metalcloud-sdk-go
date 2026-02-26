@@ -48,7 +48,7 @@ AddLogicalNetworkToLogicalNetworkInterconnect Add a logical network to a logical
 Creates a new association between a logical network and a logical network interconnect
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the logical network interconnect
+ @param id The ID of the logical network interconnect
  @return LogicalNetworkInterconnectAPIAddLogicalNetworkToLogicalNetworkInterconnectRequest
 */
 func (a *LogicalNetworkInterconnectAPIService) AddLogicalNetworkToLogicalNetworkInterconnect(ctx context.Context, id int32) LogicalNetworkInterconnectAPIAddLogicalNetworkToLogicalNetworkInterconnectRequest {
@@ -74,7 +74,7 @@ func (a *LogicalNetworkInterconnectAPIService) AddLogicalNetworkToLogicalNetwork
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/links"
+	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/logical-networks"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -452,39 +452,39 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectById
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest struct {
+type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworkByIdRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
 	id int32
-	linkId int32
+	logicalNetworkId int32
 }
 
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest) Execute() (*LogicalNetworkInterconnectLogicalNetwork, *http.Response, error) {
-	return r.ApiService.GetLogicalNetworkInterconnectLinkByIdExecute(r)
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworkByIdRequest) Execute() (*LogicalNetworkInterconnectLogicalNetwork, *http.Response, error) {
+	return r.ApiService.GetLogicalNetworkInterconnectLogicalNetworkByIdExecute(r)
 }
 
 /*
-GetLogicalNetworkInterconnectLinkById Get a logical network interconnect link association by link id
+GetLogicalNetworkInterconnectLogicalNetworkById Get a logical network in a logical network interconnect by logical network ID
 
-Returns the association between a logical network and a logical network interconnect by link id
+Returns a logical network that is part of the specified interconnect by logical network ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the logical network interconnect
- @param linkId The id of the link
- @return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest
+ @param id The ID of the logical network interconnect
+ @param logicalNetworkId The ID of the logical network
+ @return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworkByIdRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinkById(ctx context.Context, id int32, linkId int32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest {
-	return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest{
+func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLogicalNetworkById(ctx context.Context, id int32, logicalNetworkId int32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworkByIdRequest {
+	return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworkByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
-		linkId: linkId,
+		logicalNetworkId: logicalNetworkId,
 	}
 }
 
 // Execute executes the request
 //  @return LogicalNetworkInterconnectLogicalNetwork
-func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinkByIdExecute(r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest) (*LogicalNetworkInterconnectLogicalNetwork, *http.Response, error) {
+func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLogicalNetworkByIdExecute(r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworkByIdRequest) (*LogicalNetworkInterconnectLogicalNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -492,14 +492,14 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLink
 		localVarReturnValue  *LogicalNetworkInterconnectLogicalNetwork
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkInterconnectAPIService.GetLogicalNetworkInterconnectLinkById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkInterconnectAPIService.GetLogicalNetworkInterconnectLogicalNetworkById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/links/{linkId}"
+	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/logical-networks/{logicalNetworkId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"linkId"+"}", url.PathEscape(parameterValueToString(r.linkId, "linkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"logicalNetworkId"+"}", url.PathEscape(parameterValueToString(r.logicalNetworkId, "logicalNetworkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -559,7 +559,7 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLink
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest struct {
+type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
 	id int32
@@ -576,80 +576,80 @@ type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest stru
 }
 
 // Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) Page(page float32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) Page(page float32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.page = &page
 	return r
 }
 
 // Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) Limit(limit float32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) Limit(limit float32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.limit = &limit
 	return r
 }
 
 // Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) FilterId(filterId []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) FilterId(filterId []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.filterId = &filterId
 	return r
 }
 
 // Filter by logicalNetworkId query param.  **Format:** filter.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.logicalNetworkId&#x3D;$btw:John Doe&amp;filter.logicalNetworkId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) FilterLogicalNetworkId(filterLogicalNetworkId []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) FilterLogicalNetworkId(filterLogicalNetworkId []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.filterLogicalNetworkId = &filterLogicalNetworkId
 	return r
 }
 
 // Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) FilterStatus(filterStatus []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) FilterStatus(filterStatus []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.filterStatus = &filterStatus
 	return r
 }
 
 // Filter by createdAt query param.  **Format:** filter.createdAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdAt&#x3D;$btw:John Doe&amp;filter.createdAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) FilterCreatedAt(filterCreatedAt []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) FilterCreatedAt(filterCreatedAt []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.filterCreatedAt = &filterCreatedAt
 	return r
 }
 
 // Filter by updatedAt query param.  **Format:** filter.updatedAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedAt&#x3D;$btw:John Doe&amp;filter.updatedAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) FilterUpdatedAt(filterUpdatedAt []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) FilterUpdatedAt(filterUpdatedAt []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.filterUpdatedAt = &filterUpdatedAt
 	return r
 }
 
 // Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;logicalNetworkId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - logicalNetworkId  - createdAt  - updatedAt 
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) SortBy(sortBy []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) SortBy(sortBy []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
 // Search term to filter result values  **Example:** John   **Default Value:** No default value  
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) Search(search string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) Search(search string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.search = &search
 	return r
 }
 
 // List of fields to search by term to filter result values  **Example:**    **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields**  
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) SearchBy(searchBy []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) SearchBy(searchBy []string) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) Execute() (*LogicalNetworkInterconnectLogicalNetworkPaginatedList, *http.Response, error) {
-	return r.ApiService.GetLogicalNetworkInterconnectLinksExecute(r)
+func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) Execute() (*LogicalNetworkInterconnectLogicalNetworkPaginatedList, *http.Response, error) {
+	return r.ApiService.GetLogicalNetworkInterconnectLogicalNetworksExecute(r)
 }
 
 /*
-GetLogicalNetworkInterconnectLinks Get all logical network associated to a logical network interconnect
+GetLogicalNetworkInterconnectLogicalNetworks Get all logical networks in a logical network interconnect
 
-Returns list of all logical network links that are part of the specified interconnect
+Returns list of all logical networks that are part of the specified interconnect
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The ID of the logical network interconnect
- @return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest
+ @return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinks(ctx context.Context, id int32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
-	return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest{
+func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLogicalNetworks(ctx context.Context, id int32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest {
+	return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -658,7 +658,7 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLink
 
 // Execute executes the request
 //  @return LogicalNetworkInterconnectLogicalNetworkPaginatedList
-func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinksExecute(r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest) (*LogicalNetworkInterconnectLogicalNetworkPaginatedList, *http.Response, error) {
+func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLogicalNetworksExecute(r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLogicalNetworksRequest) (*LogicalNetworkInterconnectLogicalNetworkPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -666,12 +666,12 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLink
 		localVarReturnValue  *LogicalNetworkInterconnectLogicalNetworkPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkInterconnectAPIService.GetLogicalNetworkInterconnectLinks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkInterconnectAPIService.GetLogicalNetworkInterconnectLogicalNetworks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/links"
+	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/logical-networks"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1113,7 +1113,7 @@ type LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkIntercon
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
 	id int32
-	linkId int32
+	logicalNetworkId int32
 }
 
 func (r LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest) Execute() (*http.Response, error) {
@@ -1126,16 +1126,16 @@ RemoveLogicalNetworkFromLogicalNetworkInterconnect Remove a logical network from
 Removes the association between a logical network and a logical network interconnect
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the logical network interconnect
- @param linkId The id of link association to remove
+ @param id The ID of the logical network interconnect
+ @param logicalNetworkId The ID of the logical network
  @return LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) RemoveLogicalNetworkFromLogicalNetworkInterconnect(ctx context.Context, id int32, linkId int32) LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest {
+func (a *LogicalNetworkInterconnectAPIService) RemoveLogicalNetworkFromLogicalNetworkInterconnect(ctx context.Context, id int32, logicalNetworkId int32) LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest {
 	return LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
-		linkId: linkId,
+		logicalNetworkId: logicalNetworkId,
 	}
 }
 
@@ -1152,9 +1152,9 @@ func (a *LogicalNetworkInterconnectAPIService) RemoveLogicalNetworkFromLogicalNe
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/links/{linkId}"
+	localVarPath := localBasePath + "/api/v2/logical-network-interconnects/{id}/logical-networks/{logicalNetworkId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"linkId"+"}", url.PathEscape(parameterValueToString(r.linkId, "linkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"logicalNetworkId"+"}", url.PathEscape(parameterValueToString(r.logicalNetworkId, "logicalNetworkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

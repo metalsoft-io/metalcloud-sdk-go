@@ -75,14 +75,14 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test LogicalNetworkInterconnectAPIService GetLogicalNetworkInterconnectLinkById", func(t *testing.T) {
+	t.Run("Test LogicalNetworkInterconnectAPIService GetLogicalNetworkInterconnectLogicalNetworkById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
-		var linkId int32
+		var logicalNetworkId int32
 
-		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.GetLogicalNetworkInterconnectLinkById(context.Background(), id, linkId).Execute()
+		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.GetLogicalNetworkInterconnectLogicalNetworkById(context.Background(), id, logicalNetworkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -90,13 +90,13 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test LogicalNetworkInterconnectAPIService GetLogicalNetworkInterconnectLinks", func(t *testing.T) {
+	t.Run("Test LogicalNetworkInterconnectAPIService GetLogicalNetworkInterconnectLogicalNetworks", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
 
-		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.GetLogicalNetworkInterconnectLinks(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.GetLogicalNetworkInterconnectLogicalNetworks(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -121,9 +121,9 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
-		var linkId int32
+		var logicalNetworkId int32
 
-		httpRes, err := apiClient.LogicalNetworkInterconnectAPI.RemoveLogicalNetworkFromLogicalNetworkInterconnect(context.Background(), id, linkId).Execute()
+		httpRes, err := apiClient.LogicalNetworkInterconnectAPI.RemoveLogicalNetworkFromLogicalNetworkInterconnect(context.Background(), id, logicalNetworkId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

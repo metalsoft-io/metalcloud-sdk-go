@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AggregationType** | **string** | The type of link aggregation | 
+**MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain (applicable only for mlag-peer-link type) | [optional] 
 **LocalSwitchId** | **float32** | The ID of the local switch. | 
 **LocalSwitchIdentifier** | **string** | The identifier of the local switch. | 
 **LocalSwitchRole** | **string** | The role of the local switch. | 
@@ -58,6 +59,31 @@ and a boolean to check if the value has been set.
 
 SetAggregationType sets AggregationType field to given value.
 
+
+### GetMlagDomainIdentifier
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetMlagDomainIdentifier() string`
+
+GetMlagDomainIdentifier returns the MlagDomainIdentifier field if non-nil, zero value otherwise.
+
+### GetMlagDomainIdentifierOk
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetMlagDomainIdentifierOk() (*string, bool)`
+
+GetMlagDomainIdentifierOk returns a tuple with the MlagDomainIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMlagDomainIdentifier
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetMlagDomainIdentifier(v string)`
+
+SetMlagDomainIdentifier sets MlagDomainIdentifier field to given value.
+
+### HasMlagDomainIdentifier
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasMlagDomainIdentifier() bool`
+
+HasMlagDomainIdentifier returns a boolean if a field has been set.
 
 ### GetLocalSwitchId
 

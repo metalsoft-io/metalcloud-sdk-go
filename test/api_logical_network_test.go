@@ -297,20 +297,6 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkAttachedLogicalNetworkInterconnects", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id float32
-
-		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkAttachedLogicalNetworkInterconnects(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

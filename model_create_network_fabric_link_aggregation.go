@@ -23,6 +23,8 @@ var _ MappedNullable = &CreateNetworkFabricLinkAggregation{}
 type CreateNetworkFabricLinkAggregation struct {
 	// Type of the network fabric link aggregation
 	Type string `json:"type"`
+	// Identifier for the MLAG domain (applicable only for mlag-peer-link type)
+	MlagDomainIdentifier *string `json:"mlagDomainIdentifier,omitempty"`
 	// List of link IDs to be associated with the link aggregation
 	LinkIds []float32 `json:"linkIds"`
 	AdditionalProperties map[string]interface{}
@@ -73,6 +75,38 @@ func (o *CreateNetworkFabricLinkAggregation) SetType(v string) {
 	o.Type = v
 }
 
+// GetMlagDomainIdentifier returns the MlagDomainIdentifier field value if set, zero value otherwise.
+func (o *CreateNetworkFabricLinkAggregation) GetMlagDomainIdentifier() string {
+	if o == nil || IsNil(o.MlagDomainIdentifier) {
+		var ret string
+		return ret
+	}
+	return *o.MlagDomainIdentifier
+}
+
+// GetMlagDomainIdentifierOk returns a tuple with the MlagDomainIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricLinkAggregation) GetMlagDomainIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.MlagDomainIdentifier) {
+		return nil, false
+	}
+	return o.MlagDomainIdentifier, true
+}
+
+// HasMlagDomainIdentifier returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLinkAggregation) HasMlagDomainIdentifier() bool {
+	if o != nil && !IsNil(o.MlagDomainIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetMlagDomainIdentifier gets a reference to the given string and assigns it to the MlagDomainIdentifier field.
+func (o *CreateNetworkFabricLinkAggregation) SetMlagDomainIdentifier(v string) {
+	o.MlagDomainIdentifier = &v
+}
+
 // GetLinkIds returns the LinkIds field value
 func (o *CreateNetworkFabricLinkAggregation) GetLinkIds() []float32 {
 	if o == nil {
@@ -108,6 +142,9 @@ func (o CreateNetworkFabricLinkAggregation) MarshalJSON() ([]byte, error) {
 func (o CreateNetworkFabricLinkAggregation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+	if !IsNil(o.MlagDomainIdentifier) {
+		toSerialize["mlagDomainIdentifier"] = o.MlagDomainIdentifier
+	}
 	toSerialize["linkIds"] = o.LinkIds
 
 	for key, value := range o.AdditionalProperties {
@@ -154,6 +191,7 @@ func (o *CreateNetworkFabricLinkAggregation) UnmarshalJSON(data []byte) (err err
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "mlagDomainIdentifier")
 		delete(additionalProperties, "linkIds")
 		o.AdditionalProperties = additionalProperties
 	}

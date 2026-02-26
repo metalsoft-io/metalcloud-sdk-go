@@ -73,6 +73,8 @@ type VMInstance struct {
 	Meta VMInstanceMeta `json:"meta"`
 	// Information about the allocated VM Pool.
 	AllocatedVMPoolInfo *VMInstanceAllocatedVMPoolInfo `json:"allocatedVMPoolInfo,omitempty"`
+	// Information about the allocated GPUs from the VM Pool.
+	AllocatedVMPoolGpusInfo []VMPoolGPU `json:"allocatedVMPoolGpusInfo,omitempty"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -825,6 +827,38 @@ func (o *VMInstance) SetAllocatedVMPoolInfo(v VMInstanceAllocatedVMPoolInfo) {
 	o.AllocatedVMPoolInfo = &v
 }
 
+// GetAllocatedVMPoolGpusInfo returns the AllocatedVMPoolGpusInfo field value if set, zero value otherwise.
+func (o *VMInstance) GetAllocatedVMPoolGpusInfo() []VMPoolGPU {
+	if o == nil || IsNil(o.AllocatedVMPoolGpusInfo) {
+		var ret []VMPoolGPU
+		return ret
+	}
+	return o.AllocatedVMPoolGpusInfo
+}
+
+// GetAllocatedVMPoolGpusInfoOk returns a tuple with the AllocatedVMPoolGpusInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstance) GetAllocatedVMPoolGpusInfoOk() ([]VMPoolGPU, bool) {
+	if o == nil || IsNil(o.AllocatedVMPoolGpusInfo) {
+		return nil, false
+	}
+	return o.AllocatedVMPoolGpusInfo, true
+}
+
+// HasAllocatedVMPoolGpusInfo returns a boolean if a field has been set.
+func (o *VMInstance) HasAllocatedVMPoolGpusInfo() bool {
+	if o != nil && !IsNil(o.AllocatedVMPoolGpusInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocatedVMPoolGpusInfo gets a reference to the given []VMPoolGPU and assigns it to the AllocatedVMPoolGpusInfo field.
+func (o *VMInstance) SetAllocatedVMPoolGpusInfo(v []VMPoolGPU) {
+	o.AllocatedVMPoolGpusInfo = v
+}
+
 // GetLinks returns the Links field value
 func (o *VMInstance) GetLinks() map[string]interface{} {
 	if o == nil {
@@ -906,6 +940,9 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["meta"] = o.Meta
 	if !IsNil(o.AllocatedVMPoolInfo) {
 		toSerialize["allocatedVMPoolInfo"] = o.AllocatedVMPoolInfo
+	}
+	if !IsNil(o.AllocatedVMPoolGpusInfo) {
+		toSerialize["allocatedVMPoolGpusInfo"] = o.AllocatedVMPoolGpusInfo
 	}
 	toSerialize["links"] = o.Links
 
@@ -992,6 +1029,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "allocatedVMPoolInfo")
+		delete(additionalProperties, "allocatedVMPoolGpusInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

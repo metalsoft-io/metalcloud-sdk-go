@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **Config** | [**VMInstanceConfiguration**](VMInstanceConfiguration.md) | The current changes to be deployed for the VM Instance. | 
 **Meta** | [**VMInstanceMeta**](VMInstanceMeta.md) | Meta information of the VM Instance. | 
 **AllocatedVMPoolInfo** | Pointer to [**VMInstanceAllocatedVMPoolInfo**](VMInstanceAllocatedVMPoolInfo.md) | Information about the allocated VM Pool. | [optional] 
+**AllocatedVMPoolGpusInfo** | Pointer to [**[]VMPoolGPU**](VMPoolGPU.md) | Information about the allocated GPUs from the VM Pool. | [optional] 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
@@ -625,6 +626,31 @@ SetAllocatedVMPoolInfo sets AllocatedVMPoolInfo field to given value.
 `func (o *VMInstance) HasAllocatedVMPoolInfo() bool`
 
 HasAllocatedVMPoolInfo returns a boolean if a field has been set.
+
+### GetAllocatedVMPoolGpusInfo
+
+`func (o *VMInstance) GetAllocatedVMPoolGpusInfo() []VMPoolGPU`
+
+GetAllocatedVMPoolGpusInfo returns the AllocatedVMPoolGpusInfo field if non-nil, zero value otherwise.
+
+### GetAllocatedVMPoolGpusInfoOk
+
+`func (o *VMInstance) GetAllocatedVMPoolGpusInfoOk() (*[]VMPoolGPU, bool)`
+
+GetAllocatedVMPoolGpusInfoOk returns a tuple with the AllocatedVMPoolGpusInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocatedVMPoolGpusInfo
+
+`func (o *VMInstance) SetAllocatedVMPoolGpusInfo(v []VMPoolGPU)`
+
+SetAllocatedVMPoolGpusInfo sets AllocatedVMPoolGpusInfo field to given value.
+
+### HasAllocatedVMPoolGpusInfo
+
+`func (o *VMInstance) HasAllocatedVMPoolGpusInfo() bool`
+
+HasAllocatedVMPoolGpusInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

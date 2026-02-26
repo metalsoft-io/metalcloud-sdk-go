@@ -31,6 +31,10 @@ type VMPoolGPU struct {
 	Vendor *string `json:"vendor,omitempty"`
 	// PCI address of the GPU
 	PciAddress *string `json:"pciAddress,omitempty"`
+	// Deployment status of the GPU
+	DeploymentStatus string `json:"deploymentStatus"`
+	// ID of the VM Instance linked to the GPU
+	VmInstanceId *float32 `json:"vmInstanceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,10 +44,11 @@ type _VMPoolGPU VMPoolGPU
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolGPU(id float32, vmPoolId float32) *VMPoolGPU {
+func NewVMPoolGPU(id float32, vmPoolId float32, deploymentStatus string) *VMPoolGPU {
 	this := VMPoolGPU{}
 	this.Id = id
 	this.VmPoolId = vmPoolId
+	this.DeploymentStatus = deploymentStatus
 	return &this
 }
 
@@ -199,6 +204,62 @@ func (o *VMPoolGPU) SetPciAddress(v string) {
 	o.PciAddress = &v
 }
 
+// GetDeploymentStatus returns the DeploymentStatus field value
+func (o *VMPoolGPU) GetDeploymentStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentStatus
+}
+
+// GetDeploymentStatusOk returns a tuple with the DeploymentStatus field value
+// and a boolean to check if the value has been set.
+func (o *VMPoolGPU) GetDeploymentStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentStatus, true
+}
+
+// SetDeploymentStatus sets field value
+func (o *VMPoolGPU) SetDeploymentStatus(v string) {
+	o.DeploymentStatus = v
+}
+
+// GetVmInstanceId returns the VmInstanceId field value if set, zero value otherwise.
+func (o *VMPoolGPU) GetVmInstanceId() float32 {
+	if o == nil || IsNil(o.VmInstanceId) {
+		var ret float32
+		return ret
+	}
+	return *o.VmInstanceId
+}
+
+// GetVmInstanceIdOk returns a tuple with the VmInstanceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolGPU) GetVmInstanceIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.VmInstanceId) {
+		return nil, false
+	}
+	return o.VmInstanceId, true
+}
+
+// HasVmInstanceId returns a boolean if a field has been set.
+func (o *VMPoolGPU) HasVmInstanceId() bool {
+	if o != nil && !IsNil(o.VmInstanceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmInstanceId gets a reference to the given float32 and assigns it to the VmInstanceId field.
+func (o *VMPoolGPU) SetVmInstanceId(v float32) {
+	o.VmInstanceId = &v
+}
+
 func (o VMPoolGPU) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -220,6 +281,10 @@ func (o VMPoolGPU) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PciAddress) {
 		toSerialize["pciAddress"] = o.PciAddress
 	}
+	toSerialize["deploymentStatus"] = o.DeploymentStatus
+	if !IsNil(o.VmInstanceId) {
+		toSerialize["vmInstanceId"] = o.VmInstanceId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -235,6 +300,7 @@ func (o *VMPoolGPU) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"vmPoolId",
+		"deploymentStatus",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -269,6 +335,8 @@ func (o *VMPoolGPU) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "pciAddress")
+		delete(additionalProperties, "deploymentStatus")
+		delete(additionalProperties, "vmInstanceId")
 		o.AdditionalProperties = additionalProperties
 	}
 
