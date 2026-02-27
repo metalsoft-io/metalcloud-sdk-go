@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createFirmwareBaseline := *openapiclient.NewCreateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), []string{"LevelFilter_example"}) // CreateFirmwareBaseline | 
+	createFirmwareBaseline := *openapiclient.NewCreateFirmwareBaseline("Data center baseline name") // CreateFirmwareBaseline | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## GetFirmwareBaselines
 
-> FirmwareBaselinePaginatedList GetFirmwareBaselines(ctx).Page(page).Limit(limit).FilterLevel(filterLevel).FilterLevelFilter(filterLevelFilter).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+> FirmwareBaselinePaginatedList GetFirmwareBaselines(ctx).Page(page).Limit(limit).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 
 Get Firmware Baselines
 
@@ -239,16 +239,14 @@ import (
 func main() {
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
-	filterLevel := []string{"Inner_example"} // []string | Filter by level query param.  **Format:** filter.level={$not}:OPERATION:VALUE    **Example:** filter.level=$btw:John Doe&filter.level=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterLevelFilter := []string{"Inner_example"} // []string | Filter by levelFilter query param.  **Format:** filter.levelFilter={$not}:OPERATION:VALUE    **Example:** filter.levelFilter=$btw:John Doe&filter.levelFilter=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name,levelFilter   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - levelFilter  (optional)
-	select_ := "select__example" // string | List of fields to select.  **Example:** id,name,description,catalog,level   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  (optional)
+	select_ := "select__example" // string | List of fields to select.  **Example:** id,name,description,catalog,createdTimestamp   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBaselineAPI.GetFirmwareBaselines(context.Background()).Page(page).Limit(limit).FilterLevel(filterLevel).FilterLevelFilter(filterLevelFilter).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+	resp, r, err := apiClient.FirmwareBaselineAPI.GetFirmwareBaselines(context.Background()).Page(page).Limit(limit).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineAPI.GetFirmwareBaselines``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -271,12 +269,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
  **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
- **filterLevel** | **[]string** | Filter by level query param.  **Format:** filter.level&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.level&#x3D;$btw:John Doe&amp;filter.level&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterLevelFilter** | **[]string** | Filter by levelFilter query param.  **Format:** filter.levelFilter&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.levelFilter&#x3D;$btw:John Doe&amp;filter.levelFilter&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name,levelFilter   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - levelFilter  | 
- **select_** | **string** | List of fields to select.  **Example:** id,name,description,catalog,level   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  | 
+ **select_** | **string** | List of fields to select.  **Example:** id,name,description,catalog,createdTimestamp   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   | 
 
 ### Return type
 
@@ -318,7 +314,7 @@ import (
 
 func main() {
 	firmwareBaselineId := float32(8.14) // float32 | The firmware baseline id
-	updateFirmwareBaseline := *openapiclient.NewUpdateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), []string{"LevelFilter_example"}) // UpdateFirmwareBaseline | 
+	updateFirmwareBaseline := *openapiclient.NewUpdateFirmwareBaseline("Data center baseline name") // UpdateFirmwareBaseline | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

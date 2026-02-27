@@ -39,6 +39,8 @@ type OSTemplateUpdate struct {
 	Status *string `json:"status,omitempty"`
 	// The tags associated with the OS template
 	Tags []string `json:"tags,omitempty"`
+	// The firmware baseline ID associated with the OS template
+	FirmwareBaselineId *int32 `json:"firmwareBaselineId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -378,6 +380,38 @@ func (o *OSTemplateUpdate) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetFirmwareBaselineId returns the FirmwareBaselineId field value if set, zero value otherwise.
+func (o *OSTemplateUpdate) GetFirmwareBaselineId() int32 {
+	if o == nil || IsNil(o.FirmwareBaselineId) {
+		var ret int32
+		return ret
+	}
+	return *o.FirmwareBaselineId
+}
+
+// GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OSTemplateUpdate) GetFirmwareBaselineIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.FirmwareBaselineId) {
+		return nil, false
+	}
+	return o.FirmwareBaselineId, true
+}
+
+// HasFirmwareBaselineId returns a boolean if a field has been set.
+func (o *OSTemplateUpdate) HasFirmwareBaselineId() bool {
+	if o != nil && !IsNil(o.FirmwareBaselineId) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareBaselineId gets a reference to the given int32 and assigns it to the FirmwareBaselineId field.
+func (o *OSTemplateUpdate) SetFirmwareBaselineId(v int32) {
+	o.FirmwareBaselineId = &v
+}
+
 func (o OSTemplateUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -410,6 +444,9 @@ func (o OSTemplateUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.FirmwareBaselineId) {
+		toSerialize["firmwareBaselineId"] = o.FirmwareBaselineId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -469,6 +506,7 @@ func (o *OSTemplateUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "visibility")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "firmwareBaselineId")
 		o.AdditionalProperties = additionalProperties
 	}
 

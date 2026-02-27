@@ -36,6 +36,8 @@ type ServerRegistrationProfileUpdateSettings struct {
 	DisableTpmAfterRegistration *bool `json:"disableTpmAfterRegistration,omitempty"`
 	// Default protocol for virtual media
 	DefaultVirtualMediaProtocol *string `json:"defaultVirtualMediaProtocol,omitempty"`
+	// Firmware baseline ID to apply during registration
+	FirmwareBaselineId *float32 `json:"firmwareBaselineId,omitempty"`
 	// Whether to reset RAID controllers to factory defaults
 	ResetRaidControllers *bool `json:"resetRaidControllers,omitempty"`
 	// Whether to cleanup drives
@@ -330,6 +332,38 @@ func (o *ServerRegistrationProfileUpdateSettings) HasDefaultVirtualMediaProtocol
 // SetDefaultVirtualMediaProtocol gets a reference to the given string and assigns it to the DefaultVirtualMediaProtocol field.
 func (o *ServerRegistrationProfileUpdateSettings) SetDefaultVirtualMediaProtocol(v string) {
 	o.DefaultVirtualMediaProtocol = &v
+}
+
+// GetFirmwareBaselineId returns the FirmwareBaselineId field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineId() float32 {
+	if o == nil || IsNil(o.FirmwareBaselineId) {
+		var ret float32
+		return ret
+	}
+	return *o.FirmwareBaselineId
+}
+
+// GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.FirmwareBaselineId) {
+		return nil, false
+	}
+	return o.FirmwareBaselineId, true
+}
+
+// HasFirmwareBaselineId returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileUpdateSettings) HasFirmwareBaselineId() bool {
+	if o != nil && !IsNil(o.FirmwareBaselineId) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareBaselineId gets a reference to the given float32 and assigns it to the FirmwareBaselineId field.
+func (o *ServerRegistrationProfileUpdateSettings) SetFirmwareBaselineId(v float32) {
+	o.FirmwareBaselineId = &v
 }
 
 // GetResetRaidControllers returns the ResetRaidControllers field value if set, zero value otherwise.
@@ -654,6 +688,9 @@ func (o ServerRegistrationProfileUpdateSettings) ToMap() (map[string]interface{}
 	if !IsNil(o.DefaultVirtualMediaProtocol) {
 		toSerialize["defaultVirtualMediaProtocol"] = o.DefaultVirtualMediaProtocol
 	}
+	if !IsNil(o.FirmwareBaselineId) {
+		toSerialize["firmwareBaselineId"] = o.FirmwareBaselineId
+	}
 	if !IsNil(o.ResetRaidControllers) {
 		toSerialize["resetRaidControllers"] = o.ResetRaidControllers
 	}
@@ -711,6 +748,7 @@ func (o *ServerRegistrationProfileUpdateSettings) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "enableSyslogMonitoring")
 		delete(additionalProperties, "disableTpmAfterRegistration")
 		delete(additionalProperties, "defaultVirtualMediaProtocol")
+		delete(additionalProperties, "firmwareBaselineId")
 		delete(additionalProperties, "resetRaidControllers")
 		delete(additionalProperties, "cleanupDrives")
 		delete(additionalProperties, "recreateRaid")

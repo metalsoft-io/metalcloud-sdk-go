@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Visibility** | Pointer to **string** | The visibility of the OS template.                     If the visibility is PUBLIC any user can use the OS template in deployments                     If the visibility is PRIVATE the OS template can be used in deployments only                     by the user who created and/or updated the template | [optional] 
 **Status** | Pointer to **string** | The status, let the user to decide with templates to delete and when,                     and how much to keep them in the history (archived status). Also, it allows the user to                     resurrect the archived templates if needed.                     Status: READY                         - is the initial status of the template                         - the OS template is ready for deployment                         - the OS template can be deleted, use in deployments and updated                     Status: ACTIVE                         - the OS template is part of at least one ongoing deployment                         - can&#39;t be deleted (the template service will have validation for this)                         - the status can&#39;t be changed to ARCHIVED (the template service will have validation for this)                     Status: USED                         - the OS Template is part of at least one finished deployment, that is not deleted                         - can&#39;t be deleted (the template service will have validation for this)                         - can be updated, deploy or ARCHIVED                     Status: ARCHIVED                         - the OS Template is kept in the system for historical reasons                         - can&#39;t be deleted (the template service will have validation for this)                         - can&#39;t be updated or deployed                         - the status can be changed to READY or USED, if it needs to be used again or deleted | [optional] 
 **Tags** | Pointer to **[]string** | The tags associated with the OS template | [optional] 
+**FirmwareBaselineId** | Pointer to **int32** | The firmware baseline ID associated with the OS template | [optional] 
 
 ## Methods
 
@@ -284,6 +285,31 @@ SetTags sets Tags field to given value.
 `func (o *OSTemplateUpdate) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetFirmwareBaselineId
+
+`func (o *OSTemplateUpdate) GetFirmwareBaselineId() int32`
+
+GetFirmwareBaselineId returns the FirmwareBaselineId field if non-nil, zero value otherwise.
+
+### GetFirmwareBaselineIdOk
+
+`func (o *OSTemplateUpdate) GetFirmwareBaselineIdOk() (*int32, bool)`
+
+GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareBaselineId
+
+`func (o *OSTemplateUpdate) SetFirmwareBaselineId(v int32)`
+
+SetFirmwareBaselineId sets FirmwareBaselineId field to given value.
+
+### HasFirmwareBaselineId
+
+`func (o *OSTemplateUpdate) HasFirmwareBaselineId() bool`
+
+HasFirmwareBaselineId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

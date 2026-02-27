@@ -43,6 +43,8 @@ type OSTemplate struct {
 	TemplateAssetIDs []int32 `json:"templateAssetIDs,omitempty"`
 	// The tags associated with the OS template
 	Tags []string `json:"tags,omitempty"`
+	// The firmware baseline ID associated with the OS template
+	FirmwareBaselineId *int32 `json:"firmwareBaselineId,omitempty"`
 	// The revision number of the OS template
 	Revision int32 `json:"revision"`
 	// The user ID of the user who created the OS template
@@ -451,6 +453,38 @@ func (o *OSTemplate) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetFirmwareBaselineId returns the FirmwareBaselineId field value if set, zero value otherwise.
+func (o *OSTemplate) GetFirmwareBaselineId() int32 {
+	if o == nil || IsNil(o.FirmwareBaselineId) {
+		var ret int32
+		return ret
+	}
+	return *o.FirmwareBaselineId
+}
+
+// GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OSTemplate) GetFirmwareBaselineIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.FirmwareBaselineId) {
+		return nil, false
+	}
+	return o.FirmwareBaselineId, true
+}
+
+// HasFirmwareBaselineId returns a boolean if a field has been set.
+func (o *OSTemplate) HasFirmwareBaselineId() bool {
+	if o != nil && !IsNil(o.FirmwareBaselineId) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareBaselineId gets a reference to the given int32 and assigns it to the FirmwareBaselineId field.
+func (o *OSTemplate) SetFirmwareBaselineId(v int32) {
+	o.FirmwareBaselineId = &v
+}
+
 // GetRevision returns the Revision field value
 func (o *OSTemplate) GetRevision() int32 {
 	if o == nil {
@@ -654,6 +688,9 @@ func (o OSTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+	if !IsNil(o.FirmwareBaselineId) {
+		toSerialize["firmwareBaselineId"] = o.FirmwareBaselineId
+	}
 	toSerialize["revision"] = o.Revision
 	toSerialize["createdBy"] = o.CreatedBy
 	if !IsNil(o.ModifiedBy) {
@@ -731,6 +768,7 @@ func (o *OSTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "templateAssetIDs")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "firmwareBaselineId")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "createdBy")
 		delete(additionalProperties, "modifiedBy")

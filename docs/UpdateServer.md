@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ManagementAddress** | Pointer to **string** | The Management Address of the server. | [optional] 
 **Username** | Pointer to **string** | The username to use. | [optional] 
 **ServerCleanupPolicyId** | Pointer to **float32** | The cleanup policy id of the server. | [optional] 
+**TargetFirmwareBaselineId** | Pointer to **float32** | The target firmware baseline id on the server. | [optional] 
 **RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
 **ChassisRackId** | Pointer to **float32** | The chassis rack id of the server. | [optional] 
@@ -138,6 +139,31 @@ SetServerCleanupPolicyId sets ServerCleanupPolicyId field to given value.
 `func (o *UpdateServer) HasServerCleanupPolicyId() bool`
 
 HasServerCleanupPolicyId returns a boolean if a field has been set.
+
+### GetTargetFirmwareBaselineId
+
+`func (o *UpdateServer) GetTargetFirmwareBaselineId() float32`
+
+GetTargetFirmwareBaselineId returns the TargetFirmwareBaselineId field if non-nil, zero value otherwise.
+
+### GetTargetFirmwareBaselineIdOk
+
+`func (o *UpdateServer) GetTargetFirmwareBaselineIdOk() (*float32, bool)`
+
+GetTargetFirmwareBaselineIdOk returns a tuple with the TargetFirmwareBaselineId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetFirmwareBaselineId
+
+`func (o *UpdateServer) SetTargetFirmwareBaselineId(v float32)`
+
+SetTargetFirmwareBaselineId sets TargetFirmwareBaselineId field to given value.
+
+### HasTargetFirmwareBaselineId
+
+`func (o *UpdateServer) HasTargetFirmwareBaselineId() bool`
+
+HasTargetFirmwareBaselineId returns a boolean if a field has been set.
 
 ### GetRegistrationProfileId
 

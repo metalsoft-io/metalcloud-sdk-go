@@ -39,6 +39,8 @@ type Storage struct {
 	Type *string `json:"type,omitempty"`
 	// Storage status
 	Status string `json:"status"`
+	// Storage operation mode. If fc_only is set, only fibre channel deployments are allowed.
+	OperationMode string `json:"operationMode"`
 	// Name of the storage
 	Name string `json:"name"`
 	// ISCSI host
@@ -85,7 +87,7 @@ type _Storage Storage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, status string, name string, managementHost string, subnetType string) *Storage {
+func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, status string, operationMode string, name string, managementHost string, subnetType string) *Storage {
 	this := Storage{}
 	this.Id = id
 	this.Revision = revision
@@ -94,6 +96,7 @@ func NewStorage(id float32, revision float32, siteId float32, datacenterName str
 	this.Driver = driver
 	this.Technologies = technologies
 	this.Status = status
+	this.OperationMode = operationMode
 	this.Name = name
 	this.ManagementHost = managementHost
 	this.SubnetType = subnetType
@@ -338,6 +341,30 @@ func (o *Storage) GetStatusOk() (*string, bool) {
 // SetStatus sets field value
 func (o *Storage) SetStatus(v string) {
 	o.Status = v
+}
+
+// GetOperationMode returns the OperationMode field value
+func (o *Storage) GetOperationMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OperationMode
+}
+
+// GetOperationModeOk returns a tuple with the OperationMode field value
+// and a boolean to check if the value has been set.
+func (o *Storage) GetOperationModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OperationMode, true
+}
+
+// SetOperationMode sets field value
+func (o *Storage) SetOperationMode(v string) {
+	o.OperationMode = v
 }
 
 // GetName returns the Name field value
@@ -947,6 +974,7 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 		toSerialize["type"] = o.Type
 	}
 	toSerialize["status"] = o.Status
+	toSerialize["operationMode"] = o.OperationMode
 	toSerialize["name"] = o.Name
 	if !IsNil(o.IscsiHost) {
 		toSerialize["iscsiHost"] = o.IscsiHost
@@ -1018,6 +1046,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		"driver",
 		"technologies",
 		"status",
+		"operationMode",
 		"name",
 		"managementHost",
 		"subnetType",
@@ -1059,6 +1088,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "technologies")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "operationMode")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "iscsiHost")
 		delete(additionalProperties, "iscsiPort")

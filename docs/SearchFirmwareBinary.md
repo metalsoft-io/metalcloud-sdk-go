@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vendor** | [**ServerFirmwareCatalogVendor**](ServerFirmwareCatalogVendor.md) |  | 
-**BaselineFilter** | [**BaselineFilter**](BaselineFilter.md) |  | 
+**BaselineIds** | Pointer to **[]string** |  | [optional] 
 **ServerComponentFilter** | Pointer to [**SearchFirmwareBinaryServerComponentFilter**](SearchFirmwareBinaryServerComponentFilter.md) |  | [optional] 
 
 ## Methods
 
 ### NewSearchFirmwareBinary
 
-`func NewSearchFirmwareBinary(vendor ServerFirmwareCatalogVendor, baselineFilter BaselineFilter, ) *SearchFirmwareBinary`
+`func NewSearchFirmwareBinary(vendor ServerFirmwareCatalogVendor, ) *SearchFirmwareBinary`
 
 NewSearchFirmwareBinary instantiates a new SearchFirmwareBinary object
 This constructor will assign default values to properties that have it defined,
@@ -47,25 +47,30 @@ and a boolean to check if the value has been set.
 SetVendor sets Vendor field to given value.
 
 
-### GetBaselineFilter
+### GetBaselineIds
 
-`func (o *SearchFirmwareBinary) GetBaselineFilter() BaselineFilter`
+`func (o *SearchFirmwareBinary) GetBaselineIds() []string`
 
-GetBaselineFilter returns the BaselineFilter field if non-nil, zero value otherwise.
+GetBaselineIds returns the BaselineIds field if non-nil, zero value otherwise.
 
-### GetBaselineFilterOk
+### GetBaselineIdsOk
 
-`func (o *SearchFirmwareBinary) GetBaselineFilterOk() (*BaselineFilter, bool)`
+`func (o *SearchFirmwareBinary) GetBaselineIdsOk() (*[]string, bool)`
 
-GetBaselineFilterOk returns a tuple with the BaselineFilter field if it's non-nil, zero value otherwise
+GetBaselineIdsOk returns a tuple with the BaselineIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBaselineFilter
+### SetBaselineIds
 
-`func (o *SearchFirmwareBinary) SetBaselineFilter(v BaselineFilter)`
+`func (o *SearchFirmwareBinary) SetBaselineIds(v []string)`
 
-SetBaselineFilter sets BaselineFilter field to given value.
+SetBaselineIds sets BaselineIds field to given value.
 
+### HasBaselineIds
+
+`func (o *SearchFirmwareBinary) HasBaselineIds() bool`
+
+HasBaselineIds returns a boolean if a field has been set.
 
 ### GetServerComponentFilter
 

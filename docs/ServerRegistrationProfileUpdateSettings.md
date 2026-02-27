@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **EnableSyslogMonitoring** | Pointer to **bool** | Whether to enable syslog monitoring | [optional] 
 **DisableTpmAfterRegistration** | Pointer to **bool** | Whether to disable TPM after registration | [optional] 
 **DefaultVirtualMediaProtocol** | Pointer to **string** | Default protocol for virtual media | [optional] 
+**FirmwareBaselineId** | Pointer to **float32** | Firmware baseline ID to apply during registration | [optional] 
 **ResetRaidControllers** | Pointer to **bool** | Whether to reset RAID controllers to factory defaults | [optional] 
 **CleanupDrives** | Pointer to **bool** | Whether to cleanup drives | [optional] 
 **RecreateRaid** | Pointer to **bool** | Whether to recreate RAID | [optional] 
@@ -240,6 +241,31 @@ SetDefaultVirtualMediaProtocol sets DefaultVirtualMediaProtocol field to given v
 `func (o *ServerRegistrationProfileUpdateSettings) HasDefaultVirtualMediaProtocol() bool`
 
 HasDefaultVirtualMediaProtocol returns a boolean if a field has been set.
+
+### GetFirmwareBaselineId
+
+`func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineId() float32`
+
+GetFirmwareBaselineId returns the FirmwareBaselineId field if non-nil, zero value otherwise.
+
+### GetFirmwareBaselineIdOk
+
+`func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineIdOk() (*float32, bool)`
+
+GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareBaselineId
+
+`func (o *ServerRegistrationProfileUpdateSettings) SetFirmwareBaselineId(v float32)`
+
+SetFirmwareBaselineId sets FirmwareBaselineId field to given value.
+
+### HasFirmwareBaselineId
+
+`func (o *ServerRegistrationProfileUpdateSettings) HasFirmwareBaselineId() bool`
+
+HasFirmwareBaselineId returns a boolean if a field has been set.
 
 ### GetResetRaidControllers
 

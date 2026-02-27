@@ -105,8 +105,7 @@ docs/AutoPkeyAllocationStrategy.md
 docs/AutoVlanAllocationStrategy.md
 docs/AutoVniAllocationStrategy.md
 docs/AutoZoneAllocationStrategy.md
-docs/BaselineFilter.md
-docs/BaselineLevelType.md
+docs/BatchScheduleServerFirmwareUpgrade.md
 docs/BatchServerFirmwareUpgrade.md
 docs/BatchServerFirmwareUpgradeResponse.md
 docs/BgpNumberingType.md
@@ -961,8 +960,7 @@ model_auto_pkey_allocation_strategy.go
 model_auto_vlan_allocation_strategy.go
 model_auto_vni_allocation_strategy.go
 model_auto_zone_allocation_strategy.go
-model_baseline_filter.go
-model_baseline_level_type.go
+model_batch_schedule_server_firmware_upgrade.go
 model_batch_server_firmware_upgrade.go
 model_batch_server_firmware_upgrade_response.go
 model_bgp_numbering_type.go

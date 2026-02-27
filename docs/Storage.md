@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Technologies** | **[]string** | Storage technology | 
 **Type** | Pointer to **string** | Storage type | [optional] 
 **Status** | **string** | Storage status | 
+**OperationMode** | **string** | Storage operation mode. If fc_only is set, only fibre channel deployments are allowed. | 
 **Name** | **string** | Name of the storage | 
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
@@ -37,7 +38,7 @@ Name | Type | Description | Notes
 
 ### NewStorage
 
-`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, status string, name string, managementHost string, subnetType string, ) *Storage`
+`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, status string, operationMode string, name string, managementHost string, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -240,6 +241,26 @@ and a boolean to check if the value has been set.
 `func (o *Storage) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
+
+
+### GetOperationMode
+
+`func (o *Storage) GetOperationMode() string`
+
+GetOperationMode returns the OperationMode field if non-nil, zero value otherwise.
+
+### GetOperationModeOk
+
+`func (o *Storage) GetOperationModeOk() (*string, bool)`
+
+GetOperationModeOk returns a tuple with the OperationMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOperationMode
+
+`func (o *Storage) SetOperationMode(v string)`
+
+SetOperationMode sets OperationMode field to given value.
 
 
 ### GetName

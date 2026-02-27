@@ -34,6 +34,8 @@ Name | Type | Description | Notes
 **VncPort** | Pointer to **float32** | The VNC port of the server. | [optional] 
 **IsBasicCampusEndpoint** | Pointer to **float32** | Flag to indicate if the server is basic campus endpoint. | [optional] 
 **ServerCleanupPolicyId** | Pointer to **float32** | The cleanup policy id of the server. | [optional] 
+**CurrentFirmwareBaselineId** | Pointer to **float32** | The last applied firmware baseline id on the server. | [optional] 
+**TargetFirmwareBaselineId** | Pointer to **float32** | The target firmware baseline id on the server. | [optional] 
 **RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
 **RequiresReRegister** | **float32** | Flag to indicate if the server required re-registration. | 
 **ServerSupportsSol** | Pointer to **float32** | Flag to indicate if the supports SOL. | [optional] 
@@ -824,6 +826,56 @@ SetServerCleanupPolicyId sets ServerCleanupPolicyId field to given value.
 `func (o *ServerVariables) HasServerCleanupPolicyId() bool`
 
 HasServerCleanupPolicyId returns a boolean if a field has been set.
+
+### GetCurrentFirmwareBaselineId
+
+`func (o *ServerVariables) GetCurrentFirmwareBaselineId() float32`
+
+GetCurrentFirmwareBaselineId returns the CurrentFirmwareBaselineId field if non-nil, zero value otherwise.
+
+### GetCurrentFirmwareBaselineIdOk
+
+`func (o *ServerVariables) GetCurrentFirmwareBaselineIdOk() (*float32, bool)`
+
+GetCurrentFirmwareBaselineIdOk returns a tuple with the CurrentFirmwareBaselineId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrentFirmwareBaselineId
+
+`func (o *ServerVariables) SetCurrentFirmwareBaselineId(v float32)`
+
+SetCurrentFirmwareBaselineId sets CurrentFirmwareBaselineId field to given value.
+
+### HasCurrentFirmwareBaselineId
+
+`func (o *ServerVariables) HasCurrentFirmwareBaselineId() bool`
+
+HasCurrentFirmwareBaselineId returns a boolean if a field has been set.
+
+### GetTargetFirmwareBaselineId
+
+`func (o *ServerVariables) GetTargetFirmwareBaselineId() float32`
+
+GetTargetFirmwareBaselineId returns the TargetFirmwareBaselineId field if non-nil, zero value otherwise.
+
+### GetTargetFirmwareBaselineIdOk
+
+`func (o *ServerVariables) GetTargetFirmwareBaselineIdOk() (*float32, bool)`
+
+GetTargetFirmwareBaselineIdOk returns a tuple with the TargetFirmwareBaselineId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetFirmwareBaselineId
+
+`func (o *ServerVariables) SetTargetFirmwareBaselineId(v float32)`
+
+SetTargetFirmwareBaselineId sets TargetFirmwareBaselineId field to given value.
+
+### HasTargetFirmwareBaselineId
+
+`func (o *ServerVariables) HasTargetFirmwareBaselineId() bool`
+
+HasTargetFirmwareBaselineId returns a boolean if a field has been set.
 
 ### GetRegistrationProfileId
 

@@ -7632,98 +7632,6 @@ paths:
         schema:
           type: number
         style: form
-      - description: |-
-          Filter by level query param.
-
-          **Format:** filter.level={$not}:OPERATION:VALUE
-
-
-
-          **Example:** filter.level=$btw:John Doe&filter.level=$contains:John Doe
-
-          **Available Operations**
-          - $eq
-
-          - $gt
-
-          - $gte
-
-          - $in
-
-          - $null
-
-          - $lt
-
-          - $lte
-
-          - $btw
-
-          - $ilike
-
-          - $sw
-
-          - $contains
-
-          - $not
-
-          - $and
-
-          - $or
-        explode: true
-        in: query
-        name: filter.level
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by levelFilter query param.
-
-          **Format:** filter.levelFilter={$not}:OPERATION:VALUE
-
-
-
-          **Example:** filter.levelFilter=$btw:John Doe&filter.levelFilter=$contains:John Doe
-
-          **Available Operations**
-          - $eq
-
-          - $gt
-
-          - $gte
-
-          - $in
-
-          - $null
-
-          - $lt
-
-          - $lte
-
-          - $btw
-
-          - $ilike
-
-          - $sw
-
-          - $contains
-
-          - $not
-
-          - $and
-
-          - $or
-        explode: true
-        in: query
-        name: filter.levelFilter
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       - description: |
           Parameter to sort by.
           To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting
@@ -7772,15 +7680,13 @@ paths:
       - description: |
           List of fields to search by term to filter result values
 
-          **Example:** name,levelFilter
+          **Example:** name
 
 
           **Default Value:** By default all fields mentioned below will be used to search by term
 
           **Available Fields**
           - name
-
-          - levelFilter
         explode: true
         in: query
         name: searchBy
@@ -7793,7 +7699,7 @@ paths:
       - description: |+
           List of fields to select.
 
-          **Example:** id,name,description,catalog,level
+          **Example:** id,name,description,catalog,createdTimestamp
 
 
           **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param
@@ -36956,6 +36862,44 @@ paths:
         Servers
       tags:
       - Server Firmware
+  /api/v2/servers/{serverId}/firmware/actions/batch-schedule-upgrade:
+    post:
+      description: Schedules a firmware upgrade for the specified Server
+      operationId: batchScheduleServerFirmwareUpgrade
+      parameters:
+      - explode: false
+        in: path
+        name: serverId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchScheduleServerFirmwareUpgrade"
+        description: The Schedule Firmware Upgrade object
+        required: true
+      responses:
+        "204":
+          description: The server was scheduled for firmware upgrade
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server not found
+        "500":
+          description: Internal Server Error
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Schedules a firmware upgrade for the specified Server
+      tags:
+      - Server Firmware
   /api/v2/servers/{serverId}/firmware/inventory:
     post:
       description: Retrieves server firmware inventory from redfish
@@ -60406,9 +60350,9 @@ components:
       example:
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-02-26T12:02:04.665Z
+        createdTimestamp: 2026-02-27T16:13:48.643Z
         networkDevicePosition: all
-        updatedTimestamp: 2026-02-26T12:02:04.665Z
+        updatedTimestamp: 2026-02-27T16:13:48.643Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         action: add-global-config
@@ -60514,12 +60458,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.665Z
+          example: 2026-02-27T16:13:48.643Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.665Z
+          example: 2026-02-27T16:13:48.643Z
           format: date-time
           type: string
         links:
@@ -60550,9 +60494,9 @@ components:
         data:
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-02-26T12:02:04.665Z
+          createdTimestamp: 2026-02-27T16:13:48.643Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-02-26T12:02:04.665Z
+          updatedTimestamp: 2026-02-27T16:13:48.643Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -60569,9 +60513,9 @@ components:
           bgpNumbering: numbered
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-02-26T12:02:04.665Z
+          createdTimestamp: 2026-02-27T16:13:48.643Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-02-26T12:02:04.665Z
+          updatedTimestamp: 2026-02-27T16:13:48.643Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -60830,7 +60774,7 @@ components:
         aggregationType: lag
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-02-26T12:02:04.667Z
+        createdTimestamp: 2026-02-27T16:13:48.646Z
         action: create
         networkDeviceDriver: cisco_aci51
         links:
@@ -60840,7 +60784,7 @@ components:
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
         libraryLabel: libraryLabel
-        updatedTimestamp: 2026-02-26T12:02:04.668Z
+        updatedTimestamp: 2026-02-27T16:13:48.646Z
         preparation: preparation
       properties:
         action:
@@ -60901,12 +60845,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.667Z
+          example: 2026-02-27T16:13:48.646Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.668Z
+          example: 2026-02-27T16:13:48.646Z
           format: date-time
           type: string
         links:
@@ -60934,7 +60878,7 @@ components:
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-02-26T12:02:04.667Z
+          createdTimestamp: 2026-02-27T16:13:48.646Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -60944,12 +60888,12 @@ components:
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-02-26T12:02:04.668Z
+          updatedTimestamp: 2026-02-27T16:13:48.646Z
           preparation: preparation
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-02-26T12:02:04.667Z
+          createdTimestamp: 2026-02-27T16:13:48.646Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -60959,7 +60903,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-02-26T12:02:04.668Z
+          updatedTimestamp: 2026-02-27T16:13:48.646Z
           preparation: preparation
         meta: ""
         links: ""
@@ -63121,29 +63065,29 @@ components:
         - 2001:db8::1
         - 2001:db8::2
         lldpInfo: lldpInfo
-        serverId: 3.353193347011243
+        serverId: 7.143538047012306
         osInfo: not_tested
         switchMacAddress: switchMacAddress
         fibreChannelWwpn: fibreChannelWwpn
-        capacityMbps: 7.143538047012306
-        supportsIscsiBoot: 7.058770351582356
-        serverInterfaceId: 6.704019297950036
+        capacityMbps: 7.058770351582356
+        supportsIscsiBoot: 0.10263654006109402
+        serverInterfaceId: 3.0937452626664474
         ipv4Addresses:
         - 192.168.1.1
         - 192.168.1.2
-        aliasIndex: 6.519180951018382
-        vlanId: 0.10263654006109402
+        aliasIndex: 4.652396432933246
+        vlanId: 8.969578798196912
         linkNetworkTechnology: Ethernet
         networkDeviceInterface: "{}"
-        redundancyGroupIndex: 8.969578798196912
-        index: 3.0937452626664474
+        redundancyGroupIndex: 3.0205796992916243
+        index: 0.8851374739011653
         addOnType: hba
         switchHostname: switchHostname
-        pxeEnabled: 0.8851374739011653
+        pxeEnabled: 6.519180951018382
         macAddress: macAddress
         addOnInfo: "{}"
         addOnMac: addOnMac
-        defaultFabricId: 4.652396432933246
+        defaultFabricId: 7.740351818741173
         switchPortId: switchPortId
       properties:
         serverInterfaceId:
@@ -63262,12 +63206,12 @@ components:
       example:
         serial: serial
         vendor: vendor
-        serverStorageControllerId: 7.04836565559697
+        serverStorageControllerId: 3.2588565619047607
         model: model
-        id: 7.740351818741173
+        id: 3.0576100241049344
         type: none
-        serverId: 3.0205796992916243
-        diskSizeGb: 3.0576100241049344
+        serverId: 7.04836565559697
+        diskSizeGb: 5.533258397034986
         status: installed
       properties:
         id:
@@ -63357,9 +63301,9 @@ components:
         name: name
         options: ""
         description: description
-        id: 5.533258397034986
+        id: 4.078845849666752
         label: label
-        serverId: 3.2588565619047607
+        serverId: 0.2025324113236393
       properties:
         id:
           description: The id of the storage controller.
@@ -63449,15 +63393,16 @@ components:
     Server:
       example:
         datacenterName: datacenterName
-        bootingCustomIsoInProgress: 9.018348186070783
-        requiresManualCleaning: 6.965117697638846
-        serverSupportsOobProvisioning: 6.683562403749608
+        bootingCustomIsoInProgress: 3.5571952270680973
+        requiresManualCleaning: 2.8841621266687802
+        targetFirmwareBaselineId: 5.025004791520295
+        serverSupportsOobProvisioning: 9.018348186070783
         customInfo: "{}"
         diskCount: 2.027123023002322
         serverId: 0.8008281904610115
         processorCoreMhz: 2.3021358869347655
         powerStatus: unknown
-        registrationProfileId: 4.965218492984954
+        registrationProfileId: 9.965781217890562
         serverCreatedTimestamp: serverCreatedTimestamp
         serverDhcpStatus: quarantine
         model: model
@@ -63468,8 +63413,8 @@ components:
           href: /api/v2/path/to/resource
         bmcMacAddress: bmcMacAddress
         bootLastUpdateTimestamp: bootLastUpdateTimestamp
-        gpuCount: 2.8841621266687802
-        serverSupportsSol: 9.965781217890562
+        gpuCount: 6.878052220127876
+        serverSupportsSol: 6.683562403749608
         vncPort: 6.84685269835264
         serialNumber: serialNumber
         extensionInfo: ""
@@ -63489,8 +63434,8 @@ components:
         - tags
         - tags
         serverCleanupPolicyId: 1.1730742509559433
-        serverDiskWipe: 3.5571952270680973
-        resourcePoolId: 4.078845849666752
+        serverDiskWipe: 1.284659006116532
+        resourcePoolId: 6.628464275087742
         processorCpuMark: 9.301444243932576
         ramGbytes: 5.962133916683182
         instanceCustomInfo: "{}"
@@ -63498,27 +63443,27 @@ components:
         rackPositionLowerUnit: rackPositionLowerUnit
         registrationResult: ""
         serverTypeId: 6.027456183070403
-        requiresReRegister: 5.025004791520295
+        requiresReRegister: 9.369310271410669
         serverStatus: registering
-        serverDiskCount: 1.284659006116532
+        serverDiskCount: 6.778324963048013
         disks:
         - serial: serial
           vendor: vendor
-          serverStorageControllerId: 7.04836565559697
+          serverStorageControllerId: 3.2588565619047607
           model: model
-          id: 7.740351818741173
+          id: 3.0576100241049344
           type: none
-          serverId: 3.0205796992916243
-          diskSizeGb: 3.0576100241049344
+          serverId: 7.04836565559697
+          diskSizeGb: 5.533258397034986
           status: installed
         - serial: serial
           vendor: vendor
-          serverStorageControllerId: 7.04836565559697
+          serverStorageControllerId: 3.2588565619047607
           model: model
-          id: 7.740351818741173
+          id: 3.0576100241049344
           type: none
-          serverId: 3.0205796992916243
-          diskSizeGb: 3.0576100241049344
+          serverId: 7.04836565559697
+          diskSizeGb: 5.533258397034986
           status: installed
         vendorInfo: ""
         bdkDebug: 7.386281948385884
@@ -63541,28 +63486,28 @@ components:
             PhysicalContext: PhysicalContext
         processorCoreCount: 7.061401241503109
         vendor: Unknown
-        serverSupportsVirtualMedia: 9.369310271410669
-        serverIsProduction: 8.762042012749001
-        supportsFcProvisioning: 6.778324963048013
+        serverSupportsVirtualMedia: 8.762042012749001
+        serverIsProduction: 6.438423552598547
+        supportsFcProvisioning: 5.944895607614016
         storageControllers:
         - mode: HBA
           name: name
           options: ""
           description: description
-          id: 5.533258397034986
+          id: 4.078845849666752
           label: label
-          serverId: 3.2588565619047607
+          serverId: 0.2025324113236393
         - mode: HBA
           name: name
           options: ""
           description: description
-          id: 5.533258397034986
+          id: 4.078845849666752
           label: label
-          serverId: 3.2588565619047607
+          serverId: 0.2025324113236393
         processorName: processorName
         rackPositionUpperUnit: rackPositionUpperUnit
         managementAddress: managementAddress
-        ipmiCredentialsNeedUpdate: 5.944895607614016
+        ipmiCredentialsNeedUpdate: 3.353193347011243
         interfaces:
         - networkDevice: "{}"
           infinibandGuid: infinibandGuid
@@ -63571,29 +63516,29 @@ components:
           - 2001:db8::1
           - 2001:db8::2
           lldpInfo: lldpInfo
-          serverId: 3.353193347011243
+          serverId: 7.143538047012306
           osInfo: not_tested
           switchMacAddress: switchMacAddress
           fibreChannelWwpn: fibreChannelWwpn
-          capacityMbps: 7.143538047012306
-          supportsIscsiBoot: 7.058770351582356
-          serverInterfaceId: 6.704019297950036
+          capacityMbps: 7.058770351582356
+          supportsIscsiBoot: 0.10263654006109402
+          serverInterfaceId: 3.0937452626664474
           ipv4Addresses:
           - 192.168.1.1
           - 192.168.1.2
-          aliasIndex: 6.519180951018382
-          vlanId: 0.10263654006109402
+          aliasIndex: 4.652396432933246
+          vlanId: 8.969578798196912
           linkNetworkTechnology: Ethernet
           networkDeviceInterface: "{}"
-          redundancyGroupIndex: 8.969578798196912
-          index: 3.0937452626664474
+          redundancyGroupIndex: 3.0205796992916243
+          index: 0.8851374739011653
           addOnType: hba
           switchHostname: switchHostname
-          pxeEnabled: 0.8851374739011653
+          pxeEnabled: 6.519180951018382
           macAddress: macAddress
           addOnInfo: "{}"
           addOnMac: addOnMac
-          defaultFabricId: 4.652396432933246
+          defaultFabricId: 7.740351818741173
           switchPortId: switchPortId
         - networkDevice: "{}"
           infinibandGuid: infinibandGuid
@@ -63602,36 +63547,37 @@ components:
           - 2001:db8::1
           - 2001:db8::2
           lldpInfo: lldpInfo
-          serverId: 3.353193347011243
+          serverId: 7.143538047012306
           osInfo: not_tested
           switchMacAddress: switchMacAddress
           fibreChannelWwpn: fibreChannelWwpn
-          capacityMbps: 7.143538047012306
-          supportsIscsiBoot: 7.058770351582356
-          serverInterfaceId: 6.704019297950036
+          capacityMbps: 7.058770351582356
+          supportsIscsiBoot: 0.10263654006109402
+          serverInterfaceId: 3.0937452626664474
           ipv4Addresses:
           - 192.168.1.1
           - 192.168.1.2
-          aliasIndex: 6.519180951018382
-          vlanId: 0.10263654006109402
+          aliasIndex: 4.652396432933246
+          vlanId: 8.969578798196912
           linkNetworkTechnology: Ethernet
           networkDeviceInterface: "{}"
-          redundancyGroupIndex: 8.969578798196912
-          index: 3.0937452626664474
+          redundancyGroupIndex: 3.0205796992916243
+          index: 0.8851374739011653
           addOnType: hba
           switchHostname: switchHostname
-          pxeEnabled: 0.8851374739011653
+          pxeEnabled: 6.519180951018382
           macAddress: macAddress
           addOnInfo: "{}"
           addOnMac: addOnMac
-          defaultFabricId: 4.652396432933246
+          defaultFabricId: 7.740351818741173
           switchPortId: switchPortId
-        serverCapacityMbps: 6.438423552598547
+        serverCapacityMbps: 6.965117697638846
         processorCount: 5.637376656633329
         serverComments: serverComments
         serverAllocationTimestamp: serverAllocationTimestamp
-        chassisRackId: 6.878052220127876
+        chassisRackId: 6.704019297950036
         mgmtSnmpPort: 4.145608029883936
+        currentFirmwareBaselineId: 4.965218492984954
         powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
         administrationState: managed
         rackName: rackName
@@ -63742,6 +63688,12 @@ components:
           type: number
         serverCleanupPolicyId:
           description: The cleanup policy id of the server.
+          type: number
+        currentFirmwareBaselineId:
+          description: The last applied firmware baseline id on the server.
+          type: number
+        targetFirmwareBaselineId:
+          description: The target firmware baseline id on the server.
           type: number
         registrationProfileId:
           description: The registration profile id of the server.
@@ -72371,13 +72323,6 @@ components:
       required:
       - name
       type: object
-    BaselineLevelType:
-      enum:
-      - datacenter
-      - serverType
-      - osTemplate
-      - vendorModel
-      type: string
     FirmwareMinimumVersion:
       properties:
         componentName:
@@ -72397,16 +72342,12 @@ components:
       type: object
     FirmwareBaseline:
       example:
-        level: datacenter
         catalog:
         - "1"
         - "2"
         - "3"
         name: Data center baseline name
         description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
-        levelFilter:
-        - datacenter1
-        - datacenter2
         id: 1
       properties:
         id:
@@ -72431,54 +72372,26 @@ components:
             type: string
           title: Catalog IDs which are part of this baseline
           type: array
-        level:
-          allOf:
-          - $ref: "#/components/schemas/BaselineLevelType"
-          example: datacenter
-          title: Baseline level type
-        levelFilter:
-          description: "Array of filter values. For datacenter/serverType/osTemplate:\
-            \ array of strings (e.g., [\"datacenter1\", \"datacenter2\"]). For vendorModel:\
-            \ array of objects with vendor and model properties (e.g., [{ vendor:\
-            \ \"Dell\", model: \"R740\" }, { vendor: \"HPE\", model: \"*\" }]). Use\
-            \ \"*\" for wildcards."
-          example:
-          - datacenter1
-          - datacenter2
-          items:
-            type: string
-          title: Filter applicable to baseline level
-          type: array
       required:
       - id
-      - level
-      - levelFilter
       - name
       type: object
     FirmwareBaselinePaginatedList:
       example:
         data:
-        - level: datacenter
-          catalog:
+        - catalog:
           - "1"
           - "2"
           - "3"
           name: Data center baseline name
           description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
-          levelFilter:
-          - datacenter1
-          - datacenter2
           id: 1
-        - level: datacenter
-          catalog:
+        - catalog:
           - "1"
           - "2"
           - "3"
           name: Data center baseline name
           description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
-          levelFilter:
-          - datacenter1
-          - datacenter2
           id: 1
         meta: ""
         links: ""
@@ -72507,17 +72420,12 @@ components:
         minimumVersions:
         - componentName: BMC
           minimumVersion: "3.10"
-        level: datacenter
         catalog:
         - "1"
         - "2"
         - "3"
-        applyOnServerRegistration: true
         name: Data center baseline name
         description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
-        levelFilter:
-        - datacenter1
-        - datacenter2
       properties:
         name:
           example: Data center baseline name
@@ -72536,26 +72444,6 @@ components:
             type: string
           title: Catalog IDs which are part of this baseline
           type: array
-        level:
-          allOf:
-          - $ref: "#/components/schemas/BaselineLevelType"
-          description: "Level type: datacenter, serverType, osTemplate for infrastructure-based\
-            \ baselines, or vendorModel for hardware-based baselines"
-          example: datacenter
-          title: Baseline level type
-        levelFilter:
-          description: "Array of filter values. For datacenter/serverType/osTemplate:\
-            \ array of strings (e.g., [\"datacenter1\", \"datacenter2\"]). For vendorModel:\
-            \ array of objects with vendor and model properties (e.g., [{ vendor:\
-            \ \"Dell\", model: \"R740\" }, { vendor: \"HPE\", model: \"*\" }]). Use\
-            \ \"*\" for wildcards."
-          example:
-          - datacenter1
-          - datacenter2
-          items:
-            type: string
-          title: Filter applicable to baseline level
-          type: array
         minimumVersions:
           description: Array of minimum firmware version requirements for this baseline
           example:
@@ -72565,14 +72453,7 @@ components:
             $ref: "#/components/schemas/FirmwareMinimumVersion"
           title: Minimum firmware versions required
           type: array
-        applyOnServerRegistration:
-          description: Whether to apply this baseline during server registration process
-          example: true
-          title: Apply on server registration
-          type: boolean
       required:
-      - level
-      - levelFilter
       - name
       type: object
     UpdateFirmwareBaseline:
@@ -72580,17 +72461,12 @@ components:
         minimumVersions:
         - componentName: BMC
           minimumVersion: "3.10"
-        level: datacenter
         catalog:
         - "1"
         - "2"
         - "3"
-        applyOnServerRegistration: true
         name: Data center baseline name
         description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
-        levelFilter:
-        - datacenter1
-        - datacenter2
       properties:
         name:
           example: Data center baseline name
@@ -72609,26 +72485,6 @@ components:
             type: string
           title: Catalog IDs which are part of this baseline
           type: array
-        level:
-          allOf:
-          - $ref: "#/components/schemas/BaselineLevelType"
-          description: "Level type: datacenter, serverType, osTemplate for infrastructure-based\
-            \ baselines, or vendorModel for hardware-based baselines"
-          example: datacenter
-          title: Baseline level type
-        levelFilter:
-          description: "Array of filter values. For datacenter/serverType/osTemplate:\
-            \ array of strings (e.g., [\"datacenter1\", \"datacenter2\"]). For vendorModel:\
-            \ array of objects with vendor and model properties (e.g., [{ vendor:\
-            \ \"Dell\", model: \"R740\" }, { vendor: \"HPE\", model: \"*\" }]). Use\
-            \ \"*\" for wildcards."
-          example:
-          - datacenter1
-          - datacenter2
-          items:
-            type: string
-          title: Filter applicable to baseline level
-          type: array
         minimumVersions:
           description: Array of minimum firmware version requirements for this baseline
           example:
@@ -72638,14 +72494,7 @@ components:
             $ref: "#/components/schemas/FirmwareMinimumVersion"
           title: Minimum firmware versions required
           type: array
-        applyOnServerRegistration:
-          description: Whether to apply this baseline during server registration process
-          example: true
-          title: Apply on server registration
-          type: boolean
       required:
-      - level
-      - levelFilter
       - name
       type: object
     FirmwareBinaryUpdateSeverity:
@@ -72969,15 +72818,12 @@ components:
     FirmwareCatalog:
       example:
         vendorUrl: https://vendor.example.com/catalog
+        vendor: dell
         vendorConfiguration: "{}"
         createdTimestamp: 2025-01-07T12:00:00Z
+        name: Firmware Catalog A
         description: Description for Firmware Catalog A
         vendorId: VENDOR123
-        metalsoftServerTypesSupported:
-        - metalsoftServerTypesSupported
-        - metalsoftServerTypesSupported
-        vendor: dell
-        name: Firmware Catalog A
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -73030,12 +72876,6 @@ components:
           - online
           - offline
           type: string
-        metalsoftServerTypesSupported:
-          description: List of supported Metalsoft server types for which firmware
-            binaries are available
-          items:
-            type: string
-          type: array
         vendorServerTypesSupported:
           description: List of supported server types for which firmware binaries
             are available
@@ -73066,15 +72906,12 @@ components:
       example:
         data:
         - vendorUrl: https://vendor.example.com/catalog
+          vendor: dell
           vendorConfiguration: "{}"
           createdTimestamp: 2025-01-07T12:00:00Z
+          name: Firmware Catalog A
           description: Description for Firmware Catalog A
           vendorId: VENDOR123
-          metalsoftServerTypesSupported:
-          - metalsoftServerTypesSupported
-          - metalsoftServerTypesSupported
-          vendor: dell
-          name: Firmware Catalog A
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -73087,15 +72924,12 @@ components:
           vendorReleaseTimestamp: 2025-01-07T12:00:00Z
           updateType: online
         - vendorUrl: https://vendor.example.com/catalog
+          vendor: dell
           vendorConfiguration: "{}"
           createdTimestamp: 2025-01-07T12:00:00Z
+          name: Firmware Catalog A
           description: Description for Firmware Catalog A
           vendorId: VENDOR123
-          metalsoftServerTypesSupported:
-          - metalsoftServerTypesSupported
-          - metalsoftServerTypesSupported
-          vendor: dell
-          name: Firmware Catalog A
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -73144,10 +72978,6 @@ components:
     CreateFirmwareCatalog:
       example:
         vendorUrl: https://downloads.dell.com/catalog/Catalog.xml.gz
-        metalsoftServerTypesSupported:
-        - M.8.6.1
-        - M.32.32.1
-        - M.32.32.2
         vendor: dell
         vendorConfiguration:
           version: 17.11.07
@@ -73197,15 +73027,6 @@ components:
           example: 2020-05-12T12:32:01
           title: Vendor release timestamp for the catalog
           type: string
-        metalsoftServerTypesSupported:
-          example:
-          - M.8.6.1
-          - M.32.32.1
-          - M.32.32.2
-          items:
-            type: string
-          title: Array with server types supported by Metalsoft
-          type: array
         vendorServerTypesSupported:
           description: Array of the server types supported by the vendor for this
             catalog
@@ -73237,10 +73058,6 @@ components:
     UpdateFirmwareCatalog:
       example:
         vendorUrl: https://downloads.dell.com/catalog/Catalog.xml.gz
-        metalsoftServerTypesSupported:
-        - M.8.6.1
-        - M.32.32.1
-        - M.32.32.2
         vendor: dell
         vendorConfiguration:
           version: 17.11.07
@@ -73290,15 +73107,6 @@ components:
           example: 2020-05-12T12:32:01
           title: Vendor release timestamp for the catalog
           type: string
-        metalsoftServerTypesSupported:
-          example:
-          - M.8.6.1
-          - M.32.32.1
-          - M.32.32.2
-          items:
-            type: string
-          title: Array with server types supported by Metalsoft
-          type: array
         vendorServerTypesSupported:
           description: Array of the server types supported by the vendor for this
             catalog
@@ -73760,38 +73568,6 @@ components:
       - targets
       - vendor
       type: object
-    BaselineFilter:
-      properties:
-        datacenter:
-          example:
-          - omega-dc
-          items:
-            type: string
-          title: "Datacenter filter, array of datacenter names"
-          type: array
-        serverType:
-          example:
-          - M.02.12
-          items:
-            type: string
-          title: "Server type filter, array of server types as specified in Metalsoft"
-          type: array
-        osTemplate:
-          example:
-          - CentOS 8.2
-          items:
-            type: string
-          title: "OS template filter, array of OS template names as specified in Metalsoft"
-          type: array
-        baselineId:
-          example:
-          - "1"
-          - "2"
-          items:
-            type: string
-          title: "Filter by baselineId, more than one baseline can be specified"
-          type: array
-      type: object
     SearchFirmwareBinary:
       example:
         vendor: dell
@@ -73812,26 +73588,26 @@ components:
           targets:
           - Target1
           - Target2
-        baselineFilter:
-          datacenter:
-          - omega-dc
+        baselineIds:
+        - "1"
+        - "2"
       properties:
         vendor:
           allOf:
           - $ref: "#/components/schemas/ServerFirmwareCatalogVendor"
           example: dell
           title: Firmware vendor
-        baselineFilter:
-          allOf:
-          - $ref: "#/components/schemas/BaselineFilter"
+        baselineIds:
           example:
-            datacenter:
-            - omega-dc
-          title: Baseline filter
+          - "1"
+          - "2"
+          items:
+            type: string
+          title: "Filter by baselineId, more than one baseline can be specified"
+          type: array
         serverComponentFilter:
           $ref: "#/components/schemas/SearchFirmwareBinary_serverComponentFilter"
       required:
-      - baselineFilter
       - vendor
       type: object
     FirmwareBinaryResponse:
@@ -85270,7 +85046,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2026-02-26T12:02:04.733Z
+        createdTimestamp: 2026-02-27T16:13:48.742Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -85279,7 +85055,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2026-02-26T12:02:04.733Z
+        updatedTimestamp: 2026-02-27T16:13:48.742Z
         revision: "1"
       properties:
         siteId:
@@ -85295,12 +85071,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.733Z
+          example: 2026-02-27T16:13:48.742Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.733Z
+          example: 2026-02-27T16:13:48.742Z
           format: date-time
           type: string
         links:
@@ -85322,7 +85098,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-02-26T12:02:04.733Z
+        - createdTimestamp: 2026-02-27T16:13:48.742Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -85331,9 +85107,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-02-26T12:02:04.733Z
+          updatedTimestamp: 2026-02-27T16:13:48.742Z
           revision: "1"
-        - createdTimestamp: 2026-02-26T12:02:04.733Z
+        - createdTimestamp: 2026-02-27T16:13:48.742Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -85342,7 +85118,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-02-26T12:02:04.733Z
+          updatedTimestamp: 2026-02-27T16:13:48.742Z
           revision: "1"
         meta: ""
         links: ""
@@ -85925,7 +85701,7 @@ components:
     NetworkFabric:
       example:
         transportId: 123
-        createdTimestamp: 2026-02-26T12:02:04.654Z
+        createdTimestamp: 2026-02-27T16:13:48.632Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -85966,7 +85742,7 @@ components:
           configurationPreview: configurationPreview
           networkDeviceConfigurationTemplateType: link_aggregation
           networkFabricLinkId: 101
-        updatedTimestamp: 2026-02-26T12:02:04.655Z
+        updatedTimestamp: 2026-02-27T16:13:48.632Z
         deployId: 123
         customVariables: "{}"
         revision: "1"
@@ -86120,12 +85896,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.654Z
+          example: 2026-02-27T16:13:48.632Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.655Z
+          example: 2026-02-27T16:13:48.632Z
           format: date-time
           type: string
         links:
@@ -86178,7 +85954,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-02-26T12:02:04.654Z
+          createdTimestamp: 2026-02-27T16:13:48.632Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -86219,7 +85995,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-02-26T12:02:04.655Z
+          updatedTimestamp: 2026-02-27T16:13:48.632Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -86350,7 +86126,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-02-26T12:02:04.654Z
+          createdTimestamp: 2026-02-27T16:13:48.632Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -86391,7 +86167,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-02-26T12:02:04.655Z
+          updatedTimestamp: 2026-02-27T16:13:48.632Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -86613,7 +86389,7 @@ components:
         interconnectType: dci-evpn
         bgpConfigurationTemplate: bgpConfigurationTemplate
         transportId: 65534
-        createdTimestamp: 2026-02-26T12:02:04.743Z
+        createdTimestamp: 2026-02-27T16:13:48.76Z
         description: Data center interconnect using EVPN
         label: dci-evpn-interconnect-01
         deployPreview:
@@ -86645,7 +86421,7 @@ components:
           - neighborTemplateActivate
           - neighborTemplateActivate
           networkInterconnectId: 101
-        updatedTimestamp: 2026-02-26T12:02:04.743Z
+        updatedTimestamp: 2026-02-27T16:13:48.76Z
         deployId: 123
         revision: "1"
         name: Primary DCI EVPN Interconnect
@@ -86704,12 +86480,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.743Z
+          example: 2026-02-27T16:13:48.76Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.743Z
+          example: 2026-02-27T16:13:48.76Z
           format: date-time
           type: string
         links:
@@ -86748,7 +86524,7 @@ components:
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
           transportId: 65534
-          createdTimestamp: 2026-02-26T12:02:04.743Z
+          createdTimestamp: 2026-02-27T16:13:48.76Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -86780,7 +86556,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-02-26T12:02:04.743Z
+          updatedTimestamp: 2026-02-27T16:13:48.76Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -86795,7 +86571,7 @@ components:
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
           transportId: 65534
-          createdTimestamp: 2026-02-26T12:02:04.743Z
+          createdTimestamp: 2026-02-27T16:13:48.76Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -86827,7 +86603,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-02-26T12:02:04.743Z
+          updatedTimestamp: 2026-02-27T16:13:48.76Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -86872,7 +86648,7 @@ components:
         fabricAId: 2
         fabricANetworkEquipmentId: 1
         interconnectId: 2
-        createdTimestamp: 2026-02-26T12:02:04.745Z
+        createdTimestamp: 2026-02-27T16:13:48.766Z
         fabricBNetworkEquipmentId: 1
         links:
         - rel: self
@@ -86880,7 +86656,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-02-26T12:02:04.745Z
+        updatedTimestamp: 2026-02-27T16:13:48.766Z
         revision: "1"
         status: active
         fabricBId: 3
@@ -86891,12 +86667,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.745Z
+          example: 2026-02-27T16:13:48.766Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.745Z
+          example: 2026-02-27T16:13:48.766Z
           format: date-time
           type: string
         links:
@@ -87067,7 +86843,7 @@ components:
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2026-02-26T12:02:04.745Z
+          createdTimestamp: 2026-02-27T16:13:48.766Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -87075,14 +86851,14 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-02-26T12:02:04.745Z
+          updatedTimestamp: 2026-02-27T16:13:48.766Z
           revision: "1"
           status: active
           fabricBId: 3
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2026-02-26T12:02:04.745Z
+          createdTimestamp: 2026-02-27T16:13:48.766Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -87090,7 +86866,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-02-26T12:02:04.745Z
+          updatedTimestamp: 2026-02-27T16:13:48.766Z
           revision: "1"
           status: active
           fabricBId: 3
@@ -87151,7 +86927,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-02-26T12:02:04.654Z
+          createdTimestamp: 2026-02-27T16:13:48.632Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -87192,7 +86968,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-02-26T12:02:04.655Z
+          updatedTimestamp: 2026-02-27T16:13:48.632Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -87323,7 +87099,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-02-26T12:02:04.654Z
+          createdTimestamp: 2026-02-27T16:13:48.632Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -87364,7 +87140,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-02-26T12:02:04.655Z
+          updatedTimestamp: 2026-02-27T16:13:48.632Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -87653,8 +87429,8 @@ components:
       type: object
     NetworkFabricBGPSession:
       example:
-        createdTimestamp: 2026-02-26T12:02:04.658Z
-        updatedTimestamp: 2026-02-26T12:02:04.658Z
+        createdTimestamp: 2026-02-27T16:13:48.635Z
+        updatedTimestamp: 2026-02-27T16:13:48.636Z
         revision: "1"
         networkFabricLinkAggregationId: 1
         linkAggregation: ""
@@ -87674,12 +87450,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.658Z
+          example: 2026-02-27T16:13:48.635Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.658Z
+          example: 2026-02-27T16:13:48.636Z
           format: date-time
           type: string
         revision:
@@ -87756,11 +87532,11 @@ components:
       type: object
     NetworkFabricLinkAggregation:
       example:
-        createdTimestamp: 2026-02-26T12:02:04.662Z
+        createdTimestamp: 2026-02-27T16:13:48.64Z
         networkFabricLinks:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-02-26T12:02:04.659Z
-          updatedTimestamp: 2026-02-26T12:02:04.659Z
+          createdTimestamp: 2026-02-27T16:13:48.637Z
+          updatedTimestamp: 2026-02-27T16:13:48.637Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -87778,8 +87554,8 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-02-26T12:02:04.659Z
-          updatedTimestamp: 2026-02-26T12:02:04.659Z
+          createdTimestamp: 2026-02-27T16:13:48.637Z
+          updatedTimestamp: 2026-02-27T16:13:48.637Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -87798,7 +87574,7 @@ components:
           status: draft
         mlagDomainIdentifier: MLAG-Domain-1 or 123
         type: lag
-        updatedTimestamp: 2026-02-26T12:02:04.662Z
+        updatedTimestamp: 2026-02-27T16:13:48.64Z
         revision: "1"
         networkFabricLinkConfigs:
         - networkFabricLink: ""
@@ -87824,12 +87600,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.662Z
+          example: 2026-02-27T16:13:48.64Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.662Z
+          example: 2026-02-27T16:13:48.64Z
           format: date-time
           type: string
         revision:
@@ -87939,8 +87715,8 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2026-02-26T12:02:04.659Z
-        updatedTimestamp: 2026-02-26T12:02:04.659Z
+        createdTimestamp: 2026-02-27T16:13:48.637Z
+        updatedTimestamp: 2026-02-27T16:13:48.637Z
         customVariables: "{}"
         revision: "1"
         networkFabricLinkAggregationId: 1
@@ -87960,12 +87736,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.659Z
+          example: 2026-02-27T16:13:48.637Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.659Z
+          example: 2026-02-27T16:13:48.637Z
           format: date-time
           type: string
         revision:
@@ -88042,8 +87818,8 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-02-26T12:02:04.659Z
-          updatedTimestamp: 2026-02-26T12:02:04.659Z
+          createdTimestamp: 2026-02-27T16:13:48.637Z
+          updatedTimestamp: 2026-02-27T16:13:48.637Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -88061,8 +87837,8 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-02-26T12:02:04.659Z
-          updatedTimestamp: 2026-02-26T12:02:04.659Z
+          createdTimestamp: 2026-02-27T16:13:48.637Z
+          updatedTimestamp: 2026-02-27T16:13:48.637Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -88149,11 +87925,11 @@ components:
     NetworkFabricLinkAggregationPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-02-26T12:02:04.662Z
+        - createdTimestamp: 2026-02-27T16:13:48.64Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-02-26T12:02:04.659Z
-            updatedTimestamp: 2026-02-26T12:02:04.659Z
+            createdTimestamp: 2026-02-27T16:13:48.637Z
+            updatedTimestamp: 2026-02-27T16:13:48.637Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -88171,8 +87947,8 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-02-26T12:02:04.659Z
-            updatedTimestamp: 2026-02-26T12:02:04.659Z
+            createdTimestamp: 2026-02-27T16:13:48.637Z
+            updatedTimestamp: 2026-02-27T16:13:48.637Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -88191,7 +87967,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-02-26T12:02:04.662Z
+          updatedTimestamp: 2026-02-27T16:13:48.64Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -88214,11 +87990,11 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           status: draft
-        - createdTimestamp: 2026-02-26T12:02:04.662Z
+        - createdTimestamp: 2026-02-27T16:13:48.64Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-02-26T12:02:04.659Z
-            updatedTimestamp: 2026-02-26T12:02:04.659Z
+            createdTimestamp: 2026-02-27T16:13:48.637Z
+            updatedTimestamp: 2026-02-27T16:13:48.637Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -88236,8 +88012,8 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-02-26T12:02:04.659Z
-            updatedTimestamp: 2026-02-26T12:02:04.659Z
+            createdTimestamp: 2026-02-27T16:13:48.637Z
+            updatedTimestamp: 2026-02-27T16:13:48.637Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -88256,7 +88032,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-02-26T12:02:04.662Z
+          updatedTimestamp: 2026-02-27T16:13:48.64Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -88358,8 +88134,8 @@ components:
     NetworkFabricBGPSessionPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-02-26T12:02:04.658Z
-          updatedTimestamp: 2026-02-26T12:02:04.658Z
+        - createdTimestamp: 2026-02-27T16:13:48.635Z
+          updatedTimestamp: 2026-02-27T16:13:48.636Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -88376,8 +88152,8 @@ components:
           bgpNumbering: inherited
           networkFabricLinkId: 1
           status: draft
-        - createdTimestamp: 2026-02-26T12:02:04.658Z
-          updatedTimestamp: 2026-02-26T12:02:04.658Z
+        - createdTimestamp: 2026-02-27T16:13:48.635Z
+          updatedTimestamp: 2026-02-27T16:13:48.636Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -88677,6 +88453,7 @@ components:
           onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
         createdBy: 6
         name: Ubuntu 24.04 LTS
+        firmwareBaselineId: 5
         modifiedBy: 10
         links:
         - rel: self
@@ -88784,6 +88561,10 @@ components:
             maxLength: 255
             type: string
           type: array
+        firmwareBaselineId:
+          description: The firmware baseline ID associated with the OS template
+          example: 5
+          type: integer
         revision:
           description: The revision number of the OS template
           example: 1
@@ -88857,6 +88638,7 @@ components:
             onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
           createdBy: 6
           name: Ubuntu 24.04 LTS
+          firmwareBaselineId: 5
           modifiedBy: 10
           links:
           - rel: self
@@ -88902,6 +88684,7 @@ components:
             onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
           createdBy: 6
           name: Ubuntu 24.04 LTS
+          firmwareBaselineId: 5
           modifiedBy: 10
           links:
           - rel: self
@@ -88961,6 +88744,7 @@ components:
         name: Ubuntu 24.04 LTS
         description: EKS Anywhere - Admin Machine
         imageCertSerialNumber: 1234567890ABCDEF
+        firmwareBaselineId: 5
         label: eksa
         imageBuild:
           provider: xorriso
@@ -89018,6 +88802,10 @@ components:
             maxLength: 255
             type: string
           type: array
+        firmwareBaselineId:
+          description: The firmware baseline ID associated with the OS template
+          example: 5
+          type: integer
       required:
       - device
       - imageBuild
@@ -89047,6 +88835,7 @@ components:
         name: Ubuntu 24.04 LTS
         description: EKS Anywhere - Admin Machine
         imageCertSerialNumber: 1234567890ABCDEF
+        firmwareBaselineId: 5
         label: eksa
         imageBuild:
           provider: xorriso
@@ -89133,6 +88922,10 @@ components:
             maxLength: 255
             type: string
           type: array
+        firmwareBaselineId:
+          description: The firmware baseline ID associated with the OS template
+          example: 5
+          type: integer
       required:
       - device
       - imageBuild
@@ -91551,6 +91344,7 @@ components:
           attributeName: attributeName
           serverModel: serverModel
         minimumNumberOfConnectedInterfaces: 1
+        firmwareBaselineId: 0.8008281904610115
         raidOneDrive: RAID0
       properties:
         registerCredentials:
@@ -91601,6 +91395,9 @@ components:
           - HTTPS
           example: HTTPS
           type: string
+        firmwareBaselineId:
+          description: Firmware baseline ID to apply during registration
+          type: number
         resetRaidControllers:
           default: true
           description: Whether to reset RAID controllers to factory defaults
@@ -91662,7 +91459,7 @@ components:
       example:
         settings: ""
         isDefault: true
-        createdTimestamp: 2026-02-26T12:02:05.174Z
+        createdTimestamp: 2026-02-27T16:13:49.329Z
         name: name
         links:
         - rel: self
@@ -91670,17 +91467,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
-        updatedTimestamp: 2026-02-26T12:02:05.174Z
+        updatedTimestamp: 2026-02-27T16:13:49.329Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:05.174Z
+          example: 2026-02-27T16:13:49.329Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:05.174Z
+          example: 2026-02-27T16:13:49.329Z
           format: date-time
           type: string
         revision:
@@ -91720,7 +91517,7 @@ components:
         data:
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-02-26T12:02:05.174Z
+          createdTimestamp: 2026-02-27T16:13:49.329Z
           name: name
           links:
           - rel: self
@@ -91728,11 +91525,11 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2026-02-26T12:02:05.174Z
+          updatedTimestamp: 2026-02-27T16:13:49.329Z
           revision: "1"
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-02-26T12:02:05.174Z
+          createdTimestamp: 2026-02-27T16:13:49.329Z
           name: name
           links:
           - rel: self
@@ -91740,7 +91537,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2026-02-26T12:02:05.174Z
+          updatedTimestamp: 2026-02-27T16:13:49.329Z
           revision: "1"
         meta: ""
         links: ""
@@ -91818,6 +91615,9 @@ components:
           - HTTPS
           example: HTTPS
           type: string
+        firmwareBaselineId:
+          description: Firmware baseline ID to apply during registration
+          type: number
         resetRaidControllers:
           description: Whether to reset RAID controllers to factory defaults
           type: boolean
@@ -92297,15 +92097,11 @@ components:
       type: object
     GenerateFirmwareUpgradeAudit:
       example:
-        osTemplateLabel: osTemplateLabel
-        siteId: 1.4658129805029452
         modelPattern: DL360*Gen10
         vendorPattern: HPE
-        serverTypeName: serverTypeName
         serverIds:
         - 0.8008281904610115
         - 0.8008281904610115
-        baselineId: 6.027456183070403
       properties:
         serverIds:
           description: The list of server ids for which firmware upgrade audit should
@@ -92324,22 +92120,6 @@ components:
             \ be used with serverIds."
           example: DL360*Gen10
           type: string
-        baselineId:
-          description: Filter the available firmware upgrades using the specified
-            baseline id.
-          type: number
-        osTemplateLabel:
-          description: Filter the available firmware upgrades using the specified
-            os template label.
-          type: string
-        serverTypeName:
-          description: Filter the available firmware upgrades using the specified
-            server type name.
-          type: string
-        siteId:
-          description: Filter the available firmware upgrades using the specified
-            site id.
-          type: number
       type: object
     ScheduleFirmwareUpgrade:
       example:
@@ -92415,6 +92195,29 @@ components:
       required:
       - failed
       - successful
+      type: object
+    BatchScheduleServerFirmwareUpgrade:
+      example:
+        scheduleUpdateTimestamp: 2025-01-01T00:00:00Z
+        confirmationRequired: true
+        serverIds:
+        - 0.8008281904610115
+        - 0.8008281904610115
+      properties:
+        serverIds:
+          description: The list of server ids to upgrade.
+          items:
+            type: number
+          type: array
+        scheduleUpdateTimestamp:
+          description: The time when the firmware update is scheduled to run.
+          example: 2025-01-01T00:00:00Z
+          type: string
+        confirmationRequired:
+          description: Flag to indicate if the firmware update requires confirmation.
+          type: boolean
+      required:
+      - serverIds
       type: object
     ServerInstanceGroupUpdate:
       example:
@@ -93151,10 +92954,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2026-02-26T12:02:04.738Z
+        createdTimestamp: 2026-02-27T16:13:48.747Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2026-02-26T12:02:04.738Z
+        updatedTimestamp: 2026-02-27T16:13:48.747Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -93228,12 +93031,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.738Z
+          example: 2026-02-27T16:13:48.747Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.738Z
+          example: 2026-02-27T16:13:48.747Z
           format: date-time
           type: string
         links:
@@ -94555,6 +94358,12 @@ components:
           type: number
         serverCleanupPolicyId:
           description: The cleanup policy id of the server.
+          type: number
+        currentFirmwareBaselineId:
+          description: The last applied firmware baseline id on the server.
+          type: number
+        targetFirmwareBaselineId:
+          description: The target firmware baseline id on the server.
           type: number
         registrationProfileId:
           description: The registration profile id of the server.
@@ -98143,15 +97952,16 @@ components:
       example:
         data:
         - datacenterName: datacenterName
-          bootingCustomIsoInProgress: 9.018348186070783
-          requiresManualCleaning: 6.965117697638846
-          serverSupportsOobProvisioning: 6.683562403749608
+          bootingCustomIsoInProgress: 3.5571952270680973
+          requiresManualCleaning: 2.8841621266687802
+          targetFirmwareBaselineId: 5.025004791520295
+          serverSupportsOobProvisioning: 9.018348186070783
           customInfo: "{}"
           diskCount: 2.027123023002322
           serverId: 0.8008281904610115
           processorCoreMhz: 2.3021358869347655
           powerStatus: unknown
-          registrationProfileId: 4.965218492984954
+          registrationProfileId: 9.965781217890562
           serverCreatedTimestamp: serverCreatedTimestamp
           serverDhcpStatus: quarantine
           model: model
@@ -98162,8 +97972,8 @@ components:
             href: /api/v2/path/to/resource
           bmcMacAddress: bmcMacAddress
           bootLastUpdateTimestamp: bootLastUpdateTimestamp
-          gpuCount: 2.8841621266687802
-          serverSupportsSol: 9.965781217890562
+          gpuCount: 6.878052220127876
+          serverSupportsSol: 6.683562403749608
           vncPort: 6.84685269835264
           serialNumber: serialNumber
           extensionInfo: ""
@@ -98183,8 +97993,8 @@ components:
           - tags
           - tags
           serverCleanupPolicyId: 1.1730742509559433
-          serverDiskWipe: 3.5571952270680973
-          resourcePoolId: 4.078845849666752
+          serverDiskWipe: 1.284659006116532
+          resourcePoolId: 6.628464275087742
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -98192,27 +98002,27 @@ components:
           rackPositionLowerUnit: rackPositionLowerUnit
           registrationResult: ""
           serverTypeId: 6.027456183070403
-          requiresReRegister: 5.025004791520295
+          requiresReRegister: 9.369310271410669
           serverStatus: registering
-          serverDiskCount: 1.284659006116532
+          serverDiskCount: 6.778324963048013
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 7.04836565559697
+            serverStorageControllerId: 3.2588565619047607
             model: model
-            id: 7.740351818741173
+            id: 3.0576100241049344
             type: none
-            serverId: 3.0205796992916243
-            diskSizeGb: 3.0576100241049344
+            serverId: 7.04836565559697
+            diskSizeGb: 5.533258397034986
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 7.04836565559697
+            serverStorageControllerId: 3.2588565619047607
             model: model
-            id: 7.740351818741173
+            id: 3.0576100241049344
             type: none
-            serverId: 3.0205796992916243
-            diskSizeGb: 3.0576100241049344
+            serverId: 7.04836565559697
+            diskSizeGb: 5.533258397034986
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -98235,28 +98045,28 @@ components:
               PhysicalContext: PhysicalContext
           processorCoreCount: 7.061401241503109
           vendor: Unknown
-          serverSupportsVirtualMedia: 9.369310271410669
-          serverIsProduction: 8.762042012749001
-          supportsFcProvisioning: 6.778324963048013
+          serverSupportsVirtualMedia: 8.762042012749001
+          serverIsProduction: 6.438423552598547
+          supportsFcProvisioning: 5.944895607614016
           storageControllers:
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 5.533258397034986
+            id: 4.078845849666752
             label: label
-            serverId: 3.2588565619047607
+            serverId: 0.2025324113236393
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 5.533258397034986
+            id: 4.078845849666752
             label: label
-            serverId: 3.2588565619047607
+            serverId: 0.2025324113236393
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
-          ipmiCredentialsNeedUpdate: 5.944895607614016
+          ipmiCredentialsNeedUpdate: 3.353193347011243
           interfaces:
           - networkDevice: "{}"
             infinibandGuid: infinibandGuid
@@ -98265,29 +98075,29 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 3.353193347011243
+            serverId: 7.143538047012306
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 7.143538047012306
-            supportsIscsiBoot: 7.058770351582356
-            serverInterfaceId: 6.704019297950036
+            capacityMbps: 7.058770351582356
+            supportsIscsiBoot: 0.10263654006109402
+            serverInterfaceId: 3.0937452626664474
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 6.519180951018382
-            vlanId: 0.10263654006109402
+            aliasIndex: 4.652396432933246
+            vlanId: 8.969578798196912
             linkNetworkTechnology: Ethernet
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 8.969578798196912
-            index: 3.0937452626664474
+            redundancyGroupIndex: 3.0205796992916243
+            index: 0.8851374739011653
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 0.8851374739011653
+            pxeEnabled: 6.519180951018382
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 4.652396432933246
+            defaultFabricId: 7.740351818741173
             switchPortId: switchPortId
           - networkDevice: "{}"
             infinibandGuid: infinibandGuid
@@ -98296,36 +98106,37 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 3.353193347011243
+            serverId: 7.143538047012306
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 7.143538047012306
-            supportsIscsiBoot: 7.058770351582356
-            serverInterfaceId: 6.704019297950036
+            capacityMbps: 7.058770351582356
+            supportsIscsiBoot: 0.10263654006109402
+            serverInterfaceId: 3.0937452626664474
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 6.519180951018382
-            vlanId: 0.10263654006109402
+            aliasIndex: 4.652396432933246
+            vlanId: 8.969578798196912
             linkNetworkTechnology: Ethernet
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 8.969578798196912
-            index: 3.0937452626664474
+            redundancyGroupIndex: 3.0205796992916243
+            index: 0.8851374739011653
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 0.8851374739011653
+            pxeEnabled: 6.519180951018382
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 4.652396432933246
+            defaultFabricId: 7.740351818741173
             switchPortId: switchPortId
-          serverCapacityMbps: 6.438423552598547
+          serverCapacityMbps: 6.965117697638846
           processorCount: 5.637376656633329
           serverComments: serverComments
           serverAllocationTimestamp: serverAllocationTimestamp
-          chassisRackId: 6.878052220127876
+          chassisRackId: 6.704019297950036
           mgmtSnmpPort: 4.145608029883936
+          currentFirmwareBaselineId: 4.965218492984954
           powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
           administrationState: managed
           rackName: rackName
@@ -98334,15 +98145,16 @@ components:
           username: username
           allocationInfo: ""
         - datacenterName: datacenterName
-          bootingCustomIsoInProgress: 9.018348186070783
-          requiresManualCleaning: 6.965117697638846
-          serverSupportsOobProvisioning: 6.683562403749608
+          bootingCustomIsoInProgress: 3.5571952270680973
+          requiresManualCleaning: 2.8841621266687802
+          targetFirmwareBaselineId: 5.025004791520295
+          serverSupportsOobProvisioning: 9.018348186070783
           customInfo: "{}"
           diskCount: 2.027123023002322
           serverId: 0.8008281904610115
           processorCoreMhz: 2.3021358869347655
           powerStatus: unknown
-          registrationProfileId: 4.965218492984954
+          registrationProfileId: 9.965781217890562
           serverCreatedTimestamp: serverCreatedTimestamp
           serverDhcpStatus: quarantine
           model: model
@@ -98353,8 +98165,8 @@ components:
             href: /api/v2/path/to/resource
           bmcMacAddress: bmcMacAddress
           bootLastUpdateTimestamp: bootLastUpdateTimestamp
-          gpuCount: 2.8841621266687802
-          serverSupportsSol: 9.965781217890562
+          gpuCount: 6.878052220127876
+          serverSupportsSol: 6.683562403749608
           vncPort: 6.84685269835264
           serialNumber: serialNumber
           extensionInfo: ""
@@ -98374,8 +98186,8 @@ components:
           - tags
           - tags
           serverCleanupPolicyId: 1.1730742509559433
-          serverDiskWipe: 3.5571952270680973
-          resourcePoolId: 4.078845849666752
+          serverDiskWipe: 1.284659006116532
+          resourcePoolId: 6.628464275087742
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -98383,27 +98195,27 @@ components:
           rackPositionLowerUnit: rackPositionLowerUnit
           registrationResult: ""
           serverTypeId: 6.027456183070403
-          requiresReRegister: 5.025004791520295
+          requiresReRegister: 9.369310271410669
           serverStatus: registering
-          serverDiskCount: 1.284659006116532
+          serverDiskCount: 6.778324963048013
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 7.04836565559697
+            serverStorageControllerId: 3.2588565619047607
             model: model
-            id: 7.740351818741173
+            id: 3.0576100241049344
             type: none
-            serverId: 3.0205796992916243
-            diskSizeGb: 3.0576100241049344
+            serverId: 7.04836565559697
+            diskSizeGb: 5.533258397034986
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 7.04836565559697
+            serverStorageControllerId: 3.2588565619047607
             model: model
-            id: 7.740351818741173
+            id: 3.0576100241049344
             type: none
-            serverId: 3.0205796992916243
-            diskSizeGb: 3.0576100241049344
+            serverId: 7.04836565559697
+            diskSizeGb: 5.533258397034986
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -98426,28 +98238,28 @@ components:
               PhysicalContext: PhysicalContext
           processorCoreCount: 7.061401241503109
           vendor: Unknown
-          serverSupportsVirtualMedia: 9.369310271410669
-          serverIsProduction: 8.762042012749001
-          supportsFcProvisioning: 6.778324963048013
+          serverSupportsVirtualMedia: 8.762042012749001
+          serverIsProduction: 6.438423552598547
+          supportsFcProvisioning: 5.944895607614016
           storageControllers:
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 5.533258397034986
+            id: 4.078845849666752
             label: label
-            serverId: 3.2588565619047607
+            serverId: 0.2025324113236393
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 5.533258397034986
+            id: 4.078845849666752
             label: label
-            serverId: 3.2588565619047607
+            serverId: 0.2025324113236393
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
-          ipmiCredentialsNeedUpdate: 5.944895607614016
+          ipmiCredentialsNeedUpdate: 3.353193347011243
           interfaces:
           - networkDevice: "{}"
             infinibandGuid: infinibandGuid
@@ -98456,29 +98268,29 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 3.353193347011243
+            serverId: 7.143538047012306
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 7.143538047012306
-            supportsIscsiBoot: 7.058770351582356
-            serverInterfaceId: 6.704019297950036
+            capacityMbps: 7.058770351582356
+            supportsIscsiBoot: 0.10263654006109402
+            serverInterfaceId: 3.0937452626664474
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 6.519180951018382
-            vlanId: 0.10263654006109402
+            aliasIndex: 4.652396432933246
+            vlanId: 8.969578798196912
             linkNetworkTechnology: Ethernet
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 8.969578798196912
-            index: 3.0937452626664474
+            redundancyGroupIndex: 3.0205796992916243
+            index: 0.8851374739011653
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 0.8851374739011653
+            pxeEnabled: 6.519180951018382
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 4.652396432933246
+            defaultFabricId: 7.740351818741173
             switchPortId: switchPortId
           - networkDevice: "{}"
             infinibandGuid: infinibandGuid
@@ -98487,36 +98299,37 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 3.353193347011243
+            serverId: 7.143538047012306
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 7.143538047012306
-            supportsIscsiBoot: 7.058770351582356
-            serverInterfaceId: 6.704019297950036
+            capacityMbps: 7.058770351582356
+            supportsIscsiBoot: 0.10263654006109402
+            serverInterfaceId: 3.0937452626664474
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 6.519180951018382
-            vlanId: 0.10263654006109402
+            aliasIndex: 4.652396432933246
+            vlanId: 8.969578798196912
             linkNetworkTechnology: Ethernet
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 8.969578798196912
-            index: 3.0937452626664474
+            redundancyGroupIndex: 3.0205796992916243
+            index: 0.8851374739011653
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 0.8851374739011653
+            pxeEnabled: 6.519180951018382
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 4.652396432933246
+            defaultFabricId: 7.740351818741173
             switchPortId: switchPortId
-          serverCapacityMbps: 6.438423552598547
+          serverCapacityMbps: 6.965117697638846
           processorCount: 5.637376656633329
           serverComments: serverComments
           serverAllocationTimestamp: serverAllocationTimestamp
-          chassisRackId: 6.878052220127876
+          chassisRackId: 6.704019297950036
           mgmtSnmpPort: 4.145608029883936
+          currentFirmwareBaselineId: 4.965218492984954
           powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
           administrationState: managed
           rackName: rackName
@@ -98551,15 +98364,16 @@ components:
         managementAddress: managementAddress
         serverTypeId: 0.8008281904610115
         serverStatus: registering
+        targetFirmwareBaselineId: 1.4658129805029452
         serverComments: serverComments
-        chassisRackId: 5.962133916683182
+        chassisRackId: 5.637376656633329
         tags:
         - tags
         - tags
         serverClass: unknown
         serverCleanupPolicyId: 6.027456183070403
-        registrationProfileId: 1.4658129805029452
-        resourcePoolId: 5.637376656633329
+        registrationProfileId: 5.962133916683182
+        resourcePoolId: 2.3021358869347655
         rackName: rackName
         inventoryId: inventoryId
         rackPositionUpperUnit: rackPositionUpperUnit
@@ -98577,6 +98391,9 @@ components:
           type: string
         serverCleanupPolicyId:
           description: The cleanup policy id of the server.
+          type: number
+        targetFirmwareBaselineId:
+          description: The target firmware baseline id on the server.
           type: number
         registrationProfileId:
           description: The registration profile id of the server.
@@ -99571,7 +99388,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2026-02-26T12:02:04.729Z
+        createdTimestamp: 2026-02-27T16:13:48.737Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -99579,7 +99396,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-02-26T12:02:04.729Z
+        updatedTimestamp: 2026-02-27T16:13:48.737Z
         revision: "1"
       properties:
         id:
@@ -99608,12 +99425,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.729Z
+          example: 2026-02-27T16:13:48.737Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.729Z
+          example: 2026-02-27T16:13:48.737Z
           format: date-time
           type: string
         links:
@@ -99658,7 +99475,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2026-02-26T12:02:04.731Z
+        createdTimestamp: 2026-02-27T16:13:48.739Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -99669,7 +99486,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2026-02-26T12:02:04.731Z
+        updatedTimestamp: 2026-02-27T16:13:48.739Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -99703,12 +99520,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-02-26T12:02:04.731Z
+          example: 2026-02-27T16:13:48.739Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-02-26T12:02:04.731Z
+          example: 2026-02-27T16:13:48.739Z
           format: date-time
           type: string
         allocationInfo:
@@ -99732,7 +99549,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-02-26T12:02:04.731Z
+        - createdTimestamp: 2026-02-27T16:13:48.739Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -99743,10 +99560,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-02-26T12:02:04.731Z
+          updatedTimestamp: 2026-02-27T16:13:48.739Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2026-02-26T12:02:04.731Z
+        - createdTimestamp: 2026-02-27T16:13:48.739Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -99757,7 +99574,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-02-26T12:02:04.731Z
+          updatedTimestamp: 2026-02-27T16:13:48.739Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -99966,7 +99783,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-02-26T12:02:04.729Z
+          createdTimestamp: 2026-02-27T16:13:48.737Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -99974,12 +99791,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-02-26T12:02:04.729Z
+          updatedTimestamp: 2026-02-27T16:13:48.737Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-02-26T12:02:04.729Z
+          createdTimestamp: 2026-02-27T16:13:48.737Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -99987,7 +99804,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-02-26T12:02:04.729Z
+          updatedTimestamp: 2026-02-27T16:13:48.737Z
           revision: "1"
         meta: ""
         links: ""
@@ -101918,6 +101735,7 @@ components:
         inMaintenance: 2.3021358869347655
         managementHost: managementHost
         type: iscsi
+        operationMode: normal
         targetIQN: targetIQN
         options: ""
         drivePriority: 9.301444243932576
@@ -102042,6 +101860,13 @@ components:
           - pending
           - ready
           type: string
+        operationMode:
+          description: "Storage operation mode. If fc_only is set, only fibre channel\
+            \ deployments are allowed."
+          enum:
+          - normal
+          - fc_only
+          type: string
         name:
           description: Name of the storage
           type: string
@@ -102117,6 +101942,7 @@ components:
       - id
       - managementHost
       - name
+      - operationMode
       - revision
       - siteId
       - status
@@ -102137,6 +101963,7 @@ components:
           inMaintenance: 2.3021358869347655
           managementHost: managementHost
           type: iscsi
+          operationMode: normal
           targetIQN: targetIQN
           options: ""
           drivePriority: 9.301444243932576
@@ -102218,6 +102045,7 @@ components:
           inMaintenance: 2.3021358869347655
           managementHost: managementHost
           type: iscsi
+          operationMode: normal
           targetIQN: targetIQN
           options: ""
           drivePriority: 9.301444243932576

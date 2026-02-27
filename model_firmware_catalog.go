@@ -37,8 +37,6 @@ type FirmwareCatalog struct {
 	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
 	// Catalog update type: online or offline
 	UpdateType string `json:"updateType"`
-	// List of supported Metalsoft server types for which firmware binaries are available
-	MetalsoftServerTypesSupported []string `json:"metalsoftServerTypesSupported,omitempty"`
 	// List of supported server types for which firmware binaries are available
 	VendorServerTypesSupported []string `json:"vendorServerTypesSupported,omitempty"`
 	// Vendor configuration
@@ -301,38 +299,6 @@ func (o *FirmwareCatalog) SetUpdateType(v string) {
 	o.UpdateType = v
 }
 
-// GetMetalsoftServerTypesSupported returns the MetalsoftServerTypesSupported field value if set, zero value otherwise.
-func (o *FirmwareCatalog) GetMetalsoftServerTypesSupported() []string {
-	if o == nil || IsNil(o.MetalsoftServerTypesSupported) {
-		var ret []string
-		return ret
-	}
-	return o.MetalsoftServerTypesSupported
-}
-
-// GetMetalsoftServerTypesSupportedOk returns a tuple with the MetalsoftServerTypesSupported field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FirmwareCatalog) GetMetalsoftServerTypesSupportedOk() ([]string, bool) {
-	if o == nil || IsNil(o.MetalsoftServerTypesSupported) {
-		return nil, false
-	}
-	return o.MetalsoftServerTypesSupported, true
-}
-
-// HasMetalsoftServerTypesSupported returns a boolean if a field has been set.
-func (o *FirmwareCatalog) HasMetalsoftServerTypesSupported() bool {
-	if o != nil && !IsNil(o.MetalsoftServerTypesSupported) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetalsoftServerTypesSupported gets a reference to the given []string and assigns it to the MetalsoftServerTypesSupported field.
-func (o *FirmwareCatalog) SetMetalsoftServerTypesSupported(v []string) {
-	o.MetalsoftServerTypesSupported = v
-}
-
 // GetVendorServerTypesSupported returns the VendorServerTypesSupported field value if set, zero value otherwise.
 func (o *FirmwareCatalog) GetVendorServerTypesSupported() []string {
 	if o == nil || IsNil(o.VendorServerTypesSupported) {
@@ -471,9 +437,6 @@ func (o FirmwareCatalog) ToMap() (map[string]interface{}, error) {
 		toSerialize["vendorReleaseTimestamp"] = o.VendorReleaseTimestamp
 	}
 	toSerialize["updateType"] = o.UpdateType
-	if !IsNil(o.MetalsoftServerTypesSupported) {
-		toSerialize["metalsoftServerTypesSupported"] = o.MetalsoftServerTypesSupported
-	}
 	if !IsNil(o.VendorServerTypesSupported) {
 		toSerialize["vendorServerTypesSupported"] = o.VendorServerTypesSupported
 	}
@@ -538,7 +501,6 @@ func (o *FirmwareCatalog) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vendorUrl")
 		delete(additionalProperties, "vendorReleaseTimestamp")
 		delete(additionalProperties, "updateType")
-		delete(additionalProperties, "metalsoftServerTypesSupported")
 		delete(additionalProperties, "vendorServerTypesSupported")
 		delete(additionalProperties, "vendorConfiguration")
 		delete(additionalProperties, "createdTimestamp")

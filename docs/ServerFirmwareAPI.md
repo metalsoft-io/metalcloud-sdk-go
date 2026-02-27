@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**BatchScheduleServerFirmwareUpgrade**](ServerFirmwareAPI.md#BatchScheduleServerFirmwareUpgrade) | **Post** /api/v2/servers/{serverId}/firmware/actions/batch-schedule-upgrade | Schedules a firmware upgrade for the specified Server
 [**FetchAndUpdateServerFirmwareAvailableVersions**](ServerFirmwareAPI.md#FetchAndUpdateServerFirmwareAvailableVersions) | **Post** /api/v2/servers/{serverId}/firmware/actions/fetch-and-update-available-versions | Fetches and updates the available firmware versions for the specified Server
 [**GenerateServersFirmwareUpgradeAudit**](ServerFirmwareAPI.md#GenerateServersFirmwareUpgradeAudit) | **Post** /api/v2/servers/firmware/actions/generate-upgrade-audit | Generates a Firmware Upgrade Audit for the specified Servers
 [**GetServerComponentInfo**](ServerFirmwareAPI.md#GetServerComponentInfo) | **Get** /api/v2/servers/{serverId}/firmware/components/{componentId} | Get Server component information
@@ -16,6 +17,76 @@ Method | HTTP request | Description
 [**UpgradeFirmwareOfServerComponent**](ServerFirmwareAPI.md#UpgradeFirmwareOfServerComponent) | **Post** /api/v2/servers/{serverId}/firmware/components/{serverComponentId}/actions/upgrade | Upgrades the firmware of the specified component on Server
 [**UpgradeFirmwareOfServersBatch**](ServerFirmwareAPI.md#UpgradeFirmwareOfServersBatch) | **Post** /api/v2/servers/firmware/actions/batch-upgrade | Upgrades the firmware of all updatable components on the specified Servers
 
+
+
+## BatchScheduleServerFirmwareUpgrade
+
+> BatchScheduleServerFirmwareUpgrade(ctx, serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
+
+Schedules a firmware upgrade for the specified Server
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := float32(8.14) // float32 | 
+	batchScheduleServerFirmwareUpgrade := *openapiclient.NewBatchScheduleServerFirmwareUpgrade([]float32{float32(123)}) // BatchScheduleServerFirmwareUpgrade | The Schedule Firmware Upgrade object
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBatchScheduleServerFirmwareUpgradeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **batchScheduleServerFirmwareUpgrade** | [**BatchScheduleServerFirmwareUpgrade**](BatchScheduleServerFirmwareUpgrade.md) | The Schedule Firmware Upgrade object | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## FetchAndUpdateServerFirmwareAvailableVersions

@@ -8,14 +8,12 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Catalog** | Pointer to **[]string** |  | [optional] 
-**Level** | [**BaselineLevelType**](BaselineLevelType.md) |  | 
-**LevelFilter** | **[]string** | Array of filter values. For datacenter/serverType/osTemplate: array of strings (e.g., [\&quot;datacenter1\&quot;, \&quot;datacenter2\&quot;]). For vendorModel: array of objects with vendor and model properties (e.g., [{ vendor: \&quot;Dell\&quot;, model: \&quot;R740\&quot; }, { vendor: \&quot;HPE\&quot;, model: \&quot;*\&quot; }]). Use \&quot;*\&quot; for wildcards. | 
 
 ## Methods
 
 ### NewFirmwareBaseline
 
-`func NewFirmwareBaseline(id float32, name string, level BaselineLevelType, levelFilter []string, ) *FirmwareBaseline`
+`func NewFirmwareBaseline(id float32, name string, ) *FirmwareBaseline`
 
 NewFirmwareBaseline instantiates a new FirmwareBaseline object
 This constructor will assign default values to properties that have it defined,
@@ -119,46 +117,6 @@ SetCatalog sets Catalog field to given value.
 `func (o *FirmwareBaseline) HasCatalog() bool`
 
 HasCatalog returns a boolean if a field has been set.
-
-### GetLevel
-
-`func (o *FirmwareBaseline) GetLevel() BaselineLevelType`
-
-GetLevel returns the Level field if non-nil, zero value otherwise.
-
-### GetLevelOk
-
-`func (o *FirmwareBaseline) GetLevelOk() (*BaselineLevelType, bool)`
-
-GetLevelOk returns a tuple with the Level field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLevel
-
-`func (o *FirmwareBaseline) SetLevel(v BaselineLevelType)`
-
-SetLevel sets Level field to given value.
-
-
-### GetLevelFilter
-
-`func (o *FirmwareBaseline) GetLevelFilter() []string`
-
-GetLevelFilter returns the LevelFilter field if non-nil, zero value otherwise.
-
-### GetLevelFilterOk
-
-`func (o *FirmwareBaseline) GetLevelFilterOk() (*[]string, bool)`
-
-GetLevelFilterOk returns a tuple with the LevelFilter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLevelFilter
-
-`func (o *FirmwareBaseline) SetLevelFilter(v []string)`
-
-SetLevelFilter sets LevelFilter field to given value.
-
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

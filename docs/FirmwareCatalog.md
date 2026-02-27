@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **VendorUrl** | Pointer to **string** | Vendor URL for the firmware catalog | [optional] 
 **VendorReleaseTimestamp** | Pointer to **string** | Vendor release timestamp for the catalog | [optional] 
 **UpdateType** | **string** | Catalog update type: online or offline | [default to "online"]
-**MetalsoftServerTypesSupported** | Pointer to **[]string** | List of supported Metalsoft server types for which firmware binaries are available | [optional] 
 **VendorServerTypesSupported** | Pointer to **[]string** | List of supported server types for which firmware binaries are available | [optional] 
 **VendorConfiguration** | Pointer to **map[string]interface{}** | Vendor configuration | [optional] 
 **CreatedTimestamp** | **string** | Timestamp when the catalog was created | 
@@ -216,31 +215,6 @@ and a boolean to check if the value has been set.
 
 SetUpdateType sets UpdateType field to given value.
 
-
-### GetMetalsoftServerTypesSupported
-
-`func (o *FirmwareCatalog) GetMetalsoftServerTypesSupported() []string`
-
-GetMetalsoftServerTypesSupported returns the MetalsoftServerTypesSupported field if non-nil, zero value otherwise.
-
-### GetMetalsoftServerTypesSupportedOk
-
-`func (o *FirmwareCatalog) GetMetalsoftServerTypesSupportedOk() (*[]string, bool)`
-
-GetMetalsoftServerTypesSupportedOk returns a tuple with the MetalsoftServerTypesSupported field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetalsoftServerTypesSupported
-
-`func (o *FirmwareCatalog) SetMetalsoftServerTypesSupported(v []string)`
-
-SetMetalsoftServerTypesSupported sets MetalsoftServerTypesSupported field to given value.
-
-### HasMetalsoftServerTypesSupported
-
-`func (o *FirmwareCatalog) HasMetalsoftServerTypesSupported() bool`
-
-HasMetalsoftServerTypesSupported returns a boolean if a field has been set.
 
 ### GetVendorServerTypesSupported
 

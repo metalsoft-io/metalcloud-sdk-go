@@ -563,6 +563,7 @@ Class | Method | HTTP request | Description
 *ServerDefaultCredentialsAPI* | [**GetServerDefaultCredentialsInfo**](docs/ServerDefaultCredentialsAPI.md#getserverdefaultcredentialsinfo) | **Get** /api/v2/servers/default-credentials/{serverDefaultCredentialsId} | Get Server Default Credentials information
 *ServerDefaultCredentialsAPI* | [**GetServersDefaultCredentials**](docs/ServerDefaultCredentialsAPI.md#getserversdefaultcredentials) | **Get** /api/v2/servers/default-credentials | Get a list of Server Default Credentials
 *ServerDefaultCredentialsAPI* | [**UpdateServerDefaultCredentials**](docs/ServerDefaultCredentialsAPI.md#updateserverdefaultcredentials) | **Patch** /api/v2/servers/default-credentials/{serverDefaultCredentialsId} | Updates a Server Default Credentials
+*ServerFirmwareAPI* | [**BatchScheduleServerFirmwareUpgrade**](docs/ServerFirmwareAPI.md#batchscheduleserverfirmwareupgrade) | **Post** /api/v2/servers/{serverId}/firmware/actions/batch-schedule-upgrade | Schedules a firmware upgrade for the specified Server
 *ServerFirmwareAPI* | [**FetchAndUpdateServerFirmwareAvailableVersions**](docs/ServerFirmwareAPI.md#fetchandupdateserverfirmwareavailableversions) | **Post** /api/v2/servers/{serverId}/firmware/actions/fetch-and-update-available-versions | Fetches and updates the available firmware versions for the specified Server
 *ServerFirmwareAPI* | [**GenerateServersFirmwareUpgradeAudit**](docs/ServerFirmwareAPI.md#generateserversfirmwareupgradeaudit) | **Post** /api/v2/servers/firmware/actions/generate-upgrade-audit | Generates a Firmware Upgrade Audit for the specified Servers
 *ServerFirmwareAPI* | [**GetServerComponentInfo**](docs/ServerFirmwareAPI.md#getservercomponentinfo) | **Get** /api/v2/servers/{serverId}/firmware/components/{componentId} | Get Server component information
@@ -820,8 +821,7 @@ Class | Method | HTTP request | Description
  - [AutoVlanAllocationStrategy](docs/AutoVlanAllocationStrategy.md)
  - [AutoVniAllocationStrategy](docs/AutoVniAllocationStrategy.md)
  - [AutoZoneAllocationStrategy](docs/AutoZoneAllocationStrategy.md)
- - [BaselineFilter](docs/BaselineFilter.md)
- - [BaselineLevelType](docs/BaselineLevelType.md)
+ - [BatchScheduleServerFirmwareUpgrade](docs/BatchScheduleServerFirmwareUpgrade.md)
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
  - [BatchServerFirmwareUpgradeResponse](docs/BatchServerFirmwareUpgradeResponse.md)
  - [BgpNumberingType](docs/BgpNumberingType.md)

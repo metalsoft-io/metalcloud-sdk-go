@@ -22,7 +22,7 @@ var _ MappedNullable = &SearchFirmwareBinary{}
 // SearchFirmwareBinary struct for SearchFirmwareBinary
 type SearchFirmwareBinary struct {
 	Vendor ServerFirmwareCatalogVendor `json:"vendor"`
-	BaselineFilter BaselineFilter `json:"baselineFilter"`
+	BaselineIds []string `json:"baselineIds,omitempty"`
 	ServerComponentFilter *SearchFirmwareBinaryServerComponentFilter `json:"serverComponentFilter,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -33,10 +33,9 @@ type _SearchFirmwareBinary SearchFirmwareBinary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSearchFirmwareBinary(vendor ServerFirmwareCatalogVendor, baselineFilter BaselineFilter) *SearchFirmwareBinary {
+func NewSearchFirmwareBinary(vendor ServerFirmwareCatalogVendor) *SearchFirmwareBinary {
 	this := SearchFirmwareBinary{}
 	this.Vendor = vendor
-	this.BaselineFilter = baselineFilter
 	return &this
 }
 
@@ -72,28 +71,36 @@ func (o *SearchFirmwareBinary) SetVendor(v ServerFirmwareCatalogVendor) {
 	o.Vendor = v
 }
 
-// GetBaselineFilter returns the BaselineFilter field value
-func (o *SearchFirmwareBinary) GetBaselineFilter() BaselineFilter {
-	if o == nil {
-		var ret BaselineFilter
+// GetBaselineIds returns the BaselineIds field value if set, zero value otherwise.
+func (o *SearchFirmwareBinary) GetBaselineIds() []string {
+	if o == nil || IsNil(o.BaselineIds) {
+		var ret []string
 		return ret
 	}
-
-	return o.BaselineFilter
+	return o.BaselineIds
 }
 
-// GetBaselineFilterOk returns a tuple with the BaselineFilter field value
+// GetBaselineIdsOk returns a tuple with the BaselineIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchFirmwareBinary) GetBaselineFilterOk() (*BaselineFilter, bool) {
-	if o == nil {
+func (o *SearchFirmwareBinary) GetBaselineIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.BaselineIds) {
 		return nil, false
 	}
-	return &o.BaselineFilter, true
+	return o.BaselineIds, true
 }
 
-// SetBaselineFilter sets field value
-func (o *SearchFirmwareBinary) SetBaselineFilter(v BaselineFilter) {
-	o.BaselineFilter = v
+// HasBaselineIds returns a boolean if a field has been set.
+func (o *SearchFirmwareBinary) HasBaselineIds() bool {
+	if o != nil && !IsNil(o.BaselineIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetBaselineIds gets a reference to the given []string and assigns it to the BaselineIds field.
+func (o *SearchFirmwareBinary) SetBaselineIds(v []string) {
+	o.BaselineIds = v
 }
 
 // GetServerComponentFilter returns the ServerComponentFilter field value if set, zero value otherwise.
@@ -139,7 +146,9 @@ func (o SearchFirmwareBinary) MarshalJSON() ([]byte, error) {
 func (o SearchFirmwareBinary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["vendor"] = o.Vendor
-	toSerialize["baselineFilter"] = o.BaselineFilter
+	if !IsNil(o.BaselineIds) {
+		toSerialize["baselineIds"] = o.BaselineIds
+	}
 	if !IsNil(o.ServerComponentFilter) {
 		toSerialize["serverComponentFilter"] = o.ServerComponentFilter
 	}
@@ -157,7 +166,6 @@ func (o *SearchFirmwareBinary) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"vendor",
-		"baselineFilter",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -188,7 +196,7 @@ func (o *SearchFirmwareBinary) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "vendor")
-		delete(additionalProperties, "baselineFilter")
+		delete(additionalProperties, "baselineIds")
 		delete(additionalProperties, "serverComponentFilter")
 		o.AdditionalProperties = additionalProperties
 	}

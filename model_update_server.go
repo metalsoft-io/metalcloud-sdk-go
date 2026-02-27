@@ -28,6 +28,8 @@ type UpdateServer struct {
 	Username *string `json:"username,omitempty"`
 	// The cleanup policy id of the server.
 	ServerCleanupPolicyId *float32 `json:"serverCleanupPolicyId,omitempty"`
+	// The target firmware baseline id on the server.
+	TargetFirmwareBaselineId *float32 `json:"targetFirmwareBaselineId,omitempty"`
 	// The registration profile id of the server.
 	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
 	// The comments of the server.
@@ -198,6 +200,38 @@ func (o *UpdateServer) HasServerCleanupPolicyId() bool {
 // SetServerCleanupPolicyId gets a reference to the given float32 and assigns it to the ServerCleanupPolicyId field.
 func (o *UpdateServer) SetServerCleanupPolicyId(v float32) {
 	o.ServerCleanupPolicyId = &v
+}
+
+// GetTargetFirmwareBaselineId returns the TargetFirmwareBaselineId field value if set, zero value otherwise.
+func (o *UpdateServer) GetTargetFirmwareBaselineId() float32 {
+	if o == nil || IsNil(o.TargetFirmwareBaselineId) {
+		var ret float32
+		return ret
+	}
+	return *o.TargetFirmwareBaselineId
+}
+
+// GetTargetFirmwareBaselineIdOk returns a tuple with the TargetFirmwareBaselineId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServer) GetTargetFirmwareBaselineIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.TargetFirmwareBaselineId) {
+		return nil, false
+	}
+	return o.TargetFirmwareBaselineId, true
+}
+
+// HasTargetFirmwareBaselineId returns a boolean if a field has been set.
+func (o *UpdateServer) HasTargetFirmwareBaselineId() bool {
+	if o != nil && !IsNil(o.TargetFirmwareBaselineId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetFirmwareBaselineId gets a reference to the given float32 and assigns it to the TargetFirmwareBaselineId field.
+func (o *UpdateServer) SetTargetFirmwareBaselineId(v float32) {
+	o.TargetFirmwareBaselineId = &v
 }
 
 // GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
@@ -574,6 +608,9 @@ func (o UpdateServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerCleanupPolicyId) {
 		toSerialize["serverCleanupPolicyId"] = o.ServerCleanupPolicyId
 	}
+	if !IsNil(o.TargetFirmwareBaselineId) {
+		toSerialize["targetFirmwareBaselineId"] = o.TargetFirmwareBaselineId
+	}
 	if !IsNil(o.RegistrationProfileId) {
 		toSerialize["registrationProfileId"] = o.RegistrationProfileId
 	}
@@ -633,6 +670,7 @@ func (o *UpdateServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementAddress")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "serverCleanupPolicyId")
+		delete(additionalProperties, "targetFirmwareBaselineId")
 		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "serverComments")
 		delete(additionalProperties, "chassisRackId")

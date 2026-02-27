@@ -24,14 +24,8 @@ type UpdateFirmwareBaseline struct {
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
 	Catalog []string `json:"catalog,omitempty"`
-	// Level type: datacenter, serverType, osTemplate for infrastructure-based baselines, or vendorModel for hardware-based baselines
-	Level BaselineLevelType `json:"level"`
-	// Array of filter values. For datacenter/serverType/osTemplate: array of strings (e.g., [\"datacenter1\", \"datacenter2\"]). For vendorModel: array of objects with vendor and model properties (e.g., [{ vendor: \"Dell\", model: \"R740\" }, { vendor: \"HPE\", model: \"*\" }]). Use \"*\" for wildcards.
-	LevelFilter []string `json:"levelFilter"`
 	// Array of minimum firmware version requirements for this baseline
 	MinimumVersions []FirmwareMinimumVersion `json:"minimumVersions,omitempty"`
-	// Whether to apply this baseline during server registration process
-	ApplyOnServerRegistration *bool `json:"applyOnServerRegistration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,11 +35,9 @@ type _UpdateFirmwareBaseline UpdateFirmwareBaseline
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateFirmwareBaseline(name string, level BaselineLevelType, levelFilter []string) *UpdateFirmwareBaseline {
+func NewUpdateFirmwareBaseline(name string) *UpdateFirmwareBaseline {
 	this := UpdateFirmwareBaseline{}
 	this.Name = name
-	this.Level = level
-	this.LevelFilter = levelFilter
 	return &this
 }
 
@@ -145,54 +137,6 @@ func (o *UpdateFirmwareBaseline) SetCatalog(v []string) {
 	o.Catalog = v
 }
 
-// GetLevel returns the Level field value
-func (o *UpdateFirmwareBaseline) GetLevel() BaselineLevelType {
-	if o == nil {
-		var ret BaselineLevelType
-		return ret
-	}
-
-	return o.Level
-}
-
-// GetLevelOk returns a tuple with the Level field value
-// and a boolean to check if the value has been set.
-func (o *UpdateFirmwareBaseline) GetLevelOk() (*BaselineLevelType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Level, true
-}
-
-// SetLevel sets field value
-func (o *UpdateFirmwareBaseline) SetLevel(v BaselineLevelType) {
-	o.Level = v
-}
-
-// GetLevelFilter returns the LevelFilter field value
-func (o *UpdateFirmwareBaseline) GetLevelFilter() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.LevelFilter
-}
-
-// GetLevelFilterOk returns a tuple with the LevelFilter field value
-// and a boolean to check if the value has been set.
-func (o *UpdateFirmwareBaseline) GetLevelFilterOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LevelFilter, true
-}
-
-// SetLevelFilter sets field value
-func (o *UpdateFirmwareBaseline) SetLevelFilter(v []string) {
-	o.LevelFilter = v
-}
-
 // GetMinimumVersions returns the MinimumVersions field value if set, zero value otherwise.
 func (o *UpdateFirmwareBaseline) GetMinimumVersions() []FirmwareMinimumVersion {
 	if o == nil || IsNil(o.MinimumVersions) {
@@ -225,38 +169,6 @@ func (o *UpdateFirmwareBaseline) SetMinimumVersions(v []FirmwareMinimumVersion) 
 	o.MinimumVersions = v
 }
 
-// GetApplyOnServerRegistration returns the ApplyOnServerRegistration field value if set, zero value otherwise.
-func (o *UpdateFirmwareBaseline) GetApplyOnServerRegistration() bool {
-	if o == nil || IsNil(o.ApplyOnServerRegistration) {
-		var ret bool
-		return ret
-	}
-	return *o.ApplyOnServerRegistration
-}
-
-// GetApplyOnServerRegistrationOk returns a tuple with the ApplyOnServerRegistration field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateFirmwareBaseline) GetApplyOnServerRegistrationOk() (*bool, bool) {
-	if o == nil || IsNil(o.ApplyOnServerRegistration) {
-		return nil, false
-	}
-	return o.ApplyOnServerRegistration, true
-}
-
-// HasApplyOnServerRegistration returns a boolean if a field has been set.
-func (o *UpdateFirmwareBaseline) HasApplyOnServerRegistration() bool {
-	if o != nil && !IsNil(o.ApplyOnServerRegistration) {
-		return true
-	}
-
-	return false
-}
-
-// SetApplyOnServerRegistration gets a reference to the given bool and assigns it to the ApplyOnServerRegistration field.
-func (o *UpdateFirmwareBaseline) SetApplyOnServerRegistration(v bool) {
-	o.ApplyOnServerRegistration = &v
-}
-
 func (o UpdateFirmwareBaseline) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -274,13 +186,8 @@ func (o UpdateFirmwareBaseline) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Catalog) {
 		toSerialize["catalog"] = o.Catalog
 	}
-	toSerialize["level"] = o.Level
-	toSerialize["levelFilter"] = o.LevelFilter
 	if !IsNil(o.MinimumVersions) {
 		toSerialize["minimumVersions"] = o.MinimumVersions
-	}
-	if !IsNil(o.ApplyOnServerRegistration) {
-		toSerialize["applyOnServerRegistration"] = o.ApplyOnServerRegistration
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -296,8 +203,6 @@ func (o *UpdateFirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"level",
-		"levelFilter",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -330,10 +235,7 @@ func (o *UpdateFirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "catalog")
-		delete(additionalProperties, "level")
-		delete(additionalProperties, "levelFilter")
 		delete(additionalProperties, "minimumVersions")
-		delete(additionalProperties, "applyOnServerRegistration")
 		o.AdditionalProperties = additionalProperties
 	}
 

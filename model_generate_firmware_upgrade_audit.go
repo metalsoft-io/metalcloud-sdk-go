@@ -26,14 +26,6 @@ type GenerateFirmwareUpgradeAudit struct {
 	VendorPattern *string `json:"vendorPattern,omitempty"`
 	// Model name pattern with wildcards to match servers (e.g., \"DL360*\", \"*Gen10\", \"PowerEdge.*\"). Used with vendorPattern. Cannot be used with serverIds.
 	ModelPattern *string `json:"modelPattern,omitempty"`
-	// Filter the available firmware upgrades using the specified baseline id.
-	BaselineId *float32 `json:"baselineId,omitempty"`
-	// Filter the available firmware upgrades using the specified os template label.
-	OsTemplateLabel *string `json:"osTemplateLabel,omitempty"`
-	// Filter the available firmware upgrades using the specified server type name.
-	ServerTypeName *string `json:"serverTypeName,omitempty"`
-	// Filter the available firmware upgrades using the specified site id.
-	SiteId *float32 `json:"siteId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -152,134 +144,6 @@ func (o *GenerateFirmwareUpgradeAudit) SetModelPattern(v string) {
 	o.ModelPattern = &v
 }
 
-// GetBaselineId returns the BaselineId field value if set, zero value otherwise.
-func (o *GenerateFirmwareUpgradeAudit) GetBaselineId() float32 {
-	if o == nil || IsNil(o.BaselineId) {
-		var ret float32
-		return ret
-	}
-	return *o.BaselineId
-}
-
-// GetBaselineIdOk returns a tuple with the BaselineId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GenerateFirmwareUpgradeAudit) GetBaselineIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.BaselineId) {
-		return nil, false
-	}
-	return o.BaselineId, true
-}
-
-// HasBaselineId returns a boolean if a field has been set.
-func (o *GenerateFirmwareUpgradeAudit) HasBaselineId() bool {
-	if o != nil && !IsNil(o.BaselineId) {
-		return true
-	}
-
-	return false
-}
-
-// SetBaselineId gets a reference to the given float32 and assigns it to the BaselineId field.
-func (o *GenerateFirmwareUpgradeAudit) SetBaselineId(v float32) {
-	o.BaselineId = &v
-}
-
-// GetOsTemplateLabel returns the OsTemplateLabel field value if set, zero value otherwise.
-func (o *GenerateFirmwareUpgradeAudit) GetOsTemplateLabel() string {
-	if o == nil || IsNil(o.OsTemplateLabel) {
-		var ret string
-		return ret
-	}
-	return *o.OsTemplateLabel
-}
-
-// GetOsTemplateLabelOk returns a tuple with the OsTemplateLabel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GenerateFirmwareUpgradeAudit) GetOsTemplateLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.OsTemplateLabel) {
-		return nil, false
-	}
-	return o.OsTemplateLabel, true
-}
-
-// HasOsTemplateLabel returns a boolean if a field has been set.
-func (o *GenerateFirmwareUpgradeAudit) HasOsTemplateLabel() bool {
-	if o != nil && !IsNil(o.OsTemplateLabel) {
-		return true
-	}
-
-	return false
-}
-
-// SetOsTemplateLabel gets a reference to the given string and assigns it to the OsTemplateLabel field.
-func (o *GenerateFirmwareUpgradeAudit) SetOsTemplateLabel(v string) {
-	o.OsTemplateLabel = &v
-}
-
-// GetServerTypeName returns the ServerTypeName field value if set, zero value otherwise.
-func (o *GenerateFirmwareUpgradeAudit) GetServerTypeName() string {
-	if o == nil || IsNil(o.ServerTypeName) {
-		var ret string
-		return ret
-	}
-	return *o.ServerTypeName
-}
-
-// GetServerTypeNameOk returns a tuple with the ServerTypeName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GenerateFirmwareUpgradeAudit) GetServerTypeNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerTypeName) {
-		return nil, false
-	}
-	return o.ServerTypeName, true
-}
-
-// HasServerTypeName returns a boolean if a field has been set.
-func (o *GenerateFirmwareUpgradeAudit) HasServerTypeName() bool {
-	if o != nil && !IsNil(o.ServerTypeName) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerTypeName gets a reference to the given string and assigns it to the ServerTypeName field.
-func (o *GenerateFirmwareUpgradeAudit) SetServerTypeName(v string) {
-	o.ServerTypeName = &v
-}
-
-// GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *GenerateFirmwareUpgradeAudit) GetSiteId() float32 {
-	if o == nil || IsNil(o.SiteId) {
-		var ret float32
-		return ret
-	}
-	return *o.SiteId
-}
-
-// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GenerateFirmwareUpgradeAudit) GetSiteIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.SiteId) {
-		return nil, false
-	}
-	return o.SiteId, true
-}
-
-// HasSiteId returns a boolean if a field has been set.
-func (o *GenerateFirmwareUpgradeAudit) HasSiteId() bool {
-	if o != nil && !IsNil(o.SiteId) {
-		return true
-	}
-
-	return false
-}
-
-// SetSiteId gets a reference to the given float32 and assigns it to the SiteId field.
-func (o *GenerateFirmwareUpgradeAudit) SetSiteId(v float32) {
-	o.SiteId = &v
-}
-
 func (o GenerateFirmwareUpgradeAudit) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -298,18 +162,6 @@ func (o GenerateFirmwareUpgradeAudit) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ModelPattern) {
 		toSerialize["modelPattern"] = o.ModelPattern
-	}
-	if !IsNil(o.BaselineId) {
-		toSerialize["baselineId"] = o.BaselineId
-	}
-	if !IsNil(o.OsTemplateLabel) {
-		toSerialize["osTemplateLabel"] = o.OsTemplateLabel
-	}
-	if !IsNil(o.ServerTypeName) {
-		toSerialize["serverTypeName"] = o.ServerTypeName
-	}
-	if !IsNil(o.SiteId) {
-		toSerialize["siteId"] = o.SiteId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -336,10 +188,6 @@ func (o *GenerateFirmwareUpgradeAudit) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverIds")
 		delete(additionalProperties, "vendorPattern")
 		delete(additionalProperties, "modelPattern")
-		delete(additionalProperties, "baselineId")
-		delete(additionalProperties, "osTemplateLabel")
-		delete(additionalProperties, "serverTypeName")
-		delete(additionalProperties, "siteId")
 		o.AdditionalProperties = additionalProperties
 	}
 

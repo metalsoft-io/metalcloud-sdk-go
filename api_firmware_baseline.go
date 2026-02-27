@@ -335,8 +335,6 @@ type FirmwareBaselineAPIGetFirmwareBaselinesRequest struct {
 	ApiService *FirmwareBaselineAPIService
 	page *float32
 	limit *float32
-	filterLevel *[]string
-	filterLevelFilter *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -355,18 +353,6 @@ func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) Limit(limit float32) Fir
 	return r
 }
 
-// Filter by level query param.  **Format:** filter.level&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.level&#x3D;$btw:John Doe&amp;filter.level&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) FilterLevel(filterLevel []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
-	r.filterLevel = &filterLevel
-	return r
-}
-
-// Filter by levelFilter query param.  **Format:** filter.levelFilter&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.levelFilter&#x3D;$btw:John Doe&amp;filter.levelFilter&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) FilterLevelFilter(filterLevelFilter []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
-	r.filterLevelFilter = &filterLevelFilter
-	return r
-}
-
 // Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name 
 func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) SortBy(sortBy []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
 	r.sortBy = &sortBy
@@ -379,13 +365,13 @@ func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) Search(search string) Fi
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name,levelFilter   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - levelFilter 
+// List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name 
 func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) SearchBy(searchBy []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.  **Example:** id,name,description,catalog,level   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
+// List of fields to select.  **Example:** id,name,description,catalog,createdTimestamp   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
 func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) Select_(select_ string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
 	r.select_ = &select_
 	return r
@@ -436,28 +422,6 @@ func (a *FirmwareBaselineAPIService) GetFirmwareBaselinesExecute(r FirmwareBasel
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	}
-	if r.filterLevel != nil {
-		t := *r.filterLevel
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.level", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.level", t, "form", "multi")
-		}
-	}
-	if r.filterLevelFilter != nil {
-		t := *r.filterLevelFilter
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.levelFilter", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.levelFilter", t, "form", "multi")
-		}
 	}
 	if r.sortBy != nil {
 		t := *r.sortBy

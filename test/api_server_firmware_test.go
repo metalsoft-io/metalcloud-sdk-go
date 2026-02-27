@@ -22,6 +22,19 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test ServerFirmwareAPIService BatchScheduleServerFirmwareUpgrade", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverId float32
+
+		httpRes, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerFirmwareAPIService FetchAndUpdateServerFirmwareAvailableVersions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

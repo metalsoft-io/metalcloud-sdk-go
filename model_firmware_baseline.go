@@ -26,9 +26,6 @@ type FirmwareBaseline struct {
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
 	Catalog []string `json:"catalog,omitempty"`
-	Level BaselineLevelType `json:"level"`
-	// Array of filter values. For datacenter/serverType/osTemplate: array of strings (e.g., [\"datacenter1\", \"datacenter2\"]). For vendorModel: array of objects with vendor and model properties (e.g., [{ vendor: \"Dell\", model: \"R740\" }, { vendor: \"HPE\", model: \"*\" }]). Use \"*\" for wildcards.
-	LevelFilter []string `json:"levelFilter"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,12 +35,10 @@ type _FirmwareBaseline FirmwareBaseline
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBaseline(id float32, name string, level BaselineLevelType, levelFilter []string) *FirmwareBaseline {
+func NewFirmwareBaseline(id float32, name string) *FirmwareBaseline {
 	this := FirmwareBaseline{}
 	this.Id = id
 	this.Name = name
-	this.Level = level
-	this.LevelFilter = levelFilter
 	return &this
 }
 
@@ -167,54 +162,6 @@ func (o *FirmwareBaseline) SetCatalog(v []string) {
 	o.Catalog = v
 }
 
-// GetLevel returns the Level field value
-func (o *FirmwareBaseline) GetLevel() BaselineLevelType {
-	if o == nil {
-		var ret BaselineLevelType
-		return ret
-	}
-
-	return o.Level
-}
-
-// GetLevelOk returns a tuple with the Level field value
-// and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetLevelOk() (*BaselineLevelType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Level, true
-}
-
-// SetLevel sets field value
-func (o *FirmwareBaseline) SetLevel(v BaselineLevelType) {
-	o.Level = v
-}
-
-// GetLevelFilter returns the LevelFilter field value
-func (o *FirmwareBaseline) GetLevelFilter() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.LevelFilter
-}
-
-// GetLevelFilterOk returns a tuple with the LevelFilter field value
-// and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetLevelFilterOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LevelFilter, true
-}
-
-// SetLevelFilter sets field value
-func (o *FirmwareBaseline) SetLevelFilter(v []string) {
-	o.LevelFilter = v
-}
-
 func (o FirmwareBaseline) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -233,8 +180,6 @@ func (o FirmwareBaseline) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Catalog) {
 		toSerialize["catalog"] = o.Catalog
 	}
-	toSerialize["level"] = o.Level
-	toSerialize["levelFilter"] = o.LevelFilter
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -250,8 +195,6 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
-		"level",
-		"levelFilter",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -285,8 +228,6 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "catalog")
-		delete(additionalProperties, "level")
-		delete(additionalProperties, "levelFilter")
 		o.AdditionalProperties = additionalProperties
 	}
 
