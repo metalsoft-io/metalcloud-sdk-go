@@ -26,6 +26,8 @@ type CreateRouteDomain struct {
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	Kind RouteDomainKind `json:"kind"`
 	VrfAllocationStrategies []CreateVrfAllocationStrategy `json:"vrfAllocationStrategies"`
+	// If true, VRFs belonging to this route domain will not be deleted from switches during cleanup.
+	PreventVrfCleanup *bool `json:"preventVrfCleanup,omitempty"`
 	L3VlanAllocationStrategies []CreateVlanAllocationStrategy `json:"l3VlanAllocationStrategies,omitempty"`
 	L3VniAllocationStrategies []CreateVniAllocationStrategy `json:"l3VniAllocationStrategies,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -41,6 +43,8 @@ func NewCreateRouteDomain(kind RouteDomainKind, vrfAllocationStrategies []Create
 	this := CreateRouteDomain{}
 	this.Kind = kind
 	this.VrfAllocationStrategies = vrfAllocationStrategies
+	var preventVrfCleanup bool = false
+	this.PreventVrfCleanup = &preventVrfCleanup
 	return &this
 }
 
@@ -49,6 +53,8 @@ func NewCreateRouteDomain(kind RouteDomainKind, vrfAllocationStrategies []Create
 // but it doesn't guarantee that properties required by API are set
 func NewCreateRouteDomainWithDefaults() *CreateRouteDomain {
 	this := CreateRouteDomain{}
+	var preventVrfCleanup bool = false
+	this.PreventVrfCleanup = &preventVrfCleanup
 	return &this
 }
 
@@ -196,6 +202,38 @@ func (o *CreateRouteDomain) SetVrfAllocationStrategies(v []CreateVrfAllocationSt
 	o.VrfAllocationStrategies = v
 }
 
+// GetPreventVrfCleanup returns the PreventVrfCleanup field value if set, zero value otherwise.
+func (o *CreateRouteDomain) GetPreventVrfCleanup() bool {
+	if o == nil || IsNil(o.PreventVrfCleanup) {
+		var ret bool
+		return ret
+	}
+	return *o.PreventVrfCleanup
+}
+
+// GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateRouteDomain) GetPreventVrfCleanupOk() (*bool, bool) {
+	if o == nil || IsNil(o.PreventVrfCleanup) {
+		return nil, false
+	}
+	return o.PreventVrfCleanup, true
+}
+
+// HasPreventVrfCleanup returns a boolean if a field has been set.
+func (o *CreateRouteDomain) HasPreventVrfCleanup() bool {
+	if o != nil && !IsNil(o.PreventVrfCleanup) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreventVrfCleanup gets a reference to the given bool and assigns it to the PreventVrfCleanup field.
+func (o *CreateRouteDomain) SetPreventVrfCleanup(v bool) {
+	o.PreventVrfCleanup = &v
+}
+
 // GetL3VlanAllocationStrategies returns the L3VlanAllocationStrategies field value if set, zero value otherwise.
 func (o *CreateRouteDomain) GetL3VlanAllocationStrategies() []CreateVlanAllocationStrategy {
 	if o == nil || IsNil(o.L3VlanAllocationStrategies) {
@@ -281,6 +319,9 @@ func (o CreateRouteDomain) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["kind"] = o.Kind
 	toSerialize["vrfAllocationStrategies"] = o.VrfAllocationStrategies
+	if !IsNil(o.PreventVrfCleanup) {
+		toSerialize["preventVrfCleanup"] = o.PreventVrfCleanup
+	}
 	if !IsNil(o.L3VlanAllocationStrategies) {
 		toSerialize["l3VlanAllocationStrategies"] = o.L3VlanAllocationStrategies
 	}
@@ -336,6 +377,7 @@ func (o *CreateRouteDomain) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "annotations")
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "vrfAllocationStrategies")
+		delete(additionalProperties, "preventVrfCleanup")
 		delete(additionalProperties, "l3VlanAllocationStrategies")
 		delete(additionalProperties, "l3VniAllocationStrategies")
 		o.AdditionalProperties = additionalProperties

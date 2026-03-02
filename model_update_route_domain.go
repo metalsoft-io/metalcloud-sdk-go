@@ -23,6 +23,8 @@ type UpdateRouteDomain struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
+	// If true, VRFs belonging to this route domain will not be deleted from switches during cleanup.
+	PreventVrfCleanup *bool `json:"preventVrfCleanup,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,6 +36,8 @@ type _UpdateRouteDomain UpdateRouteDomain
 // will change when the set of required properties is changed
 func NewUpdateRouteDomain() *UpdateRouteDomain {
 	this := UpdateRouteDomain{}
+	var preventVrfCleanup bool = false
+	this.PreventVrfCleanup = &preventVrfCleanup
 	return &this
 }
 
@@ -42,6 +46,8 @@ func NewUpdateRouteDomain() *UpdateRouteDomain {
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateRouteDomainWithDefaults() *UpdateRouteDomain {
 	this := UpdateRouteDomain{}
+	var preventVrfCleanup bool = false
+	this.PreventVrfCleanup = &preventVrfCleanup
 	return &this
 }
 
@@ -141,6 +147,38 @@ func (o *UpdateRouteDomain) SetAnnotations(v map[string]string) {
 	o.Annotations = &v
 }
 
+// GetPreventVrfCleanup returns the PreventVrfCleanup field value if set, zero value otherwise.
+func (o *UpdateRouteDomain) GetPreventVrfCleanup() bool {
+	if o == nil || IsNil(o.PreventVrfCleanup) {
+		var ret bool
+		return ret
+	}
+	return *o.PreventVrfCleanup
+}
+
+// GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateRouteDomain) GetPreventVrfCleanupOk() (*bool, bool) {
+	if o == nil || IsNil(o.PreventVrfCleanup) {
+		return nil, false
+	}
+	return o.PreventVrfCleanup, true
+}
+
+// HasPreventVrfCleanup returns a boolean if a field has been set.
+func (o *UpdateRouteDomain) HasPreventVrfCleanup() bool {
+	if o != nil && !IsNil(o.PreventVrfCleanup) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreventVrfCleanup gets a reference to the given bool and assigns it to the PreventVrfCleanup field.
+func (o *UpdateRouteDomain) SetPreventVrfCleanup(v bool) {
+	o.PreventVrfCleanup = &v
+}
+
 func (o UpdateRouteDomain) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -159,6 +197,9 @@ func (o UpdateRouteDomain) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Annotations) {
 		toSerialize["annotations"] = o.Annotations
+	}
+	if !IsNil(o.PreventVrfCleanup) {
+		toSerialize["preventVrfCleanup"] = o.PreventVrfCleanup
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -185,6 +226,7 @@ func (o *UpdateRouteDomain) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "preventVrfCleanup")
 		o.AdditionalProperties = additionalProperties
 	}
 

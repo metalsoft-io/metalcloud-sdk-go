@@ -31,6 +31,8 @@ type RouteDomain struct {
 	Revision int32 `json:"revision"`
 	Kind RouteDomainKind `json:"kind"`
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
+	// If true, VRFs belonging to this route domain will not be deleted from switches during cleanup.
+	PreventVrfCleanup bool `json:"preventVrfCleanup"`
 	Vrfs []VrfAllocation `json:"vrfs"`
 	VrfAllocationStrategies []VrfAllocationStrategy `json:"vrfAllocationStrategies"`
 	Config RouteDomainConfig `json:"config"`
@@ -47,7 +49,7 @@ type _RouteDomain RouteDomain
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRouteDomain(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, serviceStatus GenericServiceStatus, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig) *RouteDomain {
+func NewRouteDomain(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, serviceStatus GenericServiceStatus, preventVrfCleanup bool, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig) *RouteDomain {
 	this := RouteDomain{}
 	this.Id = id
 	this.Label = label
@@ -58,6 +60,7 @@ func NewRouteDomain(id int32, label string, name string, annotations map[string]
 	this.Revision = revision
 	this.Kind = kind
 	this.ServiceStatus = serviceStatus
+	this.PreventVrfCleanup = preventVrfCleanup
 	this.Vrfs = vrfs
 	this.VrfAllocationStrategies = vrfAllocationStrategies
 	this.Config = config
@@ -69,6 +72,8 @@ func NewRouteDomain(id int32, label string, name string, annotations map[string]
 // but it doesn't guarantee that properties required by API are set
 func NewRouteDomainWithDefaults() *RouteDomain {
 	this := RouteDomain{}
+	var preventVrfCleanup bool = false
+	this.PreventVrfCleanup = preventVrfCleanup
 	return &this
 }
 
@@ -286,6 +291,30 @@ func (o *RouteDomain) GetServiceStatusOk() (*GenericServiceStatus, bool) {
 // SetServiceStatus sets field value
 func (o *RouteDomain) SetServiceStatus(v GenericServiceStatus) {
 	o.ServiceStatus = v
+}
+
+// GetPreventVrfCleanup returns the PreventVrfCleanup field value
+func (o *RouteDomain) GetPreventVrfCleanup() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PreventVrfCleanup
+}
+
+// GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field value
+// and a boolean to check if the value has been set.
+func (o *RouteDomain) GetPreventVrfCleanupOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PreventVrfCleanup, true
+}
+
+// SetPreventVrfCleanup sets field value
+func (o *RouteDomain) SetPreventVrfCleanup(v bool) {
+	o.PreventVrfCleanup = v
 }
 
 // GetVrfs returns the Vrfs field value
@@ -507,6 +536,7 @@ func (o RouteDomain) ToMap() (map[string]interface{}, error) {
 	toSerialize["revision"] = o.Revision
 	toSerialize["kind"] = o.Kind
 	toSerialize["serviceStatus"] = o.ServiceStatus
+	toSerialize["preventVrfCleanup"] = o.PreventVrfCleanup
 	toSerialize["vrfs"] = o.Vrfs
 	toSerialize["vrfAllocationStrategies"] = o.VrfAllocationStrategies
 	toSerialize["config"] = o.Config
@@ -544,6 +574,7 @@ func (o *RouteDomain) UnmarshalJSON(data []byte) (err error) {
 		"revision",
 		"kind",
 		"serviceStatus",
+		"preventVrfCleanup",
 		"vrfs",
 		"vrfAllocationStrategies",
 		"config",
@@ -585,6 +616,7 @@ func (o *RouteDomain) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "serviceStatus")
+		delete(additionalProperties, "preventVrfCleanup")
 		delete(additionalProperties, "vrfs")
 		delete(additionalProperties, "vrfAllocationStrategies")
 		delete(additionalProperties, "config")

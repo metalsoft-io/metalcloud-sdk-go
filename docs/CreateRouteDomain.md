@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
 **Kind** | [**RouteDomainKind**](RouteDomainKind.md) |  | 
 **VrfAllocationStrategies** | [**[]CreateVrfAllocationStrategy**](CreateVrfAllocationStrategy.md) |  | 
+**PreventVrfCleanup** | Pointer to **bool** | If true, VRFs belonging to this route domain will not be deleted from switches during cleanup. | [optional] [default to false]
 **L3VlanAllocationStrategies** | Pointer to [**[]CreateVlanAllocationStrategy**](CreateVlanAllocationStrategy.md) |  | [optional] 
 **L3VniAllocationStrategies** | Pointer to [**[]CreateVniAllocationStrategy**](CreateVniAllocationStrategy.md) |  | [optional] 
 
@@ -145,6 +146,31 @@ and a boolean to check if the value has been set.
 
 SetVrfAllocationStrategies sets VrfAllocationStrategies field to given value.
 
+
+### GetPreventVrfCleanup
+
+`func (o *CreateRouteDomain) GetPreventVrfCleanup() bool`
+
+GetPreventVrfCleanup returns the PreventVrfCleanup field if non-nil, zero value otherwise.
+
+### GetPreventVrfCleanupOk
+
+`func (o *CreateRouteDomain) GetPreventVrfCleanupOk() (*bool, bool)`
+
+GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreventVrfCleanup
+
+`func (o *CreateRouteDomain) SetPreventVrfCleanup(v bool)`
+
+SetPreventVrfCleanup sets PreventVrfCleanup field to given value.
+
+### HasPreventVrfCleanup
+
+`func (o *CreateRouteDomain) HasPreventVrfCleanup() bool`
+
+HasPreventVrfCleanup returns a boolean if a field has been set.
 
 ### GetL3VlanAllocationStrategies
 

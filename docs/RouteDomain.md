@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Revision** | **int32** |  | 
 **Kind** | [**RouteDomainKind**](RouteDomainKind.md) |  | 
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
+**PreventVrfCleanup** | **bool** | If true, VRFs belonging to this route domain will not be deleted from switches during cleanup. | [default to false]
 **Vrfs** | [**[]VrfAllocation**](VrfAllocation.md) |  | 
 **VrfAllocationStrategies** | [**[]VrfAllocationStrategy**](VrfAllocationStrategy.md) |  | 
 **Config** | [**RouteDomainConfig**](RouteDomainConfig.md) |  | 
@@ -25,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewRouteDomain
 
-`func NewRouteDomain(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, serviceStatus GenericServiceStatus, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig, ) *RouteDomain`
+`func NewRouteDomain(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, serviceStatus GenericServiceStatus, preventVrfCleanup bool, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig, ) *RouteDomain`
 
 NewRouteDomain instantiates a new RouteDomain object
 This constructor will assign default values to properties that have it defined,
@@ -218,6 +219,26 @@ and a boolean to check if the value has been set.
 `func (o *RouteDomain) SetServiceStatus(v GenericServiceStatus)`
 
 SetServiceStatus sets ServiceStatus field to given value.
+
+
+### GetPreventVrfCleanup
+
+`func (o *RouteDomain) GetPreventVrfCleanup() bool`
+
+GetPreventVrfCleanup returns the PreventVrfCleanup field if non-nil, zero value otherwise.
+
+### GetPreventVrfCleanupOk
+
+`func (o *RouteDomain) GetPreventVrfCleanupOk() (*bool, bool)`
+
+GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreventVrfCleanup
+
+`func (o *RouteDomain) SetPreventVrfCleanup(v bool)`
+
+SetPreventVrfCleanup sets PreventVrfCleanup field to given value.
 
 
 ### GetVrfs
