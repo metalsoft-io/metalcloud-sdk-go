@@ -21,10 +21,12 @@ var _ MappedNullable = &CreateNetworkFabricLink{}
 
 // CreateNetworkFabricLink struct for CreateNetworkFabricLink
 type CreateNetworkFabricLink struct {
-	// Unique identifier for the network device A interface
-	NetworkDeviceAInterfaceId float32 `json:"networkDeviceAInterfaceId"`
-	// Unique identifier for the network device B interface
-	NetworkDeviceBInterfaceId float32 `json:"networkDeviceBInterfaceId"`
+	// Unique identifier for the network device A interface. Required when externalSystemId is not set; also required when externalSystemId is set (the device side of the link).
+	NetworkDeviceAInterfaceId *float32 `json:"networkDeviceAInterfaceId,omitempty"`
+	// Unique identifier for the network device B interface. Required when externalSystemId is not set; must not be set when externalSystemId is provided.
+	NetworkDeviceBInterfaceId *float32 `json:"networkDeviceBInterfaceId,omitempty"`
+	// Unique identifier for the external system acting as side B of this link. When set, networkDeviceAInterfaceId must be provided and networkDeviceBInterfaceId must be omitted.
+	ExternalSystemId *float32 `json:"externalSystemId,omitempty"`
 	// Type of the network fabric link
 	LinkType string `json:"linkType"`
 	// Custom variables for the network fabric link
@@ -42,10 +44,8 @@ type _CreateNetworkFabricLink CreateNetworkFabricLink
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkFabricLink(networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string) *CreateNetworkFabricLink {
+func NewCreateNetworkFabricLink(linkType string) *CreateNetworkFabricLink {
 	this := CreateNetworkFabricLink{}
-	this.NetworkDeviceAInterfaceId = networkDeviceAInterfaceId
-	this.NetworkDeviceBInterfaceId = networkDeviceBInterfaceId
 	this.LinkType = linkType
 	return &this
 }
@@ -58,52 +58,100 @@ func NewCreateNetworkFabricLinkWithDefaults() *CreateNetworkFabricLink {
 	return &this
 }
 
-// GetNetworkDeviceAInterfaceId returns the NetworkDeviceAInterfaceId field value
+// GetNetworkDeviceAInterfaceId returns the NetworkDeviceAInterfaceId field value if set, zero value otherwise.
 func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceId() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkDeviceAInterfaceId) {
 		var ret float32
 		return ret
 	}
-
-	return o.NetworkDeviceAInterfaceId
+	return *o.NetworkDeviceAInterfaceId
 }
 
-// GetNetworkDeviceAInterfaceIdOk returns a tuple with the NetworkDeviceAInterfaceId field value
+// GetNetworkDeviceAInterfaceIdOk returns a tuple with the NetworkDeviceAInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceIdOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkDeviceAInterfaceId) {
 		return nil, false
 	}
-	return &o.NetworkDeviceAInterfaceId, true
+	return o.NetworkDeviceAInterfaceId, true
 }
 
-// SetNetworkDeviceAInterfaceId sets field value
+// HasNetworkDeviceAInterfaceId returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLink) HasNetworkDeviceAInterfaceId() bool {
+	if o != nil && !IsNil(o.NetworkDeviceAInterfaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceAInterfaceId gets a reference to the given float32 and assigns it to the NetworkDeviceAInterfaceId field.
 func (o *CreateNetworkFabricLink) SetNetworkDeviceAInterfaceId(v float32) {
-	o.NetworkDeviceAInterfaceId = v
+	o.NetworkDeviceAInterfaceId = &v
 }
 
-// GetNetworkDeviceBInterfaceId returns the NetworkDeviceBInterfaceId field value
+// GetNetworkDeviceBInterfaceId returns the NetworkDeviceBInterfaceId field value if set, zero value otherwise.
 func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceId() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkDeviceBInterfaceId) {
 		var ret float32
 		return ret
 	}
-
-	return o.NetworkDeviceBInterfaceId
+	return *o.NetworkDeviceBInterfaceId
 }
 
-// GetNetworkDeviceBInterfaceIdOk returns a tuple with the NetworkDeviceBInterfaceId field value
+// GetNetworkDeviceBInterfaceIdOk returns a tuple with the NetworkDeviceBInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceIdOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkDeviceBInterfaceId) {
 		return nil, false
 	}
-	return &o.NetworkDeviceBInterfaceId, true
+	return o.NetworkDeviceBInterfaceId, true
 }
 
-// SetNetworkDeviceBInterfaceId sets field value
+// HasNetworkDeviceBInterfaceId returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLink) HasNetworkDeviceBInterfaceId() bool {
+	if o != nil && !IsNil(o.NetworkDeviceBInterfaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceBInterfaceId gets a reference to the given float32 and assigns it to the NetworkDeviceBInterfaceId field.
 func (o *CreateNetworkFabricLink) SetNetworkDeviceBInterfaceId(v float32) {
-	o.NetworkDeviceBInterfaceId = v
+	o.NetworkDeviceBInterfaceId = &v
+}
+
+// GetExternalSystemId returns the ExternalSystemId field value if set, zero value otherwise.
+func (o *CreateNetworkFabricLink) GetExternalSystemId() float32 {
+	if o == nil || IsNil(o.ExternalSystemId) {
+		var ret float32
+		return ret
+	}
+	return *o.ExternalSystemId
+}
+
+// GetExternalSystemIdOk returns a tuple with the ExternalSystemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricLink) GetExternalSystemIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ExternalSystemId) {
+		return nil, false
+	}
+	return o.ExternalSystemId, true
+}
+
+// HasExternalSystemId returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLink) HasExternalSystemId() bool {
+	if o != nil && !IsNil(o.ExternalSystemId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalSystemId gets a reference to the given float32 and assigns it to the ExternalSystemId field.
+func (o *CreateNetworkFabricLink) SetExternalSystemId(v float32) {
+	o.ExternalSystemId = &v
 }
 
 // GetLinkType returns the LinkType field value
@@ -236,8 +284,15 @@ func (o CreateNetworkFabricLink) MarshalJSON() ([]byte, error) {
 
 func (o CreateNetworkFabricLink) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["networkDeviceAInterfaceId"] = o.NetworkDeviceAInterfaceId
-	toSerialize["networkDeviceBInterfaceId"] = o.NetworkDeviceBInterfaceId
+	if !IsNil(o.NetworkDeviceAInterfaceId) {
+		toSerialize["networkDeviceAInterfaceId"] = o.NetworkDeviceAInterfaceId
+	}
+	if !IsNil(o.NetworkDeviceBInterfaceId) {
+		toSerialize["networkDeviceBInterfaceId"] = o.NetworkDeviceBInterfaceId
+	}
+	if !IsNil(o.ExternalSystemId) {
+		toSerialize["externalSystemId"] = o.ExternalSystemId
+	}
 	toSerialize["linkType"] = o.LinkType
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
@@ -261,8 +316,6 @@ func (o *CreateNetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"networkDeviceAInterfaceId",
-		"networkDeviceBInterfaceId",
 		"linkType",
 	}
 
@@ -295,6 +348,7 @@ func (o *CreateNetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "networkDeviceAInterfaceId")
 		delete(additionalProperties, "networkDeviceBInterfaceId")
+		delete(additionalProperties, "externalSystemId")
 		delete(additionalProperties, "linkType")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "config")

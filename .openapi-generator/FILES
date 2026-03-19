@@ -18,6 +18,7 @@ api_event.go
 api_extension.go
 api_extension_instance.go
 api_external_connection.go
+api_external_system.go
 api_file_share.go
 api_firmware_baseline.go
 api_firmware_baseline_search.go
@@ -141,6 +142,7 @@ docs/CreateExtensionInstance.md
 docs/CreateExternalConnection.md
 docs/CreateExternalConnectionInterface.md
 docs/CreateExternalConnectionLogicalNetwork.md
+docs/CreateExternalSystem.md
 docs/CreateFileShare.md
 docs/CreateFirmwareBaseline.md
 docs/CreateFirmwareBinary.md
@@ -324,6 +326,9 @@ docs/ExternalConnectionInterfacePaginatedList.md
 docs/ExternalConnectionLogicalNetwork.md
 docs/ExternalConnectionLogicalNetworkPaginatedList.md
 docs/ExternalConnectionPaginatedList.md
+docs/ExternalSystem.md
+docs/ExternalSystemAPI.md
+docs/ExternalSystemPaginatedList.md
 docs/FabricStatus.md
 docs/FabricType.md
 docs/FibreChannelFabric.md
@@ -572,6 +577,7 @@ docs/ParentInfrastructure.md
 docs/PartialLocation.md
 docs/PartialNetworkDevicePolicy.md
 docs/PasswordReset.md
+docs/PasswordResetByAdmin.md
 docs/Permission.md
 docs/PermissionList.md
 docs/PkeyAllocation.md
@@ -589,6 +595,7 @@ docs/RegisterServerResponse.md
 docs/RegisterStorageResponse.md
 docs/RemoteConsoleInfo.md
 docs/Repo.md
+docs/ResendUserInvitation.md
 docs/ResendUserVerificationEmail.md
 docs/ReservationInstallments.md
 docs/ResourceAllocationStatus.md
@@ -795,6 +802,7 @@ docs/UpdateExtension.md
 docs/UpdateExtensionInstance.md
 docs/UpdateExternalConnection.md
 docs/UpdateExternalConnectionInterface.md
+docs/UpdateExternalSystem.md
 docs/UpdateFileShare.md
 docs/UpdateFileShareMeta.md
 docs/UpdateFirmwareBaseline.md
@@ -994,6 +1002,7 @@ model_create_extension_instance.go
 model_create_external_connection.go
 model_create_external_connection_interface.go
 model_create_external_connection_logical_network.go
+model_create_external_system.go
 model_create_file_share.go
 model_create_firmware_baseline.go
 model_create_firmware_binary.go
@@ -1165,6 +1174,8 @@ model_external_connection_interface_paginated_list.go
 model_external_connection_logical_network.go
 model_external_connection_logical_network_paginated_list.go
 model_external_connection_paginated_list.go
+model_external_system.go
+model_external_system_paginated_list.go
 model_fabric_status.go
 model_fabric_type.go
 model_fibre_channel_fabric.go
@@ -1393,6 +1404,7 @@ model_parent_infrastructure.go
 model_partial_location.go
 model_partial_network_device_policy.go
 model_password_reset.go
+model_password_reset_by_admin.go
 model_permission.go
 model_permission_list.go
 model_pkey_allocation.go
@@ -1410,6 +1422,7 @@ model_register_server_response.go
 model_register_storage_response.go
 model_remote_console_info.go
 model_repo.go
+model_resend_user_invitation.go
 model_resend_user_verification_email.go
 model_reservation_installments.go
 model_resource_allocation_status.go
@@ -1598,6 +1611,7 @@ model_update_extension.go
 model_update_extension_instance.go
 model_update_external_connection.go
 model_update_external_connection_interface.go
+model_update_external_system.go
 model_update_file_share.go
 model_update_file_share_meta.go
 model_update_firmware_baseline.go
@@ -1736,6 +1750,7 @@ test/api_event_test.go
 test/api_extension_instance_test.go
 test/api_extension_test.go
 test/api_external_connection_test.go
+test/api_external_system_test.go
 test/api_file_share_test.go
 test/api_firmware_baseline_search_test.go
 test/api_firmware_baseline_test.go

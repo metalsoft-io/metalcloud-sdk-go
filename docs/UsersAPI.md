@@ -24,6 +24,8 @@ Method | HTTP request | Description
 [**GetUsers**](UsersAPI.md#GetUsers) | **Get** /api/v2/users | Get users
 [**RemoveUserDelegate**](UsersAPI.md#RemoveUserDelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
 [**ResendEmailVerification**](UsersAPI.md#ResendEmailVerification) | **Post** /api/v2/users/{userId}/actions/resend-email-verification | Resend email verification
+[**ResendUserInvitation**](UsersAPI.md#ResendUserInvitation) | **Post** /api/v2/users/{userId}/actions/resend-user-invitation | Resend user invitation
+[**SendPasswordResetByAdmin**](UsersAPI.md#SendPasswordResetByAdmin) | **Post** /api/v2/users/{userId}/actions/send-password-reset | Send password reset by admin
 [**SuspendUser**](UsersAPI.md#SuspendUser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 [**UnarchiveUser**](UsersAPI.md#UnarchiveUser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
 [**UnsuspendUser**](UsersAPI.md#UnsuspendUser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -1429,6 +1431,146 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **resendUserVerificationEmail** | [**ResendUserVerificationEmail**](ResendUserVerificationEmail.md) |  | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResendUserInvitation
+
+> User ResendUserInvitation(ctx, userId).ResendUserInvitation(resendUserInvitation).Execute()
+
+Resend user invitation
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	resendUserInvitation := *openapiclient.NewResendUserInvitation() // ResendUserInvitation | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.ResendUserInvitation(context.Background(), userId).ResendUserInvitation(resendUserInvitation).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ResendUserInvitation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ResendUserInvitation`: User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ResendUserInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResendUserInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **resendUserInvitation** | [**ResendUserInvitation**](ResendUserInvitation.md) |  | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SendPasswordResetByAdmin
+
+> User SendPasswordResetByAdmin(ctx, userId).PasswordResetByAdmin(passwordResetByAdmin).Execute()
+
+Send password reset by admin
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	passwordResetByAdmin := *openapiclient.NewPasswordResetByAdmin() // PasswordResetByAdmin | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.SendPasswordResetByAdmin(context.Background(), userId).PasswordResetByAdmin(passwordResetByAdmin).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.SendPasswordResetByAdmin``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SendPasswordResetByAdmin`: User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.SendPasswordResetByAdmin`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSendPasswordResetByAdminRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **passwordResetByAdmin** | [**PasswordResetByAdmin**](PasswordResetByAdmin.md) |  | 
 
 ### Return type
 

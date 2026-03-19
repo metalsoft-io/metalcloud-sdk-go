@@ -84,6 +84,8 @@ type APIClient struct {
 
 	ExternalConnectionAPI *ExternalConnectionAPIService
 
+	ExternalSystemAPI *ExternalSystemAPIService
+
 	FileShareAPI *FileShareAPIService
 
 	FirmwareBaselineAPI *FirmwareBaselineAPIService
@@ -210,6 +212,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ExtensionAPI = (*ExtensionAPIService)(&c.common)
 	c.ExtensionInstanceAPI = (*ExtensionInstanceAPIService)(&c.common)
 	c.ExternalConnectionAPI = (*ExternalConnectionAPIService)(&c.common)
+	c.ExternalSystemAPI = (*ExternalSystemAPIService)(&c.common)
 	c.FileShareAPI = (*FileShareAPIService)(&c.common)
 	c.FirmwareBaselineAPI = (*FirmwareBaselineAPIService)(&c.common)
 	c.FirmwareBaselineSearchAPI = (*FirmwareBaselineSearchAPIService)(&c.common)

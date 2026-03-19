@@ -215,6 +215,11 @@ Class | Method | HTTP request | Description
 *ExternalConnectionAPI* | [**GetNetworkDeviceInterfacesAndExternalConnections**](docs/ExternalConnectionAPI.md#getnetworkdeviceinterfacesandexternalconnections) | **Get** /api/v2/external-connections/network-devices/{networkDeviceId}/interfaces | List network device interfaces associated with external connections
 *ExternalConnectionAPI* | [**UpdateExternalConnection**](docs/ExternalConnectionAPI.md#updateexternalconnection) | **Patch** /api/v2/external-connections/{externalConnectionId} | Update external connection
 *ExternalConnectionAPI* | [**UpdateExternalConnectionInterface**](docs/ExternalConnectionAPI.md#updateexternalconnectioninterface) | **Patch** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Update external connection interface
+*ExternalSystemAPI* | [**CreateExternalSystem**](docs/ExternalSystemAPI.md#createexternalsystem) | **Post** /api/v2/external-systems | Create a new external system
+*ExternalSystemAPI* | [**DeleteExternalSystem**](docs/ExternalSystemAPI.md#deleteexternalsystem) | **Delete** /api/v2/external-systems/{externalSystemId} | Delete external system
+*ExternalSystemAPI* | [**GetExternalSystemById**](docs/ExternalSystemAPI.md#getexternalsystembyid) | **Get** /api/v2/external-systems/{externalSystemId} | Get external system details
+*ExternalSystemAPI* | [**GetExternalSystems**](docs/ExternalSystemAPI.md#getexternalsystems) | **Get** /api/v2/external-systems | List external systems
+*ExternalSystemAPI* | [**UpdateExternalSystem**](docs/ExternalSystemAPI.md#updateexternalsystem) | **Patch** /api/v2/external-systems/{externalSystemId} | Update external system
 *FileShareAPI* | [**CreateFileShareSnapshot**](docs/FileShareAPI.md#createfilesharesnapshot) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/snapshots | Create a snapshot of the specified File Share
 *FileShareAPI* | [**CreateInfrastructureFileShare**](docs/FileShareAPI.md#createinfrastructurefileshare) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares | Creates a File Share
 *FileShareAPI* | [**DeleteFileShare**](docs/FileShareAPI.md#deletefileshare) | **Delete** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Deletes a File Share
@@ -706,6 +711,8 @@ Class | Method | HTTP request | Description
 *UsersAPI* | [**GetUsers**](docs/UsersAPI.md#getusers) | **Get** /api/v2/users | Get users
 *UsersAPI* | [**RemoveUserDelegate**](docs/UsersAPI.md#removeuserdelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
 *UsersAPI* | [**ResendEmailVerification**](docs/UsersAPI.md#resendemailverification) | **Post** /api/v2/users/{userId}/actions/resend-email-verification | Resend email verification
+*UsersAPI* | [**ResendUserInvitation**](docs/UsersAPI.md#resenduserinvitation) | **Post** /api/v2/users/{userId}/actions/resend-user-invitation | Resend user invitation
+*UsersAPI* | [**SendPasswordResetByAdmin**](docs/UsersAPI.md#sendpasswordresetbyadmin) | **Post** /api/v2/users/{userId}/actions/send-password-reset | Send password reset by admin
 *UsersAPI* | [**SuspendUser**](docs/UsersAPI.md#suspenduser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 *UsersAPI* | [**UnarchiveUser**](docs/UsersAPI.md#unarchiveuser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
 *UsersAPI* | [**UnsuspendUser**](docs/UsersAPI.md#unsuspenduser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -855,6 +862,7 @@ Class | Method | HTTP request | Description
  - [CreateExternalConnection](docs/CreateExternalConnection.md)
  - [CreateExternalConnectionInterface](docs/CreateExternalConnectionInterface.md)
  - [CreateExternalConnectionLogicalNetwork](docs/CreateExternalConnectionLogicalNetwork.md)
+ - [CreateExternalSystem](docs/CreateExternalSystem.md)
  - [CreateFileShare](docs/CreateFileShare.md)
  - [CreateFirmwareBaseline](docs/CreateFirmwareBaseline.md)
  - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
@@ -1026,6 +1034,8 @@ Class | Method | HTTP request | Description
  - [ExternalConnectionLogicalNetwork](docs/ExternalConnectionLogicalNetwork.md)
  - [ExternalConnectionLogicalNetworkPaginatedList](docs/ExternalConnectionLogicalNetworkPaginatedList.md)
  - [ExternalConnectionPaginatedList](docs/ExternalConnectionPaginatedList.md)
+ - [ExternalSystem](docs/ExternalSystem.md)
+ - [ExternalSystemPaginatedList](docs/ExternalSystemPaginatedList.md)
  - [FabricStatus](docs/FabricStatus.md)
  - [FabricType](docs/FabricType.md)
  - [FibreChannelFabric](docs/FibreChannelFabric.md)
@@ -1254,6 +1264,7 @@ Class | Method | HTTP request | Description
  - [PartialLocation](docs/PartialLocation.md)
  - [PartialNetworkDevicePolicy](docs/PartialNetworkDevicePolicy.md)
  - [PasswordReset](docs/PasswordReset.md)
+ - [PasswordResetByAdmin](docs/PasswordResetByAdmin.md)
  - [Permission](docs/Permission.md)
  - [PermissionList](docs/PermissionList.md)
  - [PkeyAllocation](docs/PkeyAllocation.md)
@@ -1271,6 +1282,7 @@ Class | Method | HTTP request | Description
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
  - [RemoteConsoleInfo](docs/RemoteConsoleInfo.md)
  - [Repo](docs/Repo.md)
+ - [ResendUserInvitation](docs/ResendUserInvitation.md)
  - [ResendUserVerificationEmail](docs/ResendUserVerificationEmail.md)
  - [ReservationInstallments](docs/ReservationInstallments.md)
  - [ResourceAllocationStatus](docs/ResourceAllocationStatus.md)
@@ -1459,6 +1471,7 @@ Class | Method | HTTP request | Description
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
  - [UpdateExternalConnection](docs/UpdateExternalConnection.md)
  - [UpdateExternalConnectionInterface](docs/UpdateExternalConnectionInterface.md)
+ - [UpdateExternalSystem](docs/UpdateExternalSystem.md)
  - [UpdateFileShare](docs/UpdateFileShare.md)
  - [UpdateFileShareMeta](docs/UpdateFileShareMeta.md)
  - [UpdateFirmwareBaseline](docs/UpdateFirmwareBaseline.md)

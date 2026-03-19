@@ -10,8 +10,9 @@ Name | Type | Description | Notes
 **Id** | **float32** | Unique identifier for the network fabric link | 
 **NetworkFabricId** | **float32** | Unique identifier for the network fabric | 
 **NetworkFabricLinkAggregationId** | Pointer to **float32** | Unique identifier for the network fabric link aggregation | [optional] 
-**NetworkDeviceAInterfaceId** | **float32** | Unique identifier for the network device A interface | 
-**NetworkDeviceBInterfaceId** | **float32** | Unique identifier for the network device B interface | 
+**NetworkDeviceAInterfaceId** | Pointer to **float32** | Unique identifier for the network device A interface. Required when externalSystemId is not set; also required when externalSystemId is set (the device side of the link). | [optional] 
+**NetworkDeviceBInterfaceId** | Pointer to **float32** | Unique identifier for the network device B interface. Required when externalSystemId is not set; must not be set when externalSystemId is provided. | [optional] 
+**ExternalSystemId** | Pointer to **float32** | Unique identifier for the external system acting as side B of this link. When set, networkDeviceAInterfaceId must be provided and networkDeviceBInterfaceId must be omitted. | [optional] 
 **LinkType** | **string** | Type of the network fabric link | 
 **Status** | **string** | Status of the network fabric link | 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network fabric link | [optional] 
@@ -24,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricLink
 
-`func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, status string, ) *NetworkFabricLink`
+`func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, linkType string, status string, ) *NetworkFabricLink`
 
 NewNetworkFabricLink instantiates a new NetworkFabricLink object
 This constructor will assign default values to properties that have it defined,
@@ -183,6 +184,11 @@ and a boolean to check if the value has been set.
 
 SetNetworkDeviceAInterfaceId sets NetworkDeviceAInterfaceId field to given value.
 
+### HasNetworkDeviceAInterfaceId
+
+`func (o *NetworkFabricLink) HasNetworkDeviceAInterfaceId() bool`
+
+HasNetworkDeviceAInterfaceId returns a boolean if a field has been set.
 
 ### GetNetworkDeviceBInterfaceId
 
@@ -203,6 +209,36 @@ and a boolean to check if the value has been set.
 
 SetNetworkDeviceBInterfaceId sets NetworkDeviceBInterfaceId field to given value.
 
+### HasNetworkDeviceBInterfaceId
+
+`func (o *NetworkFabricLink) HasNetworkDeviceBInterfaceId() bool`
+
+HasNetworkDeviceBInterfaceId returns a boolean if a field has been set.
+
+### GetExternalSystemId
+
+`func (o *NetworkFabricLink) GetExternalSystemId() float32`
+
+GetExternalSystemId returns the ExternalSystemId field if non-nil, zero value otherwise.
+
+### GetExternalSystemIdOk
+
+`func (o *NetworkFabricLink) GetExternalSystemIdOk() (*float32, bool)`
+
+GetExternalSystemIdOk returns a tuple with the ExternalSystemId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalSystemId
+
+`func (o *NetworkFabricLink) SetExternalSystemId(v float32)`
+
+SetExternalSystemId sets ExternalSystemId field to given value.
+
+### HasExternalSystemId
+
+`func (o *NetworkFabricLink) HasExternalSystemId() bool`
+
+HasExternalSystemId returns a boolean if a field has been set.
 
 ### GetLinkType
 

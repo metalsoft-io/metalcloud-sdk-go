@@ -96,6 +96,8 @@ type User struct {
 	IsSuspended bool `json:"isSuspended"`
 	// Whether the user has an authenticator
 	AuthenticatorEnabled bool `json:"authenticatorEnabled"`
+	// The resources accessible by the user
+	AccessibleResources map[string]interface{} `json:"accessibleResources,omitempty"`
 	// The new configuration of the user.
 	Config UserConfiguration `json:"config"`
 	// Meta information of the user.
@@ -1154,6 +1156,38 @@ func (o *User) SetAuthenticatorEnabled(v bool) {
 	o.AuthenticatorEnabled = v
 }
 
+// GetAccessibleResources returns the AccessibleResources field value if set, zero value otherwise.
+func (o *User) GetAccessibleResources() map[string]interface{} {
+	if o == nil || IsNil(o.AccessibleResources) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.AccessibleResources
+}
+
+// GetAccessibleResourcesOk returns a tuple with the AccessibleResources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetAccessibleResourcesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.AccessibleResources) {
+		return map[string]interface{}{}, false
+	}
+	return o.AccessibleResources, true
+}
+
+// HasAccessibleResources returns a boolean if a field has been set.
+func (o *User) HasAccessibleResources() bool {
+	if o != nil && !IsNil(o.AccessibleResources) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessibleResources gets a reference to the given map[string]interface{} and assigns it to the AccessibleResources field.
+func (o *User) SetAccessibleResources(v map[string]interface{}) {
+	o.AccessibleResources = v
+}
+
 // GetConfig returns the Config field value
 func (o *User) GetConfig() UserConfiguration {
 	if o == nil {
@@ -1302,6 +1336,9 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["isSuspended"] = o.IsSuspended
 	toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
+	if !IsNil(o.AccessibleResources) {
+		toSerialize["accessibleResources"] = o.AccessibleResources
+	}
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
 	if !IsNil(o.Links) {
@@ -1417,6 +1454,7 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "childDelegates")
 		delete(additionalProperties, "isSuspended")
 		delete(additionalProperties, "authenticatorEnabled")
+		delete(additionalProperties, "accessibleResources")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "links")

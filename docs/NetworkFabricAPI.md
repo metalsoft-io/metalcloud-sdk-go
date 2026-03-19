@@ -395,7 +395,7 @@ import (
 
 func main() {
 	networkFabricId := int32(56) // int32 | The ID of the fabric
-	createNetworkFabricLink := *openapiclient.NewCreateNetworkFabricLink(float32(1), float32(2), "point-to-point") // CreateNetworkFabricLink | The network fabric link object
+	createNetworkFabricLink := *openapiclient.NewCreateNetworkFabricLink("point-to-point") // CreateNetworkFabricLink | The network fabric link object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

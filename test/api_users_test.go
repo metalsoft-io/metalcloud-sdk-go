@@ -301,6 +301,34 @@ func Test_sdk_UsersAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test UsersAPIService ResendUserInvitation", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UsersAPI.ResendUserInvitation(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UsersAPIService SendPasswordResetByAdmin", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UsersAPI.SendPasswordResetByAdmin(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UsersAPIService SuspendUser", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

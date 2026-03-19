@@ -1126,6 +1126,12 @@ paths:
               schema:
                 type: string
               style: simple
+            X-Session-Inactivity-Timeout:
+              description: Session inactivity timeout in seconds
+              explode: false
+              schema:
+                type: string
+              style: simple
         "400":
           description: Invalid authentication request
         "401":
@@ -1194,6 +1200,12 @@ paths:
           headers:
             ETag:
               description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Session-Inactivity-Timeout:
+              description: Session inactivity timeout in seconds
               explode: false
               schema:
                 type: string
@@ -45437,6 +45449,485 @@ paths:
       summary: Get an external connection logical network by ID
       tags:
       - External Connection
+  /api/v2/external-systems:
+    get:
+      description: Returns list of external systems
+      operationId: getExternalSystems
+      parameters:
+      - description: |+
+          Page number to retrieve. If you provide invalid value the default page number will applied
+
+          **Example:** 1
+
+
+          **Default Value:** 1
+
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |
+          Number of records per page.
+
+
+          **Example:** 20
+
+
+
+          **Default Value:** 20
+
+
+
+          **Max Value:** 100
+
+
+          If provided value is greater than max value, max value will be applied.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+
+          **Format:** filter.id={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.id=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by label query param.
+
+          **Format:** filter.label={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.label=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.label
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+
+          **Format:** filter.name={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.name=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by createdAt query param.
+
+          **Format:** filter.createdAt={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.createdAt=$btw:John Doe&filter.createdAt=$contains:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $gt
+
+          - $gte
+
+          - $in
+
+          - $null
+
+          - $lt
+
+          - $lte
+
+          - $btw
+
+          - $ilike
+
+          - $sw
+
+          - $contains
+
+          - $not
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.createdAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by updatedAt query param.
+
+          **Format:** filter.updatedAt={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.updatedAt=$btw:John Doe&filter.updatedAt=$contains:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $gt
+
+          - $gte
+
+          - $in
+
+          - $null
+
+          - $lt
+
+          - $lte
+
+          - $btw
+
+          - $ilike
+
+          - $sw
+
+          - $contains
+
+          - $not
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.updatedAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |
+          Parameter to sort by.
+          To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting
+
+          **Format:** {fieldName}:{DIRECTION}
+
+
+          **Example:** sortBy=id:DESC&sortBy=label:DESC
+
+
+          **Default Value:** id:DESC
+
+          **Available Fields**
+          - id
+
+          - label
+
+          - name
+
+          - createdAt
+
+          - updatedAt
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - label:ASC
+            - label:DESC
+            - name:ASC
+            - name:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            type: string
+          type: array
+        style: form
+      - description: |+
+          Search term to filter result values
+
+          **Example:** John
+
+
+          **Default Value:** No default value
+
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          List of fields to search by term to filter result values
+
+          **Example:** label,name
+
+
+          **Default Value:** By default all fields mentioned below will be used to search by term
+
+          **Available Fields**
+          - label
+
+          - name
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalSystemPaginatedList"
+          description: The list of external systems
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External system not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List external systems
+      tags:
+      - External System
+    post:
+      description: Creates a new external system
+      operationId: createExternalSystem
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateExternalSystem"
+        description: The external system to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalSystem"
+          description: The details of created external system
+          headers:
+            Location:
+              description: New external system link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Conflict
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new external system
+      tags:
+      - External System
+  /api/v2/external-systems/{externalSystemId}:
+    delete:
+      description: Deletes the specified external system
+      operationId: deleteExternalSystem
+      parameters:
+      - explode: false
+        in: path
+        name: externalSystemId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: The specified external system was successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External system not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete external system
+      tags:
+      - External System
+    get:
+      description: Returns the details of the specified external system
+      operationId: getExternalSystemById
+      parameters:
+      - explode: false
+        in: path
+        name: externalSystemId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalSystem"
+          description: The details of the specified external system
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External system not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get external system details
+      tags:
+      - External System
+    patch:
+      description: Updates the specified external system
+      operationId: updateExternalSystem
+      parameters:
+      - explode: false
+        in: path
+        name: externalSystemId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateExternalSystem"
+        description: The external system configuration changes
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalSystem"
+          description: The specified external system was successfully updated
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External system not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update external system
+      tags:
+      - External System
   /api/v2/drives/{driveId}:
     get:
       description: Returns Drive information
@@ -51932,6 +52423,86 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Resend email verification
+      tags:
+      - Users
+  /api/v2/users/{userId}/actions/resend-user-invitation:
+    post:
+      operationId: resendUserInvitation
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResendUserInvitation"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: User invitation successfully resent.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: User cannot be invited
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Resend user invitation
+      tags:
+      - Users
+  /api/v2/users/{userId}/actions/send-password-reset:
+    post:
+      operationId: sendPasswordResetByAdmin
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PasswordResetByAdmin"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: Password reset successfully sent.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: User cannot have its password changed
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Send password reset by admin
       tags:
       - Users
   /api/v2/users/{userId}/limits:
@@ -59586,6 +60157,7 @@ components:
         - childDelegates
         - childDelegates
         isTestAccount: true
+        accessibleResources: "{}"
         passwordLastChangedTimestamp: passwordLastChangedTimestamp
         provider: mysql
         permissions: ""
@@ -59864,6 +60436,9 @@ components:
         authenticatorEnabled:
           description: Whether the user has an authenticator
           type: boolean
+        accessibleResources:
+          description: The resources accessible by the user
+          type: object
         config:
           allOf:
           - $ref: "#/components/schemas/UserConfiguration"
@@ -60350,9 +60925,9 @@ components:
       example:
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-03-02T00:11:10.346Z
+        createdTimestamp: 2026-03-16T19:02:04.301Z
         networkDevicePosition: all
-        updatedTimestamp: 2026-03-02T00:11:10.346Z
+        updatedTimestamp: 2026-03-16T19:02:04.301Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         action: add-global-config
@@ -60458,12 +61033,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.346Z
+          example: 2026-03-16T19:02:04.301Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.346Z
+          example: 2026-03-16T19:02:04.301Z
           format: date-time
           type: string
         links:
@@ -60494,9 +61069,9 @@ components:
         data:
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-03-02T00:11:10.346Z
+          createdTimestamp: 2026-03-16T19:02:04.301Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-03-02T00:11:10.346Z
+          updatedTimestamp: 2026-03-16T19:02:04.301Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -60513,9 +61088,9 @@ components:
           bgpNumbering: numbered
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-03-02T00:11:10.346Z
+          createdTimestamp: 2026-03-16T19:02:04.301Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-03-02T00:11:10.346Z
+          updatedTimestamp: 2026-03-16T19:02:04.301Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -60774,7 +61349,7 @@ components:
         aggregationType: lag
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-03-02T00:11:10.349Z
+        createdTimestamp: 2026-03-16T19:02:04.304Z
         action: create
         networkDeviceDriver: cisco_aci51
         links:
@@ -60784,7 +61359,7 @@ components:
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
         libraryLabel: libraryLabel
-        updatedTimestamp: 2026-03-02T00:11:10.349Z
+        updatedTimestamp: 2026-03-16T19:02:04.304Z
         preparation: preparation
       properties:
         action:
@@ -60845,12 +61420,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.349Z
+          example: 2026-03-16T19:02:04.304Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.349Z
+          example: 2026-03-16T19:02:04.304Z
           format: date-time
           type: string
         links:
@@ -60878,7 +61453,7 @@ components:
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-03-02T00:11:10.349Z
+          createdTimestamp: 2026-03-16T19:02:04.304Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -60888,12 +61463,12 @@ components:
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-03-02T00:11:10.349Z
+          updatedTimestamp: 2026-03-16T19:02:04.304Z
           preparation: preparation
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-03-02T00:11:10.349Z
+          createdTimestamp: 2026-03-16T19:02:04.304Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -60903,7 +61478,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-03-02T00:11:10.349Z
+          updatedTimestamp: 2026-03-16T19:02:04.304Z
           preparation: preparation
         meta: ""
         links: ""
@@ -61850,7 +62425,9 @@ components:
           - MAIL_PASSWORD_EXPIRY_NOTIFICATION
           - MAIL_PASSWORD_EXPIRY_WARNING
           - MAIL_PASSWORD_RESET
+          - MAIL_PASSWORD_RESET_BY_ADMIN
           - MAIL_SYSLOG_NOTIFICATION
+          - MAIL_USER_INVITATION
           example: MAIL_PASSWORD_RESET
           type: string
         subject:
@@ -61936,7 +62513,9 @@ components:
           - MAIL_PASSWORD_EXPIRY_NOTIFICATION
           - MAIL_PASSWORD_EXPIRY_WARNING
           - MAIL_PASSWORD_RESET
+          - MAIL_PASSWORD_RESET_BY_ADMIN
           - MAIL_SYSLOG_NOTIFICATION
+          - MAIL_USER_INVITATION
           example: MAIL_PASSWORD_RESET
           type: string
         subject:
@@ -62513,6 +63092,19 @@ components:
           - 571
           - 572
           - 573
+          - 574
+          - 575
+          - 576
+          - 577
+          - 578
+          - 579
+          - 608
+          - 609
+          - 610
+          - 611
+          - 612
+          - 613
+          - 614
           type: number
         severity:
           description: The severity of the event
@@ -79785,6 +80377,7 @@ components:
       type: object
     LogicalNetworkProfileVxlanProperties:
       example:
+        autoRouteDistinguisher: true
         vniAllocationStrategies:
         - vni: 9
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -79804,12 +80397,29 @@ components:
           granularityLevel: ""
           id: 7
           updatedAt: 2000-01-23T04:56:07.000+00:00
+        neighSuppress: true
+        autoRouteTarget: true
       properties:
         vniAllocationStrategies:
           items:
             $ref: "#/components/schemas/VniAllocationStrategy"
           type: array
+        neighSuppress:
+          description: "Controls neigh-suppress on switches for this logical network.\
+            \ true = enabled (default), false = disabled."
+          type: boolean
+        autoRouteDistinguisher:
+          description: "When true, EVPN Route Distinguisher is auto-generated by the\
+            \ switch. false = Metalsoft computes RD (default)."
+          type: boolean
+        autoRouteTarget:
+          description: "When true, EVPN Route Targets are auto-generated by the switch.\
+            \ false = Metalsoft computes RTs (default)."
+          type: boolean
       required:
+      - autoRouteDistinguisher
+      - autoRouteTarget
+      - neighSuppress
       - vniAllocationStrategies
       type: object
     LogicalNetworkProfilePkeyProperties:
@@ -79927,6 +80537,7 @@ components:
     LogicalNetworkProfile:
       example:
         vxlan:
+          autoRouteDistinguisher: true
           vniAllocationStrategies:
           - vni: 9
             createdAt: 2000-01-23T04:56:07.000+00:00
@@ -79946,6 +80557,8 @@ components:
             granularityLevel: ""
             id: 7
             updatedAt: 2000-01-23T04:56:07.000+00:00
+          neighSuppress: true
+          autoRouteTarget: true
         kind: ""
         fabricId: 1
         annotations:
@@ -80115,6 +80728,7 @@ components:
       example:
         data:
         - vxlan:
+            autoRouteDistinguisher: true
             vniAllocationStrategies:
             - vni: 9
               createdAt: 2000-01-23T04:56:07.000+00:00
@@ -80134,6 +80748,8 @@ components:
               granularityLevel: ""
               id: 7
               updatedAt: 2000-01-23T04:56:07.000+00:00
+            neighSuppress: true
+            autoRouteTarget: true
           kind: ""
           fabricId: 1
           annotations:
@@ -80243,6 +80859,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - vxlan:
+            autoRouteDistinguisher: true
             vniAllocationStrategies:
             - vni: 9
               createdAt: 2000-01-23T04:56:07.000+00:00
@@ -80262,6 +80879,8 @@ components:
               granularityLevel: ""
               id: 7
               updatedAt: 2000-01-23T04:56:07.000+00:00
+            neighSuppress: true
+            autoRouteTarget: true
           kind: ""
           fabricId: 1
           annotations:
@@ -80417,6 +81036,7 @@ components:
       type: object
     CreateLogicalNetworkVxlanProperties:
       example:
+        autoRouteDistinguisher: true
         vniAllocationStrategies:
         - vni: 5
           kind: ""
@@ -80430,11 +81050,25 @@ components:
             resourceId: 6.027456183070403
             kind: ""
           granularityLevel: ""
+        neighSuppress: true
+        autoRouteTarget: true
       properties:
         vniAllocationStrategies:
           items:
             $ref: "#/components/schemas/CreateVniAllocationStrategy"
           type: array
+        neighSuppress:
+          description: Controls neigh-suppress on switches for this logical network.
+            Defaults to true (enabled). Set to false to disable neigh-suppress
+          type: boolean
+        autoRouteDistinguisher:
+          description: "When true, the switch auto-generates the EVPN Route Distinguisher\
+            \ instead of Metalsoft computing it. Defaults to false."
+          type: boolean
+        autoRouteTarget:
+          description: "When true, the switch auto-generates EVPN Route Targets instead\
+            \ of Metalsoft computing them. Defaults to false."
+          type: boolean
       required:
       - vniAllocationStrategies
       type: object
@@ -80508,6 +81142,7 @@ components:
     CreateLogicalNetworkProfile:
       example:
         vxlan:
+          autoRouteDistinguisher: true
           vniAllocationStrategies:
           - vni: 5
             kind: ""
@@ -80521,6 +81156,8 @@ components:
               resourceId: 6.027456183070403
               kind: ""
             granularityLevel: ""
+          neighSuppress: true
+          autoRouteTarget: true
         kind: ""
         fabricId: 0
         annotations:
@@ -80638,10 +81275,13 @@ components:
     UpdateLogicalNetworkProfile:
       example:
         routeDomainId: 0
+        autoRouteDistinguisher: true
         name: name
         annotations:
           key: annotations
         label: label
+        neighSuppress: true
+        autoRouteTarget: true
         mtu: 1500
       properties:
         label:
@@ -80663,6 +81303,18 @@ components:
           example: 1500
           nullable: true
           type: integer
+        neighSuppress:
+          description: "Controls neigh-suppress on switches for this logical network.\
+            \ true = enabled (default), false = disabled."
+          type: boolean
+        autoRouteDistinguisher:
+          description: "When true, EVPN Route Distinguisher is auto-generated by the\
+            \ switch. false = Metalsoft computes RD (default)."
+          type: boolean
+        autoRouteTarget:
+          description: "When true, EVPN Route Targets are auto-generated by the switch.\
+            \ false = Metalsoft computes RTs (default)."
+          type: boolean
       type: object
     PaginatedVlanAllocationStrategy:
       example:
@@ -81553,6 +82205,7 @@ components:
       type: object
     LogicalNetworkVxlanProperties:
       example:
+        autoRouteDistinguisher: true
         vnis:
         - vni: 7
           scope:
@@ -81569,6 +82222,8 @@ components:
         vniAllocationStrategies:
         - null
         - null
+        neighSuppress: true
+        autoRouteTarget: true
       properties:
         vnis:
           items:
@@ -81578,7 +82233,22 @@ components:
           items:
             $ref: "#/components/schemas/VniAllocationStrategy"
           type: array
+        neighSuppress:
+          description: "Controls neigh-suppress on switches for this logical network.\
+            \ true = enabled (default), false = disabled."
+          type: boolean
+        autoRouteDistinguisher:
+          description: "When true, EVPN Route Distinguisher is auto-generated by the\
+            \ switch. false = Metalsoft computes RD (default)."
+          type: boolean
+        autoRouteTarget:
+          description: "When true, EVPN Route Targets are auto-generated by the switch.\
+            \ false = Metalsoft computes RTs (default)."
+          type: boolean
       required:
+      - autoRouteDistinguisher
+      - autoRouteTarget
+      - neighSuppress
       - vniAllocationStrategies
       - vnis
       type: object
@@ -81690,6 +82360,7 @@ components:
     LogicalNetwork:
       example:
         vxlan:
+          autoRouteDistinguisher: true
           vnis:
           - vni: 7
             scope:
@@ -81706,6 +82377,8 @@ components:
           vniAllocationStrategies:
           - null
           - null
+          neighSuppress: true
+          autoRouteTarget: true
         kind: ""
         fabricId: 1
         extensionInstanceId: 5
@@ -82028,6 +82701,7 @@ components:
       example:
         data:
         - vxlan:
+            autoRouteDistinguisher: true
             vnis:
             - vni: 7
               scope:
@@ -82044,6 +82718,8 @@ components:
             vniAllocationStrategies:
             - null
             - null
+            neighSuppress: true
+            autoRouteTarget: true
           kind: ""
           fabricId: 1
           extensionInstanceId: 5
@@ -82284,6 +82960,7 @@ components:
             updatedAt: 2000-01-23T04:56:07.000+00:00
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - vxlan:
+            autoRouteDistinguisher: true
             vnis:
             - vni: 7
               scope:
@@ -82300,6 +82977,8 @@ components:
             vniAllocationStrategies:
             - null
             - null
+            neighSuppress: true
+            autoRouteTarget: true
           kind: ""
           fabricId: 1
           extensionInstanceId: 5
@@ -82564,6 +83243,7 @@ components:
     CreateLogicalNetwork:
       example:
         vxlan:
+          autoRouteDistinguisher: true
           vniAllocationStrategies:
           - vni: 5
             kind: ""
@@ -82577,6 +83257,8 @@ components:
               resourceId: 6.027456183070403
               kind: ""
             granularityLevel: ""
+          neighSuppress: true
+          autoRouteTarget: true
         kind: ""
         fabricId: 0
         annotations:
@@ -82697,10 +83379,13 @@ components:
       type: object
     UpdateLogicalNetwork:
       example:
+        autoRouteDistinguisher: true
         name: name
         annotations:
           key: annotations
         label: label
+        neighSuppress: true
+        autoRouteTarget: true
       properties:
         label:
           maxLength: 63
@@ -82713,6 +83398,18 @@ components:
             nullable: true
             type: string
           type: object
+        neighSuppress:
+          description: "Controls neigh-suppress on switches for this logical network.\
+            \ true = enabled (default), false = disabled."
+          type: boolean
+        autoRouteDistinguisher:
+          description: "When true, EVPN Route Distinguisher is auto-generated by the\
+            \ switch. false = Metalsoft computes RD (default)."
+          type: boolean
+        autoRouteTarget:
+          description: "When true, EVPN Route Targets are auto-generated by the switch.\
+            \ false = Metalsoft computes RTs (default)."
+          type: boolean
       type: object
     UpdateLogicalNetworkConfigGlobalSettings:
       example:
@@ -85046,7 +85743,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2026-03-02T00:11:10.411Z
+        createdTimestamp: 2026-03-16T19:02:04.385Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -85055,7 +85752,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2026-03-02T00:11:10.411Z
+        updatedTimestamp: 2026-03-16T19:02:04.385Z
         revision: "1"
       properties:
         siteId:
@@ -85071,12 +85768,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.411Z
+          example: 2026-03-16T19:02:04.385Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.411Z
+          example: 2026-03-16T19:02:04.385Z
           format: date-time
           type: string
         links:
@@ -85098,7 +85795,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-03-02T00:11:10.411Z
+        - createdTimestamp: 2026-03-16T19:02:04.385Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -85107,9 +85804,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-03-02T00:11:10.411Z
+          updatedTimestamp: 2026-03-16T19:02:04.385Z
           revision: "1"
-        - createdTimestamp: 2026-03-02T00:11:10.411Z
+        - createdTimestamp: 2026-03-16T19:02:04.385Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -85118,7 +85815,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-03-02T00:11:10.411Z
+          updatedTimestamp: 2026-03-16T19:02:04.385Z
           revision: "1"
         meta: ""
         links: ""
@@ -85701,7 +86398,7 @@ components:
     NetworkFabric:
       example:
         transportId: 123
-        createdTimestamp: 2026-03-02T00:11:10.336Z
+        createdTimestamp: 2026-03-16T19:02:04.288Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -85742,7 +86439,7 @@ components:
           configurationPreview: configurationPreview
           networkDeviceConfigurationTemplateType: link_aggregation
           networkFabricLinkId: 101
-        updatedTimestamp: 2026-03-02T00:11:10.337Z
+        updatedTimestamp: 2026-03-16T19:02:04.288Z
         deployId: 123
         customVariables: "{}"
         revision: "1"
@@ -85896,12 +86593,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.336Z
+          example: 2026-03-16T19:02:04.288Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.337Z
+          example: 2026-03-16T19:02:04.288Z
           format: date-time
           type: string
         links:
@@ -85954,7 +86651,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-03-02T00:11:10.336Z
+          createdTimestamp: 2026-03-16T19:02:04.288Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -85995,7 +86692,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-03-02T00:11:10.337Z
+          updatedTimestamp: 2026-03-16T19:02:04.288Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -86126,7 +86823,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-03-02T00:11:10.336Z
+          createdTimestamp: 2026-03-16T19:02:04.288Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -86167,7 +86864,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-03-02T00:11:10.337Z
+          updatedTimestamp: 2026-03-16T19:02:04.288Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -86389,7 +87086,7 @@ components:
         interconnectType: dci-evpn
         bgpConfigurationTemplate: bgpConfigurationTemplate
         transportId: 65534
-        createdTimestamp: 2026-03-02T00:11:10.419Z
+        createdTimestamp: 2026-03-16T19:02:04.401Z
         description: Data center interconnect using EVPN
         label: dci-evpn-interconnect-01
         deployPreview:
@@ -86421,7 +87118,7 @@ components:
           - neighborTemplateActivate
           - neighborTemplateActivate
           networkInterconnectId: 101
-        updatedTimestamp: 2026-03-02T00:11:10.419Z
+        updatedTimestamp: 2026-03-16T19:02:04.401Z
         deployId: 123
         revision: "1"
         name: Primary DCI EVPN Interconnect
@@ -86480,12 +87177,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.419Z
+          example: 2026-03-16T19:02:04.401Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.419Z
+          example: 2026-03-16T19:02:04.401Z
           format: date-time
           type: string
         links:
@@ -86524,7 +87221,7 @@ components:
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
           transportId: 65534
-          createdTimestamp: 2026-03-02T00:11:10.419Z
+          createdTimestamp: 2026-03-16T19:02:04.401Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -86556,7 +87253,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-03-02T00:11:10.419Z
+          updatedTimestamp: 2026-03-16T19:02:04.401Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -86571,7 +87268,7 @@ components:
         - interconnectType: dci-evpn
           bgpConfigurationTemplate: bgpConfigurationTemplate
           transportId: 65534
-          createdTimestamp: 2026-03-02T00:11:10.419Z
+          createdTimestamp: 2026-03-16T19:02:04.401Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -86603,7 +87300,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-03-02T00:11:10.419Z
+          updatedTimestamp: 2026-03-16T19:02:04.401Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -86648,7 +87345,7 @@ components:
         fabricAId: 2
         fabricANetworkEquipmentId: 1
         interconnectId: 2
-        createdTimestamp: 2026-03-02T00:11:10.421Z
+        createdTimestamp: 2026-03-16T19:02:04.405Z
         fabricBNetworkEquipmentId: 1
         links:
         - rel: self
@@ -86656,7 +87353,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-03-02T00:11:10.421Z
+        updatedTimestamp: 2026-03-16T19:02:04.405Z
         revision: "1"
         status: active
         fabricBId: 3
@@ -86667,12 +87364,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.421Z
+          example: 2026-03-16T19:02:04.405Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.421Z
+          example: 2026-03-16T19:02:04.405Z
           format: date-time
           type: string
         links:
@@ -86843,7 +87540,7 @@ components:
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2026-03-02T00:11:10.421Z
+          createdTimestamp: 2026-03-16T19:02:04.405Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -86851,14 +87548,14 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-03-02T00:11:10.421Z
+          updatedTimestamp: 2026-03-16T19:02:04.405Z
           revision: "1"
           status: active
           fabricBId: 3
         - fabricAId: 2
           fabricANetworkEquipmentId: 1
           interconnectId: 2
-          createdTimestamp: 2026-03-02T00:11:10.421Z
+          createdTimestamp: 2026-03-16T19:02:04.405Z
           fabricBNetworkEquipmentId: 1
           links:
           - rel: self
@@ -86866,7 +87563,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-03-02T00:11:10.421Z
+          updatedTimestamp: 2026-03-16T19:02:04.405Z
           revision: "1"
           status: active
           fabricBId: 3
@@ -86927,7 +87624,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-03-02T00:11:10.336Z
+          createdTimestamp: 2026-03-16T19:02:04.288Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -86968,7 +87665,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-03-02T00:11:10.337Z
+          updatedTimestamp: 2026-03-16T19:02:04.288Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -87099,7 +87796,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-03-02T00:11:10.336Z
+          createdTimestamp: 2026-03-16T19:02:04.288Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -87140,7 +87837,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-03-02T00:11:10.337Z
+          updatedTimestamp: 2026-03-16T19:02:04.288Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -87429,8 +88126,8 @@ components:
       type: object
     NetworkFabricBGPSession:
       example:
-        createdTimestamp: 2026-03-02T00:11:10.339Z
-        updatedTimestamp: 2026-03-02T00:11:10.339Z
+        createdTimestamp: 2026-03-16T19:02:04.292Z
+        updatedTimestamp: 2026-03-16T19:02:04.292Z
         revision: "1"
         networkFabricLinkAggregationId: 1
         linkAggregation: ""
@@ -87450,12 +88147,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.339Z
+          example: 2026-03-16T19:02:04.292Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.339Z
+          example: 2026-03-16T19:02:04.292Z
           format: date-time
           type: string
         revision:
@@ -87532,16 +88229,17 @@ components:
       type: object
     NetworkFabricLinkAggregation:
       example:
-        createdTimestamp: 2026-03-02T00:11:10.344Z
+        createdTimestamp: 2026-03-16T19:02:04.297Z
         networkFabricLinks:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-03-02T00:11:10.341Z
-          updatedTimestamp: 2026-03-02T00:11:10.341Z
+          createdTimestamp: 2026-03-16T19:02:04.294Z
+          updatedTimestamp: 2026-03-16T19:02:04.294Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
           networkDeviceAInterfaceId: 1
+          externalSystemId: 1
           bgpSession: ""
           networkFabricId: 1
           linkType: point-to-point
@@ -87554,13 +88252,14 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-03-02T00:11:10.341Z
-          updatedTimestamp: 2026-03-02T00:11:10.341Z
+          createdTimestamp: 2026-03-16T19:02:04.294Z
+          updatedTimestamp: 2026-03-16T19:02:04.294Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
           networkDeviceAInterfaceId: 1
+          externalSystemId: 1
           bgpSession: ""
           networkFabricId: 1
           linkType: point-to-point
@@ -87574,7 +88273,7 @@ components:
           status: draft
         mlagDomainIdentifier: MLAG-Domain-1 or 123
         type: lag
-        updatedTimestamp: 2026-03-02T00:11:10.344Z
+        updatedTimestamp: 2026-03-16T19:02:04.297Z
         revision: "1"
         networkFabricLinkConfigs:
         - networkFabricLink: ""
@@ -87600,12 +88299,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.344Z
+          example: 2026-03-16T19:02:04.297Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.344Z
+          example: 2026-03-16T19:02:04.297Z
           format: date-time
           type: string
         revision:
@@ -87715,13 +88414,14 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2026-03-02T00:11:10.341Z
-        updatedTimestamp: 2026-03-02T00:11:10.341Z
+        createdTimestamp: 2026-03-16T19:02:04.294Z
+        updatedTimestamp: 2026-03-16T19:02:04.294Z
         customVariables: "{}"
         revision: "1"
         networkFabricLinkAggregationId: 1
         linkAggregation: ""
         networkDeviceAInterfaceId: 1
+        externalSystemId: 1
         bgpSession: ""
         networkFabricId: 1
         linkType: point-to-point
@@ -87736,12 +88436,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.341Z
+          example: 2026-03-16T19:02:04.294Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.341Z
+          example: 2026-03-16T19:02:04.294Z
           format: date-time
           type: string
         revision:
@@ -87761,12 +88461,22 @@ components:
           example: 1
           type: number
         networkDeviceAInterfaceId:
-          description: Unique identifier for the network device A interface
+          description: Unique identifier for the network device A interface. Required
+            when externalSystemId is not set; also required when externalSystemId
+            is set (the device side of the link).
           example: 1
           type: number
         networkDeviceBInterfaceId:
-          description: Unique identifier for the network device B interface
+          description: Unique identifier for the network device B interface. Required
+            when externalSystemId is not set; must not be set when externalSystemId
+            is provided.
           example: 2
+          type: number
+        externalSystemId:
+          description: "Unique identifier for the external system acting as side B\
+            \ of this link. When set, networkDeviceAInterfaceId must be provided and\
+            \ networkDeviceBInterfaceId must be omitted."
+          example: 1
           type: number
         linkType:
           description: Type of the network fabric link
@@ -87807,8 +88517,6 @@ components:
       - createdTimestamp
       - id
       - linkType
-      - networkDeviceAInterfaceId
-      - networkDeviceBInterfaceId
       - networkFabricId
       - revision
       - status
@@ -87818,13 +88526,14 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-03-02T00:11:10.341Z
-          updatedTimestamp: 2026-03-02T00:11:10.341Z
+          createdTimestamp: 2026-03-16T19:02:04.294Z
+          updatedTimestamp: 2026-03-16T19:02:04.294Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
           networkDeviceAInterfaceId: 1
+          externalSystemId: 1
           bgpSession: ""
           networkFabricId: 1
           linkType: point-to-point
@@ -87837,13 +88546,14 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-03-02T00:11:10.341Z
-          updatedTimestamp: 2026-03-02T00:11:10.341Z
+          createdTimestamp: 2026-03-16T19:02:04.294Z
+          updatedTimestamp: 2026-03-16T19:02:04.294Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
           networkDeviceAInterfaceId: 1
+          externalSystemId: 1
           bgpSession: ""
           networkFabricId: 1
           linkType: point-to-point
@@ -87881,6 +88591,7 @@ components:
       example:
         networkDeviceAInterfaceId: 1
         networkDeviceBInterfaceId: 2
+        externalSystemId: 1
         linkType: point-to-point
         links:
         - rel: self
@@ -87891,12 +88602,22 @@ components:
         customVariables: "{}"
       properties:
         networkDeviceAInterfaceId:
-          description: Unique identifier for the network device A interface
+          description: Unique identifier for the network device A interface. Required
+            when externalSystemId is not set; also required when externalSystemId
+            is set (the device side of the link).
           example: 1
           type: number
         networkDeviceBInterfaceId:
-          description: Unique identifier for the network device B interface
+          description: Unique identifier for the network device B interface. Required
+            when externalSystemId is not set; must not be set when externalSystemId
+            is provided.
           example: 2
+          type: number
+        externalSystemId:
+          description: "Unique identifier for the external system acting as side B\
+            \ of this link. When set, networkDeviceAInterfaceId must be provided and\
+            \ networkDeviceBInterfaceId must be omitted."
+          example: 1
           type: number
         linkType:
           description: Type of the network fabric link
@@ -87919,22 +88640,21 @@ components:
           type: array
       required:
       - linkType
-      - networkDeviceAInterfaceId
-      - networkDeviceBInterfaceId
       type: object
     NetworkFabricLinkAggregationPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-03-02T00:11:10.344Z
+        - createdTimestamp: 2026-03-16T19:02:04.297Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-03-02T00:11:10.341Z
-            updatedTimestamp: 2026-03-02T00:11:10.341Z
+            createdTimestamp: 2026-03-16T19:02:04.294Z
+            updatedTimestamp: 2026-03-16T19:02:04.294Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
             linkAggregation: ""
             networkDeviceAInterfaceId: 1
+            externalSystemId: 1
             bgpSession: ""
             networkFabricId: 1
             linkType: point-to-point
@@ -87947,13 +88667,14 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-03-02T00:11:10.341Z
-            updatedTimestamp: 2026-03-02T00:11:10.341Z
+            createdTimestamp: 2026-03-16T19:02:04.294Z
+            updatedTimestamp: 2026-03-16T19:02:04.294Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
             linkAggregation: ""
             networkDeviceAInterfaceId: 1
+            externalSystemId: 1
             bgpSession: ""
             networkFabricId: 1
             linkType: point-to-point
@@ -87967,7 +88688,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-03-02T00:11:10.344Z
+          updatedTimestamp: 2026-03-16T19:02:04.297Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -87990,16 +88711,17 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           status: draft
-        - createdTimestamp: 2026-03-02T00:11:10.344Z
+        - createdTimestamp: 2026-03-16T19:02:04.297Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-03-02T00:11:10.341Z
-            updatedTimestamp: 2026-03-02T00:11:10.341Z
+            createdTimestamp: 2026-03-16T19:02:04.294Z
+            updatedTimestamp: 2026-03-16T19:02:04.294Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
             linkAggregation: ""
             networkDeviceAInterfaceId: 1
+            externalSystemId: 1
             bgpSession: ""
             networkFabricId: 1
             linkType: point-to-point
@@ -88012,13 +88734,14 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-03-02T00:11:10.341Z
-            updatedTimestamp: 2026-03-02T00:11:10.341Z
+            createdTimestamp: 2026-03-16T19:02:04.294Z
+            updatedTimestamp: 2026-03-16T19:02:04.294Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
             linkAggregation: ""
             networkDeviceAInterfaceId: 1
+            externalSystemId: 1
             bgpSession: ""
             networkFabricId: 1
             linkType: point-to-point
@@ -88032,7 +88755,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-03-02T00:11:10.344Z
+          updatedTimestamp: 2026-03-16T19:02:04.297Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -88134,8 +88857,8 @@ components:
     NetworkFabricBGPSessionPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-03-02T00:11:10.339Z
-          updatedTimestamp: 2026-03-02T00:11:10.339Z
+        - createdTimestamp: 2026-03-16T19:02:04.292Z
+          updatedTimestamp: 2026-03-16T19:02:04.292Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -88152,8 +88875,8 @@ components:
           bgpNumbering: inherited
           networkFabricLinkId: 1
           status: draft
-        - createdTimestamp: 2026-03-02T00:11:10.339Z
-          updatedTimestamp: 2026-03-02T00:11:10.339Z
+        - createdTimestamp: 2026-03-16T19:02:04.292Z
+          updatedTimestamp: 2026-03-16T19:02:04.292Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -91480,7 +92203,7 @@ components:
       example:
         settings: ""
         isDefault: true
-        createdTimestamp: 2026-03-02T00:11:10.816Z
+        createdTimestamp: 2026-03-16T19:02:04.883Z
         name: name
         links:
         - rel: self
@@ -91488,17 +92211,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
-        updatedTimestamp: 2026-03-02T00:11:10.816Z
+        updatedTimestamp: 2026-03-16T19:02:04.883Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.816Z
+          example: 2026-03-16T19:02:04.883Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.816Z
+          example: 2026-03-16T19:02:04.883Z
           format: date-time
           type: string
         revision:
@@ -91538,7 +92261,7 @@ components:
         data:
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-03-02T00:11:10.816Z
+          createdTimestamp: 2026-03-16T19:02:04.883Z
           name: name
           links:
           - rel: self
@@ -91546,11 +92269,11 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2026-03-02T00:11:10.816Z
+          updatedTimestamp: 2026-03-16T19:02:04.883Z
           revision: "1"
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-03-02T00:11:10.816Z
+          createdTimestamp: 2026-03-16T19:02:04.883Z
           name: name
           links:
           - rel: self
@@ -91558,7 +92281,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2026-03-02T00:11:10.816Z
+          updatedTimestamp: 2026-03-16T19:02:04.883Z
           revision: "1"
         meta: ""
         links: ""
@@ -92975,10 +93698,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2026-03-02T00:11:10.414Z
+        createdTimestamp: 2026-03-16T19:02:04.393Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2026-03-02T00:11:10.414Z
+        updatedTimestamp: 2026-03-16T19:02:04.393Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -93052,12 +93775,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.414Z
+          example: 2026-03-16T19:02:04.393Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.414Z
+          example: 2026-03-16T19:02:04.393Z
           format: date-time
           type: string
         links:
@@ -99409,7 +100132,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2026-03-02T00:11:10.407Z
+        createdTimestamp: 2026-03-16T19:02:04.378Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -99417,7 +100140,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-03-02T00:11:10.407Z
+        updatedTimestamp: 2026-03-16T19:02:04.378Z
         revision: "1"
       properties:
         id:
@@ -99446,12 +100169,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.407Z
+          example: 2026-03-16T19:02:04.378Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.407Z
+          example: 2026-03-16T19:02:04.378Z
           format: date-time
           type: string
         links:
@@ -99496,7 +100219,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2026-03-02T00:11:10.409Z
+        createdTimestamp: 2026-03-16T19:02:04.382Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -99507,7 +100230,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2026-03-02T00:11:10.409Z
+        updatedTimestamp: 2026-03-16T19:02:04.382Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -99541,12 +100264,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-03-02T00:11:10.409Z
+          example: 2026-03-16T19:02:04.382Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-03-02T00:11:10.409Z
+          example: 2026-03-16T19:02:04.382Z
           format: date-time
           type: string
         allocationInfo:
@@ -99570,7 +100293,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-03-02T00:11:10.409Z
+        - createdTimestamp: 2026-03-16T19:02:04.382Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -99581,10 +100304,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-03-02T00:11:10.409Z
+          updatedTimestamp: 2026-03-16T19:02:04.382Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2026-03-02T00:11:10.409Z
+        - createdTimestamp: 2026-03-16T19:02:04.382Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -99595,7 +100318,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-03-02T00:11:10.409Z
+          updatedTimestamp: 2026-03-16T19:02:04.382Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -99804,7 +100527,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-03-02T00:11:10.407Z
+          createdTimestamp: 2026-03-16T19:02:04.378Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -99812,12 +100535,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-03-02T00:11:10.407Z
+          updatedTimestamp: 2026-03-16T19:02:04.378Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-03-02T00:11:10.407Z
+          createdTimestamp: 2026-03-16T19:02:04.378Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -99825,7 +100548,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-03-02T00:11:10.407Z
+          updatedTimestamp: 2026-03-16T19:02:04.378Z
           revision: "1"
         meta: ""
         links: ""
@@ -100304,6 +101027,177 @@ components:
           type: integer
       required:
       - logicalNetworkId
+      type: object
+    ExternalSystem:
+      example:
+        createdAt: 2025-01-01T00:00:00Z
+        name: My External System
+        annotations:
+          key: value
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: "1"
+        label: external-system-1
+        revision: "1"
+        updatedAt: 2025-01-01T00:00:00Z
+      properties:
+        id:
+          description: The external system id.
+          example: "1"
+          type: string
+        label:
+          description: The external system unique label
+          example: external-system-1
+          maxLength: 63
+          minLength: 1
+          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
+          type: string
+        name:
+          description: The external system name
+          example: My External System
+          maxLength: 63
+          type: string
+        annotations:
+          description: Annotations - key/value pairs of additional metadata
+          example:
+            key: value
+          type: object
+        revision:
+          description: Revision number of the entity
+          example: "1"
+          type: string
+        createdAt:
+          description: The date and time the entity was created
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the entity was last updated
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: "#/components/schemas/Link"
+          type: array
+      required:
+      - annotations
+      - createdAt
+      - id
+      - label
+      - name
+      - revision
+      - updatedAt
+      type: object
+    ExternalSystemPaginatedList:
+      example:
+        data:
+        - createdAt: 2025-01-01T00:00:00Z
+          name: My External System
+          annotations:
+            key: value
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: "1"
+          label: external-system-1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        - createdAt: 2025-01-01T00:00:00Z
+          name: My External System
+          annotations:
+            key: value
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: "1"
+          label: external-system-1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/ExternalSystem"
+          title: List of external systems
+          type: array
+        meta:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseMeta"
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseLinks"
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - meta
+      type: object
+    CreateExternalSystem:
+      example:
+        name: My External System
+        annotations:
+          key: value
+        label: external-system-1
+      properties:
+        label:
+          description: The external system unique label
+          example: external-system-1
+          maxLength: 63
+          minLength: 1
+          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
+          type: string
+        name:
+          description: The external system name
+          example: My External System
+          maxLength: 63
+          type: string
+        annotations:
+          description: Annotations - key/value pairs of additional metadata
+          example:
+            key: value
+          type: object
+      required:
+      - label
+      - name
+      type: object
+    UpdateExternalSystem:
+      example:
+        name: My External System
+        annotations:
+          key: value
+        label: external-system-1
+      properties:
+        label:
+          description: The external system unique label
+          example: external-system-1
+          maxLength: 63
+          minLength: 1
+          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
+          type: string
+        name:
+          description: The external system name
+          example: My External System
+          maxLength: 63
+          type: string
+        annotations:
+          description: Annotations - key/value pairs of additional metadata
+          example:
+            key: value
+          type: object
       type: object
     SharedDriveMeta:
       example:
@@ -103741,6 +104635,22 @@ components:
       properties:
         redirectUrl:
           description: The redirect URL after email verification
+          type: string
+      type: object
+    ResendUserInvitation:
+      example:
+        redirectUrl: redirectUrl
+      properties:
+        redirectUrl:
+          description: The redirect URL after invitation
+          type: string
+      type: object
+    PasswordResetByAdmin:
+      example:
+        redirectUrl: redirectUrl
+      properties:
+        redirectUrl:
+          description: The redirect URL after password recovery
           type: string
       type: object
     UserList:

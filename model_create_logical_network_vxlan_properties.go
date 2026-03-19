@@ -22,6 +22,12 @@ var _ MappedNullable = &CreateLogicalNetworkVxlanProperties{}
 // CreateLogicalNetworkVxlanProperties struct for CreateLogicalNetworkVxlanProperties
 type CreateLogicalNetworkVxlanProperties struct {
 	VniAllocationStrategies []CreateVniAllocationStrategy `json:"vniAllocationStrategies"`
+	// Controls neigh-suppress on switches for this logical network. Defaults to true (enabled). Set to false to disable neigh-suppress
+	NeighSuppress *bool `json:"neighSuppress,omitempty"`
+	// When true, the switch auto-generates the EVPN Route Distinguisher instead of Metalsoft computing it. Defaults to false.
+	AutoRouteDistinguisher *bool `json:"autoRouteDistinguisher,omitempty"`
+	// When true, the switch auto-generates EVPN Route Targets instead of Metalsoft computing them. Defaults to false.
+	AutoRouteTarget *bool `json:"autoRouteTarget,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -69,6 +75,102 @@ func (o *CreateLogicalNetworkVxlanProperties) SetVniAllocationStrategies(v []Cre
 	o.VniAllocationStrategies = v
 }
 
+// GetNeighSuppress returns the NeighSuppress field value if set, zero value otherwise.
+func (o *CreateLogicalNetworkVxlanProperties) GetNeighSuppress() bool {
+	if o == nil || IsNil(o.NeighSuppress) {
+		var ret bool
+		return ret
+	}
+	return *o.NeighSuppress
+}
+
+// GetNeighSuppressOk returns a tuple with the NeighSuppress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetworkVxlanProperties) GetNeighSuppressOk() (*bool, bool) {
+	if o == nil || IsNil(o.NeighSuppress) {
+		return nil, false
+	}
+	return o.NeighSuppress, true
+}
+
+// HasNeighSuppress returns a boolean if a field has been set.
+func (o *CreateLogicalNetworkVxlanProperties) HasNeighSuppress() bool {
+	if o != nil && !IsNil(o.NeighSuppress) {
+		return true
+	}
+
+	return false
+}
+
+// SetNeighSuppress gets a reference to the given bool and assigns it to the NeighSuppress field.
+func (o *CreateLogicalNetworkVxlanProperties) SetNeighSuppress(v bool) {
+	o.NeighSuppress = &v
+}
+
+// GetAutoRouteDistinguisher returns the AutoRouteDistinguisher field value if set, zero value otherwise.
+func (o *CreateLogicalNetworkVxlanProperties) GetAutoRouteDistinguisher() bool {
+	if o == nil || IsNil(o.AutoRouteDistinguisher) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoRouteDistinguisher
+}
+
+// GetAutoRouteDistinguisherOk returns a tuple with the AutoRouteDistinguisher field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetworkVxlanProperties) GetAutoRouteDistinguisherOk() (*bool, bool) {
+	if o == nil || IsNil(o.AutoRouteDistinguisher) {
+		return nil, false
+	}
+	return o.AutoRouteDistinguisher, true
+}
+
+// HasAutoRouteDistinguisher returns a boolean if a field has been set.
+func (o *CreateLogicalNetworkVxlanProperties) HasAutoRouteDistinguisher() bool {
+	if o != nil && !IsNil(o.AutoRouteDistinguisher) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRouteDistinguisher gets a reference to the given bool and assigns it to the AutoRouteDistinguisher field.
+func (o *CreateLogicalNetworkVxlanProperties) SetAutoRouteDistinguisher(v bool) {
+	o.AutoRouteDistinguisher = &v
+}
+
+// GetAutoRouteTarget returns the AutoRouteTarget field value if set, zero value otherwise.
+func (o *CreateLogicalNetworkVxlanProperties) GetAutoRouteTarget() bool {
+	if o == nil || IsNil(o.AutoRouteTarget) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoRouteTarget
+}
+
+// GetAutoRouteTargetOk returns a tuple with the AutoRouteTarget field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetworkVxlanProperties) GetAutoRouteTargetOk() (*bool, bool) {
+	if o == nil || IsNil(o.AutoRouteTarget) {
+		return nil, false
+	}
+	return o.AutoRouteTarget, true
+}
+
+// HasAutoRouteTarget returns a boolean if a field has been set.
+func (o *CreateLogicalNetworkVxlanProperties) HasAutoRouteTarget() bool {
+	if o != nil && !IsNil(o.AutoRouteTarget) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRouteTarget gets a reference to the given bool and assigns it to the AutoRouteTarget field.
+func (o *CreateLogicalNetworkVxlanProperties) SetAutoRouteTarget(v bool) {
+	o.AutoRouteTarget = &v
+}
+
 func (o CreateLogicalNetworkVxlanProperties) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -80,6 +182,15 @@ func (o CreateLogicalNetworkVxlanProperties) MarshalJSON() ([]byte, error) {
 func (o CreateLogicalNetworkVxlanProperties) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["vniAllocationStrategies"] = o.VniAllocationStrategies
+	if !IsNil(o.NeighSuppress) {
+		toSerialize["neighSuppress"] = o.NeighSuppress
+	}
+	if !IsNil(o.AutoRouteDistinguisher) {
+		toSerialize["autoRouteDistinguisher"] = o.AutoRouteDistinguisher
+	}
+	if !IsNil(o.AutoRouteTarget) {
+		toSerialize["autoRouteTarget"] = o.AutoRouteTarget
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -124,6 +235,9 @@ func (o *CreateLogicalNetworkVxlanProperties) UnmarshalJSON(data []byte) (err er
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "vniAllocationStrategies")
+		delete(additionalProperties, "neighSuppress")
+		delete(additionalProperties, "autoRouteDistinguisher")
+		delete(additionalProperties, "autoRouteTarget")
 		o.AdditionalProperties = additionalProperties
 	}
 

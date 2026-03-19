@@ -42,6 +42,7 @@ Name | Type | Description | Notes
 **ChildDelegates** | Pointer to **[]string** | The email addresses of the child delegate users | [optional] 
 **IsSuspended** | **bool** | Whether the user is suspended | 
 **AuthenticatorEnabled** | **bool** | Whether the user has an authenticator | 
+**AccessibleResources** | Pointer to **map[string]interface{}** | The resources accessible by the user | [optional] 
 **Config** | [**UserConfiguration**](UserConfiguration.md) | The new configuration of the user. | 
 **Meta** | [**UserMeta**](UserMeta.md) | Meta information of the user. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -874,6 +875,31 @@ and a boolean to check if the value has been set.
 
 SetAuthenticatorEnabled sets AuthenticatorEnabled field to given value.
 
+
+### GetAccessibleResources
+
+`func (o *User) GetAccessibleResources() map[string]interface{}`
+
+GetAccessibleResources returns the AccessibleResources field if non-nil, zero value otherwise.
+
+### GetAccessibleResourcesOk
+
+`func (o *User) GetAccessibleResourcesOk() (*map[string]interface{}, bool)`
+
+GetAccessibleResourcesOk returns a tuple with the AccessibleResources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessibleResources
+
+`func (o *User) SetAccessibleResources(v map[string]interface{})`
+
+SetAccessibleResources sets AccessibleResources field to given value.
+
+### HasAccessibleResources
+
+`func (o *User) HasAccessibleResources() bool`
+
+HasAccessibleResources returns a boolean if a field has been set.
 
 ### GetConfig
 
