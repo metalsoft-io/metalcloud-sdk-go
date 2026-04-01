@@ -1203,9 +1203,9 @@ func main() {
 	filterServiceStatus := []string{"Inner_example"} // []string | Filter by serviceStatus query param.  **Format:** filter.serviceStatus={$not}:OPERATION:VALUE    **Example:** filter.serviceStatus=$eq:John Doe&filter.serviceStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterConfigDeployStatus := []string{"Inner_example"} // []string | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus={$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus=$eq:John Doe&filter.config.deployStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterConfigDeployType := []string{"Inner_example"} // []string | Filter by config.deployType query param.  **Format:** filter.config.deployType={$not}:OPERATION:VALUE    **Example:** filter.config.deployType=$eq:John Doe&filter.config.deployType=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** id:ASC  **Available Fields** - id  - name  - label  - serviceStatus  - kind  - createdAt  - updatedAt  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,name,label,serviceStatus,kind   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - label  - serviceStatus  - kind  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1241,9 +1241,9 @@ Name | Type | Description  | Notes
  **filterServiceStatus** | **[]string** | Filter by serviceStatus query param.  **Format:** filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serviceStatus&#x3D;$eq:John Doe&amp;filter.serviceStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterConfigDeployStatus** | **[]string** | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus&#x3D;$eq:John Doe&amp;filter.config.deployStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterConfigDeployType** | **[]string** | Filter by config.deployType query param.  **Format:** filter.config.deployType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployType&#x3D;$eq:John Doe&amp;filter.config.deployType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:ASC  **Available Fields** - id  - name  - label  - serviceStatus  - kind  - createdAt  - updatedAt  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,name,label,serviceStatus,kind   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - label  - serviceStatus  - kind  | 
 
 ### Return type
 
@@ -1562,7 +1562,7 @@ Name | Type | Description  | Notes
 
 ## UpdateRouteDomainConfig
 
-> RouteDomainConfig UpdateRouteDomainConfig(ctx, id).IfMatch(ifMatch).Body(body).Execute()
+> RouteDomainConfig UpdateRouteDomainConfig(ctx, id).IfMatch(ifMatch).UpdateRouteDomainConfigGlobalSettings(updateRouteDomainConfigGlobalSettings).Execute()
 
 Update Route Domain config
 
@@ -1581,11 +1581,11 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	body := map[string]interface{}{ ... } // map[string]interface{} | 
+	updateRouteDomainConfigGlobalSettings := *openapiclient.NewUpdateRouteDomainConfigGlobalSettings() // UpdateRouteDomainConfigGlobalSettings | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteDomainAPI.UpdateRouteDomainConfig(context.Background(), id).IfMatch(ifMatch).Body(body).Execute()
+	resp, r, err := apiClient.RouteDomainAPI.UpdateRouteDomainConfig(context.Background(), id).IfMatch(ifMatch).UpdateRouteDomainConfigGlobalSettings(updateRouteDomainConfigGlobalSettings).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteDomainAPI.UpdateRouteDomainConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1612,7 +1612,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
- **body** | **map[string]interface{}** |  | 
+ **updateRouteDomainConfigGlobalSettings** | [**UpdateRouteDomainConfigGlobalSettings**](UpdateRouteDomainConfigGlobalSettings.md) |  | 
 
 ### Return type
 

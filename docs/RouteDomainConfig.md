@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **Revision** | **int32** |  | 
 **Kind** | [**RouteDomainKind**](RouteDomainKind.md) |  | 
 **VrfAllocationStrategies** | [**[]CreateVrfAllocationStrategy**](CreateVrfAllocationStrategy.md) |  | 
+**AutoRouteDistinguisher** | Pointer to **bool** | When true, the switch auto-generates the EVPN Route Distinguisher for the L3 VNI. Only applicable to EVPN_L3VPN route domains. | [optional] 
+**AutoRouteTarget** | Pointer to **bool** | When true, the switch auto-generates EVPN Route Targets for the L3 VNI. Only applicable to EVPN_L3VPN route domains. | [optional] 
 **L3VlanAllocationStrategies** | Pointer to [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | [optional] 
 **L3VniAllocationStrategies** | Pointer to [**[]VniAllocationStrategy**](VniAllocationStrategy.md) |  | [optional] 
 
@@ -193,6 +195,56 @@ and a boolean to check if the value has been set.
 
 SetVrfAllocationStrategies sets VrfAllocationStrategies field to given value.
 
+
+### GetAutoRouteDistinguisher
+
+`func (o *RouteDomainConfig) GetAutoRouteDistinguisher() bool`
+
+GetAutoRouteDistinguisher returns the AutoRouteDistinguisher field if non-nil, zero value otherwise.
+
+### GetAutoRouteDistinguisherOk
+
+`func (o *RouteDomainConfig) GetAutoRouteDistinguisherOk() (*bool, bool)`
+
+GetAutoRouteDistinguisherOk returns a tuple with the AutoRouteDistinguisher field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRouteDistinguisher
+
+`func (o *RouteDomainConfig) SetAutoRouteDistinguisher(v bool)`
+
+SetAutoRouteDistinguisher sets AutoRouteDistinguisher field to given value.
+
+### HasAutoRouteDistinguisher
+
+`func (o *RouteDomainConfig) HasAutoRouteDistinguisher() bool`
+
+HasAutoRouteDistinguisher returns a boolean if a field has been set.
+
+### GetAutoRouteTarget
+
+`func (o *RouteDomainConfig) GetAutoRouteTarget() bool`
+
+GetAutoRouteTarget returns the AutoRouteTarget field if non-nil, zero value otherwise.
+
+### GetAutoRouteTargetOk
+
+`func (o *RouteDomainConfig) GetAutoRouteTargetOk() (*bool, bool)`
+
+GetAutoRouteTargetOk returns a tuple with the AutoRouteTarget field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRouteTarget
+
+`func (o *RouteDomainConfig) SetAutoRouteTarget(v bool)`
+
+SetAutoRouteTarget sets AutoRouteTarget field to given value.
+
+### HasAutoRouteTarget
+
+`func (o *RouteDomainConfig) HasAutoRouteTarget() bool`
+
+HasAutoRouteTarget returns a boolean if a field has been set.
 
 ### GetL3VlanAllocationStrategies
 

@@ -25,6 +25,7 @@ const (
 	SWITCHPOSITION_NORTH SwitchPosition = "north"
 	SWITCHPOSITION_SPINE SwitchPosition = "spine"
 	SWITCHPOSITION_LEAF SwitchPosition = "leaf"
+	SWITCHPOSITION_DPU SwitchPosition = "dpu"
 	SWITCHPOSITION_OTHER SwitchPosition = "other"
 )
 
@@ -34,6 +35,7 @@ var AllowedSwitchPositionEnumValues = []SwitchPosition{
 	"north",
 	"spine",
 	"leaf",
+	"dpu",
 	"other",
 }
 

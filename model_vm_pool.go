@@ -59,8 +59,8 @@ type VMPool struct {
 	Options *VMPoolOptions `json:"options,omitempty"`
 	// The GPUs registered inside the VM Pool.
 	Gpus []VMPoolGPU `json:"gpus,omitempty"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,7 +70,7 @@ type _VMPool VMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
+func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string) *VMPool {
 	this := VMPool{}
 	this.Id = id
 	this.SiteId = siteId
@@ -83,7 +83,6 @@ func NewVMPool(id float32, siteId float32, datacenterName string, managementHost
 	this.NetworkFabricId = networkFabricId
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
-	this.Links = links
 	return &this
 }
 
@@ -615,27 +614,35 @@ func (o *VMPool) SetGpus(v []VMPoolGPU) {
 	o.Gpus = v
 }
 
-// GetLinks returns the Links field value
-func (o *VMPool) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *VMPool) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMPool) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *VMPool) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *VMPool) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *VMPool) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *VMPool) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -684,7 +691,9 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Gpus) {
 		toSerialize["gpus"] = o.Gpus
 	}
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -709,7 +718,6 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		"networkFabricId",
 		"createdTimestamp",
 		"updatedTimestamp",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Username** | **string** | Username used to connect to the network device controller | 
 **Driver** | [**SwitchControllerDriver**](SwitchControllerDriver.md) | Driver software used to communicate with the network device controller | 
 **Tags** | **[]string** | Tags associated with the network device controller for categorization and filtering | 
+**OptionsJson** | Pointer to **map[string]interface{}** | Additional configuration options (JSON) | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -297,6 +298,41 @@ SetTags sets Tags field to given value.
 `func (o *NetworkDeviceController) UnsetTags()`
 
 UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetOptionsJson
+
+`func (o *NetworkDeviceController) GetOptionsJson() map[string]interface{}`
+
+GetOptionsJson returns the OptionsJson field if non-nil, zero value otherwise.
+
+### GetOptionsJsonOk
+
+`func (o *NetworkDeviceController) GetOptionsJsonOk() (*map[string]interface{}, bool)`
+
+GetOptionsJsonOk returns a tuple with the OptionsJson field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptionsJson
+
+`func (o *NetworkDeviceController) SetOptionsJson(v map[string]interface{})`
+
+SetOptionsJson sets OptionsJson field to given value.
+
+### HasOptionsJson
+
+`func (o *NetworkDeviceController) HasOptionsJson() bool`
+
+HasOptionsJson returns a boolean if a field has been set.
+
+### SetOptionsJsonNil
+
+`func (o *NetworkDeviceController) SetOptionsJsonNil(b bool)`
+
+ SetOptionsJsonNil sets the value for OptionsJson to be an explicit nil
+
+### UnsetOptionsJson
+`func (o *NetworkDeviceController) UnsetOptionsJson()`
+
+UnsetOptionsJson ensures that no value is present for OptionsJson, not even an explicit nil
 ### GetLinks
 
 `func (o *NetworkDeviceController) GetLinks() []Link`

@@ -5,6 +5,8 @@
 
 * `CISCO_ACI51` (value: `"cisco_aci51"`)
 
+* `CISCO_NDFC` (value: `"cisco_ndfc"`)
+
 * `NVIDIA_UFM` (value: `"nvidia_ufm"`)
 
 * `BROCADE` (value: `"brocade"`)

@@ -69,6 +69,10 @@ type NetworkDevice struct {
 	Driver NetworkDeviceDriver `json:"driver"`
 	// The physical or logical position of the network device in the network topology.
 	Position SwitchPosition `json:"position"`
+	// ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU
+	ServerId *float32 `json:"serverId,omitempty"`
+	// NUMA node of the network device for optimal resource allocation
+	NumaNode *float32 `json:"numaNode,omitempty"`
 	// Order index of the network device
 	OrderIndex float32 `json:"orderIndex"`
 	// Tags associated with the network device for categorization and filtering
@@ -761,6 +765,70 @@ func (o *NetworkDevice) GetPositionOk() (*SwitchPosition, bool) {
 // SetPosition sets field value
 func (o *NetworkDevice) SetPosition(v SwitchPosition) {
 	o.Position = v
+}
+
+// GetServerId returns the ServerId field value if set, zero value otherwise.
+func (o *NetworkDevice) GetServerId() float32 {
+	if o == nil || IsNil(o.ServerId) {
+		var ret float32
+		return ret
+	}
+	return *o.ServerId
+}
+
+// GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetServerIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ServerId) {
+		return nil, false
+	}
+	return o.ServerId, true
+}
+
+// HasServerId returns a boolean if a field has been set.
+func (o *NetworkDevice) HasServerId() bool {
+	if o != nil && !IsNil(o.ServerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
+func (o *NetworkDevice) SetServerId(v float32) {
+	o.ServerId = &v
+}
+
+// GetNumaNode returns the NumaNode field value if set, zero value otherwise.
+func (o *NetworkDevice) GetNumaNode() float32 {
+	if o == nil || IsNil(o.NumaNode) {
+		var ret float32
+		return ret
+	}
+	return *o.NumaNode
+}
+
+// GetNumaNodeOk returns a tuple with the NumaNode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetNumaNodeOk() (*float32, bool) {
+	if o == nil || IsNil(o.NumaNode) {
+		return nil, false
+	}
+	return o.NumaNode, true
+}
+
+// HasNumaNode returns a boolean if a field has been set.
+func (o *NetworkDevice) HasNumaNode() bool {
+	if o != nil && !IsNil(o.NumaNode) {
+		return true
+	}
+
+	return false
+}
+
+// SetNumaNode gets a reference to the given float32 and assigns it to the NumaNode field.
+func (o *NetworkDevice) SetNumaNode(v float32) {
+	o.NumaNode = &v
 }
 
 // GetOrderIndex returns the OrderIndex field value
@@ -1519,6 +1587,12 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["serialNumber"] = o.SerialNumber
 	toSerialize["driver"] = o.Driver
 	toSerialize["position"] = o.Position
+	if !IsNil(o.ServerId) {
+		toSerialize["serverId"] = o.ServerId
+	}
+	if !IsNil(o.NumaNode) {
+		toSerialize["numaNode"] = o.NumaNode
+	}
 	toSerialize["orderIndex"] = o.OrderIndex
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
@@ -1674,6 +1748,8 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
+		delete(additionalProperties, "serverId")
+		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "orderIndex")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "readyForInitialConfiguration")

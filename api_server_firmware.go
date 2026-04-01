@@ -38,7 +38,7 @@ func (r ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest) BatchSchedul
 	return r
 }
 
-func (r ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest) Execute() (*http.Response, error) {
+func (r ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest) Execute() (*BatchScheduleServerFirmwareUpgradeDtoResponse, *http.Response, error) {
 	return r.ApiService.BatchScheduleServerFirmwareUpgradeExecute(r)
 }
 
@@ -60,16 +60,18 @@ func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgrade(ctx contex
 }
 
 // Execute executes the request
-func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest) (*http.Response, error) {
+//  @return BatchScheduleServerFirmwareUpgradeDtoResponse
+func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest) (*BatchScheduleServerFirmwareUpgradeDtoResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *BatchScheduleServerFirmwareUpgradeDtoResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerFirmwareAPIService.BatchScheduleServerFirmwareUpgrade")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/servers/{serverId}/firmware/actions/batch-schedule-upgrade"
@@ -79,7 +81,7 @@ func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r S
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.batchScheduleServerFirmwareUpgrade == nil {
-		return nil, reportError("batchScheduleServerFirmwareUpgrade is required and must be specified")
+		return localVarReturnValue, nil, reportError("batchScheduleServerFirmwareUpgrade is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -92,7 +94,7 @@ func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r S
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -103,19 +105,19 @@ func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r S
 	localVarPostBody = r.batchScheduleServerFirmwareUpgrade
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -123,10 +125,19 @@ func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r S
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ServerFirmwareAPIFetchAndUpdateServerFirmwareAvailableVersionsRequest struct {

@@ -122,10 +122,9 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 		var networkEndpointGroupId int32
 		var logicalNetworkId int32
 
-		resp, httpRes, err := apiClient.NetworkEndpointGroupAPI.RemoveLogicalNetworkFromNetworkEndpointGroup(context.Background(), networkEndpointGroupId, logicalNetworkId).Execute()
+		httpRes, err := apiClient.NetworkEndpointGroupAPI.RemoveLogicalNetworkFromNetworkEndpointGroup(context.Background(), networkEndpointGroupId, logicalNetworkId).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

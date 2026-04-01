@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **RaidTwoDrives** | Pointer to **string** | Raid two drives | [optional] [default to "RAID1"]
 **RaidEvenNumberMoreThanTwoDrives** | Pointer to **string** | Raid even number more than two drives | [optional] [default to "RAID10"]
 **RaidOddNumberMoreThanOneDrive** | Pointer to **string** | Raid odd number more than one drive | [optional] [default to "RAID5"]
+**DpuMode** | Pointer to **string** | Whether to register the server in DPU or NIC mode. | [optional] [default to "dpu"]
+**MaxDpuVirtualInterfaces** | Pointer to **float32** | Maximum number of virtual interfaces to create on DPUs. This setting is only applicable if dpuMode is set to DPU. | [optional] [default to 64]
 
 ## Methods
 
@@ -491,6 +493,56 @@ SetRaidOddNumberMoreThanOneDrive sets RaidOddNumberMoreThanOneDrive field to giv
 `func (o *ServerRegistrationProfileSettings) HasRaidOddNumberMoreThanOneDrive() bool`
 
 HasRaidOddNumberMoreThanOneDrive returns a boolean if a field has been set.
+
+### GetDpuMode
+
+`func (o *ServerRegistrationProfileSettings) GetDpuMode() string`
+
+GetDpuMode returns the DpuMode field if non-nil, zero value otherwise.
+
+### GetDpuModeOk
+
+`func (o *ServerRegistrationProfileSettings) GetDpuModeOk() (*string, bool)`
+
+GetDpuModeOk returns a tuple with the DpuMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpuMode
+
+`func (o *ServerRegistrationProfileSettings) SetDpuMode(v string)`
+
+SetDpuMode sets DpuMode field to given value.
+
+### HasDpuMode
+
+`func (o *ServerRegistrationProfileSettings) HasDpuMode() bool`
+
+HasDpuMode returns a boolean if a field has been set.
+
+### GetMaxDpuVirtualInterfaces
+
+`func (o *ServerRegistrationProfileSettings) GetMaxDpuVirtualInterfaces() float32`
+
+GetMaxDpuVirtualInterfaces returns the MaxDpuVirtualInterfaces field if non-nil, zero value otherwise.
+
+### GetMaxDpuVirtualInterfacesOk
+
+`func (o *ServerRegistrationProfileSettings) GetMaxDpuVirtualInterfacesOk() (*float32, bool)`
+
+GetMaxDpuVirtualInterfacesOk returns a tuple with the MaxDpuVirtualInterfaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxDpuVirtualInterfaces
+
+`func (o *ServerRegistrationProfileSettings) SetMaxDpuVirtualInterfaces(v float32)`
+
+SetMaxDpuVirtualInterfaces sets MaxDpuVirtualInterfaces field to given value.
+
+### HasMaxDpuVirtualInterfaces
+
+`func (o *ServerRegistrationProfileSettings) HasMaxDpuVirtualInterfaces() bool`
+
+HasMaxDpuVirtualInterfaces returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

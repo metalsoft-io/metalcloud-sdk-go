@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **BgpNumbering** | Pointer to [**BgpNumberingType**](BgpNumberingType.md) |  | [optional] 
 **LibraryLabel** | Pointer to **string** | Library label for the Ethernet fabric configuration, used to identify the Network Device Configuration Templates that can be used for deploy. | [optional] 
+**UseDPUModeIfAvailable** | Pointer to **bool** | Flag to indicate if DPU mode should be used if available on the fabric. | [optional] 
 **LagRanges** | Pointer to **[]string** | Link Aggregation (LAG) ranges in the format \&quot;start-end\&quot;; each range must be within the bounds of 1 to 4096. | [optional] 
 **MlagRanges** | Pointer to **[]string** | MLAG ID ranges. Each range must be provided in \&quot;start-end\&quot; format with values between 1 and 4096. | [optional] 
 **PreventVlanCleanup** | Pointer to **[]string** | VLAN ranges that should be prevented from automatic cleanup. Format must be \&quot;start-end\&quot;. | [optional] 
@@ -185,6 +186,31 @@ SetLibraryLabel sets LibraryLabel field to given value.
 `func (o *NetworkFabricFabricConfiguration) HasLibraryLabel() bool`
 
 HasLibraryLabel returns a boolean if a field has been set.
+
+### GetUseDPUModeIfAvailable
+
+`func (o *NetworkFabricFabricConfiguration) GetUseDPUModeIfAvailable() bool`
+
+GetUseDPUModeIfAvailable returns the UseDPUModeIfAvailable field if non-nil, zero value otherwise.
+
+### GetUseDPUModeIfAvailableOk
+
+`func (o *NetworkFabricFabricConfiguration) GetUseDPUModeIfAvailableOk() (*bool, bool)`
+
+GetUseDPUModeIfAvailableOk returns a tuple with the UseDPUModeIfAvailable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseDPUModeIfAvailable
+
+`func (o *NetworkFabricFabricConfiguration) SetUseDPUModeIfAvailable(v bool)`
+
+SetUseDPUModeIfAvailable sets UseDPUModeIfAvailable field to given value.
+
+### HasUseDPUModeIfAvailable
+
+`func (o *NetworkFabricFabricConfiguration) HasUseDPUModeIfAvailable() bool`
+
+HasUseDPUModeIfAvailable returns a boolean if a field has been set.
 
 ### GetLagRanges
 

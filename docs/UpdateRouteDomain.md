@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
 **PreventVrfCleanup** | Pointer to **bool** | If true, VRFs belonging to this route domain will not be deleted from switches during cleanup. | [optional] [default to false]
+**ExternalId** | Pointer to **string** | External identifier for this route domain on the controller | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetPreventVrfCleanup sets PreventVrfCleanup field to given value.
 `func (o *UpdateRouteDomain) HasPreventVrfCleanup() bool`
 
 HasPreventVrfCleanup returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *UpdateRouteDomain) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *UpdateRouteDomain) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *UpdateRouteDomain) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *UpdateRouteDomain) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

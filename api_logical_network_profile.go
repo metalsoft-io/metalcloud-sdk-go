@@ -3434,7 +3434,7 @@ func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) FilterRouteDom
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:ASC  **Available Fields** - id  - name  - label  - kind  - createdAt  - updatedAt 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) SortBy(sortBy []string) LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -3446,7 +3446,7 @@ func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) Search(search 
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name 
+// List of fields to search by term to filter result values  **Example:** id,name,label,kind   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - label  - kind 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) SearchBy(searchBy []string) LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest {
 	r.searchBy = &searchBy
 	return r

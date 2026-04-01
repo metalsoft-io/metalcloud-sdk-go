@@ -64,11 +64,13 @@ type ServerVariables struct {
 	// The BDK debug flag.
 	BdkDebug float32 `json:"bdkDebug"`
 	// The metrics metadata of the server.
-	ServerMetricsMetadata *map[string]ServerMetricsInfo `json:"serverMetricsMetadata,omitempty"`
+	ServerMetricsMetadata *map[string][]ServerMetricsInfo `json:"serverMetricsMetadata,omitempty"`
 	// The instance custom info of the server.
 	InstanceCustomInfo map[string]interface{} `json:"instanceCustomInfo,omitempty"`
 	// The custom info of the server.
 	CustomInfo map[string]interface{} `json:"customInfo,omitempty"`
+	// DPU credentials. Only use if the server has a DPU installed.
+	DpuInfo []ServerDPUCredentials `json:"dpuInfo,omitempty"`
 	// The vendor of the server.
 	Vendor *string `json:"vendor,omitempty"`
 	// The vendor sku id of the server.
@@ -170,6 +172,12 @@ type ServerVariables struct {
 	AllocationInfo *ServerAllocationInfo `json:"allocationInfo,omitempty"`
 	// The extension execution info of the server.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
+	// The health state of the server.
+	HealthState *string `json:"healthState,omitempty"`
+	// The health details of the server.
+	HealthDetails []string `json:"healthDetails,omitempty"`
+	// The timestamp of the last successful health check.
+	HealthLastCheckedTimestamp *string `json:"healthLastCheckedTimestamp,omitempty"`
 	// The ipmi password encrypted.
 	PasswordEncrypted *string `json:"passwordEncrypted,omitempty"`
 	// The management SNMP password encrypted.
@@ -845,9 +853,9 @@ func (o *ServerVariables) SetBdkDebug(v float32) {
 }
 
 // GetServerMetricsMetadata returns the ServerMetricsMetadata field value if set, zero value otherwise.
-func (o *ServerVariables) GetServerMetricsMetadata() map[string]ServerMetricsInfo {
+func (o *ServerVariables) GetServerMetricsMetadata() map[string][]ServerMetricsInfo {
 	if o == nil || IsNil(o.ServerMetricsMetadata) {
-		var ret map[string]ServerMetricsInfo
+		var ret map[string][]ServerMetricsInfo
 		return ret
 	}
 	return *o.ServerMetricsMetadata
@@ -855,7 +863,7 @@ func (o *ServerVariables) GetServerMetricsMetadata() map[string]ServerMetricsInf
 
 // GetServerMetricsMetadataOk returns a tuple with the ServerMetricsMetadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetServerMetricsMetadataOk() (*map[string]ServerMetricsInfo, bool) {
+func (o *ServerVariables) GetServerMetricsMetadataOk() (*map[string][]ServerMetricsInfo, bool) {
 	if o == nil || IsNil(o.ServerMetricsMetadata) {
 		return nil, false
 	}
@@ -871,8 +879,8 @@ func (o *ServerVariables) HasServerMetricsMetadata() bool {
 	return false
 }
 
-// SetServerMetricsMetadata gets a reference to the given map[string]ServerMetricsInfo and assigns it to the ServerMetricsMetadata field.
-func (o *ServerVariables) SetServerMetricsMetadata(v map[string]ServerMetricsInfo) {
+// SetServerMetricsMetadata gets a reference to the given map[string][]ServerMetricsInfo and assigns it to the ServerMetricsMetadata field.
+func (o *ServerVariables) SetServerMetricsMetadata(v map[string][]ServerMetricsInfo) {
 	o.ServerMetricsMetadata = &v
 }
 
@@ -938,6 +946,38 @@ func (o *ServerVariables) HasCustomInfo() bool {
 // SetCustomInfo gets a reference to the given map[string]interface{} and assigns it to the CustomInfo field.
 func (o *ServerVariables) SetCustomInfo(v map[string]interface{}) {
 	o.CustomInfo = v
+}
+
+// GetDpuInfo returns the DpuInfo field value if set, zero value otherwise.
+func (o *ServerVariables) GetDpuInfo() []ServerDPUCredentials {
+	if o == nil || IsNil(o.DpuInfo) {
+		var ret []ServerDPUCredentials
+		return ret
+	}
+	return o.DpuInfo
+}
+
+// GetDpuInfoOk returns a tuple with the DpuInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetDpuInfoOk() ([]ServerDPUCredentials, bool) {
+	if o == nil || IsNil(o.DpuInfo) {
+		return nil, false
+	}
+	return o.DpuInfo, true
+}
+
+// HasDpuInfo returns a boolean if a field has been set.
+func (o *ServerVariables) HasDpuInfo() bool {
+	if o != nil && !IsNil(o.DpuInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetDpuInfo gets a reference to the given []ServerDPUCredentials and assigns it to the DpuInfo field.
+func (o *ServerVariables) SetDpuInfo(v []ServerDPUCredentials) {
+	o.DpuInfo = v
 }
 
 // GetVendor returns the Vendor field value if set, zero value otherwise.
@@ -2500,6 +2540,102 @@ func (o *ServerVariables) SetExtensionInfo(v ExtensionExecutionInfo) {
 	o.ExtensionInfo = &v
 }
 
+// GetHealthState returns the HealthState field value if set, zero value otherwise.
+func (o *ServerVariables) GetHealthState() string {
+	if o == nil || IsNil(o.HealthState) {
+		var ret string
+		return ret
+	}
+	return *o.HealthState
+}
+
+// GetHealthStateOk returns a tuple with the HealthState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetHealthStateOk() (*string, bool) {
+	if o == nil || IsNil(o.HealthState) {
+		return nil, false
+	}
+	return o.HealthState, true
+}
+
+// HasHealthState returns a boolean if a field has been set.
+func (o *ServerVariables) HasHealthState() bool {
+	if o != nil && !IsNil(o.HealthState) {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthState gets a reference to the given string and assigns it to the HealthState field.
+func (o *ServerVariables) SetHealthState(v string) {
+	o.HealthState = &v
+}
+
+// GetHealthDetails returns the HealthDetails field value if set, zero value otherwise.
+func (o *ServerVariables) GetHealthDetails() []string {
+	if o == nil || IsNil(o.HealthDetails) {
+		var ret []string
+		return ret
+	}
+	return o.HealthDetails
+}
+
+// GetHealthDetailsOk returns a tuple with the HealthDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetHealthDetailsOk() ([]string, bool) {
+	if o == nil || IsNil(o.HealthDetails) {
+		return nil, false
+	}
+	return o.HealthDetails, true
+}
+
+// HasHealthDetails returns a boolean if a field has been set.
+func (o *ServerVariables) HasHealthDetails() bool {
+	if o != nil && !IsNil(o.HealthDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthDetails gets a reference to the given []string and assigns it to the HealthDetails field.
+func (o *ServerVariables) SetHealthDetails(v []string) {
+	o.HealthDetails = v
+}
+
+// GetHealthLastCheckedTimestamp returns the HealthLastCheckedTimestamp field value if set, zero value otherwise.
+func (o *ServerVariables) GetHealthLastCheckedTimestamp() string {
+	if o == nil || IsNil(o.HealthLastCheckedTimestamp) {
+		var ret string
+		return ret
+	}
+	return *o.HealthLastCheckedTimestamp
+}
+
+// GetHealthLastCheckedTimestampOk returns a tuple with the HealthLastCheckedTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetHealthLastCheckedTimestampOk() (*string, bool) {
+	if o == nil || IsNil(o.HealthLastCheckedTimestamp) {
+		return nil, false
+	}
+	return o.HealthLastCheckedTimestamp, true
+}
+
+// HasHealthLastCheckedTimestamp returns a boolean if a field has been set.
+func (o *ServerVariables) HasHealthLastCheckedTimestamp() bool {
+	if o != nil && !IsNil(o.HealthLastCheckedTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthLastCheckedTimestamp gets a reference to the given string and assigns it to the HealthLastCheckedTimestamp field.
+func (o *ServerVariables) SetHealthLastCheckedTimestamp(v string) {
+	o.HealthLastCheckedTimestamp = &v
+}
+
 // GetPasswordEncrypted returns the PasswordEncrypted field value if set, zero value otherwise.
 func (o *ServerVariables) GetPasswordEncrypted() string {
 	if o == nil || IsNil(o.PasswordEncrypted) {
@@ -2668,6 +2804,9 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomInfo) {
 		toSerialize["customInfo"] = o.CustomInfo
 	}
+	if !IsNil(o.DpuInfo) {
+		toSerialize["dpuInfo"] = o.DpuInfo
+	}
 	if !IsNil(o.Vendor) {
 		toSerialize["vendor"] = o.Vendor
 	}
@@ -2803,6 +2942,15 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExtensionInfo) {
 		toSerialize["extensionInfo"] = o.ExtensionInfo
 	}
+	if !IsNil(o.HealthState) {
+		toSerialize["healthState"] = o.HealthState
+	}
+	if !IsNil(o.HealthDetails) {
+		toSerialize["healthDetails"] = o.HealthDetails
+	}
+	if !IsNil(o.HealthLastCheckedTimestamp) {
+		toSerialize["healthLastCheckedTimestamp"] = o.HealthLastCheckedTimestamp
+	}
 	if !IsNil(o.PasswordEncrypted) {
 		toSerialize["passwordEncrypted"] = o.PasswordEncrypted
 	}
@@ -2892,6 +3040,7 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverMetricsMetadata")
 		delete(additionalProperties, "instanceCustomInfo")
 		delete(additionalProperties, "customInfo")
+		delete(additionalProperties, "dpuInfo")
 		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "vendorSkuId")
 		delete(additionalProperties, "model")
@@ -2943,6 +3092,9 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "allocationInfo")
 		delete(additionalProperties, "extensionInfo")
+		delete(additionalProperties, "healthState")
+		delete(additionalProperties, "healthDetails")
+		delete(additionalProperties, "healthLastCheckedTimestamp")
 		delete(additionalProperties, "passwordEncrypted")
 		delete(additionalProperties, "mgmtSnmpPasswordEncrypted")
 		delete(additionalProperties, "vncPasswordEncrypted")

@@ -23,7 +23,7 @@ var _ MappedNullable = &NetworkDeviceLinkAggregationConfigurationTemplateRecordS
 type NetworkDeviceLinkAggregationConfigurationTemplateRecordSet struct {
 	// The type of link aggregation
 	AggregationType string `json:"aggregation_type"`
-	// Identifier for the MLAG domain (applicable only for mlag-peer-link type)
+	// Identifier for the MLAG domain
 	MlagDomainIdentifier *string `json:"mlag_domain_identifier,omitempty"`
 	// The ID of the local switch.
 	LocalSwitchId float32 `json:"local_switch_id"`

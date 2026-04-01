@@ -27,6 +27,8 @@ type CreateLogicalNetwork struct {
 	Kind LogicalNetworkKind `json:"kind"`
 	FabricId int32 `json:"fabricId"`
 	InfrastructureId NullableInt32 `json:"infrastructureId,omitempty"`
+	// External identifier for this logical network on the controller
+	ExternalId *string `json:"externalId,omitempty"`
 	Vlan *CreateLogicalNetworkVlanProperties `json:"vlan,omitempty"`
 	Vxlan *CreateLogicalNetworkVxlanProperties `json:"vxlan,omitempty"`
 	Pkey *CreateLogicalNetworkPkeyProperties `json:"pkey,omitempty"`
@@ -244,6 +246,38 @@ func (o *CreateLogicalNetwork) SetInfrastructureIdNil() {
 // UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
 func (o *CreateLogicalNetwork) UnsetInfrastructureId() {
 	o.InfrastructureId.Unset()
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *CreateLogicalNetwork) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetwork) GetExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalId) {
+		return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *CreateLogicalNetwork) HasExternalId() bool {
+	if o != nil && !IsNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *CreateLogicalNetwork) SetExternalId(v string) {
+	o.ExternalId = &v
 }
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
@@ -546,6 +580,9 @@ func (o CreateLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	if o.InfrastructureId.IsSet() {
 		toSerialize["infrastructureId"] = o.InfrastructureId.Get()
 	}
+	if !IsNil(o.ExternalId) {
+		toSerialize["externalId"] = o.ExternalId
+	}
 	if !IsNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
 	}
@@ -620,6 +657,7 @@ func (o *CreateLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "fabricId")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")
 		delete(additionalProperties, "pkey")

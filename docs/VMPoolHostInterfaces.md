@@ -6,15 +6,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **float32** | VM Pool Host Interface ID | 
 **HostId** | **float32** | VM Pool Host ID | 
+**Status** | [**VMPoolHostInterfaceStatus**](VMPoolHostInterfaceStatus.md) | Status of the VM Pool Host Interface | 
 **Name** | **string** | Name of the VM Pool Host Interface | 
 **MacAddress** | **string** | MAC Address of the VM Pool Host Interface | 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**NetworkDevices** | Pointer to [**[]VMPoolHostInterfaceNetworkDevice**](VMPoolHostInterfaceNetworkDevice.md) | Network device assignments for this interface | [optional] 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMPoolHostInterfaces
 
-`func NewVMPoolHostInterfaces(id float32, hostId float32, name string, macAddress string, links map[string]interface{}, ) *VMPoolHostInterfaces`
+`func NewVMPoolHostInterfaces(id float32, hostId float32, status VMPoolHostInterfaceStatus, name string, macAddress string, ) *VMPoolHostInterfaces`
 
 NewVMPoolHostInterfaces instantiates a new VMPoolHostInterfaces object
 This constructor will assign default values to properties that have it defined,
@@ -69,6 +71,26 @@ and a boolean to check if the value has been set.
 SetHostId sets HostId field to given value.
 
 
+### GetStatus
+
+`func (o *VMPoolHostInterfaces) GetStatus() VMPoolHostInterfaceStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *VMPoolHostInterfaces) GetStatusOk() (*VMPoolHostInterfaceStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *VMPoolHostInterfaces) SetStatus(v VMPoolHostInterfaceStatus)`
+
+SetStatus sets Status field to given value.
+
+
 ### GetName
 
 `func (o *VMPoolHostInterfaces) GetName() string`
@@ -109,25 +131,55 @@ and a boolean to check if the value has been set.
 SetMacAddress sets MacAddress field to given value.
 
 
+### GetNetworkDevices
+
+`func (o *VMPoolHostInterfaces) GetNetworkDevices() []VMPoolHostInterfaceNetworkDevice`
+
+GetNetworkDevices returns the NetworkDevices field if non-nil, zero value otherwise.
+
+### GetNetworkDevicesOk
+
+`func (o *VMPoolHostInterfaces) GetNetworkDevicesOk() (*[]VMPoolHostInterfaceNetworkDevice, bool)`
+
+GetNetworkDevicesOk returns a tuple with the NetworkDevices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDevices
+
+`func (o *VMPoolHostInterfaces) SetNetworkDevices(v []VMPoolHostInterfaceNetworkDevice)`
+
+SetNetworkDevices sets NetworkDevices field to given value.
+
+### HasNetworkDevices
+
+`func (o *VMPoolHostInterfaces) HasNetworkDevices() bool`
+
+HasNetworkDevices returns a boolean if a field has been set.
+
 ### GetLinks
 
-`func (o *VMPoolHostInterfaces) GetLinks() map[string]interface{}`
+`func (o *VMPoolHostInterfaces) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *VMPoolHostInterfaces) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *VMPoolHostInterfaces) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *VMPoolHostInterfaces) SetLinks(v map[string]interface{})`
+`func (o *VMPoolHostInterfaces) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *VMPoolHostInterfaces) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

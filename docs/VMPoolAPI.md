@@ -5,10 +5,14 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateVMPool**](VMPoolAPI.md#CreateVMPool) | **Post** /api/v2/vm-pools | Creates a VM Pool
+[**CreateVMPoolClusterHostInterfaceNetworkDevice**](VMPoolAPI.md#CreateVMPoolClusterHostInterfaceNetworkDevice) | **Post** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices | Create a network device assignment for a VM Cluster Host Interface
 [**DeleteVMPool**](VMPoolAPI.md#DeleteVMPool) | **Delete** /api/v2/vm-pools/{vmPoolId} | Deletes a VM Pool
+[**DeleteVMPoolClusterHostInterfaceNetworkDevice**](VMPoolAPI.md#DeleteVMPoolClusterHostInterfaceNetworkDevice) | **Delete** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices/{networkDeviceAssignmentId} | Delete a network device assignment for a VM Cluster Host Interface
 [**GetVMPool**](VMPoolAPI.md#GetVMPool) | **Get** /api/v2/vm-pools/{vmPoolId} | Get VM Pool information
 [**GetVMPoolClusterHost**](VMPoolAPI.md#GetVMPoolClusterHost) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId} | Retrieves a VM Cluster Host
 [**GetVMPoolClusterHostInterface**](VMPoolAPI.md#GetVMPoolClusterHostInterface) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Retrieves a VM Cluster Host Interface
+[**GetVMPoolClusterHostInterfaceNetworkDevice**](VMPoolAPI.md#GetVMPoolClusterHostInterfaceNetworkDevice) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices/{networkDeviceAssignmentId} | Get a network device assignment for a VM Cluster Host Interface
+[**GetVMPoolClusterHostInterfaceNetworkDevices**](VMPoolAPI.md#GetVMPoolClusterHostInterfaceNetworkDevices) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices | Get network device assignments for a VM Cluster Host Interface
 [**GetVMPoolClusterHostInterfaces**](VMPoolAPI.md#GetVMPoolClusterHostInterfaces) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces | Retrieves a list of VM Cluster Host Interfaces
 [**GetVMPoolClusterHostStatistics**](VMPoolAPI.md#GetVMPoolClusterHostStatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/statistics | Retrieves VM Cluster Host Statistics
 [**GetVMPoolClusterHostVMs**](VMPoolAPI.md#GetVMPoolClusterHostVMs) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/vms | Retrieves a list of VM Cluster Host VMs
@@ -21,7 +25,7 @@ Method | HTTP request | Description
 [**RefreshVMPoolInformation**](VMPoolAPI.md#RefreshVMPoolInformation) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/refresh-information | Refresh VM Pool information
 [**SyncVMPool**](VMPoolAPI.md#SyncVMPool) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/sync | Sync VM Pool
 [**UpdateVMPool**](VMPoolAPI.md#UpdateVMPool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
-[**UpdateVMPoolClusterHostInterface**](VMPoolAPI.md#UpdateVMPoolClusterHostInterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
+[**UpdateVMPoolClusterHost**](VMPoolAPI.md#UpdateVMPoolClusterHost) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId} | Updates VM Cluster Host information
 
 
 
@@ -91,6 +95,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateVMPoolClusterHostInterfaceNetworkDevice
+
+> VMPoolHostInterfaceNetworkDevice CreateVMPoolClusterHostInterfaceNetworkDevice(ctx, vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).CreateVMPoolHostInterfaceNetworkDevice(createVMPoolHostInterfaceNetworkDevice).Execute()
+
+Create a network device assignment for a VM Cluster Host Interface
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+	vmPoolClusterHostId := float32(8.14) // float32 | 
+	vmPoolClusterHostInterfaceId := float32(8.14) // float32 | 
+	createVMPoolHostInterfaceNetworkDevice := *openapiclient.NewCreateVMPoolHostInterfaceNetworkDevice(float32(10), "Ethernet1/1") // CreateVMPoolHostInterfaceNetworkDevice | Network device assignment create object
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMPoolAPI.CreateVMPoolClusterHostInterfaceNetworkDevice(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).CreateVMPoolHostInterfaceNetworkDevice(createVMPoolHostInterfaceNetworkDevice).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.CreateVMPoolClusterHostInterfaceNetworkDevice``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateVMPoolClusterHostInterfaceNetworkDevice`: VMPoolHostInterfaceNetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.CreateVMPoolClusterHostInterfaceNetworkDevice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+**vmPoolClusterHostId** | **float32** |  | 
+**vmPoolClusterHostInterfaceId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVMPoolClusterHostInterfaceNetworkDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **createVMPoolHostInterfaceNetworkDevice** | [**CreateVMPoolHostInterfaceNetworkDevice**](CreateVMPoolHostInterfaceNetworkDevice.md) | Network device assignment create object | 
+
+### Return type
+
+[**VMPoolHostInterfaceNetworkDevice**](VMPoolHostInterfaceNetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteVMPool
 
 > DeleteVMPool(ctx, vmPoolId).Execute()
@@ -139,6 +221,83 @@ Other parameters are passed through a pointer to a apiDeleteVMPoolRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteVMPoolClusterHostInterfaceNetworkDevice
+
+> DeleteVMPoolClusterHostInterfaceNetworkDevice(ctx, vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId, networkDeviceAssignmentId).Execute()
+
+Delete a network device assignment for a VM Cluster Host Interface
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+	vmPoolClusterHostId := float32(8.14) // float32 | 
+	vmPoolClusterHostInterfaceId := float32(8.14) // float32 | 
+	networkDeviceAssignmentId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.VMPoolAPI.DeleteVMPoolClusterHostInterfaceNetworkDevice(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId, networkDeviceAssignmentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.DeleteVMPoolClusterHostInterfaceNetworkDevice``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+**vmPoolClusterHostId** | **float32** |  | 
+**vmPoolClusterHostInterfaceId** | **float32** |  | 
+**networkDeviceAssignmentId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
 
 
 ### Return type
@@ -363,6 +522,171 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMPoolHostInterfaces**](VMPoolHostInterfaces.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVMPoolClusterHostInterfaceNetworkDevice
+
+> VMPoolHostInterfaceNetworkDevice GetVMPoolClusterHostInterfaceNetworkDevice(ctx, vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId, networkDeviceAssignmentId).Execute()
+
+Get a network device assignment for a VM Cluster Host Interface
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+	vmPoolClusterHostId := float32(8.14) // float32 | 
+	vmPoolClusterHostInterfaceId := float32(8.14) // float32 | 
+	networkDeviceAssignmentId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevice(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId, networkDeviceAssignmentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevice``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVMPoolClusterHostInterfaceNetworkDevice`: VMPoolHostInterfaceNetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+**vmPoolClusterHostId** | **float32** |  | 
+**vmPoolClusterHostInterfaceId** | **float32** |  | 
+**networkDeviceAssignmentId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVMPoolClusterHostInterfaceNetworkDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+[**VMPoolHostInterfaceNetworkDevice**](VMPoolHostInterfaceNetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVMPoolClusterHostInterfaceNetworkDevices
+
+> VMPoolHostInterfaceNetworkDevicesPaginatedList GetVMPoolClusterHostInterfaceNetworkDevices(ctx, vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).Page(page).Limit(limit).FilterId(filterId).FilterNetworkDeviceId(filterNetworkDeviceId).SortBy(sortBy).Execute()
+
+Get network device assignments for a VM Cluster Host Interface
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+	vmPoolClusterHostId := float32(8.14) // float32 | 
+	vmPoolClusterHostInterfaceId := float32(8.14) // float32 | 
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterNetworkDeviceId := []string{"Inner_example"} // []string | Filter by networkDeviceId query param.  **Format:** filter.networkDeviceId={$not}:OPERATION:VALUE    **Example:** filter.networkDeviceId=$btw:John Doe&filter.networkDeviceId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=networkDeviceId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - networkDeviceId  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevices(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).Page(page).Limit(limit).FilterId(filterId).FilterNetworkDeviceId(filterNetworkDeviceId).SortBy(sortBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevices``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVMPoolClusterHostInterfaceNetworkDevices`: VMPoolHostInterfaceNetworkDevicesPaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+**vmPoolClusterHostId** | **float32** |  | 
+**vmPoolClusterHostInterfaceId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVMPoolClusterHostInterfaceNetworkDevicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterNetworkDeviceId** | **[]string** | Filter by networkDeviceId query param.  **Format:** filter.networkDeviceId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkDeviceId&#x3D;$btw:John Doe&amp;filter.networkDeviceId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;networkDeviceId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - networkDeviceId  | 
+
+### Return type
+
+[**VMPoolHostInterfaceNetworkDevicesPaginatedList**](VMPoolHostInterfaceNetworkDevicesPaginatedList.md)
 
 ### Authorization
 
@@ -1293,11 +1617,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateVMPoolClusterHostInterface
+## UpdateVMPoolClusterHost
 
-> VMPoolHostInterfaces UpdateVMPoolClusterHostInterface(ctx, vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).UpdateVMPoolHostInterface(updateVMPoolHostInterface).Execute()
+> VMPoolHosts UpdateVMPoolClusterHost(ctx, vmPoolId, vmPoolClusterHostId).UpdateVMPoolHost(updateVMPoolHost).Execute()
 
-Updates a VM Cluster Host Interface
+Updates VM Cluster Host information
 
 
 
@@ -1316,18 +1640,17 @@ import (
 func main() {
 	vmPoolId := float32(8.14) // float32 | 
 	vmPoolClusterHostId := float32(8.14) // float32 | 
-	vmPoolClusterHostInterfaceId := float32(8.14) // float32 | 
-	updateVMPoolHostInterface := *openapiclient.NewUpdateVMPoolHostInterface() // UpdateVMPoolHostInterface | The VM Pool Cluster Host Interface update object
+	updateVMPoolHost := *openapiclient.NewUpdateVMPoolHost() // UpdateVMPoolHost | The VM Cluster Host update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VMPoolAPI.UpdateVMPoolClusterHostInterface(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).UpdateVMPoolHostInterface(updateVMPoolHostInterface).Execute()
+	resp, r, err := apiClient.VMPoolAPI.UpdateVMPoolClusterHost(context.Background(), vmPoolId, vmPoolClusterHostId).UpdateVMPoolHost(updateVMPoolHost).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.UpdateVMPoolClusterHostInterface``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.UpdateVMPoolClusterHost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateVMPoolClusterHostInterface`: VMPoolHostInterfaces
-	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.UpdateVMPoolClusterHostInterface`: %v\n", resp)
+	// response from `UpdateVMPoolClusterHost`: VMPoolHosts
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.UpdateVMPoolClusterHost`: %v\n", resp)
 }
 ```
 
@@ -1339,23 +1662,21 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **vmPoolId** | **float32** |  | 
 **vmPoolClusterHostId** | **float32** |  | 
-**vmPoolClusterHostInterfaceId** | **float32** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateVMPoolClusterHostInterfaceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateVMPoolClusterHostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
-
- **updateVMPoolHostInterface** | [**UpdateVMPoolHostInterface**](UpdateVMPoolHostInterface.md) | The VM Pool Cluster Host Interface update object | 
+ **updateVMPoolHost** | [**UpdateVMPoolHost**](UpdateVMPoolHost.md) | The VM Cluster Host update object | 
 
 ### Return type
 
-[**VMPoolHostInterfaces**](VMPoolHostInterfaces.md)
+[**VMPoolHosts**](VMPoolHosts.md)
 
 ### Authorization
 

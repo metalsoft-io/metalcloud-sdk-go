@@ -39,6 +39,8 @@ type CreateNetworkDeviceController struct {
 	Username string `json:"username"`
 	// The password used for management authentication
 	ManagementPassword string `json:"managementPassword"`
+	// Additional configuration options (JSON)
+	OptionsJson map[string]interface{} `json:"optionsJson,omitempty"`
 	// Additional description or notes about the network device controller
 	Description *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -309,6 +311,38 @@ func (o *CreateNetworkDeviceController) SetManagementPassword(v string) {
 	o.ManagementPassword = v
 }
 
+// GetOptionsJson returns the OptionsJson field value if set, zero value otherwise.
+func (o *CreateNetworkDeviceController) GetOptionsJson() map[string]interface{} {
+	if o == nil || IsNil(o.OptionsJson) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.OptionsJson
+}
+
+// GetOptionsJsonOk returns a tuple with the OptionsJson field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDeviceController) GetOptionsJsonOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.OptionsJson) {
+		return map[string]interface{}{}, false
+	}
+	return o.OptionsJson, true
+}
+
+// HasOptionsJson returns a boolean if a field has been set.
+func (o *CreateNetworkDeviceController) HasOptionsJson() bool {
+	if o != nil && !IsNil(o.OptionsJson) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptionsJson gets a reference to the given map[string]interface{} and assigns it to the OptionsJson field.
+func (o *CreateNetworkDeviceController) SetOptionsJson(v map[string]interface{}) {
+	o.OptionsJson = v
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateNetworkDeviceController) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
@@ -366,6 +400,9 @@ func (o CreateNetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	toSerialize["managementPort"] = o.ManagementPort
 	toSerialize["username"] = o.Username
 	toSerialize["managementPassword"] = o.ManagementPassword
+	if !IsNil(o.OptionsJson) {
+		toSerialize["optionsJson"] = o.OptionsJson
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -426,6 +463,7 @@ func (o *CreateNetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "managementPassword")
+		delete(additionalProperties, "optionsJson")
 		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}

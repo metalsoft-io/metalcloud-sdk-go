@@ -57,6 +57,8 @@ type Bucket struct {
 	Config BucketConfiguration `json:"config"`
 	// Meta information of the Bucket.
 	Meta BucketMeta `json:"meta"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -557,6 +559,38 @@ func (o *Bucket) SetMeta(v BucketMeta) {
 	o.Meta = v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *Bucket) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Bucket) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *Bucket) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *Bucket) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o Bucket) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -593,6 +627,9 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -667,6 +704,7 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "accessKeyId")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

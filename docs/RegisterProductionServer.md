@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Model** | Pointer to **string** | The model of the server. | [optional] 
 **RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
+**DpuCredentials** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
 **Settings** | [**RegisterProductionServerSettings**](RegisterProductionServerSettings.md) | The additional settings for the production server. | 
 
 ## Methods
@@ -279,6 +280,31 @@ SetPassword sets Password field to given value.
 `func (o *RegisterProductionServer) HasPassword() bool`
 
 HasPassword returns a boolean if a field has been set.
+
+### GetDpuCredentials
+
+`func (o *RegisterProductionServer) GetDpuCredentials() []ServerDPUCredentials`
+
+GetDpuCredentials returns the DpuCredentials field if non-nil, zero value otherwise.
+
+### GetDpuCredentialsOk
+
+`func (o *RegisterProductionServer) GetDpuCredentialsOk() (*[]ServerDPUCredentials, bool)`
+
+GetDpuCredentialsOk returns a tuple with the DpuCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpuCredentials
+
+`func (o *RegisterProductionServer) SetDpuCredentials(v []ServerDPUCredentials)`
+
+SetDpuCredentials sets DpuCredentials field to given value.
+
+### HasDpuCredentials
+
+`func (o *RegisterProductionServer) HasDpuCredentials() bool`
+
+HasDpuCredentials returns a boolean if a field has been set.
 
 ### GetSettings
 

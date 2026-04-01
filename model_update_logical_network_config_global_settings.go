@@ -22,6 +22,7 @@ var _ MappedNullable = &UpdateLogicalNetworkConfigGlobalSettings{}
 type UpdateLogicalNetworkConfigGlobalSettings struct {
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
+	Vxlan *UpdateLogicalNetworkConfigVxlanProperties `json:"vxlan,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -86,6 +87,38 @@ func (o *UpdateLogicalNetworkConfigGlobalSettings) UnsetMtu() {
 	o.Mtu.Unset()
 }
 
+// GetVxlan returns the Vxlan field value if set, zero value otherwise.
+func (o *UpdateLogicalNetworkConfigGlobalSettings) GetVxlan() UpdateLogicalNetworkConfigVxlanProperties {
+	if o == nil || IsNil(o.Vxlan) {
+		var ret UpdateLogicalNetworkConfigVxlanProperties
+		return ret
+	}
+	return *o.Vxlan
+}
+
+// GetVxlanOk returns a tuple with the Vxlan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLogicalNetworkConfigGlobalSettings) GetVxlanOk() (*UpdateLogicalNetworkConfigVxlanProperties, bool) {
+	if o == nil || IsNil(o.Vxlan) {
+		return nil, false
+	}
+	return o.Vxlan, true
+}
+
+// HasVxlan returns a boolean if a field has been set.
+func (o *UpdateLogicalNetworkConfigGlobalSettings) HasVxlan() bool {
+	if o != nil && !IsNil(o.Vxlan) {
+		return true
+	}
+
+	return false
+}
+
+// SetVxlan gets a reference to the given UpdateLogicalNetworkConfigVxlanProperties and assigns it to the Vxlan field.
+func (o *UpdateLogicalNetworkConfigGlobalSettings) SetVxlan(v UpdateLogicalNetworkConfigVxlanProperties) {
+	o.Vxlan = &v
+}
+
 func (o UpdateLogicalNetworkConfigGlobalSettings) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -98,6 +131,9 @@ func (o UpdateLogicalNetworkConfigGlobalSettings) ToMap() (map[string]interface{
 	toSerialize := map[string]interface{}{}
 	if o.Mtu.IsSet() {
 		toSerialize["mtu"] = o.Mtu.Get()
+	}
+	if !IsNil(o.Vxlan) {
+		toSerialize["vxlan"] = o.Vxlan
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -122,6 +158,7 @@ func (o *UpdateLogicalNetworkConfigGlobalSettings) UnmarshalJSON(data []byte) (e
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "vxlan")
 		o.AdditionalProperties = additionalProperties
 	}
 

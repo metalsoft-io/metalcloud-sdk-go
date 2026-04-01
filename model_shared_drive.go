@@ -78,6 +78,8 @@ type SharedDrive struct {
 	DiscoverInformation []GenericDriveDiscoverInformation `json:"discoverInformation,omitempty"`
 	// Meta information of the Drive.
 	Meta SharedDriveMeta `json:"meta"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -925,6 +927,38 @@ func (o *SharedDrive) SetMeta(v SharedDriveMeta) {
 	o.Meta = v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *SharedDrive) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SharedDrive) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *SharedDrive) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *SharedDrive) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o SharedDrive) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -992,6 +1026,9 @@ func (o SharedDrive) ToMap() (map[string]interface{}, error) {
 		toSerialize["discoverInformation"] = o.DiscoverInformation
 	}
 	toSerialize["meta"] = o.Meta
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1078,6 +1115,7 @@ func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "discoverInformation")
 		delete(additionalProperties, "meta")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

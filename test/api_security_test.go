@@ -65,10 +65,9 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 
 		var roleName string
 
-		resp, httpRes, err := apiClient.SecurityAPI.DeleteRole(context.Background(), roleName).Execute()
+		httpRes, err := apiClient.SecurityAPI.DeleteRole(context.Background(), roleName).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

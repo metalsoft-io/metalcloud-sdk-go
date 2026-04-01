@@ -91,6 +91,7 @@ Class | Method | HTTP request | Description
 *AccountAPI* | [**UpdateAccountConfig**](docs/AccountAPI.md#updateaccountconfig) | **Patch** /api/v2/accounts/{accountId}/config | Update account configuration
 *AccountAPI* | [**UpdateAccountLimits**](docs/AccountAPI.md#updateaccountlimits) | **Patch** /api/v2/accounts/{accountId}/actions/change-limits | Update account limits
 *AuthenticationAPI* | [**GetAuthenticationProvider**](docs/AuthenticationAPI.md#getauthenticationprovider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
+*AuthenticationAPI* | [**GetCaptchaEnabled**](docs/AuthenticationAPI.md#getcaptchaenabled) | **Get** /api/v2/captcha-enabled | Check if CAPTCHA is enabled
 *AuthenticationAPI* | [**GetCurrentUser**](docs/AuthenticationAPI.md#getcurrentuser) | **Get** /api/v2/user | Get current user
 *AuthenticationAPI* | [**GetPublicSignupDisabled**](docs/AuthenticationAPI.md#getpublicsignupdisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 *AuthenticationAPI* | [**Login**](docs/AuthenticationAPI.md#login) | **Post** /api/v2/login | User login
@@ -315,6 +316,7 @@ Class | Method | HTTP request | Description
 *LogicalNetworkAPI* | [**GetLogicalNetwork**](docs/LogicalNetworkAPI.md#getlogicalnetwork) | **Get** /api/v2/logical-networks/{id} | Get a Logical Network.
 *LogicalNetworkAPI* | [**GetLogicalNetworkAttachedExternalConnectionLogicalNetworks**](docs/LogicalNetworkAPI.md#getlogicalnetworkattachedexternalconnectionlogicalnetworks) | **Get** /api/v2/logical-networks/{id}/external-connection-logical-networks | Get all external connection logical networks
 *LogicalNetworkAPI* | [**GetLogicalNetworkAttachedExternalConnections**](docs/LogicalNetworkAPI.md#getlogicalnetworkattachedexternalconnections) | **Get** /api/v2/logical-networks/{id}/external-connections | List external connections attached to a logical network
+*LogicalNetworkAPI* | [**GetLogicalNetworkAttachedLogicalNetworkInterconnects**](docs/LogicalNetworkAPI.md#getlogicalnetworkattachedlogicalnetworkinterconnects) | **Get** /api/v2/logical-networks/{id}/logical-network-interconnects | List logical network interconnects that this logical network is attached to
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfig**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfig) | **Get** /api/v2/logical-networks/{id}/config | Get the config for a Logical Network.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv4subnetallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies | Get all Ipv4 Subnet allocation strategies.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv4subnetallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv4 Subnet allocation strategy.
@@ -337,14 +339,14 @@ Class | Method | HTTP request | Description
 *LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigZoneAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigzoneallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/zone/zone-allocation-strategies/{allocationStrategyId} | Replace Zone allocation strategy
 *LogicalNetworkAPI* | [**UpdateLogicalNetwork**](docs/LogicalNetworkAPI.md#updatelogicalnetwork) | **Patch** /api/v2/logical-networks/{id} | Update Logical Network
 *LogicalNetworkAPI* | [**UpdateLogicalNetworkConfig**](docs/LogicalNetworkAPI.md#updatelogicalnetworkconfig) | **Patch** /api/v2/logical-networks/{id}/config | Update Logical Network config
-*LogicalNetworkInterconnectAPI* | [**AddLogicalNetworkToLogicalNetworkInterconnect**](docs/LogicalNetworkInterconnectAPI.md#addlogicalnetworktologicalnetworkinterconnect) | **Post** /api/v2/logical-network-interconnects/{id}/logical-networks | Add a logical network to a logical network interconnect
+*LogicalNetworkInterconnectAPI* | [**AddLogicalNetworkToLogicalNetworkInterconnect**](docs/LogicalNetworkInterconnectAPI.md#addlogicalnetworktologicalnetworkinterconnect) | **Post** /api/v2/logical-network-interconnects/{id}/links | Add a logical network to a logical network interconnect
 *LogicalNetworkInterconnectAPI* | [**CreateLogicalNetworkInterconnect**](docs/LogicalNetworkInterconnectAPI.md#createlogicalnetworkinterconnect) | **Post** /api/v2/logical-network-interconnects | Create a new logical network interconnect
 *LogicalNetworkInterconnectAPI* | [**DeleteLogicalNetworkInterconnect**](docs/LogicalNetworkInterconnectAPI.md#deletelogicalnetworkinterconnect) | **Delete** /api/v2/logical-network-interconnects/{id} | Delete a logical network interconnect by ID
 *LogicalNetworkInterconnectAPI* | [**GetLogicalNetworkInterconnectById**](docs/LogicalNetworkInterconnectAPI.md#getlogicalnetworkinterconnectbyid) | **Get** /api/v2/logical-network-interconnects/{id} | Get a logical network interconnect by ID
-*LogicalNetworkInterconnectAPI* | [**GetLogicalNetworkInterconnectLogicalNetworkById**](docs/LogicalNetworkInterconnectAPI.md#getlogicalnetworkinterconnectlogicalnetworkbyid) | **Get** /api/v2/logical-network-interconnects/{id}/logical-networks/{logicalNetworkId} | Get a logical network in a logical network interconnect by logical network ID
-*LogicalNetworkInterconnectAPI* | [**GetLogicalNetworkInterconnectLogicalNetworks**](docs/LogicalNetworkInterconnectAPI.md#getlogicalnetworkinterconnectlogicalnetworks) | **Get** /api/v2/logical-network-interconnects/{id}/logical-networks | Get all logical networks in a logical network interconnect
+*LogicalNetworkInterconnectAPI* | [**GetLogicalNetworkInterconnectLinkById**](docs/LogicalNetworkInterconnectAPI.md#getlogicalnetworkinterconnectlinkbyid) | **Get** /api/v2/logical-network-interconnects/{id}/links/{linkId} | Get a logical network interconnect link association by link id
+*LogicalNetworkInterconnectAPI* | [**GetLogicalNetworkInterconnectLinks**](docs/LogicalNetworkInterconnectAPI.md#getlogicalnetworkinterconnectlinks) | **Get** /api/v2/logical-network-interconnects/{id}/links | Get all logical network associated to a logical network interconnect
 *LogicalNetworkInterconnectAPI* | [**GetLogicalNetworkInterconnects**](docs/LogicalNetworkInterconnectAPI.md#getlogicalnetworkinterconnects) | **Get** /api/v2/logical-network-interconnects | Get all logical network interconnects
-*LogicalNetworkInterconnectAPI* | [**RemoveLogicalNetworkFromLogicalNetworkInterconnect**](docs/LogicalNetworkInterconnectAPI.md#removelogicalnetworkfromlogicalnetworkinterconnect) | **Delete** /api/v2/logical-network-interconnects/{id}/logical-networks/{logicalNetworkId} | Remove a logical network from a logical network interconnect
+*LogicalNetworkInterconnectAPI* | [**RemoveLogicalNetworkFromLogicalNetworkInterconnect**](docs/LogicalNetworkInterconnectAPI.md#removelogicalnetworkfromlogicalnetworkinterconnect) | **Delete** /api/v2/logical-network-interconnects/{id}/links/{linkId} | Remove a logical network from a logical network interconnect
 *LogicalNetworkInterconnectAPI* | [**UpdateLogicalNetworkInterconnect**](docs/LogicalNetworkInterconnectAPI.md#updatelogicalnetworkinterconnect) | **Patch** /api/v2/logical-network-interconnects/{id} | Update a logical network interconnect
 *LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofile) | **Post** /api/v2/logical-network-profiles | Create a Logical Network Profile.
 *LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofileipv4subnetallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies | Create Ipv4 Subnet allocation strategy.
@@ -408,11 +410,17 @@ Class | Method | HTTP request | Description
 *NetworkDeviceBGPConfigurationTemplateAPI* | [**GetNetworkDeviceBGPConfigurationTemplate**](docs/NetworkDeviceBGPConfigurationTemplateAPI.md#getnetworkdevicebgpconfigurationtemplate) | **Get** /api/v2/network-device-bgp-configuration-templates/{networkDeviceBGPConfigurationTemplateId} | Get Network Device BGP Configuration Template information
 *NetworkDeviceBGPConfigurationTemplateAPI* | [**GetNetworkDeviceBGPConfigurationTemplates**](docs/NetworkDeviceBGPConfigurationTemplateAPI.md#getnetworkdevicebgpconfigurationtemplates) | **Get** /api/v2/network-device-bgp-configuration-templates | Get all Network Device BGP Configuration Templates
 *NetworkDeviceBGPConfigurationTemplateAPI* | [**UpdateNetworkDeviceBGPConfigurationTemplate**](docs/NetworkDeviceBGPConfigurationTemplateAPI.md#updatenetworkdevicebgpconfigurationtemplate) | **Patch** /api/v2/network-device-bgp-configuration-templates/{networkDeviceBGPConfigurationTemplateId} | Updates Network Device BGP Configuration Template information
+*NetworkDeviceBGPInterconnectConfigurationTemplateAPI* | [**CreateNetworkDeviceBGPInterconnectConfigurationTemplate**](docs/NetworkDeviceBGPInterconnectConfigurationTemplateAPI.md#createnetworkdevicebgpinterconnectconfigurationtemplate) | **Post** /api/v2/network-device-bgp-interconnect-configuration-templates | Creates a Network Device BGP Interconnect Configuration Template
+*NetworkDeviceBGPInterconnectConfigurationTemplateAPI* | [**DeleteNetworkDeviceBGPInterconnectConfigurationTemplate**](docs/NetworkDeviceBGPInterconnectConfigurationTemplateAPI.md#deletenetworkdevicebgpinterconnectconfigurationtemplate) | **Delete** /api/v2/network-device-bgp-interconnect-configuration-templates/{id} | Deletes a Network Device BGP Interconnect Configuration Template
+*NetworkDeviceBGPInterconnectConfigurationTemplateAPI* | [**GetNetworkDeviceBGPInterconnectConfigurationTemplate**](docs/NetworkDeviceBGPInterconnectConfigurationTemplateAPI.md#getnetworkdevicebgpinterconnectconfigurationtemplate) | **Get** /api/v2/network-device-bgp-interconnect-configuration-templates/{id} | Get Network Device BGP Interconnect Configuration Template information
+*NetworkDeviceBGPInterconnectConfigurationTemplateAPI* | [**GetNetworkDeviceBGPInterconnectConfigurationTemplates**](docs/NetworkDeviceBGPInterconnectConfigurationTemplateAPI.md#getnetworkdevicebgpinterconnectconfigurationtemplates) | **Get** /api/v2/network-device-bgp-interconnect-configuration-templates | Get all Network Device BGP Interconnect Configuration Templates
+*NetworkDeviceBGPInterconnectConfigurationTemplateAPI* | [**UpdateNetworkDeviceBGPInterconnectConfigurationTemplate**](docs/NetworkDeviceBGPInterconnectConfigurationTemplateAPI.md#updatenetworkdevicebgpinterconnectconfigurationtemplate) | **Patch** /api/v2/network-device-bgp-interconnect-configuration-templates/{id} | Updates Network Device BGP Interconnect Configuration Template information
 *NetworkDeviceControllerAPI* | [**CreateNetworkDeviceController**](docs/NetworkDeviceControllerAPI.md#createnetworkdevicecontroller) | **Post** /api/v2/network-device-controllers | Create Network Device Controller
 *NetworkDeviceControllerAPI* | [**DeleteNetworkDeviceController**](docs/NetworkDeviceControllerAPI.md#deletenetworkdevicecontroller) | **Delete** /api/v2/network-device-controllers/{networkDeviceControllerId} | Delete Network Device Controller
 *NetworkDeviceControllerAPI* | [**GetNetworkDeviceController**](docs/NetworkDeviceControllerAPI.md#getnetworkdevicecontroller) | **Get** /api/v2/network-device-controllers/{networkDeviceControllerId} | Get Network Device Controller
 *NetworkDeviceControllerAPI* | [**GetNetworkDeviceControllerCredentials**](docs/NetworkDeviceControllerAPI.md#getnetworkdevicecontrollercredentials) | **Get** /api/v2/network-device-controllers/{networkDeviceControllerId}/credentials | Get Network Device Controller credentials
 *NetworkDeviceControllerAPI* | [**GetNetworkDeviceControllers**](docs/NetworkDeviceControllerAPI.md#getnetworkdevicecontrollers) | **Get** /api/v2/network-device-controllers | Get paginated Network Device Controllers
+*NetworkDeviceControllerAPI* | [**NetworkDeviceControllerDeployConfirm**](docs/NetworkDeviceControllerAPI.md#networkdevicecontrollerdeployconfirm) | **Post** /api/v2/network-device-controllers/{networkDeviceControllerId}/actions/deploy-confirm | Confirm pending deployment for a network device controller
 *NetworkDeviceControllerAPI* | [**UpdateNetworkDeviceController**](docs/NetworkDeviceControllerAPI.md#updatenetworkdevicecontroller) | **Patch** /api/v2/network-device-controllers/{networkDeviceControllerId} | Update Network Device Controller
 *NetworkDeviceDefaultSecretsAPI* | [**CreateNetworkDeviceDefaultSecrets**](docs/NetworkDeviceDefaultSecretsAPI.md#createnetworkdevicedefaultsecrets) | **Post** /api/v2/network-devices/default-secrets | Creates a NetworkDevice Default Secrets
 *NetworkDeviceDefaultSecretsAPI* | [**DeleteNetworkDeviceDefaultSecrets**](docs/NetworkDeviceDefaultSecretsAPI.md#deletenetworkdevicedefaultsecrets) | **Delete** /api/v2/network-devices/default-secrets/{networkDeviceDefaultSecretsId} | Deletes a NetworkDevice Default Secrets
@@ -467,11 +475,13 @@ Class | Method | HTTP request | Description
 *NetworkFabricInterconnectAPI* | [**DeleteInterconnectLink**](docs/NetworkFabricInterconnectAPI.md#deleteinterconnectlink) | **Delete** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Delete a specific fabric interconnect link
 *NetworkFabricInterconnectAPI* | [**DeleteNetworkFabricInterconnect**](docs/NetworkFabricInterconnectAPI.md#deletenetworkfabricinterconnect) | **Delete** /api/v2/network-fabric-interconnects/{id} | Delete a network fabric interconnect by ID
 *NetworkFabricInterconnectAPI* | [**DeployNetworkFabricInterconnect**](docs/NetworkFabricInterconnectAPI.md#deploynetworkfabricinterconnect) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/deploy | Deploys the specified network fabric interconnect
+*NetworkFabricInterconnectAPI* | [**DetachNetworkFabricInterconnect**](docs/NetworkFabricInterconnectAPI.md#detachnetworkfabricinterconnect) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/detach | Detaches the specified network fabric interconnect
 *NetworkFabricInterconnectAPI* | [**GetFabricInterconnectAvailableFabrics**](docs/NetworkFabricInterconnectAPI.md#getfabricinterconnectavailablefabrics) | **Get** /api/v2/network-fabric-interconnects/{id}/fabrics-available | Get the available fabrics for a fabric interconnect
 *NetworkFabricInterconnectAPI* | [**GetFabricInterconnectFabrics**](docs/NetworkFabricInterconnectAPI.md#getfabricinterconnectfabrics) | **Get** /api/v2/network-fabric-interconnects/{id}/fabrics | Get the fabrics for a fabric interconnect
 *NetworkFabricInterconnectAPI* | [**GetInterconnectLink**](docs/NetworkFabricInterconnectAPI.md#getinterconnectlink) | **Get** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Get a specific fabric interconnect link
 *NetworkFabricInterconnectAPI* | [**GetInterconnectLinks**](docs/NetworkFabricInterconnectAPI.md#getinterconnectlinks) | **Get** /api/v2/network-fabric-interconnects/{id}/links | Get all fabric interconnect links
 *NetworkFabricInterconnectAPI* | [**GetNetworkFabricInterconnectById**](docs/NetworkFabricInterconnectAPI.md#getnetworkfabricinterconnectbyid) | **Get** /api/v2/network-fabric-interconnects/{id} | Get a network fabric interconnect by ID
+*NetworkFabricInterconnectAPI* | [**GetNetworkFabricInterconnectDeploymentInfo**](docs/NetworkFabricInterconnectAPI.md#getnetworkfabricinterconnectdeploymentinfo) | **Get** /api/v2/network-fabric-interconnects/{id}/deployment-info | Get deployment info for a network fabric interconnect
 *NetworkFabricInterconnectAPI* | [**GetNetworkFabricInterconnectTemplateByType**](docs/NetworkFabricInterconnectAPI.md#getnetworkfabricinterconnecttemplatebytype) | **Get** /api/v2/network-fabric-interconnects/template/{interconnectType} | Get a network fabric interconnect template configuration by type
 *NetworkFabricInterconnectAPI* | [**GetNetworkFabricInterconnects**](docs/NetworkFabricInterconnectAPI.md#getnetworkfabricinterconnects) | **Get** /api/v2/network-fabric-interconnects | Get all network fabric interconnects
 *NetworkFabricInterconnectAPI* | [**RejectNetworkFabricInterconnectDeploy**](docs/NetworkFabricInterconnectAPI.md#rejectnetworkfabricinterconnectdeploy) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/reject-deploy | Rejects the deployment of the specified network fabric interconnect
@@ -713,6 +723,7 @@ Class | Method | HTTP request | Description
 *UsersAPI* | [**ResendEmailVerification**](docs/UsersAPI.md#resendemailverification) | **Post** /api/v2/users/{userId}/actions/resend-email-verification | Resend email verification
 *UsersAPI* | [**ResendUserInvitation**](docs/UsersAPI.md#resenduserinvitation) | **Post** /api/v2/users/{userId}/actions/resend-user-invitation | Resend user invitation
 *UsersAPI* | [**SendPasswordResetByAdmin**](docs/UsersAPI.md#sendpasswordresetbyadmin) | **Post** /api/v2/users/{userId}/actions/send-password-reset | Send password reset by admin
+*UsersAPI* | [**SetUserPasswordByAdmin**](docs/UsersAPI.md#setuserpasswordbyadmin) | **Post** /api/v2/users/{userId}/actions/set-password | Set user password by admin
 *UsersAPI* | [**SuspendUser**](docs/UsersAPI.md#suspenduser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 *UsersAPI* | [**UnarchiveUser**](docs/UsersAPI.md#unarchiveuser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
 *UsersAPI* | [**UnsuspendUser**](docs/UsersAPI.md#unsuspenduser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -760,10 +771,14 @@ Class | Method | HTTP request | Description
 *VMInstanceGroupAPI* | [**UpdateVMInstanceGroupConfig**](docs/VMInstanceGroupAPI.md#updatevminstancegroupconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config | Updates VM Instance Group information
 *VMInstanceGroupAPI* | [**UpdateVMInstanceGroupNetworkConfigurationConnection**](docs/VMInstanceGroupAPI.md#updatevminstancegroupnetworkconfigurationconnection) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a VM instance group
 *VMPoolAPI* | [**CreateVMPool**](docs/VMPoolAPI.md#createvmpool) | **Post** /api/v2/vm-pools | Creates a VM Pool
+*VMPoolAPI* | [**CreateVMPoolClusterHostInterfaceNetworkDevice**](docs/VMPoolAPI.md#createvmpoolclusterhostinterfacenetworkdevice) | **Post** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices | Create a network device assignment for a VM Cluster Host Interface
 *VMPoolAPI* | [**DeleteVMPool**](docs/VMPoolAPI.md#deletevmpool) | **Delete** /api/v2/vm-pools/{vmPoolId} | Deletes a VM Pool
+*VMPoolAPI* | [**DeleteVMPoolClusterHostInterfaceNetworkDevice**](docs/VMPoolAPI.md#deletevmpoolclusterhostinterfacenetworkdevice) | **Delete** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices/{networkDeviceAssignmentId} | Delete a network device assignment for a VM Cluster Host Interface
 *VMPoolAPI* | [**GetVMPool**](docs/VMPoolAPI.md#getvmpool) | **Get** /api/v2/vm-pools/{vmPoolId} | Get VM Pool information
 *VMPoolAPI* | [**GetVMPoolClusterHost**](docs/VMPoolAPI.md#getvmpoolclusterhost) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId} | Retrieves a VM Cluster Host
 *VMPoolAPI* | [**GetVMPoolClusterHostInterface**](docs/VMPoolAPI.md#getvmpoolclusterhostinterface) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Retrieves a VM Cluster Host Interface
+*VMPoolAPI* | [**GetVMPoolClusterHostInterfaceNetworkDevice**](docs/VMPoolAPI.md#getvmpoolclusterhostinterfacenetworkdevice) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices/{networkDeviceAssignmentId} | Get a network device assignment for a VM Cluster Host Interface
+*VMPoolAPI* | [**GetVMPoolClusterHostInterfaceNetworkDevices**](docs/VMPoolAPI.md#getvmpoolclusterhostinterfacenetworkdevices) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices | Get network device assignments for a VM Cluster Host Interface
 *VMPoolAPI* | [**GetVMPoolClusterHostInterfaces**](docs/VMPoolAPI.md#getvmpoolclusterhostinterfaces) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces | Retrieves a list of VM Cluster Host Interfaces
 *VMPoolAPI* | [**GetVMPoolClusterHostStatistics**](docs/VMPoolAPI.md#getvmpoolclusterhoststatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/statistics | Retrieves VM Cluster Host Statistics
 *VMPoolAPI* | [**GetVMPoolClusterHostVMs**](docs/VMPoolAPI.md#getvmpoolclusterhostvms) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/vms | Retrieves a list of VM Cluster Host VMs
@@ -776,7 +791,7 @@ Class | Method | HTTP request | Description
 *VMPoolAPI* | [**RefreshVMPoolInformation**](docs/VMPoolAPI.md#refreshvmpoolinformation) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/refresh-information | Refresh VM Pool information
 *VMPoolAPI* | [**SyncVMPool**](docs/VMPoolAPI.md#syncvmpool) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/sync | Sync VM Pool
 *VMPoolAPI* | [**UpdateVMPool**](docs/VMPoolAPI.md#updatevmpool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
-*VMPoolAPI* | [**UpdateVMPoolClusterHostInterface**](docs/VMPoolAPI.md#updatevmpoolclusterhostinterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
+*VMPoolAPI* | [**UpdateVMPoolClusterHost**](docs/VMPoolAPI.md#updatevmpoolclusterhost) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId} | Updates VM Cluster Host information
 *VMTypeAPI* | [**CreateVMType**](docs/VMTypeAPI.md#createvmtype) | **Post** /api/v2/vm-types | Creates a VM Type
 *VMTypeAPI* | [**DeleteVMType**](docs/VMTypeAPI.md#deletevmtype) | **Delete** /api/v2/vm-types/{vmTypeId} | Deletes a VM Type
 *VMTypeAPI* | [**GetVMType**](docs/VMTypeAPI.md#getvmtype) | **Get** /api/v2/vm-types/{vmTypeId} | Get VM Type information
@@ -821,6 +836,7 @@ Class | Method | HTTP request | Description
  - [AuthenticationRequestProperties](docs/AuthenticationRequestProperties.md)
  - [AuthenticationRequestPropertiesLdap](docs/AuthenticationRequestPropertiesLdap.md)
  - [AuthenticationRequestPropertiesMySql](docs/AuthenticationRequestPropertiesMySql.md)
+ - [AuthenticationRequestPropertiesSaml](docs/AuthenticationRequestPropertiesSaml.md)
  - [AuthenticationUserProvider](docs/AuthenticationUserProvider.md)
  - [AutoIpv4SubnetAllocationStrategy](docs/AutoIpv4SubnetAllocationStrategy.md)
  - [AutoIpv6SubnetAllocationStrategy](docs/AutoIpv6SubnetAllocationStrategy.md)
@@ -829,6 +845,7 @@ Class | Method | HTTP request | Description
  - [AutoVniAllocationStrategy](docs/AutoVniAllocationStrategy.md)
  - [AutoZoneAllocationStrategy](docs/AutoZoneAllocationStrategy.md)
  - [BatchScheduleServerFirmwareUpgrade](docs/BatchScheduleServerFirmwareUpgrade.md)
+ - [BatchScheduleServerFirmwareUpgradeDtoResponse](docs/BatchScheduleServerFirmwareUpgradeDtoResponse.md)
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
  - [BatchServerFirmwareUpgradeResponse](docs/BatchServerFirmwareUpgradeResponse.md)
  - [BgpNumberingType](docs/BgpNumberingType.md)
@@ -839,6 +856,7 @@ Class | Method | HTTP request | Description
  - [BucketPaginatedList](docs/BucketPaginatedList.md)
  - [BucketVariables](docs/BucketVariables.md)
  - [BulkCreateEndpoints](docs/BulkCreateEndpoints.md)
+ - [CaptchaEnabled](docs/CaptchaEnabled.md)
  - [CatalogUpdateType](docs/CatalogUpdateType.md)
  - [ChangeUserAccount](docs/ChangeUserAccount.md)
  - [ChangeUserEmail](docs/ChangeUserEmail.md)
@@ -889,6 +907,7 @@ Class | Method | HTTP request | Description
  - [CreateManualZoneAllocationStrategy](docs/CreateManualZoneAllocationStrategy.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
  - [CreateNetworkDeviceBGPConfigurationTemplate](docs/CreateNetworkDeviceBGPConfigurationTemplate.md)
+ - [CreateNetworkDeviceBGPInterconnectConfigurationTemplate](docs/CreateNetworkDeviceBGPInterconnectConfigurationTemplate.md)
  - [CreateNetworkDeviceController](docs/CreateNetworkDeviceController.md)
  - [CreateNetworkDeviceDefaultSecrets](docs/CreateNetworkDeviceDefaultSecrets.md)
  - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
@@ -922,6 +941,7 @@ Class | Method | HTTP request | Description
  - [CreateVMInstanceGroup](docs/CreateVMInstanceGroup.md)
  - [CreateVMInstanceGroupNetworkConnection](docs/CreateVMInstanceGroupNetworkConnection.md)
  - [CreateVMPool](docs/CreateVMPool.md)
+ - [CreateVMPoolHostInterfaceNetworkDevice](docs/CreateVMPoolHostInterfaceNetworkDevice.md)
  - [CreateVMPoolOptions](docs/CreateVMPoolOptions.md)
  - [CreateVMType](docs/CreateVMType.md)
  - [CreateVariable](docs/CreateVariable.md)
@@ -1178,6 +1198,8 @@ Class | Method | HTTP request | Description
  - [NetworkDeviceBGPConfigurationTemplate](docs/NetworkDeviceBGPConfigurationTemplate.md)
  - [NetworkDeviceBGPConfigurationTemplatePaginatedList](docs/NetworkDeviceBGPConfigurationTemplatePaginatedList.md)
  - [NetworkDeviceBGPConfigurationTemplateRecordSet](docs/NetworkDeviceBGPConfigurationTemplateRecordSet.md)
+ - [NetworkDeviceBGPInterconnectConfigurationTemplate](docs/NetworkDeviceBGPInterconnectConfigurationTemplate.md)
+ - [NetworkDeviceBGPInterconnectConfigurationTemplatePaginatedList](docs/NetworkDeviceBGPInterconnectConfigurationTemplatePaginatedList.md)
  - [NetworkDeviceConfigurationTemplateType](docs/NetworkDeviceConfigurationTemplateType.md)
  - [NetworkDeviceController](docs/NetworkDeviceController.md)
  - [NetworkDeviceControllerCredentials](docs/NetworkDeviceControllerCredentials.md)
@@ -1187,6 +1209,7 @@ Class | Method | HTTP request | Description
  - [NetworkDeviceDefaultSecretsCredentials](docs/NetworkDeviceDefaultSecretsCredentials.md)
  - [NetworkDeviceDefaultSecretsPaginatedList](docs/NetworkDeviceDefaultSecretsPaginatedList.md)
  - [NetworkDeviceDefaults](docs/NetworkDeviceDefaults.md)
+ - [NetworkDeviceDefaultsPaginatedList](docs/NetworkDeviceDefaultsPaginatedList.md)
  - [NetworkDeviceDriver](docs/NetworkDeviceDriver.md)
  - [NetworkDeviceEndpointInterface](docs/NetworkDeviceEndpointInterface.md)
  - [NetworkDeviceEndpointInterfaces](docs/NetworkDeviceEndpointInterfaces.md)
@@ -1224,6 +1247,7 @@ Class | Method | HTTP request | Description
  - [NetworkFabricInterconnect](docs/NetworkFabricInterconnect.md)
  - [NetworkFabricInterconnectDeployOptions](docs/NetworkFabricInterconnectDeployOptions.md)
  - [NetworkFabricInterconnectDeployPreview](docs/NetworkFabricInterconnectDeployPreview.md)
+ - [NetworkFabricInterconnectDeploymentInfo](docs/NetworkFabricInterconnectDeploymentInfo.md)
  - [NetworkFabricInterconnectLink](docs/NetworkFabricInterconnectLink.md)
  - [NetworkFabricInterconnectLinkStatus](docs/NetworkFabricInterconnectLinkStatus.md)
  - [NetworkFabricInterconnectLinksPaginatedList](docs/NetworkFabricInterconnectLinksPaginatedList.md)
@@ -1317,6 +1341,7 @@ Class | Method | HTTP request | Description
  - [ServerConnectInterface](docs/ServerConnectInterface.md)
  - [ServerCredentials](docs/ServerCredentials.md)
  - [ServerDNSRecordSet](docs/ServerDNSRecordSet.md)
+ - [ServerDPUCredentials](docs/ServerDPUCredentials.md)
  - [ServerDefaultCredentials](docs/ServerDefaultCredentials.md)
  - [ServerDefaultCredentialsCredentials](docs/ServerDefaultCredentialsCredentials.md)
  - [ServerDefaultCredentialsPaginatedList](docs/ServerDefaultCredentialsPaginatedList.md)
@@ -1408,6 +1433,7 @@ Class | Method | HTTP request | Description
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
  - [ServerVariables](docs/ServerVariables.md)
  - [ServerVendorInfo](docs/ServerVendorInfo.md)
+ - [SetUserPasswordByAdmin](docs/SetUserPasswordByAdmin.md)
  - [SharedDrive](docs/SharedDrive.md)
  - [SharedDriveConfiguration](docs/SharedDriveConfiguration.md)
  - [SharedDriveHostBulkOperation](docs/SharedDriveHostBulkOperation.md)
@@ -1424,7 +1450,6 @@ Class | Method | HTTP request | Description
  - [SiteConfigOSInstallationData](docs/SiteConfigOSInstallationData.md)
  - [SiteConfigUpdate](docs/SiteConfigUpdate.md)
  - [SiteConfigVariables](docs/SiteConfigVariables.md)
- - [SiteControllerOneliner](docs/SiteControllerOneliner.md)
  - [SiteControllerSeenAliveStatus](docs/SiteControllerSeenAliveStatus.md)
  - [SiteCreate](docs/SiteCreate.md)
  - [SiteOSInstallationData](docs/SiteOSInstallationData.md)
@@ -1482,10 +1507,12 @@ Class | Method | HTTP request | Description
  - [UpdateLogicalNetwork](docs/UpdateLogicalNetwork.md)
  - [UpdateLogicalNetworkACL](docs/UpdateLogicalNetworkACL.md)
  - [UpdateLogicalNetworkConfigGlobalSettings](docs/UpdateLogicalNetworkConfigGlobalSettings.md)
+ - [UpdateLogicalNetworkConfigVxlanProperties](docs/UpdateLogicalNetworkConfigVxlanProperties.md)
  - [UpdateLogicalNetworkInterconnectDto](docs/UpdateLogicalNetworkInterconnectDto.md)
  - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
  - [UpdateNetworkDeviceBGPConfigurationTemplate](docs/UpdateNetworkDeviceBGPConfigurationTemplate.md)
+ - [UpdateNetworkDeviceBGPInterconnectConfigurationTemplate](docs/UpdateNetworkDeviceBGPInterconnectConfigurationTemplate.md)
  - [UpdateNetworkDeviceController](docs/UpdateNetworkDeviceController.md)
  - [UpdateNetworkDeviceDefaultSecrets](docs/UpdateNetworkDeviceDefaultSecrets.md)
  - [UpdateNetworkDeviceLinkAggregationConfigurationTemplate](docs/UpdateNetworkDeviceLinkAggregationConfigurationTemplate.md)
@@ -1496,6 +1523,7 @@ Class | Method | HTTP request | Description
  - [UpdateNetworkFabricLinkAggregation](docs/UpdateNetworkFabricLinkAggregation.md)
  - [UpdateResourcePool](docs/UpdateResourcePool.md)
  - [UpdateRouteDomain](docs/UpdateRouteDomain.md)
+ - [UpdateRouteDomainConfigGlobalSettings](docs/UpdateRouteDomainConfigGlobalSettings.md)
  - [UpdateSecret](docs/UpdateSecret.md)
  - [UpdateServer](docs/UpdateServer.md)
  - [UpdateServerCleanupPolicy](docs/UpdateServerCleanupPolicy.md)
@@ -1519,7 +1547,7 @@ Class | Method | HTTP request | Description
  - [UpdateVMInstanceGroupNetworkConnection](docs/UpdateVMInstanceGroupNetworkConnection.md)
  - [UpdateVMInstanceMeta](docs/UpdateVMInstanceMeta.md)
  - [UpdateVMPool](docs/UpdateVMPool.md)
- - [UpdateVMPoolHostInterface](docs/UpdateVMPoolHostInterface.md)
+ - [UpdateVMPoolHost](docs/UpdateVMPoolHost.md)
  - [UpdateVMPoolOptions](docs/UpdateVMPoolOptions.md)
  - [UpdateVMType](docs/UpdateVMType.md)
  - [UpdateVariable](docs/UpdateVariable.md)
@@ -1550,6 +1578,7 @@ Class | Method | HTTP request | Description
  - [VMInstanceGroupConfiguration](docs/VMInstanceGroupConfiguration.md)
  - [VMInstanceGroupInterface](docs/VMInstanceGroupInterface.md)
  - [VMInstanceGroupInterfaceConfiguration](docs/VMInstanceGroupInterfaceConfiguration.md)
+ - [VMInstanceGroupInterfacePaginatedList](docs/VMInstanceGroupInterfacePaginatedList.md)
  - [VMInstanceGroupMeta](docs/VMInstanceGroupMeta.md)
  - [VMInstanceGroupNetworkConnection](docs/VMInstanceGroupNetworkConnection.md)
  - [VMInstanceGroupNetworkConnectionsList](docs/VMInstanceGroupNetworkConnectionsList.md)
@@ -1563,6 +1592,9 @@ Class | Method | HTTP request | Description
  - [VMPoolCredentials](docs/VMPoolCredentials.md)
  - [VMPoolForUsage](docs/VMPoolForUsage.md)
  - [VMPoolGPU](docs/VMPoolGPU.md)
+ - [VMPoolHostInterfaceNetworkDevice](docs/VMPoolHostInterfaceNetworkDevice.md)
+ - [VMPoolHostInterfaceNetworkDevicesPaginatedList](docs/VMPoolHostInterfaceNetworkDevicesPaginatedList.md)
+ - [VMPoolHostInterfaceStatus](docs/VMPoolHostInterfaceStatus.md)
  - [VMPoolHostInterfaces](docs/VMPoolHostInterfaces.md)
  - [VMPoolHosts](docs/VMPoolHosts.md)
  - [VMPoolHostsPaginatedList](docs/VMPoolHostsPaginatedList.md)

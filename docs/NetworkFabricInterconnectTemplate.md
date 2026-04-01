@@ -4,14 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BgpConfigurationTemplate** | **string** | BGP configuration template for the interconnect | 
-**BgpNeighborTemplate** | **string** | BGP neighbor template for the interconnect | 
+**AddGlobalConfigBgpTemplate** | **string** | BGP configuration template for the interconnect | 
+**AddNeighborBgpTemplate** | **string** | BGP neighbor template for the interconnect | 
+**RemoveGlobalConfigBgpTemplate** | **string** | BGP global configuration template for the interconnect to remove existing configuration | 
+**RemoveNeighborBgpTemplate** | **string** | BGP neighbor template for the interconnect to remove existing configuration | 
 
 ## Methods
 
 ### NewNetworkFabricInterconnectTemplate
 
-`func NewNetworkFabricInterconnectTemplate(bgpConfigurationTemplate string, bgpNeighborTemplate string, ) *NetworkFabricInterconnectTemplate`
+`func NewNetworkFabricInterconnectTemplate(addGlobalConfigBgpTemplate string, addNeighborBgpTemplate string, removeGlobalConfigBgpTemplate string, removeNeighborBgpTemplate string, ) *NetworkFabricInterconnectTemplate`
 
 NewNetworkFabricInterconnectTemplate instantiates a new NetworkFabricInterconnectTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -26,44 +28,84 @@ NewNetworkFabricInterconnectTemplateWithDefaults instantiates a new NetworkFabri
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetBgpConfigurationTemplate
+### GetAddGlobalConfigBgpTemplate
 
-`func (o *NetworkFabricInterconnectTemplate) GetBgpConfigurationTemplate() string`
+`func (o *NetworkFabricInterconnectTemplate) GetAddGlobalConfigBgpTemplate() string`
 
-GetBgpConfigurationTemplate returns the BgpConfigurationTemplate field if non-nil, zero value otherwise.
+GetAddGlobalConfigBgpTemplate returns the AddGlobalConfigBgpTemplate field if non-nil, zero value otherwise.
 
-### GetBgpConfigurationTemplateOk
+### GetAddGlobalConfigBgpTemplateOk
 
-`func (o *NetworkFabricInterconnectTemplate) GetBgpConfigurationTemplateOk() (*string, bool)`
+`func (o *NetworkFabricInterconnectTemplate) GetAddGlobalConfigBgpTemplateOk() (*string, bool)`
 
-GetBgpConfigurationTemplateOk returns a tuple with the BgpConfigurationTemplate field if it's non-nil, zero value otherwise
+GetAddGlobalConfigBgpTemplateOk returns a tuple with the AddGlobalConfigBgpTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBgpConfigurationTemplate
+### SetAddGlobalConfigBgpTemplate
 
-`func (o *NetworkFabricInterconnectTemplate) SetBgpConfigurationTemplate(v string)`
+`func (o *NetworkFabricInterconnectTemplate) SetAddGlobalConfigBgpTemplate(v string)`
 
-SetBgpConfigurationTemplate sets BgpConfigurationTemplate field to given value.
+SetAddGlobalConfigBgpTemplate sets AddGlobalConfigBgpTemplate field to given value.
 
 
-### GetBgpNeighborTemplate
+### GetAddNeighborBgpTemplate
 
-`func (o *NetworkFabricInterconnectTemplate) GetBgpNeighborTemplate() string`
+`func (o *NetworkFabricInterconnectTemplate) GetAddNeighborBgpTemplate() string`
 
-GetBgpNeighborTemplate returns the BgpNeighborTemplate field if non-nil, zero value otherwise.
+GetAddNeighborBgpTemplate returns the AddNeighborBgpTemplate field if non-nil, zero value otherwise.
 
-### GetBgpNeighborTemplateOk
+### GetAddNeighborBgpTemplateOk
 
-`func (o *NetworkFabricInterconnectTemplate) GetBgpNeighborTemplateOk() (*string, bool)`
+`func (o *NetworkFabricInterconnectTemplate) GetAddNeighborBgpTemplateOk() (*string, bool)`
 
-GetBgpNeighborTemplateOk returns a tuple with the BgpNeighborTemplate field if it's non-nil, zero value otherwise
+GetAddNeighborBgpTemplateOk returns a tuple with the AddNeighborBgpTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBgpNeighborTemplate
+### SetAddNeighborBgpTemplate
 
-`func (o *NetworkFabricInterconnectTemplate) SetBgpNeighborTemplate(v string)`
+`func (o *NetworkFabricInterconnectTemplate) SetAddNeighborBgpTemplate(v string)`
 
-SetBgpNeighborTemplate sets BgpNeighborTemplate field to given value.
+SetAddNeighborBgpTemplate sets AddNeighborBgpTemplate field to given value.
+
+
+### GetRemoveGlobalConfigBgpTemplate
+
+`func (o *NetworkFabricInterconnectTemplate) GetRemoveGlobalConfigBgpTemplate() string`
+
+GetRemoveGlobalConfigBgpTemplate returns the RemoveGlobalConfigBgpTemplate field if non-nil, zero value otherwise.
+
+### GetRemoveGlobalConfigBgpTemplateOk
+
+`func (o *NetworkFabricInterconnectTemplate) GetRemoveGlobalConfigBgpTemplateOk() (*string, bool)`
+
+GetRemoveGlobalConfigBgpTemplateOk returns a tuple with the RemoveGlobalConfigBgpTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveGlobalConfigBgpTemplate
+
+`func (o *NetworkFabricInterconnectTemplate) SetRemoveGlobalConfigBgpTemplate(v string)`
+
+SetRemoveGlobalConfigBgpTemplate sets RemoveGlobalConfigBgpTemplate field to given value.
+
+
+### GetRemoveNeighborBgpTemplate
+
+`func (o *NetworkFabricInterconnectTemplate) GetRemoveNeighborBgpTemplate() string`
+
+GetRemoveNeighborBgpTemplate returns the RemoveNeighborBgpTemplate field if non-nil, zero value otherwise.
+
+### GetRemoveNeighborBgpTemplateOk
+
+`func (o *NetworkFabricInterconnectTemplate) GetRemoveNeighborBgpTemplateOk() (*string, bool)`
+
+GetRemoveNeighborBgpTemplateOk returns a tuple with the RemoveNeighborBgpTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveNeighborBgpTemplate
+
+`func (o *NetworkFabricInterconnectTemplate) SetRemoveNeighborBgpTemplate(v string)`
+
+SetRemoveNeighborBgpTemplate sets RemoveNeighborBgpTemplate field to given value.
 
 
 

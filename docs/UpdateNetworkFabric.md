@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SiteId** | Pointer to **int32** | The ID of the site where the entity is located. | [optional] 
 **Name** | Pointer to **string** | The network fabric name | [optional] 
+**ExternalId** | Pointer to **string** | The external identifier for this fabric on the controller (e.g. NDFC fabric name) | [optional] 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
 **FabricConfiguration** | [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | 
 
@@ -77,6 +78,31 @@ SetName sets Name field to given value.
 `func (o *UpdateNetworkFabric) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *UpdateNetworkFabric) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *UpdateNetworkFabric) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *UpdateNetworkFabric) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *UpdateNetworkFabric) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 ### GetDescription
 

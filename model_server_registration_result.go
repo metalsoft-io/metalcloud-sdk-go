@@ -22,6 +22,7 @@ var _ MappedNullable = &ServerRegistrationResult{}
 type ServerRegistrationResult struct {
 	FoundMinimumNumberOfConnectedInterfaces *string `json:"foundMinimumNumberOfConnectedInterfaces,omitempty"`
 	RaidControllersReset *string `json:"raidControllersReset,omitempty"`
+	DpuRegistered *string `json:"dpuRegistered,omitempty"`
 	// The reasons for failure during registration.
 	ReasonsForFailure []string `json:"reasonsForFailure,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -110,6 +111,38 @@ func (o *ServerRegistrationResult) SetRaidControllersReset(v string) {
 	o.RaidControllersReset = &v
 }
 
+// GetDpuRegistered returns the DpuRegistered field value if set, zero value otherwise.
+func (o *ServerRegistrationResult) GetDpuRegistered() string {
+	if o == nil || IsNil(o.DpuRegistered) {
+		var ret string
+		return ret
+	}
+	return *o.DpuRegistered
+}
+
+// GetDpuRegisteredOk returns a tuple with the DpuRegistered field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationResult) GetDpuRegisteredOk() (*string, bool) {
+	if o == nil || IsNil(o.DpuRegistered) {
+		return nil, false
+	}
+	return o.DpuRegistered, true
+}
+
+// HasDpuRegistered returns a boolean if a field has been set.
+func (o *ServerRegistrationResult) HasDpuRegistered() bool {
+	if o != nil && !IsNil(o.DpuRegistered) {
+		return true
+	}
+
+	return false
+}
+
+// SetDpuRegistered gets a reference to the given string and assigns it to the DpuRegistered field.
+func (o *ServerRegistrationResult) SetDpuRegistered(v string) {
+	o.DpuRegistered = &v
+}
+
 // GetReasonsForFailure returns the ReasonsForFailure field value if set, zero value otherwise.
 func (o *ServerRegistrationResult) GetReasonsForFailure() []string {
 	if o == nil || IsNil(o.ReasonsForFailure) {
@@ -158,6 +191,9 @@ func (o ServerRegistrationResult) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RaidControllersReset) {
 		toSerialize["raidControllersReset"] = o.RaidControllersReset
 	}
+	if !IsNil(o.DpuRegistered) {
+		toSerialize["dpuRegistered"] = o.DpuRegistered
+	}
 	if !IsNil(o.ReasonsForFailure) {
 		toSerialize["reasonsForFailure"] = o.ReasonsForFailure
 	}
@@ -185,6 +221,7 @@ func (o *ServerRegistrationResult) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "foundMinimumNumberOfConnectedInterfaces")
 		delete(additionalProperties, "raidControllersReset")
+		delete(additionalProperties, "dpuRegistered")
 		delete(additionalProperties, "reasonsForFailure")
 		o.AdditionalProperties = additionalProperties
 	}

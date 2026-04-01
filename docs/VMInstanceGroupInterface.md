@@ -20,13 +20,13 @@ Name | Type | Description | Notes
 **Config** | [**VMInstanceGroupInterfaceConfiguration**](VMInstanceGroupInterfaceConfiguration.md) | The current changes to be deployed for the VM Instance Group Interface. | 
 **Meta** | **map[string]interface{}** | Meta information of the VM Instance Group Interface. | 
 **CreatedTimestamp** | **string** | Timestamp of the VM Instance Group Interface creation. | 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMInstanceGroupInterface
 
-`func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta map[string]interface{}, createdTimestamp string, links map[string]interface{}, ) *VMInstanceGroupInterface`
+`func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta map[string]interface{}, createdTimestamp string, ) *VMInstanceGroupInterface`
 
 NewVMInstanceGroupInterface instantiates a new VMInstanceGroupInterface object
 This constructor will assign default values to properties that have it defined,
@@ -388,23 +388,28 @@ SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 ### GetLinks
 
-`func (o *VMInstanceGroupInterface) GetLinks() map[string]interface{}`
+`func (o *VMInstanceGroupInterface) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *VMInstanceGroupInterface) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *VMInstanceGroupInterface) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *VMInstanceGroupInterface) SetLinks(v map[string]interface{})`
+`func (o *VMInstanceGroupInterface) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *VMInstanceGroupInterface) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

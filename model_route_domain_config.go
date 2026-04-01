@@ -32,6 +32,10 @@ type RouteDomainConfig struct {
 	Revision int32 `json:"revision"`
 	Kind RouteDomainKind `json:"kind"`
 	VrfAllocationStrategies []CreateVrfAllocationStrategy `json:"vrfAllocationStrategies"`
+	// When true, the switch auto-generates the EVPN Route Distinguisher for the L3 VNI. Only applicable to EVPN_L3VPN route domains.
+	AutoRouteDistinguisher *bool `json:"autoRouteDistinguisher,omitempty"`
+	// When true, the switch auto-generates EVPN Route Targets for the L3 VNI. Only applicable to EVPN_L3VPN route domains.
+	AutoRouteTarget *bool `json:"autoRouteTarget,omitempty"`
 	L3VlanAllocationStrategies []VlanAllocationStrategy `json:"l3VlanAllocationStrategies,omitempty"`
 	L3VniAllocationStrategies []VniAllocationStrategy `json:"l3VniAllocationStrategies,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -256,6 +260,70 @@ func (o *RouteDomainConfig) SetVrfAllocationStrategies(v []CreateVrfAllocationSt
 	o.VrfAllocationStrategies = v
 }
 
+// GetAutoRouteDistinguisher returns the AutoRouteDistinguisher field value if set, zero value otherwise.
+func (o *RouteDomainConfig) GetAutoRouteDistinguisher() bool {
+	if o == nil || IsNil(o.AutoRouteDistinguisher) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoRouteDistinguisher
+}
+
+// GetAutoRouteDistinguisherOk returns a tuple with the AutoRouteDistinguisher field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteDomainConfig) GetAutoRouteDistinguisherOk() (*bool, bool) {
+	if o == nil || IsNil(o.AutoRouteDistinguisher) {
+		return nil, false
+	}
+	return o.AutoRouteDistinguisher, true
+}
+
+// HasAutoRouteDistinguisher returns a boolean if a field has been set.
+func (o *RouteDomainConfig) HasAutoRouteDistinguisher() bool {
+	if o != nil && !IsNil(o.AutoRouteDistinguisher) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRouteDistinguisher gets a reference to the given bool and assigns it to the AutoRouteDistinguisher field.
+func (o *RouteDomainConfig) SetAutoRouteDistinguisher(v bool) {
+	o.AutoRouteDistinguisher = &v
+}
+
+// GetAutoRouteTarget returns the AutoRouteTarget field value if set, zero value otherwise.
+func (o *RouteDomainConfig) GetAutoRouteTarget() bool {
+	if o == nil || IsNil(o.AutoRouteTarget) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoRouteTarget
+}
+
+// GetAutoRouteTargetOk returns a tuple with the AutoRouteTarget field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteDomainConfig) GetAutoRouteTargetOk() (*bool, bool) {
+	if o == nil || IsNil(o.AutoRouteTarget) {
+		return nil, false
+	}
+	return o.AutoRouteTarget, true
+}
+
+// HasAutoRouteTarget returns a boolean if a field has been set.
+func (o *RouteDomainConfig) HasAutoRouteTarget() bool {
+	if o != nil && !IsNil(o.AutoRouteTarget) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRouteTarget gets a reference to the given bool and assigns it to the AutoRouteTarget field.
+func (o *RouteDomainConfig) SetAutoRouteTarget(v bool) {
+	o.AutoRouteTarget = &v
+}
+
 // GetL3VlanAllocationStrategies returns the L3VlanAllocationStrategies field value if set, zero value otherwise.
 func (o *RouteDomainConfig) GetL3VlanAllocationStrategies() []VlanAllocationStrategy {
 	if o == nil || IsNil(o.L3VlanAllocationStrategies) {
@@ -338,6 +406,12 @@ func (o RouteDomainConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize["revision"] = o.Revision
 	toSerialize["kind"] = o.Kind
 	toSerialize["vrfAllocationStrategies"] = o.VrfAllocationStrategies
+	if !IsNil(o.AutoRouteDistinguisher) {
+		toSerialize["autoRouteDistinguisher"] = o.AutoRouteDistinguisher
+	}
+	if !IsNil(o.AutoRouteTarget) {
+		toSerialize["autoRouteTarget"] = o.AutoRouteTarget
+	}
 	if !IsNil(o.L3VlanAllocationStrategies) {
 		toSerialize["l3VlanAllocationStrategies"] = o.L3VlanAllocationStrategies
 	}
@@ -402,6 +476,8 @@ func (o *RouteDomainConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "vrfAllocationStrategies")
+		delete(additionalProperties, "autoRouteDistinguisher")
+		delete(additionalProperties, "autoRouteTarget")
 		delete(additionalProperties, "l3VlanAllocationStrategies")
 		delete(additionalProperties, "l3VniAllocationStrategies")
 		o.AdditionalProperties = additionalProperties

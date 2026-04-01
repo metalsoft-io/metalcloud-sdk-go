@@ -26,6 +26,8 @@ type NetworkFabric struct {
 	SiteId *int32 `json:"siteId,omitempty"`
 	// The network fabric name
 	Name string `json:"name"`
+	// The external identifier for this fabric on the controller (e.g. NDFC fabric name)
+	ExternalId *string `json:"externalId,omitempty"`
 	// Network fabric description
 	Description *string `json:"description,omitempty"`
 	FabricConfiguration NetworkFabricFabricConfiguration `json:"fabricConfiguration"`
@@ -133,6 +135,38 @@ func (o *NetworkFabric) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *NetworkFabric) SetName(v string) {
 	o.Name = v
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *NetworkFabric) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalId) {
+		return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *NetworkFabric) HasExternalId() bool {
+	if o != nil && !IsNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *NetworkFabric) SetExternalId(v string) {
+	o.ExternalId = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -535,6 +569,9 @@ func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 		toSerialize["siteId"] = o.SiteId
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.ExternalId) {
+		toSerialize["externalId"] = o.ExternalId
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -614,6 +651,7 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "fabricConfiguration")
 		delete(additionalProperties, "revision")

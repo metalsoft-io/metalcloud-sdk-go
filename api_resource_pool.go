@@ -522,7 +522,7 @@ type ResourcePoolAPIGetResourcePoolRequest struct {
 	resourcePoolId float32
 }
 
-func (r ResourcePoolAPIGetResourcePoolRequest) Execute() (*ResourcePool, *http.Response, error) {
+func (r ResourcePoolAPIGetResourcePoolRequest) Execute() (*ResourcePoolWithStats, *http.Response, error) {
 	return r.ApiService.GetResourcePoolExecute(r)
 }
 
@@ -544,13 +544,13 @@ func (a *ResourcePoolAPIService) GetResourcePool(ctx context.Context, resourcePo
 }
 
 // Execute executes the request
-//  @return ResourcePool
-func (a *ResourcePoolAPIService) GetResourcePoolExecute(r ResourcePoolAPIGetResourcePoolRequest) (*ResourcePool, *http.Response, error) {
+//  @return ResourcePoolWithStats
+func (a *ResourcePoolAPIService) GetResourcePoolExecute(r ResourcePoolAPIGetResourcePoolRequest) (*ResourcePoolWithStats, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResourcePool
+		localVarReturnValue  *ResourcePoolWithStats
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ResourcePoolAPIService.GetResourcePool")

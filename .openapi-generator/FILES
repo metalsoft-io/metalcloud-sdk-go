@@ -32,6 +32,7 @@ api_logical_network_interconnect.go
 api_logical_network_profile.go
 api_network_device.go
 api_network_device_bgp_configuration_template.go
+api_network_device_bgp_interconnect_configuration_template.go
 api_network_device_controller.go
 api_network_device_default_secrets.go
 api_network_device_link_aggregation_configuration_template.go
@@ -99,6 +100,7 @@ docs/AuthenticationRequest.md
 docs/AuthenticationRequestProperties.md
 docs/AuthenticationRequestPropertiesLdap.md
 docs/AuthenticationRequestPropertiesMySql.md
+docs/AuthenticationRequestPropertiesSaml.md
 docs/AuthenticationUserProvider.md
 docs/AutoIpv4SubnetAllocationStrategy.md
 docs/AutoIpv6SubnetAllocationStrategy.md
@@ -107,6 +109,7 @@ docs/AutoVlanAllocationStrategy.md
 docs/AutoVniAllocationStrategy.md
 docs/AutoZoneAllocationStrategy.md
 docs/BatchScheduleServerFirmwareUpgrade.md
+docs/BatchScheduleServerFirmwareUpgradeDtoResponse.md
 docs/BatchServerFirmwareUpgrade.md
 docs/BatchServerFirmwareUpgradeResponse.md
 docs/BgpNumberingType.md
@@ -118,6 +121,7 @@ docs/BucketMeta.md
 docs/BucketPaginatedList.md
 docs/BucketVariables.md
 docs/BulkCreateEndpoints.md
+docs/CaptchaEnabled.md
 docs/CatalogUpdateType.md
 docs/ChangeUserAccount.md
 docs/ChangeUserEmail.md
@@ -169,6 +173,7 @@ docs/CreateManualVrfAllocationStrategy.md
 docs/CreateManualZoneAllocationStrategy.md
 docs/CreateNetworkDevice.md
 docs/CreateNetworkDeviceBGPConfigurationTemplate.md
+docs/CreateNetworkDeviceBGPInterconnectConfigurationTemplate.md
 docs/CreateNetworkDeviceController.md
 docs/CreateNetworkDeviceDefaultSecrets.md
 docs/CreateNetworkDeviceDefaults.md
@@ -202,6 +207,7 @@ docs/CreateVMInstance.md
 docs/CreateVMInstanceGroup.md
 docs/CreateVMInstanceGroupNetworkConnection.md
 docs/CreateVMPool.md
+docs/CreateVMPoolHostInterfaceNetworkDevice.md
 docs/CreateVMPoolOptions.md
 docs/CreateVMType.md
 docs/CreateVariable.md
@@ -484,6 +490,9 @@ docs/NetworkDeviceBGPConfigurationTemplate.md
 docs/NetworkDeviceBGPConfigurationTemplateAPI.md
 docs/NetworkDeviceBGPConfigurationTemplatePaginatedList.md
 docs/NetworkDeviceBGPConfigurationTemplateRecordSet.md
+docs/NetworkDeviceBGPInterconnectConfigurationTemplate.md
+docs/NetworkDeviceBGPInterconnectConfigurationTemplateAPI.md
+docs/NetworkDeviceBGPInterconnectConfigurationTemplatePaginatedList.md
 docs/NetworkDeviceConfigurationTemplateType.md
 docs/NetworkDeviceController.md
 docs/NetworkDeviceControllerAPI.md
@@ -495,6 +504,7 @@ docs/NetworkDeviceDefaultSecretsAPI.md
 docs/NetworkDeviceDefaultSecretsCredentials.md
 docs/NetworkDeviceDefaultSecretsPaginatedList.md
 docs/NetworkDeviceDefaults.md
+docs/NetworkDeviceDefaultsPaginatedList.md
 docs/NetworkDeviceDriver.md
 docs/NetworkDeviceEndpointInterface.md
 docs/NetworkDeviceEndpointInterfaces.md
@@ -536,6 +546,7 @@ docs/NetworkFabricInterconnect.md
 docs/NetworkFabricInterconnectAPI.md
 docs/NetworkFabricInterconnectDeployOptions.md
 docs/NetworkFabricInterconnectDeployPreview.md
+docs/NetworkFabricInterconnectDeploymentInfo.md
 docs/NetworkFabricInterconnectLink.md
 docs/NetworkFabricInterconnectLinkStatus.md
 docs/NetworkFabricInterconnectLinksPaginatedList.md
@@ -636,6 +647,7 @@ docs/ServerComponentPaginatedList.md
 docs/ServerConnectInterface.md
 docs/ServerCredentials.md
 docs/ServerDNSRecordSet.md
+docs/ServerDPUCredentials.md
 docs/ServerDefaultCredentials.md
 docs/ServerDefaultCredentialsAPI.md
 docs/ServerDefaultCredentialsCredentials.md
@@ -733,6 +745,7 @@ docs/ServerUnmanagedImportInternalInterface.md
 docs/ServerVNCInfo.md
 docs/ServerVariables.md
 docs/ServerVendorInfo.md
+docs/SetUserPasswordByAdmin.md
 docs/SharedDrive.md
 docs/SharedDriveConfiguration.md
 docs/SharedDriveHostBulkOperation.md
@@ -750,7 +763,6 @@ docs/SiteConfig.md
 docs/SiteConfigOSInstallationData.md
 docs/SiteConfigUpdate.md
 docs/SiteConfigVariables.md
-docs/SiteControllerOneliner.md
 docs/SiteControllerSeenAliveStatus.md
 docs/SiteCreate.md
 docs/SiteOSInstallationData.md
@@ -813,10 +825,12 @@ docs/UpdateInfrastructureMeta.md
 docs/UpdateLogicalNetwork.md
 docs/UpdateLogicalNetworkACL.md
 docs/UpdateLogicalNetworkConfigGlobalSettings.md
+docs/UpdateLogicalNetworkConfigVxlanProperties.md
 docs/UpdateLogicalNetworkInterconnectDto.md
 docs/UpdateLogicalNetworkProfile.md
 docs/UpdateNetworkDevice.md
 docs/UpdateNetworkDeviceBGPConfigurationTemplate.md
+docs/UpdateNetworkDeviceBGPInterconnectConfigurationTemplate.md
 docs/UpdateNetworkDeviceController.md
 docs/UpdateNetworkDeviceDefaultSecrets.md
 docs/UpdateNetworkDeviceLinkAggregationConfigurationTemplate.md
@@ -827,6 +841,7 @@ docs/UpdateNetworkFabricInterconnect.md
 docs/UpdateNetworkFabricLinkAggregation.md
 docs/UpdateResourcePool.md
 docs/UpdateRouteDomain.md
+docs/UpdateRouteDomainConfigGlobalSettings.md
 docs/UpdateSecret.md
 docs/UpdateServer.md
 docs/UpdateServerCleanupPolicy.md
@@ -850,7 +865,7 @@ docs/UpdateVMInstanceGroupMeta.md
 docs/UpdateVMInstanceGroupNetworkConnection.md
 docs/UpdateVMInstanceMeta.md
 docs/UpdateVMPool.md
-docs/UpdateVMPoolHostInterface.md
+docs/UpdateVMPoolHost.md
 docs/UpdateVMPoolOptions.md
 docs/UpdateVMType.md
 docs/UpdateVariable.md
@@ -886,6 +901,7 @@ docs/VMInstanceGroupAPI.md
 docs/VMInstanceGroupConfiguration.md
 docs/VMInstanceGroupInterface.md
 docs/VMInstanceGroupInterfaceConfiguration.md
+docs/VMInstanceGroupInterfacePaginatedList.md
 docs/VMInstanceGroupMeta.md
 docs/VMInstanceGroupNetworkConnection.md
 docs/VMInstanceGroupNetworkConnectionsList.md
@@ -900,6 +916,9 @@ docs/VMPoolAPI.md
 docs/VMPoolCredentials.md
 docs/VMPoolForUsage.md
 docs/VMPoolGPU.md
+docs/VMPoolHostInterfaceNetworkDevice.md
+docs/VMPoolHostInterfaceNetworkDevicesPaginatedList.md
+docs/VMPoolHostInterfaceStatus.md
 docs/VMPoolHostInterfaces.md
 docs/VMPoolHosts.md
 docs/VMPoolHostsPaginatedList.md
@@ -961,6 +980,7 @@ model_authentication_request.go
 model_authentication_request_properties.go
 model_authentication_request_properties_ldap.go
 model_authentication_request_properties_my_sql.go
+model_authentication_request_properties_saml.go
 model_authentication_user_provider.go
 model_auto_ipv4_subnet_allocation_strategy.go
 model_auto_ipv6_subnet_allocation_strategy.go
@@ -969,6 +989,7 @@ model_auto_vlan_allocation_strategy.go
 model_auto_vni_allocation_strategy.go
 model_auto_zone_allocation_strategy.go
 model_batch_schedule_server_firmware_upgrade.go
+model_batch_schedule_server_firmware_upgrade_dto_response.go
 model_batch_server_firmware_upgrade.go
 model_batch_server_firmware_upgrade_response.go
 model_bgp_numbering_type.go
@@ -979,6 +1000,7 @@ model_bucket_meta.go
 model_bucket_paginated_list.go
 model_bucket_variables.go
 model_bulk_create_endpoints.go
+model_captcha_enabled.go
 model_catalog_update_type.go
 model_change_user_account.go
 model_change_user_email.go
@@ -1029,6 +1051,7 @@ model_create_manual_vrf_allocation_strategy.go
 model_create_manual_zone_allocation_strategy.go
 model_create_network_device.go
 model_create_network_device_bgp_configuration_template.go
+model_create_network_device_bgp_interconnect_configuration_template.go
 model_create_network_device_controller.go
 model_create_network_device_default_secrets.go
 model_create_network_device_defaults.go
@@ -1064,6 +1087,7 @@ model_create_vm_instance.go
 model_create_vm_instance_group.go
 model_create_vm_instance_group_network_connection.go
 model_create_vm_pool.go
+model_create_vm_pool_host_interface_network_device.go
 model_create_vm_pool_options.go
 model_create_vm_type.go
 model_create_vni_allocation_strategy.go
@@ -1318,6 +1342,8 @@ model_network_device.go
 model_network_device_bgp_configuration_template.go
 model_network_device_bgp_configuration_template_paginated_list.go
 model_network_device_bgp_configuration_template_record_set.go
+model_network_device_bgp_interconnect_configuration_template.go
+model_network_device_bgp_interconnect_configuration_template_paginated_list.go
 model_network_device_configuration_template_type.go
 model_network_device_controller.go
 model_network_device_controller_credentials.go
@@ -1327,6 +1353,7 @@ model_network_device_default_secrets.go
 model_network_device_default_secrets_credentials.go
 model_network_device_default_secrets_paginated_list.go
 model_network_device_defaults.go
+model_network_device_defaults_paginated_list.go
 model_network_device_driver.go
 model_network_device_endpoint_interface.go
 model_network_device_endpoint_interfaces.go
@@ -1364,6 +1391,7 @@ model_network_fabric_fabric_configuration.go
 model_network_fabric_interconnect.go
 model_network_fabric_interconnect_deploy_options.go
 model_network_fabric_interconnect_deploy_preview.go
+model_network_fabric_interconnect_deployment_info.go
 model_network_fabric_interconnect_link.go
 model_network_fabric_interconnect_link_status.go
 model_network_fabric_interconnect_links_paginated_list.go
@@ -1461,6 +1489,7 @@ model_server_default_credentials_credentials.go
 model_server_default_credentials_paginated_list.go
 model_server_disk.go
 model_server_dns_record_set.go
+model_server_dpu_credentials.go
 model_server_filter_rule.go
 model_server_firmware_catalog_vendor.go
 model_server_firmware_upgrade_policy.go
@@ -1548,6 +1577,7 @@ model_server_unmanaged_import_internal_interface.go
 model_server_variables.go
 model_server_vendor_info.go
 model_server_vnc_info.go
+model_set_user_password_by_admin.go
 model_shared_drive.go
 model_shared_drive_configuration.go
 model_shared_drive_host_bulk_operation.go
@@ -1564,7 +1594,6 @@ model_site_config.go
 model_site_config_os_installation_data.go
 model_site_config_update.go
 model_site_config_variables.go
-model_site_controller_oneliner.go
 model_site_controller_seen_alive_status.go
 model_site_create.go
 model_site_os_installation_data.go
@@ -1622,10 +1651,12 @@ model_update_infrastructure_meta.go
 model_update_logical_network.go
 model_update_logical_network_acl.go
 model_update_logical_network_config_global_settings.go
+model_update_logical_network_config_vxlan_properties.go
 model_update_logical_network_interconnect_dto.go
 model_update_logical_network_profile.go
 model_update_network_device.go
 model_update_network_device_bgp_configuration_template.go
+model_update_network_device_bgp_interconnect_configuration_template.go
 model_update_network_device_controller.go
 model_update_network_device_default_secrets.go
 model_update_network_device_link_aggregation_configuration_template.go
@@ -1636,6 +1667,7 @@ model_update_network_fabric_interconnect.go
 model_update_network_fabric_link_aggregation.go
 model_update_resource_pool.go
 model_update_route_domain.go
+model_update_route_domain_config_global_settings.go
 model_update_secret.go
 model_update_server.go
 model_update_server_cleanup_policy.go
@@ -1660,7 +1692,7 @@ model_update_vm_instance_group_meta.go
 model_update_vm_instance_group_network_connection.go
 model_update_vm_instance_meta.go
 model_update_vm_pool.go
-model_update_vm_pool_host_interface.go
+model_update_vm_pool_host.go
 model_update_vm_pool_options.go
 model_update_vm_type.go
 model_user.go
@@ -1699,6 +1731,7 @@ model_vm_instance_group.go
 model_vm_instance_group_configuration.go
 model_vm_instance_group_interface.go
 model_vm_instance_group_interface_configuration.go
+model_vm_instance_group_interface_paginated_list.go
 model_vm_instance_group_meta.go
 model_vm_instance_group_network_connection.go
 model_vm_instance_group_network_connections_list.go
@@ -1712,6 +1745,9 @@ model_vm_pool.go
 model_vm_pool_credentials.go
 model_vm_pool_for_usage.go
 model_vm_pool_gpu.go
+model_vm_pool_host_interface_network_device.go
+model_vm_pool_host_interface_network_devices_paginated_list.go
+model_vm_pool_host_interface_status.go
 model_vm_pool_host_interfaces.go
 model_vm_pool_hosts.go
 model_vm_pool_hosts_paginated_list.go
@@ -1763,6 +1799,7 @@ test/api_logical_network_interconnect_test.go
 test/api_logical_network_profile_test.go
 test/api_logical_network_test.go
 test/api_network_device_bgp_configuration_template_test.go
+test/api_network_device_bgp_interconnect_configuration_template_test.go
 test/api_network_device_controller_test.go
 test/api_network_device_default_secrets_test.go
 test/api_network_device_link_aggregation_configuration_template_test.go

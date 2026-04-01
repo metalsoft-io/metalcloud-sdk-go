@@ -25,6 +25,8 @@ type UpdateNetworkFabric struct {
 	SiteId *int32 `json:"siteId,omitempty"`
 	// The network fabric name
 	Name *string `json:"name,omitempty"`
+	// The external identifier for this fabric on the controller (e.g. NDFC fabric name)
+	ExternalId *string `json:"externalId,omitempty"`
 	// Network fabric description
 	Description *string `json:"description,omitempty"`
 	FabricConfiguration NetworkFabricFabricConfiguration `json:"fabricConfiguration"`
@@ -115,6 +117,38 @@ func (o *UpdateNetworkFabric) SetName(v string) {
 	o.Name = &v
 }
 
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *UpdateNetworkFabric) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkFabric) GetExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalId) {
+		return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *UpdateNetworkFabric) HasExternalId() bool {
+	if o != nil && !IsNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *UpdateNetworkFabric) SetExternalId(v string) {
+	o.ExternalId = &v
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *UpdateNetworkFabric) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
@@ -187,6 +221,9 @@ func (o UpdateNetworkFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.ExternalId) {
+		toSerialize["externalId"] = o.ExternalId
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -236,6 +273,7 @@ func (o *UpdateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "fabricConfiguration")
 		o.AdditionalProperties = additionalProperties

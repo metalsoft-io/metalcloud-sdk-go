@@ -28,9 +28,10 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		var serverId float32
 
-		httpRes, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).Execute()
+		resp, httpRes, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAuthenticationProvider**](AuthenticationAPI.md#GetAuthenticationProvider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
+[**GetCaptchaEnabled**](AuthenticationAPI.md#GetCaptchaEnabled) | **Get** /api/v2/captcha-enabled | Check if CAPTCHA is enabled
 [**GetCurrentUser**](AuthenticationAPI.md#GetCurrentUser) | **Get** /api/v2/user | Get current user
 [**GetPublicSignupDisabled**](AuthenticationAPI.md#GetPublicSignupDisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
@@ -36,7 +37,7 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | 
+	email := "email_example" // string | The email address to look up
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -61,11 +62,72 @@ Other parameters are passed through a pointer to a apiGetAuthenticationProviderR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** |  | 
+ **email** | **string** | The email address to look up | 
 
 ### Return type
 
 [**AuthenticationUserProvider**](AuthenticationUserProvider.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetCaptchaEnabled
+
+> CaptchaEnabled GetCaptchaEnabled(ctx).Execute()
+
+Check if CAPTCHA is enabled
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.GetCaptchaEnabled(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetCaptchaEnabled``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCaptchaEnabled`: CaptchaEnabled
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.GetCaptchaEnabled`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCaptchaEnabledRequest struct via the builder pattern
+
+
+### Return type
+
+[**CaptchaEnabled**](CaptchaEnabled.md)
 
 ### Authorization
 
@@ -342,7 +404,7 @@ No authorization required
 
 ## LoginSaml
 
-> User LoginSaml(ctx).Body(body).Execute()
+> LoginSaml(ctx).AuthenticationRequestPropertiesSaml(authenticationRequestPropertiesSaml).Execute()
 
 User SAML login callback URL
 
@@ -361,17 +423,15 @@ import (
 )
 
 func main() {
-	body := map[string]interface{}{ ... } // map[string]interface{} | The SAML response
+	authenticationRequestPropertiesSaml := *openapiclient.NewAuthenticationRequestPropertiesSaml("SAMLResponse_example") // AuthenticationRequestPropertiesSaml | The SAML response
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.LoginSaml(context.Background()).Body(body).Execute()
+	r, err := apiClient.AuthenticationAPI.LoginSaml(context.Background()).AuthenticationRequestPropertiesSaml(authenticationRequestPropertiesSaml).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.LoginSaml``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `LoginSaml`: User
-	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.LoginSaml`: %v\n", resp)
 }
 ```
 
@@ -386,11 +446,11 @@ Other parameters are passed through a pointer to a apiLoginSamlRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **map[string]interface{}** | The SAML response | 
+ **authenticationRequestPropertiesSaml** | [**AuthenticationRequestPropertiesSaml**](AuthenticationRequestPropertiesSaml.md) | The SAML response | 
 
 ### Return type
 
-[**User**](User.md)
+ (empty response body)
 
 ### Authorization
 
@@ -399,7 +459,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

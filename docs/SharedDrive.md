@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
 **DiscoverInformation** | Pointer to [**[]GenericDriveDiscoverInformation**](GenericDriveDiscoverInformation.md) | Discover information for the Drive. | [optional] 
 **Meta** | [**SharedDriveMeta**](SharedDriveMeta.md) | Meta information of the Drive. | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
@@ -702,6 +703,31 @@ and a boolean to check if the value has been set.
 
 SetMeta sets Meta field to given value.
 
+
+### GetLinks
+
+`func (o *SharedDrive) GetLinks() []Link`
+
+GetLinks returns the Links field if non-nil, zero value otherwise.
+
+### GetLinksOk
+
+`func (o *SharedDrive) GetLinksOk() (*[]Link, bool)`
+
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinks
+
+`func (o *SharedDrive) SetLinks(v []Link)`
+
+SetLinks sets Links field to given value.
+
+### HasLinks
+
+`func (o *SharedDrive) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

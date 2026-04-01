@@ -112,6 +112,8 @@ type APIClient struct {
 
 	NetworkDeviceBGPConfigurationTemplateAPI *NetworkDeviceBGPConfigurationTemplateAPIService
 
+	NetworkDeviceBGPInterconnectConfigurationTemplateAPI *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService
+
 	NetworkDeviceControllerAPI *NetworkDeviceControllerAPIService
 
 	NetworkDeviceDefaultSecretsAPI *NetworkDeviceDefaultSecretsAPIService
@@ -226,6 +228,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogicalNetworkProfileAPI = (*LogicalNetworkProfileAPIService)(&c.common)
 	c.NetworkDeviceAPI = (*NetworkDeviceAPIService)(&c.common)
 	c.NetworkDeviceBGPConfigurationTemplateAPI = (*NetworkDeviceBGPConfigurationTemplateAPIService)(&c.common)
+	c.NetworkDeviceBGPInterconnectConfigurationTemplateAPI = (*NetworkDeviceBGPInterconnectConfigurationTemplateAPIService)(&c.common)
 	c.NetworkDeviceControllerAPI = (*NetworkDeviceControllerAPIService)(&c.common)
 	c.NetworkDeviceDefaultSecretsAPI = (*NetworkDeviceDefaultSecretsAPIService)(&c.common)
 	c.NetworkDeviceLinkAggregationConfigurationTemplateAPI = (*NetworkDeviceLinkAggregationConfigurationTemplateAPIService)(&c.common)

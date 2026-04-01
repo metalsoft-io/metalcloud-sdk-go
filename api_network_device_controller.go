@@ -502,7 +502,7 @@ func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) FilterIden
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - driver  - status  - managementAddress  - siteId 
 func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) SortBy(sortBy []string) NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest {
 	r.sortBy = &sortBy
 	return r
@@ -707,6 +707,96 @@ func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceControllersExecute(r
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceControllerAPIService
+	networkDeviceControllerId int32
+}
+
+func (r NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest) Execute() (*http.Response, error) {
+	return r.ApiService.NetworkDeviceControllerDeployConfirmExecute(r)
+}
+
+/*
+NetworkDeviceControllerDeployConfirm Confirm pending deployment for a network device controller
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceControllerId
+ @return NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest
+*/
+func (a *NetworkDeviceControllerAPIService) NetworkDeviceControllerDeployConfirm(ctx context.Context, networkDeviceControllerId int32) NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest {
+	return NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceControllerId: networkDeviceControllerId,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkDeviceControllerAPIService) NetworkDeviceControllerDeployConfirmExecute(r NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceControllerAPIService.NetworkDeviceControllerDeployConfirm")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-device-controllers/{networkDeviceControllerId}/actions/deploy-confirm"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceControllerId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceControllerId, "networkDeviceControllerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type NetworkDeviceControllerAPIUpdateNetworkDeviceControllerRequest struct {

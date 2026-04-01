@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **ManagementPort** | Pointer to **int32** | The port number used for management connections | [optional] 
 **Username** | Pointer to **string** | The username used for management authentication | [optional] 
 **ManagementPassword** | Pointer to **string** | The password used for management authentication | [optional] 
+**OptionsJson** | Pointer to **map[string]interface{}** | Additional configuration options (JSON) | [optional] 
 **Description** | Pointer to **string** | Additional description or notes about the network device controller | [optional] 
 
 ## Methods
@@ -232,6 +233,31 @@ SetManagementPassword sets ManagementPassword field to given value.
 `func (o *UpdateNetworkDeviceController) HasManagementPassword() bool`
 
 HasManagementPassword returns a boolean if a field has been set.
+
+### GetOptionsJson
+
+`func (o *UpdateNetworkDeviceController) GetOptionsJson() map[string]interface{}`
+
+GetOptionsJson returns the OptionsJson field if non-nil, zero value otherwise.
+
+### GetOptionsJsonOk
+
+`func (o *UpdateNetworkDeviceController) GetOptionsJsonOk() (*map[string]interface{}, bool)`
+
+GetOptionsJsonOk returns a tuple with the OptionsJson field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptionsJson
+
+`func (o *UpdateNetworkDeviceController) SetOptionsJson(v map[string]interface{})`
+
+SetOptionsJson sets OptionsJson field to given value.
+
+### HasOptionsJson
+
+`func (o *UpdateNetworkDeviceController) HasOptionsJson() bool`
+
+HasOptionsJson returns a boolean if a field has been set.
 
 ### GetDescription
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
 **FabricId** | **int32** |  | 
 **InfrastructureId** | Pointer to **NullableInt32** |  | [optional] 
+**ExternalId** | Pointer to **string** | External identifier for this logical network on the controller | [optional] 
 **Vlan** | Pointer to [**CreateLogicalNetworkVlanProperties**](CreateLogicalNetworkVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**CreateLogicalNetworkVxlanProperties**](CreateLogicalNetworkVxlanProperties.md) |  | [optional] 
 **Pkey** | Pointer to [**CreateLogicalNetworkPkeyProperties**](CreateLogicalNetworkPkeyProperties.md) |  | [optional] 
@@ -188,6 +189,31 @@ HasInfrastructureId returns a boolean if a field has been set.
 `func (o *CreateLogicalNetwork) UnsetInfrastructureId()`
 
 UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
+### GetExternalId
+
+`func (o *CreateLogicalNetwork) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *CreateLogicalNetwork) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *CreateLogicalNetwork) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *CreateLogicalNetwork) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
+
 ### GetVlan
 
 `func (o *CreateLogicalNetwork) GetVlan() CreateLogicalNetworkVlanProperties`

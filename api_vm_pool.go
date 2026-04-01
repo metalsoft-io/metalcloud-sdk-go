@@ -136,6 +136,129 @@ func (a *VMPoolAPIService) CreateVMPoolExecute(r VMPoolAPICreateVMPoolRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId float32
+	vmPoolClusterHostId float32
+	vmPoolClusterHostInterfaceId float32
+	createVMPoolHostInterfaceNetworkDevice *CreateVMPoolHostInterfaceNetworkDevice
+}
+
+// Network device assignment create object
+func (r VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest) CreateVMPoolHostInterfaceNetworkDevice(createVMPoolHostInterfaceNetworkDevice CreateVMPoolHostInterfaceNetworkDevice) VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest {
+	r.createVMPoolHostInterfaceNetworkDevice = &createVMPoolHostInterfaceNetworkDevice
+	return r
+}
+
+func (r VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest) Execute() (*VMPoolHostInterfaceNetworkDevice, *http.Response, error) {
+	return r.ApiService.CreateVMPoolClusterHostInterfaceNetworkDeviceExecute(r)
+}
+
+/*
+CreateVMPoolClusterHostInterfaceNetworkDevice Create a network device assignment for a VM Cluster Host Interface
+
+Creates a new network device assignment for a VM Cluster Host Interface
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @param vmPoolClusterHostId
+ @param vmPoolClusterHostInterfaceId
+ @return VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest
+*/
+func (a *VMPoolAPIService) CreateVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32) VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest {
+	return VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+		vmPoolClusterHostId: vmPoolClusterHostId,
+		vmPoolClusterHostInterfaceId: vmPoolClusterHostInterfaceId,
+	}
+}
+
+// Execute executes the request
+//  @return VMPoolHostInterfaceNetworkDevice
+func (a *VMPoolAPIService) CreateVMPoolClusterHostInterfaceNetworkDeviceExecute(r VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest) (*VMPoolHostInterfaceNetworkDevice, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMPoolHostInterfaceNetworkDevice
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.CreateVMPoolClusterHostInterfaceNetworkDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostId, "vmPoolClusterHostId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostInterfaceId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostInterfaceId, "vmPoolClusterHostInterfaceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createVMPoolHostInterfaceNetworkDevice == nil {
+		return localVarReturnValue, nil, reportError("createVMPoolHostInterfaceNetworkDevice is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createVMPoolHostInterfaceNetworkDevice
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMPoolAPIDeleteVMPoolRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
@@ -178,6 +301,110 @@ func (a *VMPoolAPIService) DeleteVMPoolExecute(r VMPoolAPIDeleteVMPoolRequest) (
 
 	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId float32
+	vmPoolClusterHostId float32
+	vmPoolClusterHostInterfaceId float32
+	networkDeviceAssignmentId float32
+}
+
+func (r VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteVMPoolClusterHostInterfaceNetworkDeviceExecute(r)
+}
+
+/*
+DeleteVMPoolClusterHostInterfaceNetworkDevice Delete a network device assignment for a VM Cluster Host Interface
+
+Deletes a network device assignment for a VM Cluster Host Interface
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @param vmPoolClusterHostId
+ @param vmPoolClusterHostInterfaceId
+ @param networkDeviceAssignmentId
+ @return VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest
+*/
+func (a *VMPoolAPIService) DeleteVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32, networkDeviceAssignmentId float32) VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest {
+	return VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+		vmPoolClusterHostId: vmPoolClusterHostId,
+		vmPoolClusterHostInterfaceId: vmPoolClusterHostInterfaceId,
+		networkDeviceAssignmentId: networkDeviceAssignmentId,
+	}
+}
+
+// Execute executes the request
+func (a *VMPoolAPIService) DeleteVMPoolClusterHostInterfaceNetworkDeviceExecute(r VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.DeleteVMPoolClusterHostInterfaceNetworkDevice")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices/{networkDeviceAssignmentId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostId, "vmPoolClusterHostId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostInterfaceId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostInterfaceId, "vmPoolClusterHostInterfaceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceAssignmentId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceAssignmentId, "networkDeviceAssignmentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -495,6 +722,306 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceExecute(r VMPoolAPIGetVM
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId float32
+	vmPoolClusterHostId float32
+	vmPoolClusterHostInterfaceId float32
+	networkDeviceAssignmentId float32
+}
+
+func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest) Execute() (*VMPoolHostInterfaceNetworkDevice, *http.Response, error) {
+	return r.ApiService.GetVMPoolClusterHostInterfaceNetworkDeviceExecute(r)
+}
+
+/*
+GetVMPoolClusterHostInterfaceNetworkDevice Get a network device assignment for a VM Cluster Host Interface
+
+Returns a network device assignment for a VM Cluster Host Interface
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @param vmPoolClusterHostId
+ @param vmPoolClusterHostInterfaceId
+ @param networkDeviceAssignmentId
+ @return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest
+*/
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32, networkDeviceAssignmentId float32) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest {
+	return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+		vmPoolClusterHostId: vmPoolClusterHostId,
+		vmPoolClusterHostInterfaceId: vmPoolClusterHostInterfaceId,
+		networkDeviceAssignmentId: networkDeviceAssignmentId,
+	}
+}
+
+// Execute executes the request
+//  @return VMPoolHostInterfaceNetworkDevice
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDeviceExecute(r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest) (*VMPoolHostInterfaceNetworkDevice, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMPoolHostInterfaceNetworkDevice
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.GetVMPoolClusterHostInterfaceNetworkDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices/{networkDeviceAssignmentId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostId, "vmPoolClusterHostId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostInterfaceId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostInterfaceId, "vmPoolClusterHostInterfaceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceAssignmentId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceAssignmentId, "networkDeviceAssignmentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId float32
+	vmPoolClusterHostId float32
+	vmPoolClusterHostInterfaceId float32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterNetworkDeviceId *[]string
+	sortBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest) Page(page float32) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest) Limit(limit float32) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest) FilterId(filterId []string) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by networkDeviceId query param.  **Format:** filter.networkDeviceId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkDeviceId&#x3D;$btw:John Doe&amp;filter.networkDeviceId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest) FilterNetworkDeviceId(filterNetworkDeviceId []string) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
+	r.filterNetworkDeviceId = &filterNetworkDeviceId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;networkDeviceId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - networkDeviceId 
+func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest) SortBy(sortBy []string) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest) Execute() (*VMPoolHostInterfaceNetworkDevicesPaginatedList, *http.Response, error) {
+	return r.ApiService.GetVMPoolClusterHostInterfaceNetworkDevicesExecute(r)
+}
+
+/*
+GetVMPoolClusterHostInterfaceNetworkDevices Get network device assignments for a VM Cluster Host Interface
+
+Returns list of network device assignments for a VM Cluster Host Interface
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @param vmPoolClusterHostId
+ @param vmPoolClusterHostInterfaceId
+ @return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest
+*/
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevices(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
+	return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+		vmPoolClusterHostId: vmPoolClusterHostId,
+		vmPoolClusterHostInterfaceId: vmPoolClusterHostInterfaceId,
+	}
+}
+
+// Execute executes the request
+//  @return VMPoolHostInterfaceNetworkDevicesPaginatedList
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevicesExecute(r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest) (*VMPoolHostInterfaceNetworkDevicesPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMPoolHostInterfaceNetworkDevicesPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.GetVMPoolClusterHostInterfaceNetworkDevices")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}/network-devices"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostId, "vmPoolClusterHostId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostInterfaceId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostInterfaceId, "vmPoolClusterHostInterfaceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkDeviceId != nil {
+		t := *r.filterNetworkDeviceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceId", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2339,71 +2866,67 @@ func (a *VMPoolAPIService) UpdateVMPoolExecute(r VMPoolAPIUpdateVMPoolRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest struct {
+type VMPoolAPIUpdateVMPoolClusterHostRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
 	vmPoolId float32
 	vmPoolClusterHostId float32
-	vmPoolClusterHostInterfaceId float32
-	updateVMPoolHostInterface *UpdateVMPoolHostInterface
+	updateVMPoolHost *UpdateVMPoolHost
 }
 
-// The VM Pool Cluster Host Interface update object
-func (r VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest) UpdateVMPoolHostInterface(updateVMPoolHostInterface UpdateVMPoolHostInterface) VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest {
-	r.updateVMPoolHostInterface = &updateVMPoolHostInterface
+// The VM Cluster Host update object
+func (r VMPoolAPIUpdateVMPoolClusterHostRequest) UpdateVMPoolHost(updateVMPoolHost UpdateVMPoolHost) VMPoolAPIUpdateVMPoolClusterHostRequest {
+	r.updateVMPoolHost = &updateVMPoolHost
 	return r
 }
 
-func (r VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest) Execute() (*VMPoolHostInterfaces, *http.Response, error) {
-	return r.ApiService.UpdateVMPoolClusterHostInterfaceExecute(r)
+func (r VMPoolAPIUpdateVMPoolClusterHostRequest) Execute() (*VMPoolHosts, *http.Response, error) {
+	return r.ApiService.UpdateVMPoolClusterHostExecute(r)
 }
 
 /*
-UpdateVMPoolClusterHostInterface Updates a VM Cluster Host Interface
+UpdateVMPoolClusterHost Updates VM Cluster Host information
 
-Updates a VM Cluster Host Interface
+Updates VM Cluster Host information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param vmPoolId
  @param vmPoolClusterHostId
- @param vmPoolClusterHostInterfaceId
- @return VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest
+ @return VMPoolAPIUpdateVMPoolClusterHostRequest
 */
-func (a *VMPoolAPIService) UpdateVMPoolClusterHostInterface(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32) VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest {
-	return VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest{
+func (a *VMPoolAPIService) UpdateVMPoolClusterHost(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32) VMPoolAPIUpdateVMPoolClusterHostRequest {
+	return VMPoolAPIUpdateVMPoolClusterHostRequest{
 		ApiService: a,
 		ctx: ctx,
 		vmPoolId: vmPoolId,
 		vmPoolClusterHostId: vmPoolClusterHostId,
-		vmPoolClusterHostInterfaceId: vmPoolClusterHostInterfaceId,
 	}
 }
 
 // Execute executes the request
-//  @return VMPoolHostInterfaces
-func (a *VMPoolAPIService) UpdateVMPoolClusterHostInterfaceExecute(r VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest) (*VMPoolHostInterfaces, *http.Response, error) {
+//  @return VMPoolHosts
+func (a *VMPoolAPIService) UpdateVMPoolClusterHostExecute(r VMPoolAPIUpdateVMPoolClusterHostRequest) (*VMPoolHosts, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *VMPoolHostInterfaces
+		localVarReturnValue  *VMPoolHosts
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.UpdateVMPoolClusterHostInterface")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.UpdateVMPoolClusterHost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId}"
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostId, "vmPoolClusterHostId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostInterfaceId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostInterfaceId, "vmPoolClusterHostInterfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateVMPoolHostInterface == nil {
-		return localVarReturnValue, nil, reportError("updateVMPoolHostInterface is required and must be specified")
+	if r.updateVMPoolHost == nil {
+		return localVarReturnValue, nil, reportError("updateVMPoolHost is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2424,7 +2947,7 @@ func (a *VMPoolAPIService) UpdateVMPoolClusterHostInterfaceExecute(r VMPoolAPIUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateVMPoolHostInterface
+	localVarPostBody = r.updateVMPoolHost
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
 **LastAppliedLogicalNetworkProfileId** | **NullableInt32** |  | 
 **LastLogicalNetworkProfileAppliedAt** | **time.Time** |  | 
+**ExternalId** | Pointer to **NullableString** | External identifier for this logical network on the controller | [optional] 
 **Config** | [**LogicalNetworkConfig**](LogicalNetworkConfig.md) |  | 
 **Vlan** | Pointer to [**LogicalNetworkVlanProperties**](LogicalNetworkVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**LogicalNetworkVxlanProperties**](LogicalNetworkVxlanProperties.md) |  | [optional] 
@@ -362,6 +363,41 @@ and a boolean to check if the value has been set.
 SetLastLogicalNetworkProfileAppliedAt sets LastLogicalNetworkProfileAppliedAt field to given value.
 
 
+### GetExternalId
+
+`func (o *LogicalNetwork) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *LogicalNetwork) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *LogicalNetwork) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *LogicalNetwork) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
+
+### SetExternalIdNil
+
+`func (o *LogicalNetwork) SetExternalIdNil(b bool)`
+
+ SetExternalIdNil sets the value for ExternalId to be an explicit nil
+
+### UnsetExternalId
+`func (o *LogicalNetwork) UnsetExternalId()`
+
+UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
 ### GetConfig
 
 `func (o *LogicalNetwork) GetConfig() LogicalNetworkConfig`

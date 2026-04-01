@@ -52,6 +52,8 @@ type UpdateServer struct {
 	ServerStatus *string `json:"serverStatus,omitempty"`
 	// The server class.
 	ServerClass *string `json:"serverClass,omitempty"`
+	// DPU credentials. Only use if the server has a DPU installed.
+	DpuCredentials []ServerDPUCredentials `json:"dpuCredentials,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -586,6 +588,38 @@ func (o *UpdateServer) SetServerClass(v string) {
 	o.ServerClass = &v
 }
 
+// GetDpuCredentials returns the DpuCredentials field value if set, zero value otherwise.
+func (o *UpdateServer) GetDpuCredentials() []ServerDPUCredentials {
+	if o == nil || IsNil(o.DpuCredentials) {
+		var ret []ServerDPUCredentials
+		return ret
+	}
+	return o.DpuCredentials
+}
+
+// GetDpuCredentialsOk returns a tuple with the DpuCredentials field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServer) GetDpuCredentialsOk() ([]ServerDPUCredentials, bool) {
+	if o == nil || IsNil(o.DpuCredentials) {
+		return nil, false
+	}
+	return o.DpuCredentials, true
+}
+
+// HasDpuCredentials returns a boolean if a field has been set.
+func (o *UpdateServer) HasDpuCredentials() bool {
+	if o != nil && !IsNil(o.DpuCredentials) {
+		return true
+	}
+
+	return false
+}
+
+// SetDpuCredentials gets a reference to the given []ServerDPUCredentials and assigns it to the DpuCredentials field.
+func (o *UpdateServer) SetDpuCredentials(v []ServerDPUCredentials) {
+	o.DpuCredentials = v
+}
+
 func (o UpdateServer) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -644,6 +678,9 @@ func (o UpdateServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerClass) {
 		toSerialize["serverClass"] = o.ServerClass
 	}
+	if !IsNil(o.DpuCredentials) {
+		toSerialize["dpuCredentials"] = o.DpuCredentials
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -682,6 +719,7 @@ func (o *UpdateServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "serverStatus")
 		delete(additionalProperties, "serverClass")
+		delete(additionalProperties, "dpuCredentials")
 		o.AdditionalProperties = additionalProperties
 	}
 

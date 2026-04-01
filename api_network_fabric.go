@@ -1292,6 +1292,7 @@ type NetworkFabricAPIGetFabricNetworkDevicesRequest struct {
 	filterProvisionerType *[]string
 	filterPosition *[]string
 	filterIdentifierString *[]string
+	filterServerId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1369,7 +1370,13 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterIdentifierString(f
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;status:DESC   **Default Value:** id:ASC  **Available Fields** - id  - status  - siteId  - status  - position 
+// Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterServerId(filterServerId []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterServerId = &filterServerId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SortBy(sortBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1381,7 +1388,7 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) Search(search string) Ne
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,status,siteId,managementAddress,position   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - status  - siteId  - managementAddress  - position  - identifierString 
+// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SearchBy(searchBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1542,6 +1549,17 @@ func (a *NetworkFabricAPIService) GetFabricNetworkDevicesExecute(r NetworkFabric
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.identifierString", t, "form", "multi")
+		}
+	}
+	if r.filterServerId != nil {
+		t := *r.filterServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -3095,7 +3113,7 @@ func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterFabricConfigurationFabri
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - createdTimestamp  - updatedTimestamp 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - status  - createdTimestamp  - updatedTimestamp 
 func (r NetworkFabricAPIGetNetworkFabricsRequest) SortBy(sortBy []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -3107,7 +3125,7 @@ func (r NetworkFabricAPIGetNetworkFabricsRequest) Search(search string) NetworkF
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name,description,status,siteId,fabricConfiguration.fabricType   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - description  - status  - siteId  - fabricConfiguration.fabricType 
+// List of fields to search by term to filter result values  **Example:** id,name,description,status,siteId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description  - status  - siteId 
 func (r NetworkFabricAPIGetNetworkFabricsRequest) SearchBy(searchBy []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.searchBy = &searchBy
 	return r

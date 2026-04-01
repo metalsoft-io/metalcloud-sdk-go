@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 **VmPoolId** | Pointer to **int32** | VM Pool Id | [optional] 
 **StorageId** | Pointer to **int32** | Storage Pool Id | [optional] 
 **CancelReason** | Pointer to **string** | Cancel reason of the group | [optional] 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewJobGroup
 
-`func NewJobGroup(id int32, type_ string, description string, createdTimestamp string, links map[string]interface{}, ) *JobGroup`
+`func NewJobGroup(id int32, type_ string, description string, createdTimestamp string, ) *JobGroup`
 
 NewJobGroup instantiates a new JobGroup object
 This constructor will assign default values to properties that have it defined,
@@ -397,23 +397,28 @@ HasCancelReason returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *JobGroup) GetLinks() map[string]interface{}`
+`func (o *JobGroup) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *JobGroup) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *JobGroup) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *JobGroup) SetLinks(v map[string]interface{})`
+`func (o *JobGroup) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *JobGroup) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

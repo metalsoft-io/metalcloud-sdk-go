@@ -34,6 +34,22 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMPoolAPIService CreateVMPoolClusterHostInterfaceNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId float32
+		var vmPoolClusterHostId float32
+		var vmPoolClusterHostInterfaceId float32
+
+		resp, httpRes, err := apiClient.VMPoolAPI.CreateVMPoolClusterHostInterfaceNetworkDevice(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMPoolAPIService DeleteVMPool", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -41,6 +57,22 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 		var vmPoolId float32
 
 		httpRes, err := apiClient.VMPoolAPI.DeleteVMPool(context.Background(), vmPoolId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMPoolAPIService DeleteVMPoolClusterHostInterfaceNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId float32
+		var vmPoolClusterHostId float32
+		var vmPoolClusterHostInterfaceId float32
+		var networkDeviceAssignmentId float32
+
+		httpRes, err := apiClient.VMPoolAPI.DeleteVMPoolClusterHostInterfaceNetworkDevice(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId, networkDeviceAssignmentId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -85,6 +117,39 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 		var vmPoolClusterHostInterfaceId float32
 
 		resp, httpRes, err := apiClient.VMPoolAPI.GetVMPoolClusterHostInterface(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMPoolAPIService GetVMPoolClusterHostInterfaceNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId float32
+		var vmPoolClusterHostId float32
+		var vmPoolClusterHostInterfaceId float32
+		var networkDeviceAssignmentId float32
+
+		resp, httpRes, err := apiClient.VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevice(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId, networkDeviceAssignmentId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMPoolAPIService GetVMPoolClusterHostInterfaceNetworkDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId float32
+		var vmPoolClusterHostId float32
+		var vmPoolClusterHostInterfaceId float32
+
+		resp, httpRes, err := apiClient.VMPoolAPI.GetVMPoolClusterHostInterfaceNetworkDevices(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -260,15 +325,14 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test VMPoolAPIService UpdateVMPoolClusterHostInterface", func(t *testing.T) {
+	t.Run("Test VMPoolAPIService UpdateVMPoolClusterHost", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var vmPoolId float32
 		var vmPoolClusterHostId float32
-		var vmPoolClusterHostInterfaceId float32
 
-		resp, httpRes, err := apiClient.VMPoolAPI.UpdateVMPoolClusterHostInterface(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).Execute()
+		resp, httpRes, err := apiClient.VMPoolAPI.UpdateVMPoolClusterHost(context.Background(), vmPoolId, vmPoolClusterHostId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

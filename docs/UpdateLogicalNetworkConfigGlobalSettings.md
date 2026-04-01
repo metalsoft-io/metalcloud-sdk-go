@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
+**Vxlan** | Pointer to [**UpdateLogicalNetworkConfigVxlanProperties**](UpdateLogicalNetworkConfigVxlanProperties.md) |  | [optional] 
 
 ## Methods
 
@@ -60,6 +61,31 @@ HasMtu returns a boolean if a field has been set.
 `func (o *UpdateLogicalNetworkConfigGlobalSettings) UnsetMtu()`
 
 UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+### GetVxlan
+
+`func (o *UpdateLogicalNetworkConfigGlobalSettings) GetVxlan() UpdateLogicalNetworkConfigVxlanProperties`
+
+GetVxlan returns the Vxlan field if non-nil, zero value otherwise.
+
+### GetVxlanOk
+
+`func (o *UpdateLogicalNetworkConfigGlobalSettings) GetVxlanOk() (*UpdateLogicalNetworkConfigVxlanProperties, bool)`
+
+GetVxlanOk returns a tuple with the Vxlan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVxlan
+
+`func (o *UpdateLogicalNetworkConfigGlobalSettings) SetVxlan(v UpdateLogicalNetworkConfigVxlanProperties)`
+
+SetVxlan sets Vxlan field to given value.
+
+### HasVxlan
+
+`func (o *UpdateLogicalNetworkConfigGlobalSettings) HasVxlan() bool`
+
+HasVxlan returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

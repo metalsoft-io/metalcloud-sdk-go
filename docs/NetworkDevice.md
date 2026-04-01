@@ -28,6 +28,8 @@ Name | Type | Description | Notes
 **SerialNumber** | **string** | Serial number of the network device | 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
 **Position** | [**SwitchPosition**](SwitchPosition.md) | The physical or logical position of the network device in the network topology. | 
+**ServerId** | Pointer to **float32** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
+**NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
 **OrderIndex** | **float32** | Order index of the network device | 
 **Tags** | **[]string** | Tags associated with the network device for categorization and filtering | 
 **ReadyForInitialConfiguration** | **float32** | Whether the device is ready for initial configuration | 
@@ -554,6 +556,56 @@ and a boolean to check if the value has been set.
 
 SetPosition sets Position field to given value.
 
+
+### GetServerId
+
+`func (o *NetworkDevice) GetServerId() float32`
+
+GetServerId returns the ServerId field if non-nil, zero value otherwise.
+
+### GetServerIdOk
+
+`func (o *NetworkDevice) GetServerIdOk() (*float32, bool)`
+
+GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerId
+
+`func (o *NetworkDevice) SetServerId(v float32)`
+
+SetServerId sets ServerId field to given value.
+
+### HasServerId
+
+`func (o *NetworkDevice) HasServerId() bool`
+
+HasServerId returns a boolean if a field has been set.
+
+### GetNumaNode
+
+`func (o *NetworkDevice) GetNumaNode() float32`
+
+GetNumaNode returns the NumaNode field if non-nil, zero value otherwise.
+
+### GetNumaNodeOk
+
+`func (o *NetworkDevice) GetNumaNodeOk() (*float32, bool)`
+
+GetNumaNodeOk returns a tuple with the NumaNode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumaNode
+
+`func (o *NetworkDevice) SetNumaNode(v float32)`
+
+SetNumaNode sets NumaNode field to given value.
+
+### HasNumaNode
+
+`func (o *NetworkDevice) HasNumaNode() bool`
+
+HasNumaNode returns a boolean if a field has been set.
 
 ### GetOrderIndex
 

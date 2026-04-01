@@ -2046,7 +2046,7 @@ func (r RouteDomainAPIGetRouteDomainsRequest) FilterConfigDeployType(filterConfi
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:ASC  **Available Fields** - id  - name  - label  - serviceStatus  - kind  - createdAt  - updatedAt 
 func (r RouteDomainAPIGetRouteDomainsRequest) SortBy(sortBy []string) RouteDomainAPIGetRouteDomainsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -2058,7 +2058,7 @@ func (r RouteDomainAPIGetRouteDomainsRequest) Search(search string) RouteDomainA
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name 
+// List of fields to search by term to filter result values  **Example:** id,name,label,serviceStatus,kind   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - label  - serviceStatus  - kind 
 func (r RouteDomainAPIGetRouteDomainsRequest) SearchBy(searchBy []string) RouteDomainAPIGetRouteDomainsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -2795,7 +2795,7 @@ type RouteDomainAPIUpdateRouteDomainConfigRequest struct {
 	ApiService *RouteDomainAPIService
 	id float32
 	ifMatch *string
-	body *map[string]interface{}
+	updateRouteDomainConfigGlobalSettings *UpdateRouteDomainConfigGlobalSettings
 }
 
 // Entity tag
@@ -2804,8 +2804,8 @@ func (r RouteDomainAPIUpdateRouteDomainConfigRequest) IfMatch(ifMatch string) Ro
 	return r
 }
 
-func (r RouteDomainAPIUpdateRouteDomainConfigRequest) Body(body map[string]interface{}) RouteDomainAPIUpdateRouteDomainConfigRequest {
-	r.body = &body
+func (r RouteDomainAPIUpdateRouteDomainConfigRequest) UpdateRouteDomainConfigGlobalSettings(updateRouteDomainConfigGlobalSettings UpdateRouteDomainConfigGlobalSettings) RouteDomainAPIUpdateRouteDomainConfigRequest {
+	r.updateRouteDomainConfigGlobalSettings = &updateRouteDomainConfigGlobalSettings
 	return r
 }
 
@@ -2852,8 +2852,8 @@ func (a *RouteDomainAPIService) UpdateRouteDomainConfigExecute(r RouteDomainAPIU
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.updateRouteDomainConfigGlobalSettings == nil {
+		return localVarReturnValue, nil, reportError("updateRouteDomainConfigGlobalSettings is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2875,7 +2875,7 @@ func (a *RouteDomainAPIService) UpdateRouteDomainConfigExecute(r RouteDomainAPIU
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.updateRouteDomainConfigGlobalSettings
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

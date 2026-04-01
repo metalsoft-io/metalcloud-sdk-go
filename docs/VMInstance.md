@@ -31,13 +31,13 @@ Name | Type | Description | Notes
 **Meta** | [**VMInstanceMeta**](VMInstanceMeta.md) | Meta information of the VM Instance. | 
 **AllocatedVMPoolInfo** | Pointer to [**VMInstanceAllocatedVMPoolInfo**](VMInstanceAllocatedVMPoolInfo.md) | Information about the allocated VM Pool. | [optional] 
 **AllocatedVMPoolGpusInfo** | Pointer to [**[]VMPoolGPU**](VMPoolGPU.md) | Information about the allocated GPUs from the VM Pool. | [optional] 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMInstance
 
-`func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}, ) *VMInstance`
+`func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, ) *VMInstance`
 
 NewVMInstance instantiates a new VMInstance object
 This constructor will assign default values to properties that have it defined,
@@ -654,23 +654,28 @@ HasAllocatedVMPoolGpusInfo returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *VMInstance) GetLinks() map[string]interface{}`
+`func (o *VMInstance) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *VMInstance) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *VMInstance) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *VMInstance) SetLinks(v map[string]interface{})`
+`func (o *VMInstance) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *VMInstance) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

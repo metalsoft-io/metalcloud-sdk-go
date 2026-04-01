@@ -29,10 +29,8 @@ type CreateNetworkFabricInterconnect struct {
 	Name *string `json:"name,omitempty"`
 	// Short description of the network fabric interconnect
 	Description *string `json:"description,omitempty"`
-	// BGP configuration template for the interconnect
-	BgpConfigurationTemplate *string `json:"bgpConfigurationTemplate,omitempty"`
-	// BGP neighbor template for the interconnect
-	BgpNeighborTemplate *string `json:"bgpNeighborTemplate,omitempty"`
+	// ID of the BGP interconnect configuration template assigned to this interconnect
+	BgpConfigurationTemplateId *int32 `json:"bgpConfigurationTemplateId,omitempty"`
 	// Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending)
 	TransportId *int32 `json:"transportId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -171,68 +169,36 @@ func (o *CreateNetworkFabricInterconnect) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetBgpConfigurationTemplate returns the BgpConfigurationTemplate field value if set, zero value otherwise.
-func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplate() string {
-	if o == nil || IsNil(o.BgpConfigurationTemplate) {
-		var ret string
+// GetBgpConfigurationTemplateId returns the BgpConfigurationTemplateId field value if set, zero value otherwise.
+func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplateId() int32 {
+	if o == nil || IsNil(o.BgpConfigurationTemplateId) {
+		var ret int32
 		return ret
 	}
-	return *o.BgpConfigurationTemplate
+	return *o.BgpConfigurationTemplateId
 }
 
-// GetBgpConfigurationTemplateOk returns a tuple with the BgpConfigurationTemplate field value if set, nil otherwise
+// GetBgpConfigurationTemplateIdOk returns a tuple with the BgpConfigurationTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplateOk() (*string, bool) {
-	if o == nil || IsNil(o.BgpConfigurationTemplate) {
+func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.BgpConfigurationTemplateId) {
 		return nil, false
 	}
-	return o.BgpConfigurationTemplate, true
+	return o.BgpConfigurationTemplateId, true
 }
 
-// HasBgpConfigurationTemplate returns a boolean if a field has been set.
-func (o *CreateNetworkFabricInterconnect) HasBgpConfigurationTemplate() bool {
-	if o != nil && !IsNil(o.BgpConfigurationTemplate) {
+// HasBgpConfigurationTemplateId returns a boolean if a field has been set.
+func (o *CreateNetworkFabricInterconnect) HasBgpConfigurationTemplateId() bool {
+	if o != nil && !IsNil(o.BgpConfigurationTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetBgpConfigurationTemplate gets a reference to the given string and assigns it to the BgpConfigurationTemplate field.
-func (o *CreateNetworkFabricInterconnect) SetBgpConfigurationTemplate(v string) {
-	o.BgpConfigurationTemplate = &v
-}
-
-// GetBgpNeighborTemplate returns the BgpNeighborTemplate field value if set, zero value otherwise.
-func (o *CreateNetworkFabricInterconnect) GetBgpNeighborTemplate() string {
-	if o == nil || IsNil(o.BgpNeighborTemplate) {
-		var ret string
-		return ret
-	}
-	return *o.BgpNeighborTemplate
-}
-
-// GetBgpNeighborTemplateOk returns a tuple with the BgpNeighborTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricInterconnect) GetBgpNeighborTemplateOk() (*string, bool) {
-	if o == nil || IsNil(o.BgpNeighborTemplate) {
-		return nil, false
-	}
-	return o.BgpNeighborTemplate, true
-}
-
-// HasBgpNeighborTemplate returns a boolean if a field has been set.
-func (o *CreateNetworkFabricInterconnect) HasBgpNeighborTemplate() bool {
-	if o != nil && !IsNil(o.BgpNeighborTemplate) {
-		return true
-	}
-
-	return false
-}
-
-// SetBgpNeighborTemplate gets a reference to the given string and assigns it to the BgpNeighborTemplate field.
-func (o *CreateNetworkFabricInterconnect) SetBgpNeighborTemplate(v string) {
-	o.BgpNeighborTemplate = &v
+// SetBgpConfigurationTemplateId gets a reference to the given int32 and assigns it to the BgpConfigurationTemplateId field.
+func (o *CreateNetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int32) {
+	o.BgpConfigurationTemplateId = &v
 }
 
 // GetTransportId returns the TransportId field value if set, zero value otherwise.
@@ -285,11 +251,8 @@ func (o CreateNetworkFabricInterconnect) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.BgpConfigurationTemplate) {
-		toSerialize["bgpConfigurationTemplate"] = o.BgpConfigurationTemplate
-	}
-	if !IsNil(o.BgpNeighborTemplate) {
-		toSerialize["bgpNeighborTemplate"] = o.BgpNeighborTemplate
+	if !IsNil(o.BgpConfigurationTemplateId) {
+		toSerialize["bgpConfigurationTemplateId"] = o.BgpConfigurationTemplateId
 	}
 	if !IsNil(o.TransportId) {
 		toSerialize["transportId"] = o.TransportId
@@ -342,8 +305,7 @@ func (o *CreateNetworkFabricInterconnect) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "bgpConfigurationTemplate")
-		delete(additionalProperties, "bgpNeighborTemplate")
+		delete(additionalProperties, "bgpConfigurationTemplateId")
 		delete(additionalProperties, "transportId")
 		o.AdditionalProperties = additionalProperties
 	}

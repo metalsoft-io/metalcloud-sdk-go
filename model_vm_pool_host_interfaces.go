@@ -25,12 +25,16 @@ type VMPoolHostInterfaces struct {
 	Id float32 `json:"id"`
 	// VM Pool Host ID
 	HostId float32 `json:"hostId"`
+	// Status of the VM Pool Host Interface
+	Status VMPoolHostInterfaceStatus `json:"status"`
 	// Name of the VM Pool Host Interface
 	Name string `json:"name"`
 	// MAC Address of the VM Pool Host Interface
 	MacAddress string `json:"macAddress"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Network device assignments for this interface
+	NetworkDevices []VMPoolHostInterfaceNetworkDevice `json:"networkDevices,omitempty"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,13 +44,13 @@ type _VMPoolHostInterfaces VMPoolHostInterfaces
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHostInterfaces(id float32, hostId float32, name string, macAddress string, links map[string]interface{}) *VMPoolHostInterfaces {
+func NewVMPoolHostInterfaces(id float32, hostId float32, status VMPoolHostInterfaceStatus, name string, macAddress string) *VMPoolHostInterfaces {
 	this := VMPoolHostInterfaces{}
 	this.Id = id
 	this.HostId = hostId
+	this.Status = status
 	this.Name = name
 	this.MacAddress = macAddress
-	this.Links = links
 	return &this
 }
 
@@ -106,6 +110,30 @@ func (o *VMPoolHostInterfaces) SetHostId(v float32) {
 	o.HostId = v
 }
 
+// GetStatus returns the Status field value
+func (o *VMPoolHostInterfaces) GetStatus() VMPoolHostInterfaceStatus {
+	if o == nil {
+		var ret VMPoolHostInterfaceStatus
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *VMPoolHostInterfaces) GetStatusOk() (*VMPoolHostInterfaceStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *VMPoolHostInterfaces) SetStatus(v VMPoolHostInterfaceStatus) {
+	o.Status = v
+}
+
 // GetName returns the Name field value
 func (o *VMPoolHostInterfaces) GetName() string {
 	if o == nil {
@@ -154,27 +182,67 @@ func (o *VMPoolHostInterfaces) SetMacAddress(v string) {
 	o.MacAddress = v
 }
 
-// GetLinks returns the Links field value
-func (o *VMPoolHostInterfaces) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetNetworkDevices returns the NetworkDevices field value if set, zero value otherwise.
+func (o *VMPoolHostInterfaces) GetNetworkDevices() []VMPoolHostInterfaceNetworkDevice {
+	if o == nil || IsNil(o.NetworkDevices) {
+		var ret []VMPoolHostInterfaceNetworkDevice
 		return ret
 	}
+	return o.NetworkDevices
+}
 
+// GetNetworkDevicesOk returns a tuple with the NetworkDevices field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHostInterfaces) GetNetworkDevicesOk() ([]VMPoolHostInterfaceNetworkDevice, bool) {
+	if o == nil || IsNil(o.NetworkDevices) {
+		return nil, false
+	}
+	return o.NetworkDevices, true
+}
+
+// HasNetworkDevices returns a boolean if a field has been set.
+func (o *VMPoolHostInterfaces) HasNetworkDevices() bool {
+	if o != nil && !IsNil(o.NetworkDevices) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDevices gets a reference to the given []VMPoolHostInterfaceNetworkDevice and assigns it to the NetworkDevices field.
+func (o *VMPoolHostInterfaces) SetNetworkDevices(v []VMPoolHostInterfaceNetworkDevice) {
+	o.NetworkDevices = v
+}
+
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *VMPoolHostInterfaces) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMPoolHostInterfaces) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *VMPoolHostInterfaces) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *VMPoolHostInterfaces) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *VMPoolHostInterfaces) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *VMPoolHostInterfaces) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -190,9 +258,15 @@ func (o VMPoolHostInterfaces) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["hostId"] = o.HostId
+	toSerialize["status"] = o.Status
 	toSerialize["name"] = o.Name
 	toSerialize["macAddress"] = o.MacAddress
-	toSerialize["links"] = o.Links
+	if !IsNil(o.NetworkDevices) {
+		toSerialize["networkDevices"] = o.NetworkDevices
+	}
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -208,9 +282,9 @@ func (o *VMPoolHostInterfaces) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"hostId",
+		"status",
 		"name",
 		"macAddress",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -242,8 +316,10 @@ func (o *VMPoolHostInterfaces) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "hostId")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "macAddress")
+		delete(additionalProperties, "networkDevices")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

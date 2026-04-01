@@ -886,7 +886,7 @@ func (r SubnetAPIGetSubnetsRequest) FilterParentSubnetId(filterParentSubnetId []
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:ASC  **Available Fields** - id  - name  - label  - createdAt  - updatedAt  - networkAddress  - prefixLength  - ipVersion  - isPool 
 func (r SubnetAPIGetSubnetsRequest) SortBy(sortBy []string) SubnetAPIGetSubnetsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -898,7 +898,7 @@ func (r SubnetAPIGetSubnetsRequest) Search(search string) SubnetAPIGetSubnetsReq
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - name 
+// List of fields to search by term to filter result values  **Example:** label,name,networkAddress,defaultGatewayAddress,ipVersion   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - name  - networkAddress  - defaultGatewayAddress  - ipVersion  - prefixLength 
 func (r SubnetAPIGetSubnetsRequest) SearchBy(searchBy []string) SubnetAPIGetSubnetsRequest {
 	r.searchBy = &searchBy
 	return r

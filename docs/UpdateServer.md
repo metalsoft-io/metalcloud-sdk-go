@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **ResourcePoolId** | Pointer to **float32** | Resource Pool ID | [optional] 
 **ServerStatus** | Pointer to **string** | The status of the server. | [optional] 
 **ServerClass** | Pointer to **string** | The server class. | [optional] 
+**DpuCredentials** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
 
 ## Methods
 
@@ -439,6 +440,31 @@ SetServerClass sets ServerClass field to given value.
 `func (o *UpdateServer) HasServerClass() bool`
 
 HasServerClass returns a boolean if a field has been set.
+
+### GetDpuCredentials
+
+`func (o *UpdateServer) GetDpuCredentials() []ServerDPUCredentials`
+
+GetDpuCredentials returns the DpuCredentials field if non-nil, zero value otherwise.
+
+### GetDpuCredentialsOk
+
+`func (o *UpdateServer) GetDpuCredentialsOk() (*[]ServerDPUCredentials, bool)`
+
+GetDpuCredentialsOk returns a tuple with the DpuCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpuCredentials
+
+`func (o *UpdateServer) SetDpuCredentials(v []ServerDPUCredentials)`
+
+SetDpuCredentials sets DpuCredentials field to given value.
+
+### HasDpuCredentials
+
+`func (o *UpdateServer) HasDpuCredentials() bool`
+
+HasDpuCredentials returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

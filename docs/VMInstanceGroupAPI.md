@@ -706,7 +706,7 @@ Name | Type | Description  | Notes
 
 ## GetVMInstanceGroupInterfaces
 
-> VMInstanceGroupPaginatedList GetVMInstanceGroupInterfaces(ctx, infrastructureId, vmInstanceGroupId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterNetworkId(filterNetworkId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> VMInstanceGroupInterfacePaginatedList GetVMInstanceGroupInterfaces(ctx, infrastructureId, vmInstanceGroupId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterNetworkId(filterNetworkId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all VM Instance Group Interfaces on the VM Instance Group
 
@@ -745,7 +745,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.GetVMInstanceGroupInterfaces``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetVMInstanceGroupInterfaces`: VMInstanceGroupPaginatedList
+	// response from `GetVMInstanceGroupInterfaces`: VMInstanceGroupInterfacePaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.GetVMInstanceGroupInterfaces`: %v\n", resp)
 }
 ```
@@ -781,7 +781,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VMInstanceGroupPaginatedList**](VMInstanceGroupPaginatedList.md)
+[**VMInstanceGroupInterfacePaginatedList**](VMInstanceGroupInterfacePaginatedList.md)
 
 ### Authorization
 

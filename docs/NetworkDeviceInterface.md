@@ -7,10 +7,17 @@ Name | Type | Description | Notes
 **InterfaceId** | **float32** | The ID of the network equipment interface | 
 **NetworkDeviceId** | **float32** | The ID of the network device | 
 **InterfaceName** | **string** | The name of the network equipment interface | 
+**InterfaceDescription** | Pointer to **string** | Description of the network equipment interface | [optional] 
+**Kind** | **string** | The type of the network equipment interface | 
+**ParentInterfaceId** | Pointer to **float32** | The ID of the parent interface if applicable | [optional] 
+**LinkedInterfaceId** | Pointer to **float32** | The ID of the linked interface if applicable. (example: DPU physical interface p0 id 10 linked to switch port eth1/10 id 20) | [optional] 
+**LinkedPortId** | Pointer to **string** | The identifier of the linked port if applicable | [optional] 
+**LinkedSwitchHostname** | Pointer to **string** | The hostname of the linked switch if applicable | [optional] 
 **InterfaceIndex** | Pointer to **float32** | The index of the network interface | [optional] 
 **LagIdentifier** | Pointer to **float32** | LAG identifier | [optional] 
 **ServerInterfaceId** | Pointer to **float32** | The server interface ID | [optional] 
 **ServerId** | Pointer to **float32** | The server ID | [optional] 
+**NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
 **DirtyBit** | **float32** | Dirty bit flag | 
 **LldpInformation** | Pointer to **string** | LLDP information | [optional] 
 **MacAddress** | Pointer to **string** | MAC address | [optional] 
@@ -24,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceInterface
 
-`func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, interfaceName string, dirtyBit float32, cachedUpdatedTimestamp string, ) *NetworkDeviceInterface`
+`func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string, ) *NetworkDeviceInterface`
 
 NewNetworkDeviceInterface instantiates a new NetworkDeviceInterface object
 This constructor will assign default values to properties that have it defined,
@@ -98,6 +105,151 @@ and a boolean to check if the value has been set.
 
 SetInterfaceName sets InterfaceName field to given value.
 
+
+### GetInterfaceDescription
+
+`func (o *NetworkDeviceInterface) GetInterfaceDescription() string`
+
+GetInterfaceDescription returns the InterfaceDescription field if non-nil, zero value otherwise.
+
+### GetInterfaceDescriptionOk
+
+`func (o *NetworkDeviceInterface) GetInterfaceDescriptionOk() (*string, bool)`
+
+GetInterfaceDescriptionOk returns a tuple with the InterfaceDescription field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaceDescription
+
+`func (o *NetworkDeviceInterface) SetInterfaceDescription(v string)`
+
+SetInterfaceDescription sets InterfaceDescription field to given value.
+
+### HasInterfaceDescription
+
+`func (o *NetworkDeviceInterface) HasInterfaceDescription() bool`
+
+HasInterfaceDescription returns a boolean if a field has been set.
+
+### GetKind
+
+`func (o *NetworkDeviceInterface) GetKind() string`
+
+GetKind returns the Kind field if non-nil, zero value otherwise.
+
+### GetKindOk
+
+`func (o *NetworkDeviceInterface) GetKindOk() (*string, bool)`
+
+GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKind
+
+`func (o *NetworkDeviceInterface) SetKind(v string)`
+
+SetKind sets Kind field to given value.
+
+
+### GetParentInterfaceId
+
+`func (o *NetworkDeviceInterface) GetParentInterfaceId() float32`
+
+GetParentInterfaceId returns the ParentInterfaceId field if non-nil, zero value otherwise.
+
+### GetParentInterfaceIdOk
+
+`func (o *NetworkDeviceInterface) GetParentInterfaceIdOk() (*float32, bool)`
+
+GetParentInterfaceIdOk returns a tuple with the ParentInterfaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentInterfaceId
+
+`func (o *NetworkDeviceInterface) SetParentInterfaceId(v float32)`
+
+SetParentInterfaceId sets ParentInterfaceId field to given value.
+
+### HasParentInterfaceId
+
+`func (o *NetworkDeviceInterface) HasParentInterfaceId() bool`
+
+HasParentInterfaceId returns a boolean if a field has been set.
+
+### GetLinkedInterfaceId
+
+`func (o *NetworkDeviceInterface) GetLinkedInterfaceId() float32`
+
+GetLinkedInterfaceId returns the LinkedInterfaceId field if non-nil, zero value otherwise.
+
+### GetLinkedInterfaceIdOk
+
+`func (o *NetworkDeviceInterface) GetLinkedInterfaceIdOk() (*float32, bool)`
+
+GetLinkedInterfaceIdOk returns a tuple with the LinkedInterfaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkedInterfaceId
+
+`func (o *NetworkDeviceInterface) SetLinkedInterfaceId(v float32)`
+
+SetLinkedInterfaceId sets LinkedInterfaceId field to given value.
+
+### HasLinkedInterfaceId
+
+`func (o *NetworkDeviceInterface) HasLinkedInterfaceId() bool`
+
+HasLinkedInterfaceId returns a boolean if a field has been set.
+
+### GetLinkedPortId
+
+`func (o *NetworkDeviceInterface) GetLinkedPortId() string`
+
+GetLinkedPortId returns the LinkedPortId field if non-nil, zero value otherwise.
+
+### GetLinkedPortIdOk
+
+`func (o *NetworkDeviceInterface) GetLinkedPortIdOk() (*string, bool)`
+
+GetLinkedPortIdOk returns a tuple with the LinkedPortId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkedPortId
+
+`func (o *NetworkDeviceInterface) SetLinkedPortId(v string)`
+
+SetLinkedPortId sets LinkedPortId field to given value.
+
+### HasLinkedPortId
+
+`func (o *NetworkDeviceInterface) HasLinkedPortId() bool`
+
+HasLinkedPortId returns a boolean if a field has been set.
+
+### GetLinkedSwitchHostname
+
+`func (o *NetworkDeviceInterface) GetLinkedSwitchHostname() string`
+
+GetLinkedSwitchHostname returns the LinkedSwitchHostname field if non-nil, zero value otherwise.
+
+### GetLinkedSwitchHostnameOk
+
+`func (o *NetworkDeviceInterface) GetLinkedSwitchHostnameOk() (*string, bool)`
+
+GetLinkedSwitchHostnameOk returns a tuple with the LinkedSwitchHostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkedSwitchHostname
+
+`func (o *NetworkDeviceInterface) SetLinkedSwitchHostname(v string)`
+
+SetLinkedSwitchHostname sets LinkedSwitchHostname field to given value.
+
+### HasLinkedSwitchHostname
+
+`func (o *NetworkDeviceInterface) HasLinkedSwitchHostname() bool`
+
+HasLinkedSwitchHostname returns a boolean if a field has been set.
 
 ### GetInterfaceIndex
 
@@ -198,6 +350,31 @@ SetServerId sets ServerId field to given value.
 `func (o *NetworkDeviceInterface) HasServerId() bool`
 
 HasServerId returns a boolean if a field has been set.
+
+### GetNumaNode
+
+`func (o *NetworkDeviceInterface) GetNumaNode() float32`
+
+GetNumaNode returns the NumaNode field if non-nil, zero value otherwise.
+
+### GetNumaNodeOk
+
+`func (o *NetworkDeviceInterface) GetNumaNodeOk() (*float32, bool)`
+
+GetNumaNodeOk returns a tuple with the NumaNode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumaNode
+
+`func (o *NetworkDeviceInterface) SetNumaNode(v float32)`
+
+SetNumaNode sets NumaNode field to given value.
+
+### HasNumaNode
+
+`func (o *NetworkDeviceInterface) HasNumaNode() bool`
+
+HasNumaNode returns a boolean if a field has been set.
 
 ### GetDirtyBit
 

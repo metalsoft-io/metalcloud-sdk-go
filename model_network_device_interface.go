@@ -27,6 +27,18 @@ type NetworkDeviceInterface struct {
 	NetworkDeviceId float32 `json:"networkDeviceId"`
 	// The name of the network equipment interface
 	InterfaceName string `json:"interfaceName"`
+	// Description of the network equipment interface
+	InterfaceDescription *string `json:"interfaceDescription,omitempty"`
+	// The type of the network equipment interface
+	Kind string `json:"kind"`
+	// The ID of the parent interface if applicable
+	ParentInterfaceId *float32 `json:"parentInterfaceId,omitempty"`
+	// The ID of the linked interface if applicable. (example: DPU physical interface p0 id 10 linked to switch port eth1/10 id 20)
+	LinkedInterfaceId *float32 `json:"linkedInterfaceId,omitempty"`
+	// The identifier of the linked port if applicable
+	LinkedPortId *string `json:"linkedPortId,omitempty"`
+	// The hostname of the linked switch if applicable
+	LinkedSwitchHostname *string `json:"linkedSwitchHostname,omitempty"`
 	// The index of the network interface
 	InterfaceIndex *float32 `json:"interfaceIndex,omitempty"`
 	// LAG identifier
@@ -35,6 +47,8 @@ type NetworkDeviceInterface struct {
 	ServerInterfaceId *float32 `json:"serverInterfaceId,omitempty"`
 	// The server ID
 	ServerId *float32 `json:"serverId,omitempty"`
+	// NUMA node of the network device for optimal resource allocation
+	NumaNode *float32 `json:"numaNode,omitempty"`
 	// Dirty bit flag
 	DirtyBit float32 `json:"dirtyBit"`
 	// LLDP information
@@ -60,11 +74,12 @@ type _NetworkDeviceInterface NetworkDeviceInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, interfaceName string, dirtyBit float32, cachedUpdatedTimestamp string) *NetworkDeviceInterface {
+func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string) *NetworkDeviceInterface {
 	this := NetworkDeviceInterface{}
 	this.InterfaceId = interfaceId
 	this.NetworkDeviceId = networkDeviceId
 	this.InterfaceName = interfaceName
+	this.Kind = kind
 	this.DirtyBit = dirtyBit
 	this.CachedUpdatedTimestamp = cachedUpdatedTimestamp
 	return &this
@@ -148,6 +163,190 @@ func (o *NetworkDeviceInterface) GetInterfaceNameOk() (*string, bool) {
 // SetInterfaceName sets field value
 func (o *NetworkDeviceInterface) SetInterfaceName(v string) {
 	o.InterfaceName = v
+}
+
+// GetInterfaceDescription returns the InterfaceDescription field value if set, zero value otherwise.
+func (o *NetworkDeviceInterface) GetInterfaceDescription() string {
+	if o == nil || IsNil(o.InterfaceDescription) {
+		var ret string
+		return ret
+	}
+	return *o.InterfaceDescription
+}
+
+// GetInterfaceDescriptionOk returns a tuple with the InterfaceDescription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetInterfaceDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.InterfaceDescription) {
+		return nil, false
+	}
+	return o.InterfaceDescription, true
+}
+
+// HasInterfaceDescription returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasInterfaceDescription() bool {
+	if o != nil && !IsNil(o.InterfaceDescription) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaceDescription gets a reference to the given string and assigns it to the InterfaceDescription field.
+func (o *NetworkDeviceInterface) SetInterfaceDescription(v string) {
+	o.InterfaceDescription = &v
+}
+
+// GetKind returns the Kind field value
+func (o *NetworkDeviceInterface) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *NetworkDeviceInterface) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetParentInterfaceId returns the ParentInterfaceId field value if set, zero value otherwise.
+func (o *NetworkDeviceInterface) GetParentInterfaceId() float32 {
+	if o == nil || IsNil(o.ParentInterfaceId) {
+		var ret float32
+		return ret
+	}
+	return *o.ParentInterfaceId
+}
+
+// GetParentInterfaceIdOk returns a tuple with the ParentInterfaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetParentInterfaceIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ParentInterfaceId) {
+		return nil, false
+	}
+	return o.ParentInterfaceId, true
+}
+
+// HasParentInterfaceId returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasParentInterfaceId() bool {
+	if o != nil && !IsNil(o.ParentInterfaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentInterfaceId gets a reference to the given float32 and assigns it to the ParentInterfaceId field.
+func (o *NetworkDeviceInterface) SetParentInterfaceId(v float32) {
+	o.ParentInterfaceId = &v
+}
+
+// GetLinkedInterfaceId returns the LinkedInterfaceId field value if set, zero value otherwise.
+func (o *NetworkDeviceInterface) GetLinkedInterfaceId() float32 {
+	if o == nil || IsNil(o.LinkedInterfaceId) {
+		var ret float32
+		return ret
+	}
+	return *o.LinkedInterfaceId
+}
+
+// GetLinkedInterfaceIdOk returns a tuple with the LinkedInterfaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetLinkedInterfaceIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LinkedInterfaceId) {
+		return nil, false
+	}
+	return o.LinkedInterfaceId, true
+}
+
+// HasLinkedInterfaceId returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasLinkedInterfaceId() bool {
+	if o != nil && !IsNil(o.LinkedInterfaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedInterfaceId gets a reference to the given float32 and assigns it to the LinkedInterfaceId field.
+func (o *NetworkDeviceInterface) SetLinkedInterfaceId(v float32) {
+	o.LinkedInterfaceId = &v
+}
+
+// GetLinkedPortId returns the LinkedPortId field value if set, zero value otherwise.
+func (o *NetworkDeviceInterface) GetLinkedPortId() string {
+	if o == nil || IsNil(o.LinkedPortId) {
+		var ret string
+		return ret
+	}
+	return *o.LinkedPortId
+}
+
+// GetLinkedPortIdOk returns a tuple with the LinkedPortId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetLinkedPortIdOk() (*string, bool) {
+	if o == nil || IsNil(o.LinkedPortId) {
+		return nil, false
+	}
+	return o.LinkedPortId, true
+}
+
+// HasLinkedPortId returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasLinkedPortId() bool {
+	if o != nil && !IsNil(o.LinkedPortId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedPortId gets a reference to the given string and assigns it to the LinkedPortId field.
+func (o *NetworkDeviceInterface) SetLinkedPortId(v string) {
+	o.LinkedPortId = &v
+}
+
+// GetLinkedSwitchHostname returns the LinkedSwitchHostname field value if set, zero value otherwise.
+func (o *NetworkDeviceInterface) GetLinkedSwitchHostname() string {
+	if o == nil || IsNil(o.LinkedSwitchHostname) {
+		var ret string
+		return ret
+	}
+	return *o.LinkedSwitchHostname
+}
+
+// GetLinkedSwitchHostnameOk returns a tuple with the LinkedSwitchHostname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetLinkedSwitchHostnameOk() (*string, bool) {
+	if o == nil || IsNil(o.LinkedSwitchHostname) {
+		return nil, false
+	}
+	return o.LinkedSwitchHostname, true
+}
+
+// HasLinkedSwitchHostname returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasLinkedSwitchHostname() bool {
+	if o != nil && !IsNil(o.LinkedSwitchHostname) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedSwitchHostname gets a reference to the given string and assigns it to the LinkedSwitchHostname field.
+func (o *NetworkDeviceInterface) SetLinkedSwitchHostname(v string) {
+	o.LinkedSwitchHostname = &v
 }
 
 // GetInterfaceIndex returns the InterfaceIndex field value if set, zero value otherwise.
@@ -276,6 +475,38 @@ func (o *NetworkDeviceInterface) HasServerId() bool {
 // SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
 func (o *NetworkDeviceInterface) SetServerId(v float32) {
 	o.ServerId = &v
+}
+
+// GetNumaNode returns the NumaNode field value if set, zero value otherwise.
+func (o *NetworkDeviceInterface) GetNumaNode() float32 {
+	if o == nil || IsNil(o.NumaNode) {
+		var ret float32
+		return ret
+	}
+	return *o.NumaNode
+}
+
+// GetNumaNodeOk returns a tuple with the NumaNode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetNumaNodeOk() (*float32, bool) {
+	if o == nil || IsNil(o.NumaNode) {
+		return nil, false
+	}
+	return o.NumaNode, true
+}
+
+// HasNumaNode returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasNumaNode() bool {
+	if o != nil && !IsNil(o.NumaNode) {
+		return true
+	}
+
+	return false
+}
+
+// SetNumaNode gets a reference to the given float32 and assigns it to the NumaNode field.
+func (o *NetworkDeviceInterface) SetNumaNode(v float32) {
+	o.NumaNode = &v
 }
 
 // GetDirtyBit returns the DirtyBit field value
@@ -531,6 +762,22 @@ func (o NetworkDeviceInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize["interfaceId"] = o.InterfaceId
 	toSerialize["networkDeviceId"] = o.NetworkDeviceId
 	toSerialize["interfaceName"] = o.InterfaceName
+	if !IsNil(o.InterfaceDescription) {
+		toSerialize["interfaceDescription"] = o.InterfaceDescription
+	}
+	toSerialize["kind"] = o.Kind
+	if !IsNil(o.ParentInterfaceId) {
+		toSerialize["parentInterfaceId"] = o.ParentInterfaceId
+	}
+	if !IsNil(o.LinkedInterfaceId) {
+		toSerialize["linkedInterfaceId"] = o.LinkedInterfaceId
+	}
+	if !IsNil(o.LinkedPortId) {
+		toSerialize["linkedPortId"] = o.LinkedPortId
+	}
+	if !IsNil(o.LinkedSwitchHostname) {
+		toSerialize["linkedSwitchHostname"] = o.LinkedSwitchHostname
+	}
 	if !IsNil(o.InterfaceIndex) {
 		toSerialize["interfaceIndex"] = o.InterfaceIndex
 	}
@@ -542,6 +789,9 @@ func (o NetworkDeviceInterface) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ServerId) {
 		toSerialize["serverId"] = o.ServerId
+	}
+	if !IsNil(o.NumaNode) {
+		toSerialize["numaNode"] = o.NumaNode
 	}
 	toSerialize["dirtyBit"] = o.DirtyBit
 	if !IsNil(o.LldpInformation) {
@@ -579,6 +829,7 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		"interfaceId",
 		"networkDeviceId",
 		"interfaceName",
+		"kind",
 		"dirtyBit",
 		"cachedUpdatedTimestamp",
 	}
@@ -613,10 +864,17 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "interfaceId")
 		delete(additionalProperties, "networkDeviceId")
 		delete(additionalProperties, "interfaceName")
+		delete(additionalProperties, "interfaceDescription")
+		delete(additionalProperties, "kind")
+		delete(additionalProperties, "parentInterfaceId")
+		delete(additionalProperties, "linkedInterfaceId")
+		delete(additionalProperties, "linkedPortId")
+		delete(additionalProperties, "linkedSwitchHostname")
 		delete(additionalProperties, "interfaceIndex")
 		delete(additionalProperties, "lagIdentifier")
 		delete(additionalProperties, "serverInterfaceId")
 		delete(additionalProperties, "serverId")
+		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "dirtyBit")
 		delete(additionalProperties, "lldpInformation")
 		delete(additionalProperties, "macAddress")

@@ -37,7 +37,7 @@ func (r JobAPICreateCronJobRequest) CreateCronJob(createCronJob CreateCronJob) J
 	return r
 }
 
-func (r JobAPICreateCronJobRequest) Execute() (*http.Response, error) {
+func (r JobAPICreateCronJobRequest) Execute() (*CronJob, *http.Response, error) {
 	return r.ApiService.CreateCronJobExecute(r)
 }
 
@@ -57,16 +57,18 @@ func (a *JobAPIService) CreateCronJob(ctx context.Context) JobAPICreateCronJobRe
 }
 
 // Execute executes the request
-func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*http.Response, error) {
+//  @return CronJob
+func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*CronJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *CronJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.CreateCronJob")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/cron-jobs"
@@ -75,7 +77,7 @@ func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*htt
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.createCronJob == nil {
-		return nil, reportError("createCronJob is required and must be specified")
+		return localVarReturnValue, nil, reportError("createCronJob is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -88,7 +90,7 @@ func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*htt
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -99,19 +101,19 @@ func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*htt
 	localVarPostBody = r.createCronJob
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -119,10 +121,19 @@ func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*htt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type JobAPIDeleteCronJobRequest struct {

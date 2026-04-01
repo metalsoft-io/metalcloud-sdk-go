@@ -25,9 +25,10 @@ Name | Type | Description | Notes
 **MgmtSnmpPort** | Pointer to **float32** | The management snmp port of the server. | [optional] 
 **BmcMacAddress** | Pointer to **string** | The MAC address of the server. | [optional] 
 **BdkDebug** | **float32** | The BDK debug flag. | 
-**ServerMetricsMetadata** | Pointer to [**map[string]ServerMetricsInfo**](ServerMetricsInfo.md) | The metrics metadata of the server. | [optional] 
+**ServerMetricsMetadata** | Pointer to [**map[string][]ServerMetricsInfo**](array.md) | The metrics metadata of the server. | [optional] 
 **InstanceCustomInfo** | Pointer to **map[string]interface{}** | The instance custom info of the server. | [optional] 
 **CustomInfo** | Pointer to **map[string]interface{}** | The custom info of the server. | [optional] 
+**DpuInfo** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
 **Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
 **VendorSkuId** | Pointer to **string** | The vendor sku id of the server. | [optional] 
 **Model** | Pointer to **string** | The model of the server. | [optional] 
@@ -80,6 +81,9 @@ Name | Type | Description | Notes
 **AllocationInfo** | Pointer to [**ServerAllocationInfo**](ServerAllocationInfo.md) | The server instance. | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the server. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
+**HealthState** | Pointer to **string** | The health state of the server. | [optional] 
+**HealthDetails** | Pointer to **[]string** | The health details of the server. | [optional] 
+**HealthLastCheckedTimestamp** | Pointer to **string** | The timestamp of the last successful health check. | [optional] 
 
 ## Methods
 
@@ -602,20 +606,20 @@ SetBdkDebug sets BdkDebug field to given value.
 
 ### GetServerMetricsMetadata
 
-`func (o *Server) GetServerMetricsMetadata() map[string]ServerMetricsInfo`
+`func (o *Server) GetServerMetricsMetadata() map[string][]ServerMetricsInfo`
 
 GetServerMetricsMetadata returns the ServerMetricsMetadata field if non-nil, zero value otherwise.
 
 ### GetServerMetricsMetadataOk
 
-`func (o *Server) GetServerMetricsMetadataOk() (*map[string]ServerMetricsInfo, bool)`
+`func (o *Server) GetServerMetricsMetadataOk() (*map[string][]ServerMetricsInfo, bool)`
 
 GetServerMetricsMetadataOk returns a tuple with the ServerMetricsMetadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerMetricsMetadata
 
-`func (o *Server) SetServerMetricsMetadata(v map[string]ServerMetricsInfo)`
+`func (o *Server) SetServerMetricsMetadata(v map[string][]ServerMetricsInfo)`
 
 SetServerMetricsMetadata sets ServerMetricsMetadata field to given value.
 
@@ -674,6 +678,31 @@ SetCustomInfo sets CustomInfo field to given value.
 `func (o *Server) HasCustomInfo() bool`
 
 HasCustomInfo returns a boolean if a field has been set.
+
+### GetDpuInfo
+
+`func (o *Server) GetDpuInfo() []ServerDPUCredentials`
+
+GetDpuInfo returns the DpuInfo field if non-nil, zero value otherwise.
+
+### GetDpuInfoOk
+
+`func (o *Server) GetDpuInfoOk() (*[]ServerDPUCredentials, bool)`
+
+GetDpuInfoOk returns a tuple with the DpuInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpuInfo
+
+`func (o *Server) SetDpuInfo(v []ServerDPUCredentials)`
+
+SetDpuInfo sets DpuInfo field to given value.
+
+### HasDpuInfo
+
+`func (o *Server) HasDpuInfo() bool`
+
+HasDpuInfo returns a boolean if a field has been set.
 
 ### GetVendor
 
@@ -1929,6 +1958,81 @@ SetLinks sets Links field to given value.
 `func (o *Server) HasLinks() bool`
 
 HasLinks returns a boolean if a field has been set.
+
+### GetHealthState
+
+`func (o *Server) GetHealthState() string`
+
+GetHealthState returns the HealthState field if non-nil, zero value otherwise.
+
+### GetHealthStateOk
+
+`func (o *Server) GetHealthStateOk() (*string, bool)`
+
+GetHealthStateOk returns a tuple with the HealthState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthState
+
+`func (o *Server) SetHealthState(v string)`
+
+SetHealthState sets HealthState field to given value.
+
+### HasHealthState
+
+`func (o *Server) HasHealthState() bool`
+
+HasHealthState returns a boolean if a field has been set.
+
+### GetHealthDetails
+
+`func (o *Server) GetHealthDetails() []string`
+
+GetHealthDetails returns the HealthDetails field if non-nil, zero value otherwise.
+
+### GetHealthDetailsOk
+
+`func (o *Server) GetHealthDetailsOk() (*[]string, bool)`
+
+GetHealthDetailsOk returns a tuple with the HealthDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthDetails
+
+`func (o *Server) SetHealthDetails(v []string)`
+
+SetHealthDetails sets HealthDetails field to given value.
+
+### HasHealthDetails
+
+`func (o *Server) HasHealthDetails() bool`
+
+HasHealthDetails returns a boolean if a field has been set.
+
+### GetHealthLastCheckedTimestamp
+
+`func (o *Server) GetHealthLastCheckedTimestamp() string`
+
+GetHealthLastCheckedTimestamp returns the HealthLastCheckedTimestamp field if non-nil, zero value otherwise.
+
+### GetHealthLastCheckedTimestampOk
+
+`func (o *Server) GetHealthLastCheckedTimestampOk() (*string, bool)`
+
+GetHealthLastCheckedTimestampOk returns a tuple with the HealthLastCheckedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthLastCheckedTimestamp
+
+`func (o *Server) SetHealthLastCheckedTimestamp(v string)`
+
+SetHealthLastCheckedTimestamp sets HealthLastCheckedTimestamp field to given value.
+
+### HasHealthLastCheckedTimestamp
+
+`func (o *Server) HasHealthLastCheckedTimestamp() bool`
+
+HasHealthLastCheckedTimestamp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -31,8 +31,8 @@ type JobException struct {
 	Exception map[string]interface{} `json:"exception,omitempty"`
 	// The timestamp when the exception was created
 	CreatedTimestamp string `json:"createdTimestamp"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,11 +42,10 @@ type _JobException JobException
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobException(exceptionId int32, createdTimestamp string, links map[string]interface{}) *JobException {
+func NewJobException(exceptionId int32, createdTimestamp string) *JobException {
 	this := JobException{}
 	this.ExceptionId = exceptionId
 	this.CreatedTimestamp = createdTimestamp
-	this.Links = links
 	return &this
 }
 
@@ -202,27 +201,35 @@ func (o *JobException) SetCreatedTimestamp(v string) {
 	o.CreatedTimestamp = v
 }
 
-// GetLinks returns the Links field value
-func (o *JobException) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *JobException) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobException) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *JobException) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *JobException) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *JobException) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *JobException) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -247,7 +254,9 @@ func (o JobException) ToMap() (map[string]interface{}, error) {
 		toSerialize["exception"] = o.Exception
 	}
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -263,7 +272,6 @@ func (o *JobException) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"exceptionId",
 		"createdTimestamp",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

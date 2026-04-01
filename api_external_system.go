@@ -400,7 +400,7 @@ func (r ExternalSystemAPIGetExternalSystemsRequest) Search(search string) Extern
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - name 
+// List of fields to search by term to filter result values  **Example:** id,label,name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name 
 func (r ExternalSystemAPIGetExternalSystemsRequest) SearchBy(searchBy []string) ExternalSystemAPIGetExternalSystemsRequest {
 	r.searchBy = &searchBy
 	return r

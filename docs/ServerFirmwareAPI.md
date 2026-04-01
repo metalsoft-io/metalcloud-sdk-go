@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ## BatchScheduleServerFirmwareUpgrade
 
-> BatchScheduleServerFirmwareUpgrade(ctx, serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
+> BatchScheduleServerFirmwareUpgradeDtoResponse BatchScheduleServerFirmwareUpgrade(ctx, serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
 
 Schedules a firmware upgrade for the specified Server
 
@@ -45,11 +45,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
+	resp, r, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `BatchScheduleServerFirmwareUpgrade`: BatchScheduleServerFirmwareUpgradeDtoResponse
+	fmt.Fprintf(os.Stdout, "Response from `ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade`: %v\n", resp)
 }
 ```
 
@@ -73,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**BatchScheduleServerFirmwareUpgradeDtoResponse**](BatchScheduleServerFirmwareUpgradeDtoResponse.md)
 
 ### Authorization
 
@@ -82,7 +84,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

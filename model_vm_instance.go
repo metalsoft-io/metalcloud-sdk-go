@@ -75,8 +75,8 @@ type VMInstance struct {
 	AllocatedVMPoolInfo *VMInstanceAllocatedVMPoolInfo `json:"allocatedVMPoolInfo,omitempty"`
 	// Information about the allocated GPUs from the VM Pool.
 	AllocatedVMPoolGpusInfo []VMPoolGPU `json:"allocatedVMPoolGpusInfo,omitempty"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -86,7 +86,7 @@ type _VMInstance VMInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}) *VMInstance {
+func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta) *VMInstance {
 	this := VMInstance{}
 	this.Label = label
 	this.TypeId = typeId
@@ -103,7 +103,6 @@ func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float
 	this.CreatedTimestamp = createdTimestamp
 	this.Config = config
 	this.Meta = meta
-	this.Links = links
 	return &this
 }
 
@@ -859,27 +858,35 @@ func (o *VMInstance) SetAllocatedVMPoolGpusInfo(v []VMPoolGPU) {
 	o.AllocatedVMPoolGpusInfo = v
 }
 
-// GetLinks returns the Links field value
-func (o *VMInstance) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *VMInstance) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *VMInstance) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *VMInstance) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *VMInstance) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *VMInstance) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -944,7 +951,9 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AllocatedVMPoolGpusInfo) {
 		toSerialize["allocatedVMPoolGpusInfo"] = o.AllocatedVMPoolGpusInfo
 	}
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -973,7 +982,6 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		"createdTimestamp",
 		"config",
 		"meta",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

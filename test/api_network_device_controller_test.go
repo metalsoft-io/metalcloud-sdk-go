@@ -87,6 +87,19 @@ func Test_sdk_NetworkDeviceControllerAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkDeviceControllerAPIService NetworkDeviceControllerDeployConfirm", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceControllerId int32
+
+		httpRes, err := apiClient.NetworkDeviceControllerAPI.NetworkDeviceControllerDeployConfirm(context.Background(), networkDeviceControllerId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkDeviceControllerAPIService UpdateNetworkDeviceController", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AggregationType** | **string** | The type of link aggregation | 
-**MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain (applicable only for mlag-peer-link type) | [optional] 
+**MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain | [optional] 
 **LocalSwitchId** | **float32** | The ID of the local switch. | 
 **LocalSwitchIdentifier** | **string** | The identifier of the local switch. | 
 **LocalSwitchRole** | **string** | The role of the local switch. | 

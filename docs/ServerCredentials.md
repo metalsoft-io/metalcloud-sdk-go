@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Password** | Pointer to **string** | The password of the server. | [optional] 
 **VncPassword** | Pointer to **NullableString** | The VNC password of the server. | [optional] 
 **SnmpPassword** | Pointer to **NullableString** | The SNMP password of the server. | [optional] 
+**DpuCredentials** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
 
 ## Methods
 
@@ -148,6 +149,31 @@ HasSnmpPassword returns a boolean if a field has been set.
 `func (o *ServerCredentials) UnsetSnmpPassword()`
 
 UnsetSnmpPassword ensures that no value is present for SnmpPassword, not even an explicit nil
+### GetDpuCredentials
+
+`func (o *ServerCredentials) GetDpuCredentials() []ServerDPUCredentials`
+
+GetDpuCredentials returns the DpuCredentials field if non-nil, zero value otherwise.
+
+### GetDpuCredentialsOk
+
+`func (o *ServerCredentials) GetDpuCredentialsOk() (*[]ServerDPUCredentials, bool)`
+
+GetDpuCredentialsOk returns a tuple with the DpuCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpuCredentials
+
+`func (o *ServerCredentials) SetDpuCredentials(v []ServerDPUCredentials)`
+
+SetDpuCredentials sets DpuCredentials field to given value.
+
+### HasDpuCredentials
+
+`func (o *ServerCredentials) HasDpuCredentials() bool`
+
+HasDpuCredentials returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

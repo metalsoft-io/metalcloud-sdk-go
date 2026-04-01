@@ -28,6 +28,8 @@ type ServerCredentials struct {
 	VncPassword NullableString `json:"vncPassword,omitempty"`
 	// The SNMP password of the server.
 	SnmpPassword NullableString `json:"snmpPassword,omitempty"`
+	// DPU credentials. Only use if the server has a DPU installed.
+	DpuCredentials []ServerDPUCredentials `json:"dpuCredentials,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -198,6 +200,38 @@ func (o *ServerCredentials) UnsetSnmpPassword() {
 	o.SnmpPassword.Unset()
 }
 
+// GetDpuCredentials returns the DpuCredentials field value if set, zero value otherwise.
+func (o *ServerCredentials) GetDpuCredentials() []ServerDPUCredentials {
+	if o == nil || IsNil(o.DpuCredentials) {
+		var ret []ServerDPUCredentials
+		return ret
+	}
+	return o.DpuCredentials
+}
+
+// GetDpuCredentialsOk returns a tuple with the DpuCredentials field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerCredentials) GetDpuCredentialsOk() ([]ServerDPUCredentials, bool) {
+	if o == nil || IsNil(o.DpuCredentials) {
+		return nil, false
+	}
+	return o.DpuCredentials, true
+}
+
+// HasDpuCredentials returns a boolean if a field has been set.
+func (o *ServerCredentials) HasDpuCredentials() bool {
+	if o != nil && !IsNil(o.DpuCredentials) {
+		return true
+	}
+
+	return false
+}
+
+// SetDpuCredentials gets a reference to the given []ServerDPUCredentials and assigns it to the DpuCredentials field.
+func (o *ServerCredentials) SetDpuCredentials(v []ServerDPUCredentials) {
+	o.DpuCredentials = v
+}
+
 func (o ServerCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -219,6 +253,9 @@ func (o ServerCredentials) ToMap() (map[string]interface{}, error) {
 	}
 	if o.SnmpPassword.IsSet() {
 		toSerialize["snmpPassword"] = o.SnmpPassword.Get()
+	}
+	if !IsNil(o.DpuCredentials) {
+		toSerialize["dpuCredentials"] = o.DpuCredentials
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -246,6 +283,7 @@ func (o *ServerCredentials) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "password")
 		delete(additionalProperties, "vncPassword")
 		delete(additionalProperties, "snmpPassword")
+		delete(additionalProperties, "dpuCredentials")
 		o.AdditionalProperties = additionalProperties
 	}
 

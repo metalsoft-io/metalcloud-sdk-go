@@ -15,14 +15,17 @@ Name | Type | Description | Notes
 **Database** | Pointer to **float32** | Flag specifying if the VM Pool Host is database | [optional] 
 **Status** | Pointer to **string** | Status of the VM Pool Host | [optional] 
 **Description** | Pointer to **string** | Description of the VM Pool Host | [optional] 
+**AllowVMsToBeCreated** | **bool** | Flag specifying if VMs can be created on the VM Pool Host | [default to true]
+**HostInterfaces** | Pointer to [**[]VMPoolHostInterfaces**](VMPoolHostInterfaces.md) | List of VM Pool Host Interfaces | [optional] 
+**VmCount** | Pointer to **float32** | Number of VMs on the VM Pool Host | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool Host was updated | 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMPoolHosts
 
-`func NewVMPoolHosts(id float32, name string, updatedTimestamp string, links map[string]interface{}, ) *VMPoolHosts`
+`func NewVMPoolHosts(id float32, name string, allowVMsToBeCreated bool, updatedTimestamp string, ) *VMPoolHosts`
 
 NewVMPoolHosts instantiates a new VMPoolHosts object
 This constructor will assign default values to properties that have it defined,
@@ -302,6 +305,76 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetAllowVMsToBeCreated
+
+`func (o *VMPoolHosts) GetAllowVMsToBeCreated() bool`
+
+GetAllowVMsToBeCreated returns the AllowVMsToBeCreated field if non-nil, zero value otherwise.
+
+### GetAllowVMsToBeCreatedOk
+
+`func (o *VMPoolHosts) GetAllowVMsToBeCreatedOk() (*bool, bool)`
+
+GetAllowVMsToBeCreatedOk returns a tuple with the AllowVMsToBeCreated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowVMsToBeCreated
+
+`func (o *VMPoolHosts) SetAllowVMsToBeCreated(v bool)`
+
+SetAllowVMsToBeCreated sets AllowVMsToBeCreated field to given value.
+
+
+### GetHostInterfaces
+
+`func (o *VMPoolHosts) GetHostInterfaces() []VMPoolHostInterfaces`
+
+GetHostInterfaces returns the HostInterfaces field if non-nil, zero value otherwise.
+
+### GetHostInterfacesOk
+
+`func (o *VMPoolHosts) GetHostInterfacesOk() (*[]VMPoolHostInterfaces, bool)`
+
+GetHostInterfacesOk returns a tuple with the HostInterfaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostInterfaces
+
+`func (o *VMPoolHosts) SetHostInterfaces(v []VMPoolHostInterfaces)`
+
+SetHostInterfaces sets HostInterfaces field to given value.
+
+### HasHostInterfaces
+
+`func (o *VMPoolHosts) HasHostInterfaces() bool`
+
+HasHostInterfaces returns a boolean if a field has been set.
+
+### GetVmCount
+
+`func (o *VMPoolHosts) GetVmCount() float32`
+
+GetVmCount returns the VmCount field if non-nil, zero value otherwise.
+
+### GetVmCountOk
+
+`func (o *VMPoolHosts) GetVmCountOk() (*float32, bool)`
+
+GetVmCountOk returns a tuple with the VmCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmCount
+
+`func (o *VMPoolHosts) SetVmCount(v float32)`
+
+SetVmCount sets VmCount field to given value.
+
+### HasVmCount
+
+`func (o *VMPoolHosts) HasVmCount() bool`
+
+HasVmCount returns a boolean if a field has been set.
+
 ### GetUpdatedTimestamp
 
 `func (o *VMPoolHosts) GetUpdatedTimestamp() string`
@@ -324,23 +397,28 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetLinks
 
-`func (o *VMPoolHosts) GetLinks() map[string]interface{}`
+`func (o *VMPoolHosts) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *VMPoolHosts) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *VMPoolHosts) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *VMPoolHosts) SetLinks(v map[string]interface{})`
+`func (o *VMPoolHosts) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *VMPoolHosts) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,6 +22,7 @@ type SwitchControllerDriver string
 // List of SwitchControllerDriver
 const (
 	SWITCHCONTROLLERDRIVER_CISCO_ACI51 SwitchControllerDriver = "cisco_aci51"
+	SWITCHCONTROLLERDRIVER_CISCO_NDFC SwitchControllerDriver = "cisco_ndfc"
 	SWITCHCONTROLLERDRIVER_NVIDIA_UFM SwitchControllerDriver = "nvidia_ufm"
 	SWITCHCONTROLLERDRIVER_BROCADE SwitchControllerDriver = "brocade"
 )
@@ -29,6 +30,7 @@ const (
 // All allowed values of SwitchControllerDriver enum
 var AllowedSwitchControllerDriverEnumValues = []SwitchControllerDriver{
 	"cisco_aci51",
+	"cisco_ndfc",
 	"nvidia_ufm",
 	"brocade",
 }

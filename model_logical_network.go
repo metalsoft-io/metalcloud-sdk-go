@@ -36,6 +36,8 @@ type LogicalNetwork struct {
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
 	LastAppliedLogicalNetworkProfileId NullableInt32 `json:"lastAppliedLogicalNetworkProfileId"`
 	LastLogicalNetworkProfileAppliedAt time.Time `json:"lastLogicalNetworkProfileAppliedAt"`
+	// External identifier for this logical network on the controller
+	ExternalId NullableString `json:"externalId,omitempty"`
 	Config LogicalNetworkConfig `json:"config"`
 	Vlan *LogicalNetworkVlanProperties `json:"vlan,omitempty"`
 	Vxlan *LogicalNetworkVxlanProperties `json:"vxlan,omitempty"`
@@ -440,6 +442,48 @@ func (o *LogicalNetwork) SetLastLogicalNetworkProfileAppliedAt(v time.Time) {
 	o.LastLogicalNetworkProfileAppliedAt = v
 }
 
+// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LogicalNetwork) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId.Get()
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LogicalNetwork) GetExternalIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExternalId.Get(), o.ExternalId.IsSet()
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *LogicalNetwork) HasExternalId() bool {
+	if o != nil && o.ExternalId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given NullableString and assigns it to the ExternalId field.
+func (o *LogicalNetwork) SetExternalId(v string) {
+	o.ExternalId.Set(&v)
+}
+// SetExternalIdNil sets the value for ExternalId to be an explicit nil
+func (o *LogicalNetwork) SetExternalIdNil() {
+	o.ExternalId.Set(nil)
+}
+
+// UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+func (o *LogicalNetwork) UnsetExternalId() {
+	o.ExternalId.Unset()
+}
+
 // GetConfig returns the Config field value
 func (o *LogicalNetwork) GetConfig() LogicalNetworkConfig {
 	if o == nil {
@@ -766,6 +810,9 @@ func (o LogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["lastAppliedLogicalNetworkProfileId"] = o.LastAppliedLogicalNetworkProfileId.Get()
 	toSerialize["lastLogicalNetworkProfileAppliedAt"] = o.LastLogicalNetworkProfileAppliedAt
+	if o.ExternalId.IsSet() {
+		toSerialize["externalId"] = o.ExternalId.Get()
+	}
 	toSerialize["config"] = o.Config
 	if !IsNil(o.Vlan) {
 		toSerialize["vlan"] = o.Vlan
@@ -861,6 +908,7 @@ func (o *LogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "lastAppliedLogicalNetworkProfileId")
 		delete(additionalProperties, "lastLogicalNetworkProfileAppliedAt")
+		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "vxlan")

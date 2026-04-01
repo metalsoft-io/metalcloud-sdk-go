@@ -25,12 +25,16 @@ type VMPoolGPU struct {
 	Id float32 `json:"id"`
 	// ID of the VM Pool linked to the GPU
 	VmPoolId float32 `json:"vmPoolId"`
+	// ID of the host linked to the GPU
+	HostId *float32 `json:"hostId,omitempty"`
 	// Model of the GPU
 	Model *string `json:"model,omitempty"`
 	// Vendor of the GPU
 	Vendor *string `json:"vendor,omitempty"`
 	// PCI address of the GPU
 	PciAddress *string `json:"pciAddress,omitempty"`
+	// NUMA node of the GPU
+	NumaNode *float32 `json:"numaNode,omitempty"`
 	// Deployment status of the GPU
 	DeploymentStatus string `json:"deploymentStatus"`
 	// ID of the VM Instance linked to the GPU
@@ -106,6 +110,38 @@ func (o *VMPoolGPU) GetVmPoolIdOk() (*float32, bool) {
 // SetVmPoolId sets field value
 func (o *VMPoolGPU) SetVmPoolId(v float32) {
 	o.VmPoolId = v
+}
+
+// GetHostId returns the HostId field value if set, zero value otherwise.
+func (o *VMPoolGPU) GetHostId() float32 {
+	if o == nil || IsNil(o.HostId) {
+		var ret float32
+		return ret
+	}
+	return *o.HostId
+}
+
+// GetHostIdOk returns a tuple with the HostId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolGPU) GetHostIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.HostId) {
+		return nil, false
+	}
+	return o.HostId, true
+}
+
+// HasHostId returns a boolean if a field has been set.
+func (o *VMPoolGPU) HasHostId() bool {
+	if o != nil && !IsNil(o.HostId) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostId gets a reference to the given float32 and assigns it to the HostId field.
+func (o *VMPoolGPU) SetHostId(v float32) {
+	o.HostId = &v
 }
 
 // GetModel returns the Model field value if set, zero value otherwise.
@@ -204,6 +240,38 @@ func (o *VMPoolGPU) SetPciAddress(v string) {
 	o.PciAddress = &v
 }
 
+// GetNumaNode returns the NumaNode field value if set, zero value otherwise.
+func (o *VMPoolGPU) GetNumaNode() float32 {
+	if o == nil || IsNil(o.NumaNode) {
+		var ret float32
+		return ret
+	}
+	return *o.NumaNode
+}
+
+// GetNumaNodeOk returns a tuple with the NumaNode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolGPU) GetNumaNodeOk() (*float32, bool) {
+	if o == nil || IsNil(o.NumaNode) {
+		return nil, false
+	}
+	return o.NumaNode, true
+}
+
+// HasNumaNode returns a boolean if a field has been set.
+func (o *VMPoolGPU) HasNumaNode() bool {
+	if o != nil && !IsNil(o.NumaNode) {
+		return true
+	}
+
+	return false
+}
+
+// SetNumaNode gets a reference to the given float32 and assigns it to the NumaNode field.
+func (o *VMPoolGPU) SetNumaNode(v float32) {
+	o.NumaNode = &v
+}
+
 // GetDeploymentStatus returns the DeploymentStatus field value
 func (o *VMPoolGPU) GetDeploymentStatus() string {
 	if o == nil {
@@ -272,6 +340,9 @@ func (o VMPoolGPU) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["vmPoolId"] = o.VmPoolId
+	if !IsNil(o.HostId) {
+		toSerialize["hostId"] = o.HostId
+	}
 	if !IsNil(o.Model) {
 		toSerialize["model"] = o.Model
 	}
@@ -280,6 +351,9 @@ func (o VMPoolGPU) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PciAddress) {
 		toSerialize["pciAddress"] = o.PciAddress
+	}
+	if !IsNil(o.NumaNode) {
+		toSerialize["numaNode"] = o.NumaNode
 	}
 	toSerialize["deploymentStatus"] = o.DeploymentStatus
 	if !IsNil(o.VmInstanceId) {
@@ -332,9 +406,11 @@ func (o *VMPoolGPU) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "vmPoolId")
+		delete(additionalProperties, "hostId")
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "pciAddress")
+		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "deploymentStatus")
 		delete(additionalProperties, "vmInstanceId")
 		o.AdditionalProperties = additionalProperties

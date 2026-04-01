@@ -1259,7 +1259,7 @@ func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) SearchBy(searchBy
 	return r
 }
 
-func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) Execute() (*VMInstanceGroupPaginatedList, *http.Response, error) {
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) Execute() (*VMInstanceGroupInterfacePaginatedList, *http.Response, error) {
 	return r.ApiService.GetVMInstanceGroupInterfacesExecute(r)
 }
 
@@ -1283,13 +1283,13 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaces(ctx context.Con
 }
 
 // Execute executes the request
-//  @return VMInstanceGroupPaginatedList
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfacesExecute(r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) (*VMInstanceGroupPaginatedList, *http.Response, error) {
+//  @return VMInstanceGroupInterfacePaginatedList
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfacesExecute(r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) (*VMInstanceGroupInterfacePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *VMInstanceGroupPaginatedList
+		localVarReturnValue  *VMInstanceGroupInterfacePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroupInterfaces")

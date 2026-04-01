@@ -69,9 +69,10 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		var serverInstanceId int32
 
-		httpRes, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).Execute()
+		resp, httpRes, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

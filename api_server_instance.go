@@ -543,7 +543,7 @@ type ServerInstanceAPIGetPowerFromServerInstanceRequest struct {
 	serverInstanceId int32
 }
 
-func (r ServerInstanceAPIGetPowerFromServerInstanceRequest) Execute() (*http.Response, error) {
+func (r ServerInstanceAPIGetPowerFromServerInstanceRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetPowerFromServerInstanceExecute(r)
 }
 
@@ -565,16 +565,18 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstance(ctx context.Contex
 }
 
 // Execute executes the request
-func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerInstanceAPIGetPowerFromServerInstanceRequest) (*http.Response, error) {
+//  @return string
+func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerInstanceAPIGetPowerFromServerInstanceRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetPowerFromServerInstance")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/power-get"
@@ -594,7 +596,7 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerIns
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -603,19 +605,19 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerIns
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -623,10 +625,19 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerIns
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ServerInstanceAPIGetPowerStatusBatchRequest struct {

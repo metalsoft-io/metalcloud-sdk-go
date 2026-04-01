@@ -640,13 +640,13 @@ type NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest struct {
 	limit *float32
 	filterId *[]string
 	filterName *[]string
-	filterDescription *[]string
-	filterStatus *[]string
 	filterSiteId *[]string
-	filterFabricConfigurationFabricType *[]string
+	filterCreatedTimestamp *[]string
+	filterUpdatedTimestamp *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
+	select_ *string
 }
 
 // Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
@@ -673,27 +673,21 @@ func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) FilterName(filte
 	return r
 }
 
-// Filter by description query param.  **Format:** filter.description&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.description&#x3D;$btw:John Doe&amp;filter.description&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) FilterDescription(filterDescription []string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
-	r.filterDescription = &filterDescription
-	return r
-}
-
-// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) FilterStatus(filterStatus []string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
-	r.filterStatus = &filterStatus
-	return r
-}
-
 // Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) FilterSiteId(filterSiteId []string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
 	r.filterSiteId = &filterSiteId
 	return r
 }
 
-// Filter by fabricConfiguration.fabricType query param.  **Format:** filter.fabricConfiguration.fabricType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricConfiguration.fabricType&#x3D;$btw:John Doe&amp;filter.fabricConfiguration.fabricType&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) FilterFabricConfigurationFabricType(filterFabricConfigurationFabricType []string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
-	r.filterFabricConfigurationFabricType = &filterFabricConfigurationFabricType
+// Filter by createdTimestamp query param.  **Format:** filter.createdTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdTimestamp&#x3D;$btw:John Doe&amp;filter.createdTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) FilterCreatedTimestamp(filterCreatedTimestamp []string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
+	r.filterCreatedTimestamp = &filterCreatedTimestamp
+	return r
+}
+
+// Filter by updatedTimestamp query param.  **Format:** filter.updatedTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedTimestamp&#x3D;$btw:John Doe&amp;filter.updatedTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) FilterUpdatedTimestamp(filterUpdatedTimestamp []string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
+	r.filterUpdatedTimestamp = &filterUpdatedTimestamp
 	return r
 }
 
@@ -709,9 +703,15 @@ func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) Search(search st
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name,description,status,siteId,fabricConfiguration.fabricType   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - description  - status  - siteId  - fabricConfiguration.fabricType 
+// List of fields to search by term to filter result values  **Example:** id,name,siteId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - siteId 
 func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) SearchBy(searchBy []string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
 	r.searchBy = &searchBy
+	return r
+}
+
+// List of fields to select.  **Example:** id,name,siteId,createdTimestamp,updatedTimestamp   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
+func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest) Select_(select_ string) NetworkEndpointGroupAPIGetNetworkEndpointGroupsRequest {
+	r.select_ = &select_
 	return r
 }
 
@@ -781,28 +781,6 @@ func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupsExecute(r Netwo
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
 		}
 	}
-	if r.filterDescription != nil {
-		t := *r.filterDescription
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", t, "form", "multi")
-		}
-	}
-	if r.filterStatus != nil {
-		t := *r.filterStatus
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
-		}
-	}
 	if r.filterSiteId != nil {
 		t := *r.filterSiteId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -814,15 +792,26 @@ func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupsExecute(r Netwo
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
 		}
 	}
-	if r.filterFabricConfigurationFabricType != nil {
-		t := *r.filterFabricConfigurationFabricType
+	if r.filterCreatedTimestamp != nil {
+		t := *r.filterCreatedTimestamp
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricConfiguration.fabricType", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricConfiguration.fabricType", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", t, "form", "multi")
+		}
+	}
+	if r.filterUpdatedTimestamp != nil {
+		t := *r.filterUpdatedTimestamp
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updatedTimestamp", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updatedTimestamp", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -849,6 +838,9 @@ func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupsExecute(r Netwo
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
+	}
+	if r.select_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "select", r.select_, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -911,7 +903,7 @@ type NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest 
 	logicalNetworkId int32
 }
 
-func (r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) Execute() (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
+func (r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveLogicalNetworkFromNetworkEndpointGroupExecute(r)
 }
 
@@ -933,18 +925,16 @@ func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpoint
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetwork
-func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpointGroupExecute(r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
+func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpointGroupExecute(r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkEndpointGroupAPIService.RemoveLogicalNetworkFromNetworkEndpointGroup")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId}"
@@ -965,7 +955,7 @@ func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpoint
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -974,19 +964,19 @@ func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpoint
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -994,19 +984,10 @@ func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpoint
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type NetworkEndpointGroupAPIUpdateNetworkEndpointGroupRequest struct {

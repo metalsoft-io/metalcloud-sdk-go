@@ -772,7 +772,7 @@ Name | Type | Description  | Notes
 
 ## PatchDriveConfig
 
-> SharedDrive PatchDriveConfig(ctx, infrastructureId, driveId).UpdateSharedDrive(updateSharedDrive).IfMatch(ifMatch).Execute()
+> SharedDriveConfiguration PatchDriveConfig(ctx, infrastructureId, driveId).UpdateSharedDrive(updateSharedDrive).IfMatch(ifMatch).Execute()
 
 Updates the config of a Drive
 
@@ -801,7 +801,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.PatchDriveConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PatchDriveConfig`: SharedDrive
+	// response from `PatchDriveConfig`: SharedDriveConfiguration
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.PatchDriveConfig`: %v\n", resp)
 }
 ```
@@ -829,7 +829,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SharedDrive**](SharedDrive.md)
+[**SharedDriveConfiguration**](SharedDriveConfiguration.md)
 
 ### Authorization
 

@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **JobId** | Pointer to **int32** | Job Id | [optional] 
 **Exception** | Pointer to **map[string]interface{}** | The exception that was thrown by the function | [optional] 
 **CreatedTimestamp** | **string** | The timestamp when the exception was created | 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewJobException
 
-`func NewJobException(exceptionId int32, createdTimestamp string, links map[string]interface{}, ) *JobException`
+`func NewJobException(exceptionId int32, createdTimestamp string, ) *JobException`
 
 NewJobException instantiates a new JobException object
 This constructor will assign default values to properties that have it defined,
@@ -147,23 +147,28 @@ SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 ### GetLinks
 
-`func (o *JobException) GetLinks() map[string]interface{}`
+`func (o *JobException) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *JobException) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *JobException) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *JobException) SetLinks(v map[string]interface{})`
+`func (o *JobException) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *JobException) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

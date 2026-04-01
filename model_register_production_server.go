@@ -41,6 +41,8 @@ type RegisterProductionServer struct {
 	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
 	// The password to use.
 	Password *string `json:"password,omitempty"`
+	// DPU credentials. Only use if the server has a DPU installed.
+	DpuCredentials []ServerDPUCredentials `json:"dpuCredentials,omitempty"`
 	// The additional settings for the production server.
 	Settings RegisterProductionServerSettings `json:"settings"`
 	AdditionalProperties map[string]interface{}
@@ -379,6 +381,38 @@ func (o *RegisterProductionServer) SetPassword(v string) {
 	o.Password = &v
 }
 
+// GetDpuCredentials returns the DpuCredentials field value if set, zero value otherwise.
+func (o *RegisterProductionServer) GetDpuCredentials() []ServerDPUCredentials {
+	if o == nil || IsNil(o.DpuCredentials) {
+		var ret []ServerDPUCredentials
+		return ret
+	}
+	return o.DpuCredentials
+}
+
+// GetDpuCredentialsOk returns a tuple with the DpuCredentials field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegisterProductionServer) GetDpuCredentialsOk() ([]ServerDPUCredentials, bool) {
+	if o == nil || IsNil(o.DpuCredentials) {
+		return nil, false
+	}
+	return o.DpuCredentials, true
+}
+
+// HasDpuCredentials returns a boolean if a field has been set.
+func (o *RegisterProductionServer) HasDpuCredentials() bool {
+	if o != nil && !IsNil(o.DpuCredentials) {
+		return true
+	}
+
+	return false
+}
+
+// SetDpuCredentials gets a reference to the given []ServerDPUCredentials and assigns it to the DpuCredentials field.
+func (o *RegisterProductionServer) SetDpuCredentials(v []ServerDPUCredentials) {
+	o.DpuCredentials = v
+}
+
 // GetSettings returns the Settings field value
 func (o *RegisterProductionServer) GetSettings() RegisterProductionServerSettings {
 	if o == nil {
@@ -441,6 +475,9 @@ func (o RegisterProductionServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
+	if !IsNil(o.DpuCredentials) {
+		toSerialize["dpuCredentials"] = o.DpuCredentials
+	}
 	toSerialize["settings"] = o.Settings
 
 	for key, value := range o.AdditionalProperties {
@@ -496,6 +533,7 @@ func (o *RegisterProductionServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "dpuCredentials")
 		delete(additionalProperties, "settings")
 		o.AdditionalProperties = additionalProperties
 	}

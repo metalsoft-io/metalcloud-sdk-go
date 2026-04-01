@@ -652,6 +652,109 @@ func (a *NetworkFabricInterconnectAPIService) DeployNetworkFabricInterconnectExe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricInterconnectAPIService
+	id float32
+}
+
+func (r NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest) Execute() (*JobInfo, *http.Response, error) {
+	return r.ApiService.DetachNetworkFabricInterconnectExecute(r)
+}
+
+/*
+DetachNetworkFabricInterconnect Detaches the specified network fabric interconnect
+
+Removes the BGP peering configuration from all border switches in the interconnect
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest
+*/
+func (a *NetworkFabricInterconnectAPIService) DetachNetworkFabricInterconnect(ctx context.Context, id float32) NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest {
+	return NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return JobInfo
+func (a *NetworkFabricInterconnectAPIService) DetachNetworkFabricInterconnectExecute(r NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest) (*JobInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *JobInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricInterconnectAPIService.DetachNetworkFabricInterconnect")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabric-interconnects/{id}/actions/detach"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
@@ -717,7 +820,7 @@ func (r NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - createdTimestamp  - updatedTimestamp 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - status  - createdTimestamp  - updatedTimestamp 
 func (r NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest) SortBy(sortBy []string) NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -729,7 +832,7 @@ func (r NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name,description,status,siteId,fabricConfiguration.fabricType   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - description  - status  - siteId  - fabricConfiguration.fabricType 
+// List of fields to search by term to filter result values  **Example:** id,name,description,status,siteId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description  - status  - siteId 
 func (r NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest) SearchBy(searchBy []string) NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1146,11 +1249,8 @@ type NetworkFabricInterconnectAPIGetInterconnectLinksRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
-	filterInterconnectId *[]string
-	filterFabricAId *[]string
-	filterFabricANetworkEquipmentId *[]string
-	filterFabricBId *[]string
-	filterFabricBNetworkEquipmentId *[]string
+	filterFabricId *[]string
+	filterNetworkEquipmentId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1169,43 +1269,25 @@ func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) Limit(limit flo
 	return r
 }
 
-// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterId(filterId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by interconnectId query param.  **Format:** filter.interconnectId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.interconnectId&#x3D;$btw:John Doe&amp;filter.interconnectId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterInterconnectId(filterInterconnectId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
-	r.filterInterconnectId = &filterInterconnectId
+// Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe&amp;filter.fabricId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterFabricId(filterFabricId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
+	r.filterFabricId = &filterFabricId
 	return r
 }
 
-// Filter by fabricAId query param.  **Format:** filter.fabricAId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricAId&#x3D;$btw:John Doe&amp;filter.fabricAId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterFabricAId(filterFabricAId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
-	r.filterFabricAId = &filterFabricAId
+// Filter by networkEquipmentId query param.  **Format:** filter.networkEquipmentId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkEquipmentId&#x3D;$eq:John Doe&amp;filter.networkEquipmentId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterNetworkEquipmentId(filterNetworkEquipmentId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
+	r.filterNetworkEquipmentId = &filterNetworkEquipmentId
 	return r
 }
 
-// Filter by fabricANetworkEquipmentId query param.  **Format:** filter.fabricANetworkEquipmentId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricANetworkEquipmentId&#x3D;$btw:John Doe&amp;filter.fabricANetworkEquipmentId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterFabricANetworkEquipmentId(filterFabricANetworkEquipmentId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
-	r.filterFabricANetworkEquipmentId = &filterFabricANetworkEquipmentId
-	return r
-}
-
-// Filter by fabricBId query param.  **Format:** filter.fabricBId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricBId&#x3D;$btw:John Doe&amp;filter.fabricBId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterFabricBId(filterFabricBId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
-	r.filterFabricBId = &filterFabricBId
-	return r
-}
-
-// Filter by fabricBNetworkEquipmentId query param.  **Format:** filter.fabricBNetworkEquipmentId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricBNetworkEquipmentId&#x3D;$btw:John Doe&amp;filter.fabricBNetworkEquipmentId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) FilterFabricBNetworkEquipmentId(filterFabricBNetworkEquipmentId []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
-	r.filterFabricBNetworkEquipmentId = &filterFabricBNetworkEquipmentId
-	return r
-}
-
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;interconnectId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - interconnectId  - status  - fabricAId  - fabricANetworkEquipmentId  - fabricBId  - fabricBNetworkEquipmentId 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;interconnectId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - interconnectId  - status  - fabricId  - networkEquipmentId 
 func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) SortBy(sortBy []string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1223,7 +1305,7 @@ func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) SearchBy(search
 	return r
 }
 
-// List of fields to select.  **Example:** id,revision,status,interconnectId,fabricAId   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
+// List of fields to select.  **Example:** id,revision,status,interconnectId,fabricId   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
 func (r NetworkFabricInterconnectAPIGetInterconnectLinksRequest) Select_(select_ string) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
 	r.select_ = &select_
 	return r
@@ -1289,59 +1371,26 @@ func (a *NetworkFabricInterconnectAPIService) GetInterconnectLinksExecute(r Netw
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
-	if r.filterInterconnectId != nil {
-		t := *r.filterInterconnectId
+	if r.filterFabricId != nil {
+		t := *r.filterFabricId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.interconnectId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.interconnectId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricId", t, "form", "multi")
 		}
 	}
-	if r.filterFabricAId != nil {
-		t := *r.filterFabricAId
+	if r.filterNetworkEquipmentId != nil {
+		t := *r.filterNetworkEquipmentId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricAId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkEquipmentId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricAId", t, "form", "multi")
-		}
-	}
-	if r.filterFabricANetworkEquipmentId != nil {
-		t := *r.filterFabricANetworkEquipmentId
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricANetworkEquipmentId", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricANetworkEquipmentId", t, "form", "multi")
-		}
-	}
-	if r.filterFabricBId != nil {
-		t := *r.filterFabricBId
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricBId", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricBId", t, "form", "multi")
-		}
-	}
-	if r.filterFabricBNetworkEquipmentId != nil {
-		t := *r.filterFabricBNetworkEquipmentId
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricBNetworkEquipmentId", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricBNetworkEquipmentId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkEquipmentId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -1469,6 +1518,109 @@ func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectByIdEx
 	}
 
 	localVarPath := localBasePath + "/api/v2/network-fabric-interconnects/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricInterconnectAPIService
+	id int32
+}
+
+func (r NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest) Execute() (*NetworkFabricInterconnectDeploymentInfo, *http.Response, error) {
+	return r.ApiService.GetNetworkFabricInterconnectDeploymentInfoExecute(r)
+}
+
+/*
+GetNetworkFabricInterconnectDeploymentInfo Get deployment info for a network fabric interconnect
+
+Returns deployment info such as deploy ID, status, and generated configuration for a network fabric interconnect.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The ID of the network fabric interconnect
+ @return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest
+*/
+func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectDeploymentInfo(ctx context.Context, id int32) NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest {
+	return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricInterconnectDeploymentInfo
+func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectDeploymentInfoExecute(r NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest) (*NetworkFabricInterconnectDeploymentInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricInterconnectDeploymentInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricInterconnectAPIService.GetNetworkFabricInterconnectDeploymentInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabric-interconnects/{id}/deployment-info"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)

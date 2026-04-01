@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ## GetPowerFromServerInstance
 
-> GetPowerFromServerInstance(ctx, serverInstanceId).Execute()
+> string GetPowerFromServerInstance(ctx, serverInstanceId).Execute()
 
 Get the power status of the Server Instance
 
@@ -290,11 +290,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).Execute()
+	resp, r, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetPowerFromServerInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `GetPowerFromServerInstance`: string
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetPowerFromServerInstance`: %v\n", resp)
 }
 ```
 
@@ -317,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+**string**
 
 ### Authorization
 
@@ -326,7 +328,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

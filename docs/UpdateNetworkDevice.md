@@ -44,6 +44,8 @@ Name | Type | Description | Notes
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
 **VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
+**ServerId** | Pointer to **float32** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
+**NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
 
 ## Methods
 
@@ -1303,6 +1305,56 @@ SetCustomVariables sets CustomVariables field to given value.
 `func (o *UpdateNetworkDevice) HasCustomVariables() bool`
 
 HasCustomVariables returns a boolean if a field has been set.
+
+### GetServerId
+
+`func (o *UpdateNetworkDevice) GetServerId() float32`
+
+GetServerId returns the ServerId field if non-nil, zero value otherwise.
+
+### GetServerIdOk
+
+`func (o *UpdateNetworkDevice) GetServerIdOk() (*float32, bool)`
+
+GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerId
+
+`func (o *UpdateNetworkDevice) SetServerId(v float32)`
+
+SetServerId sets ServerId field to given value.
+
+### HasServerId
+
+`func (o *UpdateNetworkDevice) HasServerId() bool`
+
+HasServerId returns a boolean if a field has been set.
+
+### GetNumaNode
+
+`func (o *UpdateNetworkDevice) GetNumaNode() float32`
+
+GetNumaNode returns the NumaNode field if non-nil, zero value otherwise.
+
+### GetNumaNodeOk
+
+`func (o *UpdateNetworkDevice) GetNumaNodeOk() (*float32, bool)`
+
+GetNumaNodeOk returns a tuple with the NumaNode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumaNode
+
+`func (o *UpdateNetworkDevice) SetNumaNode(v float32)`
+
+SetNumaNode sets NumaNode field to given value.
+
+### HasNumaNode
+
+`func (o *UpdateNetworkDevice) HasNumaNode() bool`
+
+HasNumaNode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

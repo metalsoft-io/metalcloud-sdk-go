@@ -51,8 +51,8 @@ type JobGroup struct {
 	StorageId *int32 `json:"storageId,omitempty"`
 	// Cancel reason of the group
 	CancelReason *string `json:"cancelReason,omitempty"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,13 +62,12 @@ type _JobGroup JobGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobGroup(id int32, type_ string, description string, createdTimestamp string, links map[string]interface{}) *JobGroup {
+func NewJobGroup(id int32, type_ string, description string, createdTimestamp string) *JobGroup {
 	this := JobGroup{}
 	this.Id = id
 	this.Type = type_
 	this.Description = description
 	this.CreatedTimestamp = createdTimestamp
-	this.Links = links
 	return &this
 }
 
@@ -528,27 +527,35 @@ func (o *JobGroup) SetCancelReason(v string) {
 	o.CancelReason = &v
 }
 
-// GetLinks returns the Links field value
-func (o *JobGroup) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *JobGroup) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobGroup) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *JobGroup) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *JobGroup) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *JobGroup) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *JobGroup) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -599,7 +606,9 @@ func (o JobGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CancelReason) {
 		toSerialize["cancelReason"] = o.CancelReason
 	}
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -617,7 +626,6 @@ func (o *JobGroup) UnmarshalJSON(data []byte) (err error) {
 		"type",
 		"description",
 		"createdTimestamp",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

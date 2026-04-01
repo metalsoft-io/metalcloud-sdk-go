@@ -11,6 +11,8 @@
 
 * `LEAF` (value: `"leaf"`)
 
+* `DPU` (value: `"dpu"`)
+
 * `OTHER` (value: `"other"`)
 
 

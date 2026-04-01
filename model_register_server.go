@@ -41,6 +41,8 @@ type RegisterServer struct {
 	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
 	// The password to use.
 	Password *string `json:"password,omitempty"`
+	// DPU credentials. Only use if the server has a DPU installed.
+	DpuCredentials []ServerDPUCredentials `json:"dpuCredentials,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -376,6 +378,38 @@ func (o *RegisterServer) SetPassword(v string) {
 	o.Password = &v
 }
 
+// GetDpuCredentials returns the DpuCredentials field value if set, zero value otherwise.
+func (o *RegisterServer) GetDpuCredentials() []ServerDPUCredentials {
+	if o == nil || IsNil(o.DpuCredentials) {
+		var ret []ServerDPUCredentials
+		return ret
+	}
+	return o.DpuCredentials
+}
+
+// GetDpuCredentialsOk returns a tuple with the DpuCredentials field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegisterServer) GetDpuCredentialsOk() ([]ServerDPUCredentials, bool) {
+	if o == nil || IsNil(o.DpuCredentials) {
+		return nil, false
+	}
+	return o.DpuCredentials, true
+}
+
+// HasDpuCredentials returns a boolean if a field has been set.
+func (o *RegisterServer) HasDpuCredentials() bool {
+	if o != nil && !IsNil(o.DpuCredentials) {
+		return true
+	}
+
+	return false
+}
+
+// SetDpuCredentials gets a reference to the given []ServerDPUCredentials and assigns it to the DpuCredentials field.
+func (o *RegisterServer) SetDpuCredentials(v []ServerDPUCredentials) {
+	o.DpuCredentials = v
+}
+
 func (o RegisterServer) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -413,6 +447,9 @@ func (o RegisterServer) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.DpuCredentials) {
+		toSerialize["dpuCredentials"] = o.DpuCredentials
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -467,6 +504,7 @@ func (o *RegisterServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "dpuCredentials")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -520,7 +520,7 @@ func (r OSTemplateAPIGetOSTemplatesRequest) FilterTags(filterTags []string) OSTe
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;device.type:DESC   **Default Value:** id:DESC  **Available Fields** - id  - device.type  - visibility  - status  - createdBy  - createdAt  - modifiedAt 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - device.type  - device.bootMode  - device.architecture  - install.method  - install.driveType  - install.readyMethod  - imageBuild.required  - imageBuild.provider  - os.name  - os.version  - os.sshPort  - visibility  - status  - revision  - createdBy  - createdAt  - modifiedBy  - modifiedAt 
 func (r OSTemplateAPIGetOSTemplatesRequest) SortBy(sortBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -532,7 +532,7 @@ func (r OSTemplateAPIGetOSTemplatesRequest) Search(search string) OSTemplateAPIG
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,name,label,device.type,os.name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - label  - device.type  - os.name  - os.version  - install.onieStrings  - visibility  - status  - createdBy  - modifiedBy 
+// List of fields to search by term to filter result values  **Example:** id,name,label,description,device.type   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - label  - description  - device.type  - os.name  - os.version  - install.onieStrings  - visibility  - status 
 func (r OSTemplateAPIGetOSTemplatesRequest) SearchBy(searchBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.searchBy = &searchBy
 	return r

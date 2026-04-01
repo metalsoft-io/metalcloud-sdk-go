@@ -477,7 +477,7 @@ func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) Fi
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - macAddressOrSerialNumber  - secretName  - createdTimestamp  - updatedTimestamp 
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) SortBy(sortBy []string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -489,7 +489,7 @@ func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) Se
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,siteId,macAddressOrSerialNumber,secretName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - siteId  - macAddressOrSerialNumber  - secretName 
+// List of fields to search by term to filter result values  **Example:** id,siteId,macAddressOrSerialNumber,secretName,createdTimestamp   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - siteId  - macAddressOrSerialNumber  - secretName  - createdTimestamp  - updatedTimestamp 
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest) SearchBy(searchBy []string) NetworkDeviceDefaultSecretsAPIGetNetworkDevicesDefaultSecretsRequest {
 	r.searchBy = &searchBy
 	return r

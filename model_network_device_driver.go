@@ -22,6 +22,7 @@ type NetworkDeviceDriver string
 // List of NetworkDeviceDriver
 const (
 	NETWORKDEVICEDRIVER_CISCO_ACI51 NetworkDeviceDriver = "cisco_aci51"
+	NETWORKDEVICEDRIVER_CISCO_NDFC NetworkDeviceDriver = "cisco_ndfc"
 	NETWORKDEVICEDRIVER_NVIDIA_UFM NetworkDeviceDriver = "nvidia_ufm"
 	NETWORKDEVICEDRIVER_NEXUS9000 NetworkDeviceDriver = "nexus9000"
 	NETWORKDEVICEDRIVER_CUMULUS42 NetworkDeviceDriver = "cumulus42"
@@ -37,6 +38,7 @@ const (
 	NETWORKDEVICEDRIVER_VMWARE_VDS NetworkDeviceDriver = "vmware_vds"
 	NETWORKDEVICEDRIVER_CUMULUS_LINUX NetworkDeviceDriver = "cumulus_linux"
 	NETWORKDEVICEDRIVER_BROCADE NetworkDeviceDriver = "brocade"
+	NETWORKDEVICEDRIVER_NVIDIA_DPU NetworkDeviceDriver = "nvidia_dpu"
 	NETWORKDEVICEDRIVER_DELL_S4000 NetworkDeviceDriver = "dell_s4000"
 	NETWORKDEVICEDRIVER_DELL_S6010 NetworkDeviceDriver = "dell_s6010"
 	NETWORKDEVICEDRIVER_JUNOS18 NetworkDeviceDriver = "junos18"
@@ -45,6 +47,7 @@ const (
 // All allowed values of NetworkDeviceDriver enum
 var AllowedNetworkDeviceDriverEnumValues = []NetworkDeviceDriver{
 	"cisco_aci51",
+	"cisco_ndfc",
 	"nvidia_ufm",
 	"nexus9000",
 	"cumulus42",
@@ -60,6 +63,7 @@ var AllowedNetworkDeviceDriverEnumValues = []NetworkDeviceDriver{
 	"vmware_vds",
 	"cumulus_linux",
 	"brocade",
+	"nvidia_dpu",
 	"dell_s4000",
 	"dell_s6010",
 	"junos18",

@@ -1419,7 +1419,7 @@ func (r DriveAPIPatchDriveConfigRequest) IfMatch(ifMatch string) DriveAPIPatchDr
 	return r
 }
 
-func (r DriveAPIPatchDriveConfigRequest) Execute() (*SharedDrive, *http.Response, error) {
+func (r DriveAPIPatchDriveConfigRequest) Execute() (*SharedDriveConfiguration, *http.Response, error) {
 	return r.ApiService.PatchDriveConfigExecute(r)
 }
 
@@ -1441,13 +1441,13 @@ func (a *DriveAPIService) PatchDriveConfig(ctx context.Context, infrastructureId
 }
 
 // Execute executes the request
-//  @return SharedDrive
-func (a *DriveAPIService) PatchDriveConfigExecute(r DriveAPIPatchDriveConfigRequest) (*SharedDrive, *http.Response, error) {
+//  @return SharedDriveConfiguration
+func (a *DriveAPIService) PatchDriveConfigExecute(r DriveAPIPatchDriveConfigRequest) (*SharedDriveConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SharedDrive
+		localVarReturnValue  *SharedDriveConfiguration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.PatchDriveConfig")

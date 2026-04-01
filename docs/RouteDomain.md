@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **PreventVrfCleanup** | **bool** | If true, VRFs belonging to this route domain will not be deleted from switches during cleanup. | [default to false]
 **Vrfs** | [**[]VrfAllocation**](VrfAllocation.md) |  | 
 **VrfAllocationStrategies** | [**[]VrfAllocationStrategy**](VrfAllocationStrategy.md) |  | 
+**ExternalId** | Pointer to **NullableString** | External identifier for this route domain on the controller | [optional] 
+**AutoRouteDistinguisher** | Pointer to **bool** | When true, the switch auto-generates the EVPN Route Distinguisher for the L3 VNI. Only applicable to EVPN_L3VPN route domains. | [optional] 
+**AutoRouteTarget** | Pointer to **bool** | When true, the switch auto-generates EVPN Route Targets for the L3 VNI. Only applicable to EVPN_L3VPN route domains. | [optional] 
 **Config** | [**RouteDomainConfig**](RouteDomainConfig.md) |  | 
 **L3Vlans** | Pointer to [**[]VlanAllocation**](VlanAllocation.md) |  | [optional] 
 **L3VlanAllocationStrategies** | Pointer to [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | [optional] 
@@ -280,6 +283,91 @@ and a boolean to check if the value has been set.
 
 SetVrfAllocationStrategies sets VrfAllocationStrategies field to given value.
 
+
+### GetExternalId
+
+`func (o *RouteDomain) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *RouteDomain) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *RouteDomain) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *RouteDomain) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
+
+### SetExternalIdNil
+
+`func (o *RouteDomain) SetExternalIdNil(b bool)`
+
+ SetExternalIdNil sets the value for ExternalId to be an explicit nil
+
+### UnsetExternalId
+`func (o *RouteDomain) UnsetExternalId()`
+
+UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+### GetAutoRouteDistinguisher
+
+`func (o *RouteDomain) GetAutoRouteDistinguisher() bool`
+
+GetAutoRouteDistinguisher returns the AutoRouteDistinguisher field if non-nil, zero value otherwise.
+
+### GetAutoRouteDistinguisherOk
+
+`func (o *RouteDomain) GetAutoRouteDistinguisherOk() (*bool, bool)`
+
+GetAutoRouteDistinguisherOk returns a tuple with the AutoRouteDistinguisher field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRouteDistinguisher
+
+`func (o *RouteDomain) SetAutoRouteDistinguisher(v bool)`
+
+SetAutoRouteDistinguisher sets AutoRouteDistinguisher field to given value.
+
+### HasAutoRouteDistinguisher
+
+`func (o *RouteDomain) HasAutoRouteDistinguisher() bool`
+
+HasAutoRouteDistinguisher returns a boolean if a field has been set.
+
+### GetAutoRouteTarget
+
+`func (o *RouteDomain) GetAutoRouteTarget() bool`
+
+GetAutoRouteTarget returns the AutoRouteTarget field if non-nil, zero value otherwise.
+
+### GetAutoRouteTargetOk
+
+`func (o *RouteDomain) GetAutoRouteTargetOk() (*bool, bool)`
+
+GetAutoRouteTargetOk returns a tuple with the AutoRouteTarget field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRouteTarget
+
+`func (o *RouteDomain) SetAutoRouteTarget(v bool)`
+
+SetAutoRouteTarget sets AutoRouteTarget field to given value.
+
+### HasAutoRouteTarget
+
+`func (o *RouteDomain) HasAutoRouteTarget() bool`
+
+HasAutoRouteTarget returns a boolean if a field has been set.
 
 ### GetConfig
 

@@ -2568,6 +2568,128 @@ func (a *UsersAPIService) SendPasswordResetByAdminExecute(r UsersAPISendPassword
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type UsersAPISetUserPasswordByAdminRequest struct {
+	ctx context.Context
+	ApiService *UsersAPIService
+	userId float32
+	setUserPasswordByAdmin *SetUserPasswordByAdmin
+	ifMatch *string
+}
+
+func (r UsersAPISetUserPasswordByAdminRequest) SetUserPasswordByAdmin(setUserPasswordByAdmin SetUserPasswordByAdmin) UsersAPISetUserPasswordByAdminRequest {
+	r.setUserPasswordByAdmin = &setUserPasswordByAdmin
+	return r
+}
+
+// Entity tag
+func (r UsersAPISetUserPasswordByAdminRequest) IfMatch(ifMatch string) UsersAPISetUserPasswordByAdminRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r UsersAPISetUserPasswordByAdminRequest) Execute() (*User, *http.Response, error) {
+	return r.ApiService.SetUserPasswordByAdminExecute(r)
+}
+
+/*
+SetUserPasswordByAdmin Set user password by admin
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId
+ @return UsersAPISetUserPasswordByAdminRequest
+*/
+func (a *UsersAPIService) SetUserPasswordByAdmin(ctx context.Context, userId float32) UsersAPISetUserPasswordByAdminRequest {
+	return UsersAPISetUserPasswordByAdminRequest{
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+	}
+}
+
+// Execute executes the request
+//  @return User
+func (a *UsersAPIService) SetUserPasswordByAdminExecute(r UsersAPISetUserPasswordByAdminRequest) (*User, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *User
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.SetUserPasswordByAdmin")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/users/{userId}/actions/set-password"
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setUserPasswordByAdmin == nil {
+		return localVarReturnValue, nil, reportError("setUserPasswordByAdmin is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.setUserPasswordByAdmin
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type UsersAPISuspendUserRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService

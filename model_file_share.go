@@ -57,6 +57,8 @@ type FileShare struct {
 	Config FileShareConfiguration `json:"config"`
 	// Meta information of the File Share.
 	Meta FileShareMeta `json:"meta"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -578,6 +580,38 @@ func (o *FileShare) SetMeta(v FileShareMeta) {
 	o.Meta = v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *FileShare) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileShare) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *FileShare) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *FileShare) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o FileShare) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -620,6 +654,9 @@ func (o FileShare) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -691,6 +728,7 @@ func (o *FileShare) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "discoverInformation")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

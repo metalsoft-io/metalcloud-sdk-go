@@ -1067,7 +1067,7 @@ func (r EndpointAPIGetEndpointsRequest) FilterUpdatedTimestamp(filterUpdatedTime
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdTimestamp:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdTimestamp  - updatedTimestamp 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - siteId  - externalId  - createdTimestamp  - updatedTimestamp 
 func (r EndpointAPIGetEndpointsRequest) SortBy(sortBy []string) EndpointAPIGetEndpointsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1079,7 +1079,7 @@ func (r EndpointAPIGetEndpointsRequest) Search(search string) EndpointAPIGetEndp
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label 
+// List of fields to search by term to filter result values  **Example:** id,siteId,name,label,externalId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - siteId  - name  - label  - externalId 
 func (r EndpointAPIGetEndpointsRequest) SearchBy(searchBy []string) EndpointAPIGetEndpointsRequest {
 	r.searchBy = &searchBy
 	return r

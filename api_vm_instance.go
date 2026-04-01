@@ -1735,7 +1735,7 @@ func (r VMInstanceAPIUpdateVMInstanceConfigRequest) IfMatch(ifMatch string) VMIn
 	return r
 }
 
-func (r VMInstanceAPIUpdateVMInstanceConfigRequest) Execute() (*VMInstance, *http.Response, error) {
+func (r VMInstanceAPIUpdateVMInstanceConfigRequest) Execute() (*VMInstanceGroupConfiguration, *http.Response, error) {
 	return r.ApiService.UpdateVMInstanceConfigExecute(r)
 }
 
@@ -1759,13 +1759,13 @@ func (a *VMInstanceAPIService) UpdateVMInstanceConfig(ctx context.Context, infra
 }
 
 // Execute executes the request
-//  @return VMInstance
-func (a *VMInstanceAPIService) UpdateVMInstanceConfigExecute(r VMInstanceAPIUpdateVMInstanceConfigRequest) (*VMInstance, *http.Response, error) {
+//  @return VMInstanceGroupConfiguration
+func (a *VMInstanceAPIService) UpdateVMInstanceConfigExecute(r VMInstanceAPIUpdateVMInstanceConfigRequest) (*VMInstanceGroupConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *VMInstance
+		localVarReturnValue  *VMInstanceGroupConfiguration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.UpdateVMInstanceConfig")

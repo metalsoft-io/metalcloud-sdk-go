@@ -336,7 +336,7 @@ type SecurityAPIDeleteRoleRequest struct {
 	roleName string
 }
 
-func (r SecurityAPIDeleteRoleRequest) Execute() (*Role, *http.Response, error) {
+func (r SecurityAPIDeleteRoleRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteRoleExecute(r)
 }
 
@@ -356,18 +356,16 @@ func (a *SecurityAPIService) DeleteRole(ctx context.Context, roleName string) Se
 }
 
 // Execute executes the request
-//  @return Role
-func (a *SecurityAPIService) DeleteRoleExecute(r SecurityAPIDeleteRoleRequest) (*Role, *http.Response, error) {
+func (a *SecurityAPIService) DeleteRoleExecute(r SecurityAPIDeleteRoleRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Role
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.DeleteRole")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/roles/{roleName}"
@@ -387,7 +385,7 @@ func (a *SecurityAPIService) DeleteRoleExecute(r SecurityAPIDeleteRoleRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -396,19 +394,19 @@ func (a *SecurityAPIService) DeleteRoleExecute(r SecurityAPIDeleteRoleRequest) (
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -416,19 +414,10 @@ func (a *SecurityAPIService) DeleteRoleExecute(r SecurityAPIDeleteRoleRequest) (
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type SecurityAPIGetPermissionsRequest struct {

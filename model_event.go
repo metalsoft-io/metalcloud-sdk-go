@@ -55,6 +55,8 @@ type Event struct {
 	HttpUserAgent *string `json:"httpUserAgent,omitempty"`
 	// The remote ip address of the user who triggered the event
 	RemoteIpAddress *string `json:"remoteIpAddress,omitempty"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -572,6 +574,38 @@ func (o *Event) SetRemoteIpAddress(v string) {
 	o.RemoteIpAddress = &v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *Event) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *Event) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *Event) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -618,6 +652,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RemoteIpAddress) {
 		toSerialize["remoteIpAddress"] = o.RemoteIpAddress
+	}
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -685,6 +722,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "occurredTimestamp")
 		delete(additionalProperties, "httpUserAgent")
 		delete(additionalProperties, "remoteIpAddress")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -10,11 +10,13 @@ Method | HTTP request | Description
 [**DeleteInterconnectLink**](NetworkFabricInterconnectAPI.md#DeleteInterconnectLink) | **Delete** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Delete a specific fabric interconnect link
 [**DeleteNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#DeleteNetworkFabricInterconnect) | **Delete** /api/v2/network-fabric-interconnects/{id} | Delete a network fabric interconnect by ID
 [**DeployNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#DeployNetworkFabricInterconnect) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/deploy | Deploys the specified network fabric interconnect
+[**DetachNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#DetachNetworkFabricInterconnect) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/detach | Detaches the specified network fabric interconnect
 [**GetFabricInterconnectAvailableFabrics**](NetworkFabricInterconnectAPI.md#GetFabricInterconnectAvailableFabrics) | **Get** /api/v2/network-fabric-interconnects/{id}/fabrics-available | Get the available fabrics for a fabric interconnect
 [**GetFabricInterconnectFabrics**](NetworkFabricInterconnectAPI.md#GetFabricInterconnectFabrics) | **Get** /api/v2/network-fabric-interconnects/{id}/fabrics | Get the fabrics for a fabric interconnect
 [**GetInterconnectLink**](NetworkFabricInterconnectAPI.md#GetInterconnectLink) | **Get** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Get a specific fabric interconnect link
 [**GetInterconnectLinks**](NetworkFabricInterconnectAPI.md#GetInterconnectLinks) | **Get** /api/v2/network-fabric-interconnects/{id}/links | Get all fabric interconnect links
 [**GetNetworkFabricInterconnectById**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectById) | **Get** /api/v2/network-fabric-interconnects/{id} | Get a network fabric interconnect by ID
+[**GetNetworkFabricInterconnectDeploymentInfo**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectDeploymentInfo) | **Get** /api/v2/network-fabric-interconnects/{id}/deployment-info | Get deployment info for a network fabric interconnect
 [**GetNetworkFabricInterconnectTemplateByType**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectTemplateByType) | **Get** /api/v2/network-fabric-interconnects/template/{interconnectType} | Get a network fabric interconnect template configuration by type
 [**GetNetworkFabricInterconnects**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnects) | **Get** /api/v2/network-fabric-interconnects | Get all network fabric interconnects
 [**RejectNetworkFabricInterconnectDeploy**](NetworkFabricInterconnectAPI.md#RejectNetworkFabricInterconnectDeploy) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/reject-deploy | Rejects the deployment of the specified network fabric interconnect
@@ -112,7 +114,7 @@ import (
 
 func main() {
 	id := int32(56) // int32 | The ID of the network fabric interconnect
-	createNetworkFabricInterconnectLink := *openapiclient.NewCreateNetworkFabricInterconnectLink(int32(2), int32(1), int32(4), int32(1)) // CreateNetworkFabricInterconnectLink | The network fabric link to create
+	createNetworkFabricInterconnectLink := *openapiclient.NewCreateNetworkFabricInterconnectLink(int32(2), int32(1)) // CreateNetworkFabricInterconnectLink | The network fabric link to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -437,6 +439,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DetachNetworkFabricInterconnect
+
+> JobInfo DetachNetworkFabricInterconnect(ctx, id).Execute()
+
+Detaches the specified network fabric interconnect
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.DetachNetworkFabricInterconnect(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.DetachNetworkFabricInterconnect``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DetachNetworkFabricInterconnect`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricInterconnectAPI.DetachNetworkFabricInterconnect`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDetachNetworkFabricInterconnectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**JobInfo**](JobInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetFabricInterconnectAvailableFabrics
 
 > NetworkFabricPaginatedList GetFabricInterconnectAvailableFabrics(ctx, id).Page(page).Limit(limit).FilterId(filterId).FilterName(filterName).FilterDescription(filterDescription).FilterStatus(filterStatus).FilterSiteId(filterSiteId).FilterFabricConfigurationFabricType(filterFabricConfigurationFabricType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
@@ -467,9 +539,9 @@ func main() {
 	filterStatus := []string{"Inner_example"} // []string | Filter by status query param.  **Format:** filter.status={$not}:OPERATION:VALUE    **Example:** filter.status=$btw:John Doe&filter.status=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterSiteId := []string{"Inner_example"} // []string | Filter by siteId query param.  **Format:** filter.siteId={$not}:OPERATION:VALUE    **Example:** filter.siteId=$btw:John Doe&filter.siteId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterFabricConfigurationFabricType := []string{"Inner_example"} // []string | Filter by fabricConfiguration.fabricType query param.  **Format:** filter.fabricConfiguration.fabricType={$not}:OPERATION:VALUE    **Example:** filter.fabricConfiguration.fabricType=$btw:John Doe&filter.fabricConfiguration.fabricType=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - createdTimestamp  - updatedTimestamp  (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - status  - createdTimestamp  - updatedTimestamp  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name,description,status,siteId,fabricConfiguration.fabricType   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - description  - status  - siteId  - fabricConfiguration.fabricType  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,name,description,status,siteId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description  - status  - siteId  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -507,9 +579,9 @@ Name | Type | Description  | Notes
  **filterStatus** | **[]string** | Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$btw:John Doe&amp;filter.status&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterSiteId** | **[]string** | Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterFabricConfigurationFabricType** | **[]string** | Filter by fabricConfiguration.fabricType query param.  **Format:** filter.fabricConfiguration.fabricType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricConfiguration.fabricType&#x3D;$btw:John Doe&amp;filter.fabricConfiguration.fabricType&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - createdTimestamp  - updatedTimestamp  | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - name  - status  - createdTimestamp  - updatedTimestamp  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name,description,status,siteId,fabricConfiguration.fabricType   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - description  - status  - siteId  - fabricConfiguration.fabricType  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,name,description,status,siteId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description  - status  - siteId  | 
 
 ### Return type
 
@@ -674,7 +746,7 @@ Name | Type | Description  | Notes
 
 ## GetInterconnectLinks
 
-> NetworkFabricInterconnectLinksPaginatedList GetInterconnectLinks(ctx, id).Page(page).Limit(limit).FilterId(filterId).FilterInterconnectId(filterInterconnectId).FilterFabricAId(filterFabricAId).FilterFabricANetworkEquipmentId(filterFabricANetworkEquipmentId).FilterFabricBId(filterFabricBId).FilterFabricBNetworkEquipmentId(filterFabricBNetworkEquipmentId).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+> NetworkFabricInterconnectLinksPaginatedList GetInterconnectLinks(ctx, id).Page(page).Limit(limit).FilterId(filterId).FilterFabricId(filterFabricId).FilterNetworkEquipmentId(filterNetworkEquipmentId).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 
 Get all fabric interconnect links
 
@@ -696,20 +768,17 @@ func main() {
 	id := int32(56) // int32 | The ID of the network fabric interconnect
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterInterconnectId := []string{"Inner_example"} // []string | Filter by interconnectId query param.  **Format:** filter.interconnectId={$not}:OPERATION:VALUE    **Example:** filter.interconnectId=$btw:John Doe&filter.interconnectId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterFabricAId := []string{"Inner_example"} // []string | Filter by fabricAId query param.  **Format:** filter.fabricAId={$not}:OPERATION:VALUE    **Example:** filter.fabricAId=$btw:John Doe&filter.fabricAId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterFabricANetworkEquipmentId := []string{"Inner_example"} // []string | Filter by fabricANetworkEquipmentId query param.  **Format:** filter.fabricANetworkEquipmentId={$not}:OPERATION:VALUE    **Example:** filter.fabricANetworkEquipmentId=$btw:John Doe&filter.fabricANetworkEquipmentId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterFabricBId := []string{"Inner_example"} // []string | Filter by fabricBId query param.  **Format:** filter.fabricBId={$not}:OPERATION:VALUE    **Example:** filter.fabricBId=$btw:John Doe&filter.fabricBId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterFabricBNetworkEquipmentId := []string{"Inner_example"} // []string | Filter by fabricBNetworkEquipmentId query param.  **Format:** filter.fabricBNetworkEquipmentId={$not}:OPERATION:VALUE    **Example:** filter.fabricBNetworkEquipmentId=$btw:John Doe&filter.fabricBNetworkEquipmentId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=interconnectId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - interconnectId  - status  - fabricAId  - fabricANetworkEquipmentId  - fabricBId  - fabricBNetworkEquipmentId  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe&filter.id=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterFabricId := []string{"Inner_example"} // []string | Filter by fabricId query param.  **Format:** filter.fabricId={$not}:OPERATION:VALUE    **Example:** filter.fabricId=$eq:John Doe&filter.fabricId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterNetworkEquipmentId := []string{"Inner_example"} // []string | Filter by networkEquipmentId query param.  **Format:** filter.networkEquipmentId={$not}:OPERATION:VALUE    **Example:** filter.networkEquipmentId=$eq:John Doe&filter.networkEquipmentId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=interconnectId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - interconnectId  - status  - fabricId  - networkEquipmentId  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:**    **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields**   (optional)
-	select_ := "select__example" // string | List of fields to select.  **Example:** id,revision,status,interconnectId,fabricAId   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   (optional)
+	select_ := "select__example" // string | List of fields to select.  **Example:** id,revision,status,interconnectId,fabricId   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricInterconnectAPI.GetInterconnectLinks(context.Background(), id).Page(page).Limit(limit).FilterId(filterId).FilterInterconnectId(filterInterconnectId).FilterFabricAId(filterFabricAId).FilterFabricANetworkEquipmentId(filterFabricANetworkEquipmentId).FilterFabricBId(filterFabricBId).FilterFabricBNetworkEquipmentId(filterFabricBNetworkEquipmentId).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.GetInterconnectLinks(context.Background(), id).Page(page).Limit(limit).FilterId(filterId).FilterFabricId(filterFabricId).FilterNetworkEquipmentId(filterNetworkEquipmentId).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.GetInterconnectLinks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -737,16 +806,13 @@ Name | Type | Description  | Notes
 
  **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
  **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
- **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterInterconnectId** | **[]string** | Filter by interconnectId query param.  **Format:** filter.interconnectId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.interconnectId&#x3D;$btw:John Doe&amp;filter.interconnectId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterFabricAId** | **[]string** | Filter by fabricAId query param.  **Format:** filter.fabricAId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricAId&#x3D;$btw:John Doe&amp;filter.fabricAId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterFabricANetworkEquipmentId** | **[]string** | Filter by fabricANetworkEquipmentId query param.  **Format:** filter.fabricANetworkEquipmentId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricANetworkEquipmentId&#x3D;$btw:John Doe&amp;filter.fabricANetworkEquipmentId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterFabricBId** | **[]string** | Filter by fabricBId query param.  **Format:** filter.fabricBId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricBId&#x3D;$btw:John Doe&amp;filter.fabricBId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterFabricBNetworkEquipmentId** | **[]string** | Filter by fabricBNetworkEquipmentId query param.  **Format:** filter.fabricBNetworkEquipmentId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricBNetworkEquipmentId&#x3D;$btw:John Doe&amp;filter.fabricBNetworkEquipmentId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;interconnectId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - interconnectId  - status  - fabricAId  - fabricANetworkEquipmentId  - fabricBId  - fabricBNetworkEquipmentId  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterFabricId** | **[]string** | Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe&amp;filter.fabricId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterNetworkEquipmentId** | **[]string** | Filter by networkEquipmentId query param.  **Format:** filter.networkEquipmentId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkEquipmentId&#x3D;$eq:John Doe&amp;filter.networkEquipmentId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;interconnectId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - interconnectId  - status  - fabricId  - networkEquipmentId  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:**    **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields**   | 
- **select_** | **string** | List of fields to select.  **Example:** id,revision,status,interconnectId,fabricAId   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   | 
+ **select_** | **string** | List of fields to select.  **Example:** id,revision,status,interconnectId,fabricId   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param   | 
 
 ### Return type
 
@@ -821,6 +887,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NetworkFabricInterconnect**](NetworkFabricInterconnect.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkFabricInterconnectDeploymentInfo
+
+> NetworkFabricInterconnectDeploymentInfo GetNetworkFabricInterconnectDeploymentInfo(ctx, id).Execute()
+
+Get deployment info for a network fabric interconnect
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := int32(56) // int32 | The ID of the network fabric interconnect
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentInfo(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkFabricInterconnectDeploymentInfo`: NetworkFabricInterconnectDeploymentInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int32** | The ID of the network fabric interconnect | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkFabricInterconnectDeploymentInfoRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NetworkFabricInterconnectDeploymentInfo**](NetworkFabricInterconnectDeploymentInfo.md)
 
 ### Authorization
 

@@ -22,9 +22,13 @@ var _ MappedNullable = &NetworkFabricInterconnectTemplate{}
 // NetworkFabricInterconnectTemplate struct for NetworkFabricInterconnectTemplate
 type NetworkFabricInterconnectTemplate struct {
 	// BGP configuration template for the interconnect
-	BgpConfigurationTemplate string `json:"bgpConfigurationTemplate"`
+	AddGlobalConfigBgpTemplate string `json:"addGlobalConfigBgpTemplate"`
 	// BGP neighbor template for the interconnect
-	BgpNeighborTemplate string `json:"bgpNeighborTemplate"`
+	AddNeighborBgpTemplate string `json:"addNeighborBgpTemplate"`
+	// BGP global configuration template for the interconnect to remove existing configuration
+	RemoveGlobalConfigBgpTemplate string `json:"removeGlobalConfigBgpTemplate"`
+	// BGP neighbor template for the interconnect to remove existing configuration
+	RemoveNeighborBgpTemplate string `json:"removeNeighborBgpTemplate"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +38,12 @@ type _NetworkFabricInterconnectTemplate NetworkFabricInterconnectTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricInterconnectTemplate(bgpConfigurationTemplate string, bgpNeighborTemplate string) *NetworkFabricInterconnectTemplate {
+func NewNetworkFabricInterconnectTemplate(addGlobalConfigBgpTemplate string, addNeighborBgpTemplate string, removeGlobalConfigBgpTemplate string, removeNeighborBgpTemplate string) *NetworkFabricInterconnectTemplate {
 	this := NetworkFabricInterconnectTemplate{}
-	this.BgpConfigurationTemplate = bgpConfigurationTemplate
-	this.BgpNeighborTemplate = bgpNeighborTemplate
+	this.AddGlobalConfigBgpTemplate = addGlobalConfigBgpTemplate
+	this.AddNeighborBgpTemplate = addNeighborBgpTemplate
+	this.RemoveGlobalConfigBgpTemplate = removeGlobalConfigBgpTemplate
+	this.RemoveNeighborBgpTemplate = removeNeighborBgpTemplate
 	return &this
 }
 
@@ -49,52 +55,100 @@ func NewNetworkFabricInterconnectTemplateWithDefaults() *NetworkFabricInterconne
 	return &this
 }
 
-// GetBgpConfigurationTemplate returns the BgpConfigurationTemplate field value
-func (o *NetworkFabricInterconnectTemplate) GetBgpConfigurationTemplate() string {
+// GetAddGlobalConfigBgpTemplate returns the AddGlobalConfigBgpTemplate field value
+func (o *NetworkFabricInterconnectTemplate) GetAddGlobalConfigBgpTemplate() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.BgpConfigurationTemplate
+	return o.AddGlobalConfigBgpTemplate
 }
 
-// GetBgpConfigurationTemplateOk returns a tuple with the BgpConfigurationTemplate field value
+// GetAddGlobalConfigBgpTemplateOk returns a tuple with the AddGlobalConfigBgpTemplate field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricInterconnectTemplate) GetBgpConfigurationTemplateOk() (*string, bool) {
+func (o *NetworkFabricInterconnectTemplate) GetAddGlobalConfigBgpTemplateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BgpConfigurationTemplate, true
+	return &o.AddGlobalConfigBgpTemplate, true
 }
 
-// SetBgpConfigurationTemplate sets field value
-func (o *NetworkFabricInterconnectTemplate) SetBgpConfigurationTemplate(v string) {
-	o.BgpConfigurationTemplate = v
+// SetAddGlobalConfigBgpTemplate sets field value
+func (o *NetworkFabricInterconnectTemplate) SetAddGlobalConfigBgpTemplate(v string) {
+	o.AddGlobalConfigBgpTemplate = v
 }
 
-// GetBgpNeighborTemplate returns the BgpNeighborTemplate field value
-func (o *NetworkFabricInterconnectTemplate) GetBgpNeighborTemplate() string {
+// GetAddNeighborBgpTemplate returns the AddNeighborBgpTemplate field value
+func (o *NetworkFabricInterconnectTemplate) GetAddNeighborBgpTemplate() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.BgpNeighborTemplate
+	return o.AddNeighborBgpTemplate
 }
 
-// GetBgpNeighborTemplateOk returns a tuple with the BgpNeighborTemplate field value
+// GetAddNeighborBgpTemplateOk returns a tuple with the AddNeighborBgpTemplate field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricInterconnectTemplate) GetBgpNeighborTemplateOk() (*string, bool) {
+func (o *NetworkFabricInterconnectTemplate) GetAddNeighborBgpTemplateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BgpNeighborTemplate, true
+	return &o.AddNeighborBgpTemplate, true
 }
 
-// SetBgpNeighborTemplate sets field value
-func (o *NetworkFabricInterconnectTemplate) SetBgpNeighborTemplate(v string) {
-	o.BgpNeighborTemplate = v
+// SetAddNeighborBgpTemplate sets field value
+func (o *NetworkFabricInterconnectTemplate) SetAddNeighborBgpTemplate(v string) {
+	o.AddNeighborBgpTemplate = v
+}
+
+// GetRemoveGlobalConfigBgpTemplate returns the RemoveGlobalConfigBgpTemplate field value
+func (o *NetworkFabricInterconnectTemplate) GetRemoveGlobalConfigBgpTemplate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RemoveGlobalConfigBgpTemplate
+}
+
+// GetRemoveGlobalConfigBgpTemplateOk returns a tuple with the RemoveGlobalConfigBgpTemplate field value
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnectTemplate) GetRemoveGlobalConfigBgpTemplateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RemoveGlobalConfigBgpTemplate, true
+}
+
+// SetRemoveGlobalConfigBgpTemplate sets field value
+func (o *NetworkFabricInterconnectTemplate) SetRemoveGlobalConfigBgpTemplate(v string) {
+	o.RemoveGlobalConfigBgpTemplate = v
+}
+
+// GetRemoveNeighborBgpTemplate returns the RemoveNeighborBgpTemplate field value
+func (o *NetworkFabricInterconnectTemplate) GetRemoveNeighborBgpTemplate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RemoveNeighborBgpTemplate
+}
+
+// GetRemoveNeighborBgpTemplateOk returns a tuple with the RemoveNeighborBgpTemplate field value
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnectTemplate) GetRemoveNeighborBgpTemplateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RemoveNeighborBgpTemplate, true
+}
+
+// SetRemoveNeighborBgpTemplate sets field value
+func (o *NetworkFabricInterconnectTemplate) SetRemoveNeighborBgpTemplate(v string) {
+	o.RemoveNeighborBgpTemplate = v
 }
 
 func (o NetworkFabricInterconnectTemplate) MarshalJSON() ([]byte, error) {
@@ -107,8 +161,10 @@ func (o NetworkFabricInterconnectTemplate) MarshalJSON() ([]byte, error) {
 
 func (o NetworkFabricInterconnectTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bgpConfigurationTemplate"] = o.BgpConfigurationTemplate
-	toSerialize["bgpNeighborTemplate"] = o.BgpNeighborTemplate
+	toSerialize["addGlobalConfigBgpTemplate"] = o.AddGlobalConfigBgpTemplate
+	toSerialize["addNeighborBgpTemplate"] = o.AddNeighborBgpTemplate
+	toSerialize["removeGlobalConfigBgpTemplate"] = o.RemoveGlobalConfigBgpTemplate
+	toSerialize["removeNeighborBgpTemplate"] = o.RemoveNeighborBgpTemplate
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -122,8 +178,10 @@ func (o *NetworkFabricInterconnectTemplate) UnmarshalJSON(data []byte) (err erro
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"bgpConfigurationTemplate",
-		"bgpNeighborTemplate",
+		"addGlobalConfigBgpTemplate",
+		"addNeighborBgpTemplate",
+		"removeGlobalConfigBgpTemplate",
+		"removeNeighborBgpTemplate",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -153,8 +211,10 @@ func (o *NetworkFabricInterconnectTemplate) UnmarshalJSON(data []byte) (err erro
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "bgpConfigurationTemplate")
-		delete(additionalProperties, "bgpNeighborTemplate")
+		delete(additionalProperties, "addGlobalConfigBgpTemplate")
+		delete(additionalProperties, "addNeighborBgpTemplate")
+		delete(additionalProperties, "removeGlobalConfigBgpTemplate")
+		delete(additionalProperties, "removeNeighborBgpTemplate")
 		o.AdditionalProperties = additionalProperties
 	}
 

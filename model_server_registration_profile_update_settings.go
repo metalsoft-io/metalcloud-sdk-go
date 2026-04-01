@@ -56,6 +56,10 @@ type ServerRegistrationProfileUpdateSettings struct {
 	RaidOddNumberMoreThanOneDrive *string `json:"raidOddNumberMoreThanOneDrive,omitempty"`
 	// Server registration BIOS profile
 	BiosProfile []ServerRegistrationBiosProfile `json:"biosProfile,omitempty"`
+	// Whether to register the server in DPU or NIC mode.
+	DpuMode *string `json:"dpuMode,omitempty"`
+	// Maximum number of virtual interfaces to create on DPUs. This setting is only applicable if dpuMode is set to DPU.
+	MaxDpuVirtualInterfaces *float32 `json:"maxDpuVirtualInterfaces,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -67,6 +71,10 @@ type _ServerRegistrationProfileUpdateSettings ServerRegistrationProfileUpdateSet
 // will change when the set of required properties is changed
 func NewServerRegistrationProfileUpdateSettings() *ServerRegistrationProfileUpdateSettings {
 	this := ServerRegistrationProfileUpdateSettings{}
+	var dpuMode string = "dpu"
+	this.DpuMode = &dpuMode
+	var maxDpuVirtualInterfaces float32 = 64
+	this.MaxDpuVirtualInterfaces = &maxDpuVirtualInterfaces
 	return &this
 }
 
@@ -75,6 +83,10 @@ func NewServerRegistrationProfileUpdateSettings() *ServerRegistrationProfileUpda
 // but it doesn't guarantee that properties required by API are set
 func NewServerRegistrationProfileUpdateSettingsWithDefaults() *ServerRegistrationProfileUpdateSettings {
 	this := ServerRegistrationProfileUpdateSettings{}
+	var dpuMode string = "dpu"
+	this.DpuMode = &dpuMode
+	var maxDpuVirtualInterfaces float32 = 64
+	this.MaxDpuVirtualInterfaces = &maxDpuVirtualInterfaces
 	return &this
 }
 
@@ -654,6 +666,70 @@ func (o *ServerRegistrationProfileUpdateSettings) SetBiosProfile(v []ServerRegis
 	o.BiosProfile = v
 }
 
+// GetDpuMode returns the DpuMode field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileUpdateSettings) GetDpuMode() string {
+	if o == nil || IsNil(o.DpuMode) {
+		var ret string
+		return ret
+	}
+	return *o.DpuMode
+}
+
+// GetDpuModeOk returns a tuple with the DpuMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfileUpdateSettings) GetDpuModeOk() (*string, bool) {
+	if o == nil || IsNil(o.DpuMode) {
+		return nil, false
+	}
+	return o.DpuMode, true
+}
+
+// HasDpuMode returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileUpdateSettings) HasDpuMode() bool {
+	if o != nil && !IsNil(o.DpuMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetDpuMode gets a reference to the given string and assigns it to the DpuMode field.
+func (o *ServerRegistrationProfileUpdateSettings) SetDpuMode(v string) {
+	o.DpuMode = &v
+}
+
+// GetMaxDpuVirtualInterfaces returns the MaxDpuVirtualInterfaces field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileUpdateSettings) GetMaxDpuVirtualInterfaces() float32 {
+	if o == nil || IsNil(o.MaxDpuVirtualInterfaces) {
+		var ret float32
+		return ret
+	}
+	return *o.MaxDpuVirtualInterfaces
+}
+
+// GetMaxDpuVirtualInterfacesOk returns a tuple with the MaxDpuVirtualInterfaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfileUpdateSettings) GetMaxDpuVirtualInterfacesOk() (*float32, bool) {
+	if o == nil || IsNil(o.MaxDpuVirtualInterfaces) {
+		return nil, false
+	}
+	return o.MaxDpuVirtualInterfaces, true
+}
+
+// HasMaxDpuVirtualInterfaces returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileUpdateSettings) HasMaxDpuVirtualInterfaces() bool {
+	if o != nil && !IsNil(o.MaxDpuVirtualInterfaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxDpuVirtualInterfaces gets a reference to the given float32 and assigns it to the MaxDpuVirtualInterfaces field.
+func (o *ServerRegistrationProfileUpdateSettings) SetMaxDpuVirtualInterfaces(v float32) {
+	o.MaxDpuVirtualInterfaces = &v
+}
+
 func (o ServerRegistrationProfileUpdateSettings) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -718,6 +794,12 @@ func (o ServerRegistrationProfileUpdateSettings) ToMap() (map[string]interface{}
 	if !IsNil(o.BiosProfile) {
 		toSerialize["biosProfile"] = o.BiosProfile
 	}
+	if !IsNil(o.DpuMode) {
+		toSerialize["dpuMode"] = o.DpuMode
+	}
+	if !IsNil(o.MaxDpuVirtualInterfaces) {
+		toSerialize["maxDpuVirtualInterfaces"] = o.MaxDpuVirtualInterfaces
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -758,6 +840,8 @@ func (o *ServerRegistrationProfileUpdateSettings) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "raidEvenNumberMoreThanTwoDrives")
 		delete(additionalProperties, "raidOddNumberMoreThanOneDrive")
 		delete(additionalProperties, "biosProfile")
+		delete(additionalProperties, "dpuMode")
+		delete(additionalProperties, "maxDpuVirtualInterfaces")
 		o.AdditionalProperties = additionalProperties
 	}
 

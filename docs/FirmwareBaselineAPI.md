@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFirmwareBaseline
 
-> CreateFirmwareBaseline CreateFirmwareBaseline(ctx).CreateFirmwareBaseline(createFirmwareBaseline).Execute()
+> FirmwareBaseline CreateFirmwareBaseline(ctx).CreateFirmwareBaseline(createFirmwareBaseline).Execute()
 
 Create a new firmware baseline
 
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineAPI.CreateFirmwareBaseline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateFirmwareBaseline`: CreateFirmwareBaseline
+	// response from `CreateFirmwareBaseline`: FirmwareBaseline
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBaselineAPI.CreateFirmwareBaseline`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateFirmwareBaseline**](CreateFirmwareBaseline.md)
+[**FirmwareBaseline**](FirmwareBaseline.md)
 
 ### Authorization
 

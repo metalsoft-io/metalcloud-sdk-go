@@ -30,8 +30,8 @@ type CronJob struct {
 	WaitForCompletion float32 `json:"waitForCompletion"`
 	LifetimeSeconds float32 `json:"lifetimeSeconds"`
 	Disabled float32 `json:"disabled"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,7 +41,7 @@ type _CronJob CronJob
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCronJob(id float32, label string, functionName string, params []map[string]interface{}, schedule string, waitForCompletion float32, lifetimeSeconds float32, disabled float32, links map[string]interface{}) *CronJob {
+func NewCronJob(id float32, label string, functionName string, params []map[string]interface{}, schedule string, waitForCompletion float32, lifetimeSeconds float32, disabled float32) *CronJob {
 	this := CronJob{}
 	this.Id = id
 	this.Label = label
@@ -51,7 +51,6 @@ func NewCronJob(id float32, label string, functionName string, params []map[stri
 	this.WaitForCompletion = waitForCompletion
 	this.LifetimeSeconds = lifetimeSeconds
 	this.Disabled = disabled
-	this.Links = links
 	return &this
 }
 
@@ -287,27 +286,35 @@ func (o *CronJob) SetDisabled(v float32) {
 	o.Disabled = v
 }
 
-// GetLinks returns the Links field value
-func (o *CronJob) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *CronJob) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CronJob) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *CronJob) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *CronJob) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *CronJob) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *CronJob) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -332,7 +339,9 @@ func (o CronJob) ToMap() (map[string]interface{}, error) {
 	toSerialize["waitForCompletion"] = o.WaitForCompletion
 	toSerialize["lifetimeSeconds"] = o.LifetimeSeconds
 	toSerialize["disabled"] = o.Disabled
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -354,7 +363,6 @@ func (o *CronJob) UnmarshalJSON(data []byte) (err error) {
 		"waitForCompletion",
 		"lifetimeSeconds",
 		"disabled",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

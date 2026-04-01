@@ -64,6 +64,8 @@ type DriveGroup struct {
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Meta information of the Drive Group.
 	Meta DriveGroupMeta `json:"meta"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -733,6 +735,38 @@ func (o *DriveGroup) SetMeta(v DriveGroupMeta) {
 	o.Meta = v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *DriveGroup) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DriveGroup) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *DriveGroup) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *DriveGroup) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o DriveGroup) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -786,6 +820,9 @@ func (o DriveGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["config"] = o.Config
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["meta"] = o.Meta
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -864,6 +901,7 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "meta")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

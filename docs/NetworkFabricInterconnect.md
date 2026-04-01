@@ -9,8 +9,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Unique label for the network fabric interconnect | 
 **Name** | Pointer to **string** | Name of the network fabric interconnect | [optional] 
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
-**BgpConfigurationTemplate** | Pointer to **string** | BGP configuration template for the interconnect | [optional] 
-**BgpNeighborTemplate** | Pointer to **string** | BGP neighbor template for the interconnect | [optional] 
+**BgpConfigurationTemplateId** | Pointer to **int32** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
 **TransportId** | Pointer to **int32** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
@@ -149,55 +148,30 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetBgpConfigurationTemplate
+### GetBgpConfigurationTemplateId
 
-`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplate() string`
+`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateId() int32`
 
-GetBgpConfigurationTemplate returns the BgpConfigurationTemplate field if non-nil, zero value otherwise.
+GetBgpConfigurationTemplateId returns the BgpConfigurationTemplateId field if non-nil, zero value otherwise.
 
-### GetBgpConfigurationTemplateOk
+### GetBgpConfigurationTemplateIdOk
 
-`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateOk() (*string, bool)`
+`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int32, bool)`
 
-GetBgpConfigurationTemplateOk returns a tuple with the BgpConfigurationTemplate field if it's non-nil, zero value otherwise
+GetBgpConfigurationTemplateIdOk returns a tuple with the BgpConfigurationTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBgpConfigurationTemplate
+### SetBgpConfigurationTemplateId
 
-`func (o *NetworkFabricInterconnect) SetBgpConfigurationTemplate(v string)`
+`func (o *NetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int32)`
 
-SetBgpConfigurationTemplate sets BgpConfigurationTemplate field to given value.
+SetBgpConfigurationTemplateId sets BgpConfigurationTemplateId field to given value.
 
-### HasBgpConfigurationTemplate
+### HasBgpConfigurationTemplateId
 
-`func (o *NetworkFabricInterconnect) HasBgpConfigurationTemplate() bool`
+`func (o *NetworkFabricInterconnect) HasBgpConfigurationTemplateId() bool`
 
-HasBgpConfigurationTemplate returns a boolean if a field has been set.
-
-### GetBgpNeighborTemplate
-
-`func (o *NetworkFabricInterconnect) GetBgpNeighborTemplate() string`
-
-GetBgpNeighborTemplate returns the BgpNeighborTemplate field if non-nil, zero value otherwise.
-
-### GetBgpNeighborTemplateOk
-
-`func (o *NetworkFabricInterconnect) GetBgpNeighborTemplateOk() (*string, bool)`
-
-GetBgpNeighborTemplateOk returns a tuple with the BgpNeighborTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBgpNeighborTemplate
-
-`func (o *NetworkFabricInterconnect) SetBgpNeighborTemplate(v string)`
-
-SetBgpNeighborTemplate sets BgpNeighborTemplate field to given value.
-
-### HasBgpNeighborTemplate
-
-`func (o *NetworkFabricInterconnect) HasBgpNeighborTemplate() bool`
-
-HasBgpNeighborTemplate returns a boolean if a field has been set.
+HasBgpConfigurationTemplateId returns a boolean if a field has been set.
 
 ### GetTransportId
 

@@ -366,7 +366,7 @@ func (r SecretsAPIGetSecretsRequest) FilterUserIdOwner(filterUserIdOwner []strin
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** updatedTimestamp:DESC  **Available Fields** - id  - name  - createdTimestamp  - updatedTimestamp 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** updatedTimestamp:DESC  **Available Fields** - id  - name  - userIdOwner  - usage  - createdTimestamp  - updatedTimestamp 
 func (r SecretsAPIGetSecretsRequest) SortBy(sortBy []string) SecretsAPIGetSecretsRequest {
 	r.sortBy = &sortBy
 	return r

@@ -26,6 +26,7 @@ Method | HTTP request | Description
 [**ResendEmailVerification**](UsersAPI.md#ResendEmailVerification) | **Post** /api/v2/users/{userId}/actions/resend-email-verification | Resend email verification
 [**ResendUserInvitation**](UsersAPI.md#ResendUserInvitation) | **Post** /api/v2/users/{userId}/actions/resend-user-invitation | Resend user invitation
 [**SendPasswordResetByAdmin**](UsersAPI.md#SendPasswordResetByAdmin) | **Post** /api/v2/users/{userId}/actions/send-password-reset | Send password reset by admin
+[**SetUserPasswordByAdmin**](UsersAPI.md#SetUserPasswordByAdmin) | **Post** /api/v2/users/{userId}/actions/set-password | Set user password by admin
 [**SuspendUser**](UsersAPI.md#SuspendUser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 [**UnarchiveUser**](UsersAPI.md#UnarchiveUser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
 [**UnsuspendUser**](UsersAPI.md#UnsuspendUser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -1571,6 +1572,78 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **passwordResetByAdmin** | [**PasswordResetByAdmin**](PasswordResetByAdmin.md) |  | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetUserPasswordByAdmin
+
+> User SetUserPasswordByAdmin(ctx, userId).SetUserPasswordByAdmin(setUserPasswordByAdmin).IfMatch(ifMatch).Execute()
+
+Set user password by admin
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	setUserPasswordByAdmin := *openapiclient.NewSetUserPasswordByAdmin("Password_example") // SetUserPasswordByAdmin | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.SetUserPasswordByAdmin(context.Background(), userId).SetUserPasswordByAdmin(setUserPasswordByAdmin).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.SetUserPasswordByAdmin``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetUserPasswordByAdmin`: User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.SetUserPasswordByAdmin`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetUserPasswordByAdminRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setUserPasswordByAdmin** | [**SetUserPasswordByAdmin**](SetUserPasswordByAdmin.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 

@@ -36,7 +36,7 @@ func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) CreateFirmwareBaseline
 	return r
 }
 
-func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) Execute() (*CreateFirmwareBaseline, *http.Response, error) {
+func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) Execute() (*FirmwareBaseline, *http.Response, error) {
 	return r.ApiService.CreateFirmwareBaselineExecute(r)
 }
 
@@ -56,13 +56,13 @@ func (a *FirmwareBaselineAPIService) CreateFirmwareBaseline(ctx context.Context)
 }
 
 // Execute executes the request
-//  @return CreateFirmwareBaseline
-func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBaselineAPICreateFirmwareBaselineRequest) (*CreateFirmwareBaseline, *http.Response, error) {
+//  @return FirmwareBaseline
+func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBaselineAPICreateFirmwareBaselineRequest) (*FirmwareBaseline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateFirmwareBaseline
+		localVarReturnValue  *FirmwareBaseline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBaselineAPIService.CreateFirmwareBaseline")

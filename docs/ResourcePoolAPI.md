@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 ## GetResourcePool
 
-> ResourcePool GetResourcePool(ctx, resourcePoolId).Execute()
+> ResourcePoolWithStats GetResourcePool(ctx, resourcePoolId).Execute()
 
 Get Resource Pool information
 
@@ -399,7 +399,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ResourcePoolAPI.GetResourcePool``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetResourcePool`: ResourcePool
+	// response from `GetResourcePool`: ResourcePoolWithStats
 	fmt.Fprintf(os.Stdout, "Response from `ResourcePoolAPI.GetResourcePool`: %v\n", resp)
 }
 ```
@@ -423,7 +423,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourcePool**](ResourcePool.md)
+[**ResourcePoolWithStats**](ResourcePoolWithStats.md)
 
 ### Authorization
 

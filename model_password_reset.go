@@ -25,6 +25,8 @@ type PasswordReset struct {
 	Email string `json:"email"`
 	// The redirect URL after password recovery
 	RedirectUrl *string `json:"redirectUrl,omitempty"`
+	// CAPTCHA verification token from the client-side widget
+	CaptchaToken *string `json:"captchaToken,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,6 +106,38 @@ func (o *PasswordReset) SetRedirectUrl(v string) {
 	o.RedirectUrl = &v
 }
 
+// GetCaptchaToken returns the CaptchaToken field value if set, zero value otherwise.
+func (o *PasswordReset) GetCaptchaToken() string {
+	if o == nil || IsNil(o.CaptchaToken) {
+		var ret string
+		return ret
+	}
+	return *o.CaptchaToken
+}
+
+// GetCaptchaTokenOk returns a tuple with the CaptchaToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PasswordReset) GetCaptchaTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.CaptchaToken) {
+		return nil, false
+	}
+	return o.CaptchaToken, true
+}
+
+// HasCaptchaToken returns a boolean if a field has been set.
+func (o *PasswordReset) HasCaptchaToken() bool {
+	if o != nil && !IsNil(o.CaptchaToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetCaptchaToken gets a reference to the given string and assigns it to the CaptchaToken field.
+func (o *PasswordReset) SetCaptchaToken(v string) {
+	o.CaptchaToken = &v
+}
+
 func (o PasswordReset) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -117,6 +151,9 @@ func (o PasswordReset) ToMap() (map[string]interface{}, error) {
 	toSerialize["email"] = o.Email
 	if !IsNil(o.RedirectUrl) {
 		toSerialize["redirectUrl"] = o.RedirectUrl
+	}
+	if !IsNil(o.CaptchaToken) {
+		toSerialize["captchaToken"] = o.CaptchaToken
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -163,6 +200,7 @@ func (o *PasswordReset) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "redirectUrl")
+		delete(additionalProperties, "captchaToken")
 		o.AdditionalProperties = additionalProperties
 	}
 

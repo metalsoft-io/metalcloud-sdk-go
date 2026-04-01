@@ -43,10 +43,16 @@ type VMPoolHosts struct {
 	Status *string `json:"status,omitempty"`
 	// Description of the VM Pool Host
 	Description *string `json:"description,omitempty"`
+	// Flag specifying if VMs can be created on the VM Pool Host
+	AllowVMsToBeCreated bool `json:"allowVMsToBeCreated"`
+	// List of VM Pool Host Interfaces
+	HostInterfaces []VMPoolHostInterfaces `json:"hostInterfaces,omitempty"`
+	// Number of VMs on the VM Pool Host
+	VmCount *float32 `json:"vmCount,omitempty"`
 	// Timestamp when the VM Pool Host was updated
 	UpdatedTimestamp string `json:"updatedTimestamp"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,12 +62,12 @@ type _VMPoolHosts VMPoolHosts
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHosts(id float32, name string, updatedTimestamp string, links map[string]interface{}) *VMPoolHosts {
+func NewVMPoolHosts(id float32, name string, allowVMsToBeCreated bool, updatedTimestamp string) *VMPoolHosts {
 	this := VMPoolHosts{}
 	this.Id = id
 	this.Name = name
+	this.AllowVMsToBeCreated = allowVMsToBeCreated
 	this.UpdatedTimestamp = updatedTimestamp
-	this.Links = links
 	return &this
 }
 
@@ -70,6 +76,8 @@ func NewVMPoolHosts(id float32, name string, updatedTimestamp string, links map[
 // but it doesn't guarantee that properties required by API are set
 func NewVMPoolHostsWithDefaults() *VMPoolHosts {
 	this := VMPoolHosts{}
+	var allowVMsToBeCreated bool = true
+	this.AllowVMsToBeCreated = allowVMsToBeCreated
 	return &this
 }
 
@@ -409,6 +417,94 @@ func (o *VMPoolHosts) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetAllowVMsToBeCreated returns the AllowVMsToBeCreated field value
+func (o *VMPoolHosts) GetAllowVMsToBeCreated() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AllowVMsToBeCreated
+}
+
+// GetAllowVMsToBeCreatedOk returns a tuple with the AllowVMsToBeCreated field value
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetAllowVMsToBeCreatedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AllowVMsToBeCreated, true
+}
+
+// SetAllowVMsToBeCreated sets field value
+func (o *VMPoolHosts) SetAllowVMsToBeCreated(v bool) {
+	o.AllowVMsToBeCreated = v
+}
+
+// GetHostInterfaces returns the HostInterfaces field value if set, zero value otherwise.
+func (o *VMPoolHosts) GetHostInterfaces() []VMPoolHostInterfaces {
+	if o == nil || IsNil(o.HostInterfaces) {
+		var ret []VMPoolHostInterfaces
+		return ret
+	}
+	return o.HostInterfaces
+}
+
+// GetHostInterfacesOk returns a tuple with the HostInterfaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetHostInterfacesOk() ([]VMPoolHostInterfaces, bool) {
+	if o == nil || IsNil(o.HostInterfaces) {
+		return nil, false
+	}
+	return o.HostInterfaces, true
+}
+
+// HasHostInterfaces returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasHostInterfaces() bool {
+	if o != nil && !IsNil(o.HostInterfaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostInterfaces gets a reference to the given []VMPoolHostInterfaces and assigns it to the HostInterfaces field.
+func (o *VMPoolHosts) SetHostInterfaces(v []VMPoolHostInterfaces) {
+	o.HostInterfaces = v
+}
+
+// GetVmCount returns the VmCount field value if set, zero value otherwise.
+func (o *VMPoolHosts) GetVmCount() float32 {
+	if o == nil || IsNil(o.VmCount) {
+		var ret float32
+		return ret
+	}
+	return *o.VmCount
+}
+
+// GetVmCountOk returns a tuple with the VmCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetVmCountOk() (*float32, bool) {
+	if o == nil || IsNil(o.VmCount) {
+		return nil, false
+	}
+	return o.VmCount, true
+}
+
+// HasVmCount returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasVmCount() bool {
+	if o != nil && !IsNil(o.VmCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmCount gets a reference to the given float32 and assigns it to the VmCount field.
+func (o *VMPoolHosts) SetVmCount(v float32) {
+	o.VmCount = &v
+}
+
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
 func (o *VMPoolHosts) GetUpdatedTimestamp() string {
 	if o == nil {
@@ -433,27 +529,35 @@ func (o *VMPoolHosts) SetUpdatedTimestamp(v string) {
 	o.UpdatedTimestamp = v
 }
 
-// GetLinks returns the Links field value
-func (o *VMPoolHosts) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *VMPoolHosts) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *VMPoolHosts) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *VMPoolHosts) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *VMPoolHosts) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -496,8 +600,17 @@ func (o VMPoolHosts) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	toSerialize["allowVMsToBeCreated"] = o.AllowVMsToBeCreated
+	if !IsNil(o.HostInterfaces) {
+		toSerialize["hostInterfaces"] = o.HostInterfaces
+	}
+	if !IsNil(o.VmCount) {
+		toSerialize["vmCount"] = o.VmCount
+	}
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -513,8 +626,8 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
+		"allowVMsToBeCreated",
 		"updatedTimestamp",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -555,6 +668,9 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "database")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "allowVMsToBeCreated")
+		delete(additionalProperties, "hostInterfaces")
+		delete(additionalProperties, "vmCount")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

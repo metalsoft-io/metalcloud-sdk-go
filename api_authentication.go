@@ -29,6 +29,7 @@ type AuthenticationAPIGetAuthenticationProviderRequest struct {
 	email *string
 }
 
+// The email address to look up
 func (r AuthenticationAPIGetAuthenticationProviderRequest) Email(email string) AuthenticationAPIGetAuthenticationProviderRequest {
 	r.email = &email
 	return r
@@ -78,6 +79,105 @@ func (a *AuthenticationAPIService) GetAuthenticationProviderExecute(r Authentica
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AuthenticationAPIGetCaptchaEnabledRequest struct {
+	ctx context.Context
+	ApiService *AuthenticationAPIService
+}
+
+func (r AuthenticationAPIGetCaptchaEnabledRequest) Execute() (*CaptchaEnabled, *http.Response, error) {
+	return r.ApiService.GetCaptchaEnabledExecute(r)
+}
+
+/*
+GetCaptchaEnabled Check if CAPTCHA is enabled
+
+Returns whether CAPTCHA is enabled for the password reset form.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return AuthenticationAPIGetCaptchaEnabledRequest
+*/
+func (a *AuthenticationAPIService) GetCaptchaEnabled(ctx context.Context) AuthenticationAPIGetCaptchaEnabledRequest {
+	return AuthenticationAPIGetCaptchaEnabledRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return CaptchaEnabled
+func (a *AuthenticationAPIService) GetCaptchaEnabledExecute(r AuthenticationAPIGetCaptchaEnabledRequest) (*CaptchaEnabled, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CaptchaEnabled
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetCaptchaEnabled")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/captcha-enabled"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -565,16 +665,16 @@ func (a *AuthenticationAPIService) Login2FAExecute(r AuthenticationAPILogin2FARe
 type AuthenticationAPILoginSamlRequest struct {
 	ctx context.Context
 	ApiService *AuthenticationAPIService
-	body *map[string]interface{}
+	authenticationRequestPropertiesSaml *AuthenticationRequestPropertiesSaml
 }
 
 // The SAML response
-func (r AuthenticationAPILoginSamlRequest) Body(body map[string]interface{}) AuthenticationAPILoginSamlRequest {
-	r.body = &body
+func (r AuthenticationAPILoginSamlRequest) AuthenticationRequestPropertiesSaml(authenticationRequestPropertiesSaml AuthenticationRequestPropertiesSaml) AuthenticationAPILoginSamlRequest {
+	r.authenticationRequestPropertiesSaml = &authenticationRequestPropertiesSaml
 	return r
 }
 
-func (r AuthenticationAPILoginSamlRequest) Execute() (*User, *http.Response, error) {
+func (r AuthenticationAPILoginSamlRequest) Execute() (*http.Response, error) {
 	return r.ApiService.LoginSamlExecute(r)
 }
 
@@ -594,18 +694,16 @@ func (a *AuthenticationAPIService) LoginSaml(ctx context.Context) Authentication
 }
 
 // Execute executes the request
-//  @return User
-func (a *AuthenticationAPIService) LoginSamlExecute(r AuthenticationAPILoginSamlRequest) (*User, *http.Response, error) {
+func (a *AuthenticationAPIService) LoginSamlExecute(r AuthenticationAPILoginSamlRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.LoginSaml")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/login-saml"
@@ -613,8 +711,8 @@ func (a *AuthenticationAPIService) LoginSamlExecute(r AuthenticationAPILoginSaml
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.authenticationRequestPropertiesSaml == nil {
+		return nil, reportError("authenticationRequestPropertiesSaml is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -627,7 +725,7 @@ func (a *AuthenticationAPIService) LoginSamlExecute(r AuthenticationAPILoginSaml
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -635,22 +733,22 @@ func (a *AuthenticationAPIService) LoginSamlExecute(r AuthenticationAPILoginSaml
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.authenticationRequestPropertiesSaml
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -658,19 +756,10 @@ func (a *AuthenticationAPIService) LoginSamlExecute(r AuthenticationAPILoginSaml
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type AuthenticationAPILogoutRequest struct {

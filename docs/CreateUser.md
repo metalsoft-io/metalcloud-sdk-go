@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **EmailVerified** | Pointer to **bool** | Whether the user has verified their email address | [optional] [default to false]
 **CreateWithAccount** | Pointer to **bool** | Whether an account should be created with the user | [optional] [default to false]
 **AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**CaptchaToken** | Pointer to **string** | CAPTCHA verification token from the client-side widget | [optional] 
 
 ## Methods
 
@@ -190,6 +191,31 @@ SetAccountId sets AccountId field to given value.
 `func (o *CreateUser) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
+
+### GetCaptchaToken
+
+`func (o *CreateUser) GetCaptchaToken() string`
+
+GetCaptchaToken returns the CaptchaToken field if non-nil, zero value otherwise.
+
+### GetCaptchaTokenOk
+
+`func (o *CreateUser) GetCaptchaTokenOk() (*string, bool)`
+
+GetCaptchaTokenOk returns a tuple with the CaptchaToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaptchaToken
+
+`func (o *CreateUser) SetCaptchaToken(v string)`
+
+SetCaptchaToken sets CaptchaToken field to given value.
+
+### HasCaptchaToken
+
+`func (o *CreateUser) HasCaptchaToken() bool`
+
+HasCaptchaToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -28,6 +28,8 @@ type EmailTemplateUpdate struct {
 	Text *string `json:"text,omitempty"`
 	// Email template html
 	Html *string `json:"html,omitempty"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -178,6 +180,38 @@ func (o *EmailTemplateUpdate) SetHtml(v string) {
 	o.Html = &v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *EmailTemplateUpdate) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EmailTemplateUpdate) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *EmailTemplateUpdate) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *EmailTemplateUpdate) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o EmailTemplateUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -199,6 +233,9 @@ func (o EmailTemplateUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Html) {
 		toSerialize["html"] = o.Html
+	}
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -226,6 +263,7 @@ func (o *EmailTemplateUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "text")
 		delete(additionalProperties, "html")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 ## CreateCronJob
 
-> CreateCronJob(ctx).CreateCronJob(createCronJob).Execute()
+> CronJob CreateCronJob(ctx).CreateCronJob(createCronJob).Execute()
 
 Creates a new cron job
 
@@ -50,11 +50,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.JobAPI.CreateCronJob(context.Background()).CreateCronJob(createCronJob).Execute()
+	resp, r, err := apiClient.JobAPI.CreateCronJob(context.Background()).CreateCronJob(createCronJob).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.CreateCronJob``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `CreateCronJob`: CronJob
+	fmt.Fprintf(os.Stdout, "Response from `JobAPI.CreateCronJob`: %v\n", resp)
 }
 ```
 
@@ -73,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**CronJob**](CronJob.md)
 
 ### Authorization
 
@@ -82,7 +84,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

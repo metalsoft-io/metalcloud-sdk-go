@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetNetworkDeviceController**](NetworkDeviceControllerAPI.md#GetNetworkDeviceController) | **Get** /api/v2/network-device-controllers/{networkDeviceControllerId} | Get Network Device Controller
 [**GetNetworkDeviceControllerCredentials**](NetworkDeviceControllerAPI.md#GetNetworkDeviceControllerCredentials) | **Get** /api/v2/network-device-controllers/{networkDeviceControllerId}/credentials | Get Network Device Controller credentials
 [**GetNetworkDeviceControllers**](NetworkDeviceControllerAPI.md#GetNetworkDeviceControllers) | **Get** /api/v2/network-device-controllers | Get paginated Network Device Controllers
+[**NetworkDeviceControllerDeployConfirm**](NetworkDeviceControllerAPI.md#NetworkDeviceControllerDeployConfirm) | **Post** /api/v2/network-device-controllers/{networkDeviceControllerId}/actions/deploy-confirm | Confirm pending deployment for a network device controller
 [**UpdateNetworkDeviceController**](NetworkDeviceControllerAPI.md#UpdateNetworkDeviceController) | **Patch** /api/v2/network-device-controllers/{networkDeviceControllerId} | Update Network Device Controller
 
 
@@ -310,7 +311,7 @@ func main() {
 	filterManagementAddress := []string{"Inner_example"} // []string | Filter by managementAddress query param.  **Format:** filter.managementAddress={$not}:OPERATION:VALUE    **Example:** filter.managementAddress=$btw:John Doe&filter.managementAddress=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterManagementPort := []string{"Inner_example"} // []string | Filter by managementPort query param.  **Format:** filter.managementPort={$not}:OPERATION:VALUE    **Example:** filter.managementPort=$btw:John Doe&filter.managementPort=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterIdentifierString := []string{"Inner_example"} // []string | Filter by identifierString query param.  **Format:** filter.identifierString={$not}:OPERATION:VALUE    **Example:** filter.identifierString=$btw:John Doe&filter.identifierString=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:ASC  **Available Fields** - id  (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - driver  - status  - managementAddress  - siteId  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** managementAddress,identifierString   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - managementAddress  - identifierString  (optional)
 
@@ -345,7 +346,7 @@ Name | Type | Description  | Notes
  **filterManagementAddress** | **[]string** | Filter by managementAddress query param.  **Format:** filter.managementAddress&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.managementAddress&#x3D;$btw:John Doe&amp;filter.managementAddress&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterManagementPort** | **[]string** | Filter by managementPort query param.  **Format:** filter.managementPort&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.managementPort&#x3D;$btw:John Doe&amp;filter.managementPort&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterIdentifierString** | **[]string** | Filter by identifierString query param.  **Format:** filter.identifierString&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.identifierString&#x3D;$btw:John Doe&amp;filter.identifierString&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:ASC  **Available Fields** - id  | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - driver  - status  - managementAddress  - siteId  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** managementAddress,identifierString   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - managementAddress  - identifierString  | 
 
@@ -361,6 +362,72 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## NetworkDeviceControllerDeployConfirm
+
+> NetworkDeviceControllerDeployConfirm(ctx, networkDeviceControllerId).Execute()
+
+Confirm pending deployment for a network device controller
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceControllerId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkDeviceControllerAPI.NetworkDeviceControllerDeployConfirm(context.Background(), networkDeviceControllerId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceControllerAPI.NetworkDeviceControllerDeployConfirm``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceControllerId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNetworkDeviceControllerDeployConfirmRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

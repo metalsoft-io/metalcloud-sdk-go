@@ -103,6 +103,12 @@ type CreateNetworkDevice struct {
 	VmPoolId *float32 `json:"vmPoolId,omitempty"`
 	// Custom variables for the network device
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU
+	ServerId *float32 `json:"serverId,omitempty"`
+	// NUMA node of the network device for optimal resource allocation
+	NumaNode *float32 `json:"numaNode,omitempty"`
+	// ID of the network device controller managing this switch. Only applicable for controller-managed drivers (e.g. NDFC).
+	SwitchControllerId *float32 `json:"switchControllerId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1606,6 +1612,102 @@ func (o *CreateNetworkDevice) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
 }
 
+// GetServerId returns the ServerId field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetServerId() float32 {
+	if o == nil || IsNil(o.ServerId) {
+		var ret float32
+		return ret
+	}
+	return *o.ServerId
+}
+
+// GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetServerIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ServerId) {
+		return nil, false
+	}
+	return o.ServerId, true
+}
+
+// HasServerId returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasServerId() bool {
+	if o != nil && !IsNil(o.ServerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
+func (o *CreateNetworkDevice) SetServerId(v float32) {
+	o.ServerId = &v
+}
+
+// GetNumaNode returns the NumaNode field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetNumaNode() float32 {
+	if o == nil || IsNil(o.NumaNode) {
+		var ret float32
+		return ret
+	}
+	return *o.NumaNode
+}
+
+// GetNumaNodeOk returns a tuple with the NumaNode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetNumaNodeOk() (*float32, bool) {
+	if o == nil || IsNil(o.NumaNode) {
+		return nil, false
+	}
+	return o.NumaNode, true
+}
+
+// HasNumaNode returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasNumaNode() bool {
+	if o != nil && !IsNil(o.NumaNode) {
+		return true
+	}
+
+	return false
+}
+
+// SetNumaNode gets a reference to the given float32 and assigns it to the NumaNode field.
+func (o *CreateNetworkDevice) SetNumaNode(v float32) {
+	o.NumaNode = &v
+}
+
+// GetSwitchControllerId returns the SwitchControllerId field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetSwitchControllerId() float32 {
+	if o == nil || IsNil(o.SwitchControllerId) {
+		var ret float32
+		return ret
+	}
+	return *o.SwitchControllerId
+}
+
+// GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetSwitchControllerIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.SwitchControllerId) {
+		return nil, false
+	}
+	return o.SwitchControllerId, true
+}
+
+// HasSwitchControllerId returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasSwitchControllerId() bool {
+	if o != nil && !IsNil(o.SwitchControllerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSwitchControllerId gets a reference to the given float32 and assigns it to the SwitchControllerId field.
+func (o *CreateNetworkDevice) SetSwitchControllerId(v float32) {
+	o.SwitchControllerId = &v
+}
+
 func (o CreateNetworkDevice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1728,6 +1830,15 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
+	if !IsNil(o.ServerId) {
+		toSerialize["serverId"] = o.ServerId
+	}
+	if !IsNil(o.NumaNode) {
+		toSerialize["numaNode"] = o.NumaNode
+	}
+	if !IsNil(o.SwitchControllerId) {
+		toSerialize["switchControllerId"] = o.SwitchControllerId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1814,6 +1925,9 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")
 		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "serverId")
+		delete(additionalProperties, "numaNode")
+		delete(additionalProperties, "switchControllerId")
 		o.AdditionalProperties = additionalProperties
 	}
 

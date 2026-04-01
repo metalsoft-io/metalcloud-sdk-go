@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FoundMinimumNumberOfConnectedInterfaces** | Pointer to **string** |  | [optional] 
 **RaidControllersReset** | Pointer to **string** |  | [optional] 
+**DpuRegistered** | Pointer to **string** |  | [optional] 
 **ReasonsForFailure** | Pointer to **[]string** | The reasons for failure during registration. | [optional] 
 
 ## Methods
@@ -76,6 +77,31 @@ SetRaidControllersReset sets RaidControllersReset field to given value.
 `func (o *ServerRegistrationResult) HasRaidControllersReset() bool`
 
 HasRaidControllersReset returns a boolean if a field has been set.
+
+### GetDpuRegistered
+
+`func (o *ServerRegistrationResult) GetDpuRegistered() string`
+
+GetDpuRegistered returns the DpuRegistered field if non-nil, zero value otherwise.
+
+### GetDpuRegisteredOk
+
+`func (o *ServerRegistrationResult) GetDpuRegisteredOk() (*string, bool)`
+
+GetDpuRegisteredOk returns a tuple with the DpuRegistered field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpuRegistered
+
+`func (o *ServerRegistrationResult) SetDpuRegistered(v string)`
+
+SetDpuRegistered sets DpuRegistered field to given value.
+
+### HasDpuRegistered
+
+`func (o *ServerRegistrationResult) HasDpuRegistered() bool`
+
+HasDpuRegistered returns a boolean if a field has been set.
 
 ### GetReasonsForFailure
 

@@ -23,13 +23,13 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
 **Options** | Pointer to [**VMPoolOptions**](VMPoolOptions.md) | Options for the vm pool | [optional] 
 **Gpus** | Pointer to [**[]VMPoolGPU**](VMPoolGPU.md) | The GPUs registered inside the VM Pool. | [optional] 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMPool
 
-`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *VMPool`
+`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string, ) *VMPool`
 
 NewVMPool instantiates a new VMPool object
 This constructor will assign default values to properties that have it defined,
@@ -466,23 +466,28 @@ HasGpus returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *VMPool) GetLinks() map[string]interface{}`
+`func (o *VMPool) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *VMPool) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *VMPool) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *VMPool) SetLinks(v map[string]interface{})`
+`func (o *VMPool) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *VMPool) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

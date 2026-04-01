@@ -32,6 +32,8 @@ type EthernetFabric struct {
 	BgpNumbering *BgpNumberingType `json:"bgpNumbering,omitempty"`
 	// Library label for the Ethernet fabric configuration, used to identify the Network Device Configuration Templates that can be used for deploy.
 	LibraryLabel *string `json:"libraryLabel,omitempty"`
+	// Flag to indicate if DPU mode should be used if available on the fabric.
+	UseDPUModeIfAvailable *bool `json:"useDPUModeIfAvailable,omitempty"`
 	// Link Aggregation (LAG) ranges in the format \"start-end\"; each range must be within the bounds of 1 to 4096.
 	LagRanges []string `json:"lagRanges,omitempty"`
 	// MLAG ID ranges. Each range must be provided in \"start-end\" format with values between 1 and 4096.
@@ -253,6 +255,38 @@ func (o *EthernetFabric) HasLibraryLabel() bool {
 // SetLibraryLabel gets a reference to the given string and assigns it to the LibraryLabel field.
 func (o *EthernetFabric) SetLibraryLabel(v string) {
 	o.LibraryLabel = &v
+}
+
+// GetUseDPUModeIfAvailable returns the UseDPUModeIfAvailable field value if set, zero value otherwise.
+func (o *EthernetFabric) GetUseDPUModeIfAvailable() bool {
+	if o == nil || IsNil(o.UseDPUModeIfAvailable) {
+		var ret bool
+		return ret
+	}
+	return *o.UseDPUModeIfAvailable
+}
+
+// GetUseDPUModeIfAvailableOk returns a tuple with the UseDPUModeIfAvailable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetUseDPUModeIfAvailableOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseDPUModeIfAvailable) {
+		return nil, false
+	}
+	return o.UseDPUModeIfAvailable, true
+}
+
+// HasUseDPUModeIfAvailable returns a boolean if a field has been set.
+func (o *EthernetFabric) HasUseDPUModeIfAvailable() bool {
+	if o != nil && !IsNil(o.UseDPUModeIfAvailable) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseDPUModeIfAvailable gets a reference to the given bool and assigns it to the UseDPUModeIfAvailable field.
+func (o *EthernetFabric) SetUseDPUModeIfAvailable(v bool) {
+	o.UseDPUModeIfAvailable = &v
 }
 
 // GetLagRanges returns the LagRanges field value if set, zero value otherwise.
@@ -537,6 +571,9 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LibraryLabel) {
 		toSerialize["libraryLabel"] = o.LibraryLabel
 	}
+	if !IsNil(o.UseDPUModeIfAvailable) {
+		toSerialize["useDPUModeIfAvailable"] = o.UseDPUModeIfAvailable
+	}
 	if !IsNil(o.LagRanges) {
 		toSerialize["lagRanges"] = o.LagRanges
 	}
@@ -610,6 +647,7 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "libraryLabel")
+		delete(additionalProperties, "useDPUModeIfAvailable")
 		delete(additionalProperties, "lagRanges")
 		delete(additionalProperties, "mlagRanges")
 		delete(additionalProperties, "preventVlanCleanup")

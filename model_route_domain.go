@@ -35,6 +35,12 @@ type RouteDomain struct {
 	PreventVrfCleanup bool `json:"preventVrfCleanup"`
 	Vrfs []VrfAllocation `json:"vrfs"`
 	VrfAllocationStrategies []VrfAllocationStrategy `json:"vrfAllocationStrategies"`
+	// External identifier for this route domain on the controller
+	ExternalId NullableString `json:"externalId,omitempty"`
+	// When true, the switch auto-generates the EVPN Route Distinguisher for the L3 VNI. Only applicable to EVPN_L3VPN route domains.
+	AutoRouteDistinguisher *bool `json:"autoRouteDistinguisher,omitempty"`
+	// When true, the switch auto-generates EVPN Route Targets for the L3 VNI. Only applicable to EVPN_L3VPN route domains.
+	AutoRouteTarget *bool `json:"autoRouteTarget,omitempty"`
 	Config RouteDomainConfig `json:"config"`
 	L3Vlans []VlanAllocation `json:"l3Vlans,omitempty"`
 	L3VlanAllocationStrategies []VlanAllocationStrategy `json:"l3VlanAllocationStrategies,omitempty"`
@@ -365,6 +371,112 @@ func (o *RouteDomain) SetVrfAllocationStrategies(v []VrfAllocationStrategy) {
 	o.VrfAllocationStrategies = v
 }
 
+// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RouteDomain) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId.Get()
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RouteDomain) GetExternalIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExternalId.Get(), o.ExternalId.IsSet()
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *RouteDomain) HasExternalId() bool {
+	if o != nil && o.ExternalId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given NullableString and assigns it to the ExternalId field.
+func (o *RouteDomain) SetExternalId(v string) {
+	o.ExternalId.Set(&v)
+}
+// SetExternalIdNil sets the value for ExternalId to be an explicit nil
+func (o *RouteDomain) SetExternalIdNil() {
+	o.ExternalId.Set(nil)
+}
+
+// UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+func (o *RouteDomain) UnsetExternalId() {
+	o.ExternalId.Unset()
+}
+
+// GetAutoRouteDistinguisher returns the AutoRouteDistinguisher field value if set, zero value otherwise.
+func (o *RouteDomain) GetAutoRouteDistinguisher() bool {
+	if o == nil || IsNil(o.AutoRouteDistinguisher) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoRouteDistinguisher
+}
+
+// GetAutoRouteDistinguisherOk returns a tuple with the AutoRouteDistinguisher field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteDomain) GetAutoRouteDistinguisherOk() (*bool, bool) {
+	if o == nil || IsNil(o.AutoRouteDistinguisher) {
+		return nil, false
+	}
+	return o.AutoRouteDistinguisher, true
+}
+
+// HasAutoRouteDistinguisher returns a boolean if a field has been set.
+func (o *RouteDomain) HasAutoRouteDistinguisher() bool {
+	if o != nil && !IsNil(o.AutoRouteDistinguisher) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRouteDistinguisher gets a reference to the given bool and assigns it to the AutoRouteDistinguisher field.
+func (o *RouteDomain) SetAutoRouteDistinguisher(v bool) {
+	o.AutoRouteDistinguisher = &v
+}
+
+// GetAutoRouteTarget returns the AutoRouteTarget field value if set, zero value otherwise.
+func (o *RouteDomain) GetAutoRouteTarget() bool {
+	if o == nil || IsNil(o.AutoRouteTarget) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoRouteTarget
+}
+
+// GetAutoRouteTargetOk returns a tuple with the AutoRouteTarget field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteDomain) GetAutoRouteTargetOk() (*bool, bool) {
+	if o == nil || IsNil(o.AutoRouteTarget) {
+		return nil, false
+	}
+	return o.AutoRouteTarget, true
+}
+
+// HasAutoRouteTarget returns a boolean if a field has been set.
+func (o *RouteDomain) HasAutoRouteTarget() bool {
+	if o != nil && !IsNil(o.AutoRouteTarget) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRouteTarget gets a reference to the given bool and assigns it to the AutoRouteTarget field.
+func (o *RouteDomain) SetAutoRouteTarget(v bool) {
+	o.AutoRouteTarget = &v
+}
+
 // GetConfig returns the Config field value
 func (o *RouteDomain) GetConfig() RouteDomainConfig {
 	if o == nil {
@@ -539,6 +651,15 @@ func (o RouteDomain) ToMap() (map[string]interface{}, error) {
 	toSerialize["preventVrfCleanup"] = o.PreventVrfCleanup
 	toSerialize["vrfs"] = o.Vrfs
 	toSerialize["vrfAllocationStrategies"] = o.VrfAllocationStrategies
+	if o.ExternalId.IsSet() {
+		toSerialize["externalId"] = o.ExternalId.Get()
+	}
+	if !IsNil(o.AutoRouteDistinguisher) {
+		toSerialize["autoRouteDistinguisher"] = o.AutoRouteDistinguisher
+	}
+	if !IsNil(o.AutoRouteTarget) {
+		toSerialize["autoRouteTarget"] = o.AutoRouteTarget
+	}
 	toSerialize["config"] = o.Config
 	if !IsNil(o.L3Vlans) {
 		toSerialize["l3Vlans"] = o.L3Vlans
@@ -619,6 +740,9 @@ func (o *RouteDomain) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "preventVrfCleanup")
 		delete(additionalProperties, "vrfs")
 		delete(additionalProperties, "vrfAllocationStrategies")
+		delete(additionalProperties, "externalId")
+		delete(additionalProperties, "autoRouteDistinguisher")
+		delete(additionalProperties, "autoRouteTarget")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "l3Vlans")
 		delete(additionalProperties, "l3VlanAllocationStrategies")

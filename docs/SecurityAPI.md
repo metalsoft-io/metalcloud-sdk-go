@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRole
 
-> Role DeleteRole(ctx, roleName).Execute()
+> DeleteRole(ctx, roleName).Execute()
 
 Delete a role by name
 
@@ -234,13 +234,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityAPI.DeleteRole(context.Background(), roleName).Execute()
+	r, err := apiClient.SecurityAPI.DeleteRole(context.Background(), roleName).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.DeleteRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteRole`: Role
-	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.DeleteRole`: %v\n", resp)
 }
 ```
 
@@ -263,7 +261,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Role**](Role.md)
+ (empty response body)
 
 ### Authorization
 
@@ -272,7 +270,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

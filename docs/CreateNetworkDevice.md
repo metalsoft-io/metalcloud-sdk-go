@@ -44,6 +44,9 @@ Name | Type | Description | Notes
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
 **VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
+**ServerId** | Pointer to **float32** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
+**NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
+**SwitchControllerId** | Pointer to **float32** | ID of the network device controller managing this switch. Only applicable for controller-managed drivers (e.g. NDFC). | [optional] 
 
 ## Methods
 
@@ -1283,6 +1286,81 @@ SetCustomVariables sets CustomVariables field to given value.
 `func (o *CreateNetworkDevice) HasCustomVariables() bool`
 
 HasCustomVariables returns a boolean if a field has been set.
+
+### GetServerId
+
+`func (o *CreateNetworkDevice) GetServerId() float32`
+
+GetServerId returns the ServerId field if non-nil, zero value otherwise.
+
+### GetServerIdOk
+
+`func (o *CreateNetworkDevice) GetServerIdOk() (*float32, bool)`
+
+GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerId
+
+`func (o *CreateNetworkDevice) SetServerId(v float32)`
+
+SetServerId sets ServerId field to given value.
+
+### HasServerId
+
+`func (o *CreateNetworkDevice) HasServerId() bool`
+
+HasServerId returns a boolean if a field has been set.
+
+### GetNumaNode
+
+`func (o *CreateNetworkDevice) GetNumaNode() float32`
+
+GetNumaNode returns the NumaNode field if non-nil, zero value otherwise.
+
+### GetNumaNodeOk
+
+`func (o *CreateNetworkDevice) GetNumaNodeOk() (*float32, bool)`
+
+GetNumaNodeOk returns a tuple with the NumaNode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumaNode
+
+`func (o *CreateNetworkDevice) SetNumaNode(v float32)`
+
+SetNumaNode sets NumaNode field to given value.
+
+### HasNumaNode
+
+`func (o *CreateNetworkDevice) HasNumaNode() bool`
+
+HasNumaNode returns a boolean if a field has been set.
+
+### GetSwitchControllerId
+
+`func (o *CreateNetworkDevice) GetSwitchControllerId() float32`
+
+GetSwitchControllerId returns the SwitchControllerId field if non-nil, zero value otherwise.
+
+### GetSwitchControllerIdOk
+
+`func (o *CreateNetworkDevice) GetSwitchControllerIdOk() (*float32, bool)`
+
+GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchControllerId
+
+`func (o *CreateNetworkDevice) SetSwitchControllerId(v float32)`
+
+SetSwitchControllerId sets SwitchControllerId field to given value.
+
+### HasSwitchControllerId
+
+`func (o *CreateNetworkDevice) HasSwitchControllerId() bool`
+
+HasSwitchControllerId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

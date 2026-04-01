@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LocalId** | **float32** | The database id of the local network equipment. | 
 **RemoteId** | **float32** | The database id of the remote network equipment. | 
-**LocalAsn** | **float32** | The BGP ASN assigned for the local network equipment. | 
-**RemoteAsn** | **float32** | The BGP ASN assigned for the remote network equipment. | 
+**LocalAsn** | **int64** | The BGP ASN assigned for the local network equipment. | 
+**RemoteAsn** | **int64** | The BGP ASN assigned for the remote network equipment. | 
 **LocalLoopbackIpv4** | **string** | The loopback IPv4 address of the local network equipment. | 
 **RemoteLoopbackIpv4** | **string** | The loopback IPv4 address of the remote network equipment. | 
 **LocalVtepIpv4** | **string** | The VTEP IPv4 address of the local network equipment. | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceInterconnectTemplateRecordSet
 
-`func NewNetworkDeviceInterconnectTemplateRecordSet(localId float32, remoteId float32, localAsn float32, remoteAsn float32, localLoopbackIpv4 string, remoteLoopbackIpv4 string, localVtepIpv4 string, remoteVtepIpv4 string, localVtepExternalIpv4 string, remoteVtepExternalIpv4 string, ) *NetworkDeviceInterconnectTemplateRecordSet`
+`func NewNetworkDeviceInterconnectTemplateRecordSet(localId float32, remoteId float32, localAsn int64, remoteAsn int64, localLoopbackIpv4 string, remoteLoopbackIpv4 string, localVtepIpv4 string, remoteVtepIpv4 string, localVtepExternalIpv4 string, remoteVtepExternalIpv4 string, ) *NetworkDeviceInterconnectTemplateRecordSet`
 
 NewNetworkDeviceInterconnectTemplateRecordSet instantiates a new NetworkDeviceInterconnectTemplateRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -76,40 +76,40 @@ SetRemoteId sets RemoteId field to given value.
 
 ### GetLocalAsn
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalAsn() float32`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalAsn() int64`
 
 GetLocalAsn returns the LocalAsn field if non-nil, zero value otherwise.
 
 ### GetLocalAsnOk
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalAsnOk() (*float32, bool)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalAsnOk() (*int64, bool)`
 
 GetLocalAsnOk returns a tuple with the LocalAsn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalAsn
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetLocalAsn(v float32)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetLocalAsn(v int64)`
 
 SetLocalAsn sets LocalAsn field to given value.
 
 
 ### GetRemoteAsn
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteAsn() float32`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteAsn() int64`
 
 GetRemoteAsn returns the RemoteAsn field if non-nil, zero value otherwise.
 
 ### GetRemoteAsnOk
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteAsnOk() (*float32, bool)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteAsnOk() (*int64, bool)`
 
 GetRemoteAsnOk returns a tuple with the RemoteAsn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteAsn
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetRemoteAsn(v float32)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetRemoteAsn(v int64)`
 
 SetRemoteAsn sets RemoteAsn field to given value.
 

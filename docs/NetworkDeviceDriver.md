@@ -5,6 +5,8 @@
 
 * `CISCO_ACI51` (value: `"cisco_aci51"`)
 
+* `CISCO_NDFC` (value: `"cisco_ndfc"`)
+
 * `NVIDIA_UFM` (value: `"nvidia_ufm"`)
 
 * `NEXUS9000` (value: `"nexus9000"`)
@@ -34,6 +36,8 @@
 * `CUMULUS_LINUX` (value: `"cumulus_linux"`)
 
 * `BROCADE` (value: `"brocade"`)
+
+* `NVIDIA_DPU` (value: `"nvidia_dpu"`)
 
 * `DELL_S4000` (value: `"dell_s4000"`)
 

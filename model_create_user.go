@@ -35,6 +35,8 @@ type CreateUser struct {
 	CreateWithAccount *bool `json:"createWithAccount,omitempty"`
 	// The account ID of the user
 	AccountId *float32 `json:"accountId,omitempty"`
+	// CAPTCHA verification token from the client-side widget
+	CaptchaToken *string `json:"captchaToken,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -268,6 +270,38 @@ func (o *CreateUser) SetAccountId(v float32) {
 	o.AccountId = &v
 }
 
+// GetCaptchaToken returns the CaptchaToken field value if set, zero value otherwise.
+func (o *CreateUser) GetCaptchaToken() string {
+	if o == nil || IsNil(o.CaptchaToken) {
+		var ret string
+		return ret
+	}
+	return *o.CaptchaToken
+}
+
+// GetCaptchaTokenOk returns a tuple with the CaptchaToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateUser) GetCaptchaTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.CaptchaToken) {
+		return nil, false
+	}
+	return o.CaptchaToken, true
+}
+
+// HasCaptchaToken returns a boolean if a field has been set.
+func (o *CreateUser) HasCaptchaToken() bool {
+	if o != nil && !IsNil(o.CaptchaToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetCaptchaToken gets a reference to the given string and assigns it to the CaptchaToken field.
+func (o *CreateUser) SetCaptchaToken(v string) {
+	o.CaptchaToken = &v
+}
+
 func (o CreateUser) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -292,6 +326,9 @@ func (o CreateUser) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AccountId) {
 		toSerialize["accountId"] = o.AccountId
+	}
+	if !IsNil(o.CaptchaToken) {
+		toSerialize["captchaToken"] = o.CaptchaToken
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -345,6 +382,7 @@ func (o *CreateUser) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "emailVerified")
 		delete(additionalProperties, "createWithAccount")
 		delete(additionalProperties, "accountId")
+		delete(additionalProperties, "captchaToken")
 		o.AdditionalProperties = additionalProperties
 	}
 

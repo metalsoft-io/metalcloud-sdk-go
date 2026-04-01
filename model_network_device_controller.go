@@ -45,6 +45,8 @@ type NetworkDeviceController struct {
 	Driver SwitchControllerDriver `json:"driver"`
 	// Tags associated with the network device controller for categorization and filtering
 	Tags []string `json:"tags"`
+	// Additional configuration options (JSON)
+	OptionsJson map[string]interface{} `json:"optionsJson,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -373,6 +375,39 @@ func (o *NetworkDeviceController) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetOptionsJson returns the OptionsJson field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkDeviceController) GetOptionsJson() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.OptionsJson
+}
+
+// GetOptionsJsonOk returns a tuple with the OptionsJson field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkDeviceController) GetOptionsJsonOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.OptionsJson) {
+		return map[string]interface{}{}, false
+	}
+	return o.OptionsJson, true
+}
+
+// HasOptionsJson returns a boolean if a field has been set.
+func (o *NetworkDeviceController) HasOptionsJson() bool {
+	if o != nil && !IsNil(o.OptionsJson) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptionsJson gets a reference to the given map[string]interface{} and assigns it to the OptionsJson field.
+func (o *NetworkDeviceController) SetOptionsJson(v map[string]interface{}) {
+	o.OptionsJson = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDeviceController) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -428,6 +463,9 @@ func (o NetworkDeviceController) ToMap() (map[string]interface{}, error) {
 	toSerialize["driver"] = o.Driver
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.OptionsJson != nil {
+		toSerialize["optionsJson"] = o.OptionsJson
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -498,6 +536,7 @@ func (o *NetworkDeviceController) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "optionsJson")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
