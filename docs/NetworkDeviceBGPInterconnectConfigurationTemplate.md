@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **NetworkDeviceDriver** | **string** | The network device driver this template applies to | 
 **ExecutionType** | **string** | The execution type for the template | 
 **AddGlobalConfig** | Pointer to **string** | Add global config commands | [optional] 
-**RemoveGlobalConfig** | **string** | Remove global config commands (base64) | 
+**RemoveGlobalConfig** | Pointer to **string** | Remove global config commands (base64) | [optional] 
 **AddNeighbor** | Pointer to **string** | Add neighbor commands (base64) | [optional] 
 **RemoveNeighbor** | Pointer to **string** | Remove neighbor commands (base64) | [optional] 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceBGPInterconnectConfigurationTemplate
 
-`func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, removeGlobalConfig string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, ) *NetworkDeviceBGPInterconnectConfigurationTemplate`
+`func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, ) *NetworkDeviceBGPInterconnectConfigurationTemplate`
 
 NewNetworkDeviceBGPInterconnectConfigurationTemplate instantiates a new NetworkDeviceBGPInterconnectConfigurationTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -161,6 +161,11 @@ and a boolean to check if the value has been set.
 
 SetRemoveGlobalConfig sets RemoveGlobalConfig field to given value.
 
+### HasRemoveGlobalConfig
+
+`func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) HasRemoveGlobalConfig() bool`
+
+HasRemoveGlobalConfig returns a boolean if a field has been set.
 
 ### GetAddNeighbor
 

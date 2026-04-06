@@ -33,7 +33,7 @@ type NetworkDeviceBGPInterconnectConfigurationTemplate struct {
 	// Add global config commands
 	AddGlobalConfig *string `json:"addGlobalConfig,omitempty"`
 	// Remove global config commands (base64)
-	RemoveGlobalConfig string `json:"removeGlobalConfig"`
+	RemoveGlobalConfig *string `json:"removeGlobalConfig,omitempty"`
 	// Add neighbor commands (base64)
 	AddNeighbor *string `json:"addNeighbor,omitempty"`
 	// Remove neighbor commands (base64)
@@ -57,13 +57,12 @@ type _NetworkDeviceBGPInterconnectConfigurationTemplate NetworkDeviceBGPIntercon
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, removeGlobalConfig string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32) *NetworkDeviceBGPInterconnectConfigurationTemplate {
+func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32) *NetworkDeviceBGPInterconnectConfigurationTemplate {
 	this := NetworkDeviceBGPInterconnectConfigurationTemplate{}
 	this.Label = label
 	this.Name = name
 	this.NetworkDeviceDriver = networkDeviceDriver
 	this.ExecutionType = executionType
-	this.RemoveGlobalConfig = removeGlobalConfig
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Revision = revision
@@ -207,28 +206,36 @@ func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) SetAddGlobalConfig(v
 	o.AddGlobalConfig = &v
 }
 
-// GetRemoveGlobalConfig returns the RemoveGlobalConfig field value
+// GetRemoveGlobalConfig returns the RemoveGlobalConfig field value if set, zero value otherwise.
 func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetRemoveGlobalConfig() string {
-	if o == nil {
+	if o == nil || IsNil(o.RemoveGlobalConfig) {
 		var ret string
 		return ret
 	}
-
-	return o.RemoveGlobalConfig
+	return *o.RemoveGlobalConfig
 }
 
-// GetRemoveGlobalConfigOk returns a tuple with the RemoveGlobalConfig field value
+// GetRemoveGlobalConfigOk returns a tuple with the RemoveGlobalConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetRemoveGlobalConfigOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoveGlobalConfig) {
 		return nil, false
 	}
-	return &o.RemoveGlobalConfig, true
+	return o.RemoveGlobalConfig, true
 }
 
-// SetRemoveGlobalConfig sets field value
+// HasRemoveGlobalConfig returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) HasRemoveGlobalConfig() bool {
+	if o != nil && !IsNil(o.RemoveGlobalConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoveGlobalConfig gets a reference to the given string and assigns it to the RemoveGlobalConfig field.
 func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) SetRemoveGlobalConfig(v string) {
-	o.RemoveGlobalConfig = v
+	o.RemoveGlobalConfig = &v
 }
 
 // GetAddNeighbor returns the AddNeighbor field value if set, zero value otherwise.
@@ -440,7 +447,9 @@ func (o NetworkDeviceBGPInterconnectConfigurationTemplate) ToMap() (map[string]i
 	if !IsNil(o.AddGlobalConfig) {
 		toSerialize["addGlobalConfig"] = o.AddGlobalConfig
 	}
-	toSerialize["removeGlobalConfig"] = o.RemoveGlobalConfig
+	if !IsNil(o.RemoveGlobalConfig) {
+		toSerialize["removeGlobalConfig"] = o.RemoveGlobalConfig
+	}
 	if !IsNil(o.AddNeighbor) {
 		toSerialize["addNeighbor"] = o.AddNeighbor
 	}
@@ -471,7 +480,6 @@ func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) UnmarshalJSON(data [
 		"name",
 		"networkDeviceDriver",
 		"executionType",
-		"removeGlobalConfig",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"revision",

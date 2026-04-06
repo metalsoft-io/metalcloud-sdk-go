@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The id of the event | 
-**UserIdAuthenticated** | Pointer to **float32** | The id of the user who triggered the event | [optional] 
-**Type** | **float32** | The type of the event | 
+**Id** | **string** | The id of the event | 
+**UserIdAuthenticated** | Pointer to **string** | The id of the user who triggered the event | [optional] 
+**Type** | **string** | The type of the event | 
 **Severity** | **string** | The severity of the event | 
 **Visibility** | **string** | The visibility of the event | 
-**InfrastructureId** | Pointer to **float32** | The id of the infrastructure linked to the event | [optional] 
-**UserId** | Pointer to **float32** | The id of the user linked to the event | [optional] 
-**ServerId** | Pointer to **float32** | The id of the server linked to the event | [optional] 
+**InfrastructureId** | Pointer to **string** | The id of the infrastructure linked to the event | [optional] 
+**UserId** | Pointer to **string** | The id of the user linked to the event | [optional] 
+**ServerId** | Pointer to **string** | The id of the server linked to the event | [optional] 
 **JobId** | Pointer to **string** | The id of the job linked to the event | [optional] 
-**SiteId** | Pointer to **float32** | The id of the site linked to the event | [optional] 
+**SiteId** | Pointer to **string** | The id of the site linked to the event | [optional] 
 **Title** | **string** | The title of the event | 
 **Message** | **string** | The message of the event | 
 **UserEmailAuthenticated** | Pointer to **string** | The email of the user who triggered the event | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewEvent
 
-`func NewEvent(id float32, type_ float32, severity string, visibility string, title string, message string, occurredTimestamp string, ) *Event`
+`func NewEvent(id string, type_ string, severity string, visibility string, title string, message string, occurredTimestamp string, ) *Event`
 
 NewEvent instantiates a new Event object
 This constructor will assign default values to properties that have it defined,
@@ -44,40 +44,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Event) GetId() float32`
+`func (o *Event) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Event) GetIdOk() (*float32, bool)`
+`func (o *Event) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Event) SetId(v float32)`
+`func (o *Event) SetId(v string)`
 
 SetId sets Id field to given value.
 
 
 ### GetUserIdAuthenticated
 
-`func (o *Event) GetUserIdAuthenticated() float32`
+`func (o *Event) GetUserIdAuthenticated() string`
 
 GetUserIdAuthenticated returns the UserIdAuthenticated field if non-nil, zero value otherwise.
 
 ### GetUserIdAuthenticatedOk
 
-`func (o *Event) GetUserIdAuthenticatedOk() (*float32, bool)`
+`func (o *Event) GetUserIdAuthenticatedOk() (*string, bool)`
 
 GetUserIdAuthenticatedOk returns a tuple with the UserIdAuthenticated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserIdAuthenticated
 
-`func (o *Event) SetUserIdAuthenticated(v float32)`
+`func (o *Event) SetUserIdAuthenticated(v string)`
 
 SetUserIdAuthenticated sets UserIdAuthenticated field to given value.
 
@@ -89,20 +89,20 @@ HasUserIdAuthenticated returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Event) GetType() float32`
+`func (o *Event) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Event) GetTypeOk() (*float32, bool)`
+`func (o *Event) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Event) SetType(v float32)`
+`func (o *Event) SetType(v string)`
 
 SetType sets Type field to given value.
 
@@ -149,20 +149,20 @@ SetVisibility sets Visibility field to given value.
 
 ### GetInfrastructureId
 
-`func (o *Event) GetInfrastructureId() float32`
+`func (o *Event) GetInfrastructureId() string`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *Event) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *Event) GetInfrastructureIdOk() (*string, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *Event) SetInfrastructureId(v float32)`
+`func (o *Event) SetInfrastructureId(v string)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -174,20 +174,20 @@ HasInfrastructureId returns a boolean if a field has been set.
 
 ### GetUserId
 
-`func (o *Event) GetUserId() float32`
+`func (o *Event) GetUserId() string`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *Event) GetUserIdOk() (*float32, bool)`
+`func (o *Event) GetUserIdOk() (*string, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *Event) SetUserId(v float32)`
+`func (o *Event) SetUserId(v string)`
 
 SetUserId sets UserId field to given value.
 
@@ -199,20 +199,20 @@ HasUserId returns a boolean if a field has been set.
 
 ### GetServerId
 
-`func (o *Event) GetServerId() float32`
+`func (o *Event) GetServerId() string`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *Event) GetServerIdOk() (*float32, bool)`
+`func (o *Event) GetServerIdOk() (*string, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *Event) SetServerId(v float32)`
+`func (o *Event) SetServerId(v string)`
 
 SetServerId sets ServerId field to given value.
 
@@ -249,20 +249,20 @@ HasJobId returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *Event) GetSiteId() float32`
+`func (o *Event) GetSiteId() string`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *Event) GetSiteIdOk() (*float32, bool)`
+`func (o *Event) GetSiteIdOk() (*string, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *Event) SetSiteId(v float32)`
+`func (o *Event) SetSiteId(v string)`
 
 SetSiteId sets SiteId field to given value.
 

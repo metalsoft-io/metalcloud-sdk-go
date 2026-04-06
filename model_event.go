@@ -22,25 +22,25 @@ var _ MappedNullable = &Event{}
 // Event struct for Event
 type Event struct {
 	// The id of the event
-	Id float32 `json:"id"`
+	Id string `json:"id"`
 	// The id of the user who triggered the event
-	UserIdAuthenticated *float32 `json:"userIdAuthenticated,omitempty"`
+	UserIdAuthenticated *string `json:"userIdAuthenticated,omitempty"`
 	// The type of the event
-	Type float32 `json:"type"`
+	Type string `json:"type"`
 	// The severity of the event
 	Severity string `json:"severity"`
 	// The visibility of the event
 	Visibility string `json:"visibility"`
 	// The id of the infrastructure linked to the event
-	InfrastructureId *float32 `json:"infrastructureId,omitempty"`
+	InfrastructureId *string `json:"infrastructureId,omitempty"`
 	// The id of the user linked to the event
-	UserId *float32 `json:"userId,omitempty"`
+	UserId *string `json:"userId,omitempty"`
 	// The id of the server linked to the event
-	ServerId *float32 `json:"serverId,omitempty"`
+	ServerId *string `json:"serverId,omitempty"`
 	// The id of the job linked to the event
 	JobId *string `json:"jobId,omitempty"`
 	// The id of the site linked to the event
-	SiteId *float32 `json:"siteId,omitempty"`
+	SiteId *string `json:"siteId,omitempty"`
 	// The title of the event
 	Title string `json:"title"`
 	// The message of the event
@@ -66,7 +66,7 @@ type _Event Event
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEvent(id float32, type_ float32, severity string, visibility string, title string, message string, occurredTimestamp string) *Event {
+func NewEvent(id string, type_ string, severity string, visibility string, title string, message string, occurredTimestamp string) *Event {
 	this := Event{}
 	this.Id = id
 	this.Type = type_
@@ -87,9 +87,9 @@ func NewEventWithDefaults() *Event {
 }
 
 // GetId returns the Id field value
-func (o *Event) GetId() float32 {
+func (o *Event) GetId() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
@@ -98,7 +98,7 @@ func (o *Event) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetIdOk() (*float32, bool) {
+func (o *Event) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,14 +106,14 @@ func (o *Event) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Event) SetId(v float32) {
+func (o *Event) SetId(v string) {
 	o.Id = v
 }
 
 // GetUserIdAuthenticated returns the UserIdAuthenticated field value if set, zero value otherwise.
-func (o *Event) GetUserIdAuthenticated() float32 {
+func (o *Event) GetUserIdAuthenticated() string {
 	if o == nil || IsNil(o.UserIdAuthenticated) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.UserIdAuthenticated
@@ -121,7 +121,7 @@ func (o *Event) GetUserIdAuthenticated() float32 {
 
 // GetUserIdAuthenticatedOk returns a tuple with the UserIdAuthenticated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetUserIdAuthenticatedOk() (*float32, bool) {
+func (o *Event) GetUserIdAuthenticatedOk() (*string, bool) {
 	if o == nil || IsNil(o.UserIdAuthenticated) {
 		return nil, false
 	}
@@ -137,15 +137,15 @@ func (o *Event) HasUserIdAuthenticated() bool {
 	return false
 }
 
-// SetUserIdAuthenticated gets a reference to the given float32 and assigns it to the UserIdAuthenticated field.
-func (o *Event) SetUserIdAuthenticated(v float32) {
+// SetUserIdAuthenticated gets a reference to the given string and assigns it to the UserIdAuthenticated field.
+func (o *Event) SetUserIdAuthenticated(v string) {
 	o.UserIdAuthenticated = &v
 }
 
 // GetType returns the Type field value
-func (o *Event) GetType() float32 {
+func (o *Event) GetType() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
@@ -154,7 +154,7 @@ func (o *Event) GetType() float32 {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetTypeOk() (*float32, bool) {
+func (o *Event) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -162,7 +162,7 @@ func (o *Event) GetTypeOk() (*float32, bool) {
 }
 
 // SetType sets field value
-func (o *Event) SetType(v float32) {
+func (o *Event) SetType(v string) {
 	o.Type = v
 }
 
@@ -215,9 +215,9 @@ func (o *Event) SetVisibility(v string) {
 }
 
 // GetInfrastructureId returns the InfrastructureId field value if set, zero value otherwise.
-func (o *Event) GetInfrastructureId() float32 {
+func (o *Event) GetInfrastructureId() string {
 	if o == nil || IsNil(o.InfrastructureId) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.InfrastructureId
@@ -225,7 +225,7 @@ func (o *Event) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetInfrastructureIdOk() (*float32, bool) {
+func (o *Event) GetInfrastructureIdOk() (*string, bool) {
 	if o == nil || IsNil(o.InfrastructureId) {
 		return nil, false
 	}
@@ -241,15 +241,15 @@ func (o *Event) HasInfrastructureId() bool {
 	return false
 }
 
-// SetInfrastructureId gets a reference to the given float32 and assigns it to the InfrastructureId field.
-func (o *Event) SetInfrastructureId(v float32) {
+// SetInfrastructureId gets a reference to the given string and assigns it to the InfrastructureId field.
+func (o *Event) SetInfrastructureId(v string) {
 	o.InfrastructureId = &v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *Event) GetUserId() float32 {
+func (o *Event) GetUserId() string {
 	if o == nil || IsNil(o.UserId) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.UserId
@@ -257,7 +257,7 @@ func (o *Event) GetUserId() float32 {
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetUserIdOk() (*float32, bool) {
+func (o *Event) GetUserIdOk() (*string, bool) {
 	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
@@ -273,15 +273,15 @@ func (o *Event) HasUserId() bool {
 	return false
 }
 
-// SetUserId gets a reference to the given float32 and assigns it to the UserId field.
-func (o *Event) SetUserId(v float32) {
+// SetUserId gets a reference to the given string and assigns it to the UserId field.
+func (o *Event) SetUserId(v string) {
 	o.UserId = &v
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
-func (o *Event) GetServerId() float32 {
+func (o *Event) GetServerId() string {
 	if o == nil || IsNil(o.ServerId) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.ServerId
@@ -289,7 +289,7 @@ func (o *Event) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetServerIdOk() (*float32, bool) {
+func (o *Event) GetServerIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ServerId) {
 		return nil, false
 	}
@@ -305,8 +305,8 @@ func (o *Event) HasServerId() bool {
 	return false
 }
 
-// SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
-func (o *Event) SetServerId(v float32) {
+// SetServerId gets a reference to the given string and assigns it to the ServerId field.
+func (o *Event) SetServerId(v string) {
 	o.ServerId = &v
 }
 
@@ -343,9 +343,9 @@ func (o *Event) SetJobId(v string) {
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *Event) GetSiteId() float32 {
+func (o *Event) GetSiteId() string {
 	if o == nil || IsNil(o.SiteId) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.SiteId
@@ -353,7 +353,7 @@ func (o *Event) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetSiteIdOk() (*float32, bool) {
+func (o *Event) GetSiteIdOk() (*string, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -369,8 +369,8 @@ func (o *Event) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given float32 and assigns it to the SiteId field.
-func (o *Event) SetSiteId(v float32) {
+// SetSiteId gets a reference to the given string and assigns it to the SiteId field.
+func (o *Event) SetSiteId(v string) {
 	o.SiteId = &v
 }
 

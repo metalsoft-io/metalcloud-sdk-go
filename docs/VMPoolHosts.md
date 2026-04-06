@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description of the VM Pool Host | [optional] 
 **AllowVMsToBeCreated** | **bool** | Flag specifying if VMs can be created on the VM Pool Host | [default to true]
 **HostInterfaces** | Pointer to [**[]VMPoolHostInterfaces**](VMPoolHostInterfaces.md) | List of VM Pool Host Interfaces | [optional] 
-**VmCount** | Pointer to **float32** | Number of VMs on the VM Pool Host | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool Host was updated | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -349,31 +348,6 @@ SetHostInterfaces sets HostInterfaces field to given value.
 `func (o *VMPoolHosts) HasHostInterfaces() bool`
 
 HasHostInterfaces returns a boolean if a field has been set.
-
-### GetVmCount
-
-`func (o *VMPoolHosts) GetVmCount() float32`
-
-GetVmCount returns the VmCount field if non-nil, zero value otherwise.
-
-### GetVmCountOk
-
-`func (o *VMPoolHosts) GetVmCountOk() (*float32, bool)`
-
-GetVmCountOk returns a tuple with the VmCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVmCount
-
-`func (o *VMPoolHosts) SetVmCount(v float32)`
-
-SetVmCount sets VmCount field to given value.
-
-### HasVmCount
-
-`func (o *VMPoolHosts) HasVmCount() bool`
-
-HasVmCount returns a boolean if a field has been set.
 
 ### GetUpdatedTimestamp
 

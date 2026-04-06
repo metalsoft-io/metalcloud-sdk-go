@@ -47,8 +47,6 @@ type VMPoolHosts struct {
 	AllowVMsToBeCreated bool `json:"allowVMsToBeCreated"`
 	// List of VM Pool Host Interfaces
 	HostInterfaces []VMPoolHostInterfaces `json:"hostInterfaces,omitempty"`
-	// Number of VMs on the VM Pool Host
-	VmCount *float32 `json:"vmCount,omitempty"`
 	// Timestamp when the VM Pool Host was updated
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Reference links
@@ -473,38 +471,6 @@ func (o *VMPoolHosts) SetHostInterfaces(v []VMPoolHostInterfaces) {
 	o.HostInterfaces = v
 }
 
-// GetVmCount returns the VmCount field value if set, zero value otherwise.
-func (o *VMPoolHosts) GetVmCount() float32 {
-	if o == nil || IsNil(o.VmCount) {
-		var ret float32
-		return ret
-	}
-	return *o.VmCount
-}
-
-// GetVmCountOk returns a tuple with the VmCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetVmCountOk() (*float32, bool) {
-	if o == nil || IsNil(o.VmCount) {
-		return nil, false
-	}
-	return o.VmCount, true
-}
-
-// HasVmCount returns a boolean if a field has been set.
-func (o *VMPoolHosts) HasVmCount() bool {
-	if o != nil && !IsNil(o.VmCount) {
-		return true
-	}
-
-	return false
-}
-
-// SetVmCount gets a reference to the given float32 and assigns it to the VmCount field.
-func (o *VMPoolHosts) SetVmCount(v float32) {
-	o.VmCount = &v
-}
-
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
 func (o *VMPoolHosts) GetUpdatedTimestamp() string {
 	if o == nil {
@@ -604,9 +570,6 @@ func (o VMPoolHosts) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HostInterfaces) {
 		toSerialize["hostInterfaces"] = o.HostInterfaces
 	}
-	if !IsNil(o.VmCount) {
-		toSerialize["vmCount"] = o.VmCount
-	}
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -670,7 +633,6 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "allowVMsToBeCreated")
 		delete(additionalProperties, "hostInterfaces")
-		delete(additionalProperties, "vmCount")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

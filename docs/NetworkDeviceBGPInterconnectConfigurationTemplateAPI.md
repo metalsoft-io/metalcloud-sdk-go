@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createNetworkDeviceBGPInterconnectConfigurationTemplate := *openapiclient.NewCreateNetworkDeviceBGPInterconnectConfigurationTemplate("Label_example", "Name_example", "sonic_enterprise", "cli", "RemoveGlobalConfig_example") // CreateNetworkDeviceBGPInterconnectConfigurationTemplate | The Network Device BGP Interconnect Configuration Template create object
+	createNetworkDeviceBGPInterconnectConfigurationTemplate := *openapiclient.NewCreateNetworkDeviceBGPInterconnectConfigurationTemplate("Label_example", "Name_example", "sonic_enterprise", "cli") // CreateNetworkDeviceBGPInterconnectConfigurationTemplate | The Network Device BGP Interconnect Configuration Template create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
