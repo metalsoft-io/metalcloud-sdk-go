@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **float32** | The ID of the server default credentials | 
 **SiteId** | **float32** | The site ID of the server default credentials | 
-**ServerSerialNumber** | **string** | The serial number of the server | 
-**ServerMacAddress** | **string** | The MAC address of the server | 
+**ServerSerialNumber** | Pointer to **string** | The serial number of the server | [optional] 
+**ServerMacAddress** | Pointer to **string** | The MAC address of the server | [optional] 
 **DefaultUsername** | **string** | The default username of the server | 
 **DefaultRackName** | Pointer to **string** | The default rack name of the server | [optional] 
 **DefaultRackPositionLowerUnit** | Pointer to **string** | The default rack position upper unit of the server | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewServerDefaultCredentials
 
-`func NewServerDefaultCredentials(id float32, siteId float32, serverSerialNumber string, serverMacAddress string, defaultUsername string, ) *ServerDefaultCredentials`
+`func NewServerDefaultCredentials(id float32, siteId float32, defaultUsername string, ) *ServerDefaultCredentials`
 
 NewServerDefaultCredentials instantiates a new ServerDefaultCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -95,6 +95,11 @@ and a boolean to check if the value has been set.
 
 SetServerSerialNumber sets ServerSerialNumber field to given value.
 
+### HasServerSerialNumber
+
+`func (o *ServerDefaultCredentials) HasServerSerialNumber() bool`
+
+HasServerSerialNumber returns a boolean if a field has been set.
 
 ### GetServerMacAddress
 
@@ -115,6 +120,11 @@ and a boolean to check if the value has been set.
 
 SetServerMacAddress sets ServerMacAddress field to given value.
 
+### HasServerMacAddress
+
+`func (o *ServerDefaultCredentials) HasServerMacAddress() bool`
+
+HasServerMacAddress returns a boolean if a field has been set.
 
 ### GetDefaultUsername
 

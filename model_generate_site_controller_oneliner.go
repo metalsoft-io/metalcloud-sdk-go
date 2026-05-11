@@ -71,6 +71,8 @@ type GenerateSiteControllerOneliner struct {
 	BuildImage bool `json:"buildImage"`
 	// Enable inband WebMKS capability
 	InbandWebmks bool `json:"inbandWebmks"`
+	// Deploy NFS server
+	DeployNfs bool `json:"deployNfs"`
 	// Second IP address
 	SecondIp *string `json:"secondIp,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -82,7 +84,7 @@ type _GenerateSiteControllerOneliner GenerateSiteControllerOneliner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool) *GenerateSiteControllerOneliner {
+func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool, deployNfs bool) *GenerateSiteControllerOneliner {
 	this := GenerateSiteControllerOneliner{}
 	this.UsePodman = usePodman
 	this.InbandMode = inbandMode
@@ -109,6 +111,7 @@ func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEn
 	this.SshCommand = sshCommand
 	this.BuildImage = buildImage
 	this.InbandWebmks = inbandWebmks
+	this.DeployNfs = deployNfs
 	return &this
 }
 
@@ -161,6 +164,8 @@ func NewGenerateSiteControllerOnelinerWithDefaults() *GenerateSiteControllerOnel
 	this.BuildImage = buildImage
 	var inbandWebmks bool = false
 	this.InbandWebmks = inbandWebmks
+	var deployNfs bool = true
+	this.DeployNfs = deployNfs
 	return &this
 }
 
@@ -764,6 +769,30 @@ func (o *GenerateSiteControllerOneliner) SetInbandWebmks(v bool) {
 	o.InbandWebmks = v
 }
 
+// GetDeployNfs returns the DeployNfs field value
+func (o *GenerateSiteControllerOneliner) GetDeployNfs() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DeployNfs
+}
+
+// GetDeployNfsOk returns a tuple with the DeployNfs field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetDeployNfsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeployNfs, true
+}
+
+// SetDeployNfs sets field value
+func (o *GenerateSiteControllerOneliner) SetDeployNfs(v bool) {
+	o.DeployNfs = v
+}
+
 // GetSecondIp returns the SecondIp field value if set, zero value otherwise.
 func (o *GenerateSiteControllerOneliner) GetSecondIp() string {
 	if o == nil || IsNil(o.SecondIp) {
@@ -831,6 +860,7 @@ func (o GenerateSiteControllerOneliner) ToMap() (map[string]interface{}, error) 
 	toSerialize["sshCommand"] = o.SshCommand
 	toSerialize["buildImage"] = o.BuildImage
 	toSerialize["inbandWebmks"] = o.InbandWebmks
+	toSerialize["deployNfs"] = o.DeployNfs
 	if !IsNil(o.SecondIp) {
 		toSerialize["secondIp"] = o.SecondIp
 	}
@@ -872,6 +902,7 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		"sshCommand",
 		"buildImage",
 		"inbandWebmks",
+		"deployNfs",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -926,6 +957,7 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "sshCommand")
 		delete(additionalProperties, "buildImage")
 		delete(additionalProperties, "inbandWebmks")
+		delete(additionalProperties, "deployNfs")
 		delete(additionalProperties, "secondIp")
 		o.AdditionalProperties = additionalProperties
 	}

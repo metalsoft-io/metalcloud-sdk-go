@@ -21,6 +21,7 @@ Method | HTTP request | Description
 [**RegisterProductionServer**](ServerAPI.md#RegisterProductionServer) | **Post** /api/v2/servers/actions/register-production | Initialize a production (live) server
 [**RegisterServer**](ServerAPI.md#RegisterServer) | **Post** /api/v2/servers | Initialize server registration
 [**ResetServerToFactoryDefaults**](ServerAPI.md#ResetServerToFactoryDefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
+[**ServerHardwareRescan**](ServerAPI.md#ServerHardwareRescan) | **Post** /api/v2/servers/{serverId}/actions/hardware-rescan | Hardware rescan a server
 [**SetServerInterfacesDefaultFabric**](ServerAPI.md#SetServerInterfacesDefaultFabric) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-default-fabric | Sets the default fabric for the specified server interfaces
 [**SetServerInterfacesRedundancyGroup**](ServerAPI.md#SetServerInterfacesRedundancyGroup) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-redundancy-group | Sets the redundancy group index for the specified server interfaces
 [**SetServerPowerState**](ServerAPI.md#SetServerPowerState) | **Post** /api/v2/servers/{serverId}/actions/set-power | Sets the power state of a server
@@ -1233,6 +1234,80 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ServerHardwareRescan
+
+> HardwareRescanServerResponse ServerHardwareRescan(ctx, serverId).IfMatch(ifMatch).HardwareRescanServerRequest(hardwareRescanServerRequest).Execute()
+
+Hardware rescan a server
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+	hardwareRescanServerRequest := *openapiclient.NewHardwareRescanServerRequest() // HardwareRescanServerRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerAPI.ServerHardwareRescan(context.Background(), serverId).IfMatch(ifMatch).HardwareRescanServerRequest(hardwareRescanServerRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.ServerHardwareRescan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ServerHardwareRescan`: HardwareRescanServerResponse
+	fmt.Fprintf(os.Stdout, "Response from `ServerAPI.ServerHardwareRescan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiServerHardwareRescanRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+ **hardwareRescanServerRequest** | [**HardwareRescanServerRequest**](HardwareRescanServerRequest.md) |  | 
+
+### Return type
+
+[**HardwareRescanServerResponse**](HardwareRescanServerResponse.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -23,8 +23,12 @@ var _ MappedNullable = &AuthenticationProviderUpdate{}
 type AuthenticationProviderUpdate struct {
 	// True if the provider is enabled
 	Enabled bool `json:"enabled"`
-	// Permitted domains
+	// Permitted email domains (valid email format required)
 	Domains []string `json:"domains,omitempty"`
+	// Non-email domain identifiers for LDAP subtrees (e.g. \"adm\", \"people.group\"). LDAP provider only.
+	Subtrees []string `json:"subtrees,omitempty"`
+	// When true (default), the mail attribute from the LDAP response is stored as the user email. When false, the username is always used instead. LDAP provider only.
+	StoreMail *bool `json:"storeMail,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,6 +108,70 @@ func (o *AuthenticationProviderUpdate) SetDomains(v []string) {
 	o.Domains = v
 }
 
+// GetSubtrees returns the Subtrees field value if set, zero value otherwise.
+func (o *AuthenticationProviderUpdate) GetSubtrees() []string {
+	if o == nil || IsNil(o.Subtrees) {
+		var ret []string
+		return ret
+	}
+	return o.Subtrees
+}
+
+// GetSubtreesOk returns a tuple with the Subtrees field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthenticationProviderUpdate) GetSubtreesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Subtrees) {
+		return nil, false
+	}
+	return o.Subtrees, true
+}
+
+// HasSubtrees returns a boolean if a field has been set.
+func (o *AuthenticationProviderUpdate) HasSubtrees() bool {
+	if o != nil && !IsNil(o.Subtrees) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubtrees gets a reference to the given []string and assigns it to the Subtrees field.
+func (o *AuthenticationProviderUpdate) SetSubtrees(v []string) {
+	o.Subtrees = v
+}
+
+// GetStoreMail returns the StoreMail field value if set, zero value otherwise.
+func (o *AuthenticationProviderUpdate) GetStoreMail() bool {
+	if o == nil || IsNil(o.StoreMail) {
+		var ret bool
+		return ret
+	}
+	return *o.StoreMail
+}
+
+// GetStoreMailOk returns a tuple with the StoreMail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthenticationProviderUpdate) GetStoreMailOk() (*bool, bool) {
+	if o == nil || IsNil(o.StoreMail) {
+		return nil, false
+	}
+	return o.StoreMail, true
+}
+
+// HasStoreMail returns a boolean if a field has been set.
+func (o *AuthenticationProviderUpdate) HasStoreMail() bool {
+	if o != nil && !IsNil(o.StoreMail) {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreMail gets a reference to the given bool and assigns it to the StoreMail field.
+func (o *AuthenticationProviderUpdate) SetStoreMail(v bool) {
+	o.StoreMail = &v
+}
+
 func (o AuthenticationProviderUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -117,6 +185,12 @@ func (o AuthenticationProviderUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize["enabled"] = o.Enabled
 	if !IsNil(o.Domains) {
 		toSerialize["domains"] = o.Domains
+	}
+	if !IsNil(o.Subtrees) {
+		toSerialize["subtrees"] = o.Subtrees
+	}
+	if !IsNil(o.StoreMail) {
+		toSerialize["storeMail"] = o.StoreMail
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -163,6 +237,8 @@ func (o *AuthenticationProviderUpdate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "domains")
+		delete(additionalProperties, "subtrees")
+		delete(additionalProperties, "storeMail")
 		o.AdditionalProperties = additionalProperties
 	}
 

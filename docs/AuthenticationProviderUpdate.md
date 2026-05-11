@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | **bool** | True if the provider is enabled | 
-**Domains** | Pointer to **[]string** | Permitted domains | [optional] 
+**Domains** | Pointer to **[]string** | Permitted email domains (valid email format required) | [optional] 
+**Subtrees** | Pointer to **[]string** | Non-email domain identifiers for LDAP subtrees (e.g. \&quot;adm\&quot;, \&quot;people.group\&quot;). LDAP provider only. | [optional] 
+**StoreMail** | Pointer to **bool** | When true (default), the mail attribute from the LDAP response is stored as the user email. When false, the username is always used instead. LDAP provider only. | [optional] 
 
 ## Methods
 
@@ -70,6 +72,56 @@ SetDomains sets Domains field to given value.
 `func (o *AuthenticationProviderUpdate) HasDomains() bool`
 
 HasDomains returns a boolean if a field has been set.
+
+### GetSubtrees
+
+`func (o *AuthenticationProviderUpdate) GetSubtrees() []string`
+
+GetSubtrees returns the Subtrees field if non-nil, zero value otherwise.
+
+### GetSubtreesOk
+
+`func (o *AuthenticationProviderUpdate) GetSubtreesOk() (*[]string, bool)`
+
+GetSubtreesOk returns a tuple with the Subtrees field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubtrees
+
+`func (o *AuthenticationProviderUpdate) SetSubtrees(v []string)`
+
+SetSubtrees sets Subtrees field to given value.
+
+### HasSubtrees
+
+`func (o *AuthenticationProviderUpdate) HasSubtrees() bool`
+
+HasSubtrees returns a boolean if a field has been set.
+
+### GetStoreMail
+
+`func (o *AuthenticationProviderUpdate) GetStoreMail() bool`
+
+GetStoreMail returns the StoreMail field if non-nil, zero value otherwise.
+
+### GetStoreMailOk
+
+`func (o *AuthenticationProviderUpdate) GetStoreMailOk() (*bool, bool)`
+
+GetStoreMailOk returns a tuple with the StoreMail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStoreMail
+
+`func (o *AuthenticationProviderUpdate) SetStoreMail(v bool)`
+
+SetStoreMail sets StoreMail field to given value.
+
+### HasStoreMail
+
+`func (o *AuthenticationProviderUpdate) HasStoreMail() bool`
+
+HasStoreMail returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

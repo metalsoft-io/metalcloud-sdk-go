@@ -47,6 +47,34 @@ func Test_sdk_SubnetAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SubnetAPIService DeleteSubnetIp", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subnetId int32
+		var ipId int32
+
+		httpRes, err := apiClient.SubnetAPI.DeleteSubnetIp(context.Background(), subnetId, ipId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SubnetAPIService DeleteSubnetIpRange", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subnetId int32
+		var ipRangeId int32
+
+		httpRes, err := apiClient.SubnetAPI.DeleteSubnetIpRange(context.Background(), subnetId, ipRangeId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SubnetAPIService GetSubnet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

@@ -23,6 +23,8 @@ type ServerRegistrationResult struct {
 	FoundMinimumNumberOfConnectedInterfaces *string `json:"foundMinimumNumberOfConnectedInterfaces,omitempty"`
 	RaidControllersReset *string `json:"raidControllersReset,omitempty"`
 	DpuRegistered *string `json:"dpuRegistered,omitempty"`
+	// Set to FAILED when a used server re-registration could not rediscover switch connections without a reboot. Existing switch connection data was preserved.
+	InterfacesPreservedFromPreviousRegistration *string `json:"interfacesPreservedFromPreviousRegistration,omitempty"`
 	// The reasons for failure during registration.
 	ReasonsForFailure []string `json:"reasonsForFailure,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -143,6 +145,38 @@ func (o *ServerRegistrationResult) SetDpuRegistered(v string) {
 	o.DpuRegistered = &v
 }
 
+// GetInterfacesPreservedFromPreviousRegistration returns the InterfacesPreservedFromPreviousRegistration field value if set, zero value otherwise.
+func (o *ServerRegistrationResult) GetInterfacesPreservedFromPreviousRegistration() string {
+	if o == nil || IsNil(o.InterfacesPreservedFromPreviousRegistration) {
+		var ret string
+		return ret
+	}
+	return *o.InterfacesPreservedFromPreviousRegistration
+}
+
+// GetInterfacesPreservedFromPreviousRegistrationOk returns a tuple with the InterfacesPreservedFromPreviousRegistration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationResult) GetInterfacesPreservedFromPreviousRegistrationOk() (*string, bool) {
+	if o == nil || IsNil(o.InterfacesPreservedFromPreviousRegistration) {
+		return nil, false
+	}
+	return o.InterfacesPreservedFromPreviousRegistration, true
+}
+
+// HasInterfacesPreservedFromPreviousRegistration returns a boolean if a field has been set.
+func (o *ServerRegistrationResult) HasInterfacesPreservedFromPreviousRegistration() bool {
+	if o != nil && !IsNil(o.InterfacesPreservedFromPreviousRegistration) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfacesPreservedFromPreviousRegistration gets a reference to the given string and assigns it to the InterfacesPreservedFromPreviousRegistration field.
+func (o *ServerRegistrationResult) SetInterfacesPreservedFromPreviousRegistration(v string) {
+	o.InterfacesPreservedFromPreviousRegistration = &v
+}
+
 // GetReasonsForFailure returns the ReasonsForFailure field value if set, zero value otherwise.
 func (o *ServerRegistrationResult) GetReasonsForFailure() []string {
 	if o == nil || IsNil(o.ReasonsForFailure) {
@@ -194,6 +228,9 @@ func (o ServerRegistrationResult) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DpuRegistered) {
 		toSerialize["dpuRegistered"] = o.DpuRegistered
 	}
+	if !IsNil(o.InterfacesPreservedFromPreviousRegistration) {
+		toSerialize["interfacesPreservedFromPreviousRegistration"] = o.InterfacesPreservedFromPreviousRegistration
+	}
 	if !IsNil(o.ReasonsForFailure) {
 		toSerialize["reasonsForFailure"] = o.ReasonsForFailure
 	}
@@ -222,6 +259,7 @@ func (o *ServerRegistrationResult) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "foundMinimumNumberOfConnectedInterfaces")
 		delete(additionalProperties, "raidControllersReset")
 		delete(additionalProperties, "dpuRegistered")
+		delete(additionalProperties, "interfacesPreservedFromPreviousRegistration")
 		delete(additionalProperties, "reasonsForFailure")
 		o.AdditionalProperties = additionalProperties
 	}

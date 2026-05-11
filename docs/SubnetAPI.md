@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateSubnet**](SubnetAPI.md#CreateSubnet) | **Post** /api/v2/subnets | Create a subnet.
 [**DeleteSubnet**](SubnetAPI.md#DeleteSubnet) | **Delete** /api/v2/subnets/{subnetId} | Delete Subnet
+[**DeleteSubnetIp**](SubnetAPI.md#DeleteSubnetIp) | **Delete** /api/v2/subnets/{subnetId}/ips/{ipId} | Delete Subnet IP
+[**DeleteSubnetIpRange**](SubnetAPI.md#DeleteSubnetIpRange) | **Delete** /api/v2/subnets/{subnetId}/ip-ranges/{ipRangeId} | Delete Subnet IP Range
 [**GetSubnet**](SubnetAPI.md#GetSubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
 [**GetSubnetIpRanges**](SubnetAPI.md#GetSubnetIpRanges) | **Get** /api/v2/subnets/{subnetId}/ip-ranges | List all Subnet IP Ranges
 [**GetSubnetIps**](SubnetAPI.md#GetSubnetIps) | **Get** /api/v2/subnets/{subnetId}/ips | List all Subnet IPs
@@ -127,6 +129,152 @@ Other parameters are passed through a pointer to a apiDeleteSubnetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteSubnetIp
+
+> DeleteSubnetIp(ctx, subnetId, ipId).IfMatch(ifMatch).Execute()
+
+Delete Subnet IP
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	subnetId := int32(56) // int32 | 
+	ipId := int32(56) // int32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubnetAPI.DeleteSubnetIp(context.Background(), subnetId, ipId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.DeleteSubnetIp``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subnetId** | **int32** |  | 
+**ipId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteSubnetIpRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteSubnetIpRange
+
+> DeleteSubnetIpRange(ctx, subnetId, ipRangeId).IfMatch(ifMatch).Execute()
+
+Delete Subnet IP Range
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	subnetId := int32(56) // int32 | 
+	ipRangeId := int32(56) // int32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubnetAPI.DeleteSubnetIpRange(context.Background(), subnetId, ipRangeId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.DeleteSubnetIpRange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subnetId** | **int32** |  | 
+**ipRangeId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteSubnetIpRangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
  **ifMatch** | **string** | Entity tag | 
 

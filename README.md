@@ -561,6 +561,7 @@ Class | Method | HTTP request | Description
 *ServerAPI* | [**RegisterProductionServer**](docs/ServerAPI.md#registerproductionserver) | **Post** /api/v2/servers/actions/register-production | Initialize a production (live) server
 *ServerAPI* | [**RegisterServer**](docs/ServerAPI.md#registerserver) | **Post** /api/v2/servers | Initialize server registration
 *ServerAPI* | [**ResetServerToFactoryDefaults**](docs/ServerAPI.md#resetservertofactorydefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
+*ServerAPI* | [**ServerHardwareRescan**](docs/ServerAPI.md#serverhardwarerescan) | **Post** /api/v2/servers/{serverId}/actions/hardware-rescan | Hardware rescan a server
 *ServerAPI* | [**SetServerInterfacesDefaultFabric**](docs/ServerAPI.md#setserverinterfacesdefaultfabric) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-default-fabric | Sets the default fabric for the specified server interfaces
 *ServerAPI* | [**SetServerInterfacesRedundancyGroup**](docs/ServerAPI.md#setserverinterfacesredundancygroup) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-redundancy-group | Sets the redundancy group index for the specified server interfaces
 *ServerAPI* | [**SetServerPowerState**](docs/ServerAPI.md#setserverpowerstate) | **Post** /api/v2/servers/{serverId}/actions/set-power | Sets the power state of a server
@@ -677,6 +678,8 @@ Class | Method | HTTP request | Description
 *StorageAPI* | [**UpdateStorageInterface**](docs/StorageAPI.md#updatestorageinterface) | **Patch** /api/v2/storages/{storageId}/interfaces/{interfaceId} | Updates a Storage Interface
 *SubnetAPI* | [**CreateSubnet**](docs/SubnetAPI.md#createsubnet) | **Post** /api/v2/subnets | Create a subnet.
 *SubnetAPI* | [**DeleteSubnet**](docs/SubnetAPI.md#deletesubnet) | **Delete** /api/v2/subnets/{subnetId} | Delete Subnet
+*SubnetAPI* | [**DeleteSubnetIp**](docs/SubnetAPI.md#deletesubnetip) | **Delete** /api/v2/subnets/{subnetId}/ips/{ipId} | Delete Subnet IP
+*SubnetAPI* | [**DeleteSubnetIpRange**](docs/SubnetAPI.md#deletesubnetiprange) | **Delete** /api/v2/subnets/{subnetId}/ip-ranges/{ipRangeId} | Delete Subnet IP Range
 *SubnetAPI* | [**GetSubnet**](docs/SubnetAPI.md#getsubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
 *SubnetAPI* | [**GetSubnetIpRanges**](docs/SubnetAPI.md#getsubnetipranges) | **Get** /api/v2/subnets/{subnetId}/ip-ranges | List all Subnet IP Ranges
 *SubnetAPI* | [**GetSubnetIps**](docs/SubnetAPI.md#getsubnetips) | **Get** /api/v2/subnets/{subnetId}/ips | List all Subnet IPs
@@ -1093,6 +1096,8 @@ Class | Method | HTTP request | Description
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
  - [GetResourceUtilizationSummarized](docs/GetResourceUtilizationSummarized.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
+ - [HardwareRescanServerRequest](docs/HardwareRescanServerRequest.md)
+ - [HardwareRescanServerResponse](docs/HardwareRescanServerResponse.md)
  - [HpeComponentFilter](docs/HpeComponentFilter.md)
  - [IServerFirmwareBinaryResponse](docs/IServerFirmwareBinaryResponse.md)
  - [InfinibandFabric](docs/InfinibandFabric.md)

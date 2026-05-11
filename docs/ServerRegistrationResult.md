@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **FoundMinimumNumberOfConnectedInterfaces** | Pointer to **string** |  | [optional] 
 **RaidControllersReset** | Pointer to **string** |  | [optional] 
 **DpuRegistered** | Pointer to **string** |  | [optional] 
+**InterfacesPreservedFromPreviousRegistration** | Pointer to **string** | Set to FAILED when a used server re-registration could not rediscover switch connections without a reboot. Existing switch connection data was preserved. | [optional] 
 **ReasonsForFailure** | Pointer to **[]string** | The reasons for failure during registration. | [optional] 
 
 ## Methods
@@ -102,6 +103,31 @@ SetDpuRegistered sets DpuRegistered field to given value.
 `func (o *ServerRegistrationResult) HasDpuRegistered() bool`
 
 HasDpuRegistered returns a boolean if a field has been set.
+
+### GetInterfacesPreservedFromPreviousRegistration
+
+`func (o *ServerRegistrationResult) GetInterfacesPreservedFromPreviousRegistration() string`
+
+GetInterfacesPreservedFromPreviousRegistration returns the InterfacesPreservedFromPreviousRegistration field if non-nil, zero value otherwise.
+
+### GetInterfacesPreservedFromPreviousRegistrationOk
+
+`func (o *ServerRegistrationResult) GetInterfacesPreservedFromPreviousRegistrationOk() (*string, bool)`
+
+GetInterfacesPreservedFromPreviousRegistrationOk returns a tuple with the InterfacesPreservedFromPreviousRegistration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfacesPreservedFromPreviousRegistration
+
+`func (o *ServerRegistrationResult) SetInterfacesPreservedFromPreviousRegistration(v string)`
+
+SetInterfacesPreservedFromPreviousRegistration sets InterfacesPreservedFromPreviousRegistration field to given value.
+
+### HasInterfacesPreservedFromPreviousRegistration
+
+`func (o *ServerRegistrationResult) HasInterfacesPreservedFromPreviousRegistration() bool`
+
+HasInterfacesPreservedFromPreviousRegistration returns a boolean if a field has been set.
 
 ### GetReasonsForFailure
 

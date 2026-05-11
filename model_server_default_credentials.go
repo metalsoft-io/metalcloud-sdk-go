@@ -26,9 +26,9 @@ type ServerDefaultCredentials struct {
 	// The site ID of the server default credentials
 	SiteId float32 `json:"siteId"`
 	// The serial number of the server
-	ServerSerialNumber string `json:"serverSerialNumber"`
+	ServerSerialNumber *string `json:"serverSerialNumber,omitempty"`
 	// The MAC address of the server
-	ServerMacAddress string `json:"serverMacAddress"`
+	ServerMacAddress *string `json:"serverMacAddress,omitempty"`
 	// The default username of the server
 	DefaultUsername string `json:"defaultUsername"`
 	// The default rack name of the server
@@ -54,12 +54,10 @@ type _ServerDefaultCredentials ServerDefaultCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerDefaultCredentials(id float32, siteId float32, serverSerialNumber string, serverMacAddress string, defaultUsername string) *ServerDefaultCredentials {
+func NewServerDefaultCredentials(id float32, siteId float32, defaultUsername string) *ServerDefaultCredentials {
 	this := ServerDefaultCredentials{}
 	this.Id = id
 	this.SiteId = siteId
-	this.ServerSerialNumber = serverSerialNumber
-	this.ServerMacAddress = serverMacAddress
 	this.DefaultUsername = defaultUsername
 	return &this
 }
@@ -120,52 +118,68 @@ func (o *ServerDefaultCredentials) SetSiteId(v float32) {
 	o.SiteId = v
 }
 
-// GetServerSerialNumber returns the ServerSerialNumber field value
+// GetServerSerialNumber returns the ServerSerialNumber field value if set, zero value otherwise.
 func (o *ServerDefaultCredentials) GetServerSerialNumber() string {
-	if o == nil {
+	if o == nil || IsNil(o.ServerSerialNumber) {
 		var ret string
 		return ret
 	}
-
-	return o.ServerSerialNumber
+	return *o.ServerSerialNumber
 }
 
-// GetServerSerialNumberOk returns a tuple with the ServerSerialNumber field value
+// GetServerSerialNumberOk returns a tuple with the ServerSerialNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerDefaultCredentials) GetServerSerialNumberOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ServerSerialNumber) {
 		return nil, false
 	}
-	return &o.ServerSerialNumber, true
+	return o.ServerSerialNumber, true
 }
 
-// SetServerSerialNumber sets field value
+// HasServerSerialNumber returns a boolean if a field has been set.
+func (o *ServerDefaultCredentials) HasServerSerialNumber() bool {
+	if o != nil && !IsNil(o.ServerSerialNumber) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerSerialNumber gets a reference to the given string and assigns it to the ServerSerialNumber field.
 func (o *ServerDefaultCredentials) SetServerSerialNumber(v string) {
-	o.ServerSerialNumber = v
+	o.ServerSerialNumber = &v
 }
 
-// GetServerMacAddress returns the ServerMacAddress field value
+// GetServerMacAddress returns the ServerMacAddress field value if set, zero value otherwise.
 func (o *ServerDefaultCredentials) GetServerMacAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.ServerMacAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.ServerMacAddress
+	return *o.ServerMacAddress
 }
 
-// GetServerMacAddressOk returns a tuple with the ServerMacAddress field value
+// GetServerMacAddressOk returns a tuple with the ServerMacAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerDefaultCredentials) GetServerMacAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ServerMacAddress) {
 		return nil, false
 	}
-	return &o.ServerMacAddress, true
+	return o.ServerMacAddress, true
 }
 
-// SetServerMacAddress sets field value
+// HasServerMacAddress returns a boolean if a field has been set.
+func (o *ServerDefaultCredentials) HasServerMacAddress() bool {
+	if o != nil && !IsNil(o.ServerMacAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerMacAddress gets a reference to the given string and assigns it to the ServerMacAddress field.
 func (o *ServerDefaultCredentials) SetServerMacAddress(v string) {
-	o.ServerMacAddress = v
+	o.ServerMacAddress = &v
 }
 
 // GetDefaultUsername returns the DefaultUsername field value
@@ -428,8 +442,12 @@ func (o ServerDefaultCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["siteId"] = o.SiteId
-	toSerialize["serverSerialNumber"] = o.ServerSerialNumber
-	toSerialize["serverMacAddress"] = o.ServerMacAddress
+	if !IsNil(o.ServerSerialNumber) {
+		toSerialize["serverSerialNumber"] = o.ServerSerialNumber
+	}
+	if !IsNil(o.ServerMacAddress) {
+		toSerialize["serverMacAddress"] = o.ServerMacAddress
+	}
 	toSerialize["defaultUsername"] = o.DefaultUsername
 	if !IsNil(o.DefaultRackName) {
 		toSerialize["defaultRackName"] = o.DefaultRackName
@@ -467,8 +485,6 @@ func (o *ServerDefaultCredentials) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"siteId",
-		"serverSerialNumber",
-		"serverMacAddress",
 		"defaultUsername",
 	}
 

@@ -1513,6 +1513,7 @@ type NetworkDeviceAPIGetNetworkDevicesRequest struct {
 	filterStatus *[]string
 	filterDatacenterName *[]string
 	filterSiteId *[]string
+	filterDriver *[]string
 	filterChassisIdentifier *[]string
 	filterManagementAddress *[]string
 	filterManagementPort *[]string
@@ -1558,6 +1559,12 @@ func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterDatacenterName(filterDat
 // Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterSiteId(filterSiteId []string) NetworkDeviceAPIGetNetworkDevicesRequest {
 	r.filterSiteId = &filterSiteId
+	return r
+}
+
+// Filter by driver query param.  **Format:** filter.driver&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driver&#x3D;$btw:John Doe&amp;filter.driver&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterDriver(filterDriver []string) NetworkDeviceAPIGetNetworkDevicesRequest {
+	r.filterDriver = &filterDriver
 	return r
 }
 
@@ -1707,6 +1714,17 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicesExecute(r NetworkDeviceAPIGet
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
+	if r.filterDriver != nil {
+		t := *r.filterDriver
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driver", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driver", t, "form", "multi")
 		}
 	}
 	if r.filterChassisIdentifier != nil {

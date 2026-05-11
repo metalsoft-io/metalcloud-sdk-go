@@ -29,13 +29,14 @@ Name | Type | Description | Notes
 **SshCommand** | **bool** | Enable SSH command capability | [default to false]
 **BuildImage** | **bool** | Enable image building capability | [default to false]
 **InbandWebmks** | **bool** | Enable inband WebMKS capability | [default to false]
+**DeployNfs** | **bool** | Deploy NFS server | [default to true]
 **SecondIp** | Pointer to **string** | Second IP address | [optional] 
 
 ## Methods
 
 ### NewGenerateSiteControllerOneliner
 
-`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool, ) *GenerateSiteControllerOneliner`
+`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool, deployNfs bool, ) *GenerateSiteControllerOneliner`
 
 NewGenerateSiteControllerOneliner instantiates a new GenerateSiteControllerOneliner object
 This constructor will assign default values to properties that have it defined,
@@ -548,6 +549,26 @@ and a boolean to check if the value has been set.
 `func (o *GenerateSiteControllerOneliner) SetInbandWebmks(v bool)`
 
 SetInbandWebmks sets InbandWebmks field to given value.
+
+
+### GetDeployNfs
+
+`func (o *GenerateSiteControllerOneliner) GetDeployNfs() bool`
+
+GetDeployNfs returns the DeployNfs field if non-nil, zero value otherwise.
+
+### GetDeployNfsOk
+
+`func (o *GenerateSiteControllerOneliner) GetDeployNfsOk() (*bool, bool)`
+
+GetDeployNfsOk returns a tuple with the DeployNfs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployNfs
+
+`func (o *GenerateSiteControllerOneliner) SetDeployNfs(v bool)`
+
+SetDeployNfs sets DeployNfs field to given value.
 
 
 ### GetSecondIp

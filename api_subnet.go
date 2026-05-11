@@ -237,6 +237,220 @@ func (a *SubnetAPIService) DeleteSubnetExecute(r SubnetAPIDeleteSubnetRequest) (
 	return localVarHTTPResponse, nil
 }
 
+type SubnetAPIDeleteSubnetIpRequest struct {
+	ctx context.Context
+	ApiService *SubnetAPIService
+	subnetId int32
+	ipId int32
+	ifMatch *string
+}
+
+// Entity tag
+func (r SubnetAPIDeleteSubnetIpRequest) IfMatch(ifMatch string) SubnetAPIDeleteSubnetIpRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r SubnetAPIDeleteSubnetIpRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteSubnetIpExecute(r)
+}
+
+/*
+DeleteSubnetIp Delete Subnet IP
+
+Delete Subnet IP
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subnetId
+ @param ipId
+ @return SubnetAPIDeleteSubnetIpRequest
+*/
+func (a *SubnetAPIService) DeleteSubnetIp(ctx context.Context, subnetId int32, ipId int32) SubnetAPIDeleteSubnetIpRequest {
+	return SubnetAPIDeleteSubnetIpRequest{
+		ApiService: a,
+		ctx: ctx,
+		subnetId: subnetId,
+		ipId: ipId,
+	}
+}
+
+// Execute executes the request
+func (a *SubnetAPIService) DeleteSubnetIpExecute(r SubnetAPIDeleteSubnetIpRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.DeleteSubnetIp")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/subnets/{subnetId}/ips/{ipId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"subnetId"+"}", url.PathEscape(parameterValueToString(r.subnetId, "subnetId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ipId"+"}", url.PathEscape(parameterValueToString(r.ipId, "ipId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return nil, reportError("ifMatch is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type SubnetAPIDeleteSubnetIpRangeRequest struct {
+	ctx context.Context
+	ApiService *SubnetAPIService
+	subnetId int32
+	ipRangeId int32
+	ifMatch *string
+}
+
+// Entity tag
+func (r SubnetAPIDeleteSubnetIpRangeRequest) IfMatch(ifMatch string) SubnetAPIDeleteSubnetIpRangeRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r SubnetAPIDeleteSubnetIpRangeRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteSubnetIpRangeExecute(r)
+}
+
+/*
+DeleteSubnetIpRange Delete Subnet IP Range
+
+Delete Subnet IP Range
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subnetId
+ @param ipRangeId
+ @return SubnetAPIDeleteSubnetIpRangeRequest
+*/
+func (a *SubnetAPIService) DeleteSubnetIpRange(ctx context.Context, subnetId int32, ipRangeId int32) SubnetAPIDeleteSubnetIpRangeRequest {
+	return SubnetAPIDeleteSubnetIpRangeRequest{
+		ApiService: a,
+		ctx: ctx,
+		subnetId: subnetId,
+		ipRangeId: ipRangeId,
+	}
+}
+
+// Execute executes the request
+func (a *SubnetAPIService) DeleteSubnetIpRangeExecute(r SubnetAPIDeleteSubnetIpRangeRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.DeleteSubnetIpRange")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/subnets/{subnetId}/ip-ranges/{ipRangeId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"subnetId"+"}", url.PathEscape(parameterValueToString(r.subnetId, "subnetId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ipRangeId"+"}", url.PathEscape(parameterValueToString(r.ipRangeId, "ipRangeId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return nil, reportError("ifMatch is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type SubnetAPIGetSubnetRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService

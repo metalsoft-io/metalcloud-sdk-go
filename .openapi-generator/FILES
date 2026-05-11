@@ -378,6 +378,8 @@ docs/GenericServiceStatus.md
 docs/GetResourceUtilizationDetailed.md
 docs/GetResourceUtilizationSummarized.md
 docs/GlobalFirmwareUpgradeConfiguration.md
+docs/HardwareRescanServerRequest.md
+docs/HardwareRescanServerResponse.md
 docs/HpeComponentFilter.md
 docs/IServerFirmwareBinaryResponse.md
 docs/InfinibandFabric.md
@@ -1237,6 +1239,8 @@ model_generic_service_status.go
 model_get_resource_utilization_detailed.go
 model_get_resource_utilization_summarized.go
 model_global_firmware_upgrade_configuration.go
+model_hardware_rescan_server_request.go
+model_hardware_rescan_server_response.go
 model_hpe_component_filter.go
 model_i_server_firmware_binary_response.go
 model_infiniband_fabric.go
