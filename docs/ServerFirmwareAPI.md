@@ -398,7 +398,7 @@ Name | Type | Description  | Notes
 
 ## GetServerFirmwareInventory
 
-> map[string]interface{} GetServerFirmwareInventory(ctx, serverId).Execute()
+> []map[string]interface{} GetServerFirmwareInventory(ctx, serverId).Execute()
 
 Retrieves server firmware inventory from redfish
 
@@ -426,7 +426,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerFirmwareAPI.GetServerFirmwareInventory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerFirmwareInventory`: map[string]interface{}
+	// response from `GetServerFirmwareInventory`: []map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `ServerFirmwareAPI.GetServerFirmwareInventory`: %v\n", resp)
 }
 ```
@@ -450,7 +450,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**[]map[string]interface{}**](map.md)
 
 ### Authorization
 

@@ -787,7 +787,7 @@ type ServerFirmwareAPIGetServerFirmwareInventoryRequest struct {
 	serverId float32
 }
 
-func (r ServerFirmwareAPIGetServerFirmwareInventoryRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ServerFirmwareAPIGetServerFirmwareInventoryRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
 	return r.ApiService.GetServerFirmwareInventoryExecute(r)
 }
 
@@ -809,13 +809,13 @@ func (a *ServerFirmwareAPIService) GetServerFirmwareInventory(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ServerFirmwareAPIService) GetServerFirmwareInventoryExecute(r ServerFirmwareAPIGetServerFirmwareInventoryRequest) (map[string]interface{}, *http.Response, error) {
+//  @return []map[string]interface{}
+func (a *ServerFirmwareAPIService) GetServerFirmwareInventoryExecute(r ServerFirmwareAPIGetServerFirmwareInventoryRequest) ([]map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  []map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerFirmwareAPIService.GetServerFirmwareInventory")
