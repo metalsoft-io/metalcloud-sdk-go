@@ -651,15 +651,22 @@ Class | Method | HTTP request | Description
 *ServerTypeAPI* | [**GetServerTypesStatisticsBatch**](docs/ServerTypeAPI.md#getservertypesstatisticsbatch) | **Post** /api/v2/server-types/statistics | Get Server Type statistics batch
 *ServerTypeAPI* | [**RemoveUnusedServerTypes**](docs/ServerTypeAPI.md#removeunusedservertypes) | **Post** /api/v2/server-types/actions/clean-unused | Deletes unused server types
 *ServerTypeAPI* | [**UpdateServerType**](docs/ServerTypeAPI.md#updateservertype) | **Patch** /api/v2/server-types/{serverTypeId} | Updates a Server Type
+*SiteAPI* | [**CreateDeviceAuthProvider**](docs/SiteAPI.md#createdeviceauthprovider) | **Post** /api/v2/device-auth-providers | Create a new device auth provider
 *SiteAPI* | [**CreateSite**](docs/SiteAPI.md#createsite) | **Post** /api/v2/sites | Creates a Site
 *SiteAPI* | [**DecommissionSite**](docs/SiteAPI.md#decommissionsite) | **Post** /api/v2/sites/{siteId}/actions/decommission | Decommissions a Site
+*SiteAPI* | [**DeleteDeviceAuthProvider**](docs/SiteAPI.md#deletedeviceauthprovider) | **Delete** /api/v2/device-auth-providers/{id} | Delete a device auth provider by ID
 *SiteAPI* | [**GetAgents**](docs/SiteAPI.md#getagents) | **Get** /api/v2/sites/{siteId}/controllers | Get a list of agents for a site
+*SiteAPI* | [**GetDeviceAuthProviderById**](docs/SiteAPI.md#getdeviceauthproviderbyid) | **Get** /api/v2/device-auth-providers/{id} | Get a device auth provider by ID
+*SiteAPI* | [**GetDeviceAuthProviderCredentials**](docs/SiteAPI.md#getdeviceauthprovidercredentials) | **Get** /api/v2/device-auth-providers/{id}/credentials | Get credentials for a device auth provider
 *SiteAPI* | [**GetRegistryUrls**](docs/SiteAPI.md#getregistryurls) | **Get** /api/v2/sites/controllers/actions/get/registry-urls | Get registry URLs for site controllers
 *SiteAPI* | [**GetSite**](docs/SiteAPI.md#getsite) | **Get** /api/v2/sites/{siteId} | Get Site information
 *SiteAPI* | [**GetSiteConfig**](docs/SiteAPI.md#getsiteconfig) | **Get** /api/v2/sites/{siteId}/config | Get Site Config information
 *SiteAPI* | [**GetSiteControllerOneLiner**](docs/SiteAPI.md#getsitecontrolleroneliner) | **Post** /api/v2/sites/{siteId}/controllers/actions/get/one-liner | Get a one liner to configure a site controller
 *SiteAPI* | [**GetSites**](docs/SiteAPI.md#getsites) | **Get** /api/v2/sites | Get a list of Sites
 *SiteAPI* | [**GetSitesStatistics**](docs/SiteAPI.md#getsitesstatistics) | **Get** /api/v2/sites/statistics | Get Sites statistics
+*SiteAPI* | [**ListDeviceAuthProviders**](docs/SiteAPI.md#listdeviceauthproviders) | **Get** /api/v2/device-auth-providers | List device auth providers
+*SiteAPI* | [**UpdateDeviceAuthProvider**](docs/SiteAPI.md#updatedeviceauthprovider) | **Patch** /api/v2/device-auth-providers/{id} | Update a device auth provider by ID
+*SiteAPI* | [**UpdateDeviceAuthProviderSharedSecret**](docs/SiteAPI.md#updatedeviceauthprovidersharedsecret) | **Patch** /api/v2/device-auth-providers/{id}/shared-secret | Update the shared secret of a device auth provider
 *SiteAPI* | [**UpdateSite**](docs/SiteAPI.md#updatesite) | **Patch** /api/v2/sites/{siteId} | Updates a Site
 *SiteAPI* | [**UpdateSiteConfig**](docs/SiteAPI.md#updatesiteconfig) | **Patch** /api/v2/sites/{siteId}/config | Updates a Site Config
 *StorageAPI* | [**CreateStorage**](docs/StorageAPI.md#createstorage) | **Post** /api/v2/storages | Creates a Storage
@@ -874,6 +881,7 @@ Class | Method | HTTP request | Description
  - [CreateBucket](docs/CreateBucket.md)
  - [CreateCronJob](docs/CreateCronJob.md)
  - [CreateCustomIso](docs/CreateCustomIso.md)
+ - [CreateDeviceAuthProvider](docs/CreateDeviceAuthProvider.md)
  - [CreateDnsZone](docs/CreateDnsZone.md)
  - [CreateEndpoint](docs/CreateEndpoint.md)
  - [CreateEndpointInstanceGroupNetworkConnection](docs/CreateEndpointInstanceGroupNetworkConnection.md)
@@ -966,6 +974,9 @@ Class | Method | HTTP request | Description
  - [DeleteSharedDriveSnapshot](docs/DeleteSharedDriveSnapshot.md)
  - [DellComponentFilter](docs/DellComponentFilter.md)
  - [DetailedReportEntry](docs/DetailedReportEntry.md)
+ - [DeviceAuthProvider](docs/DeviceAuthProvider.md)
+ - [DeviceAuthProviderCredentials](docs/DeviceAuthProviderCredentials.md)
+ - [DeviceAuthProviderPaginatedList](docs/DeviceAuthProviderPaginatedList.md)
  - [DiscoveryQuery](docs/DiscoveryQuery.md)
  - [DnsRecordSet](docs/DnsRecordSet.md)
  - [DnsRecordsEndpointGroupLogicalNetwork](docs/DnsRecordsEndpointGroupLogicalNetwork.md)
@@ -1200,6 +1211,7 @@ Class | Method | HTTP request | Description
  - [ManualVrfAllocationStrategy](docs/ManualVrfAllocationStrategy.md)
  - [ManualZoneAllocationStrategy](docs/ManualZoneAllocationStrategy.md)
  - [NetworkDevice](docs/NetworkDevice.md)
+ - [NetworkDeviceAuthOption](docs/NetworkDeviceAuthOption.md)
  - [NetworkDeviceBGPConfigurationTemplate](docs/NetworkDeviceBGPConfigurationTemplate.md)
  - [NetworkDeviceBGPConfigurationTemplatePaginatedList](docs/NetworkDeviceBGPConfigurationTemplatePaginatedList.md)
  - [NetworkDeviceBGPConfigurationTemplateRecordSet](docs/NetworkDeviceBGPConfigurationTemplateRecordSet.md)
@@ -1494,6 +1506,8 @@ Class | Method | HTTP request | Description
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
  - [UpdateCronJob](docs/UpdateCronJob.md)
  - [UpdateCustomIso](docs/UpdateCustomIso.md)
+ - [UpdateDeviceAuthProvider](docs/UpdateDeviceAuthProvider.md)
+ - [UpdateDeviceAuthProviderSharedSecret](docs/UpdateDeviceAuthProviderSharedSecret.md)
  - [UpdateDnsZone](docs/UpdateDnsZone.md)
  - [UpdateEndpoint](docs/UpdateEndpoint.md)
  - [UpdateEndpointInterface](docs/UpdateEndpointInterface.md)

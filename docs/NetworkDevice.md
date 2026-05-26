@@ -56,6 +56,7 @@ Name | Type | Description | Notes
 **SwitchControllerId** | Pointer to **float32** | ID of the network device controller if any. | [optional] 
 **ExternalId** | Pointer to **string** | External ID of the network device. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
+**AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options. Credentials are resolved from the first active entry. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -1176,6 +1177,31 @@ SetCustomVariables sets CustomVariables field to given value.
 `func (o *NetworkDevice) HasCustomVariables() bool`
 
 HasCustomVariables returns a boolean if a field has been set.
+
+### GetAuthenticationOptions
+
+`func (o *NetworkDevice) GetAuthenticationOptions() []NetworkDeviceAuthOption`
+
+GetAuthenticationOptions returns the AuthenticationOptions field if non-nil, zero value otherwise.
+
+### GetAuthenticationOptionsOk
+
+`func (o *NetworkDevice) GetAuthenticationOptionsOk() (*[]NetworkDeviceAuthOption, bool)`
+
+GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationOptions
+
+`func (o *NetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOption)`
+
+SetAuthenticationOptions sets AuthenticationOptions field to given value.
+
+### HasAuthenticationOptions
+
+`func (o *NetworkDevice) HasAuthenticationOptions() bool`
+
+HasAuthenticationOptions returns a boolean if a field has been set.
 
 ### GetLinks
 

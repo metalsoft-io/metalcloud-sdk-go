@@ -106,6 +106,8 @@ type UpdateNetworkDevice struct {
 	ServerId *float32 `json:"serverId,omitempty"`
 	// NUMA node of the network device for optimal resource allocation
 	NumaNode *float32 `json:"numaNode,omitempty"`
+	// Ordered list of authentication options. Credentials are resolved from the first active entry.
+	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1709,6 +1711,38 @@ func (o *UpdateNetworkDevice) SetNumaNode(v float32) {
 	o.NumaNode = &v
 }
 
+// GetAuthenticationOptions returns the AuthenticationOptions field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetAuthenticationOptions() []NetworkDeviceAuthOption {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		var ret []NetworkDeviceAuthOption
+		return ret
+	}
+	return o.AuthenticationOptions
+}
+
+// GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetAuthenticationOptionsOk() ([]NetworkDeviceAuthOption, bool) {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		return nil, false
+	}
+	return o.AuthenticationOptions, true
+}
+
+// HasAuthenticationOptions returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasAuthenticationOptions() bool {
+	if o != nil && !IsNil(o.AuthenticationOptions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationOptions gets a reference to the given []NetworkDeviceAuthOption and assigns it to the AuthenticationOptions field.
+func (o *UpdateNetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOption) {
+	o.AuthenticationOptions = v
+}
+
 func (o UpdateNetworkDevice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1845,6 +1879,9 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NumaNode) {
 		toSerialize["numaNode"] = o.NumaNode
 	}
+	if !IsNil(o.AuthenticationOptions) {
+		toSerialize["authenticationOptions"] = o.AuthenticationOptions
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1909,6 +1946,7 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "numaNode")
+		delete(additionalProperties, "authenticationOptions")
 		o.AdditionalProperties = additionalProperties
 	}
 

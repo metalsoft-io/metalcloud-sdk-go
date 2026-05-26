@@ -47,6 +47,7 @@ Name | Type | Description | Notes
 **ServerId** | Pointer to **float32** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
 **NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
 **SwitchControllerId** | Pointer to **float32** | ID of the network device controller managing this switch. Only applicable for controller-managed drivers (e.g. NDFC). | [optional] 
+**AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options. Credentials are resolved from the first active entry. | [optional] 
 
 ## Methods
 
@@ -1361,6 +1362,31 @@ SetSwitchControllerId sets SwitchControllerId field to given value.
 `func (o *CreateNetworkDevice) HasSwitchControllerId() bool`
 
 HasSwitchControllerId returns a boolean if a field has been set.
+
+### GetAuthenticationOptions
+
+`func (o *CreateNetworkDevice) GetAuthenticationOptions() []NetworkDeviceAuthOption`
+
+GetAuthenticationOptions returns the AuthenticationOptions field if non-nil, zero value otherwise.
+
+### GetAuthenticationOptionsOk
+
+`func (o *CreateNetworkDevice) GetAuthenticationOptionsOk() (*[]NetworkDeviceAuthOption, bool)`
+
+GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationOptions
+
+`func (o *CreateNetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOption)`
+
+SetAuthenticationOptions sets AuthenticationOptions field to given value.
+
+### HasAuthenticationOptions
+
+`func (o *CreateNetworkDevice) HasAuthenticationOptions() bool`
+
+HasAuthenticationOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

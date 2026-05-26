@@ -137,6 +137,7 @@ docs/CreateAutoZoneAllocationStrategy.md
 docs/CreateBucket.md
 docs/CreateCronJob.md
 docs/CreateCustomIso.md
+docs/CreateDeviceAuthProvider.md
 docs/CreateDnsZone.md
 docs/CreateEndpoint.md
 docs/CreateEndpointInstanceGroupNetworkConnection.md
@@ -232,6 +233,9 @@ docs/DeleteFileShareSnapshot.md
 docs/DeleteSharedDriveSnapshot.md
 docs/DellComponentFilter.md
 docs/DetailedReportEntry.md
+docs/DeviceAuthProvider.md
+docs/DeviceAuthProviderCredentials.md
+docs/DeviceAuthProviderPaginatedList.md
 docs/DiscoveryQuery.md
 docs/DnsRecordSet.md
 docs/DnsRecordsEndpointGroupLogicalNetwork.md
@@ -488,6 +492,7 @@ docs/ManualVrfAllocationStrategy.md
 docs/ManualZoneAllocationStrategy.md
 docs/NetworkDevice.md
 docs/NetworkDeviceAPI.md
+docs/NetworkDeviceAuthOption.md
 docs/NetworkDeviceBGPConfigurationTemplate.md
 docs/NetworkDeviceBGPConfigurationTemplateAPI.md
 docs/NetworkDeviceBGPConfigurationTemplatePaginatedList.md
@@ -809,6 +814,8 @@ docs/UpdateBucket.md
 docs/UpdateBucketMeta.md
 docs/UpdateCronJob.md
 docs/UpdateCustomIso.md
+docs/UpdateDeviceAuthProvider.md
+docs/UpdateDeviceAuthProviderSharedSecret.md
 docs/UpdateDnsZone.md
 docs/UpdateEndpoint.md
 docs/UpdateEndpointInterface.md
@@ -1017,6 +1024,7 @@ model_create_auto_zone_allocation_strategy.go
 model_create_bucket.go
 model_create_cron_job.go
 model_create_custom_iso.go
+model_create_device_auth_provider.go
 model_create_dns_zone.go
 model_create_endpoint.go
 model_create_endpoint_instance_group_network_connection.go
@@ -1106,6 +1114,9 @@ model_delete_file_share_snapshot.go
 model_delete_shared_drive_snapshot.go
 model_dell_component_filter.go
 model_detailed_report_entry.go
+model_device_auth_provider.go
+model_device_auth_provider_credentials.go
+model_device_auth_provider_paginated_list.go
 model_discovery_query.go
 model_dns_record_set.go
 model_dns_record_set_paginated_list.go
@@ -1343,6 +1354,7 @@ model_manual_vni_allocation_strategy.go
 model_manual_vrf_allocation_strategy.go
 model_manual_zone_allocation_strategy.go
 model_network_device.go
+model_network_device_auth_option.go
 model_network_device_bgp_configuration_template.go
 model_network_device_bgp_configuration_template_paginated_list.go
 model_network_device_bgp_configuration_template_record_set.go
@@ -1637,6 +1649,8 @@ model_update_bucket.go
 model_update_bucket_meta.go
 model_update_cron_job.go
 model_update_custom_iso.go
+model_update_device_auth_provider.go
+model_update_device_auth_provider_shared_secret.go
 model_update_dns_zone.go
 model_update_endpoint.go
 model_update_endpoint_interface.go

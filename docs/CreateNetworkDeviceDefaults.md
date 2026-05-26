@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **MlagSystemMac** | Pointer to **string** | MLAG system MAC address in the format XX:XX:XX:XX:XX:XX. | [optional] 
 **MlagPeerLinkPortChannelId** | Pointer to **int32** | MLAG peer link Port-Channel ID, must be between 1 and 4096. | [optional] 
 **MlagPartnerVlanId** | Pointer to **int32** | MLAG partner VLAN ID, must be between 1 and 4096. | [optional] 
+**AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options applied to devices provisioned from these defaults. Credentials are resolved from the first active entry. | [optional] 
 
 ## Methods
 
@@ -507,6 +508,31 @@ SetMlagPartnerVlanId sets MlagPartnerVlanId field to given value.
 `func (o *CreateNetworkDeviceDefaults) HasMlagPartnerVlanId() bool`
 
 HasMlagPartnerVlanId returns a boolean if a field has been set.
+
+### GetAuthenticationOptions
+
+`func (o *CreateNetworkDeviceDefaults) GetAuthenticationOptions() []NetworkDeviceAuthOption`
+
+GetAuthenticationOptions returns the AuthenticationOptions field if non-nil, zero value otherwise.
+
+### GetAuthenticationOptionsOk
+
+`func (o *CreateNetworkDeviceDefaults) GetAuthenticationOptionsOk() (*[]NetworkDeviceAuthOption, bool)`
+
+GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationOptions
+
+`func (o *CreateNetworkDeviceDefaults) SetAuthenticationOptions(v []NetworkDeviceAuthOption)`
+
+SetAuthenticationOptions sets AuthenticationOptions field to given value.
+
+### HasAuthenticationOptions
+
+`func (o *CreateNetworkDeviceDefaults) HasAuthenticationOptions() bool`
+
+HasAuthenticationOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

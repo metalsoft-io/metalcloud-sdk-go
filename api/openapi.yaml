@@ -4131,6 +4131,586 @@ paths:
       summary: Boot Custom Iso into Server
       tags:
       - Custom Iso
+  /api/v2/device-auth-providers:
+    get:
+      description: Returns a paginated list of device auth providers.
+      operationId: listDeviceAuthProviders
+      parameters:
+      - description: |+
+          Page number to retrieve. If you provide invalid value the default page number will applied
+
+          **Example:** 1
+
+
+          **Default Value:** 1
+
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |
+          Number of records per page.
+
+
+          **Example:** 20
+
+
+
+          **Default Value:** 20
+
+
+
+          **Max Value:** 100
+
+
+          If provided value is greater than max value, max value will be applied.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by siteId query param.
+
+          **Format:** filter.siteId={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.siteId=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.siteId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by label query param.
+
+          **Format:** filter.label={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.label=$eq:John Doe&filter.label=$ilike:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $null
+
+          - $ilike
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.label
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+
+          **Format:** filter.name={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.name=$eq:John Doe&filter.name=$ilike:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $ilike
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by kind query param.
+
+          **Format:** filter.kind={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.kind=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.kind
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by status query param.
+
+          **Format:** filter.status={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.status=$eq:John Doe&filter.status=$in:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $in
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.status
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by ipAddress query param.
+
+          **Format:** filter.ipAddress={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.ipAddress=$eq:John Doe&filter.ipAddress=$ilike:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $ilike
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.ipAddress
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by port query param.
+
+          **Format:** filter.port={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.port=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.port
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |
+          Parameter to sort by.
+          To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting
+
+          **Format:** {fieldName}:{DIRECTION}
+
+
+          **Example:** sortBy=id:DESC&sortBy=siteId:DESC
+
+
+          **Default Value:** id:DESC
+
+          **Available Fields**
+          - id
+
+          - siteId
+
+          - label
+
+          - name
+
+          - kind
+
+          - status
+
+          - ipAddress
+
+          - port
+
+          - createdAt
+
+          - updatedAt
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - siteId:ASC
+            - siteId:DESC
+            - label:ASC
+            - label:DESC
+            - name:ASC
+            - name:DESC
+            - kind:ASC
+            - kind:DESC
+            - status:ASC
+            - status:DESC
+            - ipAddress:ASC
+            - ipAddress:DESC
+            - port:ASC
+            - port:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            type: string
+          type: array
+        style: form
+      - description: |+
+          Search term to filter result values
+
+          **Example:** John
+
+
+          **Default Value:** No default value
+
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          List of fields to search by term to filter result values
+
+          **Example:** id,label,name,kind,status
+
+
+          **Default Value:** By default all fields mentioned below will be used to search by term
+
+          **Available Fields**
+          - id
+
+          - label
+
+          - name
+
+          - kind
+
+          - status
+
+          - ipAddress
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |+
+          List of fields to select.
+
+          **Example:** id,siteId,label,name,annotations
+
+
+          **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param
+
+        explode: true
+        in: query
+        name: select
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceAuthProviderPaginatedList"
+          description: Returns a paginated list of device auth providers.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List device auth providers
+      tags:
+      - Site
+    post:
+      operationId: createDeviceAuthProvider
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDeviceAuthProvider"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceAuthProvider"
+          description: Returns the created device auth provider.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new device auth provider
+      tags:
+      - Site
+  /api/v2/device-auth-providers/{id}/credentials:
+    get:
+      description: "Returns the decrypted username, password, and shared secret for\
+        \ the device auth provider."
+      operationId: getDeviceAuthProviderCredentials
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceAuthProviderCredentials"
+          description: Returns the credentials for the device auth provider.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Device auth provider not found.
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get credentials for a device auth provider
+      tags:
+      - Site
+  /api/v2/device-auth-providers/{id}:
+    delete:
+      operationId: deleteDeviceAuthProvider
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Device auth provider deleted successfully.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Device auth provider not found.
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a device auth provider by ID
+      tags:
+      - Site
+    get:
+      operationId: getDeviceAuthProviderById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceAuthProvider"
+          description: Returns the device auth provider.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Device auth provider not found.
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get a device auth provider by ID
+      tags:
+      - Site
+    patch:
+      description: Updates a device auth provider. To update the shared secret use
+        the dedicated PATCH /:id/shared-secret endpoint.
+      operationId: updateDeviceAuthProvider
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateDeviceAuthProvider"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceAuthProvider"
+          description: Returns the updated device auth provider.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Device auth provider not found.
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a device auth provider by ID
+      tags:
+      - Site
+  /api/v2/device-auth-providers/{id}/shared-secret:
+    patch:
+      description: "Updates the shared secret used to encrypt communication with the\
+        \ TACACS+ server. The provider status must be \"maintenance\" or \"disabled\"\
+        , and no devices may be linked to the provider."
+      operationId: updateDeviceAuthProviderSharedSecret
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateDeviceAuthProviderSharedSecret"
+        required: true
+      responses:
+        "204":
+          description: Shared secret updated successfully.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Device auth provider not found.
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update the shared secret of a device auth provider
+      tags:
+      - Site
   /api/v2/dns-recordsets:
     get:
       operationId: listDNSRecordSets
@@ -63285,9 +63865,9 @@ components:
       example:
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-05-13T14:51:51.405Z
+        createdTimestamp: 2026-05-26T13:43:57.895Z
         networkDevicePosition: all
-        updatedTimestamp: 2026-05-13T14:51:51.405Z
+        updatedTimestamp: 2026-05-26T13:43:57.895Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         action: add-global-config
@@ -63397,12 +63977,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.405Z
+          example: 2026-05-26T13:43:57.895Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.405Z
+          example: 2026-05-26T13:43:57.895Z
           format: date-time
           type: string
         links:
@@ -63433,9 +64013,9 @@ components:
         data:
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-05-13T14:51:51.405Z
+          createdTimestamp: 2026-05-26T13:43:57.895Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-05-13T14:51:51.405Z
+          updatedTimestamp: 2026-05-26T13:43:57.895Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -63452,9 +64032,9 @@ components:
           bgpNumbering: numbered
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-05-13T14:51:51.405Z
+          createdTimestamp: 2026-05-26T13:43:57.895Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-05-13T14:51:51.405Z
+          updatedTimestamp: 2026-05-26T13:43:57.895Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -63721,9 +64301,9 @@ components:
         removeNeighbor: removeNeighbor
         removeGlobalConfig: removeGlobalConfig
         executionType: cli
-        createdTimestamp: 2026-05-13T14:51:51.417Z
+        createdTimestamp: 2026-05-26T13:43:57.9Z
         label: label
-        updatedTimestamp: 2026-05-13T14:51:51.417Z
+        updatedTimestamp: 2026-05-26T13:43:57.9Z
         revision: "1"
         addGlobalConfig: addGlobalConfig
         name: name
@@ -63771,12 +64351,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.417Z
+          example: 2026-05-26T13:43:57.9Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.417Z
+          example: 2026-05-26T13:43:57.9Z
           format: date-time
           type: string
         revision:
@@ -63807,9 +64387,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-05-13T14:51:51.417Z
+          createdTimestamp: 2026-05-26T13:43:57.9Z
           label: label
-          updatedTimestamp: 2026-05-13T14:51:51.417Z
+          updatedTimestamp: 2026-05-26T13:43:57.9Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -63824,9 +64404,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-05-13T14:51:51.417Z
+          createdTimestamp: 2026-05-26T13:43:57.9Z
           label: label
-          updatedTimestamp: 2026-05-13T14:51:51.417Z
+          updatedTimestamp: 2026-05-26T13:43:57.9Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -63960,7 +64540,7 @@ components:
         aggregationType: lag
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-05-13T14:51:51.412Z
+        createdTimestamp: 2026-05-26T13:43:57.898Z
         action: create
         networkDeviceDriver: cisco_aci51
         links:
@@ -63970,7 +64550,7 @@ components:
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
         libraryLabel: libraryLabel
-        updatedTimestamp: 2026-05-13T14:51:51.412Z
+        updatedTimestamp: 2026-05-26T13:43:57.898Z
         preparation: preparation
       properties:
         action:
@@ -64033,12 +64613,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.412Z
+          example: 2026-05-26T13:43:57.898Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.412Z
+          example: 2026-05-26T13:43:57.898Z
           format: date-time
           type: string
         links:
@@ -64066,7 +64646,7 @@ components:
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-05-13T14:51:51.412Z
+          createdTimestamp: 2026-05-26T13:43:57.898Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -64076,12 +64656,12 @@ components:
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-05-13T14:51:51.412Z
+          updatedTimestamp: 2026-05-26T13:43:57.898Z
           preparation: preparation
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-05-13T14:51:51.412Z
+          createdTimestamp: 2026-05-26T13:43:57.898Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -64091,7 +64671,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-05-13T14:51:51.412Z
+          updatedTimestamp: 2026-05-26T13:43:57.898Z
           preparation: preparation
         meta: ""
         links: ""
@@ -64441,6 +65021,371 @@ components:
           type: number
       required:
       - jobGroupId
+      type: object
+    DeviceAuthProvider:
+      example:
+        updatedBy: 2
+        kind: tacacs
+        ipAddress: 192.168.1.10
+        annotations:
+          environment: production
+          region: us-east-1
+        label: tacacs-primary
+        hasPassword: true
+        revision: 1
+        createdAt: 2024-01-01T00:00:00Z
+        hasSharedSecret: true
+        port: 49
+        createdBy: 1
+        name: Primary TACACS+ Server
+        siteId: 1
+        id: 1
+        username: admin
+        status: enabled
+        updatedAt: 2024-01-01T00:00:00Z
+      properties:
+        id:
+          description: The device auth provider ID
+          example: 1
+          readOnly: true
+          type: integer
+        siteId:
+          description: The ID of the site this provider belongs to.
+          example: 1
+          type: integer
+        label:
+          description: The device auth provider label. Must be unique.
+          example: tacacs-primary
+          maxLength: 63
+          type: string
+        name:
+          description: The device auth provider display name.
+          example: Primary TACACS+ Server
+          maxLength: 255
+          type: string
+        annotations:
+          additionalProperties:
+            type: string
+          description: Key-value annotations for storing additional metadata.
+          example:
+            environment: production
+            region: us-east-1
+          type: object
+        kind:
+          description: The authentication protocol kind.
+          enum:
+          - tacacs
+          example: tacacs
+          type: string
+        ipAddress:
+          description: The IP address of the authentication server.
+          example: 192.168.1.10
+          type: string
+        port:
+          description: The TCP port of the authentication server. Standard TACACS+
+            port is 49.
+          example: 49
+          type: integer
+        username:
+          description: The username used to authenticate against the provider.
+          example: admin
+          type: string
+        hasSharedSecret:
+          description: Indicates whether a shared secret is configured.
+          readOnly: true
+          type: boolean
+        hasPassword:
+          description: Indicates whether a password is configured.
+          readOnly: true
+          type: boolean
+        status:
+          description: The current status of the device auth provider.
+          enum:
+          - enabled
+          - disabled
+          - maintenance
+          example: enabled
+          type: string
+        revision:
+          description: The revision number used for optimistic concurrency control.
+          example: 1
+          readOnly: true
+          type: integer
+        createdBy:
+          description: The ID of the user who created this provider.
+          example: 1
+          readOnly: true
+          type: integer
+        updatedBy:
+          description: The ID of the user who last updated this provider.
+          example: 2
+          readOnly: true
+          type: integer
+        createdAt:
+          description: The date and time the provider was created.
+          example: 2024-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the provider was last updated.
+          example: 2024-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - createdAt
+      - createdBy
+      - hasPassword
+      - hasSharedSecret
+      - id
+      - ipAddress
+      - kind
+      - label
+      - name
+      - port
+      - revision
+      - siteId
+      - status
+      - username
+      type: object
+    DeviceAuthProviderPaginatedList:
+      example:
+        data:
+        - updatedBy: 2
+          kind: tacacs
+          ipAddress: 192.168.1.10
+          annotations:
+            environment: production
+            region: us-east-1
+          label: tacacs-primary
+          hasPassword: true
+          revision: 1
+          createdAt: 2024-01-01T00:00:00Z
+          hasSharedSecret: true
+          port: 49
+          createdBy: 1
+          name: Primary TACACS+ Server
+          siteId: 1
+          id: 1
+          username: admin
+          status: enabled
+          updatedAt: 2024-01-01T00:00:00Z
+        - updatedBy: 2
+          kind: tacacs
+          ipAddress: 192.168.1.10
+          annotations:
+            environment: production
+            region: us-east-1
+          label: tacacs-primary
+          hasPassword: true
+          revision: 1
+          createdAt: 2024-01-01T00:00:00Z
+          hasSharedSecret: true
+          port: 49
+          createdBy: 1
+          name: Primary TACACS+ Server
+          siteId: 1
+          id: 1
+          username: admin
+          status: enabled
+          updatedAt: 2024-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/DeviceAuthProvider"
+          title: List of device auth providers
+          type: array
+        meta:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseMeta"
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseLinks"
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - meta
+      type: object
+    DeviceAuthProviderCredentials:
+      example:
+        password: password
+        sharedSecret: sharedSecret
+        username: admin
+      properties:
+        username:
+          description: The username used to authenticate against the provider.
+          example: admin
+          type: string
+        password:
+          description: The password used to authenticate against the provider.
+          type: string
+        sharedSecret:
+          description: The shared secret used to encrypt communication with the TACACS+
+            server.
+          type: string
+      required:
+      - username
+      type: object
+    CreateDeviceAuthProvider:
+      example:
+        password: my-password
+        port: 49
+        kind: tacacs
+        name: Primary TACACS+ Server
+        ipAddress: 192.168.1.10
+        annotations:
+          environment: production
+        siteId: 1
+        label: tacacs-primary
+        sharedSecret: my-shared-secret
+        username: admin
+        status: enabled
+      properties:
+        label:
+          description: The device auth provider label. Must be unique.
+          example: tacacs-primary
+          maxLength: 63
+          type: string
+        name:
+          description: The device auth provider display name.
+          example: Primary TACACS+ Server
+          maxLength: 255
+          type: string
+        annotations:
+          additionalProperties:
+            type: string
+          description: Key-value annotations for storing additional metadata.
+          example:
+            environment: production
+          type: object
+        siteId:
+          description: The ID of the site this provider belongs to.
+          example: 1
+          type: integer
+        kind:
+          description: The authentication protocol kind.
+          enum:
+          - tacacs
+          example: tacacs
+          type: string
+        ipAddress:
+          description: The IP address of the authentication server.
+          example: 192.168.1.10
+          type: string
+        port:
+          description: The TCP port of the authentication server. Standard TACACS+
+            port is 49.
+          example: 49
+          type: integer
+        sharedSecret:
+          description: The shared secret used to encrypt communication with the TACACS+
+            server.
+          example: my-shared-secret
+          type: string
+        username:
+          description: The username used to authenticate against the provider.
+          example: admin
+          type: string
+        password:
+          description: The password used to authenticate against the provider.
+          example: my-password
+          type: string
+        status:
+          description: The initial status of the device auth provider.
+          enum:
+          - enabled
+          - disabled
+          - maintenance
+          example: enabled
+          type: string
+      required:
+      - ipAddress
+      - kind
+      - label
+      - name
+      - port
+      - sharedSecret
+      - siteId
+      - username
+      type: object
+    UpdateDeviceAuthProvider:
+      example:
+        password: my-password
+        port: 49
+        name: Primary TACACS+ Server
+        ipAddress: 192.168.1.10
+        siteId: 1
+        annotations:
+          environment: production
+        label: tacacs-primary
+        username: admin
+        status: enabled
+      properties:
+        siteId:
+          description: The ID of the site this provider belongs to.
+          example: 1
+          type: integer
+        label:
+          description: The device auth provider label. Must be unique.
+          example: tacacs-primary
+          maxLength: 63
+          type: string
+        name:
+          description: The device auth provider display name.
+          example: Primary TACACS+ Server
+          maxLength: 255
+          type: string
+        annotations:
+          additionalProperties:
+            type: string
+          description: Key-value annotations for storing additional metadata.
+          example:
+            environment: production
+          type: object
+        ipAddress:
+          description: The IP address of the authentication server.
+          example: 192.168.1.10
+          type: string
+        port:
+          description: The TCP port of the authentication server.
+          example: 49
+          type: integer
+        username:
+          description: The username used to authenticate against the provider.
+          example: admin
+          type: string
+        password:
+          description: The password used to authenticate against the provider. Send
+            null to clear.
+          example: my-password
+          nullable: true
+          type: string
+        status:
+          description: The status of the device auth provider.
+          enum:
+          - enabled
+          - disabled
+          - maintenance
+          example: enabled
+          type: string
+      type: object
+    UpdateDeviceAuthProviderSharedSecret:
+      example:
+        sharedSecret: new-shared-secret
+      properties:
+        sharedSecret:
+          description: The new shared secret used to encrypt communication with the
+            TACACS+ server.
+          example: new-shared-secret
+          type: string
+      required:
+      - sharedSecret
       type: object
     DnsRecordSet:
       example:
@@ -66792,6 +67737,24 @@ components:
       - dpu
       - other
       type: string
+    NetworkDeviceAuthOption:
+      example:
+        deviceAuthProviderId: 1
+        kind: tacacs
+      properties:
+        kind:
+          description: The authentication method kind.
+          enum:
+          - tacacs
+          - local
+          type: string
+        deviceAuthProviderId:
+          description: The ID of the DeviceAuthProvider. Required when kind is tacacs.
+          example: 1
+          type: integer
+      required:
+      - kind
+      type: object
     NetworkDevice:
       example:
         bootstrapReadinessCheckInProgress: 2.027123023002322
@@ -66843,6 +67806,11 @@ components:
         rackPositionUpperUnit: 6.027456183070403
         managementAddress: managementAddress
         subnetOobIndex: 7.386281948385884
+        authenticationOptions:
+        - deviceAuthProviderId: 1
+          kind: tacacs
+        - deviceAuthProviderId: 1
+          kind: tacacs
         chassisIdentifier: chassisIdentifier
         externalId: externalId
         readyForInitialConfiguration: 3.616076749251911
@@ -67041,6 +68009,12 @@ components:
         customVariables:
           description: Custom variables for the network device
           type: object
+        authenticationOptions:
+          description: Ordered list of authentication options. Credentials are resolved
+            from the first active entry.
+          items:
+            $ref: "#/components/schemas/NetworkDeviceAuthOption"
+          type: array
         links:
           description: Reference links
           items:
@@ -86581,6 +87555,11 @@ components:
           rackPositionUpperUnit: 6.027456183070403
           managementAddress: managementAddress
           subnetOobIndex: 7.386281948385884
+          authenticationOptions:
+          - deviceAuthProviderId: 1
+            kind: tacacs
+          - deviceAuthProviderId: 1
+            kind: tacacs
           chassisIdentifier: chassisIdentifier
           externalId: externalId
           readyForInitialConfiguration: 3.616076749251911
@@ -86641,6 +87620,11 @@ components:
           rackPositionUpperUnit: 6.027456183070403
           managementAddress: managementAddress
           subnetOobIndex: 7.386281948385884
+          authenticationOptions:
+          - deviceAuthProviderId: 1
+            kind: tacacs
+          - deviceAuthProviderId: 1
+            kind: tacacs
           chassisIdentifier: chassisIdentifier
           externalId: externalId
           readyForInitialConfiguration: 3.616076749251911
@@ -86748,6 +87732,11 @@ components:
         managementAddress: 192.168.1.10
         loopbackAddress: 10.0.0.1
         serialNumber: FDO2046A12C
+        authenticationOptions:
+        - deviceAuthProviderId: 1
+          kind: tacacs
+        - deviceAuthProviderId: 1
+          kind: tacacs
         managementAddressMask: 255.255.255.0
         externalVtepAddress: 10.0.0.2
         chassisIdentifier: CHASSIS-XYZ123
@@ -86988,6 +87977,12 @@ components:
             applicable for controller-managed drivers (e.g. NDFC).
           example: 1
           type: number
+        authenticationOptions:
+          description: Ordered list of authentication options. Credentials are resolved
+            from the first active entry.
+          items:
+            $ref: "#/components/schemas/NetworkDeviceAuthOption"
+          type: array
       required:
       - driver
       - managementPassword
@@ -87017,6 +88012,11 @@ components:
         managementAddress: 192.168.1.10
         loopbackAddress: 10.0.0.1
         serialNumber: FDO2046A12C
+        authenticationOptions:
+        - deviceAuthProviderId: 1
+          kind: tacacs
+        - deviceAuthProviderId: 1
+          kind: tacacs
         managementAddressMask: 255.255.255.0
         externalVtepAddress: 10.0.0.2
         chassisIdentifier: CHASSIS-XYZ123
@@ -87251,6 +88251,12 @@ components:
         numaNode:
           description: NUMA node of the network device for optimal resource allocation
           type: number
+        authenticationOptions:
+          description: Ordered list of authentication options. Credentials are resolved
+            from the first active entry.
+          items:
+            $ref: "#/components/schemas/NetworkDeviceAuthOption"
+          type: array
       type: object
     SwitchReplace:
       example:
@@ -87298,6 +88304,11 @@ components:
         mlagDomainId: 101
         mlagPartnerVlanId: 300
         datacenterName: Datacenter-1
+        authenticationOptions:
+        - deviceAuthProviderId: 1
+          kind: tacacs
+        - deviceAuthProviderId: 1
+          kind: tacacs
         isPartOfMlagPair: true
         vtepAddressIpv4: 10.10.10.1
         loopbackAddressIpv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
@@ -87401,6 +88412,12 @@ components:
           description: Order index for display or processing
           example: 5
           type: integer
+        authenticationOptions:
+          description: Ordered list of authentication options applied to devices provisioned
+            from these defaults. Credentials are resolved from the first active entry.
+          items:
+            $ref: "#/components/schemas/NetworkDeviceAuthOption"
+          type: array
       required:
       - datacenterName
       - id
@@ -87412,6 +88429,11 @@ components:
           mlagDomainId: 101
           mlagPartnerVlanId: 300
           datacenterName: Datacenter-1
+          authenticationOptions:
+          - deviceAuthProviderId: 1
+            kind: tacacs
+          - deviceAuthProviderId: 1
+            kind: tacacs
           isPartOfMlagPair: true
           vtepAddressIpv4: 10.10.10.1
           loopbackAddressIpv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
@@ -87433,6 +88455,11 @@ components:
           mlagDomainId: 101
           mlagPartnerVlanId: 300
           datacenterName: Datacenter-1
+          authenticationOptions:
+          - deviceAuthProviderId: 1
+            kind: tacacs
+          - deviceAuthProviderId: 1
+            kind: tacacs
           isPartOfMlagPair: true
           vtepAddressIpv4: 10.10.10.1
           loopbackAddressIpv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
@@ -87478,6 +88505,11 @@ components:
         mlagDomainId: 100
         mlagPartnerVlanId: 300
         datacenterName: datacenterName
+        authenticationOptions:
+        - deviceAuthProviderId: 1
+          kind: tacacs
+        - deviceAuthProviderId: 1
+          kind: tacacs
         isPartOfMlagPair: true
         vtepAddressIpv4: 10.10.10.1
         loopbackAddressIpv6: 2001:db8::1
@@ -87583,6 +88615,12 @@ components:
           maximum: 4096
           minimum: 1
           type: integer
+        authenticationOptions:
+          description: Ordered list of authentication options applied to devices provisioned
+            from these defaults. Credentials are resolved from the first active entry.
+          items:
+            $ref: "#/components/schemas/NetworkDeviceAuthOption"
+          type: array
       required:
       - datacenterName
       - managementMacAddress
@@ -88271,7 +89309,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2026-05-13T14:51:51.542Z
+        createdTimestamp: 2026-05-26T13:43:57.964Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -88280,7 +89318,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2026-05-13T14:51:51.542Z
+        updatedTimestamp: 2026-05-26T13:43:57.964Z
         revision: "1"
       properties:
         siteId:
@@ -88296,12 +89334,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.542Z
+          example: 2026-05-26T13:43:57.964Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.542Z
+          example: 2026-05-26T13:43:57.964Z
           format: date-time
           type: string
         links:
@@ -88323,7 +89361,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-05-13T14:51:51.542Z
+        - createdTimestamp: 2026-05-26T13:43:57.964Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -88332,9 +89370,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-05-13T14:51:51.542Z
+          updatedTimestamp: 2026-05-26T13:43:57.964Z
           revision: "1"
-        - createdTimestamp: 2026-05-13T14:51:51.542Z
+        - createdTimestamp: 2026-05-26T13:43:57.964Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -88343,7 +89381,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-05-13T14:51:51.542Z
+          updatedTimestamp: 2026-05-26T13:43:57.964Z
           revision: "1"
         meta: ""
         links: ""
@@ -88932,7 +89970,7 @@ components:
     NetworkFabric:
       example:
         transportId: 123
-        createdTimestamp: 2026-05-13T14:51:51.383Z
+        createdTimestamp: 2026-05-26T13:43:57.885Z
         externalId: DC1-VXLAN
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
@@ -88975,7 +90013,7 @@ components:
           configurationPreview: configurationPreview
           networkDeviceConfigurationTemplateType: link_aggregation
           networkFabricLinkId: 101
-        updatedTimestamp: 2026-05-13T14:51:51.384Z
+        updatedTimestamp: 2026-05-26T13:43:57.885Z
         deployId: 123
         customVariables: "{}"
         revision: "1"
@@ -89029,6 +90067,11 @@ components:
           rackPositionUpperUnit: 6.027456183070403
           managementAddress: managementAddress
           subnetOobIndex: 7.386281948385884
+          authenticationOptions:
+          - deviceAuthProviderId: 1
+            kind: tacacs
+          - deviceAuthProviderId: 1
+            kind: tacacs
           chassisIdentifier: chassisIdentifier
           externalId: externalId
           readyForInitialConfiguration: 3.616076749251911
@@ -89089,6 +90132,11 @@ components:
           rackPositionUpperUnit: 6.027456183070403
           managementAddress: managementAddress
           subnetOobIndex: 7.386281948385884
+          authenticationOptions:
+          - deviceAuthProviderId: 1
+            kind: tacacs
+          - deviceAuthProviderId: 1
+            kind: tacacs
           chassisIdentifier: chassisIdentifier
           externalId: externalId
           readyForInitialConfiguration: 3.616076749251911
@@ -89139,12 +90187,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.383Z
+          example: 2026-05-26T13:43:57.885Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.384Z
+          example: 2026-05-26T13:43:57.885Z
           format: date-time
           type: string
         links:
@@ -89197,7 +90245,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-05-13T14:51:51.383Z
+          createdTimestamp: 2026-05-26T13:43:57.885Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -89240,7 +90288,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-05-13T14:51:51.384Z
+          updatedTimestamp: 2026-05-26T13:43:57.885Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -89294,6 +90342,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -89354,6 +90407,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -89375,7 +90433,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-05-13T14:51:51.383Z
+          createdTimestamp: 2026-05-26T13:43:57.885Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -89418,7 +90476,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-05-13T14:51:51.384Z
+          updatedTimestamp: 2026-05-26T13:43:57.885Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -89472,6 +90530,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -89532,6 +90595,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -89643,7 +90711,7 @@ components:
       example:
         interconnectType: dci-evpn
         transportId: 65534
-        createdTimestamp: 2026-05-13T14:51:51.554Z
+        createdTimestamp: 2026-05-26T13:43:57.973Z
         description: Data center interconnect using EVPN
         label: dci-evpn-interconnect-01
         deployPreview:
@@ -89675,7 +90743,7 @@ components:
           - neighborTemplateActivate
           - neighborTemplateActivate
           networkInterconnectId: 101
-        updatedTimestamp: 2026-05-13T14:51:51.554Z
+        updatedTimestamp: 2026-05-26T13:43:57.973Z
         deployId: 123
         revision: "1"
         name: Primary DCI EVPN Interconnect
@@ -89731,12 +90799,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.554Z
+          example: 2026-05-26T13:43:57.973Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.554Z
+          example: 2026-05-26T13:43:57.973Z
           format: date-time
           type: string
         links:
@@ -89774,7 +90842,7 @@ components:
         data:
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-05-13T14:51:51.554Z
+          createdTimestamp: 2026-05-26T13:43:57.973Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -89806,7 +90874,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-05-13T14:51:51.554Z
+          updatedTimestamp: 2026-05-26T13:43:57.973Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -89820,7 +90888,7 @@ components:
           status: draft
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-05-13T14:51:51.554Z
+          createdTimestamp: 2026-05-26T13:43:57.973Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -89852,7 +90920,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-05-13T14:51:51.554Z
+          updatedTimestamp: 2026-05-26T13:43:57.973Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -89896,7 +90964,7 @@ components:
       example:
         interconnectId: 2
         fabricId: 2
-        createdTimestamp: 2026-05-13T14:51:51.556Z
+        createdTimestamp: 2026-05-26T13:43:57.976Z
         networkEquipmentId: 1
         links:
         - rel: self
@@ -89904,7 +90972,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-05-13T14:51:51.556Z
+        updatedTimestamp: 2026-05-26T13:43:57.976Z
         revision: "1"
         status: active
       properties:
@@ -89914,12 +90982,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.556Z
+          example: 2026-05-26T13:43:57.976Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.556Z
+          example: 2026-05-26T13:43:57.976Z
           format: date-time
           type: string
         links:
@@ -90138,7 +91206,7 @@ components:
         data:
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-05-13T14:51:51.556Z
+          createdTimestamp: 2026-05-26T13:43:57.976Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -90146,12 +91214,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-05-13T14:51:51.556Z
+          updatedTimestamp: 2026-05-26T13:43:57.976Z
           revision: "1"
           status: active
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-05-13T14:51:51.556Z
+          createdTimestamp: 2026-05-26T13:43:57.976Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -90159,7 +91227,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-05-13T14:51:51.556Z
+          updatedTimestamp: 2026-05-26T13:43:57.976Z
           revision: "1"
           status: active
         meta: ""
@@ -90206,7 +91274,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-05-13T14:51:51.383Z
+          createdTimestamp: 2026-05-26T13:43:57.885Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -90249,7 +91317,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-05-13T14:51:51.384Z
+          updatedTimestamp: 2026-05-26T13:43:57.885Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -90303,6 +91371,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -90363,6 +91436,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -90384,7 +91462,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-05-13T14:51:51.383Z
+          createdTimestamp: 2026-05-26T13:43:57.885Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -90427,7 +91505,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-05-13T14:51:51.384Z
+          updatedTimestamp: 2026-05-26T13:43:57.885Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -90481,6 +91559,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -90541,6 +91624,11 @@ components:
             rackPositionUpperUnit: 6.027456183070403
             managementAddress: managementAddress
             subnetOobIndex: 7.386281948385884
+            authenticationOptions:
+            - deviceAuthProviderId: 1
+              kind: tacacs
+            - deviceAuthProviderId: 1
+              kind: tacacs
             chassisIdentifier: chassisIdentifier
             externalId: externalId
             readyForInitialConfiguration: 3.616076749251911
@@ -90736,8 +91824,8 @@ components:
       type: object
     NetworkFabricBGPSession:
       example:
-        createdTimestamp: 2026-05-13T14:51:51.391Z
-        updatedTimestamp: 2026-05-13T14:51:51.391Z
+        createdTimestamp: 2026-05-26T13:43:57.888Z
+        updatedTimestamp: 2026-05-26T13:43:57.888Z
         revision: "1"
         networkFabricLinkAggregationId: 1
         linkAggregation: ""
@@ -90757,12 +91845,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.391Z
+          example: 2026-05-26T13:43:57.888Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.391Z
+          example: 2026-05-26T13:43:57.888Z
           format: date-time
           type: string
         revision:
@@ -90839,11 +91927,11 @@ components:
       type: object
     NetworkFabricLinkAggregation:
       example:
-        createdTimestamp: 2026-05-13T14:51:51.399Z
+        createdTimestamp: 2026-05-26T13:43:57.892Z
         networkFabricLinks:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-05-13T14:51:51.394Z
-          updatedTimestamp: 2026-05-13T14:51:51.394Z
+          createdTimestamp: 2026-05-26T13:43:57.889Z
+          updatedTimestamp: 2026-05-26T13:43:57.889Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -90862,8 +91950,8 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-05-13T14:51:51.394Z
-          updatedTimestamp: 2026-05-13T14:51:51.394Z
+          createdTimestamp: 2026-05-26T13:43:57.889Z
+          updatedTimestamp: 2026-05-26T13:43:57.889Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -90883,7 +91971,7 @@ components:
           status: draft
         mlagDomainIdentifier: MLAG-Domain-1 or 123
         type: lag
-        updatedTimestamp: 2026-05-13T14:51:51.399Z
+        updatedTimestamp: 2026-05-26T13:43:57.892Z
         revision: "1"
         networkFabricLinkConfigs:
         - networkFabricLink: ""
@@ -90909,12 +91997,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.399Z
+          example: 2026-05-26T13:43:57.892Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.399Z
+          example: 2026-05-26T13:43:57.892Z
           format: date-time
           type: string
         revision:
@@ -91024,8 +92112,8 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2026-05-13T14:51:51.394Z
-        updatedTimestamp: 2026-05-13T14:51:51.394Z
+        createdTimestamp: 2026-05-26T13:43:57.889Z
+        updatedTimestamp: 2026-05-26T13:43:57.889Z
         customVariables: "{}"
         revision: "1"
         networkFabricLinkAggregationId: 1
@@ -91046,12 +92134,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.394Z
+          example: 2026-05-26T13:43:57.889Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.394Z
+          example: 2026-05-26T13:43:57.889Z
           format: date-time
           type: string
         revision:
@@ -91136,8 +92224,8 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-05-13T14:51:51.394Z
-          updatedTimestamp: 2026-05-13T14:51:51.394Z
+          createdTimestamp: 2026-05-26T13:43:57.889Z
+          updatedTimestamp: 2026-05-26T13:43:57.889Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -91156,8 +92244,8 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-05-13T14:51:51.394Z
-          updatedTimestamp: 2026-05-13T14:51:51.394Z
+          createdTimestamp: 2026-05-26T13:43:57.889Z
+          updatedTimestamp: 2026-05-26T13:43:57.889Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -91254,11 +92342,11 @@ components:
     NetworkFabricLinkAggregationPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-05-13T14:51:51.399Z
+        - createdTimestamp: 2026-05-26T13:43:57.892Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-05-13T14:51:51.394Z
-            updatedTimestamp: 2026-05-13T14:51:51.394Z
+            createdTimestamp: 2026-05-26T13:43:57.889Z
+            updatedTimestamp: 2026-05-26T13:43:57.889Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -91277,8 +92365,8 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-05-13T14:51:51.394Z
-            updatedTimestamp: 2026-05-13T14:51:51.394Z
+            createdTimestamp: 2026-05-26T13:43:57.889Z
+            updatedTimestamp: 2026-05-26T13:43:57.889Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -91298,7 +92386,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-05-13T14:51:51.399Z
+          updatedTimestamp: 2026-05-26T13:43:57.892Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -91321,11 +92409,11 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           status: draft
-        - createdTimestamp: 2026-05-13T14:51:51.399Z
+        - createdTimestamp: 2026-05-26T13:43:57.892Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-05-13T14:51:51.394Z
-            updatedTimestamp: 2026-05-13T14:51:51.394Z
+            createdTimestamp: 2026-05-26T13:43:57.889Z
+            updatedTimestamp: 2026-05-26T13:43:57.889Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -91344,8 +92432,8 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-05-13T14:51:51.394Z
-            updatedTimestamp: 2026-05-13T14:51:51.394Z
+            createdTimestamp: 2026-05-26T13:43:57.889Z
+            updatedTimestamp: 2026-05-26T13:43:57.889Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -91365,7 +92453,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-05-13T14:51:51.399Z
+          updatedTimestamp: 2026-05-26T13:43:57.892Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -91467,8 +92555,8 @@ components:
     NetworkFabricBGPSessionPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-05-13T14:51:51.391Z
-          updatedTimestamp: 2026-05-13T14:51:51.391Z
+        - createdTimestamp: 2026-05-26T13:43:57.888Z
+          updatedTimestamp: 2026-05-26T13:43:57.888Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -91485,8 +92573,8 @@ components:
           bgpNumbering: inherited
           networkFabricLinkId: 1
           status: draft
-        - createdTimestamp: 2026-05-13T14:51:51.391Z
-          updatedTimestamp: 2026-05-13T14:51:51.391Z
+        - createdTimestamp: 2026-05-26T13:43:57.888Z
+          updatedTimestamp: 2026-05-26T13:43:57.888Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -92354,6 +93442,8 @@ components:
         - Cluster
         - Configuration
         - CustomIso
+        - DeviceAuthProvider
+        - DeviceAuthProviderCredentials
         - DNS
         - Drive
         - EmailTemplate
@@ -92428,6 +93518,8 @@ components:
           - Cluster
           - Configuration
           - CustomIso
+          - DeviceAuthProvider
+          - DeviceAuthProviderCredentials
           - DNS
           - Drive
           - EmailTemplate
@@ -92521,6 +93613,8 @@ components:
           - Cluster
           - Configuration
           - CustomIso
+          - DeviceAuthProvider
+          - DeviceAuthProviderCredentials
           - DNS
           - Drive
           - EmailTemplate
@@ -92592,6 +93686,8 @@ components:
           - Cluster
           - Configuration
           - CustomIso
+          - DeviceAuthProvider
+          - DeviceAuthProviderCredentials
           - DNS
           - Drive
           - EmailTemplate
@@ -92696,6 +93792,8 @@ components:
           - Cluster
           - Configuration
           - CustomIso
+          - DeviceAuthProvider
+          - DeviceAuthProviderCredentials
           - DNS
           - Drive
           - EmailTemplate
@@ -92767,6 +93865,8 @@ components:
           - Cluster
           - Configuration
           - CustomIso
+          - DeviceAuthProvider
+          - DeviceAuthProviderCredentials
           - DNS
           - Drive
           - EmailTemplate
@@ -92877,6 +93977,8 @@ components:
             - Cluster
             - Configuration
             - CustomIso
+            - DeviceAuthProvider
+            - DeviceAuthProviderCredentials
             - DNS
             - Drive
             - EmailTemplate
@@ -92948,6 +94050,8 @@ components:
             - Cluster
             - Configuration
             - CustomIso
+            - DeviceAuthProvider
+            - DeviceAuthProviderCredentials
             - DNS
             - Drive
             - EmailTemplate
@@ -93025,6 +94129,8 @@ components:
             - Cluster
             - Configuration
             - CustomIso
+            - DeviceAuthProvider
+            - DeviceAuthProviderCredentials
             - DNS
             - Drive
             - EmailTemplate
@@ -93096,6 +94202,8 @@ components:
             - Cluster
             - Configuration
             - CustomIso
+            - DeviceAuthProvider
+            - DeviceAuthProviderCredentials
             - DNS
             - Drive
             - EmailTemplate
@@ -94931,7 +96039,7 @@ components:
       example:
         settings: ""
         isDefault: true
-        createdTimestamp: 2026-05-13T14:51:51.975Z
+        createdTimestamp: 2026-05-26T13:43:58.392Z
         name: name
         links:
         - rel: self
@@ -94939,17 +96047,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
-        updatedTimestamp: 2026-05-13T14:51:51.975Z
+        updatedTimestamp: 2026-05-26T13:43:58.392Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.975Z
+          example: 2026-05-26T13:43:58.392Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.975Z
+          example: 2026-05-26T13:43:58.392Z
           format: date-time
           type: string
         revision:
@@ -94989,7 +96097,7 @@ components:
         data:
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-05-13T14:51:51.975Z
+          createdTimestamp: 2026-05-26T13:43:58.392Z
           name: name
           links:
           - rel: self
@@ -94997,11 +96105,11 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2026-05-13T14:51:51.975Z
+          updatedTimestamp: 2026-05-26T13:43:58.392Z
           revision: "1"
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-05-13T14:51:51.975Z
+          createdTimestamp: 2026-05-26T13:43:58.392Z
           name: name
           links:
           - rel: self
@@ -95009,7 +96117,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          updatedTimestamp: 2026-05-13T14:51:51.975Z
+          updatedTimestamp: 2026-05-26T13:43:58.392Z
           revision: "1"
         meta: ""
         links: ""
@@ -96466,10 +97574,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2026-05-13T14:51:51.548Z
+        createdTimestamp: 2026-05-26T13:43:57.968Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2026-05-13T14:51:51.548Z
+        updatedTimestamp: 2026-05-26T13:43:57.968Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -96543,12 +97651,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.548Z
+          example: 2026-05-26T13:43:57.968Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.548Z
+          example: 2026-05-26T13:43:57.968Z
           format: date-time
           type: string
         links:
@@ -103086,7 +104194,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2026-05-13T14:51:51.536Z
+        createdTimestamp: 2026-05-26T13:43:57.959Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -103094,7 +104202,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-05-13T14:51:51.536Z
+        updatedTimestamp: 2026-05-26T13:43:57.959Z
         revision: "1"
       properties:
         id:
@@ -103123,12 +104231,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.536Z
+          example: 2026-05-26T13:43:57.959Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.536Z
+          example: 2026-05-26T13:43:57.959Z
           format: date-time
           type: string
         links:
@@ -103173,7 +104281,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2026-05-13T14:51:51.54Z
+        createdTimestamp: 2026-05-26T13:43:57.962Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -103184,7 +104292,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2026-05-13T14:51:51.54Z
+        updatedTimestamp: 2026-05-26T13:43:57.962Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -103218,12 +104326,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-05-13T14:51:51.54Z
+          example: 2026-05-26T13:43:57.962Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-05-13T14:51:51.54Z
+          example: 2026-05-26T13:43:57.962Z
           format: date-time
           type: string
         allocationInfo:
@@ -103247,7 +104355,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-05-13T14:51:51.54Z
+        - createdTimestamp: 2026-05-26T13:43:57.962Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -103258,10 +104366,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-05-13T14:51:51.54Z
+          updatedTimestamp: 2026-05-26T13:43:57.962Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2026-05-13T14:51:51.54Z
+        - createdTimestamp: 2026-05-26T13:43:57.962Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -103272,7 +104380,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-05-13T14:51:51.54Z
+          updatedTimestamp: 2026-05-26T13:43:57.962Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -103481,7 +104589,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-05-13T14:51:51.536Z
+          createdTimestamp: 2026-05-26T13:43:57.959Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -103489,12 +104597,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-05-13T14:51:51.536Z
+          updatedTimestamp: 2026-05-26T13:43:57.959Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-05-13T14:51:51.536Z
+          createdTimestamp: 2026-05-26T13:43:57.959Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -103502,7 +104610,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-05-13T14:51:51.536Z
+          updatedTimestamp: 2026-05-26T13:43:57.959Z
           revision: "1"
         meta: ""
         links: ""

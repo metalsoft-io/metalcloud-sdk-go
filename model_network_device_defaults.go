@@ -61,6 +61,8 @@ type NetworkDeviceDefaults struct {
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Order index for display or processing
 	OrderIndex *int32 `json:"orderIndex,omitempty"`
+	// Ordered list of authentication options applied to devices provisioned from these defaults. Credentials are resolved from the first active entry.
+	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -709,6 +711,38 @@ func (o *NetworkDeviceDefaults) SetOrderIndex(v int32) {
 	o.OrderIndex = &v
 }
 
+// GetAuthenticationOptions returns the AuthenticationOptions field value if set, zero value otherwise.
+func (o *NetworkDeviceDefaults) GetAuthenticationOptions() []NetworkDeviceAuthOption {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		var ret []NetworkDeviceAuthOption
+		return ret
+	}
+	return o.AuthenticationOptions
+}
+
+// GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceDefaults) GetAuthenticationOptionsOk() ([]NetworkDeviceAuthOption, bool) {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		return nil, false
+	}
+	return o.AuthenticationOptions, true
+}
+
+// HasAuthenticationOptions returns a boolean if a field has been set.
+func (o *NetworkDeviceDefaults) HasAuthenticationOptions() bool {
+	if o != nil && !IsNil(o.AuthenticationOptions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationOptions gets a reference to the given []NetworkDeviceAuthOption and assigns it to the AuthenticationOptions field.
+func (o *NetworkDeviceDefaults) SetAuthenticationOptions(v []NetworkDeviceAuthOption) {
+	o.AuthenticationOptions = v
+}
+
 func (o NetworkDeviceDefaults) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -775,6 +809,9 @@ func (o NetworkDeviceDefaults) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderIndex) {
 		toSerialize["orderIndex"] = o.OrderIndex
 	}
+	if !IsNil(o.AuthenticationOptions) {
+		toSerialize["authenticationOptions"] = o.AuthenticationOptions
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -839,6 +876,7 @@ func (o *NetworkDeviceDefaults) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "orderIndex")
+		delete(additionalProperties, "authenticationOptions")
 		o.AdditionalProperties = additionalProperties
 	}
 

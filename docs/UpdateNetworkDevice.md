@@ -46,6 +46,7 @@ Name | Type | Description | Notes
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
 **ServerId** | Pointer to **float32** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
 **NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
+**AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options. Credentials are resolved from the first active entry. | [optional] 
 
 ## Methods
 
@@ -1355,6 +1356,31 @@ SetNumaNode sets NumaNode field to given value.
 `func (o *UpdateNetworkDevice) HasNumaNode() bool`
 
 HasNumaNode returns a boolean if a field has been set.
+
+### GetAuthenticationOptions
+
+`func (o *UpdateNetworkDevice) GetAuthenticationOptions() []NetworkDeviceAuthOption`
+
+GetAuthenticationOptions returns the AuthenticationOptions field if non-nil, zero value otherwise.
+
+### GetAuthenticationOptionsOk
+
+`func (o *UpdateNetworkDevice) GetAuthenticationOptionsOk() (*[]NetworkDeviceAuthOption, bool)`
+
+GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationOptions
+
+`func (o *UpdateNetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOption)`
+
+SetAuthenticationOptions sets AuthenticationOptions field to given value.
+
+### HasAuthenticationOptions
+
+`func (o *UpdateNetworkDevice) HasAuthenticationOptions() bool`
+
+HasAuthenticationOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

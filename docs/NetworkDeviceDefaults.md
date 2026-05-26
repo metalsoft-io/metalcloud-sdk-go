@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **OsTemplateId** | Pointer to **int32** | Volume template ID | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for device configuration | [optional] 
 **OrderIndex** | Pointer to **int32** | Order index for display or processing | [optional] 
+**AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options applied to devices provisioned from these defaults. Credentials are resolved from the first active entry. | [optional] 
 
 ## Methods
 
@@ -533,6 +534,31 @@ SetOrderIndex sets OrderIndex field to given value.
 `func (o *NetworkDeviceDefaults) HasOrderIndex() bool`
 
 HasOrderIndex returns a boolean if a field has been set.
+
+### GetAuthenticationOptions
+
+`func (o *NetworkDeviceDefaults) GetAuthenticationOptions() []NetworkDeviceAuthOption`
+
+GetAuthenticationOptions returns the AuthenticationOptions field if non-nil, zero value otherwise.
+
+### GetAuthenticationOptionsOk
+
+`func (o *NetworkDeviceDefaults) GetAuthenticationOptionsOk() (*[]NetworkDeviceAuthOption, bool)`
+
+GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationOptions
+
+`func (o *NetworkDeviceDefaults) SetAuthenticationOptions(v []NetworkDeviceAuthOption)`
+
+SetAuthenticationOptions sets AuthenticationOptions field to given value.
+
+### HasAuthenticationOptions
+
+`func (o *NetworkDeviceDefaults) HasAuthenticationOptions() bool`
+
+HasAuthenticationOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

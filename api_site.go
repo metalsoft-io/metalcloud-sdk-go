@@ -25,6 +25,114 @@ import (
 // SiteAPIService SiteAPI service
 type SiteAPIService service
 
+type SiteAPICreateDeviceAuthProviderRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	createDeviceAuthProvider *CreateDeviceAuthProvider
+}
+
+func (r SiteAPICreateDeviceAuthProviderRequest) CreateDeviceAuthProvider(createDeviceAuthProvider CreateDeviceAuthProvider) SiteAPICreateDeviceAuthProviderRequest {
+	r.createDeviceAuthProvider = &createDeviceAuthProvider
+	return r
+}
+
+func (r SiteAPICreateDeviceAuthProviderRequest) Execute() (*DeviceAuthProvider, *http.Response, error) {
+	return r.ApiService.CreateDeviceAuthProviderExecute(r)
+}
+
+/*
+CreateDeviceAuthProvider Create a new device auth provider
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return SiteAPICreateDeviceAuthProviderRequest
+*/
+func (a *SiteAPIService) CreateDeviceAuthProvider(ctx context.Context) SiteAPICreateDeviceAuthProviderRequest {
+	return SiteAPICreateDeviceAuthProviderRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DeviceAuthProvider
+func (a *SiteAPIService) CreateDeviceAuthProviderExecute(r SiteAPICreateDeviceAuthProviderRequest) (*DeviceAuthProvider, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceAuthProvider
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.CreateDeviceAuthProvider")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-auth-providers"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createDeviceAuthProvider == nil {
+		return localVarReturnValue, nil, reportError("createDeviceAuthProvider is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createDeviceAuthProvider
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SiteAPICreateSiteRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
@@ -238,6 +346,106 @@ func (a *SiteAPIService) DecommissionSiteExecute(r SiteAPIDecommissionSiteReques
 	return localVarHTTPResponse, nil
 }
 
+type SiteAPIDeleteDeviceAuthProviderRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	id float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r SiteAPIDeleteDeviceAuthProviderRequest) IfMatch(ifMatch string) SiteAPIDeleteDeviceAuthProviderRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r SiteAPIDeleteDeviceAuthProviderRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteDeviceAuthProviderExecute(r)
+}
+
+/*
+DeleteDeviceAuthProvider Delete a device auth provider by ID
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return SiteAPIDeleteDeviceAuthProviderRequest
+*/
+func (a *SiteAPIService) DeleteDeviceAuthProvider(ctx context.Context, id float32) SiteAPIDeleteDeviceAuthProviderRequest {
+	return SiteAPIDeleteDeviceAuthProviderRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+func (a *SiteAPIService) DeleteDeviceAuthProviderExecute(r SiteAPIDeleteDeviceAuthProviderRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.DeleteDeviceAuthProvider")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-auth-providers/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type SiteAPIGetAgentsRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
@@ -282,6 +490,210 @@ func (a *SiteAPIService) GetAgentsExecute(r SiteAPIGetAgentsRequest) ([]AgentInf
 
 	localVarPath := localBasePath + "/api/v2/sites/{siteId}/controllers"
 	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SiteAPIGetDeviceAuthProviderByIdRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	id float32
+}
+
+func (r SiteAPIGetDeviceAuthProviderByIdRequest) Execute() (*DeviceAuthProvider, *http.Response, error) {
+	return r.ApiService.GetDeviceAuthProviderByIdExecute(r)
+}
+
+/*
+GetDeviceAuthProviderById Get a device auth provider by ID
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return SiteAPIGetDeviceAuthProviderByIdRequest
+*/
+func (a *SiteAPIService) GetDeviceAuthProviderById(ctx context.Context, id float32) SiteAPIGetDeviceAuthProviderByIdRequest {
+	return SiteAPIGetDeviceAuthProviderByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DeviceAuthProvider
+func (a *SiteAPIService) GetDeviceAuthProviderByIdExecute(r SiteAPIGetDeviceAuthProviderByIdRequest) (*DeviceAuthProvider, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceAuthProvider
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.GetDeviceAuthProviderById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-auth-providers/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SiteAPIGetDeviceAuthProviderCredentialsRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	id float32
+}
+
+func (r SiteAPIGetDeviceAuthProviderCredentialsRequest) Execute() (*DeviceAuthProviderCredentials, *http.Response, error) {
+	return r.ApiService.GetDeviceAuthProviderCredentialsExecute(r)
+}
+
+/*
+GetDeviceAuthProviderCredentials Get credentials for a device auth provider
+
+Returns the decrypted username, password, and shared secret for the device auth provider.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return SiteAPIGetDeviceAuthProviderCredentialsRequest
+*/
+func (a *SiteAPIService) GetDeviceAuthProviderCredentials(ctx context.Context, id float32) SiteAPIGetDeviceAuthProviderCredentialsRequest {
+	return SiteAPIGetDeviceAuthProviderCredentialsRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DeviceAuthProviderCredentials
+func (a *SiteAPIService) GetDeviceAuthProviderCredentialsExecute(r SiteAPIGetDeviceAuthProviderCredentialsRequest) (*DeviceAuthProviderCredentials, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceAuthProviderCredentials
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.GetDeviceAuthProviderCredentials")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-auth-providers/{id}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1077,6 +1489,544 @@ func (a *SiteAPIService) GetSitesStatisticsExecute(r SiteAPIGetSitesStatisticsRe
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SiteAPIListDeviceAuthProvidersRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	page *float32
+	limit *float32
+	filterSiteId *[]string
+	filterLabel *[]string
+	filterName *[]string
+	filterKind *[]string
+	filterStatus *[]string
+	filterIpAddress *[]string
+	filterPort *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+	select_ *string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SiteAPIListDeviceAuthProvidersRequest) Page(page float32) SiteAPIListDeviceAuthProvidersRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r SiteAPIListDeviceAuthProvidersRequest) Limit(limit float32) SiteAPIListDeviceAuthProvidersRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SiteAPIListDeviceAuthProvidersRequest) FilterSiteId(filterSiteId []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.filterSiteId = &filterSiteId
+	return r
+}
+
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe&amp;filter.label&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $null  - $ilike  - $and  - $or
+func (r SiteAPIListDeviceAuthProvidersRequest) FilterLabel(filterLabel []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe&amp;filter.name&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $ilike  - $and  - $or
+func (r SiteAPIListDeviceAuthProvidersRequest) FilterName(filterName []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SiteAPIListDeviceAuthProvidersRequest) FilterKind(filterKind []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.filterKind = &filterKind
+	return r
+}
+
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$eq:John Doe&amp;filter.status&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r SiteAPIListDeviceAuthProvidersRequest) FilterStatus(filterStatus []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.filterStatus = &filterStatus
+	return r
+}
+
+// Filter by ipAddress query param.  **Format:** filter.ipAddress&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.ipAddress&#x3D;$eq:John Doe&amp;filter.ipAddress&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $ilike  - $and  - $or
+func (r SiteAPIListDeviceAuthProvidersRequest) FilterIpAddress(filterIpAddress []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.filterIpAddress = &filterIpAddress
+	return r
+}
+
+// Filter by port query param.  **Format:** filter.port&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.port&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SiteAPIListDeviceAuthProvidersRequest) FilterPort(filterPort []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.filterPort = &filterPort
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;siteId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - siteId  - label  - name  - kind  - status  - ipAddress  - port  - createdAt  - updatedAt 
+func (r SiteAPIListDeviceAuthProvidersRequest) SortBy(sortBy []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SiteAPIListDeviceAuthProvidersRequest) Search(search string) SiteAPIListDeviceAuthProvidersRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,label,name,kind,status   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - name  - kind  - status  - ipAddress 
+func (r SiteAPIListDeviceAuthProvidersRequest) SearchBy(searchBy []string) SiteAPIListDeviceAuthProvidersRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+// List of fields to select.  **Example:** id,siteId,label,name,annotations   **Default Value:** By default all fields returns. If you want to select only some fields, provide them in query param  
+func (r SiteAPIListDeviceAuthProvidersRequest) Select_(select_ string) SiteAPIListDeviceAuthProvidersRequest {
+	r.select_ = &select_
+	return r
+}
+
+func (r SiteAPIListDeviceAuthProvidersRequest) Execute() (*DeviceAuthProviderPaginatedList, *http.Response, error) {
+	return r.ApiService.ListDeviceAuthProvidersExecute(r)
+}
+
+/*
+ListDeviceAuthProviders List device auth providers
+
+Returns a paginated list of device auth providers.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return SiteAPIListDeviceAuthProvidersRequest
+*/
+func (a *SiteAPIService) ListDeviceAuthProviders(ctx context.Context) SiteAPIListDeviceAuthProvidersRequest {
+	return SiteAPIListDeviceAuthProvidersRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DeviceAuthProviderPaginatedList
+func (a *SiteAPIService) ListDeviceAuthProvidersExecute(r SiteAPIListDeviceAuthProvidersRequest) (*DeviceAuthProviderPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceAuthProviderPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.ListDeviceAuthProviders")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-auth-providers"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterKind != nil {
+		t := *r.filterKind
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", t, "form", "multi")
+		}
+	}
+	if r.filterStatus != nil {
+		t := *r.filterStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
+		}
+	}
+	if r.filterIpAddress != nil {
+		t := *r.filterIpAddress
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipAddress", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipAddress", t, "form", "multi")
+		}
+	}
+	if r.filterPort != nil {
+		t := *r.filterPort
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.port", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.port", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	if r.select_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "select", r.select_, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SiteAPIUpdateDeviceAuthProviderRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	id float32
+	updateDeviceAuthProvider *UpdateDeviceAuthProvider
+	ifMatch *string
+}
+
+func (r SiteAPIUpdateDeviceAuthProviderRequest) UpdateDeviceAuthProvider(updateDeviceAuthProvider UpdateDeviceAuthProvider) SiteAPIUpdateDeviceAuthProviderRequest {
+	r.updateDeviceAuthProvider = &updateDeviceAuthProvider
+	return r
+}
+
+// Entity tag
+func (r SiteAPIUpdateDeviceAuthProviderRequest) IfMatch(ifMatch string) SiteAPIUpdateDeviceAuthProviderRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r SiteAPIUpdateDeviceAuthProviderRequest) Execute() (*DeviceAuthProvider, *http.Response, error) {
+	return r.ApiService.UpdateDeviceAuthProviderExecute(r)
+}
+
+/*
+UpdateDeviceAuthProvider Update a device auth provider by ID
+
+Updates a device auth provider. To update the shared secret use the dedicated PATCH /:id/shared-secret endpoint.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return SiteAPIUpdateDeviceAuthProviderRequest
+*/
+func (a *SiteAPIService) UpdateDeviceAuthProvider(ctx context.Context, id float32) SiteAPIUpdateDeviceAuthProviderRequest {
+	return SiteAPIUpdateDeviceAuthProviderRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DeviceAuthProvider
+func (a *SiteAPIService) UpdateDeviceAuthProviderExecute(r SiteAPIUpdateDeviceAuthProviderRequest) (*DeviceAuthProvider, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceAuthProvider
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.UpdateDeviceAuthProvider")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-auth-providers/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateDeviceAuthProvider == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceAuthProvider is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.updateDeviceAuthProvider
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SiteAPIUpdateDeviceAuthProviderSharedSecretRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	id float32
+	updateDeviceAuthProviderSharedSecret *UpdateDeviceAuthProviderSharedSecret
+	ifMatch *string
+}
+
+func (r SiteAPIUpdateDeviceAuthProviderSharedSecretRequest) UpdateDeviceAuthProviderSharedSecret(updateDeviceAuthProviderSharedSecret UpdateDeviceAuthProviderSharedSecret) SiteAPIUpdateDeviceAuthProviderSharedSecretRequest {
+	r.updateDeviceAuthProviderSharedSecret = &updateDeviceAuthProviderSharedSecret
+	return r
+}
+
+// Entity tag
+func (r SiteAPIUpdateDeviceAuthProviderSharedSecretRequest) IfMatch(ifMatch string) SiteAPIUpdateDeviceAuthProviderSharedSecretRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r SiteAPIUpdateDeviceAuthProviderSharedSecretRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UpdateDeviceAuthProviderSharedSecretExecute(r)
+}
+
+/*
+UpdateDeviceAuthProviderSharedSecret Update the shared secret of a device auth provider
+
+Updates the shared secret used to encrypt communication with the TACACS+ server. The provider status must be "maintenance" or "disabled", and no devices may be linked to the provider.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return SiteAPIUpdateDeviceAuthProviderSharedSecretRequest
+*/
+func (a *SiteAPIService) UpdateDeviceAuthProviderSharedSecret(ctx context.Context, id float32) SiteAPIUpdateDeviceAuthProviderSharedSecretRequest {
+	return SiteAPIUpdateDeviceAuthProviderSharedSecretRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+func (a *SiteAPIService) UpdateDeviceAuthProviderSharedSecretExecute(r SiteAPIUpdateDeviceAuthProviderSharedSecretRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.UpdateDeviceAuthProviderSharedSecret")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-auth-providers/{id}/shared-secret"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateDeviceAuthProviderSharedSecret == nil {
+		return nil, reportError("updateDeviceAuthProviderSharedSecret is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.updateDeviceAuthProviderSharedSecret
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type SiteAPIUpdateSiteRequest struct {

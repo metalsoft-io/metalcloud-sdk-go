@@ -59,6 +59,8 @@ type CreateNetworkDeviceDefaults struct {
 	MlagPeerLinkPortChannelId *int32 `json:"mlagPeerLinkPortChannelId,omitempty"`
 	// MLAG partner VLAN ID, must be between 1 and 4096.
 	MlagPartnerVlanId *int32 `json:"mlagPartnerVlanId,omitempty"`
+	// Ordered list of authentication options applied to devices provisioned from these defaults. Credentials are resolved from the first active entry.
+	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -675,6 +677,38 @@ func (o *CreateNetworkDeviceDefaults) SetMlagPartnerVlanId(v int32) {
 	o.MlagPartnerVlanId = &v
 }
 
+// GetAuthenticationOptions returns the AuthenticationOptions field value if set, zero value otherwise.
+func (o *CreateNetworkDeviceDefaults) GetAuthenticationOptions() []NetworkDeviceAuthOption {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		var ret []NetworkDeviceAuthOption
+		return ret
+	}
+	return o.AuthenticationOptions
+}
+
+// GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDeviceDefaults) GetAuthenticationOptionsOk() ([]NetworkDeviceAuthOption, bool) {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		return nil, false
+	}
+	return o.AuthenticationOptions, true
+}
+
+// HasAuthenticationOptions returns a boolean if a field has been set.
+func (o *CreateNetworkDeviceDefaults) HasAuthenticationOptions() bool {
+	if o != nil && !IsNil(o.AuthenticationOptions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationOptions gets a reference to the given []NetworkDeviceAuthOption and assigns it to the AuthenticationOptions field.
+func (o *CreateNetworkDeviceDefaults) SetAuthenticationOptions(v []NetworkDeviceAuthOption) {
+	o.AuthenticationOptions = v
+}
+
 func (o CreateNetworkDeviceDefaults) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -737,6 +771,9 @@ func (o CreateNetworkDeviceDefaults) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.MlagPartnerVlanId) {
 		toSerialize["mlagPartnerVlanId"] = o.MlagPartnerVlanId
+	}
+	if !IsNil(o.AuthenticationOptions) {
+		toSerialize["authenticationOptions"] = o.AuthenticationOptions
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -801,6 +838,7 @@ func (o *CreateNetworkDeviceDefaults) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "mlagSystemMac")
 		delete(additionalProperties, "mlagPeerLinkPortChannelId")
 		delete(additionalProperties, "mlagPartnerVlanId")
+		delete(additionalProperties, "authenticationOptions")
 		o.AdditionalProperties = additionalProperties
 	}
 

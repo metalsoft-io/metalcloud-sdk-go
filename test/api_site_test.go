@@ -22,6 +22,18 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test SiteAPIService CreateDeviceAuthProvider", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SiteAPI.CreateDeviceAuthProvider(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SiteAPIService CreateSite", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -47,6 +59,19 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SiteAPIService DeleteDeviceAuthProvider", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		httpRes, err := apiClient.SiteAPI.DeleteDeviceAuthProvider(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SiteAPIService GetAgents", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -54,6 +79,34 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 		var siteId float32
 
 		resp, httpRes, err := apiClient.SiteAPI.GetAgents(context.Background(), siteId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SiteAPIService GetDeviceAuthProviderById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.SiteAPI.GetDeviceAuthProviderById(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SiteAPIService GetDeviceAuthProviderCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.SiteAPI.GetDeviceAuthProviderCredentials(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -135,6 +188,45 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SiteAPIService ListDeviceAuthProviders", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SiteAPI.ListDeviceAuthProviders(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SiteAPIService UpdateDeviceAuthProvider", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.SiteAPI.UpdateDeviceAuthProvider(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SiteAPIService UpdateDeviceAuthProviderSharedSecret", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		httpRes, err := apiClient.SiteAPI.UpdateDeviceAuthProviderSharedSecret(context.Background(), id).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

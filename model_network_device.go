@@ -125,6 +125,8 @@ type NetworkDevice struct {
 	ExternalId *string `json:"externalId,omitempty"`
 	// Custom variables for the network device
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// Ordered list of authentication options. Credentials are resolved from the first active entry.
+	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -1521,6 +1523,38 @@ func (o *NetworkDevice) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
 }
 
+// GetAuthenticationOptions returns the AuthenticationOptions field value if set, zero value otherwise.
+func (o *NetworkDevice) GetAuthenticationOptions() []NetworkDeviceAuthOption {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		var ret []NetworkDeviceAuthOption
+		return ret
+	}
+	return o.AuthenticationOptions
+}
+
+// GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetAuthenticationOptionsOk() ([]NetworkDeviceAuthOption, bool) {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		return nil, false
+	}
+	return o.AuthenticationOptions, true
+}
+
+// HasAuthenticationOptions returns a boolean if a field has been set.
+func (o *NetworkDevice) HasAuthenticationOptions() bool {
+	if o != nil && !IsNil(o.AuthenticationOptions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationOptions gets a reference to the given []NetworkDeviceAuthOption and assigns it to the AuthenticationOptions field.
+func (o *NetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOption) {
+	o.AuthenticationOptions = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -1636,6 +1670,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
+	}
+	if !IsNil(o.AuthenticationOptions) {
+		toSerialize["authenticationOptions"] = o.AuthenticationOptions
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -1776,6 +1813,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "switchControllerId")
 		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "authenticationOptions")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

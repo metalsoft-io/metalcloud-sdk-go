@@ -109,6 +109,8 @@ type CreateNetworkDevice struct {
 	NumaNode *float32 `json:"numaNode,omitempty"`
 	// ID of the network device controller managing this switch. Only applicable for controller-managed drivers (e.g. NDFC).
 	SwitchControllerId *float32 `json:"switchControllerId,omitempty"`
+	// Ordered list of authentication options. Credentials are resolved from the first active entry.
+	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1708,6 +1710,38 @@ func (o *CreateNetworkDevice) SetSwitchControllerId(v float32) {
 	o.SwitchControllerId = &v
 }
 
+// GetAuthenticationOptions returns the AuthenticationOptions field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetAuthenticationOptions() []NetworkDeviceAuthOption {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		var ret []NetworkDeviceAuthOption
+		return ret
+	}
+	return o.AuthenticationOptions
+}
+
+// GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetAuthenticationOptionsOk() ([]NetworkDeviceAuthOption, bool) {
+	if o == nil || IsNil(o.AuthenticationOptions) {
+		return nil, false
+	}
+	return o.AuthenticationOptions, true
+}
+
+// HasAuthenticationOptions returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasAuthenticationOptions() bool {
+	if o != nil && !IsNil(o.AuthenticationOptions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationOptions gets a reference to the given []NetworkDeviceAuthOption and assigns it to the AuthenticationOptions field.
+func (o *CreateNetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOption) {
+	o.AuthenticationOptions = v
+}
+
 func (o CreateNetworkDevice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1839,6 +1873,9 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SwitchControllerId) {
 		toSerialize["switchControllerId"] = o.SwitchControllerId
 	}
+	if !IsNil(o.AuthenticationOptions) {
+		toSerialize["authenticationOptions"] = o.AuthenticationOptions
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1928,6 +1965,7 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "switchControllerId")
+		delete(additionalProperties, "authenticationOptions")
 		o.AdditionalProperties = additionalProperties
 	}
 
