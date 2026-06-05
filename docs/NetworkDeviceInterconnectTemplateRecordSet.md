@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LocalId** | **float32** | The database id of the local network equipment. | 
-**RemoteId** | **float32** | The database id of the remote network equipment. | 
+**LocalId** | **int64** | The database id of the local network equipment. | 
+**RemoteId** | **int64** | The database id of the remote network equipment. | 
 **LocalAsn** | **int64** | The BGP ASN assigned for the local network equipment. | 
 **RemoteAsn** | **int64** | The BGP ASN assigned for the remote network equipment. | 
 **LocalLoopbackIpv4** | **string** | The loopback IPv4 address of the local network equipment. | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceInterconnectTemplateRecordSet
 
-`func NewNetworkDeviceInterconnectTemplateRecordSet(localId float32, remoteId float32, localAsn int64, remoteAsn int64, localLoopbackIpv4 string, remoteLoopbackIpv4 string, localVtepIpv4 string, remoteVtepIpv4 string, localVtepExternalIpv4 string, remoteVtepExternalIpv4 string, ) *NetworkDeviceInterconnectTemplateRecordSet`
+`func NewNetworkDeviceInterconnectTemplateRecordSet(localId int64, remoteId int64, localAsn int64, remoteAsn int64, localLoopbackIpv4 string, remoteLoopbackIpv4 string, localVtepIpv4 string, remoteVtepIpv4 string, localVtepExternalIpv4 string, remoteVtepExternalIpv4 string, ) *NetworkDeviceInterconnectTemplateRecordSet`
 
 NewNetworkDeviceInterconnectTemplateRecordSet instantiates a new NetworkDeviceInterconnectTemplateRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -36,40 +36,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLocalId
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalId() float32`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalId() int64`
 
 GetLocalId returns the LocalId field if non-nil, zero value otherwise.
 
 ### GetLocalIdOk
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalIdOk() (*float32, bool)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalIdOk() (*int64, bool)`
 
 GetLocalIdOk returns a tuple with the LocalId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalId
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetLocalId(v float32)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetLocalId(v int64)`
 
 SetLocalId sets LocalId field to given value.
 
 
 ### GetRemoteId
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteId() float32`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteId() int64`
 
 GetRemoteId returns the RemoteId field if non-nil, zero value otherwise.
 
 ### GetRemoteIdOk
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteIdOk() (*float32, bool)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteIdOk() (*int64, bool)`
 
 GetRemoteIdOk returns a tuple with the RemoteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteId
 
-`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetRemoteId(v float32)`
+`func (o *NetworkDeviceInterconnectTemplateRecordSet) SetRemoteId(v int64)`
 
 SetRemoteId sets RemoteId field to given value.
 

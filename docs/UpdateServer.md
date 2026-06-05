@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerTypeId** | Pointer to **float32** | The id of the server type. | [optional] 
+**ServerTypeId** | Pointer to **int64** | The id of the server type. | [optional] 
 **ManagementAddress** | Pointer to **string** | The Management Address of the server. | [optional] 
 **Username** | Pointer to **string** | The username to use. | [optional] 
-**ServerCleanupPolicyId** | Pointer to **float32** | The cleanup policy id of the server. | [optional] 
-**TargetFirmwareBaselineId** | Pointer to **float32** | The target firmware baseline id on the server. | [optional] 
-**RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
+**ServerCleanupPolicyId** | Pointer to **int64** | The cleanup policy id of the server. | [optional] 
+**TargetFirmwareBaselineId** | Pointer to **int64** | The target firmware baseline id on the server. | [optional] 
+**RegistrationProfileId** | Pointer to **int64** | The registration profile id of the server. | [optional] 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
-**ChassisRackId** | Pointer to **float32** | The chassis rack id of the server. | [optional] 
+**ChassisRackId** | Pointer to **int64** | The chassis rack id of the server. | [optional] 
 **RackName** | Pointer to **string** | The chassis rack name of the server. | [optional] 
 **RackPositionUpperUnit** | Pointer to **string** | The chassis rack upper unit position of the server. | [optional] 
 **RackPositionLowerUnit** | Pointer to **string** | The chassis rack lower unit position of the server. | [optional] 
 **InventoryId** | Pointer to **string** | The inventory id of the server. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the Server. | [optional] 
-**ResourcePoolId** | Pointer to **float32** | Resource Pool ID | [optional] 
+**ResourcePoolId** | Pointer to **int64** | Resource Pool ID | [optional] 
 **ServerStatus** | Pointer to **string** | The status of the server. | [optional] 
 **ServerClass** | Pointer to **string** | The server class. | [optional] 
 **DpuCredentials** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
@@ -43,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerTypeId
 
-`func (o *UpdateServer) GetServerTypeId() float32`
+`func (o *UpdateServer) GetServerTypeId() int64`
 
 GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdOk
 
-`func (o *UpdateServer) GetServerTypeIdOk() (*float32, bool)`
+`func (o *UpdateServer) GetServerTypeIdOk() (*int64, bool)`
 
 GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeId
 
-`func (o *UpdateServer) SetServerTypeId(v float32)`
+`func (o *UpdateServer) SetServerTypeId(v int64)`
 
 SetServerTypeId sets ServerTypeId field to given value.
 
@@ -118,20 +118,20 @@ HasUsername returns a boolean if a field has been set.
 
 ### GetServerCleanupPolicyId
 
-`func (o *UpdateServer) GetServerCleanupPolicyId() float32`
+`func (o *UpdateServer) GetServerCleanupPolicyId() int64`
 
 GetServerCleanupPolicyId returns the ServerCleanupPolicyId field if non-nil, zero value otherwise.
 
 ### GetServerCleanupPolicyIdOk
 
-`func (o *UpdateServer) GetServerCleanupPolicyIdOk() (*float32, bool)`
+`func (o *UpdateServer) GetServerCleanupPolicyIdOk() (*int64, bool)`
 
 GetServerCleanupPolicyIdOk returns a tuple with the ServerCleanupPolicyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerCleanupPolicyId
 
-`func (o *UpdateServer) SetServerCleanupPolicyId(v float32)`
+`func (o *UpdateServer) SetServerCleanupPolicyId(v int64)`
 
 SetServerCleanupPolicyId sets ServerCleanupPolicyId field to given value.
 
@@ -143,20 +143,20 @@ HasServerCleanupPolicyId returns a boolean if a field has been set.
 
 ### GetTargetFirmwareBaselineId
 
-`func (o *UpdateServer) GetTargetFirmwareBaselineId() float32`
+`func (o *UpdateServer) GetTargetFirmwareBaselineId() int64`
 
 GetTargetFirmwareBaselineId returns the TargetFirmwareBaselineId field if non-nil, zero value otherwise.
 
 ### GetTargetFirmwareBaselineIdOk
 
-`func (o *UpdateServer) GetTargetFirmwareBaselineIdOk() (*float32, bool)`
+`func (o *UpdateServer) GetTargetFirmwareBaselineIdOk() (*int64, bool)`
 
 GetTargetFirmwareBaselineIdOk returns a tuple with the TargetFirmwareBaselineId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargetFirmwareBaselineId
 
-`func (o *UpdateServer) SetTargetFirmwareBaselineId(v float32)`
+`func (o *UpdateServer) SetTargetFirmwareBaselineId(v int64)`
 
 SetTargetFirmwareBaselineId sets TargetFirmwareBaselineId field to given value.
 
@@ -168,20 +168,20 @@ HasTargetFirmwareBaselineId returns a boolean if a field has been set.
 
 ### GetRegistrationProfileId
 
-`func (o *UpdateServer) GetRegistrationProfileId() float32`
+`func (o *UpdateServer) GetRegistrationProfileId() int64`
 
 GetRegistrationProfileId returns the RegistrationProfileId field if non-nil, zero value otherwise.
 
 ### GetRegistrationProfileIdOk
 
-`func (o *UpdateServer) GetRegistrationProfileIdOk() (*float32, bool)`
+`func (o *UpdateServer) GetRegistrationProfileIdOk() (*int64, bool)`
 
 GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRegistrationProfileId
 
-`func (o *UpdateServer) SetRegistrationProfileId(v float32)`
+`func (o *UpdateServer) SetRegistrationProfileId(v int64)`
 
 SetRegistrationProfileId sets RegistrationProfileId field to given value.
 
@@ -218,20 +218,20 @@ HasServerComments returns a boolean if a field has been set.
 
 ### GetChassisRackId
 
-`func (o *UpdateServer) GetChassisRackId() float32`
+`func (o *UpdateServer) GetChassisRackId() int64`
 
 GetChassisRackId returns the ChassisRackId field if non-nil, zero value otherwise.
 
 ### GetChassisRackIdOk
 
-`func (o *UpdateServer) GetChassisRackIdOk() (*float32, bool)`
+`func (o *UpdateServer) GetChassisRackIdOk() (*int64, bool)`
 
 GetChassisRackIdOk returns a tuple with the ChassisRackId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChassisRackId
 
-`func (o *UpdateServer) SetChassisRackId(v float32)`
+`func (o *UpdateServer) SetChassisRackId(v int64)`
 
 SetChassisRackId sets ChassisRackId field to given value.
 
@@ -368,20 +368,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetResourcePoolId
 
-`func (o *UpdateServer) GetResourcePoolId() float32`
+`func (o *UpdateServer) GetResourcePoolId() int64`
 
 GetResourcePoolId returns the ResourcePoolId field if non-nil, zero value otherwise.
 
 ### GetResourcePoolIdOk
 
-`func (o *UpdateServer) GetResourcePoolIdOk() (*float32, bool)`
+`func (o *UpdateServer) GetResourcePoolIdOk() (*int64, bool)`
 
 GetResourcePoolIdOk returns a tuple with the ResourcePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResourcePoolId
 
-`func (o *UpdateServer) SetResourcePoolId(v float32)`
+`func (o *UpdateServer) SetResourcePoolId(v int64)`
 
 SetResourcePoolId sets ResourcePoolId field to given value.
 

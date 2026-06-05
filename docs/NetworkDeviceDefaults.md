@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | Unique ID of the network device defaults entry | 
+**Id** | **int64** | Unique ID of the network device defaults entry | 
 **DatacenterName** | **string** | Name of the datacenter | 
 **SerialNumber** | Pointer to **string** | Device serial number | [optional] 
 **ManagementMacAddress** | Pointer to **string** | Management MAC address | [optional] 
@@ -13,15 +13,15 @@ Name | Type | Description | Notes
 **Asn** | Pointer to **int64** | Autonomous System Number (ASN) of the network device | [optional] 
 **IsPartOfMlagPair** | Pointer to **bool** | Whether device is part of an MLAG pair | [optional] 
 **MlagSystemMac** | Pointer to **string** | MLAG system MAC address | [optional] 
-**MlagDomainId** | Pointer to **int32** | MLAG domain ID | [optional] 
-**MlagPeerLinkPortChannelId** | Pointer to **int32** | MLAG peer link port-channel ID | [optional] 
+**MlagDomainId** | Pointer to **int64** | MLAG domain ID | [optional] 
+**MlagPeerLinkPortChannelId** | Pointer to **int64** | MLAG peer link port-channel ID | [optional] 
 **MlagPartnerVlanId** | Pointer to **int32** | MLAG partner VLAN ID | [optional] 
 **MlagPartnerHostname** | Pointer to **string** | Hostname of MLAG partner device | [optional] 
 **LoopbackAddressIpv4** | Pointer to **string** | Loopback IPv4 address | [optional] 
 **LoopbackAddressIpv6** | Pointer to **string** | Loopback IPv6 address | [optional] 
 **VtepAddressIpv4** | Pointer to **string** | VTEP IPv4 address | [optional] 
 **VtepAddressIpv6** | Pointer to **string** | VTEP IPv6 address | [optional] 
-**OsTemplateId** | Pointer to **int32** | Volume template ID | [optional] 
+**OsTemplateId** | Pointer to **int64** | Volume template ID | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for device configuration | [optional] 
 **OrderIndex** | Pointer to **int32** | Order index for display or processing | [optional] 
 **AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options applied to devices provisioned from these defaults. Credentials are resolved from the first active entry. | [optional] 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceDefaults
 
-`func NewNetworkDeviceDefaults(id int32, datacenterName string, ) *NetworkDeviceDefaults`
+`func NewNetworkDeviceDefaults(id int64, datacenterName string, ) *NetworkDeviceDefaults`
 
 NewNetworkDeviceDefaults instantiates a new NetworkDeviceDefaults object
 This constructor will assign default values to properties that have it defined,
@@ -47,20 +47,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *NetworkDeviceDefaults) GetId() int32`
+`func (o *NetworkDeviceDefaults) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkDeviceDefaults) GetIdOk() (*int32, bool)`
+`func (o *NetworkDeviceDefaults) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkDeviceDefaults) SetId(v int32)`
+`func (o *NetworkDeviceDefaults) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -262,20 +262,20 @@ HasMlagSystemMac returns a boolean if a field has been set.
 
 ### GetMlagDomainId
 
-`func (o *NetworkDeviceDefaults) GetMlagDomainId() int32`
+`func (o *NetworkDeviceDefaults) GetMlagDomainId() int64`
 
 GetMlagDomainId returns the MlagDomainId field if non-nil, zero value otherwise.
 
 ### GetMlagDomainIdOk
 
-`func (o *NetworkDeviceDefaults) GetMlagDomainIdOk() (*int32, bool)`
+`func (o *NetworkDeviceDefaults) GetMlagDomainIdOk() (*int64, bool)`
 
 GetMlagDomainIdOk returns a tuple with the MlagDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagDomainId
 
-`func (o *NetworkDeviceDefaults) SetMlagDomainId(v int32)`
+`func (o *NetworkDeviceDefaults) SetMlagDomainId(v int64)`
 
 SetMlagDomainId sets MlagDomainId field to given value.
 
@@ -287,20 +287,20 @@ HasMlagDomainId returns a boolean if a field has been set.
 
 ### GetMlagPeerLinkPortChannelId
 
-`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() int32`
+`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() int64`
 
 GetMlagPeerLinkPortChannelId returns the MlagPeerLinkPortChannelId field if non-nil, zero value otherwise.
 
 ### GetMlagPeerLinkPortChannelIdOk
 
-`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*int32, bool)`
+`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*int64, bool)`
 
 GetMlagPeerLinkPortChannelIdOk returns a tuple with the MlagPeerLinkPortChannelId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagPeerLinkPortChannelId
 
-`func (o *NetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v int32)`
+`func (o *NetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v int64)`
 
 SetMlagPeerLinkPortChannelId sets MlagPeerLinkPortChannelId field to given value.
 
@@ -462,20 +462,20 @@ HasVtepAddressIpv6 returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 
-`func (o *NetworkDeviceDefaults) GetOsTemplateId() int32`
+`func (o *NetworkDeviceDefaults) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *NetworkDeviceDefaults) GetOsTemplateIdOk() (*int32, bool)`
+`func (o *NetworkDeviceDefaults) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *NetworkDeviceDefaults) SetOsTemplateId(v int32)`
+`func (o *NetworkDeviceDefaults) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 

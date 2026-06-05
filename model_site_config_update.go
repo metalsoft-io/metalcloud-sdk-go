@@ -25,7 +25,7 @@ type SiteConfigUpdate struct {
 	// Repository details
 	Repo *Repo `json:"repo,omitempty"`
 	// ID of the DNS zone associated with the site
-	DnsZoneId *int32 `json:"dnsZoneId,omitempty"`
+	DnsZoneId *int64 `json:"dnsZoneId,omitempty"`
 	// List of DNS Servers
 	DNSServers []string `json:"DNSServers,omitempty"`
 	// List of NTP Servers
@@ -36,8 +36,6 @@ type SiteConfigUpdate struct {
 	ServerPolicy *ServerPolicyUpdate `json:"serverPolicy,omitempty"`
 	// Controller policies
 	ControllerPolicy *ControllerPolicy `json:"controllerPolicy,omitempty"`
-	// Infrastructure policies
-	InfrastructurePolicy *InfrastructurePolicy `json:"infrastructurePolicy,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -125,9 +123,9 @@ func (o *SiteConfigUpdate) SetRepo(v Repo) {
 }
 
 // GetDnsZoneId returns the DnsZoneId field value if set, zero value otherwise.
-func (o *SiteConfigUpdate) GetDnsZoneId() int32 {
+func (o *SiteConfigUpdate) GetDnsZoneId() int64 {
 	if o == nil || IsNil(o.DnsZoneId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsZoneId
@@ -135,7 +133,7 @@ func (o *SiteConfigUpdate) GetDnsZoneId() int32 {
 
 // GetDnsZoneIdOk returns a tuple with the DnsZoneId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetDnsZoneIdOk() (*int32, bool) {
+func (o *SiteConfigUpdate) GetDnsZoneIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsZoneId) {
 		return nil, false
 	}
@@ -151,8 +149,8 @@ func (o *SiteConfigUpdate) HasDnsZoneId() bool {
 	return false
 }
 
-// SetDnsZoneId gets a reference to the given int32 and assigns it to the DnsZoneId field.
-func (o *SiteConfigUpdate) SetDnsZoneId(v int32) {
+// SetDnsZoneId gets a reference to the given int64 and assigns it to the DnsZoneId field.
+func (o *SiteConfigUpdate) SetDnsZoneId(v int64) {
 	o.DnsZoneId = &v
 }
 
@@ -316,38 +314,6 @@ func (o *SiteConfigUpdate) SetControllerPolicy(v ControllerPolicy) {
 	o.ControllerPolicy = &v
 }
 
-// GetInfrastructurePolicy returns the InfrastructurePolicy field value if set, zero value otherwise.
-func (o *SiteConfigUpdate) GetInfrastructurePolicy() InfrastructurePolicy {
-	if o == nil || IsNil(o.InfrastructurePolicy) {
-		var ret InfrastructurePolicy
-		return ret
-	}
-	return *o.InfrastructurePolicy
-}
-
-// GetInfrastructurePolicyOk returns a tuple with the InfrastructurePolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetInfrastructurePolicyOk() (*InfrastructurePolicy, bool) {
-	if o == nil || IsNil(o.InfrastructurePolicy) {
-		return nil, false
-	}
-	return o.InfrastructurePolicy, true
-}
-
-// HasInfrastructurePolicy returns a boolean if a field has been set.
-func (o *SiteConfigUpdate) HasInfrastructurePolicy() bool {
-	if o != nil && !IsNil(o.InfrastructurePolicy) {
-		return true
-	}
-
-	return false
-}
-
-// SetInfrastructurePolicy gets a reference to the given InfrastructurePolicy and assigns it to the InfrastructurePolicy field.
-func (o *SiteConfigUpdate) SetInfrastructurePolicy(v InfrastructurePolicy) {
-	o.InfrastructurePolicy = &v
-}
-
 func (o SiteConfigUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -382,9 +348,6 @@ func (o SiteConfigUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ControllerPolicy) {
 		toSerialize["controllerPolicy"] = o.ControllerPolicy
 	}
-	if !IsNil(o.InfrastructurePolicy) {
-		toSerialize["infrastructurePolicy"] = o.InfrastructurePolicy
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -415,7 +378,6 @@ func (o *SiteConfigUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkDevicePolicy")
 		delete(additionalProperties, "serverPolicy")
 		delete(additionalProperties, "controllerPolicy")
-		delete(additionalProperties, "infrastructurePolicy")
 		o.AdditionalProperties = additionalProperties
 	}
 

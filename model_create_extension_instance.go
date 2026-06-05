@@ -23,7 +23,7 @@ type CreateExtensionInstance struct {
 	// The extension instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
 	// The extension ID.
-	ExtensionId *float32 `json:"extensionId,omitempty"`
+	ExtensionId *int64 `json:"extensionId,omitempty"`
 	// Input variables values.
 	InputVariables []ExtensionVariable `json:"inputVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -81,9 +81,9 @@ func (o *CreateExtensionInstance) SetLabel(v string) {
 }
 
 // GetExtensionId returns the ExtensionId field value if set, zero value otherwise.
-func (o *CreateExtensionInstance) GetExtensionId() float32 {
+func (o *CreateExtensionInstance) GetExtensionId() int64 {
 	if o == nil || IsNil(o.ExtensionId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionId
@@ -91,7 +91,7 @@ func (o *CreateExtensionInstance) GetExtensionId() float32 {
 
 // GetExtensionIdOk returns a tuple with the ExtensionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateExtensionInstance) GetExtensionIdOk() (*float32, bool) {
+func (o *CreateExtensionInstance) GetExtensionIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExtensionId) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *CreateExtensionInstance) HasExtensionId() bool {
 	return false
 }
 
-// SetExtensionId gets a reference to the given float32 and assigns it to the ExtensionId field.
-func (o *CreateExtensionInstance) SetExtensionId(v float32) {
+// SetExtensionId gets a reference to the given int64 and assigns it to the ExtensionId field.
+func (o *CreateExtensionInstance) SetExtensionId(v int64) {
 	o.ExtensionId = &v
 }
 

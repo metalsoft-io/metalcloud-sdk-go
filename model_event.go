@@ -27,8 +27,8 @@ type Event struct {
 	UserIdAuthenticated *string `json:"userIdAuthenticated,omitempty"`
 	// The type of the event
 	Type string `json:"type"`
-	// The severity of the event
-	Severity string `json:"severity"`
+	// The level of the event
+	Level string `json:"level"`
 	// The visibility of the event
 	Visibility string `json:"visibility"`
 	// The id of the infrastructure linked to the event
@@ -37,6 +37,14 @@ type Event struct {
 	UserId *string `json:"userId,omitempty"`
 	// The id of the server linked to the event
 	ServerId *string `json:"serverId,omitempty"`
+	// The id of the network device linked to the event
+	NetworkDeviceId *string `json:"networkDeviceId,omitempty"`
+	// The id of the network device controller linked to the event
+	NetworkDeviceControllerId *string `json:"networkDeviceControllerId,omitempty"`
+	// The id of the storage linked to the event
+	StorageId *string `json:"storageId,omitempty"`
+	// The id of the vm pool linked to the event
+	VmPoolId *string `json:"vmPoolId,omitempty"`
 	// The id of the job linked to the event
 	JobId *string `json:"jobId,omitempty"`
 	// The id of the site linked to the event
@@ -66,11 +74,11 @@ type _Event Event
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEvent(id string, type_ string, severity string, visibility string, title string, message string, occurredTimestamp string) *Event {
+func NewEvent(id string, type_ string, level string, visibility string, title string, message string, occurredTimestamp string) *Event {
 	this := Event{}
 	this.Id = id
 	this.Type = type_
-	this.Severity = severity
+	this.Level = level
 	this.Visibility = visibility
 	this.Title = title
 	this.Message = message
@@ -166,28 +174,28 @@ func (o *Event) SetType(v string) {
 	o.Type = v
 }
 
-// GetSeverity returns the Severity field value
-func (o *Event) GetSeverity() string {
+// GetLevel returns the Level field value
+func (o *Event) GetLevel() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Severity
+	return o.Level
 }
 
-// GetSeverityOk returns a tuple with the Severity field value
+// GetLevelOk returns a tuple with the Level field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetSeverityOk() (*string, bool) {
+func (o *Event) GetLevelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Severity, true
+	return &o.Level, true
 }
 
-// SetSeverity sets field value
-func (o *Event) SetSeverity(v string) {
-	o.Severity = v
+// SetLevel sets field value
+func (o *Event) SetLevel(v string) {
+	o.Level = v
 }
 
 // GetVisibility returns the Visibility field value
@@ -308,6 +316,134 @@ func (o *Event) HasServerId() bool {
 // SetServerId gets a reference to the given string and assigns it to the ServerId field.
 func (o *Event) SetServerId(v string) {
 	o.ServerId = &v
+}
+
+// GetNetworkDeviceId returns the NetworkDeviceId field value if set, zero value otherwise.
+func (o *Event) GetNetworkDeviceId() string {
+	if o == nil || IsNil(o.NetworkDeviceId) {
+		var ret string
+		return ret
+	}
+	return *o.NetworkDeviceId
+}
+
+// GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetNetworkDeviceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.NetworkDeviceId) {
+		return nil, false
+	}
+	return o.NetworkDeviceId, true
+}
+
+// HasNetworkDeviceId returns a boolean if a field has been set.
+func (o *Event) HasNetworkDeviceId() bool {
+	if o != nil && !IsNil(o.NetworkDeviceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceId gets a reference to the given string and assigns it to the NetworkDeviceId field.
+func (o *Event) SetNetworkDeviceId(v string) {
+	o.NetworkDeviceId = &v
+}
+
+// GetNetworkDeviceControllerId returns the NetworkDeviceControllerId field value if set, zero value otherwise.
+func (o *Event) GetNetworkDeviceControllerId() string {
+	if o == nil || IsNil(o.NetworkDeviceControllerId) {
+		var ret string
+		return ret
+	}
+	return *o.NetworkDeviceControllerId
+}
+
+// GetNetworkDeviceControllerIdOk returns a tuple with the NetworkDeviceControllerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetNetworkDeviceControllerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.NetworkDeviceControllerId) {
+		return nil, false
+	}
+	return o.NetworkDeviceControllerId, true
+}
+
+// HasNetworkDeviceControllerId returns a boolean if a field has been set.
+func (o *Event) HasNetworkDeviceControllerId() bool {
+	if o != nil && !IsNil(o.NetworkDeviceControllerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceControllerId gets a reference to the given string and assigns it to the NetworkDeviceControllerId field.
+func (o *Event) SetNetworkDeviceControllerId(v string) {
+	o.NetworkDeviceControllerId = &v
+}
+
+// GetStorageId returns the StorageId field value if set, zero value otherwise.
+func (o *Event) GetStorageId() string {
+	if o == nil || IsNil(o.StorageId) {
+		var ret string
+		return ret
+	}
+	return *o.StorageId
+}
+
+// GetStorageIdOk returns a tuple with the StorageId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetStorageIdOk() (*string, bool) {
+	if o == nil || IsNil(o.StorageId) {
+		return nil, false
+	}
+	return o.StorageId, true
+}
+
+// HasStorageId returns a boolean if a field has been set.
+func (o *Event) HasStorageId() bool {
+	if o != nil && !IsNil(o.StorageId) {
+		return true
+	}
+
+	return false
+}
+
+// SetStorageId gets a reference to the given string and assigns it to the StorageId field.
+func (o *Event) SetStorageId(v string) {
+	o.StorageId = &v
+}
+
+// GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
+func (o *Event) GetVmPoolId() string {
+	if o == nil || IsNil(o.VmPoolId) {
+		var ret string
+		return ret
+	}
+	return *o.VmPoolId
+}
+
+// GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetVmPoolIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VmPoolId) {
+		return nil, false
+	}
+	return o.VmPoolId, true
+}
+
+// HasVmPoolId returns a boolean if a field has been set.
+func (o *Event) HasVmPoolId() bool {
+	if o != nil && !IsNil(o.VmPoolId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmPoolId gets a reference to the given string and assigns it to the VmPoolId field.
+func (o *Event) SetVmPoolId(v string) {
+	o.VmPoolId = &v
 }
 
 // GetJobId returns the JobId field value if set, zero value otherwise.
@@ -621,7 +757,7 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 		toSerialize["userIdAuthenticated"] = o.UserIdAuthenticated
 	}
 	toSerialize["type"] = o.Type
-	toSerialize["severity"] = o.Severity
+	toSerialize["level"] = o.Level
 	toSerialize["visibility"] = o.Visibility
 	if !IsNil(o.InfrastructureId) {
 		toSerialize["infrastructureId"] = o.InfrastructureId
@@ -631,6 +767,18 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ServerId) {
 		toSerialize["serverId"] = o.ServerId
+	}
+	if !IsNil(o.NetworkDeviceId) {
+		toSerialize["networkDeviceId"] = o.NetworkDeviceId
+	}
+	if !IsNil(o.NetworkDeviceControllerId) {
+		toSerialize["networkDeviceControllerId"] = o.NetworkDeviceControllerId
+	}
+	if !IsNil(o.StorageId) {
+		toSerialize["storageId"] = o.StorageId
+	}
+	if !IsNil(o.VmPoolId) {
+		toSerialize["vmPoolId"] = o.VmPoolId
 	}
 	if !IsNil(o.JobId) {
 		toSerialize["jobId"] = o.JobId
@@ -671,7 +819,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"type",
-		"severity",
+		"level",
 		"visibility",
 		"title",
 		"message",
@@ -708,11 +856,15 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "userIdAuthenticated")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "severity")
+		delete(additionalProperties, "level")
 		delete(additionalProperties, "visibility")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "userId")
 		delete(additionalProperties, "serverId")
+		delete(additionalProperties, "networkDeviceId")
+		delete(additionalProperties, "networkDeviceControllerId")
+		delete(additionalProperties, "storageId")
+		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "jobId")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "title")

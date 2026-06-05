@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VmNetName** | **string** | The name of the network. | 
-**VlanId** | **float32** | The VLAN ID of the network. | 
+**VlanId** | **int32** | The VLAN ID of the network. | 
 
 ## Methods
 
 ### NewVMPoolNetworkConfigurationRecordSet
 
-`func NewVMPoolNetworkConfigurationRecordSet(vmNetName string, vlanId float32, ) *VMPoolNetworkConfigurationRecordSet`
+`func NewVMPoolNetworkConfigurationRecordSet(vmNetName string, vlanId int32, ) *VMPoolNetworkConfigurationRecordSet`
 
 NewVMPoolNetworkConfigurationRecordSet instantiates a new VMPoolNetworkConfigurationRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetVmNetName sets VmNetName field to given value.
 
 ### GetVlanId
 
-`func (o *VMPoolNetworkConfigurationRecordSet) GetVlanId() float32`
+`func (o *VMPoolNetworkConfigurationRecordSet) GetVlanId() int32`
 
 GetVlanId returns the VlanId field if non-nil, zero value otherwise.
 
 ### GetVlanIdOk
 
-`func (o *VMPoolNetworkConfigurationRecordSet) GetVlanIdOk() (*float32, bool)`
+`func (o *VMPoolNetworkConfigurationRecordSet) GetVlanIdOk() (*int32, bool)`
 
 GetVlanIdOk returns a tuple with the VlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanId
 
-`func (o *VMPoolNetworkConfigurationRecordSet) SetVlanId(v float32)`
+`func (o *VMPoolNetworkConfigurationRecordSet) SetVlanId(v int32)`
 
 SetVlanId sets VlanId field to given value.
 

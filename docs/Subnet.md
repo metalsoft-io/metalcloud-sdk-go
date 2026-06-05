@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **Name** | **string** |  | 
 **Annotations** | **map[string]string** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Tags** | **map[string]string** |  | 
-**ParentSubnetId** | **int32** |  | 
+**ParentSubnetId** | **int64** |  | 
 **IpVersion** | [**IpVersion**](IpVersion.md) |  | 
 **NetworkAddress** | **string** |  | 
 **PrefixLength** | **int32** |  | 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewSubnet
 
-`func NewSubnet(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, tags map[string]string, parentSubnetId int32, ipVersion IpVersion, networkAddress string, prefixLength int32, netmask string, defaultGatewayAddress string, isPool bool, allocationDenylist []AddressRange, childOverlapAllowRules []string, ) *Subnet`
+`func NewSubnet(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, tags map[string]string, parentSubnetId int64, ipVersion IpVersion, networkAddress string, prefixLength int32, netmask string, defaultGatewayAddress string, isPool bool, allocationDenylist []AddressRange, childOverlapAllowRules []string, ) *Subnet`
 
 NewSubnet instantiates a new Subnet object
 This constructor will assign default values to properties that have it defined,
@@ -43,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Subnet) GetId() int32`
+`func (o *Subnet) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Subnet) GetIdOk() (*int32, bool)`
+`func (o *Subnet) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Subnet) SetId(v int32)`
+`func (o *Subnet) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -163,20 +163,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *Subnet) GetRevision() int32`
+`func (o *Subnet) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *Subnet) GetRevisionOk() (*int32, bool)`
+`func (o *Subnet) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *Subnet) SetRevision(v int32)`
+`func (o *Subnet) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -203,20 +203,20 @@ SetTags sets Tags field to given value.
 
 ### GetParentSubnetId
 
-`func (o *Subnet) GetParentSubnetId() int32`
+`func (o *Subnet) GetParentSubnetId() int64`
 
 GetParentSubnetId returns the ParentSubnetId field if non-nil, zero value otherwise.
 
 ### GetParentSubnetIdOk
 
-`func (o *Subnet) GetParentSubnetIdOk() (*int32, bool)`
+`func (o *Subnet) GetParentSubnetIdOk() (*int64, bool)`
 
 GetParentSubnetIdOk returns a tuple with the ParentSubnetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentSubnetId
 
-`func (o *Subnet) SetParentSubnetId(v int32)`
+`func (o *Subnet) SetParentSubnetId(v int64)`
 
 SetParentSubnetId sets ParentSubnetId field to given value.
 

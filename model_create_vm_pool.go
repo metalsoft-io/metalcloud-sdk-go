@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateVMPool{}
 // CreateVMPool struct for CreateVMPool
 type CreateVMPool struct {
 	// Id of the site for the VM
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Host of the VM Pool
 	ManagementHost string `json:"managementHost"`
 	// Port of the VM Pool
@@ -40,7 +40,7 @@ type CreateVMPool struct {
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
 	// The network fabric linked to the VM Pool.
-	NetworkFabricId float32 `json:"networkFabricId"`
+	NetworkFabricId int64 `json:"networkFabricId"`
 	// Tags for the VM Pool.
 	Tags []string `json:"tags,omitempty"`
 	// Certificate of the VM Pool
@@ -60,7 +60,7 @@ type _CreateVMPool CreateVMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, networkFabricId float32) *CreateVMPool {
+func NewCreateVMPool(siteId int64, managementHost string, managementPort float32, name string, type_ string, networkFabricId int64) *CreateVMPool {
 	this := CreateVMPool{}
 	this.SiteId = siteId
 	this.ManagementHost = managementHost
@@ -80,9 +80,9 @@ func NewCreateVMPoolWithDefaults() *CreateVMPool {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *CreateVMPool) GetSiteId() float32 {
+func (o *CreateVMPool) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *CreateVMPool) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *CreateVMPool) GetSiteIdOk() (*float32, bool) {
+func (o *CreateVMPool) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *CreateVMPool) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *CreateVMPool) SetSiteId(v float32) {
+func (o *CreateVMPool) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -328,9 +328,9 @@ func (o *CreateVMPool) SetIsExperimental(v float32) {
 }
 
 // GetNetworkFabricId returns the NetworkFabricId field value
-func (o *CreateVMPool) GetNetworkFabricId() float32 {
+func (o *CreateVMPool) GetNetworkFabricId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -339,7 +339,7 @@ func (o *CreateVMPool) GetNetworkFabricId() float32 {
 
 // GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
 // and a boolean to check if the value has been set.
-func (o *CreateVMPool) GetNetworkFabricIdOk() (*float32, bool) {
+func (o *CreateVMPool) GetNetworkFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -347,7 +347,7 @@ func (o *CreateVMPool) GetNetworkFabricIdOk() (*float32, bool) {
 }
 
 // SetNetworkFabricId sets field value
-func (o *CreateVMPool) SetNetworkFabricId(v float32) {
+func (o *CreateVMPool) SetNetworkFabricId(v int64) {
 	o.NetworkFabricId = v
 }
 

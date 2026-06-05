@@ -685,27 +685,33 @@ func (a *UsersAPIService) DeleteUserSshKeyExecute(r UsersAPIDeleteUserSshKeyRequ
 	return localVarHTTPResponse, nil
 }
 
-type UsersAPIGetDefaultUserLimitsRequest struct {
+type UsersAPIGetQuotaLimitsBreakdownRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
 	userId float32
+	includeUsage *bool
 }
 
-func (r UsersAPIGetDefaultUserLimitsRequest) Execute() (*UserLimits, *http.Response, error) {
-	return r.ApiService.GetDefaultUserLimitsExecute(r)
+func (r UsersAPIGetQuotaLimitsBreakdownRequest) IncludeUsage(includeUsage bool) UsersAPIGetQuotaLimitsBreakdownRequest {
+	r.includeUsage = &includeUsage
+	return r
+}
+
+func (r UsersAPIGetQuotaLimitsBreakdownRequest) Execute() (*QuotaLimitsBreakdown, *http.Response, error) {
+	return r.ApiService.GetQuotaLimitsBreakdownExecute(r)
 }
 
 /*
-GetDefaultUserLimits Get default user limits
+GetQuotaLimitsBreakdown Get quota limits breakdown for a user
 
-Returns the default limits of a user
+Returns the merged effective limits alongside the individual profile limits at each level: role, LDAP/SAML group mappings, account, and parent account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userId
- @return UsersAPIGetDefaultUserLimitsRequest
+ @return UsersAPIGetQuotaLimitsBreakdownRequest
 */
-func (a *UsersAPIService) GetDefaultUserLimits(ctx context.Context, userId float32) UsersAPIGetDefaultUserLimitsRequest {
-	return UsersAPIGetDefaultUserLimitsRequest{
+func (a *UsersAPIService) GetQuotaLimitsBreakdown(ctx context.Context, userId float32) UsersAPIGetQuotaLimitsBreakdownRequest {
+	return UsersAPIGetQuotaLimitsBreakdownRequest{
 		ApiService: a,
 		ctx: ctx,
 		userId: userId,
@@ -713,130 +719,30 @@ func (a *UsersAPIService) GetDefaultUserLimits(ctx context.Context, userId float
 }
 
 // Execute executes the request
-//  @return UserLimits
-func (a *UsersAPIService) GetDefaultUserLimitsExecute(r UsersAPIGetDefaultUserLimitsRequest) (*UserLimits, *http.Response, error) {
+//  @return QuotaLimitsBreakdown
+func (a *UsersAPIService) GetQuotaLimitsBreakdownExecute(r UsersAPIGetQuotaLimitsBreakdownRequest) (*QuotaLimitsBreakdown, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *UserLimits
+		localVarReturnValue  *QuotaLimitsBreakdown
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetDefaultUserLimits")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetQuotaLimitsBreakdown")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/users/{userId}/default-limits"
+	localVarPath := localBasePath + "/api/v2/users/{userId}/quota-limits-breakdown"
 	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	if r.includeUsage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeUsage", r.includeUsage, "form", "")
 	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type UsersAPIGetDisabledUserLimitsRequest struct {
-	ctx context.Context
-	ApiService *UsersAPIService
-	userId float32
-}
-
-func (r UsersAPIGetDisabledUserLimitsRequest) Execute() (*UserLimitsDisabled, *http.Response, error) {
-	return r.ApiService.GetDisabledUserLimitsExecute(r)
-}
-
-/*
-GetDisabledUserLimits Get disabled user limits
-
-Returns the disabled limits for the user and a short message why they are disabled
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
- @return UsersAPIGetDisabledUserLimitsRequest
-*/
-func (a *UsersAPIService) GetDisabledUserLimits(ctx context.Context, userId float32) UsersAPIGetDisabledUserLimitsRequest {
-	return UsersAPIGetDisabledUserLimitsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userId: userId,
-	}
-}
-
-// Execute executes the request
-//  @return UserLimitsDisabled
-func (a *UsersAPIService) GetDisabledUserLimitsExecute(r UsersAPIGetDisabledUserLimitsRequest) (*UserLimitsDisabled, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UserLimitsDisabled
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetDisabledUserLimits")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/users/{userId}/disabled-limits"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -895,13 +801,6 @@ type UsersAPIGetUserRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
 	userId float32
-	recursion *float32
-}
-
-// The recursion level of the displayed details. Default is 0.
-func (r UsersAPIGetUserRequest) Recursion(recursion float32) UsersAPIGetUserRequest {
-	r.recursion = &recursion
-	return r
 }
 
 func (r UsersAPIGetUserRequest) Execute() (*User, *http.Response, error) {
@@ -947,9 +846,6 @@ func (a *UsersAPIService) GetUserExecute(r UsersAPIGetUserRequest) (*User, *http
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.recursion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "recursion", r.recursion, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1206,109 +1102,6 @@ func (a *UsersAPIService) GetUserConfigurationExecute(r UsersAPIGetUserConfigura
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UsersAPIGetUserLimitsRequest struct {
-	ctx context.Context
-	ApiService *UsersAPIService
-	userId float32
-}
-
-func (r UsersAPIGetUserLimitsRequest) Execute() (*UserLimits, *http.Response, error) {
-	return r.ApiService.GetUserLimitsExecute(r)
-}
-
-/*
-GetUserLimits Get user limits
-
-Returns the limits of a user
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
- @return UsersAPIGetUserLimitsRequest
-*/
-func (a *UsersAPIService) GetUserLimits(ctx context.Context, userId float32) UsersAPIGetUserLimitsRequest {
-	return UsersAPIGetUserLimitsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userId: userId,
-	}
-}
-
-// Execute executes the request
-//  @return UserLimits
-func (a *UsersAPIService) GetUserLimitsExecute(r UsersAPIGetUserLimitsRequest) (*UserLimits, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UserLimits
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetUserLimits")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/users/{userId}/limits"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type UsersAPIGetUserParentDelegatesRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
@@ -1350,107 +1143,6 @@ func (a *UsersAPIService) GetUserParentDelegatesExecute(r UsersAPIGetUserParentD
 	}
 
 	localVarPath := localBasePath + "/api/v2/users/{userId}/parent-delegates"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type UsersAPIGetUserPermissionsRequest struct {
-	ctx context.Context
-	ApiService *UsersAPIService
-	userId float32
-}
-
-func (r UsersAPIGetUserPermissionsRequest) Execute() (*UserPermissions, *http.Response, error) {
-	return r.ApiService.GetUserPermissionsExecute(r)
-}
-
-/*
-GetUserPermissions Get user resource permissions by ID
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
- @return UsersAPIGetUserPermissionsRequest
-*/
-func (a *UsersAPIService) GetUserPermissions(ctx context.Context, userId float32) UsersAPIGetUserPermissionsRequest {
-	return UsersAPIGetUserPermissionsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userId: userId,
-	}
-}
-
-// Execute executes the request
-//  @return UserPermissions
-func (a *UsersAPIService) GetUserPermissionsExecute(r UsersAPIGetUserPermissionsRequest) (*UserPermissions, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UserPermissions
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetUserPermissions")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/users/{userId}/permissions"
 	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -3150,131 +2842,6 @@ func (a *UsersAPIService) UpdateUserConfigExecute(r UsersAPIUpdateUserConfigRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UsersAPIUpdateUserLimitsRequest struct {
-	ctx context.Context
-	ApiService *UsersAPIService
-	userId float32
-	userLimits *UserLimits
-	ifMatch *string
-}
-
-// The new limits
-func (r UsersAPIUpdateUserLimitsRequest) UserLimits(userLimits UserLimits) UsersAPIUpdateUserLimitsRequest {
-	r.userLimits = &userLimits
-	return r
-}
-
-// Entity tag
-func (r UsersAPIUpdateUserLimitsRequest) IfMatch(ifMatch string) UsersAPIUpdateUserLimitsRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r UsersAPIUpdateUserLimitsRequest) Execute() (*UserLimits, *http.Response, error) {
-	return r.ApiService.UpdateUserLimitsExecute(r)
-}
-
-/*
-UpdateUserLimits Update user limits
-
-Updates the limits of a user
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
- @return UsersAPIUpdateUserLimitsRequest
-*/
-func (a *UsersAPIService) UpdateUserLimits(ctx context.Context, userId float32) UsersAPIUpdateUserLimitsRequest {
-	return UsersAPIUpdateUserLimitsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userId: userId,
-	}
-}
-
-// Execute executes the request
-//  @return UserLimits
-func (a *UsersAPIService) UpdateUserLimitsExecute(r UsersAPIUpdateUserLimitsRequest) (*UserLimits, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UserLimits
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.UpdateUserLimits")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/users/{userId}/actions/change-limits"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.userLimits == nil {
-		return localVarReturnValue, nil, reportError("userLimits is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.userLimits
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type UsersAPIUpdateUserMetaRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
@@ -3350,128 +2917,6 @@ func (a *UsersAPIService) UpdateUserMetaExecute(r UsersAPIUpdateUserMetaRequest)
 	}
 	// body params
 	localVarPostBody = r.userMeta
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type UsersAPIUpdateUserPermissionsRequest struct {
-	ctx context.Context
-	ApiService *UsersAPIService
-	userId float32
-	updateUserPermissions *UpdateUserPermissions
-	ifMatch *string
-}
-
-func (r UsersAPIUpdateUserPermissionsRequest) UpdateUserPermissions(updateUserPermissions UpdateUserPermissions) UsersAPIUpdateUserPermissionsRequest {
-	r.updateUserPermissions = &updateUserPermissions
-	return r
-}
-
-// Entity tag
-func (r UsersAPIUpdateUserPermissionsRequest) IfMatch(ifMatch string) UsersAPIUpdateUserPermissionsRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r UsersAPIUpdateUserPermissionsRequest) Execute() (*UserPermissions, *http.Response, error) {
-	return r.ApiService.UpdateUserPermissionsExecute(r)
-}
-
-/*
-UpdateUserPermissions Update user resource permissions
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
- @return UsersAPIUpdateUserPermissionsRequest
-*/
-func (a *UsersAPIService) UpdateUserPermissions(ctx context.Context, userId float32) UsersAPIUpdateUserPermissionsRequest {
-	return UsersAPIUpdateUserPermissionsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userId: userId,
-	}
-}
-
-// Execute executes the request
-//  @return UserPermissions
-func (a *UsersAPIService) UpdateUserPermissionsExecute(r UsersAPIUpdateUserPermissionsRequest) (*UserPermissions, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UserPermissions
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.UpdateUserPermissions")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/users/{userId}/actions/change-resource-permissions"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateUserPermissions == nil {
-		return localVarReturnValue, nil, reportError("updateUserPermissions is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.updateUserPermissions
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -22,14 +22,14 @@ var _ MappedNullable = &RouteDomainConfig{}
 
 // RouteDomainConfig struct for RouteDomainConfig
 type RouteDomainConfig struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	DeployType string `json:"deployType"`
 	DeployStatus string `json:"deployStatus"`
 	// Creation timestamp for the entity.
 	CreatedAt time.Time `json:"createdAt"`
 	// Last update timestamp for the entity.
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Kind RouteDomainKind `json:"kind"`
 	VrfAllocationStrategies []CreateVrfAllocationStrategy `json:"vrfAllocationStrategies"`
 	// When true, the switch auto-generates the EVPN Route Distinguisher for the L3 VNI. Only applicable to EVPN_L3VPN route domains.
@@ -47,7 +47,7 @@ type _RouteDomainConfig RouteDomainConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRouteDomainConfig(id int32, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, vrfAllocationStrategies []CreateVrfAllocationStrategy) *RouteDomainConfig {
+func NewRouteDomainConfig(id int64, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int64, kind RouteDomainKind, vrfAllocationStrategies []CreateVrfAllocationStrategy) *RouteDomainConfig {
 	this := RouteDomainConfig{}
 	this.Id = id
 	this.DeployType = deployType
@@ -69,9 +69,9 @@ func NewRouteDomainConfigWithDefaults() *RouteDomainConfig {
 }
 
 // GetId returns the Id field value
-func (o *RouteDomainConfig) GetId() int32 {
+func (o *RouteDomainConfig) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -80,7 +80,7 @@ func (o *RouteDomainConfig) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RouteDomainConfig) GetIdOk() (*int32, bool) {
+func (o *RouteDomainConfig) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *RouteDomainConfig) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *RouteDomainConfig) SetId(v int32) {
+func (o *RouteDomainConfig) SetId(v int64) {
 	o.Id = v
 }
 
@@ -189,9 +189,9 @@ func (o *RouteDomainConfig) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *RouteDomainConfig) GetRevision() int32 {
+func (o *RouteDomainConfig) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -200,7 +200,7 @@ func (o *RouteDomainConfig) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *RouteDomainConfig) GetRevisionOk() (*int32, bool) {
+func (o *RouteDomainConfig) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -208,7 +208,7 @@ func (o *RouteDomainConfig) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *RouteDomainConfig) SetRevision(v int32) {
+func (o *RouteDomainConfig) SetRevision(v int64) {
 	o.Revision = v
 }
 

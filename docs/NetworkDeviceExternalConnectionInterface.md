@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkDeviceId** | **float32** | Network device id | 
-**NetworkDeviceInterfaceId** | **float32** | Network device interface id | 
+**NetworkDeviceId** | **int64** | Network device id | 
+**NetworkDeviceInterfaceId** | **int64** | Network device interface id | 
 **NetworkDeviceInterfaceName** | Pointer to **string** | Network device interface name | [optional] 
-**ExternalConnectionId** | Pointer to **float32** | Network external connection id, null if not connected to an existing external connection | [optional] 
-**ExternalConnectionInterfaceId** | Pointer to **float32** | external connection interface id, null if not connected to an existing external connection interface | [optional] 
+**ExternalConnectionId** | Pointer to **int64** | Network external connection id, null if not connected to an existing external connection | [optional] 
+**ExternalConnectionInterfaceId** | Pointer to **int64** | external connection interface id, null if not connected to an existing external connection interface | [optional] 
 
 ## Methods
 
 ### NewNetworkDeviceExternalConnectionInterface
 
-`func NewNetworkDeviceExternalConnectionInterface(networkDeviceId float32, networkDeviceInterfaceId float32, ) *NetworkDeviceExternalConnectionInterface`
+`func NewNetworkDeviceExternalConnectionInterface(networkDeviceId int64, networkDeviceInterfaceId int64, ) *NetworkDeviceExternalConnectionInterface`
 
 NewNetworkDeviceExternalConnectionInterface instantiates a new NetworkDeviceExternalConnectionInterface object
 This constructor will assign default values to properties that have it defined,
@@ -31,40 +31,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNetworkDeviceId
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceId() float32`
+`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceIdOk() (*float32, bool)`
+`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceId(v float32)`
+`func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
 
 ### GetNetworkDeviceInterfaceId
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceId() float32`
+`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceId() int64`
 
 GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceInterfaceIdOk
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool)`
+`func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool)`
 
 GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceInterfaceId
 
-`func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceInterfaceId(v float32)`
+`func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceInterfaceId(v int64)`
 
 SetNetworkDeviceInterfaceId sets NetworkDeviceInterfaceId field to given value.
 
@@ -96,20 +96,20 @@ HasNetworkDeviceInterfaceName returns a boolean if a field has been set.
 
 ### GetExternalConnectionId
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionId() float32`
+`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionId() int64`
 
 GetExternalConnectionId returns the ExternalConnectionId field if non-nil, zero value otherwise.
 
 ### GetExternalConnectionIdOk
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionIdOk() (*float32, bool)`
+`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionIdOk() (*int64, bool)`
 
 GetExternalConnectionIdOk returns a tuple with the ExternalConnectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExternalConnectionId
 
-`func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionId(v float32)`
+`func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionId(v int64)`
 
 SetExternalConnectionId sets ExternalConnectionId field to given value.
 
@@ -121,20 +121,20 @@ HasExternalConnectionId returns a boolean if a field has been set.
 
 ### GetExternalConnectionInterfaceId
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceId() float32`
+`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceId() int64`
 
 GetExternalConnectionInterfaceId returns the ExternalConnectionInterfaceId field if non-nil, zero value otherwise.
 
 ### GetExternalConnectionInterfaceIdOk
 
-`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceIdOk() (*float32, bool)`
+`func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceIdOk() (*int64, bool)`
 
 GetExternalConnectionInterfaceIdOk returns a tuple with the ExternalConnectionInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExternalConnectionInterfaceId
 
-`func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionInterfaceId(v float32)`
+`func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionInterfaceId(v int64)`
 
 SetExternalConnectionInterfaceId sets ExternalConnectionInterfaceId field to given value.
 

@@ -37,7 +37,7 @@ import (
 
 func main() {
 	infrastructureId := int32(56) // int32 | 
-	endpointInstanceCreate := *openapiclient.NewEndpointInstanceCreate(int32(123)) // EndpointInstanceCreate | The Endpoint Instance to create
+	endpointInstanceCreate := *openapiclient.NewEndpointInstanceCreate(int64(123)) // EndpointInstanceCreate | The Endpoint Instance to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

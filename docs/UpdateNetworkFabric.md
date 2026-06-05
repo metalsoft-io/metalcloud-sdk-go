@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | Pointer to **int32** | The ID of the site where the entity is located. | [optional] 
+**SiteId** | Pointer to **int64** | The ID of the site where the entity is located. | [optional] 
 **Name** | Pointer to **string** | The network fabric name | [optional] 
 **ExternalId** | Pointer to **string** | The external identifier for this fabric on the controller (e.g. NDFC fabric name) | [optional] 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *UpdateNetworkFabric) GetSiteId() int32`
+`func (o *UpdateNetworkFabric) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *UpdateNetworkFabric) GetSiteIdOk() (*int32, bool)`
+`func (o *UpdateNetworkFabric) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *UpdateNetworkFabric) SetSiteId(v int32)`
+`func (o *UpdateNetworkFabric) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

@@ -29,6 +29,10 @@ type ServerDPUCredentials struct {
 	Username string `json:"username"`
 	// The password to use for the DPU.
 	Password string `json:"password"`
+	// The username to use for the DPU API if different from the management username.
+	ApiUsername *string `json:"apiUsername,omitempty"`
+	// The password to use for the DPU API if different from the management password.
+	ApiPassword *string `json:"apiPassword,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -151,6 +155,70 @@ func (o *ServerDPUCredentials) SetPassword(v string) {
 	o.Password = v
 }
 
+// GetApiUsername returns the ApiUsername field value if set, zero value otherwise.
+func (o *ServerDPUCredentials) GetApiUsername() string {
+	if o == nil || IsNil(o.ApiUsername) {
+		var ret string
+		return ret
+	}
+	return *o.ApiUsername
+}
+
+// GetApiUsernameOk returns a tuple with the ApiUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerDPUCredentials) GetApiUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiUsername) {
+		return nil, false
+	}
+	return o.ApiUsername, true
+}
+
+// HasApiUsername returns a boolean if a field has been set.
+func (o *ServerDPUCredentials) HasApiUsername() bool {
+	if o != nil && !IsNil(o.ApiUsername) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiUsername gets a reference to the given string and assigns it to the ApiUsername field.
+func (o *ServerDPUCredentials) SetApiUsername(v string) {
+	o.ApiUsername = &v
+}
+
+// GetApiPassword returns the ApiPassword field value if set, zero value otherwise.
+func (o *ServerDPUCredentials) GetApiPassword() string {
+	if o == nil || IsNil(o.ApiPassword) {
+		var ret string
+		return ret
+	}
+	return *o.ApiPassword
+}
+
+// GetApiPasswordOk returns a tuple with the ApiPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerDPUCredentials) GetApiPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiPassword) {
+		return nil, false
+	}
+	return o.ApiPassword, true
+}
+
+// HasApiPassword returns a boolean if a field has been set.
+func (o *ServerDPUCredentials) HasApiPassword() bool {
+	if o != nil && !IsNil(o.ApiPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiPassword gets a reference to the given string and assigns it to the ApiPassword field.
+func (o *ServerDPUCredentials) SetApiPassword(v string) {
+	o.ApiPassword = &v
+}
+
 func (o ServerDPUCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -165,6 +233,12 @@ func (o ServerDPUCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize["macAddressOnHostOS"] = o.MacAddressOnHostOS
 	toSerialize["username"] = o.Username
 	toSerialize["password"] = o.Password
+	if !IsNil(o.ApiUsername) {
+		toSerialize["apiUsername"] = o.ApiUsername
+	}
+	if !IsNil(o.ApiPassword) {
+		toSerialize["apiPassword"] = o.ApiPassword
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -215,6 +289,8 @@ func (o *ServerDPUCredentials) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "macAddressOnHostOS")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "apiUsername")
+		delete(additionalProperties, "apiPassword")
 		o.AdditionalProperties = additionalProperties
 	}
 

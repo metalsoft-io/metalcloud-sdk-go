@@ -22,7 +22,7 @@ var _ MappedNullable = &VMPoolNetworkRecordSet{}
 // VMPoolNetworkRecordSet struct for VMPoolNetworkRecordSet
 type VMPoolNetworkRecordSet struct {
 	// The ID of the VM Pool.
-	VmPoolId float32 `json:"vmPoolId"`
+	VmPoolId int64 `json:"vmPoolId"`
 	// The hostname of the VM Pool.
 	Hostname string `json:"hostname"`
 	// The operation of the VM Pool.
@@ -42,7 +42,7 @@ type _VMPoolNetworkRecordSet VMPoolNetworkRecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolNetworkRecordSet(vmPoolId float32, hostname string, operation string, networkConfigurations []VMPoolNetworkConfigurationRecordSet) *VMPoolNetworkRecordSet {
+func NewVMPoolNetworkRecordSet(vmPoolId int64, hostname string, operation string, networkConfigurations []VMPoolNetworkConfigurationRecordSet) *VMPoolNetworkRecordSet {
 	this := VMPoolNetworkRecordSet{}
 	this.VmPoolId = vmPoolId
 	this.Hostname = hostname
@@ -60,9 +60,9 @@ func NewVMPoolNetworkRecordSetWithDefaults() *VMPoolNetworkRecordSet {
 }
 
 // GetVmPoolId returns the VmPoolId field value
-func (o *VMPoolNetworkRecordSet) GetVmPoolId() float32 {
+func (o *VMPoolNetworkRecordSet) GetVmPoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -71,7 +71,7 @@ func (o *VMPoolNetworkRecordSet) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolNetworkRecordSet) GetVmPoolIdOk() (*float32, bool) {
+func (o *VMPoolNetworkRecordSet) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,7 +79,7 @@ func (o *VMPoolNetworkRecordSet) GetVmPoolIdOk() (*float32, bool) {
 }
 
 // SetVmPoolId sets field value
-func (o *VMPoolNetworkRecordSet) SetVmPoolId(v float32) {
+func (o *VMPoolNetworkRecordSet) SetVmPoolId(v int64) {
 	o.VmPoolId = v
 }
 

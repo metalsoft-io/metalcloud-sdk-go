@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Label** | **string** | Unique label for the network fabric interconnect | 
 **Name** | Pointer to **string** | Name of the network fabric interconnect | [optional] 
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
-**BgpConfigurationTemplateId** | Pointer to **int32** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
-**TransportId** | Pointer to **int32** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
+**BgpConfigurationTemplateId** | Pointer to **int64** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
+**TransportId** | Pointer to **int64** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
 
 ## Methods
 
@@ -122,20 +122,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetBgpConfigurationTemplateId
 
-`func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplateId() int32`
+`func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplateId() int64`
 
 GetBgpConfigurationTemplateId returns the BgpConfigurationTemplateId field if non-nil, zero value otherwise.
 
 ### GetBgpConfigurationTemplateIdOk
 
-`func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int32, bool)`
+`func (o *CreateNetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int64, bool)`
 
 GetBgpConfigurationTemplateIdOk returns a tuple with the BgpConfigurationTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBgpConfigurationTemplateId
 
-`func (o *CreateNetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int32)`
+`func (o *CreateNetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int64)`
 
 SetBgpConfigurationTemplateId sets BgpConfigurationTemplateId field to given value.
 
@@ -147,20 +147,20 @@ HasBgpConfigurationTemplateId returns a boolean if a field has been set.
 
 ### GetTransportId
 
-`func (o *CreateNetworkFabricInterconnect) GetTransportId() int32`
+`func (o *CreateNetworkFabricInterconnect) GetTransportId() int64`
 
 GetTransportId returns the TransportId field if non-nil, zero value otherwise.
 
 ### GetTransportIdOk
 
-`func (o *CreateNetworkFabricInterconnect) GetTransportIdOk() (*int32, bool)`
+`func (o *CreateNetworkFabricInterconnect) GetTransportIdOk() (*int64, bool)`
 
 GetTransportIdOk returns a tuple with the TransportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransportId
 
-`func (o *CreateNetworkFabricInterconnect) SetTransportId(v int32)`
+`func (o *CreateNetworkFabricInterconnect) SetTransportId(v int64)`
 
 SetTransportId sets TransportId field to given value.
 

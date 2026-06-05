@@ -22,16 +22,16 @@ var _ MappedNullable = &Ip{}
 
 // Ip struct for Ip
 type Ip struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	Annotations map[string]string `json:"annotations"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Tags map[string]string `json:"tags"`
 	IpVersion IpVersion `json:"ipVersion"`
 	Address string `json:"address"`
-	SubnetId int32 `json:"subnetId"`
+	SubnetId int64 `json:"subnetId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,7 +41,7 @@ type _Ip Ip
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIp(id int32, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, tags map[string]string, ipVersion IpVersion, address string, subnetId int32) *Ip {
+func NewIp(id int64, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, tags map[string]string, ipVersion IpVersion, address string, subnetId int64) *Ip {
 	this := Ip{}
 	this.Id = id
 	this.Name = name
@@ -65,9 +65,9 @@ func NewIpWithDefaults() *Ip {
 }
 
 // GetId returns the Id field value
-func (o *Ip) GetId() int32 {
+func (o *Ip) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *Ip) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Ip) GetIdOk() (*int32, bool) {
+func (o *Ip) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +84,7 @@ func (o *Ip) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Ip) SetId(v int32) {
+func (o *Ip) SetId(v int64) {
 	o.Id = v
 }
 
@@ -185,9 +185,9 @@ func (o *Ip) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *Ip) GetRevision() int32 {
+func (o *Ip) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -196,7 +196,7 @@ func (o *Ip) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Ip) GetRevisionOk() (*int32, bool) {
+func (o *Ip) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,7 +204,7 @@ func (o *Ip) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Ip) SetRevision(v int32) {
+func (o *Ip) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -281,9 +281,9 @@ func (o *Ip) SetAddress(v string) {
 }
 
 // GetSubnetId returns the SubnetId field value
-func (o *Ip) GetSubnetId() int32 {
+func (o *Ip) GetSubnetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -292,7 +292,7 @@ func (o *Ip) GetSubnetId() int32 {
 
 // GetSubnetIdOk returns a tuple with the SubnetId field value
 // and a boolean to check if the value has been set.
-func (o *Ip) GetSubnetIdOk() (*int32, bool) {
+func (o *Ip) GetSubnetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -300,7 +300,7 @@ func (o *Ip) GetSubnetIdOk() (*int32, bool) {
 }
 
 // SetSubnetId sets field value
-func (o *Ip) SetSubnetId(v int32) {
+func (o *Ip) SetSubnetId(v int64) {
 	o.SubnetId = v
 }
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The ID of the network device default secrets | 
-**SiteId** | **float32** | The site ID of the network device default secrets | 
+**Id** | **int64** | The ID of the network device default secrets | 
+**SiteId** | **int64** | The site ID of the network device default secrets | 
 **MacAddressOrSerialNumber** | **string** | The MAC address or serial number of the network device | 
 **SecretName** | **string** | The name of the secret | 
 **CreatedTimestamp** | **string** | The timestamp when the secret was created | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceDefaultSecrets
 
-`func NewNetworkDeviceDefaultSecrets(id float32, siteId float32, macAddressOrSerialNumber string, secretName string, createdTimestamp string, updatedTimestamp string, ) *NetworkDeviceDefaultSecrets`
+`func NewNetworkDeviceDefaultSecrets(id int64, siteId int64, macAddressOrSerialNumber string, secretName string, createdTimestamp string, updatedTimestamp string, ) *NetworkDeviceDefaultSecrets`
 
 NewNetworkDeviceDefaultSecrets instantiates a new NetworkDeviceDefaultSecrets object
 This constructor will assign default values to properties that have it defined,
@@ -33,40 +33,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *NetworkDeviceDefaultSecrets) GetId() float32`
+`func (o *NetworkDeviceDefaultSecrets) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkDeviceDefaultSecrets) GetIdOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaultSecrets) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkDeviceDefaultSecrets) SetId(v float32)`
+`func (o *NetworkDeviceDefaultSecrets) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetSiteId
 
-`func (o *NetworkDeviceDefaultSecrets) GetSiteId() float32`
+`func (o *NetworkDeviceDefaultSecrets) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *NetworkDeviceDefaultSecrets) GetSiteIdOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaultSecrets) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *NetworkDeviceDefaultSecrets) SetSiteId(v float32)`
+`func (o *NetworkDeviceDefaultSecrets) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

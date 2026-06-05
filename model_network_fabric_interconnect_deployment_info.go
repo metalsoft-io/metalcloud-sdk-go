@@ -23,7 +23,7 @@ type NetworkFabricInterconnectDeploymentInfo struct {
 	// The status of the network interconnect, by default it is in draft mode.
 	Status *InterconnectStatus `json:"status,omitempty"`
 	// The deploy ID of the network fabric interconnect, if it is being deployed.
-	DeployId *int32 `json:"deployId,omitempty"`
+	DeployId *int64 `json:"deployId,omitempty"`
 	// The deploy preview for the network fabric interconnect, if it is being deployed.
 	DeployPreview []NetworkFabricInterconnectDeployPreview `json:"deployPreview,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -81,9 +81,9 @@ func (o *NetworkFabricInterconnectDeploymentInfo) SetStatus(v InterconnectStatus
 }
 
 // GetDeployId returns the DeployId field value if set, zero value otherwise.
-func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployId() int32 {
+func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployId() int64 {
 	if o == nil || IsNil(o.DeployId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DeployId
@@ -91,7 +91,7 @@ func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployId() int32 {
 
 // GetDeployIdOk returns a tuple with the DeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployIdOk() (*int32, bool) {
+func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DeployId) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *NetworkFabricInterconnectDeploymentInfo) HasDeployId() bool {
 	return false
 }
 
-// SetDeployId gets a reference to the given int32 and assigns it to the DeployId field.
-func (o *NetworkFabricInterconnectDeploymentInfo) SetDeployId(v int32) {
+// SetDeployId gets a reference to the given int64 and assigns it to the DeployId field.
+func (o *NetworkFabricInterconnectDeploymentInfo) SetDeployId(v int64) {
 	o.DeployId = &v
 }
 

@@ -16,13 +16,13 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Revision** | **string** | Revision number of the entity | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
-**Id** | **float32** | Id | 
+**Id** | **int64** | Id | 
 
 ## Methods
 
 ### NewNetworkDeviceBGPInterconnectConfigurationTemplate
 
-`func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, ) *NetworkDeviceBGPInterconnectConfigurationTemplate`
+`func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, ) *NetworkDeviceBGPInterconnectConfigurationTemplate`
 
 NewNetworkDeviceBGPInterconnectConfigurationTemplate instantiates a new NetworkDeviceBGPInterconnectConfigurationTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -304,20 +304,20 @@ HasLinks returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetId() float32`
+`func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetIdOk() (*float32, bool)`
+`func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) SetId(v float32)`
+`func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) SetId(v int64)`
 
 SetId sets Id field to given value.
 

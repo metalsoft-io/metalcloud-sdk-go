@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The extension ID | 
-**Revision** | **float32** | Revision number | 
+**Id** | **int64** | The extension ID | 
+**Revision** | **int64** | Revision number | 
 **Slug** | Pointer to **string** | The extension unique slug | [optional] 
 **Name** | **string** | The extension name | 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewExtension
 
-`func NewExtension(id float32, revision float32, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition, ) *Extension`
+`func NewExtension(id int64, revision int64, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition, ) *Extension`
 
 NewExtension instantiates a new Extension object
 This constructor will assign default values to properties that have it defined,
@@ -37,40 +37,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Extension) GetId() float32`
+`func (o *Extension) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Extension) GetIdOk() (*float32, bool)`
+`func (o *Extension) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Extension) SetId(v float32)`
+`func (o *Extension) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *Extension) GetRevision() float32`
+`func (o *Extension) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *Extension) GetRevisionOk() (*float32, bool)`
+`func (o *Extension) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *Extension) SetRevision(v float32)`
+`func (o *Extension) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

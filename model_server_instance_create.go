@@ -22,13 +22,13 @@ var _ MappedNullable = &ServerInstanceCreate{}
 type ServerInstanceCreate struct {
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
-	GroupId *int32 `json:"groupId,omitempty"`
+	GroupId *int64 `json:"groupId,omitempty"`
 	// The server type ID.
-	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
+	ServerTypeId *int64 `json:"serverTypeId,omitempty"`
 	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \"instance\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
-	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -85,9 +85,9 @@ func (o *ServerInstanceCreate) SetLabel(v string) {
 }
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
-func (o *ServerInstanceCreate) GetGroupId() int32 {
+func (o *ServerInstanceCreate) GetGroupId() int64 {
 	if o == nil || IsNil(o.GroupId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.GroupId
@@ -95,7 +95,7 @@ func (o *ServerInstanceCreate) GetGroupId() int32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceCreate) GetGroupIdOk() (*int32, bool) {
+func (o *ServerInstanceCreate) GetGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
@@ -111,15 +111,15 @@ func (o *ServerInstanceCreate) HasGroupId() bool {
 	return false
 }
 
-// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
-func (o *ServerInstanceCreate) SetGroupId(v int32) {
+// SetGroupId gets a reference to the given int64 and assigns it to the GroupId field.
+func (o *ServerInstanceCreate) SetGroupId(v int64) {
 	o.GroupId = &v
 }
 
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
-func (o *ServerInstanceCreate) GetServerTypeId() int32 {
+func (o *ServerInstanceCreate) GetServerTypeId() int64 {
 	if o == nil || IsNil(o.ServerTypeId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ServerTypeId
@@ -127,7 +127,7 @@ func (o *ServerInstanceCreate) GetServerTypeId() int32 {
 
 // GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceCreate) GetServerTypeIdOk() (*int32, bool) {
+func (o *ServerInstanceCreate) GetServerTypeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerTypeId) {
 		return nil, false
 	}
@@ -143,8 +143,8 @@ func (o *ServerInstanceCreate) HasServerTypeId() bool {
 	return false
 }
 
-// SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
-func (o *ServerInstanceCreate) SetServerTypeId(v int32) {
+// SetServerTypeId gets a reference to the given int64 and assigns it to the ServerTypeId field.
+func (o *ServerInstanceCreate) SetServerTypeId(v int64) {
 	o.ServerTypeId = &v
 }
 
@@ -181,9 +181,9 @@ func (o *ServerInstanceCreate) SetHostname(v string) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceCreate) GetOsTemplateId() int32 {
+func (o *ServerInstanceCreate) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -191,7 +191,7 @@ func (o *ServerInstanceCreate) GetOsTemplateId() int32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceCreate) GetOsTemplateIdOk() (*int32, bool) {
+func (o *ServerInstanceCreate) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -207,8 +207,8 @@ func (o *ServerInstanceCreate) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
-func (o *ServerInstanceCreate) SetOsTemplateId(v int32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceCreate) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 

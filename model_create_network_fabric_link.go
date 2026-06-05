@@ -22,13 +22,15 @@ var _ MappedNullable = &CreateNetworkFabricLink{}
 // CreateNetworkFabricLink struct for CreateNetworkFabricLink
 type CreateNetworkFabricLink struct {
 	// Unique identifier for the network device A interface. Required when externalSystemId is not set; also required when externalSystemId is set (the device side of the link).
-	NetworkDeviceAInterfaceId *float32 `json:"networkDeviceAInterfaceId,omitempty"`
+	NetworkDeviceAInterfaceId *int64 `json:"networkDeviceAInterfaceId,omitempty"`
 	// Unique identifier for the network device B interface. Required when externalSystemId is not set; must not be set when externalSystemId is provided.
-	NetworkDeviceBInterfaceId *float32 `json:"networkDeviceBInterfaceId,omitempty"`
+	NetworkDeviceBInterfaceId *int64 `json:"networkDeviceBInterfaceId,omitempty"`
 	// Unique identifier for the external system acting as side B of this link. When set, networkDeviceAInterfaceId must be provided and networkDeviceBInterfaceId must be omitted.
-	ExternalSystemId *float32 `json:"externalSystemId,omitempty"`
+	ExternalSystemId *int64 `json:"externalSystemId,omitempty"`
 	// Type of the network fabric link
 	LinkType string `json:"linkType"`
+	// Source of the network fabric link information
+	Source *string `json:"source,omitempty"`
 	// Custom variables for the network fabric link
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Configuration of the network fabric link
@@ -59,9 +61,9 @@ func NewCreateNetworkFabricLinkWithDefaults() *CreateNetworkFabricLink {
 }
 
 // GetNetworkDeviceAInterfaceId returns the NetworkDeviceAInterfaceId field value if set, zero value otherwise.
-func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceId() float32 {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceId() int64 {
 	if o == nil || IsNil(o.NetworkDeviceAInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkDeviceAInterfaceId
@@ -69,7 +71,7 @@ func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceId() float32 {
 
 // GetNetworkDeviceAInterfaceIdOk returns a tuple with the NetworkDeviceAInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceIdOk() (*float32, bool) {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkDeviceAInterfaceId) {
 		return nil, false
 	}
@@ -85,15 +87,15 @@ func (o *CreateNetworkFabricLink) HasNetworkDeviceAInterfaceId() bool {
 	return false
 }
 
-// SetNetworkDeviceAInterfaceId gets a reference to the given float32 and assigns it to the NetworkDeviceAInterfaceId field.
-func (o *CreateNetworkFabricLink) SetNetworkDeviceAInterfaceId(v float32) {
+// SetNetworkDeviceAInterfaceId gets a reference to the given int64 and assigns it to the NetworkDeviceAInterfaceId field.
+func (o *CreateNetworkFabricLink) SetNetworkDeviceAInterfaceId(v int64) {
 	o.NetworkDeviceAInterfaceId = &v
 }
 
 // GetNetworkDeviceBInterfaceId returns the NetworkDeviceBInterfaceId field value if set, zero value otherwise.
-func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceId() float32 {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceId() int64 {
 	if o == nil || IsNil(o.NetworkDeviceBInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkDeviceBInterfaceId
@@ -101,7 +103,7 @@ func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceId() float32 {
 
 // GetNetworkDeviceBInterfaceIdOk returns a tuple with the NetworkDeviceBInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceIdOk() (*float32, bool) {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkDeviceBInterfaceId) {
 		return nil, false
 	}
@@ -117,15 +119,15 @@ func (o *CreateNetworkFabricLink) HasNetworkDeviceBInterfaceId() bool {
 	return false
 }
 
-// SetNetworkDeviceBInterfaceId gets a reference to the given float32 and assigns it to the NetworkDeviceBInterfaceId field.
-func (o *CreateNetworkFabricLink) SetNetworkDeviceBInterfaceId(v float32) {
+// SetNetworkDeviceBInterfaceId gets a reference to the given int64 and assigns it to the NetworkDeviceBInterfaceId field.
+func (o *CreateNetworkFabricLink) SetNetworkDeviceBInterfaceId(v int64) {
 	o.NetworkDeviceBInterfaceId = &v
 }
 
 // GetExternalSystemId returns the ExternalSystemId field value if set, zero value otherwise.
-func (o *CreateNetworkFabricLink) GetExternalSystemId() float32 {
+func (o *CreateNetworkFabricLink) GetExternalSystemId() int64 {
 	if o == nil || IsNil(o.ExternalSystemId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ExternalSystemId
@@ -133,7 +135,7 @@ func (o *CreateNetworkFabricLink) GetExternalSystemId() float32 {
 
 // GetExternalSystemIdOk returns a tuple with the ExternalSystemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLink) GetExternalSystemIdOk() (*float32, bool) {
+func (o *CreateNetworkFabricLink) GetExternalSystemIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExternalSystemId) {
 		return nil, false
 	}
@@ -149,8 +151,8 @@ func (o *CreateNetworkFabricLink) HasExternalSystemId() bool {
 	return false
 }
 
-// SetExternalSystemId gets a reference to the given float32 and assigns it to the ExternalSystemId field.
-func (o *CreateNetworkFabricLink) SetExternalSystemId(v float32) {
+// SetExternalSystemId gets a reference to the given int64 and assigns it to the ExternalSystemId field.
+func (o *CreateNetworkFabricLink) SetExternalSystemId(v int64) {
 	o.ExternalSystemId = &v
 }
 
@@ -176,6 +178,38 @@ func (o *CreateNetworkFabricLink) GetLinkTypeOk() (*string, bool) {
 // SetLinkType sets field value
 func (o *CreateNetworkFabricLink) SetLinkType(v string) {
 	o.LinkType = v
+}
+
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *CreateNetworkFabricLink) GetSource() string {
+	if o == nil || IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricLink) GetSourceOk() (*string, bool) {
+	if o == nil || IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLink) HasSource() bool {
+	if o != nil && !IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *CreateNetworkFabricLink) SetSource(v string) {
+	o.Source = &v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -294,6 +328,9 @@ func (o CreateNetworkFabricLink) ToMap() (map[string]interface{}, error) {
 		toSerialize["externalSystemId"] = o.ExternalSystemId
 	}
 	toSerialize["linkType"] = o.LinkType
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
@@ -350,6 +387,7 @@ func (o *CreateNetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkDeviceBInterfaceId")
 		delete(additionalProperties, "externalSystemId")
 		delete(additionalProperties, "linkType")
+		delete(additionalProperties, "source")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")

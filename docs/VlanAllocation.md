@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **Status** | [**ResourceAllocationStatus**](ResourceAllocationStatus.md) |  | 
 **VlanId** | **int32** |  | 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewVlanAllocation
 
-`func NewVlanAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, vlanId int32, ) *VlanAllocation`
+`func NewVlanAllocation(id int64, scope ResourceScope, status ResourceAllocationStatus, vlanId int32, ) *VlanAllocation`
 
 NewVlanAllocation instantiates a new VlanAllocation object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VlanAllocation) GetId() int32`
+`func (o *VlanAllocation) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VlanAllocation) GetIdOk() (*int32, bool)`
+`func (o *VlanAllocation) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VlanAllocation) SetId(v int32)`
+`func (o *VlanAllocation) SetId(v int64)`
 
 SetId sets Id field to given value.
 

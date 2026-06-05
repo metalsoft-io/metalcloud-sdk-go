@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to [**InterconnectStatus**](InterconnectStatus.md) | The status of the network interconnect, by default it is in draft mode. | [optional] 
-**DeployId** | Pointer to **int32** | The deploy ID of the network fabric interconnect, if it is being deployed. | [optional] 
+**DeployId** | Pointer to **int64** | The deploy ID of the network fabric interconnect, if it is being deployed. | [optional] 
 **DeployPreview** | Pointer to [**[]NetworkFabricInterconnectDeployPreview**](NetworkFabricInterconnectDeployPreview.md) | The deploy preview for the network fabric interconnect, if it is being deployed. | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetDeployId
 
-`func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployId() int32`
+`func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployId() int64`
 
 GetDeployId returns the DeployId field if non-nil, zero value otherwise.
 
 ### GetDeployIdOk
 
-`func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployIdOk() (*int32, bool)`
+`func (o *NetworkFabricInterconnectDeploymentInfo) GetDeployIdOk() (*int64, bool)`
 
 GetDeployIdOk returns a tuple with the DeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeployId
 
-`func (o *NetworkFabricInterconnectDeploymentInfo) SetDeployId(v int32)`
+`func (o *NetworkFabricInterconnectDeploymentInfo) SetDeployId(v int64)`
 
 SetDeployId sets DeployId field to given value.
 

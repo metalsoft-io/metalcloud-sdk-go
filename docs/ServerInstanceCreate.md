@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
-**GroupId** | Pointer to **int32** |  | [optional] 
-**ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
+**GroupId** | Pointer to **int64** |  | [optional] 
+**ServerTypeId** | Pointer to **int64** | The server type ID. | [optional] 
 **Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \&quot;instance\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionInstanceDnsRecords\&quot; is true.  | [optional] 
-**OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**OsTemplateId** | Pointer to **int64** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -57,20 +57,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetGroupId
 
-`func (o *ServerInstanceCreate) GetGroupId() int32`
+`func (o *ServerInstanceCreate) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *ServerInstanceCreate) GetGroupIdOk() (*int32, bool)`
+`func (o *ServerInstanceCreate) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *ServerInstanceCreate) SetGroupId(v int32)`
+`func (o *ServerInstanceCreate) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
@@ -82,20 +82,20 @@ HasGroupId returns a boolean if a field has been set.
 
 ### GetServerTypeId
 
-`func (o *ServerInstanceCreate) GetServerTypeId() int32`
+`func (o *ServerInstanceCreate) GetServerTypeId() int64`
 
 GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdOk
 
-`func (o *ServerInstanceCreate) GetServerTypeIdOk() (*int32, bool)`
+`func (o *ServerInstanceCreate) GetServerTypeIdOk() (*int64, bool)`
 
 GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeId
 
-`func (o *ServerInstanceCreate) SetServerTypeId(v int32)`
+`func (o *ServerInstanceCreate) SetServerTypeId(v int64)`
 
 SetServerTypeId sets ServerTypeId field to given value.
 
@@ -132,20 +132,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 
-`func (o *ServerInstanceCreate) GetOsTemplateId() int32`
+`func (o *ServerInstanceCreate) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *ServerInstanceCreate) GetOsTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceCreate) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *ServerInstanceCreate) SetOsTemplateId(v int32)`
+`func (o *ServerInstanceCreate) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 

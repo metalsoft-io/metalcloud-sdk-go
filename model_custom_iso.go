@@ -22,7 +22,7 @@ var _ MappedNullable = &CustomIso{}
 // CustomIso struct for CustomIso
 type CustomIso struct {
 	// The ID of the custom ISO
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the user who owns the custom ISO. If public then null
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
 	// The ID of the user who last edited the custom ISO
@@ -56,7 +56,7 @@ type _CustomIso CustomIso
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomIso(id float32, label string, name string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string) *CustomIso {
+func NewCustomIso(id int64, label string, name string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string) *CustomIso {
 	this := CustomIso{}
 	this.Id = id
 	this.Label = label
@@ -78,9 +78,9 @@ func NewCustomIsoWithDefaults() *CustomIso {
 }
 
 // GetId returns the Id field value
-func (o *CustomIso) GetId() float32 {
+func (o *CustomIso) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *CustomIso) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CustomIso) GetIdOk() (*float32, bool) {
+func (o *CustomIso) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *CustomIso) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *CustomIso) SetId(v float32) {
+func (o *CustomIso) SetId(v int64) {
 	o.Id = v
 }
 

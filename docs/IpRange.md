@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Annotations** | **map[string]string** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Tags** | **map[string]string** |  | 
 **IpVersion** | [**IpVersion**](IpVersion.md) |  | 
 **StartAddress** | **string** |  | 
 **EndAddress** | **string** |  | 
-**SubnetId** | **int32** |  | 
+**SubnetId** | **int64** |  | 
 
 ## Methods
 
 ### NewIpRange
 
-`func NewIpRange(id int32, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, tags map[string]string, ipVersion IpVersion, startAddress string, endAddress string, subnetId int32, ) *IpRange`
+`func NewIpRange(id int64, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, tags map[string]string, ipVersion IpVersion, startAddress string, endAddress string, subnetId int64, ) *IpRange`
 
 NewIpRange instantiates a new IpRange object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *IpRange) GetId() int32`
+`func (o *IpRange) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *IpRange) GetIdOk() (*int32, bool)`
+`func (o *IpRange) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *IpRange) SetId(v int32)`
+`func (o *IpRange) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -137,20 +137,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *IpRange) GetRevision() int32`
+`func (o *IpRange) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *IpRange) GetRevisionOk() (*int32, bool)`
+`func (o *IpRange) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *IpRange) SetRevision(v int32)`
+`func (o *IpRange) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -237,20 +237,20 @@ SetEndAddress sets EndAddress field to given value.
 
 ### GetSubnetId
 
-`func (o *IpRange) GetSubnetId() int32`
+`func (o *IpRange) GetSubnetId() int64`
 
 GetSubnetId returns the SubnetId field if non-nil, zero value otherwise.
 
 ### GetSubnetIdOk
 
-`func (o *IpRange) GetSubnetIdOk() (*int32, bool)`
+`func (o *IpRange) GetSubnetIdOk() (*int64, bool)`
 
 GetSubnetIdOk returns a tuple with the SubnetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetId
 
-`func (o *IpRange) SetSubnetId(v int32)`
+`func (o *IpRange) SetSubnetId(v int64)`
 
 SetSubnetId sets SubnetId field to given value.
 

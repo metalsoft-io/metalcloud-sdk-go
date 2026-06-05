@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **GatewayPlacement** | Pointer to [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [optional] [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
-**SubnetPoolIds** | **[]int32** |  | 
+**SubnetPoolIds** | **[]int64** |  | 
 **PrefixLength** | **int32** |  | 
 
 ## Methods
 
 ### NewCreateAutoIpv6SubnetAllocationStrategy
 
-`func NewCreateAutoIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetPoolIds []int32, prefixLength int32, ) *CreateAutoIpv6SubnetAllocationStrategy`
+`func NewCreateAutoIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetPoolIds []int64, prefixLength int32, ) *CreateAutoIpv6SubnetAllocationStrategy`
 
 NewCreateAutoIpv6SubnetAllocationStrategy instantiates a new CreateAutoIpv6SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -96,20 +96,20 @@ HasGatewayPlacement returns a boolean if a field has been set.
 
 ### GetSubnetPoolIds
 
-`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetSubnetPoolIds() []int32`
+`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetSubnetPoolIds() []int64`
 
 GetSubnetPoolIds returns the SubnetPoolIds field if non-nil, zero value otherwise.
 
 ### GetSubnetPoolIdsOk
 
-`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetSubnetPoolIdsOk() (*[]int32, bool)`
+`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetSubnetPoolIdsOk() (*[]int64, bool)`
 
 GetSubnetPoolIdsOk returns a tuple with the SubnetPoolIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetPoolIds
 
-`func (o *CreateAutoIpv6SubnetAllocationStrategy) SetSubnetPoolIds(v []int32)`
+`func (o *CreateAutoIpv6SubnetAllocationStrategy) SetSubnetPoolIds(v []int64)`
 
 SetSubnetPoolIds sets SubnetPoolIds field to given value.
 

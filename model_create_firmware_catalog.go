@@ -23,8 +23,8 @@ var _ MappedNullable = &CreateFirmwareCatalog{}
 type CreateFirmwareCatalog struct {
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
-	Vendor ServerFirmwareCatalogVendor `json:"vendor"`
-	UpdateType CatalogUpdateType `json:"updateType"`
+	Vendor string `json:"vendor"`
+	UpdateType string `json:"updateType"`
 	VendorId *string `json:"vendorId,omitempty"`
 	VendorUrl *string `json:"vendorUrl,omitempty"`
 	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
@@ -41,7 +41,7 @@ type _CreateFirmwareCatalog CreateFirmwareCatalog
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateFirmwareCatalog(name string, vendor ServerFirmwareCatalogVendor, updateType CatalogUpdateType) *CreateFirmwareCatalog {
+func NewCreateFirmwareCatalog(name string, vendor string, updateType string) *CreateFirmwareCatalog {
 	this := CreateFirmwareCatalog{}
 	this.Name = name
 	this.Vendor = vendor
@@ -114,9 +114,9 @@ func (o *CreateFirmwareCatalog) SetDescription(v string) {
 }
 
 // GetVendor returns the Vendor field value
-func (o *CreateFirmwareCatalog) GetVendor() ServerFirmwareCatalogVendor {
+func (o *CreateFirmwareCatalog) GetVendor() string {
 	if o == nil {
-		var ret ServerFirmwareCatalogVendor
+		var ret string
 		return ret
 	}
 
@@ -125,7 +125,7 @@ func (o *CreateFirmwareCatalog) GetVendor() ServerFirmwareCatalogVendor {
 
 // GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *CreateFirmwareCatalog) GetVendorOk() (*ServerFirmwareCatalogVendor, bool) {
+func (o *CreateFirmwareCatalog) GetVendorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,14 +133,14 @@ func (o *CreateFirmwareCatalog) GetVendorOk() (*ServerFirmwareCatalogVendor, boo
 }
 
 // SetVendor sets field value
-func (o *CreateFirmwareCatalog) SetVendor(v ServerFirmwareCatalogVendor) {
+func (o *CreateFirmwareCatalog) SetVendor(v string) {
 	o.Vendor = v
 }
 
 // GetUpdateType returns the UpdateType field value
-func (o *CreateFirmwareCatalog) GetUpdateType() CatalogUpdateType {
+func (o *CreateFirmwareCatalog) GetUpdateType() string {
 	if o == nil {
-		var ret CatalogUpdateType
+		var ret string
 		return ret
 	}
 
@@ -149,7 +149,7 @@ func (o *CreateFirmwareCatalog) GetUpdateType() CatalogUpdateType {
 
 // GetUpdateTypeOk returns a tuple with the UpdateType field value
 // and a boolean to check if the value has been set.
-func (o *CreateFirmwareCatalog) GetUpdateTypeOk() (*CatalogUpdateType, bool) {
+func (o *CreateFirmwareCatalog) GetUpdateTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *CreateFirmwareCatalog) GetUpdateTypeOk() (*CatalogUpdateType, bool) {
 }
 
 // SetUpdateType sets field value
-func (o *CreateFirmwareCatalog) SetUpdateType(v CatalogUpdateType) {
+func (o *CreateFirmwareCatalog) SetUpdateType(v string) {
 	o.UpdateType = v
 }
 

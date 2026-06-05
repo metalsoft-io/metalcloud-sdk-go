@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NewSwitchId** | **float32** | The ID of the replacement switch | 
+**NewSwitchId** | **int64** | The ID of the replacement switch | 
 
 ## Methods
 
 ### NewSwitchReplace
 
-`func NewSwitchReplace(newSwitchId float32, ) *SwitchReplace`
+`func NewSwitchReplace(newSwitchId int64, ) *SwitchReplace`
 
 NewSwitchReplace instantiates a new SwitchReplace object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNewSwitchId
 
-`func (o *SwitchReplace) GetNewSwitchId() float32`
+`func (o *SwitchReplace) GetNewSwitchId() int64`
 
 GetNewSwitchId returns the NewSwitchId field if non-nil, zero value otherwise.
 
 ### GetNewSwitchIdOk
 
-`func (o *SwitchReplace) GetNewSwitchIdOk() (*float32, bool)`
+`func (o *SwitchReplace) GetNewSwitchIdOk() (*int64, bool)`
 
 GetNewSwitchIdOk returns a tuple with the NewSwitchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewSwitchId
 
-`func (o *SwitchReplace) SetNewSwitchId(v float32)`
+`func (o *SwitchReplace) SetNewSwitchId(v int64)`
 
 SetNewSwitchId sets NewSwitchId field to given value.
 

@@ -22,23 +22,23 @@ var _ MappedNullable = &VM{}
 // VM struct for VM
 type VM struct {
 	// VM ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the VM
 	Name string `json:"name"`
 	// Id of the site for the VM
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Datacenter of the VM
 	DatacenterName string `json:"datacenterName"`
 	// ID of the infrastructure where this VM is deployed
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// ID of the user that owns this VM
-	UserId float32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// Email of the user that owns this VM
 	UserEmail string `json:"userEmail"`
 	// ID of the instance where this VM is deployed
-	InstanceId float32 `json:"instanceId"`
+	InstanceId int64 `json:"instanceId"`
 	// The id of the VM Instance. This is a number.
-	VmInstanceId float32 `json:"vmInstanceId"`
+	VmInstanceId int64 `json:"vmInstanceId"`
 	// Name of the host
 	Host string `json:"host"`
 	// List of hosts
@@ -52,13 +52,15 @@ type VM struct {
 	// Information about GPUs assigned to this VM
 	GpuInfo []VMGpuInfoDto `json:"gpuInfo,omitempty"`
 	// The id of the VM Type. This is a number.
-	TypeId float32 `json:"typeId"`
+	TypeId int64 `json:"typeId"`
 	// The id of the VM Pool. This is a number.
-	PoolId float32 `json:"poolId"`
+	PoolId int64 `json:"poolId"`
 	// The administration state of the VM.
 	AdministrationState string `json:"administrationState"`
 	// VM comments.
 	Comments *float32 `json:"comments,omitempty"`
+	// NUMA nodes the VM is assigned to. Only applicable for VMs with GPU / DPU requirements.
+	NumaNodes []float32 `json:"numaNodes,omitempty"`
 	// The power state of the VM.
 	PowerState string `json:"powerState"`
 	// Timestamp when the VM power state was last updated.
@@ -82,7 +84,7 @@ type _VM VM
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVM(id float32, name string, siteId float32, datacenterName string, infrastructureId float32, userId float32, userEmail string, instanceId float32, vmInstanceId float32, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId float32, poolId float32, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk) *VM {
+func NewVM(id int64, name string, siteId int64, datacenterName string, infrastructureId int64, userId int64, userEmail string, instanceId int64, vmInstanceId int64, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId int64, poolId int64, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk) *VM {
 	this := VM{}
 	this.Id = id
 	this.Name = name
@@ -118,9 +120,9 @@ func NewVMWithDefaults() *VM {
 }
 
 // GetId returns the Id field value
-func (o *VM) GetId() float32 {
+func (o *VM) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -129,7 +131,7 @@ func (o *VM) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetIdOk() (*float32, bool) {
+func (o *VM) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,7 +139,7 @@ func (o *VM) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VM) SetId(v float32) {
+func (o *VM) SetId(v int64) {
 	o.Id = v
 }
 
@@ -166,9 +168,9 @@ func (o *VM) SetName(v string) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *VM) GetSiteId() float32 {
+func (o *VM) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -177,7 +179,7 @@ func (o *VM) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetSiteIdOk() (*float32, bool) {
+func (o *VM) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -185,7 +187,7 @@ func (o *VM) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *VM) SetSiteId(v float32) {
+func (o *VM) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -214,9 +216,9 @@ func (o *VM) SetDatacenterName(v string) {
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *VM) GetInfrastructureId() float32 {
+func (o *VM) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -225,7 +227,7 @@ func (o *VM) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetInfrastructureIdOk() (*float32, bool) {
+func (o *VM) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -233,14 +235,14 @@ func (o *VM) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *VM) SetInfrastructureId(v float32) {
+func (o *VM) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
 // GetUserId returns the UserId field value
-func (o *VM) GetUserId() float32 {
+func (o *VM) GetUserId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -249,7 +251,7 @@ func (o *VM) GetUserId() float32 {
 
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetUserIdOk() (*float32, bool) {
+func (o *VM) GetUserIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -257,7 +259,7 @@ func (o *VM) GetUserIdOk() (*float32, bool) {
 }
 
 // SetUserId sets field value
-func (o *VM) SetUserId(v float32) {
+func (o *VM) SetUserId(v int64) {
 	o.UserId = v
 }
 
@@ -286,9 +288,9 @@ func (o *VM) SetUserEmail(v string) {
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *VM) GetInstanceId() float32 {
+func (o *VM) GetInstanceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -297,7 +299,7 @@ func (o *VM) GetInstanceId() float32 {
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetInstanceIdOk() (*float32, bool) {
+func (o *VM) GetInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -305,14 +307,14 @@ func (o *VM) GetInstanceIdOk() (*float32, bool) {
 }
 
 // SetInstanceId sets field value
-func (o *VM) SetInstanceId(v float32) {
+func (o *VM) SetInstanceId(v int64) {
 	o.InstanceId = v
 }
 
 // GetVmInstanceId returns the VmInstanceId field value
-func (o *VM) GetVmInstanceId() float32 {
+func (o *VM) GetVmInstanceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -321,7 +323,7 @@ func (o *VM) GetVmInstanceId() float32 {
 
 // GetVmInstanceIdOk returns a tuple with the VmInstanceId field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetVmInstanceIdOk() (*float32, bool) {
+func (o *VM) GetVmInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -329,7 +331,7 @@ func (o *VM) GetVmInstanceIdOk() (*float32, bool) {
 }
 
 // SetVmInstanceId sets field value
-func (o *VM) SetVmInstanceId(v float32) {
+func (o *VM) SetVmInstanceId(v int64) {
 	o.VmInstanceId = v
 }
 
@@ -486,9 +488,9 @@ func (o *VM) SetGpuInfo(v []VMGpuInfoDto) {
 }
 
 // GetTypeId returns the TypeId field value
-func (o *VM) GetTypeId() float32 {
+func (o *VM) GetTypeId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -497,7 +499,7 @@ func (o *VM) GetTypeId() float32 {
 
 // GetTypeIdOk returns a tuple with the TypeId field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetTypeIdOk() (*float32, bool) {
+func (o *VM) GetTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -505,14 +507,14 @@ func (o *VM) GetTypeIdOk() (*float32, bool) {
 }
 
 // SetTypeId sets field value
-func (o *VM) SetTypeId(v float32) {
+func (o *VM) SetTypeId(v int64) {
 	o.TypeId = v
 }
 
 // GetPoolId returns the PoolId field value
-func (o *VM) GetPoolId() float32 {
+func (o *VM) GetPoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -521,7 +523,7 @@ func (o *VM) GetPoolId() float32 {
 
 // GetPoolIdOk returns a tuple with the PoolId field value
 // and a boolean to check if the value has been set.
-func (o *VM) GetPoolIdOk() (*float32, bool) {
+func (o *VM) GetPoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -529,7 +531,7 @@ func (o *VM) GetPoolIdOk() (*float32, bool) {
 }
 
 // SetPoolId sets field value
-func (o *VM) SetPoolId(v float32) {
+func (o *VM) SetPoolId(v int64) {
 	o.PoolId = v
 }
 
@@ -587,6 +589,38 @@ func (o *VM) HasComments() bool {
 // SetComments gets a reference to the given float32 and assigns it to the Comments field.
 func (o *VM) SetComments(v float32) {
 	o.Comments = &v
+}
+
+// GetNumaNodes returns the NumaNodes field value if set, zero value otherwise.
+func (o *VM) GetNumaNodes() []float32 {
+	if o == nil || IsNil(o.NumaNodes) {
+		var ret []float32
+		return ret
+	}
+	return o.NumaNodes
+}
+
+// GetNumaNodesOk returns a tuple with the NumaNodes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VM) GetNumaNodesOk() ([]float32, bool) {
+	if o == nil || IsNil(o.NumaNodes) {
+		return nil, false
+	}
+	return o.NumaNodes, true
+}
+
+// HasNumaNodes returns a boolean if a field has been set.
+func (o *VM) HasNumaNodes() bool {
+	if o != nil && !IsNil(o.NumaNodes) {
+		return true
+	}
+
+	return false
+}
+
+// SetNumaNodes gets a reference to the given []float32 and assigns it to the NumaNodes field.
+func (o *VM) SetNumaNodes(v []float32) {
+	o.NumaNodes = v
 }
 
 // GetPowerState returns the PowerState field value
@@ -806,6 +840,9 @@ func (o VM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Comments) {
 		toSerialize["comments"] = o.Comments
 	}
+	if !IsNil(o.NumaNodes) {
+		toSerialize["numaNodes"] = o.NumaNodes
+	}
 	toSerialize["powerState"] = o.PowerState
 	toSerialize["powerStateLastUpdatedTimestamp"] = o.PowerStateLastUpdatedTimestamp
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
@@ -900,6 +937,7 @@ func (o *VM) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "poolId")
 		delete(additionalProperties, "administrationState")
 		delete(additionalProperties, "comments")
+		delete(additionalProperties, "numaNodes")
 		delete(additionalProperties, "powerState")
 		delete(additionalProperties, "powerStateLastUpdatedTimestamp")
 		delete(additionalProperties, "createdTimestamp")

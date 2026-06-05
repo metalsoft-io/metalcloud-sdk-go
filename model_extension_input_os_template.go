@@ -26,7 +26,7 @@ type ExtensionInputOsTemplate struct {
 	// Name of the input.
 	Name string `json:"name"`
 	InputType ExtensionInputType `json:"inputType"`
-	// Flag to indicate if the input is required.
+	// Flag to indicate if the input can be set only during extension instance creation.
 	SetOnly *bool `json:"setOnly,omitempty"`
 	// Flag to indicate if the input is hidden in the UI.
 	Hidden *bool `json:"hidden,omitempty"`

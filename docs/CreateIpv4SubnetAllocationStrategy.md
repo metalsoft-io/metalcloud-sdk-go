@@ -7,15 +7,15 @@ Name | Type | Description | Notes
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **GatewayPlacement** | Pointer to [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [optional] [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
-**SubnetId** | **int32** |  | 
-**SubnetPoolIds** | **[]int32** |  | 
+**SubnetId** | **int64** |  | 
+**SubnetPoolIds** | **[]int64** |  | 
 **PrefixLength** | **int32** |  | 
 
 ## Methods
 
 ### NewCreateIpv4SubnetAllocationStrategy
 
-`func NewCreateIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int32, subnetPoolIds []int32, prefixLength int32, ) *CreateIpv4SubnetAllocationStrategy`
+`func NewCreateIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int64, subnetPoolIds []int64, prefixLength int32, ) *CreateIpv4SubnetAllocationStrategy`
 
 NewCreateIpv4SubnetAllocationStrategy instantiates a new CreateIpv4SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -97,40 +97,40 @@ HasGatewayPlacement returns a boolean if a field has been set.
 
 ### GetSubnetId
 
-`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetId() int32`
+`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetId() int64`
 
 GetSubnetId returns the SubnetId field if non-nil, zero value otherwise.
 
 ### GetSubnetIdOk
 
-`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetIdOk() (*int32, bool)`
+`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetIdOk() (*int64, bool)`
 
 GetSubnetIdOk returns a tuple with the SubnetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetId
 
-`func (o *CreateIpv4SubnetAllocationStrategy) SetSubnetId(v int32)`
+`func (o *CreateIpv4SubnetAllocationStrategy) SetSubnetId(v int64)`
 
 SetSubnetId sets SubnetId field to given value.
 
 
 ### GetSubnetPoolIds
 
-`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetPoolIds() []int32`
+`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetPoolIds() []int64`
 
 GetSubnetPoolIds returns the SubnetPoolIds field if non-nil, zero value otherwise.
 
 ### GetSubnetPoolIdsOk
 
-`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetPoolIdsOk() (*[]int32, bool)`
+`func (o *CreateIpv4SubnetAllocationStrategy) GetSubnetPoolIdsOk() (*[]int64, bool)`
 
 GetSubnetPoolIdsOk returns a tuple with the SubnetPoolIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetPoolIds
 
-`func (o *CreateIpv4SubnetAllocationStrategy) SetSubnetPoolIds(v []int32)`
+`func (o *CreateIpv4SubnetAllocationStrategy) SetSubnetPoolIds(v []int64)`
 
 SetSubnetPoolIds sets SubnetPoolIds field to given value.
 

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InfrastructureId** | **float32** | The id of the infrastructure where the server is located. | 
-**OsTemplateId** | Pointer to **float32** | The id of the template installed on the server. | [optional] 
+**InfrastructureId** | **int64** | The id of the infrastructure where the server is located. | 
+**OsTemplateId** | Pointer to **int64** | The id of the template installed on the server. | [optional] 
 **InterfaceConnections** | Pointer to [**[]ServerInterfaceConnection**](ServerInterfaceConnection.md) | Interface to network device connection settings. | [optional] 
 
 ## Methods
 
 ### NewRegisterProductionServerSettings
 
-`func NewRegisterProductionServerSettings(infrastructureId float32, ) *RegisterProductionServerSettings`
+`func NewRegisterProductionServerSettings(infrastructureId int64, ) *RegisterProductionServerSettings`
 
 NewRegisterProductionServerSettings instantiates a new RegisterProductionServerSettings object
 This constructor will assign default values to properties that have it defined,
@@ -29,40 +29,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInfrastructureId
 
-`func (o *RegisterProductionServerSettings) GetInfrastructureId() float32`
+`func (o *RegisterProductionServerSettings) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *RegisterProductionServerSettings) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *RegisterProductionServerSettings) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *RegisterProductionServerSettings) SetInfrastructureId(v float32)`
+`func (o *RegisterProductionServerSettings) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetOsTemplateId
 
-`func (o *RegisterProductionServerSettings) GetOsTemplateId() float32`
+`func (o *RegisterProductionServerSettings) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *RegisterProductionServerSettings) GetOsTemplateIdOk() (*float32, bool)`
+`func (o *RegisterProductionServerSettings) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *RegisterProductionServerSettings) SetOsTemplateId(v float32)`
+`func (o *RegisterProductionServerSettings) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 

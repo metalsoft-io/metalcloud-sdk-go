@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkDeviceId** | **float32** | Id of the Network Device | 
+**NetworkDeviceId** | **int64** | Id of the Network Device | 
 **NetworkDeviceName** | **string** | Name of the Network Device | 
-**NetworkDeviceInterfaceId** | **float32** | Id of the Network Device Interface | 
+**NetworkDeviceInterfaceId** | **int64** | Id of the Network Device Interface | 
 **NetworkDeviceInterfaceName** | **string** | Name of the Network Device Interface | 
 
 ## Methods
 
 ### NewStorageInterfaceNetworkDeviceInformation
 
-`func NewStorageInterfaceNetworkDeviceInformation(networkDeviceId float32, networkDeviceName string, networkDeviceInterfaceId float32, networkDeviceInterfaceName string, ) *StorageInterfaceNetworkDeviceInformation`
+`func NewStorageInterfaceNetworkDeviceInformation(networkDeviceId int64, networkDeviceName string, networkDeviceInterfaceId int64, networkDeviceInterfaceName string, ) *StorageInterfaceNetworkDeviceInformation`
 
 NewStorageInterfaceNetworkDeviceInformation instantiates a new StorageInterfaceNetworkDeviceInformation object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNetworkDeviceId
 
-`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceId() float32`
+`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceIdOk() (*float32, bool)`
+`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceId(v float32)`
+`func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
@@ -70,20 +70,20 @@ SetNetworkDeviceName sets NetworkDeviceName field to given value.
 
 ### GetNetworkDeviceInterfaceId
 
-`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceId() float32`
+`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceId() int64`
 
 GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceInterfaceIdOk
 
-`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceIdOk() (*float32, bool)`
+`func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceIdOk() (*int64, bool)`
 
 GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceInterfaceId
 
-`func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceInterfaceId(v float32)`
+`func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceInterfaceId(v int64)`
 
 SetNetworkDeviceInterfaceId sets NetworkDeviceInterfaceId field to given value.
 

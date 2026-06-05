@@ -24,13 +24,13 @@ type ServerTypeStatisticsBatchOptions struct {
 	// The id of user owning the resources. Used for filtering
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
 	// The id of the site where the resources are located. Used for filtering
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The maximum returned results per server type.
 	MaximumResultsPerServerType *float32 `json:"maximumResultsPerServerType,omitempty"`
 	// The id of the server types to get statistics for.
 	ServerTypeIds []float32 `json:"serverTypeIds,omitempty"`
 	// If specified, treats only the active Instances of the Instance Array as available, instead of all active instances of userIdOwner.
-	InstanceArrayId *float32 `json:"instanceArrayId,omitempty"`
+	InstanceArrayId *int64 `json:"instanceArrayId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +40,7 @@ type _ServerTypeStatisticsBatchOptions ServerTypeStatisticsBatchOptions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerTypeStatisticsBatchOptions(siteId float32) *ServerTypeStatisticsBatchOptions {
+func NewServerTypeStatisticsBatchOptions(siteId int64) *ServerTypeStatisticsBatchOptions {
 	this := ServerTypeStatisticsBatchOptions{}
 	this.SiteId = siteId
 	return &this
@@ -87,9 +87,9 @@ func (o *ServerTypeStatisticsBatchOptions) SetUserIdOwner(v float32) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *ServerTypeStatisticsBatchOptions) GetSiteId() float32 {
+func (o *ServerTypeStatisticsBatchOptions) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -98,7 +98,7 @@ func (o *ServerTypeStatisticsBatchOptions) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *ServerTypeStatisticsBatchOptions) GetSiteIdOk() (*float32, bool) {
+func (o *ServerTypeStatisticsBatchOptions) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,7 +106,7 @@ func (o *ServerTypeStatisticsBatchOptions) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *ServerTypeStatisticsBatchOptions) SetSiteId(v float32) {
+func (o *ServerTypeStatisticsBatchOptions) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -175,9 +175,9 @@ func (o *ServerTypeStatisticsBatchOptions) SetServerTypeIds(v []float32) {
 }
 
 // GetInstanceArrayId returns the InstanceArrayId field value if set, zero value otherwise.
-func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayId() float32 {
+func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayId() int64 {
 	if o == nil || IsNil(o.InstanceArrayId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InstanceArrayId
@@ -185,7 +185,7 @@ func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayId() float32 {
 
 // GetInstanceArrayIdOk returns a tuple with the InstanceArrayId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayIdOk() (*float32, bool) {
+func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InstanceArrayId) {
 		return nil, false
 	}
@@ -201,8 +201,8 @@ func (o *ServerTypeStatisticsBatchOptions) HasInstanceArrayId() bool {
 	return false
 }
 
-// SetInstanceArrayId gets a reference to the given float32 and assigns it to the InstanceArrayId field.
-func (o *ServerTypeStatisticsBatchOptions) SetInstanceArrayId(v float32) {
+// SetInstanceArrayId gets a reference to the given int64 and assigns it to the InstanceArrayId field.
+func (o *ServerTypeStatisticsBatchOptions) SetInstanceArrayId(v int64) {
 	o.InstanceArrayId = &v
 }
 

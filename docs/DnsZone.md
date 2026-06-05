@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The DNS zone ID | [readonly] 
+**Id** | **int64** | The DNS zone ID | [readonly] 
 **Label** | **string** | The DNS zone label. It must be unique | [readonly] 
 **Description** | Pointer to **string** | The DNS zone description | [optional] 
 **ZoneName** | **string** | The name of the DNS zone (without a terminating dot).                   The DNS zone name, must be unique | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **IsDefault** | **bool** | The default DNS zone to be used in deployments. | 
 **Status** | **string** | The current status of the DNS zone.       Status: READY           - The initial status when the DNS zone is registered in the system.           - The DNS zone can be updated or deleted.       Status: ACTIVE           - The DNS zone is configured on the DNS server(s).           - The DNS zone can be updated or deleted.           - DNS records can be associated with the DNS zone.       Status: USED           - The DNS zone has DNS records associated with it.           - The DNS zone is part of at least one infrastructure.       Status: ARCHIVED           - The DNS zone is no longer managed by the system.           - The DNS zone is kept in the system for historical purposes.           - The DNS zone cannot be updated or deleted (validation will prevent this).           - No DNS records can be associated, updated, or deleted. | [default to "ready"]
 **Tags** | Pointer to **[]string** | The tags associated with the DNS zone | [optional] 
-**Revision** | **int32** | The revision number of the DNS zone | [readonly] 
+**Revision** | **int64** | The revision number of the DNS zone | [readonly] 
 **CreatedBy** | **int32** | The user ID of the user who created the DNS zone | 
 **UpdatedBy** | Pointer to **int32** | The user ID of the user who last modified the DNS zone | [optional] 
 **CreatedAt** | **time.Time** | The date and time the DNS zone was created | [readonly] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewDnsZone
 
-`func NewDnsZone(id int32, label string, zoneName string, zoneType string, soaEmail string, soaSerial int32, ttl int32, nameServers []string, isDefault bool, status string, revision int32, createdBy int32, createdAt time.Time, ) *DnsZone`
+`func NewDnsZone(id int64, label string, zoneName string, zoneType string, soaEmail string, soaSerial int32, ttl int32, nameServers []string, isDefault bool, status string, revision int64, createdBy int32, createdAt time.Time, ) *DnsZone`
 
 NewDnsZone instantiates a new DnsZone object
 This constructor will assign default values to properties that have it defined,
@@ -44,20 +44,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *DnsZone) GetId() int32`
+`func (o *DnsZone) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DnsZone) GetIdOk() (*int32, bool)`
+`func (o *DnsZone) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DnsZone) SetId(v int32)`
+`func (o *DnsZone) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -294,20 +294,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *DnsZone) GetRevision() int32`
+`func (o *DnsZone) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *DnsZone) GetRevisionOk() (*int32, bool)`
+`func (o *DnsZone) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *DnsZone) SetRevision(v int32)`
+`func (o *DnsZone) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

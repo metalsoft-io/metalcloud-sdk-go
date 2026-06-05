@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VmNames** | **[]string** | List of VM names to import | 
-**InfrastructureId** | Pointer to **float32** | If provided, the VMs will be added into this infrastructure | [optional] 
+**InfrastructureId** | Pointer to **int64** | If provided, the VMs will be added into this infrastructure | [optional] 
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetVmNames sets VmNames field to given value.
 
 ### GetInfrastructureId
 
-`func (o *VMPoolImportVMs) GetInfrastructureId() float32`
+`func (o *VMPoolImportVMs) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *VMPoolImportVMs) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *VMPoolImportVMs) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *VMPoolImportVMs) SetInfrastructureId(v float32)`
+`func (o *VMPoolImportVMs) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 

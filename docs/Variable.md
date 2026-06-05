@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The variable ID. | 
+**Id** | **int64** | The variable ID. | 
 **UserIdOwner** | **float32** | ID of owner user. | 
 **Name** | **string** | The variable name. | 
 **Value** | **map[string]interface{}** | The variable value. | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewVariable
 
-`func NewVariable(id int32, userIdOwner float32, name string, value map[string]interface{}, createdTimestamp string, updatedTimestamp string, ) *Variable`
+`func NewVariable(id int64, userIdOwner float32, name string, value map[string]interface{}, createdTimestamp string, updatedTimestamp string, ) *Variable`
 
 NewVariable instantiates a new Variable object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Variable) GetId() int32`
+`func (o *Variable) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Variable) GetIdOk() (*int32, bool)`
+`func (o *Variable) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Variable) SetId(v int32)`
+`func (o *Variable) SetId(v int64)`
 
 SetId sets Id field to given value.
 

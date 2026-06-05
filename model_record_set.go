@@ -50,6 +50,8 @@ type RecordSet struct {
 	ServerDNSRecordSet *ServerDNSRecordSet `json:"serverDNSRecordSet,omitempty"`
 	// The switch DNS record set.
 	SwitchDNSRecordSet *SwitchDNSRecordSet `json:"switchDNSRecordSet,omitempty"`
+	// The switch VRF record set.
+	SwitchVRFRecordSet map[string]interface{} `json:"switchVRFRecordSet,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -552,6 +554,38 @@ func (o *RecordSet) SetSwitchDNSRecordSet(v SwitchDNSRecordSet) {
 	o.SwitchDNSRecordSet = &v
 }
 
+// GetSwitchVRFRecordSet returns the SwitchVRFRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetSwitchVRFRecordSet() map[string]interface{} {
+	if o == nil || IsNil(o.SwitchVRFRecordSet) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.SwitchVRFRecordSet
+}
+
+// GetSwitchVRFRecordSetOk returns a tuple with the SwitchVRFRecordSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetSwitchVRFRecordSetOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.SwitchVRFRecordSet) {
+		return map[string]interface{}{}, false
+	}
+	return o.SwitchVRFRecordSet, true
+}
+
+// HasSwitchVRFRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasSwitchVRFRecordSet() bool {
+	if o != nil && !IsNil(o.SwitchVRFRecordSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetSwitchVRFRecordSet gets a reference to the given map[string]interface{} and assigns it to the SwitchVRFRecordSet field.
+func (o *RecordSet) SetSwitchVRFRecordSet(v map[string]interface{}) {
+	o.SwitchVRFRecordSet = v
+}
+
 func (o RecordSet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -607,6 +641,9 @@ func (o RecordSet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SwitchDNSRecordSet) {
 		toSerialize["switchDNSRecordSet"] = o.SwitchDNSRecordSet
 	}
+	if !IsNil(o.SwitchVRFRecordSet) {
+		toSerialize["switchVRFRecordSet"] = o.SwitchVRFRecordSet
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -644,6 +681,7 @@ func (o *RecordSet) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vmPoolNetworkRecordSet")
 		delete(additionalProperties, "serverDNSRecordSet")
 		delete(additionalProperties, "switchDNSRecordSet")
+		delete(additionalProperties, "switchVRFRecordSet")
 		o.AdditionalProperties = additionalProperties
 	}
 

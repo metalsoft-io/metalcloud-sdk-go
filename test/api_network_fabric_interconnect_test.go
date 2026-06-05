@@ -35,6 +35,20 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricInterconnectAPIService ActivateNetworkFabricInterconnectLinks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.ActivateNetworkFabricInterconnectLinks(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricInterconnectAPIService CreateInterconnectLink", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -54,6 +68,20 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.CreateNetworkFabricInterconnect(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricInterconnectAPIService DeactivateNetworkFabricInterconnectLinks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.DeactivateNetworkFabricInterconnectLinks(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -180,6 +208,20 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 		var id int32
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectById(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricInterconnectAPIService GetNetworkFabricInterconnectDeploymentCheck", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id int32
+
+		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentCheck(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

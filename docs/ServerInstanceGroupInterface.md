@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The Product Instance ID. | 
-**Revision** | **int32** | Revision number | 
+**Id** | **int64** | The Product Instance ID. | 
+**Revision** | **int64** | Revision number | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **CreatedTimestamp** | **string** | Timestamp of the Product Instance creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
-**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
-**InfrastructureId** | **int32** |  | 
-**GroupId** | **int32** |  | 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
+**InfrastructureId** | **int64** |  | 
+**GroupId** | **int64** |  | 
 **Index** | **int32** | The index of the interface (0-based) on this server. | 
-**NetworkId** | Pointer to **int32** | The ID of the network to which this interface is to be attached to. | [optional] 
+**NetworkId** | Pointer to **int64** | The ID of the network to which this interface is to be attached to. | [optional] 
 **ServiceStatus** | **string** | Current status of the server instance group interface. | 
 **Config** | Pointer to [**ServerInstanceGroupInterfaceConfiguration**](ServerInstanceGroupInterfaceConfiguration.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroupInterface
 
-`func NewServerInstanceGroupInterface(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, index int32, serviceStatus string, ) *ServerInstanceGroupInterface`
+`func NewServerInstanceGroupInterface(id int64, revision int64, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int64, groupId int64, index int32, serviceStatus string, ) *ServerInstanceGroupInterface`
 
 NewServerInstanceGroupInterface instantiates a new ServerInstanceGroupInterface object
 This constructor will assign default values to properties that have it defined,
@@ -42,40 +42,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerInstanceGroupInterface) GetId() int32`
+`func (o *ServerInstanceGroupInterface) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerInstanceGroupInterface) GetIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupInterface) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerInstanceGroupInterface) SetId(v int32)`
+`func (o *ServerInstanceGroupInterface) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *ServerInstanceGroupInterface) GetRevision() int32`
+`func (o *ServerInstanceGroupInterface) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ServerInstanceGroupInterface) GetRevisionOk() (*int32, bool)`
+`func (o *ServerInstanceGroupInterface) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ServerInstanceGroupInterface) SetRevision(v int32)`
+`func (o *ServerInstanceGroupInterface) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -192,20 +192,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *ServerInstanceGroupInterface) GetDnsSubdomainId() int32`
+`func (o *ServerInstanceGroupInterface) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *ServerInstanceGroupInterface) GetDnsSubdomainIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupInterface) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *ServerInstanceGroupInterface) SetDnsSubdomainId(v int32)`
+`func (o *ServerInstanceGroupInterface) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -217,20 +217,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *ServerInstanceGroupInterface) GetDnsSubdomainPermanentId() int32`
+`func (o *ServerInstanceGroupInterface) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *ServerInstanceGroupInterface) GetDnsSubdomainPermanentIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupInterface) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *ServerInstanceGroupInterface) SetDnsSubdomainPermanentId(v int32)`
+`func (o *ServerInstanceGroupInterface) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
@@ -242,40 +242,40 @@ HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
 ### GetInfrastructureId
 
-`func (o *ServerInstanceGroupInterface) GetInfrastructureId() int32`
+`func (o *ServerInstanceGroupInterface) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *ServerInstanceGroupInterface) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupInterface) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *ServerInstanceGroupInterface) SetInfrastructureId(v int32)`
+`func (o *ServerInstanceGroupInterface) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetGroupId
 
-`func (o *ServerInstanceGroupInterface) GetGroupId() int32`
+`func (o *ServerInstanceGroupInterface) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *ServerInstanceGroupInterface) GetGroupIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupInterface) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *ServerInstanceGroupInterface) SetGroupId(v int32)`
+`func (o *ServerInstanceGroupInterface) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
@@ -302,20 +302,20 @@ SetIndex sets Index field to given value.
 
 ### GetNetworkId
 
-`func (o *ServerInstanceGroupInterface) GetNetworkId() int32`
+`func (o *ServerInstanceGroupInterface) GetNetworkId() int64`
 
 GetNetworkId returns the NetworkId field if non-nil, zero value otherwise.
 
 ### GetNetworkIdOk
 
-`func (o *ServerInstanceGroupInterface) GetNetworkIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupInterface) GetNetworkIdOk() (*int64, bool)`
 
 GetNetworkIdOk returns a tuple with the NetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkId
 
-`func (o *ServerInstanceGroupInterface) SetNetworkId(v int32)`
+`func (o *ServerInstanceGroupInterface) SetNetworkId(v int64)`
 
 SetNetworkId sets NetworkId field to given value.
 

@@ -8,21 +8,21 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
-**FabricId** | **int32** |  | 
+**FabricId** | **int64** |  | 
 **Vlan** | Pointer to [**CreateLogicalNetworkVlanProperties**](CreateLogicalNetworkVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**CreateLogicalNetworkVxlanProperties**](CreateLogicalNetworkVxlanProperties.md) |  | [optional] 
 **Pkey** | Pointer to [**CreateLogicalNetworkPkeyProperties**](CreateLogicalNetworkPkeyProperties.md) |  | [optional] 
 **Zone** | Pointer to [**CreateLogicalNetworkZoneProperties**](CreateLogicalNetworkZoneProperties.md) |  | [optional] 
 **Ipv4** | Pointer to [**CreateLogicalNetworkIpv4Properties**](CreateLogicalNetworkIpv4Properties.md) |  | [optional] 
 **Ipv6** | Pointer to [**CreateLogicalNetworkIpv6Properties**](CreateLogicalNetworkIpv6Properties.md) |  | [optional] 
-**RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
+**RouteDomainId** | Pointer to **NullableInt64** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 
 ## Methods
 
 ### NewCreateLogicalNetworkProfile
 
-`func NewCreateLogicalNetworkProfile(kind LogicalNetworkKind, fabricId int32, ) *CreateLogicalNetworkProfile`
+`func NewCreateLogicalNetworkProfile(kind LogicalNetworkKind, fabricId int64, ) *CreateLogicalNetworkProfile`
 
 NewCreateLogicalNetworkProfile instantiates a new CreateLogicalNetworkProfile object
 This constructor will assign default values to properties that have it defined,
@@ -134,20 +134,20 @@ SetKind sets Kind field to given value.
 
 ### GetFabricId
 
-`func (o *CreateLogicalNetworkProfile) GetFabricId() int32`
+`func (o *CreateLogicalNetworkProfile) GetFabricId() int64`
 
 GetFabricId returns the FabricId field if non-nil, zero value otherwise.
 
 ### GetFabricIdOk
 
-`func (o *CreateLogicalNetworkProfile) GetFabricIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkProfile) GetFabricIdOk() (*int64, bool)`
 
 GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricId
 
-`func (o *CreateLogicalNetworkProfile) SetFabricId(v int32)`
+`func (o *CreateLogicalNetworkProfile) SetFabricId(v int64)`
 
 SetFabricId sets FabricId field to given value.
 
@@ -304,20 +304,20 @@ HasIpv6 returns a boolean if a field has been set.
 
 ### GetRouteDomainId
 
-`func (o *CreateLogicalNetworkProfile) GetRouteDomainId() int32`
+`func (o *CreateLogicalNetworkProfile) GetRouteDomainId() int64`
 
 GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
 
 ### GetRouteDomainIdOk
 
-`func (o *CreateLogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkProfile) GetRouteDomainIdOk() (*int64, bool)`
 
 GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouteDomainId
 
-`func (o *CreateLogicalNetworkProfile) SetRouteDomainId(v int32)`
+`func (o *CreateLogicalNetworkProfile) SetRouteDomainId(v int64)`
 
 SetRouteDomainId sets RouteDomainId field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Unique identifier for the firmware baseline | 
+**Id** | **int64** | Unique identifier for the firmware baseline | 
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Catalog** | Pointer to **[]string** |  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewFirmwareBaseline
 
-`func NewFirmwareBaseline(id float32, name string, ) *FirmwareBaseline`
+`func NewFirmwareBaseline(id int64, name string, ) *FirmwareBaseline`
 
 NewFirmwareBaseline instantiates a new FirmwareBaseline object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *FirmwareBaseline) GetId() float32`
+`func (o *FirmwareBaseline) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *FirmwareBaseline) GetIdOk() (*float32, bool)`
+`func (o *FirmwareBaseline) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *FirmwareBaseline) SetId(v float32)`
+`func (o *FirmwareBaseline) SetId(v int64)`
 
 SetId sets Id field to given value.
 

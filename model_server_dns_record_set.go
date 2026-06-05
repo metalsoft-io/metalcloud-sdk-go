@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerDNSRecordSet{}
 // ServerDNSRecordSet struct for ServerDNSRecordSet
 type ServerDNSRecordSet struct {
 	// The id of the server.
-	ServerId float32 `json:"serverId"`
+	ServerId int64 `json:"serverId"`
 	// The DNS zone information.
 	Zone GenericDNSZoneInformation `json:"zone"`
 	// The serial number of the server.
@@ -46,7 +46,7 @@ type _ServerDNSRecordSet ServerDNSRecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerDNSRecordSet(serverId float32, zone GenericDNSZoneInformation, managementAddress string, hostname string, fqdn string, ip map[string]interface{}, operation string) *ServerDNSRecordSet {
+func NewServerDNSRecordSet(serverId int64, zone GenericDNSZoneInformation, managementAddress string, hostname string, fqdn string, ip map[string]interface{}, operation string) *ServerDNSRecordSet {
 	this := ServerDNSRecordSet{}
 	this.ServerId = serverId
 	this.Zone = zone
@@ -67,9 +67,9 @@ func NewServerDNSRecordSetWithDefaults() *ServerDNSRecordSet {
 }
 
 // GetServerId returns the ServerId field value
-func (o *ServerDNSRecordSet) GetServerId() float32 {
+func (o *ServerDNSRecordSet) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -78,7 +78,7 @@ func (o *ServerDNSRecordSet) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *ServerDNSRecordSet) GetServerIdOk() (*float32, bool) {
+func (o *ServerDNSRecordSet) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,7 +86,7 @@ func (o *ServerDNSRecordSet) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *ServerDNSRecordSet) SetServerId(v float32) {
+func (o *ServerDNSRecordSet) SetServerId(v int64) {
 	o.ServerId = v
 }
 

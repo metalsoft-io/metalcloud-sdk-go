@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The Product Instance ID. | 
+**Id** | **int64** | The Product Instance ID. | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **Fqdn** | Pointer to **string** | Fully Qualified Domain Name (FQDN) for the Instance. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -18,12 +18,14 @@ Name | Type | Description | Notes
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
+**IscsiTargetUsername** | Pointer to **string** | iSCSI Target Username for the Instance Interface. | [optional] 
+**IscsiTargetPasswordEncrypted** | Pointer to **string** | iSCSI Target Password for the Instance Interface. | [optional] 
 
 ## Methods
 
 ### NewServerInstanceOSInstallationData
 
-`func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, provisionInstanceDnsRecords bool, ) *ServerInstanceOSInstallationData`
+`func NewServerInstanceOSInstallationData(id int64, label string, isVmInstance int32, isEndpointInstance int32, provisionInstanceDnsRecords bool, ) *ServerInstanceOSInstallationData`
 
 NewServerInstanceOSInstallationData instantiates a new ServerInstanceOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -40,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerInstanceOSInstallationData) GetId() int32`
+`func (o *ServerInstanceOSInstallationData) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerInstanceOSInstallationData) GetIdOk() (*int32, bool)`
+`func (o *ServerInstanceOSInstallationData) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerInstanceOSInstallationData) SetId(v int32)`
+`func (o *ServerInstanceOSInstallationData) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -362,6 +364,56 @@ SetIscsiInitiatorPasswordEncrypted sets IscsiInitiatorPasswordEncrypted field to
 `func (o *ServerInstanceOSInstallationData) HasIscsiInitiatorPasswordEncrypted() bool`
 
 HasIscsiInitiatorPasswordEncrypted returns a boolean if a field has been set.
+
+### GetIscsiTargetUsername
+
+`func (o *ServerInstanceOSInstallationData) GetIscsiTargetUsername() string`
+
+GetIscsiTargetUsername returns the IscsiTargetUsername field if non-nil, zero value otherwise.
+
+### GetIscsiTargetUsernameOk
+
+`func (o *ServerInstanceOSInstallationData) GetIscsiTargetUsernameOk() (*string, bool)`
+
+GetIscsiTargetUsernameOk returns a tuple with the IscsiTargetUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiTargetUsername
+
+`func (o *ServerInstanceOSInstallationData) SetIscsiTargetUsername(v string)`
+
+SetIscsiTargetUsername sets IscsiTargetUsername field to given value.
+
+### HasIscsiTargetUsername
+
+`func (o *ServerInstanceOSInstallationData) HasIscsiTargetUsername() bool`
+
+HasIscsiTargetUsername returns a boolean if a field has been set.
+
+### GetIscsiTargetPasswordEncrypted
+
+`func (o *ServerInstanceOSInstallationData) GetIscsiTargetPasswordEncrypted() string`
+
+GetIscsiTargetPasswordEncrypted returns the IscsiTargetPasswordEncrypted field if non-nil, zero value otherwise.
+
+### GetIscsiTargetPasswordEncryptedOk
+
+`func (o *ServerInstanceOSInstallationData) GetIscsiTargetPasswordEncryptedOk() (*string, bool)`
+
+GetIscsiTargetPasswordEncryptedOk returns a tuple with the IscsiTargetPasswordEncrypted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiTargetPasswordEncrypted
+
+`func (o *ServerInstanceOSInstallationData) SetIscsiTargetPasswordEncrypted(v string)`
+
+SetIscsiTargetPasswordEncrypted sets IscsiTargetPasswordEncrypted field to given value.
+
+### HasIscsiTargetPasswordEncrypted
+
+`func (o *ServerInstanceOSInstallationData) HasIscsiTargetPasswordEncrypted() bool`
+
+HasIscsiTargetPasswordEncrypted returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

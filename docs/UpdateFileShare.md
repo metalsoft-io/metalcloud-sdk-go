@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SizeGB** | Pointer to **float32** | Disk size in GB for File Share | [optional] 
 **Label** | Pointer to **string** | Label of the File Share. | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the File Share. | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *UpdateFileShare) GetLogicalNetworkId() float32`
+`func (o *UpdateFileShare) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *UpdateFileShare) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *UpdateFileShare) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *UpdateFileShare) SetLogicalNetworkId(v float32)`
+`func (o *UpdateFileShare) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

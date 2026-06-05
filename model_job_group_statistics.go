@@ -22,7 +22,7 @@ var _ MappedNullable = &JobGroupStatistics{}
 // JobGroupStatistics struct for JobGroupStatistics
 type JobGroupStatistics struct {
 	// Group Id
-	GroupId int32 `json:"groupId"`
+	GroupId int64 `json:"groupId"`
 	// Group created timestamp
 	GroupCreatedTimestamp string `json:"groupCreatedTimestamp"`
 	// Group completed timestamp
@@ -42,7 +42,7 @@ type _JobGroupStatistics JobGroupStatistics
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobGroupStatistics(groupId int32, groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32) *JobGroupStatistics {
+func NewJobGroupStatistics(groupId int64, groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32) *JobGroupStatistics {
 	this := JobGroupStatistics{}
 	this.GroupId = groupId
 	this.GroupCreatedTimestamp = groupCreatedTimestamp
@@ -62,9 +62,9 @@ func NewJobGroupStatisticsWithDefaults() *JobGroupStatistics {
 }
 
 // GetGroupId returns the GroupId field value
-func (o *JobGroupStatistics) GetGroupId() int32 {
+func (o *JobGroupStatistics) GetGroupId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -73,7 +73,7 @@ func (o *JobGroupStatistics) GetGroupId() int32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value
 // and a boolean to check if the value has been set.
-func (o *JobGroupStatistics) GetGroupIdOk() (*int32, bool) {
+func (o *JobGroupStatistics) GetGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -81,7 +81,7 @@ func (o *JobGroupStatistics) GetGroupIdOk() (*int32, bool) {
 }
 
 // SetGroupId sets field value
-func (o *JobGroupStatistics) SetGroupId(v int32) {
+func (o *JobGroupStatistics) SetGroupId(v int64) {
 	o.GroupId = v
 }
 

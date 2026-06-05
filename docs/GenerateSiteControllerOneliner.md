@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **HttpRequest** | **bool** | Enable HTTP request capability | [default to false]
 **SshCommand** | **bool** | Enable SSH command capability | [default to false]
 **BuildImage** | **bool** | Enable image building capability | [default to false]
+**SwitchSnmpHealth** | **bool** | Enable switch SNMP health monitoring capability | [default to false]
 **InbandWebmks** | **bool** | Enable inband WebMKS capability | [default to false]
 **DeployNfs** | **bool** | Deploy NFS server | [default to true]
 **SecondIp** | Pointer to **string** | Second IP address | [optional] 
@@ -36,7 +37,7 @@ Name | Type | Description | Notes
 
 ### NewGenerateSiteControllerOneliner
 
-`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool, deployNfs bool, ) *GenerateSiteControllerOneliner`
+`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, switchSnmpHealth bool, inbandWebmks bool, deployNfs bool, ) *GenerateSiteControllerOneliner`
 
 NewGenerateSiteControllerOneliner instantiates a new GenerateSiteControllerOneliner object
 This constructor will assign default values to properties that have it defined,
@@ -529,6 +530,26 @@ and a boolean to check if the value has been set.
 `func (o *GenerateSiteControllerOneliner) SetBuildImage(v bool)`
 
 SetBuildImage sets BuildImage field to given value.
+
+
+### GetSwitchSnmpHealth
+
+`func (o *GenerateSiteControllerOneliner) GetSwitchSnmpHealth() bool`
+
+GetSwitchSnmpHealth returns the SwitchSnmpHealth field if non-nil, zero value otherwise.
+
+### GetSwitchSnmpHealthOk
+
+`func (o *GenerateSiteControllerOneliner) GetSwitchSnmpHealthOk() (*bool, bool)`
+
+GetSwitchSnmpHealthOk returns a tuple with the SwitchSnmpHealth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchSnmpHealth
+
+`func (o *GenerateSiteControllerOneliner) SetSwitchSnmpHealth(v bool)`
+
+SetSwitchSnmpHealth sets SwitchSnmpHealth field to given value.
 
 
 ### GetInbandWebmks

@@ -22,9 +22,9 @@ var _ MappedNullable = &FirmwareBinaryResponse{}
 // FirmwareBinaryResponse struct for FirmwareBinaryResponse
 type FirmwareBinaryResponse struct {
 	// Unique identifier for the firmware binary
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Unique identifier for the firmware catalog
-	CatalogId float32 `json:"catalogId"`
+	CatalogId int64 `json:"catalogId"`
 	// External/vendor identifier for the firmware binary
 	ExternalId *string `json:"externalId,omitempty"`
 	// Vendor URL with information about the firmware binary
@@ -64,7 +64,7 @@ type _FirmwareBinaryResponse FirmwareBinaryResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBinaryResponse(id float32, catalogId float32, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, createdTimestamp string) *FirmwareBinaryResponse {
+func NewFirmwareBinaryResponse(id int64, catalogId int64, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, createdTimestamp string) *FirmwareBinaryResponse {
 	this := FirmwareBinaryResponse{}
 	this.Id = id
 	this.CatalogId = catalogId
@@ -89,9 +89,9 @@ func NewFirmwareBinaryResponseWithDefaults() *FirmwareBinaryResponse {
 }
 
 // GetId returns the Id field value
-func (o *FirmwareBinaryResponse) GetId() float32 {
+func (o *FirmwareBinaryResponse) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *FirmwareBinaryResponse) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinaryResponse) GetIdOk() (*float32, bool) {
+func (o *FirmwareBinaryResponse) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,14 +108,14 @@ func (o *FirmwareBinaryResponse) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *FirmwareBinaryResponse) SetId(v float32) {
+func (o *FirmwareBinaryResponse) SetId(v int64) {
 	o.Id = v
 }
 
 // GetCatalogId returns the CatalogId field value
-func (o *FirmwareBinaryResponse) GetCatalogId() float32 {
+func (o *FirmwareBinaryResponse) GetCatalogId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -124,7 +124,7 @@ func (o *FirmwareBinaryResponse) GetCatalogId() float32 {
 
 // GetCatalogIdOk returns a tuple with the CatalogId field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinaryResponse) GetCatalogIdOk() (*float32, bool) {
+func (o *FirmwareBinaryResponse) GetCatalogIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -132,7 +132,7 @@ func (o *FirmwareBinaryResponse) GetCatalogIdOk() (*float32, bool) {
 }
 
 // SetCatalogId sets field value
-func (o *FirmwareBinaryResponse) SetCatalogId(v float32) {
+func (o *FirmwareBinaryResponse) SetCatalogId(v int64) {
 	o.CatalogId = v
 }
 

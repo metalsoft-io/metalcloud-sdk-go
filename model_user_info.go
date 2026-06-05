@@ -34,11 +34,11 @@ type UserInfo struct {
 	// Whether the user is a archived
 	IsArchived bool `json:"isArchived"`
 	// The account ID of the user
-	AccountId *float32 `json:"accountId,omitempty"`
+	AccountId *int64 `json:"accountId,omitempty"`
 	// User ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the user
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The email address of the user
 	Email string `json:"email"`
 	// The timestamp when the user was created
@@ -54,7 +54,7 @@ type _UserInfo UserInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserInfo(displayName string, emailStatus string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string) *UserInfo {
+func NewUserInfo(displayName string, emailStatus string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id int64, revision int64, email string, createdTimestamp string) *UserInfo {
 	this := UserInfo{}
 	this.DisplayName = displayName
 	this.EmailStatus = emailStatus
@@ -222,9 +222,9 @@ func (o *UserInfo) SetIsArchived(v bool) {
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *UserInfo) GetAccountId() float32 {
+func (o *UserInfo) GetAccountId() int64 {
 	if o == nil || IsNil(o.AccountId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.AccountId
@@ -232,7 +232,7 @@ func (o *UserInfo) GetAccountId() float32 {
 
 // GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserInfo) GetAccountIdOk() (*float32, bool) {
+func (o *UserInfo) GetAccountIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.AccountId) {
 		return nil, false
 	}
@@ -248,15 +248,15 @@ func (o *UserInfo) HasAccountId() bool {
 	return false
 }
 
-// SetAccountId gets a reference to the given float32 and assigns it to the AccountId field.
-func (o *UserInfo) SetAccountId(v float32) {
+// SetAccountId gets a reference to the given int64 and assigns it to the AccountId field.
+func (o *UserInfo) SetAccountId(v int64) {
 	o.AccountId = &v
 }
 
 // GetId returns the Id field value
-func (o *UserInfo) GetId() float32 {
+func (o *UserInfo) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -265,7 +265,7 @@ func (o *UserInfo) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *UserInfo) GetIdOk() (*float32, bool) {
+func (o *UserInfo) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -273,14 +273,14 @@ func (o *UserInfo) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *UserInfo) SetId(v float32) {
+func (o *UserInfo) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *UserInfo) GetRevision() float32 {
+func (o *UserInfo) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -289,7 +289,7 @@ func (o *UserInfo) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *UserInfo) GetRevisionOk() (*float32, bool) {
+func (o *UserInfo) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -297,7 +297,7 @@ func (o *UserInfo) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *UserInfo) SetRevision(v float32) {
+func (o *UserInfo) SetRevision(v int64) {
 	o.Revision = v
 }
 

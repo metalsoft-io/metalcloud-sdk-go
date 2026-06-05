@@ -22,9 +22,9 @@ var _ MappedNullable = &EmailTemplate{}
 // EmailTemplate struct for EmailTemplate
 type EmailTemplate struct {
 	// The email template ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Email template name
 	Name string `json:"name"`
 	// Email template subject
@@ -46,7 +46,7 @@ type _EmailTemplate EmailTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmailTemplate(id int32, revision float32, name string, subject string, text string, html string) *EmailTemplate {
+func NewEmailTemplate(id int64, revision int64, name string, subject string, text string, html string) *EmailTemplate {
 	this := EmailTemplate{}
 	this.Id = id
 	this.Revision = revision
@@ -66,9 +66,9 @@ func NewEmailTemplateWithDefaults() *EmailTemplate {
 }
 
 // GetId returns the Id field value
-func (o *EmailTemplate) GetId() int32 {
+func (o *EmailTemplate) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -77,7 +77,7 @@ func (o *EmailTemplate) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *EmailTemplate) GetIdOk() (*int32, bool) {
+func (o *EmailTemplate) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,14 +85,14 @@ func (o *EmailTemplate) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *EmailTemplate) SetId(v int32) {
+func (o *EmailTemplate) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *EmailTemplate) GetRevision() float32 {
+func (o *EmailTemplate) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -101,7 +101,7 @@ func (o *EmailTemplate) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *EmailTemplate) GetRevisionOk() (*float32, bool) {
+func (o *EmailTemplate) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,7 +109,7 @@ func (o *EmailTemplate) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *EmailTemplate) SetRevision(v float32) {
+func (o *EmailTemplate) SetRevision(v int64) {
 	o.Revision = v
 }
 

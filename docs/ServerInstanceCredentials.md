@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **PublicSshKey** | Pointer to **string** | The SSH key public key. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | The iSCSI initiator username. | [optional] 
 **IscsiInitiatorPassword** | Pointer to **string** | The iSCSI initiator password. | [optional] 
+**IscsiTargetUsername** | Pointer to **string** | The iSCSI target username. | [optional] 
+**IscsiTargetPassword** | Pointer to **string** | The iSCSI target password. | [optional] 
 **Config** | Pointer to **map[string]interface{}** | The credentials that will be used starting with next deploy | [optional] 
 
 ## Methods
@@ -154,6 +156,56 @@ SetIscsiInitiatorPassword sets IscsiInitiatorPassword field to given value.
 `func (o *ServerInstanceCredentials) HasIscsiInitiatorPassword() bool`
 
 HasIscsiInitiatorPassword returns a boolean if a field has been set.
+
+### GetIscsiTargetUsername
+
+`func (o *ServerInstanceCredentials) GetIscsiTargetUsername() string`
+
+GetIscsiTargetUsername returns the IscsiTargetUsername field if non-nil, zero value otherwise.
+
+### GetIscsiTargetUsernameOk
+
+`func (o *ServerInstanceCredentials) GetIscsiTargetUsernameOk() (*string, bool)`
+
+GetIscsiTargetUsernameOk returns a tuple with the IscsiTargetUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiTargetUsername
+
+`func (o *ServerInstanceCredentials) SetIscsiTargetUsername(v string)`
+
+SetIscsiTargetUsername sets IscsiTargetUsername field to given value.
+
+### HasIscsiTargetUsername
+
+`func (o *ServerInstanceCredentials) HasIscsiTargetUsername() bool`
+
+HasIscsiTargetUsername returns a boolean if a field has been set.
+
+### GetIscsiTargetPassword
+
+`func (o *ServerInstanceCredentials) GetIscsiTargetPassword() string`
+
+GetIscsiTargetPassword returns the IscsiTargetPassword field if non-nil, zero value otherwise.
+
+### GetIscsiTargetPasswordOk
+
+`func (o *ServerInstanceCredentials) GetIscsiTargetPasswordOk() (*string, bool)`
+
+GetIscsiTargetPasswordOk returns a tuple with the IscsiTargetPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiTargetPassword
+
+`func (o *ServerInstanceCredentials) SetIscsiTargetPassword(v string)`
+
+SetIscsiTargetPassword sets IscsiTargetPassword field to given value.
+
+### HasIscsiTargetPassword
+
+`func (o *ServerInstanceCredentials) HasIscsiTargetPassword() bool`
+
+HasIscsiTargetPassword returns a boolean if a field has been set.
 
 ### GetConfig
 

@@ -6,18 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SizeGB** | **float32** | Disk size in GB for Bucket | 
 **UpdatedTimestamp** | **string** | Timestamp of the Bucket last update. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Bucket is assigned to | [optional] 
+**StoragePoolId** | Pointer to **int64** | Id of the storage pool the Bucket is assigned to | [optional] 
 **Label** | **string** | Label of the Bucket. | 
 **Subdomain** | **string** | Subdomain of the Bucket. | 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Bucket. | [optional] 
-**Id** | **float32** | Id of the Bucket | 
-**Revision** | **float32** | Revision of the Bucket | 
-**InfrastructureId** | **float32** | Infrastructure id of the Bucket | 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the Bucket. | [optional] 
+**Id** | **int64** | Id of the Bucket | 
+**Revision** | **int64** | Revision of the Bucket | 
+**InfrastructureId** | **int64** | Infrastructure id of the Bucket | 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **CreatedTimestamp** | **string** | Timestamp of the Bucket creation. | 
 **ServiceStatus** | **string** | Service status of the Bucket | 
 **SubdomainPermanent** | **string** | Subdomain permanent of the Bucket. | 
-**DnsSubdomainId** | **float32** | Id of the DNS subdomain for the Bucket. | 
+**DnsSubdomainId** | **int64** | Id of the DNS subdomain for the Bucket. | 
 **DiscoverInformation** | Pointer to [**GenericBucketDiscoverInformation**](GenericBucketDiscoverInformation.md) | Discover information of the Bucket. | [optional] 
 **AccessKeyId** | Pointer to **string** | Access Key ID of the Bucket. | [optional] 
 **Config** | [**BucketConfiguration**](BucketConfiguration.md) | The current changes to be deployed for the Bucket. | 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewBucket
 
-`func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta, ) *Bucket`
+`func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId int64, config BucketConfiguration, meta BucketMeta, ) *Bucket`
 
 NewBucket instantiates a new Bucket object
 This constructor will assign default values to properties that have it defined,
@@ -85,20 +85,20 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetStoragePoolId
 
-`func (o *Bucket) GetStoragePoolId() float32`
+`func (o *Bucket) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *Bucket) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *Bucket) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *Bucket) SetStoragePoolId(v float32)`
+`func (o *Bucket) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
@@ -150,20 +150,20 @@ SetSubdomain sets Subdomain field to given value.
 
 ### GetLogicalNetworkId
 
-`func (o *Bucket) GetLogicalNetworkId() float32`
+`func (o *Bucket) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *Bucket) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *Bucket) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *Bucket) SetLogicalNetworkId(v float32)`
+`func (o *Bucket) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -175,60 +175,60 @@ HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *Bucket) GetId() float32`
+`func (o *Bucket) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Bucket) GetIdOk() (*float32, bool)`
+`func (o *Bucket) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Bucket) SetId(v float32)`
+`func (o *Bucket) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *Bucket) GetRevision() float32`
+`func (o *Bucket) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *Bucket) GetRevisionOk() (*float32, bool)`
+`func (o *Bucket) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *Bucket) SetRevision(v float32)`
+`func (o *Bucket) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *Bucket) GetInfrastructureId() float32`
+`func (o *Bucket) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *Bucket) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *Bucket) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *Bucket) SetInfrastructureId(v float32)`
+`func (o *Bucket) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -315,20 +315,20 @@ SetSubdomainPermanent sets SubdomainPermanent field to given value.
 
 ### GetDnsSubdomainId
 
-`func (o *Bucket) GetDnsSubdomainId() float32`
+`func (o *Bucket) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *Bucket) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *Bucket) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *Bucket) SetDnsSubdomainId(v float32)`
+`func (o *Bucket) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 

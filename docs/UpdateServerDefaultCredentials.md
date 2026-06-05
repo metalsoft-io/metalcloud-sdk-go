@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DefaultRackPositionUpperUnit** | Pointer to **string** | The default rack position upper unit of the server | [optional] 
 **DefaultInventoryId** | Pointer to **string** | The default inventory ID of the server | [optional] 
 **DefaultUuid** | Pointer to **string** | The default UUID of the server | [optional] 
-**DefaultRegistrationProfileId** | Pointer to **float32** | The default registration profile ID of the server | [optional] 
+**DefaultRegistrationProfileId** | Pointer to **int64** | The default registration profile ID of the server | [optional] 
 **DefaultUsername** | Pointer to **string** | The default username of the server | [optional] 
 **DefaultPassword** | Pointer to **string** | The default password of the server | [optional] 
 
@@ -159,20 +159,20 @@ HasDefaultUuid returns a boolean if a field has been set.
 
 ### GetDefaultRegistrationProfileId
 
-`func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileId() float32`
+`func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileId() int64`
 
 GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field if non-nil, zero value otherwise.
 
 ### GetDefaultRegistrationProfileIdOk
 
-`func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool)`
+`func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*int64, bool)`
 
 GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultRegistrationProfileId
 
-`func (o *UpdateServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32)`
+`func (o *UpdateServerDefaultCredentials) SetDefaultRegistrationProfileId(v int64)`
 
 SetDefaultRegistrationProfileId sets DefaultRegistrationProfileId field to given value.
 

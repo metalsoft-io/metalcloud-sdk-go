@@ -57,23 +57,23 @@ type Infrastructure struct {
 	// Timestamp of the latest update for the Infrastructure.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Infrastructure Id
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the Infrastructure
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Service status of the Infrastructure
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
 	// Datacenter name where the Infrastructure is located.
 	DatacenterName string `json:"datacenterName"`
 	// The ID of the site where the Infrastructure is located.
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Timestamp of the Infrastructure creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Permanent subdomain associated with the Infrastructure.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// DNS Subdomain ID.
-	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Permanent DNS Subdomain ID.
-	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	// Infrastructure design locked flag.
 	DesignIsLocked float32 `json:"designIsLocked"`
 	// The current changes to be deployed for the Infrastructure.
@@ -92,7 +92,7 @@ type _Infrastructure Infrastructure
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus GenericServiceStatus, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig) *Infrastructure {
+func NewInfrastructure(label string, updatedTimestamp string, id int64, revision int64, serviceStatus GenericServiceStatus, datacenterName string, siteId int64, createdTimestamp string, designIsLocked float32, config InfrastructureConfig) *Infrastructure {
 	this := Infrastructure{}
 	this.Label = label
 	this.UpdatedTimestamp = updatedTimestamp
@@ -676,9 +676,9 @@ func (o *Infrastructure) SetUpdatedTimestamp(v string) {
 }
 
 // GetId returns the Id field value
-func (o *Infrastructure) GetId() float32 {
+func (o *Infrastructure) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -687,7 +687,7 @@ func (o *Infrastructure) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetIdOk() (*float32, bool) {
+func (o *Infrastructure) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -695,14 +695,14 @@ func (o *Infrastructure) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Infrastructure) SetId(v float32) {
+func (o *Infrastructure) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Infrastructure) GetRevision() float32 {
+func (o *Infrastructure) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -711,7 +711,7 @@ func (o *Infrastructure) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetRevisionOk() (*float32, bool) {
+func (o *Infrastructure) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -719,7 +719,7 @@ func (o *Infrastructure) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Infrastructure) SetRevision(v float32) {
+func (o *Infrastructure) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -772,9 +772,9 @@ func (o *Infrastructure) SetDatacenterName(v string) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *Infrastructure) GetSiteId() float32 {
+func (o *Infrastructure) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -783,7 +783,7 @@ func (o *Infrastructure) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetSiteIdOk() (*float32, bool) {
+func (o *Infrastructure) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -791,7 +791,7 @@ func (o *Infrastructure) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *Infrastructure) SetSiteId(v float32) {
+func (o *Infrastructure) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -852,9 +852,9 @@ func (o *Infrastructure) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *Infrastructure) GetDnsSubdomainId() float32 {
+func (o *Infrastructure) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -862,7 +862,7 @@ func (o *Infrastructure) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *Infrastructure) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -878,15 +878,15 @@ func (o *Infrastructure) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *Infrastructure) SetDnsSubdomainId(v float32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *Infrastructure) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *Infrastructure) GetDnsSubdomainPermanentId() float32 {
+func (o *Infrastructure) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -894,7 +894,7 @@ func (o *Infrastructure) GetDnsSubdomainPermanentId() float32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+func (o *Infrastructure) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -910,8 +910,8 @@ func (o *Infrastructure) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *Infrastructure) SetDnsSubdomainPermanentId(v float32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *Infrastructure) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 

@@ -7,14 +7,15 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Revision** | **string** | Revision number of the entity | 
-**Id** | **float32** | Unique identifier for the network fabric link | 
-**NetworkFabricId** | **float32** | Unique identifier for the network fabric | 
-**NetworkFabricLinkAggregationId** | Pointer to **float32** | Unique identifier for the network fabric link aggregation | [optional] 
-**NetworkDeviceAInterfaceId** | Pointer to **float32** | Unique identifier for the network device A interface. Required when externalSystemId is not set; also required when externalSystemId is set (the device side of the link). | [optional] 
-**NetworkDeviceBInterfaceId** | Pointer to **float32** | Unique identifier for the network device B interface. Required when externalSystemId is not set; must not be set when externalSystemId is provided. | [optional] 
-**ExternalSystemId** | Pointer to **float32** | Unique identifier for the external system acting as side B of this link. When set, networkDeviceAInterfaceId must be provided and networkDeviceBInterfaceId must be omitted. | [optional] 
+**Id** | **int64** | Unique identifier for the network fabric link | 
+**NetworkFabricId** | **int64** | Unique identifier for the network fabric | 
+**NetworkFabricLinkAggregationId** | Pointer to **int64** | Unique identifier for the network fabric link aggregation | [optional] 
+**NetworkDeviceAInterfaceId** | Pointer to **int64** | Unique identifier for the network device A interface. Required when externalSystemId is not set; also required when externalSystemId is set (the device side of the link). | [optional] 
+**NetworkDeviceBInterfaceId** | Pointer to **int64** | Unique identifier for the network device B interface. Required when externalSystemId is not set; must not be set when externalSystemId is provided. | [optional] 
+**ExternalSystemId** | Pointer to **int64** | Unique identifier for the external system acting as side B of this link. When set, networkDeviceAInterfaceId must be provided and networkDeviceBInterfaceId must be omitted. | [optional] 
 **LinkType** | **string** | Type of the network fabric link | 
 **Status** | **string** | Status of the network fabric link | 
+**Source** | Pointer to **string** | Source of the network fabric link information | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network fabric link | [optional] 
 **Config** | Pointer to [**NetworkFabricLinkConfig**](NetworkFabricLinkConfig.md) | Configuration of the network fabric link | [optional] 
 **LinkAggregation** | Pointer to [**NetworkFabricLinkAggregation**](NetworkFabricLinkAggregation.md) | Network Fabric Link Aggregation associated with this link | [optional] 
@@ -25,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricLink
 
-`func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, linkType string, status string, ) *NetworkFabricLink`
+`func NewNetworkFabricLink(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, networkFabricId int64, linkType string, status string, ) *NetworkFabricLink`
 
 NewNetworkFabricLink instantiates a new NetworkFabricLink object
 This constructor will assign default values to properties that have it defined,
@@ -102,60 +103,60 @@ SetRevision sets Revision field to given value.
 
 ### GetId
 
-`func (o *NetworkFabricLink) GetId() float32`
+`func (o *NetworkFabricLink) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkFabricLink) GetIdOk() (*float32, bool)`
+`func (o *NetworkFabricLink) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkFabricLink) SetId(v float32)`
+`func (o *NetworkFabricLink) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetNetworkFabricId
 
-`func (o *NetworkFabricLink) GetNetworkFabricId() float32`
+`func (o *NetworkFabricLink) GetNetworkFabricId() int64`
 
 GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricIdOk
 
-`func (o *NetworkFabricLink) GetNetworkFabricIdOk() (*float32, bool)`
+`func (o *NetworkFabricLink) GetNetworkFabricIdOk() (*int64, bool)`
 
 GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricId
 
-`func (o *NetworkFabricLink) SetNetworkFabricId(v float32)`
+`func (o *NetworkFabricLink) SetNetworkFabricId(v int64)`
 
 SetNetworkFabricId sets NetworkFabricId field to given value.
 
 
 ### GetNetworkFabricLinkAggregationId
 
-`func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationId() float32`
+`func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationId() int64`
 
 GetNetworkFabricLinkAggregationId returns the NetworkFabricLinkAggregationId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricLinkAggregationIdOk
 
-`func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationIdOk() (*float32, bool)`
+`func (o *NetworkFabricLink) GetNetworkFabricLinkAggregationIdOk() (*int64, bool)`
 
 GetNetworkFabricLinkAggregationIdOk returns a tuple with the NetworkFabricLinkAggregationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricLinkAggregationId
 
-`func (o *NetworkFabricLink) SetNetworkFabricLinkAggregationId(v float32)`
+`func (o *NetworkFabricLink) SetNetworkFabricLinkAggregationId(v int64)`
 
 SetNetworkFabricLinkAggregationId sets NetworkFabricLinkAggregationId field to given value.
 
@@ -167,20 +168,20 @@ HasNetworkFabricLinkAggregationId returns a boolean if a field has been set.
 
 ### GetNetworkDeviceAInterfaceId
 
-`func (o *NetworkFabricLink) GetNetworkDeviceAInterfaceId() float32`
+`func (o *NetworkFabricLink) GetNetworkDeviceAInterfaceId() int64`
 
 GetNetworkDeviceAInterfaceId returns the NetworkDeviceAInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceAInterfaceIdOk
 
-`func (o *NetworkFabricLink) GetNetworkDeviceAInterfaceIdOk() (*float32, bool)`
+`func (o *NetworkFabricLink) GetNetworkDeviceAInterfaceIdOk() (*int64, bool)`
 
 GetNetworkDeviceAInterfaceIdOk returns a tuple with the NetworkDeviceAInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceAInterfaceId
 
-`func (o *NetworkFabricLink) SetNetworkDeviceAInterfaceId(v float32)`
+`func (o *NetworkFabricLink) SetNetworkDeviceAInterfaceId(v int64)`
 
 SetNetworkDeviceAInterfaceId sets NetworkDeviceAInterfaceId field to given value.
 
@@ -192,20 +193,20 @@ HasNetworkDeviceAInterfaceId returns a boolean if a field has been set.
 
 ### GetNetworkDeviceBInterfaceId
 
-`func (o *NetworkFabricLink) GetNetworkDeviceBInterfaceId() float32`
+`func (o *NetworkFabricLink) GetNetworkDeviceBInterfaceId() int64`
 
 GetNetworkDeviceBInterfaceId returns the NetworkDeviceBInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceBInterfaceIdOk
 
-`func (o *NetworkFabricLink) GetNetworkDeviceBInterfaceIdOk() (*float32, bool)`
+`func (o *NetworkFabricLink) GetNetworkDeviceBInterfaceIdOk() (*int64, bool)`
 
 GetNetworkDeviceBInterfaceIdOk returns a tuple with the NetworkDeviceBInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceBInterfaceId
 
-`func (o *NetworkFabricLink) SetNetworkDeviceBInterfaceId(v float32)`
+`func (o *NetworkFabricLink) SetNetworkDeviceBInterfaceId(v int64)`
 
 SetNetworkDeviceBInterfaceId sets NetworkDeviceBInterfaceId field to given value.
 
@@ -217,20 +218,20 @@ HasNetworkDeviceBInterfaceId returns a boolean if a field has been set.
 
 ### GetExternalSystemId
 
-`func (o *NetworkFabricLink) GetExternalSystemId() float32`
+`func (o *NetworkFabricLink) GetExternalSystemId() int64`
 
 GetExternalSystemId returns the ExternalSystemId field if non-nil, zero value otherwise.
 
 ### GetExternalSystemIdOk
 
-`func (o *NetworkFabricLink) GetExternalSystemIdOk() (*float32, bool)`
+`func (o *NetworkFabricLink) GetExternalSystemIdOk() (*int64, bool)`
 
 GetExternalSystemIdOk returns a tuple with the ExternalSystemId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExternalSystemId
 
-`func (o *NetworkFabricLink) SetExternalSystemId(v float32)`
+`func (o *NetworkFabricLink) SetExternalSystemId(v int64)`
 
 SetExternalSystemId sets ExternalSystemId field to given value.
 
@@ -279,6 +280,31 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+
+### GetSource
+
+`func (o *NetworkFabricLink) GetSource() string`
+
+GetSource returns the Source field if non-nil, zero value otherwise.
+
+### GetSourceOk
+
+`func (o *NetworkFabricLink) GetSourceOk() (*string, bool)`
+
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSource
+
+`func (o *NetworkFabricLink) SetSource(v string)`
+
+SetSource sets Source field to given value.
+
+### HasSource
+
+`func (o *NetworkFabricLink) HasSource() bool`
+
+HasSource returns a boolean if a field has been set.
 
 ### GetCustomVariables
 

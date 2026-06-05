@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **int32** | Revision number | 
+**Revision** | **int64** | Revision number | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
-**GroupId** | **int32** |  | 
-**EndpointId** | Pointer to **int32** | The ID of the endpoint assigned to the instance. | [optional] 
+**GroupId** | **int64** |  | 
+**EndpointId** | Pointer to **int64** | The ID of the endpoint assigned to the instance. | [optional] 
 **Hostname** | Pointer to **string** | The subdomain of the server instance. | [optional] 
-**DnsSubdomainChangeId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
-**InfrastructureDeployId** | Pointer to **int32** | Id of the deployment for the Product Instance | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the Product Instance | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the Product Instance | [optional] 
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
 **DeployType** | **string** | Product Instance deploy type | [default to "create"]
 **DeployStatus** | **string** | Product Instance deploy status | [default to "not_started"]
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewEndpointInstanceConfiguration
 
-`func NewEndpointInstanceConfiguration(revision int32, label string, updatedTimestamp string, groupId int32, deployType string, deployStatus string, ) *EndpointInstanceConfiguration`
+`func NewEndpointInstanceConfiguration(revision int64, label string, updatedTimestamp string, groupId int64, deployType string, deployStatus string, ) *EndpointInstanceConfiguration`
 
 NewEndpointInstanceConfiguration instantiates a new EndpointInstanceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -38,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *EndpointInstanceConfiguration) GetRevision() int32`
+`func (o *EndpointInstanceConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *EndpointInstanceConfiguration) GetRevisionOk() (*int32, bool)`
+`func (o *EndpointInstanceConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *EndpointInstanceConfiguration) SetRevision(v int32)`
+`func (o *EndpointInstanceConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -123,40 +123,40 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetGroupId
 
-`func (o *EndpointInstanceConfiguration) GetGroupId() int32`
+`func (o *EndpointInstanceConfiguration) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *EndpointInstanceConfiguration) GetGroupIdOk() (*int32, bool)`
+`func (o *EndpointInstanceConfiguration) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *EndpointInstanceConfiguration) SetGroupId(v int32)`
+`func (o *EndpointInstanceConfiguration) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
 
 ### GetEndpointId
 
-`func (o *EndpointInstanceConfiguration) GetEndpointId() int32`
+`func (o *EndpointInstanceConfiguration) GetEndpointId() int64`
 
 GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
 
 ### GetEndpointIdOk
 
-`func (o *EndpointInstanceConfiguration) GetEndpointIdOk() (*int32, bool)`
+`func (o *EndpointInstanceConfiguration) GetEndpointIdOk() (*int64, bool)`
 
 GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndpointId
 
-`func (o *EndpointInstanceConfiguration) SetEndpointId(v int32)`
+`func (o *EndpointInstanceConfiguration) SetEndpointId(v int64)`
 
 SetEndpointId sets EndpointId field to given value.
 
@@ -193,20 +193,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *EndpointInstanceConfiguration) GetDnsSubdomainChangeId() int32`
+`func (o *EndpointInstanceConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *EndpointInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool)`
+`func (o *EndpointInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *EndpointInstanceConfiguration) SetDnsSubdomainChangeId(v int32)`
+`func (o *EndpointInstanceConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -218,20 +218,20 @@ HasDnsSubdomainChangeId returns a boolean if a field has been set.
 
 ### GetInfrastructureDeployId
 
-`func (o *EndpointInstanceConfiguration) GetInfrastructureDeployId() int32`
+`func (o *EndpointInstanceConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *EndpointInstanceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool)`
+`func (o *EndpointInstanceConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *EndpointInstanceConfiguration) SetInfrastructureDeployId(v int32)`
+`func (o *EndpointInstanceConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 

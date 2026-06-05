@@ -24,11 +24,11 @@ type CreateLogicalNetworkFromProfile struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
-	LogicalNetworkProfileId int32 `json:"logicalNetworkProfileId"`
-	InfrastructureId NullableInt32 `json:"infrastructureId,omitempty"`
+	LogicalNetworkProfileId int64 `json:"logicalNetworkProfileId"`
+	InfrastructureId NullableInt64 `json:"infrastructureId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
-	ExtensionInstanceId NullableInt32 `json:"extensionInstanceId,omitempty"`
+	ExtensionInstanceId NullableInt64 `json:"extensionInstanceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,7 +38,7 @@ type _CreateLogicalNetworkFromProfile CreateLogicalNetworkFromProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateLogicalNetworkFromProfile(logicalNetworkProfileId int32) *CreateLogicalNetworkFromProfile {
+func NewCreateLogicalNetworkFromProfile(logicalNetworkProfileId int64) *CreateLogicalNetworkFromProfile {
 	this := CreateLogicalNetworkFromProfile{}
 	this.LogicalNetworkProfileId = logicalNetworkProfileId
 	return &this
@@ -149,9 +149,9 @@ func (o *CreateLogicalNetworkFromProfile) SetAnnotations(v map[string]string) {
 }
 
 // GetLogicalNetworkProfileId returns the LogicalNetworkProfileId field value
-func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileId() int32 {
+func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -160,7 +160,7 @@ func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileId() int32 {
 
 // GetLogicalNetworkProfileIdOk returns a tuple with the LogicalNetworkProfileId field value
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -168,14 +168,14 @@ func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileIdOk() (*int32
 }
 
 // SetLogicalNetworkProfileId sets field value
-func (o *CreateLogicalNetworkFromProfile) SetLogicalNetworkProfileId(v int32) {
+func (o *CreateLogicalNetworkFromProfile) SetLogicalNetworkProfileId(v int64) {
 	o.LogicalNetworkProfileId = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateLogicalNetworkFromProfile) GetInfrastructureId() int32 {
+func (o *CreateLogicalNetworkFromProfile) GetInfrastructureId() int64 {
 	if o == nil || IsNil(o.InfrastructureId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureId.Get()
@@ -184,7 +184,7 @@ func (o *CreateLogicalNetworkFromProfile) GetInfrastructureId() int32 {
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateLogicalNetworkFromProfile) GetInfrastructureIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -200,8 +200,8 @@ func (o *CreateLogicalNetworkFromProfile) HasInfrastructureId() bool {
 	return false
 }
 
-// SetInfrastructureId gets a reference to the given NullableInt32 and assigns it to the InfrastructureId field.
-func (o *CreateLogicalNetworkFromProfile) SetInfrastructureId(v int32) {
+// SetInfrastructureId gets a reference to the given NullableInt64 and assigns it to the InfrastructureId field.
+func (o *CreateLogicalNetworkFromProfile) SetInfrastructureId(v int64) {
 	o.InfrastructureId.Set(&v)
 }
 // SetInfrastructureIdNil sets the value for InfrastructureId to be an explicit nil
@@ -257,9 +257,9 @@ func (o *CreateLogicalNetworkFromProfile) UnsetMtu() {
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceId() int32 {
+func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId.Get()
@@ -268,7 +268,7 @@ func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceId() int32 {
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -284,8 +284,8 @@ func (o *CreateLogicalNetworkFromProfile) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given NullableInt32 and assigns it to the ExtensionInstanceId field.
-func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceId(v int32) {
+// SetExtensionInstanceId gets a reference to the given NullableInt64 and assigns it to the ExtensionInstanceId field.
+func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId.Set(&v)
 }
 // SetExtensionInstanceIdNil sets the value for ExtensionInstanceId to be an explicit nil

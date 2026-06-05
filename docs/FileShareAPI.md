@@ -114,7 +114,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createFileShare := *openapiclient.NewCreateFileShare(float32(123), float32(123)) // CreateFileShare | The File Share create object
+	createFileShare := *openapiclient.NewCreateFileShare(float32(123), int64(123)) // CreateFileShare | The File Share create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1010,7 +1010,7 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	fileShareId := float32(8.14) // float32 | 
-	fileShareHostsModifyBulk := *openapiclient.NewFileShareHostsModifyBulk([]openapiclient.FileShareHostBulkOperation{*openapiclient.NewFileShareHostBulkOperation(float32(123), "OperationType_example")}) // FileShareHostsModifyBulk | The File Share Instance Array Hosts update object
+	fileShareHostsModifyBulk := *openapiclient.NewFileShareHostsModifyBulk([]openapiclient.FileShareHostBulkOperation{*openapiclient.NewFileShareHostBulkOperation(int64(123), "OperationType_example")}) // FileShareHostsModifyBulk | The File Share Instance Array Hosts update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

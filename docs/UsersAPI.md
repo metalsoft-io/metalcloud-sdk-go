@@ -10,14 +10,11 @@ Method | HTTP request | Description
 [**ChangeUserAccount**](UsersAPI.md#ChangeUserAccount) | **Post** /api/v2/users/{userId}/actions/change-account | Change account for user
 [**CreateUserAuthorized**](UsersAPI.md#CreateUserAuthorized) | **Post** /api/v2/users | Creates another user
 [**DeleteUserSshKey**](UsersAPI.md#DeleteUserSshKey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
-[**GetDefaultUserLimits**](UsersAPI.md#GetDefaultUserLimits) | **Get** /api/v2/users/{userId}/default-limits | Get default user limits
-[**GetDisabledUserLimits**](UsersAPI.md#GetDisabledUserLimits) | **Get** /api/v2/users/{userId}/disabled-limits | Get disabled user limits
+[**GetQuotaLimitsBreakdown**](UsersAPI.md#GetQuotaLimitsBreakdown) | **Get** /api/v2/users/{userId}/quota-limits-breakdown | Get quota limits breakdown for a user
 [**GetUser**](UsersAPI.md#GetUser) | **Get** /api/v2/users/{userId} | Get user
 [**GetUserChildDelegates**](UsersAPI.md#GetUserChildDelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 [**GetUserConfiguration**](UsersAPI.md#GetUserConfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
-[**GetUserLimits**](UsersAPI.md#GetUserLimits) | **Get** /api/v2/users/{userId}/limits | Get user limits
 [**GetUserParentDelegates**](UsersAPI.md#GetUserParentDelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
-[**GetUserPermissions**](UsersAPI.md#GetUserPermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
 [**GetUserSshKey**](UsersAPI.md#GetUserSshKey) | **Get** /api/v2/users/{userId}/ssh-keys/{keyId} | Get specific SSH key
 [**GetUserSshKeys**](UsersAPI.md#GetUserSshKeys) | **Get** /api/v2/users/{userId}/ssh-keys | Get user SSH keys
 [**GetUserSuspendReasons**](UsersAPI.md#GetUserSuspendReasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
@@ -31,9 +28,7 @@ Method | HTTP request | Description
 [**UnarchiveUser**](UsersAPI.md#UnarchiveUser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
 [**UnsuspendUser**](UsersAPI.md#UnsuspendUser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
 [**UpdateUserConfig**](UsersAPI.md#UpdateUserConfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
-[**UpdateUserLimits**](UsersAPI.md#UpdateUserLimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
 [**UpdateUserMeta**](UsersAPI.md#UpdateUserMeta) | **Patch** /api/v2/users/{userId}/meta | Update user metadata
-[**UpdateUserPermissions**](UsersAPI.md#UpdateUserPermissions) | **Post** /api/v2/users/{userId}/actions/change-resource-permissions | Update user resource permissions
 
 
 
@@ -272,7 +267,7 @@ import (
 
 func main() {
 	userId := float32(8.14) // float32 | 
-	changeUserAccount := *openapiclient.NewChangeUserAccount(float32(123)) // ChangeUserAccount | The new account id
+	changeUserAccount := *openapiclient.NewChangeUserAccount(int64(123)) // ChangeUserAccount | The new account id
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -459,81 +454,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetDefaultUserLimits
+## GetQuotaLimitsBreakdown
 
-> UserLimits GetDefaultUserLimits(ctx, userId).Execute()
+> QuotaLimitsBreakdown GetQuotaLimitsBreakdown(ctx, userId).IncludeUsage(includeUsage).Execute()
 
-Get default user limits
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	userId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.GetDefaultUserLimits(context.Background(), userId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetDefaultUserLimits``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetDefaultUserLimits`: UserLimits
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetDefaultUserLimits`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetDefaultUserLimitsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**UserLimits**](UserLimits.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetDisabledUserLimits
-
-> UserLimitsDisabled GetDisabledUserLimits(ctx, userId).Execute()
-
-Get disabled user limits
+Get quota limits breakdown for a user
 
 
 
@@ -551,16 +476,17 @@ import (
 
 func main() {
 	userId := float32(8.14) // float32 | 
+	includeUsage := true // bool |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.GetDisabledUserLimits(context.Background(), userId).Execute()
+	resp, r, err := apiClient.UsersAPI.GetQuotaLimitsBreakdown(context.Background(), userId).IncludeUsage(includeUsage).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetDisabledUserLimits``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetQuotaLimitsBreakdown``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetDisabledUserLimits`: UserLimitsDisabled
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetDisabledUserLimits`: %v\n", resp)
+	// response from `GetQuotaLimitsBreakdown`: QuotaLimitsBreakdown
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetQuotaLimitsBreakdown`: %v\n", resp)
 }
 ```
 
@@ -574,16 +500,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetDisabledUserLimitsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetQuotaLimitsBreakdownRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **includeUsage** | **bool** |  | 
 
 ### Return type
 
-[**UserLimitsDisabled**](UserLimitsDisabled.md)
+[**QuotaLimitsBreakdown**](QuotaLimitsBreakdown.md)
 
 ### Authorization
 
@@ -601,7 +528,7 @@ Name | Type | Description  | Notes
 
 ## GetUser
 
-> User GetUser(ctx, userId).Recursion(recursion).Execute()
+> User GetUser(ctx, userId).Execute()
 
 Get user
 
@@ -621,11 +548,10 @@ import (
 
 func main() {
 	userId := float32(8.14) // float32 | 
-	recursion := float32(8.14) // float32 | The recursion level of the displayed details. Default is 0. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.GetUser(context.Background(), userId).Recursion(recursion).Execute()
+	resp, r, err := apiClient.UsersAPI.GetUser(context.Background(), userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -651,7 +577,6 @@ Other parameters are passed through a pointer to a apiGetUserRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **recursion** | **float32** | The recursion level of the displayed details. Default is 0. | 
 
 ### Return type
 
@@ -807,76 +732,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetUserLimits
-
-> UserLimits GetUserLimits(ctx, userId).Execute()
-
-Get user limits
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	userId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.GetUserLimits(context.Background(), userId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetUserLimits``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetUserLimits`: UserLimits
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetUserLimits`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetUserLimitsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**UserLimits**](UserLimits.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetUserParentDelegates
 
 > UserList GetUserParentDelegates(ctx, userId).Execute()
@@ -930,74 +785,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserList**](UserList.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetUserPermissions
-
-> UserPermissions GetUserPermissions(ctx, userId).Execute()
-
-Get user resource permissions by ID
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	userId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.GetUserPermissions(context.Background(), userId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetUserPermissions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetUserPermissions`: UserPermissions
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetUserPermissions`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetUserPermissionsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**UserPermissions**](UserPermissions.md)
 
 ### Authorization
 
@@ -1949,80 +1736,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateUserLimits
-
-> UserLimits UpdateUserLimits(ctx, userId).UserLimits(userLimits).IfMatch(ifMatch).Execute()
-
-Update user limits
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	userId := float32(8.14) // float32 | 
-	userLimits := *openapiclient.NewUserLimits() // UserLimits | The new limits
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UpdateUserLimits(context.Background(), userId).UserLimits(userLimits).IfMatch(ifMatch).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UpdateUserLimits``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateUserLimits`: UserLimits
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UpdateUserLimits`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateUserLimitsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **userLimits** | [**UserLimits**](UserLimits.md) | The new limits | 
- **ifMatch** | **string** | Entity tag | 
-
-### Return type
-
-[**UserLimits**](UserLimits.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## UpdateUserMeta
 
 > UserMeta UpdateUserMeta(ctx, userId).UserMeta(userMeta).Execute()
@@ -2078,78 +1791,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserMeta**](UserMeta.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UpdateUserPermissions
-
-> UserPermissions UpdateUserPermissions(ctx, userId).UpdateUserPermissions(updateUserPermissions).IfMatch(ifMatch).Execute()
-
-Update user resource permissions
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	userId := float32(8.14) // float32 | 
-	updateUserPermissions := *openapiclient.NewUpdateUserPermissions() // UpdateUserPermissions | 
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UpdateUserPermissions(context.Background(), userId).UpdateUserPermissions(updateUserPermissions).IfMatch(ifMatch).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UpdateUserPermissions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateUserPermissions`: UserPermissions
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UpdateUserPermissions`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateUserPermissionsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **updateUserPermissions** | [**UpdateUserPermissions**](UpdateUserPermissions.md) |  | 
- **ifMatch** | **string** | Entity tag | 
-
-### Return type
-
-[**UserPermissions**](UserPermissions.md)
 
 ### Authorization
 

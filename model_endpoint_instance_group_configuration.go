@@ -22,7 +22,7 @@ var _ MappedNullable = &EndpointInstanceGroupConfiguration{}
 // EndpointInstanceGroupConfiguration struct for EndpointInstanceGroupConfiguration
 type EndpointInstanceGroupConfiguration struct {
 	// Revision number
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Timestamp of the latest update of the Product Instance.
@@ -33,9 +33,9 @@ type EndpointInstanceGroupConfiguration struct {
 	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"endpoint-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the endpoint instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
 	Hostname *string `json:"hostname,omitempty"`
 	// Id of the DNS subdomain for the Product Instance
-	DnsSubdomainChangeId *int32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Id of the deployment for the Product Instance
-	InfrastructureDeployId *int32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Number of empty edits
 	EmptyEdit *int32 `json:"emptyEdit,omitempty"`
 	// Product Instance deploy type
@@ -51,7 +51,7 @@ type _EndpointInstanceGroupConfiguration EndpointInstanceGroupConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointInstanceGroupConfiguration(revision int32, label string, updatedTimestamp string, deployType string, deployStatus string) *EndpointInstanceGroupConfiguration {
+func NewEndpointInstanceGroupConfiguration(revision int64, label string, updatedTimestamp string, deployType string, deployStatus string) *EndpointInstanceGroupConfiguration {
 	this := EndpointInstanceGroupConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -74,9 +74,9 @@ func NewEndpointInstanceGroupConfigurationWithDefaults() *EndpointInstanceGroupC
 }
 
 // GetRevision returns the Revision field value
-func (o *EndpointInstanceGroupConfiguration) GetRevision() int32 {
+func (o *EndpointInstanceGroupConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *EndpointInstanceGroupConfiguration) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupConfiguration) GetRevisionOk() (*int32, bool) {
+func (o *EndpointInstanceGroupConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *EndpointInstanceGroupConfiguration) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *EndpointInstanceGroupConfiguration) SetRevision(v int32) {
+func (o *EndpointInstanceGroupConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -242,9 +242,9 @@ func (o *EndpointInstanceGroupConfiguration) SetHostname(v string) {
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeId() int32 {
+func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -252,7 +252,7 @@ func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeId() int32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -268,15 +268,15 @@ func (o *EndpointInstanceGroupConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given int32 and assigns it to the DnsSubdomainChangeId field.
-func (o *EndpointInstanceGroupConfiguration) SetDnsSubdomainChangeId(v int32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *EndpointInstanceGroupConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployId() int32 {
+func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -284,7 +284,7 @@ func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployId() int32 {
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -300,8 +300,8 @@ func (o *EndpointInstanceGroupConfiguration) HasInfrastructureDeployId() bool {
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given int32 and assigns it to the InfrastructureDeployId field.
-func (o *EndpointInstanceGroupConfiguration) SetInfrastructureDeployId(v int32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *EndpointInstanceGroupConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 

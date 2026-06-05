@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateNetworkDeviceDefaultSecrets{}
 // CreateNetworkDeviceDefaultSecrets struct for CreateNetworkDeviceDefaultSecrets
 type CreateNetworkDeviceDefaultSecrets struct {
 	// The site ID of the network device default secrets
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The MAC address or serial number of the network device
 	MacAddressOrSerialNumber string `json:"macAddressOrSerialNumber"`
 	// The name of the secret
@@ -38,7 +38,7 @@ type _CreateNetworkDeviceDefaultSecrets CreateNetworkDeviceDefaultSecrets
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkDeviceDefaultSecrets(siteId float32, macAddressOrSerialNumber string, secretName string, secretValue string) *CreateNetworkDeviceDefaultSecrets {
+func NewCreateNetworkDeviceDefaultSecrets(siteId int64, macAddressOrSerialNumber string, secretName string, secretValue string) *CreateNetworkDeviceDefaultSecrets {
 	this := CreateNetworkDeviceDefaultSecrets{}
 	this.SiteId = siteId
 	this.MacAddressOrSerialNumber = macAddressOrSerialNumber
@@ -56,9 +56,9 @@ func NewCreateNetworkDeviceDefaultSecretsWithDefaults() *CreateNetworkDeviceDefa
 }
 
 // GetSiteId returns the SiteId field value
-func (o *CreateNetworkDeviceDefaultSecrets) GetSiteId() float32 {
+func (o *CreateNetworkDeviceDefaultSecrets) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *CreateNetworkDeviceDefaultSecrets) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaultSecrets) GetSiteIdOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaultSecrets) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,7 +75,7 @@ func (o *CreateNetworkDeviceDefaultSecrets) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *CreateNetworkDeviceDefaultSecrets) SetSiteId(v float32) {
+func (o *CreateNetworkDeviceDefaultSecrets) SetSiteId(v int64) {
 	o.SiteId = v
 }
 

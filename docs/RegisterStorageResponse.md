@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Id of the Storage | 
+**Id** | **int64** | Id of the Storage | 
 **JobInfo** | Pointer to [**JobInfo**](JobInfo.md) | Job info | [optional] 
 
 ## Methods
 
 ### NewRegisterStorageResponse
 
-`func NewRegisterStorageResponse(id float32, ) *RegisterStorageResponse`
+`func NewRegisterStorageResponse(id int64, ) *RegisterStorageResponse`
 
 NewRegisterStorageResponse instantiates a new RegisterStorageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *RegisterStorageResponse) GetId() float32`
+`func (o *RegisterStorageResponse) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *RegisterStorageResponse) GetIdOk() (*float32, bool)`
+`func (o *RegisterStorageResponse) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *RegisterStorageResponse) SetId(v float32)`
+`func (o *RegisterStorageResponse) SetId(v int64)`
 
 SetId sets Id field to given value.
 

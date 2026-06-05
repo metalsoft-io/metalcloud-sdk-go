@@ -22,7 +22,7 @@ var _ MappedNullable = &SharedDriveHostBulkOperation{}
 // SharedDriveHostBulkOperation struct for SharedDriveHostBulkOperation
 type SharedDriveHostBulkOperation struct {
 	// Id of the Server Instance Group Host that will be modified
-	ServerInstanceGroupId float32 `json:"serverInstanceGroupId"`
+	ServerInstanceGroupId int64 `json:"serverInstanceGroupId"`
 	// Operation type for the Server Instance Group Host
 	OperationType string `json:"operationType"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _SharedDriveHostBulkOperation SharedDriveHostBulkOperation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveHostBulkOperation(serverInstanceGroupId float32, operationType string) *SharedDriveHostBulkOperation {
+func NewSharedDriveHostBulkOperation(serverInstanceGroupId int64, operationType string) *SharedDriveHostBulkOperation {
 	this := SharedDriveHostBulkOperation{}
 	this.ServerInstanceGroupId = serverInstanceGroupId
 	this.OperationType = operationType
@@ -50,9 +50,9 @@ func NewSharedDriveHostBulkOperationWithDefaults() *SharedDriveHostBulkOperation
 }
 
 // GetServerInstanceGroupId returns the ServerInstanceGroupId field value
-func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupId() float32 {
+func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupId() float32 {
 
 // GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, bool) {
+func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, b
 }
 
 // SetServerInstanceGroupId sets field value
-func (o *SharedDriveHostBulkOperation) SetServerInstanceGroupId(v float32) {
+func (o *SharedDriveHostBulkOperation) SetServerInstanceGroupId(v int64) {
 	o.ServerInstanceGroupId = v
 }
 

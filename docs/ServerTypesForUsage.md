@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Id of the server type | 
+**Id** | **int64** | Id of the server type | 
 **Name** | **string** | Name of the server type | 
 **ServersAvailable** | **float32** | Count of servers available for this server type | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewServerTypesForUsage
 
-`func NewServerTypesForUsage(id float32, name string, serversAvailable float32, ) *ServerTypesForUsage`
+`func NewServerTypesForUsage(id int64, name string, serversAvailable float32, ) *ServerTypesForUsage`
 
 NewServerTypesForUsage instantiates a new ServerTypesForUsage object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerTypesForUsage) GetId() float32`
+`func (o *ServerTypesForUsage) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerTypesForUsage) GetIdOk() (*float32, bool)`
+`func (o *ServerTypesForUsage) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerTypesForUsage) SetId(v float32)`
+`func (o *ServerTypesForUsage) SetId(v int64)`
 
 SetId sets Id field to given value.
 

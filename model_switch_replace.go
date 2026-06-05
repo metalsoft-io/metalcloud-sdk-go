@@ -22,7 +22,7 @@ var _ MappedNullable = &SwitchReplace{}
 // SwitchReplace struct for SwitchReplace
 type SwitchReplace struct {
 	// The ID of the replacement switch
-	NewSwitchId float32 `json:"newSwitchId"`
+	NewSwitchId int64 `json:"newSwitchId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _SwitchReplace SwitchReplace
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSwitchReplace(newSwitchId float32) *SwitchReplace {
+func NewSwitchReplace(newSwitchId int64) *SwitchReplace {
 	this := SwitchReplace{}
 	this.NewSwitchId = newSwitchId
 	return &this
@@ -47,9 +47,9 @@ func NewSwitchReplaceWithDefaults() *SwitchReplace {
 }
 
 // GetNewSwitchId returns the NewSwitchId field value
-func (o *SwitchReplace) GetNewSwitchId() float32 {
+func (o *SwitchReplace) GetNewSwitchId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *SwitchReplace) GetNewSwitchId() float32 {
 
 // GetNewSwitchIdOk returns a tuple with the NewSwitchId field value
 // and a boolean to check if the value has been set.
-func (o *SwitchReplace) GetNewSwitchIdOk() (*float32, bool) {
+func (o *SwitchReplace) GetNewSwitchIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *SwitchReplace) GetNewSwitchIdOk() (*float32, bool) {
 }
 
 // SetNewSwitchId sets field value
-func (o *SwitchReplace) SetNewSwitchId(v float32) {
+func (o *SwitchReplace) SetNewSwitchId(v int64) {
 	o.NewSwitchId = v
 }
 

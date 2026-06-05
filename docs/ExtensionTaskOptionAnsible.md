@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Ee** | Pointer to **string** | Custom execution environment for the Ansible task. | [optional] 
 **Asset** | Pointer to **string** | Asset for the Ansible task. | [optional] 
 **Playbook** | Pointer to **string** | Playbook for the Ansible task. | [optional] 
 **ExecutionTimeout** | Pointer to **int32** | Execution Timeout. | [optional] 
@@ -28,6 +29,31 @@ will change when the set of required properties is changed
 NewExtensionTaskOptionAnsibleWithDefaults instantiates a new ExtensionTaskOptionAnsible object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEe
+
+`func (o *ExtensionTaskOptionAnsible) GetEe() string`
+
+GetEe returns the Ee field if non-nil, zero value otherwise.
+
+### GetEeOk
+
+`func (o *ExtensionTaskOptionAnsible) GetEeOk() (*string, bool)`
+
+GetEeOk returns a tuple with the Ee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEe
+
+`func (o *ExtensionTaskOptionAnsible) SetEe(v string)`
+
+SetEe sets Ee field to given value.
+
+### HasEe
+
+`func (o *ExtensionTaskOptionAnsible) HasEe() bool`
+
+HasEe returns a boolean if a field has been set.
 
 ### GetAsset
 

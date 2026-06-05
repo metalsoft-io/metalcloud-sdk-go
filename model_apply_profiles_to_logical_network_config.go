@@ -20,7 +20,7 @@ var _ MappedNullable = &ApplyProfilesToLogicalNetworkConfig{}
 
 // ApplyProfilesToLogicalNetworkConfig struct for ApplyProfilesToLogicalNetworkConfig
 type ApplyProfilesToLogicalNetworkConfig struct {
-	LogicalNetworkProfileId NullableInt32 `json:"logicalNetworkProfileId,omitempty"`
+	LogicalNetworkProfileId NullableInt64 `json:"logicalNetworkProfileId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +44,9 @@ func NewApplyProfilesToLogicalNetworkConfigWithDefaults() *ApplyProfilesToLogica
 }
 
 // GetLogicalNetworkProfileId returns the LogicalNetworkProfileId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileId() int32 {
+func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkProfileId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkProfileId.Get()
@@ -55,7 +55,7 @@ func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileId() int32
 // GetLogicalNetworkProfileIdOk returns a tuple with the LogicalNetworkProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileIdOk() (*int32, bool) {
+func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *ApplyProfilesToLogicalNetworkConfig) HasLogicalNetworkProfileId() bool 
 	return false
 }
 
-// SetLogicalNetworkProfileId gets a reference to the given NullableInt32 and assigns it to the LogicalNetworkProfileId field.
-func (o *ApplyProfilesToLogicalNetworkConfig) SetLogicalNetworkProfileId(v int32) {
+// SetLogicalNetworkProfileId gets a reference to the given NullableInt64 and assigns it to the LogicalNetworkProfileId field.
+func (o *ApplyProfilesToLogicalNetworkConfig) SetLogicalNetworkProfileId(v int64) {
 	o.LogicalNetworkProfileId.Set(&v)
 }
 // SetLogicalNetworkProfileIdNil sets the value for LogicalNetworkProfileId to be an explicit nil

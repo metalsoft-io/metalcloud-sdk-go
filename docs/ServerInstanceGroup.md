@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The Product Instance ID. | 
-**Revision** | **int32** | Revision number | 
+**Id** | **int64** | The Product Instance ID. | 
+**Revision** | **int64** | Revision number | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **CreatedTimestamp** | **string** | Timestamp of the Product Instance creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
-**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
-**InfrastructureId** | **int32** |  | 
-**ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
+**InfrastructureId** | **int64** |  | 
+**ExtensionInstanceId** | Pointer to **int64** |  | [optional] 
 **InstanceCount** | **int32** | The number of instances to be created on the Instance Group. | [default to 1]
-**DefaultServerTypeId** | **int32** | The server type ID that will be assigned to newly created instances. | 
+**DefaultServerTypeId** | **int64** | The server type ID that will be assigned to newly created instances. | 
 **DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
 **IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
 **FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
 **Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \&quot;instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionLoadBalancingDnsRecord\&quot; is true.  | [optional] 
-**OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
+**OsTemplateId** | Pointer to **int64** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | **int32** | The CPU count on each instance. | [default to 1]
 **ProcessorCoreCount** | **int32** | The minimum cores of a CPU. | [default to 1]
@@ -34,16 +34,16 @@ Name | Type | Description | Notes
 **DiskTypes** | **[]string** | The types of physical disks. | [default to {}]
 **VirtualInterfacesEnabled** | **int32** | Enable virtual interfaces | [default to 0]
 **AdditionalWanIpv4Json** | Pointer to **map[string]interface{}** | Contains info about additional ips to be assigned to the WAN interfaces. | [optional] 
-**NetworkProfileGroupId** | Pointer to **int32** |  | [optional] 
-**NetworkProfileSnapshotId** | Pointer to **int32** |  | [optional] 
+**NetworkProfileGroupId** | Pointer to **int64** |  | [optional] 
+**NetworkProfileSnapshotId** | Pointer to **int64** |  | [optional] 
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
-**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
+**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int64** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
 **ServiceStatus** | **string** | Current status of the Server Instance Group. | 
-**ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
+**ResourcePoolId** | Pointer to **int64** | The resource pool assigned to this instance array | [optional] 
 **IsVmGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a VM. | 
 **IsEndpointInstanceGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a Endpoint. | 
-**VmInstanceGroupId** | Pointer to **int32** | Id of the VM Instance Group this Server Instance Group belongs to. | [optional] 
-**NetworkEndpointGroupId** | Pointer to **int32** |  | [optional] 
+**VmInstanceGroupId** | Pointer to **int64** | Id of the VM Instance Group this Server Instance Group belongs to. | [optional] 
+**NetworkEndpointGroupId** | Pointer to **int64** |  | [optional] 
 **Meta** | [**GenericMeta**](GenericMeta.md) |  | 
 **Config** | Pointer to [**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -52,7 +52,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroup
 
-`func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, isEndpointInstanceGroup int32, meta GenericMeta, ) *ServerInstanceGroup`
+`func NewServerInstanceGroup(id int64, revision int64, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int64, instanceCount int32, defaultServerTypeId int64, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, isEndpointInstanceGroup int32, meta GenericMeta, ) *ServerInstanceGroup`
 
 NewServerInstanceGroup instantiates a new ServerInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -69,40 +69,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerInstanceGroup) GetId() int32`
+`func (o *ServerInstanceGroup) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerInstanceGroup) GetIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerInstanceGroup) SetId(v int32)`
+`func (o *ServerInstanceGroup) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *ServerInstanceGroup) GetRevision() int32`
+`func (o *ServerInstanceGroup) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ServerInstanceGroup) GetRevisionOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ServerInstanceGroup) SetRevision(v int32)`
+`func (o *ServerInstanceGroup) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -219,20 +219,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *ServerInstanceGroup) GetDnsSubdomainId() int32`
+`func (o *ServerInstanceGroup) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *ServerInstanceGroup) GetDnsSubdomainIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *ServerInstanceGroup) SetDnsSubdomainId(v int32)`
+`func (o *ServerInstanceGroup) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -244,20 +244,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *ServerInstanceGroup) GetDnsSubdomainPermanentId() int32`
+`func (o *ServerInstanceGroup) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *ServerInstanceGroup) GetDnsSubdomainPermanentIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *ServerInstanceGroup) SetDnsSubdomainPermanentId(v int32)`
+`func (o *ServerInstanceGroup) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
@@ -294,40 +294,40 @@ HasServerGroupName returns a boolean if a field has been set.
 
 ### GetInfrastructureId
 
-`func (o *ServerInstanceGroup) GetInfrastructureId() int32`
+`func (o *ServerInstanceGroup) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *ServerInstanceGroup) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *ServerInstanceGroup) SetInfrastructureId(v int32)`
+`func (o *ServerInstanceGroup) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetExtensionInstanceId
 
-`func (o *ServerInstanceGroup) GetExtensionInstanceId() int32`
+`func (o *ServerInstanceGroup) GetExtensionInstanceId() int64`
 
 GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
 ### GetExtensionInstanceIdOk
 
-`func (o *ServerInstanceGroup) GetExtensionInstanceIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetExtensionInstanceIdOk() (*int64, bool)`
 
 GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtensionInstanceId
 
-`func (o *ServerInstanceGroup) SetExtensionInstanceId(v int32)`
+`func (o *ServerInstanceGroup) SetExtensionInstanceId(v int64)`
 
 SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
@@ -359,20 +359,20 @@ SetInstanceCount sets InstanceCount field to given value.
 
 ### GetDefaultServerTypeId
 
-`func (o *ServerInstanceGroup) GetDefaultServerTypeId() int32`
+`func (o *ServerInstanceGroup) GetDefaultServerTypeId() int64`
 
 GetDefaultServerTypeId returns the DefaultServerTypeId field if non-nil, zero value otherwise.
 
 ### GetDefaultServerTypeIdOk
 
-`func (o *ServerInstanceGroup) GetDefaultServerTypeIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetDefaultServerTypeIdOk() (*int64, bool)`
 
 GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultServerTypeId
 
-`func (o *ServerInstanceGroup) SetDefaultServerTypeId(v int32)`
+`func (o *ServerInstanceGroup) SetDefaultServerTypeId(v int64)`
 
 SetDefaultServerTypeId sets DefaultServerTypeId field to given value.
 
@@ -504,20 +504,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 
-`func (o *ServerInstanceGroup) GetOsTemplateId() int32`
+`func (o *ServerInstanceGroup) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *ServerInstanceGroup) GetOsTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *ServerInstanceGroup) SetOsTemplateId(v int32)`
+`func (o *ServerInstanceGroup) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 
@@ -744,20 +744,20 @@ HasAdditionalWanIpv4Json returns a boolean if a field has been set.
 
 ### GetNetworkProfileGroupId
 
-`func (o *ServerInstanceGroup) GetNetworkProfileGroupId() int32`
+`func (o *ServerInstanceGroup) GetNetworkProfileGroupId() int64`
 
 GetNetworkProfileGroupId returns the NetworkProfileGroupId field if non-nil, zero value otherwise.
 
 ### GetNetworkProfileGroupIdOk
 
-`func (o *ServerInstanceGroup) GetNetworkProfileGroupIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetNetworkProfileGroupIdOk() (*int64, bool)`
 
 GetNetworkProfileGroupIdOk returns a tuple with the NetworkProfileGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkProfileGroupId
 
-`func (o *ServerInstanceGroup) SetNetworkProfileGroupId(v int32)`
+`func (o *ServerInstanceGroup) SetNetworkProfileGroupId(v int64)`
 
 SetNetworkProfileGroupId sets NetworkProfileGroupId field to given value.
 
@@ -769,20 +769,20 @@ HasNetworkProfileGroupId returns a boolean if a field has been set.
 
 ### GetNetworkProfileSnapshotId
 
-`func (o *ServerInstanceGroup) GetNetworkProfileSnapshotId() int32`
+`func (o *ServerInstanceGroup) GetNetworkProfileSnapshotId() int64`
 
 GetNetworkProfileSnapshotId returns the NetworkProfileSnapshotId field if non-nil, zero value otherwise.
 
 ### GetNetworkProfileSnapshotIdOk
 
-`func (o *ServerInstanceGroup) GetNetworkProfileSnapshotIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetNetworkProfileSnapshotIdOk() (*int64, bool)`
 
 GetNetworkProfileSnapshotIdOk returns a tuple with the NetworkProfileSnapshotId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkProfileSnapshotId
 
-`func (o *ServerInstanceGroup) SetNetworkProfileSnapshotId(v int32)`
+`func (o *ServerInstanceGroup) SetNetworkProfileSnapshotId(v int64)`
 
 SetNetworkProfileSnapshotId sets NetworkProfileSnapshotId field to given value.
 
@@ -819,20 +819,20 @@ HasOverrideIpv4WanVlanId returns a boolean if a field has been set.
 
 ### GetNetworkEquipmentForceSubnetPoolIpv4WanId
 
-`func (o *ServerInstanceGroup) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int32`
+`func (o *ServerInstanceGroup) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int64`
 
 GetNetworkEquipmentForceSubnetPoolIpv4WanId returns the NetworkEquipmentForceSubnetPoolIpv4WanId field if non-nil, zero value otherwise.
 
 ### GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk
 
-`func (o *ServerInstanceGroup) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int64, bool)`
 
 GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk returns a tuple with the NetworkEquipmentForceSubnetPoolIpv4WanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkEquipmentForceSubnetPoolIpv4WanId
 
-`func (o *ServerInstanceGroup) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int32)`
+`func (o *ServerInstanceGroup) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int64)`
 
 SetNetworkEquipmentForceSubnetPoolIpv4WanId sets NetworkEquipmentForceSubnetPoolIpv4WanId field to given value.
 
@@ -864,20 +864,20 @@ SetServiceStatus sets ServiceStatus field to given value.
 
 ### GetResourcePoolId
 
-`func (o *ServerInstanceGroup) GetResourcePoolId() int32`
+`func (o *ServerInstanceGroup) GetResourcePoolId() int64`
 
 GetResourcePoolId returns the ResourcePoolId field if non-nil, zero value otherwise.
 
 ### GetResourcePoolIdOk
 
-`func (o *ServerInstanceGroup) GetResourcePoolIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetResourcePoolIdOk() (*int64, bool)`
 
 GetResourcePoolIdOk returns a tuple with the ResourcePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResourcePoolId
 
-`func (o *ServerInstanceGroup) SetResourcePoolId(v int32)`
+`func (o *ServerInstanceGroup) SetResourcePoolId(v int64)`
 
 SetResourcePoolId sets ResourcePoolId field to given value.
 
@@ -929,20 +929,20 @@ SetIsEndpointInstanceGroup sets IsEndpointInstanceGroup field to given value.
 
 ### GetVmInstanceGroupId
 
-`func (o *ServerInstanceGroup) GetVmInstanceGroupId() int32`
+`func (o *ServerInstanceGroup) GetVmInstanceGroupId() int64`
 
 GetVmInstanceGroupId returns the VmInstanceGroupId field if non-nil, zero value otherwise.
 
 ### GetVmInstanceGroupIdOk
 
-`func (o *ServerInstanceGroup) GetVmInstanceGroupIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetVmInstanceGroupIdOk() (*int64, bool)`
 
 GetVmInstanceGroupIdOk returns a tuple with the VmInstanceGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmInstanceGroupId
 
-`func (o *ServerInstanceGroup) SetVmInstanceGroupId(v int32)`
+`func (o *ServerInstanceGroup) SetVmInstanceGroupId(v int64)`
 
 SetVmInstanceGroupId sets VmInstanceGroupId field to given value.
 
@@ -954,20 +954,20 @@ HasVmInstanceGroupId returns a boolean if a field has been set.
 
 ### GetNetworkEndpointGroupId
 
-`func (o *ServerInstanceGroup) GetNetworkEndpointGroupId() int32`
+`func (o *ServerInstanceGroup) GetNetworkEndpointGroupId() int64`
 
 GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field if non-nil, zero value otherwise.
 
 ### GetNetworkEndpointGroupIdOk
 
-`func (o *ServerInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetNetworkEndpointGroupIdOk() (*int64, bool)`
 
 GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkEndpointGroupId
 
-`func (o *ServerInstanceGroup) SetNetworkEndpointGroupId(v int32)`
+`func (o *ServerInstanceGroup) SetNetworkEndpointGroupId(v int64)`
 
 SetNetworkEndpointGroupId sets NetworkEndpointGroupId field to given value.
 

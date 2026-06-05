@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | **string** | The device auth provider label. Must be unique. | 
 **Name** | **string** | The device auth provider display name. | 
 **Annotations** | Pointer to **map[string]string** | Key-value annotations for storing additional metadata. | [optional] 
-**SiteId** | **int32** | The ID of the site this provider belongs to. | 
+**SiteId** | **int64** | The ID of the site this provider belongs to. | 
 **Kind** | **string** | The authentication protocol kind. | 
 **IpAddress** | **string** | The IP address of the authentication server. | 
 **Port** | **int32** | The TCP port of the authentication server. Standard TACACS+ port is 49. | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCreateDeviceAuthProvider
 
-`func NewCreateDeviceAuthProvider(label string, name string, siteId int32, kind string, ipAddress string, port int32, sharedSecret string, username string, ) *CreateDeviceAuthProvider`
+`func NewCreateDeviceAuthProvider(label string, name string, siteId int64, kind string, ipAddress string, port int32, sharedSecret string, username string, ) *CreateDeviceAuthProvider`
 
 NewCreateDeviceAuthProvider instantiates a new CreateDeviceAuthProvider object
 This constructor will assign default values to properties that have it defined,
@@ -102,20 +102,20 @@ HasAnnotations returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *CreateDeviceAuthProvider) GetSiteId() int32`
+`func (o *CreateDeviceAuthProvider) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *CreateDeviceAuthProvider) GetSiteIdOk() (*int32, bool)`
+`func (o *CreateDeviceAuthProvider) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *CreateDeviceAuthProvider) SetSiteId(v int32)`
+`func (o *CreateDeviceAuthProvider) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

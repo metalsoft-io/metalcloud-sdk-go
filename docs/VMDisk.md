@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | VM ID | 
-**VmId** | **float32** | VM ID | 
+**Id** | **int64** | VM ID | 
+**VmId** | **int64** | VM ID | 
 **Datastore** | **string** | Name of the VM Disk datastore | 
 **SizeGB** | **float32** | Size of the VM Disk in GB | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewVMDisk
 
-`func NewVMDisk(id float32, vmId float32, datastore string, sizeGB float32, ) *VMDisk`
+`func NewVMDisk(id int64, vmId int64, datastore string, sizeGB float32, ) *VMDisk`
 
 NewVMDisk instantiates a new VMDisk object
 This constructor will assign default values to properties that have it defined,
@@ -30,40 +30,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VMDisk) GetId() float32`
+`func (o *VMDisk) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMDisk) GetIdOk() (*float32, bool)`
+`func (o *VMDisk) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMDisk) SetId(v float32)`
+`func (o *VMDisk) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetVmId
 
-`func (o *VMDisk) GetVmId() float32`
+`func (o *VMDisk) GetVmId() int64`
 
 GetVmId returns the VmId field if non-nil, zero value otherwise.
 
 ### GetVmIdOk
 
-`func (o *VMDisk) GetVmIdOk() (*float32, bool)`
+`func (o *VMDisk) GetVmIdOk() (*int64, bool)`
 
 GetVmIdOk returns a tuple with the VmId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmId
 
-`func (o *VMDisk) SetVmId(v float32)`
+`func (o *VMDisk) SetVmId(v int64)`
 
 SetVmId sets VmId field to given value.
 

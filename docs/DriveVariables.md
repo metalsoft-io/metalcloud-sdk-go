@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the Drive. | 
-**GroupId** | **float32** | Drive Array Id | 
-**InstanceId** | Pointer to **float32** |  | [optional] 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
+**GroupId** | **int64** | Drive Array Id | 
+**InstanceId** | Pointer to **int64** |  | [optional] 
+**StoragePoolId** | Pointer to **int64** | Id of the storage pool the Drive is assigned to | [optional] 
 **SizeMb** | **float32** | Disk size in MiB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **IscsiIndexHex** | Pointer to **string** | The iSCSI Index in hex format of the Drive. | [optional] 
-**TemplateId** | Pointer to **float32** | Template Id | [optional] 
+**TemplateId** | Pointer to **int64** | Template Id | [optional] 
 **OsAdminUsername** | Pointer to **string** | The OS Admin Username the Drive will use. | [optional] 
 **StorageType** | **string** | Storage type of the Drive | [default to "iscsi_ssd"]
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
@@ -19,9 +19,9 @@ Name | Type | Description | Notes
 **SshPort** | Pointer to **float32** | SSH port used by the Drive. | [optional] 
 **OperatingSystemInfo** | Pointer to **map[string]interface{}** | Operating system information of the Drive. | [optional] 
 **FilesystemInfo** | Pointer to **map[string]interface{}** | Filesystem information of the Drive. | [optional] 
-**Id** | **float32** | Id of the Drive | 
-**Revision** | **float32** | Revision of the Drive State | 
-**InfrastructureId** | **float32** | Infrastructure id of the Drive | 
+**Id** | **int64** | Id of the Drive | 
+**Revision** | **int64** | Revision of the Drive State | 
+**InfrastructureId** | **int64** | Infrastructure id of the Drive | 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Service status of the Drive | 
 **StorageRealSizeCachedMb** | Pointer to **float32** | Cached information of the real size of the storage in MB. | [optional] 
@@ -34,9 +34,9 @@ Name | Type | Description | Notes
 **Wwn** | Pointer to **string** |  | [optional] 
 **ProvisioningProtocol** | **string** | Provisioning protocol of the Drive | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Drive. | [optional] 
-**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Drive. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive. | [optional] 
-**NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the Drive. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the Drive. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Id of the permanent DNS subdomain for the Drive. | [optional] 
+**NetworkVlanId** | Pointer to **int32** | Id of the VLAN for the Drive. | [optional] 
 **Config** | [**DriveConfiguration**](DriveConfiguration.md) | The current changes to be deployed for the Drive. | 
 **CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
 
@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 
 ### NewDriveVariables
 
-`func NewDriveVariables(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, ) *DriveVariables`
+`func NewDriveVariables(label string, groupId int64, sizeMb float32, storageType string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, ) *DriveVariables`
 
 NewDriveVariables instantiates a new DriveVariables object
 This constructor will assign default values to properties that have it defined,
@@ -81,40 +81,40 @@ SetLabel sets Label field to given value.
 
 ### GetGroupId
 
-`func (o *DriveVariables) GetGroupId() float32`
+`func (o *DriveVariables) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *DriveVariables) GetGroupIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *DriveVariables) SetGroupId(v float32)`
+`func (o *DriveVariables) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
 
 ### GetInstanceId
 
-`func (o *DriveVariables) GetInstanceId() float32`
+`func (o *DriveVariables) GetInstanceId() int64`
 
 GetInstanceId returns the InstanceId field if non-nil, zero value otherwise.
 
 ### GetInstanceIdOk
 
-`func (o *DriveVariables) GetInstanceIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetInstanceIdOk() (*int64, bool)`
 
 GetInstanceIdOk returns a tuple with the InstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceId
 
-`func (o *DriveVariables) SetInstanceId(v float32)`
+`func (o *DriveVariables) SetInstanceId(v int64)`
 
 SetInstanceId sets InstanceId field to given value.
 
@@ -126,20 +126,20 @@ HasInstanceId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 
-`func (o *DriveVariables) GetStoragePoolId() float32`
+`func (o *DriveVariables) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *DriveVariables) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *DriveVariables) SetStoragePoolId(v float32)`
+`func (o *DriveVariables) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
@@ -221,20 +221,20 @@ HasIscsiIndexHex returns a boolean if a field has been set.
 
 ### GetTemplateId
 
-`func (o *DriveVariables) GetTemplateId() float32`
+`func (o *DriveVariables) GetTemplateId() int64`
 
 GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
 ### GetTemplateIdOk
 
-`func (o *DriveVariables) GetTemplateIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetTemplateIdOk() (*int64, bool)`
 
 GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplateId
 
-`func (o *DriveVariables) SetTemplateId(v float32)`
+`func (o *DriveVariables) SetTemplateId(v int64)`
 
 SetTemplateId sets TemplateId field to given value.
 
@@ -411,60 +411,60 @@ HasFilesystemInfo returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *DriveVariables) GetId() float32`
+`func (o *DriveVariables) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DriveVariables) GetIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DriveVariables) SetId(v float32)`
+`func (o *DriveVariables) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *DriveVariables) GetRevision() float32`
+`func (o *DriveVariables) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *DriveVariables) GetRevisionOk() (*float32, bool)`
+`func (o *DriveVariables) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *DriveVariables) SetRevision(v float32)`
+`func (o *DriveVariables) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *DriveVariables) GetInfrastructureId() float32`
+`func (o *DriveVariables) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *DriveVariables) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *DriveVariables) SetInfrastructureId(v float32)`
+`func (o *DriveVariables) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -751,20 +751,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *DriveVariables) GetDnsSubdomainId() float32`
+`func (o *DriveVariables) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *DriveVariables) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *DriveVariables) SetDnsSubdomainId(v float32)`
+`func (o *DriveVariables) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -776,20 +776,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *DriveVariables) GetDnsSubdomainPermanentId() float32`
+`func (o *DriveVariables) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *DriveVariables) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *DriveVariables) SetDnsSubdomainPermanentId(v float32)`
+`func (o *DriveVariables) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
@@ -801,20 +801,20 @@ HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
 ### GetNetworkVlanId
 
-`func (o *DriveVariables) GetNetworkVlanId() float32`
+`func (o *DriveVariables) GetNetworkVlanId() int32`
 
 GetNetworkVlanId returns the NetworkVlanId field if non-nil, zero value otherwise.
 
 ### GetNetworkVlanIdOk
 
-`func (o *DriveVariables) GetNetworkVlanIdOk() (*float32, bool)`
+`func (o *DriveVariables) GetNetworkVlanIdOk() (*int32, bool)`
 
 GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkVlanId
 
-`func (o *DriveVariables) SetNetworkVlanId(v float32)`
+`func (o *DriveVariables) SetNetworkVlanId(v int32)`
 
 SetNetworkVlanId sets NetworkVlanId field to given value.
 

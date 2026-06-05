@@ -22,22 +22,22 @@ var _ MappedNullable = &LogicalNetworkProfile{}
 
 // LogicalNetworkProfile struct for LogicalNetworkProfile
 type LogicalNetworkProfile struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	Name string `json:"name"`
 	Annotations map[string]string `json:"annotations"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Kind LogicalNetworkKind `json:"kind"`
-	FabricId int32 `json:"fabricId"`
+	FabricId int64 `json:"fabricId"`
 	Vlan *LogicalNetworkProfileVlanProperties `json:"vlan,omitempty"`
 	Vxlan *LogicalNetworkProfileVxlanProperties `json:"vxlan,omitempty"`
 	Pkey *LogicalNetworkProfilePkeyProperties `json:"pkey,omitempty"`
 	Zone *LogicalNetworkProfileZoneProperties `json:"zone,omitempty"`
 	Ipv4 *LogicalNetworkProfileIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *LogicalNetworkProfileIpv6Properties `json:"ipv6,omitempty"`
-	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
+	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -49,7 +49,7 @@ type _LogicalNetworkProfile LogicalNetworkProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogicalNetworkProfile(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32) *LogicalNetworkProfile {
+func NewLogicalNetworkProfile(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, kind LogicalNetworkKind, fabricId int64) *LogicalNetworkProfile {
 	this := LogicalNetworkProfile{}
 	this.Id = id
 	this.Label = label
@@ -72,9 +72,9 @@ func NewLogicalNetworkProfileWithDefaults() *LogicalNetworkProfile {
 }
 
 // GetId returns the Id field value
-func (o *LogicalNetworkProfile) GetId() int32 {
+func (o *LogicalNetworkProfile) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *LogicalNetworkProfile) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkProfile) GetIdOk() (*int32, bool) {
+func (o *LogicalNetworkProfile) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *LogicalNetworkProfile) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *LogicalNetworkProfile) SetId(v int32) {
+func (o *LogicalNetworkProfile) SetId(v int64) {
 	o.Id = v
 }
 
@@ -216,9 +216,9 @@ func (o *LogicalNetworkProfile) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *LogicalNetworkProfile) GetRevision() int32 {
+func (o *LogicalNetworkProfile) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -227,7 +227,7 @@ func (o *LogicalNetworkProfile) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkProfile) GetRevisionOk() (*int32, bool) {
+func (o *LogicalNetworkProfile) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -235,7 +235,7 @@ func (o *LogicalNetworkProfile) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *LogicalNetworkProfile) SetRevision(v int32) {
+func (o *LogicalNetworkProfile) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -264,9 +264,9 @@ func (o *LogicalNetworkProfile) SetKind(v LogicalNetworkKind) {
 }
 
 // GetFabricId returns the FabricId field value
-func (o *LogicalNetworkProfile) GetFabricId() int32 {
+func (o *LogicalNetworkProfile) GetFabricId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -275,7 +275,7 @@ func (o *LogicalNetworkProfile) GetFabricId() int32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkProfile) GetFabricIdOk() (*int32, bool) {
+func (o *LogicalNetworkProfile) GetFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -283,7 +283,7 @@ func (o *LogicalNetworkProfile) GetFabricIdOk() (*int32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *LogicalNetworkProfile) SetFabricId(v int32) {
+func (o *LogicalNetworkProfile) SetFabricId(v int64) {
 	o.FabricId = v
 }
 
@@ -480,9 +480,9 @@ func (o *LogicalNetworkProfile) SetIpv6(v LogicalNetworkProfileIpv6Properties) {
 }
 
 // GetRouteDomainId returns the RouteDomainId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LogicalNetworkProfile) GetRouteDomainId() int32 {
+func (o *LogicalNetworkProfile) GetRouteDomainId() int64 {
 	if o == nil || IsNil(o.RouteDomainId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RouteDomainId.Get()
@@ -491,7 +491,7 @@ func (o *LogicalNetworkProfile) GetRouteDomainId() int32 {
 // GetRouteDomainIdOk returns a tuple with the RouteDomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool) {
+func (o *LogicalNetworkProfile) GetRouteDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -507,8 +507,8 @@ func (o *LogicalNetworkProfile) HasRouteDomainId() bool {
 	return false
 }
 
-// SetRouteDomainId gets a reference to the given NullableInt32 and assigns it to the RouteDomainId field.
-func (o *LogicalNetworkProfile) SetRouteDomainId(v int32) {
+// SetRouteDomainId gets a reference to the given NullableInt64 and assigns it to the RouteDomainId field.
+func (o *LogicalNetworkProfile) SetRouteDomainId(v int64) {
 	o.RouteDomainId.Set(&v)
 }
 // SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil

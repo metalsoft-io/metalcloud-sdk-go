@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Unique identifier for the firmware binary | 
-**CatalogId** | **float32** | Unique identifier for the firmware catalog | 
+**Id** | **int64** | Unique identifier for the firmware binary | 
+**CatalogId** | **int64** | Unique identifier for the firmware catalog | 
 **ExternalId** | Pointer to **string** | External/vendor identifier for the firmware binary | [optional] 
 **VendorInfoUrl** | Pointer to **string** | Vendor URL with information about the firmware binary | [optional] 
 **VendorDownloadUrl** | **string** | Vendor download URL for the firmware binary | 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewFirmwareBinaryResponse
 
-`func NewFirmwareBinaryResponse(id float32, catalogId float32, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, createdTimestamp string, ) *FirmwareBinaryResponse`
+`func NewFirmwareBinaryResponse(id int64, catalogId int64, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, createdTimestamp string, ) *FirmwareBinaryResponse`
 
 NewFirmwareBinaryResponse instantiates a new FirmwareBinaryResponse object
 This constructor will assign default values to properties that have it defined,
@@ -43,40 +43,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *FirmwareBinaryResponse) GetId() float32`
+`func (o *FirmwareBinaryResponse) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *FirmwareBinaryResponse) GetIdOk() (*float32, bool)`
+`func (o *FirmwareBinaryResponse) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *FirmwareBinaryResponse) SetId(v float32)`
+`func (o *FirmwareBinaryResponse) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetCatalogId
 
-`func (o *FirmwareBinaryResponse) GetCatalogId() float32`
+`func (o *FirmwareBinaryResponse) GetCatalogId() int64`
 
 GetCatalogId returns the CatalogId field if non-nil, zero value otherwise.
 
 ### GetCatalogIdOk
 
-`func (o *FirmwareBinaryResponse) GetCatalogIdOk() (*float32, bool)`
+`func (o *FirmwareBinaryResponse) GetCatalogIdOk() (*int64, bool)`
 
 GetCatalogIdOk returns a tuple with the CatalogId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCatalogId
 
-`func (o *FirmwareBinaryResponse) SetCatalogId(v float32)`
+`func (o *FirmwareBinaryResponse) SetCatalogId(v int64)`
 
 SetCatalogId sets CatalogId field to given value.
 

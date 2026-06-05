@@ -1294,6 +1294,7 @@ type NetworkFabricAPIGetFabricNetworkDevicesRequest struct {
 	filterPosition *[]string
 	filterIdentifierString *[]string
 	filterServerId *[]string
+	filterHealthStatus *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1383,7 +1384,13 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterServerId(filterSer
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress 
+// Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterHealthStatus(filterHealthStatus []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterHealthStatus = &filterHealthStatus
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SortBy(sortBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1395,7 +1402,7 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) Search(search string) Ne
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description 
+// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SearchBy(searchBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1578,6 +1585,17 @@ func (a *NetworkFabricAPIService) GetFabricNetworkDevicesExecute(r NetworkFabric
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterHealthStatus != nil {
+		t := *r.filterHealthStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.healthStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.healthStatus", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -3498,6 +3516,121 @@ func (a *NetworkFabricAPIService) RemoveNetworkDeviceFromFabricExecute(r Network
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIRescanNetworkFabricLinksRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId float32
+	networkFabricLinkRescanOptions *NetworkFabricLinkRescanOptions
+}
+
+// Network fabric link rescan options
+func (r NetworkFabricAPIRescanNetworkFabricLinksRequest) NetworkFabricLinkRescanOptions(networkFabricLinkRescanOptions NetworkFabricLinkRescanOptions) NetworkFabricAPIRescanNetworkFabricLinksRequest {
+	r.networkFabricLinkRescanOptions = &networkFabricLinkRescanOptions
+	return r
+}
+
+func (r NetworkFabricAPIRescanNetworkFabricLinksRequest) Execute() (*JobInfo, *http.Response, error) {
+	return r.ApiService.RescanNetworkFabricLinksExecute(r)
+}
+
+/*
+RescanNetworkFabricLinks Re-scans the links of the specified network fabric
+
+Re-scans the links of the specified network fabric
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId
+ @return NetworkFabricAPIRescanNetworkFabricLinksRequest
+*/
+func (a *NetworkFabricAPIService) RescanNetworkFabricLinks(ctx context.Context, networkFabricId float32) NetworkFabricAPIRescanNetworkFabricLinksRequest {
+	return NetworkFabricAPIRescanNetworkFabricLinksRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return JobInfo
+func (a *NetworkFabricAPIService) RescanNetworkFabricLinksExecute(r NetworkFabricAPIRescanNetworkFabricLinksRequest) (*JobInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *JobInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.RescanNetworkFabricLinks")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/actions/rescan-links"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.networkFabricLinkRescanOptions == nil {
+		return localVarReturnValue, nil, reportError("networkFabricLinkRescanOptions is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.networkFabricLinkRescanOptions
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -22,7 +22,7 @@ var _ MappedNullable = &VMPoolHosts{}
 // VMPoolHosts struct for VMPoolHosts
 type VMPoolHosts struct {
 	// VM Pool Host ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the VM Pool Host
 	Name string `json:"name"`
 	// Address of the VM Pool Host
@@ -30,7 +30,7 @@ type VMPoolHosts struct {
 	// Port of the VM Pool Host
 	Port *float32 `json:"port,omitempty"`
 	// VM Pool ID
-	PoolId *float32 `json:"poolId,omitempty"`
+	PoolId *int64 `json:"poolId,omitempty"`
 	// Roles of the VM Pool Host
 	Roles []string `json:"roles,omitempty"`
 	// Failure domain of the VM Pool Host
@@ -41,6 +41,12 @@ type VMPoolHosts struct {
 	Database *float32 `json:"database,omitempty"`
 	// Status of the VM Pool Host
 	Status *string `json:"status,omitempty"`
+	// Health status of the VM Pool Host
+	HealthStatus *VMPoolHostHealthStatus `json:"healthStatus,omitempty"`
+	// Health status messages of the VM Pool Host
+	HealthDetails []string `json:"healthDetails,omitempty"`
+	// Timestamp when the VM Pool Host health status was last checked
+	HealthLastCheckedTimestamp *string `json:"healthLastCheckedTimestamp,omitempty"`
 	// Description of the VM Pool Host
 	Description *string `json:"description,omitempty"`
 	// Flag specifying if VMs can be created on the VM Pool Host
@@ -60,7 +66,7 @@ type _VMPoolHosts VMPoolHosts
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHosts(id float32, name string, allowVMsToBeCreated bool, updatedTimestamp string) *VMPoolHosts {
+func NewVMPoolHosts(id int64, name string, allowVMsToBeCreated bool, updatedTimestamp string) *VMPoolHosts {
 	this := VMPoolHosts{}
 	this.Id = id
 	this.Name = name
@@ -80,9 +86,9 @@ func NewVMPoolHostsWithDefaults() *VMPoolHosts {
 }
 
 // GetId returns the Id field value
-func (o *VMPoolHosts) GetId() float32 {
+func (o *VMPoolHosts) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +97,7 @@ func (o *VMPoolHosts) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetIdOk() (*float32, bool) {
+func (o *VMPoolHosts) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +105,7 @@ func (o *VMPoolHosts) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMPoolHosts) SetId(v float32) {
+func (o *VMPoolHosts) SetId(v int64) {
 	o.Id = v
 }
 
@@ -192,9 +198,9 @@ func (o *VMPoolHosts) SetPort(v float32) {
 }
 
 // GetPoolId returns the PoolId field value if set, zero value otherwise.
-func (o *VMPoolHosts) GetPoolId() float32 {
+func (o *VMPoolHosts) GetPoolId() int64 {
 	if o == nil || IsNil(o.PoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.PoolId
@@ -202,7 +208,7 @@ func (o *VMPoolHosts) GetPoolId() float32 {
 
 // GetPoolIdOk returns a tuple with the PoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetPoolIdOk() (*float32, bool) {
+func (o *VMPoolHosts) GetPoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.PoolId) {
 		return nil, false
 	}
@@ -218,8 +224,8 @@ func (o *VMPoolHosts) HasPoolId() bool {
 	return false
 }
 
-// SetPoolId gets a reference to the given float32 and assigns it to the PoolId field.
-func (o *VMPoolHosts) SetPoolId(v float32) {
+// SetPoolId gets a reference to the given int64 and assigns it to the PoolId field.
+func (o *VMPoolHosts) SetPoolId(v int64) {
 	o.PoolId = &v
 }
 
@@ -381,6 +387,102 @@ func (o *VMPoolHosts) HasStatus() bool {
 // SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *VMPoolHosts) SetStatus(v string) {
 	o.Status = &v
+}
+
+// GetHealthStatus returns the HealthStatus field value if set, zero value otherwise.
+func (o *VMPoolHosts) GetHealthStatus() VMPoolHostHealthStatus {
+	if o == nil || IsNil(o.HealthStatus) {
+		var ret VMPoolHostHealthStatus
+		return ret
+	}
+	return *o.HealthStatus
+}
+
+// GetHealthStatusOk returns a tuple with the HealthStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetHealthStatusOk() (*VMPoolHostHealthStatus, bool) {
+	if o == nil || IsNil(o.HealthStatus) {
+		return nil, false
+	}
+	return o.HealthStatus, true
+}
+
+// HasHealthStatus returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasHealthStatus() bool {
+	if o != nil && !IsNil(o.HealthStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthStatus gets a reference to the given VMPoolHostHealthStatus and assigns it to the HealthStatus field.
+func (o *VMPoolHosts) SetHealthStatus(v VMPoolHostHealthStatus) {
+	o.HealthStatus = &v
+}
+
+// GetHealthDetails returns the HealthDetails field value if set, zero value otherwise.
+func (o *VMPoolHosts) GetHealthDetails() []string {
+	if o == nil || IsNil(o.HealthDetails) {
+		var ret []string
+		return ret
+	}
+	return o.HealthDetails
+}
+
+// GetHealthDetailsOk returns a tuple with the HealthDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetHealthDetailsOk() ([]string, bool) {
+	if o == nil || IsNil(o.HealthDetails) {
+		return nil, false
+	}
+	return o.HealthDetails, true
+}
+
+// HasHealthDetails returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasHealthDetails() bool {
+	if o != nil && !IsNil(o.HealthDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthDetails gets a reference to the given []string and assigns it to the HealthDetails field.
+func (o *VMPoolHosts) SetHealthDetails(v []string) {
+	o.HealthDetails = v
+}
+
+// GetHealthLastCheckedTimestamp returns the HealthLastCheckedTimestamp field value if set, zero value otherwise.
+func (o *VMPoolHosts) GetHealthLastCheckedTimestamp() string {
+	if o == nil || IsNil(o.HealthLastCheckedTimestamp) {
+		var ret string
+		return ret
+	}
+	return *o.HealthLastCheckedTimestamp
+}
+
+// GetHealthLastCheckedTimestampOk returns a tuple with the HealthLastCheckedTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetHealthLastCheckedTimestampOk() (*string, bool) {
+	if o == nil || IsNil(o.HealthLastCheckedTimestamp) {
+		return nil, false
+	}
+	return o.HealthLastCheckedTimestamp, true
+}
+
+// HasHealthLastCheckedTimestamp returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasHealthLastCheckedTimestamp() bool {
+	if o != nil && !IsNil(o.HealthLastCheckedTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthLastCheckedTimestamp gets a reference to the given string and assigns it to the HealthLastCheckedTimestamp field.
+func (o *VMPoolHosts) SetHealthLastCheckedTimestamp(v string) {
+	o.HealthLastCheckedTimestamp = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -563,6 +665,15 @@ func (o VMPoolHosts) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+	if !IsNil(o.HealthStatus) {
+		toSerialize["healthStatus"] = o.HealthStatus
+	}
+	if !IsNil(o.HealthDetails) {
+		toSerialize["healthDetails"] = o.HealthDetails
+	}
+	if !IsNil(o.HealthLastCheckedTimestamp) {
+		toSerialize["healthLastCheckedTimestamp"] = o.HealthLastCheckedTimestamp
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -630,6 +741,9 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "architecture")
 		delete(additionalProperties, "database")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "healthStatus")
+		delete(additionalProperties, "healthDetails")
+		delete(additionalProperties, "healthLastCheckedTimestamp")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "allowVMsToBeCreated")
 		delete(additionalProperties, "hostInterfaces")

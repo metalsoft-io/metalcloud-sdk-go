@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInstanceOSInstallationData{}
 // ServerInstanceOSInstallationData struct for ServerInstanceOSInstallationData
 type ServerInstanceOSInstallationData struct {
 	// The Product Instance ID.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Fully Qualified Domain Name (FQDN) for the Instance.
@@ -47,6 +47,10 @@ type ServerInstanceOSInstallationData struct {
 	IscsiInitiatorUsername *string `json:"iscsiInitiatorUsername,omitempty"`
 	// iSCSI Initiator Password for the Instance Interface.
 	IscsiInitiatorPasswordEncrypted *string `json:"iscsiInitiatorPasswordEncrypted,omitempty"`
+	// iSCSI Target Username for the Instance Interface.
+	IscsiTargetUsername *string `json:"iscsiTargetUsername,omitempty"`
+	// iSCSI Target Password for the Instance Interface.
+	IscsiTargetPasswordEncrypted *string `json:"iscsiTargetPasswordEncrypted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,7 +60,7 @@ type _ServerInstanceOSInstallationData ServerInstanceOSInstallationData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, provisionInstanceDnsRecords bool) *ServerInstanceOSInstallationData {
+func NewServerInstanceOSInstallationData(id int64, label string, isVmInstance int32, isEndpointInstance int32, provisionInstanceDnsRecords bool) *ServerInstanceOSInstallationData {
 	this := ServerInstanceOSInstallationData{}
 	this.Id = id
 	this.Label = label
@@ -75,9 +79,9 @@ func NewServerInstanceOSInstallationDataWithDefaults() *ServerInstanceOSInstalla
 }
 
 // GetId returns the Id field value
-func (o *ServerInstanceOSInstallationData) GetId() int32 {
+func (o *ServerInstanceOSInstallationData) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +90,7 @@ func (o *ServerInstanceOSInstallationData) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceOSInstallationData) GetIdOk() (*int32, bool) {
+func (o *ServerInstanceOSInstallationData) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +98,7 @@ func (o *ServerInstanceOSInstallationData) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerInstanceOSInstallationData) SetId(v int32) {
+func (o *ServerInstanceOSInstallationData) SetId(v int64) {
 	o.Id = v
 }
 
@@ -482,6 +486,70 @@ func (o *ServerInstanceOSInstallationData) SetIscsiInitiatorPasswordEncrypted(v 
 	o.IscsiInitiatorPasswordEncrypted = &v
 }
 
+// GetIscsiTargetUsername returns the IscsiTargetUsername field value if set, zero value otherwise.
+func (o *ServerInstanceOSInstallationData) GetIscsiTargetUsername() string {
+	if o == nil || IsNil(o.IscsiTargetUsername) {
+		var ret string
+		return ret
+	}
+	return *o.IscsiTargetUsername
+}
+
+// GetIscsiTargetUsernameOk returns a tuple with the IscsiTargetUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceOSInstallationData) GetIscsiTargetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.IscsiTargetUsername) {
+		return nil, false
+	}
+	return o.IscsiTargetUsername, true
+}
+
+// HasIscsiTargetUsername returns a boolean if a field has been set.
+func (o *ServerInstanceOSInstallationData) HasIscsiTargetUsername() bool {
+	if o != nil && !IsNil(o.IscsiTargetUsername) {
+		return true
+	}
+
+	return false
+}
+
+// SetIscsiTargetUsername gets a reference to the given string and assigns it to the IscsiTargetUsername field.
+func (o *ServerInstanceOSInstallationData) SetIscsiTargetUsername(v string) {
+	o.IscsiTargetUsername = &v
+}
+
+// GetIscsiTargetPasswordEncrypted returns the IscsiTargetPasswordEncrypted field value if set, zero value otherwise.
+func (o *ServerInstanceOSInstallationData) GetIscsiTargetPasswordEncrypted() string {
+	if o == nil || IsNil(o.IscsiTargetPasswordEncrypted) {
+		var ret string
+		return ret
+	}
+	return *o.IscsiTargetPasswordEncrypted
+}
+
+// GetIscsiTargetPasswordEncryptedOk returns a tuple with the IscsiTargetPasswordEncrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceOSInstallationData) GetIscsiTargetPasswordEncryptedOk() (*string, bool) {
+	if o == nil || IsNil(o.IscsiTargetPasswordEncrypted) {
+		return nil, false
+	}
+	return o.IscsiTargetPasswordEncrypted, true
+}
+
+// HasIscsiTargetPasswordEncrypted returns a boolean if a field has been set.
+func (o *ServerInstanceOSInstallationData) HasIscsiTargetPasswordEncrypted() bool {
+	if o != nil && !IsNil(o.IscsiTargetPasswordEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetIscsiTargetPasswordEncrypted gets a reference to the given string and assigns it to the IscsiTargetPasswordEncrypted field.
+func (o *ServerInstanceOSInstallationData) SetIscsiTargetPasswordEncrypted(v string) {
+	o.IscsiTargetPasswordEncrypted = &v
+}
+
 func (o ServerInstanceOSInstallationData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -523,6 +591,12 @@ func (o ServerInstanceOSInstallationData) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.IscsiInitiatorPasswordEncrypted) {
 		toSerialize["iscsiInitiatorPasswordEncrypted"] = o.IscsiInitiatorPasswordEncrypted
+	}
+	if !IsNil(o.IscsiTargetUsername) {
+		toSerialize["iscsiTargetUsername"] = o.IscsiTargetUsername
+	}
+	if !IsNil(o.IscsiTargetPasswordEncrypted) {
+		toSerialize["iscsiTargetPasswordEncrypted"] = o.IscsiTargetPasswordEncrypted
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -585,6 +659,8 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")
+		delete(additionalProperties, "iscsiTargetUsername")
+		delete(additionalProperties, "iscsiTargetPasswordEncrypted")
 		o.AdditionalProperties = additionalProperties
 	}
 

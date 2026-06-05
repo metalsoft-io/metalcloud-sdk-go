@@ -23,7 +23,7 @@ type UpdateLogicalNetworkProfile struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
-	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
+	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
 	Vxlan *UpdateLogicalNetworkConfigVxlanProperties `json:"vxlan,omitempty"`
@@ -146,9 +146,9 @@ func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]string) {
 }
 
 // GetRouteDomainId returns the RouteDomainId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int32 {
+func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int64 {
 	if o == nil || IsNil(o.RouteDomainId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RouteDomainId.Get()
@@ -157,7 +157,7 @@ func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int32 {
 // GetRouteDomainIdOk returns a tuple with the RouteDomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool) {
+func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,8 +173,8 @@ func (o *UpdateLogicalNetworkProfile) HasRouteDomainId() bool {
 	return false
 }
 
-// SetRouteDomainId gets a reference to the given NullableInt32 and assigns it to the RouteDomainId field.
-func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int32) {
+// SetRouteDomainId gets a reference to the given NullableInt64 and assigns it to the RouteDomainId field.
+func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int64) {
 	o.RouteDomainId.Set(&v)
 }
 // SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil

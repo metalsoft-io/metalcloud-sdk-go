@@ -19,6 +19,7 @@ import (
 // ExtensionDefinitionInputsDataItem - struct for ExtensionDefinitionInputsDataItem
 type ExtensionDefinitionInputsDataItem struct {
 	ExtensionInputBoolean *ExtensionInputBoolean
+	ExtensionInputEnum *ExtensionInputEnum
 	ExtensionInputInteger *ExtensionInputInteger
 	ExtensionInputNetworkProfile *ExtensionInputNetworkProfile
 	ExtensionInputOsTemplate *ExtensionInputOsTemplate
@@ -30,6 +31,13 @@ type ExtensionDefinitionInputsDataItem struct {
 func ExtensionInputBooleanAsExtensionDefinitionInputsDataItem(v *ExtensionInputBoolean) ExtensionDefinitionInputsDataItem {
 	return ExtensionDefinitionInputsDataItem{
 		ExtensionInputBoolean: v,
+	}
+}
+
+// ExtensionInputEnumAsExtensionDefinitionInputsDataItem is a convenience function that returns ExtensionInputEnum wrapped in ExtensionDefinitionInputsDataItem
+func ExtensionInputEnumAsExtensionDefinitionInputsDataItem(v *ExtensionInputEnum) ExtensionDefinitionInputsDataItem {
+	return ExtensionDefinitionInputsDataItem{
+		ExtensionInputEnum: v,
 	}
 }
 
@@ -88,6 +96,18 @@ func (dst *ExtensionDefinitionInputsDataItem) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.ExtensionInputBoolean = nil
 			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputBoolean: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ExtensionInputEnum'
+	if jsonDict["inputType"] == "ExtensionInputEnum" {
+		// try to unmarshal JSON data into ExtensionInputEnum
+		err = json.Unmarshal(data, &dst.ExtensionInputEnum)
+		if err == nil {
+			return nil // data stored in dst.ExtensionInputEnum, return on the first match
+		} else {
+			dst.ExtensionInputEnum = nil
+			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputEnum: %s", err.Error())
 		}
 	}
 
@@ -160,6 +180,10 @@ func (src ExtensionDefinitionInputsDataItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ExtensionInputBoolean)
 	}
 
+	if src.ExtensionInputEnum != nil {
+		return json.Marshal(&src.ExtensionInputEnum)
+	}
+
 	if src.ExtensionInputInteger != nil {
 		return json.Marshal(&src.ExtensionInputInteger)
 	}
@@ -192,6 +216,10 @@ func (obj *ExtensionDefinitionInputsDataItem) GetActualInstance() (interface{}) 
 		return obj.ExtensionInputBoolean
 	}
 
+	if obj.ExtensionInputEnum != nil {
+		return obj.ExtensionInputEnum
+	}
+
 	if obj.ExtensionInputInteger != nil {
 		return obj.ExtensionInputInteger
 	}
@@ -220,6 +248,10 @@ func (obj *ExtensionDefinitionInputsDataItem) GetActualInstance() (interface{}) 
 func (obj ExtensionDefinitionInputsDataItem) GetActualInstanceValue() (interface{}) {
 	if obj.ExtensionInputBoolean != nil {
 		return *obj.ExtensionInputBoolean
+	}
+
+	if obj.ExtensionInputEnum != nil {
+		return *obj.ExtensionInputEnum
 	}
 
 	if obj.ExtensionInputInteger != nil {

@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createFirmwareCatalog := *openapiclient.NewCreateFirmwareCatalog("Dell PowerEdge R740", openapiclient.ServerFirmwareCatalogVendor("dell"), openapiclient.CatalogUpdateType("online")) // CreateFirmwareCatalog | 
+	createFirmwareCatalog := *openapiclient.NewCreateFirmwareCatalog("Dell PowerEdge R740", "dell", "online") // CreateFirmwareCatalog | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -332,7 +332,7 @@ import (
 
 func main() {
 	firmwareCatalogId := float32(8.14) // float32 | The firmware catalog id
-	updateFirmwareCatalog := *openapiclient.NewUpdateFirmwareCatalog("Dell PowerEdge R740", openapiclient.ServerFirmwareCatalogVendor("dell"), openapiclient.CatalogUpdateType("online")) // UpdateFirmwareCatalog | 
+	updateFirmwareCatalog := *openapiclient.NewUpdateFirmwareCatalog("Dell PowerEdge R740", "dell", "online") // UpdateFirmwareCatalog | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

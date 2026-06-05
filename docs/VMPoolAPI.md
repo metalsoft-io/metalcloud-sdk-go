@@ -26,6 +26,7 @@ Method | HTTP request | Description
 [**SyncVMPool**](VMPoolAPI.md#SyncVMPool) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/sync | Sync VM Pool
 [**UpdateVMPool**](VMPoolAPI.md#UpdateVMPool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
 [**UpdateVMPoolClusterHost**](VMPoolAPI.md#UpdateVMPoolClusterHost) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId} | Updates VM Cluster Host information
+[**UpdateVMPoolClusterHostInterface**](VMPoolAPI.md#UpdateVMPoolClusterHostInterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates VM Cluster Host Interface information
 
 
 
@@ -50,7 +51,7 @@ import (
 )
 
 func main() {
-	createVMPool := *openapiclient.NewCreateVMPool(float32(123), "ManagementHost_example", float32(123), "Name_example", "Type_example", float32(123)) // CreateVMPool | The VM Pool create object
+	createVMPool := *openapiclient.NewCreateVMPool(int64(123), "ManagementHost_example", float32(123), "Name_example", "Type_example", int64(123)) // CreateVMPool | The VM Pool create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +120,7 @@ func main() {
 	vmPoolId := float32(8.14) // float32 | 
 	vmPoolClusterHostId := float32(8.14) // float32 | 
 	vmPoolClusterHostInterfaceId := float32(8.14) // float32 | 
-	createVMPoolHostInterfaceNetworkDevice := *openapiclient.NewCreateVMPoolHostInterfaceNetworkDevice(float32(10), "Ethernet1/1") // CreateVMPoolHostInterfaceNetworkDevice | Network device assignment create object
+	createVMPoolHostInterfaceNetworkDevice := *openapiclient.NewCreateVMPoolHostInterfaceNetworkDevice(int64(10), "Ethernet1/1") // CreateVMPoolHostInterfaceNetworkDevice | Network device assignment create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1677,6 +1678,84 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMPoolHosts**](VMPoolHosts.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateVMPoolClusterHostInterface
+
+> VMPoolHostInterfaces UpdateVMPoolClusterHostInterface(ctx, vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).UpdateVMPoolHostInterface(updateVMPoolHostInterface).Execute()
+
+Updates VM Cluster Host Interface information
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+	vmPoolClusterHostId := float32(8.14) // float32 | 
+	vmPoolClusterHostInterfaceId := float32(8.14) // float32 | 
+	updateVMPoolHostInterface := *openapiclient.NewUpdateVMPoolHostInterface(openapiclient.VMPoolHostInterfaceStatus("inactive")) // UpdateVMPoolHostInterface | The VM Cluster Host Interface update object
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMPoolAPI.UpdateVMPoolClusterHostInterface(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).UpdateVMPoolHostInterface(updateVMPoolHostInterface).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.UpdateVMPoolClusterHostInterface``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateVMPoolClusterHostInterface`: VMPoolHostInterfaces
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.UpdateVMPoolClusterHostInterface`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+**vmPoolClusterHostId** | **float32** |  | 
+**vmPoolClusterHostInterfaceId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVMPoolClusterHostInterfaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **updateVMPoolHostInterface** | [**UpdateVMPoolHostInterface**](UpdateVMPoolHostInterface.md) | The VM Cluster Host Interface update object | 
+
+### Return type
+
+[**VMPoolHostInterfaces**](VMPoolHostInterfaces.md)
 
 ### Authorization
 

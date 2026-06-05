@@ -22,7 +22,7 @@ var _ MappedNullable = &Secret{}
 // Secret struct for Secret
 type Secret struct {
 	// The secret ID.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// ID of owner user.
 	UserIdOwner float32 `json:"userIdOwner"`
 	// The secret name.
@@ -44,7 +44,7 @@ type _Secret Secret
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSecret(id int32, userIdOwner float32, name string, createdTimestamp string, updatedTimestamp string) *Secret {
+func NewSecret(id int64, userIdOwner float32, name string, createdTimestamp string, updatedTimestamp string) *Secret {
 	this := Secret{}
 	this.Id = id
 	this.UserIdOwner = userIdOwner
@@ -63,9 +63,9 @@ func NewSecretWithDefaults() *Secret {
 }
 
 // GetId returns the Id field value
-func (o *Secret) GetId() int32 {
+func (o *Secret) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *Secret) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Secret) GetIdOk() (*int32, bool) {
+func (o *Secret) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *Secret) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Secret) SetId(v int32) {
+func (o *Secret) SetId(v int64) {
 	o.Id = v
 }
 

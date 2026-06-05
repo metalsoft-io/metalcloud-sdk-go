@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CapacityMbps** | Pointer to **int32** |  | [optional] 
-**NetworkId** | Pointer to **int32** | The ID of the network to which this interface is to be attached to. | [optional] 
+**NetworkId** | Pointer to **int64** | The ID of the network to which this interface is to be attached to. | [optional] 
 **Label** | Pointer to **string** | The server instance interface label. | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasCapacityMbps returns a boolean if a field has been set.
 
 ### GetNetworkId
 
-`func (o *ServerInstanceInterfaceUpdate) GetNetworkId() int32`
+`func (o *ServerInstanceInterfaceUpdate) GetNetworkId() int64`
 
 GetNetworkId returns the NetworkId field if non-nil, zero value otherwise.
 
 ### GetNetworkIdOk
 
-`func (o *ServerInstanceInterfaceUpdate) GetNetworkIdOk() (*int32, bool)`
+`func (o *ServerInstanceInterfaceUpdate) GetNetworkIdOk() (*int64, bool)`
 
 GetNetworkIdOk returns a tuple with the NetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkId
 
-`func (o *ServerInstanceInterfaceUpdate) SetNetworkId(v int32)`
+`func (o *ServerInstanceInterfaceUpdate) SetNetworkId(v int64)`
 
 SetNetworkId sets NetworkId field to given value.
 

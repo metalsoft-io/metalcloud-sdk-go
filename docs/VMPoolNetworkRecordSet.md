@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VmPoolId** | **float32** | The ID of the VM Pool. | 
+**VmPoolId** | **int64** | The ID of the VM Pool. | 
 **Hostname** | **string** | The hostname of the VM Pool. | 
 **Operation** | **string** | The operation of the VM Pool. | 
 **SwitchName** | Pointer to **string** | The switch name on which to operate (for VMware VDS). Null if not applicable. | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewVMPoolNetworkRecordSet
 
-`func NewVMPoolNetworkRecordSet(vmPoolId float32, hostname string, operation string, networkConfigurations []VMPoolNetworkConfigurationRecordSet, ) *VMPoolNetworkRecordSet`
+`func NewVMPoolNetworkRecordSet(vmPoolId int64, hostname string, operation string, networkConfigurations []VMPoolNetworkConfigurationRecordSet, ) *VMPoolNetworkRecordSet`
 
 NewVMPoolNetworkRecordSet instantiates a new VMPoolNetworkRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVmPoolId
 
-`func (o *VMPoolNetworkRecordSet) GetVmPoolId() float32`
+`func (o *VMPoolNetworkRecordSet) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *VMPoolNetworkRecordSet) GetVmPoolIdOk() (*float32, bool)`
+`func (o *VMPoolNetworkRecordSet) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *VMPoolNetworkRecordSet) SetVmPoolId(v float32)`
+`func (o *VMPoolNetworkRecordSet) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 

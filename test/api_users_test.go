@@ -105,27 +105,13 @@ func Test_sdk_UsersAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UsersAPIService GetDefaultUserLimits", func(t *testing.T) {
+	t.Run("Test UsersAPIService GetQuotaLimitsBreakdown", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var userId float32
 
-		resp, httpRes, err := apiClient.UsersAPI.GetDefaultUserLimits(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UsersAPIService GetDisabledUserLimits", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UsersAPI.GetDisabledUserLimits(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UsersAPI.GetQuotaLimitsBreakdown(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -175,20 +161,6 @@ func Test_sdk_UsersAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UsersAPIService GetUserLimits", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UsersAPI.GetUserLimits(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test UsersAPIService GetUserParentDelegates", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -196,20 +168,6 @@ func Test_sdk_UsersAPIService(t *testing.T) {
 		var userId float32
 
 		resp, httpRes, err := apiClient.UsersAPI.GetUserParentDelegates(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UsersAPIService GetUserPermissions", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UsersAPI.GetUserPermissions(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -398,20 +356,6 @@ func Test_sdk_UsersAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UsersAPIService UpdateUserLimits", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UsersAPI.UpdateUserLimits(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test UsersAPIService UpdateUserMeta", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -419,20 +363,6 @@ func Test_sdk_UsersAPIService(t *testing.T) {
 		var userId float32
 
 		resp, httpRes, err := apiClient.UsersAPI.UpdateUserMeta(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UsersAPIService UpdateUserPermissions", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UsersAPI.UpdateUserPermissions(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

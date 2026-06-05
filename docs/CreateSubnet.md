@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
 **Tags** | Pointer to **map[string]string** |  | [optional] 
-**ParentSubnetId** | Pointer to **int32** |  | [optional] 
+**ParentSubnetId** | Pointer to **int64** |  | [optional] 
 **NetworkAddress** | **string** |  | 
 **PrefixLength** | **int32** |  | 
 **DefaultGatewayAddress** | Pointer to **string** |  | [optional] 
@@ -137,20 +137,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetParentSubnetId
 
-`func (o *CreateSubnet) GetParentSubnetId() int32`
+`func (o *CreateSubnet) GetParentSubnetId() int64`
 
 GetParentSubnetId returns the ParentSubnetId field if non-nil, zero value otherwise.
 
 ### GetParentSubnetIdOk
 
-`func (o *CreateSubnet) GetParentSubnetIdOk() (*int32, bool)`
+`func (o *CreateSubnet) GetParentSubnetIdOk() (*int64, bool)`
 
 GetParentSubnetIdOk returns a tuple with the ParentSubnetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentSubnetId
 
-`func (o *CreateSubnet) SetParentSubnetId(v int32)`
+`func (o *CreateSubnet) SetParentSubnetId(v int64)`
 
 SetParentSubnetId sets ParentSubnetId field to given value.
 

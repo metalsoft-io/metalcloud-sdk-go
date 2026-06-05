@@ -76,20 +76,6 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AccountAPIService GetAccountLimits", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var accountId float32
-
-		resp, httpRes, err := apiClient.AccountAPI.GetAccountLimits(context.Background(), accountId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test AccountAPIService GetAccountUsers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -137,20 +123,6 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 		var accountId float32
 
 		resp, httpRes, err := apiClient.AccountAPI.UpdateAccountConfig(context.Background(), accountId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AccountAPIService UpdateAccountLimits", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var accountId float32
-
-		resp, httpRes, err := apiClient.AccountAPI.UpdateAccountLimits(context.Background(), accountId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

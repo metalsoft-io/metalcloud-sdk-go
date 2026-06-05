@@ -1163,7 +1163,7 @@ func (r ServerAPIGetServersRequest) FilterServerClass(filterServerClass []string
 	return r
 }
 
-// Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+// Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe&amp;filter.serverStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerStatus(filterServerStatus []string) ServerAPIGetServersRequest {
 	r.filterServerStatus = &filterServerStatus
 	return r

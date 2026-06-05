@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The Product Instance ID. | 
-**Revision** | **int32** | Revision number | 
+**Id** | **int64** | The Product Instance ID. | 
+**Revision** | **int64** | Revision number | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **CreatedTimestamp** | **string** | Timestamp of the Product Instance creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
-**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
-**InfrastructureId** | **int32** |  | 
-**GroupId** | **int32** |  | 
-**ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
-**ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
+**InfrastructureId** | **int64** |  | 
+**GroupId** | **int64** |  | 
+**ServerTypeId** | Pointer to **int64** | The server type ID. | [optional] 
+**ServerId** | Pointer to **int64** | The ID of the server assigned to the instance. | [optional] 
 **Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \&quot;instance\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionInstanceDnsRecords\&quot; is true.  | [optional] 
-**OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
-**InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
+**OsTemplateId** | Pointer to **int64** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**InstanceWanMlagId** | Pointer to **int64** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **PreferredServerIds** | Pointer to **[]float32** |  | [optional] 
 **CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Custom Storage Profile for the Instance. | [optional] 
 **ServiceStatus** | **string** | Current status of the server instance. | 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
-**VmInstanceId** | Pointer to **int32** | The id of the linked VM instance | [optional] 
+**VmInstanceId** | Pointer to **int64** | The id of the linked VM instance | [optional] 
 **IsEndpointInstance** | **int32** | Flag to indicate if this is an Endpoint Instance | 
-**EndpointId** | Pointer to **int32** | The id of the Endpoint | [optional] 
+**EndpointId** | Pointer to **int64** | The id of the Endpoint | [optional] 
 **ClusterCustomInfo** | Pointer to **map[string]interface{}** |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
@@ -37,6 +37,7 @@ Name | Type | Description | Notes
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
+**IscsiTargetUsername** | Pointer to **string** | iSCSI Target Username for the Instance. | [optional] 
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
 **Meta** | [**GenericMeta**](GenericMeta.md) |  | 
 **Config** | Pointer to [**ServerInstanceConfiguration**](ServerInstanceConfiguration.md) |  | [optional] 
@@ -48,7 +49,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstance
 
-`func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32, isEndpointInstance int32, meta GenericMeta, ) *ServerInstance`
+`func NewServerInstance(id int64, revision int64, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int64, groupId int64, serviceStatus string, isVmInstance int32, isEndpointInstance int32, meta GenericMeta, ) *ServerInstance`
 
 NewServerInstance instantiates a new ServerInstance object
 This constructor will assign default values to properties that have it defined,
@@ -65,40 +66,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerInstance) GetId() int32`
+`func (o *ServerInstance) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerInstance) GetIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerInstance) SetId(v int32)`
+`func (o *ServerInstance) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *ServerInstance) GetRevision() int32`
+`func (o *ServerInstance) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ServerInstance) GetRevisionOk() (*int32, bool)`
+`func (o *ServerInstance) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ServerInstance) SetRevision(v int32)`
+`func (o *ServerInstance) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -215,20 +216,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *ServerInstance) GetDnsSubdomainId() int32`
+`func (o *ServerInstance) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *ServerInstance) GetDnsSubdomainIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *ServerInstance) SetDnsSubdomainId(v int32)`
+`func (o *ServerInstance) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -240,20 +241,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *ServerInstance) GetDnsSubdomainPermanentId() int32`
+`func (o *ServerInstance) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *ServerInstance) GetDnsSubdomainPermanentIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *ServerInstance) SetDnsSubdomainPermanentId(v int32)`
+`func (o *ServerInstance) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
@@ -265,60 +266,60 @@ HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
 ### GetInfrastructureId
 
-`func (o *ServerInstance) GetInfrastructureId() int32`
+`func (o *ServerInstance) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *ServerInstance) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *ServerInstance) SetInfrastructureId(v int32)`
+`func (o *ServerInstance) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetGroupId
 
-`func (o *ServerInstance) GetGroupId() int32`
+`func (o *ServerInstance) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *ServerInstance) GetGroupIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *ServerInstance) SetGroupId(v int32)`
+`func (o *ServerInstance) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
 
 ### GetServerTypeId
 
-`func (o *ServerInstance) GetServerTypeId() int32`
+`func (o *ServerInstance) GetServerTypeId() int64`
 
 GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdOk
 
-`func (o *ServerInstance) GetServerTypeIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetServerTypeIdOk() (*int64, bool)`
 
 GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeId
 
-`func (o *ServerInstance) SetServerTypeId(v int32)`
+`func (o *ServerInstance) SetServerTypeId(v int64)`
 
 SetServerTypeId sets ServerTypeId field to given value.
 
@@ -330,20 +331,20 @@ HasServerTypeId returns a boolean if a field has been set.
 
 ### GetServerId
 
-`func (o *ServerInstance) GetServerId() int32`
+`func (o *ServerInstance) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *ServerInstance) GetServerIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *ServerInstance) SetServerId(v int32)`
+`func (o *ServerInstance) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -380,20 +381,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 
-`func (o *ServerInstance) GetOsTemplateId() int32`
+`func (o *ServerInstance) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *ServerInstance) GetOsTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *ServerInstance) SetOsTemplateId(v int32)`
+`func (o *ServerInstance) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 
@@ -405,20 +406,20 @@ HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetInstanceWanMlagId
 
-`func (o *ServerInstance) GetInstanceWanMlagId() int32`
+`func (o *ServerInstance) GetInstanceWanMlagId() int64`
 
 GetInstanceWanMlagId returns the InstanceWanMlagId field if non-nil, zero value otherwise.
 
 ### GetInstanceWanMlagIdOk
 
-`func (o *ServerInstance) GetInstanceWanMlagIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetInstanceWanMlagIdOk() (*int64, bool)`
 
 GetInstanceWanMlagIdOk returns a tuple with the InstanceWanMlagId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceWanMlagId
 
-`func (o *ServerInstance) SetInstanceWanMlagId(v int32)`
+`func (o *ServerInstance) SetInstanceWanMlagId(v int64)`
 
 SetInstanceWanMlagId sets InstanceWanMlagId field to given value.
 
@@ -545,20 +546,20 @@ SetIsVmInstance sets IsVmInstance field to given value.
 
 ### GetVmInstanceId
 
-`func (o *ServerInstance) GetVmInstanceId() int32`
+`func (o *ServerInstance) GetVmInstanceId() int64`
 
 GetVmInstanceId returns the VmInstanceId field if non-nil, zero value otherwise.
 
 ### GetVmInstanceIdOk
 
-`func (o *ServerInstance) GetVmInstanceIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetVmInstanceIdOk() (*int64, bool)`
 
 GetVmInstanceIdOk returns a tuple with the VmInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmInstanceId
 
-`func (o *ServerInstance) SetVmInstanceId(v int32)`
+`func (o *ServerInstance) SetVmInstanceId(v int64)`
 
 SetVmInstanceId sets VmInstanceId field to given value.
 
@@ -590,20 +591,20 @@ SetIsEndpointInstance sets IsEndpointInstance field to given value.
 
 ### GetEndpointId
 
-`func (o *ServerInstance) GetEndpointId() int32`
+`func (o *ServerInstance) GetEndpointId() int64`
 
 GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
 
 ### GetEndpointIdOk
 
-`func (o *ServerInstance) GetEndpointIdOk() (*int32, bool)`
+`func (o *ServerInstance) GetEndpointIdOk() (*int64, bool)`
 
 GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndpointId
 
-`func (o *ServerInstance) SetEndpointId(v int32)`
+`func (o *ServerInstance) SetEndpointId(v int64)`
 
 SetEndpointId sets EndpointId field to given value.
 
@@ -837,6 +838,31 @@ SetIscsiInitiatorUsername sets IscsiInitiatorUsername field to given value.
 `func (o *ServerInstance) HasIscsiInitiatorUsername() bool`
 
 HasIscsiInitiatorUsername returns a boolean if a field has been set.
+
+### GetIscsiTargetUsername
+
+`func (o *ServerInstance) GetIscsiTargetUsername() string`
+
+GetIscsiTargetUsername returns the IscsiTargetUsername field if non-nil, zero value otherwise.
+
+### GetIscsiTargetUsernameOk
+
+`func (o *ServerInstance) GetIscsiTargetUsernameOk() (*string, bool)`
+
+GetIscsiTargetUsernameOk returns a tuple with the IscsiTargetUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiTargetUsername
+
+`func (o *ServerInstance) SetIscsiTargetUsername(v string)`
+
+SetIscsiTargetUsername sets IscsiTargetUsername field to given value.
+
+### HasIscsiTargetUsername
+
+`func (o *ServerInstance) HasIscsiTargetUsername() bool`
+
+HasIscsiTargetUsername returns a boolean if a field has been set.
 
 ### GetControlPanelUrl
 

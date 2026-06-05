@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Role label | 
 **Description** | Pointer to **string** | Role description | [optional] 
 **Permissions** | **[]string** | List of permissions assigned to the role | 
+**QuotaProfileId** | Pointer to **string** | Quota profile assigned to this role | [optional] 
 
 ## Methods
 
@@ -91,6 +92,31 @@ and a boolean to check if the value has been set.
 
 SetPermissions sets Permissions field to given value.
 
+
+### GetQuotaProfileId
+
+`func (o *EditRole) GetQuotaProfileId() string`
+
+GetQuotaProfileId returns the QuotaProfileId field if non-nil, zero value otherwise.
+
+### GetQuotaProfileIdOk
+
+`func (o *EditRole) GetQuotaProfileIdOk() (*string, bool)`
+
+GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuotaProfileId
+
+`func (o *EditRole) SetQuotaProfileId(v string)`
+
+SetQuotaProfileId sets QuotaProfileId field to given value.
+
+### HasQuotaProfileId
+
+`func (o *EditRole) HasQuotaProfileId() bool`
+
+HasQuotaProfileId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

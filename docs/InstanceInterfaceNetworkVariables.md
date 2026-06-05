@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InterfaceType** | [**InstanceInterfaceType**](InstanceInterfaceType.md) |  | 
-**LogicalNetworkId** | Pointer to **float32** |  | [optional] 
+**LogicalNetworkId** | Pointer to **int64** |  | [optional] 
 **LogicalNetworkName** | Pointer to **string** |  | [optional] 
 **LogicalNetworkLabel** | Pointer to **string** |  | [optional] 
-**TypeInterfaceId** | **float32** |  | 
+**TypeInterfaceId** | **int64** |  | 
 **MacAddress** | Pointer to **string** |  | [optional] 
 **Mtu** | Pointer to **float32** |  | [optional] 
-**VlanId** | Pointer to **float32** |  | [optional] 
+**VlanId** | Pointer to **int32** |  | [optional] 
 **Ipv4Addresses** | Pointer to [**[]InstanceInterfaceIpv4AddressVariables**](InstanceInterfaceIpv4AddressVariables.md) |  | [optional] 
 **Ipv6Addresses** | Pointer to [**[]InstanceInterfaceIpv6AddressVariables**](InstanceInterfaceIpv6AddressVariables.md) |  | [optional] 
 **Routes** | Pointer to [**[]InstanceInterfaceRouteVariables**](InstanceInterfaceRouteVariables.md) |  | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewInstanceInterfaceNetworkVariables
 
-`func NewInstanceInterfaceNetworkVariables(interfaceType InstanceInterfaceType, typeInterfaceId float32, ) *InstanceInterfaceNetworkVariables`
+`func NewInstanceInterfaceNetworkVariables(interfaceType InstanceInterfaceType, typeInterfaceId int64, ) *InstanceInterfaceNetworkVariables`
 
 NewInstanceInterfaceNetworkVariables instantiates a new InstanceInterfaceNetworkVariables object
 This constructor will assign default values to properties that have it defined,
@@ -59,20 +59,20 @@ SetInterfaceType sets InterfaceType field to given value.
 
 ### GetLogicalNetworkId
 
-`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkId() float32`
+`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkId(v float32)`
+`func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -134,20 +134,20 @@ HasLogicalNetworkLabel returns a boolean if a field has been set.
 
 ### GetTypeInterfaceId
 
-`func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceId() float32`
+`func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceId() int64`
 
 GetTypeInterfaceId returns the TypeInterfaceId field if non-nil, zero value otherwise.
 
 ### GetTypeInterfaceIdOk
 
-`func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceIdOk() (*float32, bool)`
+`func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceIdOk() (*int64, bool)`
 
 GetTypeInterfaceIdOk returns a tuple with the TypeInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeInterfaceId
 
-`func (o *InstanceInterfaceNetworkVariables) SetTypeInterfaceId(v float32)`
+`func (o *InstanceInterfaceNetworkVariables) SetTypeInterfaceId(v int64)`
 
 SetTypeInterfaceId sets TypeInterfaceId field to given value.
 
@@ -204,20 +204,20 @@ HasMtu returns a boolean if a field has been set.
 
 ### GetVlanId
 
-`func (o *InstanceInterfaceNetworkVariables) GetVlanId() float32`
+`func (o *InstanceInterfaceNetworkVariables) GetVlanId() int32`
 
 GetVlanId returns the VlanId field if non-nil, zero value otherwise.
 
 ### GetVlanIdOk
 
-`func (o *InstanceInterfaceNetworkVariables) GetVlanIdOk() (*float32, bool)`
+`func (o *InstanceInterfaceNetworkVariables) GetVlanIdOk() (*int32, bool)`
 
 GetVlanIdOk returns a tuple with the VlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanId
 
-`func (o *InstanceInterfaceNetworkVariables) SetVlanId(v float32)`
+`func (o *InstanceInterfaceNetworkVariables) SetVlanId(v int32)`
 
 SetVlanId sets VlanId field to given value.
 

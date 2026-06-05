@@ -33,6 +33,8 @@ type NetworkFabricInterconnectDeployPreview struct {
 	GlobalTemplateDeactivate []string `json:"globalTemplateDeactivate"`
 	// Preview of BGP neighbor configuration deactivation template
 	NeighborTemplateDeactivate []string `json:"neighborTemplateDeactivate"`
+	// Apply-ready command list. Concatenation of the mode-appropriate generated templates (activate or deactivate side) with the sonic-cli / configure terminal prefix prepended once. Sent to switch.ssh_exec verbatim by the apply step.
+	Changes []string `json:"changes"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,7 +44,7 @@ type _NetworkFabricInterconnectDeployPreview NetworkFabricInterconnectDeployPrev
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricInterconnectDeployPreview(networkDeviceId float32, networkInterconnectId float32, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string) *NetworkFabricInterconnectDeployPreview {
+func NewNetworkFabricInterconnectDeployPreview(networkDeviceId float32, networkInterconnectId float32, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string, changes []string) *NetworkFabricInterconnectDeployPreview {
 	this := NetworkFabricInterconnectDeployPreview{}
 	this.NetworkDeviceId = networkDeviceId
 	this.NetworkInterconnectId = networkInterconnectId
@@ -50,6 +52,7 @@ func NewNetworkFabricInterconnectDeployPreview(networkDeviceId float32, networkI
 	this.NeighborTemplateActivate = neighborTemplateActivate
 	this.GlobalTemplateDeactivate = globalTemplateDeactivate
 	this.NeighborTemplateDeactivate = neighborTemplateDeactivate
+	this.Changes = changes
 	return &this
 }
 
@@ -205,6 +208,30 @@ func (o *NetworkFabricInterconnectDeployPreview) SetNeighborTemplateDeactivate(v
 	o.NeighborTemplateDeactivate = v
 }
 
+// GetChanges returns the Changes field value
+func (o *NetworkFabricInterconnectDeployPreview) GetChanges() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Changes
+}
+
+// GetChangesOk returns a tuple with the Changes field value
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricInterconnectDeployPreview) GetChangesOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Changes, true
+}
+
+// SetChanges sets field value
+func (o *NetworkFabricInterconnectDeployPreview) SetChanges(v []string) {
+	o.Changes = v
+}
+
 func (o NetworkFabricInterconnectDeployPreview) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -221,6 +248,7 @@ func (o NetworkFabricInterconnectDeployPreview) ToMap() (map[string]interface{},
 	toSerialize["neighborTemplateActivate"] = o.NeighborTemplateActivate
 	toSerialize["globalTemplateDeactivate"] = o.GlobalTemplateDeactivate
 	toSerialize["neighborTemplateDeactivate"] = o.NeighborTemplateDeactivate
+	toSerialize["changes"] = o.Changes
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -240,6 +268,7 @@ func (o *NetworkFabricInterconnectDeployPreview) UnmarshalJSON(data []byte) (err
 		"neighborTemplateActivate",
 		"globalTemplateDeactivate",
 		"neighborTemplateDeactivate",
+		"changes",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -275,6 +304,7 @@ func (o *NetworkFabricInterconnectDeployPreview) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "neighborTemplateActivate")
 		delete(additionalProperties, "globalTemplateDeactivate")
 		delete(additionalProperties, "neighborTemplateDeactivate")
+		delete(additionalProperties, "changes")
 		o.AdditionalProperties = additionalProperties
 	}
 

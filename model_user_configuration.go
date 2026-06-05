@@ -22,7 +22,7 @@ var _ MappedNullable = &UserConfiguration{}
 // UserConfiguration struct for UserConfiguration
 type UserConfiguration struct {
 	// Revision of the user configuration
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The display name of the user
 	DisplayName string `json:"displayName"`
 	// The email status of the user
@@ -68,7 +68,7 @@ type UserConfiguration struct {
 	// Whether the user is a datastore publisher
 	IsDatastorePublisher bool `json:"isDatastorePublisher"`
 	// The account ID of the user
-	AccountId *float32 `json:"accountId,omitempty"`
+	AccountId *int64 `json:"accountId,omitempty"`
 	// The provider of the user
 	Provider string `json:"provider"`
 	// The timestamp when the user last changed their password
@@ -82,7 +82,7 @@ type _UserConfiguration UserConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string) *UserConfiguration {
+func NewUserConfiguration(revision int64, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string) *UserConfiguration {
 	this := UserConfiguration{}
 	this.Revision = revision
 	this.DisplayName = displayName
@@ -123,9 +123,9 @@ func NewUserConfigurationWithDefaults() *UserConfiguration {
 }
 
 // GetRevision returns the Revision field value
-func (o *UserConfiguration) GetRevision() float32 {
+func (o *UserConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -134,7 +134,7 @@ func (o *UserConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *UserConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *UserConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,7 +142,7 @@ func (o *UserConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *UserConfiguration) SetRevision(v float32) {
+func (o *UserConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -707,9 +707,9 @@ func (o *UserConfiguration) SetIsDatastorePublisher(v bool) {
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *UserConfiguration) GetAccountId() float32 {
+func (o *UserConfiguration) GetAccountId() int64 {
 	if o == nil || IsNil(o.AccountId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.AccountId
@@ -717,7 +717,7 @@ func (o *UserConfiguration) GetAccountId() float32 {
 
 // GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserConfiguration) GetAccountIdOk() (*float32, bool) {
+func (o *UserConfiguration) GetAccountIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.AccountId) {
 		return nil, false
 	}
@@ -733,8 +733,8 @@ func (o *UserConfiguration) HasAccountId() bool {
 	return false
 }
 
-// SetAccountId gets a reference to the given float32 and assigns it to the AccountId field.
-func (o *UserConfiguration) SetAccountId(v float32) {
+// SetAccountId gets a reference to the given int64 and assigns it to the AccountId field.
+func (o *UserConfiguration) SetAccountId(v int64) {
 	o.AccountId = &v
 }
 

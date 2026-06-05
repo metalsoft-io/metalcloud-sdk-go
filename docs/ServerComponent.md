@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The unique identifier of the server component. | 
+**Id** | **int64** | The unique identifier of the server component. | 
 **ExternalId** | Pointer to **string** | The external identifier of the server component. | [optional] 
-**ServerId** | Pointer to **float32** | The unique identifier of the server. | [optional] 
+**ServerId** | Pointer to **int64** | The unique identifier of the server. | [optional] 
 **Name** | Pointer to **string** | The name of the server component. | [optional] 
 **FirmwareTargetVersion** | Pointer to **string** | The target firmware version of the server component. | [optional] 
 **FirmwareUpdateAvailableVersions** | Pointer to **map[string]interface{}** | The available firmware versions of the server component. | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewServerComponent
 
-`func NewServerComponent(id float32, firmwareUpdateable float32, firmwareUpgradeNeedsConfirmation float32, firmwareStatus string, ) *ServerComponent`
+`func NewServerComponent(id int64, firmwareUpdateable float32, firmwareUpgradeNeedsConfirmation float32, firmwareStatus string, ) *ServerComponent`
 
 NewServerComponent instantiates a new ServerComponent object
 This constructor will assign default values to properties that have it defined,
@@ -42,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerComponent) GetId() float32`
+`func (o *ServerComponent) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerComponent) GetIdOk() (*float32, bool)`
+`func (o *ServerComponent) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerComponent) SetId(v float32)`
+`func (o *ServerComponent) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -87,20 +87,20 @@ HasExternalId returns a boolean if a field has been set.
 
 ### GetServerId
 
-`func (o *ServerComponent) GetServerId() float32`
+`func (o *ServerComponent) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *ServerComponent) GetServerIdOk() (*float32, bool)`
+`func (o *ServerComponent) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *ServerComponent) SetServerId(v float32)`
+`func (o *ServerComponent) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 

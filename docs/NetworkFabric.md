@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | Pointer to **int32** | The ID of the site where the entity is located. | [optional] 
+**SiteId** | Pointer to **int64** | The ID of the site where the entity is located. | [optional] 
 **Name** | **string** | The network fabric name | 
 **ExternalId** | Pointer to **string** | The external identifier for this fabric on the controller (e.g. NDFC fabric name) | [optional] 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Id** | **string** | The network fabric ID. | 
 **Status** | Pointer to [**FabricStatus**](FabricStatus.md) | The status of the network fabric, by default it is in draft mode. | [optional] 
-**DeployId** | Pointer to **int32** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
-**TransportId** | Pointer to **NullableInt32** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
+**DeployId** | Pointer to **int64** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
+**TransportId** | Pointer to **NullableInt64** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
 **DeployPreview** | Pointer to [**[]NetworkFabricDeployPreview**](NetworkFabricDeployPreview.md) | The deploy preview for the network fabric, if it is being deployed. | [optional] 
 **NetworkEquipment** | Pointer to [**[]NetworkDevice**](NetworkDevice.md) | The network equipments in the fabric | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network fabric | [optional] 
@@ -42,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *NetworkFabric) GetSiteId() int32`
+`func (o *NetworkFabric) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *NetworkFabric) GetSiteIdOk() (*int32, bool)`
+`func (o *NetworkFabric) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *NetworkFabric) SetSiteId(v int32)`
+`func (o *NetworkFabric) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -287,20 +287,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetDeployId
 
-`func (o *NetworkFabric) GetDeployId() int32`
+`func (o *NetworkFabric) GetDeployId() int64`
 
 GetDeployId returns the DeployId field if non-nil, zero value otherwise.
 
 ### GetDeployIdOk
 
-`func (o *NetworkFabric) GetDeployIdOk() (*int32, bool)`
+`func (o *NetworkFabric) GetDeployIdOk() (*int64, bool)`
 
 GetDeployIdOk returns a tuple with the DeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeployId
 
-`func (o *NetworkFabric) SetDeployId(v int32)`
+`func (o *NetworkFabric) SetDeployId(v int64)`
 
 SetDeployId sets DeployId field to given value.
 
@@ -312,20 +312,20 @@ HasDeployId returns a boolean if a field has been set.
 
 ### GetTransportId
 
-`func (o *NetworkFabric) GetTransportId() int32`
+`func (o *NetworkFabric) GetTransportId() int64`
 
 GetTransportId returns the TransportId field if non-nil, zero value otherwise.
 
 ### GetTransportIdOk
 
-`func (o *NetworkFabric) GetTransportIdOk() (*int32, bool)`
+`func (o *NetworkFabric) GetTransportIdOk() (*int64, bool)`
 
 GetTransportIdOk returns a tuple with the TransportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransportId
 
-`func (o *NetworkFabric) SetTransportId(v int32)`
+`func (o *NetworkFabric) SetTransportId(v int64)`
 
 SetTransportId sets TransportId field to given value.
 

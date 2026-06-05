@@ -27,9 +27,9 @@ type CreateFileShare struct {
 	Label *string `json:"label,omitempty"`
 	Meta *FileShareMeta `json:"meta,omitempty"`
 	// Id of the Logical Network for the File Share.
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	// Id of the storage pool the File Share is assigned to
-	StoragePoolId float32 `json:"storagePoolId"`
+	StoragePoolId int64 `json:"storagePoolId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,7 +39,7 @@ type _CreateFileShare CreateFileShare
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateFileShare(sizeGB float32, storagePoolId float32) *CreateFileShare {
+func NewCreateFileShare(sizeGB float32, storagePoolId int64) *CreateFileShare {
 	this := CreateFileShare{}
 	this.SizeGB = sizeGB
 	this.StoragePoolId = storagePoolId
@@ -143,9 +143,9 @@ func (o *CreateFileShare) SetMeta(v FileShareMeta) {
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *CreateFileShare) GetLogicalNetworkId() float32 {
+func (o *CreateFileShare) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -153,7 +153,7 @@ func (o *CreateFileShare) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFileShare) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *CreateFileShare) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -169,15 +169,15 @@ func (o *CreateFileShare) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *CreateFileShare) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *CreateFileShare) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 
 // GetStoragePoolId returns the StoragePoolId field value
-func (o *CreateFileShare) GetStoragePoolId() float32 {
+func (o *CreateFileShare) GetStoragePoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -186,7 +186,7 @@ func (o *CreateFileShare) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value
 // and a boolean to check if the value has been set.
-func (o *CreateFileShare) GetStoragePoolIdOk() (*float32, bool) {
+func (o *CreateFileShare) GetStoragePoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *CreateFileShare) GetStoragePoolIdOk() (*float32, bool) {
 }
 
 // SetStoragePoolId sets field value
-func (o *CreateFileShare) SetStoragePoolId(v float32) {
+func (o *CreateFileShare) SetStoragePoolId(v int64) {
 	o.StoragePoolId = v
 }
 

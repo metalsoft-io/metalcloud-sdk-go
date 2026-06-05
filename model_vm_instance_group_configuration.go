@@ -22,20 +22,20 @@ var _ MappedNullable = &VMInstanceGroupConfiguration{}
 // VMInstanceGroupConfiguration struct for VMInstanceGroupConfiguration
 type VMInstanceGroupConfiguration struct {
 	// Revision of the VM Instance Group Configuration
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Name of the VM Instance Group.
 	Label string `json:"label"`
 	// Subdomain of the VM Instance Group.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the DNS subdomain for the VM Instance Group.
-	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	InstanceCount *float32 `json:"instanceCount,omitempty"`
 	// Deploy type of the VM Instance Group
 	DeployType string `json:"deployType"`
 	// Deploy status of the VM Instance Group
 	DeployStatus string `json:"deployStatus"`
 	// Id of the deployment for the VM Instance Group.
-	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Custom variables for the VM Instance Group.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Timestamp of the VM Instance Group last update.
@@ -49,7 +49,7 @@ type _VMInstanceGroupConfiguration VMInstanceGroupConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceGroupConfiguration(revision float32, label string, deployType string, deployStatus string, updatedTimestamp string) *VMInstanceGroupConfiguration {
+func NewVMInstanceGroupConfiguration(revision int64, label string, deployType string, deployStatus string, updatedTimestamp string) *VMInstanceGroupConfiguration {
 	this := VMInstanceGroupConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -76,9 +76,9 @@ func NewVMInstanceGroupConfigurationWithDefaults() *VMInstanceGroupConfiguration
 }
 
 // GetRevision returns the Revision field value
-func (o *VMInstanceGroupConfiguration) GetRevision() float32 {
+func (o *VMInstanceGroupConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -87,7 +87,7 @@ func (o *VMInstanceGroupConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *VMInstanceGroupConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *VMInstanceGroupConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *VMInstanceGroupConfiguration) SetRevision(v float32) {
+func (o *VMInstanceGroupConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -156,9 +156,9 @@ func (o *VMInstanceGroupConfiguration) SetSubdomain(v string) {
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *VMInstanceGroupConfiguration) GetDnsSubdomainChangeId() float32 {
+func (o *VMInstanceGroupConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -166,7 +166,7 @@ func (o *VMInstanceGroupConfiguration) GetDnsSubdomainChangeId() float32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool) {
+func (o *VMInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -182,8 +182,8 @@ func (o *VMInstanceGroupConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given float32 and assigns it to the DnsSubdomainChangeId field.
-func (o *VMInstanceGroupConfiguration) SetDnsSubdomainChangeId(v float32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *VMInstanceGroupConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
@@ -268,9 +268,9 @@ func (o *VMInstanceGroupConfiguration) SetDeployStatus(v string) {
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *VMInstanceGroupConfiguration) GetInfrastructureDeployId() float32 {
+func (o *VMInstanceGroupConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -278,7 +278,7 @@ func (o *VMInstanceGroupConfiguration) GetInfrastructureDeployId() float32 {
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
+func (o *VMInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -294,8 +294,8 @@ func (o *VMInstanceGroupConfiguration) HasInfrastructureDeployId() bool {
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
-func (o *VMInstanceGroupConfiguration) SetInfrastructureDeployId(v float32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *VMInstanceGroupConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 

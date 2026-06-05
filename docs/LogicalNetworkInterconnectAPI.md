@@ -38,7 +38,7 @@ import (
 
 func main() {
 	id := int32(56) // int32 | The id of the logical network interconnect
-	addLogicalNetworkToInterconnect := *openapiclient.NewAddLogicalNetworkToInterconnect(int32(1)) // AddLogicalNetworkToInterconnect | The logical network to add
+	addLogicalNetworkToInterconnect := *openapiclient.NewAddLogicalNetworkToInterconnect(int64(1)) // AddLogicalNetworkToInterconnect | The logical network to add
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -107,7 +107,7 @@ import (
 )
 
 func main() {
-	createLogicalNetworkInterconnect := *openapiclient.NewCreateLogicalNetworkInterconnect("logical-network-interconnect-01", "Primary Logical Network Interconnect", int32(1)) // CreateLogicalNetworkInterconnect | The logical network interconnect to create
+	createLogicalNetworkInterconnect := *openapiclient.NewCreateLogicalNetworkInterconnect("logical-network-interconnect-01", "Primary Logical Network Interconnect", int64(1)) // CreateLogicalNetworkInterconnect | The logical network interconnect to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -22,9 +22,9 @@ var _ MappedNullable = &ServerOSInstallationData{}
 // ServerOSInstallationData struct for ServerOSInstallationData
 type ServerOSInstallationData struct {
 	// The id of the server.
-	ServerId float32 `json:"serverId"`
+	ServerId int64 `json:"serverId"`
 	// The id of the server type.
-	ServerTypeId *float32 `json:"serverTypeId,omitempty"`
+	ServerTypeId *int64 `json:"serverTypeId,omitempty"`
 	// The UUID of the server.
 	ServerUUID *string `json:"serverUUID,omitempty"`
 	// The Serial Number of the server.
@@ -68,7 +68,7 @@ type _ServerOSInstallationData ServerOSInstallationData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerOSInstallationData(serverId float32, passwordEncrypted string) *ServerOSInstallationData {
+func NewServerOSInstallationData(serverId int64, passwordEncrypted string) *ServerOSInstallationData {
 	this := ServerOSInstallationData{}
 	this.ServerId = serverId
 	this.PasswordEncrypted = passwordEncrypted
@@ -84,9 +84,9 @@ func NewServerOSInstallationDataWithDefaults() *ServerOSInstallationData {
 }
 
 // GetServerId returns the ServerId field value
-func (o *ServerOSInstallationData) GetServerId() float32 {
+func (o *ServerOSInstallationData) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *ServerOSInstallationData) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *ServerOSInstallationData) GetServerIdOk() (*float32, bool) {
+func (o *ServerOSInstallationData) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,14 +103,14 @@ func (o *ServerOSInstallationData) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *ServerOSInstallationData) SetServerId(v float32) {
+func (o *ServerOSInstallationData) SetServerId(v int64) {
 	o.ServerId = v
 }
 
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
-func (o *ServerOSInstallationData) GetServerTypeId() float32 {
+func (o *ServerOSInstallationData) GetServerTypeId() int64 {
 	if o == nil || IsNil(o.ServerTypeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerTypeId
@@ -118,7 +118,7 @@ func (o *ServerOSInstallationData) GetServerTypeId() float32 {
 
 // GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerOSInstallationData) GetServerTypeIdOk() (*float32, bool) {
+func (o *ServerOSInstallationData) GetServerTypeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerTypeId) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *ServerOSInstallationData) HasServerTypeId() bool {
 	return false
 }
 
-// SetServerTypeId gets a reference to the given float32 and assigns it to the ServerTypeId field.
-func (o *ServerOSInstallationData) SetServerTypeId(v float32) {
+// SetServerTypeId gets a reference to the given int64 and assigns it to the ServerTypeId field.
+func (o *ServerOSInstallationData) SetServerTypeId(v int64) {
 	o.ServerTypeId = &v
 }
 

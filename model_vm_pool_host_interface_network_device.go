@@ -22,11 +22,11 @@ var _ MappedNullable = &VMPoolHostInterfaceNetworkDevice{}
 // VMPoolHostInterfaceNetworkDevice struct for VMPoolHostInterfaceNetworkDevice
 type VMPoolHostInterfaceNetworkDevice struct {
 	// Network device assignment ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// VM Pool Host Interface ID
-	HostInterfaceId float32 `json:"hostInterfaceId"`
+	HostInterfaceId int64 `json:"hostInterfaceId"`
 	// ID of the network equipment (switch)
-	NetworkDeviceId float32 `json:"networkDeviceId"`
+	NetworkDeviceId int64 `json:"networkDeviceId"`
 	// Name of the interface on the network equipment
 	NetworkDeviceInterfaceName string `json:"networkDeviceInterfaceName"`
 	AdditionalProperties map[string]interface{}
@@ -38,7 +38,7 @@ type _VMPoolHostInterfaceNetworkDevice VMPoolHostInterfaceNetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHostInterfaceNetworkDevice(id float32, hostInterfaceId float32, networkDeviceId float32, networkDeviceInterfaceName string) *VMPoolHostInterfaceNetworkDevice {
+func NewVMPoolHostInterfaceNetworkDevice(id int64, hostInterfaceId int64, networkDeviceId int64, networkDeviceInterfaceName string) *VMPoolHostInterfaceNetworkDevice {
 	this := VMPoolHostInterfaceNetworkDevice{}
 	this.Id = id
 	this.HostInterfaceId = hostInterfaceId
@@ -56,9 +56,9 @@ func NewVMPoolHostInterfaceNetworkDeviceWithDefaults() *VMPoolHostInterfaceNetwo
 }
 
 // GetId returns the Id field value
-func (o *VMPoolHostInterfaceNetworkDevice) GetId() float32 {
+func (o *VMPoolHostInterfaceNetworkDevice) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *VMPoolHostInterfaceNetworkDevice) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolHostInterfaceNetworkDevice) GetIdOk() (*float32, bool) {
+func (o *VMPoolHostInterfaceNetworkDevice) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,14 +75,14 @@ func (o *VMPoolHostInterfaceNetworkDevice) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMPoolHostInterfaceNetworkDevice) SetId(v float32) {
+func (o *VMPoolHostInterfaceNetworkDevice) SetId(v int64) {
 	o.Id = v
 }
 
 // GetHostInterfaceId returns the HostInterfaceId field value
-func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceId() float32 {
+func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceId() float32 {
 
 // GetHostInterfaceIdOk returns a tuple with the HostInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceIdOk() (*float32, bool) {
+func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,14 +99,14 @@ func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceIdOk() (*float32, boo
 }
 
 // SetHostInterfaceId sets field value
-func (o *VMPoolHostInterfaceNetworkDevice) SetHostInterfaceId(v float32) {
+func (o *VMPoolHostInterfaceNetworkDevice) SetHostInterfaceId(v int64) {
 	o.HostInterfaceId = v
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceId() float32 {
+func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -115,7 +115,7 @@ func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceId() float32 {
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceIdOk() (*float32, bool) {
+func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceIdOk() (*float32, boo
 }
 
 // SetNetworkDeviceId sets field value
-func (o *VMPoolHostInterfaceNetworkDevice) SetNetworkDeviceId(v float32) {
+func (o *VMPoolHostInterfaceNetworkDevice) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InstanceId** | **float32** | The id of the instance. | 
+**InstanceId** | **int64** | The id of the instance. | 
 **InstanceLabel** | **string** | The label of the instance. | 
 **InstanceGroupLabel** | **string** | The label of the instance group. | 
-**ExtensionInstanceId** | Pointer to **float32** | The id of the extension instance. | [optional] 
+**ExtensionInstanceId** | Pointer to **int64** | The id of the extension instance. | [optional] 
 **Infrastructure** | **map[string]interface{}** | The infrastructure of the instance. | 
-**OsTemplateId** | Pointer to **float32** | The id of the os template used by the instance. | [optional] 
+**OsTemplateId** | Pointer to **int64** | The id of the os template used by the instance. | [optional] 
 
 ## Methods
 
 ### NewEndpointAllocationInfo
 
-`func NewEndpointAllocationInfo(instanceId float32, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}, ) *EndpointAllocationInfo`
+`func NewEndpointAllocationInfo(instanceId int64, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}, ) *EndpointAllocationInfo`
 
 NewEndpointAllocationInfo instantiates a new EndpointAllocationInfo object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInstanceId
 
-`func (o *EndpointAllocationInfo) GetInstanceId() float32`
+`func (o *EndpointAllocationInfo) GetInstanceId() int64`
 
 GetInstanceId returns the InstanceId field if non-nil, zero value otherwise.
 
 ### GetInstanceIdOk
 
-`func (o *EndpointAllocationInfo) GetInstanceIdOk() (*float32, bool)`
+`func (o *EndpointAllocationInfo) GetInstanceIdOk() (*int64, bool)`
 
 GetInstanceIdOk returns a tuple with the InstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceId
 
-`func (o *EndpointAllocationInfo) SetInstanceId(v float32)`
+`func (o *EndpointAllocationInfo) SetInstanceId(v int64)`
 
 SetInstanceId sets InstanceId field to given value.
 
@@ -92,20 +92,20 @@ SetInstanceGroupLabel sets InstanceGroupLabel field to given value.
 
 ### GetExtensionInstanceId
 
-`func (o *EndpointAllocationInfo) GetExtensionInstanceId() float32`
+`func (o *EndpointAllocationInfo) GetExtensionInstanceId() int64`
 
 GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
 ### GetExtensionInstanceIdOk
 
-`func (o *EndpointAllocationInfo) GetExtensionInstanceIdOk() (*float32, bool)`
+`func (o *EndpointAllocationInfo) GetExtensionInstanceIdOk() (*int64, bool)`
 
 GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtensionInstanceId
 
-`func (o *EndpointAllocationInfo) SetExtensionInstanceId(v float32)`
+`func (o *EndpointAllocationInfo) SetExtensionInstanceId(v int64)`
 
 SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
@@ -137,20 +137,20 @@ SetInfrastructure sets Infrastructure field to given value.
 
 ### GetOsTemplateId
 
-`func (o *EndpointAllocationInfo) GetOsTemplateId() float32`
+`func (o *EndpointAllocationInfo) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *EndpointAllocationInfo) GetOsTemplateIdOk() (*float32, bool)`
+`func (o *EndpointAllocationInfo) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *EndpointAllocationInfo) SetOsTemplateId(v float32)`
+`func (o *EndpointAllocationInfo) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 

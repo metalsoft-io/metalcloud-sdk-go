@@ -22,7 +22,7 @@ var _ MappedNullable = &VMInstanceRecordSet{}
 // VMInstanceRecordSet struct for VMInstanceRecordSet
 type VMInstanceRecordSet struct {
 	// The ID of the VM Pool.
-	VmPoolId float32 `json:"vmPoolId"`
+	VmPoolId int64 `json:"vmPoolId"`
 	// The hostname of the VM Pool.
 	Hostname string `json:"hostname"`
 	// The operation to be performed on the VM Instance.
@@ -60,7 +60,7 @@ type _VMInstanceRecordSet VMInstanceRecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceRecordSet(vmPoolId float32, hostname string, operation string, vmName string, vmDiskGb float32, vmCpuCores float32, vmRamGb float32, vmTemplate string) *VMInstanceRecordSet {
+func NewVMInstanceRecordSet(vmPoolId int64, hostname string, operation string, vmName string, vmDiskGb float32, vmCpuCores float32, vmRamGb float32, vmTemplate string) *VMInstanceRecordSet {
 	this := VMInstanceRecordSet{}
 	this.VmPoolId = vmPoolId
 	this.Hostname = hostname
@@ -82,9 +82,9 @@ func NewVMInstanceRecordSetWithDefaults() *VMInstanceRecordSet {
 }
 
 // GetVmPoolId returns the VmPoolId field value
-func (o *VMInstanceRecordSet) GetVmPoolId() float32 {
+func (o *VMInstanceRecordSet) GetVmPoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -93,7 +93,7 @@ func (o *VMInstanceRecordSet) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceRecordSet) GetVmPoolIdOk() (*float32, bool) {
+func (o *VMInstanceRecordSet) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *VMInstanceRecordSet) GetVmPoolIdOk() (*float32, bool) {
 }
 
 // SetVmPoolId sets field value
-func (o *VMInstanceRecordSet) SetVmPoolId(v float32) {
+func (o *VMInstanceRecordSet) SetVmPoolId(v int64) {
 	o.VmPoolId = v
 }
 

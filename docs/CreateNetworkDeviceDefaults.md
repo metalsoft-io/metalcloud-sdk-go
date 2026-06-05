@@ -11,17 +11,17 @@ Name | Type | Description | Notes
 **IdentifierString** | Pointer to **string** | Identifier string of the network device. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters). | [optional] 
 **Asn** | Pointer to **int64** | Autonomous System Number for the network device defaults | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables associated with the network device, stored as key-value pairs. | [optional] 
-**MlagDomainId** | Pointer to **int32** | MLAG domain ID, must be between 1 and 4096. | [optional] 
+**MlagDomainId** | Pointer to **int64** | MLAG domain ID, must be between 1 and 4096. | [optional] 
 **LoopbackAddressIpv4** | Pointer to **string** | IPv4 address assigned to the loopback interface. | [optional] 
 **LoopbackAddressIpv6** | Pointer to **string** | IPv6 address assigned to the loopback interface. | [optional] 
 **VtepAddressIpv4** | Pointer to **string** | VTEP (VXLAN Tunnel Endpoint) IPv4 address. | [optional] 
 **VtepAddressIpv6** | Pointer to **string** | VTEP (VXLAN Tunnel Endpoint) IPv6 address. | [optional] 
 **OrderIndex** | Pointer to **int32** | Order index used for sorting or prioritization. | [optional] 
-**OsTemplateId** | Pointer to **int32** | ID of the volume template associated with the network device. | [optional] 
+**OsTemplateId** | Pointer to **int64** | ID of the volume template associated with the network device. | [optional] 
 **MlagPartnerHostname** | Pointer to **string** | MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters). | [optional] 
 **IsPartOfMlagPair** | Pointer to **bool** | Indicates whether the device is part of an MLAG pair. | [optional] 
 **MlagSystemMac** | Pointer to **string** | MLAG system MAC address in the format XX:XX:XX:XX:XX:XX. | [optional] 
-**MlagPeerLinkPortChannelId** | Pointer to **int32** | MLAG peer link Port-Channel ID, must be between 1 and 4096. | [optional] 
+**MlagPeerLinkPortChannelId** | Pointer to **int64** | MLAG peer link Port-Channel ID, must be between 1 and 4096. | [optional] 
 **MlagPartnerVlanId** | Pointer to **int32** | MLAG partner VLAN ID, must be between 1 and 4096. | [optional] 
 **AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options applied to devices provisioned from these defaults. Credentials are resolved from the first active entry. | [optional] 
 
@@ -211,20 +211,20 @@ HasCustomVariables returns a boolean if a field has been set.
 
 ### GetMlagDomainId
 
-`func (o *CreateNetworkDeviceDefaults) GetMlagDomainId() int32`
+`func (o *CreateNetworkDeviceDefaults) GetMlagDomainId() int64`
 
 GetMlagDomainId returns the MlagDomainId field if non-nil, zero value otherwise.
 
 ### GetMlagDomainIdOk
 
-`func (o *CreateNetworkDeviceDefaults) GetMlagDomainIdOk() (*int32, bool)`
+`func (o *CreateNetworkDeviceDefaults) GetMlagDomainIdOk() (*int64, bool)`
 
 GetMlagDomainIdOk returns a tuple with the MlagDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagDomainId
 
-`func (o *CreateNetworkDeviceDefaults) SetMlagDomainId(v int32)`
+`func (o *CreateNetworkDeviceDefaults) SetMlagDomainId(v int64)`
 
 SetMlagDomainId sets MlagDomainId field to given value.
 
@@ -361,20 +361,20 @@ HasOrderIndex returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 
-`func (o *CreateNetworkDeviceDefaults) GetOsTemplateId() int32`
+`func (o *CreateNetworkDeviceDefaults) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *CreateNetworkDeviceDefaults) GetOsTemplateIdOk() (*int32, bool)`
+`func (o *CreateNetworkDeviceDefaults) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *CreateNetworkDeviceDefaults) SetOsTemplateId(v int32)`
+`func (o *CreateNetworkDeviceDefaults) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 
@@ -461,20 +461,20 @@ HasMlagSystemMac returns a boolean if a field has been set.
 
 ### GetMlagPeerLinkPortChannelId
 
-`func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() int32`
+`func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() int64`
 
 GetMlagPeerLinkPortChannelId returns the MlagPeerLinkPortChannelId field if non-nil, zero value otherwise.
 
 ### GetMlagPeerLinkPortChannelIdOk
 
-`func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*int32, bool)`
+`func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*int64, bool)`
 
 GetMlagPeerLinkPortChannelIdOk returns a tuple with the MlagPeerLinkPortChannelId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagPeerLinkPortChannelId
 
-`func (o *CreateNetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v int32)`
+`func (o *CreateNetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v int64)`
 
 SetMlagPeerLinkPortChannelId sets MlagPeerLinkPortChannelId field to given value.
 

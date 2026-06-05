@@ -41,7 +41,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123), float32(123)) // CreateSharedDrive | 
+	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123), int64(123)) // CreateSharedDrive | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1012,7 +1012,7 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	driveId := float32(8.14) // float32 | 
-	sharedDriveHostsModifyBulk := *openapiclient.NewSharedDriveHostsModifyBulk([]openapiclient.SharedDriveHostBulkOperation{*openapiclient.NewSharedDriveHostBulkOperation(float32(123), "OperationType_example")}) // SharedDriveHostsModifyBulk | The Drive Server Instance Group Hosts update object
+	sharedDriveHostsModifyBulk := *openapiclient.NewSharedDriveHostsModifyBulk([]openapiclient.SharedDriveHostBulkOperation{*openapiclient.NewSharedDriveHostBulkOperation(int64(123), "OperationType_example")}) // SharedDriveHostsModifyBulk | The Drive Server Instance Group Hosts update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

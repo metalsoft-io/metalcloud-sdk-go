@@ -22,17 +22,17 @@ var _ MappedNullable = &EndpointAllocationInfo{}
 // EndpointAllocationInfo struct for EndpointAllocationInfo
 type EndpointAllocationInfo struct {
 	// The id of the instance.
-	InstanceId float32 `json:"instanceId"`
+	InstanceId int64 `json:"instanceId"`
 	// The label of the instance.
 	InstanceLabel string `json:"instanceLabel"`
 	// The label of the instance group.
 	InstanceGroupLabel string `json:"instanceGroupLabel"`
 	// The id of the extension instance.
-	ExtensionInstanceId *float32 `json:"extensionInstanceId,omitempty"`
+	ExtensionInstanceId *int64 `json:"extensionInstanceId,omitempty"`
 	// The infrastructure of the instance.
 	Infrastructure map[string]interface{} `json:"infrastructure"`
 	// The id of the os template used by the instance.
-	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,7 +42,7 @@ type _EndpointAllocationInfo EndpointAllocationInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointAllocationInfo(instanceId float32, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}) *EndpointAllocationInfo {
+func NewEndpointAllocationInfo(instanceId int64, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}) *EndpointAllocationInfo {
 	this := EndpointAllocationInfo{}
 	this.InstanceId = instanceId
 	this.InstanceLabel = instanceLabel
@@ -60,9 +60,9 @@ func NewEndpointAllocationInfoWithDefaults() *EndpointAllocationInfo {
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *EndpointAllocationInfo) GetInstanceId() float32 {
+func (o *EndpointAllocationInfo) GetInstanceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -71,7 +71,7 @@ func (o *EndpointAllocationInfo) GetInstanceId() float32 {
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *EndpointAllocationInfo) GetInstanceIdOk() (*float32, bool) {
+func (o *EndpointAllocationInfo) GetInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,7 +79,7 @@ func (o *EndpointAllocationInfo) GetInstanceIdOk() (*float32, bool) {
 }
 
 // SetInstanceId sets field value
-func (o *EndpointAllocationInfo) SetInstanceId(v float32) {
+func (o *EndpointAllocationInfo) SetInstanceId(v int64) {
 	o.InstanceId = v
 }
 
@@ -132,9 +132,9 @@ func (o *EndpointAllocationInfo) SetInstanceGroupLabel(v string) {
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
-func (o *EndpointAllocationInfo) GetExtensionInstanceId() float32 {
+func (o *EndpointAllocationInfo) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId
@@ -142,7 +142,7 @@ func (o *EndpointAllocationInfo) GetExtensionInstanceId() float32 {
 
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointAllocationInfo) GetExtensionInstanceIdOk() (*float32, bool) {
+func (o *EndpointAllocationInfo) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
@@ -158,8 +158,8 @@ func (o *EndpointAllocationInfo) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given float32 and assigns it to the ExtensionInstanceId field.
-func (o *EndpointAllocationInfo) SetExtensionInstanceId(v float32) {
+// SetExtensionInstanceId gets a reference to the given int64 and assigns it to the ExtensionInstanceId field.
+func (o *EndpointAllocationInfo) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId = &v
 }
 
@@ -188,9 +188,9 @@ func (o *EndpointAllocationInfo) SetInfrastructure(v map[string]interface{}) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *EndpointAllocationInfo) GetOsTemplateId() float32 {
+func (o *EndpointAllocationInfo) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -198,7 +198,7 @@ func (o *EndpointAllocationInfo) GetOsTemplateId() float32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointAllocationInfo) GetOsTemplateIdOk() (*float32, bool) {
+func (o *EndpointAllocationInfo) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -214,8 +214,8 @@ func (o *EndpointAllocationInfo) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
-func (o *EndpointAllocationInfo) SetOsTemplateId(v float32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *EndpointAllocationInfo) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 

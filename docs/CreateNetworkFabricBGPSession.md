@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BgpNumbering** | **string** | BGP numbering type for the link | 
 **BgpLinkConfiguration** | **string** | BGP link configuration type | 
-**LinkId** | Pointer to **float32** | The ID of the link to associate with the BGP session. Either linkId or linkAggregationId should be provided. | [optional] 
-**LinkAggregationId** | Pointer to **float32** | The ID of the link aggregation to associate with the BGP session. Either linkId or linkAggregationId should be provided. | [optional] 
+**LinkId** | Pointer to **int64** | The ID of the link to associate with the BGP session. Either linkId or linkAggregationId should be provided. | [optional] 
+**LinkAggregationId** | Pointer to **int64** | The ID of the link aggregation to associate with the BGP session. Either linkId or linkAggregationId should be provided. | [optional] 
 
 ## Methods
 
@@ -70,20 +70,20 @@ SetBgpLinkConfiguration sets BgpLinkConfiguration field to given value.
 
 ### GetLinkId
 
-`func (o *CreateNetworkFabricBGPSession) GetLinkId() float32`
+`func (o *CreateNetworkFabricBGPSession) GetLinkId() int64`
 
 GetLinkId returns the LinkId field if non-nil, zero value otherwise.
 
 ### GetLinkIdOk
 
-`func (o *CreateNetworkFabricBGPSession) GetLinkIdOk() (*float32, bool)`
+`func (o *CreateNetworkFabricBGPSession) GetLinkIdOk() (*int64, bool)`
 
 GetLinkIdOk returns a tuple with the LinkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkId
 
-`func (o *CreateNetworkFabricBGPSession) SetLinkId(v float32)`
+`func (o *CreateNetworkFabricBGPSession) SetLinkId(v int64)`
 
 SetLinkId sets LinkId field to given value.
 
@@ -95,20 +95,20 @@ HasLinkId returns a boolean if a field has been set.
 
 ### GetLinkAggregationId
 
-`func (o *CreateNetworkFabricBGPSession) GetLinkAggregationId() float32`
+`func (o *CreateNetworkFabricBGPSession) GetLinkAggregationId() int64`
 
 GetLinkAggregationId returns the LinkAggregationId field if non-nil, zero value otherwise.
 
 ### GetLinkAggregationIdOk
 
-`func (o *CreateNetworkFabricBGPSession) GetLinkAggregationIdOk() (*float32, bool)`
+`func (o *CreateNetworkFabricBGPSession) GetLinkAggregationIdOk() (*int64, bool)`
 
 GetLinkAggregationIdOk returns a tuple with the LinkAggregationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkAggregationId
 
-`func (o *CreateNetworkFabricBGPSession) SetLinkAggregationId(v float32)`
+`func (o *CreateNetworkFabricBGPSession) SetLinkAggregationId(v int64)`
 
 SetLinkAggregationId sets LinkAggregationId field to given value.
 

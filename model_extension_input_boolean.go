@@ -26,14 +26,14 @@ type ExtensionInputBoolean struct {
 	// Name of the input.
 	Name string `json:"name"`
 	InputType ExtensionInputType `json:"inputType"`
-	// Flag to indicate if the input is required.
+	// Flag to indicate if the input can be set only during extension instance creation.
 	SetOnly *bool `json:"setOnly,omitempty"`
 	// Flag to indicate if the input is hidden in the UI.
 	Hidden *bool `json:"hidden,omitempty"`
 	// Flag to indicate if the input is a password. Only to be used with string input type.
 	IsPassword *bool `json:"isPassword,omitempty"`
 	DefaultValue *ExtensionInputStringDefaultValue `json:"defaultValue,omitempty"`
-	Options ExtensionInputOptionBoolean `json:"options"`
+	Options map[string]interface{} `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,7 +43,7 @@ type _ExtensionInputBoolean ExtensionInputBoolean
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInputBoolean(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionBoolean) *ExtensionInputBoolean {
+func NewExtensionInputBoolean(label string, name string, inputType ExtensionInputType, options map[string]interface{}) *ExtensionInputBoolean {
 	this := ExtensionInputBoolean{}
 	this.Label = label
 	this.Name = name
@@ -273,9 +273,9 @@ func (o *ExtensionInputBoolean) SetDefaultValue(v ExtensionInputStringDefaultVal
 }
 
 // GetOptions returns the Options field value
-func (o *ExtensionInputBoolean) GetOptions() ExtensionInputOptionBoolean {
+func (o *ExtensionInputBoolean) GetOptions() map[string]interface{} {
 	if o == nil {
-		var ret ExtensionInputOptionBoolean
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -284,15 +284,15 @@ func (o *ExtensionInputBoolean) GetOptions() ExtensionInputOptionBoolean {
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputBoolean) GetOptionsOk() (*ExtensionInputOptionBoolean, bool) {
+func (o *ExtensionInputBoolean) GetOptionsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Options, true
+	return o.Options, true
 }
 
 // SetOptions sets field value
-func (o *ExtensionInputBoolean) SetOptions(v ExtensionInputOptionBoolean) {
+func (o *ExtensionInputBoolean) SetOptions(v map[string]interface{}) {
 	o.Options = v
 }
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerId** | **float32** | The id of the server. | 
-**ServerTypeId** | Pointer to **float32** | The id of the server type. | [optional] 
+**ServerId** | **int64** | The id of the server. | 
+**ServerTypeId** | Pointer to **int64** | The id of the server type. | [optional] 
 **ServerUUID** | Pointer to **string** | The UUID of the server. | [optional] 
 **SerialNumber** | Pointer to **string** | The Serial Number of the server. | [optional] 
 **ManagementAddress** | Pointer to **string** | The Management Address of the server. | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewServerOSInstallationData
 
-`func NewServerOSInstallationData(serverId float32, passwordEncrypted string, ) *ServerOSInstallationData`
+`func NewServerOSInstallationData(serverId int64, passwordEncrypted string, ) *ServerOSInstallationData`
 
 NewServerOSInstallationData instantiates a new ServerOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -45,40 +45,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerId
 
-`func (o *ServerOSInstallationData) GetServerId() float32`
+`func (o *ServerOSInstallationData) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *ServerOSInstallationData) GetServerIdOk() (*float32, bool)`
+`func (o *ServerOSInstallationData) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *ServerOSInstallationData) SetServerId(v float32)`
+`func (o *ServerOSInstallationData) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
 
 ### GetServerTypeId
 
-`func (o *ServerOSInstallationData) GetServerTypeId() float32`
+`func (o *ServerOSInstallationData) GetServerTypeId() int64`
 
 GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdOk
 
-`func (o *ServerOSInstallationData) GetServerTypeIdOk() (*float32, bool)`
+`func (o *ServerOSInstallationData) GetServerTypeIdOk() (*int64, bool)`
 
 GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeId
 
-`func (o *ServerOSInstallationData) SetServerTypeId(v float32)`
+`func (o *ServerOSInstallationData) SetServerTypeId(v int64)`
 
 SetServerTypeId sets ServerTypeId field to given value.
 

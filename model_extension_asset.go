@@ -26,9 +26,19 @@ type ExtensionAsset struct {
 	// Name of the asset.
 	Name string `json:"name"`
 	// Type of the asset.
-	AssetType string `json:"assetType"`
-	// URL of the asset.
-	Url string `json:"url"`
+	AssetType ExtensionAssetType `json:"assetType"`
+	// URL of the asset. Required for AnsibleBundle assets.
+	Url *string `json:"url,omitempty"`
+	// Registry host for OCI image assets.
+	HostRegistry *string `json:"hostRegistry,omitempty"`
+	// Registry port for OCI image assets.
+	PortRegistry *float32 `json:"portRegistry,omitempty"`
+	// Registry namespace for OCI image assets.
+	NamespaceRegistry *string `json:"namespaceRegistry,omitempty"`
+	// Registry repository for OCI image assets.
+	RepositoryRegistry *string `json:"repositoryRegistry,omitempty"`
+	// Registry tag for OCI image assets.
+	TagRegistry *string `json:"tagRegistry,omitempty"`
 	// Required assets by this asset.
 	RequiredAssets []string `json:"requiredAssets,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -40,12 +50,11 @@ type _ExtensionAsset ExtensionAsset
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionAsset(label string, name string, assetType string, url string) *ExtensionAsset {
+func NewExtensionAsset(label string, name string, assetType ExtensionAssetType) *ExtensionAsset {
 	this := ExtensionAsset{}
 	this.Label = label
 	this.Name = name
 	this.AssetType = assetType
-	this.Url = url
 	return &this
 }
 
@@ -106,9 +115,9 @@ func (o *ExtensionAsset) SetName(v string) {
 }
 
 // GetAssetType returns the AssetType field value
-func (o *ExtensionAsset) GetAssetType() string {
+func (o *ExtensionAsset) GetAssetType() ExtensionAssetType {
 	if o == nil {
-		var ret string
+		var ret ExtensionAssetType
 		return ret
 	}
 
@@ -117,7 +126,7 @@ func (o *ExtensionAsset) GetAssetType() string {
 
 // GetAssetTypeOk returns a tuple with the AssetType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionAsset) GetAssetTypeOk() (*string, bool) {
+func (o *ExtensionAsset) GetAssetTypeOk() (*ExtensionAssetType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,32 +134,200 @@ func (o *ExtensionAsset) GetAssetTypeOk() (*string, bool) {
 }
 
 // SetAssetType sets field value
-func (o *ExtensionAsset) SetAssetType(v string) {
+func (o *ExtensionAsset) SetAssetType(v ExtensionAssetType) {
 	o.AssetType = v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ExtensionAsset) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExtensionAsset) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *ExtensionAsset) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
+}
+
+// GetHostRegistry returns the HostRegistry field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetHostRegistry() string {
+	if o == nil || IsNil(o.HostRegistry) {
+		var ret string
+		return ret
+	}
+	return *o.HostRegistry
+}
+
+// GetHostRegistryOk returns a tuple with the HostRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetHostRegistryOk() (*string, bool) {
+	if o == nil || IsNil(o.HostRegistry) {
+		return nil, false
+	}
+	return o.HostRegistry, true
+}
+
+// HasHostRegistry returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasHostRegistry() bool {
+	if o != nil && !IsNil(o.HostRegistry) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostRegistry gets a reference to the given string and assigns it to the HostRegistry field.
+func (o *ExtensionAsset) SetHostRegistry(v string) {
+	o.HostRegistry = &v
+}
+
+// GetPortRegistry returns the PortRegistry field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetPortRegistry() float32 {
+	if o == nil || IsNil(o.PortRegistry) {
+		var ret float32
+		return ret
+	}
+	return *o.PortRegistry
+}
+
+// GetPortRegistryOk returns a tuple with the PortRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetPortRegistryOk() (*float32, bool) {
+	if o == nil || IsNil(o.PortRegistry) {
+		return nil, false
+	}
+	return o.PortRegistry, true
+}
+
+// HasPortRegistry returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasPortRegistry() bool {
+	if o != nil && !IsNil(o.PortRegistry) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortRegistry gets a reference to the given float32 and assigns it to the PortRegistry field.
+func (o *ExtensionAsset) SetPortRegistry(v float32) {
+	o.PortRegistry = &v
+}
+
+// GetNamespaceRegistry returns the NamespaceRegistry field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetNamespaceRegistry() string {
+	if o == nil || IsNil(o.NamespaceRegistry) {
+		var ret string
+		return ret
+	}
+	return *o.NamespaceRegistry
+}
+
+// GetNamespaceRegistryOk returns a tuple with the NamespaceRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetNamespaceRegistryOk() (*string, bool) {
+	if o == nil || IsNil(o.NamespaceRegistry) {
+		return nil, false
+	}
+	return o.NamespaceRegistry, true
+}
+
+// HasNamespaceRegistry returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasNamespaceRegistry() bool {
+	if o != nil && !IsNil(o.NamespaceRegistry) {
+		return true
+	}
+
+	return false
+}
+
+// SetNamespaceRegistry gets a reference to the given string and assigns it to the NamespaceRegistry field.
+func (o *ExtensionAsset) SetNamespaceRegistry(v string) {
+	o.NamespaceRegistry = &v
+}
+
+// GetRepositoryRegistry returns the RepositoryRegistry field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetRepositoryRegistry() string {
+	if o == nil || IsNil(o.RepositoryRegistry) {
+		var ret string
+		return ret
+	}
+	return *o.RepositoryRegistry
+}
+
+// GetRepositoryRegistryOk returns a tuple with the RepositoryRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetRepositoryRegistryOk() (*string, bool) {
+	if o == nil || IsNil(o.RepositoryRegistry) {
+		return nil, false
+	}
+	return o.RepositoryRegistry, true
+}
+
+// HasRepositoryRegistry returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasRepositoryRegistry() bool {
+	if o != nil && !IsNil(o.RepositoryRegistry) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepositoryRegistry gets a reference to the given string and assigns it to the RepositoryRegistry field.
+func (o *ExtensionAsset) SetRepositoryRegistry(v string) {
+	o.RepositoryRegistry = &v
+}
+
+// GetTagRegistry returns the TagRegistry field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetTagRegistry() string {
+	if o == nil || IsNil(o.TagRegistry) {
+		var ret string
+		return ret
+	}
+	return *o.TagRegistry
+}
+
+// GetTagRegistryOk returns a tuple with the TagRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetTagRegistryOk() (*string, bool) {
+	if o == nil || IsNil(o.TagRegistry) {
+		return nil, false
+	}
+	return o.TagRegistry, true
+}
+
+// HasTagRegistry returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasTagRegistry() bool {
+	if o != nil && !IsNil(o.TagRegistry) {
+		return true
+	}
+
+	return false
+}
+
+// SetTagRegistry gets a reference to the given string and assigns it to the TagRegistry field.
+func (o *ExtensionAsset) SetTagRegistry(v string) {
+	o.TagRegistry = &v
 }
 
 // GetRequiredAssets returns the RequiredAssets field value if set, zero value otherwise.
@@ -198,7 +375,24 @@ func (o ExtensionAsset) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
 	toSerialize["assetType"] = o.AssetType
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.HostRegistry) {
+		toSerialize["hostRegistry"] = o.HostRegistry
+	}
+	if !IsNil(o.PortRegistry) {
+		toSerialize["portRegistry"] = o.PortRegistry
+	}
+	if !IsNil(o.NamespaceRegistry) {
+		toSerialize["namespaceRegistry"] = o.NamespaceRegistry
+	}
+	if !IsNil(o.RepositoryRegistry) {
+		toSerialize["repositoryRegistry"] = o.RepositoryRegistry
+	}
+	if !IsNil(o.TagRegistry) {
+		toSerialize["tagRegistry"] = o.TagRegistry
+	}
 	if !IsNil(o.RequiredAssets) {
 		toSerialize["requiredAssets"] = o.RequiredAssets
 	}
@@ -218,7 +412,6 @@ func (o *ExtensionAsset) UnmarshalJSON(data []byte) (err error) {
 		"label",
 		"name",
 		"assetType",
-		"url",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -252,6 +445,11 @@ func (o *ExtensionAsset) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "assetType")
 		delete(additionalProperties, "url")
+		delete(additionalProperties, "hostRegistry")
+		delete(additionalProperties, "portRegistry")
+		delete(additionalProperties, "namespaceRegistry")
+		delete(additionalProperties, "repositoryRegistry")
+		delete(additionalProperties, "tagRegistry")
 		delete(additionalProperties, "requiredAssets")
 		o.AdditionalProperties = additionalProperties
 	}

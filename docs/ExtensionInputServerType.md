@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Label of the input. | 
 **Name** | **string** | Name of the input. | 
 **InputType** | [**ExtensionInputType**](ExtensionInputType.md) |  | 
-**SetOnly** | Pointer to **bool** | Flag to indicate if the input is required. | [optional] [default to false]
+**SetOnly** | Pointer to **bool** | Flag to indicate if the input can be set only during extension instance creation. | [optional] [default to false]
 **Hidden** | Pointer to **bool** | Flag to indicate if the input is hidden in the UI. | [optional] [default to false]
 **IsPassword** | Pointer to **bool** | Flag to indicate if the input is a password. Only to be used with string input type. | [optional] [default to false]
 **DefaultValue** | Pointer to [**ExtensionInputStringDefaultValue**](ExtensionInputStringDefaultValue.md) |  | [optional] 

@@ -4,15 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | Pointer to **int32** | Site identifier | [optional] 
+**SiteId** | Pointer to **int64** | Site identifier | [optional] 
 **DatacenterName** | Pointer to **string** | Name of the datacenter | [optional] 
 **IdentifierString** | Pointer to **string** | Unique identifier string for the network device | [optional] 
-**ChassisRackId** | Pointer to **int32** | ID of the rack where the network device chassis is installed | [optional] 
+**ChassisRackId** | Pointer to **int64** | ID of the rack where the network device chassis is installed | [optional] 
 **ChassisIdentifier** | Pointer to **NullableString** | Unique identifier for the network device chassis | [optional] 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
 **Position** | **string** | The physical or logical position of the network device in the network topology. | 
 **IsGateway** | Pointer to **bool** | Indicates if this network device acts as a gateway for external network traffic | [optional] 
 **SyslogEnabled** | Pointer to **NullableBool** | Indicates if syslog logging is enabled for this network device | [optional] 
+**SnmpServiceEnabled** | Pointer to **NullableBool** | Indicates if SNMP service is enabled for this network device | [optional] 
+**SnmpMonitoringEnabled** | Pointer to **NullableBool** | Indicates if SNMP monitoring is enabled for this network device | [optional] 
 **IsStorageSwitch** | Pointer to **bool** | Indicates if this network device is dedicated to storage traffic | [optional] 
 **IsBorderDevice** | Pointer to **bool** | Indicates if this network device functions as a border device connecting to external networks | [optional] 
 **QuarantineVlan** | Pointer to **int32** | The VLAN ID for the quarantine network | [optional] 
@@ -20,6 +22,8 @@ Name | Type | Description | Notes
 **ManagementPort** | Pointer to **NullableInt32** | The port number used for management connections | [optional] 
 **Username** | **NullableString** | The username used for management authentication | 
 **ManagementPassword** | **string** | The password used for management authentication | 
+**ApiUsername** | Pointer to **string** | The username to access the network device API, if different from the management username. | [optional] 
+**ApiPassword** | Pointer to **string** | The password to access the network device API, if different from the management password. | [optional] 
 **ManagementAddressGateway** | Pointer to **NullableString** | The gateway IP address for the management network | [optional] 
 **ManagementAddressMask** | Pointer to **NullableString** | The subnet mask for the management network | [optional] 
 **ManagementMAC** | Pointer to **NullableString** | The MAC address of the management interface | [optional] 
@@ -42,11 +46,15 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags for categorizing and filtering network devices | [optional] 
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
-**VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device | [optional] 
+**VmPoolId** | Pointer to **int64** | ID of the VM pool associated with the network device | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
-**ServerId** | Pointer to **float32** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
+**ServerId** | Pointer to **int64** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
 **NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
-**SwitchControllerId** | Pointer to **float32** | ID of the network device controller managing this switch. Only applicable for controller-managed drivers (e.g. NDFC). | [optional] 
+**SwitchControllerId** | Pointer to **int64** | ID of the network device controller managing this switch. Only applicable for controller-managed drivers (e.g. NDFC). | [optional] 
+**SnmpPassword** | Pointer to **string** | Network device SNMP community string | [optional] 
+**SnmpPort** | Pointer to **float32** | SNMP port of the network device | [optional] 
+**SnmpSystemContact** | Pointer to **string** | SNMP system contact for the network device | [optional] 
+**SnmpVersion** | Pointer to **float32** | SNMP version used by the network device | [optional] 
 **AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options. Credentials are resolved from the first active entry. | [optional] 
 
 ## Methods
@@ -70,20 +78,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *CreateNetworkDevice) GetSiteId() int32`
+`func (o *CreateNetworkDevice) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *CreateNetworkDevice) GetSiteIdOk() (*int32, bool)`
+`func (o *CreateNetworkDevice) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *CreateNetworkDevice) SetSiteId(v int32)`
+`func (o *CreateNetworkDevice) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -145,20 +153,20 @@ HasIdentifierString returns a boolean if a field has been set.
 
 ### GetChassisRackId
 
-`func (o *CreateNetworkDevice) GetChassisRackId() int32`
+`func (o *CreateNetworkDevice) GetChassisRackId() int64`
 
 GetChassisRackId returns the ChassisRackId field if non-nil, zero value otherwise.
 
 ### GetChassisRackIdOk
 
-`func (o *CreateNetworkDevice) GetChassisRackIdOk() (*int32, bool)`
+`func (o *CreateNetworkDevice) GetChassisRackIdOk() (*int64, bool)`
 
 GetChassisRackIdOk returns a tuple with the ChassisRackId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChassisRackId
 
-`func (o *CreateNetworkDevice) SetChassisRackId(v int32)`
+`func (o *CreateNetworkDevice) SetChassisRackId(v int64)`
 
 SetChassisRackId sets ChassisRackId field to given value.
 
@@ -303,6 +311,76 @@ HasSyslogEnabled returns a boolean if a field has been set.
 `func (o *CreateNetworkDevice) UnsetSyslogEnabled()`
 
 UnsetSyslogEnabled ensures that no value is present for SyslogEnabled, not even an explicit nil
+### GetSnmpServiceEnabled
+
+`func (o *CreateNetworkDevice) GetSnmpServiceEnabled() bool`
+
+GetSnmpServiceEnabled returns the SnmpServiceEnabled field if non-nil, zero value otherwise.
+
+### GetSnmpServiceEnabledOk
+
+`func (o *CreateNetworkDevice) GetSnmpServiceEnabledOk() (*bool, bool)`
+
+GetSnmpServiceEnabledOk returns a tuple with the SnmpServiceEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpServiceEnabled
+
+`func (o *CreateNetworkDevice) SetSnmpServiceEnabled(v bool)`
+
+SetSnmpServiceEnabled sets SnmpServiceEnabled field to given value.
+
+### HasSnmpServiceEnabled
+
+`func (o *CreateNetworkDevice) HasSnmpServiceEnabled() bool`
+
+HasSnmpServiceEnabled returns a boolean if a field has been set.
+
+### SetSnmpServiceEnabledNil
+
+`func (o *CreateNetworkDevice) SetSnmpServiceEnabledNil(b bool)`
+
+ SetSnmpServiceEnabledNil sets the value for SnmpServiceEnabled to be an explicit nil
+
+### UnsetSnmpServiceEnabled
+`func (o *CreateNetworkDevice) UnsetSnmpServiceEnabled()`
+
+UnsetSnmpServiceEnabled ensures that no value is present for SnmpServiceEnabled, not even an explicit nil
+### GetSnmpMonitoringEnabled
+
+`func (o *CreateNetworkDevice) GetSnmpMonitoringEnabled() bool`
+
+GetSnmpMonitoringEnabled returns the SnmpMonitoringEnabled field if non-nil, zero value otherwise.
+
+### GetSnmpMonitoringEnabledOk
+
+`func (o *CreateNetworkDevice) GetSnmpMonitoringEnabledOk() (*bool, bool)`
+
+GetSnmpMonitoringEnabledOk returns a tuple with the SnmpMonitoringEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpMonitoringEnabled
+
+`func (o *CreateNetworkDevice) SetSnmpMonitoringEnabled(v bool)`
+
+SetSnmpMonitoringEnabled sets SnmpMonitoringEnabled field to given value.
+
+### HasSnmpMonitoringEnabled
+
+`func (o *CreateNetworkDevice) HasSnmpMonitoringEnabled() bool`
+
+HasSnmpMonitoringEnabled returns a boolean if a field has been set.
+
+### SetSnmpMonitoringEnabledNil
+
+`func (o *CreateNetworkDevice) SetSnmpMonitoringEnabledNil(b bool)`
+
+ SetSnmpMonitoringEnabledNil sets the value for SnmpMonitoringEnabled to be an explicit nil
+
+### UnsetSnmpMonitoringEnabled
+`func (o *CreateNetworkDevice) UnsetSnmpMonitoringEnabled()`
+
+UnsetSnmpMonitoringEnabled ensures that no value is present for SnmpMonitoringEnabled, not even an explicit nil
 ### GetIsStorageSwitch
 
 `func (o *CreateNetworkDevice) GetIsStorageSwitch() bool`
@@ -497,6 +575,56 @@ and a boolean to check if the value has been set.
 
 SetManagementPassword sets ManagementPassword field to given value.
 
+
+### GetApiUsername
+
+`func (o *CreateNetworkDevice) GetApiUsername() string`
+
+GetApiUsername returns the ApiUsername field if non-nil, zero value otherwise.
+
+### GetApiUsernameOk
+
+`func (o *CreateNetworkDevice) GetApiUsernameOk() (*string, bool)`
+
+GetApiUsernameOk returns a tuple with the ApiUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiUsername
+
+`func (o *CreateNetworkDevice) SetApiUsername(v string)`
+
+SetApiUsername sets ApiUsername field to given value.
+
+### HasApiUsername
+
+`func (o *CreateNetworkDevice) HasApiUsername() bool`
+
+HasApiUsername returns a boolean if a field has been set.
+
+### GetApiPassword
+
+`func (o *CreateNetworkDevice) GetApiPassword() string`
+
+GetApiPassword returns the ApiPassword field if non-nil, zero value otherwise.
+
+### GetApiPasswordOk
+
+`func (o *CreateNetworkDevice) GetApiPasswordOk() (*string, bool)`
+
+GetApiPasswordOk returns a tuple with the ApiPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiPassword
+
+`func (o *CreateNetworkDevice) SetApiPassword(v string)`
+
+SetApiPassword sets ApiPassword field to given value.
+
+### HasApiPassword
+
+`func (o *CreateNetworkDevice) HasApiPassword() bool`
+
+HasApiPassword returns a boolean if a field has been set.
 
 ### GetManagementAddressGateway
 
@@ -1240,20 +1368,20 @@ HasOverwriteWithHostnameFromFetchedSwitch returns a boolean if a field has been 
 UnsetOverwriteWithHostnameFromFetchedSwitch ensures that no value is present for OverwriteWithHostnameFromFetchedSwitch, not even an explicit nil
 ### GetVmPoolId
 
-`func (o *CreateNetworkDevice) GetVmPoolId() float32`
+`func (o *CreateNetworkDevice) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *CreateNetworkDevice) GetVmPoolIdOk() (*float32, bool)`
+`func (o *CreateNetworkDevice) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *CreateNetworkDevice) SetVmPoolId(v float32)`
+`func (o *CreateNetworkDevice) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 
@@ -1290,20 +1418,20 @@ HasCustomVariables returns a boolean if a field has been set.
 
 ### GetServerId
 
-`func (o *CreateNetworkDevice) GetServerId() float32`
+`func (o *CreateNetworkDevice) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *CreateNetworkDevice) GetServerIdOk() (*float32, bool)`
+`func (o *CreateNetworkDevice) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *CreateNetworkDevice) SetServerId(v float32)`
+`func (o *CreateNetworkDevice) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -1340,20 +1468,20 @@ HasNumaNode returns a boolean if a field has been set.
 
 ### GetSwitchControllerId
 
-`func (o *CreateNetworkDevice) GetSwitchControllerId() float32`
+`func (o *CreateNetworkDevice) GetSwitchControllerId() int64`
 
 GetSwitchControllerId returns the SwitchControllerId field if non-nil, zero value otherwise.
 
 ### GetSwitchControllerIdOk
 
-`func (o *CreateNetworkDevice) GetSwitchControllerIdOk() (*float32, bool)`
+`func (o *CreateNetworkDevice) GetSwitchControllerIdOk() (*int64, bool)`
 
 GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSwitchControllerId
 
-`func (o *CreateNetworkDevice) SetSwitchControllerId(v float32)`
+`func (o *CreateNetworkDevice) SetSwitchControllerId(v int64)`
 
 SetSwitchControllerId sets SwitchControllerId field to given value.
 
@@ -1362,6 +1490,106 @@ SetSwitchControllerId sets SwitchControllerId field to given value.
 `func (o *CreateNetworkDevice) HasSwitchControllerId() bool`
 
 HasSwitchControllerId returns a boolean if a field has been set.
+
+### GetSnmpPassword
+
+`func (o *CreateNetworkDevice) GetSnmpPassword() string`
+
+GetSnmpPassword returns the SnmpPassword field if non-nil, zero value otherwise.
+
+### GetSnmpPasswordOk
+
+`func (o *CreateNetworkDevice) GetSnmpPasswordOk() (*string, bool)`
+
+GetSnmpPasswordOk returns a tuple with the SnmpPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpPassword
+
+`func (o *CreateNetworkDevice) SetSnmpPassword(v string)`
+
+SetSnmpPassword sets SnmpPassword field to given value.
+
+### HasSnmpPassword
+
+`func (o *CreateNetworkDevice) HasSnmpPassword() bool`
+
+HasSnmpPassword returns a boolean if a field has been set.
+
+### GetSnmpPort
+
+`func (o *CreateNetworkDevice) GetSnmpPort() float32`
+
+GetSnmpPort returns the SnmpPort field if non-nil, zero value otherwise.
+
+### GetSnmpPortOk
+
+`func (o *CreateNetworkDevice) GetSnmpPortOk() (*float32, bool)`
+
+GetSnmpPortOk returns a tuple with the SnmpPort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpPort
+
+`func (o *CreateNetworkDevice) SetSnmpPort(v float32)`
+
+SetSnmpPort sets SnmpPort field to given value.
+
+### HasSnmpPort
+
+`func (o *CreateNetworkDevice) HasSnmpPort() bool`
+
+HasSnmpPort returns a boolean if a field has been set.
+
+### GetSnmpSystemContact
+
+`func (o *CreateNetworkDevice) GetSnmpSystemContact() string`
+
+GetSnmpSystemContact returns the SnmpSystemContact field if non-nil, zero value otherwise.
+
+### GetSnmpSystemContactOk
+
+`func (o *CreateNetworkDevice) GetSnmpSystemContactOk() (*string, bool)`
+
+GetSnmpSystemContactOk returns a tuple with the SnmpSystemContact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpSystemContact
+
+`func (o *CreateNetworkDevice) SetSnmpSystemContact(v string)`
+
+SetSnmpSystemContact sets SnmpSystemContact field to given value.
+
+### HasSnmpSystemContact
+
+`func (o *CreateNetworkDevice) HasSnmpSystemContact() bool`
+
+HasSnmpSystemContact returns a boolean if a field has been set.
+
+### GetSnmpVersion
+
+`func (o *CreateNetworkDevice) GetSnmpVersion() float32`
+
+GetSnmpVersion returns the SnmpVersion field if non-nil, zero value otherwise.
+
+### GetSnmpVersionOk
+
+`func (o *CreateNetworkDevice) GetSnmpVersionOk() (*float32, bool)`
+
+GetSnmpVersionOk returns a tuple with the SnmpVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpVersion
+
+`func (o *CreateNetworkDevice) SetSnmpVersion(v float32)`
+
+SetSnmpVersion sets SnmpVersion field to given value.
+
+### HasSnmpVersion
+
+`func (o *CreateNetworkDevice) HasSnmpVersion() bool`
+
+HasSnmpVersion returns a boolean if a field has been set.
 
 ### GetAuthenticationOptions
 

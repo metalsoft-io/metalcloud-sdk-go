@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewAutoPkeyAllocationStrategy
 
-`func NewAutoPkeyAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, ) *AutoPkeyAllocationStrategy`
+`func NewAutoPkeyAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, ) *AutoPkeyAllocationStrategy`
 
 NewAutoPkeyAllocationStrategy instantiates a new AutoPkeyAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *AutoPkeyAllocationStrategy) GetId() int32`
+`func (o *AutoPkeyAllocationStrategy) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *AutoPkeyAllocationStrategy) GetIdOk() (*int32, bool)`
+`func (o *AutoPkeyAllocationStrategy) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *AutoPkeyAllocationStrategy) SetId(v int32)`
+`func (o *AutoPkeyAllocationStrategy) SetId(v int64)`
 
 SetId sets Id field to given value.
 

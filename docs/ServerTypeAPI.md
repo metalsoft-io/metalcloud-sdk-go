@@ -337,7 +337,7 @@ import (
 )
 
 func main() {
-	serverTypeStatisticsBatchOptions := *openapiclient.NewServerTypeStatisticsBatchOptions(float32(123)) // ServerTypeStatisticsBatchOptions | The server type statistics batch options
+	serverTypeStatisticsBatchOptions := *openapiclient.NewServerTypeStatisticsBatchOptions(int64(123)) // ServerTypeStatisticsBatchOptions | The server type statistics batch options
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

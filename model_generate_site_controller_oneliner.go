@@ -69,6 +69,8 @@ type GenerateSiteControllerOneliner struct {
 	SshCommand bool `json:"sshCommand"`
 	// Enable image building capability
 	BuildImage bool `json:"buildImage"`
+	// Enable switch SNMP health monitoring capability
+	SwitchSnmpHealth bool `json:"switchSnmpHealth"`
 	// Enable inband WebMKS capability
 	InbandWebmks bool `json:"inbandWebmks"`
 	// Deploy NFS server
@@ -84,7 +86,7 @@ type _GenerateSiteControllerOneliner GenerateSiteControllerOneliner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, inbandWebmks bool, deployNfs bool) *GenerateSiteControllerOneliner {
+func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, buildImage bool, switchSnmpHealth bool, inbandWebmks bool, deployNfs bool) *GenerateSiteControllerOneliner {
 	this := GenerateSiteControllerOneliner{}
 	this.UsePodman = usePodman
 	this.InbandMode = inbandMode
@@ -110,6 +112,7 @@ func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEn
 	this.HttpRequest = httpRequest
 	this.SshCommand = sshCommand
 	this.BuildImage = buildImage
+	this.SwitchSnmpHealth = switchSnmpHealth
 	this.InbandWebmks = inbandWebmks
 	this.DeployNfs = deployNfs
 	return &this
@@ -162,6 +165,8 @@ func NewGenerateSiteControllerOnelinerWithDefaults() *GenerateSiteControllerOnel
 	this.SshCommand = sshCommand
 	var buildImage bool = false
 	this.BuildImage = buildImage
+	var switchSnmpHealth bool = false
+	this.SwitchSnmpHealth = switchSnmpHealth
 	var inbandWebmks bool = false
 	this.InbandWebmks = inbandWebmks
 	var deployNfs bool = true
@@ -745,6 +750,30 @@ func (o *GenerateSiteControllerOneliner) SetBuildImage(v bool) {
 	o.BuildImage = v
 }
 
+// GetSwitchSnmpHealth returns the SwitchSnmpHealth field value
+func (o *GenerateSiteControllerOneliner) GetSwitchSnmpHealth() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SwitchSnmpHealth
+}
+
+// GetSwitchSnmpHealthOk returns a tuple with the SwitchSnmpHealth field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetSwitchSnmpHealthOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SwitchSnmpHealth, true
+}
+
+// SetSwitchSnmpHealth sets field value
+func (o *GenerateSiteControllerOneliner) SetSwitchSnmpHealth(v bool) {
+	o.SwitchSnmpHealth = v
+}
+
 // GetInbandWebmks returns the InbandWebmks field value
 func (o *GenerateSiteControllerOneliner) GetInbandWebmks() bool {
 	if o == nil {
@@ -859,6 +888,7 @@ func (o GenerateSiteControllerOneliner) ToMap() (map[string]interface{}, error) 
 	toSerialize["httpRequest"] = o.HttpRequest
 	toSerialize["sshCommand"] = o.SshCommand
 	toSerialize["buildImage"] = o.BuildImage
+	toSerialize["switchSnmpHealth"] = o.SwitchSnmpHealth
 	toSerialize["inbandWebmks"] = o.InbandWebmks
 	toSerialize["deployNfs"] = o.DeployNfs
 	if !IsNil(o.SecondIp) {
@@ -901,6 +931,7 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		"httpRequest",
 		"sshCommand",
 		"buildImage",
+		"switchSnmpHealth",
 		"inbandWebmks",
 		"deployNfs",
 	}
@@ -956,6 +987,7 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "httpRequest")
 		delete(additionalProperties, "sshCommand")
 		delete(additionalProperties, "buildImage")
+		delete(additionalProperties, "switchSnmpHealth")
 		delete(additionalProperties, "inbandWebmks")
 		delete(additionalProperties, "deployNfs")
 		delete(additionalProperties, "secondIp")

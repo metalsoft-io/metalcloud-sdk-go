@@ -22,13 +22,13 @@ var _ MappedNullable = &ManualIpv4SubnetAllocationStrategy{}
 
 // ManualIpv4SubnetAllocationStrategy struct for ManualIpv4SubnetAllocationStrategy
 type ManualIpv4SubnetAllocationStrategy struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope ResourceScope `json:"scope"`
 	GatewayPlacement SubnetGatewayPlacement `json:"gatewayPlacement"`
-	SubnetId int32 `json:"subnetId"`
+	SubnetId int64 `json:"subnetId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,7 +38,7 @@ type _ManualIpv4SubnetAllocationStrategy ManualIpv4SubnetAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetId int32) *ManualIpv4SubnetAllocationStrategy {
+func NewManualIpv4SubnetAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetId int64) *ManualIpv4SubnetAllocationStrategy {
 	this := ManualIpv4SubnetAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -61,9 +61,9 @@ func NewManualIpv4SubnetAllocationStrategyWithDefaults() *ManualIpv4SubnetAlloca
 }
 
 // GetId returns the Id field value
-func (o *ManualIpv4SubnetAllocationStrategy) GetId() int32 {
+func (o *ManualIpv4SubnetAllocationStrategy) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -72,7 +72,7 @@ func (o *ManualIpv4SubnetAllocationStrategy) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ManualIpv4SubnetAllocationStrategy) GetIdOk() (*int32, bool) {
+func (o *ManualIpv4SubnetAllocationStrategy) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *ManualIpv4SubnetAllocationStrategy) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ManualIpv4SubnetAllocationStrategy) SetId(v int32) {
+func (o *ManualIpv4SubnetAllocationStrategy) SetId(v int64) {
 	o.Id = v
 }
 
@@ -205,9 +205,9 @@ func (o *ManualIpv4SubnetAllocationStrategy) SetGatewayPlacement(v SubnetGateway
 }
 
 // GetSubnetId returns the SubnetId field value
-func (o *ManualIpv4SubnetAllocationStrategy) GetSubnetId() int32 {
+func (o *ManualIpv4SubnetAllocationStrategy) GetSubnetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -216,7 +216,7 @@ func (o *ManualIpv4SubnetAllocationStrategy) GetSubnetId() int32 {
 
 // GetSubnetIdOk returns a tuple with the SubnetId field value
 // and a boolean to check if the value has been set.
-func (o *ManualIpv4SubnetAllocationStrategy) GetSubnetIdOk() (*int32, bool) {
+func (o *ManualIpv4SubnetAllocationStrategy) GetSubnetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -224,7 +224,7 @@ func (o *ManualIpv4SubnetAllocationStrategy) GetSubnetIdOk() (*int32, bool) {
 }
 
 // SetSubnetId sets field value
-func (o *ManualIpv4SubnetAllocationStrategy) SetSubnetId(v int32) {
+func (o *ManualIpv4SubnetAllocationStrategy) SetSubnetId(v int64) {
 	o.SubnetId = v
 }
 

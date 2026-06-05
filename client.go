@@ -66,6 +66,8 @@ type APIClient struct {
 
 	DNSZoneAPI *DNSZoneAPIService
 
+	DeviceConfigurationTemplateAPI *DeviceConfigurationTemplateAPIService
+
 	DriveAPI *DriveAPIService
 
 	EmailTemplateAPI *EmailTemplateAPIService
@@ -95,8 +97,6 @@ type APIClient struct {
 	FirmwareBinaryAPI *FirmwareBinaryAPIService
 
 	FirmwareCatalogAPI *FirmwareCatalogAPIService
-
-	FirmwarePolicyAPI *FirmwarePolicyAPIService
 
 	InfrastructureAPI *InfrastructureAPIService
 
@@ -205,6 +205,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
 	c.DNSRecordSetAPI = (*DNSRecordSetAPIService)(&c.common)
 	c.DNSZoneAPI = (*DNSZoneAPIService)(&c.common)
+	c.DeviceConfigurationTemplateAPI = (*DeviceConfigurationTemplateAPIService)(&c.common)
 	c.DriveAPI = (*DriveAPIService)(&c.common)
 	c.EmailTemplateAPI = (*EmailTemplateAPIService)(&c.common)
 	c.EndpointAPI = (*EndpointAPIService)(&c.common)
@@ -220,7 +221,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.FirmwareBaselineSearchAPI = (*FirmwareBaselineSearchAPIService)(&c.common)
 	c.FirmwareBinaryAPI = (*FirmwareBinaryAPIService)(&c.common)
 	c.FirmwareCatalogAPI = (*FirmwareCatalogAPIService)(&c.common)
-	c.FirmwarePolicyAPI = (*FirmwarePolicyAPIService)(&c.common)
 	c.InfrastructureAPI = (*InfrastructureAPIService)(&c.common)
 	c.JobAPI = (*JobAPIService)(&c.common)
 	c.LogicalNetworkAPI = (*LogicalNetworkAPIService)(&c.common)

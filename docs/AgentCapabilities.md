@@ -17,12 +17,16 @@ Name | Type | Description | Notes
 **NetconfEnabled** | **bool** | NETCONF capability status | 
 **AnsibleRunnerEnabled** | **bool** | Ansible runner capability status | 
 **BuildImageEnabled** | **bool** | Build image capability status | 
+**HttpRequestEnabled** | **bool** | HTTP request capability status | 
+**SshCommandEnabled** | **bool** | SSH command capability status | 
+**SwitchSnmpHealthEnabled** | **bool** | Switch SNMP health monitoring capability status | 
+**InbandWebmksEnabled** | **bool** | Inband WebMKS capability status | 
 
 ## Methods
 
 ### NewAgentCapabilities
 
-`func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool, buildImageEnabled bool, ) *AgentCapabilities`
+`func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool, buildImageEnabled bool, httpRequestEnabled bool, sshCommandEnabled bool, switchSnmpHealthEnabled bool, inbandWebmksEnabled bool, ) *AgentCapabilities`
 
 NewAgentCapabilities instantiates a new AgentCapabilities object
 This constructor will assign default values to properties that have it defined,
@@ -295,6 +299,86 @@ and a boolean to check if the value has been set.
 `func (o *AgentCapabilities) SetBuildImageEnabled(v bool)`
 
 SetBuildImageEnabled sets BuildImageEnabled field to given value.
+
+
+### GetHttpRequestEnabled
+
+`func (o *AgentCapabilities) GetHttpRequestEnabled() bool`
+
+GetHttpRequestEnabled returns the HttpRequestEnabled field if non-nil, zero value otherwise.
+
+### GetHttpRequestEnabledOk
+
+`func (o *AgentCapabilities) GetHttpRequestEnabledOk() (*bool, bool)`
+
+GetHttpRequestEnabledOk returns a tuple with the HttpRequestEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpRequestEnabled
+
+`func (o *AgentCapabilities) SetHttpRequestEnabled(v bool)`
+
+SetHttpRequestEnabled sets HttpRequestEnabled field to given value.
+
+
+### GetSshCommandEnabled
+
+`func (o *AgentCapabilities) GetSshCommandEnabled() bool`
+
+GetSshCommandEnabled returns the SshCommandEnabled field if non-nil, zero value otherwise.
+
+### GetSshCommandEnabledOk
+
+`func (o *AgentCapabilities) GetSshCommandEnabledOk() (*bool, bool)`
+
+GetSshCommandEnabledOk returns a tuple with the SshCommandEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSshCommandEnabled
+
+`func (o *AgentCapabilities) SetSshCommandEnabled(v bool)`
+
+SetSshCommandEnabled sets SshCommandEnabled field to given value.
+
+
+### GetSwitchSnmpHealthEnabled
+
+`func (o *AgentCapabilities) GetSwitchSnmpHealthEnabled() bool`
+
+GetSwitchSnmpHealthEnabled returns the SwitchSnmpHealthEnabled field if non-nil, zero value otherwise.
+
+### GetSwitchSnmpHealthEnabledOk
+
+`func (o *AgentCapabilities) GetSwitchSnmpHealthEnabledOk() (*bool, bool)`
+
+GetSwitchSnmpHealthEnabledOk returns a tuple with the SwitchSnmpHealthEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchSnmpHealthEnabled
+
+`func (o *AgentCapabilities) SetSwitchSnmpHealthEnabled(v bool)`
+
+SetSwitchSnmpHealthEnabled sets SwitchSnmpHealthEnabled field to given value.
+
+
+### GetInbandWebmksEnabled
+
+`func (o *AgentCapabilities) GetInbandWebmksEnabled() bool`
+
+GetInbandWebmksEnabled returns the InbandWebmksEnabled field if non-nil, zero value otherwise.
+
+### GetInbandWebmksEnabledOk
+
+`func (o *AgentCapabilities) GetInbandWebmksEnabledOk() (*bool, bool)`
+
+GetInbandWebmksEnabledOk returns a tuple with the InbandWebmksEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInbandWebmksEnabled
+
+`func (o *AgentCapabilities) SetInbandWebmksEnabled(v bool)`
+
+SetInbandWebmksEnabled sets InbandWebmksEnabled field to given value.
 
 
 

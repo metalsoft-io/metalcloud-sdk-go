@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateNetworkDeviceController{}
 // CreateNetworkDeviceController struct for CreateNetworkDeviceController
 type CreateNetworkDeviceController struct {
 	// Site identifier
-	SiteId *int32 `json:"siteId,omitempty"`
+	SiteId *int64 `json:"siteId,omitempty"`
 	// Name of the datacenter
 	DatacenterName string `json:"datacenterName"`
 	// Unique identifier string for the network device controller
@@ -72,9 +72,9 @@ func NewCreateNetworkDeviceControllerWithDefaults() *CreateNetworkDeviceControll
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceController) GetSiteId() int32 {
+func (o *CreateNetworkDeviceController) GetSiteId() int64 {
 	if o == nil || IsNil(o.SiteId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SiteId
@@ -82,7 +82,7 @@ func (o *CreateNetworkDeviceController) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceController) GetSiteIdOk() (*int32, bool) {
+func (o *CreateNetworkDeviceController) GetSiteIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *CreateNetworkDeviceController) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
-func (o *CreateNetworkDeviceController) SetSiteId(v int32) {
+// SetSiteId gets a reference to the given int64 and assigns it to the SiteId field.
+func (o *CreateNetworkDeviceController) SetSiteId(v int64) {
 	o.SiteId = &v
 }
 

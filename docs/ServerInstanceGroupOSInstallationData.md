@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The Product Instance ID. | 
+**Id** | **int64** | The Product Instance ID. | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroupOSInstallationData
 
-`func NewServerInstanceGroupOSInstallationData(id int32, label string, isVmGroup int32, isEndpointInstanceGroup int32, ) *ServerInstanceGroupOSInstallationData`
+`func NewServerInstanceGroupOSInstallationData(id int64, label string, isVmGroup int32, isEndpointInstanceGroup int32, ) *ServerInstanceGroupOSInstallationData`
 
 NewServerInstanceGroupOSInstallationData instantiates a new ServerInstanceGroupOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerInstanceGroupOSInstallationData) GetId() int32`
+`func (o *ServerInstanceGroupOSInstallationData) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerInstanceGroupOSInstallationData) GetIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupOSInstallationData) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerInstanceGroupOSInstallationData) SetId(v int32)`
+`func (o *ServerInstanceGroupOSInstallationData) SetId(v int64)`
 
 SetId sets Id field to given value.
 

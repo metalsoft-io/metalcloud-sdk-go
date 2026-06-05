@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The template asset ID | [readonly] 
-**TemplateId** | **int32** | The ID of the OS template that this template asset belongs to | 
+**Id** | **int64** | The template asset ID | [readonly] 
+**TemplateId** | **int64** | The ID of the OS template that this template asset belongs to | 
 **Usage** | **string** | The template asset usage:         OSTemplateDeviceType &#39;SERVER&#39; uses:             - If the template asset &#39;file.usage&#39; is &#39;build_source_image&#39;, the &#39;file.path&#39; is ignored and &#39;file.url&#39; is required.             - If the template asset &#39;file.usage&#39; is &#39;build_component&#39;, the &#39;file.path&#39; is the relative ISO location path where the template asset will be copied to.             - If the template asset &#39;file.usage&#39; is &#39;secondary_image&#39;, the &#39;file.url&#39; is the URL of the image which to mount in the 2nd virtual media of the server.         OSTemplateDeviceType &#39;NETWORK_DEVICE&#39; uses:             - If the template asset &#39;file.usage&#39; is &#39;source_image&#39;, the &#39;file.url&#39; is the location from where to fetch the Network Operating Systems (NOS) image and                the &#39;file.path&#39; is a composable part of the HTTP URL, expected as a request by the Open Network Install Environment (ONIE) install process.             - If the template asset &#39;file.usage&#39; is &#39;switch_ztp_config&#39;, the &#39;file.path&#39; is a composable part of the HTTP URL, expected as a request by the ZTP process.             - If the template asset &#39;file.usage&#39; is &#39;generic&#39;, the application code doesn&#39;t have any specific logic applied to the template asset. The &#39;file.path&#39;                is a composable part of the HTTP URL, expected as a request by the ZTP process (e.g. Enterprise_SONiC_OS).         OSTemplateDeviceType &#39;VM&#39; uses:             - If the template asset &#39;file.usage&#39; is &#39;metadata_source_image&#39;, the template asset contains information about the VM image. The &#39;file.path&#39; is used to                identify the VM image metadata (e.g. Incus).             - If the template asset &#39;file.usage&#39; is &#39;generic&#39;, the application code doesn&#39;t have any specific logic applied to the template asset. The &#39;file.path&#39; is               used to identify the role of each of the template asset (e.g. Incus cloud-init: network-config, user-data, vendor-data).          | 
 **File** | [**TemplateAssetFile**](TemplateAssetFile.md) |  | 
 **Tags** | Pointer to **[]string** | The tags associated with the template asset | [optional] 
-**Revision** | **int32** | The revision number of the template asset | [readonly] 
+**Revision** | **int64** | The revision number of the template asset | [readonly] 
 **CreatedBy** | **int32** | The user ID of the user who created the template asset | 
 **ModifiedBy** | Pointer to **int32** | The user ID of the user who last modified the template asset | [optional] 
 **CreatedAt** | **string** | The date and time the template asset was created | [readonly] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewTemplateAsset
 
-`func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt string, ) *TemplateAsset`
+`func NewTemplateAsset(id int64, templateId int64, usage string, file TemplateAssetFile, revision int64, createdBy int32, createdAt string, ) *TemplateAsset`
 
 NewTemplateAsset instantiates a new TemplateAsset object
 This constructor will assign default values to properties that have it defined,
@@ -37,40 +37,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *TemplateAsset) GetId() int32`
+`func (o *TemplateAsset) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *TemplateAsset) GetIdOk() (*int32, bool)`
+`func (o *TemplateAsset) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *TemplateAsset) SetId(v int32)`
+`func (o *TemplateAsset) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetTemplateId
 
-`func (o *TemplateAsset) GetTemplateId() int32`
+`func (o *TemplateAsset) GetTemplateId() int64`
 
 GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
 ### GetTemplateIdOk
 
-`func (o *TemplateAsset) GetTemplateIdOk() (*int32, bool)`
+`func (o *TemplateAsset) GetTemplateIdOk() (*int64, bool)`
 
 GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplateId
 
-`func (o *TemplateAsset) SetTemplateId(v int32)`
+`func (o *TemplateAsset) SetTemplateId(v int64)`
 
 SetTemplateId sets TemplateId field to given value.
 
@@ -142,20 +142,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *TemplateAsset) GetRevision() int32`
+`func (o *TemplateAsset) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *TemplateAsset) GetRevisionOk() (*int32, bool)`
+`func (o *TemplateAsset) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *TemplateAsset) SetRevision(v int32)`
+`func (o *TemplateAsset) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

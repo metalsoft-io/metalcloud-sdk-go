@@ -23,13 +23,13 @@ var _ MappedNullable = &EndpointInterface{}
 // EndpointInterface struct for EndpointInterface
 type EndpointInterface struct {
 	// Unique identifier for the endpoint interface
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number of the endpoint interface
 	Revision string `json:"revision"`
 	// Network device id
-	NetworkDeviceId float32 `json:"networkDeviceId"`
+	NetworkDeviceId int64 `json:"networkDeviceId"`
 	// Network device interface id
-	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
+	NetworkDeviceInterfaceId int64 `json:"networkDeviceInterfaceId"`
 	// Network device interface name
 	NetworkDeviceInterfaceName string `json:"networkDeviceInterfaceName"`
 	// Device interface mac address
@@ -49,7 +49,7 @@ type _EndpointInterface EndpointInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointInterface(id float32, revision string, networkDeviceId float32, networkDeviceInterfaceId float32, networkDeviceInterfaceName string, createdTimestamp time.Time, updatedTimestamp time.Time) *EndpointInterface {
+func NewEndpointInterface(id int64, revision string, networkDeviceId int64, networkDeviceInterfaceId int64, networkDeviceInterfaceName string, createdTimestamp time.Time, updatedTimestamp time.Time) *EndpointInterface {
 	this := EndpointInterface{}
 	this.Id = id
 	this.Revision = revision
@@ -70,9 +70,9 @@ func NewEndpointInterfaceWithDefaults() *EndpointInterface {
 }
 
 // GetId returns the Id field value
-func (o *EndpointInterface) GetId() float32 {
+func (o *EndpointInterface) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -81,7 +81,7 @@ func (o *EndpointInterface) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInterface) GetIdOk() (*float32, bool) {
+func (o *EndpointInterface) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *EndpointInterface) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *EndpointInterface) SetId(v float32) {
+func (o *EndpointInterface) SetId(v int64) {
 	o.Id = v
 }
 
@@ -118,9 +118,9 @@ func (o *EndpointInterface) SetRevision(v string) {
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *EndpointInterface) GetNetworkDeviceId() float32 {
+func (o *EndpointInterface) GetNetworkDeviceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -129,7 +129,7 @@ func (o *EndpointInterface) GetNetworkDeviceId() float32 {
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInterface) GetNetworkDeviceIdOk() (*float32, bool) {
+func (o *EndpointInterface) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,14 +137,14 @@ func (o *EndpointInterface) GetNetworkDeviceIdOk() (*float32, bool) {
 }
 
 // SetNetworkDeviceId sets field value
-func (o *EndpointInterface) SetNetworkDeviceId(v float32) {
+func (o *EndpointInterface) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 
 // GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value
-func (o *EndpointInterface) GetNetworkDeviceInterfaceId() float32 {
+func (o *EndpointInterface) GetNetworkDeviceInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -153,7 +153,7 @@ func (o *EndpointInterface) GetNetworkDeviceInterfaceId() float32 {
 
 // GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+func (o *EndpointInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -161,7 +161,7 @@ func (o *EndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
 }
 
 // SetNetworkDeviceInterfaceId sets field value
-func (o *EndpointInterface) SetNetworkDeviceInterfaceId(v float32) {
+func (o *EndpointInterface) SetNetworkDeviceInterfaceId(v int64) {
 	o.NetworkDeviceInterfaceId = v
 }
 

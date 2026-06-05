@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
-**RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
+**RouteDomainId** | Pointer to **NullableInt64** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vxlan** | Pointer to [**UpdateLogicalNetworkConfigVxlanProperties**](UpdateLogicalNetworkConfigVxlanProperties.md) |  | [optional] 
 
@@ -107,20 +107,20 @@ HasAnnotations returns a boolean if a field has been set.
 
 ### GetRouteDomainId
 
-`func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int32`
+`func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int64`
 
 GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
 
 ### GetRouteDomainIdOk
 
-`func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool)`
+`func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int64, bool)`
 
 GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouteDomainId
 
-`func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int32)`
+`func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int64)`
 
 SetRouteDomainId sets RouteDomainId field to given value.
 

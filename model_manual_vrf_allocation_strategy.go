@@ -22,7 +22,7 @@ var _ MappedNullable = &ManualVrfAllocationStrategy{}
 
 // ManualVrfAllocationStrategy struct for ManualVrfAllocationStrategy
 type ManualVrfAllocationStrategy struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
@@ -37,7 +37,7 @@ type _ManualVrfAllocationStrategy ManualVrfAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualVrfAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, name string) *ManualVrfAllocationStrategy {
+func NewManualVrfAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, name string) *ManualVrfAllocationStrategy {
 	this := ManualVrfAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -57,9 +57,9 @@ func NewManualVrfAllocationStrategyWithDefaults() *ManualVrfAllocationStrategy {
 }
 
 // GetId returns the Id field value
-func (o *ManualVrfAllocationStrategy) GetId() int32 {
+func (o *ManualVrfAllocationStrategy) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *ManualVrfAllocationStrategy) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ManualVrfAllocationStrategy) GetIdOk() (*int32, bool) {
+func (o *ManualVrfAllocationStrategy) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *ManualVrfAllocationStrategy) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ManualVrfAllocationStrategy) SetId(v int32) {
+func (o *ManualVrfAllocationStrategy) SetId(v int64) {
 	o.Id = v
 }
 

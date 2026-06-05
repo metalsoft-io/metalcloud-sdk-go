@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(int32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
+	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(int64(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -322,7 +322,7 @@ import (
 
 func main() {
 	templateAssetId := float32(8.14) // float32 | 
-	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(int32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
+	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(int64(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

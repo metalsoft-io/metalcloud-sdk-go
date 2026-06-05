@@ -22,15 +22,15 @@ var _ MappedNullable = &Subnet{}
 
 // Subnet struct for Subnet
 type Subnet struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	Name string `json:"name"`
 	Annotations map[string]string `json:"annotations"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Tags map[string]string `json:"tags"`
-	ParentSubnetId int32 `json:"parentSubnetId"`
+	ParentSubnetId int64 `json:"parentSubnetId"`
 	IpVersion IpVersion `json:"ipVersion"`
 	NetworkAddress string `json:"networkAddress"`
 	PrefixLength int32 `json:"prefixLength"`
@@ -48,7 +48,7 @@ type _Subnet Subnet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubnet(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, tags map[string]string, parentSubnetId int32, ipVersion IpVersion, networkAddress string, prefixLength int32, netmask string, defaultGatewayAddress string, isPool bool, allocationDenylist []AddressRange, childOverlapAllowRules []string) *Subnet {
+func NewSubnet(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, tags map[string]string, parentSubnetId int64, ipVersion IpVersion, networkAddress string, prefixLength int32, netmask string, defaultGatewayAddress string, isPool bool, allocationDenylist []AddressRange, childOverlapAllowRules []string) *Subnet {
 	this := Subnet{}
 	this.Id = id
 	this.Label = label
@@ -79,9 +79,9 @@ func NewSubnetWithDefaults() *Subnet {
 }
 
 // GetId returns the Id field value
-func (o *Subnet) GetId() int32 {
+func (o *Subnet) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -90,7 +90,7 @@ func (o *Subnet) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetIdOk() (*int32, bool) {
+func (o *Subnet) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *Subnet) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Subnet) SetId(v int32) {
+func (o *Subnet) SetId(v int64) {
 	o.Id = v
 }
 
@@ -223,9 +223,9 @@ func (o *Subnet) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *Subnet) GetRevision() int32 {
+func (o *Subnet) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -234,7 +234,7 @@ func (o *Subnet) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetRevisionOk() (*int32, bool) {
+func (o *Subnet) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -242,7 +242,7 @@ func (o *Subnet) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Subnet) SetRevision(v int32) {
+func (o *Subnet) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -271,9 +271,9 @@ func (o *Subnet) SetTags(v map[string]string) {
 }
 
 // GetParentSubnetId returns the ParentSubnetId field value
-func (o *Subnet) GetParentSubnetId() int32 {
+func (o *Subnet) GetParentSubnetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -282,7 +282,7 @@ func (o *Subnet) GetParentSubnetId() int32 {
 
 // GetParentSubnetIdOk returns a tuple with the ParentSubnetId field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetParentSubnetIdOk() (*int32, bool) {
+func (o *Subnet) GetParentSubnetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -290,7 +290,7 @@ func (o *Subnet) GetParentSubnetIdOk() (*int32, bool) {
 }
 
 // SetParentSubnetId sets field value
-func (o *Subnet) SetParentSubnetId(v int32) {
+func (o *Subnet) SetParentSubnetId(v int64) {
 	o.ParentSubnetId = v
 }
 

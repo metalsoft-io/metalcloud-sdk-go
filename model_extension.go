@@ -22,9 +22,9 @@ var _ MappedNullable = &Extension{}
 // Extension struct for Extension
 type Extension struct {
 	// The extension ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The extension unique slug
 	Slug *string `json:"slug,omitempty"`
 	// The extension name
@@ -51,7 +51,7 @@ type _Extension Extension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtension(id float32, revision float32, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition) *Extension {
+func NewExtension(id int64, revision int64, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition) *Extension {
 	this := Extension{}
 	this.Id = id
 	this.Revision = revision
@@ -76,9 +76,9 @@ func NewExtensionWithDefaults() *Extension {
 }
 
 // GetId returns the Id field value
-func (o *Extension) GetId() float32 {
+func (o *Extension) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -87,7 +87,7 @@ func (o *Extension) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Extension) GetIdOk() (*float32, bool) {
+func (o *Extension) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,14 +95,14 @@ func (o *Extension) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Extension) SetId(v float32) {
+func (o *Extension) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Extension) GetRevision() float32 {
+func (o *Extension) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -111,7 +111,7 @@ func (o *Extension) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Extension) GetRevisionOk() (*float32, bool) {
+func (o *Extension) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,7 +119,7 @@ func (o *Extension) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Extension) SetRevision(v float32) {
+func (o *Extension) SetRevision(v int64) {
 	o.Revision = v
 }
 

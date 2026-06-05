@@ -122,7 +122,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createVMInstance := *openapiclient.NewCreateVMInstance(float32(123), float32(123)) // CreateVMInstance | The VM Instance create object
+	createVMInstance := *openapiclient.NewCreateVMInstance(int64(123), int64(123)) // CreateVMInstance | The VM Instance create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

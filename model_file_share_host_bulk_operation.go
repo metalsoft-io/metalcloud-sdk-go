@@ -22,7 +22,7 @@ var _ MappedNullable = &FileShareHostBulkOperation{}
 // FileShareHostBulkOperation struct for FileShareHostBulkOperation
 type FileShareHostBulkOperation struct {
 	// Id of the Server Instance Group Host that will be modified
-	ServerInstanceGroupId float32 `json:"serverInstanceGroupId"`
+	ServerInstanceGroupId int64 `json:"serverInstanceGroupId"`
 	// Operation type for the Server Instance Group Host
 	OperationType string `json:"operationType"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _FileShareHostBulkOperation FileShareHostBulkOperation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileShareHostBulkOperation(serverInstanceGroupId float32, operationType string) *FileShareHostBulkOperation {
+func NewFileShareHostBulkOperation(serverInstanceGroupId int64, operationType string) *FileShareHostBulkOperation {
 	this := FileShareHostBulkOperation{}
 	this.ServerInstanceGroupId = serverInstanceGroupId
 	this.OperationType = operationType
@@ -50,9 +50,9 @@ func NewFileShareHostBulkOperationWithDefaults() *FileShareHostBulkOperation {
 }
 
 // GetServerInstanceGroupId returns the ServerInstanceGroupId field value
-func (o *FileShareHostBulkOperation) GetServerInstanceGroupId() float32 {
+func (o *FileShareHostBulkOperation) GetServerInstanceGroupId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *FileShareHostBulkOperation) GetServerInstanceGroupId() float32 {
 
 // GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field value
 // and a boolean to check if the value has been set.
-func (o *FileShareHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, bool) {
+func (o *FileShareHostBulkOperation) GetServerInstanceGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *FileShareHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, boo
 }
 
 // SetServerInstanceGroupId sets field value
-func (o *FileShareHostBulkOperation) SetServerInstanceGroupId(v float32) {
+func (o *FileShareHostBulkOperation) SetServerInstanceGroupId(v int64) {
 	o.ServerInstanceGroupId = v
 }
 

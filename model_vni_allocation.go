@@ -21,7 +21,7 @@ var _ MappedNullable = &VniAllocation{}
 
 // VniAllocation struct for VniAllocation
 type VniAllocation struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Scope ResourceScope `json:"scope"`
 	Status ResourceAllocationStatus `json:"status"`
 	Vni int32 `json:"vni"`
@@ -34,7 +34,7 @@ type _VniAllocation VniAllocation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVniAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, vni int32) *VniAllocation {
+func NewVniAllocation(id int64, scope ResourceScope, status ResourceAllocationStatus, vni int32) *VniAllocation {
 	this := VniAllocation{}
 	this.Id = id
 	this.Scope = scope
@@ -52,9 +52,9 @@ func NewVniAllocationWithDefaults() *VniAllocation {
 }
 
 // GetId returns the Id field value
-func (o *VniAllocation) GetId() int32 {
+func (o *VniAllocation) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *VniAllocation) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VniAllocation) GetIdOk() (*int32, bool) {
+func (o *VniAllocation) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *VniAllocation) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *VniAllocation) SetId(v int32) {
+func (o *VniAllocation) SetId(v int64) {
 	o.Id = v
 }
 

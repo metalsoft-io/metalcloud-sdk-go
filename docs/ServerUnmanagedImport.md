@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ManagementAddress** | Pointer to **string** | The management address of the server. | [optional] 
-**SiteId** | **float32** | The site id where the server is located. | 
-**ServerTypeId** | **float32** | The server type id. | 
+**SiteId** | **int64** | The site id where the server is located. | 
+**ServerTypeId** | **int64** | The server type id. | 
 **ServerSupportsOobProvisioning** | Pointer to **float32** | Flag to indicate if the server supports SOL. | [optional] 
 **ServerInterfaces** | [**[]ServerUnmanagedImportInternalInterface**](ServerUnmanagedImportInternalInterface.md) | The interfaces of the server. | 
 **ServerSerialNumber** | Pointer to **string** | The server Serial Number. | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewServerUnmanagedImport
 
-`func NewServerUnmanagedImport(siteId float32, serverTypeId float32, serverInterfaces []ServerUnmanagedImportInternalInterface, ) *ServerUnmanagedImport`
+`func NewServerUnmanagedImport(siteId int64, serverTypeId int64, serverInterfaces []ServerUnmanagedImportInternalInterface, ) *ServerUnmanagedImport`
 
 NewServerUnmanagedImport instantiates a new ServerUnmanagedImport object
 This constructor will assign default values to properties that have it defined,
@@ -61,40 +61,40 @@ HasManagementAddress returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *ServerUnmanagedImport) GetSiteId() float32`
+`func (o *ServerUnmanagedImport) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *ServerUnmanagedImport) GetSiteIdOk() (*float32, bool)`
+`func (o *ServerUnmanagedImport) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *ServerUnmanagedImport) SetSiteId(v float32)`
+`func (o *ServerUnmanagedImport) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
 
 ### GetServerTypeId
 
-`func (o *ServerUnmanagedImport) GetServerTypeId() float32`
+`func (o *ServerUnmanagedImport) GetServerTypeId() int64`
 
 GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdOk
 
-`func (o *ServerUnmanagedImport) GetServerTypeIdOk() (*float32, bool)`
+`func (o *ServerUnmanagedImport) GetServerTypeIdOk() (*int64, bool)`
 
 GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeId
 
-`func (o *ServerUnmanagedImport) SetServerTypeId(v float32)`
+`func (o *ServerUnmanagedImport) SetServerTypeId(v int64)`
 
 SetServerTypeId sets ServerTypeId field to given value.
 

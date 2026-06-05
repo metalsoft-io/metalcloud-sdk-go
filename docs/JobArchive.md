@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**JobId** | **int32** | Job Id | 
-**SiteId** | Pointer to **int32** | Site Id | [optional] 
-**InstanceId** | Pointer to **int32** | Instance Id | [optional] 
-**ServerId** | Pointer to **int32** | Server Id | [optional] 
-**VmPoolId** | Pointer to **int32** | VM Pool Id | [optional] 
-**StorageId** | Pointer to **int32** | Storage Pool Id | [optional] 
-**NetworkDeviceId** | Pointer to **int32** | Network Equipment Id | [optional] 
-**InfrastructureId** | Pointer to **int32** | Infrastructure Id | [optional] 
+**JobId** | **int64** | Job Id | 
+**SiteId** | Pointer to **int64** | Site Id | [optional] 
+**InstanceId** | Pointer to **int64** | Instance Id | [optional] 
+**ServerId** | Pointer to **int64** | Server Id | [optional] 
+**VmPoolId** | Pointer to **int64** | VM Pool Id | [optional] 
+**StorageId** | Pointer to **int64** | Storage Pool Id | [optional] 
+**NetworkDeviceId** | Pointer to **int64** | Network Equipment Id | [optional] 
+**InfrastructureId** | Pointer to **int64** | Infrastructure Id | [optional] 
 **JobIdBlocked** | Pointer to **int32** | The id of the next job that should be executed after this job | [optional] 
 **JobIdBlockedBy** | Pointer to **int32** | The id of the job that is blocking this job from executing | [optional] 
-**JobGroupId** | Pointer to **int32** | The id of the group that this job belongs to | [optional] 
+**JobGroupId** | Pointer to **int64** | The id of the group that this job belongs to | [optional] 
 **Type** | **string** | The type of the job | 
 **Status** | **string** | The status of the job | 
 **FunctionName** | **string** | The name of the function that should be executed | 
@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 
 ### NewJobArchive
 
-`func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link, ) *JobArchive`
+`func NewJobArchive(jobId int64, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link, ) *JobArchive`
 
 NewJobArchive instantiates a new JobArchive object
 This constructor will assign default values to properties that have it defined,
@@ -55,40 +55,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetJobId
 
-`func (o *JobArchive) GetJobId() int32`
+`func (o *JobArchive) GetJobId() int64`
 
 GetJobId returns the JobId field if non-nil, zero value otherwise.
 
 ### GetJobIdOk
 
-`func (o *JobArchive) GetJobIdOk() (*int32, bool)`
+`func (o *JobArchive) GetJobIdOk() (*int64, bool)`
 
 GetJobIdOk returns a tuple with the JobId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJobId
 
-`func (o *JobArchive) SetJobId(v int32)`
+`func (o *JobArchive) SetJobId(v int64)`
 
 SetJobId sets JobId field to given value.
 
 
 ### GetSiteId
 
-`func (o *JobArchive) GetSiteId() int32`
+`func (o *JobArchive) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *JobArchive) GetSiteIdOk() (*int32, bool)`
+`func (o *JobArchive) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *JobArchive) SetSiteId(v int32)`
+`func (o *JobArchive) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -100,20 +100,20 @@ HasSiteId returns a boolean if a field has been set.
 
 ### GetInstanceId
 
-`func (o *JobArchive) GetInstanceId() int32`
+`func (o *JobArchive) GetInstanceId() int64`
 
 GetInstanceId returns the InstanceId field if non-nil, zero value otherwise.
 
 ### GetInstanceIdOk
 
-`func (o *JobArchive) GetInstanceIdOk() (*int32, bool)`
+`func (o *JobArchive) GetInstanceIdOk() (*int64, bool)`
 
 GetInstanceIdOk returns a tuple with the InstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceId
 
-`func (o *JobArchive) SetInstanceId(v int32)`
+`func (o *JobArchive) SetInstanceId(v int64)`
 
 SetInstanceId sets InstanceId field to given value.
 
@@ -125,20 +125,20 @@ HasInstanceId returns a boolean if a field has been set.
 
 ### GetServerId
 
-`func (o *JobArchive) GetServerId() int32`
+`func (o *JobArchive) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *JobArchive) GetServerIdOk() (*int32, bool)`
+`func (o *JobArchive) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *JobArchive) SetServerId(v int32)`
+`func (o *JobArchive) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -150,20 +150,20 @@ HasServerId returns a boolean if a field has been set.
 
 ### GetVmPoolId
 
-`func (o *JobArchive) GetVmPoolId() int32`
+`func (o *JobArchive) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *JobArchive) GetVmPoolIdOk() (*int32, bool)`
+`func (o *JobArchive) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *JobArchive) SetVmPoolId(v int32)`
+`func (o *JobArchive) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 
@@ -175,20 +175,20 @@ HasVmPoolId returns a boolean if a field has been set.
 
 ### GetStorageId
 
-`func (o *JobArchive) GetStorageId() int32`
+`func (o *JobArchive) GetStorageId() int64`
 
 GetStorageId returns the StorageId field if non-nil, zero value otherwise.
 
 ### GetStorageIdOk
 
-`func (o *JobArchive) GetStorageIdOk() (*int32, bool)`
+`func (o *JobArchive) GetStorageIdOk() (*int64, bool)`
 
 GetStorageIdOk returns a tuple with the StorageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageId
 
-`func (o *JobArchive) SetStorageId(v int32)`
+`func (o *JobArchive) SetStorageId(v int64)`
 
 SetStorageId sets StorageId field to given value.
 
@@ -200,20 +200,20 @@ HasStorageId returns a boolean if a field has been set.
 
 ### GetNetworkDeviceId
 
-`func (o *JobArchive) GetNetworkDeviceId() int32`
+`func (o *JobArchive) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *JobArchive) GetNetworkDeviceIdOk() (*int32, bool)`
+`func (o *JobArchive) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *JobArchive) SetNetworkDeviceId(v int32)`
+`func (o *JobArchive) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
@@ -225,20 +225,20 @@ HasNetworkDeviceId returns a boolean if a field has been set.
 
 ### GetInfrastructureId
 
-`func (o *JobArchive) GetInfrastructureId() int32`
+`func (o *JobArchive) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *JobArchive) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *JobArchive) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *JobArchive) SetInfrastructureId(v int32)`
+`func (o *JobArchive) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -300,20 +300,20 @@ HasJobIdBlockedBy returns a boolean if a field has been set.
 
 ### GetJobGroupId
 
-`func (o *JobArchive) GetJobGroupId() int32`
+`func (o *JobArchive) GetJobGroupId() int64`
 
 GetJobGroupId returns the JobGroupId field if non-nil, zero value otherwise.
 
 ### GetJobGroupIdOk
 
-`func (o *JobArchive) GetJobGroupIdOk() (*int32, bool)`
+`func (o *JobArchive) GetJobGroupIdOk() (*int64, bool)`
 
 GetJobGroupIdOk returns a tuple with the JobGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJobGroupId
 
-`func (o *JobArchive) SetJobGroupId(v int32)`
+`func (o *JobArchive) SetJobGroupId(v int64)`
 
 SetJobGroupId sets JobGroupId field to given value.
 

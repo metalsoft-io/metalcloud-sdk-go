@@ -44,7 +44,7 @@ import (
 )
 
 func main() {
-	createDeviceAuthProvider := *openapiclient.NewCreateDeviceAuthProvider("tacacs-primary", "Primary TACACS+ Server", int32(1), "tacacs", "192.168.1.10", int32(49), "my-shared-secret", "admin") // CreateDeviceAuthProvider | 
+	createDeviceAuthProvider := *openapiclient.NewCreateDeviceAuthProvider("tacacs-primary", "Primary TACACS+ Server", int64(1), "tacacs", "192.168.1.10", int32(49), "my-shared-secret", "admin") // CreateDeviceAuthProvider | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -724,7 +724,7 @@ import (
 
 func main() {
 	siteId := float32(8.14) // float32 | 
-	generateSiteControllerOneliner := *openapiclient.NewGenerateSiteControllerOneliner(false, false, false, "Registry_example", "GitHubTag_example", false, "api.example.com", "v6.4.0", "your-secure-tunnel-token", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false) // GenerateSiteControllerOneliner | Data needed for the controller one-liner generation
+	generateSiteControllerOneliner := *openapiclient.NewGenerateSiteControllerOneliner(false, false, false, "Registry_example", "GitHubTag_example", false, "api.example.com", "v6.4.0", "your-secure-tunnel-token", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false) // GenerateSiteControllerOneliner | Data needed for the controller one-liner generation
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

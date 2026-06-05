@@ -22,9 +22,9 @@ var _ MappedNullable = &RegisterProductionServerSettings{}
 // RegisterProductionServerSettings struct for RegisterProductionServerSettings
 type RegisterProductionServerSettings struct {
 	// The id of the infrastructure where the server is located.
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// The id of the template installed on the server.
-	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Interface to network device connection settings.
 	InterfaceConnections []ServerInterfaceConnection `json:"interfaceConnections,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -36,7 +36,7 @@ type _RegisterProductionServerSettings RegisterProductionServerSettings
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterProductionServerSettings(infrastructureId float32) *RegisterProductionServerSettings {
+func NewRegisterProductionServerSettings(infrastructureId int64) *RegisterProductionServerSettings {
 	this := RegisterProductionServerSettings{}
 	this.InfrastructureId = infrastructureId
 	return &this
@@ -51,9 +51,9 @@ func NewRegisterProductionServerSettingsWithDefaults() *RegisterProductionServer
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *RegisterProductionServerSettings) GetInfrastructureId() float32 {
+func (o *RegisterProductionServerSettings) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -62,7 +62,7 @@ func (o *RegisterProductionServerSettings) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *RegisterProductionServerSettings) GetInfrastructureIdOk() (*float32, bool) {
+func (o *RegisterProductionServerSettings) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,14 +70,14 @@ func (o *RegisterProductionServerSettings) GetInfrastructureIdOk() (*float32, bo
 }
 
 // SetInfrastructureId sets field value
-func (o *RegisterProductionServerSettings) SetInfrastructureId(v float32) {
+func (o *RegisterProductionServerSettings) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *RegisterProductionServerSettings) GetOsTemplateId() float32 {
+func (o *RegisterProductionServerSettings) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -85,7 +85,7 @@ func (o *RegisterProductionServerSettings) GetOsTemplateId() float32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegisterProductionServerSettings) GetOsTemplateIdOk() (*float32, bool) {
+func (o *RegisterProductionServerSettings) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *RegisterProductionServerSettings) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
-func (o *RegisterProductionServerSettings) SetOsTemplateId(v float32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *RegisterProductionServerSettings) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 

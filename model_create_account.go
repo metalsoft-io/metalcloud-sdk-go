@@ -22,13 +22,15 @@ var _ MappedNullable = &CreateAccount{}
 // CreateAccount struct for CreateAccount
 type CreateAccount struct {
 	// The ID of the parent account
-	ParentAccountId *float32 `json:"parentAccountId,omitempty"`
+	ParentAccountId *int64 `json:"parentAccountId,omitempty"`
 	// The name of the account
 	Name string `json:"name"`
 	// The code of the account
 	Code *string `json:"code,omitempty"`
 	// The fiscal number of the account
 	FiscalNumber *string `json:"fiscalNumber,omitempty"`
+	// The ID of the quota profile assigned to this account
+	QuotaProfileId *string `json:"quotaProfileId,omitempty"`
 	Address *AccountAddress `json:"address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -54,9 +56,9 @@ func NewCreateAccountWithDefaults() *CreateAccount {
 }
 
 // GetParentAccountId returns the ParentAccountId field value if set, zero value otherwise.
-func (o *CreateAccount) GetParentAccountId() float32 {
+func (o *CreateAccount) GetParentAccountId() int64 {
 	if o == nil || IsNil(o.ParentAccountId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ParentAccountId
@@ -64,7 +66,7 @@ func (o *CreateAccount) GetParentAccountId() float32 {
 
 // GetParentAccountIdOk returns a tuple with the ParentAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAccount) GetParentAccountIdOk() (*float32, bool) {
+func (o *CreateAccount) GetParentAccountIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ParentAccountId) {
 		return nil, false
 	}
@@ -80,8 +82,8 @@ func (o *CreateAccount) HasParentAccountId() bool {
 	return false
 }
 
-// SetParentAccountId gets a reference to the given float32 and assigns it to the ParentAccountId field.
-func (o *CreateAccount) SetParentAccountId(v float32) {
+// SetParentAccountId gets a reference to the given int64 and assigns it to the ParentAccountId field.
+func (o *CreateAccount) SetParentAccountId(v int64) {
 	o.ParentAccountId = &v
 }
 
@@ -173,6 +175,38 @@ func (o *CreateAccount) SetFiscalNumber(v string) {
 	o.FiscalNumber = &v
 }
 
+// GetQuotaProfileId returns the QuotaProfileId field value if set, zero value otherwise.
+func (o *CreateAccount) GetQuotaProfileId() string {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		var ret string
+		return ret
+	}
+	return *o.QuotaProfileId
+}
+
+// GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAccount) GetQuotaProfileIdOk() (*string, bool) {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		return nil, false
+	}
+	return o.QuotaProfileId, true
+}
+
+// HasQuotaProfileId returns a boolean if a field has been set.
+func (o *CreateAccount) HasQuotaProfileId() bool {
+	if o != nil && !IsNil(o.QuotaProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuotaProfileId gets a reference to the given string and assigns it to the QuotaProfileId field.
+func (o *CreateAccount) SetQuotaProfileId(v string) {
+	o.QuotaProfileId = &v
+}
+
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *CreateAccount) GetAddress() AccountAddress {
 	if o == nil || IsNil(o.Address) {
@@ -225,6 +259,9 @@ func (o CreateAccount) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FiscalNumber) {
 		toSerialize["fiscalNumber"] = o.FiscalNumber
 	}
+	if !IsNil(o.QuotaProfileId) {
+		toSerialize["quotaProfileId"] = o.QuotaProfileId
+	}
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
@@ -275,6 +312,7 @@ func (o *CreateAccount) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "code")
 		delete(additionalProperties, "fiscalNumber")
+		delete(additionalProperties, "quotaProfileId")
 		delete(additionalProperties, "address")
 		o.AdditionalProperties = additionalProperties
 	}

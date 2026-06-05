@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **NeighborTemplateActivate** | **[]string** | Preview of BGP neighbor configuration activation template | 
 **GlobalTemplateDeactivate** | **[]string** | Preview of global deactivation template | 
 **NeighborTemplateDeactivate** | **[]string** | Preview of BGP neighbor configuration deactivation template | 
+**Changes** | **[]string** | Apply-ready command list. Concatenation of the mode-appropriate generated templates (activate or deactivate side) with the sonic-cli / configure terminal prefix prepended once. Sent to switch.ssh_exec verbatim by the apply step. | 
 
 ## Methods
 
 ### NewNetworkFabricInterconnectDeployPreview
 
-`func NewNetworkFabricInterconnectDeployPreview(networkDeviceId float32, networkInterconnectId float32, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string, ) *NetworkFabricInterconnectDeployPreview`
+`func NewNetworkFabricInterconnectDeployPreview(networkDeviceId float32, networkInterconnectId float32, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string, changes []string, ) *NetworkFabricInterconnectDeployPreview`
 
 NewNetworkFabricInterconnectDeployPreview instantiates a new NetworkFabricInterconnectDeployPreview object
 This constructor will assign default values to properties that have it defined,
@@ -148,6 +149,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkFabricInterconnectDeployPreview) SetNeighborTemplateDeactivate(v []string)`
 
 SetNeighborTemplateDeactivate sets NeighborTemplateDeactivate field to given value.
+
+
+### GetChanges
+
+`func (o *NetworkFabricInterconnectDeployPreview) GetChanges() []string`
+
+GetChanges returns the Changes field if non-nil, zero value otherwise.
+
+### GetChangesOk
+
+`func (o *NetworkFabricInterconnectDeployPreview) GetChangesOk() (*[]string, bool)`
+
+GetChangesOk returns a tuple with the Changes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChanges
+
+`func (o *NetworkFabricInterconnectDeployPreview) SetChanges(v []string)`
+
+SetChanges sets Changes field to given value.
 
 
 

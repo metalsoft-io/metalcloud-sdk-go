@@ -21,7 +21,7 @@ var _ MappedNullable = &ExtensionInfo{}
 // ExtensionInfo struct for ExtensionInfo
 type ExtensionInfo struct {
 	// The extension ID
-	Id *float32 `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	// The extension unique slug
 	Slug *string `json:"slug,omitempty"`
 	// The extension name
@@ -67,9 +67,9 @@ func NewExtensionInfoWithDefaults() *ExtensionInfo {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ExtensionInfo) GetId() float32 {
+func (o *ExtensionInfo) GetId() int64 {
 	if o == nil || IsNil(o.Id) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -77,7 +77,7 @@ func (o *ExtensionInfo) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInfo) GetIdOk() (*float32, bool) {
+func (o *ExtensionInfo) GetIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -93,8 +93,8 @@ func (o *ExtensionInfo) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given float32 and assigns it to the Id field.
-func (o *ExtensionInfo) SetId(v float32) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *ExtensionInfo) SetId(v int64) {
 	o.Id = &v
 }
 

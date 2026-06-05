@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	serverUnmanagedImport := *openapiclient.NewServerUnmanagedImport(float32(123), float32(123), []openapiclient.ServerUnmanagedImportInternalInterface{*openapiclient.NewServerUnmanagedImportInternalInterface("ServerInterfaceMacAddress_example", "IdentifierString_example", "NetworkEquipmentInterfaceIdentifierString_example")}) // ServerUnmanagedImport | The unmanaged server data to import
+	serverUnmanagedImport := *openapiclient.NewServerUnmanagedImport(int64(123), int64(123), []openapiclient.ServerUnmanagedImportInternalInterface{*openapiclient.NewServerUnmanagedImportInternalInterface("ServerInterfaceMacAddress_example", "IdentifierString_example", "NetworkEquipmentInterfaceIdentifierString_example")}) // ServerUnmanagedImport | The unmanaged server data to import
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

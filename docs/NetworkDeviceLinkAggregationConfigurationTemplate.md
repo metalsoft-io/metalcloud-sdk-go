@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
-**Id** | **float32** | Network Device Link Aggregation Configuration Template Id | 
+**Id** | **int64** | Network Device Link Aggregation Configuration Template Id | 
 
 ## Methods
 
 ### NewNetworkDeviceLinkAggregationConfigurationTemplate
 
-`func NewNetworkDeviceLinkAggregationConfigurationTemplate(action string, aggregationType string, networkDeviceDriver string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32, ) *NetworkDeviceLinkAggregationConfigurationTemplate`
+`func NewNetworkDeviceLinkAggregationConfigurationTemplate(action string, aggregationType string, networkDeviceDriver string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id int64, ) *NetworkDeviceLinkAggregationConfigurationTemplate`
 
 NewNetworkDeviceLinkAggregationConfigurationTemplate instantiates a new NetworkDeviceLinkAggregationConfigurationTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -247,20 +247,20 @@ HasLinks returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetId() float32`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetIdOk() (*float32, bool)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplate) SetId(v float32)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplate) SetId(v int64)`
 
 SetId sets Id field to given value.
 

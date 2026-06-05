@@ -22,16 +22,16 @@ var _ MappedNullable = &TemplateAsset{}
 // TemplateAsset struct for TemplateAsset
 type TemplateAsset struct {
 	// The template asset ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the OS template that this template asset belongs to
-	TemplateId int32 `json:"templateId"`
+	TemplateId int64 `json:"templateId"`
 	// The template asset usage:         OSTemplateDeviceType 'SERVER' uses:             - If the template asset 'file.usage' is 'build_source_image', the 'file.path' is ignored and 'file.url' is required.             - If the template asset 'file.usage' is 'build_component', the 'file.path' is the relative ISO location path where the template asset will be copied to.             - If the template asset 'file.usage' is 'secondary_image', the 'file.url' is the URL of the image which to mount in the 2nd virtual media of the server.         OSTemplateDeviceType 'NETWORK_DEVICE' uses:             - If the template asset 'file.usage' is 'source_image', the 'file.url' is the location from where to fetch the Network Operating Systems (NOS) image and                the 'file.path' is a composable part of the HTTP URL, expected as a request by the Open Network Install Environment (ONIE) install process.             - If the template asset 'file.usage' is 'switch_ztp_config', the 'file.path' is a composable part of the HTTP URL, expected as a request by the ZTP process.             - If the template asset 'file.usage' is 'generic', the application code doesn't have any specific logic applied to the template asset. The 'file.path'                is a composable part of the HTTP URL, expected as a request by the ZTP process (e.g. Enterprise_SONiC_OS).         OSTemplateDeviceType 'VM' uses:             - If the template asset 'file.usage' is 'metadata_source_image', the template asset contains information about the VM image. The 'file.path' is used to                identify the VM image metadata (e.g. Incus).             - If the template asset 'file.usage' is 'generic', the application code doesn't have any specific logic applied to the template asset. The 'file.path' is               used to identify the role of each of the template asset (e.g. Incus cloud-init: network-config, user-data, vendor-data).         
 	Usage string `json:"usage"`
 	File TemplateAssetFile `json:"file"`
 	// The tags associated with the template asset
 	Tags []string `json:"tags,omitempty"`
 	// The revision number of the template asset
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The user ID of the user who created the template asset
 	CreatedBy int32 `json:"createdBy"`
 	// The user ID of the user who last modified the template asset
@@ -51,7 +51,7 @@ type _TemplateAsset TemplateAsset
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt string) *TemplateAsset {
+func NewTemplateAsset(id int64, templateId int64, usage string, file TemplateAssetFile, revision int64, createdBy int32, createdAt string) *TemplateAsset {
 	this := TemplateAsset{}
 	this.Id = id
 	this.TemplateId = templateId
@@ -72,9 +72,9 @@ func NewTemplateAssetWithDefaults() *TemplateAsset {
 }
 
 // GetId returns the Id field value
-func (o *TemplateAsset) GetId() int32 {
+func (o *TemplateAsset) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *TemplateAsset) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetIdOk() (*int32, bool) {
+func (o *TemplateAsset) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,14 +91,14 @@ func (o *TemplateAsset) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *TemplateAsset) SetId(v int32) {
+func (o *TemplateAsset) SetId(v int64) {
 	o.Id = v
 }
 
 // GetTemplateId returns the TemplateId field value
-func (o *TemplateAsset) GetTemplateId() int32 {
+func (o *TemplateAsset) GetTemplateId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -107,7 +107,7 @@ func (o *TemplateAsset) GetTemplateId() int32 {
 
 // GetTemplateIdOk returns a tuple with the TemplateId field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetTemplateIdOk() (*int32, bool) {
+func (o *TemplateAsset) GetTemplateIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,7 +115,7 @@ func (o *TemplateAsset) GetTemplateIdOk() (*int32, bool) {
 }
 
 // SetTemplateId sets field value
-func (o *TemplateAsset) SetTemplateId(v int32) {
+func (o *TemplateAsset) SetTemplateId(v int64) {
 	o.TemplateId = v
 }
 
@@ -200,9 +200,9 @@ func (o *TemplateAsset) SetTags(v []string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *TemplateAsset) GetRevision() int32 {
+func (o *TemplateAsset) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -211,7 +211,7 @@ func (o *TemplateAsset) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetRevisionOk() (*int32, bool) {
+func (o *TemplateAsset) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -219,7 +219,7 @@ func (o *TemplateAsset) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *TemplateAsset) SetRevision(v int32) {
+func (o *TemplateAsset) SetRevision(v int64) {
 	o.Revision = v
 }
 

@@ -23,9 +23,9 @@ var _ MappedNullable = &DeviceAuthProvider{}
 // DeviceAuthProvider struct for DeviceAuthProvider
 type DeviceAuthProvider struct {
 	// The device auth provider ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the site this provider belongs to.
-	SiteId int32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The device auth provider label. Must be unique.
 	Label string `json:"label"`
 	// The device auth provider display name.
@@ -47,7 +47,7 @@ type DeviceAuthProvider struct {
 	// The current status of the device auth provider.
 	Status string `json:"status"`
 	// The revision number used for optimistic concurrency control.
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The ID of the user who created this provider.
 	CreatedBy int32 `json:"createdBy"`
 	// The ID of the user who last updated this provider.
@@ -65,7 +65,7 @@ type _DeviceAuthProvider DeviceAuthProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceAuthProvider(id int32, siteId int32, label string, name string, kind string, ipAddress string, port int32, username string, hasSharedSecret bool, hasPassword bool, status string, revision int32, createdBy int32, createdAt time.Time) *DeviceAuthProvider {
+func NewDeviceAuthProvider(id int64, siteId int64, label string, name string, kind string, ipAddress string, port int32, username string, hasSharedSecret bool, hasPassword bool, status string, revision int64, createdBy int32, createdAt time.Time) *DeviceAuthProvider {
 	this := DeviceAuthProvider{}
 	this.Id = id
 	this.SiteId = siteId
@@ -93,9 +93,9 @@ func NewDeviceAuthProviderWithDefaults() *DeviceAuthProvider {
 }
 
 // GetId returns the Id field value
-func (o *DeviceAuthProvider) GetId() int32 {
+func (o *DeviceAuthProvider) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -104,7 +104,7 @@ func (o *DeviceAuthProvider) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DeviceAuthProvider) GetIdOk() (*int32, bool) {
+func (o *DeviceAuthProvider) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,14 +112,14 @@ func (o *DeviceAuthProvider) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *DeviceAuthProvider) SetId(v int32) {
+func (o *DeviceAuthProvider) SetId(v int64) {
 	o.Id = v
 }
 
 // GetSiteId returns the SiteId field value
-func (o *DeviceAuthProvider) GetSiteId() int32 {
+func (o *DeviceAuthProvider) GetSiteId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -128,7 +128,7 @@ func (o *DeviceAuthProvider) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *DeviceAuthProvider) GetSiteIdOk() (*int32, bool) {
+func (o *DeviceAuthProvider) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,7 +136,7 @@ func (o *DeviceAuthProvider) GetSiteIdOk() (*int32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *DeviceAuthProvider) SetSiteId(v int32) {
+func (o *DeviceAuthProvider) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -389,9 +389,9 @@ func (o *DeviceAuthProvider) SetStatus(v string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *DeviceAuthProvider) GetRevision() int32 {
+func (o *DeviceAuthProvider) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -400,7 +400,7 @@ func (o *DeviceAuthProvider) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *DeviceAuthProvider) GetRevisionOk() (*int32, bool) {
+func (o *DeviceAuthProvider) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -408,7 +408,7 @@ func (o *DeviceAuthProvider) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *DeviceAuthProvider) SetRevision(v int32) {
+func (o *DeviceAuthProvider) SetRevision(v int64) {
 	o.Revision = v
 }
 

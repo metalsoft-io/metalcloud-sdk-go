@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The endpoint instance label. | [optional] 
-**EndpointId** | Pointer to **int32** | Id of endpoint for this Instance. | [optional] 
+**EndpointId** | Pointer to **int64** | Id of endpoint for this Instance. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetEndpointId
 
-`func (o *EndpointInstanceUpdate) GetEndpointId() int32`
+`func (o *EndpointInstanceUpdate) GetEndpointId() int64`
 
 GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
 
 ### GetEndpointIdOk
 
-`func (o *EndpointInstanceUpdate) GetEndpointIdOk() (*int32, bool)`
+`func (o *EndpointInstanceUpdate) GetEndpointIdOk() (*int64, bool)`
 
 GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndpointId
 
-`func (o *EndpointInstanceUpdate) SetEndpointId(v int32)`
+`func (o *EndpointInstanceUpdate) SetEndpointId(v int64)`
 
 SetEndpointId sets EndpointId field to given value.
 

@@ -22,25 +22,25 @@ var _ MappedNullable = &VMInstanceConfiguration{}
 // VMInstanceConfiguration struct for VMInstanceConfiguration
 type VMInstanceConfiguration struct {
 	// Revision of the VM Instance Configuration
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Name of the VM Instance.
 	Label string `json:"label"`
 	// Id of the VM.
-	VmId *float32 `json:"vmId,omitempty"`
+	VmId *int64 `json:"vmId,omitempty"`
 	// Id of the VM Type.
-	TypeId float32 `json:"typeId"`
+	TypeId int64 `json:"typeId"`
 	// Subdomain of the VM Instance.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the DNS subdomain for the VM Instance.
-	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Deploy type of the VM Instance
 	DeployType string `json:"deployType"`
 	// Deploy status of the VM Instance
 	DeployStatus string `json:"deployStatus"`
 	// Id of the deployment for the VM Instance.
-	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Id of the VM Pool.
-	VmPoolId *float32 `json:"vmPoolId,omitempty"`
+	VmPoolId *int64 `json:"vmPoolId,omitempty"`
 	// Disk size in GB of the VM Instance.
 	DiskSizeGB float32 `json:"diskSizeGB"`
 	// RAM size in GB of the VM Instance.
@@ -50,7 +50,7 @@ type VMInstanceConfiguration struct {
 	// Information about GPUs available for this VM Instance
 	GpuInfo []VMTypeGPUInfo `json:"gpuInfo,omitempty"`
 	// Id of the template used by the VM Instance.
-	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Custom variables for the VM Instance.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Timestamp of the VM Instance last update.
@@ -64,7 +64,7 @@ type _VMInstanceConfiguration VMInstanceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceConfiguration(revision float32, label string, typeId float32, deployType string, deployStatus string, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string) *VMInstanceConfiguration {
+func NewVMInstanceConfiguration(revision int64, label string, typeId int64, deployType string, deployStatus string, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string) *VMInstanceConfiguration {
 	this := VMInstanceConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -91,9 +91,9 @@ func NewVMInstanceConfigurationWithDefaults() *VMInstanceConfiguration {
 }
 
 // GetRevision returns the Revision field value
-func (o *VMInstanceConfiguration) GetRevision() float32 {
+func (o *VMInstanceConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -102,7 +102,7 @@ func (o *VMInstanceConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *VMInstanceConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,7 +110,7 @@ func (o *VMInstanceConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *VMInstanceConfiguration) SetRevision(v float32) {
+func (o *VMInstanceConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -139,9 +139,9 @@ func (o *VMInstanceConfiguration) SetLabel(v string) {
 }
 
 // GetVmId returns the VmId field value if set, zero value otherwise.
-func (o *VMInstanceConfiguration) GetVmId() float32 {
+func (o *VMInstanceConfiguration) GetVmId() int64 {
 	if o == nil || IsNil(o.VmId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.VmId
@@ -149,7 +149,7 @@ func (o *VMInstanceConfiguration) GetVmId() float32 {
 
 // GetVmIdOk returns a tuple with the VmId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetVmIdOk() (*float32, bool) {
+func (o *VMInstanceConfiguration) GetVmIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmId) {
 		return nil, false
 	}
@@ -165,15 +165,15 @@ func (o *VMInstanceConfiguration) HasVmId() bool {
 	return false
 }
 
-// SetVmId gets a reference to the given float32 and assigns it to the VmId field.
-func (o *VMInstanceConfiguration) SetVmId(v float32) {
+// SetVmId gets a reference to the given int64 and assigns it to the VmId field.
+func (o *VMInstanceConfiguration) SetVmId(v int64) {
 	o.VmId = &v
 }
 
 // GetTypeId returns the TypeId field value
-func (o *VMInstanceConfiguration) GetTypeId() float32 {
+func (o *VMInstanceConfiguration) GetTypeId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -182,7 +182,7 @@ func (o *VMInstanceConfiguration) GetTypeId() float32 {
 
 // GetTypeIdOk returns a tuple with the TypeId field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetTypeIdOk() (*float32, bool) {
+func (o *VMInstanceConfiguration) GetTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -190,7 +190,7 @@ func (o *VMInstanceConfiguration) GetTypeIdOk() (*float32, bool) {
 }
 
 // SetTypeId sets field value
-func (o *VMInstanceConfiguration) SetTypeId(v float32) {
+func (o *VMInstanceConfiguration) SetTypeId(v int64) {
 	o.TypeId = v
 }
 
@@ -227,9 +227,9 @@ func (o *VMInstanceConfiguration) SetSubdomain(v string) {
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *VMInstanceConfiguration) GetDnsSubdomainChangeId() float32 {
+func (o *VMInstanceConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -237,7 +237,7 @@ func (o *VMInstanceConfiguration) GetDnsSubdomainChangeId() float32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool) {
+func (o *VMInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *VMInstanceConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given float32 and assigns it to the DnsSubdomainChangeId field.
-func (o *VMInstanceConfiguration) SetDnsSubdomainChangeId(v float32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *VMInstanceConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
@@ -307,9 +307,9 @@ func (o *VMInstanceConfiguration) SetDeployStatus(v string) {
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *VMInstanceConfiguration) GetInfrastructureDeployId() float32 {
+func (o *VMInstanceConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -317,7 +317,7 @@ func (o *VMInstanceConfiguration) GetInfrastructureDeployId() float32 {
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
+func (o *VMInstanceConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -333,15 +333,15 @@ func (o *VMInstanceConfiguration) HasInfrastructureDeployId() bool {
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
-func (o *VMInstanceConfiguration) SetInfrastructureDeployId(v float32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *VMInstanceConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 
 // GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
-func (o *VMInstanceConfiguration) GetVmPoolId() float32 {
+func (o *VMInstanceConfiguration) GetVmPoolId() int64 {
 	if o == nil || IsNil(o.VmPoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.VmPoolId
@@ -349,7 +349,7 @@ func (o *VMInstanceConfiguration) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetVmPoolIdOk() (*float32, bool) {
+func (o *VMInstanceConfiguration) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmPoolId) {
 		return nil, false
 	}
@@ -365,8 +365,8 @@ func (o *VMInstanceConfiguration) HasVmPoolId() bool {
 	return false
 }
 
-// SetVmPoolId gets a reference to the given float32 and assigns it to the VmPoolId field.
-func (o *VMInstanceConfiguration) SetVmPoolId(v float32) {
+// SetVmPoolId gets a reference to the given int64 and assigns it to the VmPoolId field.
+func (o *VMInstanceConfiguration) SetVmPoolId(v int64) {
 	o.VmPoolId = &v
 }
 
@@ -475,9 +475,9 @@ func (o *VMInstanceConfiguration) SetGpuInfo(v []VMTypeGPUInfo) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *VMInstanceConfiguration) GetOsTemplateId() float32 {
+func (o *VMInstanceConfiguration) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -485,7 +485,7 @@ func (o *VMInstanceConfiguration) GetOsTemplateId() float32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceConfiguration) GetOsTemplateIdOk() (*float32, bool) {
+func (o *VMInstanceConfiguration) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -501,8 +501,8 @@ func (o *VMInstanceConfiguration) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
-func (o *VMInstanceConfiguration) SetOsTemplateId(v float32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *VMInstanceConfiguration) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 

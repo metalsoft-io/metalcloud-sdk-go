@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | [**ResourceScopeKind**](ResourceScopeKind.md) |  | 
-**ResourceId** | **float32** |  | 
+**ResourceId** | **int64** |  | 
 
 ## Methods
 
 ### NewCreateResourceScope
 
-`func NewCreateResourceScope(kind ResourceScopeKind, resourceId float32, ) *CreateResourceScope`
+`func NewCreateResourceScope(kind ResourceScopeKind, resourceId int64, ) *CreateResourceScope`
 
 NewCreateResourceScope instantiates a new CreateResourceScope object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetKind sets Kind field to given value.
 
 ### GetResourceId
 
-`func (o *CreateResourceScope) GetResourceId() float32`
+`func (o *CreateResourceScope) GetResourceId() int64`
 
 GetResourceId returns the ResourceId field if non-nil, zero value otherwise.
 
 ### GetResourceIdOk
 
-`func (o *CreateResourceScope) GetResourceIdOk() (*float32, bool)`
+`func (o *CreateResourceScope) GetResourceIdOk() (*int64, bool)`
 
 GetResourceIdOk returns a tuple with the ResourceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResourceId
 
-`func (o *CreateResourceScope) SetResourceId(v float32)`
+`func (o *CreateResourceScope) SetResourceId(v int64)`
 
 SetResourceId sets ResourceId field to given value.
 

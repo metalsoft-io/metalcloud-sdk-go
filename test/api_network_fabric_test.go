@@ -355,6 +355,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricAPIService RescanNetworkFabricLinks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId float32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.RescanNetworkFabricLinks(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService UpdateNetworkFabric", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

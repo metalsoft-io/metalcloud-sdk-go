@@ -23,7 +23,7 @@ var _ MappedNullable = &NetworkEndpointGroup{}
 // NetworkEndpointGroup struct for NetworkEndpointGroup
 type NetworkEndpointGroup struct {
 	// The ID of the site where the entity is located.
-	SiteId *int32 `json:"siteId,omitempty"`
+	SiteId *int64 `json:"siteId,omitempty"`
 	// The name of the network endpoint group
 	Name string `json:"name"`
 	// Revision number of the entity
@@ -64,9 +64,9 @@ func NewNetworkEndpointGroupWithDefaults() *NetworkEndpointGroup {
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *NetworkEndpointGroup) GetSiteId() int32 {
+func (o *NetworkEndpointGroup) GetSiteId() int64 {
 	if o == nil || IsNil(o.SiteId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SiteId
@@ -74,7 +74,7 @@ func (o *NetworkEndpointGroup) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkEndpointGroup) GetSiteIdOk() (*int32, bool) {
+func (o *NetworkEndpointGroup) GetSiteIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -90,8 +90,8 @@ func (o *NetworkEndpointGroup) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
-func (o *NetworkEndpointGroup) SetSiteId(v int32) {
+// SetSiteId gets a reference to the given int64 and assigns it to the SiteId field.
+func (o *NetworkEndpointGroup) SetSiteId(v int64) {
 	o.SiteId = &v
 }
 

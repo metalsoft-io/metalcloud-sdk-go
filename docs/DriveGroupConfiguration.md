@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the Drive Group Configuration | 
+**Revision** | **int64** | Revision of the Drive Group Configuration | 
 **Label** | **string** | Label of the Drive Group. | 
-**InfrastructureId** | **float32** | Infrastructure id of the Drive Group | 
-**TemplateId** | Pointer to **float32** | Template Id | [optional] 
+**InfrastructureId** | **int64** | Infrastructure id of the Drive Group | 
+**TemplateId** | Pointer to **int64** | Template Id | [optional] 
 **DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
-**ServerInstanceGroupId** | Pointer to **float32** |  | [optional] 
+**ServerInstanceGroupId** | Pointer to **int64** |  | [optional] 
 **ExpandWithServerInstanceGroup** | **float32** | Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance | 
 **QoS** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
 **StorageType** | **string** | Service status of the Drive Group | [default to "iscsi_ssd"]
 **FilesystemInfo** | Pointer to **map[string]interface{}** | Filesystem information of the Drive Group. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain of the Drive Group. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Drive Group last update. | 
-**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the Drive Group. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the Drive Group. | [optional] 
 **DeployType** | **string** | Deploy type of the Drive Group | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the Drive Group | [default to "not_started"]
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Drive Group. | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the Drive Group. | [optional] 
 
 ## Methods
 
 ### NewDriveGroupConfiguration
 
-`func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string, ) *DriveGroupConfiguration`
+`func NewDriveGroupConfiguration(revision int64, label string, infrastructureId int64, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string, ) *DriveGroupConfiguration`
 
 NewDriveGroupConfiguration instantiates a new DriveGroupConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -42,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *DriveGroupConfiguration) GetRevision() float32`
+`func (o *DriveGroupConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *DriveGroupConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *DriveGroupConfiguration) SetRevision(v float32)`
+`func (o *DriveGroupConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -82,40 +82,40 @@ SetLabel sets Label field to given value.
 
 ### GetInfrastructureId
 
-`func (o *DriveGroupConfiguration) GetInfrastructureId() float32`
+`func (o *DriveGroupConfiguration) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *DriveGroupConfiguration) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *DriveGroupConfiguration) SetInfrastructureId(v float32)`
+`func (o *DriveGroupConfiguration) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetTemplateId
 
-`func (o *DriveGroupConfiguration) GetTemplateId() float32`
+`func (o *DriveGroupConfiguration) GetTemplateId() int64`
 
 GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
 ### GetTemplateIdOk
 
-`func (o *DriveGroupConfiguration) GetTemplateIdOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetTemplateIdOk() (*int64, bool)`
 
 GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplateId
 
-`func (o *DriveGroupConfiguration) SetTemplateId(v float32)`
+`func (o *DriveGroupConfiguration) SetTemplateId(v int64)`
 
 SetTemplateId sets TemplateId field to given value.
 
@@ -147,20 +147,20 @@ SetDriveSizeMbDefault sets DriveSizeMbDefault field to given value.
 
 ### GetServerInstanceGroupId
 
-`func (o *DriveGroupConfiguration) GetServerInstanceGroupId() float32`
+`func (o *DriveGroupConfiguration) GetServerInstanceGroupId() int64`
 
 GetServerInstanceGroupId returns the ServerInstanceGroupId field if non-nil, zero value otherwise.
 
 ### GetServerInstanceGroupIdOk
 
-`func (o *DriveGroupConfiguration) GetServerInstanceGroupIdOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetServerInstanceGroupIdOk() (*int64, bool)`
 
 GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerInstanceGroupId
 
-`func (o *DriveGroupConfiguration) SetServerInstanceGroupId(v float32)`
+`func (o *DriveGroupConfiguration) SetServerInstanceGroupId(v int64)`
 
 SetServerInstanceGroupId sets ServerInstanceGroupId field to given value.
 
@@ -307,20 +307,20 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *DriveGroupConfiguration) GetDnsSubdomainChangeId() float32`
+`func (o *DriveGroupConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *DriveGroupConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *DriveGroupConfiguration) SetDnsSubdomainChangeId(v float32)`
+`func (o *DriveGroupConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -372,20 +372,20 @@ SetDeployStatus sets DeployStatus field to given value.
 
 ### GetInfrastructureDeployId
 
-`func (o *DriveGroupConfiguration) GetInfrastructureDeployId() float32`
+`func (o *DriveGroupConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *DriveGroupConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *DriveGroupConfiguration) SetInfrastructureDeployId(v float32)`
+`func (o *DriveGroupConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 

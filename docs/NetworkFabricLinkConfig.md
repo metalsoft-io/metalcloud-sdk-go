@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkFabricLinkId** | **float32** | Unique identifier for the network fabric link | 
-**NetworkFabricLinkAggregationId** | Pointer to **float32** | Unique identifier for the network fabric link aggregation to be associated with that link | [optional] 
+**NetworkFabricLinkId** | **int64** | Unique identifier for the network fabric link | 
+**NetworkFabricLinkAggregationId** | Pointer to **int64** | Unique identifier for the network fabric link aggregation to be associated with that link | [optional] 
 **NetworkFabricLink** | Pointer to [**NetworkFabricLink**](NetworkFabricLink.md) | Associated network fabric link | [optional] 
 **LinkAggregation** | Pointer to [**NetworkFabricLinkAggregation**](NetworkFabricLinkAggregation.md) | Network Fabric Link Aggregation associated with this link | [optional] 
 **Status** | **string** | Status of the network fabric link configuration | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricLinkConfig
 
-`func NewNetworkFabricLinkConfig(networkFabricLinkId float32, status string, ) *NetworkFabricLinkConfig`
+`func NewNetworkFabricLinkConfig(networkFabricLinkId int64, status string, ) *NetworkFabricLinkConfig`
 
 NewNetworkFabricLinkConfig instantiates a new NetworkFabricLinkConfig object
 This constructor will assign default values to properties that have it defined,
@@ -31,40 +31,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNetworkFabricLinkId
 
-`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkId() float32`
+`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkId() int64`
 
 GetNetworkFabricLinkId returns the NetworkFabricLinkId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricLinkIdOk
 
-`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkIdOk() (*float32, bool)`
+`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkIdOk() (*int64, bool)`
 
 GetNetworkFabricLinkIdOk returns a tuple with the NetworkFabricLinkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricLinkId
 
-`func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkId(v float32)`
+`func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkId(v int64)`
 
 SetNetworkFabricLinkId sets NetworkFabricLinkId field to given value.
 
 
 ### GetNetworkFabricLinkAggregationId
 
-`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationId() float32`
+`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationId() int64`
 
 GetNetworkFabricLinkAggregationId returns the NetworkFabricLinkAggregationId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricLinkAggregationIdOk
 
-`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationIdOk() (*float32, bool)`
+`func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationIdOk() (*int64, bool)`
 
 GetNetworkFabricLinkAggregationIdOk returns a tuple with the NetworkFabricLinkAggregationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricLinkAggregationId
 
-`func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkAggregationId(v float32)`
+`func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkAggregationId(v int64)`
 
 SetNetworkFabricLinkAggregationId sets NetworkFabricLinkAggregationId field to given value.
 

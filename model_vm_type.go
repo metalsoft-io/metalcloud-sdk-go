@@ -22,7 +22,7 @@ var _ MappedNullable = &VMType{}
 // VMType struct for VMType
 type VMType struct {
 	// VM Type ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the VM Pool type
 	Name string `json:"name"`
 	// Display name of the VM Pool type
@@ -52,7 +52,7 @@ type _VMType VMType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMType(id float32, name string, cpuCores float32, ramGB float32) *VMType {
+func NewVMType(id int64, name string, cpuCores float32, ramGB float32) *VMType {
 	this := VMType{}
 	this.Id = id
 	this.Name = name
@@ -70,9 +70,9 @@ func NewVMTypeWithDefaults() *VMType {
 }
 
 // GetId returns the Id field value
-func (o *VMType) GetId() float32 {
+func (o *VMType) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -81,7 +81,7 @@ func (o *VMType) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMType) GetIdOk() (*float32, bool) {
+func (o *VMType) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *VMType) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMType) SetId(v float32) {
+func (o *VMType) SetId(v int64) {
 	o.Id = v
 }
 

@@ -22,13 +22,13 @@ var _ MappedNullable = &AutoIpv4SubnetAllocationStrategy{}
 
 // AutoIpv4SubnetAllocationStrategy struct for AutoIpv4SubnetAllocationStrategy
 type AutoIpv4SubnetAllocationStrategy struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope ResourceScope `json:"scope"`
 	GatewayPlacement SubnetGatewayPlacement `json:"gatewayPlacement"`
-	SubnetPoolIds []int32 `json:"subnetPoolIds"`
+	SubnetPoolIds []int64 `json:"subnetPoolIds"`
 	PrefixLength int32 `json:"prefixLength"`
 	AdditionalProperties map[string]interface{}
 }
@@ -39,7 +39,7 @@ type _AutoIpv4SubnetAllocationStrategy AutoIpv4SubnetAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAutoIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetPoolIds []int32, prefixLength int32) *AutoIpv4SubnetAllocationStrategy {
+func NewAutoIpv4SubnetAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetPoolIds []int64, prefixLength int32) *AutoIpv4SubnetAllocationStrategy {
 	this := AutoIpv4SubnetAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -63,9 +63,9 @@ func NewAutoIpv4SubnetAllocationStrategyWithDefaults() *AutoIpv4SubnetAllocation
 }
 
 // GetId returns the Id field value
-func (o *AutoIpv4SubnetAllocationStrategy) GetId() int32 {
+func (o *AutoIpv4SubnetAllocationStrategy) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *AutoIpv4SubnetAllocationStrategy) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AutoIpv4SubnetAllocationStrategy) GetIdOk() (*int32, bool) {
+func (o *AutoIpv4SubnetAllocationStrategy) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *AutoIpv4SubnetAllocationStrategy) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *AutoIpv4SubnetAllocationStrategy) SetId(v int32) {
+func (o *AutoIpv4SubnetAllocationStrategy) SetId(v int64) {
 	o.Id = v
 }
 
@@ -207,9 +207,9 @@ func (o *AutoIpv4SubnetAllocationStrategy) SetGatewayPlacement(v SubnetGatewayPl
 }
 
 // GetSubnetPoolIds returns the SubnetPoolIds field value
-func (o *AutoIpv4SubnetAllocationStrategy) GetSubnetPoolIds() []int32 {
+func (o *AutoIpv4SubnetAllocationStrategy) GetSubnetPoolIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
@@ -218,7 +218,7 @@ func (o *AutoIpv4SubnetAllocationStrategy) GetSubnetPoolIds() []int32 {
 
 // GetSubnetPoolIdsOk returns a tuple with the SubnetPoolIds field value
 // and a boolean to check if the value has been set.
-func (o *AutoIpv4SubnetAllocationStrategy) GetSubnetPoolIdsOk() ([]int32, bool) {
+func (o *AutoIpv4SubnetAllocationStrategy) GetSubnetPoolIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -226,7 +226,7 @@ func (o *AutoIpv4SubnetAllocationStrategy) GetSubnetPoolIdsOk() ([]int32, bool) 
 }
 
 // SetSubnetPoolIds sets field value
-func (o *AutoIpv4SubnetAllocationStrategy) SetSubnetPoolIds(v []int32) {
+func (o *AutoIpv4SubnetAllocationStrategy) SetSubnetPoolIds(v []int64) {
 	o.SubnetPoolIds = v
 }
 

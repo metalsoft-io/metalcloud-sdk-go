@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	createFirmwareBinary := *openapiclient.NewCreateFirmwareBinary(float32(46), "https://downloads.dell.com/xxxxx", "Test", true, openapiclient.FirmwareBinaryUpdateSeverity("critical"), []map[string]interface{}{map[string]interface{}(123)}, []map[string]interface{}{map[string]interface{}(123)}) // CreateFirmwareBinary | 
+	createFirmwareBinary := *openapiclient.NewCreateFirmwareBinary(int64(46), "https://downloads.dell.com/xxxxx", "Test", true, "critical", []map[string]interface{}{map[string]interface{}(123)}, []map[string]interface{}{map[string]interface{}(123)}) // CreateFirmwareBinary | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

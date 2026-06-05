@@ -65,7 +65,7 @@ type UpdateUser struct {
 	// Whether the user is a datastore publisher
 	IsDatastorePublisher *bool `json:"isDatastorePublisher,omitempty"`
 	// The account ID of the user
-	AccountId *float32 `json:"accountId,omitempty"`
+	AccountId *int64 `json:"accountId,omitempty"`
 	// The provider of the user
 	Provider *string `json:"provider,omitempty"`
 	// The timestamp when the user last changed their password
@@ -809,9 +809,9 @@ func (o *UpdateUser) SetIsDatastorePublisher(v bool) {
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *UpdateUser) GetAccountId() float32 {
+func (o *UpdateUser) GetAccountId() int64 {
 	if o == nil || IsNil(o.AccountId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.AccountId
@@ -819,7 +819,7 @@ func (o *UpdateUser) GetAccountId() float32 {
 
 // GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUser) GetAccountIdOk() (*float32, bool) {
+func (o *UpdateUser) GetAccountIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.AccountId) {
 		return nil, false
 	}
@@ -835,8 +835,8 @@ func (o *UpdateUser) HasAccountId() bool {
 	return false
 }
 
-// SetAccountId gets a reference to the given float32 and assigns it to the AccountId field.
-func (o *UpdateUser) SetAccountId(v float32) {
+// SetAccountId gets a reference to the given int64 and assigns it to the AccountId field.
+func (o *UpdateUser) SetAccountId(v int64) {
 	o.AccountId = &v
 }
 

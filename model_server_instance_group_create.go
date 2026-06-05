@@ -24,7 +24,7 @@ type ServerInstanceGroupCreate struct {
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
-	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
+	ExtensionInstanceId *int64 `json:"extensionInstanceId,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
@@ -34,7 +34,7 @@ type ServerInstanceGroupCreate struct {
 	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
-	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Object containing custom variables and variable overrides.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// The CPU count on each instance.
@@ -58,12 +58,12 @@ type ServerInstanceGroupCreate struct {
 	// The ipv4 vlan that should override the default from the WAN Network for the primary ip.
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
 	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group.
-	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
+	NetworkEquipmentForceSubnetPoolIpv4WanId *int64 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// The resource pool assigned to this instance array
-	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
+	ResourcePoolId *int64 `json:"resourcePoolId,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	// The server type ID that will be assigned to newly created instances.
-	DefaultServerTypeId int32 `json:"defaultServerTypeId"`
+	DefaultServerTypeId int64 `json:"defaultServerTypeId"`
 	// Default Custom Storage Profile for the newly created Instances.
 	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	// Server filtering rules for allocating servers to instances. If provided, servers must match all rules to be eligible for allocation.
@@ -77,7 +77,7 @@ type _ServerInstanceGroupCreate ServerInstanceGroupCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupCreate(defaultServerTypeId int32) *ServerInstanceGroupCreate {
+func NewServerInstanceGroupCreate(defaultServerTypeId int64) *ServerInstanceGroupCreate {
 	this := ServerInstanceGroupCreate{}
 	var instanceCount int32 = 1
 	this.InstanceCount = &instanceCount
@@ -196,9 +196,9 @@ func (o *ServerInstanceGroupCreate) SetServerGroupName(v string) {
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupCreate) GetExtensionInstanceId() int32 {
+func (o *ServerInstanceGroupCreate) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId
@@ -206,7 +206,7 @@ func (o *ServerInstanceGroupCreate) GetExtensionInstanceId() int32 {
 
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetExtensionInstanceIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupCreate) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
@@ -222,8 +222,8 @@ func (o *ServerInstanceGroupCreate) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given int32 and assigns it to the ExtensionInstanceId field.
-func (o *ServerInstanceGroupCreate) SetExtensionInstanceId(v int32) {
+// SetExtensionInstanceId gets a reference to the given int64 and assigns it to the ExtensionInstanceId field.
+func (o *ServerInstanceGroupCreate) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId = &v
 }
 
@@ -356,9 +356,9 @@ func (o *ServerInstanceGroupCreate) SetHostname(v string) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupCreate) GetOsTemplateId() int32 {
+func (o *ServerInstanceGroupCreate) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -366,7 +366,7 @@ func (o *ServerInstanceGroupCreate) GetOsTemplateId() int32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetOsTemplateIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupCreate) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -382,8 +382,8 @@ func (o *ServerInstanceGroupCreate) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
-func (o *ServerInstanceGroupCreate) SetOsTemplateId(v int32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceGroupCreate) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 
@@ -740,9 +740,9 @@ func (o *ServerInstanceGroupCreate) SetOverrideIpv4WanVlanId(v int32) {
 }
 
 // GetNetworkEquipmentForceSubnetPoolIpv4WanId returns the NetworkEquipmentForceSubnetPoolIpv4WanId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupCreate) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int32 {
+func (o *ServerInstanceGroupCreate) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int64 {
 	if o == nil || IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEquipmentForceSubnetPoolIpv4WanId
@@ -750,7 +750,7 @@ func (o *ServerInstanceGroupCreate) GetNetworkEquipmentForceSubnetPoolIpv4WanId(
 
 // GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk returns a tuple with the NetworkEquipmentForceSubnetPoolIpv4WanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupCreate) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
 		return nil, false
 	}
@@ -766,15 +766,15 @@ func (o *ServerInstanceGroupCreate) HasNetworkEquipmentForceSubnetPoolIpv4WanId(
 	return false
 }
 
-// SetNetworkEquipmentForceSubnetPoolIpv4WanId gets a reference to the given int32 and assigns it to the NetworkEquipmentForceSubnetPoolIpv4WanId field.
-func (o *ServerInstanceGroupCreate) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int32) {
+// SetNetworkEquipmentForceSubnetPoolIpv4WanId gets a reference to the given int64 and assigns it to the NetworkEquipmentForceSubnetPoolIpv4WanId field.
+func (o *ServerInstanceGroupCreate) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int64) {
 	o.NetworkEquipmentForceSubnetPoolIpv4WanId = &v
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupCreate) GetResourcePoolId() int32 {
+func (o *ServerInstanceGroupCreate) GetResourcePoolId() int64 {
 	if o == nil || IsNil(o.ResourcePoolId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ResourcePoolId
@@ -782,7 +782,7 @@ func (o *ServerInstanceGroupCreate) GetResourcePoolId() int32 {
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetResourcePoolIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupCreate) GetResourcePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ResourcePoolId) {
 		return nil, false
 	}
@@ -798,8 +798,8 @@ func (o *ServerInstanceGroupCreate) HasResourcePoolId() bool {
 	return false
 }
 
-// SetResourcePoolId gets a reference to the given int32 and assigns it to the ResourcePoolId field.
-func (o *ServerInstanceGroupCreate) SetResourcePoolId(v int32) {
+// SetResourcePoolId gets a reference to the given int64 and assigns it to the ResourcePoolId field.
+func (o *ServerInstanceGroupCreate) SetResourcePoolId(v int64) {
 	o.ResourcePoolId = &v
 }
 
@@ -836,9 +836,9 @@ func (o *ServerInstanceGroupCreate) SetTags(v []string) {
 }
 
 // GetDefaultServerTypeId returns the DefaultServerTypeId field value
-func (o *ServerInstanceGroupCreate) GetDefaultServerTypeId() int32 {
+func (o *ServerInstanceGroupCreate) GetDefaultServerTypeId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -847,7 +847,7 @@ func (o *ServerInstanceGroupCreate) GetDefaultServerTypeId() int32 {
 
 // GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetDefaultServerTypeIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupCreate) GetDefaultServerTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -855,7 +855,7 @@ func (o *ServerInstanceGroupCreate) GetDefaultServerTypeIdOk() (*int32, bool) {
 }
 
 // SetDefaultServerTypeId sets field value
-func (o *ServerInstanceGroupCreate) SetDefaultServerTypeId(v int32) {
+func (o *ServerInstanceGroupCreate) SetDefaultServerTypeId(v int64) {
 	o.DefaultServerTypeId = v
 }
 

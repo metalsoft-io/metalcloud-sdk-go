@@ -30,7 +30,7 @@ type CreateLogicalNetworkInterconnect struct {
 	// Kind of the logical network interconnect
 	Kind *LogicalNetworkInterconnectKind `json:"kind,omitempty"`
 	// Fabric Interconnect identifier
-	FabricInterconnectId int32 `json:"fabricInterconnectId"`
+	FabricInterconnectId int64 `json:"fabricInterconnectId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +40,7 @@ type _CreateLogicalNetworkInterconnect CreateLogicalNetworkInterconnect
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateLogicalNetworkInterconnect(label string, name string, fabricInterconnectId int32) *CreateLogicalNetworkInterconnect {
+func NewCreateLogicalNetworkInterconnect(label string, name string, fabricInterconnectId int64) *CreateLogicalNetworkInterconnect {
 	this := CreateLogicalNetworkInterconnect{}
 	this.Label = label
 	this.Name = name
@@ -169,9 +169,9 @@ func (o *CreateLogicalNetworkInterconnect) SetKind(v LogicalNetworkInterconnectK
 }
 
 // GetFabricInterconnectId returns the FabricInterconnectId field value
-func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectId() int32 {
+func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -180,7 +180,7 @@ func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectId() int32 {
 
 // GetFabricInterconnectIdOk returns a tuple with the FabricInterconnectId field value
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -188,7 +188,7 @@ func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int32, 
 }
 
 // SetFabricInterconnectId sets field value
-func (o *CreateLogicalNetworkInterconnect) SetFabricInterconnectId(v int32) {
+func (o *CreateLogicalNetworkInterconnect) SetFabricInterconnectId(v int64) {
 	o.FabricInterconnectId = v
 }
 

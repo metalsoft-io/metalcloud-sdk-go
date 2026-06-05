@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | Group Id | 
+**Id** | **int64** | Group Id | 
 **Type** | **string** | Group type | 
 **Context** | Pointer to **map[string]interface{}** | Group context parameters | [optional] 
 **Description** | **string** | Group description | 
@@ -12,12 +12,12 @@ Name | Type | Description | Notes
 **FinishedTimestamp** | Pointer to **string** | Group finished timestamp | [optional] 
 **Params** | Pointer to **map[string]interface{}** | Group parameters | [optional] 
 **Archived** | Pointer to **int32** | Group archived status | [optional] 
-**InfrastructureId** | Pointer to **int32** | Infrastructure Id | [optional] 
-**DriveId** | Pointer to **int32** | Drive Id | [optional] 
-**ServerId** | Pointer to **int32** | Server Id | [optional] 
-**NetworkDeviceId** | Pointer to **int32** | Network device Id | [optional] 
-**VmPoolId** | Pointer to **int32** | VM Pool Id | [optional] 
-**StorageId** | Pointer to **int32** | Storage Pool Id | [optional] 
+**InfrastructureId** | Pointer to **int64** | Infrastructure Id | [optional] 
+**DriveId** | Pointer to **int64** | Drive Id | [optional] 
+**ServerId** | Pointer to **int64** | Server Id | [optional] 
+**NetworkDeviceId** | Pointer to **int64** | Network device Id | [optional] 
+**VmPoolId** | Pointer to **int64** | VM Pool Id | [optional] 
+**StorageId** | Pointer to **int64** | Storage Pool Id | [optional] 
 **CancelReason** | Pointer to **string** | Cancel reason of the group | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewJobGroup
 
-`func NewJobGroup(id int32, type_ string, description string, createdTimestamp string, ) *JobGroup`
+`func NewJobGroup(id int64, type_ string, description string, createdTimestamp string, ) *JobGroup`
 
 NewJobGroup instantiates a new JobGroup object
 This constructor will assign default values to properties that have it defined,
@@ -42,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *JobGroup) GetId() int32`
+`func (o *JobGroup) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *JobGroup) GetIdOk() (*int32, bool)`
+`func (o *JobGroup) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *JobGroup) SetId(v int32)`
+`func (o *JobGroup) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -222,20 +222,20 @@ HasArchived returns a boolean if a field has been set.
 
 ### GetInfrastructureId
 
-`func (o *JobGroup) GetInfrastructureId() int32`
+`func (o *JobGroup) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *JobGroup) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *JobGroup) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *JobGroup) SetInfrastructureId(v int32)`
+`func (o *JobGroup) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -247,20 +247,20 @@ HasInfrastructureId returns a boolean if a field has been set.
 
 ### GetDriveId
 
-`func (o *JobGroup) GetDriveId() int32`
+`func (o *JobGroup) GetDriveId() int64`
 
 GetDriveId returns the DriveId field if non-nil, zero value otherwise.
 
 ### GetDriveIdOk
 
-`func (o *JobGroup) GetDriveIdOk() (*int32, bool)`
+`func (o *JobGroup) GetDriveIdOk() (*int64, bool)`
 
 GetDriveIdOk returns a tuple with the DriveId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDriveId
 
-`func (o *JobGroup) SetDriveId(v int32)`
+`func (o *JobGroup) SetDriveId(v int64)`
 
 SetDriveId sets DriveId field to given value.
 
@@ -272,20 +272,20 @@ HasDriveId returns a boolean if a field has been set.
 
 ### GetServerId
 
-`func (o *JobGroup) GetServerId() int32`
+`func (o *JobGroup) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *JobGroup) GetServerIdOk() (*int32, bool)`
+`func (o *JobGroup) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *JobGroup) SetServerId(v int32)`
+`func (o *JobGroup) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -297,20 +297,20 @@ HasServerId returns a boolean if a field has been set.
 
 ### GetNetworkDeviceId
 
-`func (o *JobGroup) GetNetworkDeviceId() int32`
+`func (o *JobGroup) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *JobGroup) GetNetworkDeviceIdOk() (*int32, bool)`
+`func (o *JobGroup) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *JobGroup) SetNetworkDeviceId(v int32)`
+`func (o *JobGroup) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
@@ -322,20 +322,20 @@ HasNetworkDeviceId returns a boolean if a field has been set.
 
 ### GetVmPoolId
 
-`func (o *JobGroup) GetVmPoolId() int32`
+`func (o *JobGroup) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *JobGroup) GetVmPoolIdOk() (*int32, bool)`
+`func (o *JobGroup) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *JobGroup) SetVmPoolId(v int32)`
+`func (o *JobGroup) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 
@@ -347,20 +347,20 @@ HasVmPoolId returns a boolean if a field has been set.
 
 ### GetStorageId
 
-`func (o *JobGroup) GetStorageId() int32`
+`func (o *JobGroup) GetStorageId() int64`
 
 GetStorageId returns the StorageId field if non-nil, zero value otherwise.
 
 ### GetStorageIdOk
 
-`func (o *JobGroup) GetStorageIdOk() (*int32, bool)`
+`func (o *JobGroup) GetStorageIdOk() (*int64, bool)`
 
 GetStorageIdOk returns a tuple with the StorageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageId
 
-`func (o *JobGroup) SetStorageId(v int32)`
+`func (o *JobGroup) SetStorageId(v int64)`
 
 SetStorageId sets StorageId field to given value.
 

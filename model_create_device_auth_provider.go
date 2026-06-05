@@ -28,7 +28,7 @@ type CreateDeviceAuthProvider struct {
 	// Key-value annotations for storing additional metadata.
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	// The ID of the site this provider belongs to.
-	SiteId int32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The authentication protocol kind.
 	Kind string `json:"kind"`
 	// The IP address of the authentication server.
@@ -52,7 +52,7 @@ type _CreateDeviceAuthProvider CreateDeviceAuthProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateDeviceAuthProvider(label string, name string, siteId int32, kind string, ipAddress string, port int32, sharedSecret string, username string) *CreateDeviceAuthProvider {
+func NewCreateDeviceAuthProvider(label string, name string, siteId int64, kind string, ipAddress string, port int32, sharedSecret string, username string) *CreateDeviceAuthProvider {
 	this := CreateDeviceAuthProvider{}
 	this.Label = label
 	this.Name = name
@@ -154,9 +154,9 @@ func (o *CreateDeviceAuthProvider) SetAnnotations(v map[string]string) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *CreateDeviceAuthProvider) GetSiteId() int32 {
+func (o *CreateDeviceAuthProvider) GetSiteId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -165,7 +165,7 @@ func (o *CreateDeviceAuthProvider) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *CreateDeviceAuthProvider) GetSiteIdOk() (*int32, bool) {
+func (o *CreateDeviceAuthProvider) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,7 +173,7 @@ func (o *CreateDeviceAuthProvider) GetSiteIdOk() (*int32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *CreateDeviceAuthProvider) SetSiteId(v int32) {
+func (o *CreateDeviceAuthProvider) SetSiteId(v int64) {
 	o.SiteId = v
 }
 

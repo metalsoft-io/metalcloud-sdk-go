@@ -40,7 +40,7 @@ type OSTemplateUpdate struct {
 	// The tags associated with the OS template
 	Tags []string `json:"tags,omitempty"`
 	// The firmware baseline ID associated with the OS template
-	FirmwareBaselineId *int32 `json:"firmwareBaselineId,omitempty"`
+	FirmwareBaselineId *int64 `json:"firmwareBaselineId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -381,9 +381,9 @@ func (o *OSTemplateUpdate) SetTags(v []string) {
 }
 
 // GetFirmwareBaselineId returns the FirmwareBaselineId field value if set, zero value otherwise.
-func (o *OSTemplateUpdate) GetFirmwareBaselineId() int32 {
+func (o *OSTemplateUpdate) GetFirmwareBaselineId() int64 {
 	if o == nil || IsNil(o.FirmwareBaselineId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FirmwareBaselineId
@@ -391,7 +391,7 @@ func (o *OSTemplateUpdate) GetFirmwareBaselineId() int32 {
 
 // GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OSTemplateUpdate) GetFirmwareBaselineIdOk() (*int32, bool) {
+func (o *OSTemplateUpdate) GetFirmwareBaselineIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.FirmwareBaselineId) {
 		return nil, false
 	}
@@ -407,8 +407,8 @@ func (o *OSTemplateUpdate) HasFirmwareBaselineId() bool {
 	return false
 }
 
-// SetFirmwareBaselineId gets a reference to the given int32 and assigns it to the FirmwareBaselineId field.
-func (o *OSTemplateUpdate) SetFirmwareBaselineId(v int32) {
+// SetFirmwareBaselineId gets a reference to the given int64 and assigns it to the FirmwareBaselineId field.
+func (o *OSTemplateUpdate) SetFirmwareBaselineId(v int64) {
 	o.FirmwareBaselineId = &v
 }
 

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ServerInterfaceIds** | **[]float32** | The id of the server interfaces | 
-**DefaultFabricId** | **NullableFloat32** | The default fabric id | 
+**DefaultFabricId** | **NullableInt64** | The default fabric id | 
 
 ## Methods
 
 ### NewServerInterfacesDefaultFabric
 
-`func NewServerInterfacesDefaultFabric(serverInterfaceIds []float32, defaultFabricId NullableFloat32, ) *ServerInterfacesDefaultFabric`
+`func NewServerInterfacesDefaultFabric(serverInterfaceIds []float32, defaultFabricId NullableInt64, ) *ServerInterfacesDefaultFabric`
 
 NewServerInterfacesDefaultFabric instantiates a new ServerInterfacesDefaultFabric object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetServerInterfaceIds sets ServerInterfaceIds field to given value.
 
 ### GetDefaultFabricId
 
-`func (o *ServerInterfacesDefaultFabric) GetDefaultFabricId() float32`
+`func (o *ServerInterfacesDefaultFabric) GetDefaultFabricId() int64`
 
 GetDefaultFabricId returns the DefaultFabricId field if non-nil, zero value otherwise.
 
 ### GetDefaultFabricIdOk
 
-`func (o *ServerInterfacesDefaultFabric) GetDefaultFabricIdOk() (*float32, bool)`
+`func (o *ServerInterfacesDefaultFabric) GetDefaultFabricIdOk() (*int64, bool)`
 
 GetDefaultFabricIdOk returns a tuple with the DefaultFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultFabricId
 
-`func (o *ServerInterfacesDefaultFabric) SetDefaultFabricId(v float32)`
+`func (o *ServerInterfacesDefaultFabric) SetDefaultFabricId(v int64)`
 
 SetDefaultFabricId sets DefaultFabricId field to given value.
 

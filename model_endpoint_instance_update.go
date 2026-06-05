@@ -23,7 +23,7 @@ type EndpointInstanceUpdate struct {
 	// The endpoint instance label.
 	Label *string `json:"label,omitempty"`
 	// Id of endpoint for this Instance.
-	EndpointId *int32 `json:"endpointId,omitempty"`
+	EndpointId *int64 `json:"endpointId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,9 +79,9 @@ func (o *EndpointInstanceUpdate) SetLabel(v string) {
 }
 
 // GetEndpointId returns the EndpointId field value if set, zero value otherwise.
-func (o *EndpointInstanceUpdate) GetEndpointId() int32 {
+func (o *EndpointInstanceUpdate) GetEndpointId() int64 {
 	if o == nil || IsNil(o.EndpointId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EndpointId
@@ -89,7 +89,7 @@ func (o *EndpointInstanceUpdate) GetEndpointId() int32 {
 
 // GetEndpointIdOk returns a tuple with the EndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceUpdate) GetEndpointIdOk() (*int32, bool) {
+func (o *EndpointInstanceUpdate) GetEndpointIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.EndpointId) {
 		return nil, false
 	}
@@ -105,8 +105,8 @@ func (o *EndpointInstanceUpdate) HasEndpointId() bool {
 	return false
 }
 
-// SetEndpointId gets a reference to the given int32 and assigns it to the EndpointId field.
-func (o *EndpointInstanceUpdate) SetEndpointId(v int32) {
+// SetEndpointId gets a reference to the given int64 and assigns it to the EndpointId field.
+func (o *EndpointInstanceUpdate) SetEndpointId(v int64) {
 	o.EndpointId = &v
 }
 

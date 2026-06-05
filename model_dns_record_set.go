@@ -23,15 +23,15 @@ var _ MappedNullable = &DnsRecordSet{}
 // DnsRecordSet struct for DnsRecordSet
 type DnsRecordSet struct {
 	// The DNS Resource Record Set (RRSet) ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The status of the DNS Record Set
 	Status string `json:"status"`
 	// The site ID
-	SiteId int32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The infrastructure ID
-	InfrastructureId int32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// The ID of the DNS zone
-	ZoneId int32 `json:"zoneId"`
+	ZoneId int64 `json:"zoneId"`
 	// The name of the DNS zone (without a terminating dot)
 	ZoneName string `json:"zoneName"`
 	// DNS Name for the RecordSet
@@ -45,7 +45,7 @@ type DnsRecordSet struct {
 	// The tags associated with the DNS Record Set
 	Tags []string `json:"tags,omitempty"`
 	// The revision number of the DNS Record Set
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The user ID of the user who created the DNS Record Set
 	CreatedBy int32 `json:"createdBy"`
 	// The user ID of the user who last modified the DNS Record Set
@@ -65,7 +65,7 @@ type _DnsRecordSet DnsRecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDnsRecordSet(id int32, status string, siteId int32, infrastructureId int32, zoneId int32, zoneName string, name string, type_ string, records []string, revision int32, createdBy int32, createdAt time.Time) *DnsRecordSet {
+func NewDnsRecordSet(id int64, status string, siteId int64, infrastructureId int64, zoneId int64, zoneName string, name string, type_ string, records []string, revision int64, createdBy int32, createdAt time.Time) *DnsRecordSet {
 	this := DnsRecordSet{}
 	this.Id = id
 	this.Status = status
@@ -95,9 +95,9 @@ func NewDnsRecordSetWithDefaults() *DnsRecordSet {
 }
 
 // GetId returns the Id field value
-func (o *DnsRecordSet) GetId() int32 {
+func (o *DnsRecordSet) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -106,7 +106,7 @@ func (o *DnsRecordSet) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DnsRecordSet) GetIdOk() (*int32, bool) {
+func (o *DnsRecordSet) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,7 +114,7 @@ func (o *DnsRecordSet) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *DnsRecordSet) SetId(v int32) {
+func (o *DnsRecordSet) SetId(v int64) {
 	o.Id = v
 }
 
@@ -143,9 +143,9 @@ func (o *DnsRecordSet) SetStatus(v string) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *DnsRecordSet) GetSiteId() int32 {
+func (o *DnsRecordSet) GetSiteId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -154,7 +154,7 @@ func (o *DnsRecordSet) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *DnsRecordSet) GetSiteIdOk() (*int32, bool) {
+func (o *DnsRecordSet) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -162,14 +162,14 @@ func (o *DnsRecordSet) GetSiteIdOk() (*int32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *DnsRecordSet) SetSiteId(v int32) {
+func (o *DnsRecordSet) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *DnsRecordSet) GetInfrastructureId() int32 {
+func (o *DnsRecordSet) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -178,7 +178,7 @@ func (o *DnsRecordSet) GetInfrastructureId() int32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *DnsRecordSet) GetInfrastructureIdOk() (*int32, bool) {
+func (o *DnsRecordSet) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -186,14 +186,14 @@ func (o *DnsRecordSet) GetInfrastructureIdOk() (*int32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *DnsRecordSet) SetInfrastructureId(v int32) {
+func (o *DnsRecordSet) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
 // GetZoneId returns the ZoneId field value
-func (o *DnsRecordSet) GetZoneId() int32 {
+func (o *DnsRecordSet) GetZoneId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -202,7 +202,7 @@ func (o *DnsRecordSet) GetZoneId() int32 {
 
 // GetZoneIdOk returns a tuple with the ZoneId field value
 // and a boolean to check if the value has been set.
-func (o *DnsRecordSet) GetZoneIdOk() (*int32, bool) {
+func (o *DnsRecordSet) GetZoneIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -210,7 +210,7 @@ func (o *DnsRecordSet) GetZoneIdOk() (*int32, bool) {
 }
 
 // SetZoneId sets field value
-func (o *DnsRecordSet) SetZoneId(v int32) {
+func (o *DnsRecordSet) SetZoneId(v int64) {
 	o.ZoneId = v
 }
 
@@ -375,9 +375,9 @@ func (o *DnsRecordSet) SetTags(v []string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *DnsRecordSet) GetRevision() int32 {
+func (o *DnsRecordSet) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -386,7 +386,7 @@ func (o *DnsRecordSet) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *DnsRecordSet) GetRevisionOk() (*int32, bool) {
+func (o *DnsRecordSet) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -394,7 +394,7 @@ func (o *DnsRecordSet) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *DnsRecordSet) SetRevision(v int32) {
+func (o *DnsRecordSet) SetRevision(v int64) {
 	o.Revision = v
 }
 

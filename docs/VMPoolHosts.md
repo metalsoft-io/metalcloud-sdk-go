@@ -4,16 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | VM Pool Host ID | 
+**Id** | **int64** | VM Pool Host ID | 
 **Name** | **string** | Name of the VM Pool Host | 
 **Address** | Pointer to **string** | Address of the VM Pool Host | [optional] 
 **Port** | Pointer to **float32** | Port of the VM Pool Host | [optional] 
-**PoolId** | Pointer to **float32** | VM Pool ID | [optional] 
+**PoolId** | Pointer to **int64** | VM Pool ID | [optional] 
 **Roles** | Pointer to **[]string** | Roles of the VM Pool Host | [optional] 
 **FailureDomain** | Pointer to **string** | Failure domain of the VM Pool Host | [optional] 
 **Architecture** | Pointer to **string** | Architecture of the VM Pool Host | [optional] 
 **Database** | Pointer to **float32** | Flag specifying if the VM Pool Host is database | [optional] 
 **Status** | Pointer to **string** | Status of the VM Pool Host | [optional] 
+**HealthStatus** | Pointer to [**VMPoolHostHealthStatus**](VMPoolHostHealthStatus.md) | Health status of the VM Pool Host | [optional] 
+**HealthDetails** | Pointer to **[]string** | Health status messages of the VM Pool Host | [optional] 
+**HealthLastCheckedTimestamp** | Pointer to **string** | Timestamp when the VM Pool Host health status was last checked | [optional] 
 **Description** | Pointer to **string** | Description of the VM Pool Host | [optional] 
 **AllowVMsToBeCreated** | **bool** | Flag specifying if VMs can be created on the VM Pool Host | [default to true]
 **HostInterfaces** | Pointer to [**[]VMPoolHostInterfaces**](VMPoolHostInterfaces.md) | List of VM Pool Host Interfaces | [optional] 
@@ -24,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewVMPoolHosts
 
-`func NewVMPoolHosts(id float32, name string, allowVMsToBeCreated bool, updatedTimestamp string, ) *VMPoolHosts`
+`func NewVMPoolHosts(id int64, name string, allowVMsToBeCreated bool, updatedTimestamp string, ) *VMPoolHosts`
 
 NewVMPoolHosts instantiates a new VMPoolHosts object
 This constructor will assign default values to properties that have it defined,
@@ -41,20 +44,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VMPoolHosts) GetId() float32`
+`func (o *VMPoolHosts) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMPoolHosts) GetIdOk() (*float32, bool)`
+`func (o *VMPoolHosts) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMPoolHosts) SetId(v float32)`
+`func (o *VMPoolHosts) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -131,20 +134,20 @@ HasPort returns a boolean if a field has been set.
 
 ### GetPoolId
 
-`func (o *VMPoolHosts) GetPoolId() float32`
+`func (o *VMPoolHosts) GetPoolId() int64`
 
 GetPoolId returns the PoolId field if non-nil, zero value otherwise.
 
 ### GetPoolIdOk
 
-`func (o *VMPoolHosts) GetPoolIdOk() (*float32, bool)`
+`func (o *VMPoolHosts) GetPoolIdOk() (*int64, bool)`
 
 GetPoolIdOk returns a tuple with the PoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPoolId
 
-`func (o *VMPoolHosts) SetPoolId(v float32)`
+`func (o *VMPoolHosts) SetPoolId(v int64)`
 
 SetPoolId sets PoolId field to given value.
 
@@ -278,6 +281,81 @@ SetStatus sets Status field to given value.
 `func (o *VMPoolHosts) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetHealthStatus
+
+`func (o *VMPoolHosts) GetHealthStatus() VMPoolHostHealthStatus`
+
+GetHealthStatus returns the HealthStatus field if non-nil, zero value otherwise.
+
+### GetHealthStatusOk
+
+`func (o *VMPoolHosts) GetHealthStatusOk() (*VMPoolHostHealthStatus, bool)`
+
+GetHealthStatusOk returns a tuple with the HealthStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthStatus
+
+`func (o *VMPoolHosts) SetHealthStatus(v VMPoolHostHealthStatus)`
+
+SetHealthStatus sets HealthStatus field to given value.
+
+### HasHealthStatus
+
+`func (o *VMPoolHosts) HasHealthStatus() bool`
+
+HasHealthStatus returns a boolean if a field has been set.
+
+### GetHealthDetails
+
+`func (o *VMPoolHosts) GetHealthDetails() []string`
+
+GetHealthDetails returns the HealthDetails field if non-nil, zero value otherwise.
+
+### GetHealthDetailsOk
+
+`func (o *VMPoolHosts) GetHealthDetailsOk() (*[]string, bool)`
+
+GetHealthDetailsOk returns a tuple with the HealthDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthDetails
+
+`func (o *VMPoolHosts) SetHealthDetails(v []string)`
+
+SetHealthDetails sets HealthDetails field to given value.
+
+### HasHealthDetails
+
+`func (o *VMPoolHosts) HasHealthDetails() bool`
+
+HasHealthDetails returns a boolean if a field has been set.
+
+### GetHealthLastCheckedTimestamp
+
+`func (o *VMPoolHosts) GetHealthLastCheckedTimestamp() string`
+
+GetHealthLastCheckedTimestamp returns the HealthLastCheckedTimestamp field if non-nil, zero value otherwise.
+
+### GetHealthLastCheckedTimestampOk
+
+`func (o *VMPoolHosts) GetHealthLastCheckedTimestampOk() (*string, bool)`
+
+GetHealthLastCheckedTimestampOk returns a tuple with the HealthLastCheckedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthLastCheckedTimestamp
+
+`func (o *VMPoolHosts) SetHealthLastCheckedTimestamp(v string)`
+
+SetHealthLastCheckedTimestamp sets HealthLastCheckedTimestamp field to given value.
+
+### HasHealthLastCheckedTimestamp
+
+`func (o *VMPoolHosts) HasHealthLastCheckedTimestamp() bool`
+
+HasHealthLastCheckedTimestamp returns a boolean if a field has been set.
 
 ### GetDescription
 

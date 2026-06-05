@@ -7,16 +7,16 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
-**LogicalNetworkProfileId** | **int32** |  | 
-**InfrastructureId** | Pointer to **NullableInt32** |  | [optional] 
+**LogicalNetworkProfileId** | **int64** |  | 
+**InfrastructureId** | Pointer to **NullableInt64** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
-**ExtensionInstanceId** | Pointer to **NullableInt32** |  | [optional] 
+**ExtensionInstanceId** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
 ### NewCreateLogicalNetworkFromProfile
 
-`func NewCreateLogicalNetworkFromProfile(logicalNetworkProfileId int32, ) *CreateLogicalNetworkFromProfile`
+`func NewCreateLogicalNetworkFromProfile(logicalNetworkProfileId int64, ) *CreateLogicalNetworkFromProfile`
 
 NewCreateLogicalNetworkFromProfile instantiates a new CreateLogicalNetworkFromProfile object
 This constructor will assign default values to properties that have it defined,
@@ -108,40 +108,40 @@ HasAnnotations returns a boolean if a field has been set.
 
 ### GetLogicalNetworkProfileId
 
-`func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileId() int32`
+`func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileId() int64`
 
 GetLogicalNetworkProfileId returns the LogicalNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkProfileIdOk
 
-`func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileIdOk() (*int64, bool)`
 
 GetLogicalNetworkProfileIdOk returns a tuple with the LogicalNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkProfileId
 
-`func (o *CreateLogicalNetworkFromProfile) SetLogicalNetworkProfileId(v int32)`
+`func (o *CreateLogicalNetworkFromProfile) SetLogicalNetworkProfileId(v int64)`
 
 SetLogicalNetworkProfileId sets LogicalNetworkProfileId field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *CreateLogicalNetworkFromProfile) GetInfrastructureId() int32`
+`func (o *CreateLogicalNetworkFromProfile) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *CreateLogicalNetworkFromProfile) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *CreateLogicalNetworkFromProfile) SetInfrastructureId(v int32)`
+`func (o *CreateLogicalNetworkFromProfile) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -198,20 +198,20 @@ HasMtu returns a boolean if a field has been set.
 UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
 ### GetExtensionInstanceId
 
-`func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceId() int32`
+`func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceId() int64`
 
 GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
 ### GetExtensionInstanceIdOk
 
-`func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceIdOk() (*int64, bool)`
 
 GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtensionInstanceId
 
-`func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceId(v int32)`
+`func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceId(v int64)`
 
 SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 

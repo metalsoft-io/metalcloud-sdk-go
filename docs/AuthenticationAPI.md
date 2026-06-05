@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAuthenticationProvider**](AuthenticationAPI.md#GetAuthenticationProvider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
-[**GetCaptchaEnabled**](AuthenticationAPI.md#GetCaptchaEnabled) | **Get** /api/v2/captcha-enabled | Check if CAPTCHA is enabled
+[**GetCaptchaConfig**](AuthenticationAPI.md#GetCaptchaConfig) | **Get** /api/v2/captcha | Get CAPTCHA configuration
 [**GetCurrentUser**](AuthenticationAPI.md#GetCurrentUser) | **Get** /api/v2/user | Get current user
 [**GetPublicSignupDisabled**](AuthenticationAPI.md#GetPublicSignupDisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
@@ -82,11 +82,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetCaptchaEnabled
+## GetCaptchaConfig
 
-> CaptchaEnabled GetCaptchaEnabled(ctx).Execute()
+> CaptchaConfig GetCaptchaConfig(ctx).Execute()
 
-Check if CAPTCHA is enabled
+Get CAPTCHA configuration
 
 
 
@@ -106,13 +106,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.GetCaptchaEnabled(context.Background()).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.GetCaptchaConfig(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetCaptchaEnabled``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetCaptchaConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetCaptchaEnabled`: CaptchaEnabled
-	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.GetCaptchaEnabled`: %v\n", resp)
+	// response from `GetCaptchaConfig`: CaptchaConfig
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.GetCaptchaConfig`: %v\n", resp)
 }
 ```
 
@@ -122,12 +122,12 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetCaptchaEnabledRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetCaptchaConfigRequest struct via the builder pattern
 
 
 ### Return type
 
-[**CaptchaEnabled**](CaptchaEnabled.md)
+[**CaptchaConfig**](CaptchaConfig.md)
 
 ### Authorization
 
@@ -145,7 +145,7 @@ No authorization required
 
 ## GetCurrentUser
 
-> User GetCurrentUser(ctx).Recursion(recursion).Execute()
+> User GetCurrentUser(ctx).Execute()
 
 Get current user
 
@@ -164,11 +164,10 @@ import (
 )
 
 func main() {
-	recursion := float32(8.14) // float32 | The recursion level of the displayed details. Default is 0. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.GetCurrentUser(context.Background()).Recursion(recursion).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.GetCurrentUser(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetCurrentUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -180,16 +179,12 @@ func main() {
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetCurrentUserRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **recursion** | **float32** | The recursion level of the displayed details. Default is 0. | 
 
 ### Return type
 
@@ -197,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 

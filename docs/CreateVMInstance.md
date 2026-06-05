@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TypeId** | **float32** | Id of the VM Type. | 
-**GroupId** | **float32** | Id of the VM Instance Group. | 
+**TypeId** | **int64** | Id of the VM Type. | 
+**GroupId** | **int64** | Id of the VM Instance Group. | 
 **DiskSizeGB** | Pointer to **float32** | Disk size in GB of the VM Instance. If not passed, the default disk size from the group will be used | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the VM Instance. | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCreateVMInstance
 
-`func NewCreateVMInstance(typeId float32, groupId float32, ) *CreateVMInstance`
+`func NewCreateVMInstance(typeId int64, groupId int64, ) *CreateVMInstance`
 
 NewCreateVMInstance instantiates a new CreateVMInstance object
 This constructor will assign default values to properties that have it defined,
@@ -30,40 +30,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTypeId
 
-`func (o *CreateVMInstance) GetTypeId() float32`
+`func (o *CreateVMInstance) GetTypeId() int64`
 
 GetTypeId returns the TypeId field if non-nil, zero value otherwise.
 
 ### GetTypeIdOk
 
-`func (o *CreateVMInstance) GetTypeIdOk() (*float32, bool)`
+`func (o *CreateVMInstance) GetTypeIdOk() (*int64, bool)`
 
 GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeId
 
-`func (o *CreateVMInstance) SetTypeId(v float32)`
+`func (o *CreateVMInstance) SetTypeId(v int64)`
 
 SetTypeId sets TypeId field to given value.
 
 
 ### GetGroupId
 
-`func (o *CreateVMInstance) GetGroupId() float32`
+`func (o *CreateVMInstance) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *CreateVMInstance) GetGroupIdOk() (*float32, bool)`
+`func (o *CreateVMInstance) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *CreateVMInstance) SetGroupId(v float32)`
+`func (o *CreateVMInstance) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 

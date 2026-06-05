@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **DeployType** | **string** |  | 
 **DeployStatus** | **string** |  | 
 **CreatedAt** | **time.Time** | Creation timestamp for the entity. | 
 **UpdatedAt** | **time.Time** | Last update timestamp for the entity. | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vlan** | Pointer to [**LogicalNetworkConfigVlanProperties**](LogicalNetworkConfigVlanProperties.md) |  | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewLogicalNetworkConfig
 
-`func NewLogicalNetworkConfig(id int32, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, ) *LogicalNetworkConfig`
+`func NewLogicalNetworkConfig(id int64, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int64, kind LogicalNetworkKind, ) *LogicalNetworkConfig`
 
 NewLogicalNetworkConfig instantiates a new LogicalNetworkConfig object
 This constructor will assign default values to properties that have it defined,
@@ -40,20 +40,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *LogicalNetworkConfig) GetId() int32`
+`func (o *LogicalNetworkConfig) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LogicalNetworkConfig) GetIdOk() (*int32, bool)`
+`func (o *LogicalNetworkConfig) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *LogicalNetworkConfig) SetId(v int32)`
+`func (o *LogicalNetworkConfig) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -140,20 +140,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *LogicalNetworkConfig) GetRevision() int32`
+`func (o *LogicalNetworkConfig) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *LogicalNetworkConfig) GetRevisionOk() (*int32, bool)`
+`func (o *LogicalNetworkConfig) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *LogicalNetworkConfig) SetRevision(v int32)`
+`func (o *LogicalNetworkConfig) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

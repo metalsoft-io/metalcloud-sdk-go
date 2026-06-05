@@ -43,7 +43,7 @@ import (
 )
 
 func main() {
-	createExternalConnection := *openapiclient.NewCreateExternalConnection("external-connection-1", "Server 1", int32(123)) // CreateExternalConnection | The external connection to create
+	createExternalConnection := *openapiclient.NewCreateExternalConnection("external-connection-1", "Server 1", int64(123)) // CreateExternalConnection | The external connection to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -110,7 +110,7 @@ import (
 
 func main() {
 	externalConnectionId := int32(56) // int32 | 
-	createExternalConnectionInterface := *openapiclient.NewCreateExternalConnectionInterface(float32(1)) // CreateExternalConnectionInterface | The external connection interface to create
+	createExternalConnectionInterface := *openapiclient.NewCreateExternalConnectionInterface(int64(1)) // CreateExternalConnectionInterface | The external connection interface to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ import (
 
 func main() {
 	externalConnectionId := int32(56) // int32 | The id of the external connection
-	createExternalConnectionLogicalNetwork := *openapiclient.NewCreateExternalConnectionLogicalNetwork(int32(123)) // CreateExternalConnectionLogicalNetwork | The external connection logical network to create
+	createExternalConnectionLogicalNetwork := *openapiclient.NewCreateExternalConnectionLogicalNetwork(int64(123)) // CreateExternalConnectionLogicalNetwork | The external connection logical network to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1071,7 +1071,7 @@ import (
 func main() {
 	externalConnectionId := int32(56) // int32 | 
 	externalConnectionInterfaceId := int32(56) // int32 | 
-	updateExternalConnectionInterface := *openapiclient.NewUpdateExternalConnectionInterface(float32(1)) // UpdateExternalConnectionInterface | The external connection interface configuration changes
+	updateExternalConnectionInterface := *openapiclient.NewUpdateExternalConnectionInterface(int64(1)) // UpdateExternalConnectionInterface | The external connection interface configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

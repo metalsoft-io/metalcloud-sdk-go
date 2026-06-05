@@ -21,7 +21,7 @@ var _ MappedNullable = &InstanceInterfaceMemberVariables{}
 
 // InstanceInterfaceMemberVariables struct for InstanceInterfaceMemberVariables
 type InstanceInterfaceMemberVariables struct {
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	InterfaceType InstanceInterfaceType `json:"interfaceType"`
 	AdditionalProperties map[string]interface{}
 }
@@ -32,7 +32,7 @@ type _InstanceInterfaceMemberVariables InstanceInterfaceMemberVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceInterfaceMemberVariables(id float32, interfaceType InstanceInterfaceType) *InstanceInterfaceMemberVariables {
+func NewInstanceInterfaceMemberVariables(id int64, interfaceType InstanceInterfaceType) *InstanceInterfaceMemberVariables {
 	this := InstanceInterfaceMemberVariables{}
 	this.Id = id
 	this.InterfaceType = interfaceType
@@ -48,9 +48,9 @@ func NewInstanceInterfaceMemberVariablesWithDefaults() *InstanceInterfaceMemberV
 }
 
 // GetId returns the Id field value
-func (o *InstanceInterfaceMemberVariables) GetId() float32 {
+func (o *InstanceInterfaceMemberVariables) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *InstanceInterfaceMemberVariables) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *InstanceInterfaceMemberVariables) GetIdOk() (*float32, bool) {
+func (o *InstanceInterfaceMemberVariables) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *InstanceInterfaceMemberVariables) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *InstanceInterfaceMemberVariables) SetId(v float32) {
+func (o *InstanceInterfaceMemberVariables) SetId(v int64) {
 	o.Id = v
 }
 

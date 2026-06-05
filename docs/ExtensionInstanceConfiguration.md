@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision number | 
+**Revision** | **int64** | Revision number | 
 **Label** | **string** | The extension instance label. Will be automatically generated if not provided. | 
 **AutomaticManagement** | **float32** | Flag specifying if the extension instance supports automatic management. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Extension Instance. | [optional] 
-**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the Extension Instance. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the Extension Instance. | [optional] 
 **DeployType** | **string** | Deploy type of the Extension Instance | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the Extension Instance | [default to "not_started"]
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Extension Instance. | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the Extension Instance. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Extension Instance last update. | 
 
 ## Methods
 
 ### NewExtensionInstanceConfiguration
 
-`func NewExtensionInstanceConfiguration(revision float32, label string, automaticManagement float32, deployType string, deployStatus string, updatedTimestamp string, ) *ExtensionInstanceConfiguration`
+`func NewExtensionInstanceConfiguration(revision int64, label string, automaticManagement float32, deployType string, deployStatus string, updatedTimestamp string, ) *ExtensionInstanceConfiguration`
 
 NewExtensionInstanceConfiguration instantiates a new ExtensionInstanceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *ExtensionInstanceConfiguration) GetRevision() float32`
+`func (o *ExtensionInstanceConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ExtensionInstanceConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *ExtensionInstanceConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ExtensionInstanceConfiguration) SetRevision(v float32)`
+`func (o *ExtensionInstanceConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -120,20 +120,20 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeId() float32`
+`func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool)`
+`func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *ExtensionInstanceConfiguration) SetDnsSubdomainChangeId(v float32)`
+`func (o *ExtensionInstanceConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -185,20 +185,20 @@ SetDeployStatus sets DeployStatus field to given value.
 
 ### GetInfrastructureDeployId
 
-`func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployId() float32`
+`func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+`func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *ExtensionInstanceConfiguration) SetInfrastructureDeployId(v float32)`
+`func (o *ExtensionInstanceConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 

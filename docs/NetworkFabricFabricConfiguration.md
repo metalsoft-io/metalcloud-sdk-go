@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **ServerOnlyOperationEnabled** | Pointer to **bool** | Enables server-only operation mode on the network fabric. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
-**BgpNumbering** | Pointer to [**BgpNumberingType**](BgpNumberingType.md) |  | [optional] 
+**BgpNumbering** | Pointer to **string** |  | [optional] 
 **LibraryLabel** | Pointer to **string** | Library label for the Ethernet fabric configuration, used to identify the Network Device Configuration Templates that can be used for deploy. | [optional] 
 **UseDPUModeIfAvailable** | Pointer to **bool** | Flag to indicate if DPU mode should be used if available on the fabric. | [optional] 
 **LagRanges** | Pointer to **[]string** | Link Aggregation (LAG) ranges in the format \&quot;start-end\&quot;; each range must be within the bounds of 1 to 4096. | [optional] 
@@ -139,20 +139,20 @@ HasSyslogMonitoringEnabled returns a boolean if a field has been set.
 
 ### GetBgpNumbering
 
-`func (o *NetworkFabricFabricConfiguration) GetBgpNumbering() BgpNumberingType`
+`func (o *NetworkFabricFabricConfiguration) GetBgpNumbering() string`
 
 GetBgpNumbering returns the BgpNumbering field if non-nil, zero value otherwise.
 
 ### GetBgpNumberingOk
 
-`func (o *NetworkFabricFabricConfiguration) GetBgpNumberingOk() (*BgpNumberingType, bool)`
+`func (o *NetworkFabricFabricConfiguration) GetBgpNumberingOk() (*string, bool)`
 
 GetBgpNumberingOk returns a tuple with the BgpNumbering field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBgpNumbering
 
-`func (o *NetworkFabricFabricConfiguration) SetBgpNumbering(v BgpNumberingType)`
+`func (o *NetworkFabricFabricConfiguration) SetBgpNumbering(v string)`
 
 SetBgpNumbering sets BgpNumbering field to given value.
 

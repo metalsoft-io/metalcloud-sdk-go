@@ -5,21 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InterfaceType** | **string** |  | 
-**TypeInterfaceId** | **float32** |  | 
-**LogicalNetworkId** | Pointer to **float32** |  | [optional] 
+**TypeInterfaceId** | **int64** |  | 
+**LogicalNetworkId** | Pointer to **int64** |  | [optional] 
 **LogicalNetworkName** | Pointer to **string** |  | [optional] 
 **LogicalNetworkLabel** | Pointer to **string** |  | [optional] 
 **Ipv4Addresses** | Pointer to [**[]ServerInstanceNetworkConfigIpInfo**](ServerInstanceNetworkConfigIpInfo.md) | The list of IPv4 addresses. | [optional] 
 **Ipv6Addresses** | Pointer to [**[]ServerInstanceNetworkConfigIpInfo**](ServerInstanceNetworkConfigIpInfo.md) | The list of IPv6 addresses. | [optional] 
 **Routes** | Pointer to [**[]ServerInstanceNetworkConfigRoute**](ServerInstanceNetworkConfigRoute.md) | The list of static routes. | [optional] 
-**VlanId** | **float32** |  | 
+**VlanId** | **int32** |  | 
 **Links** | Pointer to [**[]ServerInstanceNetworkConfigMembers**](ServerInstanceNetworkConfigMembers.md) | The list of network configuration members. | [optional] 
 
 ## Methods
 
 ### NewServerInstanceTrunkNetworkConfig
 
-`func NewServerInstanceTrunkNetworkConfig(interfaceType string, typeInterfaceId float32, vlanId float32, ) *ServerInstanceTrunkNetworkConfig`
+`func NewServerInstanceTrunkNetworkConfig(interfaceType string, typeInterfaceId int64, vlanId int32, ) *ServerInstanceTrunkNetworkConfig`
 
 NewServerInstanceTrunkNetworkConfig instantiates a new ServerInstanceTrunkNetworkConfig object
 This constructor will assign default values to properties that have it defined,
@@ -56,40 +56,40 @@ SetInterfaceType sets InterfaceType field to given value.
 
 ### GetTypeInterfaceId
 
-`func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceId() float32`
+`func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceId() int64`
 
 GetTypeInterfaceId returns the TypeInterfaceId field if non-nil, zero value otherwise.
 
 ### GetTypeInterfaceIdOk
 
-`func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceIdOk() (*float32, bool)`
+`func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceIdOk() (*int64, bool)`
 
 GetTypeInterfaceIdOk returns a tuple with the TypeInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeInterfaceId
 
-`func (o *ServerInstanceTrunkNetworkConfig) SetTypeInterfaceId(v float32)`
+`func (o *ServerInstanceTrunkNetworkConfig) SetTypeInterfaceId(v int64)`
 
 SetTypeInterfaceId sets TypeInterfaceId field to given value.
 
 
 ### GetLogicalNetworkId
 
-`func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkId() float32`
+`func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *ServerInstanceTrunkNetworkConfig) SetLogicalNetworkId(v float32)`
+`func (o *ServerInstanceTrunkNetworkConfig) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -226,20 +226,20 @@ HasRoutes returns a boolean if a field has been set.
 
 ### GetVlanId
 
-`func (o *ServerInstanceTrunkNetworkConfig) GetVlanId() float32`
+`func (o *ServerInstanceTrunkNetworkConfig) GetVlanId() int32`
 
 GetVlanId returns the VlanId field if non-nil, zero value otherwise.
 
 ### GetVlanIdOk
 
-`func (o *ServerInstanceTrunkNetworkConfig) GetVlanIdOk() (*float32, bool)`
+`func (o *ServerInstanceTrunkNetworkConfig) GetVlanIdOk() (*int32, bool)`
 
 GetVlanIdOk returns a tuple with the VlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanId
 
-`func (o *ServerInstanceTrunkNetworkConfig) SetVlanId(v float32)`
+`func (o *ServerInstanceTrunkNetworkConfig) SetVlanId(v int32)`
 
 SetVlanId sets VlanId field to given value.
 

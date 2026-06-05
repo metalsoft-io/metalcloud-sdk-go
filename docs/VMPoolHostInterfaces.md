@@ -4,11 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | VM Pool Host Interface ID | 
-**HostId** | **float32** | VM Pool Host ID | 
+**Id** | **int64** | VM Pool Host Interface ID | 
+**HostId** | **int64** | VM Pool Host ID | 
 **Status** | [**VMPoolHostInterfaceStatus**](VMPoolHostInterfaceStatus.md) | Status of the VM Pool Host Interface | 
 **Name** | **string** | Name of the VM Pool Host Interface | 
 **MacAddress** | **string** | MAC Address of the VM Pool Host Interface | 
+**Fabric** | Pointer to [**GenericNetworkFabric**](GenericNetworkFabric.md) | Fabric type of the VM Pool Host Interface | [optional] 
 **NetworkDevices** | Pointer to [**[]VMPoolHostInterfaceNetworkDevice**](VMPoolHostInterfaceNetworkDevice.md) | Network device assignments for this interface | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewVMPoolHostInterfaces
 
-`func NewVMPoolHostInterfaces(id float32, hostId float32, status VMPoolHostInterfaceStatus, name string, macAddress string, ) *VMPoolHostInterfaces`
+`func NewVMPoolHostInterfaces(id int64, hostId int64, status VMPoolHostInterfaceStatus, name string, macAddress string, ) *VMPoolHostInterfaces`
 
 NewVMPoolHostInterfaces instantiates a new VMPoolHostInterfaces object
 This constructor will assign default values to properties that have it defined,
@@ -33,40 +34,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VMPoolHostInterfaces) GetId() float32`
+`func (o *VMPoolHostInterfaces) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMPoolHostInterfaces) GetIdOk() (*float32, bool)`
+`func (o *VMPoolHostInterfaces) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMPoolHostInterfaces) SetId(v float32)`
+`func (o *VMPoolHostInterfaces) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetHostId
 
-`func (o *VMPoolHostInterfaces) GetHostId() float32`
+`func (o *VMPoolHostInterfaces) GetHostId() int64`
 
 GetHostId returns the HostId field if non-nil, zero value otherwise.
 
 ### GetHostIdOk
 
-`func (o *VMPoolHostInterfaces) GetHostIdOk() (*float32, bool)`
+`func (o *VMPoolHostInterfaces) GetHostIdOk() (*int64, bool)`
 
 GetHostIdOk returns a tuple with the HostId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHostId
 
-`func (o *VMPoolHostInterfaces) SetHostId(v float32)`
+`func (o *VMPoolHostInterfaces) SetHostId(v int64)`
 
 SetHostId sets HostId field to given value.
 
@@ -130,6 +131,31 @@ and a boolean to check if the value has been set.
 
 SetMacAddress sets MacAddress field to given value.
 
+
+### GetFabric
+
+`func (o *VMPoolHostInterfaces) GetFabric() GenericNetworkFabric`
+
+GetFabric returns the Fabric field if non-nil, zero value otherwise.
+
+### GetFabricOk
+
+`func (o *VMPoolHostInterfaces) GetFabricOk() (*GenericNetworkFabric, bool)`
+
+GetFabricOk returns a tuple with the Fabric field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabric
+
+`func (o *VMPoolHostInterfaces) SetFabric(v GenericNetworkFabric)`
+
+SetFabric sets Fabric field to given value.
+
+### HasFabric
+
+`func (o *VMPoolHostInterfaces) HasFabric() bool`
+
+HasFabric returns a boolean if a field has been set.
 
 ### GetNetworkDevices
 

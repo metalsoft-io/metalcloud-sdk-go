@@ -21,7 +21,7 @@ var _ MappedNullable = &ServerPolicyUpdate{}
 // ServerPolicyUpdate struct for ServerPolicyUpdate
 type ServerPolicyUpdate struct {
 	// ID of the default server registration profile
-	DefaultServerRegistrationProfileId *float32 `json:"defaultServerRegistrationProfileId,omitempty"`
+	DefaultServerRegistrationProfileId *int64 `json:"defaultServerRegistrationProfileId,omitempty"`
 	// Option82 to IP mapping
 	DhcpOption82ToIPMapping map[string]interface{} `json:"dhcpOption82ToIPMapping,omitempty"`
 	// Whether to enable DHCP BMC MAC address whitelist
@@ -29,7 +29,7 @@ type ServerPolicyUpdate struct {
 	// List of DHCP BMC MAC address whitelist
 	DhcpBmcMacAddressWhitelist []string `json:"dhcpBmcMacAddressWhitelist,omitempty"`
 	// Default server cleanup policy ID
-	DefaultServerCleanupPolicyID *float32 `json:"defaultServerCleanupPolicyID,omitempty"`
+	DefaultServerCleanupPolicyID *int64 `json:"defaultServerCleanupPolicyID,omitempty"`
 	// Automatically allocate server types
 	AutomaticallyAllocateServerTypes *bool `json:"automaticallyAllocateServerTypes,omitempty"`
 	// Automatically set servers as available
@@ -57,9 +57,9 @@ func NewServerPolicyUpdateWithDefaults() *ServerPolicyUpdate {
 }
 
 // GetDefaultServerRegistrationProfileId returns the DefaultServerRegistrationProfileId field value if set, zero value otherwise.
-func (o *ServerPolicyUpdate) GetDefaultServerRegistrationProfileId() float32 {
+func (o *ServerPolicyUpdate) GetDefaultServerRegistrationProfileId() int64 {
 	if o == nil || IsNil(o.DefaultServerRegistrationProfileId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultServerRegistrationProfileId
@@ -67,7 +67,7 @@ func (o *ServerPolicyUpdate) GetDefaultServerRegistrationProfileId() float32 {
 
 // GetDefaultServerRegistrationProfileIdOk returns a tuple with the DefaultServerRegistrationProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerPolicyUpdate) GetDefaultServerRegistrationProfileIdOk() (*float32, bool) {
+func (o *ServerPolicyUpdate) GetDefaultServerRegistrationProfileIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DefaultServerRegistrationProfileId) {
 		return nil, false
 	}
@@ -83,8 +83,8 @@ func (o *ServerPolicyUpdate) HasDefaultServerRegistrationProfileId() bool {
 	return false
 }
 
-// SetDefaultServerRegistrationProfileId gets a reference to the given float32 and assigns it to the DefaultServerRegistrationProfileId field.
-func (o *ServerPolicyUpdate) SetDefaultServerRegistrationProfileId(v float32) {
+// SetDefaultServerRegistrationProfileId gets a reference to the given int64 and assigns it to the DefaultServerRegistrationProfileId field.
+func (o *ServerPolicyUpdate) SetDefaultServerRegistrationProfileId(v int64) {
 	o.DefaultServerRegistrationProfileId = &v
 }
 
@@ -185,9 +185,9 @@ func (o *ServerPolicyUpdate) SetDhcpBmcMacAddressWhitelist(v []string) {
 }
 
 // GetDefaultServerCleanupPolicyID returns the DefaultServerCleanupPolicyID field value if set, zero value otherwise.
-func (o *ServerPolicyUpdate) GetDefaultServerCleanupPolicyID() float32 {
+func (o *ServerPolicyUpdate) GetDefaultServerCleanupPolicyID() int64 {
 	if o == nil || IsNil(o.DefaultServerCleanupPolicyID) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultServerCleanupPolicyID
@@ -195,7 +195,7 @@ func (o *ServerPolicyUpdate) GetDefaultServerCleanupPolicyID() float32 {
 
 // GetDefaultServerCleanupPolicyIDOk returns a tuple with the DefaultServerCleanupPolicyID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerPolicyUpdate) GetDefaultServerCleanupPolicyIDOk() (*float32, bool) {
+func (o *ServerPolicyUpdate) GetDefaultServerCleanupPolicyIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.DefaultServerCleanupPolicyID) {
 		return nil, false
 	}
@@ -211,8 +211,8 @@ func (o *ServerPolicyUpdate) HasDefaultServerCleanupPolicyID() bool {
 	return false
 }
 
-// SetDefaultServerCleanupPolicyID gets a reference to the given float32 and assigns it to the DefaultServerCleanupPolicyID field.
-func (o *ServerPolicyUpdate) SetDefaultServerCleanupPolicyID(v float32) {
+// SetDefaultServerCleanupPolicyID gets a reference to the given int64 and assigns it to the DefaultServerCleanupPolicyID field.
+func (o *ServerPolicyUpdate) SetDefaultServerCleanupPolicyID(v int64) {
 	o.DefaultServerCleanupPolicyID = &v
 }
 

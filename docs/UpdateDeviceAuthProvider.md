@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | Pointer to **int32** | The ID of the site this provider belongs to. | [optional] 
+**SiteId** | Pointer to **int64** | The ID of the site this provider belongs to. | [optional] 
 **Label** | Pointer to **string** | The device auth provider label. Must be unique. | [optional] 
 **Name** | Pointer to **string** | The device auth provider display name. | [optional] 
 **Annotations** | Pointer to **map[string]string** | Key-value annotations for storing additional metadata. | [optional] 
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *UpdateDeviceAuthProvider) GetSiteId() int32`
+`func (o *UpdateDeviceAuthProvider) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *UpdateDeviceAuthProvider) GetSiteIdOk() (*int32, bool)`
+`func (o *UpdateDeviceAuthProvider) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *UpdateDeviceAuthProvider) SetSiteId(v int32)`
+`func (o *UpdateDeviceAuthProvider) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

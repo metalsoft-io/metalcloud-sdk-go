@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Password** | Pointer to **string** | The password of the user | [optional] 
 **EmailVerified** | Pointer to **bool** | Whether the user has verified their email address | [optional] [default to false]
 **CreateWithAccount** | Pointer to **bool** | Whether an account should be created with the user | [optional] [default to false]
-**AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**AccountId** | Pointer to **int64** | The account ID of the user | [optional] 
 **CaptchaToken** | Pointer to **string** | CAPTCHA verification token from the client-side widget | [optional] 
 
 ## Methods
@@ -169,20 +169,20 @@ HasCreateWithAccount returns a boolean if a field has been set.
 
 ### GetAccountId
 
-`func (o *CreateUser) GetAccountId() float32`
+`func (o *CreateUser) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *CreateUser) GetAccountIdOk() (*float32, bool)`
+`func (o *CreateUser) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountId
 
-`func (o *CreateUser) SetAccountId(v float32)`
+`func (o *CreateUser) SetAccountId(v int64)`
 
 SetAccountId sets AccountId field to given value.
 

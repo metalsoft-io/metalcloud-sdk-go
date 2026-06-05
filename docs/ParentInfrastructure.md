@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserIdOwner** | Pointer to **float32** | User ID of the owner of the Infrastructure. | [optional] 
-**Id** | **float32** | Infrastructure Id | 
+**Id** | **int64** | Infrastructure Id | 
 
 ## Methods
 
 ### NewParentInfrastructure
 
-`func NewParentInfrastructure(id float32, ) *ParentInfrastructure`
+`func NewParentInfrastructure(id int64, ) *ParentInfrastructure`
 
 NewParentInfrastructure instantiates a new ParentInfrastructure object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasUserIdOwner returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *ParentInfrastructure) GetId() float32`
+`func (o *ParentInfrastructure) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ParentInfrastructure) GetIdOk() (*float32, bool)`
+`func (o *ParentInfrastructure) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ParentInfrastructure) SetId(v float32)`
+`func (o *ParentInfrastructure) SetId(v int64)`
 
 SetId sets Id field to given value.
 

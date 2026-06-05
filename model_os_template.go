@@ -22,7 +22,7 @@ var _ MappedNullable = &OSTemplate{}
 // OSTemplate struct for OSTemplate
 type OSTemplate struct {
 	// The OS template ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The OS template name
 	Name string `json:"name"`
 	// The OS template description
@@ -40,13 +40,13 @@ type OSTemplate struct {
 	// The status, let the user to decide with templates to delete and when,                     and how much to keep them in the history (archived status). Also, it allows the user to                     resurrect the archived templates if needed.                     Status: READY                         - is the initial status of the template                         - the OS template is ready for deployment                         - the OS template can be deleted, use in deployments and updated                     Status: ACTIVE                         - the OS template is part of at least one ongoing deployment                         - can't be deleted (the template service will have validation for this)                         - the status can't be changed to ARCHIVED (the template service will have validation for this)                     Status: USED                         - the OS Template is part of at least one finished deployment, that is not deleted                         - can't be deleted (the template service will have validation for this)                         - can be updated, deploy or ARCHIVED                     Status: ARCHIVED                         - the OS Template is kept in the system for historical reasons                         - can't be deleted (the template service will have validation for this)                         - can't be updated or deployed                         - the status can be changed to READY or USED, if it needs to be used again or deleted
 	Status string `json:"status"`
 	// The template asset IDs associated with the OS template
-	TemplateAssetIDs []int32 `json:"templateAssetIDs,omitempty"`
+	TemplateAssetIDs []int64 `json:"templateAssetIDs,omitempty"`
 	// The tags associated with the OS template
 	Tags []string `json:"tags,omitempty"`
 	// The firmware baseline ID associated with the OS template
-	FirmwareBaselineId *int32 `json:"firmwareBaselineId,omitempty"`
+	FirmwareBaselineId *int64 `json:"firmwareBaselineId,omitempty"`
 	// The revision number of the OS template
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The user ID of the user who created the OS template
 	CreatedBy int32 `json:"createdBy"`
 	// The user ID of the user who last modified the OS template
@@ -66,7 +66,7 @@ type _OSTemplate OSTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt string) *OSTemplate {
+func NewOSTemplate(id int64, name string, device OSTemplateDevice, install OSTemplateInstall, os OSTemplateOs, visibility string, status string, revision int64, createdBy int32, createdAt string) *OSTemplate {
 	this := OSTemplate{}
 	this.Id = id
 	this.Name = name
@@ -94,9 +94,9 @@ func NewOSTemplateWithDefaults() *OSTemplate {
 }
 
 // GetId returns the Id field value
-func (o *OSTemplate) GetId() int32 {
+func (o *OSTemplate) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -105,7 +105,7 @@ func (o *OSTemplate) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetIdOk() (*int32, bool) {
+func (o *OSTemplate) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *OSTemplate) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *OSTemplate) SetId(v int32) {
+func (o *OSTemplate) SetId(v int64) {
 	o.Id = v
 }
 
@@ -390,9 +390,9 @@ func (o *OSTemplate) SetStatus(v string) {
 }
 
 // GetTemplateAssetIDs returns the TemplateAssetIDs field value if set, zero value otherwise.
-func (o *OSTemplate) GetTemplateAssetIDs() []int32 {
+func (o *OSTemplate) GetTemplateAssetIDs() []int64 {
 	if o == nil || IsNil(o.TemplateAssetIDs) {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.TemplateAssetIDs
@@ -400,7 +400,7 @@ func (o *OSTemplate) GetTemplateAssetIDs() []int32 {
 
 // GetTemplateAssetIDsOk returns a tuple with the TemplateAssetIDs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetTemplateAssetIDsOk() ([]int32, bool) {
+func (o *OSTemplate) GetTemplateAssetIDsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.TemplateAssetIDs) {
 		return nil, false
 	}
@@ -416,8 +416,8 @@ func (o *OSTemplate) HasTemplateAssetIDs() bool {
 	return false
 }
 
-// SetTemplateAssetIDs gets a reference to the given []int32 and assigns it to the TemplateAssetIDs field.
-func (o *OSTemplate) SetTemplateAssetIDs(v []int32) {
+// SetTemplateAssetIDs gets a reference to the given []int64 and assigns it to the TemplateAssetIDs field.
+func (o *OSTemplate) SetTemplateAssetIDs(v []int64) {
 	o.TemplateAssetIDs = v
 }
 
@@ -454,9 +454,9 @@ func (o *OSTemplate) SetTags(v []string) {
 }
 
 // GetFirmwareBaselineId returns the FirmwareBaselineId field value if set, zero value otherwise.
-func (o *OSTemplate) GetFirmwareBaselineId() int32 {
+func (o *OSTemplate) GetFirmwareBaselineId() int64 {
 	if o == nil || IsNil(o.FirmwareBaselineId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FirmwareBaselineId
@@ -464,7 +464,7 @@ func (o *OSTemplate) GetFirmwareBaselineId() int32 {
 
 // GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetFirmwareBaselineIdOk() (*int32, bool) {
+func (o *OSTemplate) GetFirmwareBaselineIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.FirmwareBaselineId) {
 		return nil, false
 	}
@@ -480,15 +480,15 @@ func (o *OSTemplate) HasFirmwareBaselineId() bool {
 	return false
 }
 
-// SetFirmwareBaselineId gets a reference to the given int32 and assigns it to the FirmwareBaselineId field.
-func (o *OSTemplate) SetFirmwareBaselineId(v int32) {
+// SetFirmwareBaselineId gets a reference to the given int64 and assigns it to the FirmwareBaselineId field.
+func (o *OSTemplate) SetFirmwareBaselineId(v int64) {
 	o.FirmwareBaselineId = &v
 }
 
 // GetRevision returns the Revision field value
-func (o *OSTemplate) GetRevision() int32 {
+func (o *OSTemplate) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -497,7 +497,7 @@ func (o *OSTemplate) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetRevisionOk() (*int32, bool) {
+func (o *OSTemplate) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -505,7 +505,7 @@ func (o *OSTemplate) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *OSTemplate) SetRevision(v int32) {
+func (o *OSTemplate) SetRevision(v int64) {
 	o.Revision = v
 }
 

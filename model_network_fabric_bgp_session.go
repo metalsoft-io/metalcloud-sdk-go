@@ -29,13 +29,13 @@ type NetworkFabricBGPSession struct {
 	// Revision number of the entity
 	Revision string `json:"revision"`
 	// Unique identifier for the network fabric BGP session
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Unique identifier for the network fabric
-	NetworkFabricId float32 `json:"networkFabricId"`
+	NetworkFabricId int64 `json:"networkFabricId"`
 	// Unique identifier for the network fabric link
-	NetworkFabricLinkId *float32 `json:"networkFabricLinkId,omitempty"`
+	NetworkFabricLinkId *int64 `json:"networkFabricLinkId,omitempty"`
 	// Unique identifier for the network fabric link aggregation
-	NetworkFabricLinkAggregationId *float32 `json:"networkFabricLinkAggregationId,omitempty"`
+	NetworkFabricLinkAggregationId *int64 `json:"networkFabricLinkAggregationId,omitempty"`
 	// Name of the network fabric BGP session
 	Name string `json:"name"`
 	// BGP numbering type for the link
@@ -59,7 +59,7 @@ type _NetworkFabricBGPSession NetworkFabricBGPSession
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricBGPSession(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, name string, bgpNumbering string, bgpLinkConfiguration string, status string) *NetworkFabricBGPSession {
+func NewNetworkFabricBGPSession(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, networkFabricId int64, name string, bgpNumbering string, bgpLinkConfiguration string, status string) *NetworkFabricBGPSession {
 	this := NetworkFabricBGPSession{}
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -154,9 +154,9 @@ func (o *NetworkFabricBGPSession) SetRevision(v string) {
 }
 
 // GetId returns the Id field value
-func (o *NetworkFabricBGPSession) GetId() float32 {
+func (o *NetworkFabricBGPSession) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -165,7 +165,7 @@ func (o *NetworkFabricBGPSession) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricBGPSession) GetIdOk() (*float32, bool) {
+func (o *NetworkFabricBGPSession) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,14 +173,14 @@ func (o *NetworkFabricBGPSession) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *NetworkFabricBGPSession) SetId(v float32) {
+func (o *NetworkFabricBGPSession) SetId(v int64) {
 	o.Id = v
 }
 
 // GetNetworkFabricId returns the NetworkFabricId field value
-func (o *NetworkFabricBGPSession) GetNetworkFabricId() float32 {
+func (o *NetworkFabricBGPSession) GetNetworkFabricId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -189,7 +189,7 @@ func (o *NetworkFabricBGPSession) GetNetworkFabricId() float32 {
 
 // GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricBGPSession) GetNetworkFabricIdOk() (*float32, bool) {
+func (o *NetworkFabricBGPSession) GetNetworkFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -197,14 +197,14 @@ func (o *NetworkFabricBGPSession) GetNetworkFabricIdOk() (*float32, bool) {
 }
 
 // SetNetworkFabricId sets field value
-func (o *NetworkFabricBGPSession) SetNetworkFabricId(v float32) {
+func (o *NetworkFabricBGPSession) SetNetworkFabricId(v int64) {
 	o.NetworkFabricId = v
 }
 
 // GetNetworkFabricLinkId returns the NetworkFabricLinkId field value if set, zero value otherwise.
-func (o *NetworkFabricBGPSession) GetNetworkFabricLinkId() float32 {
+func (o *NetworkFabricBGPSession) GetNetworkFabricLinkId() int64 {
 	if o == nil || IsNil(o.NetworkFabricLinkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkFabricLinkId
@@ -212,7 +212,7 @@ func (o *NetworkFabricBGPSession) GetNetworkFabricLinkId() float32 {
 
 // GetNetworkFabricLinkIdOk returns a tuple with the NetworkFabricLinkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricBGPSession) GetNetworkFabricLinkIdOk() (*float32, bool) {
+func (o *NetworkFabricBGPSession) GetNetworkFabricLinkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkFabricLinkId) {
 		return nil, false
 	}
@@ -228,15 +228,15 @@ func (o *NetworkFabricBGPSession) HasNetworkFabricLinkId() bool {
 	return false
 }
 
-// SetNetworkFabricLinkId gets a reference to the given float32 and assigns it to the NetworkFabricLinkId field.
-func (o *NetworkFabricBGPSession) SetNetworkFabricLinkId(v float32) {
+// SetNetworkFabricLinkId gets a reference to the given int64 and assigns it to the NetworkFabricLinkId field.
+func (o *NetworkFabricBGPSession) SetNetworkFabricLinkId(v int64) {
 	o.NetworkFabricLinkId = &v
 }
 
 // GetNetworkFabricLinkAggregationId returns the NetworkFabricLinkAggregationId field value if set, zero value otherwise.
-func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationId() float32 {
+func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationId() int64 {
 	if o == nil || IsNil(o.NetworkFabricLinkAggregationId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkFabricLinkAggregationId
@@ -244,7 +244,7 @@ func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationId() float32 {
 
 // GetNetworkFabricLinkAggregationIdOk returns a tuple with the NetworkFabricLinkAggregationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationIdOk() (*float32, bool) {
+func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkFabricLinkAggregationId) {
 		return nil, false
 	}
@@ -260,8 +260,8 @@ func (o *NetworkFabricBGPSession) HasNetworkFabricLinkAggregationId() bool {
 	return false
 }
 
-// SetNetworkFabricLinkAggregationId gets a reference to the given float32 and assigns it to the NetworkFabricLinkAggregationId field.
-func (o *NetworkFabricBGPSession) SetNetworkFabricLinkAggregationId(v float32) {
+// SetNetworkFabricLinkAggregationId gets a reference to the given int64 and assigns it to the NetworkFabricLinkAggregationId field.
+func (o *NetworkFabricBGPSession) SetNetworkFabricLinkAggregationId(v int64) {
 	o.NetworkFabricLinkAggregationId = &v
 }
 

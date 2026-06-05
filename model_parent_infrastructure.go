@@ -24,7 +24,7 @@ type ParentInfrastructure struct {
 	// User ID of the owner of the Infrastructure.
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
 	// Infrastructure Id
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _ParentInfrastructure ParentInfrastructure
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewParentInfrastructure(id float32) *ParentInfrastructure {
+func NewParentInfrastructure(id int64) *ParentInfrastructure {
 	this := ParentInfrastructure{}
 	this.Id = id
 	return &this
@@ -81,9 +81,9 @@ func (o *ParentInfrastructure) SetUserIdOwner(v float32) {
 }
 
 // GetId returns the Id field value
-func (o *ParentInfrastructure) GetId() float32 {
+func (o *ParentInfrastructure) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *ParentInfrastructure) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ParentInfrastructure) GetIdOk() (*float32, bool) {
+func (o *ParentInfrastructure) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *ParentInfrastructure) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ParentInfrastructure) SetId(v float32) {
+func (o *ParentInfrastructure) SetId(v int64) {
 	o.Id = v
 }
 

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the Infrastructure | 
+**Revision** | **int64** | Revision of the Infrastructure | 
 **Label** | **string** |  | 
 **DeployType** | **string** | Deploy type of the Infrastructure | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the Infrastructure | [default to "not_started"]
 **ServerTypeIdToPreferredServerIds** | Pointer to **map[string]interface{}** | An object having as key the server type id and as value an array of preferred server ids | [optional] 
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Infrastructure | [optional] 
-**DnsSubdomainChangeId** | Pointer to **float32** | DNS Subdomain Change ID | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the Infrastructure | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | DNS Subdomain Change ID | [optional] 
 **DatacenterName** | **string** | Datacenter name where the Infrastructure is located. | 
-**SiteId** | **float32** | The ID of the site where the Infrastructure is located. | 
+**SiteId** | **int64** | The ID of the site where the Infrastructure is located. | 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 **UserIdOwner** | Pointer to **float32** | User ID of the owner of the Infrastructure. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain associated with the Infrastructure. | [optional] 
@@ -33,13 +33,13 @@ Name | Type | Description | Notes
 **ReservedLanIpRanges** | Pointer to **map[string]interface{}** | Reserved LAN IP ranges in JSON format. | [optional] 
 **SubnetPoolLan** | Pointer to **map[string]interface{}** | Subnet pool for LAN in JSON format. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Infrastructure. | 
-**DnsSubdomainId** | Pointer to **float32** | DNS Subdomain ID. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | DNS Subdomain ID. | [optional] 
 
 ## Methods
 
 ### NewInfrastructureConfiguration
 
-`func NewInfrastructureConfiguration(revision float32, label string, deployType string, deployStatus string, datacenterName string, siteId float32, updatedTimestamp string, ) *InfrastructureConfiguration`
+`func NewInfrastructureConfiguration(revision int64, label string, deployType string, deployStatus string, datacenterName string, siteId int64, updatedTimestamp string, ) *InfrastructureConfiguration`
 
 NewInfrastructureConfiguration instantiates a new InfrastructureConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -56,20 +56,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *InfrastructureConfiguration) GetRevision() float32`
+`func (o *InfrastructureConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *InfrastructureConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *InfrastructureConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *InfrastructureConfiguration) SetRevision(v float32)`
+`func (o *InfrastructureConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -161,20 +161,20 @@ HasServerTypeIdToPreferredServerIds returns a boolean if a field has been set.
 
 ### GetInfrastructureDeployId
 
-`func (o *InfrastructureConfiguration) GetInfrastructureDeployId() float32`
+`func (o *InfrastructureConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *InfrastructureConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+`func (o *InfrastructureConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *InfrastructureConfiguration) SetInfrastructureDeployId(v float32)`
+`func (o *InfrastructureConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 
@@ -186,20 +186,20 @@ HasInfrastructureDeployId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *InfrastructureConfiguration) GetDnsSubdomainChangeId() float32`
+`func (o *InfrastructureConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *InfrastructureConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool)`
+`func (o *InfrastructureConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *InfrastructureConfiguration) SetDnsSubdomainChangeId(v float32)`
+`func (o *InfrastructureConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -231,20 +231,20 @@ SetDatacenterName sets DatacenterName field to given value.
 
 ### GetSiteId
 
-`func (o *InfrastructureConfiguration) GetSiteId() float32`
+`func (o *InfrastructureConfiguration) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *InfrastructureConfiguration) GetSiteIdOk() (*float32, bool)`
+`func (o *InfrastructureConfiguration) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *InfrastructureConfiguration) SetSiteId(v float32)`
+`func (o *InfrastructureConfiguration) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -746,20 +746,20 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetDnsSubdomainId
 
-`func (o *InfrastructureConfiguration) GetDnsSubdomainId() float32`
+`func (o *InfrastructureConfiguration) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *InfrastructureConfiguration) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *InfrastructureConfiguration) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *InfrastructureConfiguration) SetDnsSubdomainId(v float32)`
+`func (o *InfrastructureConfiguration) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 

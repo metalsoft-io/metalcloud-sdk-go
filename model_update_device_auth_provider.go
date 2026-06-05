@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateDeviceAuthProvider{}
 // UpdateDeviceAuthProvider struct for UpdateDeviceAuthProvider
 type UpdateDeviceAuthProvider struct {
 	// The ID of the site this provider belongs to.
-	SiteId *int32 `json:"siteId,omitempty"`
+	SiteId *int64 `json:"siteId,omitempty"`
 	// The device auth provider label. Must be unique.
 	Label *string `json:"label,omitempty"`
 	// The device auth provider display name.
@@ -61,9 +61,9 @@ func NewUpdateDeviceAuthProviderWithDefaults() *UpdateDeviceAuthProvider {
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *UpdateDeviceAuthProvider) GetSiteId() int32 {
+func (o *UpdateDeviceAuthProvider) GetSiteId() int64 {
 	if o == nil || IsNil(o.SiteId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SiteId
@@ -71,7 +71,7 @@ func (o *UpdateDeviceAuthProvider) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDeviceAuthProvider) GetSiteIdOk() (*int32, bool) {
+func (o *UpdateDeviceAuthProvider) GetSiteIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *UpdateDeviceAuthProvider) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
-func (o *UpdateDeviceAuthProvider) SetSiteId(v int32) {
+// SetSiteId gets a reference to the given int64 and assigns it to the SiteId field.
+func (o *UpdateDeviceAuthProvider) SetSiteId(v int64) {
 	o.SiteId = &v
 }
 

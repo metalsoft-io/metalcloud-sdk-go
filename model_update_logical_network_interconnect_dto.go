@@ -29,7 +29,7 @@ type UpdateLogicalNetworkInterconnectDto struct {
 	// Kind of the logical network interconnect
 	Kind *LogicalNetworkInterconnectKind `json:"kind,omitempty"`
 	// Transport ID allocated from range 999999999-900000000 (descending)
-	FabricInterconnectId *int32 `json:"fabricInterconnectId,omitempty"`
+	FabricInterconnectId *int64 `json:"fabricInterconnectId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -181,9 +181,9 @@ func (o *UpdateLogicalNetworkInterconnectDto) SetKind(v LogicalNetworkInterconne
 }
 
 // GetFabricInterconnectId returns the FabricInterconnectId field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectId() int32 {
+func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectId() int64 {
 	if o == nil || IsNil(o.FabricInterconnectId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FabricInterconnectId
@@ -191,7 +191,7 @@ func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectId() int32 {
 
 // GetFabricInterconnectIdOk returns a tuple with the FabricInterconnectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectIdOk() (*int32, bool) {
+func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.FabricInterconnectId) {
 		return nil, false
 	}
@@ -207,8 +207,8 @@ func (o *UpdateLogicalNetworkInterconnectDto) HasFabricInterconnectId() bool {
 	return false
 }
 
-// SetFabricInterconnectId gets a reference to the given int32 and assigns it to the FabricInterconnectId field.
-func (o *UpdateLogicalNetworkInterconnectDto) SetFabricInterconnectId(v int32) {
+// SetFabricInterconnectId gets a reference to the given int64 and assigns it to the FabricInterconnectId field.
+func (o *UpdateLogicalNetworkInterconnectDto) SetFabricInterconnectId(v int64) {
 	o.FabricInterconnectId = &v
 }
 

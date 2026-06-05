@@ -22,9 +22,9 @@ var _ MappedNullable = &ServerDefaultCredentials{}
 // ServerDefaultCredentials struct for ServerDefaultCredentials
 type ServerDefaultCredentials struct {
 	// The ID of the server default credentials
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The site ID of the server default credentials
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The serial number of the server
 	ServerSerialNumber *string `json:"serverSerialNumber,omitempty"`
 	// The MAC address of the server
@@ -42,7 +42,7 @@ type ServerDefaultCredentials struct {
 	// The default UUID of the server
 	DefaultUuid *string `json:"defaultUuid,omitempty"`
 	// The default registration profile ID of the server
-	DefaultRegistrationProfileId *float32 `json:"defaultRegistrationProfileId,omitempty"`
+	DefaultRegistrationProfileId *int64 `json:"defaultRegistrationProfileId,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -54,7 +54,7 @@ type _ServerDefaultCredentials ServerDefaultCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerDefaultCredentials(id float32, siteId float32, defaultUsername string) *ServerDefaultCredentials {
+func NewServerDefaultCredentials(id int64, siteId int64, defaultUsername string) *ServerDefaultCredentials {
 	this := ServerDefaultCredentials{}
 	this.Id = id
 	this.SiteId = siteId
@@ -71,9 +71,9 @@ func NewServerDefaultCredentialsWithDefaults() *ServerDefaultCredentials {
 }
 
 // GetId returns the Id field value
-func (o *ServerDefaultCredentials) GetId() float32 {
+func (o *ServerDefaultCredentials) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -82,7 +82,7 @@ func (o *ServerDefaultCredentials) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerDefaultCredentials) GetIdOk() (*float32, bool) {
+func (o *ServerDefaultCredentials) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,14 +90,14 @@ func (o *ServerDefaultCredentials) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerDefaultCredentials) SetId(v float32) {
+func (o *ServerDefaultCredentials) SetId(v int64) {
 	o.Id = v
 }
 
 // GetSiteId returns the SiteId field value
-func (o *ServerDefaultCredentials) GetSiteId() float32 {
+func (o *ServerDefaultCredentials) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -106,7 +106,7 @@ func (o *ServerDefaultCredentials) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *ServerDefaultCredentials) GetSiteIdOk() (*float32, bool) {
+func (o *ServerDefaultCredentials) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,7 +114,7 @@ func (o *ServerDefaultCredentials) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *ServerDefaultCredentials) SetSiteId(v float32) {
+func (o *ServerDefaultCredentials) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -367,9 +367,9 @@ func (o *ServerDefaultCredentials) SetDefaultUuid(v string) {
 }
 
 // GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field value if set, zero value otherwise.
-func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileId() float32 {
+func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileId() int64 {
 	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultRegistrationProfileId
@@ -377,7 +377,7 @@ func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileId() float32 {
 
 // GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool) {
+func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
 		return nil, false
 	}
@@ -393,8 +393,8 @@ func (o *ServerDefaultCredentials) HasDefaultRegistrationProfileId() bool {
 	return false
 }
 
-// SetDefaultRegistrationProfileId gets a reference to the given float32 and assigns it to the DefaultRegistrationProfileId field.
-func (o *ServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32) {
+// SetDefaultRegistrationProfileId gets a reference to the given int64 and assigns it to the DefaultRegistrationProfileId field.
+func (o *ServerDefaultCredentials) SetDefaultRegistrationProfileId(v int64) {
 	o.DefaultRegistrationProfileId = &v
 }
 

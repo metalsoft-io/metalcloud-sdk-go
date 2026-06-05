@@ -123,7 +123,7 @@ import (
 
 func main() {
 	serverId := float32(8.14) // float32 | 
-	serverConnectInterface := *openapiclient.NewServerConnectInterface(float32(1), "Ethernet1/1", "switch1.example.com") // ServerConnectInterface | The server interface connection options
+	serverConnectInterface := *openapiclient.NewServerConnectInterface(int64(1), "Ethernet1/1", "switch1.example.com") // ServerConnectInterface | The server interface connection options
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -766,7 +766,7 @@ func main() {
 	filterPowerStatus := []string{"Inner_example"} // []string | Filter by powerStatus query param.  **Format:** filter.powerStatus={$not}:OPERATION:VALUE    **Example:** filter.powerStatus=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterServerDhcpStatus := []string{"Inner_example"} // []string | Filter by serverDhcpStatus query param.  **Format:** filter.serverDhcpStatus={$not}:OPERATION:VALUE    **Example:** filter.serverDhcpStatus=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterServerClass := []string{"Inner_example"} // []string | Filter by serverClass query param.  **Format:** filter.serverClass={$not}:OPERATION:VALUE    **Example:** filter.serverClass=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
-	filterServerStatus := []string{"Inner_example"} // []string | Filter by serverStatus query param.  **Format:** filter.serverStatus={$not}:OPERATION:VALUE    **Example:** filter.serverStatus=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterServerStatus := []string{"Inner_example"} // []string | Filter by serverStatus query param.  **Format:** filter.serverStatus={$not}:OPERATION:VALUE    **Example:** filter.serverStatus=$eq:John Doe&filter.serverStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterRequiresManualCleaning := []string{"Inner_example"} // []string | Filter by requiresManualCleaning query param.  **Format:** filter.requiresManualCleaning={$not}:OPERATION:VALUE    **Example:** filter.requiresManualCleaning=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterInstanceInfrastructureInfrastructureId := []string{"Inner_example"} // []string | Filter by instance.infrastructure.infrastructureId query param.  **Format:** filter.instance.infrastructure.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.infrastructureId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterInstanceInfrastructureUserIdOwner := []string{"Inner_example"} // []string | Filter by instance.infrastructure.userIdOwner query param.  **Format:** filter.instance.infrastructure.userIdOwner={$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.userIdOwner=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -811,7 +811,7 @@ Name | Type | Description  | Notes
  **filterPowerStatus** | **[]string** | Filter by powerStatus query param.  **Format:** filter.powerStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.powerStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterServerDhcpStatus** | **[]string** | Filter by serverDhcpStatus query param.  **Format:** filter.serverDhcpStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverDhcpStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterServerClass** | **[]string** | Filter by serverClass query param.  **Format:** filter.serverClass&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverClass&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
- **filterServerStatus** | **[]string** | Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterServerStatus** | **[]string** | Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe&amp;filter.serverStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterRequiresManualCleaning** | **[]string** | Filter by requiresManualCleaning query param.  **Format:** filter.requiresManualCleaning&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.requiresManualCleaning&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterInstanceInfrastructureInfrastructureId** | **[]string** | Filter by instance.infrastructure.infrastructureId query param.  **Format:** filter.instance.infrastructure.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.infrastructureId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterInstanceInfrastructureUserIdOwner** | **[]string** | Filter by instance.infrastructure.userIdOwner query param.  **Format:** filter.instance.infrastructure.userIdOwner&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.userIdOwner&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
@@ -1059,7 +1059,7 @@ import (
 )
 
 func main() {
-	registerProductionServer := *openapiclient.NewRegisterProductionServer(float32(123), *openapiclient.NewRegisterProductionServerSettings(float32(123))) // RegisterProductionServer | The production server registration information
+	registerProductionServer := *openapiclient.NewRegisterProductionServer(int64(123), *openapiclient.NewRegisterProductionServerSettings(int64(123))) // RegisterProductionServer | The production server registration information
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1125,7 +1125,7 @@ import (
 )
 
 func main() {
-	registerServer := *openapiclient.NewRegisterServer(float32(123)) // RegisterServer | The server registration information
+	registerServer := *openapiclient.NewRegisterServer(int64(123)) // RegisterServer | The server registration information
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1336,7 +1336,7 @@ import (
 
 func main() {
 	serverId := float32(8.14) // float32 | 
-	serverInterfacesDefaultFabric := *openapiclient.NewServerInterfacesDefaultFabric([]float32{float32(123)}, NullableFloat32(1)) // ServerInterfacesDefaultFabric | The server interfaces default fabric option
+	serverInterfacesDefaultFabric := *openapiclient.NewServerInterfacesDefaultFabric([]float32{float32(123)}, NullableInt64(1)) // ServerInterfacesDefaultFabric | The server interfaces default fabric option
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

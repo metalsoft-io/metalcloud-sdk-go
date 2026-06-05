@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	createServerDefaultCredentials := *openapiclient.NewCreateServerDefaultCredentials(float32(123), "DefaultUsername_example", "DefaultPassword_example") // CreateServerDefaultCredentials | The Server Default Credentials create object
+	createServerDefaultCredentials := *openapiclient.NewCreateServerDefaultCredentials(int64(123), "DefaultUsername_example", "DefaultPassword_example") // CreateServerDefaultCredentials | The Server Default Credentials create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

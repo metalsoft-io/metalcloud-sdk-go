@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Network device assignment ID | 
-**HostInterfaceId** | **float32** | VM Pool Host Interface ID | 
-**NetworkDeviceId** | **float32** | ID of the network equipment (switch) | 
+**Id** | **int64** | Network device assignment ID | 
+**HostInterfaceId** | **int64** | VM Pool Host Interface ID | 
+**NetworkDeviceId** | **int64** | ID of the network equipment (switch) | 
 **NetworkDeviceInterfaceName** | **string** | Name of the interface on the network equipment | 
 
 ## Methods
 
 ### NewVMPoolHostInterfaceNetworkDevice
 
-`func NewVMPoolHostInterfaceNetworkDevice(id float32, hostInterfaceId float32, networkDeviceId float32, networkDeviceInterfaceName string, ) *VMPoolHostInterfaceNetworkDevice`
+`func NewVMPoolHostInterfaceNetworkDevice(id int64, hostInterfaceId int64, networkDeviceId int64, networkDeviceInterfaceName string, ) *VMPoolHostInterfaceNetworkDevice`
 
 NewVMPoolHostInterfaceNetworkDevice instantiates a new VMPoolHostInterfaceNetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -30,60 +30,60 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VMPoolHostInterfaceNetworkDevice) GetId() float32`
+`func (o *VMPoolHostInterfaceNetworkDevice) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMPoolHostInterfaceNetworkDevice) GetIdOk() (*float32, bool)`
+`func (o *VMPoolHostInterfaceNetworkDevice) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMPoolHostInterfaceNetworkDevice) SetId(v float32)`
+`func (o *VMPoolHostInterfaceNetworkDevice) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetHostInterfaceId
 
-`func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceId() float32`
+`func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceId() int64`
 
 GetHostInterfaceId returns the HostInterfaceId field if non-nil, zero value otherwise.
 
 ### GetHostInterfaceIdOk
 
-`func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceIdOk() (*float32, bool)`
+`func (o *VMPoolHostInterfaceNetworkDevice) GetHostInterfaceIdOk() (*int64, bool)`
 
 GetHostInterfaceIdOk returns a tuple with the HostInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHostInterfaceId
 
-`func (o *VMPoolHostInterfaceNetworkDevice) SetHostInterfaceId(v float32)`
+`func (o *VMPoolHostInterfaceNetworkDevice) SetHostInterfaceId(v int64)`
 
 SetHostInterfaceId sets HostInterfaceId field to given value.
 
 
 ### GetNetworkDeviceId
 
-`func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceId() float32`
+`func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceIdOk() (*float32, bool)`
+`func (o *VMPoolHostInterfaceNetworkDevice) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *VMPoolHostInterfaceNetworkDevice) SetNetworkDeviceId(v float32)`
+`func (o *VMPoolHostInterfaceNetworkDevice) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 

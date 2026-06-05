@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerId** | **float32** | The id of the server. | 
-**Revision** | **float32** | Revision number | 
+**ServerId** | **int64** | The id of the server. | 
+**Revision** | **int64** | Revision number | 
 **ServerUUID** | Pointer to **string** | The UUID of the server. | [optional] 
 **SerialNumber** | Pointer to **string** | The Serial Number of the server. | [optional] 
 **JobInfo** | Pointer to [**JobInfo**](JobInfo.md) |  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewRegisterServerResponse
 
-`func NewRegisterServerResponse(serverId float32, revision float32, ) *RegisterServerResponse`
+`func NewRegisterServerResponse(serverId int64, revision int64, ) *RegisterServerResponse`
 
 NewRegisterServerResponse instantiates a new RegisterServerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -32,40 +32,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerId
 
-`func (o *RegisterServerResponse) GetServerId() float32`
+`func (o *RegisterServerResponse) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *RegisterServerResponse) GetServerIdOk() (*float32, bool)`
+`func (o *RegisterServerResponse) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *RegisterServerResponse) SetServerId(v float32)`
+`func (o *RegisterServerResponse) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
 
 ### GetRevision
 
-`func (o *RegisterServerResponse) GetRevision() float32`
+`func (o *RegisterServerResponse) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *RegisterServerResponse) GetRevisionOk() (*float32, bool)`
+`func (o *RegisterServerResponse) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *RegisterServerResponse) SetRevision(v float32)`
+`func (o *RegisterServerResponse) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

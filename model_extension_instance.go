@@ -22,7 +22,7 @@ var _ MappedNullable = &ExtensionInstance{}
 // ExtensionInstance struct for ExtensionInstance
 type ExtensionInstance struct {
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The extension instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Flag specifying if the extension instance supports automatic management.
@@ -32,21 +32,21 @@ type ExtensionInstance struct {
 	// Timestamp of the Extension Instance last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// The extension instance ID.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The infrastructure ID.
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Infrastructure information
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// The extension ID.
-	ExtensionId float32 `json:"extensionId"`
+	ExtensionId int64 `json:"extensionId"`
 	// Service status of the Extension Instance
 	ServiceStatus string `json:"serviceStatus"`
 	// Subdomain permanent of the Extension Instance.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the Extension Instance.
-	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Extension Instance.
-	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	// Input variables values.
 	InputVariables []ExtensionVariable `json:"inputVariables"`
 	// Output variables values.
@@ -64,7 +64,7 @@ type _ExtensionInstance ExtensionInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructure, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration) *ExtensionInstance {
+func NewExtensionInstance(revision int64, label string, automaticManagement float32, updatedTimestamp string, id int64, infrastructureId int64, infrastructure ParentInfrastructure, extensionId int64, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration) *ExtensionInstance {
 	this := ExtensionInstance{}
 	this.Revision = revision
 	this.Label = label
@@ -90,9 +90,9 @@ func NewExtensionInstanceWithDefaults() *ExtensionInstance {
 }
 
 // GetRevision returns the Revision field value
-func (o *ExtensionInstance) GetRevision() float32 {
+func (o *ExtensionInstance) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -101,7 +101,7 @@ func (o *ExtensionInstance) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetRevisionOk() (*float32, bool) {
+func (o *ExtensionInstance) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,7 +109,7 @@ func (o *ExtensionInstance) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ExtensionInstance) SetRevision(v float32) {
+func (o *ExtensionInstance) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -218,9 +218,9 @@ func (o *ExtensionInstance) SetUpdatedTimestamp(v string) {
 }
 
 // GetId returns the Id field value
-func (o *ExtensionInstance) GetId() float32 {
+func (o *ExtensionInstance) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -229,7 +229,7 @@ func (o *ExtensionInstance) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetIdOk() (*float32, bool) {
+func (o *ExtensionInstance) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,14 +237,14 @@ func (o *ExtensionInstance) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ExtensionInstance) SetId(v float32) {
+func (o *ExtensionInstance) SetId(v int64) {
 	o.Id = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *ExtensionInstance) GetInfrastructureId() float32 {
+func (o *ExtensionInstance) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -253,7 +253,7 @@ func (o *ExtensionInstance) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetInfrastructureIdOk() (*float32, bool) {
+func (o *ExtensionInstance) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -261,7 +261,7 @@ func (o *ExtensionInstance) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *ExtensionInstance) SetInfrastructureId(v float32) {
+func (o *ExtensionInstance) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
@@ -290,9 +290,9 @@ func (o *ExtensionInstance) SetInfrastructure(v ParentInfrastructure) {
 }
 
 // GetExtensionId returns the ExtensionId field value
-func (o *ExtensionInstance) GetExtensionId() float32 {
+func (o *ExtensionInstance) GetExtensionId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -301,7 +301,7 @@ func (o *ExtensionInstance) GetExtensionId() float32 {
 
 // GetExtensionIdOk returns a tuple with the ExtensionId field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetExtensionIdOk() (*float32, bool) {
+func (o *ExtensionInstance) GetExtensionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -309,7 +309,7 @@ func (o *ExtensionInstance) GetExtensionIdOk() (*float32, bool) {
 }
 
 // SetExtensionId sets field value
-func (o *ExtensionInstance) SetExtensionId(v float32) {
+func (o *ExtensionInstance) SetExtensionId(v int64) {
 	o.ExtensionId = v
 }
 
@@ -370,9 +370,9 @@ func (o *ExtensionInstance) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *ExtensionInstance) GetDnsSubdomainId() float32 {
+func (o *ExtensionInstance) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -380,7 +380,7 @@ func (o *ExtensionInstance) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *ExtensionInstance) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -396,15 +396,15 @@ func (o *ExtensionInstance) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *ExtensionInstance) SetDnsSubdomainId(v float32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *ExtensionInstance) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *ExtensionInstance) GetDnsSubdomainPermanentId() float32 {
+func (o *ExtensionInstance) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -412,7 +412,7 @@ func (o *ExtensionInstance) GetDnsSubdomainPermanentId() float32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+func (o *ExtensionInstance) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -428,8 +428,8 @@ func (o *ExtensionInstance) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *ExtensionInstance) SetDnsSubdomainPermanentId(v float32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *ExtensionInstance) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 

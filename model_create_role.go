@@ -27,6 +27,8 @@ type CreateRole struct {
 	Description *string `json:"description,omitempty"`
 	// List of permissions assigned to the role
 	Permissions []string `json:"permissions"`
+	// Quota profile assigned to this role
+	QuotaProfileId *string `json:"quotaProfileId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -131,6 +133,38 @@ func (o *CreateRole) SetPermissions(v []string) {
 	o.Permissions = v
 }
 
+// GetQuotaProfileId returns the QuotaProfileId field value if set, zero value otherwise.
+func (o *CreateRole) GetQuotaProfileId() string {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		var ret string
+		return ret
+	}
+	return *o.QuotaProfileId
+}
+
+// GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateRole) GetQuotaProfileIdOk() (*string, bool) {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		return nil, false
+	}
+	return o.QuotaProfileId, true
+}
+
+// HasQuotaProfileId returns a boolean if a field has been set.
+func (o *CreateRole) HasQuotaProfileId() bool {
+	if o != nil && !IsNil(o.QuotaProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuotaProfileId gets a reference to the given string and assigns it to the QuotaProfileId field.
+func (o *CreateRole) SetQuotaProfileId(v string) {
+	o.QuotaProfileId = &v
+}
+
 func (o CreateRole) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -146,6 +180,9 @@ func (o CreateRole) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["permissions"] = o.Permissions
+	if !IsNil(o.QuotaProfileId) {
+		toSerialize["quotaProfileId"] = o.QuotaProfileId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -193,6 +230,7 @@ func (o *CreateRole) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "quotaProfileId")
 		o.AdditionalProperties = additionalProperties
 	}
 

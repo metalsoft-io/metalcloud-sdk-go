@@ -22,11 +22,11 @@ var _ MappedNullable = &StorageInterfaceNetworkDeviceInformation{}
 // StorageInterfaceNetworkDeviceInformation struct for StorageInterfaceNetworkDeviceInformation
 type StorageInterfaceNetworkDeviceInformation struct {
 	// Id of the Network Device
-	NetworkDeviceId float32 `json:"networkDeviceId"`
+	NetworkDeviceId int64 `json:"networkDeviceId"`
 	// Name of the Network Device
 	NetworkDeviceName string `json:"networkDeviceName"`
 	// Id of the Network Device Interface
-	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
+	NetworkDeviceInterfaceId int64 `json:"networkDeviceInterfaceId"`
 	// Name of the Network Device Interface
 	NetworkDeviceInterfaceName string `json:"networkDeviceInterfaceName"`
 	AdditionalProperties map[string]interface{}
@@ -38,7 +38,7 @@ type _StorageInterfaceNetworkDeviceInformation StorageInterfaceNetworkDeviceInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageInterfaceNetworkDeviceInformation(networkDeviceId float32, networkDeviceName string, networkDeviceInterfaceId float32, networkDeviceInterfaceName string) *StorageInterfaceNetworkDeviceInformation {
+func NewStorageInterfaceNetworkDeviceInformation(networkDeviceId int64, networkDeviceName string, networkDeviceInterfaceId int64, networkDeviceInterfaceName string) *StorageInterfaceNetworkDeviceInformation {
 	this := StorageInterfaceNetworkDeviceInformation{}
 	this.NetworkDeviceId = networkDeviceId
 	this.NetworkDeviceName = networkDeviceName
@@ -56,9 +56,9 @@ func NewStorageInterfaceNetworkDeviceInformationWithDefaults() *StorageInterface
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceId() float32 {
+func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceId() float32 
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceIdOk() (*float32, bool) {
+func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,7 +75,7 @@ func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceIdOk() (*floa
 }
 
 // SetNetworkDeviceId sets field value
-func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceId(v float32) {
+func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 
@@ -104,9 +104,9 @@ func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceName(v string
 }
 
 // GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value
-func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceId() float32 {
+func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -115,7 +115,7 @@ func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceId()
 
 // GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *StorageInterfaceNetworkDeviceInformation) GetNetworkDeviceInterfaceIdOk
 }
 
 // SetNetworkDeviceInterfaceId sets field value
-func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceInterfaceId(v float32) {
+func (o *StorageInterfaceNetworkDeviceInformation) SetNetworkDeviceInterfaceId(v int64) {
 	o.NetworkDeviceInterfaceId = v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CatalogId** | **float32** |  | 
+**CatalogId** | **int64** |  | 
 **ExternalId** | Pointer to **string** |  | [optional] 
 **VendorInfoUrl** | Pointer to **string** |  | [optional] 
 **VendorDownloadUrl** | **string** |  | 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **PackageId** | Pointer to **string** |  | [optional] 
 **PackageVersion** | Pointer to **string** |  | [optional] 
 **RebootRequired** | **bool** |  | 
-**UpdateSeverity** | [**FirmwareBinaryUpdateSeverity**](FirmwareBinaryUpdateSeverity.md) |  | 
+**UpdateSeverity** | **string** |  | 
 **VendorSupportedDevices** | **[]map[string]interface{}** |  | 
 **VendorSupportedSystems** | **[]map[string]interface{}** |  | 
 **VendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewCreateFirmwareBinary
 
-`func NewCreateFirmwareBinary(catalogId float32, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity FirmwareBinaryUpdateSeverity, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, ) *CreateFirmwareBinary`
+`func NewCreateFirmwareBinary(catalogId int64, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity string, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, ) *CreateFirmwareBinary`
 
 NewCreateFirmwareBinary instantiates a new CreateFirmwareBinary object
 This constructor will assign default values to properties that have it defined,
@@ -40,20 +40,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCatalogId
 
-`func (o *CreateFirmwareBinary) GetCatalogId() float32`
+`func (o *CreateFirmwareBinary) GetCatalogId() int64`
 
 GetCatalogId returns the CatalogId field if non-nil, zero value otherwise.
 
 ### GetCatalogIdOk
 
-`func (o *CreateFirmwareBinary) GetCatalogIdOk() (*float32, bool)`
+`func (o *CreateFirmwareBinary) GetCatalogIdOk() (*int64, bool)`
 
 GetCatalogIdOk returns a tuple with the CatalogId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCatalogId
 
-`func (o *CreateFirmwareBinary) SetCatalogId(v float32)`
+`func (o *CreateFirmwareBinary) SetCatalogId(v int64)`
 
 SetCatalogId sets CatalogId field to given value.
 
@@ -245,20 +245,20 @@ SetRebootRequired sets RebootRequired field to given value.
 
 ### GetUpdateSeverity
 
-`func (o *CreateFirmwareBinary) GetUpdateSeverity() FirmwareBinaryUpdateSeverity`
+`func (o *CreateFirmwareBinary) GetUpdateSeverity() string`
 
 GetUpdateSeverity returns the UpdateSeverity field if non-nil, zero value otherwise.
 
 ### GetUpdateSeverityOk
 
-`func (o *CreateFirmwareBinary) GetUpdateSeverityOk() (*FirmwareBinaryUpdateSeverity, bool)`
+`func (o *CreateFirmwareBinary) GetUpdateSeverityOk() (*string, bool)`
 
 GetUpdateSeverityOk returns a tuple with the UpdateSeverity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdateSeverity
 
-`func (o *CreateFirmwareBinary) SetUpdateSeverity(v FirmwareBinaryUpdateSeverity)`
+`func (o *CreateFirmwareBinary) SetUpdateSeverity(v string)`
 
 SetUpdateSeverity sets UpdateSeverity field to given value.
 

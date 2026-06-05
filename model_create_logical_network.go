@@ -25,8 +25,8 @@ type CreateLogicalNetwork struct {
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	Kind LogicalNetworkKind `json:"kind"`
-	FabricId int32 `json:"fabricId"`
-	InfrastructureId NullableInt32 `json:"infrastructureId,omitempty"`
+	FabricId int64 `json:"fabricId"`
+	InfrastructureId NullableInt64 `json:"infrastructureId,omitempty"`
 	// External identifier for this logical network on the controller
 	ExternalId *string `json:"externalId,omitempty"`
 	Vlan *CreateLogicalNetworkVlanProperties `json:"vlan,omitempty"`
@@ -35,7 +35,7 @@ type CreateLogicalNetwork struct {
 	Zone *CreateLogicalNetworkZoneProperties `json:"zone,omitempty"`
 	Ipv4 *CreateLogicalNetworkIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *CreateLogicalNetworkIpv6Properties `json:"ipv6,omitempty"`
-	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
+	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -47,7 +47,7 @@ type _CreateLogicalNetwork CreateLogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateLogicalNetwork(kind LogicalNetworkKind, fabricId int32) *CreateLogicalNetwork {
+func NewCreateLogicalNetwork(kind LogicalNetworkKind, fabricId int64) *CreateLogicalNetwork {
 	this := CreateLogicalNetwork{}
 	this.Kind = kind
 	this.FabricId = fabricId
@@ -183,9 +183,9 @@ func (o *CreateLogicalNetwork) SetKind(v LogicalNetworkKind) {
 }
 
 // GetFabricId returns the FabricId field value
-func (o *CreateLogicalNetwork) GetFabricId() int32 {
+func (o *CreateLogicalNetwork) GetFabricId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -194,7 +194,7 @@ func (o *CreateLogicalNetwork) GetFabricId() int32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetwork) GetFabricIdOk() (*int32, bool) {
+func (o *CreateLogicalNetwork) GetFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -202,14 +202,14 @@ func (o *CreateLogicalNetwork) GetFabricIdOk() (*int32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *CreateLogicalNetwork) SetFabricId(v int32) {
+func (o *CreateLogicalNetwork) SetFabricId(v int64) {
 	o.FabricId = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateLogicalNetwork) GetInfrastructureId() int32 {
+func (o *CreateLogicalNetwork) GetInfrastructureId() int64 {
 	if o == nil || IsNil(o.InfrastructureId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureId.Get()
@@ -218,7 +218,7 @@ func (o *CreateLogicalNetwork) GetInfrastructureId() int32 {
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateLogicalNetwork) GetInfrastructureIdOk() (*int32, bool) {
+func (o *CreateLogicalNetwork) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -234,8 +234,8 @@ func (o *CreateLogicalNetwork) HasInfrastructureId() bool {
 	return false
 }
 
-// SetInfrastructureId gets a reference to the given NullableInt32 and assigns it to the InfrastructureId field.
-func (o *CreateLogicalNetwork) SetInfrastructureId(v int32) {
+// SetInfrastructureId gets a reference to the given NullableInt64 and assigns it to the InfrastructureId field.
+func (o *CreateLogicalNetwork) SetInfrastructureId(v int64) {
 	o.InfrastructureId.Set(&v)
 }
 // SetInfrastructureIdNil sets the value for InfrastructureId to be an explicit nil
@@ -473,9 +473,9 @@ func (o *CreateLogicalNetwork) SetIpv6(v CreateLogicalNetworkIpv6Properties) {
 }
 
 // GetRouteDomainId returns the RouteDomainId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateLogicalNetwork) GetRouteDomainId() int32 {
+func (o *CreateLogicalNetwork) GetRouteDomainId() int64 {
 	if o == nil || IsNil(o.RouteDomainId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RouteDomainId.Get()
@@ -484,7 +484,7 @@ func (o *CreateLogicalNetwork) GetRouteDomainId() int32 {
 // GetRouteDomainIdOk returns a tuple with the RouteDomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateLogicalNetwork) GetRouteDomainIdOk() (*int32, bool) {
+func (o *CreateLogicalNetwork) GetRouteDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -500,8 +500,8 @@ func (o *CreateLogicalNetwork) HasRouteDomainId() bool {
 	return false
 }
 
-// SetRouteDomainId gets a reference to the given NullableInt32 and assigns it to the RouteDomainId field.
-func (o *CreateLogicalNetwork) SetRouteDomainId(v int32) {
+// SetRouteDomainId gets a reference to the given NullableInt64 and assigns it to the RouteDomainId field.
+func (o *CreateLogicalNetwork) SetRouteDomainId(v int64) {
 	o.RouteDomainId.Set(&v)
 }
 // SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil

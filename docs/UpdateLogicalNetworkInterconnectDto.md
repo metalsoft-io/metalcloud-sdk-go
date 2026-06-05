@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the logical network interconnect | [optional] 
 **Annotations** | Pointer to **map[string]string** | JSON object containing additional metadata or annotations | [optional] 
 **Kind** | Pointer to [**LogicalNetworkInterconnectKind**](LogicalNetworkInterconnectKind.md) | Kind of the logical network interconnect | [optional] 
-**FabricInterconnectId** | Pointer to **int32** | Transport ID allocated from range 999999999-900000000 (descending) | [optional] 
+**FabricInterconnectId** | Pointer to **int64** | Transport ID allocated from range 999999999-900000000 (descending) | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasKind returns a boolean if a field has been set.
 
 ### GetFabricInterconnectId
 
-`func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectId() int32`
+`func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectId() int64`
 
 GetFabricInterconnectId returns the FabricInterconnectId field if non-nil, zero value otherwise.
 
 ### GetFabricInterconnectIdOk
 
-`func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectIdOk() (*int32, bool)`
+`func (o *UpdateLogicalNetworkInterconnectDto) GetFabricInterconnectIdOk() (*int64, bool)`
 
 GetFabricInterconnectIdOk returns a tuple with the FabricInterconnectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricInterconnectId
 
-`func (o *UpdateLogicalNetworkInterconnectDto) SetFabricInterconnectId(v int32)`
+`func (o *UpdateLogicalNetworkInterconnectDto) SetFabricInterconnectId(v int64)`
 
 SetFabricInterconnectId sets FabricInterconnectId field to given value.
 

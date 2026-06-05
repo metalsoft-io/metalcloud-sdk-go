@@ -22,11 +22,11 @@ var _ MappedNullable = &ServerComponent{}
 // ServerComponent struct for ServerComponent
 type ServerComponent struct {
 	// The unique identifier of the server component.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The external identifier of the server component.
 	ExternalId *string `json:"externalId,omitempty"`
 	// The unique identifier of the server.
-	ServerId *float32 `json:"serverId,omitempty"`
+	ServerId *int64 `json:"serverId,omitempty"`
 	// The name of the server component.
 	Name *string `json:"name,omitempty"`
 	// The target firmware version of the server component.
@@ -62,7 +62,7 @@ type _ServerComponent ServerComponent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerComponent(id float32, firmwareUpdateable float32, firmwareUpgradeNeedsConfirmation float32, firmwareStatus string) *ServerComponent {
+func NewServerComponent(id int64, firmwareUpdateable float32, firmwareUpgradeNeedsConfirmation float32, firmwareStatus string) *ServerComponent {
 	this := ServerComponent{}
 	this.Id = id
 	this.FirmwareUpdateable = firmwareUpdateable
@@ -80,9 +80,9 @@ func NewServerComponentWithDefaults() *ServerComponent {
 }
 
 // GetId returns the Id field value
-func (o *ServerComponent) GetId() float32 {
+func (o *ServerComponent) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *ServerComponent) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerComponent) GetIdOk() (*float32, bool) {
+func (o *ServerComponent) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *ServerComponent) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerComponent) SetId(v float32) {
+func (o *ServerComponent) SetId(v int64) {
 	o.Id = v
 }
 
@@ -136,9 +136,9 @@ func (o *ServerComponent) SetExternalId(v string) {
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
-func (o *ServerComponent) GetServerId() float32 {
+func (o *ServerComponent) GetServerId() int64 {
 	if o == nil || IsNil(o.ServerId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerId
@@ -146,7 +146,7 @@ func (o *ServerComponent) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerComponent) GetServerIdOk() (*float32, bool) {
+func (o *ServerComponent) GetServerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerId) {
 		return nil, false
 	}
@@ -162,8 +162,8 @@ func (o *ServerComponent) HasServerId() bool {
 	return false
 }
 
-// SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
-func (o *ServerComponent) SetServerId(v float32) {
+// SetServerId gets a reference to the given int64 and assigns it to the ServerId field.
+func (o *ServerComponent) SetServerId(v int64) {
 	o.ServerId = &v
 }
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &FirmwareBaseline{}
 // FirmwareBaseline struct for FirmwareBaseline
 type FirmwareBaseline struct {
 	// Unique identifier for the firmware baseline
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
 	Catalog []string `json:"catalog,omitempty"`
@@ -35,7 +35,7 @@ type _FirmwareBaseline FirmwareBaseline
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBaseline(id float32, name string) *FirmwareBaseline {
+func NewFirmwareBaseline(id int64, name string) *FirmwareBaseline {
 	this := FirmwareBaseline{}
 	this.Id = id
 	this.Name = name
@@ -51,9 +51,9 @@ func NewFirmwareBaselineWithDefaults() *FirmwareBaseline {
 }
 
 // GetId returns the Id field value
-func (o *FirmwareBaseline) GetId() float32 {
+func (o *FirmwareBaseline) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -62,7 +62,7 @@ func (o *FirmwareBaseline) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetIdOk() (*float32, bool) {
+func (o *FirmwareBaseline) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *FirmwareBaseline) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *FirmwareBaseline) SetId(v float32) {
+func (o *FirmwareBaseline) SetId(v int64) {
 	o.Id = v
 }
 

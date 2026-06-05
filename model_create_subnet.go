@@ -25,7 +25,7 @@ type CreateSubnet struct {
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	Tags *map[string]string `json:"tags,omitempty"`
-	ParentSubnetId *int32 `json:"parentSubnetId,omitempty"`
+	ParentSubnetId *int64 `json:"parentSubnetId,omitempty"`
 	NetworkAddress string `json:"networkAddress"`
 	PrefixLength int32 `json:"prefixLength"`
 	DefaultGatewayAddress *string `json:"defaultGatewayAddress,omitempty"`
@@ -186,9 +186,9 @@ func (o *CreateSubnet) SetTags(v map[string]string) {
 }
 
 // GetParentSubnetId returns the ParentSubnetId field value if set, zero value otherwise.
-func (o *CreateSubnet) GetParentSubnetId() int32 {
+func (o *CreateSubnet) GetParentSubnetId() int64 {
 	if o == nil || IsNil(o.ParentSubnetId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ParentSubnetId
@@ -196,7 +196,7 @@ func (o *CreateSubnet) GetParentSubnetId() int32 {
 
 // GetParentSubnetIdOk returns a tuple with the ParentSubnetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSubnet) GetParentSubnetIdOk() (*int32, bool) {
+func (o *CreateSubnet) GetParentSubnetIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ParentSubnetId) {
 		return nil, false
 	}
@@ -212,8 +212,8 @@ func (o *CreateSubnet) HasParentSubnetId() bool {
 	return false
 }
 
-// SetParentSubnetId gets a reference to the given int32 and assigns it to the ParentSubnetId field.
-func (o *CreateSubnet) SetParentSubnetId(v int32) {
+// SetParentSubnetId gets a reference to the given int64 and assigns it to the ParentSubnetId field.
+func (o *CreateSubnet) SetParentSubnetId(v int64) {
 	o.ParentSubnetId = &v
 }
 

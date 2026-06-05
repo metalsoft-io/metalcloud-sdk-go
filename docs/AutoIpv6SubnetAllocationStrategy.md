@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **GatewayPlacement** | [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
-**SubnetPoolIds** | **[]int32** |  | 
+**SubnetPoolIds** | **[]int64** |  | 
 **PrefixLength** | **int32** |  | 
 
 ## Methods
 
 ### NewAutoIpv6SubnetAllocationStrategy
 
-`func NewAutoIpv6SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetPoolIds []int32, prefixLength int32, ) *AutoIpv6SubnetAllocationStrategy`
+`func NewAutoIpv6SubnetAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetPoolIds []int64, prefixLength int32, ) *AutoIpv6SubnetAllocationStrategy`
 
 NewAutoIpv6SubnetAllocationStrategy instantiates a new AutoIpv6SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *AutoIpv6SubnetAllocationStrategy) GetId() int32`
+`func (o *AutoIpv6SubnetAllocationStrategy) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *AutoIpv6SubnetAllocationStrategy) GetIdOk() (*int32, bool)`
+`func (o *AutoIpv6SubnetAllocationStrategy) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *AutoIpv6SubnetAllocationStrategy) SetId(v int32)`
+`func (o *AutoIpv6SubnetAllocationStrategy) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -154,20 +154,20 @@ SetGatewayPlacement sets GatewayPlacement field to given value.
 
 ### GetSubnetPoolIds
 
-`func (o *AutoIpv6SubnetAllocationStrategy) GetSubnetPoolIds() []int32`
+`func (o *AutoIpv6SubnetAllocationStrategy) GetSubnetPoolIds() []int64`
 
 GetSubnetPoolIds returns the SubnetPoolIds field if non-nil, zero value otherwise.
 
 ### GetSubnetPoolIdsOk
 
-`func (o *AutoIpv6SubnetAllocationStrategy) GetSubnetPoolIdsOk() (*[]int32, bool)`
+`func (o *AutoIpv6SubnetAllocationStrategy) GetSubnetPoolIdsOk() (*[]int64, bool)`
 
 GetSubnetPoolIdsOk returns a tuple with the SubnetPoolIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetPoolIds
 
-`func (o *AutoIpv6SubnetAllocationStrategy) SetSubnetPoolIds(v []int32)`
+`func (o *AutoIpv6SubnetAllocationStrategy) SetSubnetPoolIds(v []int64)`
 
 SetSubnetPoolIds sets SubnetPoolIds field to given value.
 

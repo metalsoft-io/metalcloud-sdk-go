@@ -22,17 +22,17 @@ var _ MappedNullable = &ServerAllocationInfo{}
 // ServerAllocationInfo struct for ServerAllocationInfo
 type ServerAllocationInfo struct {
 	// The id of the instance.
-	InstanceId float32 `json:"instanceId"`
+	InstanceId int64 `json:"instanceId"`
 	// The label of the instance.
 	InstanceLabel string `json:"instanceLabel"`
 	// The label of the instance group.
 	InstanceGroupLabel string `json:"instanceGroupLabel"`
 	// The id of the extension instance.
-	ExtensionInstanceId *float32 `json:"extensionInstanceId,omitempty"`
+	ExtensionInstanceId *int64 `json:"extensionInstanceId,omitempty"`
 	// The infrastructure of the instance.
 	Infrastructure map[string]interface{} `json:"infrastructure"`
 	// The id of the os template used by the instance.
-	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,7 +42,7 @@ type _ServerAllocationInfo ServerAllocationInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerAllocationInfo(instanceId float32, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}) *ServerAllocationInfo {
+func NewServerAllocationInfo(instanceId int64, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}) *ServerAllocationInfo {
 	this := ServerAllocationInfo{}
 	this.InstanceId = instanceId
 	this.InstanceLabel = instanceLabel
@@ -60,9 +60,9 @@ func NewServerAllocationInfoWithDefaults() *ServerAllocationInfo {
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *ServerAllocationInfo) GetInstanceId() float32 {
+func (o *ServerAllocationInfo) GetInstanceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -71,7 +71,7 @@ func (o *ServerAllocationInfo) GetInstanceId() float32 {
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *ServerAllocationInfo) GetInstanceIdOk() (*float32, bool) {
+func (o *ServerAllocationInfo) GetInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,7 +79,7 @@ func (o *ServerAllocationInfo) GetInstanceIdOk() (*float32, bool) {
 }
 
 // SetInstanceId sets field value
-func (o *ServerAllocationInfo) SetInstanceId(v float32) {
+func (o *ServerAllocationInfo) SetInstanceId(v int64) {
 	o.InstanceId = v
 }
 
@@ -132,9 +132,9 @@ func (o *ServerAllocationInfo) SetInstanceGroupLabel(v string) {
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
-func (o *ServerAllocationInfo) GetExtensionInstanceId() float32 {
+func (o *ServerAllocationInfo) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId
@@ -142,7 +142,7 @@ func (o *ServerAllocationInfo) GetExtensionInstanceId() float32 {
 
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerAllocationInfo) GetExtensionInstanceIdOk() (*float32, bool) {
+func (o *ServerAllocationInfo) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
@@ -158,8 +158,8 @@ func (o *ServerAllocationInfo) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given float32 and assigns it to the ExtensionInstanceId field.
-func (o *ServerAllocationInfo) SetExtensionInstanceId(v float32) {
+// SetExtensionInstanceId gets a reference to the given int64 and assigns it to the ExtensionInstanceId field.
+func (o *ServerAllocationInfo) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId = &v
 }
 
@@ -188,9 +188,9 @@ func (o *ServerAllocationInfo) SetInfrastructure(v map[string]interface{}) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *ServerAllocationInfo) GetOsTemplateId() float32 {
+func (o *ServerAllocationInfo) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -198,7 +198,7 @@ func (o *ServerAllocationInfo) GetOsTemplateId() float32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerAllocationInfo) GetOsTemplateIdOk() (*float32, bool) {
+func (o *ServerAllocationInfo) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -214,8 +214,8 @@ func (o *ServerAllocationInfo) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
-func (o *ServerAllocationInfo) SetOsTemplateId(v float32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *ServerAllocationInfo) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 

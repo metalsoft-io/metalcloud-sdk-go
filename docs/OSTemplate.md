@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The OS template ID | [readonly] 
+**Id** | **int64** | The OS template ID | [readonly] 
 **Name** | **string** | The OS template name | 
 **Description** | Pointer to **string** | The OS template description | [optional] 
 **Label** | Pointer to **string** | The OS template label. It must be unique | [optional] 
@@ -15,10 +15,10 @@ Name | Type | Description | Notes
 **Os** | [**OSTemplateOs**](OSTemplateOs.md) |  | 
 **Visibility** | **string** | The visibility of the OS template.                     If the visibility is PUBLIC any user can use the OS template in deployments                     If the visibility is PRIVATE the OS template can be used in deployments only                     by the user who created and/or updated the template | [default to "private"]
 **Status** | **string** | The status, let the user to decide with templates to delete and when,                     and how much to keep them in the history (archived status). Also, it allows the user to                     resurrect the archived templates if needed.                     Status: READY                         - is the initial status of the template                         - the OS template is ready for deployment                         - the OS template can be deleted, use in deployments and updated                     Status: ACTIVE                         - the OS template is part of at least one ongoing deployment                         - can&#39;t be deleted (the template service will have validation for this)                         - the status can&#39;t be changed to ARCHIVED (the template service will have validation for this)                     Status: USED                         - the OS Template is part of at least one finished deployment, that is not deleted                         - can&#39;t be deleted (the template service will have validation for this)                         - can be updated, deploy or ARCHIVED                     Status: ARCHIVED                         - the OS Template is kept in the system for historical reasons                         - can&#39;t be deleted (the template service will have validation for this)                         - can&#39;t be updated or deployed                         - the status can be changed to READY or USED, if it needs to be used again or deleted | [default to "ready"]
-**TemplateAssetIDs** | Pointer to **[]int32** | The template asset IDs associated with the OS template | [optional] 
+**TemplateAssetIDs** | Pointer to **[]int64** | The template asset IDs associated with the OS template | [optional] 
 **Tags** | Pointer to **[]string** | The tags associated with the OS template | [optional] 
-**FirmwareBaselineId** | Pointer to **int32** | The firmware baseline ID associated with the OS template | [optional] 
-**Revision** | **int32** | The revision number of the OS template | [readonly] 
+**FirmwareBaselineId** | Pointer to **int64** | The firmware baseline ID associated with the OS template | [optional] 
+**Revision** | **int64** | The revision number of the OS template | [readonly] 
 **CreatedBy** | **int32** | The user ID of the user who created the OS template | 
 **ModifiedBy** | Pointer to **int32** | The user ID of the user who last modified the OS template | [optional] 
 **CreatedAt** | **string** | The date and time the OS template was created | [readonly] 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewOSTemplate
 
-`func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt string, ) *OSTemplate`
+`func NewOSTemplate(id int64, name string, device OSTemplateDevice, install OSTemplateInstall, os OSTemplateOs, visibility string, status string, revision int64, createdBy int32, createdAt string, ) *OSTemplate`
 
 NewOSTemplate instantiates a new OSTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -46,20 +46,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *OSTemplate) GetId() int32`
+`func (o *OSTemplate) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *OSTemplate) GetIdOk() (*int32, bool)`
+`func (o *OSTemplate) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *OSTemplate) SetId(v int32)`
+`func (o *OSTemplate) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -286,20 +286,20 @@ SetStatus sets Status field to given value.
 
 ### GetTemplateAssetIDs
 
-`func (o *OSTemplate) GetTemplateAssetIDs() []int32`
+`func (o *OSTemplate) GetTemplateAssetIDs() []int64`
 
 GetTemplateAssetIDs returns the TemplateAssetIDs field if non-nil, zero value otherwise.
 
 ### GetTemplateAssetIDsOk
 
-`func (o *OSTemplate) GetTemplateAssetIDsOk() (*[]int32, bool)`
+`func (o *OSTemplate) GetTemplateAssetIDsOk() (*[]int64, bool)`
 
 GetTemplateAssetIDsOk returns a tuple with the TemplateAssetIDs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplateAssetIDs
 
-`func (o *OSTemplate) SetTemplateAssetIDs(v []int32)`
+`func (o *OSTemplate) SetTemplateAssetIDs(v []int64)`
 
 SetTemplateAssetIDs sets TemplateAssetIDs field to given value.
 
@@ -336,20 +336,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetFirmwareBaselineId
 
-`func (o *OSTemplate) GetFirmwareBaselineId() int32`
+`func (o *OSTemplate) GetFirmwareBaselineId() int64`
 
 GetFirmwareBaselineId returns the FirmwareBaselineId field if non-nil, zero value otherwise.
 
 ### GetFirmwareBaselineIdOk
 
-`func (o *OSTemplate) GetFirmwareBaselineIdOk() (*int32, bool)`
+`func (o *OSTemplate) GetFirmwareBaselineIdOk() (*int64, bool)`
 
 GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirmwareBaselineId
 
-`func (o *OSTemplate) SetFirmwareBaselineId(v int32)`
+`func (o *OSTemplate) SetFirmwareBaselineId(v int64)`
 
 SetFirmwareBaselineId sets FirmwareBaselineId field to given value.
 
@@ -361,20 +361,20 @@ HasFirmwareBaselineId returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *OSTemplate) GetRevision() int32`
+`func (o *OSTemplate) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *OSTemplate) GetRevisionOk() (*int32, bool)`
+`func (o *OSTemplate) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *OSTemplate) SetRevision(v int32)`
+`func (o *OSTemplate) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

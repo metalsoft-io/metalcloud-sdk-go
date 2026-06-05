@@ -340,4 +340,20 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMPoolAPIService UpdateVMPoolClusterHostInterface", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId float32
+		var vmPoolClusterHostId float32
+		var vmPoolClusterHostInterfaceId float32
+
+		resp, httpRes, err := apiClient.VMPoolAPI.UpdateVMPoolClusterHostInterface(context.Background(), vmPoolId, vmPoolClusterHostId, vmPoolClusterHostInterfaceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

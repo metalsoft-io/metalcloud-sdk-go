@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SwitchId** | **float32** | The id of the switch. | 
+**SwitchId** | **int64** | The id of the switch. | 
 **Zone** | [**GenericDNSZoneInformation**](GenericDNSZoneInformation.md) | The DNS zone information. | 
 **ManagementAddress** | **string** | The management address of the switch. | 
 **Hostname** | **string** | The hostname of the switch DNS record. | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewSwitchDNSRecordSet
 
-`func NewSwitchDNSRecordSet(switchId float32, zone GenericDNSZoneInformation, managementAddress string, hostname string, fqdn string, ip map[string]interface{}, operation string, ) *SwitchDNSRecordSet`
+`func NewSwitchDNSRecordSet(switchId int64, zone GenericDNSZoneInformation, managementAddress string, hostname string, fqdn string, ip map[string]interface{}, operation string, ) *SwitchDNSRecordSet`
 
 NewSwitchDNSRecordSet instantiates a new SwitchDNSRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSwitchId
 
-`func (o *SwitchDNSRecordSet) GetSwitchId() float32`
+`func (o *SwitchDNSRecordSet) GetSwitchId() int64`
 
 GetSwitchId returns the SwitchId field if non-nil, zero value otherwise.
 
 ### GetSwitchIdOk
 
-`func (o *SwitchDNSRecordSet) GetSwitchIdOk() (*float32, bool)`
+`func (o *SwitchDNSRecordSet) GetSwitchIdOk() (*int64, bool)`
 
 GetSwitchIdOk returns a tuple with the SwitchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSwitchId
 
-`func (o *SwitchDNSRecordSet) SetSwitchId(v float32)`
+`func (o *SwitchDNSRecordSet) SetSwitchId(v int64)`
 
 SetSwitchId sets SwitchId field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **StartTimestamp** | **string** |  | 
 **EndTimestamp** | **string** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewDriveResourceItem
 
-`func NewDriveResourceItem(id float32, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, driveSizeMbytes float32, driveStorageType string, ) *DriveResourceItem`
+`func NewDriveResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, driveSizeMbytes float32, driveStorageType string, ) *DriveResourceItem`
 
 NewDriveResourceItem instantiates a new DriveResourceItem object
 This constructor will assign default values to properties that have it defined,
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *DriveResourceItem) GetId() float32`
+`func (o *DriveResourceItem) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DriveResourceItem) GetIdOk() (*float32, bool)`
+`func (o *DriveResourceItem) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DriveResourceItem) SetId(v float32)`
+`func (o *DriveResourceItem) SetId(v int64)`
 
 SetId sets Id field to given value.
 

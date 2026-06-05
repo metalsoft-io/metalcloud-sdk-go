@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateResourceScope{}
 // CreateResourceScope struct for CreateResourceScope
 type CreateResourceScope struct {
 	Kind ResourceScopeKind `json:"kind"`
-	ResourceId float32 `json:"resourceId"`
+	ResourceId int64 `json:"resourceId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _CreateResourceScope CreateResourceScope
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateResourceScope(kind ResourceScopeKind, resourceId float32) *CreateResourceScope {
+func NewCreateResourceScope(kind ResourceScopeKind, resourceId int64) *CreateResourceScope {
 	this := CreateResourceScope{}
 	this.Kind = kind
 	this.ResourceId = resourceId
@@ -72,9 +72,9 @@ func (o *CreateResourceScope) SetKind(v ResourceScopeKind) {
 }
 
 // GetResourceId returns the ResourceId field value
-func (o *CreateResourceScope) GetResourceId() float32 {
+func (o *CreateResourceScope) GetResourceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *CreateResourceScope) GetResourceId() float32 {
 
 // GetResourceIdOk returns a tuple with the ResourceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateResourceScope) GetResourceIdOk() (*float32, bool) {
+func (o *CreateResourceScope) GetResourceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *CreateResourceScope) GetResourceIdOk() (*float32, bool) {
 }
 
 // SetResourceId sets field value
-func (o *CreateResourceScope) SetResourceId(v float32) {
+func (o *CreateResourceScope) SetResourceId(v int64) {
 	o.ResourceId = v
 }
 

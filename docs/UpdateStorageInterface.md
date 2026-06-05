@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsUplink** | Pointer to **bool** | Specifies if the Storage Interface is an uplink. Uplink interfaces will be provisioned on network device. | [optional] 
 **UseForDeploys** | Pointer to **bool** | Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource). | [optional] 
-**NetworkEquipmentInterfaceId** | Pointer to **float32** | Id of the Network Equipment Interface associated to this Storage Interface | [optional] 
+**NetworkEquipmentInterfaceId** | Pointer to **int64** | Id of the Network Equipment Interface associated to this Storage Interface | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasUseForDeploys returns a boolean if a field has been set.
 
 ### GetNetworkEquipmentInterfaceId
 
-`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceId() float32`
+`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceId() int64`
 
 GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkEquipmentInterfaceIdOk
 
-`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool)`
+`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool)`
 
 GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkEquipmentInterfaceId
 
-`func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceId(v float32)`
+`func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceId(v int64)`
 
 SetNetworkEquipmentInterfaceId sets NetworkEquipmentInterfaceId field to given value.
 

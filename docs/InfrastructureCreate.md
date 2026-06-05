@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | **float32** | The ID of the site where the Infrastructure is located. | 
+**SiteId** | **int64** | The ID of the site where the Infrastructure is located. | 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 **UserIdOwner** | Pointer to **float32** | User ID of the owner of the Infrastructure. | [optional] 
 **Meta** | Pointer to [**InfrastructureMeta**](InfrastructureMeta.md) |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewInfrastructureCreate
 
-`func NewInfrastructureCreate(siteId float32, ) *InfrastructureCreate`
+`func NewInfrastructureCreate(siteId int64, ) *InfrastructureCreate`
 
 NewInfrastructureCreate instantiates a new InfrastructureCreate object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *InfrastructureCreate) GetSiteId() float32`
+`func (o *InfrastructureCreate) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *InfrastructureCreate) GetSiteIdOk() (*float32, bool)`
+`func (o *InfrastructureCreate) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *InfrastructureCreate) SetSiteId(v float32)`
+`func (o *InfrastructureCreate) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

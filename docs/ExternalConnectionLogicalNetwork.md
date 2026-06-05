@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The external connection logical network id. | 
-**ExternalConnectionId** | **int32** | The ID of the external connection identifier this entity belongs to. | 
-**LogicalNetworkId** | **int32** | The ID of the logical network identifier this entity belongs to. | 
+**Id** | **int64** | The external connection logical network id. | 
+**ExternalConnectionId** | **int64** | The ID of the external connection identifier this entity belongs to. | 
+**LogicalNetworkId** | **int64** | The ID of the logical network identifier this entity belongs to. | 
 **Status** | **string** | The status of the external connection logical network | 
 **CreatedAt** | **time.Time** | The date and time the entity was created | [readonly] 
 **UpdatedAt** | **time.Time** | The date and time the entity was last updated | [readonly] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewExternalConnectionLogicalNetwork
 
-`func NewExternalConnectionLogicalNetwork(id float32, externalConnectionId int32, logicalNetworkId int32, status string, createdAt time.Time, updatedAt time.Time, ) *ExternalConnectionLogicalNetwork`
+`func NewExternalConnectionLogicalNetwork(id int64, externalConnectionId int64, logicalNetworkId int64, status string, createdAt time.Time, updatedAt time.Time, ) *ExternalConnectionLogicalNetwork`
 
 NewExternalConnectionLogicalNetwork instantiates a new ExternalConnectionLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -33,60 +33,60 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ExternalConnectionLogicalNetwork) GetId() float32`
+`func (o *ExternalConnectionLogicalNetwork) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ExternalConnectionLogicalNetwork) GetIdOk() (*float32, bool)`
+`func (o *ExternalConnectionLogicalNetwork) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ExternalConnectionLogicalNetwork) SetId(v float32)`
+`func (o *ExternalConnectionLogicalNetwork) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetExternalConnectionId
 
-`func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionId() int32`
+`func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionId() int64`
 
 GetExternalConnectionId returns the ExternalConnectionId field if non-nil, zero value otherwise.
 
 ### GetExternalConnectionIdOk
 
-`func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionIdOk() (*int32, bool)`
+`func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionIdOk() (*int64, bool)`
 
 GetExternalConnectionIdOk returns a tuple with the ExternalConnectionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExternalConnectionId
 
-`func (o *ExternalConnectionLogicalNetwork) SetExternalConnectionId(v int32)`
+`func (o *ExternalConnectionLogicalNetwork) SetExternalConnectionId(v int64)`
 
 SetExternalConnectionId sets ExternalConnectionId field to given value.
 
 
 ### GetLogicalNetworkId
 
-`func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkId() int32`
+`func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkIdOk() (*int32, bool)`
+`func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *ExternalConnectionLogicalNetwork) SetLogicalNetworkId(v int32)`
+`func (o *ExternalConnectionLogicalNetwork) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

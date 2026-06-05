@@ -24,9 +24,9 @@ type ServerUnmanagedImport struct {
 	// The management address of the server.
 	ManagementAddress *string `json:"managementAddress,omitempty"`
 	// The site id where the server is located.
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The server type id.
-	ServerTypeId float32 `json:"serverTypeId"`
+	ServerTypeId int64 `json:"serverTypeId"`
 	// Flag to indicate if the server supports SOL.
 	ServerSupportsOobProvisioning *float32 `json:"serverSupportsOobProvisioning,omitempty"`
 	// The interfaces of the server.
@@ -50,7 +50,7 @@ type _ServerUnmanagedImport ServerUnmanagedImport
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerUnmanagedImport(siteId float32, serverTypeId float32, serverInterfaces []ServerUnmanagedImportInternalInterface) *ServerUnmanagedImport {
+func NewServerUnmanagedImport(siteId int64, serverTypeId int64, serverInterfaces []ServerUnmanagedImportInternalInterface) *ServerUnmanagedImport {
 	this := ServerUnmanagedImport{}
 	this.SiteId = siteId
 	this.ServerTypeId = serverTypeId
@@ -99,9 +99,9 @@ func (o *ServerUnmanagedImport) SetManagementAddress(v string) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *ServerUnmanagedImport) GetSiteId() float32 {
+func (o *ServerUnmanagedImport) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -110,7 +110,7 @@ func (o *ServerUnmanagedImport) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *ServerUnmanagedImport) GetSiteIdOk() (*float32, bool) {
+func (o *ServerUnmanagedImport) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,14 +118,14 @@ func (o *ServerUnmanagedImport) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *ServerUnmanagedImport) SetSiteId(v float32) {
+func (o *ServerUnmanagedImport) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
 // GetServerTypeId returns the ServerTypeId field value
-func (o *ServerUnmanagedImport) GetServerTypeId() float32 {
+func (o *ServerUnmanagedImport) GetServerTypeId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -134,7 +134,7 @@ func (o *ServerUnmanagedImport) GetServerTypeId() float32 {
 
 // GetServerTypeIdOk returns a tuple with the ServerTypeId field value
 // and a boolean to check if the value has been set.
-func (o *ServerUnmanagedImport) GetServerTypeIdOk() (*float32, bool) {
+func (o *ServerUnmanagedImport) GetServerTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,7 +142,7 @@ func (o *ServerUnmanagedImport) GetServerTypeIdOk() (*float32, bool) {
 }
 
 // SetServerTypeId sets field value
-func (o *ServerUnmanagedImport) SetServerTypeId(v float32) {
+func (o *ServerUnmanagedImport) SetServerTypeId(v int64) {
 	o.ServerTypeId = v
 }
 

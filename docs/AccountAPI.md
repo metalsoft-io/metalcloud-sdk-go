@@ -8,12 +8,10 @@ Method | HTTP request | Description
 [**ArchiveAccount**](AccountAPI.md#ArchiveAccount) | **Post** /api/v2/accounts/{accountId}/actions/archive | Archive account
 [**CreateAccount**](AccountAPI.md#CreateAccount) | **Post** /api/v2/accounts | Create account
 [**GetAccount**](AccountAPI.md#GetAccount) | **Get** /api/v2/accounts/{accountId} | Get account by id
-[**GetAccountLimits**](AccountAPI.md#GetAccountLimits) | **Get** /api/v2/accounts/{accountId}/limits | Get account limits
 [**GetAccountUsers**](AccountAPI.md#GetAccountUsers) | **Get** /api/v2/accounts/{accountId}/users | Get users for account
 [**GetAccounts**](AccountAPI.md#GetAccounts) | **Get** /api/v2/accounts | Get all accounts
 [**UnarchiveAccount**](AccountAPI.md#UnarchiveAccount) | **Post** /api/v2/accounts/{accountId}/actions/unarchive | Unarchive account
 [**UpdateAccountConfig**](AccountAPI.md#UpdateAccountConfig) | **Patch** /api/v2/accounts/{accountId}/config | Update account configuration
-[**UpdateAccountLimits**](AccountAPI.md#UpdateAccountLimits) | **Patch** /api/v2/accounts/{accountId}/actions/change-limits | Update account limits
 
 
 
@@ -225,7 +223,7 @@ Name | Type | Description  | Notes
 
 ## GetAccount
 
-> Account GetAccount(ctx, accountId).Recursion(recursion).Execute()
+> Account GetAccount(ctx, accountId).Execute()
 
 Get account by id
 
@@ -245,11 +243,10 @@ import (
 
 func main() {
 	accountId := float32(8.14) // float32 | 
-	recursion := float32(8.14) // float32 | The recursion level of the displayed details. Default is 0. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.GetAccount(context.Background(), accountId).Recursion(recursion).Execute()
+	resp, r, err := apiClient.AccountAPI.GetAccount(context.Background(), accountId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.GetAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,81 +272,10 @@ Other parameters are passed through a pointer to a apiGetAccountRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **recursion** | **float32** | The recursion level of the displayed details. Default is 0. | 
 
 ### Return type
 
 [**Account**](Account.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetAccountLimits
-
-> AccountLimits GetAccountLimits(ctx, accountId).Execute()
-
-Get account limits
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	accountId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.GetAccountLimits(context.Background(), accountId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.GetAccountLimits``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetAccountLimits`: AccountLimits
-	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.GetAccountLimits`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAccountLimitsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**AccountLimits**](AccountLimits.md)
 
 ### Authorization
 
@@ -463,7 +389,7 @@ Name | Type | Description  | Notes
 
 ## GetAccounts
 
-> AccountPaginatedList GetAccounts(ctx).Page(page).Limit(limit).FilterName(filterName).FilterParentAccountId(filterParentAccountId).FilterPrimaryContactId(filterPrimaryContactId).FilterSecondaryContactId(filterSecondaryContactId).FilterArchived(filterArchived).FilterCode(filterCode).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> AccountPaginatedList GetAccounts(ctx).Page(page).Limit(limit).FilterName(filterName).FilterParentAccountId(filterParentAccountId).FilterPrimaryContactId(filterPrimaryContactId).FilterSecondaryContactId(filterSecondaryContactId).FilterArchived(filterArchived).FilterCode(filterCode).FilterQuotaProfileId(filterQuotaProfileId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all accounts
 
@@ -490,13 +416,14 @@ func main() {
 	filterSecondaryContactId := []string{"Inner_example"} // []string | Filter by secondaryContactId query param.  **Format:** filter.secondaryContactId={$not}:OPERATION:VALUE    **Example:** filter.secondaryContactId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterArchived := []string{"Inner_example"} // []string | Filter by archived query param.  **Format:** filter.archived={$not}:OPERATION:VALUE    **Example:** filter.archived=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterCode := []string{"Inner_example"} // []string | Filter by code query param.  **Format:** filter.code={$not}:OPERATION:VALUE    **Example:** filter.code=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterQuotaProfileId := []string{"Inner_example"} // []string | Filter by quotaProfileId query param.  **Format:** filter.quotaProfileId={$not}:OPERATION:VALUE    **Example:** filter.quotaProfileId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** name:DESC  **Available Fields** - id  - name  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name,code   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - code  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.GetAccounts(context.Background()).Page(page).Limit(limit).FilterName(filterName).FilterParentAccountId(filterParentAccountId).FilterPrimaryContactId(filterPrimaryContactId).FilterSecondaryContactId(filterSecondaryContactId).FilterArchived(filterArchived).FilterCode(filterCode).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.AccountAPI.GetAccounts(context.Background()).Page(page).Limit(limit).FilterName(filterName).FilterParentAccountId(filterParentAccountId).FilterPrimaryContactId(filterPrimaryContactId).FilterSecondaryContactId(filterSecondaryContactId).FilterArchived(filterArchived).FilterCode(filterCode).FilterQuotaProfileId(filterQuotaProfileId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.GetAccounts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -525,6 +452,7 @@ Name | Type | Description  | Notes
  **filterSecondaryContactId** | **[]string** | Filter by secondaryContactId query param.  **Format:** filter.secondaryContactId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.secondaryContactId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterArchived** | **[]string** | Filter by archived query param.  **Format:** filter.archived&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.archived&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterCode** | **[]string** | Filter by code query param.  **Format:** filter.code&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.code&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterQuotaProfileId** | **[]string** | Filter by quotaProfileId query param.  **Format:** filter.quotaProfileId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.quotaProfileId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** name:DESC  **Available Fields** - id  - name  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name,code   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - code  | 
@@ -678,80 +606,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountConfig**](AccountConfig.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UpdateAccountLimits
-
-> AccountLimits UpdateAccountLimits(ctx, accountId).AccountLimits(accountLimits).IfMatch(ifMatch).Execute()
-
-Update account limits
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	accountId := float32(8.14) // float32 | 
-	accountLimits := *openapiclient.NewAccountLimits() // AccountLimits | The account limits updates
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.UpdateAccountLimits(context.Background(), accountId).AccountLimits(accountLimits).IfMatch(ifMatch).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.UpdateAccountLimits``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateAccountLimits`: AccountLimits
-	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.UpdateAccountLimits`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAccountLimitsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **accountLimits** | [**AccountLimits**](AccountLimits.md) | The account limits updates | 
- **ifMatch** | **string** | Entity tag | 
-
-### Return type
-
-[**AccountLimits**](AccountLimits.md)
 
 ### Authorization
 

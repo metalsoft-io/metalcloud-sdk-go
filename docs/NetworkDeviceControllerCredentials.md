@@ -6,11 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Username** | **string** |  | 
 **Password** | **string** |  | 
+**SnmpPassword** | Pointer to **string** | The SNMP password of the network device. | [optional] 
 **Host** | **string** |  | 
 **Port** | **int32** |  | 
 **Datacenter** | **string** |  | 
 **Driver** | **string** |  | 
 **Hostname** | **string** |  | 
+**ApiUsername** | Pointer to **string** | The username to access the network device API, if different from the management username. | [optional] 
+**ApiPassword** | Pointer to **string** | The password to access the network device API, if different from the management password. | [optional] 
 
 ## Methods
 
@@ -70,6 +73,31 @@ and a boolean to check if the value has been set.
 
 SetPassword sets Password field to given value.
 
+
+### GetSnmpPassword
+
+`func (o *NetworkDeviceControllerCredentials) GetSnmpPassword() string`
+
+GetSnmpPassword returns the SnmpPassword field if non-nil, zero value otherwise.
+
+### GetSnmpPasswordOk
+
+`func (o *NetworkDeviceControllerCredentials) GetSnmpPasswordOk() (*string, bool)`
+
+GetSnmpPasswordOk returns a tuple with the SnmpPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpPassword
+
+`func (o *NetworkDeviceControllerCredentials) SetSnmpPassword(v string)`
+
+SetSnmpPassword sets SnmpPassword field to given value.
+
+### HasSnmpPassword
+
+`func (o *NetworkDeviceControllerCredentials) HasSnmpPassword() bool`
+
+HasSnmpPassword returns a boolean if a field has been set.
 
 ### GetHost
 
@@ -170,6 +198,56 @@ and a boolean to check if the value has been set.
 
 SetHostname sets Hostname field to given value.
 
+
+### GetApiUsername
+
+`func (o *NetworkDeviceControllerCredentials) GetApiUsername() string`
+
+GetApiUsername returns the ApiUsername field if non-nil, zero value otherwise.
+
+### GetApiUsernameOk
+
+`func (o *NetworkDeviceControllerCredentials) GetApiUsernameOk() (*string, bool)`
+
+GetApiUsernameOk returns a tuple with the ApiUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiUsername
+
+`func (o *NetworkDeviceControllerCredentials) SetApiUsername(v string)`
+
+SetApiUsername sets ApiUsername field to given value.
+
+### HasApiUsername
+
+`func (o *NetworkDeviceControllerCredentials) HasApiUsername() bool`
+
+HasApiUsername returns a boolean if a field has been set.
+
+### GetApiPassword
+
+`func (o *NetworkDeviceControllerCredentials) GetApiPassword() string`
+
+GetApiPassword returns the ApiPassword field if non-nil, zero value otherwise.
+
+### GetApiPasswordOk
+
+`func (o *NetworkDeviceControllerCredentials) GetApiPasswordOk() (*string, bool)`
+
+GetApiPasswordOk returns a tuple with the ApiPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiPassword
+
+`func (o *NetworkDeviceControllerCredentials) SetApiPassword(v string)`
+
+SetApiPassword sets ApiPassword field to given value.
+
+### HasApiPassword
+
+`func (o *NetworkDeviceControllerCredentials) HasApiPassword() bool`
+
+HasApiPassword returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

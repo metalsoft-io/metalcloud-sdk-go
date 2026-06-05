@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **SizeGB** | **float32** | Disk size in GB for Bucket | 
 **Label** | Pointer to **string** | Label of the Bucket. | [optional] 
 **Meta** | Pointer to [**BucketMeta**](BucketMeta.md) |  | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Bucket. | [optional] 
-**StoragePoolId** | **float32** | Id of the storage pool the Bucket is assigned to | 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the Bucket. | [optional] 
+**StoragePoolId** | **int64** | Id of the storage pool the Bucket is assigned to | 
 
 ## Methods
 
 ### NewCreateBucket
 
-`func NewCreateBucket(sizeGB float32, storagePoolId float32, ) *CreateBucket`
+`func NewCreateBucket(sizeGB float32, storagePoolId int64, ) *CreateBucket`
 
 NewCreateBucket instantiates a new CreateBucket object
 This constructor will assign default values to properties that have it defined,
@@ -101,20 +101,20 @@ HasMeta returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *CreateBucket) GetLogicalNetworkId() float32`
+`func (o *CreateBucket) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *CreateBucket) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *CreateBucket) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *CreateBucket) SetLogicalNetworkId(v float32)`
+`func (o *CreateBucket) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -126,20 +126,20 @@ HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 
-`func (o *CreateBucket) GetStoragePoolId() float32`
+`func (o *CreateBucket) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *CreateBucket) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *CreateBucket) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *CreateBucket) SetStoragePoolId(v float32)`
+`func (o *CreateBucket) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 

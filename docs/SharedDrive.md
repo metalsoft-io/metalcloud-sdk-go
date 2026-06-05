@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the Drive. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
+**StoragePoolId** | Pointer to **int64** | Id of the storage pool the Drive is assigned to | [optional] 
 **SizeMb** | **float32** | Disk size in MiB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
 **QoS** | Pointer to **string** | The QoS of the Drive. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the Drive. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Drive last update. | 
-**Id** | **float32** | Id of the Drive | 
-**Revision** | **float32** | Revision of the Drive State | 
-**InfrastructureId** | **float32** | Infrastructure id of the Drive | 
+**Id** | **int64** | Id of the Drive | 
+**Revision** | **int64** | Revision of the Drive State | 
+**InfrastructureId** | **int64** | Infrastructure id of the Drive | 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Service status of the Drive | 
 **StorageRealSizeCachedMb** | Pointer to **float32** | Cached information of the real size of the storage in MB. | [optional] 
@@ -27,8 +27,8 @@ Name | Type | Description | Notes
 **AllocationAffinity** | **string** | Allocation affinity of the Drive | 
 **ProvisioningProtocol** | **string** | Provisioning protocol of the Drive | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Drive. | [optional] 
-**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Drive. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the Drive. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Id of the permanent DNS subdomain for the Drive. | [optional] 
 **Config** | [**SharedDriveConfiguration**](SharedDriveConfiguration.md) | The current changes to be deployed for the Drive. | 
 **CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
 **DiscoverInformation** | Pointer to [**[]GenericDriveDiscoverInformation**](GenericDriveDiscoverInformation.md) | Discover information for the Drive. | [optional] 
@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 
 ### NewSharedDrive
 
-`func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta, ) *SharedDrive`
+`func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta, ) *SharedDrive`
 
 NewSharedDrive instantiates a new SharedDrive object
 This constructor will assign default values to properties that have it defined,
@@ -76,20 +76,20 @@ SetLabel sets Label field to given value.
 
 ### GetStoragePoolId
 
-`func (o *SharedDrive) GetStoragePoolId() float32`
+`func (o *SharedDrive) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *SharedDrive) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *SharedDrive) SetStoragePoolId(v float32)`
+`func (o *SharedDrive) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
@@ -216,20 +216,20 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *SharedDrive) GetLogicalNetworkId() float32`
+`func (o *SharedDrive) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *SharedDrive) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *SharedDrive) SetLogicalNetworkId(v float32)`
+`func (o *SharedDrive) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -261,60 +261,60 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetId
 
-`func (o *SharedDrive) GetId() float32`
+`func (o *SharedDrive) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SharedDrive) GetIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SharedDrive) SetId(v float32)`
+`func (o *SharedDrive) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *SharedDrive) GetRevision() float32`
+`func (o *SharedDrive) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *SharedDrive) GetRevisionOk() (*float32, bool)`
+`func (o *SharedDrive) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *SharedDrive) SetRevision(v float32)`
+`func (o *SharedDrive) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *SharedDrive) GetInfrastructureId() float32`
+`func (o *SharedDrive) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *SharedDrive) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *SharedDrive) SetInfrastructureId(v float32)`
+`func (o *SharedDrive) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -571,20 +571,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *SharedDrive) GetDnsSubdomainId() float32`
+`func (o *SharedDrive) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *SharedDrive) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *SharedDrive) SetDnsSubdomainId(v float32)`
+`func (o *SharedDrive) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -596,20 +596,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *SharedDrive) GetDnsSubdomainPermanentId() float32`
+`func (o *SharedDrive) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *SharedDrive) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *SharedDrive) SetDnsSubdomainPermanentId(v float32)`
+`func (o *SharedDrive) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 

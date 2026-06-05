@@ -22,9 +22,9 @@ var _ MappedNullable = &ReRegisterServerResponse{}
 // ReRegisterServerResponse struct for ReRegisterServerResponse
 type ReRegisterServerResponse struct {
 	// The id of the server.
-	ServerId float32 `json:"serverId"`
+	ServerId int64 `json:"serverId"`
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	JobInfo *JobInfo `json:"jobInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -37,7 +37,7 @@ type _ReRegisterServerResponse ReRegisterServerResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReRegisterServerResponse(serverId float32, revision float32) *ReRegisterServerResponse {
+func NewReRegisterServerResponse(serverId int64, revision int64) *ReRegisterServerResponse {
 	this := ReRegisterServerResponse{}
 	this.ServerId = serverId
 	this.Revision = revision
@@ -53,9 +53,9 @@ func NewReRegisterServerResponseWithDefaults() *ReRegisterServerResponse {
 }
 
 // GetServerId returns the ServerId field value
-func (o *ReRegisterServerResponse) GetServerId() float32 {
+func (o *ReRegisterServerResponse) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *ReRegisterServerResponse) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *ReRegisterServerResponse) GetServerIdOk() (*float32, bool) {
+func (o *ReRegisterServerResponse) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,14 +72,14 @@ func (o *ReRegisterServerResponse) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *ReRegisterServerResponse) SetServerId(v float32) {
+func (o *ReRegisterServerResponse) SetServerId(v int64) {
 	o.ServerId = v
 }
 
 // GetRevision returns the Revision field value
-func (o *ReRegisterServerResponse) GetRevision() float32 {
+func (o *ReRegisterServerResponse) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -88,7 +88,7 @@ func (o *ReRegisterServerResponse) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ReRegisterServerResponse) GetRevisionOk() (*float32, bool) {
+func (o *ReRegisterServerResponse) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *ReRegisterServerResponse) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ReRegisterServerResponse) SetRevision(v float32) {
+func (o *ReRegisterServerResponse) SetRevision(v int64) {
 	o.Revision = v
 }
 

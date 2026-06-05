@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **SizeMb** | **float32** | Disk size in MiB for Drive | 
 **Label** | Pointer to **string** | Label of the Drive. | [optional] 
 **Meta** | Pointer to [**SharedDriveMeta**](SharedDriveMeta.md) |  | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
-**StoragePoolId** | **float32** | Id of the storage pool the Drive is assigned to | 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the Drive. | [optional] 
+**StoragePoolId** | **int64** | Id of the storage pool the Drive is assigned to | 
 
 ## Methods
 
 ### NewCreateSharedDrive
 
-`func NewCreateSharedDrive(sizeMb float32, storagePoolId float32, ) *CreateSharedDrive`
+`func NewCreateSharedDrive(sizeMb float32, storagePoolId int64, ) *CreateSharedDrive`
 
 NewCreateSharedDrive instantiates a new CreateSharedDrive object
 This constructor will assign default values to properties that have it defined,
@@ -101,20 +101,20 @@ HasMeta returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *CreateSharedDrive) GetLogicalNetworkId() float32`
+`func (o *CreateSharedDrive) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *CreateSharedDrive) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *CreateSharedDrive) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *CreateSharedDrive) SetLogicalNetworkId(v float32)`
+`func (o *CreateSharedDrive) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -126,20 +126,20 @@ HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 
-`func (o *CreateSharedDrive) GetStoragePoolId() float32`
+`func (o *CreateSharedDrive) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *CreateSharedDrive) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *CreateSharedDrive) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *CreateSharedDrive) SetStoragePoolId(v float32)`
+`func (o *CreateSharedDrive) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 

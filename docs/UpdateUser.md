@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **IsTestAccount** | Pointer to **bool** | Whether the user is a test account | [optional] 
 **IsArchived** | Pointer to **bool** | Whether the user is a archived | [optional] 
 **IsDatastorePublisher** | Pointer to **bool** | Whether the user is a datastore publisher | [optional] 
-**AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**AccountId** | Pointer to **int64** | The account ID of the user | [optional] 
 **Provider** | Pointer to **string** | The provider of the user | [optional] [default to "mysql"]
 **PasswordLastChangedTimestamp** | Pointer to **string** | The timestamp when the user last changed their password | [optional] 
 
@@ -601,20 +601,20 @@ HasIsDatastorePublisher returns a boolean if a field has been set.
 
 ### GetAccountId
 
-`func (o *UpdateUser) GetAccountId() float32`
+`func (o *UpdateUser) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *UpdateUser) GetAccountIdOk() (*float32, bool)`
+`func (o *UpdateUser) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountId
 
-`func (o *UpdateUser) SetAccountId(v float32)`
+`func (o *UpdateUser) SetAccountId(v int64)`
 
 SetAccountId sets AccountId field to given value.
 

@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the logical network interconnect | 
 **Annotations** | Pointer to **map[string]string** | JSON object containing additional metadata or annotations | [optional] 
 **Kind** | [**LogicalNetworkInterconnectKind**](LogicalNetworkInterconnectKind.md) | Kind of the logical network interconnect | 
-**FabricInterconnectId** | **int32** | Fabric Interconnect identifier | 
-**TransportId** | Pointer to **int32** | Transport ID allocated from range 999999999-900000000 (descending) | [optional] 
+**FabricInterconnectId** | **int64** | Fabric Interconnect identifier | 
+**TransportId** | Pointer to **int64** | Transport ID allocated from range 999999999-900000000 (descending) | [optional] 
 **Status** | [**LogicalNetworkInterconnectStatus**](LogicalNetworkInterconnectStatus.md) | Status of the logical network interconnect | 
 **CreatedAt** | **time.Time** | The date and time the entity was created | [readonly] 
 **UpdatedAt** | **time.Time** | The date and time the entity was last updated | [readonly] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewLogicalNetworkInterconnect
 
-`func NewLogicalNetworkInterconnect(revision string, id string, label string, name string, kind LogicalNetworkInterconnectKind, fabricInterconnectId int32, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time, ) *LogicalNetworkInterconnect`
+`func NewLogicalNetworkInterconnect(revision string, id string, label string, name string, kind LogicalNetworkInterconnectKind, fabricInterconnectId int64, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time, ) *LogicalNetworkInterconnect`
 
 NewLogicalNetworkInterconnect instantiates a new LogicalNetworkInterconnect object
 This constructor will assign default values to properties that have it defined,
@@ -162,40 +162,40 @@ SetKind sets Kind field to given value.
 
 ### GetFabricInterconnectId
 
-`func (o *LogicalNetworkInterconnect) GetFabricInterconnectId() int32`
+`func (o *LogicalNetworkInterconnect) GetFabricInterconnectId() int64`
 
 GetFabricInterconnectId returns the FabricInterconnectId field if non-nil, zero value otherwise.
 
 ### GetFabricInterconnectIdOk
 
-`func (o *LogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int32, bool)`
+`func (o *LogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int64, bool)`
 
 GetFabricInterconnectIdOk returns a tuple with the FabricInterconnectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricInterconnectId
 
-`func (o *LogicalNetworkInterconnect) SetFabricInterconnectId(v int32)`
+`func (o *LogicalNetworkInterconnect) SetFabricInterconnectId(v int64)`
 
 SetFabricInterconnectId sets FabricInterconnectId field to given value.
 
 
 ### GetTransportId
 
-`func (o *LogicalNetworkInterconnect) GetTransportId() int32`
+`func (o *LogicalNetworkInterconnect) GetTransportId() int64`
 
 GetTransportId returns the TransportId field if non-nil, zero value otherwise.
 
 ### GetTransportIdOk
 
-`func (o *LogicalNetworkInterconnect) GetTransportIdOk() (*int32, bool)`
+`func (o *LogicalNetworkInterconnect) GetTransportIdOk() (*int64, bool)`
 
 GetTransportIdOk returns a tuple with the TransportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransportId
 
-`func (o *LogicalNetworkInterconnect) SetTransportId(v int32)`
+`func (o *LogicalNetworkInterconnect) SetTransportId(v int64)`
 
 SetTransportId sets TransportId field to given value.
 

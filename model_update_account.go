@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateAccount{}
 // UpdateAccount struct for UpdateAccount
 type UpdateAccount struct {
 	// The ID of the parent account
-	ParentAccountId *float32 `json:"parentAccountId,omitempty"`
+	ParentAccountId *int64 `json:"parentAccountId,omitempty"`
 	// The name of the account
 	Name string `json:"name"`
 	// The code of the account
@@ -31,9 +31,11 @@ type UpdateAccount struct {
 	FiscalNumber *string `json:"fiscalNumber,omitempty"`
 	Address *AccountAddress `json:"address,omitempty"`
 	// The user ID of the primary contact
-	PrimaryContactId *float32 `json:"primaryContactId,omitempty"`
+	PrimaryContactId *int64 `json:"primaryContactId,omitempty"`
 	// The user ID of the secondary contact
-	SecondaryContactId *float32 `json:"secondaryContactId,omitempty"`
+	SecondaryContactId *int64 `json:"secondaryContactId,omitempty"`
+	// The ID of the quota profile assigned to this account
+	QuotaProfileId *string `json:"quotaProfileId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,9 +60,9 @@ func NewUpdateAccountWithDefaults() *UpdateAccount {
 }
 
 // GetParentAccountId returns the ParentAccountId field value if set, zero value otherwise.
-func (o *UpdateAccount) GetParentAccountId() float32 {
+func (o *UpdateAccount) GetParentAccountId() int64 {
 	if o == nil || IsNil(o.ParentAccountId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ParentAccountId
@@ -68,7 +70,7 @@ func (o *UpdateAccount) GetParentAccountId() float32 {
 
 // GetParentAccountIdOk returns a tuple with the ParentAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAccount) GetParentAccountIdOk() (*float32, bool) {
+func (o *UpdateAccount) GetParentAccountIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ParentAccountId) {
 		return nil, false
 	}
@@ -84,8 +86,8 @@ func (o *UpdateAccount) HasParentAccountId() bool {
 	return false
 }
 
-// SetParentAccountId gets a reference to the given float32 and assigns it to the ParentAccountId field.
-func (o *UpdateAccount) SetParentAccountId(v float32) {
+// SetParentAccountId gets a reference to the given int64 and assigns it to the ParentAccountId field.
+func (o *UpdateAccount) SetParentAccountId(v int64) {
 	o.ParentAccountId = &v
 }
 
@@ -210,9 +212,9 @@ func (o *UpdateAccount) SetAddress(v AccountAddress) {
 }
 
 // GetPrimaryContactId returns the PrimaryContactId field value if set, zero value otherwise.
-func (o *UpdateAccount) GetPrimaryContactId() float32 {
+func (o *UpdateAccount) GetPrimaryContactId() int64 {
 	if o == nil || IsNil(o.PrimaryContactId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.PrimaryContactId
@@ -220,7 +222,7 @@ func (o *UpdateAccount) GetPrimaryContactId() float32 {
 
 // GetPrimaryContactIdOk returns a tuple with the PrimaryContactId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAccount) GetPrimaryContactIdOk() (*float32, bool) {
+func (o *UpdateAccount) GetPrimaryContactIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.PrimaryContactId) {
 		return nil, false
 	}
@@ -236,15 +238,15 @@ func (o *UpdateAccount) HasPrimaryContactId() bool {
 	return false
 }
 
-// SetPrimaryContactId gets a reference to the given float32 and assigns it to the PrimaryContactId field.
-func (o *UpdateAccount) SetPrimaryContactId(v float32) {
+// SetPrimaryContactId gets a reference to the given int64 and assigns it to the PrimaryContactId field.
+func (o *UpdateAccount) SetPrimaryContactId(v int64) {
 	o.PrimaryContactId = &v
 }
 
 // GetSecondaryContactId returns the SecondaryContactId field value if set, zero value otherwise.
-func (o *UpdateAccount) GetSecondaryContactId() float32 {
+func (o *UpdateAccount) GetSecondaryContactId() int64 {
 	if o == nil || IsNil(o.SecondaryContactId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.SecondaryContactId
@@ -252,7 +254,7 @@ func (o *UpdateAccount) GetSecondaryContactId() float32 {
 
 // GetSecondaryContactIdOk returns a tuple with the SecondaryContactId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAccount) GetSecondaryContactIdOk() (*float32, bool) {
+func (o *UpdateAccount) GetSecondaryContactIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SecondaryContactId) {
 		return nil, false
 	}
@@ -268,9 +270,41 @@ func (o *UpdateAccount) HasSecondaryContactId() bool {
 	return false
 }
 
-// SetSecondaryContactId gets a reference to the given float32 and assigns it to the SecondaryContactId field.
-func (o *UpdateAccount) SetSecondaryContactId(v float32) {
+// SetSecondaryContactId gets a reference to the given int64 and assigns it to the SecondaryContactId field.
+func (o *UpdateAccount) SetSecondaryContactId(v int64) {
 	o.SecondaryContactId = &v
+}
+
+// GetQuotaProfileId returns the QuotaProfileId field value if set, zero value otherwise.
+func (o *UpdateAccount) GetQuotaProfileId() string {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		var ret string
+		return ret
+	}
+	return *o.QuotaProfileId
+}
+
+// GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAccount) GetQuotaProfileIdOk() (*string, bool) {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		return nil, false
+	}
+	return o.QuotaProfileId, true
+}
+
+// HasQuotaProfileId returns a boolean if a field has been set.
+func (o *UpdateAccount) HasQuotaProfileId() bool {
+	if o != nil && !IsNil(o.QuotaProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuotaProfileId gets a reference to the given string and assigns it to the QuotaProfileId field.
+func (o *UpdateAccount) SetQuotaProfileId(v string) {
+	o.QuotaProfileId = &v
 }
 
 func (o UpdateAccount) MarshalJSON() ([]byte, error) {
@@ -301,6 +335,9 @@ func (o UpdateAccount) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SecondaryContactId) {
 		toSerialize["secondaryContactId"] = o.SecondaryContactId
+	}
+	if !IsNil(o.QuotaProfileId) {
+		toSerialize["quotaProfileId"] = o.QuotaProfileId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -352,6 +389,7 @@ func (o *UpdateAccount) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "primaryContactId")
 		delete(additionalProperties, "secondaryContactId")
+		delete(additionalProperties, "quotaProfileId")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
-**GroupId** | Pointer to **int32** |  | [optional] 
-**EndpointId** | **int32** | Id of endpoint for this Instance. | 
+**GroupId** | Pointer to **int64** |  | [optional] 
+**EndpointId** | **int64** | Id of endpoint for this Instance. | 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewEndpointInstanceCreate
 
-`func NewEndpointInstanceCreate(endpointId int32, ) *EndpointInstanceCreate`
+`func NewEndpointInstanceCreate(endpointId int64, ) *EndpointInstanceCreate`
 
 NewEndpointInstanceCreate instantiates a new EndpointInstanceCreate object
 This constructor will assign default values to properties that have it defined,
@@ -55,20 +55,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetGroupId
 
-`func (o *EndpointInstanceCreate) GetGroupId() int32`
+`func (o *EndpointInstanceCreate) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *EndpointInstanceCreate) GetGroupIdOk() (*int32, bool)`
+`func (o *EndpointInstanceCreate) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *EndpointInstanceCreate) SetGroupId(v int32)`
+`func (o *EndpointInstanceCreate) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
@@ -80,20 +80,20 @@ HasGroupId returns a boolean if a field has been set.
 
 ### GetEndpointId
 
-`func (o *EndpointInstanceCreate) GetEndpointId() int32`
+`func (o *EndpointInstanceCreate) GetEndpointId() int64`
 
 GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
 
 ### GetEndpointIdOk
 
-`func (o *EndpointInstanceCreate) GetEndpointIdOk() (*int32, bool)`
+`func (o *EndpointInstanceCreate) GetEndpointIdOk() (*int64, bool)`
 
 GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndpointId
 
-`func (o *EndpointInstanceCreate) SetEndpointId(v int32)`
+`func (o *EndpointInstanceCreate) SetEndpointId(v int64)`
 
 SetEndpointId sets EndpointId field to given value.
 

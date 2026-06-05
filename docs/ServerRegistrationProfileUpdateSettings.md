@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **EnableSyslogMonitoring** | Pointer to **bool** | Whether to enable syslog monitoring | [optional] 
 **DisableTpmAfterRegistration** | Pointer to **bool** | Whether to disable TPM after registration | [optional] 
 **DefaultVirtualMediaProtocol** | Pointer to **string** | Default protocol for virtual media | [optional] 
-**FirmwareBaselineId** | Pointer to **float32** | Firmware baseline ID to apply during registration | [optional] 
+**FirmwareBaselineId** | Pointer to **int64** | Firmware baseline ID to apply during registration | [optional] 
 **ResetRaidControllers** | Pointer to **bool** | Whether to reset RAID controllers to factory defaults | [optional] 
 **CleanupDrives** | Pointer to **bool** | Whether to cleanup drives | [optional] 
 **RecreateRaid** | Pointer to **bool** | Whether to recreate RAID | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **RaidOddNumberMoreThanOneDrive** | Pointer to **string** | Raid odd number more than one drive | [optional] 
 **BiosProfile** | Pointer to [**[]ServerRegistrationBiosProfile**](ServerRegistrationBiosProfile.md) | Server registration BIOS profile | [optional] 
 **DpuMode** | Pointer to **string** | Whether to register the server in DPU or NIC mode. | [optional] [default to "dpu"]
-**MaxDpuVirtualInterfaces** | Pointer to **float32** | Maximum number of virtual interfaces to create on DPUs. This setting is only applicable if dpuMode is set to DPU. | [optional] [default to 64]
+**DpuMaxVirtualFunctions** | Pointer to **float32** | Maximum number of virtual functions to create on DPUs. This setting is only applicable if dpuMode is set to DPU. | [optional] [default to 64]
 
 ## Methods
 
@@ -246,20 +246,20 @@ HasDefaultVirtualMediaProtocol returns a boolean if a field has been set.
 
 ### GetFirmwareBaselineId
 
-`func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineId() float32`
+`func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineId() int64`
 
 GetFirmwareBaselineId returns the FirmwareBaselineId field if non-nil, zero value otherwise.
 
 ### GetFirmwareBaselineIdOk
 
-`func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineIdOk() (*float32, bool)`
+`func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineIdOk() (*int64, bool)`
 
 GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirmwareBaselineId
 
-`func (o *ServerRegistrationProfileUpdateSettings) SetFirmwareBaselineId(v float32)`
+`func (o *ServerRegistrationProfileUpdateSettings) SetFirmwareBaselineId(v int64)`
 
 SetFirmwareBaselineId sets FirmwareBaselineId field to given value.
 
@@ -519,30 +519,30 @@ SetDpuMode sets DpuMode field to given value.
 
 HasDpuMode returns a boolean if a field has been set.
 
-### GetMaxDpuVirtualInterfaces
+### GetDpuMaxVirtualFunctions
 
-`func (o *ServerRegistrationProfileUpdateSettings) GetMaxDpuVirtualInterfaces() float32`
+`func (o *ServerRegistrationProfileUpdateSettings) GetDpuMaxVirtualFunctions() float32`
 
-GetMaxDpuVirtualInterfaces returns the MaxDpuVirtualInterfaces field if non-nil, zero value otherwise.
+GetDpuMaxVirtualFunctions returns the DpuMaxVirtualFunctions field if non-nil, zero value otherwise.
 
-### GetMaxDpuVirtualInterfacesOk
+### GetDpuMaxVirtualFunctionsOk
 
-`func (o *ServerRegistrationProfileUpdateSettings) GetMaxDpuVirtualInterfacesOk() (*float32, bool)`
+`func (o *ServerRegistrationProfileUpdateSettings) GetDpuMaxVirtualFunctionsOk() (*float32, bool)`
 
-GetMaxDpuVirtualInterfacesOk returns a tuple with the MaxDpuVirtualInterfaces field if it's non-nil, zero value otherwise
+GetDpuMaxVirtualFunctionsOk returns a tuple with the DpuMaxVirtualFunctions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxDpuVirtualInterfaces
+### SetDpuMaxVirtualFunctions
 
-`func (o *ServerRegistrationProfileUpdateSettings) SetMaxDpuVirtualInterfaces(v float32)`
+`func (o *ServerRegistrationProfileUpdateSettings) SetDpuMaxVirtualFunctions(v float32)`
 
-SetMaxDpuVirtualInterfaces sets MaxDpuVirtualInterfaces field to given value.
+SetDpuMaxVirtualFunctions sets DpuMaxVirtualFunctions field to given value.
 
-### HasMaxDpuVirtualInterfaces
+### HasDpuMaxVirtualFunctions
 
-`func (o *ServerRegistrationProfileUpdateSettings) HasMaxDpuVirtualInterfaces() bool`
+`func (o *ServerRegistrationProfileUpdateSettings) HasDpuMaxVirtualFunctions() bool`
 
-HasMaxDpuVirtualInterfaces returns a boolean if a field has been set.
+HasDpuMaxVirtualFunctions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

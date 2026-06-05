@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerCleanupPolicy{}
 // ServerCleanupPolicy struct for ServerCleanupPolicy
 type ServerCleanupPolicy struct {
 	// Server cleanup policy id
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Server cleanup policy label
 	Label string `json:"label"`
 	// Cleanup drives for oob enabled server
@@ -58,7 +58,7 @@ type _ServerCleanupPolicy ServerCleanupPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerCleanupPolicy(id float32, label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string) *ServerCleanupPolicy {
+func NewServerCleanupPolicy(id int64, label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string) *ServerCleanupPolicy {
 	this := ServerCleanupPolicy{}
 	this.Id = id
 	this.Label = label
@@ -85,9 +85,9 @@ func NewServerCleanupPolicyWithDefaults() *ServerCleanupPolicy {
 }
 
 // GetId returns the Id field value
-func (o *ServerCleanupPolicy) GetId() float32 {
+func (o *ServerCleanupPolicy) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -96,7 +96,7 @@ func (o *ServerCleanupPolicy) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerCleanupPolicy) GetIdOk() (*float32, bool) {
+func (o *ServerCleanupPolicy) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -104,7 +104,7 @@ func (o *ServerCleanupPolicy) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerCleanupPolicy) SetId(v float32) {
+func (o *ServerCleanupPolicy) SetId(v int64) {
 	o.Id = v
 }
 

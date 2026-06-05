@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The id of the storage controller. | 
-**ServerId** | **float32** | The id of the server. | 
+**Id** | **int64** | The id of the storage controller. | 
+**ServerId** | **int64** | The id of the server. | 
 **Name** | **string** | The name of the storage controller. | 
 **Label** | **string** | The label of the storage controller. | 
 **Description** | **string** | The description of the storage controller. | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewServerStorageController
 
-`func NewServerStorageController(id float32, serverId float32, name string, label string, description string, options ServerTypeStorageControllerOptions, mode string, ) *ServerStorageController`
+`func NewServerStorageController(id int64, serverId int64, name string, label string, description string, options ServerTypeStorageControllerOptions, mode string, ) *ServerStorageController`
 
 NewServerStorageController instantiates a new ServerStorageController object
 This constructor will assign default values to properties that have it defined,
@@ -33,40 +33,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerStorageController) GetId() float32`
+`func (o *ServerStorageController) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerStorageController) GetIdOk() (*float32, bool)`
+`func (o *ServerStorageController) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerStorageController) SetId(v float32)`
+`func (o *ServerStorageController) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetServerId
 
-`func (o *ServerStorageController) GetServerId() float32`
+`func (o *ServerStorageController) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *ServerStorageController) GetServerIdOk() (*float32, bool)`
+`func (o *ServerStorageController) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *ServerStorageController) SetServerId(v float32)`
+`func (o *ServerStorageController) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 

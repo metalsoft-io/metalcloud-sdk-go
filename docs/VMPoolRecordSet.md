@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VmPoolId** | **float32** | The ID of the VM Pool. | 
+**VmPoolId** | **int64** | The ID of the VM Pool. | 
 **Hostname** | **string** | The hostname of the VM Pool. | 
 **Operation** | **string** | The operation of the VM Pool. | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewVMPoolRecordSet
 
-`func NewVMPoolRecordSet(vmPoolId float32, hostname string, operation string, ) *VMPoolRecordSet`
+`func NewVMPoolRecordSet(vmPoolId int64, hostname string, operation string, ) *VMPoolRecordSet`
 
 NewVMPoolRecordSet instantiates a new VMPoolRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVmPoolId
 
-`func (o *VMPoolRecordSet) GetVmPoolId() float32`
+`func (o *VMPoolRecordSet) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *VMPoolRecordSet) GetVmPoolIdOk() (*float32, bool)`
+`func (o *VMPoolRecordSet) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *VMPoolRecordSet) SetVmPoolId(v float32)`
+`func (o *VMPoolRecordSet) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 

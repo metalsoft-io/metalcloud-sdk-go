@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## GetEvents
 
-> EventPaginatedList GetEvents(ctx).Page(page).Limit(limit).FilterId(filterId).FilterUserIdAuthenticated(filterUserIdAuthenticated).FilterType(filterType).FilterSeverity(filterSeverity).FilterVisibility(filterVisibility).FilterInfrastructureId(filterInfrastructureId).FilterUserId(filterUserId).FilterStoragePoolId(filterStoragePoolId).FilterServerId(filterServerId).FilterJobId(filterJobId).FilterSiteId(filterSiteId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> EventPaginatedList GetEvents(ctx).Page(page).Limit(limit).FilterId(filterId).FilterUserIdAuthenticated(filterUserIdAuthenticated).FilterType(filterType).FilterLevel(filterLevel).FilterVisibility(filterVisibility).FilterInfrastructureId(filterInfrastructureId).FilterUserId(filterUserId).FilterStoragePoolId(filterStoragePoolId).FilterServerId(filterServerId).FilterJobId(filterJobId).FilterSiteId(filterSiteId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all Events
 
@@ -105,7 +105,7 @@ func main() {
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterUserIdAuthenticated := []string{"Inner_example"} // []string | Filter by userIdAuthenticated query param.  **Format:** filter.userIdAuthenticated={$not}:OPERATION:VALUE    **Example:** filter.userIdAuthenticated=$eq:John Doe&filter.userIdAuthenticated=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterType := []string{"Inner_example"} // []string | Filter by type query param.  **Format:** filter.type={$not}:OPERATION:VALUE    **Example:** filter.type=$eq:John Doe&filter.type=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
-	filterSeverity := []string{"Inner_example"} // []string | Filter by severity query param.  **Format:** filter.severity={$not}:OPERATION:VALUE    **Example:** filter.severity=$eq:John Doe&filter.severity=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterLevel := []string{"Inner_example"} // []string | Filter by level query param.  **Format:** filter.level={$not}:OPERATION:VALUE    **Example:** filter.level=$eq:John Doe&filter.level=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterVisibility := []string{"Inner_example"} // []string | Filter by visibility query param.  **Format:** filter.visibility={$not}:OPERATION:VALUE    **Example:** filter.visibility=$eq:John Doe&filter.visibility=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$eq:John Doe&filter.infrastructureId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterUserId := []string{"Inner_example"} // []string | Filter by userId query param.  **Format:** filter.userId={$not}:OPERATION:VALUE    **Example:** filter.userId=$eq:John Doe&filter.userId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
@@ -115,11 +115,11 @@ func main() {
 	filterSiteId := []string{"Inner_example"} // []string | Filter by siteId query param.  **Format:** filter.siteId={$not}:OPERATION:VALUE    **Example:** filter.siteId=$eq:John Doe&filter.siteId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC   **Default Value:** id:DESC  **Available Fields** - id  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,type,severity,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - severity  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,type,level,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - level  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventAPI.GetEvents(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterUserIdAuthenticated(filterUserIdAuthenticated).FilterType(filterType).FilterSeverity(filterSeverity).FilterVisibility(filterVisibility).FilterInfrastructureId(filterInfrastructureId).FilterUserId(filterUserId).FilterStoragePoolId(filterStoragePoolId).FilterServerId(filterServerId).FilterJobId(filterJobId).FilterSiteId(filterSiteId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.EventAPI.GetEvents(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterUserIdAuthenticated(filterUserIdAuthenticated).FilterType(filterType).FilterLevel(filterLevel).FilterVisibility(filterVisibility).FilterInfrastructureId(filterInfrastructureId).FilterUserId(filterUserId).FilterStoragePoolId(filterStoragePoolId).FilterServerId(filterServerId).FilterJobId(filterJobId).FilterSiteId(filterSiteId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventAPI.GetEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
  **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterUserIdAuthenticated** | **[]string** | Filter by userIdAuthenticated query param.  **Format:** filter.userIdAuthenticated&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.userIdAuthenticated&#x3D;$eq:John Doe&amp;filter.userIdAuthenticated&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterType** | **[]string** | Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe&amp;filter.type&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
- **filterSeverity** | **[]string** | Filter by severity query param.  **Format:** filter.severity&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.severity&#x3D;$eq:John Doe&amp;filter.severity&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterLevel** | **[]string** | Filter by level query param.  **Format:** filter.level&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.level&#x3D;$eq:John Doe&amp;filter.level&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterVisibility** | **[]string** | Filter by visibility query param.  **Format:** filter.visibility&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.visibility&#x3D;$eq:John Doe&amp;filter.visibility&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterInfrastructureId** | **[]string** | Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$eq:John Doe&amp;filter.infrastructureId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterUserId** | **[]string** | Filter by userId query param.  **Format:** filter.userId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.userId&#x3D;$eq:John Doe&amp;filter.userId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
  **filterSiteId** | **[]string** | Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$eq:John Doe&amp;filter.siteId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC   **Default Value:** id:DESC  **Available Fields** - id  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,type,severity,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - severity  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,type,level,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - level  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message  | 
 
 ### Return type
 

@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -24,11 +25,13 @@ type NetworkDevice struct {
 	// Unique identifier for the network device.
 	Id string `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Current status of the network device
 	Status string `json:"status"`
+	// Vendor ID of the network device
+	VendorId int64 `json:"vendorId"`
 	// Site ID
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Hostname of the network device
 	IdentifierString string `json:"identifierString"`
 	// Description of the network device
@@ -59,8 +62,14 @@ type NetworkDevice struct {
 	ManagementPort float32 `json:"managementPort"`
 	// Is the network device syslog enabled
 	SyslogEnabled float32 `json:"syslogEnabled"`
+	// Is the network device SNMP service enabled
+	SnmpServiceEnabled bool `json:"snmpServiceEnabled"`
+	// Is the network device SNMP monitoring enabled
+	SnmpMonitoringEnabled bool `json:"snmpMonitoringEnabled"`
 	// Username used to connect to the network device
 	Username string `json:"username"`
+	// The username to access the network device API, if different from the management username.
+	ApiUsername *string `json:"apiUsername,omitempty"`
 	// MAC address of the management interface
 	ManagementMacAddress string `json:"managementMacAddress"`
 	// Serial number of the network device
@@ -68,9 +77,9 @@ type NetworkDevice struct {
 	// Driver software used to communicate with the network device
 	Driver NetworkDeviceDriver `json:"driver"`
 	// The physical or logical position of the network device in the network topology.
-	Position SwitchPosition `json:"position"`
+	Position string `json:"position"`
 	// ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU
-	ServerId *float32 `json:"serverId,omitempty"`
+	ServerId *int64 `json:"serverId,omitempty"`
 	// NUMA node of the network device for optimal resource allocation
 	NumaNode *float32 `json:"numaNode,omitempty"`
 	// Order index of the network device
@@ -82,7 +91,7 @@ type NetworkDevice struct {
 	// Whether bootstrap readiness check is in progress
 	BootstrapReadinessCheckInProgress float32 `json:"bootstrapReadinessCheckInProgress"`
 	// Subnet ID for OOB management
-	SubnetOobId float32 `json:"subnetOobId"`
+	SubnetOobId int64 `json:"subnetOobId"`
 	// Subnet OOB index
 	SubnetOobIndex float32 `json:"subnetOobIndex"`
 	// Whether the device requires OS installation
@@ -104,7 +113,7 @@ type NetworkDevice struct {
 	// MLAG system MAC address
 	MlagSystemMac string `json:"mlagSystemMac"`
 	// MLAG domain ID
-	MlagDomainId float32 `json:"mlagDomainId"`
+	MlagDomainId int64 `json:"mlagDomainId"`
 	// Quarantine VLAN ID
 	QuarantineVlan float32 `json:"quarantineVlan"`
 	// Variables materialized for OS assets
@@ -118,13 +127,25 @@ type NetworkDevice struct {
 	// The extension execution info of the network device.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	// ID of the VM pool associated with the network device.
-	VmPoolId *float32 `json:"vmPoolId,omitempty"`
+	VmPoolId *int64 `json:"vmPoolId,omitempty"`
 	// ID of the network device controller if any.
-	SwitchControllerId *float32 `json:"switchControllerId,omitempty"`
+	SwitchControllerId *int64 `json:"switchControllerId,omitempty"`
 	// External ID of the network device.
 	ExternalId *string `json:"externalId,omitempty"`
 	// Custom variables for the network device
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// SNMP port of the network device
+	SnmpPort *float32 `json:"snmpPort,omitempty"`
+	// SNMP system contact for the network device
+	SnmpSystemContact *string `json:"snmpSystemContact,omitempty"`
+	// SNMP version used by the network device
+	SnmpVersion *float32 `json:"snmpVersion,omitempty"`
+	// Health status of the network device
+	HealthStatus NullableNetworkDeviceHealthStatus `json:"healthStatus,omitempty"`
+	// Detailed health check results of the network device
+	HealthDetails map[string]interface{} `json:"healthDetails,omitempty"`
+	// Timestamp of the last health check
+	HealthLastCheckedTimestamp NullableTime `json:"healthLastCheckedTimestamp,omitempty"`
 	// Ordered list of authentication options. Credentials are resolved from the first active entry.
 	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	// Reference links
@@ -138,11 +159,12 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
 	this.Status = status
+	this.VendorId = vendorId
 	this.SiteId = siteId
 	this.IdentifierString = identifierString
 	this.Description = description
@@ -159,6 +181,8 @@ func NewNetworkDevice(id string, revision float32, status string, siteId float32
 	this.ManagementAddressGateway = managementAddressGateway
 	this.ManagementPort = managementPort
 	this.SyslogEnabled = syslogEnabled
+	this.SnmpServiceEnabled = snmpServiceEnabled
+	this.SnmpMonitoringEnabled = snmpMonitoringEnabled
 	this.Username = username
 	this.ManagementMacAddress = managementMacAddress
 	this.SerialNumber = serialNumber
@@ -218,9 +242,9 @@ func (o *NetworkDevice) SetId(v string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *NetworkDevice) GetRevision() float32 {
+func (o *NetworkDevice) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -229,7 +253,7 @@ func (o *NetworkDevice) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetRevisionOk() (*float32, bool) {
+func (o *NetworkDevice) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,7 +261,7 @@ func (o *NetworkDevice) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *NetworkDevice) SetRevision(v float32) {
+func (o *NetworkDevice) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -265,10 +289,34 @@ func (o *NetworkDevice) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetSiteId returns the SiteId field value
-func (o *NetworkDevice) GetSiteId() float32 {
+// GetVendorId returns the VendorId field value
+func (o *NetworkDevice) GetVendorId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
+		return ret
+	}
+
+	return o.VendorId
+}
+
+// GetVendorIdOk returns a tuple with the VendorId field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetVendorIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VendorId, true
+}
+
+// SetVendorId sets field value
+func (o *NetworkDevice) SetVendorId(v int64) {
+	o.VendorId = v
+}
+
+// GetSiteId returns the SiteId field value
+func (o *NetworkDevice) GetSiteId() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
 
@@ -277,7 +325,7 @@ func (o *NetworkDevice) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetSiteIdOk() (*float32, bool) {
+func (o *NetworkDevice) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -285,7 +333,7 @@ func (o *NetworkDevice) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *NetworkDevice) SetSiteId(v float32) {
+func (o *NetworkDevice) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -649,6 +697,54 @@ func (o *NetworkDevice) SetSyslogEnabled(v float32) {
 	o.SyslogEnabled = v
 }
 
+// GetSnmpServiceEnabled returns the SnmpServiceEnabled field value
+func (o *NetworkDevice) GetSnmpServiceEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SnmpServiceEnabled
+}
+
+// GetSnmpServiceEnabledOk returns a tuple with the SnmpServiceEnabled field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetSnmpServiceEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SnmpServiceEnabled, true
+}
+
+// SetSnmpServiceEnabled sets field value
+func (o *NetworkDevice) SetSnmpServiceEnabled(v bool) {
+	o.SnmpServiceEnabled = v
+}
+
+// GetSnmpMonitoringEnabled returns the SnmpMonitoringEnabled field value
+func (o *NetworkDevice) GetSnmpMonitoringEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SnmpMonitoringEnabled
+}
+
+// GetSnmpMonitoringEnabledOk returns a tuple with the SnmpMonitoringEnabled field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetSnmpMonitoringEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SnmpMonitoringEnabled, true
+}
+
+// SetSnmpMonitoringEnabled sets field value
+func (o *NetworkDevice) SetSnmpMonitoringEnabled(v bool) {
+	o.SnmpMonitoringEnabled = v
+}
+
 // GetUsername returns the Username field value
 func (o *NetworkDevice) GetUsername() string {
 	if o == nil {
@@ -671,6 +767,38 @@ func (o *NetworkDevice) GetUsernameOk() (*string, bool) {
 // SetUsername sets field value
 func (o *NetworkDevice) SetUsername(v string) {
 	o.Username = v
+}
+
+// GetApiUsername returns the ApiUsername field value if set, zero value otherwise.
+func (o *NetworkDevice) GetApiUsername() string {
+	if o == nil || IsNil(o.ApiUsername) {
+		var ret string
+		return ret
+	}
+	return *o.ApiUsername
+}
+
+// GetApiUsernameOk returns a tuple with the ApiUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetApiUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiUsername) {
+		return nil, false
+	}
+	return o.ApiUsername, true
+}
+
+// HasApiUsername returns a boolean if a field has been set.
+func (o *NetworkDevice) HasApiUsername() bool {
+	if o != nil && !IsNil(o.ApiUsername) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiUsername gets a reference to the given string and assigns it to the ApiUsername field.
+func (o *NetworkDevice) SetApiUsername(v string) {
+	o.ApiUsername = &v
 }
 
 // GetManagementMacAddress returns the ManagementMacAddress field value
@@ -746,9 +874,9 @@ func (o *NetworkDevice) SetDriver(v NetworkDeviceDriver) {
 }
 
 // GetPosition returns the Position field value
-func (o *NetworkDevice) GetPosition() SwitchPosition {
+func (o *NetworkDevice) GetPosition() string {
 	if o == nil {
-		var ret SwitchPosition
+		var ret string
 		return ret
 	}
 
@@ -757,7 +885,7 @@ func (o *NetworkDevice) GetPosition() SwitchPosition {
 
 // GetPositionOk returns a tuple with the Position field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetPositionOk() (*SwitchPosition, bool) {
+func (o *NetworkDevice) GetPositionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -765,14 +893,14 @@ func (o *NetworkDevice) GetPositionOk() (*SwitchPosition, bool) {
 }
 
 // SetPosition sets field value
-func (o *NetworkDevice) SetPosition(v SwitchPosition) {
+func (o *NetworkDevice) SetPosition(v string) {
 	o.Position = v
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
-func (o *NetworkDevice) GetServerId() float32 {
+func (o *NetworkDevice) GetServerId() int64 {
 	if o == nil || IsNil(o.ServerId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerId
@@ -780,7 +908,7 @@ func (o *NetworkDevice) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetServerIdOk() (*float32, bool) {
+func (o *NetworkDevice) GetServerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerId) {
 		return nil, false
 	}
@@ -796,8 +924,8 @@ func (o *NetworkDevice) HasServerId() bool {
 	return false
 }
 
-// SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
-func (o *NetworkDevice) SetServerId(v float32) {
+// SetServerId gets a reference to the given int64 and assigns it to the ServerId field.
+func (o *NetworkDevice) SetServerId(v int64) {
 	o.ServerId = &v
 }
 
@@ -932,9 +1060,9 @@ func (o *NetworkDevice) SetBootstrapReadinessCheckInProgress(v float32) {
 }
 
 // GetSubnetOobId returns the SubnetOobId field value
-func (o *NetworkDevice) GetSubnetOobId() float32 {
+func (o *NetworkDevice) GetSubnetOobId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -943,7 +1071,7 @@ func (o *NetworkDevice) GetSubnetOobId() float32 {
 
 // GetSubnetOobIdOk returns a tuple with the SubnetOobId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetSubnetOobIdOk() (*float32, bool) {
+func (o *NetworkDevice) GetSubnetOobIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -951,7 +1079,7 @@ func (o *NetworkDevice) GetSubnetOobIdOk() (*float32, bool) {
 }
 
 // SetSubnetOobId sets field value
-func (o *NetworkDevice) SetSubnetOobId(v float32) {
+func (o *NetworkDevice) SetSubnetOobId(v int64) {
 	o.SubnetOobId = v
 }
 
@@ -1220,9 +1348,9 @@ func (o *NetworkDevice) SetMlagSystemMac(v string) {
 }
 
 // GetMlagDomainId returns the MlagDomainId field value
-func (o *NetworkDevice) GetMlagDomainId() float32 {
+func (o *NetworkDevice) GetMlagDomainId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -1231,7 +1359,7 @@ func (o *NetworkDevice) GetMlagDomainId() float32 {
 
 // GetMlagDomainIdOk returns a tuple with the MlagDomainId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetMlagDomainIdOk() (*float32, bool) {
+func (o *NetworkDevice) GetMlagDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -1239,7 +1367,7 @@ func (o *NetworkDevice) GetMlagDomainIdOk() (*float32, bool) {
 }
 
 // SetMlagDomainId sets field value
-func (o *NetworkDevice) SetMlagDomainId(v float32) {
+func (o *NetworkDevice) SetMlagDomainId(v int64) {
 	o.MlagDomainId = v
 }
 
@@ -1396,9 +1524,9 @@ func (o *NetworkDevice) SetExtensionInfo(v ExtensionExecutionInfo) {
 }
 
 // GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
-func (o *NetworkDevice) GetVmPoolId() float32 {
+func (o *NetworkDevice) GetVmPoolId() int64 {
 	if o == nil || IsNil(o.VmPoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.VmPoolId
@@ -1406,7 +1534,7 @@ func (o *NetworkDevice) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetVmPoolIdOk() (*float32, bool) {
+func (o *NetworkDevice) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmPoolId) {
 		return nil, false
 	}
@@ -1422,15 +1550,15 @@ func (o *NetworkDevice) HasVmPoolId() bool {
 	return false
 }
 
-// SetVmPoolId gets a reference to the given float32 and assigns it to the VmPoolId field.
-func (o *NetworkDevice) SetVmPoolId(v float32) {
+// SetVmPoolId gets a reference to the given int64 and assigns it to the VmPoolId field.
+func (o *NetworkDevice) SetVmPoolId(v int64) {
 	o.VmPoolId = &v
 }
 
 // GetSwitchControllerId returns the SwitchControllerId field value if set, zero value otherwise.
-func (o *NetworkDevice) GetSwitchControllerId() float32 {
+func (o *NetworkDevice) GetSwitchControllerId() int64 {
 	if o == nil || IsNil(o.SwitchControllerId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.SwitchControllerId
@@ -1438,7 +1566,7 @@ func (o *NetworkDevice) GetSwitchControllerId() float32 {
 
 // GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetSwitchControllerIdOk() (*float32, bool) {
+func (o *NetworkDevice) GetSwitchControllerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SwitchControllerId) {
 		return nil, false
 	}
@@ -1454,8 +1582,8 @@ func (o *NetworkDevice) HasSwitchControllerId() bool {
 	return false
 }
 
-// SetSwitchControllerId gets a reference to the given float32 and assigns it to the SwitchControllerId field.
-func (o *NetworkDevice) SetSwitchControllerId(v float32) {
+// SetSwitchControllerId gets a reference to the given int64 and assigns it to the SwitchControllerId field.
+func (o *NetworkDevice) SetSwitchControllerId(v int64) {
 	o.SwitchControllerId = &v
 }
 
@@ -1521,6 +1649,219 @@ func (o *NetworkDevice) HasCustomVariables() bool {
 // SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
 func (o *NetworkDevice) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
+}
+
+// GetSnmpPort returns the SnmpPort field value if set, zero value otherwise.
+func (o *NetworkDevice) GetSnmpPort() float32 {
+	if o == nil || IsNil(o.SnmpPort) {
+		var ret float32
+		return ret
+	}
+	return *o.SnmpPort
+}
+
+// GetSnmpPortOk returns a tuple with the SnmpPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetSnmpPortOk() (*float32, bool) {
+	if o == nil || IsNil(o.SnmpPort) {
+		return nil, false
+	}
+	return o.SnmpPort, true
+}
+
+// HasSnmpPort returns a boolean if a field has been set.
+func (o *NetworkDevice) HasSnmpPort() bool {
+	if o != nil && !IsNil(o.SnmpPort) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpPort gets a reference to the given float32 and assigns it to the SnmpPort field.
+func (o *NetworkDevice) SetSnmpPort(v float32) {
+	o.SnmpPort = &v
+}
+
+// GetSnmpSystemContact returns the SnmpSystemContact field value if set, zero value otherwise.
+func (o *NetworkDevice) GetSnmpSystemContact() string {
+	if o == nil || IsNil(o.SnmpSystemContact) {
+		var ret string
+		return ret
+	}
+	return *o.SnmpSystemContact
+}
+
+// GetSnmpSystemContactOk returns a tuple with the SnmpSystemContact field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetSnmpSystemContactOk() (*string, bool) {
+	if o == nil || IsNil(o.SnmpSystemContact) {
+		return nil, false
+	}
+	return o.SnmpSystemContact, true
+}
+
+// HasSnmpSystemContact returns a boolean if a field has been set.
+func (o *NetworkDevice) HasSnmpSystemContact() bool {
+	if o != nil && !IsNil(o.SnmpSystemContact) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpSystemContact gets a reference to the given string and assigns it to the SnmpSystemContact field.
+func (o *NetworkDevice) SetSnmpSystemContact(v string) {
+	o.SnmpSystemContact = &v
+}
+
+// GetSnmpVersion returns the SnmpVersion field value if set, zero value otherwise.
+func (o *NetworkDevice) GetSnmpVersion() float32 {
+	if o == nil || IsNil(o.SnmpVersion) {
+		var ret float32
+		return ret
+	}
+	return *o.SnmpVersion
+}
+
+// GetSnmpVersionOk returns a tuple with the SnmpVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetSnmpVersionOk() (*float32, bool) {
+	if o == nil || IsNil(o.SnmpVersion) {
+		return nil, false
+	}
+	return o.SnmpVersion, true
+}
+
+// HasSnmpVersion returns a boolean if a field has been set.
+func (o *NetworkDevice) HasSnmpVersion() bool {
+	if o != nil && !IsNil(o.SnmpVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpVersion gets a reference to the given float32 and assigns it to the SnmpVersion field.
+func (o *NetworkDevice) SetSnmpVersion(v float32) {
+	o.SnmpVersion = &v
+}
+
+// GetHealthStatus returns the HealthStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkDevice) GetHealthStatus() NetworkDeviceHealthStatus {
+	if o == nil || IsNil(o.HealthStatus.Get()) {
+		var ret NetworkDeviceHealthStatus
+		return ret
+	}
+	return *o.HealthStatus.Get()
+}
+
+// GetHealthStatusOk returns a tuple with the HealthStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkDevice) GetHealthStatusOk() (*NetworkDeviceHealthStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HealthStatus.Get(), o.HealthStatus.IsSet()
+}
+
+// HasHealthStatus returns a boolean if a field has been set.
+func (o *NetworkDevice) HasHealthStatus() bool {
+	if o != nil && o.HealthStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthStatus gets a reference to the given NullableNetworkDeviceHealthStatus and assigns it to the HealthStatus field.
+func (o *NetworkDevice) SetHealthStatus(v NetworkDeviceHealthStatus) {
+	o.HealthStatus.Set(&v)
+}
+// SetHealthStatusNil sets the value for HealthStatus to be an explicit nil
+func (o *NetworkDevice) SetHealthStatusNil() {
+	o.HealthStatus.Set(nil)
+}
+
+// UnsetHealthStatus ensures that no value is present for HealthStatus, not even an explicit nil
+func (o *NetworkDevice) UnsetHealthStatus() {
+	o.HealthStatus.Unset()
+}
+
+// GetHealthDetails returns the HealthDetails field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkDevice) GetHealthDetails() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.HealthDetails
+}
+
+// GetHealthDetailsOk returns a tuple with the HealthDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkDevice) GetHealthDetailsOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.HealthDetails) {
+		return map[string]interface{}{}, false
+	}
+	return o.HealthDetails, true
+}
+
+// HasHealthDetails returns a boolean if a field has been set.
+func (o *NetworkDevice) HasHealthDetails() bool {
+	if o != nil && !IsNil(o.HealthDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthDetails gets a reference to the given map[string]interface{} and assigns it to the HealthDetails field.
+func (o *NetworkDevice) SetHealthDetails(v map[string]interface{}) {
+	o.HealthDetails = v
+}
+
+// GetHealthLastCheckedTimestamp returns the HealthLastCheckedTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkDevice) GetHealthLastCheckedTimestamp() time.Time {
+	if o == nil || IsNil(o.HealthLastCheckedTimestamp.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.HealthLastCheckedTimestamp.Get()
+}
+
+// GetHealthLastCheckedTimestampOk returns a tuple with the HealthLastCheckedTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkDevice) GetHealthLastCheckedTimestampOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HealthLastCheckedTimestamp.Get(), o.HealthLastCheckedTimestamp.IsSet()
+}
+
+// HasHealthLastCheckedTimestamp returns a boolean if a field has been set.
+func (o *NetworkDevice) HasHealthLastCheckedTimestamp() bool {
+	if o != nil && o.HealthLastCheckedTimestamp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthLastCheckedTimestamp gets a reference to the given NullableTime and assigns it to the HealthLastCheckedTimestamp field.
+func (o *NetworkDevice) SetHealthLastCheckedTimestamp(v time.Time) {
+	o.HealthLastCheckedTimestamp.Set(&v)
+}
+// SetHealthLastCheckedTimestampNil sets the value for HealthLastCheckedTimestamp to be an explicit nil
+func (o *NetworkDevice) SetHealthLastCheckedTimestampNil() {
+	o.HealthLastCheckedTimestamp.Set(nil)
+}
+
+// UnsetHealthLastCheckedTimestamp ensures that no value is present for HealthLastCheckedTimestamp, not even an explicit nil
+func (o *NetworkDevice) UnsetHealthLastCheckedTimestamp() {
+	o.HealthLastCheckedTimestamp.Unset()
 }
 
 // GetAuthenticationOptions returns the AuthenticationOptions field value if set, zero value otherwise.
@@ -1600,6 +1941,7 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["status"] = o.Status
+	toSerialize["vendorId"] = o.VendorId
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["identifierString"] = o.IdentifierString
 	toSerialize["description"] = o.Description
@@ -1616,7 +1958,12 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["managementAddressGateway"] = o.ManagementAddressGateway
 	toSerialize["managementPort"] = o.ManagementPort
 	toSerialize["syslogEnabled"] = o.SyslogEnabled
+	toSerialize["snmpServiceEnabled"] = o.SnmpServiceEnabled
+	toSerialize["snmpMonitoringEnabled"] = o.SnmpMonitoringEnabled
 	toSerialize["username"] = o.Username
+	if !IsNil(o.ApiUsername) {
+		toSerialize["apiUsername"] = o.ApiUsername
+	}
 	toSerialize["managementMacAddress"] = o.ManagementMacAddress
 	toSerialize["serialNumber"] = o.SerialNumber
 	toSerialize["driver"] = o.Driver
@@ -1671,6 +2018,24 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
+	if !IsNil(o.SnmpPort) {
+		toSerialize["snmpPort"] = o.SnmpPort
+	}
+	if !IsNil(o.SnmpSystemContact) {
+		toSerialize["snmpSystemContact"] = o.SnmpSystemContact
+	}
+	if !IsNil(o.SnmpVersion) {
+		toSerialize["snmpVersion"] = o.SnmpVersion
+	}
+	if o.HealthStatus.IsSet() {
+		toSerialize["healthStatus"] = o.HealthStatus.Get()
+	}
+	if o.HealthDetails != nil {
+		toSerialize["healthDetails"] = o.HealthDetails
+	}
+	if o.HealthLastCheckedTimestamp.IsSet() {
+		toSerialize["healthLastCheckedTimestamp"] = o.HealthLastCheckedTimestamp.Get()
+	}
 	if !IsNil(o.AuthenticationOptions) {
 		toSerialize["authenticationOptions"] = o.AuthenticationOptions
 	}
@@ -1693,6 +2058,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"status",
+		"vendorId",
 		"siteId",
 		"identifierString",
 		"description",
@@ -1709,6 +2075,8 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"managementAddressGateway",
 		"managementPort",
 		"syslogEnabled",
+		"snmpServiceEnabled",
+		"snmpMonitoringEnabled",
 		"username",
 		"managementMacAddress",
 		"serialNumber",
@@ -1764,6 +2132,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "vendorId")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "description")
@@ -1780,7 +2149,10 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementAddressGateway")
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "syslogEnabled")
+		delete(additionalProperties, "snmpServiceEnabled")
+		delete(additionalProperties, "snmpMonitoringEnabled")
 		delete(additionalProperties, "username")
+		delete(additionalProperties, "apiUsername")
 		delete(additionalProperties, "managementMacAddress")
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "driver")
@@ -1813,6 +2185,12 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "switchControllerId")
 		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "snmpPort")
+		delete(additionalProperties, "snmpSystemContact")
+		delete(additionalProperties, "snmpVersion")
+		delete(additionalProperties, "healthStatus")
+		delete(additionalProperties, "healthDetails")
+		delete(additionalProperties, "healthLastCheckedTimestamp")
 		delete(additionalProperties, "authenticationOptions")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

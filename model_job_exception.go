@@ -22,11 +22,11 @@ var _ MappedNullable = &JobException{}
 // JobException struct for JobException
 type JobException struct {
 	// Job exception Id
-	ExceptionId int32 `json:"exceptionId"`
+	ExceptionId int64 `json:"exceptionId"`
 	// Job archive Id
-	ArchiveId *int32 `json:"archiveId,omitempty"`
+	ArchiveId *int64 `json:"archiveId,omitempty"`
 	// Job Id
-	JobId *int32 `json:"jobId,omitempty"`
+	JobId *int64 `json:"jobId,omitempty"`
 	// The exception that was thrown by the function
 	Exception map[string]interface{} `json:"exception,omitempty"`
 	// The timestamp when the exception was created
@@ -42,7 +42,7 @@ type _JobException JobException
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobException(exceptionId int32, createdTimestamp string) *JobException {
+func NewJobException(exceptionId int64, createdTimestamp string) *JobException {
 	this := JobException{}
 	this.ExceptionId = exceptionId
 	this.CreatedTimestamp = createdTimestamp
@@ -58,9 +58,9 @@ func NewJobExceptionWithDefaults() *JobException {
 }
 
 // GetExceptionId returns the ExceptionId field value
-func (o *JobException) GetExceptionId() int32 {
+func (o *JobException) GetExceptionId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -69,7 +69,7 @@ func (o *JobException) GetExceptionId() int32 {
 
 // GetExceptionIdOk returns a tuple with the ExceptionId field value
 // and a boolean to check if the value has been set.
-func (o *JobException) GetExceptionIdOk() (*int32, bool) {
+func (o *JobException) GetExceptionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,14 +77,14 @@ func (o *JobException) GetExceptionIdOk() (*int32, bool) {
 }
 
 // SetExceptionId sets field value
-func (o *JobException) SetExceptionId(v int32) {
+func (o *JobException) SetExceptionId(v int64) {
 	o.ExceptionId = v
 }
 
 // GetArchiveId returns the ArchiveId field value if set, zero value otherwise.
-func (o *JobException) GetArchiveId() int32 {
+func (o *JobException) GetArchiveId() int64 {
 	if o == nil || IsNil(o.ArchiveId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ArchiveId
@@ -92,7 +92,7 @@ func (o *JobException) GetArchiveId() int32 {
 
 // GetArchiveIdOk returns a tuple with the ArchiveId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobException) GetArchiveIdOk() (*int32, bool) {
+func (o *JobException) GetArchiveIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ArchiveId) {
 		return nil, false
 	}
@@ -108,15 +108,15 @@ func (o *JobException) HasArchiveId() bool {
 	return false
 }
 
-// SetArchiveId gets a reference to the given int32 and assigns it to the ArchiveId field.
-func (o *JobException) SetArchiveId(v int32) {
+// SetArchiveId gets a reference to the given int64 and assigns it to the ArchiveId field.
+func (o *JobException) SetArchiveId(v int64) {
 	o.ArchiveId = &v
 }
 
 // GetJobId returns the JobId field value if set, zero value otherwise.
-func (o *JobException) GetJobId() int32 {
+func (o *JobException) GetJobId() int64 {
 	if o == nil || IsNil(o.JobId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.JobId
@@ -124,7 +124,7 @@ func (o *JobException) GetJobId() int32 {
 
 // GetJobIdOk returns a tuple with the JobId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobException) GetJobIdOk() (*int32, bool) {
+func (o *JobException) GetJobIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.JobId) {
 		return nil, false
 	}
@@ -140,8 +140,8 @@ func (o *JobException) HasJobId() bool {
 	return false
 }
 
-// SetJobId gets a reference to the given int32 and assigns it to the JobId field.
-func (o *JobException) SetJobId(v int32) {
+// SetJobId gets a reference to the given int64 and assigns it to the JobId field.
+func (o *JobException) SetJobId(v int64) {
 	o.JobId = &v
 }
 

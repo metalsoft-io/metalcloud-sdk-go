@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	createNetworkDeviceDefaultSecrets := *openapiclient.NewCreateNetworkDeviceDefaultSecrets(float32(123), "MacAddressOrSerialNumber_example", "SecretName_example", "SecretValue_example") // CreateNetworkDeviceDefaultSecrets | The NetworkDevice Default Secrets create object
+	createNetworkDeviceDefaultSecrets := *openapiclient.NewCreateNetworkDeviceDefaultSecrets(int64(123), "MacAddressOrSerialNumber_example", "SecretName_example", "SecretValue_example") // CreateNetworkDeviceDefaultSecrets | The NetworkDevice Default Secrets create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

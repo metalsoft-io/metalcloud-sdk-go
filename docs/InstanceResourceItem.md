@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **StartTimestamp** | **string** |  | 
 **EndTimestamp** | **string** |  | 
@@ -12,20 +12,20 @@ Name | Type | Description | Notes
 **MeasurementUnit** | **string** |  | 
 **Quantity** | **float32** |  | 
 **Tags** | Pointer to **string** |  | [optional] 
-**ServerTypeId** | **float32** |  | 
-**ServerId** | **float32** |  | 
+**ServerTypeId** | **int64** |  | 
+**ServerId** | **int64** |  | 
 **ServerTypeName** | **string** |  | 
 **OperatingSystemType** | **string** |  | 
 **OperatingSystemVersion** | **string** |  | 
 **OperatingSystemDisplayName** | **string** |  | 
-**OperatingSystemTemplateId** | **float32** |  | 
+**OperatingSystemTemplateId** | **int64** |  | 
 **OriginalStartTimestamp** | **string** |  | 
 
 ## Methods
 
 ### NewInstanceResourceItem
 
-`func NewInstanceResourceItem(id float32, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId float32, serverId float32, serverTypeName string, operatingSystemType string, operatingSystemVersion string, operatingSystemDisplayName string, operatingSystemTemplateId float32, originalStartTimestamp string, ) *InstanceResourceItem`
+`func NewInstanceResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId int64, serverId int64, serverTypeName string, operatingSystemType string, operatingSystemVersion string, operatingSystemDisplayName string, operatingSystemTemplateId int64, originalStartTimestamp string, ) *InstanceResourceItem`
 
 NewInstanceResourceItem instantiates a new InstanceResourceItem object
 This constructor will assign default values to properties that have it defined,
@@ -42,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *InstanceResourceItem) GetId() float32`
+`func (o *InstanceResourceItem) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *InstanceResourceItem) GetIdOk() (*float32, bool)`
+`func (o *InstanceResourceItem) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *InstanceResourceItem) SetId(v float32)`
+`func (o *InstanceResourceItem) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -207,40 +207,40 @@ HasTags returns a boolean if a field has been set.
 
 ### GetServerTypeId
 
-`func (o *InstanceResourceItem) GetServerTypeId() float32`
+`func (o *InstanceResourceItem) GetServerTypeId() int64`
 
 GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdOk
 
-`func (o *InstanceResourceItem) GetServerTypeIdOk() (*float32, bool)`
+`func (o *InstanceResourceItem) GetServerTypeIdOk() (*int64, bool)`
 
 GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeId
 
-`func (o *InstanceResourceItem) SetServerTypeId(v float32)`
+`func (o *InstanceResourceItem) SetServerTypeId(v int64)`
 
 SetServerTypeId sets ServerTypeId field to given value.
 
 
 ### GetServerId
 
-`func (o *InstanceResourceItem) GetServerId() float32`
+`func (o *InstanceResourceItem) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *InstanceResourceItem) GetServerIdOk() (*float32, bool)`
+`func (o *InstanceResourceItem) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *InstanceResourceItem) SetServerId(v float32)`
+`func (o *InstanceResourceItem) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -327,20 +327,20 @@ SetOperatingSystemDisplayName sets OperatingSystemDisplayName field to given val
 
 ### GetOperatingSystemTemplateId
 
-`func (o *InstanceResourceItem) GetOperatingSystemTemplateId() float32`
+`func (o *InstanceResourceItem) GetOperatingSystemTemplateId() int64`
 
 GetOperatingSystemTemplateId returns the OperatingSystemTemplateId field if non-nil, zero value otherwise.
 
 ### GetOperatingSystemTemplateIdOk
 
-`func (o *InstanceResourceItem) GetOperatingSystemTemplateIdOk() (*float32, bool)`
+`func (o *InstanceResourceItem) GetOperatingSystemTemplateIdOk() (*int64, bool)`
 
 GetOperatingSystemTemplateIdOk returns a tuple with the OperatingSystemTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperatingSystemTemplateId
 
-`func (o *InstanceResourceItem) SetOperatingSystemTemplateId(v float32)`
+`func (o *InstanceResourceItem) SetOperatingSystemTemplateId(v int64)`
 
 SetOperatingSystemTemplateId sets OperatingSystemTemplateId field to given value.
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerConnectInterface{}
 // ServerConnectInterface struct for ServerConnectInterface
 type ServerConnectInterface struct {
 	// The id of the server interface
-	ServerInterfaceId float32 `json:"serverInterfaceId"`
+	ServerInterfaceId int64 `json:"serverInterfaceId"`
 	// The network device port name
 	NetworkDevicePortId string `json:"networkDevicePortId"`
 	// The network device hostname
@@ -36,7 +36,7 @@ type _ServerConnectInterface ServerConnectInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerConnectInterface(serverInterfaceId float32, networkDevicePortId string, networkDeviceHostname string) *ServerConnectInterface {
+func NewServerConnectInterface(serverInterfaceId int64, networkDevicePortId string, networkDeviceHostname string) *ServerConnectInterface {
 	this := ServerConnectInterface{}
 	this.ServerInterfaceId = serverInterfaceId
 	this.NetworkDevicePortId = networkDevicePortId
@@ -53,9 +53,9 @@ func NewServerConnectInterfaceWithDefaults() *ServerConnectInterface {
 }
 
 // GetServerInterfaceId returns the ServerInterfaceId field value
-func (o *ServerConnectInterface) GetServerInterfaceId() float32 {
+func (o *ServerConnectInterface) GetServerInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *ServerConnectInterface) GetServerInterfaceId() float32 {
 
 // GetServerInterfaceIdOk returns a tuple with the ServerInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *ServerConnectInterface) GetServerInterfaceIdOk() (*float32, bool) {
+func (o *ServerConnectInterface) GetServerInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *ServerConnectInterface) GetServerInterfaceIdOk() (*float32, bool) {
 }
 
 // SetServerInterfaceId sets field value
-func (o *ServerConnectInterface) SetServerInterfaceId(v float32) {
+func (o *ServerConnectInterface) SetServerInterfaceId(v int64) {
 	o.ServerInterfaceId = v
 }
 

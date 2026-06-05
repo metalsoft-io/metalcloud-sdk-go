@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **GatewayPlacement** | Pointer to [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [optional] [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
-**SubnetId** | **int32** |  | 
+**SubnetId** | **int64** |  | 
 
 ## Methods
 
 ### NewCreateManualIpv4SubnetAllocationStrategy
 
-`func NewCreateManualIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int32, ) *CreateManualIpv4SubnetAllocationStrategy`
+`func NewCreateManualIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int64, ) *CreateManualIpv4SubnetAllocationStrategy`
 
 NewCreateManualIpv4SubnetAllocationStrategy instantiates a new CreateManualIpv4SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -95,20 +95,20 @@ HasGatewayPlacement returns a boolean if a field has been set.
 
 ### GetSubnetId
 
-`func (o *CreateManualIpv4SubnetAllocationStrategy) GetSubnetId() int32`
+`func (o *CreateManualIpv4SubnetAllocationStrategy) GetSubnetId() int64`
 
 GetSubnetId returns the SubnetId field if non-nil, zero value otherwise.
 
 ### GetSubnetIdOk
 
-`func (o *CreateManualIpv4SubnetAllocationStrategy) GetSubnetIdOk() (*int32, bool)`
+`func (o *CreateManualIpv4SubnetAllocationStrategy) GetSubnetIdOk() (*int64, bool)`
 
 GetSubnetIdOk returns a tuple with the SubnetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetId
 
-`func (o *CreateManualIpv4SubnetAllocationStrategy) SetSubnetId(v int32)`
+`func (o *CreateManualIpv4SubnetAllocationStrategy) SetSubnetId(v int64)`
 
 SetSubnetId sets SubnetId field to given value.
 
