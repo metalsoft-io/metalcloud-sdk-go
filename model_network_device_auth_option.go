@@ -25,8 +25,6 @@ type NetworkDeviceAuthOption struct {
 	Kind string `json:"kind"`
 	// The ID of the DeviceAuthProvider. Required when kind is tacacs.
 	DeviceAuthProviderId *int64 `json:"deviceAuthProviderId,omitempty"`
-	// VRF name on the device through which TACACS traffic should be routed (e.g. \"mgmt\"). Only meaningful when kind is tacacs. If omitted, the switch service auto-detects from the device state: it queries network-instance=mgmt and uses \"mgmt\" if the management interface is a member, otherwise leaves the binding unset (default VRF).
-	VrfName *string `json:"vrfName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -106,38 +104,6 @@ func (o *NetworkDeviceAuthOption) SetDeviceAuthProviderId(v int64) {
 	o.DeviceAuthProviderId = &v
 }
 
-// GetVrfName returns the VrfName field value if set, zero value otherwise.
-func (o *NetworkDeviceAuthOption) GetVrfName() string {
-	if o == nil || IsNil(o.VrfName) {
-		var ret string
-		return ret
-	}
-	return *o.VrfName
-}
-
-// GetVrfNameOk returns a tuple with the VrfName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDeviceAuthOption) GetVrfNameOk() (*string, bool) {
-	if o == nil || IsNil(o.VrfName) {
-		return nil, false
-	}
-	return o.VrfName, true
-}
-
-// HasVrfName returns a boolean if a field has been set.
-func (o *NetworkDeviceAuthOption) HasVrfName() bool {
-	if o != nil && !IsNil(o.VrfName) {
-		return true
-	}
-
-	return false
-}
-
-// SetVrfName gets a reference to the given string and assigns it to the VrfName field.
-func (o *NetworkDeviceAuthOption) SetVrfName(v string) {
-	o.VrfName = &v
-}
-
 func (o NetworkDeviceAuthOption) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -151,9 +117,6 @@ func (o NetworkDeviceAuthOption) ToMap() (map[string]interface{}, error) {
 	toSerialize["kind"] = o.Kind
 	if !IsNil(o.DeviceAuthProviderId) {
 		toSerialize["deviceAuthProviderId"] = o.DeviceAuthProviderId
-	}
-	if !IsNil(o.VrfName) {
-		toSerialize["vrfName"] = o.VrfName
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -200,7 +163,6 @@ func (o *NetworkDeviceAuthOption) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "deviceAuthProviderId")
-		delete(additionalProperties, "vrfName")
 		o.AdditionalProperties = additionalProperties
 	}
 

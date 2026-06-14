@@ -38,6 +38,8 @@ type CreateLogicalNetwork struct {
 	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
+	// When true, this is a routed-access (L3-only) network: it carries no VLAN/VNI/shared subnet and connected hosts are addressed over their point-to-point links, with the switch-side interface placed in this network's route-domain VRF. Create-time only and immutable thereafter. VXLAN networks only.
+	L3Only *bool `json:"l3Only,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,6 +53,8 @@ func NewCreateLogicalNetwork(kind LogicalNetworkKind, fabricId int64) *CreateLog
 	this := CreateLogicalNetwork{}
 	this.Kind = kind
 	this.FabricId = fabricId
+	var l3Only bool = false
+	this.L3Only = &l3Only
 	return &this
 }
 
@@ -59,6 +63,8 @@ func NewCreateLogicalNetwork(kind LogicalNetworkKind, fabricId int64) *CreateLog
 // but it doesn't guarantee that properties required by API are set
 func NewCreateLogicalNetworkWithDefaults() *CreateLogicalNetwork {
 	this := CreateLogicalNetwork{}
+	var l3Only bool = false
+	this.L3Only = &l3Only
 	return &this
 }
 
@@ -556,6 +562,38 @@ func (o *CreateLogicalNetwork) UnsetMtu() {
 	o.Mtu.Unset()
 }
 
+// GetL3Only returns the L3Only field value if set, zero value otherwise.
+func (o *CreateLogicalNetwork) GetL3Only() bool {
+	if o == nil || IsNil(o.L3Only) {
+		var ret bool
+		return ret
+	}
+	return *o.L3Only
+}
+
+// GetL3OnlyOk returns a tuple with the L3Only field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetwork) GetL3OnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.L3Only) {
+		return nil, false
+	}
+	return o.L3Only, true
+}
+
+// HasL3Only returns a boolean if a field has been set.
+func (o *CreateLogicalNetwork) HasL3Only() bool {
+	if o != nil && !IsNil(o.L3Only) {
+		return true
+	}
+
+	return false
+}
+
+// SetL3Only gets a reference to the given bool and assigns it to the L3Only field.
+func (o *CreateLogicalNetwork) SetL3Only(v bool) {
+	o.L3Only = &v
+}
+
 func (o CreateLogicalNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -606,6 +644,9 @@ func (o CreateLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Mtu.IsSet() {
 		toSerialize["mtu"] = o.Mtu.Get()
+	}
+	if !IsNil(o.L3Only) {
+		toSerialize["l3Only"] = o.L3Only
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -666,6 +707,7 @@ func (o *CreateLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "l3Only")
 		o.AdditionalProperties = additionalProperties
 	}
 

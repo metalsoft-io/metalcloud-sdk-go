@@ -139,7 +139,7 @@ func (a *ExternalSystemAPIService) CreateExternalSystemExecute(r ExternalSystemA
 type ExternalSystemAPIDeleteExternalSystemRequest struct {
 	ctx context.Context
 	ApiService *ExternalSystemAPIService
-	externalSystemId int32
+	externalSystemId int64
 }
 
 func (r ExternalSystemAPIDeleteExternalSystemRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes the specified external system
  @param externalSystemId
  @return ExternalSystemAPIDeleteExternalSystemRequest
 */
-func (a *ExternalSystemAPIService) DeleteExternalSystem(ctx context.Context, externalSystemId int32) ExternalSystemAPIDeleteExternalSystemRequest {
+func (a *ExternalSystemAPIService) DeleteExternalSystem(ctx context.Context, externalSystemId int64) ExternalSystemAPIDeleteExternalSystemRequest {
 	return ExternalSystemAPIDeleteExternalSystemRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *ExternalSystemAPIService) DeleteExternalSystemExecute(r ExternalSystemA
 type ExternalSystemAPIGetExternalSystemByIdRequest struct {
 	ctx context.Context
 	ApiService *ExternalSystemAPIService
-	externalSystemId int32
+	externalSystemId int64
 }
 
 func (r ExternalSystemAPIGetExternalSystemByIdRequest) Execute() (*ExternalSystem, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns the details of the specified external system
  @param externalSystemId
  @return ExternalSystemAPIGetExternalSystemByIdRequest
 */
-func (a *ExternalSystemAPIService) GetExternalSystemById(ctx context.Context, externalSystemId int32) ExternalSystemAPIGetExternalSystemByIdRequest {
+func (a *ExternalSystemAPIService) GetExternalSystemById(ctx context.Context, externalSystemId int64) ExternalSystemAPIGetExternalSystemByIdRequest {
 	return ExternalSystemAPIGetExternalSystemByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -589,7 +589,7 @@ func (a *ExternalSystemAPIService) GetExternalSystemsExecute(r ExternalSystemAPI
 type ExternalSystemAPIUpdateExternalSystemRequest struct {
 	ctx context.Context
 	ApiService *ExternalSystemAPIService
-	externalSystemId int32
+	externalSystemId int64
 	updateExternalSystem *UpdateExternalSystem
 	ifMatch *string
 }
@@ -619,7 +619,7 @@ Updates the specified external system
  @param externalSystemId
  @return ExternalSystemAPIUpdateExternalSystemRequest
 */
-func (a *ExternalSystemAPIService) UpdateExternalSystem(ctx context.Context, externalSystemId int32) ExternalSystemAPIUpdateExternalSystemRequest {
+func (a *ExternalSystemAPIService) UpdateExternalSystem(ctx context.Context, externalSystemId int64) ExternalSystemAPIUpdateExternalSystemRequest {
 	return ExternalSystemAPIUpdateExternalSystemRequest{
 		ApiService: a,
 		ctx: ctx,

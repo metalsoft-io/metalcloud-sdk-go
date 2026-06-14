@@ -26,7 +26,7 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.CreateDrive(context.Background(), infrastructureId).Execute()
 
@@ -40,8 +40,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.CreateDriveSnapshot(context.Background(), infrastructureId, driveId).Execute()
 
@@ -55,8 +55,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		httpRes, err := apiClient.DriveAPI.DeleteDrive(context.Background(), infrastructureId, driveId).Execute()
 
@@ -69,8 +69,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		httpRes, err := apiClient.DriveAPI.DeleteDriveSnapshot(context.Background(), infrastructureId, driveId).Execute()
 
@@ -83,7 +83,7 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var driveId float32
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.GetDrive(context.Background(), driveId).Execute()
 
@@ -97,8 +97,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.GetDriveConfigInfo(context.Background(), infrastructureId, driveId).Execute()
 
@@ -112,8 +112,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.GetDriveHosts(context.Background(), infrastructureId, driveId).Execute()
 
@@ -127,8 +127,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.GetDriveSnapshots(context.Background(), infrastructureId, driveId).Execute()
 
@@ -142,8 +142,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.GetInfrastructureDrive(context.Background(), infrastructureId, driveId).Execute()
 
@@ -157,7 +157,7 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.GetInfrastructureDrives(context.Background(), infrastructureId).Execute()
 
@@ -171,8 +171,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.PatchDriveConfig(context.Background(), infrastructureId, driveId).Execute()
 
@@ -186,8 +186,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.PatchDriveMeta(context.Background(), infrastructureId, driveId).Execute()
 
@@ -201,8 +201,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		httpRes, err := apiClient.DriveAPI.RestoreDriveToSnapshot(context.Background(), infrastructureId, driveId).Execute()
 
@@ -215,8 +215,8 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var driveId float32
+		var infrastructureId int64
+		var driveId int64
 
 		resp, httpRes, err := apiClient.DriveAPI.UpdateDriveServerInstanceGroupHostsBulk(context.Background(), infrastructureId, driveId).Execute()
 

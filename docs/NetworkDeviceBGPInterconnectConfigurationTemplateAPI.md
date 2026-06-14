@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -189,7 +189,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -319,7 +319,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	updateNetworkDeviceBGPInterconnectConfigurationTemplate := *openapiclient.NewUpdateNetworkDeviceBGPInterconnectConfigurationTemplate() // UpdateNetworkDeviceBGPInterconnectConfigurationTemplate | The Network Device BGP Interconnect Configuration Template update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -341,7 +341,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 

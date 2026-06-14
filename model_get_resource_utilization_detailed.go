@@ -28,9 +28,9 @@ type GetResourceUtilizationDetailed struct {
 	// End timestamp for the resource utilization
 	EndTimestamp string `json:"endTimestamp"`
 	// List of infrastructure IDs
-	InfrastructureIds []float32 `json:"infrastructureIds,omitempty"`
+	InfrastructureIds []int64 `json:"infrastructureIds,omitempty"`
 	// List of site IDs
-	SiteIds []float32 `json:"siteIds,omitempty"`
+	SiteIds []int64 `json:"siteIds,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -129,9 +129,9 @@ func (o *GetResourceUtilizationDetailed) SetEndTimestamp(v string) {
 }
 
 // GetInfrastructureIds returns the InfrastructureIds field value if set, zero value otherwise.
-func (o *GetResourceUtilizationDetailed) GetInfrastructureIds() []float32 {
+func (o *GetResourceUtilizationDetailed) GetInfrastructureIds() []int64 {
 	if o == nil || IsNil(o.InfrastructureIds) {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.InfrastructureIds
@@ -139,7 +139,7 @@ func (o *GetResourceUtilizationDetailed) GetInfrastructureIds() []float32 {
 
 // GetInfrastructureIdsOk returns a tuple with the InfrastructureIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetResourceUtilizationDetailed) GetInfrastructureIdsOk() ([]float32, bool) {
+func (o *GetResourceUtilizationDetailed) GetInfrastructureIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.InfrastructureIds) {
 		return nil, false
 	}
@@ -155,15 +155,15 @@ func (o *GetResourceUtilizationDetailed) HasInfrastructureIds() bool {
 	return false
 }
 
-// SetInfrastructureIds gets a reference to the given []float32 and assigns it to the InfrastructureIds field.
-func (o *GetResourceUtilizationDetailed) SetInfrastructureIds(v []float32) {
+// SetInfrastructureIds gets a reference to the given []int64 and assigns it to the InfrastructureIds field.
+func (o *GetResourceUtilizationDetailed) SetInfrastructureIds(v []int64) {
 	o.InfrastructureIds = v
 }
 
 // GetSiteIds returns the SiteIds field value if set, zero value otherwise.
-func (o *GetResourceUtilizationDetailed) GetSiteIds() []float32 {
+func (o *GetResourceUtilizationDetailed) GetSiteIds() []int64 {
 	if o == nil || IsNil(o.SiteIds) {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.SiteIds
@@ -171,7 +171,7 @@ func (o *GetResourceUtilizationDetailed) GetSiteIds() []float32 {
 
 // GetSiteIdsOk returns a tuple with the SiteIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetResourceUtilizationDetailed) GetSiteIdsOk() ([]float32, bool) {
+func (o *GetResourceUtilizationDetailed) GetSiteIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.SiteIds) {
 		return nil, false
 	}
@@ -187,8 +187,8 @@ func (o *GetResourceUtilizationDetailed) HasSiteIds() bool {
 	return false
 }
 
-// SetSiteIds gets a reference to the given []float32 and assigns it to the SiteIds field.
-func (o *GetResourceUtilizationDetailed) SetSiteIds(v []float32) {
+// SetSiteIds gets a reference to the given []int64 and assigns it to the SiteIds field.
+func (o *GetResourceUtilizationDetailed) SetSiteIds(v []int64) {
 	o.SiteIds = v
 }
 

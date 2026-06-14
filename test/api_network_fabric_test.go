@@ -26,7 +26,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId float32
+		var networkFabricId int64
 
 		httpRes, err := apiClient.NetworkFabricAPI.AcceptNetworkFabricDeploy(context.Background(), networkFabricId).Execute()
 
@@ -39,7 +39,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.ActivateNetworkFabric(context.Background(), networkFabricId).Execute()
 
@@ -53,7 +53,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.AddNetworkDevicesToFabric(context.Background(), networkFabricId).Execute()
 
@@ -79,7 +79,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.CreateNetworkFabricBgpSession(context.Background(), networkFabricId).Execute()
 
@@ -93,7 +93,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.CreateNetworkFabricLink(context.Background(), networkFabricId).Execute()
 
@@ -107,7 +107,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.CreateNetworkFabricLinkAggregation(context.Background(), networkFabricId).Execute()
 
@@ -121,7 +121,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId float32
+		var networkFabricId int64
 
 		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabric(context.Background(), networkFabricId).Execute()
 
@@ -134,8 +134,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var bgpSessionId int32
+		var networkFabricId int64
+		var bgpSessionId int64
 
 		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabricBgpSession(context.Background(), networkFabricId, bgpSessionId).Execute()
 
@@ -148,8 +148,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var networkFabricLinkId int32
+		var networkFabricId int64
+		var networkFabricLinkId int64
 
 		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabricLink(context.Background(), networkFabricId, networkFabricLinkId).Execute()
 
@@ -162,8 +162,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var linkAggregationId int32
+		var networkFabricId int64
+		var linkAggregationId int64
 
 		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabricLinkAggregation(context.Background(), networkFabricId, linkAggregationId).Execute()
 
@@ -176,7 +176,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId float32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.DeployNetworkFabric(context.Background(), networkFabricId).Execute()
 
@@ -190,7 +190,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricNetworkDevices(context.Background(), networkFabricId).Execute()
 
@@ -204,7 +204,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricsNetworkFabricInterconnects(context.Background(), networkFabricId).Execute()
 
@@ -218,8 +218,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var bgpSessionId int32
+		var networkFabricId int64
+		var bgpSessionId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricBGPSession(context.Background(), networkFabricId, bgpSessionId).Execute()
 
@@ -233,7 +233,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricBgpSessions(context.Background(), networkFabricId).Execute()
 
@@ -247,7 +247,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId float32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricById(context.Background(), networkFabricId).Execute()
 
@@ -261,8 +261,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var networkFabricLinkId int32
+		var networkFabricId int64
+		var networkFabricLinkId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLink(context.Background(), networkFabricId, networkFabricLinkId).Execute()
 
@@ -276,8 +276,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var linkAggregationId int32
+		var networkFabricId int64
+		var linkAggregationId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLinkAggregation(context.Background(), networkFabricId, linkAggregationId).Execute()
 
@@ -291,7 +291,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLinkAggregations(context.Background(), networkFabricId).Execute()
 
@@ -305,7 +305,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLinks(context.Background(), networkFabricId).Execute()
 
@@ -331,7 +331,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId float32
+		var networkFabricId int64
 
 		httpRes, err := apiClient.NetworkFabricAPI.RejectNetworkFabricDeploy(context.Background(), networkFabricId).Execute()
 
@@ -344,8 +344,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var networkDeviceId int32
+		var networkFabricId int64
+		var networkDeviceId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.RemoveNetworkDeviceFromFabric(context.Background(), networkFabricId, networkDeviceId).Execute()
 
@@ -359,7 +359,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId float32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.RescanNetworkFabricLinks(context.Background(), networkFabricId).Execute()
 
@@ -373,7 +373,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
+		var networkFabricId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.UpdateNetworkFabric(context.Background(), networkFabricId).Execute()
 
@@ -387,8 +387,8 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId int32
-		var linkAggregationId int32
+		var networkFabricId int64
+		var linkAggregationId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.UpdateNetworkFabricLinkAggregation(context.Background(), networkFabricId, linkAggregationId).Execute()
 

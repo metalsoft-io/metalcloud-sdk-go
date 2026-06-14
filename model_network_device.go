@@ -34,6 +34,8 @@ type NetworkDevice struct {
 	SiteId int64 `json:"siteId"`
 	// Hostname of the network device
 	IdentifierString string `json:"identifierString"`
+	// One-shot: when true, the next fabric deploy pushes identifierString as the switch system hostname (Cumulus Linux only) and the flag is cleared again after the successful push.
+	ApplyIdentifierAsHostnameOnNextDeploy bool `json:"applyIdentifierAsHostnameOnNextDeploy"`
 	// Description of the network device
 	Description string `json:"description"`
 	// Chassis identifier of the network device
@@ -78,6 +80,12 @@ type NetworkDevice struct {
 	Driver NetworkDeviceDriver `json:"driver"`
 	// The physical or logical position of the network device in the network topology.
 	Position string `json:"position"`
+	// Whether the network device is in sync with the expected configuration.
+	DriftDetectionSyncStatus string `json:"driftDetectionSyncStatus"`
+	// ID of the snapshot used as a target for drift detection.
+	DriftDetectionTargetSnapshotId *string `json:"driftDetectionTargetSnapshotId,omitempty"`
+	// The configuration drift for the network device. 
+	ConfigurationDrift *string `json:"configurationDrift,omitempty"`
 	// ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU
 	ServerId *int64 `json:"serverId,omitempty"`
 	// NUMA node of the network device for optimal resource allocation
@@ -86,6 +94,8 @@ type NetworkDevice struct {
 	OrderIndex float32 `json:"orderIndex"`
 	// Tags associated with the network device for categorization and filtering
 	Tags []string `json:"tags"`
+	// Key/value tags (key-map). The forthcoming replacement for the legacy string[] `tags`; both are populated independently for now. Edited on this object via PATCH (a null value deletes a key) — same mechanism as annotations.
+	TagsMap map[string]string `json:"tagsMap"`
 	// Whether the device is ready for initial configuration
 	ReadyForInitialConfiguration float32 `json:"readyForInitialConfiguration"`
 	// Whether bootstrap readiness check is in progress
@@ -126,6 +136,8 @@ type NetworkDevice struct {
 	IsGateway bool `json:"isGateway"`
 	// The extension execution info of the network device.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
+	// The ongoing job groups of the network device.
+	OngoingJobGroups []ExtensionExecutionInfo `json:"ongoingJobGroups,omitempty"`
 	// ID of the VM pool associated with the network device.
 	VmPoolId *int64 `json:"vmPoolId,omitempty"`
 	// ID of the network device controller if any.
@@ -159,7 +171,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, applyIdentifierAsHostnameOnNextDeploy bool, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, driftDetectionSyncStatus string, orderIndex float32, tags []string, tagsMap map[string]string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -167,6 +179,7 @@ func NewNetworkDevice(id string, revision int64, status string, vendorId int64, 
 	this.VendorId = vendorId
 	this.SiteId = siteId
 	this.IdentifierString = identifierString
+	this.ApplyIdentifierAsHostnameOnNextDeploy = applyIdentifierAsHostnameOnNextDeploy
 	this.Description = description
 	this.ChassisIdentifier = chassisIdentifier
 	this.Country = country
@@ -188,8 +201,10 @@ func NewNetworkDevice(id string, revision int64, status string, vendorId int64, 
 	this.SerialNumber = serialNumber
 	this.Driver = driver
 	this.Position = position
+	this.DriftDetectionSyncStatus = driftDetectionSyncStatus
 	this.OrderIndex = orderIndex
 	this.Tags = tags
+	this.TagsMap = tagsMap
 	this.ReadyForInitialConfiguration = readyForInitialConfiguration
 	this.BootstrapReadinessCheckInProgress = bootstrapReadinessCheckInProgress
 	this.SubnetOobId = subnetOobId
@@ -214,6 +229,8 @@ func NewNetworkDevice(id string, revision int64, status string, vendorId int64, 
 // but it doesn't guarantee that properties required by API are set
 func NewNetworkDeviceWithDefaults() *NetworkDevice {
 	this := NetworkDevice{}
+	var applyIdentifierAsHostnameOnNextDeploy bool = false
+	this.ApplyIdentifierAsHostnameOnNextDeploy = applyIdentifierAsHostnameOnNextDeploy
 	return &this
 }
 
@@ -359,6 +376,30 @@ func (o *NetworkDevice) GetIdentifierStringOk() (*string, bool) {
 // SetIdentifierString sets field value
 func (o *NetworkDevice) SetIdentifierString(v string) {
 	o.IdentifierString = v
+}
+
+// GetApplyIdentifierAsHostnameOnNextDeploy returns the ApplyIdentifierAsHostnameOnNextDeploy field value
+func (o *NetworkDevice) GetApplyIdentifierAsHostnameOnNextDeploy() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ApplyIdentifierAsHostnameOnNextDeploy
+}
+
+// GetApplyIdentifierAsHostnameOnNextDeployOk returns a tuple with the ApplyIdentifierAsHostnameOnNextDeploy field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetApplyIdentifierAsHostnameOnNextDeployOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplyIdentifierAsHostnameOnNextDeploy, true
+}
+
+// SetApplyIdentifierAsHostnameOnNextDeploy sets field value
+func (o *NetworkDevice) SetApplyIdentifierAsHostnameOnNextDeploy(v bool) {
+	o.ApplyIdentifierAsHostnameOnNextDeploy = v
 }
 
 // GetDescription returns the Description field value
@@ -897,6 +938,94 @@ func (o *NetworkDevice) SetPosition(v string) {
 	o.Position = v
 }
 
+// GetDriftDetectionSyncStatus returns the DriftDetectionSyncStatus field value
+func (o *NetworkDevice) GetDriftDetectionSyncStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DriftDetectionSyncStatus
+}
+
+// GetDriftDetectionSyncStatusOk returns a tuple with the DriftDetectionSyncStatus field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetDriftDetectionSyncStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DriftDetectionSyncStatus, true
+}
+
+// SetDriftDetectionSyncStatus sets field value
+func (o *NetworkDevice) SetDriftDetectionSyncStatus(v string) {
+	o.DriftDetectionSyncStatus = v
+}
+
+// GetDriftDetectionTargetSnapshotId returns the DriftDetectionTargetSnapshotId field value if set, zero value otherwise.
+func (o *NetworkDevice) GetDriftDetectionTargetSnapshotId() string {
+	if o == nil || IsNil(o.DriftDetectionTargetSnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.DriftDetectionTargetSnapshotId
+}
+
+// GetDriftDetectionTargetSnapshotIdOk returns a tuple with the DriftDetectionTargetSnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetDriftDetectionTargetSnapshotIdOk() (*string, bool) {
+	if o == nil || IsNil(o.DriftDetectionTargetSnapshotId) {
+		return nil, false
+	}
+	return o.DriftDetectionTargetSnapshotId, true
+}
+
+// HasDriftDetectionTargetSnapshotId returns a boolean if a field has been set.
+func (o *NetworkDevice) HasDriftDetectionTargetSnapshotId() bool {
+	if o != nil && !IsNil(o.DriftDetectionTargetSnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriftDetectionTargetSnapshotId gets a reference to the given string and assigns it to the DriftDetectionTargetSnapshotId field.
+func (o *NetworkDevice) SetDriftDetectionTargetSnapshotId(v string) {
+	o.DriftDetectionTargetSnapshotId = &v
+}
+
+// GetConfigurationDrift returns the ConfigurationDrift field value if set, zero value otherwise.
+func (o *NetworkDevice) GetConfigurationDrift() string {
+	if o == nil || IsNil(o.ConfigurationDrift) {
+		var ret string
+		return ret
+	}
+	return *o.ConfigurationDrift
+}
+
+// GetConfigurationDriftOk returns a tuple with the ConfigurationDrift field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetConfigurationDriftOk() (*string, bool) {
+	if o == nil || IsNil(o.ConfigurationDrift) {
+		return nil, false
+	}
+	return o.ConfigurationDrift, true
+}
+
+// HasConfigurationDrift returns a boolean if a field has been set.
+func (o *NetworkDevice) HasConfigurationDrift() bool {
+	if o != nil && !IsNil(o.ConfigurationDrift) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfigurationDrift gets a reference to the given string and assigns it to the ConfigurationDrift field.
+func (o *NetworkDevice) SetConfigurationDrift(v string) {
+	o.ConfigurationDrift = &v
+}
+
 // GetServerId returns the ServerId field value if set, zero value otherwise.
 func (o *NetworkDevice) GetServerId() int64 {
 	if o == nil || IsNil(o.ServerId) {
@@ -1009,6 +1138,30 @@ func (o *NetworkDevice) GetTagsOk() ([]string, bool) {
 // SetTags sets field value
 func (o *NetworkDevice) SetTags(v []string) {
 	o.Tags = v
+}
+
+// GetTagsMap returns the TagsMap field value
+func (o *NetworkDevice) GetTagsMap() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+
+	return o.TagsMap
+}
+
+// GetTagsMapOk returns a tuple with the TagsMap field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetTagsMapOk() (*map[string]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TagsMap, true
+}
+
+// SetTagsMap sets field value
+func (o *NetworkDevice) SetTagsMap(v map[string]string) {
+	o.TagsMap = v
 }
 
 // GetReadyForInitialConfiguration returns the ReadyForInitialConfiguration field value
@@ -1523,6 +1676,38 @@ func (o *NetworkDevice) SetExtensionInfo(v ExtensionExecutionInfo) {
 	o.ExtensionInfo = &v
 }
 
+// GetOngoingJobGroups returns the OngoingJobGroups field value if set, zero value otherwise.
+func (o *NetworkDevice) GetOngoingJobGroups() []ExtensionExecutionInfo {
+	if o == nil || IsNil(o.OngoingJobGroups) {
+		var ret []ExtensionExecutionInfo
+		return ret
+	}
+	return o.OngoingJobGroups
+}
+
+// GetOngoingJobGroupsOk returns a tuple with the OngoingJobGroups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetOngoingJobGroupsOk() ([]ExtensionExecutionInfo, bool) {
+	if o == nil || IsNil(o.OngoingJobGroups) {
+		return nil, false
+	}
+	return o.OngoingJobGroups, true
+}
+
+// HasOngoingJobGroups returns a boolean if a field has been set.
+func (o *NetworkDevice) HasOngoingJobGroups() bool {
+	if o != nil && !IsNil(o.OngoingJobGroups) {
+		return true
+	}
+
+	return false
+}
+
+// SetOngoingJobGroups gets a reference to the given []ExtensionExecutionInfo and assigns it to the OngoingJobGroups field.
+func (o *NetworkDevice) SetOngoingJobGroups(v []ExtensionExecutionInfo) {
+	o.OngoingJobGroups = v
+}
+
 // GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
 func (o *NetworkDevice) GetVmPoolId() int64 {
 	if o == nil || IsNil(o.VmPoolId) {
@@ -1944,6 +2129,7 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["vendorId"] = o.VendorId
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["identifierString"] = o.IdentifierString
+	toSerialize["applyIdentifierAsHostnameOnNextDeploy"] = o.ApplyIdentifierAsHostnameOnNextDeploy
 	toSerialize["description"] = o.Description
 	toSerialize["chassisIdentifier"] = o.ChassisIdentifier
 	toSerialize["country"] = o.Country
@@ -1968,6 +2154,13 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["serialNumber"] = o.SerialNumber
 	toSerialize["driver"] = o.Driver
 	toSerialize["position"] = o.Position
+	toSerialize["driftDetectionSyncStatus"] = o.DriftDetectionSyncStatus
+	if !IsNil(o.DriftDetectionTargetSnapshotId) {
+		toSerialize["driftDetectionTargetSnapshotId"] = o.DriftDetectionTargetSnapshotId
+	}
+	if !IsNil(o.ConfigurationDrift) {
+		toSerialize["configurationDrift"] = o.ConfigurationDrift
+	}
 	if !IsNil(o.ServerId) {
 		toSerialize["serverId"] = o.ServerId
 	}
@@ -1978,6 +2171,7 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	toSerialize["tagsMap"] = o.TagsMap
 	toSerialize["readyForInitialConfiguration"] = o.ReadyForInitialConfiguration
 	toSerialize["bootstrapReadinessCheckInProgress"] = o.BootstrapReadinessCheckInProgress
 	toSerialize["subnetOobId"] = o.SubnetOobId
@@ -2005,6 +2199,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["isGateway"] = o.IsGateway
 	if !IsNil(o.ExtensionInfo) {
 		toSerialize["extensionInfo"] = o.ExtensionInfo
+	}
+	if !IsNil(o.OngoingJobGroups) {
+		toSerialize["ongoingJobGroups"] = o.OngoingJobGroups
 	}
 	if !IsNil(o.VmPoolId) {
 		toSerialize["vmPoolId"] = o.VmPoolId
@@ -2061,6 +2258,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"vendorId",
 		"siteId",
 		"identifierString",
+		"applyIdentifierAsHostnameOnNextDeploy",
 		"description",
 		"chassisIdentifier",
 		"country",
@@ -2082,8 +2280,10 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"serialNumber",
 		"driver",
 		"position",
+		"driftDetectionSyncStatus",
 		"orderIndex",
 		"tags",
+		"tagsMap",
 		"readyForInitialConfiguration",
 		"bootstrapReadinessCheckInProgress",
 		"subnetOobId",
@@ -2135,6 +2335,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vendorId")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "identifierString")
+		delete(additionalProperties, "applyIdentifierAsHostnameOnNextDeploy")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "chassisIdentifier")
 		delete(additionalProperties, "country")
@@ -2157,10 +2358,14 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
+		delete(additionalProperties, "driftDetectionSyncStatus")
+		delete(additionalProperties, "driftDetectionTargetSnapshotId")
+		delete(additionalProperties, "configurationDrift")
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "orderIndex")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "tagsMap")
 		delete(additionalProperties, "readyForInitialConfiguration")
 		delete(additionalProperties, "bootstrapReadinessCheckInProgress")
 		delete(additionalProperties, "subnetOobId")
@@ -2181,6 +2386,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bootstrapReadinessCheckResult")
 		delete(additionalProperties, "isGateway")
 		delete(additionalProperties, "extensionInfo")
+		delete(additionalProperties, "ongoingJobGroups")
 		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "switchControllerId")
 		delete(additionalProperties, "externalId")

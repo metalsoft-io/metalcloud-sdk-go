@@ -38,7 +38,7 @@ func Test_sdk_NetworkDeviceDefaultSecretsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceDefaultSecretsId float32
+		var networkDeviceDefaultSecretsId int64
 
 		httpRes, err := apiClient.NetworkDeviceDefaultSecretsAPI.DeleteNetworkDeviceDefaultSecrets(context.Background(), networkDeviceDefaultSecretsId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_NetworkDeviceDefaultSecretsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceDefaultSecretsId float32
+		var networkDeviceDefaultSecretsId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceDefaultSecretsAPI.GetNetworkDeviceDefaultSecretsCredentials(context.Background(), networkDeviceDefaultSecretsId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_NetworkDeviceDefaultSecretsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceDefaultSecretsId float32
+		var networkDeviceDefaultSecretsId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceDefaultSecretsAPI.GetNetworkDeviceDefaultSecretsInfo(context.Background(), networkDeviceDefaultSecretsId).Execute()
 
@@ -91,7 +91,7 @@ func Test_sdk_NetworkDeviceDefaultSecretsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceDefaultSecretsId float32
+		var networkDeviceDefaultSecretsId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceDefaultSecretsAPI.UpdateNetworkDeviceDefaultSecrets(context.Background(), networkDeviceDefaultSecretsId).Execute()
 

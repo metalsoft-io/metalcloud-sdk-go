@@ -43,7 +43,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -62,7 +62,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -113,7 +113,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -132,7 +132,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -249,7 +249,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -268,7 +268,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -317,8 +317,8 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
-	siteId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
+	siteId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -336,8 +336,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
-**siteId** | **float32** |  | 
+**extensionId** | **int64** |  | 
+**siteId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -408,7 +408,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -456,8 +456,8 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
-	siteId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
+	siteId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -477,8 +477,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
-**siteId** | **float32** |  | 
+**extensionId** | **int64** |  | 
+**siteId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -527,7 +527,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -547,7 +547,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -679,7 +679,7 @@ import (
 )
 
 func main() {
-	siteId := float32(8.14) // float32 | 
+	siteId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -699,7 +699,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | **float32** |  | 
+**siteId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -749,7 +749,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -768,7 +768,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -819,7 +819,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -838,7 +838,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -887,8 +887,8 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
-	siteId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
+	siteId := int64(789) // int64 | 
 	extensionConfigValue := []openapiclient.ExtensionConfigValue{*openapiclient.NewExtensionConfigValue("Label_example", openapiclient.ExtensionConfigValue_value{Bool: new(bool)})} // []ExtensionConfigValue | The extension configuration details
 
 	configuration := openapiclient.NewConfiguration()
@@ -907,8 +907,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
-**siteId** | **float32** |  | 
+**extensionId** | **int64** |  | 
+**siteId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -960,7 +960,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -979,7 +979,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1030,7 +1030,7 @@ import (
 )
 
 func main() {
-	extensionId := float32(8.14) // float32 | 
+	extensionId := int64(789) // int64 | 
 	updateExtension := *openapiclient.NewUpdateExtension("My App", "My App Description", *openapiclient.NewExtensionDefinition("Kind_example", "SchemaVersion_example", "Name_example", "Label_example", "ExtensionType_example", "Vendor_example", "ExtensionVersion_example", "Icon_example", *openapiclient.NewExtensionDependency("ControllerVersion_example"), []openapiclient.ExtensionDefinitionInputsDataItem{openapiclient.ExtensionDefinition_inputsDataItem{ExtensionInputBoolean: openapiclient.NewExtensionInputBoolean("Label_example", "Name_example", openapiclient.ExtensionInputType("ExtensionInputString"), map[string]interface{}(123))}}, []openapiclient.ExtensionOutput{*openapiclient.NewExtensionOutput("Label_example", "Name_example", "OutputType_example")}, []openapiclient.ExtensionAsset{*openapiclient.NewExtensionAsset("Label_example", "Name_example", openapiclient.ExtensionAssetType("AnsibleBundle"))})) // UpdateExtension | The extension details
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1052,7 +1052,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **float32** |  | 
+**extensionId** | **int64** |  | 
 
 ### Other Parameters
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerIds** | Pointer to **[]float32** | The list of server ids for which firmware upgrade audit should be generated. | [optional] 
+**ServerIds** | Pointer to **[]int64** | The list of server ids for which firmware upgrade audit should be generated. | [optional] 
 **VendorPattern** | Pointer to **string** | Vendor name pattern to match servers (e.g., \&quot;HPE\&quot;, \&quot;Dell\&quot;). Used with vendorModelPattern. Cannot be used with serverIds. | [optional] 
 **ModelPattern** | Pointer to **string** | Model name pattern with wildcards to match servers (e.g., \&quot;DL360*\&quot;, \&quot;*Gen10\&quot;, \&quot;PowerEdge.*\&quot;). Used with vendorPattern. Cannot be used with serverIds. | [optional] 
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerIds
 
-`func (o *GenerateFirmwareUpgradeAudit) GetServerIds() []float32`
+`func (o *GenerateFirmwareUpgradeAudit) GetServerIds() []int64`
 
 GetServerIds returns the ServerIds field if non-nil, zero value otherwise.
 
 ### GetServerIdsOk
 
-`func (o *GenerateFirmwareUpgradeAudit) GetServerIdsOk() (*[]float32, bool)`
+`func (o *GenerateFirmwareUpgradeAudit) GetServerIdsOk() (*[]int64, bool)`
 
 GetServerIdsOk returns a tuple with the ServerIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerIds
 
-`func (o *GenerateFirmwareUpgradeAudit) SetServerIds(v []float32)`
+`func (o *GenerateFirmwareUpgradeAudit) SetServerIds(v []int64)`
 
 SetServerIds sets ServerIds field to given value.
 

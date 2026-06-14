@@ -45,7 +45,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	addUserToInfrastructure := *openapiclient.NewAddUserToInfrastructure("UserEmail_example", false) // AddUserToInfrastructure | Additional information for the user to add
 
 	configuration := openapiclient.NewConfiguration()
@@ -64,7 +64,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -115,7 +115,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -135,7 +135,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -251,7 +251,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -270,7 +270,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -321,7 +321,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	infrastructureDeployOptions := *openapiclient.NewInfrastructureDeployOptions(false, *openapiclient.NewInfrastructureDeployShutdownOptions(false, float32(123), false, false)) // InfrastructureDeployOptions | The infrastructure deploy options
 
 	configuration := openapiclient.NewConfiguration()
@@ -342,7 +342,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -454,7 +454,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -474,7 +474,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -522,7 +522,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -542,7 +542,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -724,7 +724,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -744,7 +744,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -794,7 +794,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -814,7 +814,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -958,8 +958,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	userId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -977,8 +977,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**userId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1029,7 +1029,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1048,7 +1048,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1099,7 +1099,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	updateInfrastructure := *openapiclient.NewUpdateInfrastructure() // UpdateInfrastructure | The infrastructure configuration to update
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1121,7 +1121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1173,7 +1173,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	updateInfrastructureMeta := *openapiclient.NewUpdateInfrastructureMeta("Name_example") // UpdateInfrastructureMeta | The infrastructure metadata to update
 
 	configuration := openapiclient.NewConfiguration()
@@ -1194,7 +1194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 

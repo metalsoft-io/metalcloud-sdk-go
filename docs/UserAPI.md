@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**EnableUser2FA**](UserAPI.md#EnableUser2FA) | **Post** /api/v2/user/actions/2fa-enable | Enable 2FA
 [**GenerateUser2FASecret**](UserAPI.md#GenerateUser2FASecret) | **Post** /api/v2/user/actions/2fa-generate | Generate 2FA secret
 [**GetUserApiKey**](UserAPI.md#GetUserApiKey) | **Get** /api/v2/user/api-key | Get user API key
+[**GetUserPermissions**](UserAPI.md#GetUserPermissions) | **Get** /api/v2/user/permissions | Get the permissions of the logged in user
 [**InitiateEmailChange**](UserAPI.md#InitiateEmailChange) | **Post** /api/v2/user/actions/initiate-email-change | Initiates the user email change
 [**InitiatePasswordReset**](UserAPI.md#InitiatePasswordReset) | **Post** /api/v2/user/actions/initiate-password-reset | Initiate reset user password
 [**RegenerateUserApiKey**](UserAPI.md#RegenerateUserApiKey) | **Post** /api/v2/user/actions/regenerate-api-key | Regenerate user API key
@@ -247,6 +248,65 @@ Other parameters are passed through a pointer to a apiGetUserApiKeyRequest struc
 ### Return type
 
 [**UserApiKey**](UserApiKey.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUserPermissions
+
+> UserPermissions GetUserPermissions(ctx).Execute()
+
+Get the permissions of the logged in user
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.GetUserPermissions(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.GetUserPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetUserPermissions`: UserPermissions
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.GetUserPermissions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUserPermissionsRequest struct via the builder pattern
+
+
+### Return type
+
+[**UserPermissions**](UserPermissions.md)
 
 ### Authorization
 

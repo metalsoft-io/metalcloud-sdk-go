@@ -112,7 +112,7 @@ import (
 )
 
 func main() {
-	cronJobId := float32(8.14) // float32 | 
+	cronJobId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -130,7 +130,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cronJobId** | **float32** |  | 
+**cronJobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -180,7 +180,7 @@ import (
 )
 
 func main() {
-	cronJobId := float32(8.14) // float32 | 
+	cronJobId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -200,7 +200,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cronJobId** | **float32** |  | 
+**cronJobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -393,7 +393,7 @@ import (
 )
 
 func main() {
-	jobId := float32(8.14) // float32 | 
+	jobId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -413,7 +413,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobId** | **float32** |  | 
+**jobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -463,7 +463,7 @@ import (
 )
 
 func main() {
-	jobId := float32(8.14) // float32 | 
+	jobId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterExceptionId := []string{"Inner_example"} // []string | Filter by exceptionId query param.  **Format:** filter.exceptionId={$not}:OPERATION:VALUE    **Example:** filter.exceptionId=$btw:John Doe&filter.exceptionId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -491,7 +491,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobId** | **float32** |  | 
+**jobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -549,7 +549,7 @@ import (
 )
 
 func main() {
-	jobId := float32(8.14) // float32 | 
+	jobId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -569,7 +569,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobId** | **float32** |  | 
+**jobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -619,7 +619,7 @@ import (
 )
 
 func main() {
-	jobGroupId := float32(8.14) // float32 | 
+	jobGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -639,7 +639,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobGroupId** | **float32** |  | 
+**jobGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -689,7 +689,7 @@ import (
 )
 
 func main() {
-	jobGroupId := float32(8.14) // float32 | 
+	jobGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -709,7 +709,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobGroupId** | **float32** |  | 
+**jobGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1114,7 +1114,7 @@ import (
 )
 
 func main() {
-	jobId := float32(8.14) // float32 | 
+	jobId := int64(789) // int64 | 
 	jobCommandInfo := *openapiclient.NewJobCommandInfo() // JobCommandInfo | The job retry options
 
 	configuration := openapiclient.NewConfiguration()
@@ -1133,7 +1133,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobId** | **float32** |  | 
+**jobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1184,7 +1184,7 @@ import (
 )
 
 func main() {
-	jobId := float32(8.14) // float32 | 
+	jobId := int64(789) // int64 | 
 	jobRetryInfo := *openapiclient.NewJobRetryInfo() // JobRetryInfo | The job retry options
 
 	configuration := openapiclient.NewConfiguration()
@@ -1203,7 +1203,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobId** | **float32** |  | 
+**jobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1254,7 +1254,7 @@ import (
 )
 
 func main() {
-	jobId := float32(8.14) // float32 | 
+	jobId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1272,7 +1272,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobId** | **float32** |  | 
+**jobId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1303,7 +1303,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCronJob
 
-> UpdateCronJob(ctx, cronJobId).UpdateCronJob(updateCronJob).Execute()
+> CronJob UpdateCronJob(ctx, cronJobId).UpdateCronJob(updateCronJob).Execute()
 
 Updates an existing cron job
 
@@ -1327,11 +1327,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.JobAPI.UpdateCronJob(context.Background(), cronJobId).UpdateCronJob(updateCronJob).Execute()
+	resp, r, err := apiClient.JobAPI.UpdateCronJob(context.Background(), cronJobId).UpdateCronJob(updateCronJob).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.UpdateCronJob``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `UpdateCronJob`: CronJob
+	fmt.Fprintf(os.Stdout, "Response from `JobAPI.UpdateCronJob`: %v\n", resp)
 }
 ```
 
@@ -1355,7 +1357,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**CronJob**](CronJob.md)
 
 ### Authorization
 
@@ -1364,7 +1366,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

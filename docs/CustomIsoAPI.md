@@ -33,8 +33,8 @@ import (
 )
 
 func main() {
-	customIsoId := float32(8.14) // float32 | 
-	serverId := float32(8.14) // float32 | 
+	customIsoId := int64(789) // int64 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,8 +54,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customIsoId** | **float32** |  | 
-**serverId** | **float32** |  | 
+**customIsoId** | **int64** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-	customIsoId := float32(8.14) // float32 | 
+	customIsoId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -186,7 +186,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customIsoId** | **float32** |  | 
+**customIsoId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -236,7 +236,7 @@ import (
 )
 
 func main() {
-	customIsoId := float32(8.14) // float32 | 
+	customIsoId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -256,7 +256,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customIsoId** | **float32** |  | 
+**customIsoId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -386,7 +386,7 @@ import (
 )
 
 func main() {
-	customIsoId := float32(8.14) // float32 | 
+	customIsoId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -406,7 +406,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customIsoId** | **float32** |  | 
+**customIsoId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -454,7 +454,7 @@ import (
 )
 
 func main() {
-	customIsoId := float32(8.14) // float32 | 
+	customIsoId := int64(789) // int64 | 
 	updateCustomIso := *openapiclient.NewUpdateCustomIso() // UpdateCustomIso | The updated Custom Iso object
 
 	configuration := openapiclient.NewConfiguration()
@@ -475,7 +475,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customIsoId** | **float32** |  | 
+**customIsoId** | **int64** |  | 
 
 ### Other Parameters
 

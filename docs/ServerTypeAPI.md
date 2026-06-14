@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-	serverTypeId := float32(8.14) // float32 | 
+	serverTypeId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverTypeId** | **float32** |  | 
+**serverTypeId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-	serverTypeId := float32(8.14) // float32 | 
+	serverTypeId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -189,7 +189,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverTypeId** | **float32** |  | 
+**serverTypeId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -462,7 +462,7 @@ import (
 )
 
 func main() {
-	serverTypeId := float32(8.14) // float32 | 
+	serverTypeId := int64(789) // int64 | 
 	updateServerType := *openapiclient.NewUpdateServerType("Label_example") // UpdateServerType | The Server Type update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -483,7 +483,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverTypeId** | **float32** |  | 
+**serverTypeId** | **int64** |  | 
 
 ### Other Parameters
 

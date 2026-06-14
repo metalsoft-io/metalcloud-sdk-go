@@ -7,10 +7,8 @@ Name | Type | Description | Notes
 **Id** | **int64** | VM ID | 
 **Name** | **string** | Name of the VM | 
 **SiteId** | **int64** | Id of the site for the VM | 
-**DatacenterName** | **string** | Datacenter of the VM | 
 **InfrastructureId** | **int64** | ID of the infrastructure where this VM is deployed | 
 **UserId** | **int64** | ID of the user that owns this VM | 
-**UserEmail** | **string** | Email of the user that owns this VM | 
 **InstanceId** | **int64** | ID of the instance where this VM is deployed | 
 **VmInstanceId** | **int64** | The id of the VM Instance. This is a number. | 
 **Host** | **string** | Name of the host | 
@@ -36,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewVM
 
-`func NewVM(id int64, name string, siteId int64, datacenterName string, infrastructureId int64, userId int64, userEmail string, instanceId int64, vmInstanceId int64, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId int64, poolId int64, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk, ) *VM`
+`func NewVM(id int64, name string, siteId int64, infrastructureId int64, userId int64, instanceId int64, vmInstanceId int64, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId int64, poolId int64, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk, ) *VM`
 
 NewVM instantiates a new VM object
 This constructor will assign default values to properties that have it defined,
@@ -111,26 +109,6 @@ and a boolean to check if the value has been set.
 SetSiteId sets SiteId field to given value.
 
 
-### GetDatacenterName
-
-`func (o *VM) GetDatacenterName() string`
-
-GetDatacenterName returns the DatacenterName field if non-nil, zero value otherwise.
-
-### GetDatacenterNameOk
-
-`func (o *VM) GetDatacenterNameOk() (*string, bool)`
-
-GetDatacenterNameOk returns a tuple with the DatacenterName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDatacenterName
-
-`func (o *VM) SetDatacenterName(v string)`
-
-SetDatacenterName sets DatacenterName field to given value.
-
-
 ### GetInfrastructureId
 
 `func (o *VM) GetInfrastructureId() int64`
@@ -169,26 +147,6 @@ and a boolean to check if the value has been set.
 `func (o *VM) SetUserId(v int64)`
 
 SetUserId sets UserId field to given value.
-
-
-### GetUserEmail
-
-`func (o *VM) GetUserEmail() string`
-
-GetUserEmail returns the UserEmail field if non-nil, zero value otherwise.
-
-### GetUserEmailOk
-
-`func (o *VM) GetUserEmailOk() (*string, bool)`
-
-GetUserEmailOk returns a tuple with the UserEmail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUserEmail
-
-`func (o *VM) SetUserEmail(v string)`
-
-SetUserEmail sets UserEmail field to given value.
 
 
 ### GetInstanceId

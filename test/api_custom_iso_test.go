@@ -26,8 +26,8 @@ func Test_sdk_CustomIsoAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customIsoId float32
-		var serverId float32
+		var customIsoId int64
+		var serverId int64
 
 		resp, httpRes, err := apiClient.CustomIsoAPI.BootCustomIsoIntoServer(context.Background(), customIsoId, serverId).Execute()
 
@@ -53,7 +53,7 @@ func Test_sdk_CustomIsoAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customIsoId float32
+		var customIsoId int64
 
 		httpRes, err := apiClient.CustomIsoAPI.DeleteCustomIso(context.Background(), customIsoId).Execute()
 
@@ -66,7 +66,7 @@ func Test_sdk_CustomIsoAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customIsoId float32
+		var customIsoId int64
 
 		resp, httpRes, err := apiClient.CustomIsoAPI.GetCustomIso(context.Background(), customIsoId).Execute()
 
@@ -92,7 +92,7 @@ func Test_sdk_CustomIsoAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customIsoId float32
+		var customIsoId int64
 
 		resp, httpRes, err := apiClient.CustomIsoAPI.MakeCustomIsoPublic(context.Background(), customIsoId).Execute()
 
@@ -106,7 +106,7 @@ func Test_sdk_CustomIsoAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customIsoId float32
+		var customIsoId int64
 
 		resp, httpRes, err := apiClient.CustomIsoAPI.UpdateCustomIso(context.Background(), customIsoId).Execute()
 

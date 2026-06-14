@@ -22,9 +22,9 @@ var _ MappedNullable = &NetworkFabricInterconnectDeployPreview{}
 // NetworkFabricInterconnectDeployPreview struct for NetworkFabricInterconnectDeployPreview
 type NetworkFabricInterconnectDeployPreview struct {
 	// Unique identifier for the network device.
-	NetworkDeviceId float32 `json:"networkDeviceId"`
+	NetworkDeviceId int64 `json:"networkDeviceId"`
 	// Unique identifier for the network fabric interconnect
-	NetworkInterconnectId float32 `json:"networkInterconnectId"`
+	NetworkInterconnectId int64 `json:"networkInterconnectId"`
 	// Preview of global activation template
 	GlobalTemplateActivate []string `json:"globalTemplateActivate"`
 	// Preview of BGP neighbor configuration activation template
@@ -44,7 +44,7 @@ type _NetworkFabricInterconnectDeployPreview NetworkFabricInterconnectDeployPrev
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricInterconnectDeployPreview(networkDeviceId float32, networkInterconnectId float32, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string, changes []string) *NetworkFabricInterconnectDeployPreview {
+func NewNetworkFabricInterconnectDeployPreview(networkDeviceId int64, networkInterconnectId int64, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string, changes []string) *NetworkFabricInterconnectDeployPreview {
 	this := NetworkFabricInterconnectDeployPreview{}
 	this.NetworkDeviceId = networkDeviceId
 	this.NetworkInterconnectId = networkInterconnectId
@@ -65,9 +65,9 @@ func NewNetworkFabricInterconnectDeployPreviewWithDefaults() *NetworkFabricInter
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceId() float32 {
+func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceId() float32 {
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceIdOk() (*float32, bool) {
+func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,14 +84,14 @@ func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceIdOk() (*float3
 }
 
 // SetNetworkDeviceId sets field value
-func (o *NetworkFabricInterconnectDeployPreview) SetNetworkDeviceId(v float32) {
+func (o *NetworkFabricInterconnectDeployPreview) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 
 // GetNetworkInterconnectId returns the NetworkInterconnectId field value
-func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectId() float32 {
+func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectId() floa
 
 // GetNetworkInterconnectIdOk returns a tuple with the NetworkInterconnectId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectIdOk() (*float32, bool) {
+func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectIdOk() (*
 }
 
 // SetNetworkInterconnectId sets field value
-func (o *NetworkFabricInterconnectDeployPreview) SetNetworkInterconnectId(v float32) {
+func (o *NetworkFabricInterconnectDeployPreview) SetNetworkInterconnectId(v int64) {
 	o.NetworkInterconnectId = v
 }
 

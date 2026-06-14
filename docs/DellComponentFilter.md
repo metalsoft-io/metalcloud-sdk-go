@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vendor** | **string** | Discriminator field set to dell | 
-**Id** | **float32** | ID of the Dell component filter | 
+**Id** | **int64** | ID of the Dell component filter | 
 **ComponentId** | **string** | Component ID for Dell | 
 **ServerModel** | **string** | Server model for Dell | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewDellComponentFilter
 
-`func NewDellComponentFilter(vendor string, id float32, componentId string, serverModel string, ) *DellComponentFilter`
+`func NewDellComponentFilter(vendor string, id int64, componentId string, serverModel string, ) *DellComponentFilter`
 
 NewDellComponentFilter instantiates a new DellComponentFilter object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetVendor sets Vendor field to given value.
 
 ### GetId
 
-`func (o *DellComponentFilter) GetId() float32`
+`func (o *DellComponentFilter) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DellComponentFilter) GetIdOk() (*float32, bool)`
+`func (o *DellComponentFilter) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DellComponentFilter) SetId(v float32)`
+`func (o *DellComponentFilter) SetId(v int64)`
 
 SetId sets Id field to given value.
 

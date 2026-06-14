@@ -7,13 +7,15 @@ Name | Type | Description | Notes
 **Description** | Pointer to **NullableString** | L1 admin override for interface description. | [optional] 
 **Mtu** | Pointer to **NullableInt32** | L1 admin override for interface MTU. | [optional] 
 **Enabled** | Pointer to **NullableBool** | L1 admin override for admin enabled (link up/down). | [optional] 
-**Speed** | Pointer to **NullableString** | L1 admin override for port speed (vendor-canonical, e.g. \&quot;25G\&quot;). | [optional] 
+**Speed** | Pointer to **NullableString** | L1 forced port speed. NULL &#x3D; no opinion; the device’s current forced speed is left unchanged. Forced speed only — autonegotiation is controlled by autoNegotiate. | [optional] 
+**AutoNegotiate** | Pointer to **NullableBool** | L1 autonegotiation intent. NULL &#x3D; no opinion (leave as-is); true &#x3D; negotiate (advertise all); false &#x3D; force the speed from &#x60;speed&#x60;. | [optional] 
+**Revision** | **int64** | Optimistic-lock revision of the config buffer (independent of the main interface revision). | 
 
 ## Methods
 
 ### NewNetworkEquipmentInterfaceConfig
 
-`func NewNetworkEquipmentInterfaceConfig() *NetworkEquipmentInterfaceConfig`
+`func NewNetworkEquipmentInterfaceConfig(revision int64, ) *NetworkEquipmentInterfaceConfig`
 
 NewNetworkEquipmentInterfaceConfig instantiates a new NetworkEquipmentInterfaceConfig object
 This constructor will assign default values to properties that have it defined,
@@ -168,6 +170,61 @@ HasSpeed returns a boolean if a field has been set.
 `func (o *NetworkEquipmentInterfaceConfig) UnsetSpeed()`
 
 UnsetSpeed ensures that no value is present for Speed, not even an explicit nil
+### GetAutoNegotiate
+
+`func (o *NetworkEquipmentInterfaceConfig) GetAutoNegotiate() bool`
+
+GetAutoNegotiate returns the AutoNegotiate field if non-nil, zero value otherwise.
+
+### GetAutoNegotiateOk
+
+`func (o *NetworkEquipmentInterfaceConfig) GetAutoNegotiateOk() (*bool, bool)`
+
+GetAutoNegotiateOk returns a tuple with the AutoNegotiate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoNegotiate
+
+`func (o *NetworkEquipmentInterfaceConfig) SetAutoNegotiate(v bool)`
+
+SetAutoNegotiate sets AutoNegotiate field to given value.
+
+### HasAutoNegotiate
+
+`func (o *NetworkEquipmentInterfaceConfig) HasAutoNegotiate() bool`
+
+HasAutoNegotiate returns a boolean if a field has been set.
+
+### SetAutoNegotiateNil
+
+`func (o *NetworkEquipmentInterfaceConfig) SetAutoNegotiateNil(b bool)`
+
+ SetAutoNegotiateNil sets the value for AutoNegotiate to be an explicit nil
+
+### UnsetAutoNegotiate
+`func (o *NetworkEquipmentInterfaceConfig) UnsetAutoNegotiate()`
+
+UnsetAutoNegotiate ensures that no value is present for AutoNegotiate, not even an explicit nil
+### GetRevision
+
+`func (o *NetworkEquipmentInterfaceConfig) GetRevision() int64`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *NetworkEquipmentInterfaceConfig) GetRevisionOk() (*int64, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *NetworkEquipmentInterfaceConfig) SetRevision(v int64)`
+
+SetRevision sets Revision field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

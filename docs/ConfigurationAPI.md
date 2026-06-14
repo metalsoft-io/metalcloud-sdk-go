@@ -6,13 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetConfiguration**](ConfigurationAPI.md#GetConfiguration) | **Get** /api/v2/config | Get configuration
 [**PatchConfiguration**](ConfigurationAPI.md#PatchConfiguration) | **Patch** /api/v2/config/{filter} | Partially update configuration
-[**PutConfiguration**](ConfigurationAPI.md#PutConfiguration) | **Put** /api/v2/config/{filter} | Update configuration
+[**PutConfiguration**](ConfigurationAPI.md#PutConfiguration) | **Put** /api/v2/config/{filter} | Replace configuration
 
 
 
 ## GetConfiguration
 
-> map[string]interface{} GetConfiguration(ctx).Filter(filter).Execute()
+> ConfigurationsDto GetConfiguration(ctx).Filter(filter).Execute()
 
 Get configuration
 
@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	filter := "filter_example" // string | Filter to be applied. (optional)
+	filter := "filter_example" // string | Service to retrieve configuration for. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigurationAPI.GetConfiguration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetConfiguration`: map[string]interface{}
+	// response from `GetConfiguration`: ConfigurationsDto
 	fmt.Fprintf(os.Stdout, "Response from `ConfigurationAPI.GetConfiguration`: %v\n", resp)
 }
 ```
@@ -56,11 +56,11 @@ Other parameters are passed through a pointer to a apiGetConfigurationRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **string** | Filter to be applied. | 
+ **filter** | **string** | Service to retrieve configuration for. | 
 
 ### Return type
 
-**map[string]interface{}**
+[**ConfigurationsDto**](ConfigurationsDto.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## PatchConfiguration
 
-> map[string]interface{} PatchConfiguration(ctx, filter).Body(body).Execute()
+> PutConfigurationRequest PatchConfiguration(ctx, filter).PutConfigurationRequest(putConfigurationRequest).Execute()
 
 Partially update configuration
 
@@ -97,17 +97,17 @@ import (
 )
 
 func main() {
-	filter := "filter_example" // string | Filter to be applied (auth, bsi, notification, tunnel).
-	body := map[string]interface{}{ ... } // map[string]interface{} | Configuration object
+	filter := "filter_example" // string | Service to update configuration for.
+	putConfigurationRequest := openapiclient.putConfiguration_request{AuthConfigurationDto: openapiclient.NewAuthConfigurationDto()} // PutConfigurationRequest | Partial configuration object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigurationAPI.PatchConfiguration(context.Background(), filter).Body(body).Execute()
+	resp, r, err := apiClient.ConfigurationAPI.PatchConfiguration(context.Background(), filter).PutConfigurationRequest(putConfigurationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigurationAPI.PatchConfiguration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PatchConfiguration`: map[string]interface{}
+	// response from `PatchConfiguration`: PutConfigurationRequest
 	fmt.Fprintf(os.Stdout, "Response from `ConfigurationAPI.PatchConfiguration`: %v\n", resp)
 }
 ```
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**filter** | **string** | Filter to be applied (auth, bsi, notification, tunnel). | 
+**filter** | **string** | Service to update configuration for. | 
 
 ### Other Parameters
 
@@ -128,11 +128,11 @@ Other parameters are passed through a pointer to a apiPatchConfigurationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** | Configuration object | 
+ **putConfigurationRequest** | [**PutConfigurationRequest**](PutConfigurationRequest.md) | Partial configuration object | 
 
 ### Return type
 
-**map[string]interface{}**
+[**PutConfigurationRequest**](PutConfigurationRequest.md)
 
 ### Authorization
 
@@ -150,9 +150,9 @@ Name | Type | Description  | Notes
 
 ## PutConfiguration
 
-> map[string]interface{} PutConfiguration(ctx, filter).Body(body).Execute()
+> PutConfigurationRequest PutConfiguration(ctx, filter).PutConfigurationRequest(putConfigurationRequest).Execute()
 
-Update configuration
+Replace configuration
 
 
 
@@ -169,17 +169,17 @@ import (
 )
 
 func main() {
-	filter := "filter_example" // string | Filter to be applied (auth, bsi, notification, tunnel).
-	body := map[string]interface{}{ ... } // map[string]interface{} | Configuration object
+	filter := "filter_example" // string | Service to update configuration for.
+	putConfigurationRequest := openapiclient.putConfiguration_request{AuthConfigurationDto: openapiclient.NewAuthConfigurationDto()} // PutConfigurationRequest | Configuration object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigurationAPI.PutConfiguration(context.Background(), filter).Body(body).Execute()
+	resp, r, err := apiClient.ConfigurationAPI.PutConfiguration(context.Background(), filter).PutConfigurationRequest(putConfigurationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigurationAPI.PutConfiguration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PutConfiguration`: map[string]interface{}
+	// response from `PutConfiguration`: PutConfigurationRequest
 	fmt.Fprintf(os.Stdout, "Response from `ConfigurationAPI.PutConfiguration`: %v\n", resp)
 }
 ```
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**filter** | **string** | Filter to be applied (auth, bsi, notification, tunnel). | 
+**filter** | **string** | Service to update configuration for. | 
 
 ### Other Parameters
 
@@ -200,11 +200,11 @@ Other parameters are passed through a pointer to a apiPutConfigurationRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** | Configuration object | 
+ **putConfigurationRequest** | [**PutConfigurationRequest**](PutConfigurationRequest.md) | Configuration object | 
 
 ### Return type
 
-**map[string]interface{}**
+[**PutConfigurationRequest**](PutConfigurationRequest.md)
 
 ### Authorization
 

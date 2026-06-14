@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **LocalSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the local switch. | [optional] 
 **RemoteSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the remote switch. | [optional] 
 **MlagPeerCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the MLAG pair of the local switch (if any). | [optional] 
+**RemoteP2pLinkIp** | Pointer to **string** | The IP address of the remote interface of the P2P link. Present only when BGP numbering is NUMBERED. | [optional] 
 
 ## Methods
 
@@ -524,6 +525,31 @@ SetMlagPeerCustomVariables sets MlagPeerCustomVariables field to given value.
 `func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasMlagPeerCustomVariables() bool`
 
 HasMlagPeerCustomVariables returns a boolean if a field has been set.
+
+### GetRemoteP2pLinkIp
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIp() string`
+
+GetRemoteP2pLinkIp returns the RemoteP2pLinkIp field if non-nil, zero value otherwise.
+
+### GetRemoteP2pLinkIpOk
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIpOk() (*string, bool)`
+
+GetRemoteP2pLinkIpOk returns a tuple with the RemoteP2pLinkIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteP2pLinkIp
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteP2pLinkIp(v string)`
+
+SetRemoteP2pLinkIp sets RemoteP2pLinkIp field to given value.
+
+### HasRemoteP2pLinkIp
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteP2pLinkIp() bool`
+
+HasRemoteP2pLinkIp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

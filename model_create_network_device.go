@@ -103,6 +103,8 @@ type CreateNetworkDevice struct {
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
 	// Tags for categorizing and filtering network devices
 	Tags []string `json:"tags,omitempty"`
+	// Key/value tags (key-map). The forthcoming replacement for the legacy string[] `tags`.
+	TagsMap *map[string]string `json:"tagsMap,omitempty"`
 	// Indicates if the device requires OS installation before provisioning
 	RequiresOsInstall *bool `json:"requiresOsInstall,omitempty"`
 	// Whether to overwrite the hostname with the one fetched from the device
@@ -1640,6 +1642,38 @@ func (o *CreateNetworkDevice) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetTagsMap returns the TagsMap field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetTagsMap() map[string]string {
+	if o == nil || IsNil(o.TagsMap) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.TagsMap
+}
+
+// GetTagsMapOk returns a tuple with the TagsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetTagsMapOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.TagsMap) {
+		return nil, false
+	}
+	return o.TagsMap, true
+}
+
+// HasTagsMap returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasTagsMap() bool {
+	if o != nil && !IsNil(o.TagsMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetTagsMap gets a reference to the given map[string]string and assigns it to the TagsMap field.
+func (o *CreateNetworkDevice) SetTagsMap(v map[string]string) {
+	o.TagsMap = &v
+}
+
 // GetRequiresOsInstall returns the RequiresOsInstall field value if set, zero value otherwise.
 func (o *CreateNetworkDevice) GetRequiresOsInstall() bool {
 	if o == nil || IsNil(o.RequiresOsInstall) {
@@ -2156,6 +2190,9 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	if !IsNil(o.TagsMap) {
+		toSerialize["tagsMap"] = o.TagsMap
+	}
 	if !IsNil(o.RequiresOsInstall) {
 		toSerialize["requiresOsInstall"] = o.RequiresOsInstall
 	}
@@ -2278,6 +2315,7 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "orderIndex")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "tagsMap")
 		delete(additionalProperties, "requiresOsInstall")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")
 		delete(additionalProperties, "vmPoolId")

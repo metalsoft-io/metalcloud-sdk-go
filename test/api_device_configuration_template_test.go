@@ -62,7 +62,7 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.DeviceConfigurationTemplateAPI.DeleteDeviceConfigurationTemplate(context.Background(), id).Execute()
 
@@ -75,7 +75,7 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.DeviceConfigurationTemplateAPI.DeleteDeviceConfigurationTemplateProfile(context.Background(), id).Execute()
 
@@ -84,11 +84,23 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DeviceConfigurationTemplateAPIService FindApplicableDeviceConfigurationTemplateProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.FindApplicableDeviceConfigurationTemplateProfiles(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DeviceConfigurationTemplateAPIService GetDeviceConfigurationTemplate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.GetDeviceConfigurationTemplate(context.Background(), id).Execute()
 
@@ -102,7 +114,7 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.GetDeviceConfigurationTemplateProfile(context.Background(), id).Execute()
 
@@ -136,6 +148,18 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DeviceConfigurationTemplateAPIService RenderApplicableDeviceConfigurationTemplateProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.RenderApplicableDeviceConfigurationTemplateProfiles(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DeviceConfigurationTemplateAPIService RenderDeviceConfigurationTemplate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -152,7 +176,7 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.RenderDeviceConfigurationTemplateProfile(context.Background(), id).Execute()
 
@@ -166,7 +190,7 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.RenderSavedDeviceConfigurationTemplate(context.Background(), id).Execute()
 
@@ -180,7 +204,7 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.UpdateDeviceConfigurationTemplate(context.Background(), id).Execute()
 
@@ -194,7 +218,7 @@ func Test_sdk_DeviceConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.DeviceConfigurationTemplateAPI.UpdateDeviceConfigurationTemplateProfile(context.Background(), id).Execute()
 

@@ -139,7 +139,7 @@ func (a *OSTemplateAPIService) CreateOSTemplateExecute(r OSTemplateAPICreateOSTe
 type OSTemplateAPIDeleteOSTemplateRequest struct {
 	ctx context.Context
 	ApiService *OSTemplateAPIService
-	osTemplateId float32
+	osTemplateId int64
 }
 
 func (r OSTemplateAPIDeleteOSTemplateRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes the specified OS template
  @param osTemplateId
  @return OSTemplateAPIDeleteOSTemplateRequest
 */
-func (a *OSTemplateAPIService) DeleteOSTemplate(ctx context.Context, osTemplateId float32) OSTemplateAPIDeleteOSTemplateRequest {
+func (a *OSTemplateAPIService) DeleteOSTemplate(ctx context.Context, osTemplateId int64) OSTemplateAPIDeleteOSTemplateRequest {
 	return OSTemplateAPIDeleteOSTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *OSTemplateAPIService) DeleteOSTemplateExecute(r OSTemplateAPIDeleteOSTe
 type OSTemplateAPIGetOSTemplateRequest struct {
 	ctx context.Context
 	ApiService *OSTemplateAPIService
-	osTemplateId float32
+	osTemplateId int64
 }
 
 func (r OSTemplateAPIGetOSTemplateRequest) Execute() (*OSTemplate, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns details of the specified OS template
  @param osTemplateId
  @return OSTemplateAPIGetOSTemplateRequest
 */
-func (a *OSTemplateAPIService) GetOSTemplate(ctx context.Context, osTemplateId float32) OSTemplateAPIGetOSTemplateRequest {
+func (a *OSTemplateAPIService) GetOSTemplate(ctx context.Context, osTemplateId int64) OSTemplateAPIGetOSTemplateRequest {
 	return OSTemplateAPIGetOSTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -334,7 +334,7 @@ func (a *OSTemplateAPIService) GetOSTemplateExecute(r OSTemplateAPIGetOSTemplate
 type OSTemplateAPIGetOSTemplateCredentialsRequest struct {
 	ctx context.Context
 	ApiService *OSTemplateAPIService
-	osTemplateId float32
+	osTemplateId int64
 }
 
 func (r OSTemplateAPIGetOSTemplateCredentialsRequest) Execute() (*OSTemplateOsCredential, *http.Response, error) {
@@ -350,7 +350,7 @@ Returns the credentials for the specified OS template
  @param osTemplateId
  @return OSTemplateAPIGetOSTemplateCredentialsRequest
 */
-func (a *OSTemplateAPIService) GetOSTemplateCredentials(ctx context.Context, osTemplateId float32) OSTemplateAPIGetOSTemplateCredentialsRequest {
+func (a *OSTemplateAPIService) GetOSTemplateCredentials(ctx context.Context, osTemplateId int64) OSTemplateAPIGetOSTemplateCredentialsRequest {
 	return OSTemplateAPIGetOSTemplateCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -774,7 +774,7 @@ func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplat
 type OSTemplateAPIUpdateOSTemplateRequest struct {
 	ctx context.Context
 	ApiService *OSTemplateAPIService
-	osTemplateId float32
+	osTemplateId int64
 	oSTemplateUpdate *OSTemplateUpdate
 	ifMatch *string
 }
@@ -804,7 +804,7 @@ Returns details of the updated OS template
  @param osTemplateId
  @return OSTemplateAPIUpdateOSTemplateRequest
 */
-func (a *OSTemplateAPIService) UpdateOSTemplate(ctx context.Context, osTemplateId float32) OSTemplateAPIUpdateOSTemplateRequest {
+func (a *OSTemplateAPIService) UpdateOSTemplate(ctx context.Context, osTemplateId int64) OSTemplateAPIUpdateOSTemplateRequest {
 	return OSTemplateAPIUpdateOSTemplateRequest{
 		ApiService: a,
 		ctx: ctx,

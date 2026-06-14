@@ -28,7 +28,7 @@ type AccountAPIService service
 type AccountAPIAccountControllerGetUserConfigurationRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 }
 
 func (r AccountAPIAccountControllerGetUserConfigurationRequest) Execute() (*AccountConfig, *http.Response, error) {
@@ -42,7 +42,7 @@ AccountControllerGetUserConfiguration Get account configuration by ID
  @param accountId
  @return AccountAPIAccountControllerGetUserConfigurationRequest
 */
-func (a *AccountAPIService) AccountControllerGetUserConfiguration(ctx context.Context, accountId float32) AccountAPIAccountControllerGetUserConfigurationRequest {
+func (a *AccountAPIService) AccountControllerGetUserConfiguration(ctx context.Context, accountId int64) AccountAPIAccountControllerGetUserConfigurationRequest {
 	return AccountAPIAccountControllerGetUserConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -129,7 +129,7 @@ func (a *AccountAPIService) AccountControllerGetUserConfigurationExecute(r Accou
 type AccountAPIArchiveAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	ifMatch *string
 }
 
@@ -152,7 +152,7 @@ Archives an account
  @param accountId
  @return AccountAPIArchiveAccountRequest
 */
-func (a *AccountAPIService) ArchiveAccount(ctx context.Context, accountId float32) AccountAPIArchiveAccountRequest {
+func (a *AccountAPIService) ArchiveAccount(ctx context.Context, accountId int64) AccountAPIArchiveAccountRequest {
 	return AccountAPIArchiveAccountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -353,7 +353,7 @@ func (a *AccountAPIService) CreateAccountExecute(r AccountAPICreateAccountReques
 type AccountAPIGetAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 }
 
 func (r AccountAPIGetAccountRequest) Execute() (*Account, *http.Response, error) {
@@ -369,7 +369,7 @@ Returns an account by id
  @param accountId
  @return AccountAPIGetAccountRequest
 */
-func (a *AccountAPIService) GetAccount(ctx context.Context, accountId float32) AccountAPIGetAccountRequest {
+func (a *AccountAPIService) GetAccount(ctx context.Context, accountId int64) AccountAPIGetAccountRequest {
 	return AccountAPIGetAccountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -456,7 +456,7 @@ func (a *AccountAPIService) GetAccountExecute(r AccountAPIGetAccountRequest) (*A
 type AccountAPIGetAccountUsersRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -563,7 +563,7 @@ Returns users for an account
  @param accountId
  @return AccountAPIGetAccountUsersRequest
 */
-func (a *AccountAPIService) GetAccountUsers(ctx context.Context, accountId float32) AccountAPIGetAccountUsersRequest {
+func (a *AccountAPIService) GetAccountUsers(ctx context.Context, accountId int64) AccountAPIGetAccountUsersRequest {
 	return AccountAPIGetAccountUsersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1060,7 +1060,7 @@ func (a *AccountAPIService) GetAccountsExecute(r AccountAPIGetAccountsRequest) (
 type AccountAPIUnarchiveAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	ifMatch *string
 }
 
@@ -1083,7 +1083,7 @@ Unarchive an account
  @param accountId
  @return AccountAPIUnarchiveAccountRequest
 */
-func (a *AccountAPIService) UnarchiveAccount(ctx context.Context, accountId float32) AccountAPIUnarchiveAccountRequest {
+func (a *AccountAPIService) UnarchiveAccount(ctx context.Context, accountId int64) AccountAPIUnarchiveAccountRequest {
 	return AccountAPIUnarchiveAccountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1173,7 +1173,7 @@ func (a *AccountAPIService) UnarchiveAccountExecute(r AccountAPIUnarchiveAccount
 type AccountAPIUpdateAccountConfigRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	updateAccount *UpdateAccount
 	ifMatch *string
 }
@@ -1203,7 +1203,7 @@ Updates an account configuration
  @param accountId
  @return AccountAPIUpdateAccountConfigRequest
 */
-func (a *AccountAPIService) UpdateAccountConfig(ctx context.Context, accountId float32) AccountAPIUpdateAccountConfigRequest {
+func (a *AccountAPIService) UpdateAccountConfig(ctx context.Context, accountId int64) AccountAPIUpdateAccountConfigRequest {
 	return AccountAPIUpdateAccountConfigRequest{
 		ApiService: a,
 		ctx: ctx,

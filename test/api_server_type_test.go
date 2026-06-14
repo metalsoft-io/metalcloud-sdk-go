@@ -38,7 +38,7 @@ func Test_sdk_ServerTypeAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverTypeId float32
+		var serverTypeId int64
 
 		httpRes, err := apiClient.ServerTypeAPI.DeleteServerType(context.Background(), serverTypeId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_ServerTypeAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverTypeId float32
+		var serverTypeId int64
 
 		resp, httpRes, err := apiClient.ServerTypeAPI.GetServerTypeInfo(context.Background(), serverTypeId).Execute()
 
@@ -100,7 +100,7 @@ func Test_sdk_ServerTypeAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverTypeId float32
+		var serverTypeId int64
 
 		resp, httpRes, err := apiClient.ServerTypeAPI.UpdateServerType(context.Background(), serverTypeId).Execute()
 

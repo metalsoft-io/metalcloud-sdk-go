@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ips** | [**[]AddNetworkEquipmentInterfaceIp**](AddNetworkEquipmentInterfaceIp.md) | Desired full IP set on this interface. | 
+**Ips** | [**[]AddNetworkEquipmentInterfaceIp**](AddNetworkEquipmentInterfaceIp.md) | Desired full IP set for this address family on the interface. | 
 
 ## Methods
 

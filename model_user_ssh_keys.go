@@ -23,9 +23,9 @@ var _ MappedNullable = &UserSSHKeys{}
 // UserSSHKeys struct for UserSSHKeys
 type UserSSHKeys struct {
 	// The ID of the User SSH key
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the user
-	UserId float32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// The SSH key of the user
 	SshKey string `json:"sshKey"`
 	// The timestamp when the User SSH key was created
@@ -41,7 +41,7 @@ type _UserSSHKeys UserSSHKeys
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserSSHKeys(id float32, userId float32, sshKey string, createdTimestamp time.Time, status string) *UserSSHKeys {
+func NewUserSSHKeys(id int64, userId int64, sshKey string, createdTimestamp time.Time, status string) *UserSSHKeys {
 	this := UserSSHKeys{}
 	this.Id = id
 	this.UserId = userId
@@ -60,9 +60,9 @@ func NewUserSSHKeysWithDefaults() *UserSSHKeys {
 }
 
 // GetId returns the Id field value
-func (o *UserSSHKeys) GetId() float32 {
+func (o *UserSSHKeys) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -71,7 +71,7 @@ func (o *UserSSHKeys) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *UserSSHKeys) GetIdOk() (*float32, bool) {
+func (o *UserSSHKeys) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,14 +79,14 @@ func (o *UserSSHKeys) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *UserSSHKeys) SetId(v float32) {
+func (o *UserSSHKeys) SetId(v int64) {
 	o.Id = v
 }
 
 // GetUserId returns the UserId field value
-func (o *UserSSHKeys) GetUserId() float32 {
+func (o *UserSSHKeys) GetUserId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *UserSSHKeys) GetUserId() float32 {
 
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *UserSSHKeys) GetUserIdOk() (*float32, bool) {
+func (o *UserSSHKeys) GetUserIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,7 +103,7 @@ func (o *UserSSHKeys) GetUserIdOk() (*float32, bool) {
 }
 
 // SetUserId sets field value
-func (o *UserSSHKeys) SetUserId(v float32) {
+func (o *UserSSHKeys) SetUserId(v int64) {
 	o.UserId = v
 }
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInterfacesDefaultFabric{}
 // ServerInterfacesDefaultFabric struct for ServerInterfacesDefaultFabric
 type ServerInterfacesDefaultFabric struct {
 	// The id of the server interfaces
-	ServerInterfaceIds []float32 `json:"serverInterfaceIds"`
+	ServerInterfaceIds []int64 `json:"serverInterfaceIds"`
 	// The default fabric id
 	DefaultFabricId NullableInt64 `json:"defaultFabricId"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _ServerInterfacesDefaultFabric ServerInterfacesDefaultFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInterfacesDefaultFabric(serverInterfaceIds []float32, defaultFabricId NullableInt64) *ServerInterfacesDefaultFabric {
+func NewServerInterfacesDefaultFabric(serverInterfaceIds []int64, defaultFabricId NullableInt64) *ServerInterfacesDefaultFabric {
 	this := ServerInterfacesDefaultFabric{}
 	this.ServerInterfaceIds = serverInterfaceIds
 	this.DefaultFabricId = defaultFabricId
@@ -50,9 +50,9 @@ func NewServerInterfacesDefaultFabricWithDefaults() *ServerInterfacesDefaultFabr
 }
 
 // GetServerInterfaceIds returns the ServerInterfaceIds field value
-func (o *ServerInterfacesDefaultFabric) GetServerInterfaceIds() []float32 {
+func (o *ServerInterfacesDefaultFabric) GetServerInterfaceIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *ServerInterfacesDefaultFabric) GetServerInterfaceIds() []float32 {
 
 // GetServerInterfaceIdsOk returns a tuple with the ServerInterfaceIds field value
 // and a boolean to check if the value has been set.
-func (o *ServerInterfacesDefaultFabric) GetServerInterfaceIdsOk() ([]float32, bool) {
+func (o *ServerInterfacesDefaultFabric) GetServerInterfaceIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *ServerInterfacesDefaultFabric) GetServerInterfaceIdsOk() ([]float32, bo
 }
 
 // SetServerInterfaceIds sets field value
-func (o *ServerInterfacesDefaultFabric) SetServerInterfaceIds(v []float32) {
+func (o *ServerInterfacesDefaultFabric) SetServerInterfaceIds(v []int64) {
 	o.ServerInterfaceIds = v
 }
 

@@ -69,6 +69,9 @@ type NetworkDeviceInterface struct {
 	Links []Link `json:"links,omitempty"`
 	// Key/value tags. Filterable via `?tag.<key>=<value>` query params (AND across keys).
 	Tags map[string]string `json:"tags"`
+	Config NetworkEquipmentInterfaceConfig `json:"config"`
+	Ipv4 NetworkEquipmentInterfaceIpFamily `json:"ipv4"`
+	Ipv6 NetworkEquipmentInterfaceIpFamily `json:"ipv6"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,7 +81,7 @@ type _NetworkDeviceInterface NetworkDeviceInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceInterface(interfaceId int64, networkDeviceId int64, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string, tags map[string]string) *NetworkDeviceInterface {
+func NewNetworkDeviceInterface(interfaceId int64, networkDeviceId int64, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string, tags map[string]string, config NetworkEquipmentInterfaceConfig, ipv4 NetworkEquipmentInterfaceIpFamily, ipv6 NetworkEquipmentInterfaceIpFamily) *NetworkDeviceInterface {
 	this := NetworkDeviceInterface{}
 	this.InterfaceId = interfaceId
 	this.NetworkDeviceId = networkDeviceId
@@ -87,6 +90,9 @@ func NewNetworkDeviceInterface(interfaceId int64, networkDeviceId int64, interfa
 	this.DirtyBit = dirtyBit
 	this.CachedUpdatedTimestamp = cachedUpdatedTimestamp
 	this.Tags = tags
+	this.Config = config
+	this.Ipv4 = ipv4
+	this.Ipv6 = ipv6
 	return &this
 }
 
@@ -820,6 +826,78 @@ func (o *NetworkDeviceInterface) SetTags(v map[string]string) {
 	o.Tags = v
 }
 
+// GetConfig returns the Config field value
+func (o *NetworkDeviceInterface) GetConfig() NetworkEquipmentInterfaceConfig {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceConfig
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetConfigOk() (*NetworkEquipmentInterfaceConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// SetConfig sets field value
+func (o *NetworkDeviceInterface) SetConfig(v NetworkEquipmentInterfaceConfig) {
+	o.Config = v
+}
+
+// GetIpv4 returns the Ipv4 field value
+func (o *NetworkDeviceInterface) GetIpv4() NetworkEquipmentInterfaceIpFamily {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceIpFamily
+		return ret
+	}
+
+	return o.Ipv4
+}
+
+// GetIpv4Ok returns a tuple with the Ipv4 field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetIpv4Ok() (*NetworkEquipmentInterfaceIpFamily, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv4, true
+}
+
+// SetIpv4 sets field value
+func (o *NetworkDeviceInterface) SetIpv4(v NetworkEquipmentInterfaceIpFamily) {
+	o.Ipv4 = v
+}
+
+// GetIpv6 returns the Ipv6 field value
+func (o *NetworkDeviceInterface) GetIpv6() NetworkEquipmentInterfaceIpFamily {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceIpFamily
+		return ret
+	}
+
+	return o.Ipv6
+}
+
+// GetIpv6Ok returns a tuple with the Ipv6 field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetIpv6Ok() (*NetworkEquipmentInterfaceIpFamily, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv6, true
+}
+
+// SetIpv6 sets field value
+func (o *NetworkDeviceInterface) SetIpv6(v NetworkEquipmentInterfaceIpFamily) {
+	o.Ipv6 = v
+}
+
 func (o NetworkDeviceInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -888,6 +966,9 @@ func (o NetworkDeviceInterface) ToMap() (map[string]interface{}, error) {
 		toSerialize["links"] = o.Links
 	}
 	toSerialize["tags"] = o.Tags
+	toSerialize["config"] = o.Config
+	toSerialize["ipv4"] = o.Ipv4
+	toSerialize["ipv6"] = o.Ipv6
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -908,6 +989,9 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		"dirtyBit",
 		"cachedUpdatedTimestamp",
 		"tags",
+		"config",
+		"ipv4",
+		"ipv6",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -961,6 +1045,9 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "interfaceLLDPInformationServerInterface")
 		delete(additionalProperties, "links")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "ipv6")
 		o.AdditionalProperties = additionalProperties
 	}
 

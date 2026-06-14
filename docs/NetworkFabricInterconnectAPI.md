@@ -48,7 +48,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -66,7 +66,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -116,7 +116,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 	networkFabricInterconnectLinksDeployOptions := *openapiclient.NewNetworkFabricInterconnectLinksDeployOptions([]int64{int64(123)}, true) // NetworkFabricInterconnectLinksDeployOptions | Activate links options
 
 	configuration := openapiclient.NewConfiguration()
@@ -137,7 +137,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -188,7 +188,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 	createNetworkFabricInterconnectLink := *openapiclient.NewCreateNetworkFabricInterconnectLink(int64(2), int64(1)) // CreateNetworkFabricInterconnectLink | The network fabric link to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -209,7 +209,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -324,7 +324,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	networkFabricInterconnectDeactivateLinks := *openapiclient.NewNetworkFabricInterconnectDeactivateLinks([]int64{int64(123)}, true) // NetworkFabricInterconnectDeactivateLinks | IDs of the ACTIVE links to deactivate
 
 	configuration := openapiclient.NewConfiguration()
@@ -345,7 +345,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -396,8 +396,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
-	linkId := int32(56) // int32 | The ID of the network fabric link
+	id := int64(789) // int64 | The ID of the network fabric interconnect
+	linkId := int64(789) // int64 | The ID of the network fabric link
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -416,8 +416,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
-**linkId** | **int32** | The ID of the network fabric link | 
+**id** | **int64** | The ID of the network fabric interconnect | 
+**linkId** | **int64** | The ID of the network fabric link | 
 
 ### Other Parameters
 
@@ -467,7 +467,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect to delete
+	id := int64(789) // int64 | The ID of the network fabric interconnect to delete
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -485,7 +485,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect to delete | 
+**id** | **int64** | The ID of the network fabric interconnect to delete | 
 
 ### Other Parameters
 
@@ -535,7 +535,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	networkFabricInterconnectDeployOptions := *openapiclient.NewNetworkFabricInterconnectDeployOptions(true) // NetworkFabricInterconnectDeployOptions | Network fabric interconnect deploy options
 
 	configuration := openapiclient.NewConfiguration()
@@ -556,7 +556,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -607,7 +607,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -627,7 +627,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -677,7 +677,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -708,7 +708,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -769,7 +769,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -789,7 +789,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -839,8 +839,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
-	linkId := int32(56) // int32 | The ID of the network fabric link
+	id := int64(789) // int64 | The ID of the network fabric interconnect
+	linkId := int64(789) // int64 | The ID of the network fabric link
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -860,8 +860,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
-**linkId** | **int32** | The ID of the network fabric link | 
+**id** | **int64** | The ID of the network fabric interconnect | 
+**linkId** | **int64** | The ID of the network fabric link | 
 
 ### Other Parameters
 
@@ -912,7 +912,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe&filter.id=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
@@ -941,7 +941,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -1000,7 +1000,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect to retrieve
+	id := int64(789) // int64 | The ID of the network fabric interconnect to retrieve
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1020,7 +1020,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect to retrieve | 
+**id** | **int64** | The ID of the network fabric interconnect to retrieve | 
 
 ### Other Parameters
 
@@ -1070,7 +1070,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 	networkFabricInterconnectDeploymentCheckRequest := *openapiclient.NewNetworkFabricInterconnectDeploymentCheckRequest() // NetworkFabricInterconnectDeploymentCheckRequest | Optional link filter. Omit or pass an empty linkIds array to check all links. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1091,7 +1091,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -1142,7 +1142,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1162,7 +1162,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -1366,7 +1366,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1384,7 +1384,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1432,7 +1432,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect to update
+	id := int64(789) // int64 | The ID of the network fabric interconnect to update
 	updateNetworkFabricInterconnect := *openapiclient.NewUpdateNetworkFabricInterconnect() // UpdateNetworkFabricInterconnect | The network fabric interconnect update entity
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1454,7 +1454,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect to update | 
+**id** | **int64** | The ID of the network fabric interconnect to update | 
 
 ### Other Parameters
 

@@ -28,7 +28,7 @@ type LogicalNetworkInterconnectAPIService service
 type LogicalNetworkInterconnectAPIAddLogicalNetworkToLogicalNetworkInterconnectRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
-	id int32
+	id int64
 	addLogicalNetworkToInterconnect *AddLogicalNetworkToInterconnect
 }
 
@@ -51,7 +51,7 @@ Creates a new association between a logical network and a logical network interc
  @param id The id of the logical network interconnect
  @return LogicalNetworkInterconnectAPIAddLogicalNetworkToLogicalNetworkInterconnectRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) AddLogicalNetworkToLogicalNetworkInterconnect(ctx context.Context, id int32) LogicalNetworkInterconnectAPIAddLogicalNetworkToLogicalNetworkInterconnectRequest {
+func (a *LogicalNetworkInterconnectAPIService) AddLogicalNetworkToLogicalNetworkInterconnect(ctx context.Context, id int64) LogicalNetworkInterconnectAPIAddLogicalNetworkToLogicalNetworkInterconnectRequest {
 	return LogicalNetworkInterconnectAPIAddLogicalNetworkToLogicalNetworkInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -252,7 +252,7 @@ func (a *LogicalNetworkInterconnectAPIService) CreateLogicalNetworkInterconnectE
 type LogicalNetworkInterconnectAPIDeleteLogicalNetworkInterconnectRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
-	id int32
+	id int64
 	ifMatch *string
 }
 
@@ -273,7 +273,7 @@ DeleteLogicalNetworkInterconnect Delete a logical network interconnect by ID
  @param id The ID of the logical network interconnect to delete
  @return LogicalNetworkInterconnectAPIDeleteLogicalNetworkInterconnectRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) DeleteLogicalNetworkInterconnect(ctx context.Context, id int32) LogicalNetworkInterconnectAPIDeleteLogicalNetworkInterconnectRequest {
+func (a *LogicalNetworkInterconnectAPIService) DeleteLogicalNetworkInterconnect(ctx context.Context, id int64) LogicalNetworkInterconnectAPIDeleteLogicalNetworkInterconnectRequest {
 	return LogicalNetworkInterconnectAPIDeleteLogicalNetworkInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -352,7 +352,7 @@ func (a *LogicalNetworkInterconnectAPIService) DeleteLogicalNetworkInterconnectE
 type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectByIdRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
-	id int32
+	id int64
 }
 
 func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectByIdRequest) Execute() (*LogicalNetworkInterconnect, *http.Response, error) {
@@ -368,7 +368,7 @@ Returns a logical network interconnect by its ID
  @param id The ID of the logical network interconnect to retrieve
  @return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectByIdRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectById(ctx context.Context, id int32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectByIdRequest {
+func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectById(ctx context.Context, id int64) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectByIdRequest {
 	return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -455,8 +455,8 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectById
 type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
-	id int32
-	linkId int32
+	id int64
+	linkId int64
 }
 
 func (r LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest) Execute() (*LogicalNetworkInterconnectLogicalNetwork, *http.Response, error) {
@@ -473,7 +473,7 @@ Returns the association between a logical network and a logical network intercon
  @param linkId The id of the link
  @return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinkById(ctx context.Context, id int32, linkId int32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest {
+func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinkById(ctx context.Context, id int64, linkId int64) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest {
 	return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinkByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -562,7 +562,7 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLink
 type LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
-	id int32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -648,7 +648,7 @@ Returns list of all logical network links that are part of the specified interco
  @param id The ID of the logical network interconnect
  @return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinks(ctx context.Context, id int32) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
+func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectLinks(ctx context.Context, id int64) LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest {
 	return LogicalNetworkInterconnectAPIGetLogicalNetworkInterconnectLinksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1112,8 +1112,8 @@ func (a *LogicalNetworkInterconnectAPIService) GetLogicalNetworkInterconnectsExe
 type LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
-	id int32
-	linkId int32
+	id int64
+	linkId int64
 }
 
 func (r LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest) Execute() (*http.Response, error) {
@@ -1130,7 +1130,7 @@ Removes the association between a logical network and a logical network intercon
  @param linkId The id of link association to remove
  @return LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) RemoveLogicalNetworkFromLogicalNetworkInterconnect(ctx context.Context, id int32, linkId int32) LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest {
+func (a *LogicalNetworkInterconnectAPIService) RemoveLogicalNetworkFromLogicalNetworkInterconnect(ctx context.Context, id int64, linkId int64) LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest {
 	return LogicalNetworkInterconnectAPIRemoveLogicalNetworkFromLogicalNetworkInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1208,7 +1208,7 @@ func (a *LogicalNetworkInterconnectAPIService) RemoveLogicalNetworkFromLogicalNe
 type LogicalNetworkInterconnectAPIUpdateLogicalNetworkInterconnectRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkInterconnectAPIService
-	id int32
+	id int64
 	updateLogicalNetworkInterconnectDto *UpdateLogicalNetworkInterconnectDto
 	ifMatch *string
 }
@@ -1236,7 +1236,7 @@ UpdateLogicalNetworkInterconnect Update a logical network interconnect
  @param id The ID of the logical network interconnect to update
  @return LogicalNetworkInterconnectAPIUpdateLogicalNetworkInterconnectRequest
 */
-func (a *LogicalNetworkInterconnectAPIService) UpdateLogicalNetworkInterconnect(ctx context.Context, id int32) LogicalNetworkInterconnectAPIUpdateLogicalNetworkInterconnectRequest {
+func (a *LogicalNetworkInterconnectAPIService) UpdateLogicalNetworkInterconnect(ctx context.Context, id int64) LogicalNetworkInterconnectAPIUpdateLogicalNetworkInterconnectRequest {
 	return LogicalNetworkInterconnectAPIUpdateLogicalNetworkInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,

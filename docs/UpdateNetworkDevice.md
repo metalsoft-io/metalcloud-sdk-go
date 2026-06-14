@@ -52,6 +52,8 @@ Name | Type | Description | Notes
 **SnmpSystemContact** | Pointer to **string** | SNMP system contact for the network device | [optional] 
 **SnmpVersion** | Pointer to **float32** | SNMP version used by the network device | [optional] 
 **AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options. Credentials are resolved from the first active entry. | [optional] 
+**TagsMap** | Pointer to **map[string]string** | Partial key/value tag update. A null value deletes that key; a present value upserts it; omitted keys are left unchanged. | [optional] 
+**ApplyIdentifierAsHostnameOnNextDeploy** | Pointer to **bool** | One-shot: when true, the next fabric deploy pushes identifierString as the switch system hostname (Cumulus Linux only) and the flag is cleared again after the successful push. Enabling requires a Cumulus Linux driver and a valid (hostname-shaped) identifierString. | [optional] 
 
 ## Methods
 
@@ -1501,6 +1503,56 @@ SetAuthenticationOptions sets AuthenticationOptions field to given value.
 `func (o *UpdateNetworkDevice) HasAuthenticationOptions() bool`
 
 HasAuthenticationOptions returns a boolean if a field has been set.
+
+### GetTagsMap
+
+`func (o *UpdateNetworkDevice) GetTagsMap() map[string]string`
+
+GetTagsMap returns the TagsMap field if non-nil, zero value otherwise.
+
+### GetTagsMapOk
+
+`func (o *UpdateNetworkDevice) GetTagsMapOk() (*map[string]string, bool)`
+
+GetTagsMapOk returns a tuple with the TagsMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTagsMap
+
+`func (o *UpdateNetworkDevice) SetTagsMap(v map[string]string)`
+
+SetTagsMap sets TagsMap field to given value.
+
+### HasTagsMap
+
+`func (o *UpdateNetworkDevice) HasTagsMap() bool`
+
+HasTagsMap returns a boolean if a field has been set.
+
+### GetApplyIdentifierAsHostnameOnNextDeploy
+
+`func (o *UpdateNetworkDevice) GetApplyIdentifierAsHostnameOnNextDeploy() bool`
+
+GetApplyIdentifierAsHostnameOnNextDeploy returns the ApplyIdentifierAsHostnameOnNextDeploy field if non-nil, zero value otherwise.
+
+### GetApplyIdentifierAsHostnameOnNextDeployOk
+
+`func (o *UpdateNetworkDevice) GetApplyIdentifierAsHostnameOnNextDeployOk() (*bool, bool)`
+
+GetApplyIdentifierAsHostnameOnNextDeployOk returns a tuple with the ApplyIdentifierAsHostnameOnNextDeploy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplyIdentifierAsHostnameOnNextDeploy
+
+`func (o *UpdateNetworkDevice) SetApplyIdentifierAsHostnameOnNextDeploy(v bool)`
+
+SetApplyIdentifierAsHostnameOnNextDeploy sets ApplyIdentifierAsHostnameOnNextDeploy field to given value.
+
+### HasApplyIdentifierAsHostnameOnNextDeploy
+
+`func (o *UpdateNetworkDevice) HasApplyIdentifierAsHostnameOnNextDeploy() bool`
+
+HasApplyIdentifierAsHostnameOnNextDeploy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

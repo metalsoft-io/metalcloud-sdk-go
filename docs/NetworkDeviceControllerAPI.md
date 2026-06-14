@@ -97,7 +97,7 @@ import (
 )
 
 func main() {
-	networkDeviceControllerId := int32(56) // int32 | 
+	networkDeviceControllerId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -116,7 +116,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceControllerId** | **int32** |  | 
+**networkDeviceControllerId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -165,7 +165,7 @@ import (
 )
 
 func main() {
-	networkDeviceControllerId := int32(56) // int32 | 
+	networkDeviceControllerId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -185,7 +185,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceControllerId** | **int32** |  | 
+**networkDeviceControllerId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -235,7 +235,7 @@ import (
 )
 
 func main() {
-	networkDeviceControllerId := int32(56) // int32 | 
+	networkDeviceControllerId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -255,7 +255,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceControllerId** | **int32** |  | 
+**networkDeviceControllerId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -387,7 +387,7 @@ import (
 )
 
 func main() {
-	networkDeviceControllerId := int32(56) // int32 | 
+	networkDeviceControllerId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -405,7 +405,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceControllerId** | **int32** |  | 
+**networkDeviceControllerId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -453,7 +453,7 @@ import (
 )
 
 func main() {
-	networkDeviceControllerId := int32(56) // int32 | 
+	networkDeviceControllerId := int64(789) // int64 | 
 	updateNetworkDeviceController := *openapiclient.NewUpdateNetworkDeviceController() // UpdateNetworkDeviceController | The Network Device update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -475,7 +475,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceControllerId** | **int32** |  | 
+**networkDeviceControllerId** | **int64** |  | 
 
 ### Other Parameters
 

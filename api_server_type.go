@@ -139,7 +139,7 @@ func (a *ServerTypeAPIService) CreateServerTypeExecute(r ServerTypeAPICreateServ
 type ServerTypeAPIDeleteServerTypeRequest struct {
 	ctx context.Context
 	ApiService *ServerTypeAPIService
-	serverTypeId float32
+	serverTypeId int64
 }
 
 func (r ServerTypeAPIDeleteServerTypeRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes a Server Type
  @param serverTypeId
  @return ServerTypeAPIDeleteServerTypeRequest
 */
-func (a *ServerTypeAPIService) DeleteServerType(ctx context.Context, serverTypeId float32) ServerTypeAPIDeleteServerTypeRequest {
+func (a *ServerTypeAPIService) DeleteServerType(ctx context.Context, serverTypeId int64) ServerTypeAPIDeleteServerTypeRequest {
 	return ServerTypeAPIDeleteServerTypeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *ServerTypeAPIService) DeleteServerTypeExecute(r ServerTypeAPIDeleteServ
 type ServerTypeAPIGetServerTypeInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerTypeAPIService
-	serverTypeId float32
+	serverTypeId int64
 }
 
 func (r ServerTypeAPIGetServerTypeInfoRequest) Execute() (*ServerType, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns Server Type information
  @param serverTypeId
  @return ServerTypeAPIGetServerTypeInfoRequest
 */
-func (a *ServerTypeAPIService) GetServerTypeInfo(ctx context.Context, serverTypeId float32) ServerTypeAPIGetServerTypeInfoRequest {
+func (a *ServerTypeAPIService) GetServerTypeInfo(ctx context.Context, serverTypeId int64) ServerTypeAPIGetServerTypeInfoRequest {
 	return ServerTypeAPIGetServerTypeInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -914,7 +914,7 @@ func (a *ServerTypeAPIService) RemoveUnusedServerTypesExecute(r ServerTypeAPIRem
 type ServerTypeAPIUpdateServerTypeRequest struct {
 	ctx context.Context
 	ApiService *ServerTypeAPIService
-	serverTypeId float32
+	serverTypeId int64
 	updateServerType *UpdateServerType
 }
 
@@ -937,7 +937,7 @@ Updates a Server Type
  @param serverTypeId
  @return ServerTypeAPIUpdateServerTypeRequest
 */
-func (a *ServerTypeAPIService) UpdateServerType(ctx context.Context, serverTypeId float32) ServerTypeAPIUpdateServerTypeRequest {
+func (a *ServerTypeAPIService) UpdateServerType(ctx context.Context, serverTypeId int64) ServerTypeAPIUpdateServerTypeRequest {
 	return ServerTypeAPIUpdateServerTypeRequest{
 		ApiService: a,
 		ctx: ctx,

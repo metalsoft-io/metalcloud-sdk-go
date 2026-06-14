@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	osTemplateId := float32(8.14) // float32 | 
+	osTemplateId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**osTemplateId** | **float32** |  | 
+**osTemplateId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-	osTemplateId := float32(8.14) // float32 | 
+	osTemplateId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**osTemplateId** | **float32** |  | 
+**osTemplateId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -238,7 +238,7 @@ import (
 )
 
 func main() {
-	osTemplateId := float32(8.14) // float32 | 
+	osTemplateId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -258,7 +258,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**osTemplateId** | **float32** |  | 
+**osTemplateId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -402,7 +402,7 @@ import (
 )
 
 func main() {
-	osTemplateId := float32(8.14) // float32 | 
+	osTemplateId := int64(789) // int64 | 
 	oSTemplateUpdate := *openapiclient.NewOSTemplateUpdate("Ubuntu 24.04 LTS", *openapiclient.NewOSTemplateDevice("server", "uefi", "x86_64"), *openapiclient.NewOSTemplateInstall("oob", "local_drive", "wait_for_power_off"), *openapiclient.NewOSTemplateImageBuild(true), *openapiclient.NewOSTemplateOs("Ubuntu | CentOS | Suse | Windows | ESXi | ...", "22.04 | 8 | 15 | 2019 | ...", *openapiclient.NewOSTemplateOsCredential("root", "plain"))) // OSTemplateUpdate | The OS template details
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -424,7 +424,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**osTemplateId** | **float32** |  | 
+**osTemplateId** | **int64** |  | 
 
 ### Other Parameters
 

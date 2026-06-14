@@ -139,7 +139,7 @@ func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*Cro
 type JobAPIDeleteCronJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	cronJobId float32
+	cronJobId int64
 }
 
 func (r JobAPIDeleteCronJobRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes a cron job by ID
  @param cronJobId
  @return JobAPIDeleteCronJobRequest
 */
-func (a *JobAPIService) DeleteCronJob(ctx context.Context, cronJobId float32) JobAPIDeleteCronJobRequest {
+func (a *JobAPIService) DeleteCronJob(ctx context.Context, cronJobId int64) JobAPIDeleteCronJobRequest {
 	return JobAPIDeleteCronJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *JobAPIService) DeleteCronJobExecute(r JobAPIDeleteCronJobRequest) (*htt
 type JobAPIGetCronJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	cronJobId float32
+	cronJobId int64
 }
 
 func (r JobAPIGetCronJobRequest) Execute() (*CronJob, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns cron job information
  @param cronJobId
  @return JobAPIGetCronJobRequest
 */
-func (a *JobAPIService) GetCronJob(ctx context.Context, cronJobId float32) JobAPIGetCronJobRequest {
+func (a *JobAPIService) GetCronJob(ctx context.Context, cronJobId int64) JobAPIGetCronJobRequest {
 	return JobAPIGetCronJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -670,7 +670,7 @@ func (a *JobAPIService) GetCronJobsSupportedFunctionsExecute(r JobAPIGetCronJobs
 type JobAPIGetJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobId float32
+	jobId int64
 }
 
 func (r JobAPIGetJobRequest) Execute() (*Job, *http.Response, error) {
@@ -686,7 +686,7 @@ Returns Job information
  @param jobId
  @return JobAPIGetJobRequest
 */
-func (a *JobAPIService) GetJob(ctx context.Context, jobId float32) JobAPIGetJobRequest {
+func (a *JobAPIService) GetJob(ctx context.Context, jobId int64) JobAPIGetJobRequest {
 	return JobAPIGetJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -773,7 +773,7 @@ func (a *JobAPIService) GetJobExecute(r JobAPIGetJobRequest) (*Job, *http.Respon
 type JobAPIGetJobExceptionsRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobId float32
+	jobId int64
 	page *float32
 	limit *float32
 	filterExceptionId *[]string
@@ -845,7 +845,7 @@ Returns a list of Job Exceptions
  @param jobId
  @return JobAPIGetJobExceptionsRequest
 */
-func (a *JobAPIService) GetJobExceptions(ctx context.Context, jobId float32) JobAPIGetJobExceptionsRequest {
+func (a *JobAPIService) GetJobExceptions(ctx context.Context, jobId int64) JobAPIGetJobExceptionsRequest {
 	return JobAPIGetJobExceptionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -996,7 +996,7 @@ func (a *JobAPIService) GetJobExceptionsExecute(r JobAPIGetJobExceptionsRequest)
 type JobAPIGetJobFromArchiveRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobId float32
+	jobId int64
 }
 
 func (r JobAPIGetJobFromArchiveRequest) Execute() (*JobArchive, *http.Response, error) {
@@ -1012,7 +1012,7 @@ Returns Job from archive information
  @param jobId
  @return JobAPIGetJobFromArchiveRequest
 */
-func (a *JobAPIService) GetJobFromArchive(ctx context.Context, jobId float32) JobAPIGetJobFromArchiveRequest {
+func (a *JobAPIService) GetJobFromArchive(ctx context.Context, jobId int64) JobAPIGetJobFromArchiveRequest {
 	return JobAPIGetJobFromArchiveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1099,7 +1099,7 @@ func (a *JobAPIService) GetJobFromArchiveExecute(r JobAPIGetJobFromArchiveReques
 type JobAPIGetJobGroupRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobGroupId float32
+	jobGroupId int64
 }
 
 func (r JobAPIGetJobGroupRequest) Execute() (*JobGroup, *http.Response, error) {
@@ -1115,7 +1115,7 @@ Returns Group information
  @param jobGroupId
  @return JobAPIGetJobGroupRequest
 */
-func (a *JobAPIService) GetJobGroup(ctx context.Context, jobGroupId float32) JobAPIGetJobGroupRequest {
+func (a *JobAPIService) GetJobGroup(ctx context.Context, jobGroupId int64) JobAPIGetJobGroupRequest {
 	return JobAPIGetJobGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1202,7 +1202,7 @@ func (a *JobAPIService) GetJobGroupExecute(r JobAPIGetJobGroupRequest) (*JobGrou
 type JobAPIGetJobGroupStatisticsRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobGroupId float32
+	jobGroupId int64
 }
 
 func (r JobAPIGetJobGroupStatisticsRequest) Execute() (*JobGroupStatistics, *http.Response, error) {
@@ -1218,7 +1218,7 @@ Returns Group statistics
  @param jobGroupId
  @return JobAPIGetJobGroupStatisticsRequest
 */
-func (a *JobAPIService) GetJobGroupStatistics(ctx context.Context, jobGroupId float32) JobAPIGetJobGroupStatisticsRequest {
+func (a *JobAPIService) GetJobGroupStatistics(ctx context.Context, jobGroupId int64) JobAPIGetJobGroupStatisticsRequest {
 	return JobAPIGetJobGroupStatisticsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2547,7 +2547,7 @@ func (a *JobAPIService) GetJobsStatisticsExecute(r JobAPIGetJobsStatisticsReques
 type JobAPIIssueCommandForJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobId float32
+	jobId int64
 	jobCommandInfo *JobCommandInfo
 }
 
@@ -2570,7 +2570,7 @@ Issues a command for a job that changes the operational state of the job
  @param jobId
  @return JobAPIIssueCommandForJobRequest
 */
-func (a *JobAPIService) IssueCommandForJob(ctx context.Context, jobId float32) JobAPIIssueCommandForJobRequest {
+func (a *JobAPIService) IssueCommandForJob(ctx context.Context, jobId int64) JobAPIIssueCommandForJobRequest {
 	return JobAPIIssueCommandForJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2651,7 +2651,7 @@ func (a *JobAPIService) IssueCommandForJobExecute(r JobAPIIssueCommandForJobRequ
 type JobAPIRetryJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobId float32
+	jobId int64
 	jobRetryInfo *JobRetryInfo
 }
 
@@ -2674,7 +2674,7 @@ Retries a job
  @param jobId
  @return JobAPIRetryJobRequest
 */
-func (a *JobAPIService) RetryJob(ctx context.Context, jobId float32) JobAPIRetryJobRequest {
+func (a *JobAPIService) RetryJob(ctx context.Context, jobId int64) JobAPIRetryJobRequest {
 	return JobAPIRetryJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2755,7 +2755,7 @@ func (a *JobAPIService) RetryJobExecute(r JobAPIRetryJobRequest) (*http.Response
 type JobAPISkipJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	jobId float32
+	jobId int64
 }
 
 func (r JobAPISkipJobRequest) Execute() (*http.Response, error) {
@@ -2771,7 +2771,7 @@ Skips a job
  @param jobId
  @return JobAPISkipJobRequest
 */
-func (a *JobAPIService) SkipJob(ctx context.Context, jobId float32) JobAPISkipJobRequest {
+func (a *JobAPIService) SkipJob(ctx context.Context, jobId int64) JobAPISkipJobRequest {
 	return JobAPISkipJobRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2857,7 +2857,7 @@ func (r JobAPIUpdateCronJobRequest) UpdateCronJob(updateCronJob UpdateCronJob) J
 	return r
 }
 
-func (r JobAPIUpdateCronJobRequest) Execute() (*http.Response, error) {
+func (r JobAPIUpdateCronJobRequest) Execute() (*CronJob, *http.Response, error) {
 	return r.ApiService.UpdateCronJobExecute(r)
 }
 
@@ -2879,16 +2879,18 @@ func (a *JobAPIService) UpdateCronJob(ctx context.Context, cronJobId float32) Jo
 }
 
 // Execute executes the request
-func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*http.Response, error) {
+//  @return CronJob
+func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*CronJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *CronJob
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.UpdateCronJob")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/cron-jobs/{cronJobId}"
@@ -2898,7 +2900,7 @@ func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*htt
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.updateCronJob == nil {
-		return nil, reportError("updateCronJob is required and must be specified")
+		return localVarReturnValue, nil, reportError("updateCronJob is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2911,7 +2913,7 @@ func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*htt
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2922,19 +2924,19 @@ func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*htt
 	localVarPostBody = r.updateCronJob
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2942,8 +2944,17 @@ func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*htt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

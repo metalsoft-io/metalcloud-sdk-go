@@ -26,7 +26,7 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var accountId float32
+		var accountId int64
 
 		resp, httpRes, err := apiClient.AccountAPI.AccountControllerGetUserConfiguration(context.Background(), accountId).Execute()
 
@@ -40,7 +40,7 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var accountId float32
+		var accountId int64
 
 		resp, httpRes, err := apiClient.AccountAPI.ArchiveAccount(context.Background(), accountId).Execute()
 
@@ -66,7 +66,7 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var accountId float32
+		var accountId int64
 
 		resp, httpRes, err := apiClient.AccountAPI.GetAccount(context.Background(), accountId).Execute()
 
@@ -80,7 +80,7 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var accountId float32
+		var accountId int64
 
 		resp, httpRes, err := apiClient.AccountAPI.GetAccountUsers(context.Background(), accountId).Execute()
 
@@ -106,7 +106,7 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var accountId float32
+		var accountId int64
 
 		resp, httpRes, err := apiClient.AccountAPI.UnarchiveAccount(context.Background(), accountId).Execute()
 
@@ -120,7 +120,7 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var accountId float32
+		var accountId int64
 
 		resp, httpRes, err := apiClient.AccountAPI.UpdateAccountConfig(context.Background(), accountId).Execute()
 

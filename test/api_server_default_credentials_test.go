@@ -38,7 +38,7 @@ func Test_sdk_ServerDefaultCredentialsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverDefaultCredentialsId float32
+		var serverDefaultCredentialsId int64
 
 		httpRes, err := apiClient.ServerDefaultCredentialsAPI.DeleteServerDefaultCredentials(context.Background(), serverDefaultCredentialsId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_ServerDefaultCredentialsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverDefaultCredentialsId float32
+		var serverDefaultCredentialsId int64
 
 		resp, httpRes, err := apiClient.ServerDefaultCredentialsAPI.GetServerDefaultCredentialsCredentials(context.Background(), serverDefaultCredentialsId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_ServerDefaultCredentialsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverDefaultCredentialsId float32
+		var serverDefaultCredentialsId int64
 
 		resp, httpRes, err := apiClient.ServerDefaultCredentialsAPI.GetServerDefaultCredentialsInfo(context.Background(), serverDefaultCredentialsId).Execute()
 
@@ -91,7 +91,7 @@ func Test_sdk_ServerDefaultCredentialsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverDefaultCredentialsId float32
+		var serverDefaultCredentialsId int64
 
 		resp, httpRes, err := apiClient.ServerDefaultCredentialsAPI.UpdateServerDefaultCredentials(context.Background(), serverDefaultCredentialsId).Execute()
 

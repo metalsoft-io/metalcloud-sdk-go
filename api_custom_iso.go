@@ -28,8 +28,8 @@ type CustomIsoAPIService service
 type CustomIsoAPIBootCustomIsoIntoServerRequest struct {
 	ctx context.Context
 	ApiService *CustomIsoAPIService
-	customIsoId float32
-	serverId float32
+	customIsoId int64
+	serverId int64
 }
 
 func (r CustomIsoAPIBootCustomIsoIntoServerRequest) Execute() (*JobInfo, *http.Response, error) {
@@ -44,7 +44,7 @@ BootCustomIsoIntoServer Boot Custom Iso into Server
  @param serverId
  @return CustomIsoAPIBootCustomIsoIntoServerRequest
 */
-func (a *CustomIsoAPIService) BootCustomIsoIntoServer(ctx context.Context, customIsoId float32, serverId float32) CustomIsoAPIBootCustomIsoIntoServerRequest {
+func (a *CustomIsoAPIService) BootCustomIsoIntoServer(ctx context.Context, customIsoId int64, serverId int64) CustomIsoAPIBootCustomIsoIntoServerRequest {
 	return CustomIsoAPIBootCustomIsoIntoServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -242,7 +242,7 @@ func (a *CustomIsoAPIService) CreateCustomIsoExecute(r CustomIsoAPICreateCustomI
 type CustomIsoAPIDeleteCustomIsoRequest struct {
 	ctx context.Context
 	ApiService *CustomIsoAPIService
-	customIsoId float32
+	customIsoId int64
 }
 
 func (r CustomIsoAPIDeleteCustomIsoRequest) Execute() (*http.Response, error) {
@@ -256,7 +256,7 @@ DeleteCustomIso Delete Custom Iso
  @param customIsoId
  @return CustomIsoAPIDeleteCustomIsoRequest
 */
-func (a *CustomIsoAPIService) DeleteCustomIso(ctx context.Context, customIsoId float32) CustomIsoAPIDeleteCustomIsoRequest {
+func (a *CustomIsoAPIService) DeleteCustomIso(ctx context.Context, customIsoId int64) CustomIsoAPIDeleteCustomIsoRequest {
 	return CustomIsoAPIDeleteCustomIsoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -332,7 +332,7 @@ func (a *CustomIsoAPIService) DeleteCustomIsoExecute(r CustomIsoAPIDeleteCustomI
 type CustomIsoAPIGetCustomIsoRequest struct {
 	ctx context.Context
 	ApiService *CustomIsoAPIService
-	customIsoId float32
+	customIsoId int64
 }
 
 func (r CustomIsoAPIGetCustomIsoRequest) Execute() (*CustomIso, *http.Response, error) {
@@ -348,7 +348,7 @@ Returns Custom Iso information
  @param customIsoId
  @return CustomIsoAPIGetCustomIsoRequest
 */
-func (a *CustomIsoAPIService) GetCustomIso(ctx context.Context, customIsoId float32) CustomIsoAPIGetCustomIsoRequest {
+func (a *CustomIsoAPIService) GetCustomIso(ctx context.Context, customIsoId int64) CustomIsoAPIGetCustomIsoRequest {
 	return CustomIsoAPIGetCustomIsoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -672,7 +672,7 @@ func (a *CustomIsoAPIService) GetCustomIsosExecute(r CustomIsoAPIGetCustomIsosRe
 type CustomIsoAPIMakeCustomIsoPublicRequest struct {
 	ctx context.Context
 	ApiService *CustomIsoAPIService
-	customIsoId float32
+	customIsoId int64
 }
 
 func (r CustomIsoAPIMakeCustomIsoPublicRequest) Execute() (*CustomIso, *http.Response, error) {
@@ -686,7 +686,7 @@ MakeCustomIsoPublic Make Custom Iso public
  @param customIsoId
  @return CustomIsoAPIMakeCustomIsoPublicRequest
 */
-func (a *CustomIsoAPIService) MakeCustomIsoPublic(ctx context.Context, customIsoId float32) CustomIsoAPIMakeCustomIsoPublicRequest {
+func (a *CustomIsoAPIService) MakeCustomIsoPublic(ctx context.Context, customIsoId int64) CustomIsoAPIMakeCustomIsoPublicRequest {
 	return CustomIsoAPIMakeCustomIsoPublicRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -773,7 +773,7 @@ func (a *CustomIsoAPIService) MakeCustomIsoPublicExecute(r CustomIsoAPIMakeCusto
 type CustomIsoAPIUpdateCustomIsoRequest struct {
 	ctx context.Context
 	ApiService *CustomIsoAPIService
-	customIsoId float32
+	customIsoId int64
 	updateCustomIso *UpdateCustomIso
 }
 
@@ -794,7 +794,7 @@ UpdateCustomIso Updates Custom Iso information
  @param customIsoId
  @return CustomIsoAPIUpdateCustomIsoRequest
 */
-func (a *CustomIsoAPIService) UpdateCustomIso(ctx context.Context, customIsoId float32) CustomIsoAPIUpdateCustomIsoRequest {
+func (a *CustomIsoAPIService) UpdateCustomIso(ctx context.Context, customIsoId int64) CustomIsoAPIUpdateCustomIsoRequest {
 	return CustomIsoAPIUpdateCustomIsoRequest{
 		ApiService: a,
 		ctx: ctx,

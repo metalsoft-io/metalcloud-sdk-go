@@ -44,6 +44,7 @@ Name | Type | Description | Notes
 **SerialNumber** | Pointer to **string** | The serial number of the network device | [optional] 
 **OrderIndex** | Pointer to **float32** | The order index for sorting network devices | [optional] 
 **Tags** | Pointer to **[]string** | Tags for categorizing and filtering network devices | [optional] 
+**TagsMap** | Pointer to **map[string]string** | Key/value tags (key-map). The forthcoming replacement for the legacy string[] &#x60;tags&#x60;. | [optional] 
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
 **VmPoolId** | Pointer to **int64** | ID of the VM pool associated with the network device | [optional] 
@@ -1306,6 +1307,31 @@ HasTags returns a boolean if a field has been set.
 `func (o *CreateNetworkDevice) UnsetTags()`
 
 UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetTagsMap
+
+`func (o *CreateNetworkDevice) GetTagsMap() map[string]string`
+
+GetTagsMap returns the TagsMap field if non-nil, zero value otherwise.
+
+### GetTagsMapOk
+
+`func (o *CreateNetworkDevice) GetTagsMapOk() (*map[string]string, bool)`
+
+GetTagsMapOk returns a tuple with the TagsMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTagsMap
+
+`func (o *CreateNetworkDevice) SetTagsMap(v map[string]string)`
+
+SetTagsMap sets TagsMap field to given value.
+
+### HasTagsMap
+
+`func (o *CreateNetworkDevice) HasTagsMap() bool`
+
+HasTagsMap returns a boolean if a field has been set.
+
 ### GetRequiresOsInstall
 
 `func (o *CreateNetworkDevice) GetRequiresOsInstall() bool`

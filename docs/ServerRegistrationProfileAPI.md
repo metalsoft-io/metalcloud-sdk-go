@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-	serverRegistrationProfileId := float32(8.14) // float32 | 
+	serverRegistrationProfileId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverRegistrationProfileId** | **float32** |  | 
+**serverRegistrationProfileId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -172,7 +172,7 @@ import (
 )
 
 func main() {
-	serverRegistrationProfileId := float32(8.14) // float32 | 
+	serverRegistrationProfileId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -192,7 +192,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverRegistrationProfileId** | **float32** |  | 
+**serverRegistrationProfileId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -242,7 +242,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -262,7 +262,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -515,7 +515,7 @@ import (
 )
 
 func main() {
-	serverRegistrationProfileId := float32(8.14) // float32 | 
+	serverRegistrationProfileId := int64(789) // int64 | 
 	serverRegistrationProfileUpdate := *openapiclient.NewServerRegistrationProfileUpdate() // ServerRegistrationProfileUpdate | The Server Registration Profile update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -537,7 +537,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverRegistrationProfileId** | **float32** |  | 
+**serverRegistrationProfileId** | **int64** |  | 
 
 ### Other Parameters
 

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Ipv6** | Pointer to [**LogicalNetworkProfileIpv6Properties**](LogicalNetworkProfileIpv6Properties.md) |  | [optional] 
 **RouteDomainId** | Pointer to **NullableInt64** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
+**L3Only** | Pointer to **bool** | When true, networks created from this profile are routed-access (L3-only) over point-to-point links. | [optional] [default to false]
 
 ## Methods
 
@@ -441,6 +442,31 @@ HasMtu returns a boolean if a field has been set.
 `func (o *LogicalNetworkProfile) UnsetMtu()`
 
 UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+### GetL3Only
+
+`func (o *LogicalNetworkProfile) GetL3Only() bool`
+
+GetL3Only returns the L3Only field if non-nil, zero value otherwise.
+
+### GetL3OnlyOk
+
+`func (o *LogicalNetworkProfile) GetL3OnlyOk() (*bool, bool)`
+
+GetL3OnlyOk returns a tuple with the L3Only field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL3Only
+
+`func (o *LogicalNetworkProfile) SetL3Only(v bool)`
+
+SetL3Only sets L3Only field to given value.
+
+### HasL3Only
+
+`func (o *LogicalNetworkProfile) HasL3Only() bool`
+
+HasL3Only returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

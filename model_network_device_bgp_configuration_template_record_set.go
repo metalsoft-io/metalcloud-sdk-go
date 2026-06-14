@@ -63,6 +63,8 @@ type NetworkDeviceBGPConfigurationTemplateRecordSet struct {
 	RemoteSwitchCustomVariables map[string]interface{} `json:"remote_switch_custom_variables,omitempty"`
 	// Custom variables for the MLAG pair of the local switch (if any).
 	MlagPeerCustomVariables map[string]interface{} `json:"mlag_peer_custom_variables,omitempty"`
+	// The IP address of the remote interface of the P2P link. Present only when BGP numbering is NUMBERED.
+	RemoteP2pLinkIp *string `json:"remote_p2p_link_ip,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -694,6 +696,38 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetMlagPeerCustomVariab
 	o.MlagPeerCustomVariables = v
 }
 
+// GetRemoteP2pLinkIp returns the RemoteP2pLinkIp field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIp() string {
+	if o == nil || IsNil(o.RemoteP2pLinkIp) {
+		var ret string
+		return ret
+	}
+	return *o.RemoteP2pLinkIp
+}
+
+// GetRemoteP2pLinkIpOk returns a tuple with the RemoteP2pLinkIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIpOk() (*string, bool) {
+	if o == nil || IsNil(o.RemoteP2pLinkIp) {
+		return nil, false
+	}
+	return o.RemoteP2pLinkIp, true
+}
+
+// HasRemoteP2pLinkIp returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteP2pLinkIp() bool {
+	if o != nil && !IsNil(o.RemoteP2pLinkIp) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteP2pLinkIp gets a reference to the given string and assigns it to the RemoteP2pLinkIp field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteP2pLinkIp(v string) {
+	o.RemoteP2pLinkIp = &v
+}
+
 func (o NetworkDeviceBGPConfigurationTemplateRecordSet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -748,6 +782,9 @@ func (o NetworkDeviceBGPConfigurationTemplateRecordSet) ToMap() (map[string]inte
 	}
 	if !IsNil(o.MlagPeerCustomVariables) {
 		toSerialize["mlag_peer_custom_variables"] = o.MlagPeerCustomVariables
+	}
+	if !IsNil(o.RemoteP2pLinkIp) {
+		toSerialize["remote_p2p_link_ip"] = o.RemoteP2pLinkIp
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -821,6 +858,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) UnmarshalJSON(data []by
 		delete(additionalProperties, "local_switch_custom_variables")
 		delete(additionalProperties, "remote_switch_custom_variables")
 		delete(additionalProperties, "mlag_peer_custom_variables")
+		delete(additionalProperties, "remote_p2p_link_ip")
 		o.AdditionalProperties = additionalProperties
 	}
 

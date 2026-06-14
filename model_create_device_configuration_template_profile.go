@@ -33,8 +33,14 @@ type CreateDeviceConfigurationTemplateProfile struct {
 	Variables map[string]interface{} `json:"variables,omitempty"`
 	// Disable to skip applying this profile without deleting it from the system.
 	IsEnabled *bool `json:"isEnabled,omitempty"`
-	// Lower applies first when multiple profiles match a (device, lifecycleStage) query.
+	// Ordering hint when multiple enabled profiles match the same (device, lifecycleStage) tuple at deploy time — lower values apply first. Integer in the range [0, 1000]. Defaults to 100, which leaves headroom in both directions.  Recommended bands (convention, not enforced): - 0–49: system-level overrides — first thing on the wire after baseline reset. - 50–99: high-priority operator rules (e.g. emergency policy push). - 100: default — use this unless you have a reason not to. - 101–500: standard operator customizations. - 501–1000: low-priority fallbacks, applied last.  Ties (two profiles with the same priority for the same device + lifecycleStage) resolve in undefined order. Use distinct priorities if order matters.
 	Priority *float32 `json:"priority,omitempty"`
+	// How often this profile applies during fabric deploys. - 'always' (default): re-applied on every deploy that matches. - 'once': applied to each matching device exactly once across all deploys, then skipped. Tracking lives in `device_configuration_template_history` — one row per successful apply, keyed on the profile id and the network device id. Reset by deleting those history rows.
+	ApplyMode *DeviceConfigurationProfileApplyMode `json:"applyMode,omitempty"`
+	// Key-value annotations for storing additional metadata.
+	Annotations *map[string]string `json:"annotations,omitempty"`
+	// Tags associated with the profile. Each entry is capped at 255 characters.
+	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,6 +57,8 @@ func NewCreateDeviceConfigurationTemplateProfile(deviceConfigurationTemplateId i
 	this.IsEnabled = &isEnabled
 	var priority float32 = 100
 	this.Priority = &priority
+	var applyMode DeviceConfigurationProfileApplyMode = DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS
+	this.ApplyMode = &applyMode
 	return &this
 }
 
@@ -63,6 +71,8 @@ func NewCreateDeviceConfigurationTemplateProfileWithDefaults() *CreateDeviceConf
 	this.IsEnabled = &isEnabled
 	var priority float32 = 100
 	this.Priority = &priority
+	var applyMode DeviceConfigurationProfileApplyMode = DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS
+	this.ApplyMode = &applyMode
 	return &this
 }
 
@@ -302,6 +312,102 @@ func (o *CreateDeviceConfigurationTemplateProfile) SetPriority(v float32) {
 	o.Priority = &v
 }
 
+// GetApplyMode returns the ApplyMode field value if set, zero value otherwise.
+func (o *CreateDeviceConfigurationTemplateProfile) GetApplyMode() DeviceConfigurationProfileApplyMode {
+	if o == nil || IsNil(o.ApplyMode) {
+		var ret DeviceConfigurationProfileApplyMode
+		return ret
+	}
+	return *o.ApplyMode
+}
+
+// GetApplyModeOk returns a tuple with the ApplyMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDeviceConfigurationTemplateProfile) GetApplyModeOk() (*DeviceConfigurationProfileApplyMode, bool) {
+	if o == nil || IsNil(o.ApplyMode) {
+		return nil, false
+	}
+	return o.ApplyMode, true
+}
+
+// HasApplyMode returns a boolean if a field has been set.
+func (o *CreateDeviceConfigurationTemplateProfile) HasApplyMode() bool {
+	if o != nil && !IsNil(o.ApplyMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplyMode gets a reference to the given DeviceConfigurationProfileApplyMode and assigns it to the ApplyMode field.
+func (o *CreateDeviceConfigurationTemplateProfile) SetApplyMode(v DeviceConfigurationProfileApplyMode) {
+	o.ApplyMode = &v
+}
+
+// GetAnnotations returns the Annotations field value if set, zero value otherwise.
+func (o *CreateDeviceConfigurationTemplateProfile) GetAnnotations() map[string]string {
+	if o == nil || IsNil(o.Annotations) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Annotations
+}
+
+// GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDeviceConfigurationTemplateProfile) GetAnnotationsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Annotations) {
+		return nil, false
+	}
+	return o.Annotations, true
+}
+
+// HasAnnotations returns a boolean if a field has been set.
+func (o *CreateDeviceConfigurationTemplateProfile) HasAnnotations() bool {
+	if o != nil && !IsNil(o.Annotations) {
+		return true
+	}
+
+	return false
+}
+
+// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
+func (o *CreateDeviceConfigurationTemplateProfile) SetAnnotations(v map[string]string) {
+	o.Annotations = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *CreateDeviceConfigurationTemplateProfile) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDeviceConfigurationTemplateProfile) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *CreateDeviceConfigurationTemplateProfile) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *CreateDeviceConfigurationTemplateProfile) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o CreateDeviceConfigurationTemplateProfile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -330,6 +436,15 @@ func (o CreateDeviceConfigurationTemplateProfile) ToMap() (map[string]interface{
 	}
 	if !IsNil(o.Priority) {
 		toSerialize["priority"] = o.Priority
+	}
+	if !IsNil(o.ApplyMode) {
+		toSerialize["applyMode"] = o.ApplyMode
+	}
+	if !IsNil(o.Annotations) {
+		toSerialize["annotations"] = o.Annotations
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -381,6 +496,9 @@ func (o *CreateDeviceConfigurationTemplateProfile) UnmarshalJSON(data []byte) (e
 		delete(additionalProperties, "variables")
 		delete(additionalProperties, "isEnabled")
 		delete(additionalProperties, "priority")
+		delete(additionalProperties, "applyMode")
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

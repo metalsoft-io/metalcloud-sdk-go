@@ -26,7 +26,10 @@ type NetworkEquipmentInterfaceIp struct {
 	Kind string `json:"kind"`
 	Address string `json:"address"`
 	PrefixLength int32 `json:"prefixLength"`
-	DeployStatus string `json:"deployStatus"`
+	ServiceStatus string `json:"serviceStatus"`
+	PendingDelete bool `json:"pendingDelete"`
+	// VRRP groups keyed by virtual router id (1..255); null when none.
+	Vrrp map[string]VrrpGroup `json:"vrrp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,14 +39,15 @@ type _NetworkEquipmentInterfaceIp NetworkEquipmentInterfaceIp
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkEquipmentInterfaceIp(id int64, interfaceId int64, kind string, address string, prefixLength int32, deployStatus string) *NetworkEquipmentInterfaceIp {
+func NewNetworkEquipmentInterfaceIp(id int64, interfaceId int64, kind string, address string, prefixLength int32, serviceStatus string, pendingDelete bool) *NetworkEquipmentInterfaceIp {
 	this := NetworkEquipmentInterfaceIp{}
 	this.Id = id
 	this.InterfaceId = interfaceId
 	this.Kind = kind
 	this.Address = address
 	this.PrefixLength = prefixLength
-	this.DeployStatus = deployStatus
+	this.ServiceStatus = serviceStatus
+	this.PendingDelete = pendingDelete
 	return &this
 }
 
@@ -175,28 +179,85 @@ func (o *NetworkEquipmentInterfaceIp) SetPrefixLength(v int32) {
 	o.PrefixLength = v
 }
 
-// GetDeployStatus returns the DeployStatus field value
-func (o *NetworkEquipmentInterfaceIp) GetDeployStatus() string {
+// GetServiceStatus returns the ServiceStatus field value
+func (o *NetworkEquipmentInterfaceIp) GetServiceStatus() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.DeployStatus
+	return o.ServiceStatus
 }
 
-// GetDeployStatusOk returns a tuple with the DeployStatus field value
+// GetServiceStatusOk returns a tuple with the ServiceStatus field value
 // and a boolean to check if the value has been set.
-func (o *NetworkEquipmentInterfaceIp) GetDeployStatusOk() (*string, bool) {
+func (o *NetworkEquipmentInterfaceIp) GetServiceStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DeployStatus, true
+	return &o.ServiceStatus, true
 }
 
-// SetDeployStatus sets field value
-func (o *NetworkEquipmentInterfaceIp) SetDeployStatus(v string) {
-	o.DeployStatus = v
+// SetServiceStatus sets field value
+func (o *NetworkEquipmentInterfaceIp) SetServiceStatus(v string) {
+	o.ServiceStatus = v
+}
+
+// GetPendingDelete returns the PendingDelete field value
+func (o *NetworkEquipmentInterfaceIp) GetPendingDelete() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PendingDelete
+}
+
+// GetPendingDeleteOk returns a tuple with the PendingDelete field value
+// and a boolean to check if the value has been set.
+func (o *NetworkEquipmentInterfaceIp) GetPendingDeleteOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PendingDelete, true
+}
+
+// SetPendingDelete sets field value
+func (o *NetworkEquipmentInterfaceIp) SetPendingDelete(v bool) {
+	o.PendingDelete = v
+}
+
+// GetVrrp returns the Vrrp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkEquipmentInterfaceIp) GetVrrp() map[string]VrrpGroup {
+	if o == nil {
+		var ret map[string]VrrpGroup
+		return ret
+	}
+	return o.Vrrp
+}
+
+// GetVrrpOk returns a tuple with the Vrrp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkEquipmentInterfaceIp) GetVrrpOk() (*map[string]VrrpGroup, bool) {
+	if o == nil || IsNil(o.Vrrp) {
+		return nil, false
+	}
+	return &o.Vrrp, true
+}
+
+// HasVrrp returns a boolean if a field has been set.
+func (o *NetworkEquipmentInterfaceIp) HasVrrp() bool {
+	if o != nil && !IsNil(o.Vrrp) {
+		return true
+	}
+
+	return false
+}
+
+// SetVrrp gets a reference to the given map[string]VrrpGroup and assigns it to the Vrrp field.
+func (o *NetworkEquipmentInterfaceIp) SetVrrp(v map[string]VrrpGroup) {
+	o.Vrrp = v
 }
 
 func (o NetworkEquipmentInterfaceIp) MarshalJSON() ([]byte, error) {
@@ -214,7 +275,11 @@ func (o NetworkEquipmentInterfaceIp) ToMap() (map[string]interface{}, error) {
 	toSerialize["kind"] = o.Kind
 	toSerialize["address"] = o.Address
 	toSerialize["prefixLength"] = o.PrefixLength
-	toSerialize["deployStatus"] = o.DeployStatus
+	toSerialize["serviceStatus"] = o.ServiceStatus
+	toSerialize["pendingDelete"] = o.PendingDelete
+	if o.Vrrp != nil {
+		toSerialize["vrrp"] = o.Vrrp
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -233,7 +298,8 @@ func (o *NetworkEquipmentInterfaceIp) UnmarshalJSON(data []byte) (err error) {
 		"kind",
 		"address",
 		"prefixLength",
-		"deployStatus",
+		"serviceStatus",
+		"pendingDelete",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -268,7 +334,9 @@ func (o *NetworkEquipmentInterfaceIp) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "prefixLength")
-		delete(additionalProperties, "deployStatus")
+		delete(additionalProperties, "serviceStatus")
+		delete(additionalProperties, "pendingDelete")
+		delete(additionalProperties, "vrrp")
 		o.AdditionalProperties = additionalProperties
 	}
 

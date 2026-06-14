@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
 **IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
-**FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
+**FirmwarePolicyIds** | Pointer to **[]int64** | Array of firmware policy ids containing associated firmware policies. | [optional] 
 **Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \&quot;instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionLoadBalancingDnsRecord\&quot; is true.  | [optional] 
 **OsTemplateId** | Pointer to **int64** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
@@ -273,20 +273,20 @@ SetIpv4SubnetCreateAuto sets Ipv4SubnetCreateAuto field to given value.
 
 ### GetFirmwarePolicyIds
 
-`func (o *ServerInstanceGroupConfiguration) GetFirmwarePolicyIds() []float32`
+`func (o *ServerInstanceGroupConfiguration) GetFirmwarePolicyIds() []int64`
 
 GetFirmwarePolicyIds returns the FirmwarePolicyIds field if non-nil, zero value otherwise.
 
 ### GetFirmwarePolicyIdsOk
 
-`func (o *ServerInstanceGroupConfiguration) GetFirmwarePolicyIdsOk() (*[]float32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetFirmwarePolicyIdsOk() (*[]int64, bool)`
 
 GetFirmwarePolicyIdsOk returns a tuple with the FirmwarePolicyIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirmwarePolicyIds
 
-`func (o *ServerInstanceGroupConfiguration) SetFirmwarePolicyIds(v []float32)`
+`func (o *ServerInstanceGroupConfiguration) SetFirmwarePolicyIds(v []int64)`
 
 SetFirmwarePolicyIds sets FirmwarePolicyIds field to given value.
 

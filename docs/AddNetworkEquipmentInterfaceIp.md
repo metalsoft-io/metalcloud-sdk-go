@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | **string** |  | 
 **Address** | **string** | Address (e.g. \&quot;10.0.0.1\&quot; or \&quot;2001:db8::1\&quot;). No CIDR. | 
 **PrefixLength** | **int32** | Prefix length. 0..32 for ipv4; 0..128 for ipv6. | 
 
@@ -12,7 +11,7 @@ Name | Type | Description | Notes
 
 ### NewAddNetworkEquipmentInterfaceIp
 
-`func NewAddNetworkEquipmentInterfaceIp(kind string, address string, prefixLength int32, ) *AddNetworkEquipmentInterfaceIp`
+`func NewAddNetworkEquipmentInterfaceIp(address string, prefixLength int32, ) *AddNetworkEquipmentInterfaceIp`
 
 NewAddNetworkEquipmentInterfaceIp instantiates a new AddNetworkEquipmentInterfaceIp object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +25,6 @@ will change when the set of required properties is changed
 NewAddNetworkEquipmentInterfaceIpWithDefaults instantiates a new AddNetworkEquipmentInterfaceIp object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetKind
-
-`func (o *AddNetworkEquipmentInterfaceIp) GetKind() string`
-
-GetKind returns the Kind field if non-nil, zero value otherwise.
-
-### GetKindOk
-
-`func (o *AddNetworkEquipmentInterfaceIp) GetKindOk() (*string, bool)`
-
-GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKind
-
-`func (o *AddNetworkEquipmentInterfaceIp) SetKind(v string)`
-
-SetKind sets Kind field to given value.
-
 
 ### GetAddress
 

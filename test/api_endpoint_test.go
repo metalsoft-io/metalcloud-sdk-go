@@ -49,7 +49,7 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
+		var endpointId int64
 
 		resp, httpRes, err := apiClient.EndpointAPI.CreateEndpointInterface(context.Background(), endpointId).Execute()
 
@@ -63,7 +63,7 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
+		var endpointId int64
 
 		httpRes, err := apiClient.EndpointAPI.DeleteEndpoint(context.Background(), endpointId).Execute()
 
@@ -76,8 +76,8 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
-		var endpointInterfaceId int32
+		var endpointId int64
+		var endpointInterfaceId int64
 
 		httpRes, err := apiClient.EndpointAPI.DeleteEndpointInterface(context.Background(), endpointId, endpointInterfaceId).Execute()
 
@@ -90,7 +90,7 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
+		var endpointId int64
 
 		resp, httpRes, err := apiClient.EndpointAPI.GetEndpointById(context.Background(), endpointId).Execute()
 
@@ -104,8 +104,8 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
-		var endpointInterfaceId int32
+		var endpointId int64
+		var endpointInterfaceId int64
 
 		resp, httpRes, err := apiClient.EndpointAPI.GetEndpointInterfaceById(context.Background(), endpointId, endpointInterfaceId).Execute()
 
@@ -119,7 +119,7 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
+		var endpointId int64
 
 		resp, httpRes, err := apiClient.EndpointAPI.GetEndpointInterfaces(context.Background(), endpointId).Execute()
 
@@ -159,7 +159,7 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
+		var endpointId int64
 
 		resp, httpRes, err := apiClient.EndpointAPI.UpdateEndpoint(context.Background(), endpointId).Execute()
 
@@ -173,8 +173,8 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointId int32
-		var endpointInterfaceId int32
+		var endpointId int64
+		var endpointInterfaceId int64
 
 		resp, httpRes, err := apiClient.EndpointAPI.UpdateEndpointInterface(context.Background(), endpointId, endpointInterfaceId).Execute()
 

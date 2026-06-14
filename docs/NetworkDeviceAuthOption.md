@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | **string** | The authentication method kind. | 
 **DeviceAuthProviderId** | Pointer to **int64** | The ID of the DeviceAuthProvider. Required when kind is tacacs. | [optional] 
-**VrfName** | Pointer to **string** | VRF name on the device through which TACACS traffic should be routed (e.g. \&quot;mgmt\&quot;). Only meaningful when kind is tacacs. If omitted, the switch service auto-detects from the device state: it queries network-instance&#x3D;mgmt and uses \&quot;mgmt\&quot; if the management interface is a member, otherwise leaves the binding unset (default VRF). | [optional] 
 
 ## Methods
 
@@ -71,31 +70,6 @@ SetDeviceAuthProviderId sets DeviceAuthProviderId field to given value.
 `func (o *NetworkDeviceAuthOption) HasDeviceAuthProviderId() bool`
 
 HasDeviceAuthProviderId returns a boolean if a field has been set.
-
-### GetVrfName
-
-`func (o *NetworkDeviceAuthOption) GetVrfName() string`
-
-GetVrfName returns the VrfName field if non-nil, zero value otherwise.
-
-### GetVrfNameOk
-
-`func (o *NetworkDeviceAuthOption) GetVrfNameOk() (*string, bool)`
-
-GetVrfNameOk returns a tuple with the VrfName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVrfName
-
-`func (o *NetworkDeviceAuthOption) SetVrfName(v string)`
-
-SetVrfName sets VrfName field to given value.
-
-### HasVrfName
-
-`func (o *NetworkDeviceAuthOption) HasVrfName() bool`
-
-HasVrfName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

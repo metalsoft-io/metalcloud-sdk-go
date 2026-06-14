@@ -38,7 +38,7 @@ func Test_sdk_NetworkDeviceLinkAggregationConfigurationTemplateAPIService(t *tes
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceLinkAggregationConfigurationTemplateId float32
+		var networkDeviceLinkAggregationConfigurationTemplateId int64
 
 		httpRes, err := apiClient.NetworkDeviceLinkAggregationConfigurationTemplateAPI.DeleteNetworkDeviceLinkAggregationConfigurationTemplate(context.Background(), networkDeviceLinkAggregationConfigurationTemplateId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_NetworkDeviceLinkAggregationConfigurationTemplateAPIService(t *tes
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceLinkAggregationConfigurationTemplateId float32
+		var networkDeviceLinkAggregationConfigurationTemplateId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceLinkAggregationConfigurationTemplateAPI.GetNetworkDeviceLinkAggregationConfigurationTemplate(context.Background(), networkDeviceLinkAggregationConfigurationTemplateId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_NetworkDeviceLinkAggregationConfigurationTemplateAPIService(t *tes
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceLinkAggregationConfigurationTemplateId float32
+		var networkDeviceLinkAggregationConfigurationTemplateId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceLinkAggregationConfigurationTemplateAPI.UpdateNetworkDeviceLinkAggregationConfigurationTemplate(context.Background(), networkDeviceLinkAggregationConfigurationTemplateId).Execute()
 

@@ -24,6 +24,7 @@ type UpdateNetworkEquipmentInterfaceConfig struct {
 	Mtu NullableInt32 `json:"mtu,omitempty"`
 	Enabled NullableBool `json:"enabled,omitempty"`
 	Speed NullableString `json:"speed,omitempty"`
+	AutoNegotiate NullableBool `json:"autoNegotiate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -214,6 +215,48 @@ func (o *UpdateNetworkEquipmentInterfaceConfig) UnsetSpeed() {
 	o.Speed.Unset()
 }
 
+// GetAutoNegotiate returns the AutoNegotiate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkEquipmentInterfaceConfig) GetAutoNegotiate() bool {
+	if o == nil || IsNil(o.AutoNegotiate.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoNegotiate.Get()
+}
+
+// GetAutoNegotiateOk returns a tuple with the AutoNegotiate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkEquipmentInterfaceConfig) GetAutoNegotiateOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AutoNegotiate.Get(), o.AutoNegotiate.IsSet()
+}
+
+// HasAutoNegotiate returns a boolean if a field has been set.
+func (o *UpdateNetworkEquipmentInterfaceConfig) HasAutoNegotiate() bool {
+	if o != nil && o.AutoNegotiate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoNegotiate gets a reference to the given NullableBool and assigns it to the AutoNegotiate field.
+func (o *UpdateNetworkEquipmentInterfaceConfig) SetAutoNegotiate(v bool) {
+	o.AutoNegotiate.Set(&v)
+}
+// SetAutoNegotiateNil sets the value for AutoNegotiate to be an explicit nil
+func (o *UpdateNetworkEquipmentInterfaceConfig) SetAutoNegotiateNil() {
+	o.AutoNegotiate.Set(nil)
+}
+
+// UnsetAutoNegotiate ensures that no value is present for AutoNegotiate, not even an explicit nil
+func (o *UpdateNetworkEquipmentInterfaceConfig) UnsetAutoNegotiate() {
+	o.AutoNegotiate.Unset()
+}
+
 func (o UpdateNetworkEquipmentInterfaceConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -235,6 +278,9 @@ func (o UpdateNetworkEquipmentInterfaceConfig) ToMap() (map[string]interface{}, 
 	}
 	if o.Speed.IsSet() {
 		toSerialize["speed"] = o.Speed.Get()
+	}
+	if o.AutoNegotiate.IsSet() {
+		toSerialize["autoNegotiate"] = o.AutoNegotiate.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -262,6 +308,7 @@ func (o *UpdateNetworkEquipmentInterfaceConfig) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "speed")
+		delete(additionalProperties, "autoNegotiate")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -38,7 +38,7 @@ func Test_sdk_DNSZoneAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var dnsZoneId float32
+		var dnsZoneId int64
 
 		httpRes, err := apiClient.DNSZoneAPI.DeleteDNSZone(context.Background(), dnsZoneId).Execute()
 
@@ -51,8 +51,8 @@ func Test_sdk_DNSZoneAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var recordSetId float32
+		var id int64
+		var recordSetId int64
 
 		resp, httpRes, err := apiClient.DNSZoneAPI.GetDNSRecordSetById(context.Background(), id, recordSetId).Execute()
 
@@ -66,7 +66,7 @@ func Test_sdk_DNSZoneAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var dnsZoneId float32
+		var dnsZoneId int64
 
 		resp, httpRes, err := apiClient.DNSZoneAPI.GetDNSZoneById(context.Background(), dnsZoneId).Execute()
 
@@ -80,7 +80,7 @@ func Test_sdk_DNSZoneAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var dnsZoneId float32
+		var dnsZoneId int64
 
 		resp, httpRes, err := apiClient.DNSZoneAPI.GetDNSZoneNameservers(context.Background(), dnsZoneId).Execute()
 
@@ -106,7 +106,7 @@ func Test_sdk_DNSZoneAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.DNSZoneAPI.ListDNSRecordSetsByZoneId(context.Background(), id).Execute()
 
@@ -120,7 +120,7 @@ func Test_sdk_DNSZoneAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var dnsZoneId float32
+		var dnsZoneId int64
 
 		resp, httpRes, err := apiClient.DNSZoneAPI.UpdateDNSZone(context.Background(), dnsZoneId).Execute()
 

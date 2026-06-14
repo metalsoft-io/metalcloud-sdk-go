@@ -12,14 +12,19 @@ Name | Type | Description | Notes
 **InterfaceDescription** | Pointer to **string** |  | [optional] 
 **Mtu** | Pointer to **int32** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
-**Speed** | Pointer to **string** |  | [optional] 
-**DeployStatus** | **string** |  | 
+**Speed** | Pointer to **NullableString** |  | [optional] 
+**AutoNegotiate** | Pointer to **NullableBool** |  | [optional] 
+**ServiceStatus** | **string** |  | 
+**PendingDelete** | **bool** |  | 
+**Config** | [**NetworkEquipmentInterfaceConfig**](NetworkEquipmentInterfaceConfig.md) |  | 
+**Ipv4** | [**NetworkEquipmentInterfaceIpFamily**](NetworkEquipmentInterfaceIpFamily.md) |  | 
+**Ipv6** | [**NetworkEquipmentInterfaceIpFamily**](NetworkEquipmentInterfaceIpFamily.md) |  | 
 
 ## Methods
 
 ### NewNetworkEquipmentInterface
 
-`func NewNetworkEquipmentInterface(interfaceId int64, switchId int64, kind string, interfaceName string, deployStatus string, ) *NetworkEquipmentInterface`
+`func NewNetworkEquipmentInterface(interfaceId int64, switchId int64, kind string, interfaceName string, serviceStatus string, pendingDelete bool, config NetworkEquipmentInterfaceConfig, ipv4 NetworkEquipmentInterfaceIpFamily, ipv6 NetworkEquipmentInterfaceIpFamily, ) *NetworkEquipmentInterface`
 
 NewNetworkEquipmentInterface instantiates a new NetworkEquipmentInterface object
 This constructor will assign default values to properties that have it defined,
@@ -249,24 +254,149 @@ SetSpeed sets Speed field to given value.
 
 HasSpeed returns a boolean if a field has been set.
 
-### GetDeployStatus
+### SetSpeedNil
 
-`func (o *NetworkEquipmentInterface) GetDeployStatus() string`
+`func (o *NetworkEquipmentInterface) SetSpeedNil(b bool)`
 
-GetDeployStatus returns the DeployStatus field if non-nil, zero value otherwise.
+ SetSpeedNil sets the value for Speed to be an explicit nil
 
-### GetDeployStatusOk
+### UnsetSpeed
+`func (o *NetworkEquipmentInterface) UnsetSpeed()`
 
-`func (o *NetworkEquipmentInterface) GetDeployStatusOk() (*string, bool)`
+UnsetSpeed ensures that no value is present for Speed, not even an explicit nil
+### GetAutoNegotiate
 
-GetDeployStatusOk returns a tuple with the DeployStatus field if it's non-nil, zero value otherwise
+`func (o *NetworkEquipmentInterface) GetAutoNegotiate() bool`
+
+GetAutoNegotiate returns the AutoNegotiate field if non-nil, zero value otherwise.
+
+### GetAutoNegotiateOk
+
+`func (o *NetworkEquipmentInterface) GetAutoNegotiateOk() (*bool, bool)`
+
+GetAutoNegotiateOk returns a tuple with the AutoNegotiate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeployStatus
+### SetAutoNegotiate
 
-`func (o *NetworkEquipmentInterface) SetDeployStatus(v string)`
+`func (o *NetworkEquipmentInterface) SetAutoNegotiate(v bool)`
 
-SetDeployStatus sets DeployStatus field to given value.
+SetAutoNegotiate sets AutoNegotiate field to given value.
+
+### HasAutoNegotiate
+
+`func (o *NetworkEquipmentInterface) HasAutoNegotiate() bool`
+
+HasAutoNegotiate returns a boolean if a field has been set.
+
+### SetAutoNegotiateNil
+
+`func (o *NetworkEquipmentInterface) SetAutoNegotiateNil(b bool)`
+
+ SetAutoNegotiateNil sets the value for AutoNegotiate to be an explicit nil
+
+### UnsetAutoNegotiate
+`func (o *NetworkEquipmentInterface) UnsetAutoNegotiate()`
+
+UnsetAutoNegotiate ensures that no value is present for AutoNegotiate, not even an explicit nil
+### GetServiceStatus
+
+`func (o *NetworkEquipmentInterface) GetServiceStatus() string`
+
+GetServiceStatus returns the ServiceStatus field if non-nil, zero value otherwise.
+
+### GetServiceStatusOk
+
+`func (o *NetworkEquipmentInterface) GetServiceStatusOk() (*string, bool)`
+
+GetServiceStatusOk returns a tuple with the ServiceStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceStatus
+
+`func (o *NetworkEquipmentInterface) SetServiceStatus(v string)`
+
+SetServiceStatus sets ServiceStatus field to given value.
+
+
+### GetPendingDelete
+
+`func (o *NetworkEquipmentInterface) GetPendingDelete() bool`
+
+GetPendingDelete returns the PendingDelete field if non-nil, zero value otherwise.
+
+### GetPendingDeleteOk
+
+`func (o *NetworkEquipmentInterface) GetPendingDeleteOk() (*bool, bool)`
+
+GetPendingDeleteOk returns a tuple with the PendingDelete field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPendingDelete
+
+`func (o *NetworkEquipmentInterface) SetPendingDelete(v bool)`
+
+SetPendingDelete sets PendingDelete field to given value.
+
+
+### GetConfig
+
+`func (o *NetworkEquipmentInterface) GetConfig() NetworkEquipmentInterfaceConfig`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *NetworkEquipmentInterface) GetConfigOk() (*NetworkEquipmentInterfaceConfig, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *NetworkEquipmentInterface) SetConfig(v NetworkEquipmentInterfaceConfig)`
+
+SetConfig sets Config field to given value.
+
+
+### GetIpv4
+
+`func (o *NetworkEquipmentInterface) GetIpv4() NetworkEquipmentInterfaceIpFamily`
+
+GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
+
+### GetIpv4Ok
+
+`func (o *NetworkEquipmentInterface) GetIpv4Ok() (*NetworkEquipmentInterfaceIpFamily, bool)`
+
+GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv4
+
+`func (o *NetworkEquipmentInterface) SetIpv4(v NetworkEquipmentInterfaceIpFamily)`
+
+SetIpv4 sets Ipv4 field to given value.
+
+
+### GetIpv6
+
+`func (o *NetworkEquipmentInterface) GetIpv6() NetworkEquipmentInterfaceIpFamily`
+
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
+
+### GetIpv6Ok
+
+`func (o *NetworkEquipmentInterface) GetIpv6Ok() (*NetworkEquipmentInterfaceIpFamily, bool)`
+
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv6
+
+`func (o *NetworkEquipmentInterface) SetIpv6(v NetworkEquipmentInterfaceIpFamily)`
+
+SetIpv6 sets Ipv6 field to given value.
 
 
 

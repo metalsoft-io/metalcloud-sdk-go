@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
 **RouteDomainId** | Pointer to **NullableInt64** |  | [optional] 
+**L3Only** | Pointer to **bool** | When true, logical networks created from this profile are routed-access (L3-only) over point-to-point links. VXLAN only. Create-time only: the value cannot be changed once the profile exists (a different value here is rejected; echoing the current value back is accepted). | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vxlan** | Pointer to [**UpdateLogicalNetworkConfigVxlanProperties**](UpdateLogicalNetworkConfigVxlanProperties.md) |  | [optional] 
 
@@ -140,6 +141,31 @@ HasRouteDomainId returns a boolean if a field has been set.
 `func (o *UpdateLogicalNetworkProfile) UnsetRouteDomainId()`
 
 UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
+### GetL3Only
+
+`func (o *UpdateLogicalNetworkProfile) GetL3Only() bool`
+
+GetL3Only returns the L3Only field if non-nil, zero value otherwise.
+
+### GetL3OnlyOk
+
+`func (o *UpdateLogicalNetworkProfile) GetL3OnlyOk() (*bool, bool)`
+
+GetL3OnlyOk returns a tuple with the L3Only field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL3Only
+
+`func (o *UpdateLogicalNetworkProfile) SetL3Only(v bool)`
+
+SetL3Only sets L3Only field to given value.
+
+### HasL3Only
+
+`func (o *UpdateLogicalNetworkProfile) HasL3Only() bool`
+
+HasL3Only returns a boolean if a field has been set.
+
 ### GetMtu
 
 `func (o *UpdateLogicalNetworkProfile) GetMtu() int32`

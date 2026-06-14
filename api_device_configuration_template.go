@@ -352,7 +352,7 @@ func (a *DeviceConfigurationTemplateAPIService) CreateDeviceConfigurationTemplat
 type DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 	ifMatch *string
 }
 
@@ -373,7 +373,7 @@ DeleteDeviceConfigurationTemplate Delete a Device Configuration Template
  @param id
  @return DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) DeleteDeviceConfigurationTemplate(ctx context.Context, id float32) DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateRequest {
+func (a *DeviceConfigurationTemplateAPIService) DeleteDeviceConfigurationTemplate(ctx context.Context, id int64) DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateRequest {
 	return DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -452,7 +452,7 @@ func (a *DeviceConfigurationTemplateAPIService) DeleteDeviceConfigurationTemplat
 type DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateProfileRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 	ifMatch *string
 }
 
@@ -473,7 +473,7 @@ DeleteDeviceConfigurationTemplateProfile Delete a Device Configuration Template 
  @param id
  @return DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateProfileRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) DeleteDeviceConfigurationTemplateProfile(ctx context.Context, id float32) DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateProfileRequest {
+func (a *DeviceConfigurationTemplateAPIService) DeleteDeviceConfigurationTemplateProfile(ctx context.Context, id int64) DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateProfileRequest {
 	return DeviceConfigurationTemplateAPIDeleteDeviceConfigurationTemplateProfileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -549,10 +549,120 @@ func (a *DeviceConfigurationTemplateAPIService) DeleteDeviceConfigurationTemplat
 	return localVarHTTPResponse, nil
 }
 
+type DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest struct {
+	ctx context.Context
+	ApiService *DeviceConfigurationTemplateAPIService
+	findApplicableDeviceConfigurationTemplateProfiles *FindApplicableDeviceConfigurationTemplateProfiles
+}
+
+func (r DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest) FindApplicableDeviceConfigurationTemplateProfiles(findApplicableDeviceConfigurationTemplateProfiles FindApplicableDeviceConfigurationTemplateProfiles) DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest {
+	r.findApplicableDeviceConfigurationTemplateProfiles = &findApplicableDeviceConfigurationTemplateProfiles
+	return r
+}
+
+func (r DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest) Execute() (*FindApplicableDeviceConfigurationTemplateProfilesResult, *http.Response, error) {
+	return r.ApiService.FindApplicableDeviceConfigurationTemplateProfilesExecute(r)
+}
+
+/*
+FindApplicableDeviceConfigurationTemplateProfiles List Device Configuration Template Profiles applicable to a target device or fabric
+
+For a networkDeviceId, returns every profile bound to that device plus fabric-bound profiles (profile.networkDeviceId IS NULL) for every fabric the device is attached to. For a networkFabricId, returns fabric-bound profiles for that fabric plus device-bound profiles whose target device belongs to that fabric. For a networkDeviceId, applyMode='once' profiles already recorded in device_configuration_template_history for that device are returned in `alreadyApplied` instead of `items`; fabric-scope queries leave `alreadyApplied` empty. Disabled profiles are excluded by default; pass includeDisabled=true to include them.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest
+*/
+func (a *DeviceConfigurationTemplateAPIService) FindApplicableDeviceConfigurationTemplateProfiles(ctx context.Context) DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest {
+	return DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return FindApplicableDeviceConfigurationTemplateProfilesResult
+func (a *DeviceConfigurationTemplateAPIService) FindApplicableDeviceConfigurationTemplateProfilesExecute(r DeviceConfigurationTemplateAPIFindApplicableDeviceConfigurationTemplateProfilesRequest) (*FindApplicableDeviceConfigurationTemplateProfilesResult, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FindApplicableDeviceConfigurationTemplateProfilesResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceConfigurationTemplateAPIService.FindApplicableDeviceConfigurationTemplateProfiles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-configuration-templates/profile/actions/find-applicable"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.findApplicableDeviceConfigurationTemplateProfiles == nil {
+		return localVarReturnValue, nil, reportError("findApplicableDeviceConfigurationTemplateProfiles is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.findApplicableDeviceConfigurationTemplateProfiles
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 }
 
 func (r DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateRequest) Execute() (*DeviceConfigurationTemplate, *http.Response, error) {
@@ -566,7 +676,7 @@ GetDeviceConfigurationTemplate Get a Device Configuration Template by ID
  @param id
  @return DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplate(ctx context.Context, id float32) DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateRequest {
+func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplate(ctx context.Context, id int64) DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateRequest {
 	return DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -653,7 +763,7 @@ func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplateEx
 type DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfileRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 }
 
 func (r DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfileRequest) Execute() (*DeviceConfigurationTemplateProfile, *http.Response, error) {
@@ -667,7 +777,7 @@ GetDeviceConfigurationTemplateProfile Get a Device Configuration Template Profil
  @param id
  @return DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfileRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplateProfile(ctx context.Context, id float32) DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfileRequest {
+func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplateProfile(ctx context.Context, id int64) DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfileRequest {
 	return DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -754,6 +864,7 @@ func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplatePr
 type DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
+	tag *string
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -763,9 +874,16 @@ type DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest
 	filterLifecycleStage *[]string
 	filterIsEnabled *[]string
 	filterPriority *[]string
+	filterApplyMode *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
+}
+
+// Filter by exact tag membership. Composes with &#x60;filter.*&#x60; and &#x60;sortBy&#x3D;&#x60; like any other query param.
+func (r DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest) Tag(tag string) DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest {
+	r.tag = &tag
+	return r
 }
 
 // Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
@@ -822,7 +940,13 @@ func (r DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequ
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;deviceConfigurationTemplateId:DESC   **Default Value:** priority:ASC  **Available Fields** - id  - deviceConfigurationTemplateId  - networkDeviceId  - networkFabricId  - lifecycleStage  - isEnabled  - priority  - createdTimestamp  - updatedTimestamp 
+// Filter by applyMode query param.  **Format:** filter.applyMode&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.applyMode&#x3D;$eq:John Doe&amp;filter.applyMode&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest) FilterApplyMode(filterApplyMode []string) DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest {
+	r.filterApplyMode = &filterApplyMode
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;deviceConfigurationTemplateId:DESC   **Default Value:** priority:ASC  **Available Fields** - id  - deviceConfigurationTemplateId  - networkDeviceId  - networkFabricId  - lifecycleStage  - isEnabled  - priority  - applyMode  - createdTimestamp  - updatedTimestamp 
 func (r DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest) SortBy(sortBy []string) DeviceConfigurationTemplateAPIGetDeviceConfigurationTemplateProfilesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -878,6 +1002,9 @@ func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplatePr
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.tag != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tag", r.tag, "form", "")
+	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
@@ -959,6 +1086,17 @@ func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplatePr
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.priority", t, "form", "multi")
+		}
+	}
+	if r.filterApplyMode != nil {
+		t := *r.filterApplyMode
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.applyMode", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.applyMode", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -1311,6 +1449,116 @@ func (a *DeviceConfigurationTemplateAPIService) GetDeviceConfigurationTemplatesE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest struct {
+	ctx context.Context
+	ApiService *DeviceConfigurationTemplateAPIService
+	renderApplicableDeviceConfigurationTemplateProfiles *RenderApplicableDeviceConfigurationTemplateProfiles
+}
+
+func (r DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest) RenderApplicableDeviceConfigurationTemplateProfiles(renderApplicableDeviceConfigurationTemplateProfiles RenderApplicableDeviceConfigurationTemplateProfiles) DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest {
+	r.renderApplicableDeviceConfigurationTemplateProfiles = &renderApplicableDeviceConfigurationTemplateProfiles
+	return r
+}
+
+func (r DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest) Execute() (*RenderedApplicableDeviceConfigurationTemplateProfilesResult, *http.Response, error) {
+	return r.ApiService.RenderApplicableDeviceConfigurationTemplateProfilesExecute(r)
+}
+
+/*
+RenderApplicableDeviceConfigurationTemplateProfiles Render every Device Configuration Template Profile applicable to a target device or fabric
+
+Resolves the applicable profiles (same matching rules as findApplicable) and renders each bound template. When networkDeviceId is provided, the target NetworkDevice (with its interfaces) is loaded and whitelisted device fields plus `interfaces` are injected into every render context. When networkFabricId is provided, only template/profile/extraVariables are merged. Returns per-profile outputs in `items` (profiles that will apply on the next deploy) and `alreadyAppliedItems` (applyMode='once' profiles already recorded for the target device — empty for fabric-scope queries), each ordered by priority. `joined` concatenates only `items[].rendered`.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest
+*/
+func (a *DeviceConfigurationTemplateAPIService) RenderApplicableDeviceConfigurationTemplateProfiles(ctx context.Context) DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest {
+	return DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return RenderedApplicableDeviceConfigurationTemplateProfilesResult
+func (a *DeviceConfigurationTemplateAPIService) RenderApplicableDeviceConfigurationTemplateProfilesExecute(r DeviceConfigurationTemplateAPIRenderApplicableDeviceConfigurationTemplateProfilesRequest) (*RenderedApplicableDeviceConfigurationTemplateProfilesResult, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RenderedApplicableDeviceConfigurationTemplateProfilesResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceConfigurationTemplateAPIService.RenderApplicableDeviceConfigurationTemplateProfiles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/device-configuration-templates/profile/actions/render-applicable"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.renderApplicableDeviceConfigurationTemplateProfiles == nil {
+		return localVarReturnValue, nil, reportError("renderApplicableDeviceConfigurationTemplateProfiles is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.renderApplicableDeviceConfigurationTemplateProfiles
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DeviceConfigurationTemplateAPIRenderDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
@@ -1422,7 +1670,7 @@ func (a *DeviceConfigurationTemplateAPIService) RenderDeviceConfigurationTemplat
 type DeviceConfigurationTemplateAPIRenderDeviceConfigurationTemplateProfileRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 	renderDeviceConfigurationTemplateProfile *RenderDeviceConfigurationTemplateProfile
 }
 
@@ -1444,7 +1692,7 @@ Loads the profile, its bound template, and the target NetworkDevice (with interf
  @param id
  @return DeviceConfigurationTemplateAPIRenderDeviceConfigurationTemplateProfileRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) RenderDeviceConfigurationTemplateProfile(ctx context.Context, id float32) DeviceConfigurationTemplateAPIRenderDeviceConfigurationTemplateProfileRequest {
+func (a *DeviceConfigurationTemplateAPIService) RenderDeviceConfigurationTemplateProfile(ctx context.Context, id int64) DeviceConfigurationTemplateAPIRenderDeviceConfigurationTemplateProfileRequest {
 	return DeviceConfigurationTemplateAPIRenderDeviceConfigurationTemplateProfileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1536,7 +1784,7 @@ func (a *DeviceConfigurationTemplateAPIService) RenderDeviceConfigurationTemplat
 type DeviceConfigurationTemplateAPIRenderSavedDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 	renderSavedDeviceConfigurationTemplate *RenderSavedDeviceConfigurationTemplate
 }
 
@@ -1556,7 +1804,7 @@ RenderSavedDeviceConfigurationTemplate Render a saved Device Configuration Templ
  @param id
  @return DeviceConfigurationTemplateAPIRenderSavedDeviceConfigurationTemplateRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) RenderSavedDeviceConfigurationTemplate(ctx context.Context, id float32) DeviceConfigurationTemplateAPIRenderSavedDeviceConfigurationTemplateRequest {
+func (a *DeviceConfigurationTemplateAPIService) RenderSavedDeviceConfigurationTemplate(ctx context.Context, id int64) DeviceConfigurationTemplateAPIRenderSavedDeviceConfigurationTemplateRequest {
 	return DeviceConfigurationTemplateAPIRenderSavedDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1648,7 +1896,7 @@ func (a *DeviceConfigurationTemplateAPIService) RenderSavedDeviceConfigurationTe
 type DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 	updateDeviceConfigurationTemplate *UpdateDeviceConfigurationTemplate
 	ifMatch *string
 }
@@ -1675,7 +1923,7 @@ UpdateDeviceConfigurationTemplate Update a Device Configuration Template
  @param id
  @return DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) UpdateDeviceConfigurationTemplate(ctx context.Context, id float32) DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateRequest {
+func (a *DeviceConfigurationTemplateAPIService) UpdateDeviceConfigurationTemplate(ctx context.Context, id int64) DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateRequest {
 	return DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1770,7 +2018,7 @@ func (a *DeviceConfigurationTemplateAPIService) UpdateDeviceConfigurationTemplat
 type DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateProfileRequest struct {
 	ctx context.Context
 	ApiService *DeviceConfigurationTemplateAPIService
-	id float32
+	id int64
 	updateDeviceConfigurationTemplateProfile *UpdateDeviceConfigurationTemplateProfile
 	ifMatch *string
 }
@@ -1797,7 +2045,7 @@ UpdateDeviceConfigurationTemplateProfile Update a Device Configuration Template 
  @param id
  @return DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateProfileRequest
 */
-func (a *DeviceConfigurationTemplateAPIService) UpdateDeviceConfigurationTemplateProfile(ctx context.Context, id float32) DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateProfileRequest {
+func (a *DeviceConfigurationTemplateAPIService) UpdateDeviceConfigurationTemplateProfile(ctx context.Context, id int64) DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateProfileRequest {
 	return DeviceConfigurationTemplateAPIUpdateDeviceConfigurationTemplateProfileRequest{
 		ApiService: a,
 		ctx: ctx,

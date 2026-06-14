@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **UserIdOwner** | Pointer to **float32** | The id of user owning the resources. Used for filtering | [optional] 
 **SiteId** | **int64** | The id of the site where the resources are located. Used for filtering | 
 **MaximumResultsPerServerType** | Pointer to **float32** | The maximum returned results per server type. | [optional] 
-**ServerTypeIds** | Pointer to **[]float32** | The id of the server types to get statistics for. | [optional] 
+**ServerTypeIds** | Pointer to **[]int64** | The id of the server types to get statistics for. | [optional] 
 **InstanceArrayId** | Pointer to **int64** | If specified, treats only the active Instances of the Instance Array as available, instead of all active instances of userIdOwner. | [optional] 
 
 ## Methods
@@ -101,20 +101,20 @@ HasMaximumResultsPerServerType returns a boolean if a field has been set.
 
 ### GetServerTypeIds
 
-`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIds() []float32`
+`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIds() []int64`
 
 GetServerTypeIds returns the ServerTypeIds field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdsOk
 
-`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIdsOk() (*[]float32, bool)`
+`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIdsOk() (*[]int64, bool)`
 
 GetServerTypeIdsOk returns a tuple with the ServerTypeIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeIds
 
-`func (o *ServerTypeStatisticsBatchOptions) SetServerTypeIds(v []float32)`
+`func (o *ServerTypeStatisticsBatchOptions) SetServerTypeIds(v []int64)`
 
 SetServerTypeIds sets ServerTypeIds field to given value.
 

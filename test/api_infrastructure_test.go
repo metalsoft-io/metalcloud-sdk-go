@@ -26,7 +26,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		httpRes, err := apiClient.InfrastructureAPI.AddInfrastructureUser(context.Background(), infrastructureId).Execute()
 
@@ -39,7 +39,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.CancelDeployInfrastructure(context.Background(), infrastructureId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		httpRes, err := apiClient.InfrastructureAPI.DeleteInfrastructure(context.Background(), infrastructureId).Execute()
 
@@ -78,7 +78,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.DeployInfrastructure(context.Background(), infrastructureId).Execute()
 
@@ -104,7 +104,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructure(context.Background(), infrastructureId).Execute()
 
@@ -118,7 +118,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureConfigInfo(context.Background(), infrastructureId).Execute()
 
@@ -156,7 +156,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureStatistics(context.Background(), infrastructureId).Execute()
 
@@ -170,7 +170,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureUsers(context.Background(), infrastructureId).Execute()
 
@@ -196,8 +196,8 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var userId float32
+		var infrastructureId int64
+		var userId int64
 
 		httpRes, err := apiClient.InfrastructureAPI.RemoveInfrastructureUser(context.Background(), infrastructureId, userId).Execute()
 
@@ -210,7 +210,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		httpRes, err := apiClient.InfrastructureAPI.RevertInfrastructure(context.Background(), infrastructureId).Execute()
 
@@ -223,7 +223,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.UpdateInfrastructureConfiguration(context.Background(), infrastructureId).Execute()
 
@@ -237,7 +237,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.InfrastructureAPI.UpdateInfrastructureMetadata(context.Background(), infrastructureId).Execute()
 

@@ -29,8 +29,13 @@ type NetworkEquipmentInterface struct {
 	InterfaceDescription *string `json:"interfaceDescription,omitempty"`
 	Mtu *int32 `json:"mtu,omitempty"`
 	Enabled *bool `json:"enabled,omitempty"`
-	Speed *string `json:"speed,omitempty"`
-	DeployStatus string `json:"deployStatus"`
+	Speed NullableString `json:"speed,omitempty"`
+	AutoNegotiate NullableBool `json:"autoNegotiate,omitempty"`
+	ServiceStatus string `json:"serviceStatus"`
+	PendingDelete bool `json:"pendingDelete"`
+	Config NetworkEquipmentInterfaceConfig `json:"config"`
+	Ipv4 NetworkEquipmentInterfaceIpFamily `json:"ipv4"`
+	Ipv6 NetworkEquipmentInterfaceIpFamily `json:"ipv6"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,13 +45,17 @@ type _NetworkEquipmentInterface NetworkEquipmentInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkEquipmentInterface(interfaceId int64, switchId int64, kind string, interfaceName string, deployStatus string) *NetworkEquipmentInterface {
+func NewNetworkEquipmentInterface(interfaceId int64, switchId int64, kind string, interfaceName string, serviceStatus string, pendingDelete bool, config NetworkEquipmentInterfaceConfig, ipv4 NetworkEquipmentInterfaceIpFamily, ipv6 NetworkEquipmentInterfaceIpFamily) *NetworkEquipmentInterface {
 	this := NetworkEquipmentInterface{}
 	this.InterfaceId = interfaceId
 	this.SwitchId = switchId
 	this.Kind = kind
 	this.InterfaceName = interfaceName
-	this.DeployStatus = deployStatus
+	this.ServiceStatus = serviceStatus
+	this.PendingDelete = pendingDelete
+	this.Config = config
+	this.Ipv4 = ipv4
+	this.Ipv6 = ipv6
 	return &this
 }
 
@@ -292,60 +301,208 @@ func (o *NetworkEquipmentInterface) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetSpeed returns the Speed field value if set, zero value otherwise.
+// GetSpeed returns the Speed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NetworkEquipmentInterface) GetSpeed() string {
-	if o == nil || IsNil(o.Speed) {
+	if o == nil || IsNil(o.Speed.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Speed
+	return *o.Speed.Get()
 }
 
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NetworkEquipmentInterface) GetSpeedOk() (*string, bool) {
-	if o == nil || IsNil(o.Speed) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Speed, true
+	return o.Speed.Get(), o.Speed.IsSet()
 }
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *NetworkEquipmentInterface) HasSpeed() bool {
-	if o != nil && !IsNil(o.Speed) {
+	if o != nil && o.Speed.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSpeed gets a reference to the given string and assigns it to the Speed field.
+// SetSpeed gets a reference to the given NullableString and assigns it to the Speed field.
 func (o *NetworkEquipmentInterface) SetSpeed(v string) {
-	o.Speed = &v
+	o.Speed.Set(&v)
+}
+// SetSpeedNil sets the value for Speed to be an explicit nil
+func (o *NetworkEquipmentInterface) SetSpeedNil() {
+	o.Speed.Set(nil)
 }
 
-// GetDeployStatus returns the DeployStatus field value
-func (o *NetworkEquipmentInterface) GetDeployStatus() string {
+// UnsetSpeed ensures that no value is present for Speed, not even an explicit nil
+func (o *NetworkEquipmentInterface) UnsetSpeed() {
+	o.Speed.Unset()
+}
+
+// GetAutoNegotiate returns the AutoNegotiate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkEquipmentInterface) GetAutoNegotiate() bool {
+	if o == nil || IsNil(o.AutoNegotiate.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoNegotiate.Get()
+}
+
+// GetAutoNegotiateOk returns a tuple with the AutoNegotiate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkEquipmentInterface) GetAutoNegotiateOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AutoNegotiate.Get(), o.AutoNegotiate.IsSet()
+}
+
+// HasAutoNegotiate returns a boolean if a field has been set.
+func (o *NetworkEquipmentInterface) HasAutoNegotiate() bool {
+	if o != nil && o.AutoNegotiate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoNegotiate gets a reference to the given NullableBool and assigns it to the AutoNegotiate field.
+func (o *NetworkEquipmentInterface) SetAutoNegotiate(v bool) {
+	o.AutoNegotiate.Set(&v)
+}
+// SetAutoNegotiateNil sets the value for AutoNegotiate to be an explicit nil
+func (o *NetworkEquipmentInterface) SetAutoNegotiateNil() {
+	o.AutoNegotiate.Set(nil)
+}
+
+// UnsetAutoNegotiate ensures that no value is present for AutoNegotiate, not even an explicit nil
+func (o *NetworkEquipmentInterface) UnsetAutoNegotiate() {
+	o.AutoNegotiate.Unset()
+}
+
+// GetServiceStatus returns the ServiceStatus field value
+func (o *NetworkEquipmentInterface) GetServiceStatus() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.DeployStatus
+	return o.ServiceStatus
 }
 
-// GetDeployStatusOk returns a tuple with the DeployStatus field value
+// GetServiceStatusOk returns a tuple with the ServiceStatus field value
 // and a boolean to check if the value has been set.
-func (o *NetworkEquipmentInterface) GetDeployStatusOk() (*string, bool) {
+func (o *NetworkEquipmentInterface) GetServiceStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DeployStatus, true
+	return &o.ServiceStatus, true
 }
 
-// SetDeployStatus sets field value
-func (o *NetworkEquipmentInterface) SetDeployStatus(v string) {
-	o.DeployStatus = v
+// SetServiceStatus sets field value
+func (o *NetworkEquipmentInterface) SetServiceStatus(v string) {
+	o.ServiceStatus = v
+}
+
+// GetPendingDelete returns the PendingDelete field value
+func (o *NetworkEquipmentInterface) GetPendingDelete() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PendingDelete
+}
+
+// GetPendingDeleteOk returns a tuple with the PendingDelete field value
+// and a boolean to check if the value has been set.
+func (o *NetworkEquipmentInterface) GetPendingDeleteOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PendingDelete, true
+}
+
+// SetPendingDelete sets field value
+func (o *NetworkEquipmentInterface) SetPendingDelete(v bool) {
+	o.PendingDelete = v
+}
+
+// GetConfig returns the Config field value
+func (o *NetworkEquipmentInterface) GetConfig() NetworkEquipmentInterfaceConfig {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceConfig
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *NetworkEquipmentInterface) GetConfigOk() (*NetworkEquipmentInterfaceConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// SetConfig sets field value
+func (o *NetworkEquipmentInterface) SetConfig(v NetworkEquipmentInterfaceConfig) {
+	o.Config = v
+}
+
+// GetIpv4 returns the Ipv4 field value
+func (o *NetworkEquipmentInterface) GetIpv4() NetworkEquipmentInterfaceIpFamily {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceIpFamily
+		return ret
+	}
+
+	return o.Ipv4
+}
+
+// GetIpv4Ok returns a tuple with the Ipv4 field value
+// and a boolean to check if the value has been set.
+func (o *NetworkEquipmentInterface) GetIpv4Ok() (*NetworkEquipmentInterfaceIpFamily, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv4, true
+}
+
+// SetIpv4 sets field value
+func (o *NetworkEquipmentInterface) SetIpv4(v NetworkEquipmentInterfaceIpFamily) {
+	o.Ipv4 = v
+}
+
+// GetIpv6 returns the Ipv6 field value
+func (o *NetworkEquipmentInterface) GetIpv6() NetworkEquipmentInterfaceIpFamily {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceIpFamily
+		return ret
+	}
+
+	return o.Ipv6
+}
+
+// GetIpv6Ok returns a tuple with the Ipv6 field value
+// and a boolean to check if the value has been set.
+func (o *NetworkEquipmentInterface) GetIpv6Ok() (*NetworkEquipmentInterfaceIpFamily, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv6, true
+}
+
+// SetIpv6 sets field value
+func (o *NetworkEquipmentInterface) SetIpv6(v NetworkEquipmentInterfaceIpFamily) {
+	o.Ipv6 = v
 }
 
 func (o NetworkEquipmentInterface) MarshalJSON() ([]byte, error) {
@@ -374,10 +531,17 @@ func (o NetworkEquipmentInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if !IsNil(o.Speed) {
-		toSerialize["speed"] = o.Speed
+	if o.Speed.IsSet() {
+		toSerialize["speed"] = o.Speed.Get()
 	}
-	toSerialize["deployStatus"] = o.DeployStatus
+	if o.AutoNegotiate.IsSet() {
+		toSerialize["autoNegotiate"] = o.AutoNegotiate.Get()
+	}
+	toSerialize["serviceStatus"] = o.ServiceStatus
+	toSerialize["pendingDelete"] = o.PendingDelete
+	toSerialize["config"] = o.Config
+	toSerialize["ipv4"] = o.Ipv4
+	toSerialize["ipv6"] = o.Ipv6
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -395,7 +559,11 @@ func (o *NetworkEquipmentInterface) UnmarshalJSON(data []byte) (err error) {
 		"switchId",
 		"kind",
 		"interfaceName",
-		"deployStatus",
+		"serviceStatus",
+		"pendingDelete",
+		"config",
+		"ipv4",
+		"ipv6",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -434,7 +602,12 @@ func (o *NetworkEquipmentInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "speed")
-		delete(additionalProperties, "deployStatus")
+		delete(additionalProperties, "autoNegotiate")
+		delete(additionalProperties, "serviceStatus")
+		delete(additionalProperties, "pendingDelete")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "ipv6")
 		o.AdditionalProperties = additionalProperties
 	}
 

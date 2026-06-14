@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerIds** | **[]float32** | The list of server ids to upgrade. | 
+**ServerIds** | **[]int64** | The list of server ids to upgrade. | 
 **ScheduleUpdateTimestamp** | Pointer to **string** | The time when the firmware update is scheduled to run. | [optional] 
 **ConfirmationRequired** | Pointer to **bool** | Flag to indicate if the firmware update requires confirmation. | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewBatchScheduleServerFirmwareUpgrade
 
-`func NewBatchScheduleServerFirmwareUpgrade(serverIds []float32, ) *BatchScheduleServerFirmwareUpgrade`
+`func NewBatchScheduleServerFirmwareUpgrade(serverIds []int64, ) *BatchScheduleServerFirmwareUpgrade`
 
 NewBatchScheduleServerFirmwareUpgrade instantiates a new BatchScheduleServerFirmwareUpgrade object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerIds
 
-`func (o *BatchScheduleServerFirmwareUpgrade) GetServerIds() []float32`
+`func (o *BatchScheduleServerFirmwareUpgrade) GetServerIds() []int64`
 
 GetServerIds returns the ServerIds field if non-nil, zero value otherwise.
 
 ### GetServerIdsOk
 
-`func (o *BatchScheduleServerFirmwareUpgrade) GetServerIdsOk() (*[]float32, bool)`
+`func (o *BatchScheduleServerFirmwareUpgrade) GetServerIdsOk() (*[]int64, bool)`
 
 GetServerIdsOk returns a tuple with the ServerIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerIds
 
-`func (o *BatchScheduleServerFirmwareUpgrade) SetServerIds(v []float32)`
+`func (o *BatchScheduleServerFirmwareUpgrade) SetServerIds(v []int64)`
 
 SetServerIds sets ServerIds field to given value.
 

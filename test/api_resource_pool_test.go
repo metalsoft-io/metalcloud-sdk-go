@@ -26,8 +26,8 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
-		var userId float32
+		var resourcePoolId int64
+		var userId int64
 
 		httpRes, err := apiClient.ResourcePoolAPI.AddResourcePoolUser(context.Background(), resourcePoolId, userId).Execute()
 
@@ -40,8 +40,8 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
-		var serverId float32
+		var resourcePoolId int64
+		var serverId int64
 
 		httpRes, err := apiClient.ResourcePoolAPI.AddServerToResourcePool(context.Background(), resourcePoolId, serverId).Execute()
 
@@ -54,8 +54,8 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
-		var subnetPoolId float32
+		var resourcePoolId int64
+		var subnetPoolId int64
 
 		httpRes, err := apiClient.ResourcePoolAPI.AddSubnetPoolToResourcePool(context.Background(), resourcePoolId, subnetPoolId).Execute()
 
@@ -80,7 +80,7 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
+		var resourcePoolId int64
 
 		httpRes, err := apiClient.ResourcePoolAPI.DeleteResourcePool(context.Background(), resourcePoolId).Execute()
 
@@ -107,7 +107,7 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
+		var resourcePoolId int64
 
 		resp, httpRes, err := apiClient.ResourcePoolAPI.GetResourcePoolServers(context.Background(), resourcePoolId).Execute()
 
@@ -121,7 +121,7 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
+		var resourcePoolId int64
 
 		resp, httpRes, err := apiClient.ResourcePoolAPI.GetResourcePoolSubnetPools(context.Background(), resourcePoolId).Execute()
 
@@ -135,7 +135,7 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
+		var resourcePoolId int64
 
 		resp, httpRes, err := apiClient.ResourcePoolAPI.GetResourcePoolUsers(context.Background(), resourcePoolId).Execute()
 
@@ -161,7 +161,7 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
+		var userId int64
 
 		resp, httpRes, err := apiClient.ResourcePoolAPI.GetUserResourcePools(context.Background(), userId).Execute()
 
@@ -175,8 +175,8 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
-		var userId float32
+		var resourcePoolId int64
+		var userId int64
 
 		httpRes, err := apiClient.ResourcePoolAPI.RemoveResourcePoolUser(context.Background(), resourcePoolId, userId).Execute()
 
@@ -189,8 +189,8 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
-		var serverId float32
+		var resourcePoolId int64
+		var serverId int64
 
 		httpRes, err := apiClient.ResourcePoolAPI.RemoveServerFromResourcePool(context.Background(), resourcePoolId, serverId).Execute()
 
@@ -203,8 +203,8 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
-		var subnetPoolId float32
+		var resourcePoolId int64
+		var subnetPoolId int64
 
 		httpRes, err := apiClient.ResourcePoolAPI.RemoveSubnetPoolFromResourcePool(context.Background(), resourcePoolId, subnetPoolId).Execute()
 
@@ -217,7 +217,7 @@ func Test_sdk_ResourcePoolAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePoolId float32
+		var resourcePoolId int64
 
 		resp, httpRes, err := apiClient.ResourcePoolAPI.UpdateResourcePool(context.Background(), resourcePoolId).Execute()
 

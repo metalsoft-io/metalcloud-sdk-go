@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	firmwareBaselineId := float32(8.14) // float32 | The firmware baseline id
+	firmwareBaselineId := int64(789) // int64 | The firmware baseline id
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firmwareBaselineId** | **float32** | The firmware baseline id | 
+**firmwareBaselineId** | **int64** | The firmware baseline id | 
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	firmwareBaselineId := float32(8.14) // float32 | The firmware baseline id
+	firmwareBaselineId := int64(789) // int64 | The firmware baseline id
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -187,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firmwareBaselineId** | **float32** | The firmware baseline id | 
+**firmwareBaselineId** | **int64** | The firmware baseline id | 
 
 ### Other Parameters
 
@@ -313,7 +313,7 @@ import (
 )
 
 func main() {
-	firmwareBaselineId := float32(8.14) // float32 | The firmware baseline id
+	firmwareBaselineId := int64(789) // int64 | The firmware baseline id
 	updateFirmwareBaseline := *openapiclient.NewUpdateFirmwareBaseline("Data center baseline name") // UpdateFirmwareBaseline | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -334,7 +334,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firmwareBaselineId** | **float32** | The firmware baseline id | 
+**firmwareBaselineId** | **int64** | The firmware baseline id | 
 
 ### Other Parameters
 

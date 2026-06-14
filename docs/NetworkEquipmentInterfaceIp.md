@@ -9,13 +9,15 @@ Name | Type | Description | Notes
 **Kind** | **string** |  | 
 **Address** | **string** |  | 
 **PrefixLength** | **int32** |  | 
-**DeployStatus** | **string** |  | 
+**ServiceStatus** | **string** |  | 
+**PendingDelete** | **bool** |  | 
+**Vrrp** | Pointer to [**map[string]VrrpGroup**](VrrpGroup.md) | VRRP groups keyed by virtual router id (1..255); null when none. | [optional] 
 
 ## Methods
 
 ### NewNetworkEquipmentInterfaceIp
 
-`func NewNetworkEquipmentInterfaceIp(id int64, interfaceId int64, kind string, address string, prefixLength int32, deployStatus string, ) *NetworkEquipmentInterfaceIp`
+`func NewNetworkEquipmentInterfaceIp(id int64, interfaceId int64, kind string, address string, prefixLength int32, serviceStatus string, pendingDelete bool, ) *NetworkEquipmentInterfaceIp`
 
 NewNetworkEquipmentInterfaceIp instantiates a new NetworkEquipmentInterfaceIp object
 This constructor will assign default values to properties that have it defined,
@@ -130,26 +132,81 @@ and a boolean to check if the value has been set.
 SetPrefixLength sets PrefixLength field to given value.
 
 
-### GetDeployStatus
+### GetServiceStatus
 
-`func (o *NetworkEquipmentInterfaceIp) GetDeployStatus() string`
+`func (o *NetworkEquipmentInterfaceIp) GetServiceStatus() string`
 
-GetDeployStatus returns the DeployStatus field if non-nil, zero value otherwise.
+GetServiceStatus returns the ServiceStatus field if non-nil, zero value otherwise.
 
-### GetDeployStatusOk
+### GetServiceStatusOk
 
-`func (o *NetworkEquipmentInterfaceIp) GetDeployStatusOk() (*string, bool)`
+`func (o *NetworkEquipmentInterfaceIp) GetServiceStatusOk() (*string, bool)`
 
-GetDeployStatusOk returns a tuple with the DeployStatus field if it's non-nil, zero value otherwise
+GetServiceStatusOk returns a tuple with the ServiceStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeployStatus
+### SetServiceStatus
 
-`func (o *NetworkEquipmentInterfaceIp) SetDeployStatus(v string)`
+`func (o *NetworkEquipmentInterfaceIp) SetServiceStatus(v string)`
 
-SetDeployStatus sets DeployStatus field to given value.
+SetServiceStatus sets ServiceStatus field to given value.
 
 
+### GetPendingDelete
+
+`func (o *NetworkEquipmentInterfaceIp) GetPendingDelete() bool`
+
+GetPendingDelete returns the PendingDelete field if non-nil, zero value otherwise.
+
+### GetPendingDeleteOk
+
+`func (o *NetworkEquipmentInterfaceIp) GetPendingDeleteOk() (*bool, bool)`
+
+GetPendingDeleteOk returns a tuple with the PendingDelete field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPendingDelete
+
+`func (o *NetworkEquipmentInterfaceIp) SetPendingDelete(v bool)`
+
+SetPendingDelete sets PendingDelete field to given value.
+
+
+### GetVrrp
+
+`func (o *NetworkEquipmentInterfaceIp) GetVrrp() map[string]VrrpGroup`
+
+GetVrrp returns the Vrrp field if non-nil, zero value otherwise.
+
+### GetVrrpOk
+
+`func (o *NetworkEquipmentInterfaceIp) GetVrrpOk() (*map[string]VrrpGroup, bool)`
+
+GetVrrpOk returns a tuple with the Vrrp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrrp
+
+`func (o *NetworkEquipmentInterfaceIp) SetVrrp(v map[string]VrrpGroup)`
+
+SetVrrp sets Vrrp field to given value.
+
+### HasVrrp
+
+`func (o *NetworkEquipmentInterfaceIp) HasVrrp() bool`
+
+HasVrrp returns a boolean if a field has been set.
+
+### SetVrrpNil
+
+`func (o *NetworkEquipmentInterfaceIp) SetVrrpNil(b bool)`
+
+ SetVrrpNil sets the value for Vrrp to be an explicit nil
+
+### UnsetVrrp
+`func (o *NetworkEquipmentInterfaceIp) UnsetVrrp()`
+
+UnsetVrrp ensures that no value is present for Vrrp, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

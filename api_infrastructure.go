@@ -28,7 +28,7 @@ type InfrastructureAPIService service
 type InfrastructureAPIAddInfrastructureUserRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 	addUserToInfrastructure *AddUserToInfrastructure
 }
 
@@ -51,7 +51,7 @@ Adds a user to the specified infrastructure
  @param infrastructureId
  @return InfrastructureAPIAddInfrastructureUserRequest
 */
-func (a *InfrastructureAPIService) AddInfrastructureUser(ctx context.Context, infrastructureId float32) InfrastructureAPIAddInfrastructureUserRequest {
+func (a *InfrastructureAPIService) AddInfrastructureUser(ctx context.Context, infrastructureId int64) InfrastructureAPIAddInfrastructureUserRequest {
 	return InfrastructureAPIAddInfrastructureUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -132,7 +132,7 @@ func (a *InfrastructureAPIService) AddInfrastructureUserExecute(r Infrastructure
 type InfrastructureAPICancelDeployInfrastructureRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 }
 
 func (r InfrastructureAPICancelDeployInfrastructureRequest) Execute() (*Infrastructure, *http.Response, error) {
@@ -148,7 +148,7 @@ Cancels the specified infrastructure deployment
  @param infrastructureId
  @return InfrastructureAPICancelDeployInfrastructureRequest
 */
-func (a *InfrastructureAPIService) CancelDeployInfrastructure(ctx context.Context, infrastructureId float32) InfrastructureAPICancelDeployInfrastructureRequest {
+func (a *InfrastructureAPIService) CancelDeployInfrastructure(ctx context.Context, infrastructureId int64) InfrastructureAPICancelDeployInfrastructureRequest {
 	return InfrastructureAPICancelDeployInfrastructureRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -346,7 +346,7 @@ func (a *InfrastructureAPIService) CreateInfrastructureExecute(r InfrastructureA
 type InfrastructureAPIDeleteInfrastructureRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 	ifMatch *string
 }
 
@@ -369,7 +369,7 @@ Deletes the specified infrastructure
  @param infrastructureId
  @return InfrastructureAPIDeleteInfrastructureRequest
 */
-func (a *InfrastructureAPIService) DeleteInfrastructure(ctx context.Context, infrastructureId float32) InfrastructureAPIDeleteInfrastructureRequest {
+func (a *InfrastructureAPIService) DeleteInfrastructure(ctx context.Context, infrastructureId int64) InfrastructureAPIDeleteInfrastructureRequest {
 	return InfrastructureAPIDeleteInfrastructureRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -448,7 +448,7 @@ func (a *InfrastructureAPIService) DeleteInfrastructureExecute(r InfrastructureA
 type InfrastructureAPIDeployInfrastructureRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 	infrastructureDeployOptions *InfrastructureDeployOptions
 }
 
@@ -471,7 +471,7 @@ Deploys the specified infrastructure
  @param infrastructureId
  @return InfrastructureAPIDeployInfrastructureRequest
 */
-func (a *InfrastructureAPIService) DeployInfrastructure(ctx context.Context, infrastructureId float32) InfrastructureAPIDeployInfrastructureRequest {
+func (a *InfrastructureAPIService) DeployInfrastructure(ctx context.Context, infrastructureId int64) InfrastructureAPIDeployInfrastructureRequest {
 	return InfrastructureAPIDeployInfrastructureRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -662,7 +662,7 @@ func (a *InfrastructureAPIService) GetAllInfrastructureStatisticsExecute(r Infra
 type InfrastructureAPIGetInfrastructureRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 }
 
 func (r InfrastructureAPIGetInfrastructureRequest) Execute() (*Infrastructure, *http.Response, error) {
@@ -678,7 +678,7 @@ Retrieves the specified infrastructure
  @param infrastructureId
  @return InfrastructureAPIGetInfrastructureRequest
 */
-func (a *InfrastructureAPIService) GetInfrastructure(ctx context.Context, infrastructureId float32) InfrastructureAPIGetInfrastructureRequest {
+func (a *InfrastructureAPIService) GetInfrastructure(ctx context.Context, infrastructureId int64) InfrastructureAPIGetInfrastructureRequest {
 	return InfrastructureAPIGetInfrastructureRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -765,7 +765,7 @@ func (a *InfrastructureAPIService) GetInfrastructureExecute(r InfrastructureAPIG
 type InfrastructureAPIGetInfrastructureConfigInfoRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 }
 
 func (r InfrastructureAPIGetInfrastructureConfigInfoRequest) Execute() (*InfrastructureConfiguration, *http.Response, error) {
@@ -779,7 +779,7 @@ GetInfrastructureConfigInfo Get configuration information about the specified In
  @param infrastructureId
  @return InfrastructureAPIGetInfrastructureConfigInfoRequest
 */
-func (a *InfrastructureAPIService) GetInfrastructureConfigInfo(ctx context.Context, infrastructureId float32) InfrastructureAPIGetInfrastructureConfigInfoRequest {
+func (a *InfrastructureAPIService) GetInfrastructureConfigInfo(ctx context.Context, infrastructureId int64) InfrastructureAPIGetInfrastructureConfigInfoRequest {
 	return InfrastructureAPIGetInfrastructureConfigInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1086,7 +1086,7 @@ func (a *InfrastructureAPIService) GetInfrastructureResourceUtilizationSummaryEx
 type InfrastructureAPIGetInfrastructureStatisticsRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 }
 
 func (r InfrastructureAPIGetInfrastructureStatisticsRequest) Execute() (*InfrastructureStatistics, *http.Response, error) {
@@ -1102,7 +1102,7 @@ Retrieves usage and performance statistics for the specified infrastructure
  @param infrastructureId
  @return InfrastructureAPIGetInfrastructureStatisticsRequest
 */
-func (a *InfrastructureAPIService) GetInfrastructureStatistics(ctx context.Context, infrastructureId float32) InfrastructureAPIGetInfrastructureStatisticsRequest {
+func (a *InfrastructureAPIService) GetInfrastructureStatistics(ctx context.Context, infrastructureId int64) InfrastructureAPIGetInfrastructureStatisticsRequest {
 	return InfrastructureAPIGetInfrastructureStatisticsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1189,7 +1189,7 @@ func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r Infrastr
 type InfrastructureAPIGetInfrastructureUsersRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 }
 
 func (r InfrastructureAPIGetInfrastructureUsersRequest) Execute() (*UserPaginatedList, *http.Response, error) {
@@ -1205,7 +1205,7 @@ Retrieves the specified infrastructure users
  @param infrastructureId
  @return InfrastructureAPIGetInfrastructureUsersRequest
 */
-func (a *InfrastructureAPIService) GetInfrastructureUsers(ctx context.Context, infrastructureId float32) InfrastructureAPIGetInfrastructureUsersRequest {
+func (a *InfrastructureAPIService) GetInfrastructureUsers(ctx context.Context, infrastructureId int64) InfrastructureAPIGetInfrastructureUsersRequest {
 	return InfrastructureAPIGetInfrastructureUsersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1629,8 +1629,8 @@ func (a *InfrastructureAPIService) GetInfrastructuresExecute(r InfrastructureAPI
 type InfrastructureAPIRemoveInfrastructureUserRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
-	userId float32
+	infrastructureId int64
+	userId int64
 }
 
 func (r InfrastructureAPIRemoveInfrastructureUserRequest) Execute() (*http.Response, error) {
@@ -1647,7 +1647,7 @@ Removes a user from the specified infrastructure
  @param userId
  @return InfrastructureAPIRemoveInfrastructureUserRequest
 */
-func (a *InfrastructureAPIService) RemoveInfrastructureUser(ctx context.Context, infrastructureId float32, userId float32) InfrastructureAPIRemoveInfrastructureUserRequest {
+func (a *InfrastructureAPIService) RemoveInfrastructureUser(ctx context.Context, infrastructureId int64, userId int64) InfrastructureAPIRemoveInfrastructureUserRequest {
 	return InfrastructureAPIRemoveInfrastructureUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1725,7 +1725,7 @@ func (a *InfrastructureAPIService) RemoveInfrastructureUserExecute(r Infrastruct
 type InfrastructureAPIRevertInfrastructureRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 	ifMatch *string
 }
 
@@ -1748,7 +1748,7 @@ Reverts the specified infrastructure
  @param infrastructureId
  @return InfrastructureAPIRevertInfrastructureRequest
 */
-func (a *InfrastructureAPIService) RevertInfrastructure(ctx context.Context, infrastructureId float32) InfrastructureAPIRevertInfrastructureRequest {
+func (a *InfrastructureAPIService) RevertInfrastructure(ctx context.Context, infrastructureId int64) InfrastructureAPIRevertInfrastructureRequest {
 	return InfrastructureAPIRevertInfrastructureRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1827,7 +1827,7 @@ func (a *InfrastructureAPIService) RevertInfrastructureExecute(r InfrastructureA
 type InfrastructureAPIUpdateInfrastructureConfigurationRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 	updateInfrastructure *UpdateInfrastructure
 	ifMatch *string
 }
@@ -1857,7 +1857,7 @@ Updates the specified infrastructure configuration
  @param infrastructureId
  @return InfrastructureAPIUpdateInfrastructureConfigurationRequest
 */
-func (a *InfrastructureAPIService) UpdateInfrastructureConfiguration(ctx context.Context, infrastructureId float32) InfrastructureAPIUpdateInfrastructureConfigurationRequest {
+func (a *InfrastructureAPIService) UpdateInfrastructureConfiguration(ctx context.Context, infrastructureId int64) InfrastructureAPIUpdateInfrastructureConfigurationRequest {
 	return InfrastructureAPIUpdateInfrastructureConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1952,7 +1952,7 @@ func (a *InfrastructureAPIService) UpdateInfrastructureConfigurationExecute(r In
 type InfrastructureAPIUpdateInfrastructureMetadataRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
+	infrastructureId int64
 	updateInfrastructureMeta *UpdateInfrastructureMeta
 }
 
@@ -1975,7 +1975,7 @@ Updates the specified infrastructure metadata
  @param infrastructureId
  @return InfrastructureAPIUpdateInfrastructureMetadataRequest
 */
-func (a *InfrastructureAPIService) UpdateInfrastructureMetadata(ctx context.Context, infrastructureId float32) InfrastructureAPIUpdateInfrastructureMetadataRequest {
+func (a *InfrastructureAPIService) UpdateInfrastructureMetadata(ctx context.Context, infrastructureId int64) InfrastructureAPIUpdateInfrastructureMetadataRequest {
 	return InfrastructureAPIUpdateInfrastructureMetadataRequest{
 		ApiService: a,
 		ctx: ctx,

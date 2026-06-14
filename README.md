@@ -101,7 +101,7 @@ Class | Method | HTTP request | Description
 *BucketAPI* | [**UpdateBucketMeta**](docs/BucketAPI.md#updatebucketmeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/meta | Updates the meta of a Bucket
 *ConfigurationAPI* | [**GetConfiguration**](docs/ConfigurationAPI.md#getconfiguration) | **Get** /api/v2/config | Get configuration
 *ConfigurationAPI* | [**PatchConfiguration**](docs/ConfigurationAPI.md#patchconfiguration) | **Patch** /api/v2/config/{filter} | Partially update configuration
-*ConfigurationAPI* | [**PutConfiguration**](docs/ConfigurationAPI.md#putconfiguration) | **Put** /api/v2/config/{filter} | Update configuration
+*ConfigurationAPI* | [**PutConfiguration**](docs/ConfigurationAPI.md#putconfiguration) | **Put** /api/v2/config/{filter} | Replace configuration
 *CustomIsoAPI* | [**BootCustomIsoIntoServer**](docs/CustomIsoAPI.md#bootcustomisointoserver) | **Post** /api/v2/custom-isos/{customIsoId}/actions/boot-into-server/{serverId} | Boot Custom Iso into Server
 *CustomIsoAPI* | [**CreateCustomIso**](docs/CustomIsoAPI.md#createcustomiso) | **Post** /api/v2/custom-isos | Creates a Custom Iso.
 *CustomIsoAPI* | [**DeleteCustomIso**](docs/CustomIsoAPI.md#deletecustomiso) | **Delete** /api/v2/custom-isos/{customIsoId} | Delete Custom Iso
@@ -123,10 +123,12 @@ Class | Method | HTTP request | Description
 *DeviceConfigurationTemplateAPI* | [**CreateDeviceConfigurationTemplateProfile**](docs/DeviceConfigurationTemplateAPI.md#createdeviceconfigurationtemplateprofile) | **Post** /api/v2/device-configuration-templates/profile | Create a Device Configuration Template Profile (template ↔ device ↔ fabric binding)
 *DeviceConfigurationTemplateAPI* | [**DeleteDeviceConfigurationTemplate**](docs/DeviceConfigurationTemplateAPI.md#deletedeviceconfigurationtemplate) | **Delete** /api/v2/device-configuration-templates/config/{id} | Delete a Device Configuration Template
 *DeviceConfigurationTemplateAPI* | [**DeleteDeviceConfigurationTemplateProfile**](docs/DeviceConfigurationTemplateAPI.md#deletedeviceconfigurationtemplateprofile) | **Delete** /api/v2/device-configuration-templates/profile/{id} | Delete a Device Configuration Template Profile
+*DeviceConfigurationTemplateAPI* | [**FindApplicableDeviceConfigurationTemplateProfiles**](docs/DeviceConfigurationTemplateAPI.md#findapplicabledeviceconfigurationtemplateprofiles) | **Post** /api/v2/device-configuration-templates/profile/actions/find-applicable | List Device Configuration Template Profiles applicable to a target device or fabric
 *DeviceConfigurationTemplateAPI* | [**GetDeviceConfigurationTemplate**](docs/DeviceConfigurationTemplateAPI.md#getdeviceconfigurationtemplate) | **Get** /api/v2/device-configuration-templates/config/{id} | Get a Device Configuration Template by ID
 *DeviceConfigurationTemplateAPI* | [**GetDeviceConfigurationTemplateProfile**](docs/DeviceConfigurationTemplateAPI.md#getdeviceconfigurationtemplateprofile) | **Get** /api/v2/device-configuration-templates/profile/{id} | Get a Device Configuration Template Profile by ID
 *DeviceConfigurationTemplateAPI* | [**GetDeviceConfigurationTemplateProfiles**](docs/DeviceConfigurationTemplateAPI.md#getdeviceconfigurationtemplateprofiles) | **Get** /api/v2/device-configuration-templates/profile | List Device Configuration Template Profiles
 *DeviceConfigurationTemplateAPI* | [**GetDeviceConfigurationTemplates**](docs/DeviceConfigurationTemplateAPI.md#getdeviceconfigurationtemplates) | **Get** /api/v2/device-configuration-templates/config | List Device Configuration Templates
+*DeviceConfigurationTemplateAPI* | [**RenderApplicableDeviceConfigurationTemplateProfiles**](docs/DeviceConfigurationTemplateAPI.md#renderapplicabledeviceconfigurationtemplateprofiles) | **Post** /api/v2/device-configuration-templates/profile/actions/render-applicable | Render every Device Configuration Template Profile applicable to a target device or fabric
 *DeviceConfigurationTemplateAPI* | [**RenderDeviceConfigurationTemplate**](docs/DeviceConfigurationTemplateAPI.md#renderdeviceconfigurationtemplate) | **Post** /api/v2/device-configuration-templates/config/actions/render | Render an unsaved Device Configuration Template body against a variables payload (stateless)
 *DeviceConfigurationTemplateAPI* | [**RenderDeviceConfigurationTemplateProfile**](docs/DeviceConfigurationTemplateAPI.md#renderdeviceconfigurationtemplateprofile) | **Post** /api/v2/device-configuration-templates/profile/{id}/actions/render | Render a Device Configuration Template Profile against a target NetworkDevice
 *DeviceConfigurationTemplateAPI* | [**RenderSavedDeviceConfigurationTemplate**](docs/DeviceConfigurationTemplateAPI.md#rendersaveddeviceconfigurationtemplate) | **Post** /api/v2/device-configuration-templates/config/{id}/actions/render | Render a saved Device Configuration Template by ID, merging customVariablesJson with request variables.
@@ -386,11 +388,13 @@ Class | Method | HTTP request | Description
 *LogicalNetworkProfileAPI* | [**ReplaceLogicalNetworkProfileZoneAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#replacelogicalnetworkprofilezoneallocationstrategy) | **Put** /api/v2/logical-network-profiles/{id}/zone/zone-allocation-strategies/{allocationStrategyId} | Replace Zone allocation strategy
 *LogicalNetworkProfileAPI* | [**UpdateLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#updatelogicalnetworkprofile) | **Patch** /api/v2/logical-network-profiles/{id} | Update Logical Network Profile
 *NetworkDeviceAPI* | [**AddNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#addnetworkdevicedefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
-*NetworkDeviceAPI* | [**AddNetworkDevicePortIp**](docs/NetworkDeviceAPI.md#addnetworkdeviceportip) | **Post** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses | Stage adding an IP address to a port
+*NetworkDeviceAPI* | [**AddNetworkDevicePortIp**](docs/NetworkDeviceAPI.md#addnetworkdeviceportip) | **Post** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Stage adding an IP address of an address family to a port
 *NetworkDeviceAPI* | [**ArchiveNetworkDevice**](docs/NetworkDeviceAPI.md#archivenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
 *NetworkDeviceAPI* | [**CreateNetworkDevice**](docs/NetworkDeviceAPI.md#createnetworkdevice) | **Post** /api/v2/network-devices | Create Network Device
-*NetworkDeviceAPI* | [**CreateNetworkDevicePort**](docs/NetworkDeviceAPI.md#createnetworkdeviceport) | **Post** /api/v2/network-devices/{networkDeviceId}/ports | Stage creation of a logical port on a network device
+*NetworkDeviceAPI* | [**CreateNetworkDeviceBreakout**](docs/NetworkDeviceAPI.md#createnetworkdevicebreakout) | **Post** /api/v2/network-devices/{networkDeviceId}/breakouts | Create a port breakout (Cumulus only)
+*NetworkDeviceAPI* | [**CreateNetworkDevicePort**](docs/NetworkDeviceAPI.md#createnetworkdeviceport) | **Post** /api/v2/network-devices/{networkDeviceId}/ports | Stage creation of a logical port on a network device (not supported yet — returns 501)
 *NetworkDeviceAPI* | [**DeleteNetworkDevice**](docs/NetworkDeviceAPI.md#deletenetworkdevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
+*NetworkDeviceAPI* | [**DeleteNetworkDeviceBreakout**](docs/NetworkDeviceAPI.md#deletenetworkdevicebreakout) | **Delete** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId} | Remove a port breakout (un-breakout)
 *NetworkDeviceAPI* | [**DeleteNetworkDevicePort**](docs/NetworkDeviceAPI.md#deletenetworkdeviceport) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId} | Stage removal of a port
 *NetworkDeviceAPI* | [**DisableNetworkDeviceSnmpMonitoring**](docs/NetworkDeviceAPI.md#disablenetworkdevicesnmpmonitoring) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/snmp-monitoring-unsubscribe | Disables SNMP monitoring for a network device
 *NetworkDeviceAPI* | [**DisableNetworkDeviceSnmpMonitoringBatch**](docs/NetworkDeviceAPI.md#disablenetworkdevicesnmpmonitoringbatch) | **Post** /api/v2/network-devices/actions/snmp-monitoring-unsubscribe/batch | Disables SNMP monitoring for a batch of network devices
@@ -402,13 +406,14 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**EnableNetworkDeviceSnmpService**](docs/NetworkDeviceAPI.md#enablenetworkdevicesnmpservice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/snmp-service-enable | Enables SNMP service on a network device
 *NetworkDeviceAPI* | [**EnableNetworkDeviceSyslog**](docs/NetworkDeviceAPI.md#enablenetworkdevicesyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
 *NetworkDeviceAPI* | [**GetNetworkDevice**](docs/NetworkDeviceAPI.md#getnetworkdevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
+*NetworkDeviceAPI* | [**GetNetworkDeviceBreakout**](docs/NetworkDeviceAPI.md#getnetworkdevicebreakout) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId} | Get a port breakout by id
+*NetworkDeviceAPI* | [**GetNetworkDeviceBreakoutConfig**](docs/NetworkDeviceAPI.md#getnetworkdevicebreakoutconfig) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId}/config | Get the staged (desired) breakout groups for a port breakout
 *NetworkDeviceAPI* | [**GetNetworkDeviceCredentials**](docs/NetworkDeviceAPI.md#getnetworkdevicecredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
 *NetworkDeviceAPI* | [**GetNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#getnetworkdevicedefaults) | **Get** /api/v2/network-devices/defaults/{siteId} | Get network device defaults for a site
 *NetworkDeviceAPI* | [**GetNetworkDeviceHealthSummary**](docs/NetworkDeviceAPI.md#getnetworkdevicehealthsummary) | **Get** /api/v2/network-devices/{networkDeviceId}/health-summary | Get Network Device health summary
 *NetworkDeviceAPI* | [**GetNetworkDevicePort**](docs/NetworkDeviceAPI.md#getnetworkdeviceport) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId} | Get one port on a network device
-*NetworkDeviceAPI* | [**GetNetworkDevicePortBreakout**](docs/NetworkDeviceAPI.md#getnetworkdeviceportbreakout) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/breakout | Get the breakout aspect for a port (or null when not broken out)
 *NetworkDeviceAPI* | [**GetNetworkDevicePortConfig**](docs/NetworkDeviceAPI.md#getnetworkdeviceportconfig) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/config | Get the desired-state config for a port
-*NetworkDeviceAPI* | [**GetNetworkDevicePortIp**](docs/NetworkDeviceAPI.md#getnetworkdeviceportip) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses/{ipId} | Get one IP-address aspect row on a port
+*NetworkDeviceAPI* | [**GetNetworkDevicePortIp**](docs/NetworkDeviceAPI.md#getnetworkdeviceportip) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses/{ipId} | Get one IP-address aspect row on a port
 *NetworkDeviceAPI* | [**GetNetworkDevicePortVirtualFunction**](docs/NetworkDeviceAPI.md#getnetworkdeviceportvirtualfunction) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/virtual-functions/{virtualFunctionId} | Get a specific virtual function for a specific port on a network device
 *NetworkDeviceAPI* | [**GetNetworkDevicePortVirtualFunctions**](docs/NetworkDeviceAPI.md#getnetworkdeviceportvirtualfunctions) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/virtual-functions | Get virtual functions for a specific port on a network device
 *NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get paginated ports for a network device from the database
@@ -421,21 +426,22 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**GetNetworkDeviceVirtualFunctions**](docs/NetworkDeviceAPI.md#getnetworkdevicevirtualfunctions) | **Get** /api/v2/network-devices/{networkDeviceId}/virtual-functions | Get virtual functions for a specific network device
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 *NetworkDeviceAPI* | [**GetPorts**](docs/NetworkDeviceAPI.md#getports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
-*NetworkDeviceAPI* | [**ListNetworkDevicePortIps**](docs/NetworkDeviceAPI.md#listnetworkdeviceportips) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses | List IP addresses on a port
+*NetworkDeviceAPI* | [**ListNetworkDeviceBreakouts**](docs/NetworkDeviceAPI.md#listnetworkdevicebreakouts) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts | List all port breakouts on a network device
+*NetworkDeviceAPI* | [**ListNetworkDevicePortIps**](docs/NetworkDeviceAPI.md#listnetworkdeviceportips) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | List IP addresses of an address family on a port
+*NetworkDeviceAPI* | [**NetworkDeviceSyncTargetSnapshotWithLatestSnapshot**](docs/NetworkDeviceAPI.md#networkdevicesynctargetsnapshotwithlatestsnapshot) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/sync-target-snapshot-with-latest-snapshot | Updates the target snapshot id to be the latest snapshot of the network device
 *NetworkDeviceAPI* | [**ReProvisionNetworkDevice**](docs/NetworkDeviceAPI.md#reprovisionnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/re-provision | Re-provision network device
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults/{siteId}/{id} | Remove network device defaults
-*NetworkDeviceAPI* | [**RemoveNetworkDevicePortIp**](docs/NetworkDeviceAPI.md#removenetworkdeviceportip) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses/{ipId} | Stage removal of an IP address from a port
+*NetworkDeviceAPI* | [**RemoveNetworkDevicePortIp**](docs/NetworkDeviceAPI.md#removenetworkdeviceportip) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses/{ipId} | Stage removal of an IP address from a port
 *NetworkDeviceAPI* | [**ReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#replacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
-*NetworkDeviceAPI* | [**ReplaceNetworkDevicePortIps**](docs/NetworkDeviceAPI.md#replacenetworkdeviceportips) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses | Replace the full IP-address set on a port (diff against current)
+*NetworkDeviceAPI* | [**ReplaceNetworkDevicePortIps**](docs/NetworkDeviceAPI.md#replacenetworkdeviceportips) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Replace the full IP-address set of an address family on a port (diff against current)
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**RevertNetworkDeviceFailedState**](docs/NetworkDeviceAPI.md#revertnetworkdevicefailedstate) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state | Revert network device failed state
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
 *NetworkDeviceAPI* | [**SetNetworkDeviceAsFailed**](docs/NetworkDeviceAPI.md#setnetworkdeviceasfailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
 *NetworkDeviceAPI* | [**SetNetworkDeviceHealthMonitoringFilter**](docs/NetworkDeviceAPI.md#setnetworkdevicehealthmonitoringfilter) | **Get** /api/v2/network-devices/health-monitoring-filter | Set the health monitoring WebSocket filter for the current user
-*NetworkDeviceAPI* | [**SetNetworkDevicePortBreakout**](docs/NetworkDeviceAPI.md#setnetworkdeviceportbreakout) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/breakout | Stage a breakout on a port (Cumulus only in this slice)
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
-*NetworkDeviceAPI* | [**UnsetNetworkDevicePortBreakout**](docs/NetworkDeviceAPI.md#unsetnetworkdeviceportbreakout) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/breakout | Stage removal of the breakout on a port (un-breakout)
 *NetworkDeviceAPI* | [**UpdateNetworkDevice**](docs/NetworkDeviceAPI.md#updatenetworkdevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
+*NetworkDeviceAPI* | [**UpdateNetworkDeviceBreakoutConfig**](docs/NetworkDeviceAPI.md#updatenetworkdevicebreakoutconfig) | **Patch** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId}/config | Edit the staged breakout groups (reconciles child interfaces)
 *NetworkDeviceAPI* | [**UpdateNetworkDevicePortConfig**](docs/NetworkDeviceAPI.md#updatenetworkdeviceportconfig) | **Patch** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/config | Stage an update to a port&#39;s desired-state config
 *NetworkDeviceAPI* | [**UpdateNetworkDeviceVendor**](docs/NetworkDeviceAPI.md#updatenetworkdevicevendor) | **Patch** /api/v2/network-devices/vendors/{vendorId} | Update Network Device Vendor
 *NetworkDeviceBGPConfigurationTemplateAPI* | [**CreateNetworkDeviceBGPConfigurationTemplate**](docs/NetworkDeviceBGPConfigurationTemplateAPI.md#createnetworkdevicebgpconfigurationtemplate) | **Post** /api/v2/network-device-bgp-configuration-templates | Creates a Network Device BGP Configuration Template
@@ -529,6 +535,25 @@ Class | Method | HTTP request | Description
 *OSTemplateAPI* | [**GetOSTemplateCredentials**](docs/OSTemplateAPI.md#getostemplatecredentials) | **Get** /api/v2/os-templates/{osTemplateId}/credentials | Get OS template credentials
 *OSTemplateAPI* | [**GetOSTemplates**](docs/OSTemplateAPI.md#getostemplates) | **Get** /api/v2/os-templates | Get a list of available OS templates
 *OSTemplateAPI* | [**UpdateOSTemplate**](docs/OSTemplateAPI.md#updateostemplate) | **Put** /api/v2/os-templates/{osTemplateId} | Update OS template
+*PointToPointLinkAPI* | [**CreatePointToPointLink**](docs/PointToPointLinkAPI.md#createpointtopointlink) | **Post** /api/v2/point-to-point-links | Create a PointToPointLink between two specific switch interfaces.
+*PointToPointLinkAPI* | [**CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy**](docs/PointToPointLinkAPI.md#createpointtopointlinkconfigipv4subnetallocationstrategy) | **Post** /api/v2/point-to-point-links/{id}/config/ipv4/subnet-allocation-strategies | Add an IPv4 subnet allocation strategy to a PointToPointLink candidate.
+*PointToPointLinkAPI* | [**CreatePointToPointLinkConfigIpv6SubnetAllocationStrategy**](docs/PointToPointLinkAPI.md#createpointtopointlinkconfigipv6subnetallocationstrategy) | **Post** /api/v2/point-to-point-links/{id}/config/ipv6/subnet-allocation-strategies | Add an IPv6 subnet allocation strategy to a PointToPointLink candidate.
+*PointToPointLinkAPI* | [**CreatePointToPointLinkConfigStaticRoute**](docs/PointToPointLinkAPI.md#createpointtopointlinkconfigstaticroute) | **Post** /api/v2/point-to-point-links/{id}/config/{family}/static-routes | Add a static route to a PointToPointLink candidate (per address family).
+*PointToPointLinkAPI* | [**DeletePointToPointLink**](docs/PointToPointLinkAPI.md#deletepointtopointlink) | **Delete** /api/v2/point-to-point-links/{id} | Mark a PointToPointLink for deletion (sets candidate deployType&#x3D;DELETE).
+*PointToPointLinkAPI* | [**DeletePointToPointLinkConfigIpv4SubnetAllocationStrategy**](docs/PointToPointLinkAPI.md#deletepointtopointlinkconfigipv4subnetallocationstrategy) | **Delete** /api/v2/point-to-point-links/{id}/config/ipv4/subnet-allocation-strategies/{strategyId} | Delete an IPv4 subnet allocation strategy from the candidate.
+*PointToPointLinkAPI* | [**DeletePointToPointLinkConfigIpv6SubnetAllocationStrategy**](docs/PointToPointLinkAPI.md#deletepointtopointlinkconfigipv6subnetallocationstrategy) | **Delete** /api/v2/point-to-point-links/{id}/config/ipv6/subnet-allocation-strategies/{strategyId} | Delete an IPv6 subnet allocation strategy from the candidate.
+*PointToPointLinkAPI* | [**DeletePointToPointLinkConfigStaticRoute**](docs/PointToPointLinkAPI.md#deletepointtopointlinkconfigstaticroute) | **Delete** /api/v2/point-to-point-links/{id}/config/{family}/static-routes/{routeId} | Delete a static route from the candidate.
+*PointToPointLinkAPI* | [**GetPointToPointLink**](docs/PointToPointLinkAPI.md#getpointtopointlink) | **Get** /api/v2/point-to-point-links/{id} | Get a PointToPointLink by id.
+*PointToPointLinkAPI* | [**GetPointToPointLinkConfig**](docs/PointToPointLinkAPI.md#getpointtopointlinkconfig) | **Get** /api/v2/point-to-point-links/{id}/config | Get the candidate (proposed) configuration of a PointToPointLink.
+*PointToPointLinkAPI* | [**GetPointToPointLinkConfigIpv4SubnetAllocationStrategies**](docs/PointToPointLinkAPI.md#getpointtopointlinkconfigipv4subnetallocationstrategies) | **Get** /api/v2/point-to-point-links/{id}/config/ipv4/subnet-allocation-strategies | List all IPv4 subnet allocation strategies on a PointToPointLink candidate.
+*PointToPointLinkAPI* | [**GetPointToPointLinkConfigIpv4SubnetAllocationStrategy**](docs/PointToPointLinkAPI.md#getpointtopointlinkconfigipv4subnetallocationstrategy) | **Get** /api/v2/point-to-point-links/{id}/config/ipv4/subnet-allocation-strategies/{strategyId} | Get one IPv4 subnet allocation strategy.
+*PointToPointLinkAPI* | [**GetPointToPointLinkConfigIpv6SubnetAllocationStrategies**](docs/PointToPointLinkAPI.md#getpointtopointlinkconfigipv6subnetallocationstrategies) | **Get** /api/v2/point-to-point-links/{id}/config/ipv6/subnet-allocation-strategies | List all IPv6 subnet allocation strategies on a PointToPointLink candidate.
+*PointToPointLinkAPI* | [**GetPointToPointLinkConfigIpv6SubnetAllocationStrategy**](docs/PointToPointLinkAPI.md#getpointtopointlinkconfigipv6subnetallocationstrategy) | **Get** /api/v2/point-to-point-links/{id}/config/ipv6/subnet-allocation-strategies/{strategyId} | Get one IPv6 subnet allocation strategy.
+*PointToPointLinkAPI* | [**GetPointToPointLinkConfigStaticRoute**](docs/PointToPointLinkAPI.md#getpointtopointlinkconfigstaticroute) | **Get** /api/v2/point-to-point-links/{id}/config/{family}/static-routes/{routeId} | Get one static route.
+*PointToPointLinkAPI* | [**GetPointToPointLinkConfigStaticRoutes**](docs/PointToPointLinkAPI.md#getpointtopointlinkconfigstaticroutes) | **Get** /api/v2/point-to-point-links/{id}/config/{family}/static-routes | List static routes on a PointToPointLink candidate (per address family).
+*PointToPointLinkAPI* | [**GetPointToPointLinks**](docs/PointToPointLinkAPI.md#getpointtopointlinks) | **Get** /api/v2/point-to-point-links | List PointToPointLinks, optionally filtered by Route Domain or interface id.
+*PointToPointLinkAPI* | [**UpdatePointToPointLink**](docs/PointToPointLinkAPI.md#updatepointtopointlink) | **Patch** /api/v2/point-to-point-links/{id} | Update a PointToPointLink (label, name, annotations, description).
+*PointToPointLinkAPI* | [**UpdatePointToPointLinkConfig**](docs/PointToPointLinkAPI.md#updatepointtopointlinkconfig) | **Patch** /api/v2/point-to-point-links/{id}/config | Update the candidate configuration of a PointToPointLink.
 *ResourcePoolAPI* | [**AddResourcePoolUser**](docs/ResourcePoolAPI.md#addresourcepooluser) | **Post** /api/v2/resource-pools/user/{userId}/pool/{resourcePoolId} | Add a user to a Resource Pool
 *ResourcePoolAPI* | [**AddServerToResourcePool**](docs/ResourcePoolAPI.md#addservertoresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId}/server/{serverId} | Add a server to a Resource Pool
 *ResourcePoolAPI* | [**AddSubnetPoolToResourcePool**](docs/ResourcePoolAPI.md#addsubnetpooltoresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId}/subnet-pool/{subnetPoolId} | Add a subnet pool to a resource pool
@@ -746,6 +771,7 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**EnableUser2FA**](docs/UserAPI.md#enableuser2fa) | **Post** /api/v2/user/actions/2fa-enable | Enable 2FA
 *UserAPI* | [**GenerateUser2FASecret**](docs/UserAPI.md#generateuser2fasecret) | **Post** /api/v2/user/actions/2fa-generate | Generate 2FA secret
 *UserAPI* | [**GetUserApiKey**](docs/UserAPI.md#getuserapikey) | **Get** /api/v2/user/api-key | Get user API key
+*UserAPI* | [**GetUserPermissions**](docs/UserAPI.md#getuserpermissions) | **Get** /api/v2/user/permissions | Get the permissions of the logged in user
 *UserAPI* | [**InitiateEmailChange**](docs/UserAPI.md#initiateemailchange) | **Post** /api/v2/user/actions/initiate-email-change | Initiates the user email change
 *UserAPI* | [**InitiatePasswordReset**](docs/UserAPI.md#initiatepasswordreset) | **Post** /api/v2/user/actions/initiate-password-reset | Initiate reset user password
 *UserAPI* | [**RegenerateUserApiKey**](docs/UserAPI.md#regenerateuserapikey) | **Post** /api/v2/user/actions/regenerate-api-key | Regenerate user API key
@@ -781,6 +807,7 @@ Class | Method | HTTP request | Description
 *VMAPI* | [**GetVM**](docs/VMAPI.md#getvm) | **Get** /api/v2/vms/{vmId} | Retrieves the VM information
 *VMAPI* | [**GetVMPowerStatus**](docs/VMAPI.md#getvmpowerstatus) | **Get** /api/v2/vms/{vmId}/power-status | Retrieves the power status of the VM
 *VMAPI* | [**GetVMRemoteConsoleInfo**](docs/VMAPI.md#getvmremoteconsoleinfo) | **Get** /api/v2/vms/{vmId}/remote-console-info | Get Remote Console information
+*VMAPI* | [**GetVMs**](docs/VMAPI.md#getvms) | **Get** /api/v2/vms | Get a list of VMs
 *VMAPI* | [**RebootVM**](docs/VMAPI.md#rebootvm) | **Post** /api/v2/vms/{vmId}/reboot | Reboots the VM
 *VMAPI* | [**ShutdownVM**](docs/VMAPI.md#shutdownvm) | **Post** /api/v2/vms/{vmId}/shutdown | Shuts down the VM
 *VMAPI* | [**StartVM**](docs/VMAPI.md#startvm) | **Post** /api/v2/vms/{vmId}/start | Starts the VM
@@ -877,6 +904,10 @@ Class | Method | HTTP request | Description
  - [ApplyProfilesToLogicalNetworkConfig](docs/ApplyProfilesToLogicalNetworkConfig.md)
  - [AssetExtensionActionStage](docs/AssetExtensionActionStage.md)
  - [AssetExtensionActions](docs/AssetExtensionActions.md)
+ - [AuthBsiConfigDto](docs/AuthBsiConfigDto.md)
+ - [AuthConfigurationDto](docs/AuthConfigurationDto.md)
+ - [AuthDto](docs/AuthDto.md)
+ - [AuthMicroservicesDto](docs/AuthMicroservicesDto.md)
  - [AuthenticationProvider](docs/AuthenticationProvider.md)
  - [AuthenticationProviderUpdate](docs/AuthenticationProviderUpdate.md)
  - [AuthenticationRequest](docs/AuthenticationRequest.md)
@@ -885,7 +916,9 @@ Class | Method | HTTP request | Description
  - [AuthenticationRequestPropertiesMySql](docs/AuthenticationRequestPropertiesMySql.md)
  - [AuthenticationRequestPropertiesSaml](docs/AuthenticationRequestPropertiesSaml.md)
  - [AuthenticationUserProvider](docs/AuthenticationUserProvider.md)
+ - [AutoIpv4PointToPointAllocationStrategy](docs/AutoIpv4PointToPointAllocationStrategy.md)
  - [AutoIpv4SubnetAllocationStrategy](docs/AutoIpv4SubnetAllocationStrategy.md)
+ - [AutoIpv6PointToPointAllocationStrategy](docs/AutoIpv6PointToPointAllocationStrategy.md)
  - [AutoIpv6SubnetAllocationStrategy](docs/AutoIpv6SubnetAllocationStrategy.md)
  - [AutoPkeyAllocationStrategy](docs/AutoPkeyAllocationStrategy.md)
  - [AutoVlanAllocationStrategy](docs/AutoVlanAllocationStrategy.md)
@@ -896,6 +929,10 @@ Class | Method | HTTP request | Description
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
  - [BatchServerFirmwareUpgradeResponse](docs/BatchServerFirmwareUpgradeResponse.md)
  - [BooleanOperator](docs/BooleanOperator.md)
+ - [BrandingBaseDto](docs/BrandingBaseDto.md)
+ - [BrandingDto](docs/BrandingDto.md)
+ - [BreakoutGroup](docs/BreakoutGroup.md)
+ - [BsiDto](docs/BsiDto.md)
  - [Bucket](docs/Bucket.md)
  - [BucketConfiguration](docs/BucketConfiguration.md)
  - [BucketCredentials](docs/BucketCredentials.md)
@@ -910,9 +947,12 @@ Class | Method | HTTP request | Description
  - [CaptchaSiteKeysDto](docs/CaptchaSiteKeysDto.md)
  - [ChangeUserAccount](docs/ChangeUserAccount.md)
  - [ChangeUserEmail](docs/ChangeUserEmail.md)
+ - [ConfigurationsDto](docs/ConfigurationsDto.md)
  - [ControllerPolicy](docs/ControllerPolicy.md)
  - [CreateAccount](docs/CreateAccount.md)
+ - [CreateAutoIpv4PointToPointAllocationStrategy](docs/CreateAutoIpv4PointToPointAllocationStrategy.md)
  - [CreateAutoIpv4SubnetAllocationStrategy](docs/CreateAutoIpv4SubnetAllocationStrategy.md)
+ - [CreateAutoIpv6PointToPointAllocationStrategy](docs/CreateAutoIpv6PointToPointAllocationStrategy.md)
  - [CreateAutoIpv6SubnetAllocationStrategy](docs/CreateAutoIpv6SubnetAllocationStrategy.md)
  - [CreateAutoPkeyAllocationStrategy](docs/CreateAutoPkeyAllocationStrategy.md)
  - [CreateAutoVlanAllocationStrategy](docs/CreateAutoVlanAllocationStrategy.md)
@@ -951,7 +991,9 @@ Class | Method | HTTP request | Description
  - [CreateLogicalNetworkVlanProperties](docs/CreateLogicalNetworkVlanProperties.md)
  - [CreateLogicalNetworkVxlanProperties](docs/CreateLogicalNetworkVxlanProperties.md)
  - [CreateLogicalNetworkZoneProperties](docs/CreateLogicalNetworkZoneProperties.md)
+ - [CreateManualIpv4PointToPointAllocationStrategy](docs/CreateManualIpv4PointToPointAllocationStrategy.md)
  - [CreateManualIpv4SubnetAllocationStrategy](docs/CreateManualIpv4SubnetAllocationStrategy.md)
+ - [CreateManualIpv6PointToPointAllocationStrategy](docs/CreateManualIpv6PointToPointAllocationStrategy.md)
  - [CreateManualIpv6SubnetAllocationStrategy](docs/CreateManualIpv6SubnetAllocationStrategy.md)
  - [CreateManualPkeyAllocationStrategy](docs/CreateManualPkeyAllocationStrategy.md)
  - [CreateManualVlanAllocationStrategy](docs/CreateManualVlanAllocationStrategy.md)
@@ -967,6 +1009,7 @@ Class | Method | HTTP request | Description
  - [CreateNetworkDeviceLinkAggregationConfigurationTemplate](docs/CreateNetworkDeviceLinkAggregationConfigurationTemplate.md)
  - [CreateNetworkEndpointGroup](docs/CreateNetworkEndpointGroup.md)
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
+ - [CreateNetworkEquipmentBreakout](docs/CreateNetworkEquipmentBreakout.md)
  - [CreateNetworkEquipmentInterface](docs/CreateNetworkEquipmentInterface.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
  - [CreateNetworkFabricBGPSession](docs/CreateNetworkFabricBGPSession.md)
@@ -976,6 +1019,15 @@ Class | Method | HTTP request | Description
  - [CreateNetworkFabricLinkAggregation](docs/CreateNetworkFabricLinkAggregation.md)
  - [CreatePermission](docs/CreatePermission.md)
  - [CreatePkeyAllocationStrategy](docs/CreatePkeyAllocationStrategy.md)
+ - [CreatePointToPointInterface](docs/CreatePointToPointInterface.md)
+ - [CreatePointToPointLink](docs/CreatePointToPointLink.md)
+ - [CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response](docs/CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response.md)
+ - [CreatePointToPointLinkConfigIpv4SubnetAllocationStrategyRequest](docs/CreatePointToPointLinkConfigIpv4SubnetAllocationStrategyRequest.md)
+ - [CreatePointToPointLinkConfigIpv6SubnetAllocationStrategy201Response](docs/CreatePointToPointLinkConfigIpv6SubnetAllocationStrategy201Response.md)
+ - [CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest](docs/CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest.md)
+ - [CreatePointToPointLinkIpv4Properties](docs/CreatePointToPointLinkIpv4Properties.md)
+ - [CreatePointToPointLinkIpv6Properties](docs/CreatePointToPointLinkIpv6Properties.md)
+ - [CreatePointToPointStaticRoute](docs/CreatePointToPointStaticRoute.md)
  - [CreateQuotaProfile](docs/CreateQuotaProfile.md)
  - [CreateResourcePool](docs/CreateResourcePool.md)
  - [CreateResourceScope](docs/CreateResourceScope.md)
@@ -989,6 +1041,8 @@ Class | Method | HTTP request | Description
  - [CreateSharedDrive](docs/CreateSharedDrive.md)
  - [CreateStorage](docs/CreateStorage.md)
  - [CreateSubnet](docs/CreateSubnet.md)
+ - [CreateUnnumberedIpv4PointToPointAllocationStrategy](docs/CreateUnnumberedIpv4PointToPointAllocationStrategy.md)
+ - [CreateUnnumberedIpv6PointToPointAllocationStrategy](docs/CreateUnnumberedIpv6PointToPointAllocationStrategy.md)
  - [CreateUser](docs/CreateUser.md)
  - [CreateUserSSHKey](docs/CreateUserSSHKey.md)
  - [CreateVMInstance](docs/CreateVMInstance.md)
@@ -1020,6 +1074,7 @@ Class | Method | HTTP request | Description
  - [DeviceAuthProvider](docs/DeviceAuthProvider.md)
  - [DeviceAuthProviderCredentials](docs/DeviceAuthProviderCredentials.md)
  - [DeviceAuthProviderPaginatedList](docs/DeviceAuthProviderPaginatedList.md)
+ - [DeviceConfigurationProfileApplyMode](docs/DeviceConfigurationProfileApplyMode.md)
  - [DeviceConfigurationProfileLifecycleStage](docs/DeviceConfigurationProfileLifecycleStage.md)
  - [DeviceConfigurationTemplate](docs/DeviceConfigurationTemplate.md)
  - [DeviceConfigurationTemplatePaginatedList](docs/DeviceConfigurationTemplatePaginatedList.md)
@@ -1128,6 +1183,7 @@ Class | Method | HTTP request | Description
  - [ExternalSystemPaginatedList](docs/ExternalSystemPaginatedList.md)
  - [FabricStatus](docs/FabricStatus.md)
  - [FabricType](docs/FabricType.md)
+ - [FaviconDto](docs/FaviconDto.md)
  - [FibreChannelFabric](docs/FibreChannelFabric.md)
  - [FieldValueFunctionType](docs/FieldValueFunctionType.md)
  - [FileShare](docs/FileShare.md)
@@ -1140,6 +1196,8 @@ Class | Method | HTTP request | Description
  - [FileSharePaginatedList](docs/FileSharePaginatedList.md)
  - [FileShareSnapshot](docs/FileShareSnapshot.md)
  - [FileShareVariables](docs/FileShareVariables.md)
+ - [FindApplicableDeviceConfigurationTemplateProfiles](docs/FindApplicableDeviceConfigurationTemplateProfiles.md)
+ - [FindApplicableDeviceConfigurationTemplateProfilesResult](docs/FindApplicableDeviceConfigurationTemplateProfilesResult.md)
  - [FirmwareBaseline](docs/FirmwareBaseline.md)
  - [FirmwareBaselinePaginatedList](docs/FirmwareBaselinePaginatedList.md)
  - [FirmwareBinary](docs/FirmwareBinary.md)
@@ -1149,6 +1207,7 @@ Class | Method | HTTP request | Description
  - [FirmwareCatalogPaginatedList](docs/FirmwareCatalogPaginatedList.md)
  - [FirmwareMinimumVersion](docs/FirmwareMinimumVersion.md)
  - [FirmwareUpgrade](docs/FirmwareUpgrade.md)
+ - [GatewayConfigurationDto](docs/GatewayConfigurationDto.md)
  - [GenerateFirmwareUpgradeAudit](docs/GenerateFirmwareUpgradeAudit.md)
  - [GenerateSiteControllerOneliner](docs/GenerateSiteControllerOneliner.md)
  - [GenericBucketDiscoverInformation](docs/GenericBucketDiscoverInformation.md)
@@ -1163,10 +1222,12 @@ Class | Method | HTTP request | Description
  - [GenericServiceStatus](docs/GenericServiceStatus.md)
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
  - [GetResourceUtilizationSummarized](docs/GetResourceUtilizationSummarized.md)
+ - [GroupMappingDto](docs/GroupMappingDto.md)
  - [HardwareRescanServerRequest](docs/HardwareRescanServerRequest.md)
  - [HardwareRescanServerResponse](docs/HardwareRescanServerResponse.md)
  - [HpeComponentFilter](docs/HpeComponentFilter.md)
  - [IServerFirmwareBinaryResponse](docs/IServerFirmwareBinaryResponse.md)
+ - [ImageBuilderConfigurationDto](docs/ImageBuilderConfigurationDto.md)
  - [InfinibandFabric](docs/InfinibandFabric.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
@@ -1203,8 +1264,10 @@ Class | Method | HTTP request | Description
  - [Ip](docs/Ip.md)
  - [IpRange](docs/IpRange.md)
  - [IpVersion](docs/IpVersion.md)
+ - [Ipv4PointToPointSubnetAllocation](docs/Ipv4PointToPointSubnetAllocation.md)
  - [Ipv4SubnetAllocation](docs/Ipv4SubnetAllocation.md)
  - [Ipv4SubnetAllocationStrategy](docs/Ipv4SubnetAllocationStrategy.md)
+ - [Ipv6PointToPointSubnetAllocation](docs/Ipv6PointToPointSubnetAllocation.md)
  - [Ipv6SubnetAllocation](docs/Ipv6SubnetAllocation.md)
  - [Ipv6SubnetAllocationStrategy](docs/Ipv6SubnetAllocationStrategy.md)
  - [Job](docs/Job.md)
@@ -1222,8 +1285,11 @@ Class | Method | HTTP request | Description
  - [JobPaginatedList](docs/JobPaginatedList.md)
  - [JobRetryInfo](docs/JobRetryInfo.md)
  - [JobStatistics](docs/JobStatistics.md)
+ - [LdapDto](docs/LdapDto.md)
+ - [LdapServerDto](docs/LdapServerDto.md)
  - [LenovoComponentFilter](docs/LenovoComponentFilter.md)
  - [LicenseInstallments](docs/LicenseInstallments.md)
+ - [LicenseMicroserviceDto](docs/LicenseMicroserviceDto.md)
  - [LicensedProducts](docs/LicensedProducts.md)
  - [Link](docs/Link.md)
  - [LinkDuplex](docs/LinkDuplex.md)
@@ -1258,14 +1324,18 @@ Class | Method | HTTP request | Description
  - [LogicalNetworkVxlanProperties](docs/LogicalNetworkVxlanProperties.md)
  - [LogicalNetworkZoneProperties](docs/LogicalNetworkZoneProperties.md)
  - [LogicalOperator](docs/LogicalOperator.md)
+ - [LogoDto](docs/LogoDto.md)
  - [LogoutRequest](docs/LogoutRequest.md)
+ - [ManualIpv4PointToPointAllocationStrategy](docs/ManualIpv4PointToPointAllocationStrategy.md)
  - [ManualIpv4SubnetAllocationStrategy](docs/ManualIpv4SubnetAllocationStrategy.md)
+ - [ManualIpv6PointToPointAllocationStrategy](docs/ManualIpv6PointToPointAllocationStrategy.md)
  - [ManualIpv6SubnetAllocationStrategy](docs/ManualIpv6SubnetAllocationStrategy.md)
  - [ManualPkeyAllocationStrategy](docs/ManualPkeyAllocationStrategy.md)
  - [ManualVlanAllocationStrategy](docs/ManualVlanAllocationStrategy.md)
  - [ManualVniAllocationStrategy](docs/ManualVniAllocationStrategy.md)
  - [ManualVrfAllocationStrategy](docs/ManualVrfAllocationStrategy.md)
  - [ManualZoneAllocationStrategy](docs/ManualZoneAllocationStrategy.md)
+ - [MicroservicesDto](docs/MicroservicesDto.md)
  - [NetworkDevice](docs/NetworkDevice.md)
  - [NetworkDeviceAuthOption](docs/NetworkDeviceAuthOption.md)
  - [NetworkDeviceBGPConfigurationTemplate](docs/NetworkDeviceBGPConfigurationTemplate.md)
@@ -1331,10 +1401,12 @@ Class | Method | HTTP request | Description
  - [NetworkEndpointGroupRedundancyImplementationType](docs/NetworkEndpointGroupRedundancyImplementationType.md)
  - [NetworkEndpointGroupRedundancyMode](docs/NetworkEndpointGroupRedundancyMode.md)
  - [NetworkEntry](docs/NetworkEntry.md)
+ - [NetworkEquipmentBreakout](docs/NetworkEquipmentBreakout.md)
+ - [NetworkEquipmentBreakoutConfigDto](docs/NetworkEquipmentBreakoutConfigDto.md)
  - [NetworkEquipmentInterface](docs/NetworkEquipmentInterface.md)
- - [NetworkEquipmentInterfaceBreakout](docs/NetworkEquipmentInterfaceBreakout.md)
  - [NetworkEquipmentInterfaceConfig](docs/NetworkEquipmentInterfaceConfig.md)
  - [NetworkEquipmentInterfaceIp](docs/NetworkEquipmentInterfaceIp.md)
+ - [NetworkEquipmentInterfaceIpFamily](docs/NetworkEquipmentInterfaceIpFamily.md)
  - [NetworkEquipmentReprovision](docs/NetworkEquipmentReprovision.md)
  - [NetworkFabric](docs/NetworkFabric.md)
  - [NetworkFabricBGPSession](docs/NetworkFabricBGPSession.md)
@@ -1366,6 +1438,7 @@ Class | Method | HTTP request | Description
  - [NetworkFabricList](docs/NetworkFabricList.md)
  - [NetworkFabricPaginatedList](docs/NetworkFabricPaginatedList.md)
  - [NetworkTemplateExecutionType](docs/NetworkTemplateExecutionType.md)
+ - [NotificationConfigurationDto](docs/NotificationConfigurationDto.md)
  - [OSTemplate](docs/OSTemplate.md)
  - [OSTemplateCreate](docs/OSTemplateCreate.md)
  - [OSTemplateDevice](docs/OSTemplateDevice.md)
@@ -1375,6 +1448,7 @@ Class | Method | HTTP request | Description
  - [OSTemplateOsCredential](docs/OSTemplateOsCredential.md)
  - [OSTemplatePaginatedList](docs/OSTemplatePaginatedList.md)
  - [OSTemplateUpdate](docs/OSTemplateUpdate.md)
+ - [OauthDto](docs/OauthDto.md)
  - [PaginatedIpList](docs/PaginatedIpList.md)
  - [PaginatedIpRangeList](docs/PaginatedIpRangeList.md)
  - [PaginatedIpv4SubnetAllocationStrategy](docs/PaginatedIpv4SubnetAllocationStrategy.md)
@@ -1399,12 +1473,34 @@ Class | Method | HTTP request | Description
  - [PermissionList](docs/PermissionList.md)
  - [PkeyAllocation](docs/PkeyAllocation.md)
  - [PkeyAllocationStrategy](docs/PkeyAllocationStrategy.md)
+ - [PlatformAFCDto](docs/PlatformAFCDto.md)
+ - [PlatformAllowedPrefixSizesOnWANDto](docs/PlatformAllowedPrefixSizesOnWANDto.md)
+ - [PlatformConfigurationDto](docs/PlatformConfigurationDto.md)
+ - [PlatformMailClientDto](docs/PlatformMailClientDto.md)
+ - [PlatformPowerDNSDto](docs/PlatformPowerDNSDto.md)
+ - [PlatformStorageConfigDto](docs/PlatformStorageConfigDto.md)
+ - [PlatformUploadsDto](docs/PlatformUploadsDto.md)
+ - [PointToPointAllocationStrategyKind](docs/PointToPointAllocationStrategyKind.md)
+ - [PointToPointInterface](docs/PointToPointInterface.md)
+ - [PointToPointInterfaceBinding](docs/PointToPointInterfaceBinding.md)
+ - [PointToPointInterfaceType](docs/PointToPointInterfaceType.md)
+ - [PointToPointLink](docs/PointToPointLink.md)
+ - [PointToPointLinkConfig](docs/PointToPointLinkConfig.md)
+ - [PointToPointLinkConfigIpv4Properties](docs/PointToPointLinkConfigIpv4Properties.md)
+ - [PointToPointLinkConfigIpv6Properties](docs/PointToPointLinkConfigIpv6Properties.md)
+ - [PointToPointLinkIpv4Properties](docs/PointToPointLinkIpv4Properties.md)
+ - [PointToPointLinkIpv6Properties](docs/PointToPointLinkIpv6Properties.md)
+ - [PointToPointLinkRoutingActivation](docs/PointToPointLinkRoutingActivation.md)
+ - [PointToPointStaticRoute](docs/PointToPointStaticRoute.md)
  - [PolicyEntry](docs/PolicyEntry.md)
+ - [ProfileMappingDto](docs/ProfileMappingDto.md)
  - [PublicSignupDisabled](docs/PublicSignupDisabled.md)
+ - [PutConfigurationRequest](docs/PutConfigurationRequest.md)
  - [QuotaLimitsBreakdown](docs/QuotaLimitsBreakdown.md)
  - [QuotaProfile](docs/QuotaProfile.md)
  - [QuotaProfileLimits](docs/QuotaProfileLimits.md)
  - [QuotaProfileList](docs/QuotaProfileList.md)
+ - [RateLimitingConfigDto](docs/RateLimitingConfigDto.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
  - [RecordSet](docs/RecordSet.md)
  - [RedundancyConfig](docs/RedundancyConfig.md)
@@ -1415,9 +1511,12 @@ Class | Method | HTTP request | Description
  - [RegisterServerResponse](docs/RegisterServerResponse.md)
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
  - [RemoteConsoleInfo](docs/RemoteConsoleInfo.md)
+ - [RenderApplicableDeviceConfigurationTemplateProfiles](docs/RenderApplicableDeviceConfigurationTemplateProfiles.md)
  - [RenderDeviceConfigurationTemplate](docs/RenderDeviceConfigurationTemplate.md)
  - [RenderDeviceConfigurationTemplateProfile](docs/RenderDeviceConfigurationTemplateProfile.md)
  - [RenderSavedDeviceConfigurationTemplate](docs/RenderSavedDeviceConfigurationTemplate.md)
+ - [RenderedApplicableDeviceConfigurationTemplateProfileItem](docs/RenderedApplicableDeviceConfigurationTemplateProfileItem.md)
+ - [RenderedApplicableDeviceConfigurationTemplateProfilesResult](docs/RenderedApplicableDeviceConfigurationTemplateProfilesResult.md)
  - [RenderedDeviceConfigurationTemplate](docs/RenderedDeviceConfigurationTemplate.md)
  - [ReplaceNetworkEquipmentInterfaceIps](docs/ReplaceNetworkEquipmentInterfaceIps.md)
  - [Repo](docs/Repo.md)
@@ -1442,6 +1541,8 @@ Class | Method | HTTP request | Description
  - [RunExtensionOnPhysicalDevice](docs/RunExtensionOnPhysicalDevice.md)
  - [SNMPOIDGroupConfig](docs/SNMPOIDGroupConfig.md)
  - [SNMPOIDToMetricMapping](docs/SNMPOIDToMetricMapping.md)
+ - [SamlDto](docs/SamlDto.md)
+ - [SamlProfileMappingDto](docs/SamlProfileMappingDto.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
  - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
  - [SearchFirmwareBinaryServerComponentFilter](docs/SearchFirmwareBinaryServerComponentFilter.md)
@@ -1544,7 +1645,6 @@ Class | Method | HTTP request | Description
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
  - [ServerVariables](docs/ServerVariables.md)
  - [ServerVendorInfo](docs/ServerVendorInfo.md)
- - [SetNetworkEquipmentInterfaceBreakout](docs/SetNetworkEquipmentInterfaceBreakout.md)
  - [SetUserPasswordByAdmin](docs/SetUserPasswordByAdmin.md)
  - [SharedDrive](docs/SharedDrive.md)
  - [SharedDriveConfiguration](docs/SharedDriveConfiguration.md)
@@ -1590,12 +1690,20 @@ Class | Method | HTTP request | Description
  - [SwitchDNSRecordSet](docs/SwitchDNSRecordSet.md)
  - [SwitchDriver](docs/SwitchDriver.md)
  - [SwitchReplace](docs/SwitchReplace.md)
+ - [SyslogConditionDto](docs/SyslogConditionDto.md)
+ - [SyslogRuleDto](docs/SyslogRuleDto.md)
  - [TemplateAsset](docs/TemplateAsset.md)
  - [TemplateAssetCreate](docs/TemplateAssetCreate.md)
  - [TemplateAssetFile](docs/TemplateAssetFile.md)
  - [TemplateAssetPaginatedList](docs/TemplateAssetPaginatedList.md)
+ - [TunnelBdkDto](docs/TunnelBdkDto.md)
+ - [TunnelConfigurationDto](docs/TunnelConfigurationDto.md)
+ - [TunnelSyslogDto](docs/TunnelSyslogDto.md)
+ - [TunnelSyslogFiltersDto](docs/TunnelSyslogFiltersDto.md)
  - [TwoFactorAuthenticationSecret](docs/TwoFactorAuthenticationSecret.md)
  - [TwoFactorAuthenticationToken](docs/TwoFactorAuthenticationToken.md)
+ - [UnnumberedIpv4PointToPointAllocationStrategy](docs/UnnumberedIpv4PointToPointAllocationStrategy.md)
+ - [UnnumberedIpv6PointToPointAllocationStrategy](docs/UnnumberedIpv6PointToPointAllocationStrategy.md)
  - [UpdateAccount](docs/UpdateAccount.md)
  - [UpdateBucket](docs/UpdateBucket.md)
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
@@ -1634,10 +1742,13 @@ Class | Method | HTTP request | Description
  - [UpdateNetworkDeviceVendorsDto](docs/UpdateNetworkDeviceVendorsDto.md)
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
  - [UpdateNetworkEndpointGroupLogicalNetwork](docs/UpdateNetworkEndpointGroupLogicalNetwork.md)
+ - [UpdateNetworkEquipmentBreakoutConfigDto](docs/UpdateNetworkEquipmentBreakoutConfigDto.md)
  - [UpdateNetworkEquipmentInterfaceConfig](docs/UpdateNetworkEquipmentInterfaceConfig.md)
  - [UpdateNetworkFabric](docs/UpdateNetworkFabric.md)
  - [UpdateNetworkFabricInterconnect](docs/UpdateNetworkFabricInterconnect.md)
  - [UpdateNetworkFabricLinkAggregation](docs/UpdateNetworkFabricLinkAggregation.md)
+ - [UpdatePointToPointLink](docs/UpdatePointToPointLink.md)
+ - [UpdatePointToPointLinkConfig](docs/UpdatePointToPointLinkConfig.md)
  - [UpdateResourcePool](docs/UpdateResourcePool.md)
  - [UpdateRouteDomain](docs/UpdateRouteDomain.md)
  - [UpdateRouteDomainConfigGlobalSettings](docs/UpdateRouteDomainConfigGlobalSettings.md)
@@ -1674,12 +1785,16 @@ Class | Method | HTTP request | Description
  - [UserList](docs/UserList.md)
  - [UserMeta](docs/UserMeta.md)
  - [UserPaginatedList](docs/UserPaginatedList.md)
+ - [UserPermissions](docs/UserPermissions.md)
+ - [UserProviderDto](docs/UserProviderDto.md)
  - [UserSSHKeys](docs/UserSSHKeys.md)
  - [UserSSHKeysList](docs/UserSSHKeysList.md)
  - [UserSuspend](docs/UserSuspend.md)
  - [UserSuspendReason](docs/UserSuspendReason.md)
  - [UserSuspendReasonList](docs/UserSuspendReasonList.md)
  - [UserUpdatePassword](docs/UserUpdatePassword.md)
+ - [UsersDto](docs/UsersDto.md)
+ - [UsersProvider](docs/UsersProvider.md)
  - [UtilizationData](docs/UtilizationData.md)
  - [VM](docs/VM.md)
  - [VMDisk](docs/VMDisk.md)
@@ -1736,6 +1851,7 @@ Class | Method | HTTP request | Description
  - [VniAllocationStrategy](docs/VniAllocationStrategy.md)
  - [VrfAllocation](docs/VrfAllocation.md)
  - [VrfAllocationStrategy](docs/VrfAllocationStrategy.md)
+ - [VrrpGroup](docs/VrrpGroup.md)
  - [ZoneAllocation](docs/ZoneAllocation.md)
  - [ZoneAllocationStrategy](docs/ZoneAllocationStrategy.md)
 

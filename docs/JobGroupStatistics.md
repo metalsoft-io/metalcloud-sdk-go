@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **GroupId** | **int64** | Group Id | 
+**GroupType** | **string** | Group type | 
 **GroupCreatedTimestamp** | **string** | Group created timestamp | 
 **GroupCompletedTimestamp** | **string** | Group completed timestamp | 
 **JobsThrownError** | **int32** | Total count of jobs with errors | 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewJobGroupStatistics
 
-`func NewJobGroupStatistics(groupId int64, groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32, ) *JobGroupStatistics`
+`func NewJobGroupStatistics(groupId int64, groupType string, groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32, ) *JobGroupStatistics`
 
 NewJobGroupStatistics instantiates a new JobGroupStatistics object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +49,26 @@ and a boolean to check if the value has been set.
 `func (o *JobGroupStatistics) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
+
+
+### GetGroupType
+
+`func (o *JobGroupStatistics) GetGroupType() string`
+
+GetGroupType returns the GroupType field if non-nil, zero value otherwise.
+
+### GetGroupTypeOk
+
+`func (o *JobGroupStatistics) GetGroupTypeOk() (*string, bool)`
+
+GetGroupTypeOk returns a tuple with the GroupType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupType
+
+`func (o *JobGroupStatistics) SetGroupType(v string)`
+
+SetGroupType sets GroupType field to given value.
 
 
 ### GetGroupCreatedTimestamp

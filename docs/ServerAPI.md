@@ -52,7 +52,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -71,7 +71,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	serverConnectInterface := *openapiclient.NewServerConnectInterface(int64(1), "Ethernet1/1", "switch1.example.com") // ServerConnectInterface | The server interface connection options
 
 	configuration := openapiclient.NewConfiguration()
@@ -141,7 +141,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -192,7 +192,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -211,7 +211,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -262,7 +262,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -281,7 +281,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -332,7 +332,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -352,7 +352,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -402,7 +402,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -422,7 +422,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -472,7 +472,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -492,7 +492,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -542,7 +542,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -562,7 +562,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -612,7 +612,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -632,7 +632,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -682,7 +682,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -702,7 +702,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -919,7 +919,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -937,7 +937,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -987,7 +987,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1008,7 +1008,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1191,7 +1191,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1210,7 +1210,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1261,7 +1261,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 	hardwareRescanServerRequest := *openapiclient.NewHardwareRescanServerRequest() // HardwareRescanServerRequest |  (optional)
 
@@ -1283,7 +1283,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1335,8 +1335,8 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
-	serverInterfacesDefaultFabric := *openapiclient.NewServerInterfacesDefaultFabric([]float32{float32(123)}, NullableInt64(1)) // ServerInterfacesDefaultFabric | The server interfaces default fabric option
+	serverId := int64(789) // int64 | 
+	serverInterfacesDefaultFabric := *openapiclient.NewServerInterfacesDefaultFabric([]int64{int64(123)}, NullableInt64(1)) // ServerInterfacesDefaultFabric | The server interfaces default fabric option
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1354,7 +1354,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1405,8 +1405,8 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
-	serverInterfacesRedundancyGroup := *openapiclient.NewServerInterfacesRedundancyGroup([]float32{float32(123)}, NullableFloat32(1)) // ServerInterfacesRedundancyGroup | The server interfaces redundancy group option
+	serverId := int64(789) // int64 | 
+	serverInterfacesRedundancyGroup := *openapiclient.NewServerInterfacesRedundancyGroup([]int64{int64(123)}, NullableFloat32(1)) // ServerInterfacesRedundancyGroup | The server interfaces redundancy group option
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1424,7 +1424,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1475,7 +1475,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	serverPowerSet := *openapiclient.NewServerPowerSet("PowerCommand_example") // ServerPowerSet | The server power options
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1495,7 +1495,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1547,7 +1547,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	updateServer := *openapiclient.NewUpdateServer() // UpdateServer | The server information update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1569,7 +1569,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1621,7 +1621,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1642,7 +1642,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1693,7 +1693,7 @@ import (
 )
 
 func main() {
-	serverId := float32(8.14) // float32 | 
+	serverId := int64(789) // int64 | 
 	updateServerIpmiCredentials := *openapiclient.NewUpdateServerIpmiCredentials(false) // UpdateServerIpmiCredentials | The Server Ipmi credentials object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1715,7 +1715,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **float32** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 

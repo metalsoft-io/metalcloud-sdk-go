@@ -38,7 +38,7 @@ func Test_sdk_ServerCleanupPolicyAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverCleanupPolicyId float32
+		var serverCleanupPolicyId int64
 
 		httpRes, err := apiClient.ServerCleanupPolicyAPI.DeleteServerCleanupPolicy(context.Background(), serverCleanupPolicyId).Execute()
 
@@ -63,7 +63,7 @@ func Test_sdk_ServerCleanupPolicyAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverCleanupPolicyId float32
+		var serverCleanupPolicyId int64
 
 		resp, httpRes, err := apiClient.ServerCleanupPolicyAPI.GetServerCleanupPolicyInfo(context.Background(), serverCleanupPolicyId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_ServerCleanupPolicyAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverCleanupPolicyId float32
+		var serverCleanupPolicyId int64
 
 		resp, httpRes, err := apiClient.ServerCleanupPolicyAPI.UpdateServerCleanupPolicy(context.Background(), serverCleanupPolicyId).Execute()
 

@@ -138,7 +138,7 @@ func (a *DNSZoneAPIService) CreateDNSZoneExecute(r DNSZoneAPICreateDNSZoneReques
 type DNSZoneAPIDeleteDNSZoneRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
-	dnsZoneId float32
+	dnsZoneId int64
 }
 
 func (r DNSZoneAPIDeleteDNSZoneRequest) Execute() (*http.Response, error) {
@@ -154,7 +154,7 @@ Deletes a DNS zone by ID.
  @param dnsZoneId The ID of the DNS Zone
  @return DNSZoneAPIDeleteDNSZoneRequest
 */
-func (a *DNSZoneAPIService) DeleteDNSZone(ctx context.Context, dnsZoneId float32) DNSZoneAPIDeleteDNSZoneRequest {
+func (a *DNSZoneAPIService) DeleteDNSZone(ctx context.Context, dnsZoneId int64) DNSZoneAPIDeleteDNSZoneRequest {
 	return DNSZoneAPIDeleteDNSZoneRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,8 +230,8 @@ func (a *DNSZoneAPIService) DeleteDNSZoneExecute(r DNSZoneAPIDeleteDNSZoneReques
 type DNSZoneAPIGetDNSRecordSetByIdRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
-	id float32
-	recordSetId float32
+	id int64
+	recordSetId int64
 }
 
 func (r DNSZoneAPIGetDNSRecordSetByIdRequest) Execute() (*DnsRecordSet, *http.Response, error) {
@@ -248,7 +248,7 @@ Returns the DNS RecordSet by ID within the DNS zone
  @param recordSetId The ID of the DNS RecordSet
  @return DNSZoneAPIGetDNSRecordSetByIdRequest
 */
-func (a *DNSZoneAPIService) GetDNSRecordSetById(ctx context.Context, id float32, recordSetId float32) DNSZoneAPIGetDNSRecordSetByIdRequest {
+func (a *DNSZoneAPIService) GetDNSRecordSetById(ctx context.Context, id int64, recordSetId int64) DNSZoneAPIGetDNSRecordSetByIdRequest {
 	return DNSZoneAPIGetDNSRecordSetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -337,7 +337,7 @@ func (a *DNSZoneAPIService) GetDNSRecordSetByIdExecute(r DNSZoneAPIGetDNSRecordS
 type DNSZoneAPIGetDNSZoneByIdRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
-	dnsZoneId float32
+	dnsZoneId int64
 }
 
 func (r DNSZoneAPIGetDNSZoneByIdRequest) Execute() (*DnsZone, *http.Response, error) {
@@ -353,7 +353,7 @@ Returns the DNS Zone by ID, but not the record sets within the zone.
  @param dnsZoneId The ID of the DNS Zone
  @return DNSZoneAPIGetDNSZoneByIdRequest
 */
-func (a *DNSZoneAPIService) GetDNSZoneById(ctx context.Context, dnsZoneId float32) DNSZoneAPIGetDNSZoneByIdRequest {
+func (a *DNSZoneAPIService) GetDNSZoneById(ctx context.Context, dnsZoneId int64) DNSZoneAPIGetDNSZoneByIdRequest {
 	return DNSZoneAPIGetDNSZoneByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -440,7 +440,7 @@ func (a *DNSZoneAPIService) GetDNSZoneByIdExecute(r DNSZoneAPIGetDNSZoneByIdRequ
 type DNSZoneAPIGetDNSZoneNameserversRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
-	dnsZoneId float32
+	dnsZoneId int64
 }
 
 func (r DNSZoneAPIGetDNSZoneNameserversRequest) Execute() ([]string, *http.Response, error) {
@@ -456,7 +456,7 @@ Returns the nameservers of the DNS zone
  @param dnsZoneId The ID of the DNS Zone
  @return DNSZoneAPIGetDNSZoneNameserversRequest
 */
-func (a *DNSZoneAPIService) GetDNSZoneNameservers(ctx context.Context, dnsZoneId float32) DNSZoneAPIGetDNSZoneNameserversRequest {
+func (a *DNSZoneAPIService) GetDNSZoneNameservers(ctx context.Context, dnsZoneId int64) DNSZoneAPIGetDNSZoneNameserversRequest {
 	return DNSZoneAPIGetDNSZoneNameserversRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -826,7 +826,7 @@ func (a *DNSZoneAPIService) GetDNSZonesExecute(r DNSZoneAPIGetDNSZonesRequest) (
 type DNSZoneAPIListDNSRecordSetsByZoneIdRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -919,7 +919,7 @@ Returns a list of DNS RecordSets in the DNS zone
  @param id The ID of the DNS Zone
  @return DNSZoneAPIListDNSRecordSetsByZoneIdRequest
 */
-func (a *DNSZoneAPIService) ListDNSRecordSetsByZoneId(ctx context.Context, id float32) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
+func (a *DNSZoneAPIService) ListDNSRecordSetsByZoneId(ctx context.Context, id int64) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	return DNSZoneAPIListDNSRecordSetsByZoneIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1095,7 +1095,7 @@ func (a *DNSZoneAPIService) ListDNSRecordSetsByZoneIdExecute(r DNSZoneAPIListDNS
 type DNSZoneAPIUpdateDNSZoneRequest struct {
 	ctx context.Context
 	ApiService *DNSZoneAPIService
-	dnsZoneId float32
+	dnsZoneId int64
 	updateDnsZone *UpdateDnsZone
 }
 
@@ -1117,7 +1117,7 @@ Updates a DNS Zone by ID, but does not modify DNS records within the zone.
  @param dnsZoneId The ID of the DNS Zone
  @return DNSZoneAPIUpdateDNSZoneRequest
 */
-func (a *DNSZoneAPIService) UpdateDNSZone(ctx context.Context, dnsZoneId float32) DNSZoneAPIUpdateDNSZoneRequest {
+func (a *DNSZoneAPIService) UpdateDNSZone(ctx context.Context, dnsZoneId int64) DNSZoneAPIUpdateDNSZoneRequest {
 	return DNSZoneAPIUpdateDNSZoneRequest{
 		ApiService: a,
 		ctx: ctx,

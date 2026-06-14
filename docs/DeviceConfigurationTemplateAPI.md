@@ -9,10 +9,12 @@ Method | HTTP request | Description
 [**CreateDeviceConfigurationTemplateProfile**](DeviceConfigurationTemplateAPI.md#CreateDeviceConfigurationTemplateProfile) | **Post** /api/v2/device-configuration-templates/profile | Create a Device Configuration Template Profile (template ↔ device ↔ fabric binding)
 [**DeleteDeviceConfigurationTemplate**](DeviceConfigurationTemplateAPI.md#DeleteDeviceConfigurationTemplate) | **Delete** /api/v2/device-configuration-templates/config/{id} | Delete a Device Configuration Template
 [**DeleteDeviceConfigurationTemplateProfile**](DeviceConfigurationTemplateAPI.md#DeleteDeviceConfigurationTemplateProfile) | **Delete** /api/v2/device-configuration-templates/profile/{id} | Delete a Device Configuration Template Profile
+[**FindApplicableDeviceConfigurationTemplateProfiles**](DeviceConfigurationTemplateAPI.md#FindApplicableDeviceConfigurationTemplateProfiles) | **Post** /api/v2/device-configuration-templates/profile/actions/find-applicable | List Device Configuration Template Profiles applicable to a target device or fabric
 [**GetDeviceConfigurationTemplate**](DeviceConfigurationTemplateAPI.md#GetDeviceConfigurationTemplate) | **Get** /api/v2/device-configuration-templates/config/{id} | Get a Device Configuration Template by ID
 [**GetDeviceConfigurationTemplateProfile**](DeviceConfigurationTemplateAPI.md#GetDeviceConfigurationTemplateProfile) | **Get** /api/v2/device-configuration-templates/profile/{id} | Get a Device Configuration Template Profile by ID
 [**GetDeviceConfigurationTemplateProfiles**](DeviceConfigurationTemplateAPI.md#GetDeviceConfigurationTemplateProfiles) | **Get** /api/v2/device-configuration-templates/profile | List Device Configuration Template Profiles
 [**GetDeviceConfigurationTemplates**](DeviceConfigurationTemplateAPI.md#GetDeviceConfigurationTemplates) | **Get** /api/v2/device-configuration-templates/config | List Device Configuration Templates
+[**RenderApplicableDeviceConfigurationTemplateProfiles**](DeviceConfigurationTemplateAPI.md#RenderApplicableDeviceConfigurationTemplateProfiles) | **Post** /api/v2/device-configuration-templates/profile/actions/render-applicable | Render every Device Configuration Template Profile applicable to a target device or fabric
 [**RenderDeviceConfigurationTemplate**](DeviceConfigurationTemplateAPI.md#RenderDeviceConfigurationTemplate) | **Post** /api/v2/device-configuration-templates/config/actions/render | Render an unsaved Device Configuration Template body against a variables payload (stateless)
 [**RenderDeviceConfigurationTemplateProfile**](DeviceConfigurationTemplateAPI.md#RenderDeviceConfigurationTemplateProfile) | **Post** /api/v2/device-configuration-templates/profile/{id}/actions/render | Render a Device Configuration Template Profile against a target NetworkDevice
 [**RenderSavedDeviceConfigurationTemplate**](DeviceConfigurationTemplateAPI.md#RenderSavedDeviceConfigurationTemplate) | **Post** /api/v2/device-configuration-templates/config/{id}/actions/render | Render a saved Device Configuration Template by ID, merging customVariablesJson with request variables.
@@ -232,7 +234,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -251,7 +253,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -300,7 +302,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -319,7 +321,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -349,6 +351,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## FindApplicableDeviceConfigurationTemplateProfiles
+
+> FindApplicableDeviceConfigurationTemplateProfilesResult FindApplicableDeviceConfigurationTemplateProfiles(ctx).FindApplicableDeviceConfigurationTemplateProfiles(findApplicableDeviceConfigurationTemplateProfiles).Execute()
+
+List Device Configuration Template Profiles applicable to a target device or fabric
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	findApplicableDeviceConfigurationTemplateProfiles := *openapiclient.NewFindApplicableDeviceConfigurationTemplateProfiles() // FindApplicableDeviceConfigurationTemplateProfiles | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DeviceConfigurationTemplateAPI.FindApplicableDeviceConfigurationTemplateProfiles(context.Background()).FindApplicableDeviceConfigurationTemplateProfiles(findApplicableDeviceConfigurationTemplateProfiles).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DeviceConfigurationTemplateAPI.FindApplicableDeviceConfigurationTemplateProfiles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `FindApplicableDeviceConfigurationTemplateProfiles`: FindApplicableDeviceConfigurationTemplateProfilesResult
+	fmt.Fprintf(os.Stdout, "Response from `DeviceConfigurationTemplateAPI.FindApplicableDeviceConfigurationTemplateProfiles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindApplicableDeviceConfigurationTemplateProfilesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **findApplicableDeviceConfigurationTemplateProfiles** | [**FindApplicableDeviceConfigurationTemplateProfiles**](FindApplicableDeviceConfigurationTemplateProfiles.md) |  | 
+
+### Return type
+
+[**FindApplicableDeviceConfigurationTemplateProfilesResult**](FindApplicableDeviceConfigurationTemplateProfilesResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetDeviceConfigurationTemplate
 
 > DeviceConfigurationTemplate GetDeviceConfigurationTemplate(ctx, id).Execute()
@@ -368,7 +436,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -388,7 +456,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -436,7 +504,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -456,7 +524,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -487,7 +555,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceConfigurationTemplateProfiles
 
-> DeviceConfigurationTemplateProfilePaginatedList GetDeviceConfigurationTemplateProfiles(ctx).Page(page).Limit(limit).FilterId(filterId).FilterDeviceConfigurationTemplateId(filterDeviceConfigurationTemplateId).FilterNetworkDeviceId(filterNetworkDeviceId).FilterNetworkFabricId(filterNetworkFabricId).FilterLifecycleStage(filterLifecycleStage).FilterIsEnabled(filterIsEnabled).FilterPriority(filterPriority).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> DeviceConfigurationTemplateProfilePaginatedList GetDeviceConfigurationTemplateProfiles(ctx).Tag(tag).Page(page).Limit(limit).FilterId(filterId).FilterDeviceConfigurationTemplateId(filterDeviceConfigurationTemplateId).FilterNetworkDeviceId(filterNetworkDeviceId).FilterNetworkFabricId(filterNetworkFabricId).FilterLifecycleStage(filterLifecycleStage).FilterIsEnabled(filterIsEnabled).FilterPriority(filterPriority).FilterApplyMode(filterApplyMode).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 List Device Configuration Template Profiles
 
@@ -504,6 +572,7 @@ import (
 )
 
 func main() {
+	tag := "canary" // string | Filter by exact tag membership. Composes with `filter.*` and `sortBy=` like any other query param. (optional)
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe&filter.id=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
@@ -513,13 +582,14 @@ func main() {
 	filterLifecycleStage := []string{"Inner_example"} // []string | Filter by lifecycleStage query param.  **Format:** filter.lifecycleStage={$not}:OPERATION:VALUE    **Example:** filter.lifecycleStage=$eq:John Doe&filter.lifecycleStage=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterIsEnabled := []string{"Inner_example"} // []string | Filter by isEnabled query param.  **Format:** filter.isEnabled={$not}:OPERATION:VALUE    **Example:** filter.isEnabled=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterPriority := []string{"Inner_example"} // []string | Filter by priority query param.  **Format:** filter.priority={$not}:OPERATION:VALUE    **Example:** filter.priority=$eq:John Doe&filter.priority=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=deviceConfigurationTemplateId:DESC   **Default Value:** priority:ASC  **Available Fields** - id  - deviceConfigurationTemplateId  - networkDeviceId  - networkFabricId  - lifecycleStage  - isEnabled  - priority  - createdTimestamp  - updatedTimestamp  (optional)
+	filterApplyMode := []string{"Inner_example"} // []string | Filter by applyMode query param.  **Format:** filter.applyMode={$not}:OPERATION:VALUE    **Example:** filter.applyMode=$eq:John Doe&filter.applyMode=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=deviceConfigurationTemplateId:DESC   **Default Value:** priority:ASC  **Available Fields** - id  - deviceConfigurationTemplateId  - networkDeviceId  - networkFabricId  - lifecycleStage  - isEnabled  - priority  - applyMode  - createdTimestamp  - updatedTimestamp  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:**    **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields**   (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DeviceConfigurationTemplateAPI.GetDeviceConfigurationTemplateProfiles(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterDeviceConfigurationTemplateId(filterDeviceConfigurationTemplateId).FilterNetworkDeviceId(filterNetworkDeviceId).FilterNetworkFabricId(filterNetworkFabricId).FilterLifecycleStage(filterLifecycleStage).FilterIsEnabled(filterIsEnabled).FilterPriority(filterPriority).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.DeviceConfigurationTemplateAPI.GetDeviceConfigurationTemplateProfiles(context.Background()).Tag(tag).Page(page).Limit(limit).FilterId(filterId).FilterDeviceConfigurationTemplateId(filterDeviceConfigurationTemplateId).FilterNetworkDeviceId(filterNetworkDeviceId).FilterNetworkFabricId(filterNetworkFabricId).FilterLifecycleStage(filterLifecycleStage).FilterIsEnabled(filterIsEnabled).FilterPriority(filterPriority).FilterApplyMode(filterApplyMode).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeviceConfigurationTemplateAPI.GetDeviceConfigurationTemplateProfiles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -540,6 +610,7 @@ Other parameters are passed through a pointer to a apiGetDeviceConfigurationTemp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **tag** | **string** | Filter by exact tag membership. Composes with &#x60;filter.*&#x60; and &#x60;sortBy&#x3D;&#x60; like any other query param. | 
  **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
  **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
  **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe&amp;filter.id&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
@@ -549,7 +620,8 @@ Name | Type | Description  | Notes
  **filterLifecycleStage** | **[]string** | Filter by lifecycleStage query param.  **Format:** filter.lifecycleStage&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.lifecycleStage&#x3D;$eq:John Doe&amp;filter.lifecycleStage&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterIsEnabled** | **[]string** | Filter by isEnabled query param.  **Format:** filter.isEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.isEnabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterPriority** | **[]string** | Filter by priority query param.  **Format:** filter.priority&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.priority&#x3D;$eq:John Doe&amp;filter.priority&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;deviceConfigurationTemplateId:DESC   **Default Value:** priority:ASC  **Available Fields** - id  - deviceConfigurationTemplateId  - networkDeviceId  - networkFabricId  - lifecycleStage  - isEnabled  - priority  - createdTimestamp  - updatedTimestamp  | 
+ **filterApplyMode** | **[]string** | Filter by applyMode query param.  **Format:** filter.applyMode&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.applyMode&#x3D;$eq:John Doe&amp;filter.applyMode&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;deviceConfigurationTemplateId:DESC   **Default Value:** priority:ASC  **Available Fields** - id  - deviceConfigurationTemplateId  - networkDeviceId  - networkFabricId  - lifecycleStage  - isEnabled  - priority  - applyMode  - createdTimestamp  - updatedTimestamp  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:**    **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields**   | 
 
@@ -655,6 +727,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RenderApplicableDeviceConfigurationTemplateProfiles
+
+> RenderedApplicableDeviceConfigurationTemplateProfilesResult RenderApplicableDeviceConfigurationTemplateProfiles(ctx).RenderApplicableDeviceConfigurationTemplateProfiles(renderApplicableDeviceConfigurationTemplateProfiles).Execute()
+
+Render every Device Configuration Template Profile applicable to a target device or fabric
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	renderApplicableDeviceConfigurationTemplateProfiles := *openapiclient.NewRenderApplicableDeviceConfigurationTemplateProfiles() // RenderApplicableDeviceConfigurationTemplateProfiles | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DeviceConfigurationTemplateAPI.RenderApplicableDeviceConfigurationTemplateProfiles(context.Background()).RenderApplicableDeviceConfigurationTemplateProfiles(renderApplicableDeviceConfigurationTemplateProfiles).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DeviceConfigurationTemplateAPI.RenderApplicableDeviceConfigurationTemplateProfiles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RenderApplicableDeviceConfigurationTemplateProfiles`: RenderedApplicableDeviceConfigurationTemplateProfilesResult
+	fmt.Fprintf(os.Stdout, "Response from `DeviceConfigurationTemplateAPI.RenderApplicableDeviceConfigurationTemplateProfiles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRenderApplicableDeviceConfigurationTemplateProfilesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **renderApplicableDeviceConfigurationTemplateProfiles** | [**RenderApplicableDeviceConfigurationTemplateProfiles**](RenderApplicableDeviceConfigurationTemplateProfiles.md) |  | 
+
+### Return type
+
+[**RenderedApplicableDeviceConfigurationTemplateProfilesResult**](RenderedApplicableDeviceConfigurationTemplateProfilesResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RenderDeviceConfigurationTemplate
 
 > RenderedDeviceConfigurationTemplate RenderDeviceConfigurationTemplate(ctx).RenderDeviceConfigurationTemplate(renderDeviceConfigurationTemplate).Execute()
@@ -740,7 +878,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	renderDeviceConfigurationTemplateProfile := *openapiclient.NewRenderDeviceConfigurationTemplateProfile(int64(42)) // RenderDeviceConfigurationTemplateProfile | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -761,7 +899,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -810,7 +948,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	renderSavedDeviceConfigurationTemplate := *openapiclient.NewRenderSavedDeviceConfigurationTemplate() // RenderSavedDeviceConfigurationTemplate | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -831,7 +969,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -880,7 +1018,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	updateDeviceConfigurationTemplate := *openapiclient.NewUpdateDeviceConfigurationTemplate() // UpdateDeviceConfigurationTemplate | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -902,7 +1040,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -952,7 +1090,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	updateDeviceConfigurationTemplateProfile := *openapiclient.NewUpdateDeviceConfigurationTemplateProfile() // UpdateDeviceConfigurationTemplateProfile | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -974,7 +1112,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 

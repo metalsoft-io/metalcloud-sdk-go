@@ -38,7 +38,7 @@ func Test_sdk_NetworkDeviceControllerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceControllerId int32
+		var networkDeviceControllerId int64
 
 		httpRes, err := apiClient.NetworkDeviceControllerAPI.DeleteNetworkDeviceController(context.Background(), networkDeviceControllerId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_NetworkDeviceControllerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceControllerId int32
+		var networkDeviceControllerId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceControllerAPI.GetNetworkDeviceController(context.Background(), networkDeviceControllerId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_NetworkDeviceControllerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceControllerId int32
+		var networkDeviceControllerId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceControllerAPI.GetNetworkDeviceControllerCredentials(context.Background(), networkDeviceControllerId).Execute()
 
@@ -91,7 +91,7 @@ func Test_sdk_NetworkDeviceControllerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceControllerId int32
+		var networkDeviceControllerId int64
 
 		httpRes, err := apiClient.NetworkDeviceControllerAPI.NetworkDeviceControllerDeployConfirm(context.Background(), networkDeviceControllerId).Execute()
 
@@ -104,7 +104,7 @@ func Test_sdk_NetworkDeviceControllerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceControllerId int32
+		var networkDeviceControllerId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceControllerAPI.UpdateNetworkDeviceController(context.Background(), networkDeviceControllerId).Execute()
 

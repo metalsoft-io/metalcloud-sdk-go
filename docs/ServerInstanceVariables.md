@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **OsTemplateId** | Pointer to **int64** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **InstanceWanMlagId** | Pointer to **int64** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
-**PreferredServerIds** | Pointer to **[]float32** |  | [optional] 
+**PreferredServerIds** | Pointer to **[]int64** |  | [optional] 
 **CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Custom Storage Profile for the Instance. | [optional] 
 **ServiceStatus** | **string** | Current status of the server instance. | 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
@@ -454,20 +454,20 @@ HasCustomVariables returns a boolean if a field has been set.
 
 ### GetPreferredServerIds
 
-`func (o *ServerInstanceVariables) GetPreferredServerIds() []float32`
+`func (o *ServerInstanceVariables) GetPreferredServerIds() []int64`
 
 GetPreferredServerIds returns the PreferredServerIds field if non-nil, zero value otherwise.
 
 ### GetPreferredServerIdsOk
 
-`func (o *ServerInstanceVariables) GetPreferredServerIdsOk() (*[]float32, bool)`
+`func (o *ServerInstanceVariables) GetPreferredServerIdsOk() (*[]int64, bool)`
 
 GetPreferredServerIdsOk returns a tuple with the PreferredServerIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPreferredServerIds
 
-`func (o *ServerInstanceVariables) SetPreferredServerIds(v []float32)`
+`func (o *ServerInstanceVariables) SetPreferredServerIds(v []int64)`
 
 SetPreferredServerIds sets PreferredServerIds field to given value.
 

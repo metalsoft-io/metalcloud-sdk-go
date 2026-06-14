@@ -139,7 +139,7 @@ func (a *TemplateAssetAPIService) CreateTemplateAssetExecute(r TemplateAssetAPIC
 type TemplateAssetAPIDeleteTemplateAssetRequest struct {
 	ctx context.Context
 	ApiService *TemplateAssetAPIService
-	templateAssetId float32
+	templateAssetId int64
 }
 
 func (r TemplateAssetAPIDeleteTemplateAssetRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes the specified template asset
  @param templateAssetId
  @return TemplateAssetAPIDeleteTemplateAssetRequest
 */
-func (a *TemplateAssetAPIService) DeleteTemplateAsset(ctx context.Context, templateAssetId float32) TemplateAssetAPIDeleteTemplateAssetRequest {
+func (a *TemplateAssetAPIService) DeleteTemplateAsset(ctx context.Context, templateAssetId int64) TemplateAssetAPIDeleteTemplateAssetRequest {
 	return TemplateAssetAPIDeleteTemplateAssetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *TemplateAssetAPIService) DeleteTemplateAssetExecute(r TemplateAssetAPID
 type TemplateAssetAPIGetTemplateAssetRequest struct {
 	ctx context.Context
 	ApiService *TemplateAssetAPIService
-	templateAssetId float32
+	templateAssetId int64
 }
 
 func (r TemplateAssetAPIGetTemplateAssetRequest) Execute() (*TemplateAsset, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns details of the specified template asset
  @param templateAssetId
  @return TemplateAssetAPIGetTemplateAssetRequest
 */
-func (a *TemplateAssetAPIService) GetTemplateAsset(ctx context.Context, templateAssetId float32) TemplateAssetAPIGetTemplateAssetRequest {
+func (a *TemplateAssetAPIService) GetTemplateAsset(ctx context.Context, templateAssetId int64) TemplateAssetAPIGetTemplateAssetRequest {
 	return TemplateAssetAPIGetTemplateAssetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -581,7 +581,7 @@ func (a *TemplateAssetAPIService) GetTemplateAssetsExecute(r TemplateAssetAPIGet
 type TemplateAssetAPIUpdateTemplateAssetRequest struct {
 	ctx context.Context
 	ApiService *TemplateAssetAPIService
-	templateAssetId float32
+	templateAssetId int64
 	templateAssetCreate *TemplateAssetCreate
 }
 
@@ -604,7 +604,7 @@ Returns details of the updated template asset
  @param templateAssetId
  @return TemplateAssetAPIUpdateTemplateAssetRequest
 */
-func (a *TemplateAssetAPIService) UpdateTemplateAsset(ctx context.Context, templateAssetId float32) TemplateAssetAPIUpdateTemplateAssetRequest {
+func (a *TemplateAssetAPIService) UpdateTemplateAsset(ctx context.Context, templateAssetId int64) TemplateAssetAPIUpdateTemplateAssetRequest {
 	return TemplateAssetAPIUpdateTemplateAssetRequest{
 		ApiService: a,
 		ctx: ctx,

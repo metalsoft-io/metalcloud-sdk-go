@@ -28,9 +28,9 @@ type VMInstanceGroupAPIService service
 type VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
-	vmTypeId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
+	vmTypeId int64
 	ifMatch *string
 }
 
@@ -55,7 +55,7 @@ Applies a VM Type to a VM Instance Group
  @param vmTypeId
  @return VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest
 */
-func (a *VMInstanceGroupAPIService) ApplyVMTypeOnVMInstanceGroup(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32, vmTypeId float32) VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest {
+func (a *VMInstanceGroupAPIService) ApplyVMTypeOnVMInstanceGroup(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64, vmTypeId int64) VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest {
 	return VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -149,7 +149,7 @@ func (a *VMInstanceGroupAPIService) ApplyVMTypeOnVMInstanceGroupExecute(r VMInst
 type VMInstanceGroupAPICreateVMInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
+	infrastructureId int64
 	createVMInstanceGroup *CreateVMInstanceGroup
 }
 
@@ -172,7 +172,7 @@ Creates a VM Instance Group
  @param infrastructureId
  @return VMInstanceGroupAPICreateVMInstanceGroupRequest
 */
-func (a *VMInstanceGroupAPIService) CreateVMInstanceGroup(ctx context.Context, infrastructureId float32) VMInstanceGroupAPICreateVMInstanceGroupRequest {
+func (a *VMInstanceGroupAPIService) CreateVMInstanceGroup(ctx context.Context, infrastructureId int64) VMInstanceGroupAPICreateVMInstanceGroupRequest {
 	return VMInstanceGroupAPICreateVMInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -264,8 +264,8 @@ func (a *VMInstanceGroupAPIService) CreateVMInstanceGroupExecute(r VMInstanceGro
 type VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId int32
-	vmInstanceGroupId int32
+	infrastructureId int64
+	vmInstanceGroupId int64
 	createVMInstanceGroupNetworkConnection *CreateVMInstanceGroupNetworkConnection
 }
 
@@ -287,7 +287,7 @@ CreateVMInstanceGroupNetworkConfigurationConnection Create a network connection 
  @param vmInstanceGroupId
  @return VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *VMInstanceGroupAPIService) CreateVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32) VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *VMInstanceGroupAPIService) CreateVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest {
 	return VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -381,8 +381,8 @@ func (a *VMInstanceGroupAPIService) CreateVMInstanceGroupNetworkConfigurationCon
 type VMInstanceGroupAPIDeleteVMInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
 	ifMatch *string
 }
 
@@ -406,7 +406,7 @@ Deletes a VM Instance Group
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIDeleteVMInstanceGroupRequest
 */
-func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroup(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIDeleteVMInstanceGroupRequest {
+func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroup(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIDeleteVMInstanceGroupRequest {
 	return VMInstanceGroupAPIDeleteVMInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -487,9 +487,9 @@ func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupExecute(r VMInstanceGro
 type VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId int32
-	vmInstanceGroupId int32
-	connectionId int32
+	infrastructureId int64
+	vmInstanceGroupId int64
+	connectionId int64
 }
 
 func (r VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*http.Response, error) {
@@ -505,7 +505,7 @@ DeleteVMInstanceGroupNetworkConfigurationConnection Delete a network connection 
  @param connectionId
  @return VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32, connectionId int32) VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64, connectionId int64) VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest {
 	return VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -585,8 +585,8 @@ func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupNetworkConfigurationCon
 type VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
 }
 
 func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
@@ -603,7 +603,7 @@ Returns VM Instance Group information
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest
 */
-func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroup(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest {
+func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroup(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest {
 	return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -692,7 +692,7 @@ func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroupExecute(r VM
 type VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterLabel *[]string
@@ -785,7 +785,7 @@ Returns list of all VM Instance Groups on the infrastructure
  @param infrastructureId
  @return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest
 */
-func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroups(ctx context.Context, infrastructureId float32) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroups(ctx context.Context, infrastructureId int64) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
 	return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -969,8 +969,8 @@ func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroupsExecute(r V
 type VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
 }
 
 func (r VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest) Execute() (*VMInstanceGroupConfiguration, *http.Response, error) {
@@ -985,7 +985,7 @@ GetVMInstanceGroupConfigInfo Get configuration information about the specified V
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest
 */
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupConfigInfo(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest {
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupConfigInfo(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest {
 	return VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1074,9 +1074,9 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupConfigInfoExecute(r VMInst
 type VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
-	vmInstanceGroupInterfaceId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
+	vmInstanceGroupInterfaceId int64
 }
 
 func (r VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest) Execute() (*VMInstanceGroupInterface, *http.Response, error) {
@@ -1094,7 +1094,7 @@ Returns VM Instance Group Interface information
  @param vmInstanceGroupInterfaceId
  @return VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest
 */
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaceInfo(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32, vmInstanceGroupInterfaceId float32) VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest {
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaceInfo(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64, vmInstanceGroupInterfaceId int64) VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest {
 	return VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1185,8 +1185,8 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaceInfoExecute(r VMI
 type VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
 	page *float32
 	limit *float32
 	filterLabel *[]string
@@ -1273,7 +1273,7 @@ Returns list of all VM Instance Group Interfaces on the VM Instance Group
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest
 */
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaces(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaces(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
 	return VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1448,9 +1448,9 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfacesExecute(r VMInst
 type VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId int32
-	vmInstanceGroupId int32
-	connectionId int32
+	infrastructureId int64
+	vmInstanceGroupId int64
+	connectionId int64
 }
 
 func (r VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*VMInstanceGroupNetworkConnection, *http.Response, error) {
@@ -1468,7 +1468,7 @@ Returns the connection by id of the specified VM instance group
  @param connectionId
  @return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest
 */
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32, connectionId int32) VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest {
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64, connectionId int64) VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest {
 	return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1559,8 +1559,8 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnec
 type VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId int32
-	vmInstanceGroupId int32
+	infrastructureId int64
+	vmInstanceGroupId int64
 }
 
 func (r VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest) Execute() (*VMInstanceGroupNetworkConnectionsList, *http.Response, error) {
@@ -1577,7 +1577,7 @@ Returns the connections of the specified VM instance group
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest
 */
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnections(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32) VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest {
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnections(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest {
 	return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1666,8 +1666,8 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnec
 type VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
 	page *float32
 	limit *float32
 	filterLabel *[]string
@@ -1676,6 +1676,8 @@ type VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest struct {
 	filterServiceStatus *[]string
 	filterConfigDeployStatus *[]string
 	filterConfigDeployType *[]string
+	filterVmId *[]string
+	filterConfigVmId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1729,7 +1731,19 @@ func (r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) FilterConfigDepl
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType 
+// Filter by vmId query param.  **Format:** filter.vmId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.vmId&#x3D;$eq:John Doe&amp;filter.vmId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) FilterVmId(filterVmId []string) VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest {
+	r.filterVmId = &filterVmId
+	return r
+}
+
+// Filter by config.vmId query param.  **Format:** filter.config.vmId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.vmId&#x3D;$eq:John Doe&amp;filter.config.vmId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) FilterConfigVmId(filterConfigVmId []string) VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest {
+	r.filterConfigVmId = &filterConfigVmId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType  - vmId  - config.vmId 
 func (r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) SortBy(sortBy []string) VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1761,7 +1775,7 @@ Returns the VM Instances of VM Instance Group
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest
 */
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstances(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest {
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstances(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest {
 	return VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1865,6 +1879,28 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstancesExecute(r VMIns
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
 		}
 	}
+	if r.filterVmId != nil {
+		t := *r.filterVmId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vmId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vmId", t, "form", "multi")
+		}
+	}
+	if r.filterConfigVmId != nil {
+		t := *r.filterConfigVmId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.vmId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.vmId", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1947,8 +1983,8 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstancesExecute(r VMIns
 type VMInstanceGroupAPIGetVmInstanceGroupNetworkConfigurationRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId int32
-	vmInstanceGroupId int32
+	infrastructureId int64
+	vmInstanceGroupId int64
 }
 
 func (r VMInstanceGroupAPIGetVmInstanceGroupNetworkConfigurationRequest) Execute() (*NetworkEndpointGroup, *http.Response, error) {
@@ -1965,7 +2001,7 @@ Returns the network configuration of the specified vm instance group
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIGetVmInstanceGroupNetworkConfigurationRequest
 */
-func (a *VMInstanceGroupAPIService) GetVmInstanceGroupNetworkConfiguration(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32) VMInstanceGroupAPIGetVmInstanceGroupNetworkConfigurationRequest {
+func (a *VMInstanceGroupAPIService) GetVmInstanceGroupNetworkConfiguration(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIGetVmInstanceGroupNetworkConfigurationRequest {
 	return VMInstanceGroupAPIGetVmInstanceGroupNetworkConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2054,8 +2090,8 @@ func (a *VMInstanceGroupAPIService) GetVmInstanceGroupNetworkConfigurationExecut
 type VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
 	updateVMInstanceGroupMeta *UpdateVMInstanceGroupMeta
 }
 
@@ -2076,7 +2112,7 @@ PatchVMInstanceGroupMeta Updates the meta of a VM Instance Group
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest
 */
-func (a *VMInstanceGroupAPIService) PatchVMInstanceGroupMeta(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest {
+func (a *VMInstanceGroupAPIService) PatchVMInstanceGroupMeta(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest {
 	return VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2170,8 +2206,8 @@ func (a *VMInstanceGroupAPIService) PatchVMInstanceGroupMetaExecute(r VMInstance
 type VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-	vmInstanceGroupId float32
+	infrastructureId int64
+	vmInstanceGroupId int64
 	updateVMInstanceGroup *UpdateVMInstanceGroup
 	ifMatch *string
 }
@@ -2202,7 +2238,7 @@ Updates VM Instance Group information
  @param vmInstanceGroupId
  @return VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest
 */
-func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfig(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest {
+func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfig(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64) VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest {
 	return VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2299,9 +2335,9 @@ func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfigExecute(r VMInsta
 type VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
-	infrastructureId int32
-	vmInstanceGroupId int32
-	connectionId int32
+	infrastructureId int64
+	vmInstanceGroupId int64
+	connectionId int64
 	updateVMInstanceGroupNetworkConnection *UpdateVMInstanceGroupNetworkConnection
 }
 
@@ -2324,7 +2360,7 @@ UpdateVMInstanceGroupNetworkConfigurationConnection Update a network connection 
  @param connectionId
  @return VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32, connectionId int32) VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int64, vmInstanceGroupId int64, connectionId int64) VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest {
 	return VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,

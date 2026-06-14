@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **VendorId** | **int64** | Vendor ID of the network device | 
 **SiteId** | **int64** | Site ID | 
 **IdentifierString** | **string** | Hostname of the network device | 
+**ApplyIdentifierAsHostnameOnNextDeploy** | **bool** | One-shot: when true, the next fabric deploy pushes identifierString as the switch system hostname (Cumulus Linux only) and the flag is cleared again after the successful push. | [default to false]
 **Description** | **string** | Description of the network device | 
 **ChassisIdentifier** | **string** | Chassis identifier of the network device | 
 **Country** | **string** | Country of the network device | 
@@ -32,10 +33,14 @@ Name | Type | Description | Notes
 **SerialNumber** | **string** | Serial number of the network device | 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
 **Position** | **string** | The physical or logical position of the network device in the network topology. | 
+**DriftDetectionSyncStatus** | **string** | Whether the network device is in sync with the expected configuration. | 
+**DriftDetectionTargetSnapshotId** | Pointer to **string** | ID of the snapshot used as a target for drift detection. | [optional] 
+**ConfigurationDrift** | Pointer to **string** | The configuration drift for the network device.  | [optional] 
 **ServerId** | Pointer to **int64** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
 **NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
 **OrderIndex** | **float32** | Order index of the network device | 
 **Tags** | **[]string** | Tags associated with the network device for categorization and filtering | 
+**TagsMap** | **map[string]string** | Key/value tags (key-map). The forthcoming replacement for the legacy string[] &#x60;tags&#x60;; both are populated independently for now. Edited on this object via PATCH (a null value deletes a key) — same mechanism as annotations. | 
 **ReadyForInitialConfiguration** | **float32** | Whether the device is ready for initial configuration | 
 **BootstrapReadinessCheckInProgress** | **float32** | Whether bootstrap readiness check is in progress | 
 **SubnetOobId** | **int64** | Subnet ID for OOB management | 
@@ -56,6 +61,7 @@ Name | Type | Description | Notes
 **BootstrapReadinessCheckResult** | **map[string]interface{}** | Bootstrap readiness check result | 
 **IsGateway** | **bool** | Whether the network device is a gateway | 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the network device. | [optional] 
+**OngoingJobGroups** | Pointer to [**[]ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The ongoing job groups of the network device. | [optional] 
 **VmPoolId** | Pointer to **int64** | ID of the VM pool associated with the network device. | [optional] 
 **SwitchControllerId** | Pointer to **int64** | ID of the network device controller if any. | [optional] 
 **ExternalId** | Pointer to **string** | External ID of the network device. | [optional] 
@@ -73,7 +79,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, applyIdentifierAsHostnameOnNextDeploy bool, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, driftDetectionSyncStatus string, orderIndex float32, tags []string, tagsMap map[string]string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -206,6 +212,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDevice) SetIdentifierString(v string)`
 
 SetIdentifierString sets IdentifierString field to given value.
+
+
+### GetApplyIdentifierAsHostnameOnNextDeploy
+
+`func (o *NetworkDevice) GetApplyIdentifierAsHostnameOnNextDeploy() bool`
+
+GetApplyIdentifierAsHostnameOnNextDeploy returns the ApplyIdentifierAsHostnameOnNextDeploy field if non-nil, zero value otherwise.
+
+### GetApplyIdentifierAsHostnameOnNextDeployOk
+
+`func (o *NetworkDevice) GetApplyIdentifierAsHostnameOnNextDeployOk() (*bool, bool)`
+
+GetApplyIdentifierAsHostnameOnNextDeployOk returns a tuple with the ApplyIdentifierAsHostnameOnNextDeploy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplyIdentifierAsHostnameOnNextDeploy
+
+`func (o *NetworkDevice) SetApplyIdentifierAsHostnameOnNextDeploy(v bool)`
+
+SetApplyIdentifierAsHostnameOnNextDeploy sets ApplyIdentifierAsHostnameOnNextDeploy field to given value.
 
 
 ### GetDescription
@@ -653,6 +679,76 @@ and a boolean to check if the value has been set.
 SetPosition sets Position field to given value.
 
 
+### GetDriftDetectionSyncStatus
+
+`func (o *NetworkDevice) GetDriftDetectionSyncStatus() string`
+
+GetDriftDetectionSyncStatus returns the DriftDetectionSyncStatus field if non-nil, zero value otherwise.
+
+### GetDriftDetectionSyncStatusOk
+
+`func (o *NetworkDevice) GetDriftDetectionSyncStatusOk() (*string, bool)`
+
+GetDriftDetectionSyncStatusOk returns a tuple with the DriftDetectionSyncStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionSyncStatus
+
+`func (o *NetworkDevice) SetDriftDetectionSyncStatus(v string)`
+
+SetDriftDetectionSyncStatus sets DriftDetectionSyncStatus field to given value.
+
+
+### GetDriftDetectionTargetSnapshotId
+
+`func (o *NetworkDevice) GetDriftDetectionTargetSnapshotId() string`
+
+GetDriftDetectionTargetSnapshotId returns the DriftDetectionTargetSnapshotId field if non-nil, zero value otherwise.
+
+### GetDriftDetectionTargetSnapshotIdOk
+
+`func (o *NetworkDevice) GetDriftDetectionTargetSnapshotIdOk() (*string, bool)`
+
+GetDriftDetectionTargetSnapshotIdOk returns a tuple with the DriftDetectionTargetSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionTargetSnapshotId
+
+`func (o *NetworkDevice) SetDriftDetectionTargetSnapshotId(v string)`
+
+SetDriftDetectionTargetSnapshotId sets DriftDetectionTargetSnapshotId field to given value.
+
+### HasDriftDetectionTargetSnapshotId
+
+`func (o *NetworkDevice) HasDriftDetectionTargetSnapshotId() bool`
+
+HasDriftDetectionTargetSnapshotId returns a boolean if a field has been set.
+
+### GetConfigurationDrift
+
+`func (o *NetworkDevice) GetConfigurationDrift() string`
+
+GetConfigurationDrift returns the ConfigurationDrift field if non-nil, zero value otherwise.
+
+### GetConfigurationDriftOk
+
+`func (o *NetworkDevice) GetConfigurationDriftOk() (*string, bool)`
+
+GetConfigurationDriftOk returns a tuple with the ConfigurationDrift field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfigurationDrift
+
+`func (o *NetworkDevice) SetConfigurationDrift(v string)`
+
+SetConfigurationDrift sets ConfigurationDrift field to given value.
+
+### HasConfigurationDrift
+
+`func (o *NetworkDevice) HasConfigurationDrift() bool`
+
+HasConfigurationDrift returns a boolean if a field has been set.
+
 ### GetServerId
 
 `func (o *NetworkDevice) GetServerId() int64`
@@ -753,6 +849,26 @@ SetTags sets Tags field to given value.
 `func (o *NetworkDevice) UnsetTags()`
 
 UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetTagsMap
+
+`func (o *NetworkDevice) GetTagsMap() map[string]string`
+
+GetTagsMap returns the TagsMap field if non-nil, zero value otherwise.
+
+### GetTagsMapOk
+
+`func (o *NetworkDevice) GetTagsMapOk() (*map[string]string, bool)`
+
+GetTagsMapOk returns a tuple with the TagsMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTagsMap
+
+`func (o *NetworkDevice) SetTagsMap(v map[string]string)`
+
+SetTagsMap sets TagsMap field to given value.
+
+
 ### GetReadyForInitialConfiguration
 
 `func (o *NetworkDevice) GetReadyForInitialConfiguration() float32`
@@ -1172,6 +1288,31 @@ SetExtensionInfo sets ExtensionInfo field to given value.
 `func (o *NetworkDevice) HasExtensionInfo() bool`
 
 HasExtensionInfo returns a boolean if a field has been set.
+
+### GetOngoingJobGroups
+
+`func (o *NetworkDevice) GetOngoingJobGroups() []ExtensionExecutionInfo`
+
+GetOngoingJobGroups returns the OngoingJobGroups field if non-nil, zero value otherwise.
+
+### GetOngoingJobGroupsOk
+
+`func (o *NetworkDevice) GetOngoingJobGroupsOk() (*[]ExtensionExecutionInfo, bool)`
+
+GetOngoingJobGroupsOk returns a tuple with the OngoingJobGroups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOngoingJobGroups
+
+`func (o *NetworkDevice) SetOngoingJobGroups(v []ExtensionExecutionInfo)`
+
+SetOngoingJobGroups sets OngoingJobGroups field to given value.
+
+### HasOngoingJobGroups
+
+`func (o *NetworkDevice) HasOngoingJobGroups() bool`
+
+HasOngoingJobGroups returns a boolean if a field has been set.
 
 ### GetVmPoolId
 

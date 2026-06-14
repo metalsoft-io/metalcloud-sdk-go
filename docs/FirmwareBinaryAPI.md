@@ -98,7 +98,7 @@ import (
 )
 
 func main() {
-	firmwareBinaryId := float32(8.14) // float32 | The firmware binary id
+	firmwareBinaryId := int64(789) // int64 | The firmware binary id
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -116,7 +116,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firmwareBinaryId** | **float32** | The firmware binary id | 
+**firmwareBinaryId** | **int64** | The firmware binary id | 
 
 ### Other Parameters
 
@@ -260,7 +260,7 @@ import (
 )
 
 func main() {
-	firmwareBinaryId := float32(8.14) // float32 | The firmware binary id
+	firmwareBinaryId := int64(789) // int64 | The firmware binary id
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -280,7 +280,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firmwareBinaryId** | **float32** | The firmware binary id | 
+**firmwareBinaryId** | **int64** | The firmware binary id | 
 
 ### Other Parameters
 

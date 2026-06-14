@@ -21,7 +21,7 @@ var _ MappedNullable = &ReplaceNetworkEquipmentInterfaceIps{}
 
 // ReplaceNetworkEquipmentInterfaceIps struct for ReplaceNetworkEquipmentInterfaceIps
 type ReplaceNetworkEquipmentInterfaceIps struct {
-	// Desired full IP set on this interface.
+	// Desired full IP set for this address family on the interface.
 	Ips []AddNetworkEquipmentInterfaceIp `json:"ips"`
 	AdditionalProperties map[string]interface{}
 }

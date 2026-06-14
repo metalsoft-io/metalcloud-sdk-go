@@ -28,7 +28,7 @@ type EndpointInstanceGroupAPIService service
 type EndpointInstanceGroupAPICreateEndpointInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	infrastructureId int32
+	infrastructureId int64
 	endpointInstanceGroupCreate *EndpointInstanceGroupCreate
 }
 
@@ -49,7 +49,7 @@ CreateEndpointInstanceGroup Add a Endpoint Instance Group to an infrastructure. 
  @param infrastructureId
  @return EndpointInstanceGroupAPICreateEndpointInstanceGroupRequest
 */
-func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroup(ctx context.Context, infrastructureId int32) EndpointInstanceGroupAPICreateEndpointInstanceGroupRequest {
+func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroup(ctx context.Context, infrastructureId int64) EndpointInstanceGroupAPICreateEndpointInstanceGroupRequest {
 	return EndpointInstanceGroupAPICreateEndpointInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -141,8 +141,8 @@ func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroupExecute(r E
 type EndpointInstanceGroupAPICreateEndpointInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
-	connectionId int32
+	endpointInstanceGroupId int64
+	connectionId int64
 	createLogicalNetworkACL *CreateLogicalNetworkACL
 }
 
@@ -164,7 +164,7 @@ CreateEndpointInstanceGroupLogicalNetworkACL Create a security rule for a logica
  @param connectionId
  @return EndpointInstanceGroupAPICreateEndpointInstanceGroupLogicalNetworkACLRequest
 */
-func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int32, connectionId int32) EndpointInstanceGroupAPICreateEndpointInstanceGroupLogicalNetworkACLRequest {
+func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int64, connectionId int64) EndpointInstanceGroupAPICreateEndpointInstanceGroupLogicalNetworkACLRequest {
 	return EndpointInstanceGroupAPICreateEndpointInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,7 +258,7 @@ func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroupLogicalNetw
 type EndpointInstanceGroupAPICreateEndpointInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 	createEndpointInstanceGroupNetworkConnection *CreateEndpointInstanceGroupNetworkConnection
 }
 
@@ -279,7 +279,7 @@ CreateEndpointInstanceGroupNetworkConfigurationConnection Create a network conne
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPICreateEndpointInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroupNetworkConfigurationConnection(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPICreateEndpointInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroupNetworkConfigurationConnection(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPICreateEndpointInstanceGroupNetworkConfigurationConnectionRequest {
 	return EndpointInstanceGroupAPICreateEndpointInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -371,7 +371,7 @@ func (a *EndpointInstanceGroupAPIService) CreateEndpointInstanceGroupNetworkConf
 type EndpointInstanceGroupAPIDeleteEndpointInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 	ifMatch *string
 }
 
@@ -394,7 +394,7 @@ Delete Endpoint Instance Group. Will not take effect if there are instances in t
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIDeleteEndpointInstanceGroupRequest
 */
-func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroup(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIDeleteEndpointInstanceGroupRequest {
+func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroup(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIDeleteEndpointInstanceGroupRequest {
 	return EndpointInstanceGroupAPIDeleteEndpointInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -473,9 +473,9 @@ func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroupExecute(r E
 type EndpointInstanceGroupAPIDeleteEndpointInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
-	connectionId int32
-	ruleId int32
+	endpointInstanceGroupId int64
+	connectionId int64
+	ruleId int64
 }
 
 func (r EndpointInstanceGroupAPIDeleteEndpointInstanceGroupLogicalNetworkACLRequest) Execute() (*http.Response, error) {
@@ -491,7 +491,7 @@ DeleteEndpointInstanceGroupLogicalNetworkACL Delete a security rule for a logica
  @param ruleId
  @return EndpointInstanceGroupAPIDeleteEndpointInstanceGroupLogicalNetworkACLRequest
 */
-func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int32, connectionId int32, ruleId int32) EndpointInstanceGroupAPIDeleteEndpointInstanceGroupLogicalNetworkACLRequest {
+func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int64, connectionId int64, ruleId int64) EndpointInstanceGroupAPIDeleteEndpointInstanceGroupLogicalNetworkACLRequest {
 	return EndpointInstanceGroupAPIDeleteEndpointInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -571,8 +571,8 @@ func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroupLogicalNetw
 type EndpointInstanceGroupAPIDeleteEndpointInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
-	connectionId int32
+	endpointInstanceGroupId int64
+	connectionId int64
 }
 
 func (r EndpointInstanceGroupAPIDeleteEndpointInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*http.Response, error) {
@@ -587,7 +587,7 @@ DeleteEndpointInstanceGroupNetworkConfigurationConnection Delete a network conne
  @param connectionId
  @return EndpointInstanceGroupAPIDeleteEndpointInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroupNetworkConfigurationConnection(ctx context.Context, endpointInstanceGroupId int32, connectionId int32) EndpointInstanceGroupAPIDeleteEndpointInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroupNetworkConfigurationConnection(ctx context.Context, endpointInstanceGroupId int64, connectionId int64) EndpointInstanceGroupAPIDeleteEndpointInstanceGroupNetworkConfigurationConnectionRequest {
 	return EndpointInstanceGroupAPIDeleteEndpointInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -665,7 +665,7 @@ func (a *EndpointInstanceGroupAPIService) DeleteEndpointInstanceGroupNetworkConf
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 }
 
 func (r EndpointInstanceGroupAPIGetEndpointInstanceGroupRequest) Execute() (*EndpointInstanceGroup, *http.Response, error) {
@@ -681,7 +681,7 @@ Returns the details of the specified Endpoint Instance Group
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroup(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroup(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -768,7 +768,7 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupExecute(r Endp
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 }
 
 func (r EndpointInstanceGroupAPIGetEndpointInstanceGroupConfigRequest) Execute() (*EndpointInstanceGroupConfiguration, *http.Response, error) {
@@ -784,7 +784,7 @@ Returns the config details of the specified Endpoint Instance Group
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupConfigRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupConfig(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupConfigRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupConfig(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupConfigRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -871,7 +871,7 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupConfigExecute(
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupEndpointInstancesRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -971,7 +971,7 @@ Returns list of Endpoint Instances in the specified group
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupEndpointInstancesRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupEndpointInstances(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupEndpointInstancesRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupEndpointInstances(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupEndpointInstancesRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupEndpointInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1166,8 +1166,8 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupEndpointInstan
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
-	connectionId int32
+	endpointInstanceGroupId int64
+	connectionId int64
 }
 
 func (r EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
@@ -1182,7 +1182,7 @@ GetEndpointInstanceGroupLogicalNetworkACL Get the security rules for a logical n
  @param connectionId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int32, connectionId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int64, connectionId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1271,9 +1271,9 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupLogicalNetwork
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLByIdRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
-	connectionId int32
-	ruleId int32
+	endpointInstanceGroupId int64
+	connectionId int64
+	ruleId int64
 }
 
 func (r EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLByIdRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
@@ -1289,7 +1289,7 @@ GetEndpointInstanceGroupLogicalNetworkACLById Get a security rule for a logical 
  @param ruleId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLByIdRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupLogicalNetworkACLById(ctx context.Context, endpointInstanceGroupId int32, connectionId int32, ruleId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLByIdRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupLogicalNetworkACLById(ctx context.Context, endpointInstanceGroupId int64, connectionId int64, ruleId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLByIdRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupLogicalNetworkACLByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1380,7 +1380,7 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupLogicalNetwork
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 }
 
 func (r EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationRequest) Execute() (*NetworkEndpointGroup, *http.Response, error) {
@@ -1396,7 +1396,7 @@ Returns the network configuration of the specified endpoint instance group
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfiguration(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfiguration(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1483,8 +1483,8 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfigu
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionByIdRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
-	connectionId int32
+	endpointInstanceGroupId int64
+	connectionId int64
 }
 
 func (r EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*EndpointInstanceGroupNetworkConnection, *http.Response, error) {
@@ -1501,7 +1501,7 @@ Returns the connection by id of the specified endpoint instance group
  @param connectionId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionByIdRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, endpointInstanceGroupId int32, connectionId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionByIdRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, endpointInstanceGroupId int64, connectionId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionByIdRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1590,7 +1590,7 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfigu
 type EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionsRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 }
 
 func (r EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionsRequest) Execute() (*EndpointInstanceGroupNetworkConnectionsList, *http.Response, error) {
@@ -1604,7 +1604,7 @@ GetEndpointInstanceGroupNetworkConfigurationConnections Get endpoint instance gr
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionsRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfigurationConnections(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionsRequest {
+func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfigurationConnections(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionsRequest {
 	return EndpointInstanceGroupAPIGetEndpointInstanceGroupNetworkConfigurationConnectionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1691,7 +1691,7 @@ func (a *EndpointInstanceGroupAPIService) GetEndpointInstanceGroupNetworkConfigu
 type EndpointInstanceGroupAPIGetInfrastructureEndpointInstanceGroupsRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	infrastructureId int32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -1777,7 +1777,7 @@ Returns list of Endpoint Instance Groups in the specified infrastructure
  @param infrastructureId
  @return EndpointInstanceGroupAPIGetInfrastructureEndpointInstanceGroupsRequest
 */
-func (a *EndpointInstanceGroupAPIService) GetInfrastructureEndpointInstanceGroups(ctx context.Context, infrastructureId int32) EndpointInstanceGroupAPIGetInfrastructureEndpointInstanceGroupsRequest {
+func (a *EndpointInstanceGroupAPIService) GetInfrastructureEndpointInstanceGroups(ctx context.Context, infrastructureId int64) EndpointInstanceGroupAPIGetInfrastructureEndpointInstanceGroupsRequest {
 	return EndpointInstanceGroupAPIGetInfrastructureEndpointInstanceGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1950,7 +1950,7 @@ func (a *EndpointInstanceGroupAPIService) GetInfrastructureEndpointInstanceGroup
 type EndpointInstanceGroupAPIUpdateEndpointInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 	endpointInstanceGroupUpdate *EndpointInstanceGroupUpdate
 	ifMatch *string
 }
@@ -1980,7 +1980,7 @@ Updates the specified Endpoint Instance Group configuration
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupConfigRequest
 */
-func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupConfig(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupConfigRequest {
+func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupConfig(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupConfigRequest {
 	return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2075,9 +2075,9 @@ func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupConfigExecu
 type EndpointInstanceGroupAPIUpdateEndpointInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
-	connectionId int32
-	ruleId int32
+	endpointInstanceGroupId int64
+	connectionId int64
+	ruleId int64
 	updateLogicalNetworkACL *UpdateLogicalNetworkACL
 }
 
@@ -2100,7 +2100,7 @@ UpdateEndpointInstanceGroupLogicalNetworkACL Update a security rule for a logica
  @param ruleId
  @return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupLogicalNetworkACLRequest
 */
-func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int32, connectionId int32, ruleId int32) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupLogicalNetworkACLRequest {
+func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupLogicalNetworkACL(ctx context.Context, endpointInstanceGroupId int64, connectionId int64, ruleId int64) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupLogicalNetworkACLRequest {
 	return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2196,7 +2196,7 @@ func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupLogicalNetw
 type EndpointInstanceGroupAPIUpdateEndpointInstanceGroupMetaRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 	genericMeta *GenericMeta
 }
 
@@ -2219,7 +2219,7 @@ Updates the specified Endpoint Instance Group meta information
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupMetaRequest
 */
-func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupMeta(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupMetaRequest {
+func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupMeta(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupMetaRequest {
 	return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupMetaRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2300,7 +2300,7 @@ func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupMetaExecute
 type EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 }
 
 func (r EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationRequest) Execute() (*NetworkEndpointGroup, *http.Response, error) {
@@ -2314,7 +2314,7 @@ UpdateEndpointInstanceGroupNetworkConfiguration Create or return the network con
  @param endpointInstanceGroupId
  @return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationRequest
 */
-func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupNetworkConfiguration(ctx context.Context, endpointInstanceGroupId int32) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationRequest {
+func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupNetworkConfiguration(ctx context.Context, endpointInstanceGroupId int64) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationRequest {
 	return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2401,7 +2401,7 @@ func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupNetworkConf
 type EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceGroupAPIService
-	endpointInstanceGroupId int32
+	endpointInstanceGroupId int64
 	connectionId float32
 	updateNetworkEndpointGroupLogicalNetwork *UpdateNetworkEndpointGroupLogicalNetwork
 }
@@ -2424,7 +2424,7 @@ UpdateEndpointInstanceGroupNetworkConfigurationConnection Update a network conne
  @param connectionId
  @return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupNetworkConfigurationConnection(ctx context.Context, endpointInstanceGroupId int32, connectionId float32) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *EndpointInstanceGroupAPIService) UpdateEndpointInstanceGroupNetworkConfigurationConnection(ctx context.Context, endpointInstanceGroupId int64, connectionId float32) EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationConnectionRequest {
 	return EndpointInstanceGroupAPIUpdateEndpointInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,

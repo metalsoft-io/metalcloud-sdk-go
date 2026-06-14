@@ -24,7 +24,7 @@ type DellComponentFilter struct {
 	// Discriminator field set to dell
 	Vendor string `json:"vendor"`
 	// ID of the Dell component filter
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Component ID for Dell
 	ComponentId string `json:"componentId"`
 	// Server model for Dell
@@ -38,7 +38,7 @@ type _DellComponentFilter DellComponentFilter
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDellComponentFilter(vendor string, id float32, componentId string, serverModel string) *DellComponentFilter {
+func NewDellComponentFilter(vendor string, id int64, componentId string, serverModel string) *DellComponentFilter {
 	this := DellComponentFilter{}
 	this.Vendor = vendor
 	this.Id = id
@@ -80,9 +80,9 @@ func (o *DellComponentFilter) SetVendor(v string) {
 }
 
 // GetId returns the Id field value
-func (o *DellComponentFilter) GetId() float32 {
+func (o *DellComponentFilter) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *DellComponentFilter) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DellComponentFilter) GetIdOk() (*float32, bool) {
+func (o *DellComponentFilter) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *DellComponentFilter) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *DellComponentFilter) SetId(v float32) {
+func (o *DellComponentFilter) SetId(v int64) {
 	o.Id = v
 }
 

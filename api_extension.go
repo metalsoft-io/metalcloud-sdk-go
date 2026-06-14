@@ -28,7 +28,7 @@ type ExtensionAPIService service
 type ExtensionAPIActivateExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -51,7 +51,7 @@ Activates draft or suspended extension.
  @param extensionId
  @return ExtensionAPIActivateExtensionRequest
 */
-func (a *ExtensionAPIService) ActivateExtension(ctx context.Context, extensionId float32) ExtensionAPIActivateExtensionRequest {
+func (a *ExtensionAPIService) ActivateExtension(ctx context.Context, extensionId int64) ExtensionAPIActivateExtensionRequest {
 	return ExtensionAPIActivateExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -130,7 +130,7 @@ func (a *ExtensionAPIService) ActivateExtensionExecute(r ExtensionAPIActivateExt
 type ExtensionAPIArchiveExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -153,7 +153,7 @@ Archives published extension.
  @param extensionId
  @return ExtensionAPIArchiveExtensionRequest
 */
-func (a *ExtensionAPIService) ArchiveExtension(ctx context.Context, extensionId float32) ExtensionAPIArchiveExtensionRequest {
+func (a *ExtensionAPIService) ArchiveExtension(ctx context.Context, extensionId int64) ExtensionAPIArchiveExtensionRequest {
 	return ExtensionAPIArchiveExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -343,7 +343,7 @@ func (a *ExtensionAPIService) CreateExtensionExecute(r ExtensionAPICreateExtensi
 type ExtensionAPIDeleteExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -366,7 +366,7 @@ Delete extension.
  @param extensionId
  @return ExtensionAPIDeleteExtensionRequest
 */
-func (a *ExtensionAPIService) DeleteExtension(ctx context.Context, extensionId float32) ExtensionAPIDeleteExtensionRequest {
+func (a *ExtensionAPIService) DeleteExtension(ctx context.Context, extensionId int64) ExtensionAPIDeleteExtensionRequest {
 	return ExtensionAPIDeleteExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -445,8 +445,8 @@ func (a *ExtensionAPIService) DeleteExtensionExecute(r ExtensionAPIDeleteExtensi
 type ExtensionAPIDeleteExtensionSiteConfigRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
-	siteId float32
+	extensionId int64
+	siteId int64
 }
 
 func (r ExtensionAPIDeleteExtensionSiteConfigRequest) Execute() (*http.Response, error) {
@@ -461,7 +461,7 @@ DeleteExtensionSiteConfig
  @param siteId
  @return ExtensionAPIDeleteExtensionSiteConfigRequest
 */
-func (a *ExtensionAPIService) DeleteExtensionSiteConfig(ctx context.Context, extensionId float32, siteId float32) ExtensionAPIDeleteExtensionSiteConfigRequest {
+func (a *ExtensionAPIService) DeleteExtensionSiteConfig(ctx context.Context, extensionId int64, siteId int64) ExtensionAPIDeleteExtensionSiteConfigRequest {
 	return ExtensionAPIDeleteExtensionSiteConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -539,7 +539,7 @@ func (a *ExtensionAPIService) DeleteExtensionSiteConfigExecute(r ExtensionAPIDel
 type ExtensionAPIGetExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 }
 
 func (r ExtensionAPIGetExtensionRequest) Execute() (*Extension, *http.Response, error) {
@@ -555,7 +555,7 @@ Returns details of the specified extension
  @param extensionId
  @return ExtensionAPIGetExtensionRequest
 */
-func (a *ExtensionAPIService) GetExtension(ctx context.Context, extensionId float32) ExtensionAPIGetExtensionRequest {
+func (a *ExtensionAPIService) GetExtension(ctx context.Context, extensionId int64) ExtensionAPIGetExtensionRequest {
 	return ExtensionAPIGetExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -642,8 +642,8 @@ func (a *ExtensionAPIService) GetExtensionExecute(r ExtensionAPIGetExtensionRequ
 type ExtensionAPIGetExtensionSiteConfigRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
-	siteId float32
+	extensionId int64
+	siteId int64
 }
 
 func (r ExtensionAPIGetExtensionSiteConfigRequest) Execute() ([]ExtensionConfigValue, *http.Response, error) {
@@ -658,7 +658,7 @@ GetExtensionSiteConfig
  @param siteId
  @return ExtensionAPIGetExtensionSiteConfigRequest
 */
-func (a *ExtensionAPIService) GetExtensionSiteConfig(ctx context.Context, extensionId float32, siteId float32) ExtensionAPIGetExtensionSiteConfigRequest {
+func (a *ExtensionAPIService) GetExtensionSiteConfig(ctx context.Context, extensionId int64, siteId int64) ExtensionAPIGetExtensionSiteConfigRequest {
 	return ExtensionAPIGetExtensionSiteConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -747,7 +747,7 @@ func (a *ExtensionAPIService) GetExtensionSiteConfigExecute(r ExtensionAPIGetExt
 type ExtensionAPIGetExtensionSiteConfigsRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 }
 
 func (r ExtensionAPIGetExtensionSiteConfigsRequest) Execute() ([]ExtensionSiteConfig, *http.Response, error) {
@@ -761,7 +761,7 @@ GetExtensionSiteConfigs
  @param extensionId
  @return ExtensionAPIGetExtensionSiteConfigsRequest
 */
-func (a *ExtensionAPIService) GetExtensionSiteConfigs(ctx context.Context, extensionId float32) ExtensionAPIGetExtensionSiteConfigsRequest {
+func (a *ExtensionAPIService) GetExtensionSiteConfigs(ctx context.Context, extensionId int64) ExtensionAPIGetExtensionSiteConfigsRequest {
 	return ExtensionAPIGetExtensionSiteConfigsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1103,7 +1103,7 @@ func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRe
 type ExtensionAPIGetSiteExtensionConfigsRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	siteId float32
+	siteId int64
 }
 
 func (r ExtensionAPIGetSiteExtensionConfigsRequest) Execute() ([]SiteExtensionConfig, *http.Response, error) {
@@ -1117,7 +1117,7 @@ GetSiteExtensionConfigs
  @param siteId
  @return ExtensionAPIGetSiteExtensionConfigsRequest
 */
-func (a *ExtensionAPIService) GetSiteExtensionConfigs(ctx context.Context, siteId float32) ExtensionAPIGetSiteExtensionConfigsRequest {
+func (a *ExtensionAPIService) GetSiteExtensionConfigs(ctx context.Context, siteId int64) ExtensionAPIGetSiteExtensionConfigsRequest {
 	return ExtensionAPIGetSiteExtensionConfigsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1204,7 +1204,7 @@ func (a *ExtensionAPIService) GetSiteExtensionConfigsExecute(r ExtensionAPIGetSi
 type ExtensionAPIMakePublicExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -1227,7 +1227,7 @@ Makes the extension public.
  @param extensionId
  @return ExtensionAPIMakePublicExtensionRequest
 */
-func (a *ExtensionAPIService) MakePublicExtension(ctx context.Context, extensionId float32) ExtensionAPIMakePublicExtensionRequest {
+func (a *ExtensionAPIService) MakePublicExtension(ctx context.Context, extensionId int64) ExtensionAPIMakePublicExtensionRequest {
 	return ExtensionAPIMakePublicExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1306,7 +1306,7 @@ func (a *ExtensionAPIService) MakePublicExtensionExecute(r ExtensionAPIMakePubli
 type ExtensionAPIPublishExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -1329,7 +1329,7 @@ Activates draft or suspended extension. Deprecated - use activateExtension.
  @param extensionId
  @return ExtensionAPIPublishExtensionRequest
 */
-func (a *ExtensionAPIService) PublishExtension(ctx context.Context, extensionId float32) ExtensionAPIPublishExtensionRequest {
+func (a *ExtensionAPIService) PublishExtension(ctx context.Context, extensionId int64) ExtensionAPIPublishExtensionRequest {
 	return ExtensionAPIPublishExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1408,8 +1408,8 @@ func (a *ExtensionAPIService) PublishExtensionExecute(r ExtensionAPIPublishExten
 type ExtensionAPISetExtensionSiteConfigRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
-	siteId float32
+	extensionId int64
+	siteId int64
 	extensionConfigValue *[]ExtensionConfigValue
 }
 
@@ -1431,7 +1431,7 @@ SetExtensionSiteConfig
  @param siteId
  @return ExtensionAPISetExtensionSiteConfigRequest
 */
-func (a *ExtensionAPIService) SetExtensionSiteConfig(ctx context.Context, extensionId float32, siteId float32) ExtensionAPISetExtensionSiteConfigRequest {
+func (a *ExtensionAPIService) SetExtensionSiteConfig(ctx context.Context, extensionId int64, siteId int64) ExtensionAPISetExtensionSiteConfigRequest {
 	return ExtensionAPISetExtensionSiteConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1514,7 +1514,7 @@ func (a *ExtensionAPIService) SetExtensionSiteConfigExecute(r ExtensionAPISetExt
 type ExtensionAPISuspendExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -1537,7 +1537,7 @@ Suspend extension.
  @param extensionId
  @return ExtensionAPISuspendExtensionRequest
 */
-func (a *ExtensionAPIService) SuspendExtension(ctx context.Context, extensionId float32) ExtensionAPISuspendExtensionRequest {
+func (a *ExtensionAPIService) SuspendExtension(ctx context.Context, extensionId int64) ExtensionAPISuspendExtensionRequest {
 	return ExtensionAPISuspendExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1616,7 +1616,7 @@ func (a *ExtensionAPIService) SuspendExtensionExecute(r ExtensionAPISuspendExten
 type ExtensionAPIUpdateExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	updateExtension *UpdateExtension
 	ifMatch *string
 }
@@ -1646,7 +1646,7 @@ Returns details of the updated extension
  @param extensionId
  @return ExtensionAPIUpdateExtensionRequest
 */
-func (a *ExtensionAPIService) UpdateExtension(ctx context.Context, extensionId float32) ExtensionAPIUpdateExtensionRequest {
+func (a *ExtensionAPIService) UpdateExtension(ctx context.Context, extensionId int64) ExtensionAPIUpdateExtensionRequest {
 	return ExtensionAPIUpdateExtensionRequest{
 		ApiService: a,
 		ctx: ctx,

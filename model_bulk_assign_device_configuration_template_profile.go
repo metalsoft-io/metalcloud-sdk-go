@@ -26,13 +26,20 @@ type BulkAssignDeviceConfigurationTemplateProfile struct {
 	// Fabric to bulk-assign across — resolves to ALL NetworkDevice rows attached to this fabric. Mutually exclusive with networkDeviceIds.
 	NetworkFabricId *int64 `json:"networkFabricId,omitempty"`
 	// Explicit list of NetworkDevice ids to assign. Mutually exclusive with networkFabricId.
-	NetworkDeviceIds []float32 `json:"networkDeviceIds,omitempty"`
+	NetworkDeviceIds []int64 `json:"networkDeviceIds,omitempty"`
 	// Lifecycle stage applied to every created profile. Defaults to \"configuration\".
 	LifecycleStage *DeviceConfigurationProfileLifecycleStage `json:"lifecycleStage,omitempty"`
 	// Per-profile variable overrides applied uniformly to every created row.
 	Variables map[string]interface{} `json:"variables,omitempty"`
 	IsEnabled *bool `json:"isEnabled,omitempty"`
+	// Ordering hint when multiple enabled profiles match the same (device, lifecycleStage) tuple at deploy time — lower values apply first. Integer in the range [0, 1000]. Defaults to 100, which leaves headroom in both directions.  Recommended bands (convention, not enforced): - 0–49: system-level overrides — first thing on the wire after baseline reset. - 50–99: high-priority operator rules (e.g. emergency policy push). - 100: default — use this unless you have a reason not to. - 101–500: standard operator customizations. - 501–1000: low-priority fallbacks, applied last.  Ties (two profiles with the same priority for the same device + lifecycleStage) resolve in undefined order. Use distinct priorities if order matters.
 	Priority *float32 `json:"priority,omitempty"`
+	// How often this profile applies during fabric deploys. - 'always' (default): re-applied on every deploy that matches. - 'once': applied to each matching device exactly once across all deploys, then skipped. Tracking lives in `device_configuration_template_history` — one row per successful apply, keyed on the profile id and the network device id. Reset by deleting those history rows.
+	ApplyMode *DeviceConfigurationProfileApplyMode `json:"applyMode,omitempty"`
+	// Annotations applied uniformly to every created profile.
+	Annotations *map[string]string `json:"annotations,omitempty"`
+	// Tags applied uniformly to every created profile. Each entry is capped at 255 characters.
+	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,6 +56,8 @@ func NewBulkAssignDeviceConfigurationTemplateProfile(deviceConfigurationTemplate
 	this.IsEnabled = &isEnabled
 	var priority float32 = 100
 	this.Priority = &priority
+	var applyMode DeviceConfigurationProfileApplyMode = DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS
+	this.ApplyMode = &applyMode
 	return &this
 }
 
@@ -61,6 +70,8 @@ func NewBulkAssignDeviceConfigurationTemplateProfileWithDefaults() *BulkAssignDe
 	this.IsEnabled = &isEnabled
 	var priority float32 = 100
 	this.Priority = &priority
+	var applyMode DeviceConfigurationProfileApplyMode = DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS
+	this.ApplyMode = &applyMode
 	return &this
 }
 
@@ -121,9 +132,9 @@ func (o *BulkAssignDeviceConfigurationTemplateProfile) SetNetworkFabricId(v int6
 }
 
 // GetNetworkDeviceIds returns the NetworkDeviceIds field value if set, zero value otherwise.
-func (o *BulkAssignDeviceConfigurationTemplateProfile) GetNetworkDeviceIds() []float32 {
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetNetworkDeviceIds() []int64 {
 	if o == nil || IsNil(o.NetworkDeviceIds) {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.NetworkDeviceIds
@@ -131,7 +142,7 @@ func (o *BulkAssignDeviceConfigurationTemplateProfile) GetNetworkDeviceIds() []f
 
 // GetNetworkDeviceIdsOk returns a tuple with the NetworkDeviceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BulkAssignDeviceConfigurationTemplateProfile) GetNetworkDeviceIdsOk() ([]float32, bool) {
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetNetworkDeviceIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.NetworkDeviceIds) {
 		return nil, false
 	}
@@ -147,8 +158,8 @@ func (o *BulkAssignDeviceConfigurationTemplateProfile) HasNetworkDeviceIds() boo
 	return false
 }
 
-// SetNetworkDeviceIds gets a reference to the given []float32 and assigns it to the NetworkDeviceIds field.
-func (o *BulkAssignDeviceConfigurationTemplateProfile) SetNetworkDeviceIds(v []float32) {
+// SetNetworkDeviceIds gets a reference to the given []int64 and assigns it to the NetworkDeviceIds field.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) SetNetworkDeviceIds(v []int64) {
 	o.NetworkDeviceIds = v
 }
 
@@ -280,6 +291,102 @@ func (o *BulkAssignDeviceConfigurationTemplateProfile) SetPriority(v float32) {
 	o.Priority = &v
 }
 
+// GetApplyMode returns the ApplyMode field value if set, zero value otherwise.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetApplyMode() DeviceConfigurationProfileApplyMode {
+	if o == nil || IsNil(o.ApplyMode) {
+		var ret DeviceConfigurationProfileApplyMode
+		return ret
+	}
+	return *o.ApplyMode
+}
+
+// GetApplyModeOk returns a tuple with the ApplyMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetApplyModeOk() (*DeviceConfigurationProfileApplyMode, bool) {
+	if o == nil || IsNil(o.ApplyMode) {
+		return nil, false
+	}
+	return o.ApplyMode, true
+}
+
+// HasApplyMode returns a boolean if a field has been set.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) HasApplyMode() bool {
+	if o != nil && !IsNil(o.ApplyMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplyMode gets a reference to the given DeviceConfigurationProfileApplyMode and assigns it to the ApplyMode field.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) SetApplyMode(v DeviceConfigurationProfileApplyMode) {
+	o.ApplyMode = &v
+}
+
+// GetAnnotations returns the Annotations field value if set, zero value otherwise.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetAnnotations() map[string]string {
+	if o == nil || IsNil(o.Annotations) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Annotations
+}
+
+// GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetAnnotationsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Annotations) {
+		return nil, false
+	}
+	return o.Annotations, true
+}
+
+// HasAnnotations returns a boolean if a field has been set.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) HasAnnotations() bool {
+	if o != nil && !IsNil(o.Annotations) {
+		return true
+	}
+
+	return false
+}
+
+// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) SetAnnotations(v map[string]string) {
+	o.Annotations = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *BulkAssignDeviceConfigurationTemplateProfile) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o BulkAssignDeviceConfigurationTemplateProfile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -308,6 +415,15 @@ func (o BulkAssignDeviceConfigurationTemplateProfile) ToMap() (map[string]interf
 	}
 	if !IsNil(o.Priority) {
 		toSerialize["priority"] = o.Priority
+	}
+	if !IsNil(o.ApplyMode) {
+		toSerialize["applyMode"] = o.ApplyMode
+	}
+	if !IsNil(o.Annotations) {
+		toSerialize["annotations"] = o.Annotations
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -359,6 +475,9 @@ func (o *BulkAssignDeviceConfigurationTemplateProfile) UnmarshalJSON(data []byte
 		delete(additionalProperties, "variables")
 		delete(additionalProperties, "isEnabled")
 		delete(additionalProperties, "priority")
+		delete(additionalProperties, "applyMode")
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

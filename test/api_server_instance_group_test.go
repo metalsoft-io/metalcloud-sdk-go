@@ -26,7 +26,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroup(context.Background(), infrastructureId).Execute()
 
@@ -40,8 +40,8 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var connectionId int32
+		var serverInstanceGroupId int64
+		var connectionId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).Execute()
 
@@ -55,7 +55,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId).Execute()
 
@@ -69,7 +69,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		httpRes, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroup(context.Background(), serverInstanceGroupId).Execute()
 
@@ -82,9 +82,9 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var connectionId int32
-		var ruleId int32
+		var serverInstanceGroupId int64
+		var connectionId int64
+		var ruleId int64
 
 		httpRes, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
 
@@ -97,8 +97,8 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var connectionId int32
+		var serverInstanceGroupId int64
+		var connectionId int64
 
 		httpRes, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).Execute()
 
@@ -111,7 +111,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetInfrastructureServerInstanceGroups(context.Background(), infrastructureId).Execute()
 
@@ -125,7 +125,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroup(context.Background(), serverInstanceGroupId).Execute()
 
@@ -139,7 +139,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupConfig(context.Background(), serverInstanceGroupId).Execute()
 
@@ -153,7 +153,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupDriveGroups(context.Background(), serverInstanceGroupId).Execute()
 
@@ -167,8 +167,8 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var interfaceId int32
+		var serverInstanceGroupId int64
+		var interfaceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupInterface(context.Background(), serverInstanceGroupId, interfaceId).Execute()
 
@@ -182,7 +182,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupInterfaces(context.Background(), serverInstanceGroupId).Execute()
 
@@ -196,8 +196,8 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var connectionId int32
+		var serverInstanceGroupId int64
+		var connectionId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).Execute()
 
@@ -211,9 +211,9 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var connectionId int32
-		var ruleId int32
+		var serverInstanceGroupId int64
+		var connectionId int64
+		var ruleId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACLById(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
 
@@ -227,7 +227,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfiguration(context.Background(), serverInstanceGroupId).Execute()
 
@@ -241,8 +241,8 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var connectionId int32
+		var serverInstanceGroupId int64
+		var connectionId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById(context.Background(), serverInstanceGroupId, connectionId).Execute()
 
@@ -256,7 +256,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnections(context.Background(), serverInstanceGroupId).Execute()
 
@@ -270,7 +270,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupServerInstances(context.Background(), serverInstanceGroupId).Execute()
 
@@ -284,7 +284,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupConfig(context.Background(), serverInstanceGroupId).Execute()
 
@@ -298,9 +298,9 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
-		var connectionId int32
-		var ruleId int32
+		var serverInstanceGroupId int64
+		var connectionId int64
+		var ruleId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
 
@@ -314,7 +314,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupMeta(context.Background(), serverInstanceGroupId).Execute()
 
@@ -327,7 +327,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfiguration(context.Background(), serverInstanceGroupId).Execute()
 
@@ -341,7 +341,7 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceGroupId int32
+		var serverInstanceGroupId int64
 		var connectionId float32
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).Execute()

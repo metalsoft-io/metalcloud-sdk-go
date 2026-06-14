@@ -28,7 +28,7 @@ type ServerTypeStatisticsBatchOptions struct {
 	// The maximum returned results per server type.
 	MaximumResultsPerServerType *float32 `json:"maximumResultsPerServerType,omitempty"`
 	// The id of the server types to get statistics for.
-	ServerTypeIds []float32 `json:"serverTypeIds,omitempty"`
+	ServerTypeIds []int64 `json:"serverTypeIds,omitempty"`
 	// If specified, treats only the active Instances of the Instance Array as available, instead of all active instances of userIdOwner.
 	InstanceArrayId *int64 `json:"instanceArrayId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -143,9 +143,9 @@ func (o *ServerTypeStatisticsBatchOptions) SetMaximumResultsPerServerType(v floa
 }
 
 // GetServerTypeIds returns the ServerTypeIds field value if set, zero value otherwise.
-func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIds() []float32 {
+func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIds() []int64 {
 	if o == nil || IsNil(o.ServerTypeIds) {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.ServerTypeIds
@@ -153,7 +153,7 @@ func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIds() []float32 {
 
 // GetServerTypeIdsOk returns a tuple with the ServerTypeIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIdsOk() ([]float32, bool) {
+func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.ServerTypeIds) {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *ServerTypeStatisticsBatchOptions) HasServerTypeIds() bool {
 	return false
 }
 
-// SetServerTypeIds gets a reference to the given []float32 and assigns it to the ServerTypeIds field.
-func (o *ServerTypeStatisticsBatchOptions) SetServerTypeIds(v []float32) {
+// SetServerTypeIds gets a reference to the given []int64 and assigns it to the ServerTypeIds field.
+func (o *ServerTypeStatisticsBatchOptions) SetServerTypeIds(v []int64) {
 	o.ServerTypeIds = v
 }
 

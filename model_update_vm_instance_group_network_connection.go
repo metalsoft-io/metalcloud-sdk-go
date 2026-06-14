@@ -26,6 +26,8 @@ type UpdateVMInstanceGroupNetworkConnection struct {
 	AccessMode *NetworkEndpointGroupAllowedAccessMode `json:"accessMode,omitempty"`
 	// The MTU of the logical network
 	Mtu *int32 `json:"mtu,omitempty"`
+	// Minimum number of interfaces for this connection. Only configurable when the logical network is l3Only. Null/unset means no minimum.
+	InterfaceCount NullableInt32 `json:"interfaceCount,omitempty"`
 	// Whether the logical network provides a default route
 	ProvidesDefaultRoute *bool `json:"providesDefaultRoute,omitempty"`
 	// Disable automatic IP allocation for IPv4 addresses on this network connection
@@ -158,6 +160,48 @@ func (o *UpdateVMInstanceGroupNetworkConnection) HasMtu() bool {
 // SetMtu gets a reference to the given int32 and assigns it to the Mtu field.
 func (o *UpdateVMInstanceGroupNetworkConnection) SetMtu(v int32) {
 	o.Mtu = &v
+}
+
+// GetInterfaceCount returns the InterfaceCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateVMInstanceGroupNetworkConnection) GetInterfaceCount() int32 {
+	if o == nil || IsNil(o.InterfaceCount.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.InterfaceCount.Get()
+}
+
+// GetInterfaceCountOk returns a tuple with the InterfaceCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateVMInstanceGroupNetworkConnection) GetInterfaceCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InterfaceCount.Get(), o.InterfaceCount.IsSet()
+}
+
+// HasInterfaceCount returns a boolean if a field has been set.
+func (o *UpdateVMInstanceGroupNetworkConnection) HasInterfaceCount() bool {
+	if o != nil && o.InterfaceCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaceCount gets a reference to the given NullableInt32 and assigns it to the InterfaceCount field.
+func (o *UpdateVMInstanceGroupNetworkConnection) SetInterfaceCount(v int32) {
+	o.InterfaceCount.Set(&v)
+}
+// SetInterfaceCountNil sets the value for InterfaceCount to be an explicit nil
+func (o *UpdateVMInstanceGroupNetworkConnection) SetInterfaceCountNil() {
+	o.InterfaceCount.Set(nil)
+}
+
+// UnsetInterfaceCount ensures that no value is present for InterfaceCount, not even an explicit nil
+func (o *UpdateVMInstanceGroupNetworkConnection) UnsetInterfaceCount() {
+	o.InterfaceCount.Unset()
 }
 
 // GetProvidesDefaultRoute returns the ProvidesDefaultRoute field value if set, zero value otherwise.
@@ -327,6 +371,9 @@ func (o UpdateVMInstanceGroupNetworkConnection) ToMap() (map[string]interface{},
 	if !IsNil(o.Mtu) {
 		toSerialize["mtu"] = o.Mtu
 	}
+	if o.InterfaceCount.IsSet() {
+		toSerialize["interfaceCount"] = o.InterfaceCount.Get()
+	}
 	if !IsNil(o.ProvidesDefaultRoute) {
 		toSerialize["providesDefaultRoute"] = o.ProvidesDefaultRoute
 	}
@@ -364,6 +411,7 @@ func (o *UpdateVMInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "tagged")
 		delete(additionalProperties, "accessMode")
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "interfaceCount")
 		delete(additionalProperties, "providesDefaultRoute")
 		delete(additionalProperties, "disableAutoIpAllocation")
 		delete(additionalProperties, "redundancy")

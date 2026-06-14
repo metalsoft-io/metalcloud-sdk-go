@@ -28,7 +28,7 @@ type NetworkFabricInterconnectAPIService service
 type NetworkFabricInterconnectAPIAcceptNetworkFabricInterconnectDeployRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id float32
+	id int64
 }
 
 func (r NetworkFabricInterconnectAPIAcceptNetworkFabricInterconnectDeployRequest) Execute() (*http.Response, error) {
@@ -44,7 +44,7 @@ Accepts the deployment of the specified network fabric interconnect
  @param id
  @return NetworkFabricInterconnectAPIAcceptNetworkFabricInterconnectDeployRequest
 */
-func (a *NetworkFabricInterconnectAPIService) AcceptNetworkFabricInterconnectDeploy(ctx context.Context, id float32) NetworkFabricInterconnectAPIAcceptNetworkFabricInterconnectDeployRequest {
+func (a *NetworkFabricInterconnectAPIService) AcceptNetworkFabricInterconnectDeploy(ctx context.Context, id int64) NetworkFabricInterconnectAPIAcceptNetworkFabricInterconnectDeployRequest {
 	return NetworkFabricInterconnectAPIAcceptNetworkFabricInterconnectDeployRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -120,7 +120,7 @@ func (a *NetworkFabricInterconnectAPIService) AcceptNetworkFabricInterconnectDep
 type NetworkFabricInterconnectAPIActivateNetworkFabricInterconnectLinksRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id float32
+	id int64
 	networkFabricInterconnectLinksDeployOptions *NetworkFabricInterconnectLinksDeployOptions
 }
 
@@ -143,7 +143,7 @@ Provisions BGP peering on new switches and updates existing switches with new ne
  @param id The ID of the network fabric interconnect
  @return NetworkFabricInterconnectAPIActivateNetworkFabricInterconnectLinksRequest
 */
-func (a *NetworkFabricInterconnectAPIService) ActivateNetworkFabricInterconnectLinks(ctx context.Context, id float32) NetworkFabricInterconnectAPIActivateNetworkFabricInterconnectLinksRequest {
+func (a *NetworkFabricInterconnectAPIService) ActivateNetworkFabricInterconnectLinks(ctx context.Context, id int64) NetworkFabricInterconnectAPIActivateNetworkFabricInterconnectLinksRequest {
 	return NetworkFabricInterconnectAPIActivateNetworkFabricInterconnectLinksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -235,7 +235,7 @@ func (a *NetworkFabricInterconnectAPIService) ActivateNetworkFabricInterconnectL
 type NetworkFabricInterconnectAPICreateInterconnectLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 	createNetworkFabricInterconnectLink *CreateNetworkFabricInterconnectLink
 }
 
@@ -258,7 +258,7 @@ Creates a new network fabric interconnect link
  @param id The ID of the network fabric interconnect
  @return NetworkFabricInterconnectAPICreateInterconnectLinkRequest
 */
-func (a *NetworkFabricInterconnectAPIService) CreateInterconnectLink(ctx context.Context, id int32) NetworkFabricInterconnectAPICreateInterconnectLinkRequest {
+func (a *NetworkFabricInterconnectAPIService) CreateInterconnectLink(ctx context.Context, id int64) NetworkFabricInterconnectAPICreateInterconnectLinkRequest {
 	return NetworkFabricInterconnectAPICreateInterconnectLinkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -459,7 +459,7 @@ func (a *NetworkFabricInterconnectAPIService) CreateNetworkFabricInterconnectExe
 type NetworkFabricInterconnectAPIDeactivateNetworkFabricInterconnectLinksRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id float32
+	id int64
 	networkFabricInterconnectDeactivateLinks *NetworkFabricInterconnectDeactivateLinks
 }
 
@@ -482,7 +482,7 @@ Removes BGP peering config from the specified switches and cleans up neighbor en
  @param id
  @return NetworkFabricInterconnectAPIDeactivateNetworkFabricInterconnectLinksRequest
 */
-func (a *NetworkFabricInterconnectAPIService) DeactivateNetworkFabricInterconnectLinks(ctx context.Context, id float32) NetworkFabricInterconnectAPIDeactivateNetworkFabricInterconnectLinksRequest {
+func (a *NetworkFabricInterconnectAPIService) DeactivateNetworkFabricInterconnectLinks(ctx context.Context, id int64) NetworkFabricInterconnectAPIDeactivateNetworkFabricInterconnectLinksRequest {
 	return NetworkFabricInterconnectAPIDeactivateNetworkFabricInterconnectLinksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -574,8 +574,8 @@ func (a *NetworkFabricInterconnectAPIService) DeactivateNetworkFabricInterconnec
 type NetworkFabricInterconnectAPIDeleteInterconnectLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
-	linkId int32
+	id int64
+	linkId int64
 	ifMatch *string
 }
 
@@ -599,7 +599,7 @@ Deletes a specific network fabric link that is part of the specified fabric inte
  @param linkId The ID of the network fabric link
  @return NetworkFabricInterconnectAPIDeleteInterconnectLinkRequest
 */
-func (a *NetworkFabricInterconnectAPIService) DeleteInterconnectLink(ctx context.Context, id int32, linkId int32) NetworkFabricInterconnectAPIDeleteInterconnectLinkRequest {
+func (a *NetworkFabricInterconnectAPIService) DeleteInterconnectLink(ctx context.Context, id int64, linkId int64) NetworkFabricInterconnectAPIDeleteInterconnectLinkRequest {
 	return NetworkFabricInterconnectAPIDeleteInterconnectLinkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -680,7 +680,7 @@ func (a *NetworkFabricInterconnectAPIService) DeleteInterconnectLinkExecute(r Ne
 type NetworkFabricInterconnectAPIDeleteNetworkFabricInterconnectRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 }
 
 func (r NetworkFabricInterconnectAPIDeleteNetworkFabricInterconnectRequest) Execute() (*http.Response, error) {
@@ -694,7 +694,7 @@ DeleteNetworkFabricInterconnect Delete a network fabric interconnect by ID
  @param id The ID of the network fabric interconnect to delete
  @return NetworkFabricInterconnectAPIDeleteNetworkFabricInterconnectRequest
 */
-func (a *NetworkFabricInterconnectAPIService) DeleteNetworkFabricInterconnect(ctx context.Context, id int32) NetworkFabricInterconnectAPIDeleteNetworkFabricInterconnectRequest {
+func (a *NetworkFabricInterconnectAPIService) DeleteNetworkFabricInterconnect(ctx context.Context, id int64) NetworkFabricInterconnectAPIDeleteNetworkFabricInterconnectRequest {
 	return NetworkFabricInterconnectAPIDeleteNetworkFabricInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -770,7 +770,7 @@ func (a *NetworkFabricInterconnectAPIService) DeleteNetworkFabricInterconnectExe
 type NetworkFabricInterconnectAPIDeployNetworkFabricInterconnectRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id float32
+	id int64
 	networkFabricInterconnectDeployOptions *NetworkFabricInterconnectDeployOptions
 }
 
@@ -793,7 +793,7 @@ Deploys the specified network fabric interconnect
  @param id
  @return NetworkFabricInterconnectAPIDeployNetworkFabricInterconnectRequest
 */
-func (a *NetworkFabricInterconnectAPIService) DeployNetworkFabricInterconnect(ctx context.Context, id float32) NetworkFabricInterconnectAPIDeployNetworkFabricInterconnectRequest {
+func (a *NetworkFabricInterconnectAPIService) DeployNetworkFabricInterconnect(ctx context.Context, id int64) NetworkFabricInterconnectAPIDeployNetworkFabricInterconnectRequest {
 	return NetworkFabricInterconnectAPIDeployNetworkFabricInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -885,7 +885,7 @@ func (a *NetworkFabricInterconnectAPIService) DeployNetworkFabricInterconnectExe
 type NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id float32
+	id int64
 }
 
 func (r NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest) Execute() (*JobInfo, *http.Response, error) {
@@ -901,7 +901,7 @@ Removes the BGP peering configuration from all border switches in the interconne
  @param id
  @return NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest
 */
-func (a *NetworkFabricInterconnectAPIService) DetachNetworkFabricInterconnect(ctx context.Context, id float32) NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest {
+func (a *NetworkFabricInterconnectAPIService) DetachNetworkFabricInterconnect(ctx context.Context, id int64) NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest {
 	return NetworkFabricInterconnectAPIDetachNetworkFabricInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -988,7 +988,7 @@ func (a *NetworkFabricInterconnectAPIService) DetachNetworkFabricInterconnectExe
 type NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1081,7 +1081,7 @@ Returns a paginated list of network fabrics that can be added to the specified f
  @param id The ID of the network fabric interconnect
  @return NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest
 */
-func (a *NetworkFabricInterconnectAPIService) GetFabricInterconnectAvailableFabrics(ctx context.Context, id int32) NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest {
+func (a *NetworkFabricInterconnectAPIService) GetFabricInterconnectAvailableFabrics(ctx context.Context, id int64) NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest {
 	return NetworkFabricInterconnectAPIGetFabricInterconnectAvailableFabricsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1265,7 +1265,7 @@ func (a *NetworkFabricInterconnectAPIService) GetFabricInterconnectAvailableFabr
 type NetworkFabricInterconnectAPIGetFabricInterconnectFabricsRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 }
 
 func (r NetworkFabricInterconnectAPIGetFabricInterconnectFabricsRequest) Execute() (*NetworkFabricList, *http.Response, error) {
@@ -1281,7 +1281,7 @@ Returns a list of network fabrics that are part of the specified fabric intercon
  @param id The ID of the network fabric interconnect
  @return NetworkFabricInterconnectAPIGetFabricInterconnectFabricsRequest
 */
-func (a *NetworkFabricInterconnectAPIService) GetFabricInterconnectFabrics(ctx context.Context, id int32) NetworkFabricInterconnectAPIGetFabricInterconnectFabricsRequest {
+func (a *NetworkFabricInterconnectAPIService) GetFabricInterconnectFabrics(ctx context.Context, id int64) NetworkFabricInterconnectAPIGetFabricInterconnectFabricsRequest {
 	return NetworkFabricInterconnectAPIGetFabricInterconnectFabricsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1368,8 +1368,8 @@ func (a *NetworkFabricInterconnectAPIService) GetFabricInterconnectFabricsExecut
 type NetworkFabricInterconnectAPIGetInterconnectLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
-	linkId int32
+	id int64
+	linkId int64
 }
 
 func (r NetworkFabricInterconnectAPIGetInterconnectLinkRequest) Execute() (*NetworkFabricInterconnectLink, *http.Response, error) {
@@ -1386,7 +1386,7 @@ Returns a specific network fabric link that is part of the specified fabric inte
  @param linkId The ID of the network fabric link
  @return NetworkFabricInterconnectAPIGetInterconnectLinkRequest
 */
-func (a *NetworkFabricInterconnectAPIService) GetInterconnectLink(ctx context.Context, id int32, linkId int32) NetworkFabricInterconnectAPIGetInterconnectLinkRequest {
+func (a *NetworkFabricInterconnectAPIService) GetInterconnectLink(ctx context.Context, id int64, linkId int64) NetworkFabricInterconnectAPIGetInterconnectLinkRequest {
 	return NetworkFabricInterconnectAPIGetInterconnectLinkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1475,7 +1475,7 @@ func (a *NetworkFabricInterconnectAPIService) GetInterconnectLinkExecute(r Netwo
 type NetworkFabricInterconnectAPIGetInterconnectLinksRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1554,7 +1554,7 @@ Returns list of all network fabric links that are part of the specified fabric i
  @param id The ID of the network fabric interconnect
  @return NetworkFabricInterconnectAPIGetInterconnectLinksRequest
 */
-func (a *NetworkFabricInterconnectAPIService) GetInterconnectLinks(ctx context.Context, id int32) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
+func (a *NetworkFabricInterconnectAPIService) GetInterconnectLinks(ctx context.Context, id int64) NetworkFabricInterconnectAPIGetInterconnectLinksRequest {
 	return NetworkFabricInterconnectAPIGetInterconnectLinksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1708,7 +1708,7 @@ func (a *NetworkFabricInterconnectAPIService) GetInterconnectLinksExecute(r Netw
 type NetworkFabricInterconnectAPIGetNetworkFabricInterconnectByIdRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 }
 
 func (r NetworkFabricInterconnectAPIGetNetworkFabricInterconnectByIdRequest) Execute() (*NetworkFabricInterconnect, *http.Response, error) {
@@ -1724,7 +1724,7 @@ Returns a network fabric interconnect by its ID
  @param id The ID of the network fabric interconnect to retrieve
  @return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectByIdRequest
 */
-func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectById(ctx context.Context, id int32) NetworkFabricInterconnectAPIGetNetworkFabricInterconnectByIdRequest {
+func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectById(ctx context.Context, id int64) NetworkFabricInterconnectAPIGetNetworkFabricInterconnectByIdRequest {
 	return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1811,7 +1811,7 @@ func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectByIdEx
 type NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentCheckRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 	networkFabricInterconnectDeploymentCheckRequest *NetworkFabricInterconnectDeploymentCheckRequest
 }
 
@@ -1834,7 +1834,7 @@ Per-link readiness report. Validates each requested link's switch BGP variables 
  @param id The ID of the network fabric interconnect
  @return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentCheckRequest
 */
-func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectDeploymentCheck(ctx context.Context, id int32) NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentCheckRequest {
+func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectDeploymentCheck(ctx context.Context, id int64) NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentCheckRequest {
 	return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentCheckRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1923,7 +1923,7 @@ func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectDeploy
 type NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 }
 
 func (r NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest) Execute() (*NetworkFabricInterconnectDeploymentInfo, *http.Response, error) {
@@ -1939,7 +1939,7 @@ Returns deployment info such as deploy ID, status, and generated configuration f
  @param id The ID of the network fabric interconnect
  @return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest
 */
-func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectDeploymentInfo(ctx context.Context, id int32) NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest {
+func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectDeploymentInfo(ctx context.Context, id int64) NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest {
 	return NetworkFabricInterconnectAPIGetNetworkFabricInterconnectDeploymentInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2384,7 +2384,7 @@ func (a *NetworkFabricInterconnectAPIService) GetNetworkFabricInterconnectsExecu
 type NetworkFabricInterconnectAPIRejectNetworkFabricInterconnectDeployRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id float32
+	id int64
 }
 
 func (r NetworkFabricInterconnectAPIRejectNetworkFabricInterconnectDeployRequest) Execute() (*http.Response, error) {
@@ -2400,7 +2400,7 @@ Rejects the deployment of the specified network fabric interconnect
  @param id
  @return NetworkFabricInterconnectAPIRejectNetworkFabricInterconnectDeployRequest
 */
-func (a *NetworkFabricInterconnectAPIService) RejectNetworkFabricInterconnectDeploy(ctx context.Context, id float32) NetworkFabricInterconnectAPIRejectNetworkFabricInterconnectDeployRequest {
+func (a *NetworkFabricInterconnectAPIService) RejectNetworkFabricInterconnectDeploy(ctx context.Context, id int64) NetworkFabricInterconnectAPIRejectNetworkFabricInterconnectDeployRequest {
 	return NetworkFabricInterconnectAPIRejectNetworkFabricInterconnectDeployRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2476,7 +2476,7 @@ func (a *NetworkFabricInterconnectAPIService) RejectNetworkFabricInterconnectDep
 type NetworkFabricInterconnectAPIUpdateNetworkFabricInterconnectRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricInterconnectAPIService
-	id int32
+	id int64
 	updateNetworkFabricInterconnect *UpdateNetworkFabricInterconnect
 	ifMatch *string
 }
@@ -2504,7 +2504,7 @@ UpdateNetworkFabricInterconnect Update a network fabric interconnect
  @param id The ID of the network fabric interconnect to update
  @return NetworkFabricInterconnectAPIUpdateNetworkFabricInterconnectRequest
 */
-func (a *NetworkFabricInterconnectAPIService) UpdateNetworkFabricInterconnect(ctx context.Context, id int32) NetworkFabricInterconnectAPIUpdateNetworkFabricInterconnectRequest {
+func (a *NetworkFabricInterconnectAPIService) UpdateNetworkFabricInterconnect(ctx context.Context, id int64) NetworkFabricInterconnectAPIUpdateNetworkFabricInterconnectRequest {
 	return NetworkFabricInterconnectAPIUpdateNetworkFabricInterconnectRequest{
 		ApiService: a,
 		ctx: ctx,

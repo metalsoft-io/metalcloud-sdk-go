@@ -28,7 +28,7 @@ type DriveAPIService service
 type DriveAPICreateDriveRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
+	infrastructureId int64
 	createSharedDrive *CreateSharedDrive
 }
 
@@ -48,7 +48,7 @@ CreateDrive Create a new Drive
  @param infrastructureId
  @return DriveAPICreateDriveRequest
 */
-func (a *DriveAPIService) CreateDrive(ctx context.Context, infrastructureId float32) DriveAPICreateDriveRequest {
+func (a *DriveAPIService) CreateDrive(ctx context.Context, infrastructureId int64) DriveAPICreateDriveRequest {
 	return DriveAPICreateDriveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -140,8 +140,8 @@ func (a *DriveAPIService) CreateDriveExecute(r DriveAPICreateDriveRequest) (*Sha
 type DriveAPICreateDriveSnapshotRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 }
 
 func (r DriveAPICreateDriveSnapshotRequest) Execute() (*SharedDriveSnapshot, *http.Response, error) {
@@ -156,7 +156,7 @@ CreateDriveSnapshot Create a snapshot of the specified Drive
  @param driveId
  @return DriveAPICreateDriveSnapshotRequest
 */
-func (a *DriveAPIService) CreateDriveSnapshot(ctx context.Context, infrastructureId float32, driveId float32) DriveAPICreateDriveSnapshotRequest {
+func (a *DriveAPIService) CreateDriveSnapshot(ctx context.Context, infrastructureId int64, driveId int64) DriveAPICreateDriveSnapshotRequest {
 	return DriveAPICreateDriveSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -245,8 +245,8 @@ func (a *DriveAPIService) CreateDriveSnapshotExecute(r DriveAPICreateDriveSnapsh
 type DriveAPIDeleteDriveRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 	ifMatch *string
 }
 
@@ -268,7 +268,7 @@ DeleteDrive Deletes a Drive
  @param driveId
  @return DriveAPIDeleteDriveRequest
 */
-func (a *DriveAPIService) DeleteDrive(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIDeleteDriveRequest {
+func (a *DriveAPIService) DeleteDrive(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIDeleteDriveRequest {
 	return DriveAPIDeleteDriveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -349,8 +349,8 @@ func (a *DriveAPIService) DeleteDriveExecute(r DriveAPIDeleteDriveRequest) (*htt
 type DriveAPIDeleteDriveSnapshotRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 	deleteSharedDriveSnapshot *DeleteSharedDriveSnapshot
 }
 
@@ -371,7 +371,7 @@ DeleteDriveSnapshot Delete a snapshot of the specified Drive
  @param driveId
  @return DriveAPIDeleteDriveSnapshotRequest
 */
-func (a *DriveAPIService) DeleteDriveSnapshot(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIDeleteDriveSnapshotRequest {
+func (a *DriveAPIService) DeleteDriveSnapshot(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIDeleteDriveSnapshotRequest {
 	return DriveAPIDeleteDriveSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -454,7 +454,7 @@ func (a *DriveAPIService) DeleteDriveSnapshotExecute(r DriveAPIDeleteDriveSnapsh
 type DriveAPIGetDriveRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	driveId float32
+	driveId int64
 }
 
 func (r DriveAPIGetDriveRequest) Execute() (*SharedDrive, *http.Response, error) {
@@ -470,7 +470,7 @@ Returns Drive information
  @param driveId
  @return DriveAPIGetDriveRequest
 */
-func (a *DriveAPIService) GetDrive(ctx context.Context, driveId float32) DriveAPIGetDriveRequest {
+func (a *DriveAPIService) GetDrive(ctx context.Context, driveId int64) DriveAPIGetDriveRequest {
 	return DriveAPIGetDriveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -557,8 +557,8 @@ func (a *DriveAPIService) GetDriveExecute(r DriveAPIGetDriveRequest) (*SharedDri
 type DriveAPIGetDriveConfigInfoRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 }
 
 func (r DriveAPIGetDriveConfigInfoRequest) Execute() (*SharedDriveConfiguration, *http.Response, error) {
@@ -573,7 +573,7 @@ GetDriveConfigInfo Get configuration information about the specified Drive
  @param driveId
  @return DriveAPIGetDriveConfigInfoRequest
 */
-func (a *DriveAPIService) GetDriveConfigInfo(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIGetDriveConfigInfoRequest {
+func (a *DriveAPIService) GetDriveConfigInfo(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIGetDriveConfigInfoRequest {
 	return DriveAPIGetDriveConfigInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -662,8 +662,8 @@ func (a *DriveAPIService) GetDriveConfigInfoExecute(r DriveAPIGetDriveConfigInfo
 type DriveAPIGetDriveHostsRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 }
 
 func (r DriveAPIGetDriveHostsRequest) Execute() (*SharedDriveHosts, *http.Response, error) {
@@ -680,7 +680,7 @@ Returns the Hosts of Drive
  @param driveId
  @return DriveAPIGetDriveHostsRequest
 */
-func (a *DriveAPIService) GetDriveHosts(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIGetDriveHostsRequest {
+func (a *DriveAPIService) GetDriveHosts(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIGetDriveHostsRequest {
 	return DriveAPIGetDriveHostsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -769,8 +769,8 @@ func (a *DriveAPIService) GetDriveHostsExecute(r DriveAPIGetDriveHostsRequest) (
 type DriveAPIGetDriveSnapshotsRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 }
 
 func (r DriveAPIGetDriveSnapshotsRequest) Execute() ([]SharedDriveSnapshot, *http.Response, error) {
@@ -785,7 +785,7 @@ GetDriveSnapshots Get snapshots of the specified Drive
  @param driveId
  @return DriveAPIGetDriveSnapshotsRequest
 */
-func (a *DriveAPIService) GetDriveSnapshots(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIGetDriveSnapshotsRequest {
+func (a *DriveAPIService) GetDriveSnapshots(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIGetDriveSnapshotsRequest {
 	return DriveAPIGetDriveSnapshotsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -874,8 +874,8 @@ func (a *DriveAPIService) GetDriveSnapshotsExecute(r DriveAPIGetDriveSnapshotsRe
 type DriveAPIGetInfrastructureDriveRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 }
 
 func (r DriveAPIGetInfrastructureDriveRequest) Execute() (*SharedDrive, *http.Response, error) {
@@ -892,7 +892,7 @@ Returns Drive information
  @param driveId
  @return DriveAPIGetInfrastructureDriveRequest
 */
-func (a *DriveAPIService) GetInfrastructureDrive(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIGetInfrastructureDriveRequest {
+func (a *DriveAPIService) GetInfrastructureDrive(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIGetInfrastructureDriveRequest {
 	return DriveAPIGetInfrastructureDriveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -981,7 +981,7 @@ func (a *DriveAPIService) GetInfrastructureDriveExecute(r DriveAPIGetInfrastruct
 type DriveAPIGetInfrastructureDrivesRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterLabel *[]string
@@ -1130,7 +1130,7 @@ Returns list of all Drives on the infrastructure
  @param infrastructureId
  @return DriveAPIGetInfrastructureDrivesRequest
 */
-func (a *DriveAPIService) GetInfrastructureDrives(ctx context.Context, infrastructureId float32) DriveAPIGetInfrastructureDrivesRequest {
+func (a *DriveAPIService) GetInfrastructureDrives(ctx context.Context, infrastructureId int64) DriveAPIGetInfrastructureDrivesRequest {
 	return DriveAPIGetInfrastructureDrivesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1402,8 +1402,8 @@ func (a *DriveAPIService) GetInfrastructureDrivesExecute(r DriveAPIGetInfrastruc
 type DriveAPIPatchDriveConfigRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 	updateSharedDrive *UpdateSharedDrive
 	ifMatch *string
 }
@@ -1431,7 +1431,7 @@ PatchDriveConfig Updates the config of a Drive
  @param driveId
  @return DriveAPIPatchDriveConfigRequest
 */
-func (a *DriveAPIService) PatchDriveConfig(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIPatchDriveConfigRequest {
+func (a *DriveAPIService) PatchDriveConfig(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIPatchDriveConfigRequest {
 	return DriveAPIPatchDriveConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1528,8 +1528,8 @@ func (a *DriveAPIService) PatchDriveConfigExecute(r DriveAPIPatchDriveConfigRequ
 type DriveAPIPatchDriveMetaRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 	updateSharedDriveMeta *UpdateSharedDriveMeta
 }
 
@@ -1550,7 +1550,7 @@ PatchDriveMeta Updates the meta of a Drive
  @param driveId
  @return DriveAPIPatchDriveMetaRequest
 */
-func (a *DriveAPIService) PatchDriveMeta(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIPatchDriveMetaRequest {
+func (a *DriveAPIService) PatchDriveMeta(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIPatchDriveMetaRequest {
 	return DriveAPIPatchDriveMetaRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1644,8 +1644,8 @@ func (a *DriveAPIService) PatchDriveMetaExecute(r DriveAPIPatchDriveMetaRequest)
 type DriveAPIRestoreDriveToSnapshotRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 	restoreSharedDriveSnapshot *RestoreSharedDriveSnapshot
 }
 
@@ -1666,7 +1666,7 @@ RestoreDriveToSnapshot Restore a Drive to a specified snapshot
  @param driveId
  @return DriveAPIRestoreDriveToSnapshotRequest
 */
-func (a *DriveAPIService) RestoreDriveToSnapshot(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIRestoreDriveToSnapshotRequest {
+func (a *DriveAPIService) RestoreDriveToSnapshot(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIRestoreDriveToSnapshotRequest {
 	return DriveAPIRestoreDriveToSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1749,8 +1749,8 @@ func (a *DriveAPIService) RestoreDriveToSnapshotExecute(r DriveAPIRestoreDriveTo
 type DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
-	infrastructureId float32
-	driveId float32
+	infrastructureId int64
+	driveId int64
 	sharedDriveHostsModifyBulk *SharedDriveHostsModifyBulk
 }
 
@@ -1774,7 +1774,7 @@ Updates Server Instance Group Hosts on the Drive
  @param driveId
  @return DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest
 */
-func (a *DriveAPIService) UpdateDriveServerInstanceGroupHostsBulk(ctx context.Context, infrastructureId float32, driveId float32) DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest {
+func (a *DriveAPIService) UpdateDriveServerInstanceGroupHostsBulk(ctx context.Context, infrastructureId int64, driveId int64) DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest {
 	return DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest{
 		ApiService: a,
 		ctx: ctx,

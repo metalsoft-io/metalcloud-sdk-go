@@ -26,7 +26,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.ArchiveServer(context.Background(), serverId).Execute()
 
@@ -39,7 +39,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.ConnectServerInterface(context.Background(), serverId).Execute()
 
@@ -52,7 +52,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.DeleteServer(context.Background(), serverId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.EnableServerSyslog(context.Background(), serverId).Execute()
 
@@ -78,7 +78,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.GetServerCapabilities(context.Background(), serverId).Execute()
 
@@ -92,7 +92,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.GetServerCredentials(context.Background(), serverId).Execute()
 
@@ -106,7 +106,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.GetServerInfo(context.Background(), serverId).Execute()
 
@@ -120,7 +120,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.GetServerPowerStatus(context.Background(), serverId).Execute()
 
@@ -134,7 +134,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.GetServerRemoteConsoleInfo(context.Background(), serverId).Execute()
 
@@ -148,7 +148,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.GetServerVNCInfo(context.Background(), serverId).Execute()
 
@@ -186,7 +186,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.IdentifyServer(context.Background(), serverId).Execute()
 
@@ -199,7 +199,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.ReRegisterServer(context.Background(), serverId).Execute()
 
@@ -237,7 +237,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.ResetServerToFactoryDefaults(context.Background(), serverId).Execute()
 
@@ -250,7 +250,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.ServerHardwareRescan(context.Background(), serverId).Execute()
 
@@ -264,7 +264,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.SetServerInterfacesDefaultFabric(context.Background(), serverId).Execute()
 
@@ -277,7 +277,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.SetServerInterfacesRedundancyGroup(context.Background(), serverId).Execute()
 
@@ -290,7 +290,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerAPI.SetServerPowerState(context.Background(), serverId).Execute()
 
@@ -303,7 +303,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.UpdateServer(context.Background(), serverId).Execute()
 
@@ -317,7 +317,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.UpdateServerEnableSnmp(context.Background(), serverId).Execute()
 
@@ -331,7 +331,7 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.UpdateServerIpmiCredentials(context.Background(), serverId).Execute()
 

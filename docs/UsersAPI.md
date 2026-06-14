@@ -51,8 +51,8 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | ID of the user
-	delegateId := float32(8.14) // float32 | ID of the delegate to add
+	userId := int64(789) // int64 | ID of the user
+	delegateId := int64(789) // int64 | ID of the delegate to add
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -72,8 +72,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** | ID of the user | 
-**delegateId** | **float32** | ID of the delegate to add | 
+**userId** | **int64** | ID of the user | 
+**delegateId** | **int64** | ID of the delegate to add | 
 
 ### Other Parameters
 
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	createUserSSHKey := *openapiclient.NewCreateUserSSHKey("SshKey_example") // CreateUserSSHKey | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -143,7 +143,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -194,7 +194,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -215,7 +215,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -266,7 +266,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	changeUserAccount := *openapiclient.NewChangeUserAccount(int64(123)) // ChangeUserAccount | The new account id
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -288,7 +288,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -404,8 +404,8 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
-	keyId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
+	keyId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -423,8 +423,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
-**keyId** | **float32** |  | 
+**userId** | **int64** |  | 
+**keyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -475,7 +475,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	includeUsage := true // bool |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -496,7 +496,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -547,7 +547,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -567,7 +567,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -615,7 +615,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -635,7 +635,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -683,7 +683,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -703,7 +703,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -751,7 +751,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -771,7 +771,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -819,8 +819,8 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
-	keyId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
+	keyId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -840,8 +840,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
-**keyId** | **float32** |  | 
+**userId** | **int64** |  | 
+**keyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -890,7 +890,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -910,7 +910,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -958,7 +958,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -978,7 +978,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1116,8 +1116,8 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | ID of the user
-	delegateId := float32(8.14) // float32 | ID of the delegate to remove
+	userId := int64(789) // int64 | ID of the user
+	delegateId := int64(789) // int64 | ID of the delegate to remove
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1137,8 +1137,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** | ID of the user | 
-**delegateId** | **float32** | ID of the delegate to remove | 
+**userId** | **int64** | ID of the user | 
+**delegateId** | **int64** | ID of the delegate to remove | 
 
 ### Other Parameters
 
@@ -1187,7 +1187,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	resendUserVerificationEmail := *openapiclient.NewResendUserVerificationEmail() // ResendUserVerificationEmail | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1208,7 +1208,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1257,7 +1257,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	resendUserInvitation := *openapiclient.NewResendUserInvitation() // ResendUserInvitation | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1278,7 +1278,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1327,7 +1327,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	passwordResetByAdmin := *openapiclient.NewPasswordResetByAdmin() // PasswordResetByAdmin | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1348,7 +1348,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1397,7 +1397,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	setUserPasswordByAdmin := *openapiclient.NewSetUserPasswordByAdmin("Password_example") // SetUserPasswordByAdmin | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1419,7 +1419,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1469,7 +1469,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	userSuspend := *openapiclient.NewUserSuspend("SuspendReason_example", "SuspendReasonPublicComment_example") // UserSuspend | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1491,7 +1491,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1543,7 +1543,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1564,7 +1564,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1613,7 +1613,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1632,7 +1632,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1683,7 +1683,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	updateUser := *openapiclient.NewUpdateUser() // UpdateUser | The user updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1705,7 +1705,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1755,7 +1755,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 	userMeta := *openapiclient.NewUserMeta() // UserMeta | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1776,7 +1776,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 

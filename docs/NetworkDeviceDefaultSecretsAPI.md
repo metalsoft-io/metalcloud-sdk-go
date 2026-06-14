@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	networkDeviceDefaultSecretsId := float32(8.14) // float32 | 
+	networkDeviceDefaultSecretsId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceDefaultSecretsId** | **float32** |  | 
+**networkDeviceDefaultSecretsId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-	networkDeviceDefaultSecretsId := float32(8.14) // float32 | 
+	networkDeviceDefaultSecretsId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceDefaultSecretsId** | **float32** |  | 
+**networkDeviceDefaultSecretsId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -238,7 +238,7 @@ import (
 )
 
 func main() {
-	networkDeviceDefaultSecretsId := float32(8.14) // float32 | 
+	networkDeviceDefaultSecretsId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -258,7 +258,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceDefaultSecretsId** | **float32** |  | 
+**networkDeviceDefaultSecretsId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	networkDeviceDefaultSecretsId := float32(8.14) // float32 | 
+	networkDeviceDefaultSecretsId := int64(789) // int64 | 
 	updateNetworkDeviceDefaultSecrets := *openapiclient.NewUpdateNetworkDeviceDefaultSecrets() // UpdateNetworkDeviceDefaultSecrets | The NetworkDevice Default Secrets update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceDefaultSecretsId** | **float32** |  | 
+**networkDeviceDefaultSecretsId** | **int64** |  | 
 
 ### Other Parameters
 

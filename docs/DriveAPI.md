@@ -40,7 +40,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123), int64(123)) // CreateSharedDrive | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -61,7 +61,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -110,8 +110,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -131,8 +131,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -181,8 +181,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -201,8 +201,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -252,8 +252,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 	deleteSharedDriveSnapshot := *openapiclient.NewDeleteSharedDriveSnapshot("Name_example") // DeleteSharedDriveSnapshot | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -272,8 +272,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -325,7 +325,7 @@ import (
 )
 
 func main() {
-	driveId := float32(8.14) // float32 | 
+	driveId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -345,7 +345,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**driveId** | **float32** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -393,8 +393,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -414,8 +414,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -466,8 +466,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -487,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -537,8 +537,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -558,8 +558,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -610,8 +610,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -631,8 +631,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -683,7 +683,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -722,7 +722,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -789,8 +789,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 	updateSharedDrive := *openapiclient.NewUpdateSharedDrive() // UpdateSharedDrive | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -812,8 +812,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -864,8 +864,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 	updateSharedDriveMeta := *openapiclient.NewUpdateSharedDriveMeta("Name_example") // UpdateSharedDriveMeta | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -886,8 +886,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -937,8 +937,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 	restoreSharedDriveSnapshot := *openapiclient.NewRestoreSharedDriveSnapshot("Name_example") // RestoreSharedDriveSnapshot | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -957,8 +957,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1010,8 +1010,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	driveId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	driveId := int64(789) // int64 | 
 	sharedDriveHostsModifyBulk := *openapiclient.NewSharedDriveHostsModifyBulk([]openapiclient.SharedDriveHostBulkOperation{*openapiclient.NewSharedDriveHostBulkOperation(int64(123), "OperationType_example")}) // SharedDriveHostsModifyBulk | The Drive Server Instance Group Hosts update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -1032,8 +1032,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**driveId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**driveId** | **int64** |  | 
 
 ### Other Parameters
 

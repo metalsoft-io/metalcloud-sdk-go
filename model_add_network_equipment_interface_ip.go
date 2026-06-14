@@ -21,7 +21,6 @@ var _ MappedNullable = &AddNetworkEquipmentInterfaceIp{}
 
 // AddNetworkEquipmentInterfaceIp struct for AddNetworkEquipmentInterfaceIp
 type AddNetworkEquipmentInterfaceIp struct {
-	Kind string `json:"kind"`
 	// Address (e.g. \"10.0.0.1\" or \"2001:db8::1\"). No CIDR.
 	Address string `json:"address"`
 	// Prefix length. 0..32 for ipv4; 0..128 for ipv6.
@@ -35,9 +34,8 @@ type _AddNetworkEquipmentInterfaceIp AddNetworkEquipmentInterfaceIp
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddNetworkEquipmentInterfaceIp(kind string, address string, prefixLength int32) *AddNetworkEquipmentInterfaceIp {
+func NewAddNetworkEquipmentInterfaceIp(address string, prefixLength int32) *AddNetworkEquipmentInterfaceIp {
 	this := AddNetworkEquipmentInterfaceIp{}
-	this.Kind = kind
 	this.Address = address
 	this.PrefixLength = prefixLength
 	return &this
@@ -49,30 +47,6 @@ func NewAddNetworkEquipmentInterfaceIp(kind string, address string, prefixLength
 func NewAddNetworkEquipmentInterfaceIpWithDefaults() *AddNetworkEquipmentInterfaceIp {
 	this := AddNetworkEquipmentInterfaceIp{}
 	return &this
-}
-
-// GetKind returns the Kind field value
-func (o *AddNetworkEquipmentInterfaceIp) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *AddNetworkEquipmentInterfaceIp) GetKindOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *AddNetworkEquipmentInterfaceIp) SetKind(v string) {
-	o.Kind = v
 }
 
 // GetAddress returns the Address field value
@@ -133,7 +107,6 @@ func (o AddNetworkEquipmentInterfaceIp) MarshalJSON() ([]byte, error) {
 
 func (o AddNetworkEquipmentInterfaceIp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["kind"] = o.Kind
 	toSerialize["address"] = o.Address
 	toSerialize["prefixLength"] = o.PrefixLength
 
@@ -149,7 +122,6 @@ func (o *AddNetworkEquipmentInterfaceIp) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"kind",
 		"address",
 		"prefixLength",
 	}
@@ -181,7 +153,6 @@ func (o *AddNetworkEquipmentInterfaceIp) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "kind")
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "prefixLength")
 		o.AdditionalProperties = additionalProperties

@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateNetworkFabricLinkAggregation{}
 // UpdateNetworkFabricLinkAggregation struct for UpdateNetworkFabricLinkAggregation
 type UpdateNetworkFabricLinkAggregation struct {
 	// List of link IDs to be associated with the link aggregation
-	LinkIds []float32 `json:"linkIds"`
+	LinkIds []int64 `json:"linkIds"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _UpdateNetworkFabricLinkAggregation UpdateNetworkFabricLinkAggregation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateNetworkFabricLinkAggregation(linkIds []float32) *UpdateNetworkFabricLinkAggregation {
+func NewUpdateNetworkFabricLinkAggregation(linkIds []int64) *UpdateNetworkFabricLinkAggregation {
 	this := UpdateNetworkFabricLinkAggregation{}
 	this.LinkIds = linkIds
 	return &this
@@ -47,9 +47,9 @@ func NewUpdateNetworkFabricLinkAggregationWithDefaults() *UpdateNetworkFabricLin
 }
 
 // GetLinkIds returns the LinkIds field value
-func (o *UpdateNetworkFabricLinkAggregation) GetLinkIds() []float32 {
+func (o *UpdateNetworkFabricLinkAggregation) GetLinkIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *UpdateNetworkFabricLinkAggregation) GetLinkIds() []float32 {
 
 // GetLinkIdsOk returns a tuple with the LinkIds field value
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkFabricLinkAggregation) GetLinkIdsOk() ([]float32, bool) {
+func (o *UpdateNetworkFabricLinkAggregation) GetLinkIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *UpdateNetworkFabricLinkAggregation) GetLinkIdsOk() ([]float32, bool) {
 }
 
 // SetLinkIds sets field value
-func (o *UpdateNetworkFabricLinkAggregation) SetLinkIds(v []float32) {
+func (o *UpdateNetworkFabricLinkAggregation) SetLinkIds(v []int64) {
 	o.LinkIds = v
 }
 

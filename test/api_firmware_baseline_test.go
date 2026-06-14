@@ -38,7 +38,7 @@ func Test_sdk_FirmwareBaselineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareBaselineId float32
+		var firmwareBaselineId int64
 
 		httpRes, err := apiClient.FirmwareBaselineAPI.DeleteFirmwareBaseline(context.Background(), firmwareBaselineId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_FirmwareBaselineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareBaselineId float32
+		var firmwareBaselineId int64
 
 		resp, httpRes, err := apiClient.FirmwareBaselineAPI.GetFirmwareBaseline(context.Background(), firmwareBaselineId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_FirmwareBaselineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareBaselineId float32
+		var firmwareBaselineId int64
 
 		resp, httpRes, err := apiClient.FirmwareBaselineAPI.UpdateFirmwareBaseline(context.Background(), firmwareBaselineId).Execute()
 

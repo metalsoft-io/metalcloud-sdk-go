@@ -5,11 +5,13 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddNetworkDeviceDefaults**](NetworkDeviceAPI.md#AddNetworkDeviceDefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
-[**AddNetworkDevicePortIp**](NetworkDeviceAPI.md#AddNetworkDevicePortIp) | **Post** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses | Stage adding an IP address to a port
+[**AddNetworkDevicePortIp**](NetworkDeviceAPI.md#AddNetworkDevicePortIp) | **Post** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Stage adding an IP address of an address family to a port
 [**ArchiveNetworkDevice**](NetworkDeviceAPI.md#ArchiveNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
 [**CreateNetworkDevice**](NetworkDeviceAPI.md#CreateNetworkDevice) | **Post** /api/v2/network-devices | Create Network Device
-[**CreateNetworkDevicePort**](NetworkDeviceAPI.md#CreateNetworkDevicePort) | **Post** /api/v2/network-devices/{networkDeviceId}/ports | Stage creation of a logical port on a network device
+[**CreateNetworkDeviceBreakout**](NetworkDeviceAPI.md#CreateNetworkDeviceBreakout) | **Post** /api/v2/network-devices/{networkDeviceId}/breakouts | Create a port breakout (Cumulus only)
+[**CreateNetworkDevicePort**](NetworkDeviceAPI.md#CreateNetworkDevicePort) | **Post** /api/v2/network-devices/{networkDeviceId}/ports | Stage creation of a logical port on a network device (not supported yet — returns 501)
 [**DeleteNetworkDevice**](NetworkDeviceAPI.md#DeleteNetworkDevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
+[**DeleteNetworkDeviceBreakout**](NetworkDeviceAPI.md#DeleteNetworkDeviceBreakout) | **Delete** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId} | Remove a port breakout (un-breakout)
 [**DeleteNetworkDevicePort**](NetworkDeviceAPI.md#DeleteNetworkDevicePort) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId} | Stage removal of a port
 [**DisableNetworkDeviceSnmpMonitoring**](NetworkDeviceAPI.md#DisableNetworkDeviceSnmpMonitoring) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/snmp-monitoring-unsubscribe | Disables SNMP monitoring for a network device
 [**DisableNetworkDeviceSnmpMonitoringBatch**](NetworkDeviceAPI.md#DisableNetworkDeviceSnmpMonitoringBatch) | **Post** /api/v2/network-devices/actions/snmp-monitoring-unsubscribe/batch | Disables SNMP monitoring for a batch of network devices
@@ -21,13 +23,14 @@ Method | HTTP request | Description
 [**EnableNetworkDeviceSnmpService**](NetworkDeviceAPI.md#EnableNetworkDeviceSnmpService) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/snmp-service-enable | Enables SNMP service on a network device
 [**EnableNetworkDeviceSyslog**](NetworkDeviceAPI.md#EnableNetworkDeviceSyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
 [**GetNetworkDevice**](NetworkDeviceAPI.md#GetNetworkDevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
+[**GetNetworkDeviceBreakout**](NetworkDeviceAPI.md#GetNetworkDeviceBreakout) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId} | Get a port breakout by id
+[**GetNetworkDeviceBreakoutConfig**](NetworkDeviceAPI.md#GetNetworkDeviceBreakoutConfig) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId}/config | Get the staged (desired) breakout groups for a port breakout
 [**GetNetworkDeviceCredentials**](NetworkDeviceAPI.md#GetNetworkDeviceCredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
 [**GetNetworkDeviceDefaults**](NetworkDeviceAPI.md#GetNetworkDeviceDefaults) | **Get** /api/v2/network-devices/defaults/{siteId} | Get network device defaults for a site
 [**GetNetworkDeviceHealthSummary**](NetworkDeviceAPI.md#GetNetworkDeviceHealthSummary) | **Get** /api/v2/network-devices/{networkDeviceId}/health-summary | Get Network Device health summary
 [**GetNetworkDevicePort**](NetworkDeviceAPI.md#GetNetworkDevicePort) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId} | Get one port on a network device
-[**GetNetworkDevicePortBreakout**](NetworkDeviceAPI.md#GetNetworkDevicePortBreakout) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/breakout | Get the breakout aspect for a port (or null when not broken out)
 [**GetNetworkDevicePortConfig**](NetworkDeviceAPI.md#GetNetworkDevicePortConfig) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/config | Get the desired-state config for a port
-[**GetNetworkDevicePortIp**](NetworkDeviceAPI.md#GetNetworkDevicePortIp) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses/{ipId} | Get one IP-address aspect row on a port
+[**GetNetworkDevicePortIp**](NetworkDeviceAPI.md#GetNetworkDevicePortIp) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses/{ipId} | Get one IP-address aspect row on a port
 [**GetNetworkDevicePortVirtualFunction**](NetworkDeviceAPI.md#GetNetworkDevicePortVirtualFunction) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/virtual-functions/{virtualFunctionId} | Get a specific virtual function for a specific port on a network device
 [**GetNetworkDevicePortVirtualFunctions**](NetworkDeviceAPI.md#GetNetworkDevicePortVirtualFunctions) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/virtual-functions | Get virtual functions for a specific port on a network device
 [**GetNetworkDevicePorts**](NetworkDeviceAPI.md#GetNetworkDevicePorts) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get paginated ports for a network device from the database
@@ -40,21 +43,22 @@ Method | HTTP request | Description
 [**GetNetworkDeviceVirtualFunctions**](NetworkDeviceAPI.md#GetNetworkDeviceVirtualFunctions) | **Get** /api/v2/network-devices/{networkDeviceId}/virtual-functions | Get virtual functions for a specific network device
 [**GetNetworkDevices**](NetworkDeviceAPI.md#GetNetworkDevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 [**GetPorts**](NetworkDeviceAPI.md#GetPorts) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
-[**ListNetworkDevicePortIps**](NetworkDeviceAPI.md#ListNetworkDevicePortIps) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses | List IP addresses on a port
+[**ListNetworkDeviceBreakouts**](NetworkDeviceAPI.md#ListNetworkDeviceBreakouts) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts | List all port breakouts on a network device
+[**ListNetworkDevicePortIps**](NetworkDeviceAPI.md#ListNetworkDevicePortIps) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | List IP addresses of an address family on a port
+[**NetworkDeviceSyncTargetSnapshotWithLatestSnapshot**](NetworkDeviceAPI.md#NetworkDeviceSyncTargetSnapshotWithLatestSnapshot) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/sync-target-snapshot-with-latest-snapshot | Updates the target snapshot id to be the latest snapshot of the network device
 [**ReProvisionNetworkDevice**](NetworkDeviceAPI.md#ReProvisionNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/re-provision | Re-provision network device
 [**RemoveNetworkDeviceDefaults**](NetworkDeviceAPI.md#RemoveNetworkDeviceDefaults) | **Delete** /api/v2/network-devices/defaults/{siteId}/{id} | Remove network device defaults
-[**RemoveNetworkDevicePortIp**](NetworkDeviceAPI.md#RemoveNetworkDevicePortIp) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses/{ipId} | Stage removal of an IP address from a port
+[**RemoveNetworkDevicePortIp**](NetworkDeviceAPI.md#RemoveNetworkDevicePortIp) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses/{ipId} | Stage removal of an IP address from a port
 [**ReplaceNetworkDevice**](NetworkDeviceAPI.md#ReplaceNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
-[**ReplaceNetworkDevicePortIps**](NetworkDeviceAPI.md#ReplaceNetworkDevicePortIps) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/ip-addresses | Replace the full IP-address set on a port (diff against current)
+[**ReplaceNetworkDevicePortIps**](NetworkDeviceAPI.md#ReplaceNetworkDevicePortIps) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Replace the full IP-address set of an address family on a port (diff against current)
 [**ResetNetworkDevice**](NetworkDeviceAPI.md#ResetNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 [**RevertNetworkDeviceFailedState**](NetworkDeviceAPI.md#RevertNetworkDeviceFailedState) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state | Revert network device failed state
 [**RunExtensionOnNetworkDevice**](NetworkDeviceAPI.md#RunExtensionOnNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
 [**SetNetworkDeviceAsFailed**](NetworkDeviceAPI.md#SetNetworkDeviceAsFailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
 [**SetNetworkDeviceHealthMonitoringFilter**](NetworkDeviceAPI.md#SetNetworkDeviceHealthMonitoringFilter) | **Get** /api/v2/network-devices/health-monitoring-filter | Set the health monitoring WebSocket filter for the current user
-[**SetNetworkDevicePortBreakout**](NetworkDeviceAPI.md#SetNetworkDevicePortBreakout) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/breakout | Stage a breakout on a port (Cumulus only in this slice)
 [**SetNetworkDevicePortStatus**](NetworkDeviceAPI.md#SetNetworkDevicePortStatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
-[**UnsetNetworkDevicePortBreakout**](NetworkDeviceAPI.md#UnsetNetworkDevicePortBreakout) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/breakout | Stage removal of the breakout on a port (un-breakout)
 [**UpdateNetworkDevice**](NetworkDeviceAPI.md#UpdateNetworkDevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
+[**UpdateNetworkDeviceBreakoutConfig**](NetworkDeviceAPI.md#UpdateNetworkDeviceBreakoutConfig) | **Patch** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId}/config | Edit the staged breakout groups (reconciles child interfaces)
 [**UpdateNetworkDevicePortConfig**](NetworkDeviceAPI.md#UpdateNetworkDevicePortConfig) | **Patch** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/config | Stage an update to a port&#39;s desired-state config
 [**UpdateNetworkDeviceVendor**](NetworkDeviceAPI.md#UpdateNetworkDeviceVendor) | **Patch** /api/v2/network-devices/vendors/{vendorId} | Update Network Device Vendor
 
@@ -124,9 +128,9 @@ Name | Type | Description  | Notes
 
 ## AddNetworkDevicePortIp
 
-> NetworkEquipmentInterfaceIp AddNetworkDevicePortIp(ctx, networkDeviceId, portId).AddNetworkEquipmentInterfaceIp(addNetworkEquipmentInterfaceIp).Execute()
+> NetworkEquipmentInterfaceIp AddNetworkDevicePortIp(ctx, networkDeviceId, portId, family).AddNetworkEquipmentInterfaceIp(addNetworkEquipmentInterfaceIp).IfMatch(ifMatch).Execute()
 
-Stage adding an IP address to a port
+Stage adding an IP address of an address family to a port
 
 ### Example
 
@@ -141,13 +145,15 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-	addNetworkEquipmentInterfaceIp := *openapiclient.NewAddNetworkEquipmentInterfaceIp("Kind_example", "Address_example", int32(123)) // AddNetworkEquipmentInterfaceIp | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
+	family := "family_example" // string | 
+	addNetworkEquipmentInterfaceIp := *openapiclient.NewAddNetworkEquipmentInterfaceIp("Address_example", int32(123)) // AddNetworkEquipmentInterfaceIp | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.AddNetworkDevicePortIp(context.Background(), networkDeviceId, portId).AddNetworkEquipmentInterfaceIp(addNetworkEquipmentInterfaceIp).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.AddNetworkDevicePortIp(context.Background(), networkDeviceId, portId, family).AddNetworkEquipmentInterfaceIp(addNetworkEquipmentInterfaceIp).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.AddNetworkDevicePortIp``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -163,8 +169,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
+**family** | **string** |  | 
 
 ### Other Parameters
 
@@ -175,7 +182,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+
  **addNetworkEquipmentInterfaceIp** | [**AddNetworkEquipmentInterfaceIp**](AddNetworkEquipmentInterfaceIp.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
@@ -214,7 +223,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -233,7 +242,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -327,11 +336,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateNetworkDevicePort
+## CreateNetworkDeviceBreakout
 
-> NetworkEquipmentInterface CreateNetworkDevicePort(ctx, networkDeviceId).CreateNetworkEquipmentInterface(createNetworkEquipmentInterface).Execute()
+> NetworkEquipmentBreakout CreateNetworkDeviceBreakout(ctx, networkDeviceId).CreateNetworkEquipmentBreakout(createNetworkEquipmentBreakout).Execute()
 
-Stage creation of a logical port on a network device
+Create a port breakout (Cumulus only)
 
 ### Example
 
@@ -346,7 +355,77 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
+	networkDeviceId := int64(789) // int64 | 
+	createNetworkEquipmentBreakout := *openapiclient.NewCreateNetworkEquipmentBreakout("swp1", []openapiclient.BreakoutGroup{*openapiclient.NewBreakoutGroup(int32(4))}) // CreateNetworkEquipmentBreakout | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.CreateNetworkDeviceBreakout(context.Background(), networkDeviceId).CreateNetworkEquipmentBreakout(createNetworkEquipmentBreakout).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.CreateNetworkDeviceBreakout``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateNetworkDeviceBreakout`: NetworkEquipmentBreakout
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.CreateNetworkDeviceBreakout`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateNetworkDeviceBreakoutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createNetworkEquipmentBreakout** | [**CreateNetworkEquipmentBreakout**](CreateNetworkEquipmentBreakout.md) |  | 
+
+### Return type
+
+[**NetworkEquipmentBreakout**](NetworkEquipmentBreakout.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateNetworkDevicePort
+
+> NetworkEquipmentInterface CreateNetworkDevicePort(ctx, networkDeviceId).CreateNetworkEquipmentInterface(createNetworkEquipmentInterface).Execute()
+
+Stage creation of a logical port on a network device (not supported yet — returns 501)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
 	createNetworkEquipmentInterface := *openapiclient.NewCreateNetworkEquipmentInterface("Kind_example", "Name_example") // CreateNetworkEquipmentInterface | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -367,7 +446,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -416,7 +495,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -434,7 +513,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -463,9 +542,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteNetworkDeviceBreakout
+
+> DeleteNetworkDeviceBreakout(ctx, networkDeviceId, breakoutId).Execute()
+
+Remove a port breakout (un-breakout)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	breakoutId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkDeviceAPI.DeleteNetworkDeviceBreakout(context.Background(), networkDeviceId, breakoutId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.DeleteNetworkDeviceBreakout``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+**breakoutId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteNetworkDeviceBreakoutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteNetworkDevicePort
 
-> DeleteNetworkDevicePort(ctx, networkDeviceId, portId).Execute()
+> DeleteNetworkDevicePort(ctx, networkDeviceId, portId).IfMatch(ifMatch).Execute()
 
 Stage removal of a port
 
@@ -482,12 +630,13 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.DeleteNetworkDevicePort(context.Background(), networkDeviceId, portId).Execute()
+	r, err := apiClient.NetworkDeviceAPI.DeleteNetworkDevicePort(context.Background(), networkDeviceId, portId).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.DeleteNetworkDevicePort``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -501,8 +650,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -513,6 +662,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
@@ -553,7 +703,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -571,7 +721,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -685,7 +835,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -705,7 +855,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -755,7 +905,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -775,7 +925,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -825,7 +975,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device identifier
+	networkDeviceId := int64(789) // int64 | Network device identifier
 	discoveryQuery := *openapiclient.NewDiscoveryQuery([]string{"Discover_example"}, false) // DiscoveryQuery | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -844,7 +994,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device identifier | 
+**networkDeviceId** | **int64** | Network device identifier | 
 
 ### Other Parameters
 
@@ -895,7 +1045,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -913,7 +1063,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -1027,7 +1177,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 	networkDeviceSNMPConfig := *openapiclient.NewNetworkDeviceSNMPConfig() // NetworkDeviceSNMPConfig | The SNMP service configuration
 
 	configuration := openapiclient.NewConfiguration()
@@ -1048,7 +1198,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -1099,7 +1249,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1119,7 +1269,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -1167,7 +1317,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1187,7 +1337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1201,6 +1351,148 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NetworkDevice**](NetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkDeviceBreakout
+
+> NetworkEquipmentBreakout GetNetworkDeviceBreakout(ctx, networkDeviceId, breakoutId).Execute()
+
+Get a port breakout by id
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	breakoutId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceBreakout(context.Background(), networkDeviceId, breakoutId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceBreakout``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkDeviceBreakout`: NetworkEquipmentBreakout
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceBreakout`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+**breakoutId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceBreakoutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**NetworkEquipmentBreakout**](NetworkEquipmentBreakout.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkDeviceBreakoutConfig
+
+> NetworkEquipmentBreakoutConfigDto GetNetworkDeviceBreakoutConfig(ctx, networkDeviceId, breakoutId).Execute()
+
+Get the staged (desired) breakout groups for a port breakout
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	breakoutId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceBreakoutConfig(context.Background(), networkDeviceId, breakoutId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceBreakoutConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkDeviceBreakoutConfig`: NetworkEquipmentBreakoutConfigDto
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceBreakoutConfig`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+**breakoutId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceBreakoutConfigRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**NetworkEquipmentBreakoutConfigDto**](NetworkEquipmentBreakoutConfigDto.md)
 
 ### Authorization
 
@@ -1237,7 +1529,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1257,7 +1549,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1401,7 +1693,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1421,7 +1713,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1469,8 +1761,8 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1490,8 +1782,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1506,77 +1798,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NetworkEquipmentInterface**](NetworkEquipmentInterface.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetNetworkDevicePortBreakout
-
-> NetworkEquipmentInterfaceBreakout GetNetworkDevicePortBreakout(ctx, networkDeviceId, portId).Execute()
-
-Get the breakout aspect for a port (or null when not broken out)
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDevicePortBreakout(context.Background(), networkDeviceId, portId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDevicePortBreakout``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetNetworkDevicePortBreakout`: NetworkEquipmentInterfaceBreakout
-	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDevicePortBreakout`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetNetworkDevicePortBreakoutRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
-[**NetworkEquipmentInterfaceBreakout**](NetworkEquipmentInterfaceBreakout.md)
 
 ### Authorization
 
@@ -1611,8 +1832,8 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1632,8 +1853,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1665,7 +1886,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkDevicePortIp
 
-> NetworkEquipmentInterfaceIp GetNetworkDevicePortIp(ctx, networkDeviceId, portId, ipId).Execute()
+> NetworkEquipmentInterfaceIp GetNetworkDevicePortIp(ctx, networkDeviceId, portId, family, ipId).Execute()
 
 Get one IP-address aspect row on a port
 
@@ -1682,13 +1903,14 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-	ipId := int32(56) // int32 | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
+	family := "family_example" // string | 
+	ipId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDevicePortIp(context.Background(), networkDeviceId, portId, ipId).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDevicePortIp(context.Background(), networkDeviceId, portId, family, ipId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDevicePortIp``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1704,9 +1926,10 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
-**ipId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
+**family** | **string** |  | 
+**ipId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1715,6 +1938,7 @@ Other parameters are passed through a pointer to a apiGetNetworkDevicePortIpRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 
@@ -2009,9 +2233,9 @@ import (
 )
 
 func main() {
-	networkDeviceIds := []float32{float32(123)} // []float32 |  (optional)
-	siteIds := []float32{float32(123)} // []float32 |  (optional)
-	fabricIds := []float32{float32(123)} // []float32 |  (optional)
+	networkDeviceIds := []int64{int64(123)} // []int64 |  (optional)
+	siteIds := []int64{int64(123)} // []int64 |  (optional)
+	fabricIds := []int64{int64(123)} // []int64 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2036,9 +2260,9 @@ Other parameters are passed through a pointer to a apiGetNetworkDeviceSNMPMonito
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **networkDeviceIds** | **[]float32** |  | 
- **siteIds** | **[]float32** |  | 
- **fabricIds** | **[]float32** |  | 
+ **networkDeviceIds** | **[]int64** |  | 
+ **siteIds** | **[]int64** |  | 
+ **fabricIds** | **[]int64** |  | 
 
 ### Return type
 
@@ -2079,7 +2303,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number (1-based) (optional) (default to 1)
 	limit := float32(8.14) // float32 | Number of items per page (max 200) (optional) (default to 20)
 	kind := "kind_example" // string | Filter by commit kind (optional)
@@ -2103,7 +2327,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -2214,7 +2438,7 @@ import (
 )
 
 func main() {
-	vendorId := float32(8.14) // float32 | 
+	vendorId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2234,7 +2458,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**vendorId** | **float32** |  | 
+**vendorId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -2498,7 +2722,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkDevices
 
-> NetworkDevicePaginatedList GetNetworkDevices(ctx).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> NetworkDevicePaginatedList GetNetworkDevices(ctx).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get paginated Network Devices
 
@@ -2530,13 +2754,14 @@ func main() {
 	filterIdentifierString := []string{"Inner_example"} // []string | Filter by identifierString query param.  **Format:** filter.identifierString={$not}:OPERATION:VALUE    **Example:** filter.identifierString=$btw:John Doe&filter.identifierString=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.  **Format:** filter.serverId={$not}:OPERATION:VALUE    **Example:** filter.serverId=$btw:John Doe&filter.serverId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterHealthStatus := []string{"Inner_example"} // []string | Filter by healthStatus query param.  **Format:** filter.healthStatus={$not}:OPERATION:VALUE    **Example:** filter.healthStatus=$btw:John Doe&filter.healthStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  (optional)
+	filterDriftDetectionSyncStatus := []string{"Inner_example"} // []string | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus=$btw:John Doe&filter.driftDetectionSyncStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDevices(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDevices(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2572,9 +2797,10 @@ Name | Type | Description  | Notes
  **filterIdentifierString** | **[]string** | Filter by identifierString query param.  **Format:** filter.identifierString&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.identifierString&#x3D;$btw:John Doe&amp;filter.identifierString&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterServerId** | **[]string** | Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterHealthStatus** | **[]string** | Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  | 
+ **filterDriftDetectionSyncStatus** | **[]string** | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$btw:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  | 
 
 ### Return type
 
@@ -2662,11 +2888,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListNetworkDevicePortIps
+## ListNetworkDeviceBreakouts
 
-> []NetworkEquipmentInterfaceIp ListNetworkDevicePortIps(ctx, networkDeviceId, portId).Kind(kind).Execute()
+> []NetworkEquipmentBreakout ListNetworkDeviceBreakouts(ctx, networkDeviceId).Execute()
 
-List IP addresses on a port
+List all port breakouts on a network device
 
 ### Example
 
@@ -2681,13 +2907,81 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-	kind := "kind_example" // string | 
+	networkDeviceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.ListNetworkDevicePortIps(context.Background(), networkDeviceId, portId).Kind(kind).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.ListNetworkDeviceBreakouts(context.Background(), networkDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ListNetworkDeviceBreakouts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListNetworkDeviceBreakouts`: []NetworkEquipmentBreakout
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.ListNetworkDeviceBreakouts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListNetworkDeviceBreakoutsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**[]NetworkEquipmentBreakout**](NetworkEquipmentBreakout.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListNetworkDevicePortIps
+
+> []NetworkEquipmentInterfaceIp ListNetworkDevicePortIps(ctx, networkDeviceId, portId, family).Execute()
+
+List IP addresses of an address family on a port
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
+	family := "family_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.ListNetworkDevicePortIps(context.Background(), networkDeviceId, portId, family).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ListNetworkDevicePortIps``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2703,8 +2997,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
+**family** | **string** |  | 
 
 ### Other Parameters
 
@@ -2715,7 +3010,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **kind** | **string** |  | 
+
 
 ### Return type
 
@@ -2729,6 +3024,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## NetworkDeviceSyncTargetSnapshotWithLatestSnapshot
+
+> NetworkDeviceSyncTargetSnapshotWithLatestSnapshot(ctx, networkDeviceId).Execute()
+
+Updates the target snapshot id to be the latest snapshot of the network device
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := float32(8.14) // float32 | Network device ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkDeviceAPI.NetworkDeviceSyncTargetSnapshotWithLatestSnapshot(context.Background(), networkDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.NetworkDeviceSyncTargetSnapshotWithLatestSnapshot``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** | Network device ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNetworkDeviceSyncTargetSnapshotWithLatestSnapshotRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2756,7 +3119,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 	networkEquipmentReprovision := *openapiclient.NewNetworkEquipmentReprovision("ReprovisionType_example") // NetworkEquipmentReprovision | The network device re-provision options
 
 	configuration := openapiclient.NewConfiguration()
@@ -2777,7 +3140,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -2827,7 +3190,7 @@ import (
 
 func main() {
 	siteId := float32(8.14) // float32 | 
-	id := float32(8.14) // float32 | The ID of the network device default to remove
+	id := int64(789) // int64 | The ID of the network device default to remove
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2846,7 +3209,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **siteId** | **float32** |  | 
-**id** | **float32** | The ID of the network device default to remove | 
+**id** | **int64** | The ID of the network device default to remove | 
 
 ### Other Parameters
 
@@ -2878,7 +3241,7 @@ Name | Type | Description  | Notes
 
 ## RemoveNetworkDevicePortIp
 
-> RemoveNetworkDevicePortIp(ctx, networkDeviceId, portId, ipId).Execute()
+> RemoveNetworkDevicePortIp(ctx, networkDeviceId, portId, family, ipId).IfMatch(ifMatch).Execute()
 
 Stage removal of an IP address from a port
 
@@ -2895,13 +3258,15 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-	ipId := int32(56) // int32 | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
+	family := "family_example" // string | 
+	ipId := int64(789) // int64 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.RemoveNetworkDevicePortIp(context.Background(), networkDeviceId, portId, ipId).Execute()
+	r, err := apiClient.NetworkDeviceAPI.RemoveNetworkDevicePortIp(context.Background(), networkDeviceId, portId, family, ipId).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.RemoveNetworkDevicePortIp``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2915,9 +3280,10 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
-**ipId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
+**family** | **string** |  | 
+**ipId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -2929,6 +3295,8 @@ Name | Type | Description  | Notes
 
 
 
+
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
@@ -2967,7 +3335,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 	switchReplace := *openapiclient.NewSwitchReplace(int64(123)) // SwitchReplace | Network device replacement details
 
 	configuration := openapiclient.NewConfiguration()
@@ -2988,7 +3356,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -3020,9 +3388,9 @@ Name | Type | Description  | Notes
 
 ## ReplaceNetworkDevicePortIps
 
-> []NetworkEquipmentInterfaceIp ReplaceNetworkDevicePortIps(ctx, networkDeviceId, portId).ReplaceNetworkEquipmentInterfaceIps(replaceNetworkEquipmentInterfaceIps).Execute()
+> []NetworkEquipmentInterfaceIp ReplaceNetworkDevicePortIps(ctx, networkDeviceId, portId, family).ReplaceNetworkEquipmentInterfaceIps(replaceNetworkEquipmentInterfaceIps).IfMatch(ifMatch).Execute()
 
-Replace the full IP-address set on a port (diff against current)
+Replace the full IP-address set of an address family on a port (diff against current)
 
 ### Example
 
@@ -3037,13 +3405,15 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-	replaceNetworkEquipmentInterfaceIps := *openapiclient.NewReplaceNetworkEquipmentInterfaceIps([]openapiclient.AddNetworkEquipmentInterfaceIp{*openapiclient.NewAddNetworkEquipmentInterfaceIp("Kind_example", "Address_example", int32(123))}) // ReplaceNetworkEquipmentInterfaceIps | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
+	family := "family_example" // string | 
+	replaceNetworkEquipmentInterfaceIps := *openapiclient.NewReplaceNetworkEquipmentInterfaceIps([]openapiclient.AddNetworkEquipmentInterfaceIp{*openapiclient.NewAddNetworkEquipmentInterfaceIp("Address_example", int32(123))}) // ReplaceNetworkEquipmentInterfaceIps | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.ReplaceNetworkDevicePortIps(context.Background(), networkDeviceId, portId).ReplaceNetworkEquipmentInterfaceIps(replaceNetworkEquipmentInterfaceIps).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.ReplaceNetworkDevicePortIps(context.Background(), networkDeviceId, portId, family).ReplaceNetworkEquipmentInterfaceIps(replaceNetworkEquipmentInterfaceIps).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ReplaceNetworkDevicePortIps``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3059,8 +3429,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
+**family** | **string** |  | 
 
 ### Other Parameters
 
@@ -3071,7 +3442,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+
  **replaceNetworkEquipmentInterfaceIps** | [**ReplaceNetworkEquipmentInterfaceIps**](ReplaceNetworkEquipmentInterfaceIps.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
@@ -3112,7 +3485,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3130,7 +3503,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -3180,7 +3553,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -3201,7 +3574,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -3250,7 +3623,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 	runExtensionOnPhysicalDevice := *openapiclient.NewRunExtensionOnPhysicalDevice(int64(10), map[string]interface{}(123)) // RunExtensionOnPhysicalDevice | The extension information
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -3272,7 +3645,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -3324,7 +3697,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -3345,7 +3718,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -3377,7 +3750,7 @@ Name | Type | Description  | Notes
 
 ## SetNetworkDeviceHealthMonitoringFilter
 
-> SetNetworkDeviceHealthMonitoringFilter(ctx).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> SetNetworkDeviceHealthMonitoringFilter(ctx).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Set the health monitoring WebSocket filter for the current user
 
@@ -3410,13 +3783,14 @@ func main() {
 	filterIdentifierString := []string{"Inner_example"} // []string | Filter by identifierString query param.  **Format:** filter.identifierString={$not}:OPERATION:VALUE    **Example:** filter.identifierString=$btw:John Doe&filter.identifierString=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.  **Format:** filter.serverId={$not}:OPERATION:VALUE    **Example:** filter.serverId=$btw:John Doe&filter.serverId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterHealthStatus := []string{"Inner_example"} // []string | Filter by healthStatus query param.  **Format:** filter.healthStatus={$not}:OPERATION:VALUE    **Example:** filter.healthStatus=$btw:John Doe&filter.healthStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  (optional)
+	filterDriftDetectionSyncStatus := []string{"Inner_example"} // []string | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus=$btw:John Doe&filter.driftDetectionSyncStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceHealthMonitoringFilter(context.Background()).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceHealthMonitoringFilter(context.Background()).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.SetNetworkDeviceHealthMonitoringFilter``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3451,9 +3825,10 @@ Name | Type | Description  | Notes
  **filterIdentifierString** | **[]string** | Filter by identifierString query param.  **Format:** filter.identifierString&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.identifierString&#x3D;$btw:John Doe&amp;filter.identifierString&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterServerId** | **[]string** | Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterHealthStatus** | **[]string** | Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  | 
+ **filterDriftDetectionSyncStatus** | **[]string** | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$btw:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  | 
 
 ### Return type
 
@@ -3467,79 +3842,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SetNetworkDevicePortBreakout
-
-> NetworkEquipmentInterfaceBreakout SetNetworkDevicePortBreakout(ctx, networkDeviceId, portId).SetNetworkEquipmentInterfaceBreakout(setNetworkEquipmentInterfaceBreakout).Execute()
-
-Stage a breakout on a port (Cumulus only in this slice)
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-	setNetworkEquipmentInterfaceBreakout := *openapiclient.NewSetNetworkEquipmentInterfaceBreakout("4x25G") // SetNetworkEquipmentInterfaceBreakout | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.SetNetworkDevicePortBreakout(context.Background(), networkDeviceId, portId).SetNetworkEquipmentInterfaceBreakout(setNetworkEquipmentInterfaceBreakout).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.SetNetworkDevicePortBreakout``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `SetNetworkDevicePortBreakout`: NetworkEquipmentInterfaceBreakout
-	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.SetNetworkDevicePortBreakout`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetNetworkDevicePortBreakoutRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **setNetworkEquipmentInterfaceBreakout** | [**SetNetworkEquipmentInterfaceBreakout**](SetNetworkEquipmentInterfaceBreakout.md) |  | 
-
-### Return type
-
-[**NetworkEquipmentInterfaceBreakout**](NetworkEquipmentInterfaceBreakout.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -3565,7 +3867,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
+	networkDeviceId := int64(789) // int64 | Network device ID
 	networkDevicePortStatus := *openapiclient.NewNetworkDevicePortStatus([]string{"Ports_example"}, true) // NetworkDevicePortStatus | Port status
 
 	configuration := openapiclient.NewConfiguration()
@@ -3584,7 +3886,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
+**networkDeviceId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
@@ -3614,75 +3916,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UnsetNetworkDevicePortBreakout
-
-> UnsetNetworkDevicePortBreakout(ctx, networkDeviceId, portId).Execute()
-
-Stage removal of the breakout on a port (un-breakout)
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.UnsetNetworkDevicePortBreakout(context.Background(), networkDeviceId, portId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.UnsetNetworkDevicePortBreakout``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUnsetNetworkDevicePortBreakoutRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## UpdateNetworkDevice
 
 > NetworkDevice UpdateNetworkDevice(ctx, networkDeviceId).UpdateNetworkDevice(updateNetworkDevice).IfMatch(ifMatch).Execute()
@@ -3702,7 +3935,7 @@ import (
 )
 
 func main() {
-	networkDeviceId := float32(8.14) // float32 | 
+	networkDeviceId := int64(789) // int64 | 
 	updateNetworkDevice := *openapiclient.NewUpdateNetworkDevice() // UpdateNetworkDevice | The Network Device update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -3724,7 +3957,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
+**networkDeviceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -3755,9 +3988,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateNetworkDeviceBreakoutConfig
+
+> NetworkEquipmentBreakoutConfigDto UpdateNetworkDeviceBreakoutConfig(ctx, networkDeviceId, breakoutId).UpdateNetworkEquipmentBreakoutConfigDto(updateNetworkEquipmentBreakoutConfigDto).IfMatch(ifMatch).Execute()
+
+Edit the staged breakout groups (reconciles child interfaces)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	breakoutId := int64(789) // int64 | 
+	updateNetworkEquipmentBreakoutConfigDto := *openapiclient.NewUpdateNetworkEquipmentBreakoutConfigDto([]openapiclient.BreakoutGroup{*openapiclient.NewBreakoutGroup(int32(4))}) // UpdateNetworkEquipmentBreakoutConfigDto | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.UpdateNetworkDeviceBreakoutConfig(context.Background(), networkDeviceId, breakoutId).UpdateNetworkEquipmentBreakoutConfigDto(updateNetworkEquipmentBreakoutConfigDto).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.UpdateNetworkDeviceBreakoutConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateNetworkDeviceBreakoutConfig`: NetworkEquipmentBreakoutConfigDto
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.UpdateNetworkDeviceBreakoutConfig`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+**breakoutId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateNetworkDeviceBreakoutConfigRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateNetworkEquipmentBreakoutConfigDto** | [**UpdateNetworkEquipmentBreakoutConfigDto**](UpdateNetworkEquipmentBreakoutConfigDto.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**NetworkEquipmentBreakoutConfigDto**](NetworkEquipmentBreakoutConfigDto.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateNetworkDevicePortConfig
 
-> NetworkEquipmentInterfaceConfig UpdateNetworkDevicePortConfig(ctx, networkDeviceId, portId).UpdateNetworkEquipmentInterfaceConfig(updateNetworkEquipmentInterfaceConfig).Execute()
+> NetworkEquipmentInterfaceConfig UpdateNetworkDevicePortConfig(ctx, networkDeviceId, portId).UpdateNetworkEquipmentInterfaceConfig(updateNetworkEquipmentInterfaceConfig).IfMatch(ifMatch).Execute()
 
 Stage an update to a port's desired-state config
 
@@ -3774,13 +4082,14 @@ import (
 )
 
 func main() {
-	networkDeviceId := int32(56) // int32 | 
-	portId := int32(56) // int32 | 
+	networkDeviceId := int64(789) // int64 | 
+	portId := int64(789) // int64 | 
 	updateNetworkEquipmentInterfaceConfig := *openapiclient.NewUpdateNetworkEquipmentInterfaceConfig() // UpdateNetworkEquipmentInterfaceConfig | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.UpdateNetworkDevicePortConfig(context.Background(), networkDeviceId, portId).UpdateNetworkEquipmentInterfaceConfig(updateNetworkEquipmentInterfaceConfig).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.UpdateNetworkDevicePortConfig(context.Background(), networkDeviceId, portId).UpdateNetworkEquipmentInterfaceConfig(updateNetworkEquipmentInterfaceConfig).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.UpdateNetworkDevicePortConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3796,8 +4105,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **int32** |  | 
-**portId** | **int32** |  | 
+**networkDeviceId** | **int64** |  | 
+**portId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -3809,6 +4118,7 @@ Name | Type | Description  | Notes
 
 
  **updateNetworkEquipmentInterfaceConfig** | [**UpdateNetworkEquipmentInterfaceConfig**](UpdateNetworkEquipmentInterfaceConfig.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
@@ -3847,7 +4157,7 @@ import (
 )
 
 func main() {
-	vendorId := float32(8.14) // float32 | 
+	vendorId := int64(789) // int64 | 
 	updateNetworkDeviceVendorsDto := *openapiclient.NewUpdateNetworkDeviceVendorsDto() // UpdateNetworkDeviceVendorsDto | The Network Device Vendor update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -3869,7 +4179,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**vendorId** | **float32** |  | 
+**vendorId** | **int64** |  | 
 
 ### Other Parameters
 

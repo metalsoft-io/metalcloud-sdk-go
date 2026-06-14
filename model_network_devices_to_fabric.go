@@ -22,7 +22,7 @@ var _ MappedNullable = &NetworkDevicesToFabric{}
 // NetworkDevicesToFabric struct for NetworkDevicesToFabric
 type NetworkDevicesToFabric struct {
 	// The network devices IDs to add to the fabric
-	NetworkDeviceIds []float32 `json:"networkDeviceIds"`
+	NetworkDeviceIds []int64 `json:"networkDeviceIds"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _NetworkDevicesToFabric NetworkDevicesToFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevicesToFabric(networkDeviceIds []float32) *NetworkDevicesToFabric {
+func NewNetworkDevicesToFabric(networkDeviceIds []int64) *NetworkDevicesToFabric {
 	this := NetworkDevicesToFabric{}
 	this.NetworkDeviceIds = networkDeviceIds
 	return &this
@@ -47,9 +47,9 @@ func NewNetworkDevicesToFabricWithDefaults() *NetworkDevicesToFabric {
 }
 
 // GetNetworkDeviceIds returns the NetworkDeviceIds field value
-func (o *NetworkDevicesToFabric) GetNetworkDeviceIds() []float32 {
+func (o *NetworkDevicesToFabric) GetNetworkDeviceIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *NetworkDevicesToFabric) GetNetworkDeviceIds() []float32 {
 
 // GetNetworkDeviceIdsOk returns a tuple with the NetworkDeviceIds field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevicesToFabric) GetNetworkDeviceIdsOk() ([]float32, bool) {
+func (o *NetworkDevicesToFabric) GetNetworkDeviceIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *NetworkDevicesToFabric) GetNetworkDeviceIdsOk() ([]float32, bool) {
 }
 
 // SetNetworkDeviceIds sets field value
-func (o *NetworkDevicesToFabric) SetNetworkDeviceIds(v []float32) {
+func (o *NetworkDevicesToFabric) SetNetworkDeviceIds(v []int64) {
 	o.NetworkDeviceIds = v
 }
 

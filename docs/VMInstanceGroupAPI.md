@@ -45,9 +45,9 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
-	vmTypeId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
+	vmTypeId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -68,9 +68,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
-**vmTypeId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
+**vmTypeId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -123,7 +123,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	createVMInstanceGroup := *openapiclient.NewCreateVMInstanceGroup(float32(123), int64(123), int64(123), int64(123)) // CreateVMInstanceGroup | The VM Instance Group create object
 
 	configuration := openapiclient.NewConfiguration()
@@ -144,7 +144,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -193,8 +193,8 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
-	vmInstanceGroupId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 	createVMInstanceGroupNetworkConnection := *openapiclient.NewCreateVMInstanceGroupNetworkConnection("1", true, openapiclient.NetworkEndpointGroupAllowedAccessMode("l2")) // CreateVMInstanceGroupNetworkConnection | The network connection object to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -215,8 +215,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
-**vmInstanceGroupId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -268,8 +268,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -288,8 +288,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -339,9 +339,9 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
-	vmInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -359,9 +359,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
-**vmInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -413,8 +413,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -434,8 +434,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -486,7 +486,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -517,7 +517,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -576,8 +576,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -597,8 +597,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -649,9 +649,9 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
-	vmInstanceGroupInterfaceId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
+	vmInstanceGroupInterfaceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -671,9 +671,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
-**vmInstanceGroupInterfaceId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
+**vmInstanceGroupInterfaceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -725,8 +725,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -756,8 +756,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -818,9 +818,9 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
-	vmInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -840,9 +840,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
-**vmInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -894,8 +894,8 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
-	vmInstanceGroupId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -915,8 +915,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
-**vmInstanceGroupId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -948,7 +948,7 @@ Name | Type | Description  | Notes
 
 ## GetVMInstanceGroupVMInstances
 
-> VMInstancePaginatedList GetVMInstanceGroupVMInstances(ctx, infrastructureId, vmInstanceGroupId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> VMInstancePaginatedList GetVMInstanceGroupVMInstances(ctx, infrastructureId, vmInstanceGroupId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterVmId(filterVmId).FilterConfigVmId(filterConfigVmId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get the VM Instances of VM Instance Group
 
@@ -967,8 +967,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -977,13 +977,15 @@ func main() {
 	filterServiceStatus := []string{"Inner_example"} // []string | Filter by serviceStatus query param.  **Format:** filter.serviceStatus={$not}:OPERATION:VALUE    **Example:** filter.serviceStatus=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterConfigDeployStatus := []string{"Inner_example"} // []string | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus={$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus=$eq:John Doe&filter.config.deployStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterConfigDeployType := []string{"Inner_example"} // []string | Filter by config.deployType query param.  **Format:** filter.config.deployType={$not}:OPERATION:VALUE    **Example:** filter.config.deployType=$eq:John Doe&filter.config.deployType=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType  (optional)
+	filterVmId := []string{"Inner_example"} // []string | Filter by vmId query param.  **Format:** filter.vmId={$not}:OPERATION:VALUE    **Example:** filter.vmId=$eq:John Doe&filter.vmId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterConfigVmId := []string{"Inner_example"} // []string | Filter by config.vmId query param.  **Format:** filter.config.vmId={$not}:OPERATION:VALUE    **Example:** filter.config.vmId=$eq:John Doe&filter.config.vmId=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType  - vmId  - config.vmId  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,label,subdomain,subdomainPermanent,serviceStatus   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - subdomain  - subdomainPermanent  - serviceStatus  - config.deployStatus  - config.deployType  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupVMInstances(context.Background(), infrastructureId, vmInstanceGroupId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupVMInstances(context.Background(), infrastructureId, vmInstanceGroupId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterVmId(filterVmId).FilterConfigVmId(filterConfigVmId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.GetVMInstanceGroupVMInstances``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -999,8 +1001,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1019,7 +1021,9 @@ Name | Type | Description  | Notes
  **filterServiceStatus** | **[]string** | Filter by serviceStatus query param.  **Format:** filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serviceStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterConfigDeployStatus** | **[]string** | Filter by config.deployStatus query param.  **Format:** filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployStatus&#x3D;$eq:John Doe&amp;filter.config.deployStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterConfigDeployType** | **[]string** | Filter by config.deployType query param.  **Format:** filter.config.deployType&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.deployType&#x3D;$eq:John Doe&amp;filter.config.deployType&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType  | 
+ **filterVmId** | **[]string** | Filter by vmId query param.  **Format:** filter.vmId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.vmId&#x3D;$eq:John Doe&amp;filter.vmId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterConfigVmId** | **[]string** | Filter by config.vmId query param.  **Format:** filter.config.vmId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.vmId&#x3D;$eq:John Doe&amp;filter.config.vmId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType  - vmId  - config.vmId  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,label,subdomain,subdomainPermanent,serviceStatus   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - label  - subdomain  - subdomainPermanent  - serviceStatus  - config.deployStatus  - config.deployType  | 
 
@@ -1062,8 +1066,8 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
-	vmInstanceGroupId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1083,8 +1087,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
-**vmInstanceGroupId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1133,8 +1137,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 	updateVMInstanceGroupMeta := *openapiclient.NewUpdateVMInstanceGroupMeta() // UpdateVMInstanceGroupMeta | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1155,8 +1159,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1208,8 +1212,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
 	updateVMInstanceGroup := *openapiclient.NewUpdateVMInstanceGroup() // UpdateVMInstanceGroup | The VM Instance Group update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1231,8 +1235,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1283,9 +1287,9 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
-	vmInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
+	vmInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
 	updateVMInstanceGroupNetworkConnection := *openapiclient.NewUpdateVMInstanceGroupNetworkConnection() // UpdateVMInstanceGroupNetworkConnection | The network connection object to update
 
 	configuration := openapiclient.NewConfiguration()
@@ -1306,9 +1310,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
-**vmInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
+**vmInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
 
 ### Other Parameters
 

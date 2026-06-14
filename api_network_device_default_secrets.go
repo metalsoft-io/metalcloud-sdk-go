@@ -139,7 +139,7 @@ func (a *NetworkDeviceDefaultSecretsAPIService) CreateNetworkDeviceDefaultSecret
 type NetworkDeviceDefaultSecretsAPIDeleteNetworkDeviceDefaultSecretsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceDefaultSecretsAPIService
-	networkDeviceDefaultSecretsId float32
+	networkDeviceDefaultSecretsId int64
 }
 
 func (r NetworkDeviceDefaultSecretsAPIDeleteNetworkDeviceDefaultSecretsRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes a NetworkDevice Default Secrets
  @param networkDeviceDefaultSecretsId
  @return NetworkDeviceDefaultSecretsAPIDeleteNetworkDeviceDefaultSecretsRequest
 */
-func (a *NetworkDeviceDefaultSecretsAPIService) DeleteNetworkDeviceDefaultSecrets(ctx context.Context, networkDeviceDefaultSecretsId float32) NetworkDeviceDefaultSecretsAPIDeleteNetworkDeviceDefaultSecretsRequest {
+func (a *NetworkDeviceDefaultSecretsAPIService) DeleteNetworkDeviceDefaultSecrets(ctx context.Context, networkDeviceDefaultSecretsId int64) NetworkDeviceDefaultSecretsAPIDeleteNetworkDeviceDefaultSecretsRequest {
 	return NetworkDeviceDefaultSecretsAPIDeleteNetworkDeviceDefaultSecretsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *NetworkDeviceDefaultSecretsAPIService) DeleteNetworkDeviceDefaultSecret
 type NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsCredentialsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceDefaultSecretsAPIService
-	networkDeviceDefaultSecretsId float32
+	networkDeviceDefaultSecretsId int64
 }
 
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsCredentialsRequest) Execute() (*NetworkDeviceDefaultSecretsCredentials, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns NetworkDevice Default Secrets unencrypted
  @param networkDeviceDefaultSecretsId
  @return NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsCredentialsRequest
 */
-func (a *NetworkDeviceDefaultSecretsAPIService) GetNetworkDeviceDefaultSecretsCredentials(ctx context.Context, networkDeviceDefaultSecretsId float32) NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsCredentialsRequest {
+func (a *NetworkDeviceDefaultSecretsAPIService) GetNetworkDeviceDefaultSecretsCredentials(ctx context.Context, networkDeviceDefaultSecretsId int64) NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsCredentialsRequest {
 	return NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -334,7 +334,7 @@ func (a *NetworkDeviceDefaultSecretsAPIService) GetNetworkDeviceDefaultSecretsCr
 type NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsInfoRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceDefaultSecretsAPIService
-	networkDeviceDefaultSecretsId float32
+	networkDeviceDefaultSecretsId int64
 }
 
 func (r NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsInfoRequest) Execute() (*NetworkDeviceDefaultSecrets, *http.Response, error) {
@@ -350,7 +350,7 @@ Returns NetworkDevice Default Secrets information
  @param networkDeviceDefaultSecretsId
  @return NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsInfoRequest
 */
-func (a *NetworkDeviceDefaultSecretsAPIService) GetNetworkDeviceDefaultSecretsInfo(ctx context.Context, networkDeviceDefaultSecretsId float32) NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsInfoRequest {
+func (a *NetworkDeviceDefaultSecretsAPIService) GetNetworkDeviceDefaultSecretsInfo(ctx context.Context, networkDeviceDefaultSecretsId int64) NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsInfoRequest {
 	return NetworkDeviceDefaultSecretsAPIGetNetworkDeviceDefaultSecretsInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -656,7 +656,7 @@ func (a *NetworkDeviceDefaultSecretsAPIService) GetNetworkDevicesDefaultSecretsE
 type NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceDefaultSecretsAPIService
-	networkDeviceDefaultSecretsId float32
+	networkDeviceDefaultSecretsId int64
 	updateNetworkDeviceDefaultSecrets *UpdateNetworkDeviceDefaultSecrets
 }
 
@@ -679,7 +679,7 @@ Updates a NetworkDevice Default Secrets
  @param networkDeviceDefaultSecretsId
  @return NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest
 */
-func (a *NetworkDeviceDefaultSecretsAPIService) UpdateNetworkDeviceDefaultSecrets(ctx context.Context, networkDeviceDefaultSecretsId float32) NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest {
+func (a *NetworkDeviceDefaultSecretsAPIService) UpdateNetworkDeviceDefaultSecrets(ctx context.Context, networkDeviceDefaultSecretsId int64) NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest {
 	return NetworkDeviceDefaultSecretsAPIUpdateNetworkDeviceDefaultSecretsRequest{
 		ApiService: a,
 		ctx: ctx,

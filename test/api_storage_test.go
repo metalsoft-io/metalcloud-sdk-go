@@ -38,7 +38,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		httpRes, err := apiClient.StorageAPI.DeleteStorage(context.Background(), storageId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorage(context.Background(), storageId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorageBuckets(context.Background(), storageId).Execute()
 
@@ -79,7 +79,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorageCredentials(context.Background(), storageId).Execute()
 
@@ -93,7 +93,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorageDrives(context.Background(), storageId).Execute()
 
@@ -107,7 +107,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorageFileShares(context.Background(), storageId).Execute()
 
@@ -121,8 +121,8 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
-		var interfaceId float32
+		var storageId int64
+		var interfaceId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorageInterface(context.Background(), storageId, interfaceId).Execute()
 
@@ -136,7 +136,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorageInterfaces(context.Background(), storageId).Execute()
 
@@ -150,7 +150,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorageStatistics(context.Background(), storageId).Execute()
 
@@ -188,7 +188,7 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
+		var storageId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.UpdateStorage(context.Background(), storageId).Execute()
 
@@ -202,8 +202,8 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var storageId float32
-		var interfaceId float32
+		var storageId int64
+		var interfaceId int64
 
 		resp, httpRes, err := apiClient.StorageAPI.UpdateStorageInterface(context.Background(), storageId, interfaceId).Execute()
 

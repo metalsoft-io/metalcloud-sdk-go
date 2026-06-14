@@ -139,9 +139,9 @@ func (a *VMPoolAPIService) CreateVMPoolExecute(r VMPoolAPICreateVMPoolRequest) (
 type VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
-	vmPoolClusterHostInterfaceId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
+	vmPoolClusterHostInterfaceId int64
 	createVMPoolHostInterfaceNetworkDevice *CreateVMPoolHostInterfaceNetworkDevice
 }
 
@@ -166,7 +166,7 @@ Creates a new network device assignment for a VM Cluster Host Interface
  @param vmPoolClusterHostInterfaceId
  @return VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest
 */
-func (a *VMPoolAPIService) CreateVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32) VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest {
+func (a *VMPoolAPIService) CreateVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64, vmPoolClusterHostInterfaceId int64) VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest {
 	return VMPoolAPICreateVMPoolClusterHostInterfaceNetworkDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -262,7 +262,7 @@ func (a *VMPoolAPIService) CreateVMPoolClusterHostInterfaceNetworkDeviceExecute(
 type VMPoolAPIDeleteVMPoolRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 }
 
 func (r VMPoolAPIDeleteVMPoolRequest) Execute() (*http.Response, error) {
@@ -278,7 +278,7 @@ Deletes a VM Pool
  @param vmPoolId
  @return VMPoolAPIDeleteVMPoolRequest
 */
-func (a *VMPoolAPIService) DeleteVMPool(ctx context.Context, vmPoolId float32) VMPoolAPIDeleteVMPoolRequest {
+func (a *VMPoolAPIService) DeleteVMPool(ctx context.Context, vmPoolId int64) VMPoolAPIDeleteVMPoolRequest {
 	return VMPoolAPIDeleteVMPoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -354,10 +354,10 @@ func (a *VMPoolAPIService) DeleteVMPoolExecute(r VMPoolAPIDeleteVMPoolRequest) (
 type VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
-	vmPoolClusterHostInterfaceId float32
-	networkDeviceAssignmentId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
+	vmPoolClusterHostInterfaceId int64
+	networkDeviceAssignmentId int64
 }
 
 func (r VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest) Execute() (*http.Response, error) {
@@ -376,7 +376,7 @@ Deletes a network device assignment for a VM Cluster Host Interface
  @param networkDeviceAssignmentId
  @return VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest
 */
-func (a *VMPoolAPIService) DeleteVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32, networkDeviceAssignmentId float32) VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest {
+func (a *VMPoolAPIService) DeleteVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64, vmPoolClusterHostInterfaceId int64, networkDeviceAssignmentId int64) VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest {
 	return VMPoolAPIDeleteVMPoolClusterHostInterfaceNetworkDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -561,8 +561,8 @@ func (a *VMPoolAPIService) GetVMPoolExecute(r VMPoolAPIGetVMPoolRequest) (*VMPoo
 type VMPoolAPIGetVMPoolClusterHostRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
 }
 
 func (r VMPoolAPIGetVMPoolClusterHostRequest) Execute() (*VMPoolHosts, *http.Response, error) {
@@ -579,7 +579,7 @@ Returns a VM Cluster Host
  @param vmPoolClusterHostId
  @return VMPoolAPIGetVMPoolClusterHostRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHost(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32) VMPoolAPIGetVMPoolClusterHostRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHost(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64) VMPoolAPIGetVMPoolClusterHostRequest {
 	return VMPoolAPIGetVMPoolClusterHostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -668,9 +668,9 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostExecute(r VMPoolAPIGetVMPoolClust
 type VMPoolAPIGetVMPoolClusterHostInterfaceRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
-	vmPoolClusterHostInterfaceId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
+	vmPoolClusterHostInterfaceId int64
 }
 
 func (r VMPoolAPIGetVMPoolClusterHostInterfaceRequest) Execute() (*VMPoolHostInterfaces, *http.Response, error) {
@@ -688,7 +688,7 @@ Returns a VM Cluster Host Interface
  @param vmPoolClusterHostInterfaceId
  @return VMPoolAPIGetVMPoolClusterHostInterfaceRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHostInterface(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32) VMPoolAPIGetVMPoolClusterHostInterfaceRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterface(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64, vmPoolClusterHostInterfaceId int64) VMPoolAPIGetVMPoolClusterHostInterfaceRequest {
 	return VMPoolAPIGetVMPoolClusterHostInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -779,10 +779,10 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceExecute(r VMPoolAPIGetVM
 type VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
-	vmPoolClusterHostInterfaceId float32
-	networkDeviceAssignmentId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
+	vmPoolClusterHostInterfaceId int64
+	networkDeviceAssignmentId int64
 }
 
 func (r VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest) Execute() (*VMPoolHostInterfaceNetworkDevice, *http.Response, error) {
@@ -801,7 +801,7 @@ Returns a network device assignment for a VM Cluster Host Interface
  @param networkDeviceAssignmentId
  @return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32, networkDeviceAssignmentId float32) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevice(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64, vmPoolClusterHostInterfaceId int64, networkDeviceAssignmentId int64) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest {
 	return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -894,9 +894,9 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDeviceExecute(r V
 type VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
-	vmPoolClusterHostInterfaceId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
+	vmPoolClusterHostInterfaceId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -949,7 +949,7 @@ Returns list of network device assignments for a VM Cluster Host Interface
  @param vmPoolClusterHostInterfaceId
  @return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevices(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevices(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64, vmPoolClusterHostInterfaceId int64) VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest {
 	return VMPoolAPIGetVMPoolClusterHostInterfaceNetworkDevicesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1079,8 +1079,8 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaceNetworkDevicesExecute(r 
 type VMPoolAPIGetVMPoolClusterHostInterfacesRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
 }
 
 func (r VMPoolAPIGetVMPoolClusterHostInterfacesRequest) Execute() ([]VMPoolHostInterfaces, *http.Response, error) {
@@ -1097,7 +1097,7 @@ Returns a list of VM Cluster Host Interfaces
  @param vmPoolClusterHostId
  @return VMPoolAPIGetVMPoolClusterHostInterfacesRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaces(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32) VMPoolAPIGetVMPoolClusterHostInterfacesRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHostInterfaces(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64) VMPoolAPIGetVMPoolClusterHostInterfacesRequest {
 	return VMPoolAPIGetVMPoolClusterHostInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1186,8 +1186,8 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostInterfacesExecute(r VMPoolAPIGetV
 type VMPoolAPIGetVMPoolClusterHostStatisticsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
 }
 
 func (r VMPoolAPIGetVMPoolClusterHostStatisticsRequest) Execute() (*VMPoolStatistics, *http.Response, error) {
@@ -1204,7 +1204,7 @@ Returns VM Cluster Host Statistics
  @param vmPoolClusterHostId
  @return VMPoolAPIGetVMPoolClusterHostStatisticsRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHostStatistics(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32) VMPoolAPIGetVMPoolClusterHostStatisticsRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHostStatistics(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64) VMPoolAPIGetVMPoolClusterHostStatisticsRequest {
 	return VMPoolAPIGetVMPoolClusterHostStatisticsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1293,13 +1293,21 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostStatisticsExecute(r VMPoolAPIGetV
 type VMPoolAPIGetVMPoolClusterHostVMsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterSiteId *[]string
 	filterName *[]string
 	filterAddress *[]string
+	filterHost *[]string
+	filterHosts *[]string
+	filterTypeId *[]string
+	filterPoolId *[]string
+	filterAdministrationState *[]string
+	filterNumaNodes *[]string
+	filterInfrastructureId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1323,6 +1331,12 @@ func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterId(filterId []string) VMP
 	return r
 }
 
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterSiteId(filterSiteId []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterSiteId = &filterSiteId
+	return r
+}
+
 // Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterName(filterName []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
 	r.filterName = &filterName
@@ -1335,7 +1349,49 @@ func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterAddress(filterAddress []s
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name 
+// Filter by host query param.  **Format:** filter.host&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.host&#x3D;$btw:John Doe&amp;filter.host&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterHost(filterHost []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterHost = &filterHost
+	return r
+}
+
+// Filter by hosts query param.  **Format:** filter.hosts&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.hosts&#x3D;$btw:John Doe&amp;filter.hosts&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterHosts(filterHosts []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterHosts = &filterHosts
+	return r
+}
+
+// Filter by typeId query param.  **Format:** filter.typeId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.typeId&#x3D;$btw:John Doe&amp;filter.typeId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterTypeId(filterTypeId []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterTypeId = &filterTypeId
+	return r
+}
+
+// Filter by poolId query param.  **Format:** filter.poolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.poolId&#x3D;$btw:John Doe&amp;filter.poolId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterPoolId(filterPoolId []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterPoolId = &filterPoolId
+	return r
+}
+
+// Filter by administrationState query param.  **Format:** filter.administrationState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.administrationState&#x3D;$btw:John Doe&amp;filter.administrationState&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterAdministrationState(filterAdministrationState []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterAdministrationState = &filterAdministrationState
+	return r
+}
+
+// Filter by numaNodes query param.  **Format:** filter.numaNodes&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.numaNodes&#x3D;$btw:John Doe&amp;filter.numaNodes&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterNumaNodes(filterNumaNodes []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterNumaNodes = &filterNumaNodes
+	return r
+}
+
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) FilterInfrastructureId(filterInfrastructureId []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - host  - administrationState 
 func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) SortBy(sortBy []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1347,7 +1403,7 @@ func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) Search(search string) VMPoolAPI
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name 
+// List of fields to search by term to filter result values  **Example:** id,name,host,hosts,administrationState   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - host  - hosts  - administrationState 
 func (r VMPoolAPIGetVMPoolClusterHostVMsRequest) SearchBy(searchBy []string) VMPoolAPIGetVMPoolClusterHostVMsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1367,7 +1423,7 @@ Returns a list of VM Cluster Host VMs
  @param vmPoolClusterHostId
  @return VMPoolAPIGetVMPoolClusterHostVMsRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHostVMs(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32) VMPoolAPIGetVMPoolClusterHostVMsRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHostVMs(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64) VMPoolAPIGetVMPoolClusterHostVMsRequest {
 	return VMPoolAPIGetVMPoolClusterHostVMsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1416,6 +1472,17 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostVMsExecute(r VMPoolAPIGetVMPoolCl
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
 	if r.filterName != nil {
 		t := *r.filterName
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1436,6 +1503,83 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostVMsExecute(r VMPoolAPIGetVMPoolCl
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", t, "form", "multi")
+		}
+	}
+	if r.filterHost != nil {
+		t := *r.filterHost
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", t, "form", "multi")
+		}
+	}
+	if r.filterHosts != nil {
+		t := *r.filterHosts
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", t, "form", "multi")
+		}
+	}
+	if r.filterTypeId != nil {
+		t := *r.filterTypeId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", t, "form", "multi")
+		}
+	}
+	if r.filterPoolId != nil {
+		t := *r.filterPoolId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", t, "form", "multi")
+		}
+	}
+	if r.filterAdministrationState != nil {
+		t := *r.filterAdministrationState
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", t, "form", "multi")
+		}
+	}
+	if r.filterNumaNodes != nil {
+		t := *r.filterNumaNodes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -1520,7 +1664,7 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostVMsExecute(r VMPoolAPIGetVMPoolCl
 type VMPoolAPIGetVMPoolClusterHostsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1592,7 +1736,7 @@ Returns list of VM Cluster Hosts linked to the VM Pool
  @param vmPoolId
  @return VMPoolAPIGetVMPoolClusterHostsRequest
 */
-func (a *VMPoolAPIService) GetVMPoolClusterHosts(ctx context.Context, vmPoolId float32) VMPoolAPIGetVMPoolClusterHostsRequest {
+func (a *VMPoolAPIService) GetVMPoolClusterHosts(ctx context.Context, vmPoolId int64) VMPoolAPIGetVMPoolClusterHostsRequest {
 	return VMPoolAPIGetVMPoolClusterHostsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1743,7 +1887,7 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostsExecute(r VMPoolAPIGetVMPoolClus
 type VMPoolAPIGetVMPoolCredentialsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 }
 
 func (r VMPoolAPIGetVMPoolCredentialsRequest) Execute() (*VMPoolCredentials, *http.Response, error) {
@@ -1759,7 +1903,7 @@ Returns VM Pool credentials
  @param vmPoolId
  @return VMPoolAPIGetVMPoolCredentialsRequest
 */
-func (a *VMPoolAPIService) GetVMPoolCredentials(ctx context.Context, vmPoolId float32) VMPoolAPIGetVMPoolCredentialsRequest {
+func (a *VMPoolAPIService) GetVMPoolCredentials(ctx context.Context, vmPoolId int64) VMPoolAPIGetVMPoolCredentialsRequest {
 	return VMPoolAPIGetVMPoolCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1846,12 +1990,20 @@ func (a *VMPoolAPIService) GetVMPoolCredentialsExecute(r VMPoolAPIGetVMPoolCrede
 type VMPoolAPIGetVMPoolVMsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterSiteId *[]string
 	filterName *[]string
 	filterAddress *[]string
+	filterHost *[]string
+	filterHosts *[]string
+	filterTypeId *[]string
+	filterPoolId *[]string
+	filterAdministrationState *[]string
+	filterNumaNodes *[]string
+	filterInfrastructureId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1875,6 +2027,12 @@ func (r VMPoolAPIGetVMPoolVMsRequest) FilterId(filterId []string) VMPoolAPIGetVM
 	return r
 }
 
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterSiteId(filterSiteId []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterSiteId = &filterSiteId
+	return r
+}
+
 // Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r VMPoolAPIGetVMPoolVMsRequest) FilterName(filterName []string) VMPoolAPIGetVMPoolVMsRequest {
 	r.filterName = &filterName
@@ -1887,7 +2045,49 @@ func (r VMPoolAPIGetVMPoolVMsRequest) FilterAddress(filterAddress []string) VMPo
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name 
+// Filter by host query param.  **Format:** filter.host&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.host&#x3D;$btw:John Doe&amp;filter.host&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterHost(filterHost []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterHost = &filterHost
+	return r
+}
+
+// Filter by hosts query param.  **Format:** filter.hosts&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.hosts&#x3D;$btw:John Doe&amp;filter.hosts&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterHosts(filterHosts []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterHosts = &filterHosts
+	return r
+}
+
+// Filter by typeId query param.  **Format:** filter.typeId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.typeId&#x3D;$btw:John Doe&amp;filter.typeId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterTypeId(filterTypeId []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterTypeId = &filterTypeId
+	return r
+}
+
+// Filter by poolId query param.  **Format:** filter.poolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.poolId&#x3D;$btw:John Doe&amp;filter.poolId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterPoolId(filterPoolId []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterPoolId = &filterPoolId
+	return r
+}
+
+// Filter by administrationState query param.  **Format:** filter.administrationState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.administrationState&#x3D;$btw:John Doe&amp;filter.administrationState&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterAdministrationState(filterAdministrationState []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterAdministrationState = &filterAdministrationState
+	return r
+}
+
+// Filter by numaNodes query param.  **Format:** filter.numaNodes&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.numaNodes&#x3D;$btw:John Doe&amp;filter.numaNodes&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterNumaNodes(filterNumaNodes []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterNumaNodes = &filterNumaNodes
+	return r
+}
+
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolVMsRequest) FilterInfrastructureId(filterInfrastructureId []string) VMPoolAPIGetVMPoolVMsRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - host  - administrationState 
 func (r VMPoolAPIGetVMPoolVMsRequest) SortBy(sortBy []string) VMPoolAPIGetVMPoolVMsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1899,7 +2099,7 @@ func (r VMPoolAPIGetVMPoolVMsRequest) Search(search string) VMPoolAPIGetVMPoolVM
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name 
+// List of fields to search by term to filter result values  **Example:** id,name,host,hosts,administrationState   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - host  - hosts  - administrationState 
 func (r VMPoolAPIGetVMPoolVMsRequest) SearchBy(searchBy []string) VMPoolAPIGetVMPoolVMsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1918,7 +2118,7 @@ Returns all VMs linked to the VM Pool
  @param vmPoolId
  @return VMPoolAPIGetVMPoolVMsRequest
 */
-func (a *VMPoolAPIService) GetVMPoolVMs(ctx context.Context, vmPoolId float32) VMPoolAPIGetVMPoolVMsRequest {
+func (a *VMPoolAPIService) GetVMPoolVMs(ctx context.Context, vmPoolId int64) VMPoolAPIGetVMPoolVMsRequest {
 	return VMPoolAPIGetVMPoolVMsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1965,6 +2165,17 @@ func (a *VMPoolAPIService) GetVMPoolVMsExecute(r VMPoolAPIGetVMPoolVMsRequest) (
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
 	if r.filterName != nil {
 		t := *r.filterName
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1985,6 +2196,83 @@ func (a *VMPoolAPIService) GetVMPoolVMsExecute(r VMPoolAPIGetVMPoolVMsRequest) (
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", t, "form", "multi")
+		}
+	}
+	if r.filterHost != nil {
+		t := *r.filterHost
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", t, "form", "multi")
+		}
+	}
+	if r.filterHosts != nil {
+		t := *r.filterHosts
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", t, "form", "multi")
+		}
+	}
+	if r.filterTypeId != nil {
+		t := *r.filterTypeId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", t, "form", "multi")
+		}
+	}
+	if r.filterPoolId != nil {
+		t := *r.filterPoolId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", t, "form", "multi")
+		}
+	}
+	if r.filterAdministrationState != nil {
+		t := *r.filterAdministrationState
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", t, "form", "multi")
+		}
+	}
+	if r.filterNumaNodes != nil {
+		t := *r.filterNumaNodes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -2342,7 +2630,7 @@ func (a *VMPoolAPIService) GetVMPoolsExecute(r VMPoolAPIGetVMPoolsRequest) (*VMP
 type VMPoolAPIGetVmPoolStatisticsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 }
 
 func (r VMPoolAPIGetVmPoolStatisticsRequest) Execute() (*VMPoolStatistics, *http.Response, error) {
@@ -2358,7 +2646,7 @@ Returns VM Pool statistics
  @param vmPoolId
  @return VMPoolAPIGetVmPoolStatisticsRequest
 */
-func (a *VMPoolAPIService) GetVmPoolStatistics(ctx context.Context, vmPoolId float32) VMPoolAPIGetVmPoolStatisticsRequest {
+func (a *VMPoolAPIService) GetVmPoolStatistics(ctx context.Context, vmPoolId int64) VMPoolAPIGetVmPoolStatisticsRequest {
 	return VMPoolAPIGetVmPoolStatisticsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2445,7 +2733,7 @@ func (a *VMPoolAPIService) GetVmPoolStatisticsExecute(r VMPoolAPIGetVmPoolStatis
 type VMPoolAPIImportVMPoolVMsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 	vMPoolImportVMs *VMPoolImportVMs
 }
 
@@ -2467,7 +2755,7 @@ Imports VMs into VM Pool from the management host
  @param vmPoolId
  @return VMPoolAPIImportVMPoolVMsRequest
 */
-func (a *VMPoolAPIService) ImportVMPoolVMs(ctx context.Context, vmPoolId float32) VMPoolAPIImportVMPoolVMsRequest {
+func (a *VMPoolAPIService) ImportVMPoolVMs(ctx context.Context, vmPoolId int64) VMPoolAPIImportVMPoolVMsRequest {
 	return VMPoolAPIImportVMPoolVMsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2548,7 +2836,7 @@ func (a *VMPoolAPIService) ImportVMPoolVMsExecute(r VMPoolAPIImportVMPoolVMsRequ
 type VMPoolAPIRefreshVMPoolInformationRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 }
 
 func (r VMPoolAPIRefreshVMPoolInformationRequest) Execute() (*VMPool, *http.Response, error) {
@@ -2564,7 +2852,7 @@ Refresh VM Pool information. For example, on VMware VCF this function would repo
  @param vmPoolId
  @return VMPoolAPIRefreshVMPoolInformationRequest
 */
-func (a *VMPoolAPIService) RefreshVMPoolInformation(ctx context.Context, vmPoolId float32) VMPoolAPIRefreshVMPoolInformationRequest {
+func (a *VMPoolAPIService) RefreshVMPoolInformation(ctx context.Context, vmPoolId int64) VMPoolAPIRefreshVMPoolInformationRequest {
 	return VMPoolAPIRefreshVMPoolInformationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2651,7 +2939,7 @@ func (a *VMPoolAPIService) RefreshVMPoolInformationExecute(r VMPoolAPIRefreshVMP
 type VMPoolAPISyncVMPoolRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 }
 
 func (r VMPoolAPISyncVMPoolRequest) Execute() (*JobInfo, *http.Response, error) {
@@ -2667,7 +2955,7 @@ Sync VM Pool. For example, on VMware VCF this function would discover new Virtua
  @param vmPoolId
  @return VMPoolAPISyncVMPoolRequest
 */
-func (a *VMPoolAPIService) SyncVMPool(ctx context.Context, vmPoolId float32) VMPoolAPISyncVMPoolRequest {
+func (a *VMPoolAPIService) SyncVMPool(ctx context.Context, vmPoolId int64) VMPoolAPISyncVMPoolRequest {
 	return VMPoolAPISyncVMPoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2754,7 +3042,7 @@ func (a *VMPoolAPIService) SyncVMPoolExecute(r VMPoolAPISyncVMPoolRequest) (*Job
 type VMPoolAPIUpdateVMPoolRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
+	vmPoolId int64
 	updateVMPool *UpdateVMPool
 }
 
@@ -2777,7 +3065,7 @@ Updates VM Pool information
  @param vmPoolId
  @return VMPoolAPIUpdateVMPoolRequest
 */
-func (a *VMPoolAPIService) UpdateVMPool(ctx context.Context, vmPoolId float32) VMPoolAPIUpdateVMPoolRequest {
+func (a *VMPoolAPIService) UpdateVMPool(ctx context.Context, vmPoolId int64) VMPoolAPIUpdateVMPoolRequest {
 	return VMPoolAPIUpdateVMPoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2869,8 +3157,8 @@ func (a *VMPoolAPIService) UpdateVMPoolExecute(r VMPoolAPIUpdateVMPoolRequest) (
 type VMPoolAPIUpdateVMPoolClusterHostRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
 	updateVMPoolHost *UpdateVMPoolHost
 }
 
@@ -2894,7 +3182,7 @@ Updates VM Cluster Host information
  @param vmPoolClusterHostId
  @return VMPoolAPIUpdateVMPoolClusterHostRequest
 */
-func (a *VMPoolAPIService) UpdateVMPoolClusterHost(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32) VMPoolAPIUpdateVMPoolClusterHostRequest {
+func (a *VMPoolAPIService) UpdateVMPoolClusterHost(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64) VMPoolAPIUpdateVMPoolClusterHostRequest {
 	return VMPoolAPIUpdateVMPoolClusterHostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2988,9 +3276,9 @@ func (a *VMPoolAPIService) UpdateVMPoolClusterHostExecute(r VMPoolAPIUpdateVMPoo
 type VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
-	vmPoolId float32
-	vmPoolClusterHostId float32
-	vmPoolClusterHostInterfaceId float32
+	vmPoolId int64
+	vmPoolClusterHostId int64
+	vmPoolClusterHostInterfaceId int64
 	updateVMPoolHostInterface *UpdateVMPoolHostInterface
 }
 
@@ -3015,7 +3303,7 @@ Updates VM Cluster Host Interface information
  @param vmPoolClusterHostInterfaceId
  @return VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest
 */
-func (a *VMPoolAPIService) UpdateVMPoolClusterHostInterface(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32, vmPoolClusterHostInterfaceId float32) VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest {
+func (a *VMPoolAPIService) UpdateVMPoolClusterHostInterface(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64, vmPoolClusterHostInterfaceId int64) VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest {
 	return VMPoolAPIUpdateVMPoolClusterHostInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,

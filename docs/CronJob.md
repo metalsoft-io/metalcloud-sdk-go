@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **FunctionName** | **string** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewCronJob
 
-`func NewCronJob(id float32, label string, functionName string, params []map[string]interface{}, schedule string, waitForCompletion float32, lifetimeSeconds float32, disabled float32, ) *CronJob`
+`func NewCronJob(id int64, label string, functionName string, params []map[string]interface{}, schedule string, waitForCompletion float32, lifetimeSeconds float32, disabled float32, ) *CronJob`
 
 NewCronJob instantiates a new CronJob object
 This constructor will assign default values to properties that have it defined,
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *CronJob) GetId() float32`
+`func (o *CronJob) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CronJob) GetIdOk() (*float32, bool)`
+`func (o *CronJob) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CronJob) SetId(v float32)`
+`func (o *CronJob) SetId(v int64)`
 
 SetId sets Id field to given value.
 

@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	serverCleanupPolicyId := float32(8.14) // float32 | 
+	serverCleanupPolicyId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverCleanupPolicyId** | **float32** |  | 
+**serverCleanupPolicyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -243,7 +243,7 @@ import (
 )
 
 func main() {
-	serverCleanupPolicyId := float32(8.14) // float32 | 
+	serverCleanupPolicyId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -263,7 +263,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverCleanupPolicyId** | **float32** |  | 
+**serverCleanupPolicyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -313,7 +313,7 @@ import (
 )
 
 func main() {
-	serverCleanupPolicyId := float32(8.14) // float32 | 
+	serverCleanupPolicyId := int64(789) // int64 | 
 	updateServerCleanupPolicy := *openapiclient.NewUpdateServerCleanupPolicy() // UpdateServerCleanupPolicy | The Server Cleanup Policy update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -334,7 +334,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverCleanupPolicyId** | **float32** |  | 
+**serverCleanupPolicyId** | **int64** |  | 
 
 ### Other Parameters
 

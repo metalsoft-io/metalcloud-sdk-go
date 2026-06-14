@@ -137,7 +137,7 @@ func (a *NetworkDeviceControllerAPIService) CreateNetworkDeviceControllerExecute
 type NetworkDeviceControllerAPIDeleteNetworkDeviceControllerRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceControllerAPIService
-	networkDeviceControllerId int32
+	networkDeviceControllerId int64
 	ifMatch *string
 }
 
@@ -158,7 +158,7 @@ DeleteNetworkDeviceController Delete Network Device Controller
  @param networkDeviceControllerId
  @return NetworkDeviceControllerAPIDeleteNetworkDeviceControllerRequest
 */
-func (a *NetworkDeviceControllerAPIService) DeleteNetworkDeviceController(ctx context.Context, networkDeviceControllerId int32) NetworkDeviceControllerAPIDeleteNetworkDeviceControllerRequest {
+func (a *NetworkDeviceControllerAPIService) DeleteNetworkDeviceController(ctx context.Context, networkDeviceControllerId int64) NetworkDeviceControllerAPIDeleteNetworkDeviceControllerRequest {
 	return NetworkDeviceControllerAPIDeleteNetworkDeviceControllerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -237,7 +237,7 @@ func (a *NetworkDeviceControllerAPIService) DeleteNetworkDeviceControllerExecute
 type NetworkDeviceControllerAPIGetNetworkDeviceControllerRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceControllerAPIService
-	networkDeviceControllerId int32
+	networkDeviceControllerId int64
 }
 
 func (r NetworkDeviceControllerAPIGetNetworkDeviceControllerRequest) Execute() (*NetworkDeviceController, *http.Response, error) {
@@ -251,7 +251,7 @@ GetNetworkDeviceController Get Network Device Controller
  @param networkDeviceControllerId
  @return NetworkDeviceControllerAPIGetNetworkDeviceControllerRequest
 */
-func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceController(ctx context.Context, networkDeviceControllerId int32) NetworkDeviceControllerAPIGetNetworkDeviceControllerRequest {
+func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceController(ctx context.Context, networkDeviceControllerId int64) NetworkDeviceControllerAPIGetNetworkDeviceControllerRequest {
 	return NetworkDeviceControllerAPIGetNetworkDeviceControllerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -338,7 +338,7 @@ func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceControllerExecute(r 
 type NetworkDeviceControllerAPIGetNetworkDeviceControllerCredentialsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceControllerAPIService
-	networkDeviceControllerId int32
+	networkDeviceControllerId int64
 }
 
 func (r NetworkDeviceControllerAPIGetNetworkDeviceControllerCredentialsRequest) Execute() (*NetworkDeviceControllerCredentials, *http.Response, error) {
@@ -354,7 +354,7 @@ Returns Network Device Controller credentials
  @param networkDeviceControllerId
  @return NetworkDeviceControllerAPIGetNetworkDeviceControllerCredentialsRequest
 */
-func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceControllerCredentials(ctx context.Context, networkDeviceControllerId int32) NetworkDeviceControllerAPIGetNetworkDeviceControllerCredentialsRequest {
+func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceControllerCredentials(ctx context.Context, networkDeviceControllerId int64) NetworkDeviceControllerAPIGetNetworkDeviceControllerCredentialsRequest {
 	return NetworkDeviceControllerAPIGetNetworkDeviceControllerCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -712,7 +712,7 @@ func (a *NetworkDeviceControllerAPIService) GetNetworkDeviceControllersExecute(r
 type NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceControllerAPIService
-	networkDeviceControllerId int32
+	networkDeviceControllerId int64
 }
 
 func (r NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest) Execute() (*http.Response, error) {
@@ -726,7 +726,7 @@ NetworkDeviceControllerDeployConfirm Confirm pending deployment for a network de
  @param networkDeviceControllerId
  @return NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest
 */
-func (a *NetworkDeviceControllerAPIService) NetworkDeviceControllerDeployConfirm(ctx context.Context, networkDeviceControllerId int32) NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest {
+func (a *NetworkDeviceControllerAPIService) NetworkDeviceControllerDeployConfirm(ctx context.Context, networkDeviceControllerId int64) NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest {
 	return NetworkDeviceControllerAPINetworkDeviceControllerDeployConfirmRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -802,7 +802,7 @@ func (a *NetworkDeviceControllerAPIService) NetworkDeviceControllerDeployConfirm
 type NetworkDeviceControllerAPIUpdateNetworkDeviceControllerRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceControllerAPIService
-	networkDeviceControllerId int32
+	networkDeviceControllerId int64
 	updateNetworkDeviceController *UpdateNetworkDeviceController
 	ifMatch *string
 }
@@ -830,7 +830,7 @@ UpdateNetworkDeviceController Update Network Device Controller
  @param networkDeviceControllerId
  @return NetworkDeviceControllerAPIUpdateNetworkDeviceControllerRequest
 */
-func (a *NetworkDeviceControllerAPIService) UpdateNetworkDeviceController(ctx context.Context, networkDeviceControllerId int32) NetworkDeviceControllerAPIUpdateNetworkDeviceControllerRequest {
+func (a *NetworkDeviceControllerAPIService) UpdateNetworkDeviceController(ctx context.Context, networkDeviceControllerId int64) NetworkDeviceControllerAPIUpdateNetworkDeviceControllerRequest {
 	return NetworkDeviceControllerAPIUpdateNetworkDeviceControllerRequest{
 		ApiService: a,
 		ctx: ctx,

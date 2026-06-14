@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Mtu** | Pointer to **NullableInt32** |  | [optional] 
 **Enabled** | Pointer to **NullableBool** |  | [optional] 
 **Speed** | Pointer to **NullableString** |  | [optional] 
+**AutoNegotiate** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -168,6 +169,41 @@ HasSpeed returns a boolean if a field has been set.
 `func (o *UpdateNetworkEquipmentInterfaceConfig) UnsetSpeed()`
 
 UnsetSpeed ensures that no value is present for Speed, not even an explicit nil
+### GetAutoNegotiate
+
+`func (o *UpdateNetworkEquipmentInterfaceConfig) GetAutoNegotiate() bool`
+
+GetAutoNegotiate returns the AutoNegotiate field if non-nil, zero value otherwise.
+
+### GetAutoNegotiateOk
+
+`func (o *UpdateNetworkEquipmentInterfaceConfig) GetAutoNegotiateOk() (*bool, bool)`
+
+GetAutoNegotiateOk returns a tuple with the AutoNegotiate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoNegotiate
+
+`func (o *UpdateNetworkEquipmentInterfaceConfig) SetAutoNegotiate(v bool)`
+
+SetAutoNegotiate sets AutoNegotiate field to given value.
+
+### HasAutoNegotiate
+
+`func (o *UpdateNetworkEquipmentInterfaceConfig) HasAutoNegotiate() bool`
+
+HasAutoNegotiate returns a boolean if a field has been set.
+
+### SetAutoNegotiateNil
+
+`func (o *UpdateNetworkEquipmentInterfaceConfig) SetAutoNegotiateNil(b bool)`
+
+ SetAutoNegotiateNil sets the value for AutoNegotiate to be an explicit nil
+
+### UnsetAutoNegotiate
+`func (o *UpdateNetworkEquipmentInterfaceConfig) UnsetAutoNegotiate()`
+
+UnsetAutoNegotiate ensures that no value is present for AutoNegotiate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

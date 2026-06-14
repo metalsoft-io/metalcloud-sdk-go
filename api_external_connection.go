@@ -139,7 +139,7 @@ func (a *ExternalConnectionAPIService) CreateExternalConnectionExecute(r Externa
 type ExternalConnectionAPICreateExternalConnectionInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
+	externalConnectionId int64
 	createExternalConnectionInterface *CreateExternalConnectionInterface
 }
 
@@ -162,7 +162,7 @@ Creates a new external connection interface for the specified external connectio
  @param externalConnectionId
  @return ExternalConnectionAPICreateExternalConnectionInterfaceRequest
 */
-func (a *ExternalConnectionAPIService) CreateExternalConnectionInterface(ctx context.Context, externalConnectionId int32) ExternalConnectionAPICreateExternalConnectionInterfaceRequest {
+func (a *ExternalConnectionAPIService) CreateExternalConnectionInterface(ctx context.Context, externalConnectionId int64) ExternalConnectionAPICreateExternalConnectionInterfaceRequest {
 	return ExternalConnectionAPICreateExternalConnectionInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -254,7 +254,7 @@ func (a *ExternalConnectionAPIService) CreateExternalConnectionInterfaceExecute(
 type ExternalConnectionAPICreateExternalConnectionLogicalNetworkRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
+	externalConnectionId int64
 	createExternalConnectionLogicalNetwork *CreateExternalConnectionLogicalNetwork
 }
 
@@ -275,7 +275,7 @@ CreateExternalConnectionLogicalNetwork Create a new external connection logical 
  @param externalConnectionId The id of the external connection
  @return ExternalConnectionAPICreateExternalConnectionLogicalNetworkRequest
 */
-func (a *ExternalConnectionAPIService) CreateExternalConnectionLogicalNetwork(ctx context.Context, externalConnectionId int32) ExternalConnectionAPICreateExternalConnectionLogicalNetworkRequest {
+func (a *ExternalConnectionAPIService) CreateExternalConnectionLogicalNetwork(ctx context.Context, externalConnectionId int64) ExternalConnectionAPICreateExternalConnectionLogicalNetworkRequest {
 	return ExternalConnectionAPICreateExternalConnectionLogicalNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -367,7 +367,7 @@ func (a *ExternalConnectionAPIService) CreateExternalConnectionLogicalNetworkExe
 type ExternalConnectionAPIDeleteExternalConnectionRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
+	externalConnectionId int64
 }
 
 func (r ExternalConnectionAPIDeleteExternalConnectionRequest) Execute() (*http.Response, error) {
@@ -383,7 +383,7 @@ Deletes the specified external connection
  @param externalConnectionId
  @return ExternalConnectionAPIDeleteExternalConnectionRequest
 */
-func (a *ExternalConnectionAPIService) DeleteExternalConnection(ctx context.Context, externalConnectionId int32) ExternalConnectionAPIDeleteExternalConnectionRequest {
+func (a *ExternalConnectionAPIService) DeleteExternalConnection(ctx context.Context, externalConnectionId int64) ExternalConnectionAPIDeleteExternalConnectionRequest {
 	return ExternalConnectionAPIDeleteExternalConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -459,8 +459,8 @@ func (a *ExternalConnectionAPIService) DeleteExternalConnectionExecute(r Externa
 type ExternalConnectionAPIDeleteExternalConnectionInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
-	externalConnectionInterfaceId int32
+	externalConnectionId int64
+	externalConnectionInterfaceId int64
 	ifMatch *string
 }
 
@@ -484,7 +484,7 @@ Deletes the specified external connection interface
  @param externalConnectionInterfaceId
  @return ExternalConnectionAPIDeleteExternalConnectionInterfaceRequest
 */
-func (a *ExternalConnectionAPIService) DeleteExternalConnectionInterface(ctx context.Context, externalConnectionId int32, externalConnectionInterfaceId int32) ExternalConnectionAPIDeleteExternalConnectionInterfaceRequest {
+func (a *ExternalConnectionAPIService) DeleteExternalConnectionInterface(ctx context.Context, externalConnectionId int64, externalConnectionInterfaceId int64) ExternalConnectionAPIDeleteExternalConnectionInterfaceRequest {
 	return ExternalConnectionAPIDeleteExternalConnectionInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -565,8 +565,8 @@ func (a *ExternalConnectionAPIService) DeleteExternalConnectionInterfaceExecute(
 type ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
-	id int32
+	externalConnectionId int64
+	id int64
 }
 
 func (r ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest) Execute() (*http.Response, error) {
@@ -581,7 +581,7 @@ DeleteExternalConnectionLogicalNetwork Start deletion of an external connection 
  @param id The ID of the external connection logical network to delete
  @return ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest
 */
-func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetwork(ctx context.Context, externalConnectionId int32, id int32) ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest {
+func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetwork(ctx context.Context, externalConnectionId int64, id int64) ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest {
 	return ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -659,7 +659,7 @@ func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetworkExe
 type ExternalConnectionAPIGetExternalConnectionByIdRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
+	externalConnectionId int64
 }
 
 func (r ExternalConnectionAPIGetExternalConnectionByIdRequest) Execute() (*ExternalConnection, *http.Response, error) {
@@ -675,7 +675,7 @@ Returns the details of the specified external connection
  @param externalConnectionId
  @return ExternalConnectionAPIGetExternalConnectionByIdRequest
 */
-func (a *ExternalConnectionAPIService) GetExternalConnectionById(ctx context.Context, externalConnectionId int32) ExternalConnectionAPIGetExternalConnectionByIdRequest {
+func (a *ExternalConnectionAPIService) GetExternalConnectionById(ctx context.Context, externalConnectionId int64) ExternalConnectionAPIGetExternalConnectionByIdRequest {
 	return ExternalConnectionAPIGetExternalConnectionByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -762,8 +762,8 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionByIdExecute(r Extern
 type ExternalConnectionAPIGetExternalConnectionInterfaceByIdRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
-	externalConnectionInterfaceId int32
+	externalConnectionId int64
+	externalConnectionInterfaceId int64
 }
 
 func (r ExternalConnectionAPIGetExternalConnectionInterfaceByIdRequest) Execute() (*ExternalConnectionInterface, *http.Response, error) {
@@ -780,7 +780,7 @@ Returns the details of the specified external connection interface
  @param externalConnectionInterfaceId
  @return ExternalConnectionAPIGetExternalConnectionInterfaceByIdRequest
 */
-func (a *ExternalConnectionAPIService) GetExternalConnectionInterfaceById(ctx context.Context, externalConnectionId int32, externalConnectionInterfaceId int32) ExternalConnectionAPIGetExternalConnectionInterfaceByIdRequest {
+func (a *ExternalConnectionAPIService) GetExternalConnectionInterfaceById(ctx context.Context, externalConnectionId int64, externalConnectionInterfaceId int64) ExternalConnectionAPIGetExternalConnectionInterfaceByIdRequest {
 	return ExternalConnectionAPIGetExternalConnectionInterfaceByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -869,7 +869,7 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionInterfaceByIdExecute
 type ExternalConnectionAPIGetExternalConnectionInterfacesRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
+	externalConnectionId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -927,7 +927,7 @@ Returns list of external connection interfaces for the specified external connec
  @param externalConnectionId
  @return ExternalConnectionAPIGetExternalConnectionInterfacesRequest
 */
-func (a *ExternalConnectionAPIService) GetExternalConnectionInterfaces(ctx context.Context, externalConnectionId int32) ExternalConnectionAPIGetExternalConnectionInterfacesRequest {
+func (a *ExternalConnectionAPIService) GetExternalConnectionInterfaces(ctx context.Context, externalConnectionId int64) ExternalConnectionAPIGetExternalConnectionInterfacesRequest {
 	return ExternalConnectionAPIGetExternalConnectionInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1064,8 +1064,8 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionInterfacesExecute(r 
 type ExternalConnectionAPIGetExternalConnectionLogicalNetworkByIdRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
-	id int32
+	externalConnectionId int64
+	id int64
 }
 
 func (r ExternalConnectionAPIGetExternalConnectionLogicalNetworkByIdRequest) Execute() (*ExternalConnectionLogicalNetwork, *http.Response, error) {
@@ -1082,7 +1082,7 @@ Returns an external connection logical network by its ID
  @param id The ID of the external connection logical network to retrieve
  @return ExternalConnectionAPIGetExternalConnectionLogicalNetworkByIdRequest
 */
-func (a *ExternalConnectionAPIService) GetExternalConnectionLogicalNetworkById(ctx context.Context, externalConnectionId int32, id int32) ExternalConnectionAPIGetExternalConnectionLogicalNetworkByIdRequest {
+func (a *ExternalConnectionAPIService) GetExternalConnectionLogicalNetworkById(ctx context.Context, externalConnectionId int64, id int64) ExternalConnectionAPIGetExternalConnectionLogicalNetworkByIdRequest {
 	return ExternalConnectionAPIGetExternalConnectionLogicalNetworkByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1171,7 +1171,7 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionLogicalNetworkByIdEx
 type ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
+	externalConnectionId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1243,7 +1243,7 @@ Returns list of all external connection logical networks for the specified exter
  @param externalConnectionId The id of the external connection
  @return ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest
 */
-func (a *ExternalConnectionAPIService) GetExternalConnectionLogicalNetworks(ctx context.Context, externalConnectionId int32) ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest {
+func (a *ExternalConnectionAPIService) GetExternalConnectionLogicalNetworks(ctx context.Context, externalConnectionId int64) ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest {
 	return ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1740,7 +1740,7 @@ func (a *ExternalConnectionAPIService) GetNetworkDeviceInterfacesAndExternalConn
 type ExternalConnectionAPIUpdateExternalConnectionRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
+	externalConnectionId int64
 	updateExternalConnection *UpdateExternalConnection
 	ifMatch *string
 }
@@ -1770,7 +1770,7 @@ Updates the specified external connection
  @param externalConnectionId
  @return ExternalConnectionAPIUpdateExternalConnectionRequest
 */
-func (a *ExternalConnectionAPIService) UpdateExternalConnection(ctx context.Context, externalConnectionId int32) ExternalConnectionAPIUpdateExternalConnectionRequest {
+func (a *ExternalConnectionAPIService) UpdateExternalConnection(ctx context.Context, externalConnectionId int64) ExternalConnectionAPIUpdateExternalConnectionRequest {
 	return ExternalConnectionAPIUpdateExternalConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1865,8 +1865,8 @@ func (a *ExternalConnectionAPIService) UpdateExternalConnectionExecute(r Externa
 type ExternalConnectionAPIUpdateExternalConnectionInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ExternalConnectionAPIService
-	externalConnectionId int32
-	externalConnectionInterfaceId int32
+	externalConnectionId int64
+	externalConnectionInterfaceId int64
 	updateExternalConnectionInterface *UpdateExternalConnectionInterface
 	ifMatch *string
 }
@@ -1897,7 +1897,7 @@ Updates the specified external connection interface
  @param externalConnectionInterfaceId
  @return ExternalConnectionAPIUpdateExternalConnectionInterfaceRequest
 */
-func (a *ExternalConnectionAPIService) UpdateExternalConnectionInterface(ctx context.Context, externalConnectionId int32, externalConnectionInterfaceId int32) ExternalConnectionAPIUpdateExternalConnectionInterfaceRequest {
+func (a *ExternalConnectionAPIService) UpdateExternalConnectionInterface(ctx context.Context, externalConnectionId int64, externalConnectionInterfaceId int64) ExternalConnectionAPIUpdateExternalConnectionInterfaceRequest {
 	return ExternalConnectionAPIUpdateExternalConnectionInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,

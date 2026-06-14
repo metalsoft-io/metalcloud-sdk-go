@@ -118,6 +118,10 @@ type UpdateNetworkDevice struct {
 	SnmpVersion *float32 `json:"snmpVersion,omitempty"`
 	// Ordered list of authentication options. Credentials are resolved from the first active entry.
 	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
+	// Partial key/value tag update. A null value deletes that key; a present value upserts it; omitted keys are left unchanged.
+	TagsMap *map[string]string `json:"tagsMap,omitempty"`
+	// One-shot: when true, the next fabric deploy pushes identifierString as the switch system hostname (Cumulus Linux only) and the flag is cleared again after the successful push. Enabling requires a Cumulus Linux driver and a valid (hostname-shaped) identifierString.
+	ApplyIdentifierAsHostnameOnNextDeploy *bool `json:"applyIdentifierAsHostnameOnNextDeploy,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1903,6 +1907,70 @@ func (o *UpdateNetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOpti
 	o.AuthenticationOptions = v
 }
 
+// GetTagsMap returns the TagsMap field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetTagsMap() map[string]string {
+	if o == nil || IsNil(o.TagsMap) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.TagsMap
+}
+
+// GetTagsMapOk returns a tuple with the TagsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetTagsMapOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.TagsMap) {
+		return nil, false
+	}
+	return o.TagsMap, true
+}
+
+// HasTagsMap returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasTagsMap() bool {
+	if o != nil && !IsNil(o.TagsMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetTagsMap gets a reference to the given map[string]string and assigns it to the TagsMap field.
+func (o *UpdateNetworkDevice) SetTagsMap(v map[string]string) {
+	o.TagsMap = &v
+}
+
+// GetApplyIdentifierAsHostnameOnNextDeploy returns the ApplyIdentifierAsHostnameOnNextDeploy field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetApplyIdentifierAsHostnameOnNextDeploy() bool {
+	if o == nil || IsNil(o.ApplyIdentifierAsHostnameOnNextDeploy) {
+		var ret bool
+		return ret
+	}
+	return *o.ApplyIdentifierAsHostnameOnNextDeploy
+}
+
+// GetApplyIdentifierAsHostnameOnNextDeployOk returns a tuple with the ApplyIdentifierAsHostnameOnNextDeploy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetApplyIdentifierAsHostnameOnNextDeployOk() (*bool, bool) {
+	if o == nil || IsNil(o.ApplyIdentifierAsHostnameOnNextDeploy) {
+		return nil, false
+	}
+	return o.ApplyIdentifierAsHostnameOnNextDeploy, true
+}
+
+// HasApplyIdentifierAsHostnameOnNextDeploy returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasApplyIdentifierAsHostnameOnNextDeploy() bool {
+	if o != nil && !IsNil(o.ApplyIdentifierAsHostnameOnNextDeploy) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplyIdentifierAsHostnameOnNextDeploy gets a reference to the given bool and assigns it to the ApplyIdentifierAsHostnameOnNextDeploy field.
+func (o *UpdateNetworkDevice) SetApplyIdentifierAsHostnameOnNextDeploy(v bool) {
+	o.ApplyIdentifierAsHostnameOnNextDeploy = &v
+}
+
 func (o UpdateNetworkDevice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -2057,6 +2125,12 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AuthenticationOptions) {
 		toSerialize["authenticationOptions"] = o.AuthenticationOptions
 	}
+	if !IsNil(o.TagsMap) {
+		toSerialize["tagsMap"] = o.TagsMap
+	}
+	if !IsNil(o.ApplyIdentifierAsHostnameOnNextDeploy) {
+		toSerialize["applyIdentifierAsHostnameOnNextDeploy"] = o.ApplyIdentifierAsHostnameOnNextDeploy
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -2127,6 +2201,8 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "snmpSystemContact")
 		delete(additionalProperties, "snmpVersion")
 		delete(additionalProperties, "authenticationOptions")
+		delete(additionalProperties, "tagsMap")
+		delete(additionalProperties, "applyIdentifierAsHostnameOnNextDeploy")
 		o.AdditionalProperties = additionalProperties
 	}
 

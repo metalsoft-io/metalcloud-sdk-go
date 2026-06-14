@@ -28,7 +28,7 @@ type EventAPIService service
 type EventAPIGetEventRequest struct {
 	ctx context.Context
 	ApiService *EventAPIService
-	eventId float32
+	eventId int64
 }
 
 func (r EventAPIGetEventRequest) Execute() (*Event, *http.Response, error) {
@@ -44,7 +44,7 @@ Returns Event information
  @param eventId
  @return EventAPIGetEventRequest
 */
-func (a *EventAPIService) GetEvent(ctx context.Context, eventId float32) EventAPIGetEventRequest {
+func (a *EventAPIService) GetEvent(ctx context.Context, eventId int64) EventAPIGetEventRequest {
 	return EventAPIGetEventRequest{
 		ApiService: a,
 		ctx: ctx,

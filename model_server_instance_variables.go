@@ -51,7 +51,7 @@ type ServerInstanceVariables struct {
 	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	InstanceWanMlagId *int64 `json:"instanceWanMlagId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
-	PreferredServerIds []float32 `json:"preferredServerIds,omitempty"`
+	PreferredServerIds []int64 `json:"preferredServerIds,omitempty"`
 	// Custom Storage Profile for the Instance.
 	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
 	// Current status of the server instance.
@@ -611,9 +611,9 @@ func (o *ServerInstanceVariables) SetCustomVariables(v map[string]interface{}) {
 }
 
 // GetPreferredServerIds returns the PreferredServerIds field value if set, zero value otherwise.
-func (o *ServerInstanceVariables) GetPreferredServerIds() []float32 {
+func (o *ServerInstanceVariables) GetPreferredServerIds() []int64 {
 	if o == nil || IsNil(o.PreferredServerIds) {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.PreferredServerIds
@@ -621,7 +621,7 @@ func (o *ServerInstanceVariables) GetPreferredServerIds() []float32 {
 
 // GetPreferredServerIdsOk returns a tuple with the PreferredServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceVariables) GetPreferredServerIdsOk() ([]float32, bool) {
+func (o *ServerInstanceVariables) GetPreferredServerIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.PreferredServerIds) {
 		return nil, false
 	}
@@ -637,8 +637,8 @@ func (o *ServerInstanceVariables) HasPreferredServerIds() bool {
 	return false
 }
 
-// SetPreferredServerIds gets a reference to the given []float32 and assigns it to the PreferredServerIds field.
-func (o *ServerInstanceVariables) SetPreferredServerIds(v []float32) {
+// SetPreferredServerIds gets a reference to the given []int64 and assigns it to the PreferredServerIds field.
+func (o *ServerInstanceVariables) SetPreferredServerIds(v []int64) {
 	o.PreferredServerIds = v
 }
 

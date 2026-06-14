@@ -43,8 +43,8 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
-	userId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -62,8 +62,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
-**userId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -114,8 +114,8 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
-	serverId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -133,8 +133,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
-**serverId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -185,8 +185,8 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
-	subnetPoolId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
+	subnetPoolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -204,8 +204,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
-**subnetPoolId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
+**subnetPoolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -322,7 +322,7 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -340,7 +340,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -460,7 +460,7 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -480,7 +480,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -530,7 +530,7 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -550,7 +550,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -600,7 +600,7 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -620,7 +620,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -754,7 +754,7 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -774,7 +774,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -824,8 +824,8 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
-	userId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
+	userId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -843,8 +843,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
-**userId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
+**userId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -895,8 +895,8 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
-	serverId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
+	serverId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -914,8 +914,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
-**serverId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
+**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -966,8 +966,8 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
-	subnetPoolId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
+	subnetPoolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -985,8 +985,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
-**subnetPoolId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
+**subnetPoolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1037,7 +1037,7 @@ import (
 )
 
 func main() {
-	resourcePoolId := float32(8.14) // float32 | 
+	resourcePoolId := int64(789) // int64 | 
 	updateResourcePool := *openapiclient.NewUpdateResourcePool() // UpdateResourcePool | The Resource Pool update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -1058,7 +1058,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePoolId** | **float32** |  | 
+**resourcePoolId** | **int64** |  | 
 
 ### Other Parameters
 

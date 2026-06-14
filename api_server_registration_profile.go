@@ -139,7 +139,7 @@ func (a *ServerRegistrationProfileAPIService) CreateServerRegistrationProfileExe
 type ServerRegistrationProfileAPIDeleteServerRegistrationProfileRequest struct {
 	ctx context.Context
 	ApiService *ServerRegistrationProfileAPIService
-	serverRegistrationProfileId float32
+	serverRegistrationProfileId int64
 	ifMatch *string
 }
 
@@ -162,7 +162,7 @@ Deletes a Server Registration Profile
  @param serverRegistrationProfileId
  @return ServerRegistrationProfileAPIDeleteServerRegistrationProfileRequest
 */
-func (a *ServerRegistrationProfileAPIService) DeleteServerRegistrationProfile(ctx context.Context, serverRegistrationProfileId float32) ServerRegistrationProfileAPIDeleteServerRegistrationProfileRequest {
+func (a *ServerRegistrationProfileAPIService) DeleteServerRegistrationProfile(ctx context.Context, serverRegistrationProfileId int64) ServerRegistrationProfileAPIDeleteServerRegistrationProfileRequest {
 	return ServerRegistrationProfileAPIDeleteServerRegistrationProfileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -241,7 +241,7 @@ func (a *ServerRegistrationProfileAPIService) DeleteServerRegistrationProfileExe
 type ServerRegistrationProfileAPIGetServerRegistrationProfileInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerRegistrationProfileAPIService
-	serverRegistrationProfileId float32
+	serverRegistrationProfileId int64
 }
 
 func (r ServerRegistrationProfileAPIGetServerRegistrationProfileInfoRequest) Execute() (*ServerRegistrationProfile, *http.Response, error) {
@@ -257,7 +257,7 @@ Returns Server Registration Profile information
  @param serverRegistrationProfileId
  @return ServerRegistrationProfileAPIGetServerRegistrationProfileInfoRequest
 */
-func (a *ServerRegistrationProfileAPIService) GetServerRegistrationProfileInfo(ctx context.Context, serverRegistrationProfileId float32) ServerRegistrationProfileAPIGetServerRegistrationProfileInfoRequest {
+func (a *ServerRegistrationProfileAPIService) GetServerRegistrationProfileInfo(ctx context.Context, serverRegistrationProfileId int64) ServerRegistrationProfileAPIGetServerRegistrationProfileInfoRequest {
 	return ServerRegistrationProfileAPIGetServerRegistrationProfileInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -344,7 +344,7 @@ func (a *ServerRegistrationProfileAPIService) GetServerRegistrationProfileInfoEx
 type ServerRegistrationProfileAPIGetServerRegistrationProfileInfoForServerRequest struct {
 	ctx context.Context
 	ApiService *ServerRegistrationProfileAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerRegistrationProfileAPIGetServerRegistrationProfileInfoForServerRequest) Execute() (*ServerRegistrationProfile, *http.Response, error) {
@@ -360,7 +360,7 @@ Returns Server Registration Profile information for specific server
  @param serverId
  @return ServerRegistrationProfileAPIGetServerRegistrationProfileInfoForServerRequest
 */
-func (a *ServerRegistrationProfileAPIService) GetServerRegistrationProfileInfoForServer(ctx context.Context, serverId float32) ServerRegistrationProfileAPIGetServerRegistrationProfileInfoForServerRequest {
+func (a *ServerRegistrationProfileAPIService) GetServerRegistrationProfileInfoForServer(ctx context.Context, serverId int64) ServerRegistrationProfileAPIGetServerRegistrationProfileInfoForServerRequest {
 	return ServerRegistrationProfileAPIGetServerRegistrationProfileInfoForServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -838,7 +838,7 @@ func (a *ServerRegistrationProfileAPIService) SearchServerRegistrationProfileInf
 type ServerRegistrationProfileAPIUpdateServerRegistrationProfileRequest struct {
 	ctx context.Context
 	ApiService *ServerRegistrationProfileAPIService
-	serverRegistrationProfileId float32
+	serverRegistrationProfileId int64
 	serverRegistrationProfileUpdate *ServerRegistrationProfileUpdate
 	ifMatch *string
 }
@@ -868,7 +868,7 @@ Updates a Server Registration Profile
  @param serverRegistrationProfileId
  @return ServerRegistrationProfileAPIUpdateServerRegistrationProfileRequest
 */
-func (a *ServerRegistrationProfileAPIService) UpdateServerRegistrationProfile(ctx context.Context, serverRegistrationProfileId float32) ServerRegistrationProfileAPIUpdateServerRegistrationProfileRequest {
+func (a *ServerRegistrationProfileAPIService) UpdateServerRegistrationProfile(ctx context.Context, serverRegistrationProfileId int64) ServerRegistrationProfileAPIUpdateServerRegistrationProfileRequest {
 	return ServerRegistrationProfileAPIUpdateServerRegistrationProfileRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkDeviceId** | **float32** | Unique identifier for the network device. | 
-**NetworkInterconnectId** | **float32** | Unique identifier for the network fabric interconnect | 
+**NetworkDeviceId** | **int64** | Unique identifier for the network device. | 
+**NetworkInterconnectId** | **int64** | Unique identifier for the network fabric interconnect | 
 **GlobalTemplateActivate** | **[]string** | Preview of global activation template | 
 **NeighborTemplateActivate** | **[]string** | Preview of BGP neighbor configuration activation template | 
 **GlobalTemplateDeactivate** | **[]string** | Preview of global deactivation template | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricInterconnectDeployPreview
 
-`func NewNetworkFabricInterconnectDeployPreview(networkDeviceId float32, networkInterconnectId float32, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string, changes []string, ) *NetworkFabricInterconnectDeployPreview`
+`func NewNetworkFabricInterconnectDeployPreview(networkDeviceId int64, networkInterconnectId int64, globalTemplateActivate []string, neighborTemplateActivate []string, globalTemplateDeactivate []string, neighborTemplateDeactivate []string, changes []string, ) *NetworkFabricInterconnectDeployPreview`
 
 NewNetworkFabricInterconnectDeployPreview instantiates a new NetworkFabricInterconnectDeployPreview object
 This constructor will assign default values to properties that have it defined,
@@ -33,40 +33,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNetworkDeviceId
 
-`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceId() float32`
+`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceIdOk() (*float32, bool)`
+`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *NetworkFabricInterconnectDeployPreview) SetNetworkDeviceId(v float32)`
+`func (o *NetworkFabricInterconnectDeployPreview) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
 
 ### GetNetworkInterconnectId
 
-`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectId() float32`
+`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectId() int64`
 
 GetNetworkInterconnectId returns the NetworkInterconnectId field if non-nil, zero value otherwise.
 
 ### GetNetworkInterconnectIdOk
 
-`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectIdOk() (*float32, bool)`
+`func (o *NetworkFabricInterconnectDeployPreview) GetNetworkInterconnectIdOk() (*int64, bool)`
 
 GetNetworkInterconnectIdOk returns a tuple with the NetworkInterconnectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkInterconnectId
 
-`func (o *NetworkFabricInterconnectDeployPreview) SetNetworkInterconnectId(v float32)`
+`func (o *NetworkFabricInterconnectDeployPreview) SetNetworkInterconnectId(v int64)`
 
 SetNetworkInterconnectId sets NetworkInterconnectId field to given value.
 

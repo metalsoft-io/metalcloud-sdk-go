@@ -24,7 +24,7 @@ type HpeComponentFilter struct {
 	// Discriminator field set to hpe
 	Vendor string `json:"vendor"`
 	// ID of the HP component filter
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Device class for HP
 	DeviceClass string `json:"deviceClass"`
 	// Targets for HP
@@ -38,7 +38,7 @@ type _HpeComponentFilter HpeComponentFilter
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHpeComponentFilter(vendor string, id float32, deviceClass string, targets []string) *HpeComponentFilter {
+func NewHpeComponentFilter(vendor string, id int64, deviceClass string, targets []string) *HpeComponentFilter {
 	this := HpeComponentFilter{}
 	this.Vendor = vendor
 	this.Id = id
@@ -80,9 +80,9 @@ func (o *HpeComponentFilter) SetVendor(v string) {
 }
 
 // GetId returns the Id field value
-func (o *HpeComponentFilter) GetId() float32 {
+func (o *HpeComponentFilter) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *HpeComponentFilter) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *HpeComponentFilter) GetIdOk() (*float32, bool) {
+func (o *HpeComponentFilter) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *HpeComponentFilter) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *HpeComponentFilter) SetId(v float32) {
+func (o *HpeComponentFilter) SetId(v int64) {
 	o.Id = v
 }
 

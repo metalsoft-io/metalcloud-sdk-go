@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Revision** | **string** | Revision number of the entity | 
-**Id** | **float32** | Unique identifier for the server registration profile | 
+**Id** | **int64** | Unique identifier for the server registration profile | 
 **Name** | **string** | Name of the server registration profile | 
 **Settings** | [**ServerRegistrationProfileSettings**](ServerRegistrationProfileSettings.md) | Server registration profile settings | 
 **IsDefault** | **bool** | Whether this is the default server registration profile | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewServerRegistrationProfile
 
-`func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, name string, settings ServerRegistrationProfileSettings, isDefault bool, ) *ServerRegistrationProfile`
+`func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, name string, settings ServerRegistrationProfileSettings, isDefault bool, ) *ServerRegistrationProfile`
 
 NewServerRegistrationProfile instantiates a new ServerRegistrationProfile object
 This constructor will assign default values to properties that have it defined,
@@ -94,20 +94,20 @@ SetRevision sets Revision field to given value.
 
 ### GetId
 
-`func (o *ServerRegistrationProfile) GetId() float32`
+`func (o *ServerRegistrationProfile) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerRegistrationProfile) GetIdOk() (*float32, bool)`
+`func (o *ServerRegistrationProfile) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerRegistrationProfile) SetId(v float32)`
+`func (o *ServerRegistrationProfile) SetId(v int64)`
 
 SetId sets Id field to given value.
 

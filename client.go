@@ -128,6 +128,8 @@ type APIClient struct {
 
 	OSTemplateAPI *OSTemplateAPIService
 
+	PointToPointLinkAPI *PointToPointLinkAPIService
+
 	ResourcePoolAPI *ResourcePoolAPIService
 
 	RouteDomainAPI *RouteDomainAPIService
@@ -236,6 +238,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
 	c.NetworkFabricInterconnectAPI = (*NetworkFabricInterconnectAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)
+	c.PointToPointLinkAPI = (*PointToPointLinkAPIService)(&c.common)
 	c.ResourcePoolAPI = (*ResourcePoolAPIService)(&c.common)
 	c.RouteDomainAPI = (*RouteDomainAPIService)(&c.common)
 	c.SecretsAPI = (*SecretsAPIService)(&c.common)

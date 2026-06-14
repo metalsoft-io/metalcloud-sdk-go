@@ -53,7 +53,7 @@ type ServerInstanceGroupVariables struct {
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto int32 `json:"ipv4SubnetCreateAuto"`
 	// Array of firmware policy ids containing associated firmware policies.
-	FirmwarePolicyIds []float32 `json:"firmwarePolicyIds,omitempty"`
+	FirmwarePolicyIds []int64 `json:"firmwarePolicyIds,omitempty"`
 	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
@@ -625,9 +625,9 @@ func (o *ServerInstanceGroupVariables) SetIpv4SubnetCreateAuto(v int32) {
 }
 
 // GetFirmwarePolicyIds returns the FirmwarePolicyIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIds() []float32 {
+func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.FirmwarePolicyIds
@@ -636,7 +636,7 @@ func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIds() []float32 {
 // GetFirmwarePolicyIdsOk returns a tuple with the FirmwarePolicyIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIdsOk() ([]float32, bool) {
+func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.FirmwarePolicyIds) {
 		return nil, false
 	}
@@ -652,8 +652,8 @@ func (o *ServerInstanceGroupVariables) HasFirmwarePolicyIds() bool {
 	return false
 }
 
-// SetFirmwarePolicyIds gets a reference to the given []float32 and assigns it to the FirmwarePolicyIds field.
-func (o *ServerInstanceGroupVariables) SetFirmwarePolicyIds(v []float32) {
+// SetFirmwarePolicyIds gets a reference to the given []int64 and assigns it to the FirmwarePolicyIds field.
+func (o *ServerInstanceGroupVariables) SetFirmwarePolicyIds(v []int64) {
 	o.FirmwarePolicyIds = v
 }
 

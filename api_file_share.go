@@ -28,8 +28,8 @@ type FileShareAPIService service
 type FileShareAPICreateFileShareSnapshotRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 }
 
 func (r FileShareAPICreateFileShareSnapshotRequest) Execute() (*FileShareSnapshot, *http.Response, error) {
@@ -44,7 +44,7 @@ CreateFileShareSnapshot Create a snapshot of the specified File Share
  @param fileShareId
  @return FileShareAPICreateFileShareSnapshotRequest
 */
-func (a *FileShareAPIService) CreateFileShareSnapshot(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPICreateFileShareSnapshotRequest {
+func (a *FileShareAPIService) CreateFileShareSnapshot(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPICreateFileShareSnapshotRequest {
 	return FileShareAPICreateFileShareSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -133,7 +133,7 @@ func (a *FileShareAPIService) CreateFileShareSnapshotExecute(r FileShareAPICreat
 type FileShareAPICreateInfrastructureFileShareRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
+	infrastructureId int64
 	createFileShare *CreateFileShare
 }
 
@@ -156,7 +156,7 @@ Creates a File Share
  @param infrastructureId
  @return FileShareAPICreateInfrastructureFileShareRequest
 */
-func (a *FileShareAPIService) CreateInfrastructureFileShare(ctx context.Context, infrastructureId float32) FileShareAPICreateInfrastructureFileShareRequest {
+func (a *FileShareAPIService) CreateInfrastructureFileShare(ctx context.Context, infrastructureId int64) FileShareAPICreateInfrastructureFileShareRequest {
 	return FileShareAPICreateInfrastructureFileShareRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -248,8 +248,8 @@ func (a *FileShareAPIService) CreateInfrastructureFileShareExecute(r FileShareAP
 type FileShareAPIDeleteFileShareRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 	ifMatch *string
 }
 
@@ -273,7 +273,7 @@ Deletes a File Share
  @param fileShareId
  @return FileShareAPIDeleteFileShareRequest
 */
-func (a *FileShareAPIService) DeleteFileShare(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIDeleteFileShareRequest {
+func (a *FileShareAPIService) DeleteFileShare(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIDeleteFileShareRequest {
 	return FileShareAPIDeleteFileShareRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -354,8 +354,8 @@ func (a *FileShareAPIService) DeleteFileShareExecute(r FileShareAPIDeleteFileSha
 type FileShareAPIDeleteFileShareSnapshotRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 	deleteFileShareSnapshot *DeleteFileShareSnapshot
 }
 
@@ -376,7 +376,7 @@ DeleteFileShareSnapshot Delete a snapshot of the specified File Share
  @param fileShareId
  @return FileShareAPIDeleteFileShareSnapshotRequest
 */
-func (a *FileShareAPIService) DeleteFileShareSnapshot(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIDeleteFileShareSnapshotRequest {
+func (a *FileShareAPIService) DeleteFileShareSnapshot(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIDeleteFileShareSnapshotRequest {
 	return FileShareAPIDeleteFileShareSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -459,7 +459,7 @@ func (a *FileShareAPIService) DeleteFileShareSnapshotExecute(r FileShareAPIDelet
 type FileShareAPIGetFileShareRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	fileShareId float32
+	fileShareId int64
 }
 
 func (r FileShareAPIGetFileShareRequest) Execute() (*FileShare, *http.Response, error) {
@@ -475,7 +475,7 @@ Returns File Share information
  @param fileShareId
  @return FileShareAPIGetFileShareRequest
 */
-func (a *FileShareAPIService) GetFileShare(ctx context.Context, fileShareId float32) FileShareAPIGetFileShareRequest {
+func (a *FileShareAPIService) GetFileShare(ctx context.Context, fileShareId int64) FileShareAPIGetFileShareRequest {
 	return FileShareAPIGetFileShareRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -562,8 +562,8 @@ func (a *FileShareAPIService) GetFileShareExecute(r FileShareAPIGetFileShareRequ
 type FileShareAPIGetFileShareConfigInfoRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 }
 
 func (r FileShareAPIGetFileShareConfigInfoRequest) Execute() (*FileShareConfiguration, *http.Response, error) {
@@ -578,7 +578,7 @@ GetFileShareConfigInfo Get configuration information about the specified File Sh
  @param fileShareId
  @return FileShareAPIGetFileShareConfigInfoRequest
 */
-func (a *FileShareAPIService) GetFileShareConfigInfo(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIGetFileShareConfigInfoRequest {
+func (a *FileShareAPIService) GetFileShareConfigInfo(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIGetFileShareConfigInfoRequest {
 	return FileShareAPIGetFileShareConfigInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -667,8 +667,8 @@ func (a *FileShareAPIService) GetFileShareConfigInfoExecute(r FileShareAPIGetFil
 type FileShareAPIGetFileShareHostsRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 }
 
 func (r FileShareAPIGetFileShareHostsRequest) Execute() (*FileShareHosts, *http.Response, error) {
@@ -685,7 +685,7 @@ Returns the Hosts of File Share
  @param fileShareId
  @return FileShareAPIGetFileShareHostsRequest
 */
-func (a *FileShareAPIService) GetFileShareHosts(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIGetFileShareHostsRequest {
+func (a *FileShareAPIService) GetFileShareHosts(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIGetFileShareHostsRequest {
 	return FileShareAPIGetFileShareHostsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -774,8 +774,8 @@ func (a *FileShareAPIService) GetFileShareHostsExecute(r FileShareAPIGetFileShar
 type FileShareAPIGetFileShareSnapshotsRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 }
 
 func (r FileShareAPIGetFileShareSnapshotsRequest) Execute() ([]FileShareSnapshot, *http.Response, error) {
@@ -790,7 +790,7 @@ GetFileShareSnapshots Get snapshots of the specified File Share
  @param fileShareId
  @return FileShareAPIGetFileShareSnapshotsRequest
 */
-func (a *FileShareAPIService) GetFileShareSnapshots(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIGetFileShareSnapshotsRequest {
+func (a *FileShareAPIService) GetFileShareSnapshots(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIGetFileShareSnapshotsRequest {
 	return FileShareAPIGetFileShareSnapshotsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -879,8 +879,8 @@ func (a *FileShareAPIService) GetFileShareSnapshotsExecute(r FileShareAPIGetFile
 type FileShareAPIGetInfrastructureFileShareRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 }
 
 func (r FileShareAPIGetInfrastructureFileShareRequest) Execute() (*FileShare, *http.Response, error) {
@@ -897,7 +897,7 @@ Returns File Share information
  @param fileShareId
  @return FileShareAPIGetInfrastructureFileShareRequest
 */
-func (a *FileShareAPIService) GetInfrastructureFileShare(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIGetInfrastructureFileShareRequest {
+func (a *FileShareAPIService) GetInfrastructureFileShare(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIGetInfrastructureFileShareRequest {
 	return FileShareAPIGetInfrastructureFileShareRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -986,7 +986,7 @@ func (a *FileShareAPIService) GetInfrastructureFileShareExecute(r FileShareAPIGe
 type FileShareAPIGetInfrastructureFileSharesRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1107,7 +1107,7 @@ Returns list of all File Shares
  @param infrastructureId
  @return FileShareAPIGetInfrastructureFileSharesRequest
 */
-func (a *FileShareAPIService) GetInfrastructureFileShares(ctx context.Context, infrastructureId float32) FileShareAPIGetInfrastructureFileSharesRequest {
+func (a *FileShareAPIService) GetInfrastructureFileShares(ctx context.Context, infrastructureId int64) FileShareAPIGetInfrastructureFileSharesRequest {
 	return FileShareAPIGetInfrastructureFileSharesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1335,8 +1335,8 @@ func (a *FileShareAPIService) GetInfrastructureFileSharesExecute(r FileShareAPIG
 type FileShareAPIPatchFileShareMetaRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 	updateFileShareMeta *UpdateFileShareMeta
 }
 
@@ -1357,7 +1357,7 @@ PatchFileShareMeta Updates the meta of a File Share
  @param fileShareId
  @return FileShareAPIPatchFileShareMetaRequest
 */
-func (a *FileShareAPIService) PatchFileShareMeta(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIPatchFileShareMetaRequest {
+func (a *FileShareAPIService) PatchFileShareMeta(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIPatchFileShareMetaRequest {
 	return FileShareAPIPatchFileShareMetaRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1451,8 +1451,8 @@ func (a *FileShareAPIService) PatchFileShareMetaExecute(r FileShareAPIPatchFileS
 type FileShareAPIRestoreFileShareToSnapshotRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 	restoreFileShareSnapshot *RestoreFileShareSnapshot
 }
 
@@ -1473,7 +1473,7 @@ RestoreFileShareToSnapshot Restore a File Share to a specified snapshot
  @param fileShareId
  @return FileShareAPIRestoreFileShareToSnapshotRequest
 */
-func (a *FileShareAPIService) RestoreFileShareToSnapshot(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIRestoreFileShareToSnapshotRequest {
+func (a *FileShareAPIService) RestoreFileShareToSnapshot(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIRestoreFileShareToSnapshotRequest {
 	return FileShareAPIRestoreFileShareToSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1556,8 +1556,8 @@ func (a *FileShareAPIService) RestoreFileShareToSnapshotExecute(r FileShareAPIRe
 type FileShareAPIUpdateFileShareConfigRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 	updateFileShare *UpdateFileShare
 	ifMatch *string
 }
@@ -1588,7 +1588,7 @@ Updates File Share config information
  @param fileShareId
  @return FileShareAPIUpdateFileShareConfigRequest
 */
-func (a *FileShareAPIService) UpdateFileShareConfig(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIUpdateFileShareConfigRequest {
+func (a *FileShareAPIService) UpdateFileShareConfig(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIUpdateFileShareConfigRequest {
 	return FileShareAPIUpdateFileShareConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1685,8 +1685,8 @@ func (a *FileShareAPIService) UpdateFileShareConfigExecute(r FileShareAPIUpdateF
 type FileShareAPIUpdateFileShareInstanceArrayHostsBulkRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
-	infrastructureId float32
-	fileShareId float32
+	infrastructureId int64
+	fileShareId int64
 	fileShareHostsModifyBulk *FileShareHostsModifyBulk
 }
 
@@ -1710,7 +1710,7 @@ Updates Instance Array Hosts on the File Share
  @param fileShareId
  @return FileShareAPIUpdateFileShareInstanceArrayHostsBulkRequest
 */
-func (a *FileShareAPIService) UpdateFileShareInstanceArrayHostsBulk(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIUpdateFileShareInstanceArrayHostsBulkRequest {
+func (a *FileShareAPIService) UpdateFileShareInstanceArrayHostsBulk(ctx context.Context, infrastructureId int64, fileShareId int64) FileShareAPIUpdateFileShareInstanceArrayHostsBulkRequest {
 	return FileShareAPIUpdateFileShareInstanceArrayHostsBulkRequest{
 		ApiService: a,
 		ctx: ctx,

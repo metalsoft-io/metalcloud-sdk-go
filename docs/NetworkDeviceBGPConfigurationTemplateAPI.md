@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	networkDeviceBGPConfigurationTemplateId := float32(8.14) // float32 | 
+	networkDeviceBGPConfigurationTemplateId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceBGPConfigurationTemplateId** | **float32** |  | 
+**networkDeviceBGPConfigurationTemplateId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	networkDeviceBGPConfigurationTemplateId := float32(8.14) // float32 | 
+	networkDeviceBGPConfigurationTemplateId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -187,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceBGPConfigurationTemplateId** | **float32** |  | 
+**networkDeviceBGPConfigurationTemplateId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -331,7 +331,7 @@ import (
 )
 
 func main() {
-	networkDeviceBGPConfigurationTemplateId := float32(8.14) // float32 | 
+	networkDeviceBGPConfigurationTemplateId := int64(789) // int64 | 
 	updateNetworkDeviceBGPConfigurationTemplate := *openapiclient.NewUpdateNetworkDeviceBGPConfigurationTemplate() // UpdateNetworkDeviceBGPConfigurationTemplate | The Network Device BGP Configuration Template update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -352,7 +352,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceBGPConfigurationTemplateId** | **float32** |  | 
+**networkDeviceBGPConfigurationTemplateId** | **int64** |  | 
 
 ### Other Parameters
 

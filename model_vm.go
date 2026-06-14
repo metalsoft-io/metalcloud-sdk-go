@@ -27,14 +27,10 @@ type VM struct {
 	Name string `json:"name"`
 	// Id of the site for the VM
 	SiteId int64 `json:"siteId"`
-	// Datacenter of the VM
-	DatacenterName string `json:"datacenterName"`
 	// ID of the infrastructure where this VM is deployed
 	InfrastructureId int64 `json:"infrastructureId"`
 	// ID of the user that owns this VM
 	UserId int64 `json:"userId"`
-	// Email of the user that owns this VM
-	UserEmail string `json:"userEmail"`
 	// ID of the instance where this VM is deployed
 	InstanceId int64 `json:"instanceId"`
 	// The id of the VM Instance. This is a number.
@@ -84,15 +80,13 @@ type _VM VM
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVM(id int64, name string, siteId int64, datacenterName string, infrastructureId int64, userId int64, userEmail string, instanceId int64, vmInstanceId int64, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId int64, poolId int64, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk) *VM {
+func NewVM(id int64, name string, siteId int64, infrastructureId int64, userId int64, instanceId int64, vmInstanceId int64, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId int64, poolId int64, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk) *VM {
 	this := VM{}
 	this.Id = id
 	this.Name = name
 	this.SiteId = siteId
-	this.DatacenterName = datacenterName
 	this.InfrastructureId = infrastructureId
 	this.UserId = userId
-	this.UserEmail = userEmail
 	this.InstanceId = instanceId
 	this.VmInstanceId = vmInstanceId
 	this.Host = host
@@ -191,30 +185,6 @@ func (o *VM) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
-// GetDatacenterName returns the DatacenterName field value
-func (o *VM) GetDatacenterName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DatacenterName
-}
-
-// GetDatacenterNameOk returns a tuple with the DatacenterName field value
-// and a boolean to check if the value has been set.
-func (o *VM) GetDatacenterNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DatacenterName, true
-}
-
-// SetDatacenterName sets field value
-func (o *VM) SetDatacenterName(v string) {
-	o.DatacenterName = v
-}
-
 // GetInfrastructureId returns the InfrastructureId field value
 func (o *VM) GetInfrastructureId() int64 {
 	if o == nil {
@@ -261,30 +231,6 @@ func (o *VM) GetUserIdOk() (*int64, bool) {
 // SetUserId sets field value
 func (o *VM) SetUserId(v int64) {
 	o.UserId = v
-}
-
-// GetUserEmail returns the UserEmail field value
-func (o *VM) GetUserEmail() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserEmail
-}
-
-// GetUserEmailOk returns a tuple with the UserEmail field value
-// and a boolean to check if the value has been set.
-func (o *VM) GetUserEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UserEmail, true
-}
-
-// SetUserEmail sets field value
-func (o *VM) SetUserEmail(v string) {
-	o.UserEmail = v
 }
 
 // GetInstanceId returns the InstanceId field value
@@ -820,10 +766,8 @@ func (o VM) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["siteId"] = o.SiteId
-	toSerialize["datacenterName"] = o.DatacenterName
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["userId"] = o.UserId
-	toSerialize["userEmail"] = o.UserEmail
 	toSerialize["instanceId"] = o.InstanceId
 	toSerialize["vmInstanceId"] = o.VmInstanceId
 	toSerialize["host"] = o.Host
@@ -870,10 +814,8 @@ func (o *VM) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"siteId",
-		"datacenterName",
 		"infrastructureId",
 		"userId",
-		"userEmail",
 		"instanceId",
 		"vmInstanceId",
 		"host",
@@ -921,10 +863,8 @@ func (o *VM) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "siteId")
-		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "userId")
-		delete(additionalProperties, "userEmail")
 		delete(additionalProperties, "instanceId")
 		delete(additionalProperties, "vmInstanceId")
 		delete(additionalProperties, "host")

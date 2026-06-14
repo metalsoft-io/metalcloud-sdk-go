@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	networkDeviceLinkAggregationConfigurationTemplateId := float32(8.14) // float32 | 
+	networkDeviceLinkAggregationConfigurationTemplateId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceLinkAggregationConfigurationTemplateId** | **float32** |  | 
+**networkDeviceLinkAggregationConfigurationTemplateId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	networkDeviceLinkAggregationConfigurationTemplateId := float32(8.14) // float32 | 
+	networkDeviceLinkAggregationConfigurationTemplateId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -187,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceLinkAggregationConfigurationTemplateId** | **float32** |  | 
+**networkDeviceLinkAggregationConfigurationTemplateId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -323,7 +323,7 @@ import (
 )
 
 func main() {
-	networkDeviceLinkAggregationConfigurationTemplateId := float32(8.14) // float32 | 
+	networkDeviceLinkAggregationConfigurationTemplateId := int64(789) // int64 | 
 	updateNetworkDeviceLinkAggregationConfigurationTemplate := *openapiclient.NewUpdateNetworkDeviceLinkAggregationConfigurationTemplate() // UpdateNetworkDeviceLinkAggregationConfigurationTemplate | The Network Device Link Aggregation Configuration Template update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -344,7 +344,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceLinkAggregationConfigurationTemplateId** | **float32** |  | 
+**networkDeviceLinkAggregationConfigurationTemplateId** | **int64** |  | 
 
 ### Other Parameters
 

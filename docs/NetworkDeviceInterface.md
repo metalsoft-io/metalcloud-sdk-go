@@ -28,12 +28,15 @@ Name | Type | Description | Notes
 **InterfaceLLDPInformationServerInterface** | Pointer to **map[string]interface{}** | LLDP information of server interface in JSON format | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Tags** | **map[string]string** | Key/value tags. Filterable via &#x60;?tag.&lt;key&gt;&#x3D;&lt;value&gt;&#x60; query params (AND across keys). | 
+**Config** | [**NetworkEquipmentInterfaceConfig**](NetworkEquipmentInterfaceConfig.md) |  | 
+**Ipv4** | [**NetworkEquipmentInterfaceIpFamily**](NetworkEquipmentInterfaceIpFamily.md) |  | 
+**Ipv6** | [**NetworkEquipmentInterfaceIpFamily**](NetworkEquipmentInterfaceIpFamily.md) |  | 
 
 ## Methods
 
 ### NewNetworkDeviceInterface
 
-`func NewNetworkDeviceInterface(interfaceId int64, networkDeviceId int64, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string, tags map[string]string, ) *NetworkDeviceInterface`
+`func NewNetworkDeviceInterface(interfaceId int64, networkDeviceId int64, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string, tags map[string]string, config NetworkEquipmentInterfaceConfig, ipv4 NetworkEquipmentInterfaceIpFamily, ipv6 NetworkEquipmentInterfaceIpFamily, ) *NetworkDeviceInterface`
 
 NewNetworkDeviceInterface instantiates a new NetworkDeviceInterface object
 This constructor will assign default values to properties that have it defined,
@@ -621,6 +624,66 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDeviceInterface) SetTags(v map[string]string)`
 
 SetTags sets Tags field to given value.
+
+
+### GetConfig
+
+`func (o *NetworkDeviceInterface) GetConfig() NetworkEquipmentInterfaceConfig`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *NetworkDeviceInterface) GetConfigOk() (*NetworkEquipmentInterfaceConfig, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *NetworkDeviceInterface) SetConfig(v NetworkEquipmentInterfaceConfig)`
+
+SetConfig sets Config field to given value.
+
+
+### GetIpv4
+
+`func (o *NetworkDeviceInterface) GetIpv4() NetworkEquipmentInterfaceIpFamily`
+
+GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
+
+### GetIpv4Ok
+
+`func (o *NetworkDeviceInterface) GetIpv4Ok() (*NetworkEquipmentInterfaceIpFamily, bool)`
+
+GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv4
+
+`func (o *NetworkDeviceInterface) SetIpv4(v NetworkEquipmentInterfaceIpFamily)`
+
+SetIpv4 sets Ipv4 field to given value.
+
+
+### GetIpv6
+
+`func (o *NetworkDeviceInterface) GetIpv6() NetworkEquipmentInterfaceIpFamily`
+
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
+
+### GetIpv6Ok
+
+`func (o *NetworkDeviceInterface) GetIpv6Ok() (*NetworkEquipmentInterfaceIpFamily, bool)`
+
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv6
+
+`func (o *NetworkDeviceInterface) SetIpv6(v NetworkEquipmentInterfaceIpFamily)`
+
+SetIpv6 sets Ipv6 field to given value.
 
 
 

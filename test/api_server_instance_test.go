@@ -26,7 +26,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.CreateServerInstance(context.Background(), infrastructureId).Execute()
 
@@ -40,7 +40,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		httpRes, err := apiClient.ServerInstanceAPI.DeleteServerInstance(context.Background(), serverInstanceId).Execute()
 
@@ -53,7 +53,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetInfrastructureServerInstances(context.Background(), infrastructureId).Execute()
 
@@ -67,7 +67,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).Execute()
 
@@ -81,7 +81,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetPowerStatusBatch(context.Background(), infrastructureId).Execute()
 
@@ -95,7 +95,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstance(context.Background(), serverInstanceId).Execute()
 
@@ -109,7 +109,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceConfig(context.Background(), serverInstanceId).Execute()
 
@@ -123,7 +123,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceCredentials(context.Background(), serverInstanceId).Execute()
 
@@ -137,7 +137,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceDrives(context.Background(), serverInstanceId).Execute()
 
@@ -151,8 +151,8 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
-		var interfaceId int32
+		var serverInstanceId int64
+		var interfaceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceInterface(context.Background(), serverInstanceId, interfaceId).Execute()
 
@@ -166,7 +166,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceInterfaces(context.Background(), serverInstanceId).Execute()
 
@@ -180,7 +180,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceOSInstallationData(context.Background(), serverInstanceId).Execute()
 
@@ -206,7 +206,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceVariables(context.Background(), serverInstanceId).Execute()
 
@@ -232,7 +232,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		httpRes, err := apiClient.ServerInstanceAPI.ReinstallServerInstanceOS(context.Background(), serverInstanceId).Execute()
 
@@ -245,7 +245,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		httpRes, err := apiClient.ServerInstanceAPI.ResetServerInstance(context.Background(), serverInstanceId).Execute()
 
@@ -258,7 +258,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		httpRes, err := apiClient.ServerInstanceAPI.SetPowerStatusBatch(context.Background(), infrastructureId).Execute()
 
@@ -271,7 +271,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		httpRes, err := apiClient.ServerInstanceAPI.SetPowerToServerInstance(context.Background(), serverInstanceId).Execute()
 
@@ -284,7 +284,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstanceConfig(context.Background(), serverInstanceId).Execute()
 
@@ -298,8 +298,8 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
-		var interfaceId int32
+		var serverInstanceId int64
+		var interfaceId int64
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstanceInterfaceConfig(context.Background(), serverInstanceId, interfaceId).Execute()
 
@@ -313,7 +313,7 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverInstanceId int32
+		var serverInstanceId int64
 
 		httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstanceMeta(context.Background(), serverInstanceId).Execute()
 

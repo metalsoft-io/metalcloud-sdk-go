@@ -28,8 +28,8 @@ type UsersAPIService service
 type UsersAPIAddUserDelegateRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
-	delegateId float32
+	userId int64
+	delegateId int64
 }
 
 func (r UsersAPIAddUserDelegateRequest) Execute() (*User, *http.Response, error) {
@@ -44,7 +44,7 @@ AddUserDelegate Add a delegate to a user
  @param delegateId ID of the delegate to add
  @return UsersAPIAddUserDelegateRequest
 */
-func (a *UsersAPIService) AddUserDelegate(ctx context.Context, userId float32, delegateId float32) UsersAPIAddUserDelegateRequest {
+func (a *UsersAPIService) AddUserDelegate(ctx context.Context, userId int64, delegateId int64) UsersAPIAddUserDelegateRequest {
 	return UsersAPIAddUserDelegateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -133,7 +133,7 @@ func (a *UsersAPIService) AddUserDelegateExecute(r UsersAPIAddUserDelegateReques
 type UsersAPIAddUserSshKeyRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	createUserSSHKey *CreateUserSSHKey
 }
 
@@ -153,7 +153,7 @@ AddUserSshKey Add SSH key for user
  @param userId
  @return UsersAPIAddUserSshKeyRequest
 */
-func (a *UsersAPIService) AddUserSshKey(ctx context.Context, userId float32) UsersAPIAddUserSshKeyRequest {
+func (a *UsersAPIService) AddUserSshKey(ctx context.Context, userId int64) UsersAPIAddUserSshKeyRequest {
 	return UsersAPIAddUserSshKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -245,7 +245,7 @@ func (a *UsersAPIService) AddUserSshKeyExecute(r UsersAPIAddUserSshKeyRequest) (
 type UsersAPIArchiveUserRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	ifMatch *string
 }
 
@@ -268,7 +268,7 @@ Archives a user
  @param userId
  @return UsersAPIArchiveUserRequest
 */
-func (a *UsersAPIService) ArchiveUser(ctx context.Context, userId float32) UsersAPIArchiveUserRequest {
+func (a *UsersAPIService) ArchiveUser(ctx context.Context, userId int64) UsersAPIArchiveUserRequest {
 	return UsersAPIArchiveUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -358,7 +358,7 @@ func (a *UsersAPIService) ArchiveUserExecute(r UsersAPIArchiveUserRequest) (*Use
 type UsersAPIChangeUserAccountRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	changeUserAccount *ChangeUserAccount
 	ifMatch *string
 }
@@ -388,7 +388,7 @@ Changes account for user
  @param userId
  @return UsersAPIChangeUserAccountRequest
 */
-func (a *UsersAPIService) ChangeUserAccount(ctx context.Context, userId float32) UsersAPIChangeUserAccountRequest {
+func (a *UsersAPIService) ChangeUserAccount(ctx context.Context, userId int64) UsersAPIChangeUserAccountRequest {
 	return UsersAPIChangeUserAccountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -594,8 +594,8 @@ func (a *UsersAPIService) CreateUserAuthorizedExecute(r UsersAPICreateUserAuthor
 type UsersAPIDeleteUserSshKeyRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
-	keyId float32
+	userId int64
+	keyId int64
 }
 
 func (r UsersAPIDeleteUserSshKeyRequest) Execute() (*http.Response, error) {
@@ -610,7 +610,7 @@ DeleteUserSshKey Delete SSH key for user
  @param keyId
  @return UsersAPIDeleteUserSshKeyRequest
 */
-func (a *UsersAPIService) DeleteUserSshKey(ctx context.Context, userId float32, keyId float32) UsersAPIDeleteUserSshKeyRequest {
+func (a *UsersAPIService) DeleteUserSshKey(ctx context.Context, userId int64, keyId int64) UsersAPIDeleteUserSshKeyRequest {
 	return UsersAPIDeleteUserSshKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -688,7 +688,7 @@ func (a *UsersAPIService) DeleteUserSshKeyExecute(r UsersAPIDeleteUserSshKeyRequ
 type UsersAPIGetQuotaLimitsBreakdownRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	includeUsage *bool
 }
 
@@ -710,7 +710,7 @@ Returns the merged effective limits alongside the individual profile limits at e
  @param userId
  @return UsersAPIGetQuotaLimitsBreakdownRequest
 */
-func (a *UsersAPIService) GetQuotaLimitsBreakdown(ctx context.Context, userId float32) UsersAPIGetQuotaLimitsBreakdownRequest {
+func (a *UsersAPIService) GetQuotaLimitsBreakdown(ctx context.Context, userId int64) UsersAPIGetQuotaLimitsBreakdownRequest {
 	return UsersAPIGetQuotaLimitsBreakdownRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -800,7 +800,7 @@ func (a *UsersAPIService) GetQuotaLimitsBreakdownExecute(r UsersAPIGetQuotaLimit
 type UsersAPIGetUserRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 }
 
 func (r UsersAPIGetUserRequest) Execute() (*User, *http.Response, error) {
@@ -816,7 +816,7 @@ Returns a user
  @param userId
  @return UsersAPIGetUserRequest
 */
-func (a *UsersAPIService) GetUser(ctx context.Context, userId float32) UsersAPIGetUserRequest {
+func (a *UsersAPIService) GetUser(ctx context.Context, userId int64) UsersAPIGetUserRequest {
 	return UsersAPIGetUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -903,7 +903,7 @@ func (a *UsersAPIService) GetUserExecute(r UsersAPIGetUserRequest) (*User, *http
 type UsersAPIGetUserChildDelegatesRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 }
 
 func (r UsersAPIGetUserChildDelegatesRequest) Execute() (*UserList, *http.Response, error) {
@@ -917,7 +917,7 @@ GetUserChildDelegates Get user child delegates by ID
  @param userId
  @return UsersAPIGetUserChildDelegatesRequest
 */
-func (a *UsersAPIService) GetUserChildDelegates(ctx context.Context, userId float32) UsersAPIGetUserChildDelegatesRequest {
+func (a *UsersAPIService) GetUserChildDelegates(ctx context.Context, userId int64) UsersAPIGetUserChildDelegatesRequest {
 	return UsersAPIGetUserChildDelegatesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1004,7 +1004,7 @@ func (a *UsersAPIService) GetUserChildDelegatesExecute(r UsersAPIGetUserChildDel
 type UsersAPIGetUserConfigurationRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 }
 
 func (r UsersAPIGetUserConfigurationRequest) Execute() (*UserConfiguration, *http.Response, error) {
@@ -1018,7 +1018,7 @@ GetUserConfiguration Get user configuration by ID
  @param userId
  @return UsersAPIGetUserConfigurationRequest
 */
-func (a *UsersAPIService) GetUserConfiguration(ctx context.Context, userId float32) UsersAPIGetUserConfigurationRequest {
+func (a *UsersAPIService) GetUserConfiguration(ctx context.Context, userId int64) UsersAPIGetUserConfigurationRequest {
 	return UsersAPIGetUserConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1105,7 +1105,7 @@ func (a *UsersAPIService) GetUserConfigurationExecute(r UsersAPIGetUserConfigura
 type UsersAPIGetUserParentDelegatesRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 }
 
 func (r UsersAPIGetUserParentDelegatesRequest) Execute() (*UserList, *http.Response, error) {
@@ -1119,7 +1119,7 @@ GetUserParentDelegates Get user parent delegates by ID
  @param userId
  @return UsersAPIGetUserParentDelegatesRequest
 */
-func (a *UsersAPIService) GetUserParentDelegates(ctx context.Context, userId float32) UsersAPIGetUserParentDelegatesRequest {
+func (a *UsersAPIService) GetUserParentDelegates(ctx context.Context, userId int64) UsersAPIGetUserParentDelegatesRequest {
 	return UsersAPIGetUserParentDelegatesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1206,8 +1206,8 @@ func (a *UsersAPIService) GetUserParentDelegatesExecute(r UsersAPIGetUserParentD
 type UsersAPIGetUserSshKeyRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
-	keyId float32
+	userId int64
+	keyId int64
 }
 
 func (r UsersAPIGetUserSshKeyRequest) Execute() (*UserSSHKeys, *http.Response, error) {
@@ -1222,7 +1222,7 @@ GetUserSshKey Get specific SSH key
  @param keyId
  @return UsersAPIGetUserSshKeyRequest
 */
-func (a *UsersAPIService) GetUserSshKey(ctx context.Context, userId float32, keyId float32) UsersAPIGetUserSshKeyRequest {
+func (a *UsersAPIService) GetUserSshKey(ctx context.Context, userId int64, keyId int64) UsersAPIGetUserSshKeyRequest {
 	return UsersAPIGetUserSshKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1311,7 +1311,7 @@ func (a *UsersAPIService) GetUserSshKeyExecute(r UsersAPIGetUserSshKeyRequest) (
 type UsersAPIGetUserSshKeysRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 }
 
 func (r UsersAPIGetUserSshKeysRequest) Execute() (*UserSSHKeysList, *http.Response, error) {
@@ -1325,7 +1325,7 @@ GetUserSshKeys Get user SSH keys
  @param userId
  @return UsersAPIGetUserSshKeysRequest
 */
-func (a *UsersAPIService) GetUserSshKeys(ctx context.Context, userId float32) UsersAPIGetUserSshKeysRequest {
+func (a *UsersAPIService) GetUserSshKeys(ctx context.Context, userId int64) UsersAPIGetUserSshKeysRequest {
 	return UsersAPIGetUserSshKeysRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1412,7 +1412,7 @@ func (a *UsersAPIService) GetUserSshKeysExecute(r UsersAPIGetUserSshKeysRequest)
 type UsersAPIGetUserSuspendReasonsRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 }
 
 func (r UsersAPIGetUserSuspendReasonsRequest) Execute() (*UserSuspendReasonList, *http.Response, error) {
@@ -1426,7 +1426,7 @@ GetUserSuspendReasons Get user suspend reasons by ID
  @param userId
  @return UsersAPIGetUserSuspendReasonsRequest
 */
-func (a *UsersAPIService) GetUserSuspendReasons(ctx context.Context, userId float32) UsersAPIGetUserSuspendReasonsRequest {
+func (a *UsersAPIService) GetUserSuspendReasons(ctx context.Context, userId int64) UsersAPIGetUserSuspendReasonsRequest {
 	return UsersAPIGetUserSuspendReasonsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1822,8 +1822,8 @@ func (a *UsersAPIService) GetUsersExecute(r UsersAPIGetUsersRequest) (*UserPagin
 type UsersAPIRemoveUserDelegateRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
-	delegateId float32
+	userId int64
+	delegateId int64
 }
 
 func (r UsersAPIRemoveUserDelegateRequest) Execute() (*User, *http.Response, error) {
@@ -1838,7 +1838,7 @@ RemoveUserDelegate Remove a delegate from a user
  @param delegateId ID of the delegate to remove
  @return UsersAPIRemoveUserDelegateRequest
 */
-func (a *UsersAPIService) RemoveUserDelegate(ctx context.Context, userId float32, delegateId float32) UsersAPIRemoveUserDelegateRequest {
+func (a *UsersAPIService) RemoveUserDelegate(ctx context.Context, userId int64, delegateId int64) UsersAPIRemoveUserDelegateRequest {
 	return UsersAPIRemoveUserDelegateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1927,7 +1927,7 @@ func (a *UsersAPIService) RemoveUserDelegateExecute(r UsersAPIRemoveUserDelegate
 type UsersAPIResendEmailVerificationRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	resendUserVerificationEmail *ResendUserVerificationEmail
 }
 
@@ -1947,7 +1947,7 @@ ResendEmailVerification Resend email verification
  @param userId
  @return UsersAPIResendEmailVerificationRequest
 */
-func (a *UsersAPIService) ResendEmailVerification(ctx context.Context, userId float32) UsersAPIResendEmailVerificationRequest {
+func (a *UsersAPIService) ResendEmailVerification(ctx context.Context, userId int64) UsersAPIResendEmailVerificationRequest {
 	return UsersAPIResendEmailVerificationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2039,7 +2039,7 @@ func (a *UsersAPIService) ResendEmailVerificationExecute(r UsersAPIResendEmailVe
 type UsersAPIResendUserInvitationRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	resendUserInvitation *ResendUserInvitation
 }
 
@@ -2059,7 +2059,7 @@ ResendUserInvitation Resend user invitation
  @param userId
  @return UsersAPIResendUserInvitationRequest
 */
-func (a *UsersAPIService) ResendUserInvitation(ctx context.Context, userId float32) UsersAPIResendUserInvitationRequest {
+func (a *UsersAPIService) ResendUserInvitation(ctx context.Context, userId int64) UsersAPIResendUserInvitationRequest {
 	return UsersAPIResendUserInvitationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2151,7 +2151,7 @@ func (a *UsersAPIService) ResendUserInvitationExecute(r UsersAPIResendUserInvita
 type UsersAPISendPasswordResetByAdminRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	passwordResetByAdmin *PasswordResetByAdmin
 }
 
@@ -2171,7 +2171,7 @@ SendPasswordResetByAdmin Send password reset by admin
  @param userId
  @return UsersAPISendPasswordResetByAdminRequest
 */
-func (a *UsersAPIService) SendPasswordResetByAdmin(ctx context.Context, userId float32) UsersAPISendPasswordResetByAdminRequest {
+func (a *UsersAPIService) SendPasswordResetByAdmin(ctx context.Context, userId int64) UsersAPISendPasswordResetByAdminRequest {
 	return UsersAPISendPasswordResetByAdminRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2263,7 +2263,7 @@ func (a *UsersAPIService) SendPasswordResetByAdminExecute(r UsersAPISendPassword
 type UsersAPISetUserPasswordByAdminRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	setUserPasswordByAdmin *SetUserPasswordByAdmin
 	ifMatch *string
 }
@@ -2290,7 +2290,7 @@ SetUserPasswordByAdmin Set user password by admin
  @param userId
  @return UsersAPISetUserPasswordByAdminRequest
 */
-func (a *UsersAPIService) SetUserPasswordByAdmin(ctx context.Context, userId float32) UsersAPISetUserPasswordByAdminRequest {
+func (a *UsersAPIService) SetUserPasswordByAdmin(ctx context.Context, userId int64) UsersAPISetUserPasswordByAdminRequest {
 	return UsersAPISetUserPasswordByAdminRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2385,7 +2385,7 @@ func (a *UsersAPIService) SetUserPasswordByAdminExecute(r UsersAPISetUserPasswor
 type UsersAPISuspendUserRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	userSuspend *UserSuspend
 	ifMatch *string
 }
@@ -2412,7 +2412,7 @@ SuspendUser Suspend a user
  @param userId
  @return UsersAPISuspendUserRequest
 */
-func (a *UsersAPIService) SuspendUser(ctx context.Context, userId float32) UsersAPISuspendUserRequest {
+func (a *UsersAPIService) SuspendUser(ctx context.Context, userId int64) UsersAPISuspendUserRequest {
 	return UsersAPISuspendUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2507,7 +2507,7 @@ func (a *UsersAPIService) SuspendUserExecute(r UsersAPISuspendUserRequest) (*Use
 type UsersAPIUnarchiveUserRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	ifMatch *string
 }
 
@@ -2530,7 +2530,7 @@ Unarchive a user
  @param userId
  @return UsersAPIUnarchiveUserRequest
 */
-func (a *UsersAPIService) UnarchiveUser(ctx context.Context, userId float32) UsersAPIUnarchiveUserRequest {
+func (a *UsersAPIService) UnarchiveUser(ctx context.Context, userId int64) UsersAPIUnarchiveUserRequest {
 	return UsersAPIUnarchiveUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2620,7 +2620,7 @@ func (a *UsersAPIService) UnarchiveUserExecute(r UsersAPIUnarchiveUserRequest) (
 type UsersAPIUnsuspendUserRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	ifMatch *string
 }
 
@@ -2641,7 +2641,7 @@ UnsuspendUser Unsuspend a user
  @param userId
  @return UsersAPIUnsuspendUserRequest
 */
-func (a *UsersAPIService) UnsuspendUser(ctx context.Context, userId float32) UsersAPIUnsuspendUserRequest {
+func (a *UsersAPIService) UnsuspendUser(ctx context.Context, userId int64) UsersAPIUnsuspendUserRequest {
 	return UsersAPIUnsuspendUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2720,7 +2720,7 @@ func (a *UsersAPIService) UnsuspendUserExecute(r UsersAPIUnsuspendUserRequest) (
 type UsersAPIUpdateUserConfigRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	updateUser *UpdateUser
 	ifMatch *string
 }
@@ -2750,7 +2750,7 @@ Updates a user configuration
  @param userId
  @return UsersAPIUpdateUserConfigRequest
 */
-func (a *UsersAPIService) UpdateUserConfig(ctx context.Context, userId float32) UsersAPIUpdateUserConfigRequest {
+func (a *UsersAPIService) UpdateUserConfig(ctx context.Context, userId int64) UsersAPIUpdateUserConfigRequest {
 	return UsersAPIUpdateUserConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2845,7 +2845,7 @@ func (a *UsersAPIService) UpdateUserConfigExecute(r UsersAPIUpdateUserConfigRequ
 type UsersAPIUpdateUserMetaRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
-	userId float32
+	userId int64
 	userMeta *UserMeta
 }
 
@@ -2865,7 +2865,7 @@ UpdateUserMeta Update user metadata
  @param userId
  @return UsersAPIUpdateUserMetaRequest
 */
-func (a *UsersAPIService) UpdateUserMeta(ctx context.Context, userId float32) UsersAPIUpdateUserMetaRequest {
+func (a *UsersAPIService) UpdateUserMeta(ctx context.Context, userId int64) UsersAPIUpdateUserMetaRequest {
 	return UsersAPIUpdateUserMetaRequest{
 		ApiService: a,
 		ctx: ctx,

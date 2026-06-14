@@ -24,6 +24,8 @@ type UpdateLogicalNetworkProfile struct {
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
+	// When true, logical networks created from this profile are routed-access (L3-only) over point-to-point links. VXLAN only. Create-time only: the value cannot be changed once the profile exists (a different value here is rejected; echoing the current value back is accepted).
+	L3Only *bool `json:"l3Only,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
 	Vxlan *UpdateLogicalNetworkConfigVxlanProperties `json:"vxlan,omitempty"`
@@ -187,6 +189,38 @@ func (o *UpdateLogicalNetworkProfile) UnsetRouteDomainId() {
 	o.RouteDomainId.Unset()
 }
 
+// GetL3Only returns the L3Only field value if set, zero value otherwise.
+func (o *UpdateLogicalNetworkProfile) GetL3Only() bool {
+	if o == nil || IsNil(o.L3Only) {
+		var ret bool
+		return ret
+	}
+	return *o.L3Only
+}
+
+// GetL3OnlyOk returns a tuple with the L3Only field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLogicalNetworkProfile) GetL3OnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.L3Only) {
+		return nil, false
+	}
+	return o.L3Only, true
+}
+
+// HasL3Only returns a boolean if a field has been set.
+func (o *UpdateLogicalNetworkProfile) HasL3Only() bool {
+	if o != nil && !IsNil(o.L3Only) {
+		return true
+	}
+
+	return false
+}
+
+// SetL3Only gets a reference to the given bool and assigns it to the L3Only field.
+func (o *UpdateLogicalNetworkProfile) SetL3Only(v bool) {
+	o.L3Only = &v
+}
+
 // GetMtu returns the Mtu field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateLogicalNetworkProfile) GetMtu() int32 {
 	if o == nil || IsNil(o.Mtu.Get()) {
@@ -283,6 +317,9 @@ func (o UpdateLogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 	if o.RouteDomainId.IsSet() {
 		toSerialize["routeDomainId"] = o.RouteDomainId.Get()
 	}
+	if !IsNil(o.L3Only) {
+		toSerialize["l3Only"] = o.L3Only
+	}
 	if o.Mtu.IsSet() {
 		toSerialize["mtu"] = o.Mtu.Get()
 	}
@@ -315,6 +352,7 @@ func (o *UpdateLogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "annotations")
 		delete(additionalProperties, "routeDomainId")
+		delete(additionalProperties, "l3Only")
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "vxlan")
 		o.AdditionalProperties = additionalProperties

@@ -26,7 +26,7 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).Execute()
 
@@ -40,7 +40,7 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerFirmwareAPI.FetchAndUpdateServerFirmwareAvailableVersions(context.Background(), serverId).Execute()
 
@@ -65,8 +65,8 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
-		var componentId float32
+		var serverId int64
+		var componentId int64
 
 		resp, httpRes, err := apiClient.ServerFirmwareAPI.GetServerComponentInfo(context.Background(), serverId, componentId).Execute()
 
@@ -80,7 +80,7 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerFirmwareAPI.GetServerComponents(context.Background(), serverId).Execute()
 
@@ -94,7 +94,7 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerFirmwareAPI.GetServerFirmwareInventory(context.Background(), serverId).Execute()
 
@@ -108,7 +108,7 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerFirmwareAPI.ScheduleServerFirmwareUpgrade(context.Background(), serverId).Execute()
 
@@ -121,8 +121,8 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
-		var componentId float32
+		var serverId int64
+		var componentId int64
 
 		resp, httpRes, err := apiClient.ServerFirmwareAPI.UpdateServerComponent(context.Background(), serverId, componentId).Execute()
 
@@ -136,7 +136,7 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		httpRes, err := apiClient.ServerFirmwareAPI.UpdateServerFirmwareInfo(context.Background(), serverId).Execute()
 
@@ -149,7 +149,7 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerFirmwareAPI.UpgradeFirmwareOfServer(context.Background(), serverId).Execute()
 
@@ -163,8 +163,8 @@ func Test_sdk_ServerFirmwareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
-		var serverComponentId float32
+		var serverId int64
+		var serverComponentId int64
 
 		resp, httpRes, err := apiClient.ServerFirmwareAPI.UpgradeFirmwareOfServerComponent(context.Background(), serverId, serverComponentId).Execute()
 

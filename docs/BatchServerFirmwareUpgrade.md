@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerIds** | **[]float32** | The list of server ids to upgrade. | 
+**ServerIds** | **[]int64** | The list of server ids to upgrade. | 
 
 ## Methods
 
 ### NewBatchServerFirmwareUpgrade
 
-`func NewBatchServerFirmwareUpgrade(serverIds []float32, ) *BatchServerFirmwareUpgrade`
+`func NewBatchServerFirmwareUpgrade(serverIds []int64, ) *BatchServerFirmwareUpgrade`
 
 NewBatchServerFirmwareUpgrade instantiates a new BatchServerFirmwareUpgrade object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerIds
 
-`func (o *BatchServerFirmwareUpgrade) GetServerIds() []float32`
+`func (o *BatchServerFirmwareUpgrade) GetServerIds() []int64`
 
 GetServerIds returns the ServerIds field if non-nil, zero value otherwise.
 
 ### GetServerIdsOk
 
-`func (o *BatchServerFirmwareUpgrade) GetServerIdsOk() (*[]float32, bool)`
+`func (o *BatchServerFirmwareUpgrade) GetServerIdsOk() (*[]int64, bool)`
 
 GetServerIdsOk returns a tuple with the ServerIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerIds
 
-`func (o *BatchServerFirmwareUpgrade) SetServerIds(v []float32)`
+`func (o *BatchServerFirmwareUpgrade) SetServerIds(v []int64)`
 
 SetServerIds sets ServerIds field to given value.
 

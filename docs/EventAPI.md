@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	eventId := float32(8.14) // float32 | 
+	eventId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **float32** |  | 
+**eventId** | **int64** |  | 
 
 ### Other Parameters
 

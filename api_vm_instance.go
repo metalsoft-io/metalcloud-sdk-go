@@ -28,9 +28,9 @@ type VMInstanceAPIService service
 type VMInstanceAPIApplyVMTypeOnVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
-	vmTypeId float32
+	infrastructureId int64
+	vmInstanceId int64
+	vmTypeId int64
 	ifMatch *string
 }
 
@@ -55,7 +55,7 @@ Applies a VM Type to a VM Instance
  @param vmTypeId
  @return VMInstanceAPIApplyVMTypeOnVMInstanceRequest
 */
-func (a *VMInstanceAPIService) ApplyVMTypeOnVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32, vmTypeId float32) VMInstanceAPIApplyVMTypeOnVMInstanceRequest {
+func (a *VMInstanceAPIService) ApplyVMTypeOnVMInstance(ctx context.Context, infrastructureId int64, vmInstanceId int64, vmTypeId int64) VMInstanceAPIApplyVMTypeOnVMInstanceRequest {
 	return VMInstanceAPIApplyVMTypeOnVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -149,7 +149,7 @@ func (a *VMInstanceAPIService) ApplyVMTypeOnVMInstanceExecute(r VMInstanceAPIApp
 type VMInstanceAPICreateVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
+	infrastructureId int64
 	createVMInstance *CreateVMInstance
 }
 
@@ -172,7 +172,7 @@ Creates a VM Instance
  @param infrastructureId
  @return VMInstanceAPICreateVMInstanceRequest
 */
-func (a *VMInstanceAPIService) CreateVMInstance(ctx context.Context, infrastructureId float32) VMInstanceAPICreateVMInstanceRequest {
+func (a *VMInstanceAPIService) CreateVMInstance(ctx context.Context, infrastructureId int64) VMInstanceAPICreateVMInstanceRequest {
 	return VMInstanceAPICreateVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -264,8 +264,8 @@ func (a *VMInstanceAPIService) CreateVMInstanceExecute(r VMInstanceAPICreateVMIn
 type VMInstanceAPIDeleteVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 	ifMatch *string
 }
 
@@ -289,7 +289,7 @@ Deletes a VM Instance
  @param vmInstanceId
  @return VMInstanceAPIDeleteVMInstanceRequest
 */
-func (a *VMInstanceAPIService) DeleteVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIDeleteVMInstanceRequest {
+func (a *VMInstanceAPIService) DeleteVMInstance(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIDeleteVMInstanceRequest {
 	return VMInstanceAPIDeleteVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -370,8 +370,8 @@ func (a *VMInstanceAPIService) DeleteVMInstanceExecute(r VMInstanceAPIDeleteVMIn
 type VMInstanceAPIGetInfrastructureVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 }
 
 func (r VMInstanceAPIGetInfrastructureVMInstanceRequest) Execute() (*VMInstance, *http.Response, error) {
@@ -388,7 +388,7 @@ Returns VM Instance information
  @param vmInstanceId
  @return VMInstanceAPIGetInfrastructureVMInstanceRequest
 */
-func (a *VMInstanceAPIService) GetInfrastructureVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIGetInfrastructureVMInstanceRequest {
+func (a *VMInstanceAPIService) GetInfrastructureVMInstance(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIGetInfrastructureVMInstanceRequest {
 	return VMInstanceAPIGetInfrastructureVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -477,7 +477,7 @@ func (a *VMInstanceAPIService) GetInfrastructureVMInstanceExecute(r VMInstanceAP
 type VMInstanceAPIGetInfrastructureVMInstancesRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterLabel *[]string
@@ -486,6 +486,8 @@ type VMInstanceAPIGetInfrastructureVMInstancesRequest struct {
 	filterServiceStatus *[]string
 	filterConfigDeployStatus *[]string
 	filterConfigDeployType *[]string
+	filterVmId *[]string
+	filterConfigVmId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -539,7 +541,19 @@ func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterConfigDeployType
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType 
+// Filter by vmId query param.  **Format:** filter.vmId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.vmId&#x3D;$eq:John Doe&amp;filter.vmId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterVmId(filterVmId []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterVmId = &filterVmId
+	return r
+}
+
+// Filter by config.vmId query param.  **Format:** filter.config.vmId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.config.vmId&#x3D;$eq:John Doe&amp;filter.config.vmId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterConfigVmId(filterConfigVmId []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterConfigVmId = &filterConfigVmId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serviceStatus:DESC   **Default Value:** id:DESC  **Available Fields** - id  - serviceStatus  - config.deployStatus  - config.deployType  - vmId  - config.vmId 
 func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) SortBy(sortBy []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -570,7 +584,7 @@ Returns list of all VM Instances on the infrastructure
  @param infrastructureId
  @return VMInstanceAPIGetInfrastructureVMInstancesRequest
 */
-func (a *VMInstanceAPIService) GetInfrastructureVMInstances(ctx context.Context, infrastructureId float32) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+func (a *VMInstanceAPIService) GetInfrastructureVMInstances(ctx context.Context, infrastructureId int64) VMInstanceAPIGetInfrastructureVMInstancesRequest {
 	return VMInstanceAPIGetInfrastructureVMInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -672,6 +686,28 @@ func (a *VMInstanceAPIService) GetInfrastructureVMInstancesExecute(r VMInstanceA
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
 		}
 	}
+	if r.filterVmId != nil {
+		t := *r.filterVmId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vmId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vmId", t, "form", "multi")
+		}
+	}
+	if r.filterConfigVmId != nil {
+		t := *r.filterConfigVmId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.vmId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.vmId", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -754,8 +790,8 @@ func (a *VMInstanceAPIService) GetInfrastructureVMInstancesExecute(r VMInstanceA
 type VMInstanceAPIGetVMInstanceConfigInfoRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 }
 
 func (r VMInstanceAPIGetVMInstanceConfigInfoRequest) Execute() (*VMInstanceConfiguration, *http.Response, error) {
@@ -770,7 +806,7 @@ GetVMInstanceConfigInfo Get configuration information about the specified VM Ins
  @param vmInstanceId
  @return VMInstanceAPIGetVMInstanceConfigInfoRequest
 */
-func (a *VMInstanceAPIService) GetVMInstanceConfigInfo(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIGetVMInstanceConfigInfoRequest {
+func (a *VMInstanceAPIService) GetVMInstanceConfigInfo(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIGetVMInstanceConfigInfoRequest {
 	return VMInstanceAPIGetVMInstanceConfigInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -859,8 +895,8 @@ func (a *VMInstanceAPIService) GetVMInstanceConfigInfoExecute(r VMInstanceAPIGet
 type VMInstanceAPIGetVMInstanceCredentialsRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId int32
-	vmInstanceId int32
+	infrastructureId int64
+	vmInstanceId int64
 }
 
 func (r VMInstanceAPIGetVMInstanceCredentialsRequest) Execute() (*ServerInstanceCredentials, *http.Response, error) {
@@ -877,7 +913,7 @@ Returns the credentials for various protocols including the IPs allocated
  @param vmInstanceId
  @return VMInstanceAPIGetVMInstanceCredentialsRequest
 */
-func (a *VMInstanceAPIService) GetVMInstanceCredentials(ctx context.Context, infrastructureId int32, vmInstanceId int32) VMInstanceAPIGetVMInstanceCredentialsRequest {
+func (a *VMInstanceAPIService) GetVMInstanceCredentials(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIGetVMInstanceCredentialsRequest {
 	return VMInstanceAPIGetVMInstanceCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -966,8 +1002,8 @@ func (a *VMInstanceAPIService) GetVMInstanceCredentialsExecute(r VMInstanceAPIGe
 type VMInstanceAPIGetVMInstancePowerStatusRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 }
 
 func (r VMInstanceAPIGetVMInstancePowerStatusRequest) Execute() (string, *http.Response, error) {
@@ -984,7 +1020,7 @@ Retrieves the power status of the VM Instance
  @param vmInstanceId
  @return VMInstanceAPIGetVMInstancePowerStatusRequest
 */
-func (a *VMInstanceAPIService) GetVMInstancePowerStatus(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIGetVMInstancePowerStatusRequest {
+func (a *VMInstanceAPIService) GetVMInstancePowerStatus(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIGetVMInstancePowerStatusRequest {
 	return VMInstanceAPIGetVMInstancePowerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1073,8 +1109,8 @@ func (a *VMInstanceAPIService) GetVMInstancePowerStatusExecute(r VMInstanceAPIGe
 type VMInstanceAPIGetVmInstanceOSInstallationDataRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId int32
-	vmInstanceId int32
+	infrastructureId int64
+	vmInstanceId int64
 	usage *VariableUsageType
 	removeEmpty *int32
 }
@@ -1103,7 +1139,7 @@ GetVmInstanceOSInstallationData Get VM instance OS installation data
  @param vmInstanceId
  @return VMInstanceAPIGetVmInstanceOSInstallationDataRequest
 */
-func (a *VMInstanceAPIService) GetVmInstanceOSInstallationData(ctx context.Context, infrastructureId int32, vmInstanceId int32) VMInstanceAPIGetVmInstanceOSInstallationDataRequest {
+func (a *VMInstanceAPIService) GetVmInstanceOSInstallationData(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIGetVmInstanceOSInstallationDataRequest {
 	return VMInstanceAPIGetVmInstanceOSInstallationDataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1198,8 +1234,8 @@ func (a *VMInstanceAPIService) GetVmInstanceOSInstallationDataExecute(r VMInstan
 type VMInstanceAPIGetVmInstanceVariablesRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId int32
-	vmInstanceId int32
+	infrastructureId int64
+	vmInstanceId int64
 	usage *VariableUsageType
 }
 
@@ -1221,7 +1257,7 @@ GetVmInstanceVariables Get VM instance variables
  @param vmInstanceId
  @return VMInstanceAPIGetVmInstanceVariablesRequest
 */
-func (a *VMInstanceAPIService) GetVmInstanceVariables(ctx context.Context, infrastructureId int32, vmInstanceId int32) VMInstanceAPIGetVmInstanceVariablesRequest {
+func (a *VMInstanceAPIService) GetVmInstanceVariables(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIGetVmInstanceVariablesRequest {
 	return VMInstanceAPIGetVmInstanceVariablesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1313,8 +1349,8 @@ func (a *VMInstanceAPIService) GetVmInstanceVariablesExecute(r VMInstanceAPIGetV
 type VMInstanceAPIPatchVMInstanceMetaRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 	updateVMInstanceMeta *UpdateVMInstanceMeta
 }
 
@@ -1335,7 +1371,7 @@ PatchVMInstanceMeta Updates the meta of a VM Instance
  @param vmInstanceId
  @return VMInstanceAPIPatchVMInstanceMetaRequest
 */
-func (a *VMInstanceAPIService) PatchVMInstanceMeta(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIPatchVMInstanceMetaRequest {
+func (a *VMInstanceAPIService) PatchVMInstanceMeta(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIPatchVMInstanceMetaRequest {
 	return VMInstanceAPIPatchVMInstanceMetaRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1429,8 +1465,8 @@ func (a *VMInstanceAPIService) PatchVMInstanceMetaExecute(r VMInstanceAPIPatchVM
 type VMInstanceAPIRebootVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 }
 
 func (r VMInstanceAPIRebootVMInstanceRequest) Execute() (*http.Response, error) {
@@ -1447,7 +1483,7 @@ Reboots the VM Instance
  @param vmInstanceId
  @return VMInstanceAPIRebootVMInstanceRequest
 */
-func (a *VMInstanceAPIService) RebootVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIRebootVMInstanceRequest {
+func (a *VMInstanceAPIService) RebootVMInstance(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIRebootVMInstanceRequest {
 	return VMInstanceAPIRebootVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1525,8 +1561,8 @@ func (a *VMInstanceAPIService) RebootVMInstanceExecute(r VMInstanceAPIRebootVMIn
 type VMInstanceAPIShutdownVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 }
 
 func (r VMInstanceAPIShutdownVMInstanceRequest) Execute() (*http.Response, error) {
@@ -1543,7 +1579,7 @@ Shuts down the VM Instance
  @param vmInstanceId
  @return VMInstanceAPIShutdownVMInstanceRequest
 */
-func (a *VMInstanceAPIService) ShutdownVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIShutdownVMInstanceRequest {
+func (a *VMInstanceAPIService) ShutdownVMInstance(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIShutdownVMInstanceRequest {
 	return VMInstanceAPIShutdownVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1621,8 +1657,8 @@ func (a *VMInstanceAPIService) ShutdownVMInstanceExecute(r VMInstanceAPIShutdown
 type VMInstanceAPIStartVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 }
 
 func (r VMInstanceAPIStartVMInstanceRequest) Execute() (*http.Response, error) {
@@ -1639,7 +1675,7 @@ Starts the VM Instance
  @param vmInstanceId
  @return VMInstanceAPIStartVMInstanceRequest
 */
-func (a *VMInstanceAPIService) StartVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIStartVMInstanceRequest {
+func (a *VMInstanceAPIService) StartVMInstance(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIStartVMInstanceRequest {
 	return VMInstanceAPIStartVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1717,8 +1753,8 @@ func (a *VMInstanceAPIService) StartVMInstanceExecute(r VMInstanceAPIStartVMInst
 type VMInstanceAPIUpdateVMInstanceConfigRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
-	infrastructureId float32
-	vmInstanceId float32
+	infrastructureId int64
+	vmInstanceId int64
 	updateVMInstance *UpdateVMInstance
 	ifMatch *string
 }
@@ -1749,7 +1785,7 @@ Updates VM Instance config information
  @param vmInstanceId
  @return VMInstanceAPIUpdateVMInstanceConfigRequest
 */
-func (a *VMInstanceAPIService) UpdateVMInstanceConfig(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIUpdateVMInstanceConfigRequest {
+func (a *VMInstanceAPIService) UpdateVMInstanceConfig(ctx context.Context, infrastructureId int64, vmInstanceId int64) VMInstanceAPIUpdateVMInstanceConfigRequest {
 	return VMInstanceAPIUpdateVMInstanceConfigRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -109,7 +109,7 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
 	createExternalConnectionInterface := *openapiclient.NewCreateExternalConnectionInterface(int64(1)) // CreateExternalConnectionInterface | The external connection interface to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -130,7 +130,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | The id of the external connection
+	externalConnectionId := int64(789) // int64 | The id of the external connection
 	createExternalConnectionLogicalNetwork := *openapiclient.NewCreateExternalConnectionLogicalNetwork(int64(123)) // CreateExternalConnectionLogicalNetwork | The external connection logical network to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -200,7 +200,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** | The id of the external connection | 
+**externalConnectionId** | **int64** | The id of the external connection | 
 
 ### Other Parameters
 
@@ -251,7 +251,7 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -269,7 +269,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -319,8 +319,8 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
-	externalConnectionInterfaceId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
+	externalConnectionInterfaceId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -339,8 +339,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
-**externalConnectionInterfaceId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
+**externalConnectionInterfaceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -390,8 +390,8 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | The ID of the external connection
-	id := int32(56) // int32 | The ID of the external connection logical network to delete
+	externalConnectionId := int64(789) // int64 | The ID of the external connection
+	id := int64(789) // int64 | The ID of the external connection logical network to delete
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -409,8 +409,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** | The ID of the external connection | 
-**id** | **int32** | The ID of the external connection logical network to delete | 
+**externalConnectionId** | **int64** | The ID of the external connection | 
+**id** | **int64** | The ID of the external connection logical network to delete | 
 
 ### Other Parameters
 
@@ -461,7 +461,7 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -481,7 +481,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -531,8 +531,8 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
-	externalConnectionInterfaceId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
+	externalConnectionInterfaceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -552,8 +552,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
-**externalConnectionInterfaceId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
+**externalConnectionInterfaceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -604,7 +604,7 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -630,7 +630,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -686,8 +686,8 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | The id of the external connection
-	id := int32(56) // int32 | The ID of the external connection logical network to retrieve
+	externalConnectionId := int64(789) // int64 | The id of the external connection
+	id := int64(789) // int64 | The ID of the external connection logical network to retrieve
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -707,8 +707,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** | The id of the external connection | 
-**id** | **int32** | The ID of the external connection logical network to retrieve | 
+**externalConnectionId** | **int64** | The id of the external connection | 
+**id** | **int64** | The ID of the external connection logical network to retrieve | 
 
 ### Other Parameters
 
@@ -759,7 +759,7 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | The id of the external connection
+	externalConnectionId := int64(789) // int64 | The id of the external connection
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -787,7 +787,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** | The id of the external connection | 
+**externalConnectionId** | **int64** | The id of the external connection | 
 
 ### Other Parameters
 
@@ -995,7 +995,7 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
 	updateExternalConnection := *openapiclient.NewUpdateExternalConnection() // UpdateExternalConnection | The external connection configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1017,7 +1017,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1069,8 +1069,8 @@ import (
 )
 
 func main() {
-	externalConnectionId := int32(56) // int32 | 
-	externalConnectionInterfaceId := int32(56) // int32 | 
+	externalConnectionId := int64(789) // int64 | 
+	externalConnectionInterfaceId := int64(789) // int64 | 
 	updateExternalConnectionInterface := *openapiclient.NewUpdateExternalConnectionInterface(int64(1)) // UpdateExternalConnectionInterface | The external connection interface configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1092,8 +1092,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalConnectionId** | **int32** |  | 
-**externalConnectionInterfaceId** | **int32** |  | 
+**externalConnectionId** | **int64** |  | 
+**externalConnectionInterfaceId** | **int64** |  | 
 
 ### Other Parameters
 

@@ -46,7 +46,7 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
 	endpointInstanceGroupCreate := *openapiclient.NewEndpointInstanceGroupCreate() // EndpointInstanceGroupCreate | The Endpoint Instance Group to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -67,7 +67,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -116,8 +116,8 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
 	createLogicalNetworkACL := *openapiclient.NewCreateLogicalNetworkACL(openapiclient.ACLType("ipv4"), openapiclient.ACLDirection("in"), int32(1), openapiclient.ACLForwardingAction("allow"), openapiclient.ACLEnforcementPoint("svi")) // CreateLogicalNetworkACL | The security rule to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -138,8 +138,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -189,7 +189,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 	createEndpointInstanceGroupNetworkConnection := *openapiclient.NewCreateEndpointInstanceGroupNetworkConnection("1", true, openapiclient.NetworkEndpointGroupAllowedAccessMode("l2")) // CreateEndpointInstanceGroupNetworkConnection | The network connection object to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -210,7 +210,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -261,7 +261,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -280,7 +280,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -329,9 +329,9 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
-	ruleId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
+	ruleId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -349,9 +349,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
-**ruleId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
+**ruleId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -401,8 +401,8 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -420,8 +420,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -472,7 +472,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -492,7 +492,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -542,7 +542,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -562,7 +562,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -612,7 +612,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -644,7 +644,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -704,8 +704,8 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -725,8 +725,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -775,9 +775,9 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
-	ruleId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
+	ruleId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -797,9 +797,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
-**ruleId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
+**ruleId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -851,7 +851,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -871,7 +871,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -921,8 +921,8 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -942,8 +942,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -992,7 +992,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1012,7 +1012,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1062,7 +1062,7 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -1092,7 +1092,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1152,7 +1152,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 	endpointInstanceGroupUpdate := *openapiclient.NewEndpointInstanceGroupUpdate() // EndpointInstanceGroupUpdate | The Endpoint Instance Group configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1174,7 +1174,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1224,9 +1224,9 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
-	connectionId := int32(56) // int32 | 
-	ruleId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
+	connectionId := int64(789) // int64 | 
+	ruleId := int64(789) // int64 | 
 	updateLogicalNetworkACL := *openapiclient.NewUpdateLogicalNetworkACL() // UpdateLogicalNetworkACL | The security rule to update
 
 	configuration := openapiclient.NewConfiguration()
@@ -1247,9 +1247,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
-**connectionId** | **int32** |  | 
-**ruleId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
+**connectionId** | **int64** |  | 
+**ruleId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1302,7 +1302,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 	genericMeta := *openapiclient.NewGenericMeta() // GenericMeta | The Endpoint Instance Group meta information
 
 	configuration := openapiclient.NewConfiguration()
@@ -1321,7 +1321,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1370,7 +1370,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1390,7 +1390,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1438,7 +1438,7 @@ import (
 )
 
 func main() {
-	endpointInstanceGroupId := int32(56) // int32 | 
+	endpointInstanceGroupId := int64(789) // int64 | 
 	connectionId := float32(8.14) // float32 | 
 	updateNetworkEndpointGroupLogicalNetwork := *openapiclient.NewUpdateNetworkEndpointGroupLogicalNetwork() // UpdateNetworkEndpointGroupLogicalNetwork | The network connection object to update
 
@@ -1460,7 +1460,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointInstanceGroupId** | **int32** |  | 
+**endpointInstanceGroupId** | **int64** |  | 
 **connectionId** | **float32** |  | 
 
 ### Other Parameters

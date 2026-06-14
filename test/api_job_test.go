@@ -38,7 +38,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var cronJobId float32
+		var cronJobId int64
 
 		httpRes, err := apiClient.JobAPI.DeleteCronJob(context.Background(), cronJobId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var cronJobId float32
+		var cronJobId int64
 
 		resp, httpRes, err := apiClient.JobAPI.GetCronJob(context.Background(), cronJobId).Execute()
 
@@ -89,7 +89,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobId float32
+		var jobId int64
 
 		resp, httpRes, err := apiClient.JobAPI.GetJob(context.Background(), jobId).Execute()
 
@@ -103,7 +103,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobId float32
+		var jobId int64
 
 		resp, httpRes, err := apiClient.JobAPI.GetJobExceptions(context.Background(), jobId).Execute()
 
@@ -117,7 +117,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobId float32
+		var jobId int64
 
 		resp, httpRes, err := apiClient.JobAPI.GetJobFromArchive(context.Background(), jobId).Execute()
 
@@ -131,7 +131,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobGroupId float32
+		var jobGroupId int64
 
 		resp, httpRes, err := apiClient.JobAPI.GetJobGroup(context.Background(), jobGroupId).Execute()
 
@@ -145,7 +145,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobGroupId float32
+		var jobGroupId int64
 
 		resp, httpRes, err := apiClient.JobAPI.GetJobGroupStatistics(context.Background(), jobGroupId).Execute()
 
@@ -207,7 +207,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobId float32
+		var jobId int64
 
 		httpRes, err := apiClient.JobAPI.IssueCommandForJob(context.Background(), jobId).Execute()
 
@@ -220,7 +220,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobId float32
+		var jobId int64
 
 		httpRes, err := apiClient.JobAPI.RetryJob(context.Background(), jobId).Execute()
 
@@ -233,7 +233,7 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var jobId float32
+		var jobId int64
 
 		httpRes, err := apiClient.JobAPI.SkipJob(context.Background(), jobId).Execute()
 
@@ -248,9 +248,10 @@ func Test_sdk_JobAPIService(t *testing.T) {
 
 		var cronJobId float32
 
-		httpRes, err := apiClient.JobAPI.UpdateCronJob(context.Background(), cronJobId).Execute()
+		resp, httpRes, err := apiClient.JobAPI.UpdateCronJob(context.Background(), cronJobId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
