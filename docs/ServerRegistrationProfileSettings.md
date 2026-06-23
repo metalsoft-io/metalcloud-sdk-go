@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **RegisterCredentials** | Pointer to **string** | Server registration password settings. If using \&quot;user\&quot; then the password remains unchanged at the end of the registration process. If using \&quot;random\&quot; then a random password will be generated and set on the server during registration. | [optional] [default to "user"]
 **MinimumNumberOfConnectedInterfaces** | Pointer to **float32** | Minimum number of switch-connected interfaces required | [optional] [default to 1]
 **AlwaysDiscoverInterfacesWithBDK** | Pointer to **bool** | Whether to always attempt to discover interfaces with BDK | [optional] [default to true]
+**ClearTpm** | Pointer to **bool** | Whether to clear TPM | [optional] [default to false]
 **EnableTpm** | Pointer to **bool** | Whether to enable TPM | [optional] [default to true]
 **EnableIntelTxt** | Pointer to **bool** | Whether to enable Intel TXT | [optional] [default to true]
 **EnableSyslogMonitoring** | Pointer to **bool** | Whether to enable syslog monitoring | [optional] [default to true]
@@ -118,6 +119,31 @@ SetAlwaysDiscoverInterfacesWithBDK sets AlwaysDiscoverInterfacesWithBDK field to
 `func (o *ServerRegistrationProfileSettings) HasAlwaysDiscoverInterfacesWithBDK() bool`
 
 HasAlwaysDiscoverInterfacesWithBDK returns a boolean if a field has been set.
+
+### GetClearTpm
+
+`func (o *ServerRegistrationProfileSettings) GetClearTpm() bool`
+
+GetClearTpm returns the ClearTpm field if non-nil, zero value otherwise.
+
+### GetClearTpmOk
+
+`func (o *ServerRegistrationProfileSettings) GetClearTpmOk() (*bool, bool)`
+
+GetClearTpmOk returns a tuple with the ClearTpm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClearTpm
+
+`func (o *ServerRegistrationProfileSettings) SetClearTpm(v bool)`
+
+SetClearTpm sets ClearTpm field to given value.
+
+### HasClearTpm
+
+`func (o *ServerRegistrationProfileSettings) HasClearTpm() bool`
+
+HasClearTpm returns a boolean if a field has been set.
 
 ### GetEnableTpm
 

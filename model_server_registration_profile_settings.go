@@ -26,6 +26,8 @@ type ServerRegistrationProfileSettings struct {
 	MinimumNumberOfConnectedInterfaces *float32 `json:"minimumNumberOfConnectedInterfaces,omitempty"`
 	// Whether to always attempt to discover interfaces with BDK
 	AlwaysDiscoverInterfacesWithBDK *bool `json:"alwaysDiscoverInterfacesWithBDK,omitempty"`
+	// Whether to clear TPM
+	ClearTpm *bool `json:"clearTpm,omitempty"`
 	// Whether to enable TPM
 	EnableTpm *bool `json:"enableTpm,omitempty"`
 	// Whether to enable Intel TXT
@@ -77,6 +79,8 @@ func NewServerRegistrationProfileSettings() *ServerRegistrationProfileSettings {
 	this.MinimumNumberOfConnectedInterfaces = &minimumNumberOfConnectedInterfaces
 	var alwaysDiscoverInterfacesWithBDK bool = true
 	this.AlwaysDiscoverInterfacesWithBDK = &alwaysDiscoverInterfacesWithBDK
+	var clearTpm bool = false
+	this.ClearTpm = &clearTpm
 	var enableTpm bool = true
 	this.EnableTpm = &enableTpm
 	var enableIntelTxt bool = true
@@ -121,6 +125,8 @@ func NewServerRegistrationProfileSettingsWithDefaults() *ServerRegistrationProfi
 	this.MinimumNumberOfConnectedInterfaces = &minimumNumberOfConnectedInterfaces
 	var alwaysDiscoverInterfacesWithBDK bool = true
 	this.AlwaysDiscoverInterfacesWithBDK = &alwaysDiscoverInterfacesWithBDK
+	var clearTpm bool = false
+	this.ClearTpm = &clearTpm
 	var enableTpm bool = true
 	this.EnableTpm = &enableTpm
 	var enableIntelTxt bool = true
@@ -248,6 +254,38 @@ func (o *ServerRegistrationProfileSettings) HasAlwaysDiscoverInterfacesWithBDK()
 // SetAlwaysDiscoverInterfacesWithBDK gets a reference to the given bool and assigns it to the AlwaysDiscoverInterfacesWithBDK field.
 func (o *ServerRegistrationProfileSettings) SetAlwaysDiscoverInterfacesWithBDK(v bool) {
 	o.AlwaysDiscoverInterfacesWithBDK = &v
+}
+
+// GetClearTpm returns the ClearTpm field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileSettings) GetClearTpm() bool {
+	if o == nil || IsNil(o.ClearTpm) {
+		var ret bool
+		return ret
+	}
+	return *o.ClearTpm
+}
+
+// GetClearTpmOk returns a tuple with the ClearTpm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfileSettings) GetClearTpmOk() (*bool, bool) {
+	if o == nil || IsNil(o.ClearTpm) {
+		return nil, false
+	}
+	return o.ClearTpm, true
+}
+
+// HasClearTpm returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileSettings) HasClearTpm() bool {
+	if o != nil && !IsNil(o.ClearTpm) {
+		return true
+	}
+
+	return false
+}
+
+// SetClearTpm gets a reference to the given bool and assigns it to the ClearTpm field.
+func (o *ServerRegistrationProfileSettings) SetClearTpm(v bool) {
+	o.ClearTpm = &v
 }
 
 // GetEnableTpm returns the EnableTpm field value if set, zero value otherwise.
@@ -813,6 +851,9 @@ func (o ServerRegistrationProfileSettings) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.AlwaysDiscoverInterfacesWithBDK) {
 		toSerialize["alwaysDiscoverInterfacesWithBDK"] = o.AlwaysDiscoverInterfacesWithBDK
 	}
+	if !IsNil(o.ClearTpm) {
+		toSerialize["clearTpm"] = o.ClearTpm
+	}
 	if !IsNil(o.EnableTpm) {
 		toSerialize["enableTpm"] = o.EnableTpm
 	}
@@ -889,6 +930,7 @@ func (o *ServerRegistrationProfileSettings) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "registerCredentials")
 		delete(additionalProperties, "minimumNumberOfConnectedInterfaces")
 		delete(additionalProperties, "alwaysDiscoverInterfacesWithBDK")
+		delete(additionalProperties, "clearTpm")
 		delete(additionalProperties, "enableTpm")
 		delete(additionalProperties, "enableIntelTxt")
 		delete(additionalProperties, "enableSyslogMonitoring")

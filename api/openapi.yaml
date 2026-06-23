@@ -1299,6 +1299,26 @@ paths:
       summary: Get CAPTCHA configuration
       tags:
       - Authentication
+  /api/v2/branding:
+    get:
+      description: "Returns the branding configuration (logos, favicon, company name,\
+        \ UI template)."
+      operationId: getBranding
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Branding"
+          description: Returned branding configuration
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      summary: Get branding configuration
+      tags:
+      - Authentication
   /api/v2/buckets/{bucketId}:
     get:
       description: Returns Bucket information
@@ -4808,9 +4828,7 @@ paths:
   /api/v2/config:
     get:
       description: "Returns configuration for all services, or a single service when\
-        \ filter is provided. The gateway-api filter is available to any authenticated\
-        \ user (limited to the branding section without the global configurations\
-        \ read permission); everything else requires that permission."
+        \ filter is provided."
       operationId: getConfiguration
       parameters:
       - description: Service to retrieve configuration for.
@@ -4833,8 +4851,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ConfigurationsDto"
+                $ref: "#/components/schemas/Configurations"
           description: Configuration object
+        "400":
+          description: Invalid filter value
         "401":
           description: Unauthorized
         "403":
@@ -4848,7 +4868,7 @@ paths:
   /api/v2/config/{filter}:
     patch:
       description: Updates specific fields of the configuration for a service.
-      operationId: patchConfiguration
+      operationId: updateConfiguration
       parameters:
       - description: Service to update configuration for.
         explode: false
@@ -4869,7 +4889,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/putConfiguration_request"
+              $ref: "#/components/schemas/replaceConfiguration_request"
         description: Partial configuration object
         required: true
       responses:
@@ -4877,8 +4897,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/putConfiguration_request"
+                $ref: "#/components/schemas/replaceConfiguration_request"
           description: Updated configuration
+        "400":
+          description: Invalid filter or configuration payload
         "401":
           description: Unauthorized
         "403":
@@ -4891,7 +4913,7 @@ paths:
       - Configuration
     put:
       description: Replaces the entire configuration for a service.
-      operationId: putConfiguration
+      operationId: replaceConfiguration
       parameters:
       - description: Service to update configuration for.
         explode: false
@@ -4912,7 +4934,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/putConfiguration_request"
+              $ref: "#/components/schemas/replaceConfiguration_request"
         description: Configuration object
         required: true
       responses:
@@ -4920,8 +4942,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/putConfiguration_request"
+                $ref: "#/components/schemas/replaceConfiguration_request"
           description: Updated configuration
+        "400":
+          description: Invalid filter or configuration payload
         "401":
           description: Unauthorized
         "403":
@@ -9104,6 +9128,8 @@ paths:
       - Extension
   /api/v2/extensions/{extensionId}/siteConfig/{siteId}:
     delete:
+      description: Deletes the per site extension config & disables the extension
+        for the site.
       operationId: deleteExtensionSiteConfig
       parameters:
       - explode: false
@@ -9182,6 +9208,9 @@ paths:
       tags:
       - Extension
     post:
+      description: Sets (Creates or Updates) the per site extension config & enables
+        the extension for the site. All variables from the extension definition not
+        having default value must be specified in order for the request to succeed.
       operationId: setExtensionSiteConfig
       parameters:
       - explode: false
@@ -39398,13 +39427,143 @@ paths:
   /api/v2/quota-profiles:
     get:
       operationId: getQuotaProfiles
-      parameters: []
+      parameters:
+      - description: |+
+          Page number to retrieve. If you provide invalid value the default page number will applied
+
+          **Example:** 1
+
+
+          **Default Value:** 1
+
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |
+          Number of records per page.
+
+
+          **Example:** 20
+
+
+
+          **Default Value:** 20
+
+
+
+          **Max Value:** 100
+
+
+          If provided value is greater than max value, max value will be applied.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+
+          **Format:** filter.id={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.id=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |
+          Parameter to sort by.
+          To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting
+
+          **Format:** {fieldName}:{DIRECTION}
+
+
+          **Example:** sortBy=id:DESC&sortBy=name:DESC
+
+
+          **Default Value:** name:ASC
+
+          **Available Fields**
+          - id
+
+          - name
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - name:ASC
+            - name:DESC
+            type: string
+          type: array
+        style: form
+      - description: |+
+          Search term to filter result values
+
+          **Example:** John
+
+
+          **Default Value:** No default value
+
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          List of fields to search by term to filter result values
+
+          **Example:** id,name,description
+
+
+          **Default Value:** By default all fields mentioned below will be used to search by term
+
+          **Available Fields**
+          - id
+
+          - name
+
+          - description
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/QuotaProfileList"
+                $ref: "#/components/schemas/QuotaProfilePaginatedList"
           description: The list of quota profiles
         "401":
           description: Unauthorized
@@ -39617,13 +39776,147 @@ paths:
   /api/v2/permissions:
     get:
       operationId: getPermissions
-      parameters: []
+      parameters:
+      - description: |+
+          Page number to retrieve. If you provide invalid value the default page number will applied
+
+          **Example:** 1
+
+
+          **Default Value:** 1
+
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |
+          Number of records per page.
+
+
+          **Example:** 20
+
+
+
+          **Default Value:** 20
+
+
+
+          **Max Value:** 100
+
+
+          If provided value is greater than max value, max value will be applied.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by type query param.
+
+          **Format:** filter.type={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.type=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.type
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |
+          Parameter to sort by.
+          To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting
+
+          **Format:** {fieldName}:{DIRECTION}
+
+
+          **Example:** sortBy=id:DESC&sortBy=name:DESC
+
+
+          **Default Value:** label:ASC
+
+          **Available Fields**
+          - id
+
+          - name
+
+          - label
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - name:ASC
+            - name:DESC
+            - label:ASC
+            - label:DESC
+            type: string
+          type: array
+        style: form
+      - description: |+
+          Search term to filter result values
+
+          **Example:** John
+
+
+          **Default Value:** No default value
+
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          List of fields to search by term to filter result values
+
+          **Example:** name,label,description
+
+
+          **Default Value:** By default all fields mentioned below will be used to search by term
+
+          **Available Fields**
+          - name
+
+          - label
+
+          - description
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PermissionList"
+                $ref: "#/components/schemas/PermissionPaginatedList"
           description: The list of permissions
         "401":
           description: Unauthorized
@@ -39698,13 +39991,171 @@ paths:
   /api/v2/roles:
     get:
       operationId: getRoles
-      parameters: []
+      parameters:
+      - description: |+
+          Page number to retrieve. If you provide invalid value the default page number will applied
+
+          **Example:** 1
+
+
+          **Default Value:** 1
+
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |
+          Number of records per page.
+
+
+          **Example:** 20
+
+
+
+          **Default Value:** 20
+
+
+
+          **Max Value:** 100
+
+
+          If provided value is greater than max value, max value will be applied.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by type query param.
+
+          **Format:** filter.type={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.type=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.type
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by quotaProfileId query param.
+
+          **Format:** filter.quotaProfileId={$not}:OPERATION:VALUE
+
+
+
+          **Example:** filter.quotaProfileId=$eq:John Doe
+
+          **Available Operations**
+          - $eq
+
+          - $and
+
+          - $or
+        explode: true
+        in: query
+        name: filter.quotaProfileId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |
+          Parameter to sort by.
+          To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting
+
+          **Format:** {fieldName}:{DIRECTION}
+
+
+          **Example:** sortBy=id:DESC&sortBy=name:DESC
+
+
+          **Default Value:** label:ASC
+
+          **Available Fields**
+          - id
+
+          - name
+
+          - label
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - name:ASC
+            - name:DESC
+            - label:ASC
+            - label:DESC
+            type: string
+          type: array
+        style: form
+      - description: |+
+          Search term to filter result values
+
+          **Example:** John
+
+
+          **Default Value:** No default value
+
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          List of fields to search by term to filter result values
+
+          **Example:** name,label,description
+
+
+          **Default Value:** By default all fields mentioned below will be used to search by term
+
+          **Available Fields**
+          - name
+
+          - label
+
+          - description
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoleList"
+                $ref: "#/components/schemas/RolePaginatedList"
           description: The list of roles
         "401":
           description: Unauthorized
@@ -70830,6 +71281,74 @@ components:
       - isCaptchaEnabled
       - siteKeys
       type: object
+    Favicon:
+      properties:
+        ico:
+          description: ICO format favicon (base64)
+          type: object
+        svg:
+          description: SVG format favicon (base64)
+          type: object
+        apple:
+          description: Apple touch icon (base64)
+          type: object
+      type: object
+    Logo:
+      properties:
+        light:
+          description: Logo for light backgrounds (base64 SVG)
+          type: object
+        dark:
+          description: Logo for dark backgrounds (base64 SVG)
+          type: object
+        email:
+          description: Logo for email templates (base64 SVG)
+          type: object
+      type: object
+    BrandingBase:
+      properties:
+        favicon:
+          allOf:
+          - $ref: "#/components/schemas/Favicon"
+          description: Favicon images in multiple formats
+        companyName:
+          description: Company name displayed in the UI
+          type: object
+        useUITemplate:
+          description: UI theme template identifier
+          type: object
+        logo:
+          allOf:
+          - $ref: "#/components/schemas/Logo"
+          description: Logo images for different backgrounds
+      type: object
+    Branding:
+      example:
+        useUITemplate: "{}"
+        default: ""
+        favicon: ""
+        companyName: "{}"
+        logo: ""
+      properties:
+        favicon:
+          allOf:
+          - $ref: "#/components/schemas/Favicon"
+          description: Favicon images in multiple formats
+        companyName:
+          description: Company name displayed in the UI
+          type: object
+        useUITemplate:
+          description: UI theme template identifier
+          type: object
+        logo:
+          allOf:
+          - $ref: "#/components/schemas/Logo"
+          description: Logo images for different backgrounds
+        default:
+          allOf:
+          - $ref: "#/components/schemas/BrandingBase"
+          description: Default branding overrides
+      type: object
     ParentInfrastructure:
       properties:
         userIdOwner:
@@ -71216,9 +71735,9 @@ components:
       example:
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-06-14T18:35:18.845Z
+        createdTimestamp: 2026-06-23T08:31:23.212Z
         networkDevicePosition: all
-        updatedTimestamp: 2026-06-14T18:35:18.845Z
+        updatedTimestamp: 2026-06-23T08:31:23.212Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         action: add-global-config
@@ -71331,12 +71850,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.845Z
+          example: 2026-06-23T08:31:23.212Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.845Z
+          example: 2026-06-23T08:31:23.212Z
           format: date-time
           type: string
         links:
@@ -71368,9 +71887,9 @@ components:
         data:
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.845Z
+          createdTimestamp: 2026-06-23T08:31:23.212Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-06-14T18:35:18.845Z
+          updatedTimestamp: 2026-06-23T08:31:23.212Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -71387,9 +71906,9 @@ components:
           bgpNumbering: numbered
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.845Z
+          createdTimestamp: 2026-06-23T08:31:23.212Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-06-14T18:35:18.845Z
+          updatedTimestamp: 2026-06-23T08:31:23.212Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -71662,9 +72181,9 @@ components:
         removeNeighbor: removeNeighbor
         removeGlobalConfig: removeGlobalConfig
         executionType: cli
-        createdTimestamp: 2026-06-14T18:35:18.851Z
+        createdTimestamp: 2026-06-23T08:31:23.218Z
         label: label
-        updatedTimestamp: 2026-06-14T18:35:18.851Z
+        updatedTimestamp: 2026-06-23T08:31:23.218Z
         revision: "1"
         addGlobalConfig: addGlobalConfig
         name: name
@@ -71713,12 +72232,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.851Z
+          example: 2026-06-23T08:31:23.218Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.851Z
+          example: 2026-06-23T08:31:23.218Z
           format: date-time
           type: string
         revision:
@@ -71750,9 +72269,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.851Z
+          createdTimestamp: 2026-06-23T08:31:23.218Z
           label: label
-          updatedTimestamp: 2026-06-14T18:35:18.851Z
+          updatedTimestamp: 2026-06-23T08:31:23.218Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -71767,9 +72286,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.851Z
+          createdTimestamp: 2026-06-23T08:31:23.218Z
           label: label
-          updatedTimestamp: 2026-06-14T18:35:18.851Z
+          updatedTimestamp: 2026-06-23T08:31:23.218Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -71905,7 +72424,7 @@ components:
         aggregationType: lag
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-06-14T18:35:18.849Z
+        createdTimestamp: 2026-06-23T08:31:23.216Z
         action: create
         networkDeviceDriver: cisco_aci51
         links:
@@ -71915,7 +72434,7 @@ components:
           href: /api/v2/path/to/resource
         id: 0
         libraryLabel: libraryLabel
-        updatedTimestamp: 2026-06-14T18:35:18.849Z
+        updatedTimestamp: 2026-06-23T08:31:23.216Z
         preparation: preparation
       properties:
         action:
@@ -71979,12 +72498,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.849Z
+          example: 2026-06-23T08:31:23.216Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.849Z
+          example: 2026-06-23T08:31:23.216Z
           format: date-time
           type: string
         links:
@@ -72013,7 +72532,7 @@ components:
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.849Z
+          createdTimestamp: 2026-06-23T08:31:23.216Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -72023,12 +72542,12 @@ components:
             href: /api/v2/path/to/resource
           id: 0
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-06-14T18:35:18.849Z
+          updatedTimestamp: 2026-06-23T08:31:23.216Z
           preparation: preparation
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.849Z
+          createdTimestamp: 2026-06-23T08:31:23.216Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -72038,7 +72557,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-06-14T18:35:18.849Z
+          updatedTimestamp: 2026-06-23T08:31:23.216Z
           preparation: preparation
         meta: ""
         links: ""
@@ -72244,7 +72763,7 @@ components:
     DeviceConfigurationTemplate:
       example:
         executionType: cli
-        createdTimestamp: 2026-06-14T18:35:18.854Z
+        createdTimestamp: 2026-06-23T08:31:23.221Z
         deviceDriver: sonic_enterprise
         description: "Base hostname + interface MTU template, used during fabric deployment."
         customVariablesJson:
@@ -72254,7 +72773,7 @@ components:
           environment: production
           owner: fabric-team
         label: nvidia-spectrum-x-base
-        updatedTimestamp: 2026-06-14T18:35:18.854Z
+        updatedTimestamp: 2026-06-23T08:31:23.222Z
         tags:
         - nvidia
         - spectrum-x
@@ -72328,12 +72847,12 @@ components:
           type: array
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.854Z
+          example: 2026-06-23T08:31:23.221Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.854Z
+          example: 2026-06-23T08:31:23.222Z
           format: date-time
           type: string
         revision:
@@ -72362,7 +72881,7 @@ components:
       example:
         data:
         - executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.854Z
+          createdTimestamp: 2026-06-23T08:31:23.221Z
           deviceDriver: sonic_enterprise
           description: "Base hostname + interface MTU template, used during fabric\
             \ deployment."
@@ -72373,7 +72892,7 @@ components:
             environment: production
             owner: fabric-team
           label: nvidia-spectrum-x-base
-          updatedTimestamp: 2026-06-14T18:35:18.854Z
+          updatedTimestamp: 2026-06-23T08:31:23.222Z
           tags:
           - nvidia
           - spectrum-x
@@ -72387,7 +72906,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0
         - executionType: cli
-          createdTimestamp: 2026-06-14T18:35:18.854Z
+          createdTimestamp: 2026-06-23T08:31:23.221Z
           deviceDriver: sonic_enterprise
           description: "Base hostname + interface MTU template, used during fabric\
             \ deployment."
@@ -72398,7 +72917,7 @@ components:
             environment: production
             owner: fabric-team
           label: nvidia-spectrum-x-base
-          updatedTimestamp: 2026-06-14T18:35:18.854Z
+          updatedTimestamp: 2026-06-23T08:31:23.222Z
           tags:
           - nvidia
           - spectrum-x
@@ -72680,12 +73199,12 @@ components:
         variables:
           mtu_override: 9000
         updatedBy: 42
-        createdTimestamp: 2026-06-14T18:35:18.86Z
+        createdTimestamp: 2026-06-23T08:31:23.227Z
         annotations:
           environment: production
           owner: fabric-team
         priority: 100
-        updatedTimestamp: 2026-06-14T18:35:18.86Z
+        updatedTimestamp: 2026-06-23T08:31:23.227Z
         tags:
         - canary
         - fabric-team
@@ -72786,12 +73305,12 @@ components:
           type: array
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.86Z
+          example: 2026-06-23T08:31:23.227Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.86Z
+          example: 2026-06-23T08:31:23.227Z
           format: date-time
           type: string
         revision:
@@ -72832,12 +73351,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -72858,12 +73377,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -73039,12 +73558,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -73065,12 +73584,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -73159,12 +73678,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -73185,12 +73704,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -73212,12 +73731,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -73238,12 +73757,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-14T18:35:18.86Z
+          createdTimestamp: 2026-06-23T08:31:23.227Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-14T18:35:18.86Z
+          updatedTimestamp: 2026-06-23T08:31:23.227Z
           tags:
           - canary
           - fabric-team
@@ -73770,7 +74289,7 @@ components:
       required:
       - mysql
       type: object
-    UserProviderDto:
+    UserProvider:
       properties:
         name:
           description: Authentication provider identifier
@@ -73802,7 +74321,7 @@ components:
       - enabled
       - name
       type: object
-    UsersDto:
+    Users:
       properties:
         usersProvider:
           allOf:
@@ -73818,7 +74337,7 @@ components:
         userProviders:
           description: Per-provider authentication configuration
           items:
-            $ref: "#/components/schemas/UserProviderDto"
+            $ref: "#/components/schemas/UserProvider"
           type: array
         maxFailedLoginAttempts:
           description: Maximum consecutive failed login attempts before temporary
@@ -73880,6 +74399,10 @@ components:
         captchaVerifyUrl:
           description: CAPTCHA server-side verification endpoint URL
           type: object
+        captchaVerifyProxy:
+          description: Optional forward proxy (e.g. http://proxy:3128) for outbound
+            CAPTCHA verification requests; empty means a direct connection
+          type: string
         captchaWidgets:
           additionalProperties: true
           description: CAPTCHA widget configurations keyed by widget identifier
@@ -73907,7 +74430,7 @@ components:
       - userProviders
       - usersProvider
       type: object
-    LdapServerDto:
+    LdapServer:
       properties:
         url:
           description: LDAP server URL (e.g. ldap://host:389 or ldaps://host:636)
@@ -73934,7 +74457,7 @@ components:
           description: PEM-encoded TLS certificate for LDAPS connections
           type: object
       type: object
-    ProfileMappingDto:
+    LdapProfileMapping:
       properties:
         userExternalIdentifier:
           description: LDAP attribute used as the unique user identifier
@@ -73954,7 +74477,7 @@ components:
       - userExternalIdentifier
       - username
       type: object
-    GroupMappingDto:
+    GroupMapping:
       properties:
         groupName:
           description: LDAP or SAML group name
@@ -73975,27 +74498,27 @@ components:
       - quotaProfileId
       - roleName
       type: object
-    LdapDto:
+    Ldap:
       properties:
         server:
           allOf:
-          - $ref: "#/components/schemas/LdapServerDto"
+          - $ref: "#/components/schemas/LdapServer"
           description: LDAP server connection settings
         profileMapping:
           allOf:
-          - $ref: "#/components/schemas/ProfileMappingDto"
+          - $ref: "#/components/schemas/LdapProfileMapping"
           description: Mapping of LDAP attributes to user profile fields
         groupsMapping:
           description: Mapping of LDAP groups to application roles
           items:
-            $ref: "#/components/schemas/GroupMappingDto"
+            $ref: "#/components/schemas/GroupMapping"
           type: array
       required:
       - groupsMapping
       - profileMapping
       - server
       type: object
-    SamlProfileMappingDto:
+    SamlProfileMapping:
       properties:
         userExternalIdentifier:
           description: SAML assertion attribute used as the unique user identifier
@@ -74019,7 +74542,7 @@ components:
       - userExternalIdentifier
       - username
       type: object
-    SamlDto:
+    Saml:
       properties:
         entryPoint:
           description: SAML Identity Provider SSO endpoint URL
@@ -74047,12 +74570,12 @@ components:
           type: object
         profileMapping:
           allOf:
-          - $ref: "#/components/schemas/SamlProfileMappingDto"
+          - $ref: "#/components/schemas/SamlProfileMapping"
           description: Mapping of SAML assertion attributes to user profile fields
         groupsMapping:
           description: Mapping of SAML group attribute values to application roles
           items:
-            $ref: "#/components/schemas/GroupMappingDto"
+            $ref: "#/components/schemas/GroupMapping"
           type: array
       required:
       - callbackUrl
@@ -74063,74 +74586,26 @@ components:
       - logoutURL
       - profileMapping
       type: object
-    OauthDto:
-      properties:
-        jwksUri:
-          description: JWKS endpoint URL used for verifying OAuth/OIDC token signatures
-          type: object
-      required:
-      - jwksUri
-      type: object
-    AuthBsiConfigDto:
-      properties:
-        host:
-          description: Platform service base URL
-          type: object
-        token:
-          description: Authentication token for the platform service
-          type: object
-      required:
-      - host
-      - token
-      type: object
-    AuthMicroservicesDto:
-      properties:
-        bsi:
-          allOf:
-          - $ref: "#/components/schemas/AuthBsiConfigDto"
-          description: Platform service connection settings
-      required:
-      - bsi
-      type: object
-    AuthConfigurationDto:
+    AuthConfiguration:
       example:
-        oauthWhitelistedPermissions:
-        - oauthWhitelistedPermissions
-        - oauthWhitelistedPermissions
         ldap: ""
         saml: ""
-        oauth: ""
         users: ""
-        microservices: ""
       properties:
         users:
           allOf:
-          - $ref: "#/components/schemas/UsersDto"
+          - $ref: "#/components/schemas/Users"
           description: User management and authentication provider settings
         ldap:
           allOf:
-          - $ref: "#/components/schemas/LdapDto"
+          - $ref: "#/components/schemas/Ldap"
           description: LDAP directory integration settings
         saml:
           allOf:
-          - $ref: "#/components/schemas/SamlDto"
+          - $ref: "#/components/schemas/Saml"
           description: SAML SSO integration settings
-        oauth:
-          allOf:
-          - $ref: "#/components/schemas/OauthDto"
-          description: OAuth/OIDC token verification settings
-        microservices:
-          allOf:
-          - $ref: "#/components/schemas/AuthMicroservicesDto"
-          description: Connected microservices configuration
-        oauthWhitelistedPermissions:
-          description: Permissions automatically granted to OAuth token holders regardless
-            of their token scopes
-          items:
-            type: string
-          type: array
       type: object
-    PlatformMailClientDto:
+    PlatformMailClient:
       properties:
         strHostname:
           description: SMTP server hostname
@@ -74154,25 +74629,25 @@ components:
           description: Subject line prefix prepended to all outgoing emails
           type: string
       type: object
-    PlatformPowerDNSDto:
+    PlatformPowerDNS:
       properties:
         name:
           description: PowerDNS instance identifier
           type: string
       type: object
-    PlatformUploadsDto:
+    PlatformUploads:
       properties:
         bsi:
           description: Upload directory path on the platform service
           type: string
       type: object
-    PlatformStorageConfigDto:
+    PlatformStorageConfig:
       properties:
         storage_overprovisioning_factor:
           description: Storage overprovisioning multiplier (e.g. 3000 = 3x overprovisioning)
           type: number
       type: object
-    PlatformAllowedPrefixSizesOnWANDto:
+    PlatformAllowedPrefixSizesOnWAN:
       properties:
         ipv4:
           description: "Allowed IPv4 prefix sizes for WAN allocation (e.g. [27, 28,\
@@ -74186,7 +74661,7 @@ components:
             type: number
           type: array
       type: object
-    PlatformAFCDto:
+    PlatformAFC:
       properties:
         admin_warnings_email:
           description: Email addresses for AFC admin warning notifications
@@ -74204,7 +74679,7 @@ components:
             type: string
           type: array
       type: object
-    PlatformConfigurationDto:
+    PlatformConfiguration:
       example:
         repoURLRootMaster: repoURLRootMaster
         cookieDomain: cookieDomain
@@ -74221,11 +74696,11 @@ components:
       properties:
         mailClient:
           allOf:
-          - $ref: "#/components/schemas/PlatformMailClientDto"
+          - $ref: "#/components/schemas/PlatformMailClient"
           description: Outbound email (SMTP) settings
         powerDNS:
           allOf:
-          - $ref: "#/components/schemas/PlatformPowerDNSDto"
+          - $ref: "#/components/schemas/PlatformPowerDNS"
           description: PowerDNS integration settings
         BSIAdminURLRoot:
           description: Base URL for the platform admin interface
@@ -74235,15 +74710,15 @@ components:
           type: string
         uploads:
           allOf:
-          - $ref: "#/components/schemas/PlatformUploadsDto"
+          - $ref: "#/components/schemas/PlatformUploads"
           description: File upload storage path settings
         storageConfig:
           allOf:
-          - $ref: "#/components/schemas/PlatformStorageConfigDto"
+          - $ref: "#/components/schemas/PlatformStorageConfig"
           description: Storage overprovisioning settings
         allowedPrefixSizesOnWAN:
           allOf:
-          - $ref: "#/components/schemas/PlatformAllowedPrefixSizesOnWANDto"
+          - $ref: "#/components/schemas/PlatformAllowedPrefixSizesOnWAN"
           description: Allowed IP prefix sizes for WAN allocation
         cookieDomain:
           description: Domain scope for session cookies
@@ -74256,13 +74731,13 @@ components:
           type: boolean
         AFC:
           allOf:
-          - $ref: "#/components/schemas/PlatformAFCDto"
+          - $ref: "#/components/schemas/PlatformAFC"
           description: Automated Fulfillment Center notification settings
         disablePublicUserSignup:
           description: Whether self-service user registration is disabled
           type: boolean
       type: object
-    SyslogConditionDto:
+    SyslogCondition:
       example:
         field: syslog.severity
         value: value
@@ -74290,7 +74765,7 @@ components:
       - operator
       - value
       type: object
-    SyslogRuleDto:
+    SyslogRule:
       example:
         emails_list:
         - emails_list
@@ -74309,7 +74784,7 @@ components:
         conditions:
           description: Conditions that must all be met to trigger this rule
           items:
-            $ref: "#/components/schemas/SyslogConditionDto"
+            $ref: "#/components/schemas/SyslogCondition"
           type: array
         description:
           description: Human-readable description of the rule
@@ -74333,7 +74808,7 @@ components:
     EventsRetention:
       properties: {}
       type: object
-    NotificationConfigurationDto:
+    NotificationConfiguration:
       example:
         network_device_configuration_drift_notification_emails:
         - network_device_configuration_drift_notification_emails
@@ -74381,7 +74856,7 @@ components:
         syslog_notification_rules:
           description: Syslog notification rules for email alerting
           items:
-            $ref: "#/components/schemas/SyslogRuleDto"
+            $ref: "#/components/schemas/SyslogRule"
           type: array
         server_health_notification_emails:
           description: Email addresses to notify about server health events
@@ -74415,7 +74890,7 @@ components:
           description: Maximum number of unique syslog messages to buffer before flushing
           type: number
       type: object
-    TunnelBdkDto:
+    TunnelBdk:
       properties:
         username:
           description: BDK service username
@@ -74427,7 +74902,7 @@ components:
       - password
       - username
       type: object
-    TunnelSyslogFiltersDto:
+    TunnelSyslogFilters:
       properties:
         allowed_priorities:
           description: Allowed syslog priority values (0–191)
@@ -74445,16 +74920,16 @@ components:
             type: number
           type: array
       type: object
-    TunnelSyslogDto:
+    TunnelSyslog:
       properties:
         filters:
           allOf:
-          - $ref: "#/components/schemas/TunnelSyslogFiltersDto"
+          - $ref: "#/components/schemas/TunnelSyslogFilters"
           description: Syslog message filters applied by the tunnel
       required:
       - filters
       type: object
-    TunnelConfigurationDto:
+    TunnelConfiguration:
       example:
         bdk: ""
         shared_secret: shared_secret
@@ -74465,86 +74940,24 @@ components:
           type: string
         bdk:
           allOf:
-          - $ref: "#/components/schemas/TunnelBdkDto"
+          - $ref: "#/components/schemas/TunnelBdk"
           description: BDK service credentials
         syslog:
           allOf:
-          - $ref: "#/components/schemas/TunnelSyslogDto"
+          - $ref: "#/components/schemas/TunnelSyslog"
           description: Syslog message filtering configuration
       required:
       - bdk
       - shared_secret
       - syslog
       type: object
-    FaviconDto:
-      properties:
-        ico:
-          description: ICO format favicon (base64)
-          type: object
-        svg:
-          description: SVG format favicon (base64)
-          type: object
-        apple:
-          description: Apple touch icon (base64)
-          type: object
-      type: object
-    LogoDto:
-      properties:
-        light:
-          description: Logo for light backgrounds (base64 SVG)
-          type: object
-        dark:
-          description: Logo for dark backgrounds (base64 SVG)
-          type: object
-        email:
-          description: Logo for email templates (base64 SVG)
-          type: object
-      type: object
-    BrandingBaseDto:
-      properties:
-        favicon:
-          allOf:
-          - $ref: "#/components/schemas/FaviconDto"
-          description: Favicon images in multiple formats
-        companyName:
-          description: Company name displayed in the UI
-          type: object
-        useUITemplate:
-          description: UI theme template identifier
-          type: object
-        logo:
-          allOf:
-          - $ref: "#/components/schemas/LogoDto"
-          description: Logo images for different backgrounds
-      type: object
-    BrandingDto:
-      properties:
-        favicon:
-          allOf:
-          - $ref: "#/components/schemas/FaviconDto"
-          description: Favicon images in multiple formats
-        companyName:
-          description: Company name displayed in the UI
-          type: object
-        useUITemplate:
-          description: UI theme template identifier
-          type: object
-        logo:
-          allOf:
-          - $ref: "#/components/schemas/LogoDto"
-          description: Logo images for different backgrounds
-        default:
-          allOf:
-          - $ref: "#/components/schemas/BrandingBaseDto"
-          description: Default branding overrides
-      type: object
-    LicenseMicroserviceDto:
+    LicenseMicroservice:
       properties:
         url:
           description: License microservice base URL
           type: object
       type: object
-    BsiDto:
+    MicroservicesBsi:
       properties:
         token:
           description: Authentication token for the platform service
@@ -74552,27 +74965,27 @@ components:
       required:
       - token
       type: object
-    AuthDto:
+    MicroservicesAuth:
       properties:
         samlHostname:
           description: Base URL of the SAML identity provider
           type: object
       type: object
-    MicroservicesDto:
+    Microservices:
       properties:
         bsi:
           allOf:
-          - $ref: "#/components/schemas/BsiDto"
+          - $ref: "#/components/schemas/MicroservicesBsi"
           description: Platform service connection settings
         auth:
           allOf:
-          - $ref: "#/components/schemas/AuthDto"
+          - $ref: "#/components/schemas/MicroservicesAuth"
           description: Authentication microservice settings
       required:
       - auth
       - bsi
       type: object
-    RateLimitingConfigDto:
+    RateLimitingConfig:
       properties:
         enabled:
           description: Whether API rate limiting is enabled
@@ -74585,7 +74998,7 @@ components:
             minute
           type: object
       type: object
-    GatewayConfigurationDto:
+    GatewayConfiguration:
       example:
         licenseMicroservice: ""
         branding: ""
@@ -74594,22 +75007,22 @@ components:
       properties:
         branding:
           allOf:
-          - $ref: "#/components/schemas/BrandingDto"
+          - $ref: "#/components/schemas/Branding"
           description: "UI branding configuration (logos, colors, company name)"
         licenseMicroservice:
           allOf:
-          - $ref: "#/components/schemas/LicenseMicroserviceDto"
+          - $ref: "#/components/schemas/LicenseMicroservice"
           description: License microservice connection settings
         microservices:
           allOf:
-          - $ref: "#/components/schemas/MicroservicesDto"
+          - $ref: "#/components/schemas/Microservices"
           description: Connected microservices configuration
         rateLimiting:
           allOf:
-          - $ref: "#/components/schemas/RateLimitingConfigDto"
+          - $ref: "#/components/schemas/RateLimitingConfig"
           description: API rate limiting configuration
       type: object
-    ImageBuilderConfigurationDto:
+    ImageBuilderConfiguration:
       example:
         imageDownloadHttpsProxy: imageDownloadHttpsProxy
         imageDownloadHttpProxy: imageDownloadHttpProxy
@@ -74623,7 +75036,7 @@ components:
             Empty or omitted means no proxy (direct download).
           type: string
       type: object
-    ConfigurationsDto:
+    Configurations:
       example:
         notification:
           network_device_configuration_drift_notification_emails:
@@ -74672,14 +75085,9 @@ components:
           imageDownloadHttpsProxy: imageDownloadHttpsProxy
           imageDownloadHttpProxy: imageDownloadHttpProxy
         auth:
-          oauthWhitelistedPermissions:
-          - oauthWhitelistedPermissions
-          - oauthWhitelistedPermissions
           ldap: ""
           saml: ""
-          oauth: ""
           users: ""
-          microservices: ""
         gateway-api:
           licenseMicroservice: ""
           branding: ""
@@ -74704,17 +75112,17 @@ components:
           syslog: ""
       properties:
         auth:
-          $ref: "#/components/schemas/AuthConfigurationDto"
+          $ref: "#/components/schemas/AuthConfiguration"
         platform:
-          $ref: "#/components/schemas/PlatformConfigurationDto"
+          $ref: "#/components/schemas/PlatformConfiguration"
         notification:
-          $ref: "#/components/schemas/NotificationConfigurationDto"
+          $ref: "#/components/schemas/NotificationConfiguration"
         tunnel:
-          $ref: "#/components/schemas/TunnelConfigurationDto"
+          $ref: "#/components/schemas/TunnelConfiguration"
         gateway-api:
-          $ref: "#/components/schemas/GatewayConfigurationDto"
+          $ref: "#/components/schemas/GatewayConfiguration"
         image-builder:
-          $ref: "#/components/schemas/ImageBuilderConfigurationDto"
+          $ref: "#/components/schemas/ImageBuilderConfiguration"
       type: object
     CustomIso:
       example:
@@ -101984,7 +102392,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2026-06-14T18:35:18.942Z
+        createdTimestamp: 2026-06-23T08:31:23.347Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -101993,7 +102401,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2026-06-14T18:35:18.942Z
+        updatedTimestamp: 2026-06-23T08:31:23.347Z
         revision: "1"
       properties:
         siteId:
@@ -102010,12 +102418,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.942Z
+          example: 2026-06-23T08:31:23.347Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.942Z
+          example: 2026-06-23T08:31:23.347Z
           format: date-time
           type: string
         links:
@@ -102037,7 +102445,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-14T18:35:18.942Z
+        - createdTimestamp: 2026-06-23T08:31:23.347Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -102046,9 +102454,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-06-14T18:35:18.942Z
+          updatedTimestamp: 2026-06-23T08:31:23.347Z
           revision: "1"
-        - createdTimestamp: 2026-06-14T18:35:18.942Z
+        - createdTimestamp: 2026-06-23T08:31:23.347Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -102057,7 +102465,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-06-14T18:35:18.942Z
+          updatedTimestamp: 2026-06-23T08:31:23.347Z
           revision: "1"
         meta: ""
         links: ""
@@ -102677,7 +103085,7 @@ components:
     NetworkFabric:
       example:
         transportId: 123
-        createdTimestamp: 2026-06-14T18:35:18.834Z
+        createdTimestamp: 2026-06-23T08:31:23.201Z
         externalId: DC1-VXLAN
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
@@ -102720,7 +103128,7 @@ components:
           configurationPreview: configurationPreview
           networkDeviceConfigurationTemplateType: link_aggregation
           networkFabricLinkId: 101
-        updatedTimestamp: 2026-06-14T18:35:18.834Z
+        updatedTimestamp: 2026-06-23T08:31:23.201Z
         deployId: 123
         customVariables: "{}"
         revision: "1"
@@ -102957,12 +103365,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.834Z
+          example: 2026-06-23T08:31:23.201Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.834Z
+          example: 2026-06-23T08:31:23.201Z
           format: date-time
           type: string
         links:
@@ -103017,7 +103425,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-06-14T18:35:18.834Z
+          createdTimestamp: 2026-06-23T08:31:23.201Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -103060,7 +103468,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-14T18:35:18.834Z
+          updatedTimestamp: 2026-06-23T08:31:23.201Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -103267,7 +103675,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-06-14T18:35:18.834Z
+          createdTimestamp: 2026-06-23T08:31:23.201Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -103310,7 +103718,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-14T18:35:18.834Z
+          updatedTimestamp: 2026-06-23T08:31:23.201Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -103621,7 +104029,7 @@ components:
       example:
         interconnectType: dci-evpn
         transportId: 65534
-        createdTimestamp: 2026-06-14T18:35:18.962Z
+        createdTimestamp: 2026-06-23T08:31:23.357Z
         description: Data center interconnect using EVPN
         label: dci-evpn-interconnect-01
         deployPreview:
@@ -103659,7 +104067,7 @@ components:
           - neighborTemplateActivate
           - neighborTemplateActivate
           networkInterconnectId: 101
-        updatedTimestamp: 2026-06-14T18:35:18.962Z
+        updatedTimestamp: 2026-06-23T08:31:23.357Z
         deployId: 123
         revision: "1"
         name: Primary DCI EVPN Interconnect
@@ -103717,12 +104125,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.962Z
+          example: 2026-06-23T08:31:23.357Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.962Z
+          example: 2026-06-23T08:31:23.357Z
           format: date-time
           type: string
         links:
@@ -103761,7 +104169,7 @@ components:
         data:
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-06-14T18:35:18.962Z
+          createdTimestamp: 2026-06-23T08:31:23.357Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -103799,7 +104207,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-06-14T18:35:18.962Z
+          updatedTimestamp: 2026-06-23T08:31:23.357Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -103813,7 +104221,7 @@ components:
           status: draft
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-06-14T18:35:18.962Z
+          createdTimestamp: 2026-06-23T08:31:23.357Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -103851,7 +104259,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-06-14T18:35:18.962Z
+          updatedTimestamp: 2026-06-23T08:31:23.357Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -103895,7 +104303,7 @@ components:
       example:
         interconnectId: 2
         fabricId: 2
-        createdTimestamp: 2026-06-14T18:35:18.966Z
+        createdTimestamp: 2026-06-23T08:31:23.36Z
         networkEquipmentId: 1
         links:
         - rel: self
@@ -103903,7 +104311,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-06-14T18:35:18.967Z
+        updatedTimestamp: 2026-06-23T08:31:23.36Z
         revision: "1"
         status: active
       properties:
@@ -103913,12 +104321,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.966Z
+          example: 2026-06-23T08:31:23.36Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.967Z
+          example: 2026-06-23T08:31:23.36Z
           format: date-time
           type: string
         links:
@@ -104294,7 +104702,7 @@ components:
         data:
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-06-14T18:35:18.966Z
+          createdTimestamp: 2026-06-23T08:31:23.36Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -104302,12 +104710,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-14T18:35:18.967Z
+          updatedTimestamp: 2026-06-23T08:31:23.36Z
           revision: "1"
           status: active
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-06-14T18:35:18.966Z
+          createdTimestamp: 2026-06-23T08:31:23.36Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -104315,7 +104723,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-14T18:35:18.967Z
+          updatedTimestamp: 2026-06-23T08:31:23.36Z
           revision: "1"
           status: active
         meta: ""
@@ -104364,7 +104772,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-06-14T18:35:18.834Z
+          createdTimestamp: 2026-06-23T08:31:23.201Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -104407,7 +104815,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-14T18:35:18.834Z
+          updatedTimestamp: 2026-06-23T08:31:23.201Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -104614,7 +105022,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-06-14T18:35:18.834Z
+          createdTimestamp: 2026-06-23T08:31:23.201Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -104657,7 +105065,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-14T18:35:18.834Z
+          updatedTimestamp: 2026-06-23T08:31:23.201Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -105051,8 +105459,8 @@ components:
       type: object
     NetworkFabricBGPSession:
       example:
-        createdTimestamp: 2026-06-14T18:35:18.838Z
-        updatedTimestamp: 2026-06-14T18:35:18.839Z
+        createdTimestamp: 2026-06-23T08:31:23.205Z
+        updatedTimestamp: 2026-06-23T08:31:23.205Z
         revision: "1"
         networkFabricLinkAggregationId: 1
         linkAggregation: ""
@@ -105072,12 +105480,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.838Z
+          example: 2026-06-23T08:31:23.205Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.839Z
+          example: 2026-06-23T08:31:23.205Z
           format: date-time
           type: string
         revision:
@@ -105158,12 +105566,12 @@ components:
       type: object
     NetworkFabricLinkAggregation:
       example:
-        createdTimestamp: 2026-06-14T18:35:18.843Z
+        createdTimestamp: 2026-06-23T08:31:23.21Z
         networkFabricLinks:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-14T18:35:18.84Z
+          createdTimestamp: 2026-06-23T08:31:23.207Z
           source: lldp
-          updatedTimestamp: 2026-06-14T18:35:18.84Z
+          updatedTimestamp: 2026-06-23T08:31:23.207Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -105182,9 +105590,9 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-14T18:35:18.84Z
+          createdTimestamp: 2026-06-23T08:31:23.207Z
           source: lldp
-          updatedTimestamp: 2026-06-14T18:35:18.84Z
+          updatedTimestamp: 2026-06-23T08:31:23.207Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -105204,7 +105612,7 @@ components:
           status: draft
         mlagDomainIdentifier: MLAG-Domain-1 or 123
         type: lag
-        updatedTimestamp: 2026-06-14T18:35:18.843Z
+        updatedTimestamp: 2026-06-23T08:31:23.21Z
         revision: "1"
         networkFabricLinkConfigs:
         - networkFabricLink: ""
@@ -105230,12 +105638,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.843Z
+          example: 2026-06-23T08:31:23.21Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.843Z
+          example: 2026-06-23T08:31:23.21Z
           format: date-time
           type: string
         revision:
@@ -105349,9 +105757,9 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2026-06-14T18:35:18.84Z
+        createdTimestamp: 2026-06-23T08:31:23.207Z
         source: lldp
-        updatedTimestamp: 2026-06-14T18:35:18.84Z
+        updatedTimestamp: 2026-06-23T08:31:23.207Z
         customVariables: "{}"
         revision: "1"
         networkFabricLinkAggregationId: 1
@@ -105372,12 +105780,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.84Z
+          example: 2026-06-23T08:31:23.207Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.84Z
+          example: 2026-06-23T08:31:23.207Z
           format: date-time
           type: string
         revision:
@@ -105474,9 +105882,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-14T18:35:18.84Z
+          createdTimestamp: 2026-06-23T08:31:23.207Z
           source: lldp
-          updatedTimestamp: 2026-06-14T18:35:18.84Z
+          updatedTimestamp: 2026-06-23T08:31:23.207Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -105495,9 +105903,9 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-14T18:35:18.84Z
+          createdTimestamp: 2026-06-23T08:31:23.207Z
           source: lldp
-          updatedTimestamp: 2026-06-14T18:35:18.84Z
+          updatedTimestamp: 2026-06-23T08:31:23.207Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -105604,12 +106012,12 @@ components:
     NetworkFabricLinkAggregationPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-14T18:35:18.843Z
+        - createdTimestamp: 2026-06-23T08:31:23.21Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-14T18:35:18.84Z
+            createdTimestamp: 2026-06-23T08:31:23.207Z
             source: lldp
-            updatedTimestamp: 2026-06-14T18:35:18.84Z
+            updatedTimestamp: 2026-06-23T08:31:23.207Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -105628,9 +106036,9 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-14T18:35:18.84Z
+            createdTimestamp: 2026-06-23T08:31:23.207Z
             source: lldp
-            updatedTimestamp: 2026-06-14T18:35:18.84Z
+            updatedTimestamp: 2026-06-23T08:31:23.207Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -105650,7 +106058,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-06-14T18:35:18.843Z
+          updatedTimestamp: 2026-06-23T08:31:23.21Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -105673,12 +106081,12 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           status: draft
-        - createdTimestamp: 2026-06-14T18:35:18.843Z
+        - createdTimestamp: 2026-06-23T08:31:23.21Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-14T18:35:18.84Z
+            createdTimestamp: 2026-06-23T08:31:23.207Z
             source: lldp
-            updatedTimestamp: 2026-06-14T18:35:18.84Z
+            updatedTimestamp: 2026-06-23T08:31:23.207Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -105697,9 +106105,9 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-14T18:35:18.84Z
+            createdTimestamp: 2026-06-23T08:31:23.207Z
             source: lldp
-            updatedTimestamp: 2026-06-14T18:35:18.84Z
+            updatedTimestamp: 2026-06-23T08:31:23.207Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -105719,7 +106127,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-06-14T18:35:18.843Z
+          updatedTimestamp: 2026-06-23T08:31:23.21Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -105823,8 +106231,8 @@ components:
     NetworkFabricBGPSessionPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-14T18:35:18.838Z
-          updatedTimestamp: 2026-06-14T18:35:18.839Z
+        - createdTimestamp: 2026-06-23T08:31:23.205Z
+          updatedTimestamp: 2026-06-23T08:31:23.205Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -105841,8 +106249,8 @@ components:
           bgpNumbering: inherited
           networkFabricLinkId: 1
           status: draft
-        - createdTimestamp: 2026-06-14T18:35:18.838Z
-          updatedTimestamp: 2026-06-14T18:35:18.839Z
+        - createdTimestamp: 2026-06-23T08:31:23.205Z
+          updatedTimestamp: 2026-06-23T08:31:23.205Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -108049,9 +108457,9 @@ components:
       - limits
       - name
       type: object
-    QuotaProfileList:
+    QuotaProfilePaginatedList:
       example:
-        quotaProfiles:
+        data:
         - name: Default
           description: Default quota profile for all users
           id: default
@@ -108060,14 +108468,27 @@ components:
           description: Default quota profile for all users
           id: default
           limits: ""
+        meta: ""
+        links: ""
       properties:
-        quotaProfiles:
-          description: List of quota profiles
+        data:
           items:
             $ref: "#/components/schemas/QuotaProfile"
+          title: List of quota profiles
           type: array
+        meta:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseMeta"
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseLinks"
+          description: Links to navigate through the paginated results
+          title: Pagination links
       required:
-      - quotaProfiles
+      - data
+      - meta
       type: object
     EditQuotaProfile:
       example:
@@ -108753,9 +109174,9 @@ components:
       - label
       - name
       type: object
-    PermissionList:
+    PermissionPaginatedList:
       example:
-        permissions:
+        data:
         - name: name
           policies:
           - subject:
@@ -109096,14 +109517,27 @@ components:
           id: id
           label: label
           type: custom
+        meta: ""
+        links: ""
       properties:
-        permissions:
-          description: List of permissions
+        data:
           items:
             $ref: "#/components/schemas/Permission"
+          title: List of permissions
           type: array
+        meta:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseMeta"
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseLinks"
+          description: Links to navigate through the paginated results
+          title: Pagination links
       required:
-      - permissions
+      - data
+      - meta
       type: object
     CreateRole:
       example:
@@ -109192,9 +109626,9 @@ components:
       - quotaProfileId
       - type
       type: object
-    RoleList:
+    RolePaginatedList:
       example:
-        roles:
+        data:
         - quotaProfileId: default
           permissions:
           - infrastructures_read
@@ -109215,14 +109649,27 @@ components:
           id: id
           label: Root
           type: built-in
+        meta: ""
+        links: ""
       properties:
-        roles:
-          description: List of roles
+        data:
           items:
             $ref: "#/components/schemas/Role"
+          title: List of roles
           type: array
+        meta:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseMeta"
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: "#/components/schemas/PaginatedResponseLinks"
+          description: Links to navigate through the paginated results
+          title: Pagination links
       required:
-      - roles
+      - data
+      - meta
       type: object
     EditRole:
       example:
@@ -109234,13 +109681,16 @@ components:
         label: label
       properties:
         label:
-          description: Role label
+          description: Role label. Omit to keep the current value. Cannot be changed
+            on built-in roles.
           type: string
         description:
-          description: Role description
+          description: Role description. Omit to keep the current value. Cannot be
+            changed on built-in roles.
           type: string
         permissions:
-          description: List of permissions assigned to the role
+          description: List of permissions assigned to the role. Omit to keep the
+            current value. Cannot be changed on built-in roles.
           example:
           - ai_read
           - vm_instances_read
@@ -109251,9 +109701,6 @@ components:
           description: Quota profile assigned to this role
           example: default
           type: string
-      required:
-      - label
-      - permissions
       type: object
     ResourcePoolStatistics:
       example:
@@ -110357,6 +110804,7 @@ components:
         - provisioning
         - cleanup
         cleanupDrivesForOobEnabledServer: 1
+        clearTpm: 0
       properties:
         id:
           description: Server cleanup policy id
@@ -110369,6 +110817,10 @@ components:
         cleanupDrivesForOobEnabledServer:
           description: Cleanup drives for oob enabled server
           example: 1
+          type: number
+        clearTpm:
+          description: Whether to clear TPM
+          example: 0
           type: number
         recreateRaid:
           description: Recreate raid
@@ -110445,6 +110897,7 @@ components:
           type: array
       required:
       - cleanupDrivesForOobEnabledServer
+      - clearTpm
       - createdTimestamp
       - disableEmbeddedNics
       - id
@@ -110481,6 +110934,7 @@ components:
           - provisioning
           - cleanup
           cleanupDrivesForOobEnabledServer: 1
+          clearTpm: 0
         - disableEmbeddedNics: 1
           raidOddNumberMoreThanOneDrive: RAID10
           resetRaidControllers: 1
@@ -110501,6 +110955,7 @@ components:
           - provisioning
           - cleanup
           cleanupDrivesForOobEnabledServer: 1
+          clearTpm: 0
         meta: ""
         links: ""
       properties:
@@ -110537,6 +110992,7 @@ components:
         - provisioning
         - cleanup
         cleanupDrivesForOobEnabledServer: 1
+        clearTpm: 0
       properties:
         label:
           description: Server cleanup policy label
@@ -110544,6 +111000,10 @@ components:
         cleanupDrivesForOobEnabledServer:
           description: Cleanup drives for oob enabled server
           example: 1
+          type: number
+        clearTpm:
+          description: Whether to clear TPM
+          example: 0
           type: number
         recreateRaid:
           description: Recreate raid
@@ -110607,6 +111067,7 @@ components:
           type: array
       required:
       - cleanupDrivesForOobEnabledServer
+      - clearTpm
       - disableEmbeddedNics
       - label
       - raidEvenNumberMoreThanTwoDrives
@@ -110631,6 +111092,7 @@ components:
         - provisioning
         - cleanup
         cleanupDrivesForOobEnabledServer: 1
+        clearTpm: 0
       properties:
         label:
           description: Server cleanup policy label
@@ -110638,6 +111100,10 @@ components:
         cleanupDrivesForOobEnabledServer:
           description: Cleanup drives for oob enabled server
           example: 1
+          type: number
+        clearTpm:
+          description: Whether to clear TPM
+          example: 0
           type: number
         recreateRaid:
           description: Recreate raid
@@ -110764,6 +111230,7 @@ components:
         minimumNumberOfConnectedInterfaces: 1
         firmwareBaselineId: 0
         raidOneDrive: RAID0
+        clearTpm: false
       properties:
         registerCredentials:
           default: user
@@ -110783,6 +111250,10 @@ components:
         alwaysDiscoverInterfacesWithBDK:
           default: true
           description: Whether to always attempt to discover interfaces with BDK
+          type: boolean
+        clearTpm:
+          default: false
+          description: Whether to clear TPM
           type: boolean
         enableTpm:
           default: true
@@ -110892,7 +111363,7 @@ components:
       example:
         settings: ""
         isDefault: true
-        createdTimestamp: 2026-06-14T18:35:19.369Z
+        createdTimestamp: 2026-06-23T08:31:23.776Z
         name: name
         links:
         - rel: self
@@ -110900,17 +111371,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0
-        updatedTimestamp: 2026-06-14T18:35:19.369Z
+        updatedTimestamp: 2026-06-23T08:31:23.776Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:19.369Z
+          example: 2026-06-23T08:31:23.776Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:19.369Z
+          example: 2026-06-23T08:31:23.776Z
           format: date-time
           type: string
         revision:
@@ -110951,7 +111422,7 @@ components:
         data:
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-06-14T18:35:19.369Z
+          createdTimestamp: 2026-06-23T08:31:23.776Z
           name: name
           links:
           - rel: self
@@ -110959,11 +111430,11 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0
-          updatedTimestamp: 2026-06-14T18:35:19.369Z
+          updatedTimestamp: 2026-06-23T08:31:23.776Z
           revision: "1"
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-06-14T18:35:19.369Z
+          createdTimestamp: 2026-06-23T08:31:23.776Z
           name: name
           links:
           - rel: self
@@ -110971,7 +111442,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0
-          updatedTimestamp: 2026-06-14T18:35:19.369Z
+          updatedTimestamp: 2026-06-23T08:31:23.776Z
           revision: "1"
         meta: ""
         links: ""
@@ -111029,6 +111500,9 @@ components:
           type: number
         alwaysDiscoverInterfacesWithBDK:
           description: Whether to always attempt to discover interfaces with BDK
+          type: boolean
+        clearTpm:
+          description: Whether to clear TPM
           type: boolean
         enableTpm:
           description: Whether to enable TPM
@@ -112470,10 +112944,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2026-06-14T18:35:18.949Z
+        createdTimestamp: 2026-06-23T08:31:23.351Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2026-06-14T18:35:18.949Z
+        updatedTimestamp: 2026-06-23T08:31:23.351Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -112547,12 +113021,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.949Z
+          example: 2026-06-23T08:31:23.351Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.949Z
+          example: 2026-06-23T08:31:23.351Z
           format: date-time
           type: string
         links:
@@ -119299,7 +119773,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2026-06-14T18:35:18.937Z
+        createdTimestamp: 2026-06-23T08:31:23.342Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -119307,7 +119781,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-06-14T18:35:18.937Z
+        updatedTimestamp: 2026-06-23T08:31:23.342Z
         revision: "1"
       properties:
         id:
@@ -119339,12 +119813,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.937Z
+          example: 2026-06-23T08:31:23.342Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.937Z
+          example: 2026-06-23T08:31:23.342Z
           format: date-time
           type: string
         links:
@@ -119392,7 +119866,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2026-06-14T18:35:18.939Z
+        createdTimestamp: 2026-06-23T08:31:23.344Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -119403,7 +119877,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2026-06-14T18:35:18.939Z
+        updatedTimestamp: 2026-06-23T08:31:23.344Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -119438,12 +119912,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-14T18:35:18.939Z
+          example: 2026-06-23T08:31:23.344Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-14T18:35:18.939Z
+          example: 2026-06-23T08:31:23.344Z
           format: date-time
           type: string
         allocationInfo:
@@ -119467,7 +119941,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-14T18:35:18.939Z
+        - createdTimestamp: 2026-06-23T08:31:23.344Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -119478,10 +119952,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-06-14T18:35:18.939Z
+          updatedTimestamp: 2026-06-23T08:31:23.344Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2026-06-14T18:35:18.939Z
+        - createdTimestamp: 2026-06-23T08:31:23.344Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -119492,7 +119966,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-06-14T18:35:18.939Z
+          updatedTimestamp: 2026-06-23T08:31:23.344Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -119707,7 +120181,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-06-14T18:35:18.937Z
+          createdTimestamp: 2026-06-23T08:31:23.342Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -119715,12 +120189,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-14T18:35:18.937Z
+          updatedTimestamp: 2026-06-23T08:31:23.342Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-06-14T18:35:18.937Z
+          createdTimestamp: 2026-06-23T08:31:23.342Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -119728,7 +120202,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-14T18:35:18.937Z
+          updatedTimestamp: 2026-06-23T08:31:23.342Z
           revision: "1"
         meta: ""
         links: ""
@@ -128775,14 +129249,14 @@ components:
       required:
       - value
       type: object
-    putConfiguration_request:
+    replaceConfiguration_request:
       oneOf:
-      - $ref: "#/components/schemas/AuthConfigurationDto"
-      - $ref: "#/components/schemas/PlatformConfigurationDto"
-      - $ref: "#/components/schemas/NotificationConfigurationDto"
-      - $ref: "#/components/schemas/TunnelConfigurationDto"
-      - $ref: "#/components/schemas/GatewayConfigurationDto"
-      - $ref: "#/components/schemas/ImageBuilderConfigurationDto"
+      - $ref: "#/components/schemas/AuthConfiguration"
+      - $ref: "#/components/schemas/PlatformConfiguration"
+      - $ref: "#/components/schemas/NotificationConfiguration"
+      - $ref: "#/components/schemas/TunnelConfiguration"
+      - $ref: "#/components/schemas/GatewayConfiguration"
+      - $ref: "#/components/schemas/ImageBuilderConfiguration"
     CreateVlanAllocationStrategy:
       discriminator:
         mapping:

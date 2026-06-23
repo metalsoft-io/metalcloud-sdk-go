@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | Server cleanup policy label | [optional] 
 **CleanupDrivesForOobEnabledServer** | Pointer to **float32** | Cleanup drives for oob enabled server | [optional] 
+**ClearTpm** | Pointer to **float32** | Whether to clear TPM | [optional] 
 **RecreateRaid** | Pointer to **float32** | Recreate raid | [optional] 
 **ResetRaidControllers** | Pointer to **float32** | Reset raid controllers to default | [optional] 
 **DisableEmbeddedNics** | Pointer to **float32** | Disable embedded nics | [optional] 
@@ -83,6 +84,31 @@ SetCleanupDrivesForOobEnabledServer sets CleanupDrivesForOobEnabledServer field 
 `func (o *UpdateServerCleanupPolicy) HasCleanupDrivesForOobEnabledServer() bool`
 
 HasCleanupDrivesForOobEnabledServer returns a boolean if a field has been set.
+
+### GetClearTpm
+
+`func (o *UpdateServerCleanupPolicy) GetClearTpm() float32`
+
+GetClearTpm returns the ClearTpm field if non-nil, zero value otherwise.
+
+### GetClearTpmOk
+
+`func (o *UpdateServerCleanupPolicy) GetClearTpmOk() (*float32, bool)`
+
+GetClearTpmOk returns a tuple with the ClearTpm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClearTpm
+
+`func (o *UpdateServerCleanupPolicy) SetClearTpm(v float32)`
+
+SetClearTpm sets ClearTpm field to given value.
+
+### HasClearTpm
+
+`func (o *UpdateServerCleanupPolicy) HasClearTpm() bool`
+
+HasClearTpm returns a boolean if a field has been set.
 
 ### GetRecreateRaid
 

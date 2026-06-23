@@ -34,6 +34,18 @@ func Test_sdk_AuthenticationAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test AuthenticationAPIService GetBranding", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AuthenticationAPI.GetBranding(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AuthenticationAPIService GetCaptchaConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

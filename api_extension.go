@@ -456,6 +456,8 @@ func (r ExtensionAPIDeleteExtensionSiteConfigRequest) Execute() (*http.Response,
 /*
 DeleteExtensionSiteConfig 
 
+Deletes the per site extension config & disables the extension for the site.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param extensionId
  @param siteId
@@ -1425,6 +1427,8 @@ func (r ExtensionAPISetExtensionSiteConfigRequest) Execute() (*http.Response, er
 
 /*
 SetExtensionSiteConfig 
+
+Sets (Creates or Updates) the per site extension config & enables the extension for the site. All variables from the extension definition not having default value must be specified in order for the request to succeed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param extensionId

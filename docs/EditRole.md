@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | Role label | 
-**Description** | Pointer to **string** | Role description | [optional] 
-**Permissions** | **[]string** | List of permissions assigned to the role | 
+**Label** | Pointer to **string** | Role label. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
+**Description** | Pointer to **string** | Role description. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
+**Permissions** | Pointer to **[]string** | List of permissions assigned to the role. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
 **QuotaProfileId** | Pointer to **string** | Quota profile assigned to this role | [optional] 
 
 ## Methods
 
 ### NewEditRole
 
-`func NewEditRole(label string, permissions []string, ) *EditRole`
+`func NewEditRole() *EditRole`
 
 NewEditRole instantiates a new EditRole object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
+### HasLabel
+
+`func (o *EditRole) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -92,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetPermissions sets Permissions field to given value.
 
+### HasPermissions
+
+`func (o *EditRole) HasPermissions() bool`
+
+HasPermissions returns a boolean if a field has been set.
 
 ### GetQuotaProfileId
 

@@ -414,7 +414,7 @@ Name | Type | Description  | Notes
 
 ## GetPermissions
 
-> PermissionList GetPermissions(ctx).Execute()
+> PermissionPaginatedList GetPermissions(ctx).Page(page).Limit(limit).FilterType(filterType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all permissions
 
@@ -431,31 +431,46 @@ import (
 )
 
 func main() {
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterType := []string{"Inner_example"} // []string | Filter by type query param.  **Format:** filter.type={$not}:OPERATION:VALUE    **Example:** filter.type=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityAPI.GetPermissions(context.Background()).Execute()
+	resp, r, err := apiClient.SecurityAPI.GetPermissions(context.Background()).Page(page).Limit(limit).FilterType(filterType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.GetPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetPermissions`: PermissionList
+	// response from `GetPermissions`: PermissionPaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.GetPermissions`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetPermissionsRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterType** | **[]string** | Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description  | 
+
 ### Return type
 
-[**PermissionList**](PermissionList.md)
+[**PermissionPaginatedList**](PermissionPaginatedList.md)
 
 ### Authorization
 
@@ -602,7 +617,7 @@ Name | Type | Description  | Notes
 
 ## GetQuotaProfiles
 
-> QuotaProfileList GetQuotaProfiles(ctx).Execute()
+> QuotaProfilePaginatedList GetQuotaProfiles(ctx).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all quota profiles
 
@@ -619,31 +634,46 @@ import (
 )
 
 func main() {
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** name:ASC  **Available Fields** - id  - name  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,name,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityAPI.GetQuotaProfiles(context.Background()).Execute()
+	resp, r, err := apiClient.SecurityAPI.GetQuotaProfiles(context.Background()).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.GetQuotaProfiles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetQuotaProfiles`: QuotaProfileList
+	// response from `GetQuotaProfiles`: QuotaProfilePaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.GetQuotaProfiles`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetQuotaProfilesRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** name:ASC  **Available Fields** - id  - name  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,name,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description  | 
+
 ### Return type
 
-[**QuotaProfileList**](QuotaProfileList.md)
+[**QuotaProfilePaginatedList**](QuotaProfilePaginatedList.md)
 
 ### Authorization
 
@@ -729,7 +759,7 @@ Name | Type | Description  | Notes
 
 ## GetRoles
 
-> RoleList GetRoles(ctx).Execute()
+> RolePaginatedList GetRoles(ctx).Page(page).Limit(limit).FilterType(filterType).FilterQuotaProfileId(filterQuotaProfileId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all roles
 
@@ -746,31 +776,48 @@ import (
 )
 
 func main() {
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterType := []string{"Inner_example"} // []string | Filter by type query param.  **Format:** filter.type={$not}:OPERATION:VALUE    **Example:** filter.type=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterQuotaProfileId := []string{"Inner_example"} // []string | Filter by quotaProfileId query param.  **Format:** filter.quotaProfileId={$not}:OPERATION:VALUE    **Example:** filter.quotaProfileId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityAPI.GetRoles(context.Background()).Execute()
+	resp, r, err := apiClient.SecurityAPI.GetRoles(context.Background()).Page(page).Limit(limit).FilterType(filterType).FilterQuotaProfileId(filterQuotaProfileId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.GetRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetRoles`: RoleList
+	// response from `GetRoles`: RolePaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.GetRoles`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetRolesRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterType** | **[]string** | Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterQuotaProfileId** | **[]string** | Filter by quotaProfileId query param.  **Format:** filter.quotaProfileId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.quotaProfileId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description  | 
+
 ### Return type
 
-[**RoleList**](RoleList.md)
+[**RolePaginatedList**](RolePaginatedList.md)
 
 ### Authorization
 
@@ -948,7 +995,7 @@ import (
 
 func main() {
 	roleName := "roleName_example" // string | 
-	editRole := *openapiclient.NewEditRole("Label_example", []string{"Permissions_example"}) // EditRole | 
+	editRole := *openapiclient.NewEditRole() // EditRole | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

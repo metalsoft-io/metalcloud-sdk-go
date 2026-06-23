@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Server cleanup policy label | 
 **CleanupDrivesForOobEnabledServer** | **float32** | Cleanup drives for oob enabled server | 
+**ClearTpm** | **float32** | Whether to clear TPM | 
 **RecreateRaid** | **float32** | Recreate raid | 
 **ResetRaidControllers** | **float32** | Reset raid controllers to default | 
 **DisableEmbeddedNics** | **float32** | Disable embedded nics | 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCreateServerCleanupPolicy
 
-`func NewCreateServerCleanupPolicy(label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, skipRaidActions []string, ) *CreateServerCleanupPolicy`
+`func NewCreateServerCleanupPolicy(label string, cleanupDrivesForOobEnabledServer float32, clearTpm float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, skipRaidActions []string, ) *CreateServerCleanupPolicy`
 
 NewCreateServerCleanupPolicy instantiates a new CreateServerCleanupPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +73,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateServerCleanupPolicy) SetCleanupDrivesForOobEnabledServer(v float32)`
 
 SetCleanupDrivesForOobEnabledServer sets CleanupDrivesForOobEnabledServer field to given value.
+
+
+### GetClearTpm
+
+`func (o *CreateServerCleanupPolicy) GetClearTpm() float32`
+
+GetClearTpm returns the ClearTpm field if non-nil, zero value otherwise.
+
+### GetClearTpmOk
+
+`func (o *CreateServerCleanupPolicy) GetClearTpmOk() (*float32, bool)`
+
+GetClearTpmOk returns a tuple with the ClearTpm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClearTpm
+
+`func (o *CreateServerCleanupPolicy) SetClearTpm(v float32)`
+
+SetClearTpm sets ClearTpm field to given value.
 
 
 ### GetRecreateRaid

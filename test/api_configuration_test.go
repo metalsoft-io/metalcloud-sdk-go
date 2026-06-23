@@ -34,13 +34,13 @@ func Test_sdk_ConfigurationAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ConfigurationAPIService PatchConfiguration", func(t *testing.T) {
+	t.Run("Test ConfigurationAPIService ReplaceConfiguration", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var filter string
 
-		resp, httpRes, err := apiClient.ConfigurationAPI.PatchConfiguration(context.Background(), filter).Execute()
+		resp, httpRes, err := apiClient.ConfigurationAPI.ReplaceConfiguration(context.Background(), filter).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,13 +48,13 @@ func Test_sdk_ConfigurationAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ConfigurationAPIService PutConfiguration", func(t *testing.T) {
+	t.Run("Test ConfigurationAPIService UpdateConfiguration", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var filter string
 
-		resp, httpRes, err := apiClient.ConfigurationAPI.PutConfiguration(context.Background(), filter).Execute()
+		resp, httpRes, err := apiClient.ConfigurationAPI.UpdateConfiguration(context.Background(), filter).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

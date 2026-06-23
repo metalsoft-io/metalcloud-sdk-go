@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -621,9 +622,51 @@ func (a *SecurityAPIService) DeleteRoleExecute(r SecurityAPIDeleteRoleRequest) (
 type SecurityAPIGetPermissionsRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
+	page *float32
+	limit *float32
+	filterType *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
-func (r SecurityAPIGetPermissionsRequest) Execute() (*PermissionList, *http.Response, error) {
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SecurityAPIGetPermissionsRequest) Page(page float32) SecurityAPIGetPermissionsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r SecurityAPIGetPermissionsRequest) Limit(limit float32) SecurityAPIGetPermissionsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetPermissionsRequest) FilterType(filterType []string) SecurityAPIGetPermissionsRequest {
+	r.filterType = &filterType
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label 
+func (r SecurityAPIGetPermissionsRequest) SortBy(sortBy []string) SecurityAPIGetPermissionsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SecurityAPIGetPermissionsRequest) Search(search string) SecurityAPIGetPermissionsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description 
+func (r SecurityAPIGetPermissionsRequest) SearchBy(searchBy []string) SecurityAPIGetPermissionsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SecurityAPIGetPermissionsRequest) Execute() (*PermissionPaginatedList, *http.Response, error) {
 	return r.ApiService.GetPermissionsExecute(r)
 }
 
@@ -641,13 +684,13 @@ func (a *SecurityAPIService) GetPermissions(ctx context.Context) SecurityAPIGetP
 }
 
 // Execute executes the request
-//  @return PermissionList
-func (a *SecurityAPIService) GetPermissionsExecute(r SecurityAPIGetPermissionsRequest) (*PermissionList, *http.Response, error) {
+//  @return PermissionPaginatedList
+func (a *SecurityAPIService) GetPermissionsExecute(r SecurityAPIGetPermissionsRequest) (*PermissionPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PermissionList
+		localVarReturnValue  *PermissionPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.GetPermissions")
@@ -661,6 +704,48 @@ func (a *SecurityAPIService) GetPermissionsExecute(r SecurityAPIGetPermissionsRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterType != nil {
+		t := *r.filterType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -918,9 +1003,51 @@ func (a *SecurityAPIService) GetQuotaProfileExecute(r SecurityAPIGetQuotaProfile
 type SecurityAPIGetQuotaProfilesRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
+	page *float32
+	limit *float32
+	filterId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
-func (r SecurityAPIGetQuotaProfilesRequest) Execute() (*QuotaProfileList, *http.Response, error) {
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SecurityAPIGetQuotaProfilesRequest) Page(page float32) SecurityAPIGetQuotaProfilesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r SecurityAPIGetQuotaProfilesRequest) Limit(limit float32) SecurityAPIGetQuotaProfilesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetQuotaProfilesRequest) FilterId(filterId []string) SecurityAPIGetQuotaProfilesRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** name:ASC  **Available Fields** - id  - name 
+func (r SecurityAPIGetQuotaProfilesRequest) SortBy(sortBy []string) SecurityAPIGetQuotaProfilesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SecurityAPIGetQuotaProfilesRequest) Search(search string) SecurityAPIGetQuotaProfilesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,name,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description 
+func (r SecurityAPIGetQuotaProfilesRequest) SearchBy(searchBy []string) SecurityAPIGetQuotaProfilesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SecurityAPIGetQuotaProfilesRequest) Execute() (*QuotaProfilePaginatedList, *http.Response, error) {
 	return r.ApiService.GetQuotaProfilesExecute(r)
 }
 
@@ -938,13 +1065,13 @@ func (a *SecurityAPIService) GetQuotaProfiles(ctx context.Context) SecurityAPIGe
 }
 
 // Execute executes the request
-//  @return QuotaProfileList
-func (a *SecurityAPIService) GetQuotaProfilesExecute(r SecurityAPIGetQuotaProfilesRequest) (*QuotaProfileList, *http.Response, error) {
+//  @return QuotaProfilePaginatedList
+func (a *SecurityAPIService) GetQuotaProfilesExecute(r SecurityAPIGetQuotaProfilesRequest) (*QuotaProfilePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *QuotaProfileList
+		localVarReturnValue  *QuotaProfilePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.GetQuotaProfiles")
@@ -958,6 +1085,48 @@ func (a *SecurityAPIService) GetQuotaProfilesExecute(r SecurityAPIGetQuotaProfil
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1116,9 +1285,58 @@ func (a *SecurityAPIService) GetRoleExecute(r SecurityAPIGetRoleRequest) (*Role,
 type SecurityAPIGetRolesRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
+	page *float32
+	limit *float32
+	filterType *[]string
+	filterQuotaProfileId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
-func (r SecurityAPIGetRolesRequest) Execute() (*RoleList, *http.Response, error) {
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SecurityAPIGetRolesRequest) Page(page float32) SecurityAPIGetRolesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r SecurityAPIGetRolesRequest) Limit(limit float32) SecurityAPIGetRolesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetRolesRequest) FilterType(filterType []string) SecurityAPIGetRolesRequest {
+	r.filterType = &filterType
+	return r
+}
+
+// Filter by quotaProfileId query param.  **Format:** filter.quotaProfileId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.quotaProfileId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetRolesRequest) FilterQuotaProfileId(filterQuotaProfileId []string) SecurityAPIGetRolesRequest {
+	r.filterQuotaProfileId = &filterQuotaProfileId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label 
+func (r SecurityAPIGetRolesRequest) SortBy(sortBy []string) SecurityAPIGetRolesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SecurityAPIGetRolesRequest) Search(search string) SecurityAPIGetRolesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description 
+func (r SecurityAPIGetRolesRequest) SearchBy(searchBy []string) SecurityAPIGetRolesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SecurityAPIGetRolesRequest) Execute() (*RolePaginatedList, *http.Response, error) {
 	return r.ApiService.GetRolesExecute(r)
 }
 
@@ -1136,13 +1354,13 @@ func (a *SecurityAPIService) GetRoles(ctx context.Context) SecurityAPIGetRolesRe
 }
 
 // Execute executes the request
-//  @return RoleList
-func (a *SecurityAPIService) GetRolesExecute(r SecurityAPIGetRolesRequest) (*RoleList, *http.Response, error) {
+//  @return RolePaginatedList
+func (a *SecurityAPIService) GetRolesExecute(r SecurityAPIGetRolesRequest) (*RolePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RoleList
+		localVarReturnValue  *RolePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.GetRoles")
@@ -1156,6 +1374,59 @@ func (a *SecurityAPIService) GetRolesExecute(r SecurityAPIGetRolesRequest) (*Rol
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterType != nil {
+		t := *r.filterType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", t, "form", "multi")
+		}
+	}
+	if r.filterQuotaProfileId != nil {
+		t := *r.filterQuotaProfileId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.quotaProfileId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.quotaProfileId", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

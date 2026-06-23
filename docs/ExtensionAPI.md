@@ -304,6 +304,8 @@ Name | Type | Description  | Notes
 
 
 
+
+
 ### Example
 
 ```go
@@ -871,6 +873,8 @@ Name | Type | Description  | Notes
 ## SetExtensionSiteConfig
 
 > SetExtensionSiteConfig(ctx, extensionId, siteId).ExtensionConfigValue(extensionConfigValue).Execute()
+
+
 
 
 
