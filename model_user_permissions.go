@@ -22,7 +22,7 @@ var _ MappedNullable = &UserPermissions{}
 // UserPermissions struct for UserPermissions
 type UserPermissions struct {
 	// List of permissions of the logged in user
-	Permissions []string `json:"permissions"`
+	Permissions []MetalsoftPermissions `json:"permissions"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _UserPermissions UserPermissions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserPermissions(permissions []string) *UserPermissions {
+func NewUserPermissions(permissions []MetalsoftPermissions) *UserPermissions {
 	this := UserPermissions{}
 	this.Permissions = permissions
 	return &this
@@ -47,9 +47,9 @@ func NewUserPermissionsWithDefaults() *UserPermissions {
 }
 
 // GetPermissions returns the Permissions field value
-func (o *UserPermissions) GetPermissions() []string {
+func (o *UserPermissions) GetPermissions() []MetalsoftPermissions {
 	if o == nil {
-		var ret []string
+		var ret []MetalsoftPermissions
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *UserPermissions) GetPermissions() []string {
 
 // GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *UserPermissions) GetPermissionsOk() ([]string, bool) {
+func (o *UserPermissions) GetPermissionsOk() ([]MetalsoftPermissions, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *UserPermissions) GetPermissionsOk() ([]string, bool) {
 }
 
 // SetPermissions sets field value
-func (o *UserPermissions) SetPermissions(v []string) {
+func (o *UserPermissions) SetPermissions(v []MetalsoftPermissions) {
 	o.Permissions = v
 }
 

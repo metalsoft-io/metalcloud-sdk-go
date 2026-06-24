@@ -8,11 +8,14 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the asset. | 
 **AssetType** | [**ExtensionAssetType**](ExtensionAssetType.md) | Type of the asset. | 
 **Url** | Pointer to **string** | URL of the asset. Required for AnsibleBundle assets. | [optional] 
-**HostRegistry** | Pointer to **string** | Registry host for OCI image assets. | [optional] 
-**PortRegistry** | Pointer to **float32** | Registry port for OCI image assets. | [optional] 
-**NamespaceRegistry** | Pointer to **string** | Registry namespace for OCI image assets. | [optional] 
-**RepositoryRegistry** | Pointer to **string** | Registry repository for OCI image assets. | [optional] 
-**TagRegistry** | Pointer to **string** | Registry tag for OCI image assets. | [optional] 
+**HostRegistry** | Pointer to **string** | Registry host for OCI image asset. | [optional] 
+**PortRegistry** | Pointer to **float32** | Registry port for OCI image asset. | [optional] 
+**NamespaceRegistry** | Pointer to **string** | Namespace/path of the OCI image asset. | [optional] 
+**RepositoryRegistry** | Pointer to **string** | Name of the OCI image asset. | [optional] 
+**TagRegistry** | Pointer to **string** | Tag of the OCI image asset. | [optional] 
+**DigestRegistry** | Pointer to **string** | Digest of the OCI image asset. | [optional] 
+**RegistryUser** | Pointer to **string** | registry user | [optional] 
+**RegistryPassword** | Pointer to **string** | registry password | [optional] 
 **RequiredAssets** | Pointer to **[]string** | Required assets by this asset. | [optional] 
 
 ## Methods
@@ -243,6 +246,81 @@ SetTagRegistry sets TagRegistry field to given value.
 `func (o *ExtensionAsset) HasTagRegistry() bool`
 
 HasTagRegistry returns a boolean if a field has been set.
+
+### GetDigestRegistry
+
+`func (o *ExtensionAsset) GetDigestRegistry() string`
+
+GetDigestRegistry returns the DigestRegistry field if non-nil, zero value otherwise.
+
+### GetDigestRegistryOk
+
+`func (o *ExtensionAsset) GetDigestRegistryOk() (*string, bool)`
+
+GetDigestRegistryOk returns a tuple with the DigestRegistry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDigestRegistry
+
+`func (o *ExtensionAsset) SetDigestRegistry(v string)`
+
+SetDigestRegistry sets DigestRegistry field to given value.
+
+### HasDigestRegistry
+
+`func (o *ExtensionAsset) HasDigestRegistry() bool`
+
+HasDigestRegistry returns a boolean if a field has been set.
+
+### GetRegistryUser
+
+`func (o *ExtensionAsset) GetRegistryUser() string`
+
+GetRegistryUser returns the RegistryUser field if non-nil, zero value otherwise.
+
+### GetRegistryUserOk
+
+`func (o *ExtensionAsset) GetRegistryUserOk() (*string, bool)`
+
+GetRegistryUserOk returns a tuple with the RegistryUser field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistryUser
+
+`func (o *ExtensionAsset) SetRegistryUser(v string)`
+
+SetRegistryUser sets RegistryUser field to given value.
+
+### HasRegistryUser
+
+`func (o *ExtensionAsset) HasRegistryUser() bool`
+
+HasRegistryUser returns a boolean if a field has been set.
+
+### GetRegistryPassword
+
+`func (o *ExtensionAsset) GetRegistryPassword() string`
+
+GetRegistryPassword returns the RegistryPassword field if non-nil, zero value otherwise.
+
+### GetRegistryPasswordOk
+
+`func (o *ExtensionAsset) GetRegistryPasswordOk() (*string, bool)`
+
+GetRegistryPasswordOk returns a tuple with the RegistryPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistryPassword
+
+`func (o *ExtensionAsset) SetRegistryPassword(v string)`
+
+SetRegistryPassword sets RegistryPassword field to given value.
+
+### HasRegistryPassword
+
+`func (o *ExtensionAsset) HasRegistryPassword() bool`
+
+HasRegistryPassword returns a boolean if a field has been set.
 
 ### GetRequiredAssets
 

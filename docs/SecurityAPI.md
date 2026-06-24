@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-	createRole := *openapiclient.NewCreateRole("Label_example", []string{"Permissions_example"}) // CreateRole | 
+	createRole := *openapiclient.NewCreateRole("Label_example", []openapiclient.MetalsoftPermissions{openapiclient.MetalsoftPermissions("admin_maintenance_write")}) // CreateRole | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

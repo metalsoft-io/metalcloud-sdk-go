@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Display label for the role | 
 **Description** | Pointer to **string** | Role description | [optional] 
 **Type** | **string** | Role type | 
-**Permissions** | **[]string** | List of permissions assigned to the role | 
+**Permissions** | [**[]MetalsoftPermissions**](MetalsoftPermissions.md) | List of permissions assigned to the role | 
 **QuotaProfileId** | **string** | Quota profile assigned to this role | 
 **UsersWithRole** | Pointer to **float32** | Number of users with this role | [optional] 
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewRole
 
-`func NewRole(id string, name string, label string, type_ string, permissions []string, quotaProfileId string, ) *Role`
+`func NewRole(id string, name string, label string, type_ string, permissions []MetalsoftPermissions, quotaProfileId string, ) *Role`
 
 NewRole instantiates a new Role object
 This constructor will assign default values to properties that have it defined,
@@ -139,20 +139,20 @@ SetType sets Type field to given value.
 
 ### GetPermissions
 
-`func (o *Role) GetPermissions() []string`
+`func (o *Role) GetPermissions() []MetalsoftPermissions`
 
 GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
 ### GetPermissionsOk
 
-`func (o *Role) GetPermissionsOk() (*[]string, bool)`
+`func (o *Role) GetPermissionsOk() (*[]MetalsoftPermissions, bool)`
 
 GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPermissions
 
-`func (o *Role) SetPermissions(v []string)`
+`func (o *Role) SetPermissions(v []MetalsoftPermissions)`
 
 SetPermissions sets Permissions field to given value.
 

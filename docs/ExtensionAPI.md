@@ -14,7 +14,6 @@ Method | HTTP request | Description
 [**GetExtensionSiteConfigs**](ExtensionAPI.md#GetExtensionSiteConfigs) | **Get** /api/v2/extensions/{extensionId}/siteConfig | 
 [**GetExtensions**](ExtensionAPI.md#GetExtensions) | **Get** /api/v2/extensions | Get a list of available extensions
 [**GetSiteExtensionConfigs**](ExtensionAPI.md#GetSiteExtensionConfigs) | **Get** /api/v2/extensions/siteConfig/{siteId} | 
-[**MakePublicExtension**](ExtensionAPI.md#MakePublicExtension) | **Post** /api/v2/extensions/{extensionId}/actions/make-public | Makes extension public
 [**PublishExtension**](ExtensionAPI.md#PublishExtension) | **Post** /api/v2/extensions/{extensionId}/actions/publish | Activates draft or suspended extension
 [**SetExtensionSiteConfig**](ExtensionAPI.md#SetExtensionSiteConfig) | **Post** /api/v2/extensions/{extensionId}/siteConfig/{siteId} | 
 [**SuspendExtension**](ExtensionAPI.md#SuspendExtension) | **Post** /api/v2/extensions/{extensionId}/actions/suspend | Suspend extension
@@ -580,7 +579,7 @@ Name | Type | Description  | Notes
 
 ## GetExtensions
 
-> ExtensionPaginatedList GetExtensions(ctx).Page(page).Limit(limit).FilterKind(filterKind).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).FilterIsPublic(filterIsPublic).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> ExtensionPaginatedList GetExtensions(ctx).Page(page).Limit(limit).FilterKind(filterKind).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get a list of available extensions
 
@@ -605,14 +604,13 @@ func main() {
 	filterStatus := []string{"Inner_example"} // []string | Filter by status query param.  **Format:** filter.status={$not}:OPERATION:VALUE    **Example:** filter.status=$eq:John Doe&filter.status=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterName := []string{"Inner_example"} // []string | Filter by name query param.  **Format:** filter.name={$not}:OPERATION:VALUE    **Example:** filter.name=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$eq:John Doe&filter.label=$ilike:John Doe  **Available Operations** - $eq  - $null  - $ilike  - $and  - $or (optional)
-	filterIsPublic := []string{"Inner_example"} // []string | Filter by isPublic query param.  **Format:** filter.isPublic={$not}:OPERATION:VALUE    **Example:** filter.isPublic=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** id:ASC  **Available Fields** - id  - name  - status  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExtensionAPI.GetExtensions(context.Background()).Page(page).Limit(limit).FilterKind(filterKind).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).FilterIsPublic(filterIsPublic).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.ExtensionAPI.GetExtensions(context.Background()).Page(page).Limit(limit).FilterKind(filterKind).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExtensionAPI.GetExtensions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -639,7 +637,6 @@ Name | Type | Description  | Notes
  **filterStatus** | **[]string** | Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$eq:John Doe&amp;filter.status&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterName** | **[]string** | Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterLabel** | **[]string** | Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe&amp;filter.label&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $null  - $ilike  - $and  - $or | 
- **filterIsPublic** | **[]string** | Filter by isPublic query param.  **Format:** filter.isPublic&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.isPublic&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:ASC  **Available Fields** - id  - name  - status  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  | 
@@ -724,76 +721,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## MakePublicExtension
-
-> MakePublicExtension(ctx, extensionId).IfMatch(ifMatch).Execute()
-
-Makes extension public
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	extensionId := int64(789) // int64 | 
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ExtensionAPI.MakePublicExtension(context.Background(), extensionId).IfMatch(ifMatch).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ExtensionAPI.MakePublicExtension``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiMakePublicExtensionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **ifMatch** | **string** | Entity tag | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

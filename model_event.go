@@ -26,11 +26,11 @@ type Event struct {
 	// The id of the user who triggered the event
 	UserIdAuthenticated *string `json:"userIdAuthenticated,omitempty"`
 	// The type of the event
-	Type string `json:"type"`
+	Type EventTypes `json:"type"`
 	// The level of the event
-	Level string `json:"level"`
+	Level EventLevel `json:"level"`
 	// The visibility of the event
-	Visibility string `json:"visibility"`
+	Visibility EventVisibility `json:"visibility"`
 	// The id of the infrastructure linked to the event
 	InfrastructureId *string `json:"infrastructureId,omitempty"`
 	// The id of the user linked to the event
@@ -74,7 +74,7 @@ type _Event Event
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEvent(id string, type_ string, level string, visibility string, title string, message string, occurredTimestamp string) *Event {
+func NewEvent(id string, type_ EventTypes, level EventLevel, visibility EventVisibility, title string, message string, occurredTimestamp string) *Event {
 	this := Event{}
 	this.Id = id
 	this.Type = type_
@@ -151,9 +151,9 @@ func (o *Event) SetUserIdAuthenticated(v string) {
 }
 
 // GetType returns the Type field value
-func (o *Event) GetType() string {
+func (o *Event) GetType() EventTypes {
 	if o == nil {
-		var ret string
+		var ret EventTypes
 		return ret
 	}
 
@@ -162,7 +162,7 @@ func (o *Event) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetTypeOk() (*string, bool) {
+func (o *Event) GetTypeOk() (*EventTypes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -170,14 +170,14 @@ func (o *Event) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *Event) SetType(v string) {
+func (o *Event) SetType(v EventTypes) {
 	o.Type = v
 }
 
 // GetLevel returns the Level field value
-func (o *Event) GetLevel() string {
+func (o *Event) GetLevel() EventLevel {
 	if o == nil {
-		var ret string
+		var ret EventLevel
 		return ret
 	}
 
@@ -186,7 +186,7 @@ func (o *Event) GetLevel() string {
 
 // GetLevelOk returns a tuple with the Level field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetLevelOk() (*string, bool) {
+func (o *Event) GetLevelOk() (*EventLevel, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,14 +194,14 @@ func (o *Event) GetLevelOk() (*string, bool) {
 }
 
 // SetLevel sets field value
-func (o *Event) SetLevel(v string) {
+func (o *Event) SetLevel(v EventLevel) {
 	o.Level = v
 }
 
 // GetVisibility returns the Visibility field value
-func (o *Event) GetVisibility() string {
+func (o *Event) GetVisibility() EventVisibility {
 	if o == nil {
-		var ret string
+		var ret EventVisibility
 		return ret
 	}
 
@@ -210,7 +210,7 @@ func (o *Event) GetVisibility() string {
 
 // GetVisibilityOk returns a tuple with the Visibility field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetVisibilityOk() (*string, bool) {
+func (o *Event) GetVisibilityOk() (*EventVisibility, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -218,7 +218,7 @@ func (o *Event) GetVisibilityOk() (*string, bool) {
 }
 
 // SetVisibility sets field value
-func (o *Event) SetVisibility(v string) {
+func (o *Event) SetVisibility(v EventVisibility) {
 	o.Visibility = v
 }
 

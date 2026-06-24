@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | Role label. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
 **Description** | Pointer to **string** | Role description. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
-**Permissions** | Pointer to **[]string** | List of permissions assigned to the role. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
+**Permissions** | Pointer to [**[]MetalsoftPermissions**](MetalsoftPermissions.md) | List of permissions assigned to the role. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
 **QuotaProfileId** | Pointer to **string** | Quota profile assigned to this role | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetPermissions
 
-`func (o *EditRole) GetPermissions() []string`
+`func (o *EditRole) GetPermissions() []MetalsoftPermissions`
 
 GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
 ### GetPermissionsOk
 
-`func (o *EditRole) GetPermissionsOk() (*[]string, bool)`
+`func (o *EditRole) GetPermissionsOk() (*[]MetalsoftPermissions, bool)`
 
 GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPermissions
 
-`func (o *EditRole) SetPermissions(v []string)`
+`func (o *EditRole) SetPermissions(v []MetalsoftPermissions)`
 
 SetPermissions sets Permissions field to given value.
 

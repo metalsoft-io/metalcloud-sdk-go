@@ -26,7 +26,7 @@ type CreateRole struct {
 	// Role description
 	Description *string `json:"description,omitempty"`
 	// List of permissions assigned to the role
-	Permissions []string `json:"permissions"`
+	Permissions []MetalsoftPermissions `json:"permissions"`
 	// Quota profile assigned to this role
 	QuotaProfileId *string `json:"quotaProfileId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -38,7 +38,7 @@ type _CreateRole CreateRole
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateRole(label string, permissions []string) *CreateRole {
+func NewCreateRole(label string, permissions []MetalsoftPermissions) *CreateRole {
 	this := CreateRole{}
 	this.Label = label
 	this.Permissions = permissions
@@ -110,9 +110,9 @@ func (o *CreateRole) SetDescription(v string) {
 }
 
 // GetPermissions returns the Permissions field value
-func (o *CreateRole) GetPermissions() []string {
+func (o *CreateRole) GetPermissions() []MetalsoftPermissions {
 	if o == nil {
-		var ret []string
+		var ret []MetalsoftPermissions
 		return ret
 	}
 
@@ -121,7 +121,7 @@ func (o *CreateRole) GetPermissions() []string {
 
 // GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *CreateRole) GetPermissionsOk() ([]string, bool) {
+func (o *CreateRole) GetPermissionsOk() ([]MetalsoftPermissions, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,7 +129,7 @@ func (o *CreateRole) GetPermissionsOk() ([]string, bool) {
 }
 
 // SetPermissions sets field value
-func (o *CreateRole) SetPermissions(v []string) {
+func (o *CreateRole) SetPermissions(v []MetalsoftPermissions) {
 	o.Permissions = v
 }
 

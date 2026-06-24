@@ -8570,30 +8570,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Filter by isPublic query param.
-
-          **Format:** filter.isPublic={$not}:OPERATION:VALUE
-
-
-
-          **Example:** filter.isPublic=$eq:John Doe
-
-          **Available Operations**
-          - $eq
-
-          - $and
-
-          - $or
-        explode: true
-        in: query
-        name: filter.isPublic
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       - description: |
           Parameter to sort by.
           To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting
@@ -8971,57 +8947,6 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Suspend extension
-      tags:
-      - Extension
-  /api/v2/extensions/{extensionId}/actions/make-public:
-    post:
-      description: Makes the extension public.
-      operationId: makePublicExtension
-      parameters:
-      - explode: false
-        in: path
-        name: extensionId
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: The extension was made public successfully
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Only workflow extensions can be made public
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Extension not found
-        "409":
-          description: The extension state does not allow this operation.
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Makes extension public
       tags:
       - Extension
   /api/v2/extensions/{extensionId}/actions/archive:
@@ -71735,9 +71660,9 @@ components:
       example:
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-06-23T08:31:23.212Z
+        createdTimestamp: 2026-06-24T09:20:42.626Z
         networkDevicePosition: all
-        updatedTimestamp: 2026-06-23T08:31:23.212Z
+        updatedTimestamp: 2026-06-24T09:20:42.626Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         action: add-global-config
@@ -71850,12 +71775,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.212Z
+          example: 2026-06-24T09:20:42.626Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.212Z
+          example: 2026-06-24T09:20:42.626Z
           format: date-time
           type: string
         links:
@@ -71887,9 +71812,9 @@ components:
         data:
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.212Z
+          createdTimestamp: 2026-06-24T09:20:42.626Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-06-23T08:31:23.212Z
+          updatedTimestamp: 2026-06-24T09:20:42.626Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -71906,9 +71831,9 @@ components:
           bgpNumbering: numbered
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.212Z
+          createdTimestamp: 2026-06-24T09:20:42.626Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-06-23T08:31:23.212Z
+          updatedTimestamp: 2026-06-24T09:20:42.626Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -72181,9 +72106,9 @@ components:
         removeNeighbor: removeNeighbor
         removeGlobalConfig: removeGlobalConfig
         executionType: cli
-        createdTimestamp: 2026-06-23T08:31:23.218Z
+        createdTimestamp: 2026-06-24T09:20:42.633Z
         label: label
-        updatedTimestamp: 2026-06-23T08:31:23.218Z
+        updatedTimestamp: 2026-06-24T09:20:42.633Z
         revision: "1"
         addGlobalConfig: addGlobalConfig
         name: name
@@ -72232,12 +72157,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.218Z
+          example: 2026-06-24T09:20:42.633Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.218Z
+          example: 2026-06-24T09:20:42.633Z
           format: date-time
           type: string
         revision:
@@ -72269,9 +72194,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.218Z
+          createdTimestamp: 2026-06-24T09:20:42.633Z
           label: label
-          updatedTimestamp: 2026-06-23T08:31:23.218Z
+          updatedTimestamp: 2026-06-24T09:20:42.633Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -72286,9 +72211,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.218Z
+          createdTimestamp: 2026-06-24T09:20:42.633Z
           label: label
-          updatedTimestamp: 2026-06-23T08:31:23.218Z
+          updatedTimestamp: 2026-06-24T09:20:42.633Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -72424,7 +72349,7 @@ components:
         aggregationType: lag
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-06-23T08:31:23.216Z
+        createdTimestamp: 2026-06-24T09:20:42.63Z
         action: create
         networkDeviceDriver: cisco_aci51
         links:
@@ -72434,7 +72359,7 @@ components:
           href: /api/v2/path/to/resource
         id: 0
         libraryLabel: libraryLabel
-        updatedTimestamp: 2026-06-23T08:31:23.216Z
+        updatedTimestamp: 2026-06-24T09:20:42.63Z
         preparation: preparation
       properties:
         action:
@@ -72498,12 +72423,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.216Z
+          example: 2026-06-24T09:20:42.63Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.216Z
+          example: 2026-06-24T09:20:42.63Z
           format: date-time
           type: string
         links:
@@ -72532,7 +72457,7 @@ components:
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.216Z
+          createdTimestamp: 2026-06-24T09:20:42.63Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -72542,12 +72467,12 @@ components:
             href: /api/v2/path/to/resource
           id: 0
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-06-23T08:31:23.216Z
+          updatedTimestamp: 2026-06-24T09:20:42.63Z
           preparation: preparation
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.216Z
+          createdTimestamp: 2026-06-24T09:20:42.63Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -72557,7 +72482,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-06-23T08:31:23.216Z
+          updatedTimestamp: 2026-06-24T09:20:42.63Z
           preparation: preparation
         meta: ""
         links: ""
@@ -72763,7 +72688,7 @@ components:
     DeviceConfigurationTemplate:
       example:
         executionType: cli
-        createdTimestamp: 2026-06-23T08:31:23.221Z
+        createdTimestamp: 2026-06-24T09:20:42.636Z
         deviceDriver: sonic_enterprise
         description: "Base hostname + interface MTU template, used during fabric deployment."
         customVariablesJson:
@@ -72773,7 +72698,7 @@ components:
           environment: production
           owner: fabric-team
         label: nvidia-spectrum-x-base
-        updatedTimestamp: 2026-06-23T08:31:23.222Z
+        updatedTimestamp: 2026-06-24T09:20:42.636Z
         tags:
         - nvidia
         - spectrum-x
@@ -72847,12 +72772,12 @@ components:
           type: array
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.221Z
+          example: 2026-06-24T09:20:42.636Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.222Z
+          example: 2026-06-24T09:20:42.636Z
           format: date-time
           type: string
         revision:
@@ -72881,7 +72806,7 @@ components:
       example:
         data:
         - executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.221Z
+          createdTimestamp: 2026-06-24T09:20:42.636Z
           deviceDriver: sonic_enterprise
           description: "Base hostname + interface MTU template, used during fabric\
             \ deployment."
@@ -72892,7 +72817,7 @@ components:
             environment: production
             owner: fabric-team
           label: nvidia-spectrum-x-base
-          updatedTimestamp: 2026-06-23T08:31:23.222Z
+          updatedTimestamp: 2026-06-24T09:20:42.636Z
           tags:
           - nvidia
           - spectrum-x
@@ -72906,7 +72831,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0
         - executionType: cli
-          createdTimestamp: 2026-06-23T08:31:23.221Z
+          createdTimestamp: 2026-06-24T09:20:42.636Z
           deviceDriver: sonic_enterprise
           description: "Base hostname + interface MTU template, used during fabric\
             \ deployment."
@@ -72917,7 +72842,7 @@ components:
             environment: production
             owner: fabric-team
           label: nvidia-spectrum-x-base
-          updatedTimestamp: 2026-06-23T08:31:23.222Z
+          updatedTimestamp: 2026-06-24T09:20:42.636Z
           tags:
           - nvidia
           - spectrum-x
@@ -73199,12 +73124,12 @@ components:
         variables:
           mtu_override: 9000
         updatedBy: 42
-        createdTimestamp: 2026-06-23T08:31:23.227Z
+        createdTimestamp: 2026-06-24T09:20:42.642Z
         annotations:
           environment: production
           owner: fabric-team
         priority: 100
-        updatedTimestamp: 2026-06-23T08:31:23.227Z
+        updatedTimestamp: 2026-06-24T09:20:42.643Z
         tags:
         - canary
         - fabric-team
@@ -73305,12 +73230,12 @@ components:
           type: array
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.227Z
+          example: 2026-06-24T09:20:42.642Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.227Z
+          example: 2026-06-24T09:20:42.643Z
           format: date-time
           type: string
         revision:
@@ -73351,12 +73276,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -73377,12 +73302,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -73558,12 +73483,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -73584,12 +73509,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -73678,12 +73603,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -73704,12 +73629,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -73731,12 +73656,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -73757,12 +73682,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-23T08:31:23.227Z
+          createdTimestamp: 2026-06-24T09:20:42.642Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-23T08:31:23.227Z
+          updatedTimestamp: 2026-06-24T09:20:42.643Z
           tags:
           - canary
           - fabric-team
@@ -76489,15 +76414,1116 @@ components:
             $ref: "#/components/schemas/Link"
           type: array
       type: object
+    EventTypes:
+      description: The type of the event
+      enum:
+      - afc_at_risk
+      - afc_delete_call
+      - afc_delete_non_asynchronous_calls
+      - afc_marked_for_death
+      - afc_max_retries_increase
+      - afc_out_of_retries
+      - afc_retry_call
+      - afc_silence_call
+      - afc_silence_non_asynchronous_calls
+      - afc_skip_call
+      - authenticator_enabled_new
+      - authenticator_removed
+      - bgp_configuration_template_created
+      - bgp_configuration_template_deleted
+      - bgp_configuration_template_updated
+      - bsi_agent_deploy_configuration_finished
+      - bsi_agent_drive_partition_finished
+      - bsi_agent_drive_partition_format_finished
+      - bsi_agent_drive_partition_mount_finished
+      - bsi_agent_drive_partition_unmount_finished
+      - bsi_agent_installed
+      - bsi_agent_iscsi_setup_finished
+      - bsi_agent_live
+      - bucket_connected_to_instance_group
+      - bucket_created
+      - bucket_deleted
+      - bucket_deploy_started
+      - bucket_deployed
+      - bucket_disconnected_from_instance_group
+      - bucket_edited
+      - bucket_started
+      - bucket_stopped
+      - bucket_will_be_connected_to_instance_group
+      - bucket_will_be_disconnected_from_instance_group
+      - cleaning_reserved_servers_finished
+      - cleaning_reserved_servers_started
+      - cluster_automatic_management_status_set
+      - cluster_created
+      - cluster_deleted
+      - cluster_deploy_started
+      - cluster_deployed
+      - cluster_edited
+      - cluster_password_changed
+      - cluster_software_version_automatic_update
+      - cluster_started
+      - cluster_stopped
+      - cluster_suspended
+      - clusters_saas_linking_finished
+      - clusters_saas_linking_started
+      - clusters_saas_setup_finished
+      - clusters_saas_setup_started
+      - container_array_created
+      - container_array_deleted
+      - container_array_deploy_started
+      - container_array_deployed
+      - container_array_edited
+      - container_array_interface_created
+      - container_array_interface_deleted
+      - container_array_interface_deploy_started
+      - container_array_interface_deployed
+      - container_array_interface_edited
+      - container_array_interface_started
+      - container_array_interface_stopped
+      - container_array_interface_suspended
+      - container_array_not_connected_to_wan
+      - container_array_started
+      - container_array_stopped
+      - container_array_suspended
+      - container_cluster_automatic_management_status_set
+      - container_cluster_created
+      - container_cluster_deleted
+      - container_cluster_deploy_started
+      - container_cluster_deployed
+      - container_cluster_edited
+      - container_cluster_software_version_automatic_update
+      - container_cluster_started
+      - container_cluster_stopped
+      - container_cluster_suspended
+      - container_created
+      - container_deleted
+      - container_deploy_started
+      - container_deployed
+      - container_edited
+      - container_interface_created
+      - container_interface_deleted
+      - container_interface_deploy_started
+      - container_interface_deployed
+      - container_interface_edited
+      - container_interface_started
+      - container_interface_stopped
+      - container_interface_suspended
+      - container_platform_created
+      - container_platform_deleted
+      - container_platform_deploy_started
+      - container_platform_deployed
+      - container_platform_edited
+      - container_platform_started
+      - container_platform_stopped
+      - container_platform_suspended
+      - container_started
+      - container_stopped
+      - container_suspended
+      - container_unsuspended
+      - custom_iso_created
+      - custom_iso_deleted
+      - custom_iso_started_boot_into_server
+      - custom_iso_updated
+      - data_lake_created
+      - data_lake_deleted
+      - data_lake_deploy_started
+      - data_lake_deployed
+      - data_lake_edited
+      - data_lake_has_promotion
+      - data_lake_started
+      - data_lake_stopped
+      - data_lake_traffic_update
+      - data_lakes_traffic_update
+      - datacenter_created
+      - datacenter_decommissioned
+      - datacenter_diagnostics_blocked_afc_cleaned_up
+      - datacenter_diagnostics_dc_agent_to_server_connection_checked
+      - datacenter_diagnostics_l3_san_interfaces_checked
+      - datacenter_diagnostics_quarantine_server_to_agent_connection_checked
+      - datacenter_diagnostics_reach_l3_interface_checked
+      - datacenter_diagnostics_reach_oob_network_checked
+      - datacenter_diagnostics_repo_dns_record_checked
+      - datacenter_diagnostics_resolve_repo_checked
+      - datacenter_diagnostics_san_array_interface_checked
+      - datacenter_diagnostics_server_cleaned
+      - datacenter_diagnostics_server_deployed
+      - datacenter_diagnostics_server_internet_connection_checked
+      - datacenter_diagnostics_static_routes_checked
+      - datacenter_diagnostics_switch_configured_checked
+      - datacenter_diagnostics_switch_interfaces_checked
+      - datacenter_hidden
+      - datacenter_maintenance_set
+      - datacenter_maintenance_unset
+      - datacenter_updated
+      - datacenter_visible
+      - dataset_created
+      - dataset_deleted
+      - dataset_published
+      - dataset_subscription_created
+      - dataset_subscription_deleted
+      - dataset_unpublished
+      - dhcp_lease_created
+      - debug_general
+      - drive_array_created
+      - drive_array_deleted
+      - drive_array_deploy_started
+      - drive_array_deployed
+      - drive_array_drive_count_zero
+      - drive_array_edited
+      - drive_array_started
+      - drive_array_stopped
+      - drive_attached_container
+      - drive_attached_instance
+      - drive_created
+      - drive_deleted
+      - drive_deploy_started
+      - drive_deployed
+      - drive_detached_container
+      - drive_detached_instance
+      - drive_edited
+      - drive_free_space_running_low
+      - drive_hook_toggled
+      - drive_moved_to_storage
+      - drive_rolled_back_to_snapshot
+      - drive_started
+      - drive_stopped
+      - event_deleted
+      - events_deleted
+      - events_expired
+      - extension_activated
+      - extension_archived
+      - extension_created
+      - extension_updated
+      - extension_suspended
+      - extension_deleted
+      - extension_made_public
+      - external_connection_create
+      - external_connection_deleted
+      - external_connection_edited
+      - file_share_connected_to_instance_group
+      - file_share_created
+      - file_share_deleted
+      - file_share_deploy_started
+      - file_share_deployed
+      - file_share_disconnected_from_instance_group
+      - file_share_edited
+      - file_share_started
+      - file_share_stopped
+      - file_share_will_be_connected_to_instance_group
+      - file_share_will_be_disconnected_from_instance_group
+      - firewall_profile_created
+      - firewall_profile_deleted
+      - firewall_profile_description_set
+      - firewall_profile_name_set
+      - firewall_profile_rules_set
+      - firewall_profile_status_set
+      - firewall_profile_tags_set
+      - firewall_rules_deployed
+      - global_configuration_updated
+      - infrastructure_created
+      - infrastructure_deleted
+      - infrastructure_deploy_blocker_triggered
+      - infrastructure_deploy_overview_consulted
+      - infrastructure_deploy_started
+      - infrastructure_deploy_cancelled
+      - infrastructure_deployed
+      - infrastructure_design_locked
+      - infrastructure_design_unlocked
+      - infrastructure_edited
+      - infrastructure_experimental_priority_set
+      - infrastructure_instances_info
+      - infrastructure_owner_changed
+      - infrastructure_public_designs_member_set
+      - infrastructure_started
+      - infrastructure_stopped
+      - infrastructure_user_added
+      - infrastructure_user_removed
+      - infrastructure_user_updated
+      - instance_array_created
+      - instance_array_deleted
+      - instance_array_deploy_started
+      - instance_array_deployed
+      - instance_array_edited
+      - instance_array_instance_count_zero
+      - instance_array_interface_created
+      - instance_array_interface_deleted
+      - instance_array_interface_deploy_started
+      - instance_array_interface_deployed
+      - instance_array_interface_edited
+      - instance_array_interface_started
+      - instance_array_interface_stopped
+      - instance_array_interface_suspended
+      - instance_array_not_connected_to_wan
+      - instance_array_started
+      - instance_array_stopped
+      - instance_array_suspended
+      - instance_array_unsuspended
+      - instance_created
+      - instance_deleted
+      - instance_deploy_started
+      - instance_deployed
+      - instance_edited
+      - instance_interface_created
+      - instance_interface_deleted
+      - instance_interface_deploy_started
+      - instance_interface_deployed
+      - instance_interface_edited
+      - instance_interface_started
+      - instance_interface_stopped
+      - instance_interface_suspended
+      - instance_license_created
+      - instance_license_deleted
+      - instance_license_deploy_started
+      - instance_license_deployed
+      - instance_license_edited
+      - instance_license_started
+      - instance_license_stopped
+      - instance_license_suspended
+      - instance_might_not_be_bootable
+      - instance_not_bootable
+      - instance_public_key_retrieved
+      - instance_server_power_status_set
+      - instance_server_replaced
+      - instance_server_type_reservation_created
+      - instance_started
+      - instance_stopped
+      - instance_suspended
+      - instance_unsuspended
+      - instance_with_local_disks_might_not_be_bootable
+      - ip_created
+      - ip_deleted
+      - ip_deploy_started
+      - ip_deployed
+      - ip_edited
+      - ip_started
+      - ip_stopped
+      - network_created
+      - network_deleted
+      - network_deploy_started
+      - network_deployed
+      - network_device_default_secret_created
+      - network_device_default_secret_updated
+      - network_device_default_secret_deleted
+      - network_edited
+      - network_equipment_controller_comment_updated
+      - network_equipment_controller_credentials_updated
+      - network_equipment_layer3_interface_created
+      - network_profile_created
+      - network_profile_deleted
+      - network_profile_instance_array_network_clear
+      - network_profile_instance_array_network_set
+      - network_profile_updated
+      - network_provision_debug
+      - network_setup_finished
+      - network_setup_started
+      - network_started
+      - network_stopped
+      - network_suspended
+      - network_unsuspended
+      - password_read
+      - product_current_operation_cancelled
+      - remote_console_accessed
+      - replaced_server_set
+      - resource_reservation_created
+      - resource_reservation_deleted
+      - resource_reservation_edited
+      - serve
+      - server_allocated_to_instance
+      - server_attached_to_instance
+      - server_bdk_log
+      - server_bios_info_refreshed
+      - server_bmc_credentials_updated
+      - server_bmc_settings_updated
+      - server_class_updated
+      - server_comment_updated
+      - server_create_and_register
+      - server_created
+      - server_credentials_updated
+      - server_dbk_debug_toggle
+      - server_decommissioned
+      - server_deleted
+      - server_dhcp_packet_sniffing_toggled
+      - server_dhcp_relay_security_toggled
+      - server_dhcp_status_changed
+      - server_disk_wiped_toggle
+      - server_edited
+      - server_firmware_component_upgrade
+      - server_firmware_component_upgrade_failed
+      - server_firmware_component_upgrade_finished
+      - server_firmware_component_upgrade_scheduled
+      - server_firmware_policy_action_set
+      - server_firmware_policy_apply_all
+      - server_firmware_policy_created
+      - server_firmware_policy_deleted
+      - server_firmware_policy_updated
+      - server_firmware_policy_rule_added
+      - server_firmware_policy_rule_deleted
+      - server_firmware_upgrade_confirmation
+      - server_import_generic_endpoint
+      - server_import_unmanaged
+      - server_ipxe_log
+      - server_is_in_diagnostics_toggle
+      - server_oob_ip_allow
+      - server_oob_ip_disallow
+      - server_registered
+      - server_registration_initiated
+      - server_requires_manual_cleaning_toggle
+      - server_reregistered
+      - server_reregistration_initiated
+      - server_hardware_rescan_initiated
+      - server_production_registered
+      - server_production_registration_initiated
+      - server_reset_to_factory_defaults
+      - server_status_updated
+      - server_supports_sol_toggle
+      - server_swapped
+      - server_registration_profile_created
+      - server_registration_profile_deleted
+      - server_registration_profile_updated
+      - server_type_created
+      - server_type_updated
+      - server_type_deleted
+      - server_type_reservation_cancelled
+      - server_type_reservation_ownership_changed
+      - server_type_reservation_reactivated
+      - server_unprovision
+      - server_vendor_firmware_version_updated
+      - server_cleanup_started
+      - server_cleanup_finished
+      - server_cleanup_failed
+      - server_vnc_console_enabled
+      - server_vnc_credentials_updated
+      - shared_drive_connected_to_container_array
+      - shared_drive_connected_to_instance_group
+      - shared_drive_created
+      - shared_drive_deleted
+      - shared_drive_deploy_started
+      - shared_drive_deployed
+      - shared_drive_disconnected_from_container_array
+      - shared_drive_disconnected_from_instance_group
+      - shared_drive_edited
+      - shared_drive_started
+      - shared_drive_stopped
+      - shared_drive_will_be_connected_to_container_array
+      - shared_drive_will_be_connected_to_instance_group
+      - shared_drive_will_be_disconnected_from_container_array
+      - shared_drive_will_be_disconnected_from_instance_group
+      - snapshot_created
+      - snapshot_deleted
+      - storage_credentials_updated
+      - storage_pool_created
+      - storage_pool_edited
+      - storage_pool_deleted
+      - storage_pool_experimental_set
+      - storage_pool_iqn_cleaned
+      - storage_pool_maintenance_set
+      - storage_pool_ports_read
+      - storage_provision_debug
+      - subnet_cleared
+      - subnet_created
+      - subnet_deleted
+      - subnet_deploy_started
+      - subnet_deployed
+      - subnet_edited
+      - subnet_needs_start
+      - subnet_oob_created
+      - subnet_oob_deleted
+      - subnet_oob_edited
+      - subnet_pool_created
+      - subnet_pool_deleted
+      - subnet_started
+      - subnet_stopped
+      - network_device_controller_created
+      - network_device_controller_deleted
+      - network_device_controller_updated
+      - network_device_created
+      - network_device_credentials_updated
+      - network_device_custom_secret_deleted
+      - network_device_custom_secret_updated
+      - network_device_custom_secrets_deleted
+      - network_device_decommissioned
+      - network_device_deleted
+      - network_device_interfaces_dirty_bit_set
+      - network_device_interfaces_enable_set
+      - network_device_network_allocated_primary_subnet
+      - network_device_provision_vpls_north
+      - network_device_provision_vpls_tor
+      - network_device_replace
+      - network_device_reprovision
+      - network_device_status_updated
+      - network_device_reset_to_onie
+      - network_device_configuration_drift_detected
+      - syslog_message_important_inserted
+      - syslog_message_info_inserted
+      - threshold_created
+      - threshold_deleted
+      - threshold_edited
+      - threshold_infrastructure_on_demand_and_metered_costs_notification_sent
+      - threshold_network_traffic_notification_sent
+      - user_access_level_set
+      - user_api_key_regenerated
+      - user_archived
+      - user_authenticated_password
+      - user_authentication_failed
+      - user_created
+      - user_credentials_changed
+      - user_delegate_added
+      - user_delegate_removed
+      - user_disabled_2fa
+      - user_enabled_2fa
+      - user_jwt_salt_regenerated
+      - user_login_email_updated_verification_url
+      - user_password_changed
+      - user_password_rehashed
+      - user_promotion_add
+      - user_remove_promotion
+      - user_ssh_key_created
+      - user_ssh_key_deleted
+      - user_suspended
+      - user_unarchived
+      - user_unsuspended
+      - user_unauthorized_created
+      - user_email_updated
+      - user_email_verified
+      - vm_created
+      - vm_deleted
+      - vm_pool_active
+      - vm_pool_created
+      - vm_pool_credentials_updated
+      - vm_pool_deleted
+      - vm_pool_setup_complete
+      - vm_pool_updated
+      - vm_type_created
+      - vm_type_deleted
+      - vm_type_updated
+      - vm_updated
+      - vm_imported_to_infrastructure
+      - vm_pool_imported_vms
+      - volume_template_created
+      - volume_template_created_from_storage_pool
+      - volume_template_deleted
+      - volume_template_deleted_from_storage_pool
+      - volume_template_experimental_toggled
+      - volume_template_made_public
+      - volume_template_replicated
+      - volume_template_replicated_to_all
+      - vrf_created
+      - vrf_deleted
+      - vrf_updated
+      - server_syslog_monitoring_changed
+      - network_fabric_deploy_started
+      - network_fabric_deploy_accepted
+      - network_fabric_deploy_rejected
+      - network_fabric_link_rescan_started
+      - network_fabric_interconnect_deploy_started
+      - network_fabric_interconnect_deploy_accepted
+      - network_fabric_interconnect_deploy_rejected
+      - link_aggregation_configuration_template_created
+      - link_aggregation_configuration_template_deleted
+      - link_aggregation_configuration_template_updated
+      - bgp_interconnect_configuration_template_created
+      - bgp_interconnect_configuration_template_deleted
+      - bgp_interconnect_configuration_template_updated
+      - device_configuration_template_created
+      - device_configuration_template_deleted
+      - device_configuration_template_updated
+      - device_configuration_template_profile_created
+      - device_configuration_template_profile_updated
+      - device_configuration_template_profile_deleted
+      - device_configuration_template_profile_bulk_assigned
+      - network_fabric_interconnect_detach_started
+      - network_fabric_interconnect_detach_complete
+      - network_fabric_interconnect_detach_failed
+      - user_logged_out
+      - user_session_expired
+      - user_blocked
+      - user_unblocked
+      - user_2fa_failed
+      - user_password_expired
+      - user_sessions_terminated
+      - server_health_state_degraded
+      - server_health_state_improved
+      - network_device_vendor_updated
+      - network_device_snmp_service_enabled
+      - network_device_snmp_service_disabled
+      - network_device_syslog_service_enabled
+      - network_device_syslog_service_disabled
+      - network_device_snmp_monitoring_enabled
+      - network_device_snmp_monitoring_disabled
+      - network_device_health_state_degraded
+      - network_device_health_state_improved
+      - vm_pool_host_health_state_degraded
+      - vm_pool_host_health_state_improved
+      type: string
+      x-enumNames:
+      - AFC_AT_RISK
+      - AFC_DELETE_CALL
+      - AFC_DELETE_NON_ASYNCHRONOUS_CALLS
+      - AFC_MARKED_FOR_DEATH
+      - AFC_MAX_RETRIES_INCREASE
+      - AFC_OUT_OF_RETRIES
+      - AFC_RETRY_CALL
+      - AFC_SILENCE_CALL
+      - AFC_SILENCE_NON_ASYNCHRONOUS_CALLS
+      - AFC_SKIP_CALL
+      - AUTHENTICATOR_ENABLED_NEW
+      - AUTHENTICATOR_REMOVED
+      - BGP_CONFIGURATION_TEMPLATE_CREATED
+      - BGP_CONFIGURATION_TEMPLATE_DELETED
+      - BGP_CONFIGURATION_TEMPLATE_UPDATED
+      - BSI_AGENT_DEPLOY_CONFIGURATION_FINISHED
+      - BSI_AGENT_DRIVE_PARTITION_FINISHED
+      - BSI_AGENT_DRIVE_PARTITION_FORMAT_FINISHED
+      - BSI_AGENT_DRIVE_PARTITION_MOUNT_FINISHED
+      - BSI_AGENT_DRIVE_PARTITION_UNMOUNT_FINISHED
+      - BSI_AGENT_INSTALLED
+      - BSI_AGENT_ISCSI_SETUP_FINISHED
+      - BSI_AGENT_LIVE
+      - BUCKET_CONNECTED_TO_INSTANCE_GROUP
+      - BUCKET_CREATED
+      - BUCKET_DELETED
+      - BUCKET_DEPLOY_STARTED
+      - BUCKET_DEPLOYED
+      - BUCKET_DISCONNECTED_FROM_INSTANCE_GROUP
+      - BUCKET_EDITED
+      - BUCKET_STARTED
+      - BUCKET_STOPPED
+      - BUCKET_WILL_BE_CONNECTED_TO_INSTANCE_GROUP
+      - BUCKET_WILL_BE_DISCONNECTED_FROM_INSTANCE_GROUP
+      - CLEANING_RESERVED_SERVERS_FINISHED
+      - CLEANING_RESERVED_SERVERS_STARTED
+      - CLUSTER_AUTOMATIC_MANAGEMENT_STATUS_SET
+      - CLUSTER_CREATED
+      - CLUSTER_DELETED
+      - CLUSTER_DEPLOY_STARTED
+      - CLUSTER_DEPLOYED
+      - CLUSTER_EDITED
+      - CLUSTER_PASSWORD_CHANGED
+      - CLUSTER_SOFTWARE_VERSION_AUTOMATIC_UPDATE
+      - CLUSTER_STARTED
+      - CLUSTER_STOPPED
+      - CLUSTER_SUSPENDED
+      - CLUSTERS_SAAS_LINKING_FINISHED
+      - CLUSTERS_SAAS_LINKING_STARTED
+      - CLUSTERS_SAAS_SETUP_FINISHED
+      - CLUSTERS_SAAS_SETUP_STARTED
+      - CONTAINER_ARRAY_CREATED
+      - CONTAINER_ARRAY_DELETED
+      - CONTAINER_ARRAY_DEPLOY_STARTED
+      - CONTAINER_ARRAY_DEPLOYED
+      - CONTAINER_ARRAY_EDITED
+      - CONTAINER_ARRAY_INTERFACE_CREATED
+      - CONTAINER_ARRAY_INTERFACE_DELETED
+      - CONTAINER_ARRAY_INTERFACE_DEPLOY_STARTED
+      - CONTAINER_ARRAY_INTERFACE_DEPLOYED
+      - CONTAINER_ARRAY_INTERFACE_EDITED
+      - CONTAINER_ARRAY_INTERFACE_STARTED
+      - CONTAINER_ARRAY_INTERFACE_STOPPED
+      - CONTAINER_ARRAY_INTERFACE_SUSPENDED
+      - CONTAINER_ARRAY_NOT_CONNECTED_TO_WAN
+      - CONTAINER_ARRAY_STARTED
+      - CONTAINER_ARRAY_STOPPED
+      - CONTAINER_ARRAY_SUSPENDED
+      - CONTAINER_CLUSTER_AUTOMATIC_MANAGEMENT_STATUS_SET
+      - CONTAINER_CLUSTER_CREATED
+      - CONTAINER_CLUSTER_DELETED
+      - CONTAINER_CLUSTER_DEPLOY_STARTED
+      - CONTAINER_CLUSTER_DEPLOYED
+      - CONTAINER_CLUSTER_EDITED
+      - CONTAINER_CLUSTER_SOFTWARE_VERSION_AUTOMATIC_UPDATE
+      - CONTAINER_CLUSTER_STARTED
+      - CONTAINER_CLUSTER_STOPPED
+      - CONTAINER_CLUSTER_SUSPENDED
+      - CONTAINER_CREATED
+      - CONTAINER_DELETED
+      - CONTAINER_DEPLOY_STARTED
+      - CONTAINER_DEPLOYED
+      - CONTAINER_EDITED
+      - CONTAINER_INTERFACE_CREATED
+      - CONTAINER_INTERFACE_DELETED
+      - CONTAINER_INTERFACE_DEPLOY_STARTED
+      - CONTAINER_INTERFACE_DEPLOYED
+      - CONTAINER_INTERFACE_EDITED
+      - CONTAINER_INTERFACE_STARTED
+      - CONTAINER_INTERFACE_STOPPED
+      - CONTAINER_INTERFACE_SUSPENDED
+      - CONTAINER_PLATFORM_CREATED
+      - CONTAINER_PLATFORM_DELETED
+      - CONTAINER_PLATFORM_DEPLOY_STARTED
+      - CONTAINER_PLATFORM_DEPLOYED
+      - CONTAINER_PLATFORM_EDITED
+      - CONTAINER_PLATFORM_STARTED
+      - CONTAINER_PLATFORM_STOPPED
+      - CONTAINER_PLATFORM_SUSPENDED
+      - CONTAINER_STARTED
+      - CONTAINER_STOPPED
+      - CONTAINER_SUSPENDED
+      - CONTAINER_UNSUSPENDED
+      - CUSTOM_ISO_CREATED
+      - CUSTOM_ISO_DELETED
+      - CUSTOM_ISO_STARTED_BOOT_INTO_SERVER
+      - CUSTOM_ISO_UPDATED
+      - DATA_LAKE_CREATED
+      - DATA_LAKE_DELETED
+      - DATA_LAKE_DEPLOY_STARTED
+      - DATA_LAKE_DEPLOYED
+      - DATA_LAKE_EDITED
+      - DATA_LAKE_HAS_PROMOTION
+      - DATA_LAKE_STARTED
+      - DATA_LAKE_STOPPED
+      - DATA_LAKE_TRAFFIC_UPDATE
+      - DATA_LAKES_TRAFFIC_UPDATE
+      - DATACENTER_CREATED
+      - DATACENTER_DECOMMISSIONED
+      - DATACENTER_DIAGNOSTICS_BLOCKED_AFC_CLEANED_UP
+      - DATACENTER_DIAGNOSTICS_DC_AGENT_TO_SERVER_CONNECTION_CHECKED
+      - DATACENTER_DIAGNOSTICS_L3_SAN_INTERFACES_CHECKED
+      - DATACENTER_DIAGNOSTICS_QUARANTINE_SERVER_TO_AGENT_CONNECTION_CHECKED
+      - DATACENTER_DIAGNOSTICS_REACH_L3_INTERFACE_CHECKED
+      - DATACENTER_DIAGNOSTICS_REACH_OOB_NETWORK_CHECKED
+      - DATACENTER_DIAGNOSTICS_REPO_DNS_RECORD_CHECKED
+      - DATACENTER_DIAGNOSTICS_RESOLVE_REPO_CHECKED
+      - DATACENTER_DIAGNOSTICS_SAN_ARRAY_INTERFACE_CHECKED
+      - DATACENTER_DIAGNOSTICS_SERVER_CLEANED
+      - DATACENTER_DIAGNOSTICS_SERVER_DEPLOYED
+      - DATACENTER_DIAGNOSTICS_SERVER_INTERNET_CONNECTION_CHECKED
+      - DATACENTER_DIAGNOSTICS_STATIC_ROUTES_CHECKED
+      - DATACENTER_DIAGNOSTICS_SWITCH_CONFIGURED_CHECKED
+      - DATACENTER_DIAGNOSTICS_SWITCH_INTERFACES_CHECKED
+      - DATACENTER_HIDDEN
+      - DATACENTER_MAINTENANCE_SET
+      - DATACENTER_MAINTENANCE_UNSET
+      - DATACENTER_UPDATED
+      - DATACENTER_VISIBLE
+      - DATASET_CREATED
+      - DATASET_DELETED
+      - DATASET_PUBLISHED
+      - DATASET_SUBSCRIPTION_CREATED
+      - DATASET_SUBSCRIPTION_DELETED
+      - DATASET_UNPUBLISHED
+      - DHCP_LEASE_CREATED
+      - DEBUG_GENERAL
+      - DRIVE_ARRAY_CREATED
+      - DRIVE_ARRAY_DELETED
+      - DRIVE_ARRAY_DEPLOY_STARTED
+      - DRIVE_ARRAY_DEPLOYED
+      - DRIVE_ARRAY_DRIVE_COUNT_ZERO
+      - DRIVE_ARRAY_EDITED
+      - DRIVE_ARRAY_STARTED
+      - DRIVE_ARRAY_STOPPED
+      - DRIVE_ATTACHED_CONTAINER
+      - DRIVE_ATTACHED_INSTANCE
+      - DRIVE_CREATED
+      - DRIVE_DELETED
+      - DRIVE_DEPLOY_STARTED
+      - DRIVE_DEPLOYED
+      - DRIVE_DETACHED_CONTAINER
+      - DRIVE_DETACHED_INSTANCE
+      - DRIVE_EDITED
+      - DRIVE_FREE_SPACE_RUNNING_LOW
+      - DRIVE_HOOK_TOGGLED
+      - DRIVE_MOVED_TO_STORAGE
+      - DRIVE_ROLLED_BACK_TO_SNAPSHOT
+      - DRIVE_STARTED
+      - DRIVE_STOPPED
+      - EVENT_DELETED
+      - EVENTS_DELETED
+      - EVENTS_EXPIRED
+      - EXTENSION_ACTIVATED
+      - EXTENSION_ARCHIVED
+      - EXTENSION_CREATED
+      - EXTENSION_UPDATED
+      - EXTENSION_SUSPENDED
+      - EXTENSION_DELETED
+      - EXTENSION_MADE_PUBLIC
+      - EXTERNAL_CONNECTION_CREATE
+      - EXTERNAL_CONNECTION_DELETED
+      - EXTERNAL_CONNECTION_EDITED
+      - FILE_SHARE_CONNECTED_TO_INSTANCE_GROUP
+      - FILE_SHARE_CREATED
+      - FILE_SHARE_DELETED
+      - FILE_SHARE_DEPLOY_STARTED
+      - FILE_SHARE_DEPLOYED
+      - FILE_SHARE_DISCONNECTED_FROM_INSTANCE_GROUP
+      - FILE_SHARE_EDITED
+      - FILE_SHARE_STARTED
+      - FILE_SHARE_STOPPED
+      - FILE_SHARE_WILL_BE_CONNECTED_TO_INSTANCE_GROUP
+      - FILE_SHARE_WILL_BE_DISCONNECTED_FROM_INSTANCE_GROUP
+      - FIREWALL_PROFILE_CREATED
+      - FIREWALL_PROFILE_DELETED
+      - FIREWALL_PROFILE_DESCRIPTION_SET
+      - FIREWALL_PROFILE_NAME_SET
+      - FIREWALL_PROFILE_RULES_SET
+      - FIREWALL_PROFILE_STATUS_SET
+      - FIREWALL_PROFILE_TAGS_SET
+      - FIREWALL_RULES_DEPLOYED
+      - GLOBAL_CONFIGURATION_UPDATED
+      - INFRASTRUCTURE_CREATED
+      - INFRASTRUCTURE_DELETED
+      - INFRASTRUCTURE_DEPLOY_BLOCKER_TRIGGERED
+      - INFRASTRUCTURE_DEPLOY_OVERVIEW_CONSULTED
+      - INFRASTRUCTURE_DEPLOY_STARTED
+      - INFRASTRUCTURE_DEPLOY_CANCELLED
+      - INFRASTRUCTURE_DEPLOYED
+      - INFRASTRUCTURE_DESIGN_LOCKED
+      - INFRASTRUCTURE_DESIGN_UNLOCKED
+      - INFRASTRUCTURE_EDITED
+      - INFRASTRUCTURE_EXPERIMENTAL_PRIORITY_SET
+      - INFRASTRUCTURE_INSTANCES_INFO
+      - INFRASTRUCTURE_OWNER_CHANGED
+      - INFRASTRUCTURE_PUBLIC_DESIGNS_MEMBER_SET
+      - INFRASTRUCTURE_STARTED
+      - INFRASTRUCTURE_STOPPED
+      - INFRASTRUCTURE_USER_ADDED
+      - INFRASTRUCTURE_USER_REMOVED
+      - INFRASTRUCTURE_USER_UPDATED
+      - INSTANCE_ARRAY_CREATED
+      - INSTANCE_ARRAY_DELETED
+      - INSTANCE_ARRAY_DEPLOY_STARTED
+      - INSTANCE_ARRAY_DEPLOYED
+      - INSTANCE_ARRAY_EDITED
+      - INSTANCE_ARRAY_INSTANCE_COUNT_ZERO
+      - INSTANCE_ARRAY_INTERFACE_CREATED
+      - INSTANCE_ARRAY_INTERFACE_DELETED
+      - INSTANCE_ARRAY_INTERFACE_DEPLOY_STARTED
+      - INSTANCE_ARRAY_INTERFACE_DEPLOYED
+      - INSTANCE_ARRAY_INTERFACE_EDITED
+      - INSTANCE_ARRAY_INTERFACE_STARTED
+      - INSTANCE_ARRAY_INTERFACE_STOPPED
+      - INSTANCE_ARRAY_INTERFACE_SUSPENDED
+      - INSTANCE_ARRAY_NOT_CONNECTED_TO_WAN
+      - INSTANCE_ARRAY_STARTED
+      - INSTANCE_ARRAY_STOPPED
+      - INSTANCE_ARRAY_SUSPENDED
+      - INSTANCE_ARRAY_UNSUSPENDED
+      - INSTANCE_CREATED
+      - INSTANCE_DELETED
+      - INSTANCE_DEPLOY_STARTED
+      - INSTANCE_DEPLOYED
+      - INSTANCE_EDITED
+      - INSTANCE_INTERFACE_CREATED
+      - INSTANCE_INTERFACE_DELETED
+      - INSTANCE_INTERFACE_DEPLOY_STARTED
+      - INSTANCE_INTERFACE_DEPLOYED
+      - INSTANCE_INTERFACE_EDITED
+      - INSTANCE_INTERFACE_STARTED
+      - INSTANCE_INTERFACE_STOPPED
+      - INSTANCE_INTERFACE_SUSPENDED
+      - INSTANCE_LICENSE_CREATED
+      - INSTANCE_LICENSE_DELETED
+      - INSTANCE_LICENSE_DEPLOY_STARTED
+      - INSTANCE_LICENSE_DEPLOYED
+      - INSTANCE_LICENSE_EDITED
+      - INSTANCE_LICENSE_STARTED
+      - INSTANCE_LICENSE_STOPPED
+      - INSTANCE_LICENSE_SUSPENDED
+      - INSTANCE_MIGHT_NOT_BE_BOOTABLE
+      - INSTANCE_NOT_BOOTABLE
+      - INSTANCE_PUBLIC_KEY_RETRIEVED
+      - INSTANCE_SERVER_POWER_STATUS_SET
+      - INSTANCE_SERVER_REPLACED
+      - INSTANCE_SERVER_TYPE_RESERVATION_CREATED
+      - INSTANCE_STARTED
+      - INSTANCE_STOPPED
+      - INSTANCE_SUSPENDED
+      - INSTANCE_UNSUSPENDED
+      - INSTANCE_WITH_LOCAL_DISKS_MIGHT_NOT_BE_BOOTABLE
+      - IP_CREATED
+      - IP_DELETED
+      - IP_DEPLOY_STARTED
+      - IP_DEPLOYED
+      - IP_EDITED
+      - IP_STARTED
+      - IP_STOPPED
+      - NETWORK_CREATED
+      - NETWORK_DELETED
+      - NETWORK_DEPLOY_STARTED
+      - NETWORK_DEPLOYED
+      - NETWORK_DEVICE_DEFAULT_SECRET_CREATED
+      - NETWORK_DEVICE_DEFAULT_SECRET_UPDATED
+      - NETWORK_DEVICE_DEFAULT_SECRET_DELETED
+      - NETWORK_EDITED
+      - NETWORK_EQUIPMENT_CONTROLLER_COMMENT_UPDATED
+      - NETWORK_EQUIPMENT_CONTROLLER_CREDENTIALS_UPDATED
+      - NETWORK_EQUIPMENT_LAYER3_INTERFACE_CREATED
+      - NETWORK_PROFILE_CREATED
+      - NETWORK_PROFILE_DELETED
+      - NETWORK_PROFILE_INSTANCE_ARRAY_NETWORK_CLEAR
+      - NETWORK_PROFILE_INSTANCE_ARRAY_NETWORK_SET
+      - NETWORK_PROFILE_UPDATED
+      - NETWORK_PROVISION_DEBUG
+      - NETWORK_SETUP_FINISHED
+      - NETWORK_SETUP_STARTED
+      - NETWORK_STARTED
+      - NETWORK_STOPPED
+      - NETWORK_SUSPENDED
+      - NETWORK_UNSUSPENDED
+      - PASSWORD_READ
+      - PRODUCT_CURRENT_OPERATION_CANCELLED
+      - REMOTE_CONSOLE_ACCESSED
+      - REPLACED_SERVER_SET
+      - RESOURCE_RESERVATION_CREATED
+      - RESOURCE_RESERVATION_DELETED
+      - RESOURCE_RESERVATION_EDITED
+      - SERVE
+      - SERVER_ALLOCATED_TO_INSTANCE
+      - SERVER_ATTACHED_TO_INSTANCE
+      - SERVER_BDK_LOG
+      - SERVER_BIOS_INFO_REFRESHED
+      - SERVER_BMC_CREDENTIALS_UPDATED
+      - SERVER_BMC_SETTINGS_UPDATED
+      - SERVER_CLASS_UPDATED
+      - SERVER_COMMENT_UPDATED
+      - SERVER_CREATE_AND_REGISTER
+      - SERVER_CREATED
+      - SERVER_CREDENTIALS_UPDATED
+      - SERVER_DBK_DEBUG_TOGGLE
+      - SERVER_DECOMMISSIONED
+      - SERVER_DELETED
+      - SERVER_DHCP_PACKET_SNIFFING_TOGGLED
+      - SERVER_DHCP_RELAY_SECURITY_TOGGLED
+      - SERVER_DHCP_STATUS_CHANGED
+      - SERVER_DISK_WIPED_TOGGLE
+      - SERVER_EDITED
+      - SERVER_FIRMWARE_COMPONENT_UPGRADE
+      - SERVER_FIRMWARE_COMPONENT_UPGRADE_FAILED
+      - SERVER_FIRMWARE_COMPONENT_UPGRADE_FINISHED
+      - SERVER_FIRMWARE_COMPONENT_UPGRADE_SCHEDULED
+      - SERVER_FIRMWARE_POLICY_ACTION_SET
+      - SERVER_FIRMWARE_POLICY_APPLY_ALL
+      - SERVER_FIRMWARE_POLICY_CREATED
+      - SERVER_FIRMWARE_POLICY_DELETED
+      - SERVER_FIRMWARE_POLICY_UPDATED
+      - SERVER_FIRMWARE_POLICY_RULE_ADDED
+      - SERVER_FIRMWARE_POLICY_RULE_DELETED
+      - SERVER_FIRMWARE_UPGRADE_CONFIRMATION
+      - SERVER_IMPORT_GENERIC_ENDPOINT
+      - SERVER_IMPORT_UNMANAGED
+      - SERVER_IPXE_LOG
+      - SERVER_IS_IN_DIAGNOSTICS_TOGGLE
+      - SERVER_OOB_IP_ALLOW
+      - SERVER_OOB_IP_DISALLOW
+      - SERVER_REGISTERED
+      - SERVER_REGISTRATION_INITIATED
+      - SERVER_REQUIRES_MANUAL_CLEANING_TOGGLE
+      - SERVER_REREGISTERED
+      - SERVER_REREGISTRATION_INITIATED
+      - SERVER_HARDWARE_RESCAN_INITIATED
+      - SERVER_PRODUCTION_REGISTERED
+      - SERVER_PRODUCTION_REGISTRATION_INITIATED
+      - SERVER_RESET_TO_FACTORY_DEFAULTS
+      - SERVER_STATUS_UPDATED
+      - SERVER_SUPPORTS_SOL_TOGGLE
+      - SERVER_SWAPPED
+      - SERVER_REGISTRATION_PROFILE_CREATED
+      - SERVER_REGISTRATION_PROFILE_DELETED
+      - SERVER_REGISTRATION_PROFILE_UPDATED
+      - SERVER_TYPE_CREATED
+      - SERVER_TYPE_UPDATED
+      - SERVER_TYPE_DELETED
+      - SERVER_TYPE_RESERVATION_CANCELLED
+      - SERVER_TYPE_RESERVATION_OWNERSHIP_CHANGED
+      - SERVER_TYPE_RESERVATION_REACTIVATED
+      - SERVER_UNPROVISION
+      - SERVER_VENDOR_FIRMWARE_VERSION_UPDATED
+      - SERVER_CLEANUP_STARTED
+      - SERVER_CLEANUP_FINISHED
+      - SERVER_CLEANUP_FAILED
+      - SERVER_VNC_CONSOLE_ENABLED
+      - SERVER_VNC_CREDENTIALS_UPDATED
+      - SHARED_DRIVE_CONNECTED_TO_CONTAINER_ARRAY
+      - SHARED_DRIVE_CONNECTED_TO_INSTANCE_GROUP
+      - SHARED_DRIVE_CREATED
+      - SHARED_DRIVE_DELETED
+      - SHARED_DRIVE_DEPLOY_STARTED
+      - SHARED_DRIVE_DEPLOYED
+      - SHARED_DRIVE_DISCONNECTED_FROM_CONTAINER_ARRAY
+      - SHARED_DRIVE_DISCONNECTED_FROM_INSTANCE_GROUP
+      - SHARED_DRIVE_EDITED
+      - SHARED_DRIVE_STARTED
+      - SHARED_DRIVE_STOPPED
+      - SHARED_DRIVE_WILL_BE_CONNECTED_TO_CONTAINER_ARRAY
+      - SHARED_DRIVE_WILL_BE_CONNECTED_TO_INSTANCE_GROUP
+      - SHARED_DRIVE_WILL_BE_DISCONNECTED_FROM_CONTAINER_ARRAY
+      - SHARED_DRIVE_WILL_BE_DISCONNECTED_FROM_INSTANCE_GROUP
+      - SNAPSHOT_CREATED
+      - SNAPSHOT_DELETED
+      - STORAGE_CREDENTIALS_UPDATED
+      - STORAGE_POOL_CREATED
+      - STORAGE_POOL_EDITED
+      - STORAGE_POOL_DELETED
+      - STORAGE_POOL_EXPERIMENTAL_SET
+      - STORAGE_POOL_IQN_CLEANED
+      - STORAGE_POOL_MAINTENANCE_SET
+      - STORAGE_POOL_PORTS_READ
+      - STORAGE_PROVISION_DEBUG
+      - SUBNET_CLEARED
+      - SUBNET_CREATED
+      - SUBNET_DELETED
+      - SUBNET_DEPLOY_STARTED
+      - SUBNET_DEPLOYED
+      - SUBNET_EDITED
+      - SUBNET_NEEDS_START
+      - SUBNET_OOB_CREATED
+      - SUBNET_OOB_DELETED
+      - SUBNET_OOB_EDITED
+      - SUBNET_POOL_CREATED
+      - SUBNET_POOL_DELETED
+      - SUBNET_STARTED
+      - SUBNET_STOPPED
+      - NETWORK_DEVICE_CONTROLLER_CREATED
+      - NETWORK_DEVICE_CONTROLLER_DELETED
+      - NETWORK_DEVICE_CONTROLLER_UPDATED
+      - NETWORK_DEVICE_CREATED
+      - NETWORK_DEVICE_CREDENTIALS_UPDATED
+      - NETWORK_DEVICE_CUSTOM_SECRET_DELETED
+      - NETWORK_DEVICE_CUSTOM_SECRET_UPDATED
+      - NETWORK_DEVICE_CUSTOM_SECRETS_DELETED
+      - NETWORK_DEVICE_DECOMMISSIONED
+      - NETWORK_DEVICE_DELETED
+      - NETWORK_DEVICE_INTERFACES_DIRTY_BIT_SET
+      - NETWORK_DEVICE_INTERFACES_ENABLE_SET
+      - NETWORK_DEVICE_NETWORK_ALLOCATED_PRIMARY_SUBNET
+      - NETWORK_DEVICE_PROVISION_VPLS_NORTH
+      - NETWORK_DEVICE_PROVISION_VPLS_TOR
+      - NETWORK_DEVICE_REPLACE
+      - NETWORK_DEVICE_REPROVISION
+      - NETWORK_DEVICE_STATUS_UPDATED
+      - NETWORK_DEVICE_RESET_TO_ONIE
+      - NETWORK_DEVICE_CONFIGURATION_DRIFT_DETECTED
+      - SYSLOG_MESSAGE_IMPORTANT_INSERTED
+      - SYSLOG_MESSAGE_INFO_INSERTED
+      - THRESHOLD_CREATED
+      - THRESHOLD_DELETED
+      - THRESHOLD_EDITED
+      - THRESHOLD_INFRASTRUCTURE_ON_DEMAND_AND_METERED_COSTS_NOTIFICATION_SENT
+      - THRESHOLD_NETWORK_TRAFFIC_NOTIFICATION_SENT
+      - USER_ACCESS_LEVEL_SET
+      - USER_API_KEY_REGENERATED
+      - USER_ARCHIVED
+      - USER_AUTHENTICATED_PASSWORD
+      - USER_AUTHENTICATION_FAILED
+      - USER_CREATED
+      - USER_CREDENTIALS_CHANGED
+      - USER_DELEGATE_ADDED
+      - USER_DELEGATE_REMOVED
+      - USER_DISABLED_2FA
+      - USER_ENABLED_2FA
+      - USER_JWT_SALT_REGENERATED
+      - USER_LOGIN_EMAIL_UPDATED_VERIFICATION_URL
+      - USER_PASSWORD_CHANGED
+      - USER_PASSWORD_REHASHED
+      - USER_PROMOTION_ADD
+      - USER_REMOVE_PROMOTION
+      - USER_SSH_KEY_CREATED
+      - USER_SSH_KEY_DELETED
+      - USER_SUSPENDED
+      - USER_UNARCHIVED
+      - USER_UNSUSPENDED
+      - USER_UNAUTHORIZED_CREATED
+      - USER_EMAIL_UPDATED
+      - USER_EMAIL_VERIFIED
+      - VM_CREATED
+      - VM_DELETED
+      - VM_POOL_ACTIVE
+      - VM_POOL_CREATED
+      - VM_POOL_CREDENTIALS_UPDATED
+      - VM_POOL_DELETED
+      - VM_POOL_SETUP_COMPLETE
+      - VM_POOL_UPDATED
+      - VM_TYPE_CREATED
+      - VM_TYPE_DELETED
+      - VM_TYPE_UPDATED
+      - VM_UPDATED
+      - VM_IMPORTED_TO_INFRASTRUCTURE
+      - VM_POOL_IMPORTED_VMS
+      - VOLUME_TEMPLATE_CREATED
+      - VOLUME_TEMPLATE_CREATED_FROM_STORAGE_POOL
+      - VOLUME_TEMPLATE_DELETED
+      - VOLUME_TEMPLATE_DELETED_FROM_STORAGE_POOL
+      - VOLUME_TEMPLATE_EXPERIMENTAL_TOGGLED
+      - VOLUME_TEMPLATE_MADE_PUBLIC
+      - VOLUME_TEMPLATE_REPLICATED
+      - VOLUME_TEMPLATE_REPLICATED_TO_ALL
+      - VRF_CREATED
+      - VRF_DELETED
+      - VRF_UPDATED
+      - SERVER_SYSLOG_MONITORING_CHANGED
+      - NETWORK_FABRIC_DEPLOY_STARTED
+      - NETWORK_FABRIC_DEPLOY_ACCEPTED
+      - NETWORK_FABRIC_DEPLOY_REJECTED
+      - NETWORK_FABRIC_LINK_RESCAN_STARTED
+      - NETWORK_FABRIC_INTERCONNECT_DEPLOY_STARTED
+      - NETWORK_FABRIC_INTERCONNECT_DEPLOY_ACCEPTED
+      - NETWORK_FABRIC_INTERCONNECT_DEPLOY_REJECTED
+      - LINK_AGGREGATION_CONFIGURATION_TEMPLATE_CREATED
+      - LINK_AGGREGATION_CONFIGURATION_TEMPLATE_DELETED
+      - LINK_AGGREGATION_CONFIGURATION_TEMPLATE_UPDATED
+      - BGP_INTERCONNECT_CONFIGURATION_TEMPLATE_CREATED
+      - BGP_INTERCONNECT_CONFIGURATION_TEMPLATE_DELETED
+      - BGP_INTERCONNECT_CONFIGURATION_TEMPLATE_UPDATED
+      - DEVICE_CONFIGURATION_TEMPLATE_CREATED
+      - DEVICE_CONFIGURATION_TEMPLATE_DELETED
+      - DEVICE_CONFIGURATION_TEMPLATE_UPDATED
+      - DEVICE_CONFIGURATION_TEMPLATE_PROFILE_CREATED
+      - DEVICE_CONFIGURATION_TEMPLATE_PROFILE_UPDATED
+      - DEVICE_CONFIGURATION_TEMPLATE_PROFILE_DELETED
+      - DEVICE_CONFIGURATION_TEMPLATE_PROFILE_BULK_ASSIGNED
+      - NETWORK_FABRIC_INTERCONNECT_DETACH_STARTED
+      - NETWORK_FABRIC_INTERCONNECT_DETACH_COMPLETE
+      - NETWORK_FABRIC_INTERCONNECT_DETACH_FAILED
+      - USER_LOGGED_OUT
+      - USER_SESSION_EXPIRED
+      - USER_BLOCKED
+      - USER_UNBLOCKED
+      - USER_2FA_FAILED
+      - USER_PASSWORD_EXPIRED
+      - USER_SESSIONS_TERMINATED
+      - SERVER_HEALTH_STATE_DEGRADED
+      - SERVER_HEALTH_STATE_IMPROVED
+      - NETWORK_DEVICE_VENDOR_UPDATED
+      - NETWORK_DEVICE_SNMP_SERVICE_ENABLED
+      - NETWORK_DEVICE_SNMP_SERVICE_DISABLED
+      - NETWORK_DEVICE_SYSLOG_SERVICE_ENABLED
+      - NETWORK_DEVICE_SYSLOG_SERVICE_DISABLED
+      - NETWORK_DEVICE_SNMP_MONITORING_ENABLED
+      - NETWORK_DEVICE_SNMP_MONITORING_DISABLED
+      - NETWORK_DEVICE_HEALTH_STATE_DEGRADED
+      - NETWORK_DEVICE_HEALTH_STATE_IMPROVED
+      - VM_POOL_HOST_HEALTH_STATE_DEGRADED
+      - VM_POOL_HOST_HEALTH_STATE_IMPROVED
+    EventLevel:
+      description: The level of the event
+      enum:
+      - info
+      - warn
+      - error
+      - debug
+      type: string
+      x-enumNames:
+      - Info
+      - Warn
+      - Error
+      - Debug
+    EventVisibility:
+      description: The visibility of the event
+      enum:
+      - private
+      - public
+      type: string
+      x-enumNames:
+      - Private
+      - Public
     Event:
       example:
-        visibility: private
-        level: info
+        visibility: ""
+        level: ""
         networkDeviceControllerId: networkDeviceControllerId
         userIdAuthenticated: userIdAuthenticated
         vmPoolId: vmPoolId
         userEmailAuthenticated: userEmailAuthenticated
-        type: type
+        type: ""
         title: title
         message: message
         httpUserAgent: httpUserAgent
@@ -76525,22 +77551,17 @@ components:
           description: The id of the user who triggered the event
           type: string
         type:
+          allOf:
+          - $ref: "#/components/schemas/EventTypes"
           description: The type of the event
-          type: string
         level:
+          allOf:
+          - $ref: "#/components/schemas/EventLevel"
           description: The level of the event
-          enum:
-          - info
-          - warn
-          - error
-          - debug
-          type: string
         visibility:
+          allOf:
+          - $ref: "#/components/schemas/EventVisibility"
           description: The visibility of the event
-          enum:
-          - private
-          - public
-          type: string
         infrastructureId:
           description: The id of the infrastructure linked to the event
           type: string
@@ -76606,13 +77627,13 @@ components:
     EventPaginatedList:
       example:
         data:
-        - visibility: private
-          level: info
+        - visibility: ""
+          level: ""
           networkDeviceControllerId: networkDeviceControllerId
           userIdAuthenticated: userIdAuthenticated
           vmPoolId: vmPoolId
           userEmailAuthenticated: userEmailAuthenticated
-          type: type
+          type: ""
           title: title
           message: message
           httpUserAgent: httpUserAgent
@@ -76632,13 +77653,13 @@ components:
           id: id
           storageId: storageId
           remoteIpAddress: remoteIpAddress
-        - visibility: private
-          level: info
+        - visibility: ""
+          level: ""
           networkDeviceControllerId: networkDeviceControllerId
           userIdAuthenticated: userIdAuthenticated
           vmPoolId: vmPoolId
           userEmailAuthenticated: userEmailAuthenticated
-          type: type
+          type: ""
           title: title
           message: message
           httpUserAgent: httpUserAgent
@@ -80810,11 +81831,17 @@ components:
       type: string
     ExtensionAsset:
       example:
+        registryUser: registryUser
+        tagRegistry: tagRegistry
+        registryPassword: registryPassword
+        digestRegistry: digestRegistry
+        label: label
+        url: url
+        hostRegistry: hostRegistry
+        assetType: ""
         namespaceRegistry: namespaceRegistry
         portRegistry: 5249.147463367192
-        tagRegistry: tagRegistry
         name: name
-        label: label
         requiredAssets:
         - requiredAssets
         - requiredAssets
@@ -80822,9 +81849,6 @@ components:
         - requiredAssets
         - requiredAssets
         repositoryRegistry: repositoryRegistry
-        url: url
-        hostRegistry: hostRegistry
-        assetType: ""
       properties:
         label:
           description: Label of the asset.
@@ -80843,25 +81867,36 @@ components:
           maxLength: 128
           type: string
         hostRegistry:
-          description: Registry host for OCI image assets.
+          description: Registry host for OCI image asset.
           maxLength: 255
           type: string
         portRegistry:
-          description: Registry port for OCI image assets.
+          description: Registry port for OCI image asset.
           maximum: 65535
           minimum: 1
           type: number
         namespaceRegistry:
-          description: Registry namespace for OCI image assets.
+          description: Namespace/path of the OCI image asset.
           maxLength: 255
           type: string
         repositoryRegistry:
-          description: Registry repository for OCI image assets.
+          description: Name of the OCI image asset.
           maxLength: 255
           type: string
         tagRegistry:
-          description: Registry tag for OCI image assets.
+          description: Tag of the OCI image asset.
           maxLength: 128
+          type: string
+        digestRegistry:
+          description: Digest of the OCI image asset.
+          maxLength: 71
+          minLength: 71
+          type: string
+        registryUser:
+          description: registry user
+          type: string
+        registryPassword:
+          description: registry password
           type: string
         requiredAssets:
           description: Required assets by this asset.
@@ -81770,11 +82805,17 @@ components:
               playbook: playbook
             label: label
         assets:
-        - namespaceRegistry: namespaceRegistry
-          portRegistry: 5249.147463367192
+        - registryUser: registryUser
           tagRegistry: tagRegistry
-          name: name
+          registryPassword: registryPassword
+          digestRegistry: digestRegistry
           label: label
+          url: url
+          hostRegistry: hostRegistry
+          assetType: ""
+          namespaceRegistry: namespaceRegistry
+          portRegistry: 5249.147463367192
+          name: name
           requiredAssets:
           - requiredAssets
           - requiredAssets
@@ -81782,14 +82823,17 @@ components:
           - requiredAssets
           - requiredAssets
           repositoryRegistry: repositoryRegistry
+        - registryUser: registryUser
+          tagRegistry: tagRegistry
+          registryPassword: registryPassword
+          digestRegistry: digestRegistry
+          label: label
           url: url
           hostRegistry: hostRegistry
           assetType: ""
-        - namespaceRegistry: namespaceRegistry
+          namespaceRegistry: namespaceRegistry
           portRegistry: 5249.147463367192
-          tagRegistry: tagRegistry
           name: name
-          label: label
           requiredAssets:
           - requiredAssets
           - requiredAssets
@@ -81797,14 +82841,17 @@ components:
           - requiredAssets
           - requiredAssets
           repositoryRegistry: repositoryRegistry
+        - registryUser: registryUser
+          tagRegistry: tagRegistry
+          registryPassword: registryPassword
+          digestRegistry: digestRegistry
+          label: label
           url: url
           hostRegistry: hostRegistry
           assetType: ""
-        - namespaceRegistry: namespaceRegistry
+          namespaceRegistry: namespaceRegistry
           portRegistry: 5249.147463367192
-          tagRegistry: tagRegistry
           name: name
-          label: label
           requiredAssets:
           - requiredAssets
           - requiredAssets
@@ -81812,14 +82859,17 @@ components:
           - requiredAssets
           - requiredAssets
           repositoryRegistry: repositoryRegistry
+        - registryUser: registryUser
+          tagRegistry: tagRegistry
+          registryPassword: registryPassword
+          digestRegistry: digestRegistry
+          label: label
           url: url
           hostRegistry: hostRegistry
           assetType: ""
-        - namespaceRegistry: namespaceRegistry
+          namespaceRegistry: namespaceRegistry
           portRegistry: 5249.147463367192
-          tagRegistry: tagRegistry
           name: name
-          label: label
           requiredAssets:
           - requiredAssets
           - requiredAssets
@@ -81827,14 +82877,17 @@ components:
           - requiredAssets
           - requiredAssets
           repositoryRegistry: repositoryRegistry
+        - registryUser: registryUser
+          tagRegistry: tagRegistry
+          registryPassword: registryPassword
+          digestRegistry: digestRegistry
+          label: label
           url: url
           hostRegistry: hostRegistry
           assetType: ""
-        - namespaceRegistry: namespaceRegistry
+          namespaceRegistry: namespaceRegistry
           portRegistry: 5249.147463367192
-          tagRegistry: tagRegistry
           name: name
-          label: label
           requiredAssets:
           - requiredAssets
           - requiredAssets
@@ -81842,9 +82895,6 @@ components:
           - requiredAssets
           - requiredAssets
           repositoryRegistry: repositoryRegistry
-          url: url
-          hostRegistry: hostRegistry
-          assetType: ""
         vendor: vendor
         infrastructure:
           instanceArrays:
@@ -82540,7 +83590,6 @@ components:
         name: My App
         icon: icon
         description: My App Description
-        isPublic: true
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -82589,11 +83638,6 @@ components:
           - workflow
           example: application
           type: string
-        isPublic:
-          default: false
-          description: Is the extension public
-          example: true
-          type: boolean
         links:
           description: Reference links
           items:
@@ -82610,7 +83654,6 @@ components:
           name: My App
           icon: icon
           description: My App Description
-          isPublic: true
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -82624,7 +83667,6 @@ components:
           name: My App
           icon: icon
           description: My App Description
-          isPublic: true
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -82661,7 +83703,6 @@ components:
         kind: application
         name: My App
         description: My App Description
-        isPublic: true
         definition:
           outputs:
           - template: template
@@ -83452,11 +84493,17 @@ components:
                 playbook: playbook
               label: label
           assets:
-          - namespaceRegistry: namespaceRegistry
-            portRegistry: 5249.147463367192
+          - registryUser: registryUser
             tagRegistry: tagRegistry
-            name: name
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
             label: label
+            url: url
+            hostRegistry: hostRegistry
+            assetType: ""
+            namespaceRegistry: namespaceRegistry
+            portRegistry: 5249.147463367192
+            name: name
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -83464,14 +84511,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -83479,14 +84529,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -83494,14 +84547,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -83509,14 +84565,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -83524,9 +84583,6 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
-            url: url
-            hostRegistry: hostRegistry
-            assetType: ""
           vendor: vendor
           infrastructure:
             instanceArrays:
@@ -84152,11 +85208,6 @@ components:
           - workflow
           example: application
           type: string
-        isPublic:
-          default: false
-          description: Is the extension public
-          example: true
-          type: boolean
         definition:
           $ref: "#/components/schemas/ExtensionDefinition"
         links:
@@ -84968,11 +86019,17 @@ components:
                 playbook: playbook
               label: label
           assets:
-          - namespaceRegistry: namespaceRegistry
-            portRegistry: 5249.147463367192
+          - registryUser: registryUser
             tagRegistry: tagRegistry
-            name: name
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
             label: label
+            url: url
+            hostRegistry: hostRegistry
+            assetType: ""
+            namespaceRegistry: namespaceRegistry
+            portRegistry: 5249.147463367192
+            name: name
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -84980,14 +86037,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -84995,14 +86055,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -85010,14 +86073,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -85025,14 +86091,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -85040,9 +86109,6 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
-            url: url
-            hostRegistry: hostRegistry
-            assetType: ""
           vendor: vendor
           infrastructure:
             instanceArrays:
@@ -86442,11 +87508,17 @@ components:
                 playbook: playbook
               label: label
           assets:
-          - namespaceRegistry: namespaceRegistry
-            portRegistry: 5249.147463367192
+          - registryUser: registryUser
             tagRegistry: tagRegistry
-            name: name
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
             label: label
+            url: url
+            hostRegistry: hostRegistry
+            assetType: ""
+            namespaceRegistry: namespaceRegistry
+            portRegistry: 5249.147463367192
+            name: name
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -86454,14 +87526,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -86469,14 +87544,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -86484,14 +87562,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -86499,14 +87580,17 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
+          - registryUser: registryUser
+            tagRegistry: tagRegistry
+            registryPassword: registryPassword
+            digestRegistry: digestRegistry
+            label: label
             url: url
             hostRegistry: hostRegistry
             assetType: ""
-          - namespaceRegistry: namespaceRegistry
+            namespaceRegistry: namespaceRegistry
             portRegistry: 5249.147463367192
-            tagRegistry: tagRegistry
             name: name
-            label: label
             requiredAssets:
             - requiredAssets
             - requiredAssets
@@ -86514,9 +87598,6 @@ components:
             - requiredAssets
             - requiredAssets
             repositoryRegistry: repositoryRegistry
-            url: url
-            hostRegistry: hostRegistry
-            assetType: ""
           vendor: vendor
           infrastructure:
             instanceArrays:
@@ -102392,7 +103473,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2026-06-23T08:31:23.347Z
+        createdTimestamp: 2026-06-24T09:20:42.759Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -102401,7 +103482,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2026-06-23T08:31:23.347Z
+        updatedTimestamp: 2026-06-24T09:20:42.759Z
         revision: "1"
       properties:
         siteId:
@@ -102418,12 +103499,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.347Z
+          example: 2026-06-24T09:20:42.759Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.347Z
+          example: 2026-06-24T09:20:42.759Z
           format: date-time
           type: string
         links:
@@ -102445,7 +103526,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-23T08:31:23.347Z
+        - createdTimestamp: 2026-06-24T09:20:42.759Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -102454,9 +103535,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-06-23T08:31:23.347Z
+          updatedTimestamp: 2026-06-24T09:20:42.759Z
           revision: "1"
-        - createdTimestamp: 2026-06-23T08:31:23.347Z
+        - createdTimestamp: 2026-06-24T09:20:42.759Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -102465,7 +103546,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-06-23T08:31:23.347Z
+          updatedTimestamp: 2026-06-24T09:20:42.759Z
           revision: "1"
         meta: ""
         links: ""
@@ -103085,7 +104166,7 @@ components:
     NetworkFabric:
       example:
         transportId: 123
-        createdTimestamp: 2026-06-23T08:31:23.201Z
+        createdTimestamp: 2026-06-24T09:20:42.614Z
         externalId: DC1-VXLAN
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
@@ -103128,7 +104209,7 @@ components:
           configurationPreview: configurationPreview
           networkDeviceConfigurationTemplateType: link_aggregation
           networkFabricLinkId: 101
-        updatedTimestamp: 2026-06-23T08:31:23.201Z
+        updatedTimestamp: 2026-06-24T09:20:42.614Z
         deployId: 123
         customVariables: "{}"
         revision: "1"
@@ -103365,12 +104446,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.201Z
+          example: 2026-06-24T09:20:42.614Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.201Z
+          example: 2026-06-24T09:20:42.614Z
           format: date-time
           type: string
         links:
@@ -103425,7 +104506,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-06-23T08:31:23.201Z
+          createdTimestamp: 2026-06-24T09:20:42.614Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -103468,7 +104549,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-23T08:31:23.201Z
+          updatedTimestamp: 2026-06-24T09:20:42.614Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -103675,7 +104756,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-06-23T08:31:23.201Z
+          createdTimestamp: 2026-06-24T09:20:42.614Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -103718,7 +104799,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-23T08:31:23.201Z
+          updatedTimestamp: 2026-06-24T09:20:42.614Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -104029,7 +105110,7 @@ components:
       example:
         interconnectType: dci-evpn
         transportId: 65534
-        createdTimestamp: 2026-06-23T08:31:23.357Z
+        createdTimestamp: 2026-06-24T09:20:42.77Z
         description: Data center interconnect using EVPN
         label: dci-evpn-interconnect-01
         deployPreview:
@@ -104067,7 +105148,7 @@ components:
           - neighborTemplateActivate
           - neighborTemplateActivate
           networkInterconnectId: 101
-        updatedTimestamp: 2026-06-23T08:31:23.357Z
+        updatedTimestamp: 2026-06-24T09:20:42.77Z
         deployId: 123
         revision: "1"
         name: Primary DCI EVPN Interconnect
@@ -104125,12 +105206,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.357Z
+          example: 2026-06-24T09:20:42.77Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.357Z
+          example: 2026-06-24T09:20:42.77Z
           format: date-time
           type: string
         links:
@@ -104169,7 +105250,7 @@ components:
         data:
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-06-23T08:31:23.357Z
+          createdTimestamp: 2026-06-24T09:20:42.77Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -104207,7 +105288,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-06-23T08:31:23.357Z
+          updatedTimestamp: 2026-06-24T09:20:42.77Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -104221,7 +105302,7 @@ components:
           status: draft
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-06-23T08:31:23.357Z
+          createdTimestamp: 2026-06-24T09:20:42.77Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -104259,7 +105340,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-06-23T08:31:23.357Z
+          updatedTimestamp: 2026-06-24T09:20:42.77Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -104303,7 +105384,7 @@ components:
       example:
         interconnectId: 2
         fabricId: 2
-        createdTimestamp: 2026-06-23T08:31:23.36Z
+        createdTimestamp: 2026-06-24T09:20:42.773Z
         networkEquipmentId: 1
         links:
         - rel: self
@@ -104311,7 +105392,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-06-23T08:31:23.36Z
+        updatedTimestamp: 2026-06-24T09:20:42.773Z
         revision: "1"
         status: active
       properties:
@@ -104321,12 +105402,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.36Z
+          example: 2026-06-24T09:20:42.773Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.36Z
+          example: 2026-06-24T09:20:42.773Z
           format: date-time
           type: string
         links:
@@ -104702,7 +105783,7 @@ components:
         data:
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-06-23T08:31:23.36Z
+          createdTimestamp: 2026-06-24T09:20:42.773Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -104710,12 +105791,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-23T08:31:23.36Z
+          updatedTimestamp: 2026-06-24T09:20:42.773Z
           revision: "1"
           status: active
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-06-23T08:31:23.36Z
+          createdTimestamp: 2026-06-24T09:20:42.773Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -104723,7 +105804,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-23T08:31:23.36Z
+          updatedTimestamp: 2026-06-24T09:20:42.773Z
           revision: "1"
           status: active
         meta: ""
@@ -104772,7 +105853,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-06-23T08:31:23.201Z
+          createdTimestamp: 2026-06-24T09:20:42.614Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -104815,7 +105896,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-23T08:31:23.201Z
+          updatedTimestamp: 2026-06-24T09:20:42.614Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -105022,7 +106103,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-06-23T08:31:23.201Z
+          createdTimestamp: 2026-06-24T09:20:42.614Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -105065,7 +106146,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-23T08:31:23.201Z
+          updatedTimestamp: 2026-06-24T09:20:42.614Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -105459,8 +106540,8 @@ components:
       type: object
     NetworkFabricBGPSession:
       example:
-        createdTimestamp: 2026-06-23T08:31:23.205Z
-        updatedTimestamp: 2026-06-23T08:31:23.205Z
+        createdTimestamp: 2026-06-24T09:20:42.618Z
+        updatedTimestamp: 2026-06-24T09:20:42.618Z
         revision: "1"
         networkFabricLinkAggregationId: 1
         linkAggregation: ""
@@ -105480,12 +106561,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.205Z
+          example: 2026-06-24T09:20:42.618Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.205Z
+          example: 2026-06-24T09:20:42.618Z
           format: date-time
           type: string
         revision:
@@ -105566,12 +106647,12 @@ components:
       type: object
     NetworkFabricLinkAggregation:
       example:
-        createdTimestamp: 2026-06-23T08:31:23.21Z
+        createdTimestamp: 2026-06-24T09:20:42.623Z
         networkFabricLinks:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-23T08:31:23.207Z
+          createdTimestamp: 2026-06-24T09:20:42.619Z
           source: lldp
-          updatedTimestamp: 2026-06-23T08:31:23.207Z
+          updatedTimestamp: 2026-06-24T09:20:42.619Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -105590,9 +106671,9 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-23T08:31:23.207Z
+          createdTimestamp: 2026-06-24T09:20:42.619Z
           source: lldp
-          updatedTimestamp: 2026-06-23T08:31:23.207Z
+          updatedTimestamp: 2026-06-24T09:20:42.619Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -105612,7 +106693,7 @@ components:
           status: draft
         mlagDomainIdentifier: MLAG-Domain-1 or 123
         type: lag
-        updatedTimestamp: 2026-06-23T08:31:23.21Z
+        updatedTimestamp: 2026-06-24T09:20:42.623Z
         revision: "1"
         networkFabricLinkConfigs:
         - networkFabricLink: ""
@@ -105638,12 +106719,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.21Z
+          example: 2026-06-24T09:20:42.623Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.21Z
+          example: 2026-06-24T09:20:42.623Z
           format: date-time
           type: string
         revision:
@@ -105757,9 +106838,9 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2026-06-23T08:31:23.207Z
+        createdTimestamp: 2026-06-24T09:20:42.619Z
         source: lldp
-        updatedTimestamp: 2026-06-23T08:31:23.207Z
+        updatedTimestamp: 2026-06-24T09:20:42.619Z
         customVariables: "{}"
         revision: "1"
         networkFabricLinkAggregationId: 1
@@ -105780,12 +106861,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.207Z
+          example: 2026-06-24T09:20:42.619Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.207Z
+          example: 2026-06-24T09:20:42.619Z
           format: date-time
           type: string
         revision:
@@ -105882,9 +106963,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-23T08:31:23.207Z
+          createdTimestamp: 2026-06-24T09:20:42.619Z
           source: lldp
-          updatedTimestamp: 2026-06-23T08:31:23.207Z
+          updatedTimestamp: 2026-06-24T09:20:42.619Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -105903,9 +106984,9 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-23T08:31:23.207Z
+          createdTimestamp: 2026-06-24T09:20:42.619Z
           source: lldp
-          updatedTimestamp: 2026-06-23T08:31:23.207Z
+          updatedTimestamp: 2026-06-24T09:20:42.619Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -106012,12 +107093,12 @@ components:
     NetworkFabricLinkAggregationPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-23T08:31:23.21Z
+        - createdTimestamp: 2026-06-24T09:20:42.623Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-23T08:31:23.207Z
+            createdTimestamp: 2026-06-24T09:20:42.619Z
             source: lldp
-            updatedTimestamp: 2026-06-23T08:31:23.207Z
+            updatedTimestamp: 2026-06-24T09:20:42.619Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -106036,9 +107117,9 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-23T08:31:23.207Z
+            createdTimestamp: 2026-06-24T09:20:42.619Z
             source: lldp
-            updatedTimestamp: 2026-06-23T08:31:23.207Z
+            updatedTimestamp: 2026-06-24T09:20:42.619Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -106058,7 +107139,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-06-23T08:31:23.21Z
+          updatedTimestamp: 2026-06-24T09:20:42.623Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -106081,12 +107162,12 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           status: draft
-        - createdTimestamp: 2026-06-23T08:31:23.21Z
+        - createdTimestamp: 2026-06-24T09:20:42.623Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-23T08:31:23.207Z
+            createdTimestamp: 2026-06-24T09:20:42.619Z
             source: lldp
-            updatedTimestamp: 2026-06-23T08:31:23.207Z
+            updatedTimestamp: 2026-06-24T09:20:42.619Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -106105,9 +107186,9 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-23T08:31:23.207Z
+            createdTimestamp: 2026-06-24T09:20:42.619Z
             source: lldp
-            updatedTimestamp: 2026-06-23T08:31:23.207Z
+            updatedTimestamp: 2026-06-24T09:20:42.619Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -106127,7 +107208,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-06-23T08:31:23.21Z
+          updatedTimestamp: 2026-06-24T09:20:42.623Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -106231,8 +107312,8 @@ components:
     NetworkFabricBGPSessionPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-23T08:31:23.205Z
-          updatedTimestamp: 2026-06-23T08:31:23.205Z
+        - createdTimestamp: 2026-06-24T09:20:42.618Z
+          updatedTimestamp: 2026-06-24T09:20:42.618Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -106249,8 +107330,8 @@ components:
           bgpNumbering: inherited
           networkFabricLinkId: 1
           status: draft
-        - createdTimestamp: 2026-06-23T08:31:23.205Z
-          updatedTimestamp: 2026-06-23T08:31:23.205Z
+        - createdTimestamp: 2026-06-24T09:20:42.618Z
+          updatedTimestamp: 2026-06-24T09:20:42.618Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -109539,11 +110620,326 @@ components:
       - data
       - meta
       type: object
+    MetalsoftPermissions:
+      description: List of permissions assigned to the role
+      enum:
+      - admin_maintenance_write
+      - afc_read
+      - afc_write
+      - ai_read
+      - authentication_providers_read
+      - authentication_providers_write
+      - buckets_read
+      - buckets_write
+      - bucket_credentials_read
+      - cleanup_policies_read
+      - cleanup_policies_write
+      - cluster_read
+      - cluster_write
+      - containers_read
+      - containers_write
+      - container_instances_read
+      - container_instances_write
+      - container_instance_credentials_read
+      - container_instance_groups_read
+      - container_instance_groups_write
+      - container_types_read
+      - container_types_write
+      - cron_jobs_read
+      - cron_jobs_write
+      - custom_iso_read
+      - custom_iso_write
+      - device_auth_providers_read
+      - device_auth_providers_write
+      - device_auth_provider_credentials_read
+      - dns_read
+      - dns_write
+      - drives_read
+      - drives_write
+      - emails_write
+      - email_templates_read
+      - email_templates_write
+      - endpoint_instances_read
+      - endpoint_instances_write
+      - endpoint_instance_groups_read
+      - endpoint_instance_groups_write
+      - endpoint_read
+      - endpoint_write
+      - events_read
+      - events_write
+      - extensions_read
+      - extensions_write
+      - extension_instances_read
+      - extension_instances_write
+      - extension_instance_credentials_read
+      - external_connection_read
+      - external_connection_write
+      - external_system_read
+      - external_system_write
+      - file_shares_read
+      - file_shares_write
+      - firmware_baselines_read
+      - firmware_baselines_write
+      - firmware_upgrade_read
+      - firmware_upgrade_write
+      - global_configurations_read
+      - global_configurations_write
+      - impersonate
+      - infrastructures_read
+      - infrastructures_write
+      - job_queue_read
+      - job_queue_write
+      - licenses_read
+      - licenses_write
+      - license_admin
+      - logical_networks_read
+      - logical_networks_write
+      - logical_network_interconnect_read
+      - logical_network_interconnect_write
+      - maintenance_write
+      - network_device_configuration_templates_read
+      - network_device_configuration_templates_write
+      - network_device_credentials_read
+      - network_device_default_secrets_read
+      - network_device_default_secrets_write
+      - network_endpoint_groups_read
+      - network_endpoint_groups_write
+      - network_endpoint_group_with_logical_networks_read
+      - network_endpoint_group_with_logical_networks_write
+      - network_fabrics_read
+      - network_fabrics_write
+      - network_fabric_interconnects_read
+      - network_fabric_interconnects_write
+      - network_profiles_read
+      - network_profiles_write
+      - os_template_credentials_read
+      - resource_pools_read
+      - resource_pools_write
+      - resource_pool_user_access_read
+      - resource_pool_user_access_write
+      - roles_assign
+      - roles_read
+      - roles_write
+      - route_domain_read
+      - route_domain_write
+      - servers_read
+      - servers_write
+      - server_console_access
+      - server_credentials_read
+      - server_default_credentials_read
+      - server_default_credentials_write
+      - server_instances_read
+      - server_instances_write
+      - server_instance_credentials_read
+      - server_instance_groups_read
+      - server_instance_groups_write
+      - server_registration_profiles_read
+      - server_registration_profiles_write
+      - server_types_read
+      - server_types_write
+      - server_type_utilization_report_read
+      - sites_read
+      - sites_write
+      - site_read
+      - site_write
+      - storage_credentials_read
+      - storage_read
+      - storage_write
+      - subnets_read
+      - subnets_write
+      - subscriptions_read
+      - subscriptions_write
+      - switches_read
+      - switches_write
+      - templates_admin
+      - templates_read
+      - templates_write
+      - users_2fa_disable
+      - users_and_permissions_write
+      - users_read
+      - users_write
+      - user_password_write
+      - utilization_reports_read
+      - variables_and_secrets_read
+      - variables_and_secrets_write
+      - vms_read
+      - vms_write
+      - vm_instances_read
+      - vm_instances_write
+      - vm_instance_credentials_read
+      - vm_instance_groups_read
+      - vm_instance_groups_write
+      - vm_pools_read
+      - vm_pools_write
+      - vm_pool_credentials_read
+      - vm_profiles_read
+      - vm_profiles_write
+      - vm_types_read
+      - vm_types_write
+      - workflows_read
+      - workflows_write
+      type: string
+      x-enumNames:
+      - ADMIN_MAINTENANCE_WRITE
+      - AFC_READ
+      - AFC_WRITE
+      - AI_READ
+      - AUTHENTICATION_PROVIDERS_READ
+      - AUTHENTICATION_PROVIDERS_WRITE
+      - BUCKETS_READ
+      - BUCKETS_WRITE
+      - BUCKET_CREDENTIALS_READ
+      - CLEANUP_POLICIES_READ
+      - CLEANUP_POLICIES_WRITE
+      - CLUSTER_READ
+      - CLUSTER_WRITE
+      - CONTAINERS_READ
+      - CONTAINERS_WRITE
+      - CONTAINER_INSTANCES_READ
+      - CONTAINER_INSTANCES_WRITE
+      - CONTAINER_INSTANCE_CREDENTIALS_READ
+      - CONTAINER_INSTANCE_GROUPS_READ
+      - CONTAINER_INSTANCE_GROUPS_WRITE
+      - CONTAINER_TYPES_READ
+      - CONTAINER_TYPES_WRITE
+      - CRON_JOBS_READ
+      - CRON_JOBS_WRITE
+      - CUSTOM_ISO_READ
+      - CUSTOM_ISO_WRITE
+      - DEVICE_AUTH_PROVIDERS_READ
+      - DEVICE_AUTH_PROVIDERS_WRITE
+      - DEVICE_AUTH_PROVIDER_CREDENTIALS_READ
+      - DNS_READ
+      - DNS_WRITE
+      - DRIVES_READ
+      - DRIVES_WRITE
+      - EMAILS_WRITE
+      - EMAIL_TEMPLATES_READ
+      - EMAIL_TEMPLATES_WRITE
+      - ENDPOINT_INSTANCES_READ
+      - ENDPOINT_INSTANCES_WRITE
+      - ENDPOINT_INSTANCE_GROUPS_READ
+      - ENDPOINT_INSTANCE_GROUPS_WRITE
+      - ENDPOINT_READ
+      - ENDPOINT_WRITE
+      - EVENTS_READ
+      - EVENTS_WRITE
+      - EXTENSIONS_READ
+      - EXTENSIONS_WRITE
+      - EXTENSION_INSTANCES_READ
+      - EXTENSION_INSTANCES_WRITE
+      - EXTENSION_INSTANCE_CREDENTIALS_READ
+      - EXTERNAL_CONNECTION_READ
+      - EXTERNAL_CONNECTION_WRITE
+      - EXTERNAL_SYSTEM_READ
+      - EXTERNAL_SYSTEM_WRITE
+      - FILE_SHARES_READ
+      - FILE_SHARES_WRITE
+      - FIRMWARE_BASELINES_READ
+      - FIRMWARE_BASELINES_WRITE
+      - FIRMWARE_UPGRADE_READ
+      - FIRMWARE_UPGRADE_WRITE
+      - GLOBAL_CONFIGURATIONS_READ
+      - GLOBAL_CONFIGURATIONS_WRITE
+      - IMPERSONATE
+      - INFRASTRUCTURES_READ
+      - INFRASTRUCTURES_WRITE
+      - JOB_QUEUE_READ
+      - JOB_QUEUE_WRITE
+      - LICENSES_READ
+      - LICENSES_WRITE
+      - LICENSE_ADMIN
+      - LOGICAL_NETWORKS_READ
+      - LOGICAL_NETWORKS_WRITE
+      - LOGICAL_NETWORK_INTERCONNECT_READ
+      - LOGICAL_NETWORK_INTERCONNECT_WRITE
+      - MAINTENANCE_WRITE
+      - NETWORK_DEVICE_CONFIGURATION_TEMPLATES_READ
+      - NETWORK_DEVICE_CONFIGURATION_TEMPLATES_WRITE
+      - NETWORK_DEVICE_CREDENTIALS_READ
+      - NETWORK_DEVICE_DEFAULT_SECRETS_READ
+      - NETWORK_DEVICE_DEFAULT_SECRETS_WRITE
+      - NETWORK_ENDPOINT_GROUPS_READ
+      - NETWORK_ENDPOINT_GROUPS_WRITE
+      - NETWORK_ENDPOINT_GROUP_WITH_LOGICAL_NETWORKS_READ
+      - NETWORK_ENDPOINT_GROUP_WITH_LOGICAL_NETWORKS_WRITE
+      - NETWORK_FABRICS_READ
+      - NETWORK_FABRICS_WRITE
+      - NETWORK_FABRIC_INTERCONNECTS_READ
+      - NETWORK_FABRIC_INTERCONNECTS_WRITE
+      - NETWORK_PROFILES_READ
+      - NETWORK_PROFILES_WRITE
+      - OS_TEMPLATE_CREDENTIALS_READ
+      - RESOURCE_POOLS_READ
+      - RESOURCE_POOLS_WRITE
+      - RESOURCE_POOL_USER_ACCESS_READ
+      - RESOURCE_POOL_USER_ACCESS_WRITE
+      - ROLES_ASSIGN
+      - ROLES_READ
+      - ROLES_WRITE
+      - ROUTE_DOMAIN_READ
+      - ROUTE_DOMAIN_WRITE
+      - SERVERS_READ
+      - SERVERS_WRITE
+      - SERVER_CONSOLE_ACCESS
+      - SERVER_CREDENTIALS_READ
+      - SERVER_DEFAULT_CREDENTIALS_READ
+      - SERVER_DEFAULT_CREDENTIALS_WRITE
+      - SERVER_INSTANCES_READ
+      - SERVER_INSTANCES_WRITE
+      - SERVER_INSTANCE_CREDENTIALS_READ
+      - SERVER_INSTANCE_GROUPS_READ
+      - SERVER_INSTANCE_GROUPS_WRITE
+      - SERVER_REGISTRATION_PROFILES_READ
+      - SERVER_REGISTRATION_PROFILES_WRITE
+      - SERVER_TYPES_READ
+      - SERVER_TYPES_WRITE
+      - SERVER_TYPE_UTILIZATION_REPORT_READ
+      - SITES_READ
+      - SITES_WRITE
+      - SITE_READ
+      - SITE_WRITE
+      - STORAGE_CREDENTIALS_READ
+      - STORAGE_READ
+      - STORAGE_WRITE
+      - SUBNETS_READ
+      - SUBNETS_WRITE
+      - SUBSCRIPTIONS_READ
+      - SUBSCRIPTIONS_WRITE
+      - SWITCHES_READ
+      - SWITCHES_WRITE
+      - TEMPLATES_ADMIN
+      - TEMPLATES_READ
+      - TEMPLATES_WRITE
+      - USERS_2FA_DISABLE
+      - USERS_AND_PERMISSIONS_WRITE
+      - USERS_READ
+      - USERS_WRITE
+      - USER_PASSWORD_WRITE
+      - UTILIZATION_REPORTS_READ
+      - VARIABLES_AND_SECRETS_READ
+      - VARIABLES_AND_SECRETS_WRITE
+      - VMS_READ
+      - VMS_WRITE
+      - VM_INSTANCES_READ
+      - VM_INSTANCES_WRITE
+      - VM_INSTANCE_CREDENTIALS_READ
+      - VM_INSTANCE_GROUPS_READ
+      - VM_INSTANCE_GROUPS_WRITE
+      - VM_POOLS_READ
+      - VM_POOLS_WRITE
+      - VM_POOL_CREDENTIALS_READ
+      - VM_PROFILES_READ
+      - VM_PROFILES_WRITE
+      - VM_TYPES_READ
+      - VM_TYPES_WRITE
+      - WORKFLOWS_READ
+      - WORKFLOWS_WRITE
     CreateRole:
       example:
         quotaProfileId: default
         permissions:
-        - vm_instances_read
+        - infrastructures_read
         - endpoint_write
         description: description
         label: label
@@ -109557,10 +110953,10 @@ components:
         permissions:
           description: List of permissions assigned to the role
           example:
-          - vm_instances_read
+          - infrastructures_read
           - endpoint_write
           items:
-            type: string
+            $ref: "#/components/schemas/MetalsoftPermissions"
           type: array
         quotaProfileId:
           description: Quota profile assigned to this role
@@ -109608,7 +111004,7 @@ components:
           - infrastructures_read
           - endpoint_write
           items:
-            type: string
+            $ref: "#/components/schemas/MetalsoftPermissions"
           type: array
         quotaProfileId:
           description: Quota profile assigned to this role
@@ -109675,8 +111071,8 @@ components:
       example:
         quotaProfileId: default
         permissions:
-        - ai_read
-        - vm_instances_read
+        - infrastructures_read
+        - endpoint_write
         description: description
         label: label
       properties:
@@ -109692,10 +111088,10 @@ components:
           description: List of permissions assigned to the role. Omit to keep the
             current value. Cannot be changed on built-in roles.
           example:
-          - ai_read
-          - vm_instances_read
+          - infrastructures_read
+          - endpoint_write
           items:
-            type: string
+            $ref: "#/components/schemas/MetalsoftPermissions"
           type: array
         quotaProfileId:
           description: Quota profile assigned to this role
@@ -111363,7 +112759,7 @@ components:
       example:
         settings: ""
         isDefault: true
-        createdTimestamp: 2026-06-23T08:31:23.776Z
+        createdTimestamp: 2026-06-24T09:20:43.178Z
         name: name
         links:
         - rel: self
@@ -111371,17 +112767,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0
-        updatedTimestamp: 2026-06-23T08:31:23.776Z
+        updatedTimestamp: 2026-06-24T09:20:43.178Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.776Z
+          example: 2026-06-24T09:20:43.178Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.776Z
+          example: 2026-06-24T09:20:43.178Z
           format: date-time
           type: string
         revision:
@@ -111422,7 +112818,7 @@ components:
         data:
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-06-23T08:31:23.776Z
+          createdTimestamp: 2026-06-24T09:20:43.178Z
           name: name
           links:
           - rel: self
@@ -111430,11 +112826,11 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0
-          updatedTimestamp: 2026-06-23T08:31:23.776Z
+          updatedTimestamp: 2026-06-24T09:20:43.178Z
           revision: "1"
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-06-23T08:31:23.776Z
+          createdTimestamp: 2026-06-24T09:20:43.178Z
           name: name
           links:
           - rel: self
@@ -111442,7 +112838,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0
-          updatedTimestamp: 2026-06-23T08:31:23.776Z
+          updatedTimestamp: 2026-06-24T09:20:43.178Z
           revision: "1"
         meta: ""
         links: ""
@@ -112944,10 +114340,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2026-06-23T08:31:23.351Z
+        createdTimestamp: 2026-06-24T09:20:42.764Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2026-06-23T08:31:23.351Z
+        updatedTimestamp: 2026-06-24T09:20:42.764Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -113021,12 +114417,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.351Z
+          example: 2026-06-24T09:20:42.764Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.351Z
+          example: 2026-06-24T09:20:42.764Z
           format: date-time
           type: string
         links:
@@ -119773,7 +121169,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2026-06-23T08:31:23.342Z
+        createdTimestamp: 2026-06-24T09:20:42.754Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -119781,7 +121177,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-06-23T08:31:23.342Z
+        updatedTimestamp: 2026-06-24T09:20:42.754Z
         revision: "1"
       properties:
         id:
@@ -119813,12 +121209,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.342Z
+          example: 2026-06-24T09:20:42.754Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.342Z
+          example: 2026-06-24T09:20:42.754Z
           format: date-time
           type: string
         links:
@@ -119866,7 +121262,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2026-06-23T08:31:23.344Z
+        createdTimestamp: 2026-06-24T09:20:42.756Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -119877,7 +121273,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2026-06-23T08:31:23.344Z
+        updatedTimestamp: 2026-06-24T09:20:42.756Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -119912,12 +121308,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-23T08:31:23.344Z
+          example: 2026-06-24T09:20:42.756Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-23T08:31:23.344Z
+          example: 2026-06-24T09:20:42.756Z
           format: date-time
           type: string
         allocationInfo:
@@ -119941,7 +121337,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-23T08:31:23.344Z
+        - createdTimestamp: 2026-06-24T09:20:42.756Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -119952,10 +121348,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-06-23T08:31:23.344Z
+          updatedTimestamp: 2026-06-24T09:20:42.756Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2026-06-23T08:31:23.344Z
+        - createdTimestamp: 2026-06-24T09:20:42.756Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -119966,7 +121362,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-06-23T08:31:23.344Z
+          updatedTimestamp: 2026-06-24T09:20:42.756Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -120181,7 +121577,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-06-23T08:31:23.342Z
+          createdTimestamp: 2026-06-24T09:20:42.754Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -120189,12 +121585,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-23T08:31:23.342Z
+          updatedTimestamp: 2026-06-24T09:20:42.754Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-06-23T08:31:23.342Z
+          createdTimestamp: 2026-06-24T09:20:42.754Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -120202,7 +121598,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-23T08:31:23.342Z
+          updatedTimestamp: 2026-06-24T09:20:42.754Z
           revision: "1"
         meta: ""
         links: ""
@@ -124253,7 +125649,7 @@ components:
           - infrastructures_read
           - endpoint_write
           items:
-            type: string
+            $ref: "#/components/schemas/MetalsoftPermissions"
           type: array
       required:
       - permissions

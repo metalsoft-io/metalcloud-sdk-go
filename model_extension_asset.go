@@ -29,16 +29,22 @@ type ExtensionAsset struct {
 	AssetType ExtensionAssetType `json:"assetType"`
 	// URL of the asset. Required for AnsibleBundle assets.
 	Url *string `json:"url,omitempty"`
-	// Registry host for OCI image assets.
+	// Registry host for OCI image asset.
 	HostRegistry *string `json:"hostRegistry,omitempty"`
-	// Registry port for OCI image assets.
+	// Registry port for OCI image asset.
 	PortRegistry *float32 `json:"portRegistry,omitempty"`
-	// Registry namespace for OCI image assets.
+	// Namespace/path of the OCI image asset.
 	NamespaceRegistry *string `json:"namespaceRegistry,omitempty"`
-	// Registry repository for OCI image assets.
+	// Name of the OCI image asset.
 	RepositoryRegistry *string `json:"repositoryRegistry,omitempty"`
-	// Registry tag for OCI image assets.
+	// Tag of the OCI image asset.
 	TagRegistry *string `json:"tagRegistry,omitempty"`
+	// Digest of the OCI image asset.
+	DigestRegistry *string `json:"digestRegistry,omitempty"`
+	// registry user
+	RegistryUser *string `json:"registryUser,omitempty"`
+	// registry password
+	RegistryPassword *string `json:"registryPassword,omitempty"`
 	// Required assets by this asset.
 	RequiredAssets []string `json:"requiredAssets,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -330,6 +336,102 @@ func (o *ExtensionAsset) SetTagRegistry(v string) {
 	o.TagRegistry = &v
 }
 
+// GetDigestRegistry returns the DigestRegistry field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetDigestRegistry() string {
+	if o == nil || IsNil(o.DigestRegistry) {
+		var ret string
+		return ret
+	}
+	return *o.DigestRegistry
+}
+
+// GetDigestRegistryOk returns a tuple with the DigestRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetDigestRegistryOk() (*string, bool) {
+	if o == nil || IsNil(o.DigestRegistry) {
+		return nil, false
+	}
+	return o.DigestRegistry, true
+}
+
+// HasDigestRegistry returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasDigestRegistry() bool {
+	if o != nil && !IsNil(o.DigestRegistry) {
+		return true
+	}
+
+	return false
+}
+
+// SetDigestRegistry gets a reference to the given string and assigns it to the DigestRegistry field.
+func (o *ExtensionAsset) SetDigestRegistry(v string) {
+	o.DigestRegistry = &v
+}
+
+// GetRegistryUser returns the RegistryUser field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetRegistryUser() string {
+	if o == nil || IsNil(o.RegistryUser) {
+		var ret string
+		return ret
+	}
+	return *o.RegistryUser
+}
+
+// GetRegistryUserOk returns a tuple with the RegistryUser field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetRegistryUserOk() (*string, bool) {
+	if o == nil || IsNil(o.RegistryUser) {
+		return nil, false
+	}
+	return o.RegistryUser, true
+}
+
+// HasRegistryUser returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasRegistryUser() bool {
+	if o != nil && !IsNil(o.RegistryUser) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistryUser gets a reference to the given string and assigns it to the RegistryUser field.
+func (o *ExtensionAsset) SetRegistryUser(v string) {
+	o.RegistryUser = &v
+}
+
+// GetRegistryPassword returns the RegistryPassword field value if set, zero value otherwise.
+func (o *ExtensionAsset) GetRegistryPassword() string {
+	if o == nil || IsNil(o.RegistryPassword) {
+		var ret string
+		return ret
+	}
+	return *o.RegistryPassword
+}
+
+// GetRegistryPasswordOk returns a tuple with the RegistryPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionAsset) GetRegistryPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.RegistryPassword) {
+		return nil, false
+	}
+	return o.RegistryPassword, true
+}
+
+// HasRegistryPassword returns a boolean if a field has been set.
+func (o *ExtensionAsset) HasRegistryPassword() bool {
+	if o != nil && !IsNil(o.RegistryPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistryPassword gets a reference to the given string and assigns it to the RegistryPassword field.
+func (o *ExtensionAsset) SetRegistryPassword(v string) {
+	o.RegistryPassword = &v
+}
+
 // GetRequiredAssets returns the RequiredAssets field value if set, zero value otherwise.
 func (o *ExtensionAsset) GetRequiredAssets() []string {
 	if o == nil || IsNil(o.RequiredAssets) {
@@ -393,6 +495,15 @@ func (o ExtensionAsset) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TagRegistry) {
 		toSerialize["tagRegistry"] = o.TagRegistry
 	}
+	if !IsNil(o.DigestRegistry) {
+		toSerialize["digestRegistry"] = o.DigestRegistry
+	}
+	if !IsNil(o.RegistryUser) {
+		toSerialize["registryUser"] = o.RegistryUser
+	}
+	if !IsNil(o.RegistryPassword) {
+		toSerialize["registryPassword"] = o.RegistryPassword
+	}
 	if !IsNil(o.RequiredAssets) {
 		toSerialize["requiredAssets"] = o.RequiredAssets
 	}
@@ -450,6 +561,9 @@ func (o *ExtensionAsset) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "namespaceRegistry")
 		delete(additionalProperties, "repositoryRegistry")
 		delete(additionalProperties, "tagRegistry")
+		delete(additionalProperties, "digestRegistry")
+		delete(additionalProperties, "registryUser")
+		delete(additionalProperties, "registryPassword")
 		delete(additionalProperties, "requiredAssets")
 		o.AdditionalProperties = additionalProperties
 	}

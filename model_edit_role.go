@@ -25,7 +25,7 @@ type EditRole struct {
 	// Role description. Omit to keep the current value. Cannot be changed on built-in roles.
 	Description *string `json:"description,omitempty"`
 	// List of permissions assigned to the role. Omit to keep the current value. Cannot be changed on built-in roles.
-	Permissions []string `json:"permissions,omitempty"`
+	Permissions []MetalsoftPermissions `json:"permissions,omitempty"`
 	// Quota profile assigned to this role
 	QuotaProfileId *string `json:"quotaProfileId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -115,9 +115,9 @@ func (o *EditRole) SetDescription(v string) {
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *EditRole) GetPermissions() []string {
+func (o *EditRole) GetPermissions() []MetalsoftPermissions {
 	if o == nil || IsNil(o.Permissions) {
-		var ret []string
+		var ret []MetalsoftPermissions
 		return ret
 	}
 	return o.Permissions
@@ -125,7 +125,7 @@ func (o *EditRole) GetPermissions() []string {
 
 // GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EditRole) GetPermissionsOk() ([]string, bool) {
+func (o *EditRole) GetPermissionsOk() ([]MetalsoftPermissions, bool) {
 	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
@@ -141,8 +141,8 @@ func (o *EditRole) HasPermissions() bool {
 	return false
 }
 
-// SetPermissions gets a reference to the given []string and assigns it to the Permissions field.
-func (o *EditRole) SetPermissions(v []string) {
+// SetPermissions gets a reference to the given []MetalsoftPermissions and assigns it to the Permissions field.
+func (o *EditRole) SetPermissions(v []MetalsoftPermissions) {
 	o.Permissions = v
 }
 

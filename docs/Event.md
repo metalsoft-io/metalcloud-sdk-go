@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The id of the event | 
 **UserIdAuthenticated** | Pointer to **string** | The id of the user who triggered the event | [optional] 
-**Type** | **string** | The type of the event | 
-**Level** | **string** | The level of the event | 
-**Visibility** | **string** | The visibility of the event | 
+**Type** | [**EventTypes**](EventTypes.md) | The type of the event | 
+**Level** | [**EventLevel**](EventLevel.md) | The level of the event | 
+**Visibility** | [**EventVisibility**](EventVisibility.md) | The visibility of the event | 
 **InfrastructureId** | Pointer to **string** | The id of the infrastructure linked to the event | [optional] 
 **UserId** | Pointer to **string** | The id of the user linked to the event | [optional] 
 **ServerId** | Pointer to **string** | The id of the server linked to the event | [optional] 
@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewEvent
 
-`func NewEvent(id string, type_ string, level string, visibility string, title string, message string, occurredTimestamp string, ) *Event`
+`func NewEvent(id string, type_ EventTypes, level EventLevel, visibility EventVisibility, title string, message string, occurredTimestamp string, ) *Event`
 
 NewEvent instantiates a new Event object
 This constructor will assign default values to properties that have it defined,
@@ -93,60 +93,60 @@ HasUserIdAuthenticated returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Event) GetType() string`
+`func (o *Event) GetType() EventTypes`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Event) GetTypeOk() (*string, bool)`
+`func (o *Event) GetTypeOk() (*EventTypes, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Event) SetType(v string)`
+`func (o *Event) SetType(v EventTypes)`
 
 SetType sets Type field to given value.
 
 
 ### GetLevel
 
-`func (o *Event) GetLevel() string`
+`func (o *Event) GetLevel() EventLevel`
 
 GetLevel returns the Level field if non-nil, zero value otherwise.
 
 ### GetLevelOk
 
-`func (o *Event) GetLevelOk() (*string, bool)`
+`func (o *Event) GetLevelOk() (*EventLevel, bool)`
 
 GetLevelOk returns a tuple with the Level field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLevel
 
-`func (o *Event) SetLevel(v string)`
+`func (o *Event) SetLevel(v EventLevel)`
 
 SetLevel sets Level field to given value.
 
 
 ### GetVisibility
 
-`func (o *Event) GetVisibility() string`
+`func (o *Event) GetVisibility() EventVisibility`
 
 GetVisibility returns the Visibility field if non-nil, zero value otherwise.
 
 ### GetVisibilityOk
 
-`func (o *Event) GetVisibilityOk() (*string, bool)`
+`func (o *Event) GetVisibilityOk() (*EventVisibility, bool)`
 
 GetVisibilityOk returns a tuple with the Visibility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVisibility
 
-`func (o *Event) SetVisibility(v string)`
+`func (o *Event) SetVisibility(v EventVisibility)`
 
 SetVisibility sets Visibility field to given value.
 

@@ -318,7 +318,10 @@ docs/EndpointPaginatedList.md
 docs/EthernetFabric.md
 docs/Event.md
 docs/EventAPI.md
+docs/EventLevel.md
 docs/EventPaginatedList.md
+docs/EventTypes.md
+docs/EventVisibility.md
 docs/Extension.md
 docs/ExtensionAPI.md
 docs/ExtensionAsset.md
@@ -548,6 +551,7 @@ docs/ManualVlanAllocationStrategy.md
 docs/ManualVniAllocationStrategy.md
 docs/ManualVrfAllocationStrategy.md
 docs/ManualZoneAllocationStrategy.md
+docs/MetalsoftPermissions.md
 docs/Microservices.md
 docs/MicroservicesAuth.md
 docs/MicroservicesBsi.md
@@ -1339,7 +1343,10 @@ model_endpoint_interface_paginated_list.go
 model_endpoint_paginated_list.go
 model_ethernet_fabric.go
 model_event.go
+model_event_level.go
 model_event_paginated_list.go
+model_event_types.go
+model_event_visibility.go
 model_extension.go
 model_extension_asset.go
 model_extension_asset_type.go
@@ -1555,6 +1562,7 @@ model_manual_vlan_allocation_strategy.go
 model_manual_vni_allocation_strategy.go
 model_manual_vrf_allocation_strategy.go
 model_manual_zone_allocation_strategy.go
+model_metalsoft_permissions.go
 model_microservices.go
 model_microservices_auth.go
 model_microservices_bsi.go

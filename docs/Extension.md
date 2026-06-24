@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **Description** | **string** | The extension description | 
 **Status** | [**ExtensionStatus**](ExtensionStatus.md) | Extension status | 
 **Kind** | **string** | Extension kind | 
-**IsPublic** | Pointer to **bool** | Is the extension public | [optional] [default to false]
 **Definition** | [**ExtensionDefinition**](ExtensionDefinition.md) |  | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -204,31 +203,6 @@ and a boolean to check if the value has been set.
 
 SetKind sets Kind field to given value.
 
-
-### GetIsPublic
-
-`func (o *Extension) GetIsPublic() bool`
-
-GetIsPublic returns the IsPublic field if non-nil, zero value otherwise.
-
-### GetIsPublicOk
-
-`func (o *Extension) GetIsPublicOk() (*bool, bool)`
-
-GetIsPublicOk returns a tuple with the IsPublic field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsPublic
-
-`func (o *Extension) SetIsPublic(v bool)`
-
-SetIsPublic sets IsPublic field to given value.
-
-### HasIsPublic
-
-`func (o *Extension) HasIsPublic() bool`
-
-HasIsPublic returns a boolean if a field has been set.
 
 ### GetDefinition
 
