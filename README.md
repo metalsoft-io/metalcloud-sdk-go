@@ -204,6 +204,7 @@ Class | Method | HTTP request | Description
 *ExtensionAPI* | [**GetExtension**](docs/ExtensionAPI.md#getextension) | **Get** /api/v2/extensions/{extensionId} | Get details for an extension
 *ExtensionAPI* | [**GetExtensionSiteConfig**](docs/ExtensionAPI.md#getextensionsiteconfig) | **Get** /api/v2/extensions/{extensionId}/siteConfig/{siteId} | 
 *ExtensionAPI* | [**GetExtensionSiteConfigs**](docs/ExtensionAPI.md#getextensionsiteconfigs) | **Get** /api/v2/extensions/{extensionId}/siteConfig | 
+*ExtensionAPI* | [**GetExtensionSiteCredentials**](docs/ExtensionAPI.md#getextensionsitecredentials) | **Get** /api/v2/extensions/{extensionId}/siteConfig/{siteId}/credentials | Get Extension Site Config credentials
 *ExtensionAPI* | [**GetExtensions**](docs/ExtensionAPI.md#getextensions) | **Get** /api/v2/extensions | Get a list of available extensions
 *ExtensionAPI* | [**GetSiteExtensionConfigs**](docs/ExtensionAPI.md#getsiteextensionconfigs) | **Get** /api/v2/extensions/siteConfig/{siteId} | 
 *ExtensionAPI* | [**PublishExtension**](docs/ExtensionAPI.md#publishextension) | **Post** /api/v2/extensions/{extensionId}/actions/publish | Activates draft or suspended extension
@@ -759,6 +760,11 @@ Class | Method | HTTP request | Description
 *SubnetAPI* | [**GetSubnetIps**](docs/SubnetAPI.md#getsubnetips) | **Get** /api/v2/subnets/{subnetId}/ips | List all Subnet IPs
 *SubnetAPI* | [**GetSubnets**](docs/SubnetAPI.md#getsubnets) | **Get** /api/v2/subnets | List all Subnets
 *SubnetAPI* | [**UpdateSubnet**](docs/SubnetAPI.md#updatesubnet) | **Patch** /api/v2/subnets/{subnetId} | Updates Subnet
+*SystemAPI* | [**AddLicense**](docs/SystemAPI.md#addlicense) | **Post** /api/v2/license | Add a license
+*SystemAPI* | [**GetLicense**](docs/SystemAPI.md#getlicense) | **Get** /api/v2/license | Get the current license
+*SystemAPI* | [**GetLicenseAllowance**](docs/SystemAPI.md#getlicenseallowance) | **Get** /api/v2/license/allowance | Get the license allowance
+*SystemAPI* | [**GetLicenseRequest**](docs/SystemAPI.md#getlicenserequest) | **Get** /api/v2/license/request | Get the license request
+*SystemAPI* | [**GetLicenseStatus**](docs/SystemAPI.md#getlicensestatus) | **Get** /api/v2/license/status | Get the license status
 *SystemAPI* | [**GetLicensedProducts**](docs/SystemAPI.md#getlicensedproducts) | **Get** /api/v2/licensed-products | Get licensed products
 *SystemAPI* | [**GetVersion**](docs/SystemAPI.md#getversion) | **Get** /api/v2/version | Get MetalSoft system version
 *TemplateAssetAPI* | [**CreateTemplateAsset**](docs/TemplateAssetAPI.md#createtemplateasset) | **Post** /api/v2/template-assets | Create template asset
@@ -892,6 +898,8 @@ Class | Method | HTTP request | Description
  - [AccountAddress](docs/AccountAddress.md)
  - [AccountConfig](docs/AccountConfig.md)
  - [AccountPaginatedList](docs/AccountPaginatedList.md)
+ - [AddLicense](docs/AddLicense.md)
+ - [AddLicenseResponse](docs/AddLicenseResponse.md)
  - [AddLogicalNetworkToInterconnect](docs/AddLogicalNetworkToInterconnect.md)
  - [AddNetworkEquipmentInterfaceIp](docs/AddNetworkEquipmentInterfaceIp.md)
  - [AddUserToInfrastructure](docs/AddUserToInfrastructure.md)
@@ -1288,8 +1296,12 @@ Class | Method | HTTP request | Description
  - [LdapProfileMapping](docs/LdapProfileMapping.md)
  - [LdapServer](docs/LdapServer.md)
  - [LenovoComponentFilter](docs/LenovoComponentFilter.md)
+ - [License](docs/License.md)
+ - [LicenseAllowance](docs/LicenseAllowance.md)
  - [LicenseInstallments](docs/LicenseInstallments.md)
  - [LicenseMicroservice](docs/LicenseMicroservice.md)
+ - [LicenseRequest](docs/LicenseRequest.md)
+ - [LicenseStatus](docs/LicenseStatus.md)
  - [LicensedProducts](docs/LicensedProducts.md)
  - [Link](docs/Link.md)
  - [LinkDuplex](docs/LinkDuplex.md)

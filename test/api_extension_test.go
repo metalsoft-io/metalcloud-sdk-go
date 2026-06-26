@@ -130,6 +130,21 @@ func Test_sdk_ExtensionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ExtensionAPIService GetExtensionSiteCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+		var siteId int64
+
+		resp, httpRes, err := apiClient.ExtensionAPI.GetExtensionSiteCredentials(context.Background(), extensionId, siteId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ExtensionAPIService GetExtensions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

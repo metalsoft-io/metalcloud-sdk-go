@@ -81,6 +81,8 @@ docs/AccountAPI.md
 docs/AccountAddress.md
 docs/AccountConfig.md
 docs/AccountPaginatedList.md
+docs/AddLicense.md
+docs/AddLicenseResponse.md
 docs/AddLogicalNetworkToInterconnect.md
 docs/AddNetworkEquipmentInterfaceIp.md
 docs/AddUserToInfrastructure.md
@@ -501,8 +503,12 @@ docs/Ldap.md
 docs/LdapProfileMapping.md
 docs/LdapServer.md
 docs/LenovoComponentFilter.md
+docs/License.md
+docs/LicenseAllowance.md
 docs/LicenseInstallments.md
 docs/LicenseMicroservice.md
+docs/LicenseRequest.md
+docs/LicenseStatus.md
 docs/LicensedProducts.md
 docs/Link.md
 docs/LinkDuplex.md
@@ -1117,6 +1123,8 @@ model_acl_direction.go
 model_acl_enforcement_point.go
 model_acl_forwarding_action.go
 model_acl_type.go
+model_add_license.go
+model_add_license_response.go
 model_add_logical_network_to_interconnect.go
 model_add_network_equipment_interface_ip.go
 model_add_user_to_infrastructure.go
@@ -1515,8 +1523,12 @@ model_ldap.go
 model_ldap_profile_mapping.go
 model_ldap_server.go
 model_lenovo_component_filter.go
+model_license.go
+model_license_allowance.go
 model_license_installments.go
 model_license_microservice.go
+model_license_request.go
+model_license_status.go
 model_licensed_products.go
 model_link.go
 model_link_duplex.go

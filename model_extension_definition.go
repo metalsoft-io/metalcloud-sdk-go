@@ -28,7 +28,7 @@ type ExtensionDefinition struct {
 	// Name of the extension.
 	Name string `json:"name"`
 	// Label of the extension.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^(?!.*_$)[a-zA-Z]{1}[a-zA-Z0-9_]{0,62}$"`
 	// Type of the extension.
 	ExtensionType string `json:"extensionType"`
 	// Vendor of the extension.

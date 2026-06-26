@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**GetExtension**](ExtensionAPI.md#GetExtension) | **Get** /api/v2/extensions/{extensionId} | Get details for an extension
 [**GetExtensionSiteConfig**](ExtensionAPI.md#GetExtensionSiteConfig) | **Get** /api/v2/extensions/{extensionId}/siteConfig/{siteId} | 
 [**GetExtensionSiteConfigs**](ExtensionAPI.md#GetExtensionSiteConfigs) | **Get** /api/v2/extensions/{extensionId}/siteConfig | 
+[**GetExtensionSiteCredentials**](ExtensionAPI.md#GetExtensionSiteCredentials) | **Get** /api/v2/extensions/{extensionId}/siteConfig/{siteId}/credentials | Get Extension Site Config credentials
 [**GetExtensions**](ExtensionAPI.md#GetExtensions) | **Get** /api/v2/extensions | Get a list of available extensions
 [**GetSiteExtensionConfigs**](ExtensionAPI.md#GetSiteExtensionConfigs) | **Get** /api/v2/extensions/siteConfig/{siteId} | 
 [**PublishExtension**](ExtensionAPI.md#PublishExtension) | **Post** /api/v2/extensions/{extensionId}/actions/publish | Activates draft or suspended extension
@@ -577,6 +578,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetExtensionSiteCredentials
+
+> map[string]interface{} GetExtensionSiteCredentials(ctx, extensionId, siteId).Execute()
+
+Get Extension Site Config credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	extensionId := int64(789) // int64 | 
+	siteId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExtensionAPI.GetExtensionSiteCredentials(context.Background(), extensionId, siteId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExtensionAPI.GetExtensionSiteCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetExtensionSiteCredentials`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `ExtensionAPI.GetExtensionSiteCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**extensionId** | **int64** |  | 
+**siteId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetExtensionSiteCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetExtensions
 
 > ExtensionPaginatedList GetExtensions(ctx).Page(page).Limit(limit).FilterKind(filterKind).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
@@ -962,7 +1036,7 @@ import (
 
 func main() {
 	extensionId := int64(789) // int64 | 
-	updateExtension := *openapiclient.NewUpdateExtension("My App", "My App Description", *openapiclient.NewExtensionDefinition("Kind_example", "SchemaVersion_example", "Name_example", "Label_example", "ExtensionType_example", "Vendor_example", "ExtensionVersion_example", "Icon_example", *openapiclient.NewExtensionDependency("ControllerVersion_example"), []openapiclient.ExtensionDefinitionInputsDataItem{openapiclient.ExtensionDefinition_inputsDataItem{ExtensionInputBoolean: openapiclient.NewExtensionInputBoolean("Label_example", "Name_example", openapiclient.ExtensionInputType("ExtensionInputString"), map[string]interface{}(123))}}, []openapiclient.ExtensionOutput{*openapiclient.NewExtensionOutput("Label_example", "Name_example", "OutputType_example")}, []openapiclient.ExtensionAsset{*openapiclient.NewExtensionAsset("Label_example", "Name_example", openapiclient.ExtensionAssetType("AnsibleBundle"))})) // UpdateExtension | The extension details
+	updateExtension := *openapiclient.NewUpdateExtension(*openapiclient.NewExtensionDefinition("Kind_example", "SchemaVersion_example", "Name_example", "Label_example", "ExtensionType_example", "Vendor_example", "ExtensionVersion_example", "Icon_example", *openapiclient.NewExtensionDependency("ControllerVersion_example"), []openapiclient.ExtensionDefinitionInputsDataItem{openapiclient.ExtensionDefinition_inputsDataItem{ExtensionInputBoolean: openapiclient.NewExtensionInputBoolean("Label_example", "Name_example", openapiclient.ExtensionInputType("ExtensionInputString"), map[string]interface{}(123))}}, []openapiclient.ExtensionOutput{*openapiclient.NewExtensionOutput("Label_example", "Name_example", "OutputType_example")}, []openapiclient.ExtensionAsset{*openapiclient.NewExtensionAsset("Label_example", "Name_example", openapiclient.ExtensionAssetType("AnsibleBundle"))})) // UpdateExtension | The extension details
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
