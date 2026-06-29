@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createVariable := *openapiclient.NewCreateVariable("variable_name", map[string]interface{}(123)) // CreateVariable | 
+	createVariable := *openapiclient.NewCreateVariable("variable_name", openapiclient.Variable_value{ArrayOfAny: new([]interface{})}) // CreateVariable | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -318,7 +318,7 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	updateVariable := *openapiclient.NewUpdateVariable("variable_name", map[string]interface{}(123)) // UpdateVariable | 
+	updateVariable := *openapiclient.NewUpdateVariable("variable_name", openapiclient.Variable_value{ArrayOfAny: new([]interface{})}) // UpdateVariable | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

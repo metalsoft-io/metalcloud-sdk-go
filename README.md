@@ -1853,6 +1853,7 @@ Class | Method | HTTP request | Description
  - [Variable](docs/Variable.md)
  - [VariablePaginatedList](docs/VariablePaginatedList.md)
  - [VariableUsageType](docs/VariableUsageType.md)
+ - [VariableValue](docs/VariableValue.md)
  - [Version](docs/Version.md)
  - [VlanAllocation](docs/VlanAllocation.md)
  - [VlanAllocationGranularityLevel](docs/VlanAllocationGranularityLevel.md)

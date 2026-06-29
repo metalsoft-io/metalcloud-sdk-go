@@ -23,8 +23,7 @@ var _ MappedNullable = &UpdateVariable{}
 type UpdateVariable struct {
 	// The variable name.
 	Name string `json:"name"`
-	// The variable value.
-	Value map[string]interface{} `json:"value"`
+	Value VariableValue `json:"value"`
 	// Variable usage type.
 	Usage *VariableUsageType `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -36,7 +35,7 @@ type _UpdateVariable UpdateVariable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateVariable(name string, value map[string]interface{}) *UpdateVariable {
+func NewUpdateVariable(name string, value VariableValue) *UpdateVariable {
 	this := UpdateVariable{}
 	this.Name = name
 	this.Value = value
@@ -76,9 +75,9 @@ func (o *UpdateVariable) SetName(v string) {
 }
 
 // GetValue returns the Value field value
-func (o *UpdateVariable) GetValue() map[string]interface{} {
+func (o *UpdateVariable) GetValue() VariableValue {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret VariableValue
 		return ret
 	}
 
@@ -87,15 +86,15 @@ func (o *UpdateVariable) GetValue() map[string]interface{} {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVariable) GetValueOk() (map[string]interface{}, bool) {
+func (o *UpdateVariable) GetValueOk() (*VariableValue, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Value, true
+	return &o.Value, true
 }
 
 // SetValue sets field value
-func (o *UpdateVariable) SetValue(v map[string]interface{}) {
+func (o *UpdateVariable) SetValue(v VariableValue) {
 	o.Value = v
 }
 

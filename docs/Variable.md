@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** | The variable ID. | 
 **UserIdOwner** | **float32** | ID of owner user. | 
 **Name** | **string** | The variable name. | 
-**Value** | **map[string]interface{}** | The variable value. | 
+**Value** | [**VariableValue**](VariableValue.md) |  | 
 **Usage** | Pointer to [**VariableUsageType**](VariableUsageType.md) | Variable usage type. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp of creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of last update. | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewVariable
 
-`func NewVariable(id int64, userIdOwner float32, name string, value map[string]interface{}, createdTimestamp string, updatedTimestamp string, ) *Variable`
+`func NewVariable(id int64, userIdOwner float32, name string, value VariableValue, createdTimestamp string, updatedTimestamp string, ) *Variable`
 
 NewVariable instantiates a new Variable object
 This constructor will assign default values to properties that have it defined,
@@ -94,20 +94,20 @@ SetName sets Name field to given value.
 
 ### GetValue
 
-`func (o *Variable) GetValue() map[string]interface{}`
+`func (o *Variable) GetValue() VariableValue`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *Variable) GetValueOk() (*map[string]interface{}, bool)`
+`func (o *Variable) GetValueOk() (*VariableValue, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *Variable) SetValue(v map[string]interface{})`
+`func (o *Variable) SetValue(v VariableValue)`
 
 SetValue sets Value field to given value.
 

@@ -30,6 +30,8 @@ type ExternalConnectionInterface struct {
 	NetworkDeviceInterfaceName string `json:"networkDeviceInterfaceName"`
 	// Network device id
 	NetworkDeviceId int64 `json:"networkDeviceId"`
+	// Device-side LAG id of the interface, null if the interface is not part of a LAG
+	LagId NullableInt64 `json:"lagId,omitempty"`
 	// Revision number of the external connection interface
 	Revision string `json:"revision"`
 	// The date and time the entity was created
@@ -163,6 +165,48 @@ func (o *ExternalConnectionInterface) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 
+// GetLagId returns the LagId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExternalConnectionInterface) GetLagId() int64 {
+	if o == nil || IsNil(o.LagId.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.LagId.Get()
+}
+
+// GetLagIdOk returns a tuple with the LagId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExternalConnectionInterface) GetLagIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LagId.Get(), o.LagId.IsSet()
+}
+
+// HasLagId returns a boolean if a field has been set.
+func (o *ExternalConnectionInterface) HasLagId() bool {
+	if o != nil && o.LagId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLagId gets a reference to the given NullableInt64 and assigns it to the LagId field.
+func (o *ExternalConnectionInterface) SetLagId(v int64) {
+	o.LagId.Set(&v)
+}
+// SetLagIdNil sets the value for LagId to be an explicit nil
+func (o *ExternalConnectionInterface) SetLagIdNil() {
+	o.LagId.Set(nil)
+}
+
+// UnsetLagId ensures that no value is present for LagId, not even an explicit nil
+func (o *ExternalConnectionInterface) UnsetLagId() {
+	o.LagId.Unset()
+}
+
 // GetRevision returns the Revision field value
 func (o *ExternalConnectionInterface) GetRevision() string {
 	if o == nil {
@@ -281,6 +325,9 @@ func (o ExternalConnectionInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize["networkDeviceInterfaceId"] = o.NetworkDeviceInterfaceId
 	toSerialize["networkDeviceInterfaceName"] = o.NetworkDeviceInterfaceName
 	toSerialize["networkDeviceId"] = o.NetworkDeviceId
+	if o.LagId.IsSet() {
+		toSerialize["lagId"] = o.LagId.Get()
+	}
 	toSerialize["revision"] = o.Revision
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["updatedAt"] = o.UpdatedAt
@@ -340,6 +387,7 @@ func (o *ExternalConnectionInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkDeviceInterfaceId")
 		delete(additionalProperties, "networkDeviceInterfaceName")
 		delete(additionalProperties, "networkDeviceId")
+		delete(additionalProperties, "lagId")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "updatedAt")

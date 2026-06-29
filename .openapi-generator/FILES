@@ -1099,6 +1099,7 @@ docs/VMTypePaginatedList.md
 docs/Variable.md
 docs/VariablePaginatedList.md
 docs/VariableUsageType.md
+docs/VariableValue.md
 docs/VariablesAPI.md
 docs/Version.md
 docs/VlanAllocation.md
@@ -2039,6 +2040,7 @@ model_utilization_data.go
 model_variable.go
 model_variable_paginated_list.go
 model_variable_usage_type.go
+model_variable_value.go
 model_version.go
 model_vlan_allocation.go
 model_vlan_allocation_granularity_level.go

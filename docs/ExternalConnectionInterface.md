@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **NetworkDeviceInterfaceId** | **int64** | Network device interface id | 
 **NetworkDeviceInterfaceName** | **string** | Network device interface name | 
 **NetworkDeviceId** | **int64** | Network device id | 
+**LagId** | Pointer to **NullableInt64** | Device-side LAG id of the interface, null if the interface is not part of a LAG | [optional] [readonly] 
 **Revision** | **string** | Revision number of the external connection interface | 
 **CreatedAt** | **time.Time** | The date and time the entity was created | [readonly] 
 **UpdatedAt** | **time.Time** | The date and time the entity was last updated | [readonly] 
@@ -112,6 +113,41 @@ and a boolean to check if the value has been set.
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
 
+### GetLagId
+
+`func (o *ExternalConnectionInterface) GetLagId() int64`
+
+GetLagId returns the LagId field if non-nil, zero value otherwise.
+
+### GetLagIdOk
+
+`func (o *ExternalConnectionInterface) GetLagIdOk() (*int64, bool)`
+
+GetLagIdOk returns a tuple with the LagId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLagId
+
+`func (o *ExternalConnectionInterface) SetLagId(v int64)`
+
+SetLagId sets LagId field to given value.
+
+### HasLagId
+
+`func (o *ExternalConnectionInterface) HasLagId() bool`
+
+HasLagId returns a boolean if a field has been set.
+
+### SetLagIdNil
+
+`func (o *ExternalConnectionInterface) SetLagIdNil(b bool)`
+
+ SetLagIdNil sets the value for LagId to be an explicit nil
+
+### UnsetLagId
+`func (o *ExternalConnectionInterface) UnsetLagId()`
+
+UnsetLagId ensures that no value is present for LagId, not even an explicit nil
 ### GetRevision
 
 `func (o *ExternalConnectionInterface) GetRevision() string`

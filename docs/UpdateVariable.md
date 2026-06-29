@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The variable name. | 
-**Value** | **map[string]interface{}** | The variable value. | 
+**Value** | [**VariableValue**](VariableValue.md) |  | 
 **Usage** | Pointer to [**VariableUsageType**](VariableUsageType.md) | Variable usage type. | [optional] 
 
 ## Methods
 
 ### NewUpdateVariable
 
-`func NewUpdateVariable(name string, value map[string]interface{}, ) *UpdateVariable`
+`func NewUpdateVariable(name string, value VariableValue, ) *UpdateVariable`
 
 NewUpdateVariable instantiates a new UpdateVariable object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetName sets Name field to given value.
 
 ### GetValue
 
-`func (o *UpdateVariable) GetValue() map[string]interface{}`
+`func (o *UpdateVariable) GetValue() VariableValue`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *UpdateVariable) GetValueOk() (*map[string]interface{}, bool)`
+`func (o *UpdateVariable) GetValueOk() (*VariableValue, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *UpdateVariable) SetValue(v map[string]interface{})`
+`func (o *UpdateVariable) SetValue(v VariableValue)`
 
 SetValue sets Value field to given value.
 

@@ -71820,9 +71820,9 @@ components:
       example:
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-06-26T13:23:47.158Z
+        createdTimestamp: 2026-06-29T14:51:06.94Z
         networkDevicePosition: all
-        updatedTimestamp: 2026-06-26T13:23:47.158Z
+        updatedTimestamp: 2026-06-29T14:51:06.94Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         action: add-global-config
@@ -71935,12 +71935,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.158Z
+          example: 2026-06-29T14:51:06.94Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.158Z
+          example: 2026-06-29T14:51:06.94Z
           format: date-time
           type: string
         links:
@@ -71972,9 +71972,9 @@ components:
         data:
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.158Z
+          createdTimestamp: 2026-06-29T14:51:06.94Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-06-26T13:23:47.158Z
+          updatedTimestamp: 2026-06-29T14:51:06.94Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -71991,9 +71991,9 @@ components:
           bgpNumbering: numbered
         - configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.158Z
+          createdTimestamp: 2026-06-29T14:51:06.94Z
           networkDevicePosition: all
-          updatedTimestamp: 2026-06-26T13:23:47.158Z
+          updatedTimestamp: 2026-06-29T14:51:06.94Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           action: add-global-config
@@ -72266,9 +72266,9 @@ components:
         removeNeighbor: removeNeighbor
         removeGlobalConfig: removeGlobalConfig
         executionType: cli
-        createdTimestamp: 2026-06-26T13:23:47.164Z
+        createdTimestamp: 2026-06-29T14:51:06.946Z
         label: label
-        updatedTimestamp: 2026-06-26T13:23:47.164Z
+        updatedTimestamp: 2026-06-29T14:51:06.946Z
         revision: "1"
         addGlobalConfig: addGlobalConfig
         name: name
@@ -72317,12 +72317,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.164Z
+          example: 2026-06-29T14:51:06.946Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.164Z
+          example: 2026-06-29T14:51:06.946Z
           format: date-time
           type: string
         revision:
@@ -72354,9 +72354,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.164Z
+          createdTimestamp: 2026-06-29T14:51:06.946Z
           label: label
-          updatedTimestamp: 2026-06-26T13:23:47.164Z
+          updatedTimestamp: 2026-06-29T14:51:06.946Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -72371,9 +72371,9 @@ components:
         - removeNeighbor: removeNeighbor
           removeGlobalConfig: removeGlobalConfig
           executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.164Z
+          createdTimestamp: 2026-06-29T14:51:06.946Z
           label: label
-          updatedTimestamp: 2026-06-26T13:23:47.164Z
+          updatedTimestamp: 2026-06-29T14:51:06.946Z
           revision: "1"
           addGlobalConfig: addGlobalConfig
           name: name
@@ -72509,7 +72509,7 @@ components:
         aggregationType: lag
         configuration: configuration
         executionType: cli
-        createdTimestamp: 2026-06-26T13:23:47.161Z
+        createdTimestamp: 2026-06-29T14:51:06.943Z
         action: create
         networkDeviceDriver: cisco_aci51
         links:
@@ -72519,7 +72519,7 @@ components:
           href: /api/v2/path/to/resource
         id: 0
         libraryLabel: libraryLabel
-        updatedTimestamp: 2026-06-26T13:23:47.161Z
+        updatedTimestamp: 2026-06-29T14:51:06.943Z
         preparation: preparation
       properties:
         action:
@@ -72583,12 +72583,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.161Z
+          example: 2026-06-29T14:51:06.943Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.161Z
+          example: 2026-06-29T14:51:06.943Z
           format: date-time
           type: string
         links:
@@ -72617,7 +72617,7 @@ components:
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.161Z
+          createdTimestamp: 2026-06-29T14:51:06.943Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -72627,12 +72627,12 @@ components:
             href: /api/v2/path/to/resource
           id: 0
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-06-26T13:23:47.161Z
+          updatedTimestamp: 2026-06-29T14:51:06.943Z
           preparation: preparation
         - aggregationType: lag
           configuration: configuration
           executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.161Z
+          createdTimestamp: 2026-06-29T14:51:06.943Z
           action: create
           networkDeviceDriver: cisco_aci51
           links:
@@ -72642,7 +72642,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0
           libraryLabel: libraryLabel
-          updatedTimestamp: 2026-06-26T13:23:47.161Z
+          updatedTimestamp: 2026-06-29T14:51:06.943Z
           preparation: preparation
         meta: ""
         links: ""
@@ -72848,7 +72848,7 @@ components:
     DeviceConfigurationTemplate:
       example:
         executionType: cli
-        createdTimestamp: 2026-06-26T13:23:47.167Z
+        createdTimestamp: 2026-06-29T14:51:06.949Z
         deviceDriver: sonic_enterprise
         description: "Base hostname + interface MTU template, used during fabric deployment."
         customVariablesJson:
@@ -72858,7 +72858,7 @@ components:
           environment: production
           owner: fabric-team
         label: nvidia-spectrum-x-base
-        updatedTimestamp: 2026-06-26T13:23:47.167Z
+        updatedTimestamp: 2026-06-29T14:51:06.949Z
         tags:
         - nvidia
         - spectrum-x
@@ -72932,12 +72932,12 @@ components:
           type: array
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.167Z
+          example: 2026-06-29T14:51:06.949Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.167Z
+          example: 2026-06-29T14:51:06.949Z
           format: date-time
           type: string
         revision:
@@ -72966,7 +72966,7 @@ components:
       example:
         data:
         - executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.167Z
+          createdTimestamp: 2026-06-29T14:51:06.949Z
           deviceDriver: sonic_enterprise
           description: "Base hostname + interface MTU template, used during fabric\
             \ deployment."
@@ -72977,7 +72977,7 @@ components:
             environment: production
             owner: fabric-team
           label: nvidia-spectrum-x-base
-          updatedTimestamp: 2026-06-26T13:23:47.167Z
+          updatedTimestamp: 2026-06-29T14:51:06.949Z
           tags:
           - nvidia
           - spectrum-x
@@ -72991,7 +72991,7 @@ components:
             href: /api/v2/path/to/resource
           id: 0
         - executionType: cli
-          createdTimestamp: 2026-06-26T13:23:47.167Z
+          createdTimestamp: 2026-06-29T14:51:06.949Z
           deviceDriver: sonic_enterprise
           description: "Base hostname + interface MTU template, used during fabric\
             \ deployment."
@@ -73002,7 +73002,7 @@ components:
             environment: production
             owner: fabric-team
           label: nvidia-spectrum-x-base
-          updatedTimestamp: 2026-06-26T13:23:47.167Z
+          updatedTimestamp: 2026-06-29T14:51:06.949Z
           tags:
           - nvidia
           - spectrum-x
@@ -73284,12 +73284,12 @@ components:
         variables:
           mtu_override: 9000
         updatedBy: 42
-        createdTimestamp: 2026-06-26T13:23:47.173Z
+        createdTimestamp: 2026-06-29T14:51:06.955Z
         annotations:
           environment: production
           owner: fabric-team
         priority: 100
-        updatedTimestamp: 2026-06-26T13:23:47.173Z
+        updatedTimestamp: 2026-06-29T14:51:06.955Z
         tags:
         - canary
         - fabric-team
@@ -73390,12 +73390,12 @@ components:
           type: array
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.173Z
+          example: 2026-06-29T14:51:06.955Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.173Z
+          example: 2026-06-29T14:51:06.955Z
           format: date-time
           type: string
         revision:
@@ -73436,12 +73436,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -73462,12 +73462,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -73643,12 +73643,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -73669,12 +73669,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -73763,12 +73763,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -73789,12 +73789,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -73816,12 +73816,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -73842,12 +73842,12 @@ components:
         - variables:
             mtu_override: 9000
           updatedBy: 42
-          createdTimestamp: 2026-06-26T13:23:47.173Z
+          createdTimestamp: 2026-06-29T14:51:06.955Z
           annotations:
             environment: production
             owner: fabric-team
           priority: 100
-          updatedTimestamp: 2026-06-26T13:23:47.173Z
+          updatedTimestamp: 2026-06-29T14:51:06.955Z
           tags:
           - canary
           - fabric-team
@@ -99435,6 +99435,7 @@ components:
     ExternalConnectionInterface:
       example:
         createdAt: 2025-01-01T00:00:00Z
+        lagId: 10
         networkDeviceInterfaceId: 1
         networkDeviceId: 12
         networkDeviceInterfaceName: eth0
@@ -99465,6 +99466,14 @@ components:
           description: Network device id
           example: 12
           format: int64
+          type: integer
+        lagId:
+          description: "Device-side LAG id of the interface, null if the interface\
+            \ is not part of a LAG"
+          example: 10
+          format: int64
+          nullable: true
+          readOnly: true
           type: integer
         revision:
           description: Revision number of the external connection interface
@@ -103635,7 +103644,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2026-06-26T13:23:47.276Z
+        createdTimestamp: 2026-06-29T14:51:07.044Z
         name: Default Network Endpoint Group
         siteId: 0
         links:
@@ -103644,7 +103653,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2026-06-26T13:23:47.276Z
+        updatedTimestamp: 2026-06-29T14:51:07.044Z
         revision: "1"
       properties:
         siteId:
@@ -103661,12 +103670,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.276Z
+          example: 2026-06-29T14:51:07.044Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.276Z
+          example: 2026-06-29T14:51:07.044Z
           format: date-time
           type: string
         links:
@@ -103688,7 +103697,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-26T13:23:47.276Z
+        - createdTimestamp: 2026-06-29T14:51:07.044Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -103697,9 +103706,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-06-26T13:23:47.276Z
+          updatedTimestamp: 2026-06-29T14:51:07.044Z
           revision: "1"
-        - createdTimestamp: 2026-06-26T13:23:47.276Z
+        - createdTimestamp: 2026-06-29T14:51:07.044Z
           name: Default Network Endpoint Group
           siteId: 0
           links:
@@ -103708,7 +103717,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2026-06-26T13:23:47.276Z
+          updatedTimestamp: 2026-06-29T14:51:07.044Z
           revision: "1"
         meta: ""
         links: ""
@@ -104328,7 +104337,7 @@ components:
     NetworkFabric:
       example:
         transportId: 123
-        createdTimestamp: 2026-06-26T13:23:47.145Z
+        createdTimestamp: 2026-06-29T14:51:06.929Z
         externalId: DC1-VXLAN
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
@@ -104371,7 +104380,7 @@ components:
           configurationPreview: configurationPreview
           networkDeviceConfigurationTemplateType: link_aggregation
           networkFabricLinkId: 101
-        updatedTimestamp: 2026-06-26T13:23:47.146Z
+        updatedTimestamp: 2026-06-29T14:51:06.929Z
         deployId: 123
         customVariables: "{}"
         revision: "1"
@@ -104608,12 +104617,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.145Z
+          example: 2026-06-29T14:51:06.929Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.146Z
+          example: 2026-06-29T14:51:06.929Z
           format: date-time
           type: string
         links:
@@ -104668,7 +104677,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-06-26T13:23:47.145Z
+          createdTimestamp: 2026-06-29T14:51:06.929Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -104711,7 +104720,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-26T13:23:47.146Z
+          updatedTimestamp: 2026-06-29T14:51:06.929Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -104918,7 +104927,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-06-26T13:23:47.145Z
+          createdTimestamp: 2026-06-29T14:51:06.929Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -104961,7 +104970,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-26T13:23:47.146Z
+          updatedTimestamp: 2026-06-29T14:51:06.929Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -105272,7 +105281,7 @@ components:
       example:
         interconnectType: dci-evpn
         transportId: 65534
-        createdTimestamp: 2026-06-26T13:23:47.318Z
+        createdTimestamp: 2026-06-29T14:51:07.058Z
         description: Data center interconnect using EVPN
         label: dci-evpn-interconnect-01
         deployPreview:
@@ -105310,7 +105319,7 @@ components:
           - neighborTemplateActivate
           - neighborTemplateActivate
           networkInterconnectId: 101
-        updatedTimestamp: 2026-06-26T13:23:47.318Z
+        updatedTimestamp: 2026-06-29T14:51:07.058Z
         deployId: 123
         revision: "1"
         name: Primary DCI EVPN Interconnect
@@ -105368,12 +105377,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.318Z
+          example: 2026-06-29T14:51:07.058Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.318Z
+          example: 2026-06-29T14:51:07.058Z
           format: date-time
           type: string
         links:
@@ -105412,7 +105421,7 @@ components:
         data:
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-06-26T13:23:47.318Z
+          createdTimestamp: 2026-06-29T14:51:07.058Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -105450,7 +105459,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-06-26T13:23:47.318Z
+          updatedTimestamp: 2026-06-29T14:51:07.058Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -105464,7 +105473,7 @@ components:
           status: draft
         - interconnectType: dci-evpn
           transportId: 65534
-          createdTimestamp: 2026-06-26T13:23:47.318Z
+          createdTimestamp: 2026-06-29T14:51:07.058Z
           description: Data center interconnect using EVPN
           label: dci-evpn-interconnect-01
           deployPreview:
@@ -105502,7 +105511,7 @@ components:
             - neighborTemplateActivate
             - neighborTemplateActivate
             networkInterconnectId: 101
-          updatedTimestamp: 2026-06-26T13:23:47.318Z
+          updatedTimestamp: 2026-06-29T14:51:07.058Z
           deployId: 123
           revision: "1"
           name: Primary DCI EVPN Interconnect
@@ -105546,7 +105555,7 @@ components:
       example:
         interconnectId: 2
         fabricId: 2
-        createdTimestamp: 2026-06-26T13:23:47.33Z
+        createdTimestamp: 2026-06-29T14:51:07.062Z
         networkEquipmentId: 1
         links:
         - rel: self
@@ -105554,7 +105563,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-06-26T13:23:47.33Z
+        updatedTimestamp: 2026-06-29T14:51:07.062Z
         revision: "1"
         status: active
       properties:
@@ -105564,12 +105573,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.33Z
+          example: 2026-06-29T14:51:07.062Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.33Z
+          example: 2026-06-29T14:51:07.062Z
           format: date-time
           type: string
         links:
@@ -105945,7 +105954,7 @@ components:
         data:
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-06-26T13:23:47.33Z
+          createdTimestamp: 2026-06-29T14:51:07.062Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -105953,12 +105962,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-26T13:23:47.33Z
+          updatedTimestamp: 2026-06-29T14:51:07.062Z
           revision: "1"
           status: active
         - interconnectId: 2
           fabricId: 2
-          createdTimestamp: 2026-06-26T13:23:47.33Z
+          createdTimestamp: 2026-06-29T14:51:07.062Z
           networkEquipmentId: 1
           links:
           - rel: self
@@ -105966,7 +105975,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-26T13:23:47.33Z
+          updatedTimestamp: 2026-06-29T14:51:07.062Z
           revision: "1"
           status: active
         meta: ""
@@ -106015,7 +106024,7 @@ components:
       example:
         data:
         - transportId: 123
-          createdTimestamp: 2026-06-26T13:23:47.145Z
+          createdTimestamp: 2026-06-29T14:51:06.929Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -106058,7 +106067,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-26T13:23:47.146Z
+          updatedTimestamp: 2026-06-29T14:51:06.929Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -106265,7 +106274,7 @@ components:
           id: "1"
           status: draft
         - transportId: 123
-          createdTimestamp: 2026-06-26T13:23:47.145Z
+          createdTimestamp: 2026-06-29T14:51:06.929Z
           externalId: DC1-VXLAN
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -106308,7 +106317,7 @@ components:
             configurationPreview: configurationPreview
             networkDeviceConfigurationTemplateType: link_aggregation
             networkFabricLinkId: 101
-          updatedTimestamp: 2026-06-26T13:23:47.146Z
+          updatedTimestamp: 2026-06-29T14:51:06.929Z
           deployId: 123
           customVariables: "{}"
           revision: "1"
@@ -106702,8 +106711,8 @@ components:
       type: object
     NetworkFabricBGPSession:
       example:
-        createdTimestamp: 2026-06-26T13:23:47.15Z
-        updatedTimestamp: 2026-06-26T13:23:47.15Z
+        createdTimestamp: 2026-06-29T14:51:06.933Z
+        updatedTimestamp: 2026-06-29T14:51:06.933Z
         revision: "1"
         networkFabricLinkAggregationId: 1
         linkAggregation: ""
@@ -106723,12 +106732,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.15Z
+          example: 2026-06-29T14:51:06.933Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.15Z
+          example: 2026-06-29T14:51:06.933Z
           format: date-time
           type: string
         revision:
@@ -106809,12 +106818,12 @@ components:
       type: object
     NetworkFabricLinkAggregation:
       example:
-        createdTimestamp: 2026-06-26T13:23:47.155Z
+        createdTimestamp: 2026-06-29T14:51:06.937Z
         networkFabricLinks:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-26T13:23:47.152Z
+          createdTimestamp: 2026-06-29T14:51:06.934Z
           source: lldp
-          updatedTimestamp: 2026-06-26T13:23:47.152Z
+          updatedTimestamp: 2026-06-29T14:51:06.934Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -106833,9 +106842,9 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-26T13:23:47.152Z
+          createdTimestamp: 2026-06-29T14:51:06.934Z
           source: lldp
-          updatedTimestamp: 2026-06-26T13:23:47.152Z
+          updatedTimestamp: 2026-06-29T14:51:06.934Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -106855,7 +106864,7 @@ components:
           status: draft
         mlagDomainIdentifier: MLAG-Domain-1 or 123
         type: lag
-        updatedTimestamp: 2026-06-26T13:23:47.155Z
+        updatedTimestamp: 2026-06-29T14:51:06.937Z
         revision: "1"
         networkFabricLinkConfigs:
         - networkFabricLink: ""
@@ -106881,12 +106890,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.155Z
+          example: 2026-06-29T14:51:06.937Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.155Z
+          example: 2026-06-29T14:51:06.937Z
           format: date-time
           type: string
         revision:
@@ -107000,9 +107009,9 @@ components:
     NetworkFabricLink:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2026-06-26T13:23:47.152Z
+        createdTimestamp: 2026-06-29T14:51:06.934Z
         source: lldp
-        updatedTimestamp: 2026-06-26T13:23:47.152Z
+        updatedTimestamp: 2026-06-29T14:51:06.934Z
         customVariables: "{}"
         revision: "1"
         networkFabricLinkAggregationId: 1
@@ -107023,12 +107032,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.152Z
+          example: 2026-06-29T14:51:06.934Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.152Z
+          example: 2026-06-29T14:51:06.934Z
           format: date-time
           type: string
         revision:
@@ -107125,9 +107134,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-26T13:23:47.152Z
+          createdTimestamp: 2026-06-29T14:51:06.934Z
           source: lldp
-          updatedTimestamp: 2026-06-26T13:23:47.152Z
+          updatedTimestamp: 2026-06-29T14:51:06.934Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -107146,9 +107155,9 @@ components:
           config: ""
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2026-06-26T13:23:47.152Z
+          createdTimestamp: 2026-06-29T14:51:06.934Z
           source: lldp
-          updatedTimestamp: 2026-06-26T13:23:47.152Z
+          updatedTimestamp: 2026-06-29T14:51:06.934Z
           customVariables: "{}"
           revision: "1"
           networkFabricLinkAggregationId: 1
@@ -107255,12 +107264,12 @@ components:
     NetworkFabricLinkAggregationPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-26T13:23:47.155Z
+        - createdTimestamp: 2026-06-29T14:51:06.937Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-26T13:23:47.152Z
+            createdTimestamp: 2026-06-29T14:51:06.934Z
             source: lldp
-            updatedTimestamp: 2026-06-26T13:23:47.152Z
+            updatedTimestamp: 2026-06-29T14:51:06.934Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -107279,9 +107288,9 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-26T13:23:47.152Z
+            createdTimestamp: 2026-06-29T14:51:06.934Z
             source: lldp
-            updatedTimestamp: 2026-06-26T13:23:47.152Z
+            updatedTimestamp: 2026-06-29T14:51:06.934Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -107301,7 +107310,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-06-26T13:23:47.155Z
+          updatedTimestamp: 2026-06-29T14:51:06.937Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -107324,12 +107333,12 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           status: draft
-        - createdTimestamp: 2026-06-26T13:23:47.155Z
+        - createdTimestamp: 2026-06-29T14:51:06.937Z
           networkFabricLinks:
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-26T13:23:47.152Z
+            createdTimestamp: 2026-06-29T14:51:06.934Z
             source: lldp
-            updatedTimestamp: 2026-06-26T13:23:47.152Z
+            updatedTimestamp: 2026-06-29T14:51:06.934Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -107348,9 +107357,9 @@ components:
             config: ""
             status: draft
           - networkDeviceBInterfaceId: 2
-            createdTimestamp: 2026-06-26T13:23:47.152Z
+            createdTimestamp: 2026-06-29T14:51:06.934Z
             source: lldp
-            updatedTimestamp: 2026-06-26T13:23:47.152Z
+            updatedTimestamp: 2026-06-29T14:51:06.934Z
             customVariables: "{}"
             revision: "1"
             networkFabricLinkAggregationId: 1
@@ -107370,7 +107379,7 @@ components:
             status: draft
           mlagDomainIdentifier: MLAG-Domain-1 or 123
           type: lag
-          updatedTimestamp: 2026-06-26T13:23:47.155Z
+          updatedTimestamp: 2026-06-29T14:51:06.937Z
           revision: "1"
           networkFabricLinkConfigs:
           - networkFabricLink: ""
@@ -107474,8 +107483,8 @@ components:
     NetworkFabricBGPSessionPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-26T13:23:47.15Z
-          updatedTimestamp: 2026-06-26T13:23:47.15Z
+        - createdTimestamp: 2026-06-29T14:51:06.933Z
+          updatedTimestamp: 2026-06-29T14:51:06.933Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -107492,8 +107501,8 @@ components:
           bgpNumbering: inherited
           networkFabricLinkId: 1
           status: draft
-        - createdTimestamp: 2026-06-26T13:23:47.15Z
-          updatedTimestamp: 2026-06-26T13:23:47.15Z
+        - createdTimestamp: 2026-06-29T14:51:06.933Z
+          updatedTimestamp: 2026-06-29T14:51:06.933Z
           revision: "1"
           networkFabricLinkAggregationId: 1
           linkAggregation: ""
@@ -112921,7 +112930,7 @@ components:
       example:
         settings: ""
         isDefault: true
-        createdTimestamp: 2026-06-26T13:23:48.036Z
+        createdTimestamp: 2026-06-29T14:51:07.767Z
         name: name
         links:
         - rel: self
@@ -112929,17 +112938,17 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 0
-        updatedTimestamp: 2026-06-26T13:23:48.036Z
+        updatedTimestamp: 2026-06-29T14:51:07.767Z
         revision: "1"
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:48.036Z
+          example: 2026-06-29T14:51:07.767Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:48.036Z
+          example: 2026-06-29T14:51:07.767Z
           format: date-time
           type: string
         revision:
@@ -112980,7 +112989,7 @@ components:
         data:
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-06-26T13:23:48.036Z
+          createdTimestamp: 2026-06-29T14:51:07.767Z
           name: name
           links:
           - rel: self
@@ -112988,11 +112997,11 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0
-          updatedTimestamp: 2026-06-26T13:23:48.036Z
+          updatedTimestamp: 2026-06-29T14:51:07.767Z
           revision: "1"
         - settings: ""
           isDefault: true
-          createdTimestamp: 2026-06-26T13:23:48.036Z
+          createdTimestamp: 2026-06-29T14:51:07.767Z
           name: name
           links:
           - rel: self
@@ -113000,7 +113009,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 0
-          updatedTimestamp: 2026-06-26T13:23:48.036Z
+          updatedTimestamp: 2026-06-29T14:51:07.767Z
           revision: "1"
         meta: ""
         links: ""
@@ -114502,10 +114511,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2026-06-26T13:23:47.287Z
+        createdTimestamp: 2026-06-29T14:51:07.049Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2026-06-26T13:23:47.287Z
+        updatedTimestamp: 2026-06-29T14:51:07.049Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -114579,12 +114588,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.287Z
+          example: 2026-06-29T14:51:07.049Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.287Z
+          example: 2026-06-29T14:51:07.049Z
           format: date-time
           type: string
         links:
@@ -121331,7 +121340,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2026-06-26T13:23:47.262Z
+        createdTimestamp: 2026-06-29T14:51:07.033Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -121339,7 +121348,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2026-06-26T13:23:47.262Z
+        updatedTimestamp: 2026-06-29T14:51:07.033Z
         revision: "1"
       properties:
         id:
@@ -121371,12 +121380,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.262Z
+          example: 2026-06-29T14:51:07.033Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.262Z
+          example: 2026-06-29T14:51:07.033Z
           format: date-time
           type: string
         links:
@@ -121424,7 +121433,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2026-06-26T13:23:47.268Z
+        createdTimestamp: 2026-06-29T14:51:07.038Z
         name: Server 1
         externalId: ext-12345
         siteId: 0
@@ -121435,7 +121444,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2026-06-26T13:23:47.268Z
+        updatedTimestamp: 2026-06-29T14:51:07.038Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -121470,12 +121479,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2026-06-26T13:23:47.268Z
+          example: 2026-06-29T14:51:07.038Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2026-06-26T13:23:47.268Z
+          example: 2026-06-29T14:51:07.038Z
           format: date-time
           type: string
         allocationInfo:
@@ -121499,7 +121508,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2026-06-26T13:23:47.268Z
+        - createdTimestamp: 2026-06-29T14:51:07.038Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -121510,10 +121519,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-06-26T13:23:47.268Z
+          updatedTimestamp: 2026-06-29T14:51:07.038Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2026-06-26T13:23:47.268Z
+        - createdTimestamp: 2026-06-29T14:51:07.038Z
           name: Server 1
           externalId: ext-12345
           siteId: 0
@@ -121524,7 +121533,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2026-06-26T13:23:47.268Z
+          updatedTimestamp: 2026-06-29T14:51:07.038Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -121739,7 +121748,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-06-26T13:23:47.262Z
+          createdTimestamp: 2026-06-29T14:51:07.033Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -121747,12 +121756,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-26T13:23:47.262Z
+          updatedTimestamp: 2026-06-29T14:51:07.033Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2026-06-26T13:23:47.262Z
+          createdTimestamp: 2026-06-29T14:51:07.033Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -121760,7 +121769,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2026-06-26T13:23:47.262Z
+          updatedTimestamp: 2026-06-29T14:51:07.033Z
           revision: "1"
         meta: ""
         links: ""
@@ -122201,6 +122210,7 @@ components:
       example:
         data:
         - createdAt: 2025-01-01T00:00:00Z
+          lagId: 10
           networkDeviceInterfaceId: 1
           networkDeviceId: 12
           networkDeviceInterfaceName: eth0
@@ -122213,6 +122223,7 @@ components:
           revision: "1"
           updatedAt: 2025-01-01T00:00:00Z
         - createdAt: 2025-01-01T00:00:00Z
+          lagId: 10
           networkDeviceInterfaceId: 1
           networkDeviceId: 12
           networkDeviceInterfaceName: eth0
@@ -130645,7 +130656,8 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        value: "{}"
+        value:
+          key: ""
         updatedTimestamp: updatedTimestamp
       properties:
         id:
@@ -130661,8 +130673,7 @@ components:
           example: variable_name
           type: string
         value:
-          description: The variable value.
-          type: object
+          $ref: "#/components/schemas/Variable_value"
         usage:
           allOf:
           - $ref: "#/components/schemas/VariableUsageType"
@@ -130699,7 +130710,8 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          value: "{}"
+          value:
+            key: ""
           updatedTimestamp: updatedTimestamp
         - usage: ""
           createdTimestamp: createdTimestamp
@@ -130711,7 +130723,8 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          value: "{}"
+          value:
+            key: ""
           updatedTimestamp: updatedTimestamp
         meta: ""
         links: ""
@@ -130739,15 +130752,15 @@ components:
       example:
         usage: ""
         name: variable_name
-        value: "{}"
+        value:
+          key: ""
       properties:
         name:
           description: The variable name.
           example: variable_name
           type: string
         value:
-          description: The variable value.
-          type: object
+          $ref: "#/components/schemas/Variable_value"
         usage:
           allOf:
           - $ref: "#/components/schemas/VariableUsageType"
@@ -130760,15 +130773,15 @@ components:
       example:
         usage: ""
         name: variable_name
-        value: "{}"
+        value:
+          key: ""
       properties:
         name:
           description: The variable name.
           example: variable_name
           type: string
         value:
-          description: The variable value.
-          type: object
+          $ref: "#/components/schemas/Variable_value"
         usage:
           allOf:
           - $ref: "#/components/schemas/VariableUsageType"
@@ -131185,6 +131198,16 @@ components:
       oneOf:
       - $ref: "#/components/schemas/ManualVrfAllocationStrategy"
       title: VrfAllocationStrategy
+    Variable_value:
+      description: The variable value.
+      oneOf:
+      - additionalProperties: true
+        type: object
+      - items: {}
+        type: array
+      - type: string
+      - type: number
+      - type: boolean
   securitySchemes:
     apiKey:
       bearerFormat: ApiKey
