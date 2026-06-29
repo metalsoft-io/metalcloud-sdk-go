@@ -23,12 +23,14 @@ type NetworkTemplateExecutionType string
 const (
 	NETWORKTEMPLATEEXECUTIONTYPE_CLI NetworkTemplateExecutionType = "cli"
 	NETWORKTEMPLATEEXECUTIONTYPE_JSON_PATCH NetworkTemplateExecutionType = "json_patch"
+	NETWORKTEMPLATEEXECUTIONTYPE_UNKNOWN_DEFAULT_OPEN_API NetworkTemplateExecutionType = "unknown_default_open_api"
 )
 
 // All allowed values of NetworkTemplateExecutionType enum
 var AllowedNetworkTemplateExecutionTypeEnumValues = []NetworkTemplateExecutionType{
 	"cli",
 	"json_patch",
+	"unknown_default_open_api",
 }
 
 func (v *NetworkTemplateExecutionType) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *NetworkTemplateExecutionType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NetworkTemplateExecutionType", value)
+	*v = NETWORKTEMPLATEEXECUTIONTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNetworkTemplateExecutionTypeFromValue returns a pointer to a valid NetworkTemplateExecutionType

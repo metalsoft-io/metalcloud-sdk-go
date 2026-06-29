@@ -23,12 +23,14 @@ type NetworkEndpointGroupRedundancyMode string
 const (
 	NETWORKENDPOINTGROUPREDUNDANCYMODE_ACTIVE_BACKUP NetworkEndpointGroupRedundancyMode = "active-backup"
 	NETWORKENDPOINTGROUPREDUNDANCYMODE_ACTIVE_ACTIVE NetworkEndpointGroupRedundancyMode = "active-active"
+	NETWORKENDPOINTGROUPREDUNDANCYMODE_UNKNOWN_DEFAULT_OPEN_API NetworkEndpointGroupRedundancyMode = "unknown_default_open_api"
 )
 
 // All allowed values of NetworkEndpointGroupRedundancyMode enum
 var AllowedNetworkEndpointGroupRedundancyModeEnumValues = []NetworkEndpointGroupRedundancyMode{
 	"active-backup",
 	"active-active",
+	"unknown_default_open_api",
 }
 
 func (v *NetworkEndpointGroupRedundancyMode) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *NetworkEndpointGroupRedundancyMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NetworkEndpointGroupRedundancyMode", value)
+	*v = NETWORKENDPOINTGROUPREDUNDANCYMODE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNetworkEndpointGroupRedundancyModeFromValue returns a pointer to a valid NetworkEndpointGroupRedundancyMode

@@ -23,12 +23,14 @@ type PointToPointInterfaceType string
 const (
 	POINTTOPOINTINTERFACETYPE_NETWORK_EQUIPMENT_INTERFACE PointToPointInterfaceType = "network_equipment_interface"
 	POINTTOPOINTINTERFACETYPE_SERVER_INTERFACE PointToPointInterfaceType = "server_interface"
+	POINTTOPOINTINTERFACETYPE_UNKNOWN_DEFAULT_OPEN_API PointToPointInterfaceType = "unknown_default_open_api"
 )
 
 // All allowed values of PointToPointInterfaceType enum
 var AllowedPointToPointInterfaceTypeEnumValues = []PointToPointInterfaceType{
 	"network_equipment_interface",
 	"server_interface",
+	"unknown_default_open_api",
 }
 
 func (v *PointToPointInterfaceType) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *PointToPointInterfaceType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid PointToPointInterfaceType", value)
+	*v = POINTTOPOINTINTERFACETYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewPointToPointInterfaceTypeFromValue returns a pointer to a valid PointToPointInterfaceType

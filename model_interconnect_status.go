@@ -23,12 +23,14 @@ type InterconnectStatus string
 const (
 	INTERCONNECTSTATUS_DRAFT InterconnectStatus = "draft"
 	INTERCONNECTSTATUS_ACTIVE InterconnectStatus = "active"
+	INTERCONNECTSTATUS_UNKNOWN_DEFAULT_OPEN_API InterconnectStatus = "unknown_default_open_api"
 )
 
 // All allowed values of InterconnectStatus enum
 var AllowedInterconnectStatusEnumValues = []InterconnectStatus{
 	"draft",
 	"active",
+	"unknown_default_open_api",
 }
 
 func (v *InterconnectStatus) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *InterconnectStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InterconnectStatus", value)
+	*v = INTERCONNECTSTATUS_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInterconnectStatusFromValue returns a pointer to a valid InterconnectStatus

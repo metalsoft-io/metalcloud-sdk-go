@@ -23,12 +23,14 @@ type AllocationStrategyKind string
 const (
 	ALLOCATIONSTRATEGYKIND_MANUAL AllocationStrategyKind = "manual"
 	ALLOCATIONSTRATEGYKIND_AUTO AllocationStrategyKind = "auto"
+	ALLOCATIONSTRATEGYKIND_UNKNOWN_DEFAULT_OPEN_API AllocationStrategyKind = "unknown_default_open_api"
 )
 
 // All allowed values of AllocationStrategyKind enum
 var AllowedAllocationStrategyKindEnumValues = []AllocationStrategyKind{
 	"manual",
 	"auto",
+	"unknown_default_open_api",
 }
 
 func (v *AllocationStrategyKind) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *AllocationStrategyKind) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid AllocationStrategyKind", value)
+	*v = ALLOCATIONSTRATEGYKIND_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewAllocationStrategyKindFromValue returns a pointer to a valid AllocationStrategyKind

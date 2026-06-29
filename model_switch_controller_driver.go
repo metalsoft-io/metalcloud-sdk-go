@@ -25,6 +25,7 @@ const (
 	SWITCHCONTROLLERDRIVER_CISCO_NDFC SwitchControllerDriver = "cisco_ndfc"
 	SWITCHCONTROLLERDRIVER_NVIDIA_UFM SwitchControllerDriver = "nvidia_ufm"
 	SWITCHCONTROLLERDRIVER_BROCADE SwitchControllerDriver = "brocade"
+	SWITCHCONTROLLERDRIVER_UNKNOWN_DEFAULT_OPEN_API SwitchControllerDriver = "unknown_default_open_api"
 )
 
 // All allowed values of SwitchControllerDriver enum
@@ -33,6 +34,7 @@ var AllowedSwitchControllerDriverEnumValues = []SwitchControllerDriver{
 	"cisco_ndfc",
 	"nvidia_ufm",
 	"brocade",
+	"unknown_default_open_api",
 }
 
 func (v *SwitchControllerDriver) UnmarshalJSON(src []byte) error {
@@ -49,7 +51,8 @@ func (v *SwitchControllerDriver) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SwitchControllerDriver", value)
+	*v = SWITCHCONTROLLERDRIVER_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewSwitchControllerDriverFromValue returns a pointer to a valid SwitchControllerDriver

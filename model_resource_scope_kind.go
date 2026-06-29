@@ -29,6 +29,7 @@ const (
 	RESOURCESCOPEKIND_RACK ResourceScopeKind = "rack"
 	RESOURCESCOPEKIND_DEVICE_GROUP ResourceScopeKind = "device_group"
 	RESOURCESCOPEKIND_NETWORK_DEVICE ResourceScopeKind = "network_device"
+	RESOURCESCOPEKIND_UNKNOWN_DEFAULT_OPEN_API ResourceScopeKind = "unknown_default_open_api"
 )
 
 // All allowed values of ResourceScopeKind enum
@@ -41,6 +42,7 @@ var AllowedResourceScopeKindEnumValues = []ResourceScopeKind{
 	"rack",
 	"device_group",
 	"network_device",
+	"unknown_default_open_api",
 }
 
 func (v *ResourceScopeKind) UnmarshalJSON(src []byte) error {
@@ -57,7 +59,8 @@ func (v *ResourceScopeKind) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ResourceScopeKind", value)
+	*v = RESOURCESCOPEKIND_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewResourceScopeKindFromValue returns a pointer to a valid ResourceScopeKind

@@ -24,6 +24,7 @@ const (
 	EXTENSIONTASKTYPE_EXTENSION_TASK_ANSIBLE ExtensionTaskType = "ExtensionTaskAnsible"
 	EXTENSIONTASKTYPE_EXTENSION_TASK_WEBHOOK ExtensionTaskType = "ExtensionTaskWebhook"
 	EXTENSIONTASKTYPE_EXTENSION_TASK_SSH ExtensionTaskType = "ExtensionTaskSsh"
+	EXTENSIONTASKTYPE_UNKNOWN_DEFAULT_OPEN_API ExtensionTaskType = "unknown_default_open_api"
 )
 
 // All allowed values of ExtensionTaskType enum
@@ -31,6 +32,7 @@ var AllowedExtensionTaskTypeEnumValues = []ExtensionTaskType{
 	"ExtensionTaskAnsible",
 	"ExtensionTaskWebhook",
 	"ExtensionTaskSsh",
+	"unknown_default_open_api",
 }
 
 func (v *ExtensionTaskType) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *ExtensionTaskType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ExtensionTaskType", value)
+	*v = EXTENSIONTASKTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewExtensionTaskTypeFromValue returns a pointer to a valid ExtensionTaskType

@@ -26,6 +26,7 @@ const (
 	GENERICSERVICESTATUS_DELETED GenericServiceStatus = "deleted"
 	GENERICSERVICESTATUS_STOPPED GenericServiceStatus = "stopped"
 	GENERICSERVICESTATUS_SUSPENDED GenericServiceStatus = "suspended"
+	GENERICSERVICESTATUS_UNKNOWN_DEFAULT_OPEN_API GenericServiceStatus = "unknown_default_open_api"
 )
 
 // All allowed values of GenericServiceStatus enum
@@ -35,6 +36,7 @@ var AllowedGenericServiceStatusEnumValues = []GenericServiceStatus{
 	"deleted",
 	"stopped",
 	"suspended",
+	"unknown_default_open_api",
 }
 
 func (v *GenericServiceStatus) UnmarshalJSON(src []byte) error {
@@ -51,7 +53,8 @@ func (v *GenericServiceStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid GenericServiceStatus", value)
+	*v = GENERICSERVICESTATUS_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewGenericServiceStatusFromValue returns a pointer to a valid GenericServiceStatus

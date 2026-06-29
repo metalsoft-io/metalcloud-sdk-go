@@ -176,6 +176,7 @@ const (
 	METALSOFTPERMISSIONS_VM_TYPES_WRITE MetalsoftPermissions = "vm_types_write"
 	METALSOFTPERMISSIONS_WORKFLOWS_READ MetalsoftPermissions = "workflows_read"
 	METALSOFTPERMISSIONS_WORKFLOWS_WRITE MetalsoftPermissions = "workflows_write"
+	METALSOFTPERMISSIONS_UNKNOWN_DEFAULT_OPEN_API MetalsoftPermissions = "unknown_default_open_api"
 )
 
 // All allowed values of MetalsoftPermissions enum
@@ -335,6 +336,7 @@ var AllowedMetalsoftPermissionsEnumValues = []MetalsoftPermissions{
 	"vm_types_write",
 	"workflows_read",
 	"workflows_write",
+	"unknown_default_open_api",
 }
 
 func (v *MetalsoftPermissions) UnmarshalJSON(src []byte) error {
@@ -351,7 +353,8 @@ func (v *MetalsoftPermissions) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MetalsoftPermissions", value)
+	*v = METALSOFTPERMISSIONS_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewMetalsoftPermissionsFromValue returns a pointer to a valid MetalsoftPermissions

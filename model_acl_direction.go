@@ -23,12 +23,14 @@ type ACLDirection string
 const (
 	ACLDIRECTION_IN ACLDirection = "in"
 	ACLDIRECTION_OUT ACLDirection = "out"
+	ACLDIRECTION_UNKNOWN_DEFAULT_OPEN_API ACLDirection = "unknown_default_open_api"
 )
 
 // All allowed values of ACLDirection enum
 var AllowedACLDirectionEnumValues = []ACLDirection{
 	"in",
 	"out",
+	"unknown_default_open_api",
 }
 
 func (v *ACLDirection) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *ACLDirection) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ACLDirection", value)
+	*v = ACLDIRECTION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewACLDirectionFromValue returns a pointer to a valid ACLDirection

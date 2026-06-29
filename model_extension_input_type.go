@@ -28,6 +28,7 @@ const (
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_SERVER_TYPE ExtensionInputType = "ExtensionInputServerType"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_OS_TEMPLATE ExtensionInputType = "ExtensionInputOsTemplate"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_NETWORK_PROFILE ExtensionInputType = "ExtensionInputNetworkProfile"
+	EXTENSIONINPUTTYPE_UNKNOWN_DEFAULT_OPEN_API ExtensionInputType = "unknown_default_open_api"
 )
 
 // All allowed values of ExtensionInputType enum
@@ -39,6 +40,7 @@ var AllowedExtensionInputTypeEnumValues = []ExtensionInputType{
 	"ExtensionInputServerType",
 	"ExtensionInputOsTemplate",
 	"ExtensionInputNetworkProfile",
+	"unknown_default_open_api",
 }
 
 func (v *ExtensionInputType) UnmarshalJSON(src []byte) error {
@@ -55,7 +57,8 @@ func (v *ExtensionInputType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ExtensionInputType", value)
+	*v = EXTENSIONINPUTTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewExtensionInputTypeFromValue returns a pointer to a valid ExtensionInputType

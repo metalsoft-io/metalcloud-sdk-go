@@ -23,12 +23,14 @@ type SubnetGatewayPlacement string
 const (
 	SUBNETGATEWAYPLACEMENT_DEFAULT SubnetGatewayPlacement = "default"
 	SUBNETGATEWAYPLACEMENT_EXTERNAL SubnetGatewayPlacement = "external"
+	SUBNETGATEWAYPLACEMENT_UNKNOWN_DEFAULT_OPEN_API SubnetGatewayPlacement = "unknown_default_open_api"
 )
 
 // All allowed values of SubnetGatewayPlacement enum
 var AllowedSubnetGatewayPlacementEnumValues = []SubnetGatewayPlacement{
 	"default",
 	"external",
+	"unknown_default_open_api",
 }
 
 func (v *SubnetGatewayPlacement) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *SubnetGatewayPlacement) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SubnetGatewayPlacement", value)
+	*v = SUBNETGATEWAYPLACEMENT_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewSubnetGatewayPlacementFromValue returns a pointer to a valid SubnetGatewayPlacement

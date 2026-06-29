@@ -24,6 +24,7 @@ const (
 	NETWORKDEVICEHEALTHSTATUS_NORMAL NetworkDeviceHealthStatus = "normal"
 	NETWORKDEVICEHEALTHSTATUS_WARNING NetworkDeviceHealthStatus = "warning"
 	NETWORKDEVICEHEALTHSTATUS_CRITICAL NetworkDeviceHealthStatus = "critical"
+	NETWORKDEVICEHEALTHSTATUS_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceHealthStatus = "unknown_default_open_api"
 )
 
 // All allowed values of NetworkDeviceHealthStatus enum
@@ -31,6 +32,7 @@ var AllowedNetworkDeviceHealthStatusEnumValues = []NetworkDeviceHealthStatus{
 	"normal",
 	"warning",
 	"critical",
+	"unknown_default_open_api",
 }
 
 func (v *NetworkDeviceHealthStatus) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *NetworkDeviceHealthStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NetworkDeviceHealthStatus", value)
+	*v = NETWORKDEVICEHEALTHSTATUS_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNetworkDeviceHealthStatusFromValue returns a pointer to a valid NetworkDeviceHealthStatus

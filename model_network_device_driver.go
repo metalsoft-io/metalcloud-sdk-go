@@ -42,6 +42,7 @@ const (
 	NETWORKDEVICEDRIVER_DELL_S4000 NetworkDeviceDriver = "dell_s4000"
 	NETWORKDEVICEDRIVER_DELL_S6010 NetworkDeviceDriver = "dell_s6010"
 	NETWORKDEVICEDRIVER_JUNOS18 NetworkDeviceDriver = "junos18"
+	NETWORKDEVICEDRIVER_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceDriver = "unknown_default_open_api"
 )
 
 // All allowed values of NetworkDeviceDriver enum
@@ -67,6 +68,7 @@ var AllowedNetworkDeviceDriverEnumValues = []NetworkDeviceDriver{
 	"dell_s4000",
 	"dell_s6010",
 	"junos18",
+	"unknown_default_open_api",
 }
 
 func (v *NetworkDeviceDriver) UnmarshalJSON(src []byte) error {
@@ -83,7 +85,8 @@ func (v *NetworkDeviceDriver) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NetworkDeviceDriver", value)
+	*v = NETWORKDEVICEDRIVER_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNetworkDeviceDriverFromValue returns a pointer to a valid NetworkDeviceDriver

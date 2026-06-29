@@ -23,12 +23,14 @@ type InfrastructureExtensionActionStage string
 const (
 	INFRASTRUCTUREEXTENSIONACTIONSTAGE_PRE_DEPLOY InfrastructureExtensionActionStage = "preDeploy"
 	INFRASTRUCTUREEXTENSIONACTIONSTAGE_POST_DEPLOY InfrastructureExtensionActionStage = "postDeploy"
+	INFRASTRUCTUREEXTENSIONACTIONSTAGE_UNKNOWN_DEFAULT_OPEN_API InfrastructureExtensionActionStage = "unknown_default_open_api"
 )
 
 // All allowed values of InfrastructureExtensionActionStage enum
 var AllowedInfrastructureExtensionActionStageEnumValues = []InfrastructureExtensionActionStage{
 	"preDeploy",
 	"postDeploy",
+	"unknown_default_open_api",
 }
 
 func (v *InfrastructureExtensionActionStage) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *InfrastructureExtensionActionStage) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InfrastructureExtensionActionStage", value)
+	*v = INFRASTRUCTUREEXTENSIONACTIONSTAGE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInfrastructureExtensionActionStageFromValue returns a pointer to a valid InfrastructureExtensionActionStage

@@ -24,6 +24,7 @@ const (
 	INSTANCEINTERFACETYPE_PHYSICAL InstanceInterfaceType = "physical"
 	INSTANCEINTERFACETYPE_BOND InstanceInterfaceType = "bond"
 	INSTANCEINTERFACETYPE_VLAN InstanceInterfaceType = "vlan"
+	INSTANCEINTERFACETYPE_UNKNOWN_DEFAULT_OPEN_API InstanceInterfaceType = "unknown_default_open_api"
 )
 
 // All allowed values of InstanceInterfaceType enum
@@ -31,6 +32,7 @@ var AllowedInstanceInterfaceTypeEnumValues = []InstanceInterfaceType{
 	"physical",
 	"bond",
 	"vlan",
+	"unknown_default_open_api",
 }
 
 func (v *InstanceInterfaceType) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *InstanceInterfaceType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InstanceInterfaceType", value)
+	*v = INSTANCEINTERFACETYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInstanceInterfaceTypeFromValue returns a pointer to a valid InstanceInterfaceType

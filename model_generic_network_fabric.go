@@ -24,6 +24,7 @@ const (
 	GENERICNETWORKFABRIC_LAN GenericNetworkFabric = "lan"
 	GENERICNETWORKFABRIC_WAN GenericNetworkFabric = "wan"
 	GENERICNETWORKFABRIC_SAN GenericNetworkFabric = "san"
+	GENERICNETWORKFABRIC_UNKNOWN_DEFAULT_OPEN_API GenericNetworkFabric = "unknown_default_open_api"
 )
 
 // All allowed values of GenericNetworkFabric enum
@@ -31,6 +32,7 @@ var AllowedGenericNetworkFabricEnumValues = []GenericNetworkFabric{
 	"lan",
 	"wan",
 	"san",
+	"unknown_default_open_api",
 }
 
 func (v *GenericNetworkFabric) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *GenericNetworkFabric) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid GenericNetworkFabric", value)
+	*v = GENERICNETWORKFABRIC_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewGenericNetworkFabricFromValue returns a pointer to a valid GenericNetworkFabric

@@ -24,6 +24,7 @@ const (
 	FABRICTYPE_ETHERNET FabricType = "ethernet"
 	FABRICTYPE_FIBRE_CHANNEL FabricType = "fibre_channel"
 	FABRICTYPE_INFINIBAND FabricType = "infiniband"
+	FABRICTYPE_UNKNOWN_DEFAULT_OPEN_API FabricType = "unknown_default_open_api"
 )
 
 // All allowed values of FabricType enum
@@ -31,6 +32,7 @@ var AllowedFabricTypeEnumValues = []FabricType{
 	"ethernet",
 	"fibre_channel",
 	"infiniband",
+	"unknown_default_open_api",
 }
 
 func (v *FabricType) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *FabricType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid FabricType", value)
+	*v = FABRICTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewFabricTypeFromValue returns a pointer to a valid FabricType

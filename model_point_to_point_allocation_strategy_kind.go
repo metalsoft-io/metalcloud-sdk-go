@@ -24,6 +24,7 @@ const (
 	POINTTOPOINTALLOCATIONSTRATEGYKIND_MANUAL PointToPointAllocationStrategyKind = "manual"
 	POINTTOPOINTALLOCATIONSTRATEGYKIND_AUTO PointToPointAllocationStrategyKind = "auto"
 	POINTTOPOINTALLOCATIONSTRATEGYKIND_UNNUMBERED PointToPointAllocationStrategyKind = "unnumbered"
+	POINTTOPOINTALLOCATIONSTRATEGYKIND_UNKNOWN_DEFAULT_OPEN_API PointToPointAllocationStrategyKind = "unknown_default_open_api"
 )
 
 // All allowed values of PointToPointAllocationStrategyKind enum
@@ -31,6 +32,7 @@ var AllowedPointToPointAllocationStrategyKindEnumValues = []PointToPointAllocati
 	"manual",
 	"auto",
 	"unnumbered",
+	"unknown_default_open_api",
 }
 
 func (v *PointToPointAllocationStrategyKind) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *PointToPointAllocationStrategyKind) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid PointToPointAllocationStrategyKind", value)
+	*v = POINTTOPOINTALLOCATIONSTRATEGYKIND_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewPointToPointAllocationStrategyKindFromValue returns a pointer to a valid PointToPointAllocationStrategyKind

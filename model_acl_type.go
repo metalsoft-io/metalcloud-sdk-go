@@ -24,6 +24,7 @@ const (
 	ACLTYPE_IPV4 ACLType = "ipv4"
 	ACLTYPE_IPV6 ACLType = "ipv6"
 	ACLTYPE_MAC ACLType = "mac"
+	ACLTYPE_UNKNOWN_DEFAULT_OPEN_API ACLType = "unknown_default_open_api"
 )
 
 // All allowed values of ACLType enum
@@ -31,6 +32,7 @@ var AllowedACLTypeEnumValues = []ACLType{
 	"ipv4",
 	"ipv6",
 	"mac",
+	"unknown_default_open_api",
 }
 
 func (v *ACLType) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *ACLType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ACLType", value)
+	*v = ACLTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewACLTypeFromValue returns a pointer to a valid ACLType

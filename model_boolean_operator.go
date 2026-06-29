@@ -31,6 +31,7 @@ const (
 	BOOLEANOPERATOR_MINUS BooleanOperator = "-"
 	BOOLEANOPERATOR_STAR BooleanOperator = "*"
 	BOOLEANOPERATOR_SLASH BooleanOperator = "/"
+	BOOLEANOPERATOR_UNKNOWN_DEFAULT_OPEN_API BooleanOperator = "unknown_default_open_api"
 )
 
 // All allowed values of BooleanOperator enum
@@ -45,6 +46,7 @@ var AllowedBooleanOperatorEnumValues = []BooleanOperator{
 	"-",
 	"*",
 	"/",
+	"unknown_default_open_api",
 }
 
 func (v *BooleanOperator) UnmarshalJSON(src []byte) error {
@@ -61,7 +63,8 @@ func (v *BooleanOperator) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid BooleanOperator", value)
+	*v = BOOLEANOPERATOR_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewBooleanOperatorFromValue returns a pointer to a valid BooleanOperator

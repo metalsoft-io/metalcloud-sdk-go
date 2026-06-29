@@ -22,11 +22,13 @@ type NetworkFabricInterconnectType string
 // List of NetworkFabricInterconnectType
 const (
 	NETWORKFABRICINTERCONNECTTYPE_DCI_EVPN NetworkFabricInterconnectType = "dci-evpn"
+	NETWORKFABRICINTERCONNECTTYPE_UNKNOWN_DEFAULT_OPEN_API NetworkFabricInterconnectType = "unknown_default_open_api"
 )
 
 // All allowed values of NetworkFabricInterconnectType enum
 var AllowedNetworkFabricInterconnectTypeEnumValues = []NetworkFabricInterconnectType{
 	"dci-evpn",
+	"unknown_default_open_api",
 }
 
 func (v *NetworkFabricInterconnectType) UnmarshalJSON(src []byte) error {
@@ -43,7 +45,8 @@ func (v *NetworkFabricInterconnectType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NetworkFabricInterconnectType", value)
+	*v = NETWORKFABRICINTERCONNECTTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNetworkFabricInterconnectTypeFromValue returns a pointer to a valid NetworkFabricInterconnectType
