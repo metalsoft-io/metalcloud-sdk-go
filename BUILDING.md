@@ -19,6 +19,7 @@ cat >> metalcloud-sdk-go-config.json << END
     "useOneOfDiscriminatorLookup": true,
     "structPrefix": true,
     "enumClassPrefix": true,
+    "enumUnknownDefaultCase": true,
     "withGoMod": false
 }
 END
