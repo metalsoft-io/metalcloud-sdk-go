@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The ID of the user suspend reasons | 
-**UserId** | **float32** | The ID of the user | 
+**Id** | **int64** | The ID of the user suspend reasons | 
+**UserId** | **int64** | The ID of the user | 
 **Type** | **string** | The type of the user suspend reason | 
 **CreatedTimestamp** | **time.Time** | The timestamp when the user logged in | 
 **EndTimestamp** | Pointer to **time.Time** | The timestamp when the user was last updated | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewUserSuspendReason
 
-`func NewUserSuspendReason(id float32, userId float32, type_ string, createdTimestamp time.Time, publicComment string, ) *UserSuspendReason`
+`func NewUserSuspendReason(id int64, userId int64, type_ string, createdTimestamp time.Time, publicComment string, ) *UserSuspendReason`
 
 NewUserSuspendReason instantiates a new UserSuspendReason object
 This constructor will assign default values to properties that have it defined,
@@ -33,40 +33,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *UserSuspendReason) GetId() float32`
+`func (o *UserSuspendReason) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *UserSuspendReason) GetIdOk() (*float32, bool)`
+`func (o *UserSuspendReason) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *UserSuspendReason) SetId(v float32)`
+`func (o *UserSuspendReason) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetUserId
 
-`func (o *UserSuspendReason) GetUserId() float32`
+`func (o *UserSuspendReason) GetUserId() int64`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *UserSuspendReason) GetUserIdOk() (*float32, bool)`
+`func (o *UserSuspendReason) GetUserIdOk() (*int64, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *UserSuspendReason) SetUserId(v float32)`
+`func (o *UserSuspendReason) SetUserId(v int64)`
 
 SetUserId sets UserId field to given value.
 

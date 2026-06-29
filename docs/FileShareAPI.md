@@ -40,8 +40,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -61,8 +61,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -113,8 +113,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	createFileShare := *openapiclient.NewCreateFileShare(float32(123), float32(123)) // CreateFileShare | The File Share create object
+	infrastructureId := int64(789) // int64 | 
+	createFileShare := *openapiclient.NewCreateFileShare(float32(123), int64(123)) // CreateFileShare | The File Share create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -134,7 +134,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -185,8 +185,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -205,8 +205,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -256,8 +256,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 	deleteFileShareSnapshot := *openapiclient.NewDeleteFileShareSnapshot("Name_example") // DeleteFileShareSnapshot | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -276,8 +276,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -329,7 +329,7 @@ import (
 )
 
 func main() {
-	fileShareId := float32(8.14) // float32 | 
+	fileShareId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -349,7 +349,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fileShareId** | **float32** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -397,8 +397,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -418,8 +418,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -470,8 +470,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -491,8 +491,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -541,8 +541,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -562,8 +562,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -614,8 +614,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -635,8 +635,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -687,7 +687,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -722,7 +722,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -785,8 +785,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 	updateFileShareMeta := *openapiclient.NewUpdateFileShareMeta("Name_example") // UpdateFileShareMeta | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -807,8 +807,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -858,8 +858,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 	restoreFileShareSnapshot := *openapiclient.NewRestoreFileShareSnapshot("Name_example") // RestoreFileShareSnapshot | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -878,8 +878,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -931,8 +931,8 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
 	updateFileShare := *openapiclient.NewUpdateFileShare() // UpdateFileShare | The File Share update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -954,8 +954,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1008,9 +1008,9 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	fileShareId := float32(8.14) // float32 | 
-	fileShareHostsModifyBulk := *openapiclient.NewFileShareHostsModifyBulk([]openapiclient.FileShareHostBulkOperation{*openapiclient.NewFileShareHostBulkOperation(float32(123), "OperationType_example")}) // FileShareHostsModifyBulk | The File Share Instance Array Hosts update object
+	infrastructureId := int64(789) // int64 | 
+	fileShareId := int64(789) // int64 | 
+	fileShareHostsModifyBulk := *openapiclient.NewFileShareHostsModifyBulk([]openapiclient.FileShareHostBulkOperation{*openapiclient.NewFileShareHostBulkOperation(int64(123), "OperationType_example")}) // FileShareHostsModifyBulk | The File Share Instance Array Hosts update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1030,8 +1030,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**fileShareId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
+**fileShareId** | **int64** |  | 
 
 ### Other Parameters
 

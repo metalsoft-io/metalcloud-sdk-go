@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | 
+**Id** | **int64** |  | 
 **InterfaceType** | [**InstanceInterfaceType**](InstanceInterfaceType.md) |  | 
 
 ## Methods
 
 ### NewInstanceInterfaceMemberVariables
 
-`func NewInstanceInterfaceMemberVariables(id float32, interfaceType InstanceInterfaceType, ) *InstanceInterfaceMemberVariables`
+`func NewInstanceInterfaceMemberVariables(id int64, interfaceType InstanceInterfaceType, ) *InstanceInterfaceMemberVariables`
 
 NewInstanceInterfaceMemberVariables instantiates a new InstanceInterfaceMemberVariables object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *InstanceInterfaceMemberVariables) GetId() float32`
+`func (o *InstanceInterfaceMemberVariables) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *InstanceInterfaceMemberVariables) GetIdOk() (*float32, bool)`
+`func (o *InstanceInterfaceMemberVariables) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *InstanceInterfaceMemberVariables) SetId(v float32)`
+`func (o *InstanceInterfaceMemberVariables) SetId(v int64)`
 
 SetId sets Id field to given value.
 

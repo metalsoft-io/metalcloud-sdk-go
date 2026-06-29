@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInterfacesRedundancyGroup{}
 // ServerInterfacesRedundancyGroup struct for ServerInterfacesRedundancyGroup
 type ServerInterfacesRedundancyGroup struct {
 	// The id of the server interfaces
-	ServerInterfaceIds []float32 `json:"serverInterfaceIds"`
+	ServerInterfaceIds []int64 `json:"serverInterfaceIds"`
 	// The redundancy group index
 	RedundancyGroupIndex NullableFloat32 `json:"redundancyGroupIndex"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _ServerInterfacesRedundancyGroup ServerInterfacesRedundancyGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInterfacesRedundancyGroup(serverInterfaceIds []float32, redundancyGroupIndex NullableFloat32) *ServerInterfacesRedundancyGroup {
+func NewServerInterfacesRedundancyGroup(serverInterfaceIds []int64, redundancyGroupIndex NullableFloat32) *ServerInterfacesRedundancyGroup {
 	this := ServerInterfacesRedundancyGroup{}
 	this.ServerInterfaceIds = serverInterfaceIds
 	this.RedundancyGroupIndex = redundancyGroupIndex
@@ -50,9 +50,9 @@ func NewServerInterfacesRedundancyGroupWithDefaults() *ServerInterfacesRedundanc
 }
 
 // GetServerInterfaceIds returns the ServerInterfaceIds field value
-func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIds() []float32 {
+func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIds() []float32 {
 
 // GetServerInterfaceIdsOk returns a tuple with the ServerInterfaceIds field value
 // and a boolean to check if the value has been set.
-func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIdsOk() ([]float32, bool) {
+func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIdsOk() ([]float32, 
 }
 
 // SetServerInterfaceIds sets field value
-func (o *ServerInterfacesRedundancyGroup) SetServerInterfaceIds(v []float32) {
+func (o *ServerInterfacesRedundancyGroup) SetServerInterfaceIds(v []int64) {
 	o.ServerInterfaceIds = v
 }
 

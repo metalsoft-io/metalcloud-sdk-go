@@ -30,20 +30,20 @@ type ConfigurationAPIGetConfigurationRequest struct {
 	filter *string
 }
 
-// Filter to be applied.
+// Service to retrieve configuration for.
 func (r ConfigurationAPIGetConfigurationRequest) Filter(filter string) ConfigurationAPIGetConfigurationRequest {
 	r.filter = &filter
 	return r
 }
 
-func (r ConfigurationAPIGetConfigurationRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ConfigurationAPIGetConfigurationRequest) Execute() (*Configurations, *http.Response, error) {
 	return r.ApiService.GetConfigurationExecute(r)
 }
 
 /*
 GetConfiguration Get configuration
 
-Returns a configuration object
+Returns configuration for all services, or a single service when filter is provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ConfigurationAPIGetConfigurationRequest
@@ -56,13 +56,13 @@ func (a *ConfigurationAPIService) GetConfiguration(ctx context.Context) Configur
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigurationAPIService) GetConfigurationExecute(r ConfigurationAPIGetConfigurationRequest) (map[string]interface{}, *http.Response, error) {
+//  @return Configurations
+func (a *ConfigurationAPIService) GetConfigurationExecute(r ConfigurationAPIGetConfigurationRequest) (*Configurations, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *Configurations
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigurationAPIService.GetConfiguration")
@@ -133,34 +133,34 @@ func (a *ConfigurationAPIService) GetConfigurationExecute(r ConfigurationAPIGetC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ConfigurationAPIPatchConfigurationRequest struct {
+type ConfigurationAPIReplaceConfigurationRequest struct {
 	ctx context.Context
 	ApiService *ConfigurationAPIService
 	filter string
-	body *map[string]interface{}
+	replaceConfigurationRequest *ReplaceConfigurationRequest
 }
 
 // Configuration object
-func (r ConfigurationAPIPatchConfigurationRequest) Body(body map[string]interface{}) ConfigurationAPIPatchConfigurationRequest {
-	r.body = &body
+func (r ConfigurationAPIReplaceConfigurationRequest) ReplaceConfigurationRequest(replaceConfigurationRequest ReplaceConfigurationRequest) ConfigurationAPIReplaceConfigurationRequest {
+	r.replaceConfigurationRequest = &replaceConfigurationRequest
 	return r
 }
 
-func (r ConfigurationAPIPatchConfigurationRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.PatchConfigurationExecute(r)
+func (r ConfigurationAPIReplaceConfigurationRequest) Execute() (*ReplaceConfigurationRequest, *http.Response, error) {
+	return r.ApiService.ReplaceConfigurationExecute(r)
 }
 
 /*
-PatchConfiguration Partially update configuration
+ReplaceConfiguration Replace configuration
 
-Partially updates a configuration object
+Replaces the entire configuration for a service.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param filter Filter to be applied (auth, bsi, notification, tunnel).
- @return ConfigurationAPIPatchConfigurationRequest
+ @param filter Service to update configuration for.
+ @return ConfigurationAPIReplaceConfigurationRequest
 */
-func (a *ConfigurationAPIService) PatchConfiguration(ctx context.Context, filter string) ConfigurationAPIPatchConfigurationRequest {
-	return ConfigurationAPIPatchConfigurationRequest{
+func (a *ConfigurationAPIService) ReplaceConfiguration(ctx context.Context, filter string) ConfigurationAPIReplaceConfigurationRequest {
+	return ConfigurationAPIReplaceConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		filter: filter,
@@ -168,16 +168,16 @@ func (a *ConfigurationAPIService) PatchConfiguration(ctx context.Context, filter
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigurationAPIService) PatchConfigurationExecute(r ConfigurationAPIPatchConfigurationRequest) (map[string]interface{}, *http.Response, error) {
+//  @return ReplaceConfigurationRequest
+func (a *ConfigurationAPIService) ReplaceConfigurationExecute(r ConfigurationAPIReplaceConfigurationRequest) (*ReplaceConfigurationRequest, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *ReplaceConfigurationRequest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigurationAPIService.PatchConfiguration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigurationAPIService.ReplaceConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -188,8 +188,8 @@ func (a *ConfigurationAPIService) PatchConfigurationExecute(r ConfigurationAPIPa
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.replaceConfigurationRequest == nil {
+		return localVarReturnValue, nil, reportError("replaceConfigurationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -210,7 +210,7 @@ func (a *ConfigurationAPIService) PatchConfigurationExecute(r ConfigurationAPIPa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.replaceConfigurationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -248,34 +248,34 @@ func (a *ConfigurationAPIService) PatchConfigurationExecute(r ConfigurationAPIPa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ConfigurationAPIPutConfigurationRequest struct {
+type ConfigurationAPIUpdateConfigurationRequest struct {
 	ctx context.Context
 	ApiService *ConfigurationAPIService
 	filter string
-	body *map[string]interface{}
+	replaceConfigurationRequest *ReplaceConfigurationRequest
 }
 
-// Configuration object
-func (r ConfigurationAPIPutConfigurationRequest) Body(body map[string]interface{}) ConfigurationAPIPutConfigurationRequest {
-	r.body = &body
+// Partial configuration object
+func (r ConfigurationAPIUpdateConfigurationRequest) ReplaceConfigurationRequest(replaceConfigurationRequest ReplaceConfigurationRequest) ConfigurationAPIUpdateConfigurationRequest {
+	r.replaceConfigurationRequest = &replaceConfigurationRequest
 	return r
 }
 
-func (r ConfigurationAPIPutConfigurationRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.PutConfigurationExecute(r)
+func (r ConfigurationAPIUpdateConfigurationRequest) Execute() (*ReplaceConfigurationRequest, *http.Response, error) {
+	return r.ApiService.UpdateConfigurationExecute(r)
 }
 
 /*
-PutConfiguration Update configuration
+UpdateConfiguration Partially update configuration
 
-Updates a configuration object
+Updates specific fields of the configuration for a service.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param filter Filter to be applied (auth, bsi, notification, tunnel).
- @return ConfigurationAPIPutConfigurationRequest
+ @param filter Service to update configuration for.
+ @return ConfigurationAPIUpdateConfigurationRequest
 */
-func (a *ConfigurationAPIService) PutConfiguration(ctx context.Context, filter string) ConfigurationAPIPutConfigurationRequest {
-	return ConfigurationAPIPutConfigurationRequest{
+func (a *ConfigurationAPIService) UpdateConfiguration(ctx context.Context, filter string) ConfigurationAPIUpdateConfigurationRequest {
+	return ConfigurationAPIUpdateConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		filter: filter,
@@ -283,16 +283,16 @@ func (a *ConfigurationAPIService) PutConfiguration(ctx context.Context, filter s
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigurationAPIService) PutConfigurationExecute(r ConfigurationAPIPutConfigurationRequest) (map[string]interface{}, *http.Response, error) {
+//  @return ReplaceConfigurationRequest
+func (a *ConfigurationAPIService) UpdateConfigurationExecute(r ConfigurationAPIUpdateConfigurationRequest) (*ReplaceConfigurationRequest, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *ReplaceConfigurationRequest
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigurationAPIService.PutConfiguration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigurationAPIService.UpdateConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -303,8 +303,8 @@ func (a *ConfigurationAPIService) PutConfigurationExecute(r ConfigurationAPIPutC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.replaceConfigurationRequest == nil {
+		return localVarReturnValue, nil, reportError("replaceConfigurationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -325,7 +325,7 @@ func (a *ConfigurationAPIService) PutConfigurationExecute(r ConfigurationAPIPutC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.replaceConfigurationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

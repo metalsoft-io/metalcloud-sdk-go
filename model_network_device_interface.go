@@ -22,9 +22,9 @@ var _ MappedNullable = &NetworkDeviceInterface{}
 // NetworkDeviceInterface struct for NetworkDeviceInterface
 type NetworkDeviceInterface struct {
 	// The ID of the network equipment interface
-	InterfaceId float32 `json:"interfaceId"`
+	InterfaceId int64 `json:"interfaceId"`
 	// The ID of the network device
-	NetworkDeviceId float32 `json:"networkDeviceId"`
+	NetworkDeviceId int64 `json:"networkDeviceId"`
 	// The name of the network equipment interface
 	InterfaceName string `json:"interfaceName"`
 	// Description of the network equipment interface
@@ -32,9 +32,9 @@ type NetworkDeviceInterface struct {
 	// The type of the network equipment interface
 	Kind string `json:"kind"`
 	// The ID of the parent interface if applicable
-	ParentInterfaceId *float32 `json:"parentInterfaceId,omitempty"`
+	ParentInterfaceId *int64 `json:"parentInterfaceId,omitempty"`
 	// The ID of the linked interface if applicable. (example: DPU physical interface p0 id 10 linked to switch port eth1/10 id 20)
-	LinkedInterfaceId *float32 `json:"linkedInterfaceId,omitempty"`
+	LinkedInterfaceId *int64 `json:"linkedInterfaceId,omitempty"`
 	// The identifier of the linked port if applicable
 	LinkedPortId *string `json:"linkedPortId,omitempty"`
 	// The hostname of the linked switch if applicable
@@ -43,10 +43,12 @@ type NetworkDeviceInterface struct {
 	InterfaceIndex *float32 `json:"interfaceIndex,omitempty"`
 	// LAG identifier
 	LagIdentifier *float32 `json:"lagIdentifier,omitempty"`
+	// The LAG this interface is a member of, if any. Read-only.
+	NetworkDeviceLag NullableNetworkDeviceLag `json:"networkDeviceLag,omitempty"`
 	// The server interface ID
-	ServerInterfaceId *float32 `json:"serverInterfaceId,omitempty"`
+	ServerInterfaceId *int64 `json:"serverInterfaceId,omitempty"`
 	// The server ID
-	ServerId *float32 `json:"serverId,omitempty"`
+	ServerId *int64 `json:"serverId,omitempty"`
 	// NUMA node of the network device for optimal resource allocation
 	NumaNode *float32 `json:"numaNode,omitempty"`
 	// Dirty bit flag
@@ -65,6 +67,11 @@ type NetworkDeviceInterface struct {
 	InterfaceLLDPInformationServerInterface map[string]interface{} `json:"interfaceLLDPInformationServerInterface,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
+	// Key/value tags. Filterable via `?tag.<key>=<value>` query params (AND across keys).
+	Tags map[string]string `json:"tags"`
+	Config NetworkEquipmentInterfaceConfig `json:"config"`
+	Ipv4 NetworkEquipmentInterfaceIpFamily `json:"ipv4"`
+	Ipv6 NetworkEquipmentInterfaceIpFamily `json:"ipv6"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -74,7 +81,7 @@ type _NetworkDeviceInterface NetworkDeviceInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string) *NetworkDeviceInterface {
+func NewNetworkDeviceInterface(interfaceId int64, networkDeviceId int64, interfaceName string, kind string, dirtyBit float32, cachedUpdatedTimestamp string, tags map[string]string, config NetworkEquipmentInterfaceConfig, ipv4 NetworkEquipmentInterfaceIpFamily, ipv6 NetworkEquipmentInterfaceIpFamily) *NetworkDeviceInterface {
 	this := NetworkDeviceInterface{}
 	this.InterfaceId = interfaceId
 	this.NetworkDeviceId = networkDeviceId
@@ -82,6 +89,10 @@ func NewNetworkDeviceInterface(interfaceId float32, networkDeviceId float32, int
 	this.Kind = kind
 	this.DirtyBit = dirtyBit
 	this.CachedUpdatedTimestamp = cachedUpdatedTimestamp
+	this.Tags = tags
+	this.Config = config
+	this.Ipv4 = ipv4
+	this.Ipv6 = ipv6
 	return &this
 }
 
@@ -94,9 +105,9 @@ func NewNetworkDeviceInterfaceWithDefaults() *NetworkDeviceInterface {
 }
 
 // GetInterfaceId returns the InterfaceId field value
-func (o *NetworkDeviceInterface) GetInterfaceId() float32 {
+func (o *NetworkDeviceInterface) GetInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -105,7 +116,7 @@ func (o *NetworkDeviceInterface) GetInterfaceId() float32 {
 
 // GetInterfaceIdOk returns a tuple with the InterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,14 +124,14 @@ func (o *NetworkDeviceInterface) GetInterfaceIdOk() (*float32, bool) {
 }
 
 // SetInterfaceId sets field value
-func (o *NetworkDeviceInterface) SetInterfaceId(v float32) {
+func (o *NetworkDeviceInterface) SetInterfaceId(v int64) {
 	o.InterfaceId = v
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *NetworkDeviceInterface) GetNetworkDeviceId() float32 {
+func (o *NetworkDeviceInterface) GetNetworkDeviceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -129,7 +140,7 @@ func (o *NetworkDeviceInterface) GetNetworkDeviceId() float32 {
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,7 +148,7 @@ func (o *NetworkDeviceInterface) GetNetworkDeviceIdOk() (*float32, bool) {
 }
 
 // SetNetworkDeviceId sets field value
-func (o *NetworkDeviceInterface) SetNetworkDeviceId(v float32) {
+func (o *NetworkDeviceInterface) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 
@@ -222,9 +233,9 @@ func (o *NetworkDeviceInterface) SetKind(v string) {
 }
 
 // GetParentInterfaceId returns the ParentInterfaceId field value if set, zero value otherwise.
-func (o *NetworkDeviceInterface) GetParentInterfaceId() float32 {
+func (o *NetworkDeviceInterface) GetParentInterfaceId() int64 {
 	if o == nil || IsNil(o.ParentInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ParentInterfaceId
@@ -232,7 +243,7 @@ func (o *NetworkDeviceInterface) GetParentInterfaceId() float32 {
 
 // GetParentInterfaceIdOk returns a tuple with the ParentInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetParentInterfaceIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterface) GetParentInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ParentInterfaceId) {
 		return nil, false
 	}
@@ -248,15 +259,15 @@ func (o *NetworkDeviceInterface) HasParentInterfaceId() bool {
 	return false
 }
 
-// SetParentInterfaceId gets a reference to the given float32 and assigns it to the ParentInterfaceId field.
-func (o *NetworkDeviceInterface) SetParentInterfaceId(v float32) {
+// SetParentInterfaceId gets a reference to the given int64 and assigns it to the ParentInterfaceId field.
+func (o *NetworkDeviceInterface) SetParentInterfaceId(v int64) {
 	o.ParentInterfaceId = &v
 }
 
 // GetLinkedInterfaceId returns the LinkedInterfaceId field value if set, zero value otherwise.
-func (o *NetworkDeviceInterface) GetLinkedInterfaceId() float32 {
+func (o *NetworkDeviceInterface) GetLinkedInterfaceId() int64 {
 	if o == nil || IsNil(o.LinkedInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LinkedInterfaceId
@@ -264,7 +275,7 @@ func (o *NetworkDeviceInterface) GetLinkedInterfaceId() float32 {
 
 // GetLinkedInterfaceIdOk returns a tuple with the LinkedInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetLinkedInterfaceIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterface) GetLinkedInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LinkedInterfaceId) {
 		return nil, false
 	}
@@ -280,8 +291,8 @@ func (o *NetworkDeviceInterface) HasLinkedInterfaceId() bool {
 	return false
 }
 
-// SetLinkedInterfaceId gets a reference to the given float32 and assigns it to the LinkedInterfaceId field.
-func (o *NetworkDeviceInterface) SetLinkedInterfaceId(v float32) {
+// SetLinkedInterfaceId gets a reference to the given int64 and assigns it to the LinkedInterfaceId field.
+func (o *NetworkDeviceInterface) SetLinkedInterfaceId(v int64) {
 	o.LinkedInterfaceId = &v
 }
 
@@ -413,10 +424,52 @@ func (o *NetworkDeviceInterface) SetLagIdentifier(v float32) {
 	o.LagIdentifier = &v
 }
 
+// GetNetworkDeviceLag returns the NetworkDeviceLag field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkDeviceInterface) GetNetworkDeviceLag() NetworkDeviceLag {
+	if o == nil || IsNil(o.NetworkDeviceLag.Get()) {
+		var ret NetworkDeviceLag
+		return ret
+	}
+	return *o.NetworkDeviceLag.Get()
+}
+
+// GetNetworkDeviceLagOk returns a tuple with the NetworkDeviceLag field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkDeviceInterface) GetNetworkDeviceLagOk() (*NetworkDeviceLag, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NetworkDeviceLag.Get(), o.NetworkDeviceLag.IsSet()
+}
+
+// HasNetworkDeviceLag returns a boolean if a field has been set.
+func (o *NetworkDeviceInterface) HasNetworkDeviceLag() bool {
+	if o != nil && o.NetworkDeviceLag.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceLag gets a reference to the given NullableNetworkDeviceLag and assigns it to the NetworkDeviceLag field.
+func (o *NetworkDeviceInterface) SetNetworkDeviceLag(v NetworkDeviceLag) {
+	o.NetworkDeviceLag.Set(&v)
+}
+// SetNetworkDeviceLagNil sets the value for NetworkDeviceLag to be an explicit nil
+func (o *NetworkDeviceInterface) SetNetworkDeviceLagNil() {
+	o.NetworkDeviceLag.Set(nil)
+}
+
+// UnsetNetworkDeviceLag ensures that no value is present for NetworkDeviceLag, not even an explicit nil
+func (o *NetworkDeviceInterface) UnsetNetworkDeviceLag() {
+	o.NetworkDeviceLag.Unset()
+}
+
 // GetServerInterfaceId returns the ServerInterfaceId field value if set, zero value otherwise.
-func (o *NetworkDeviceInterface) GetServerInterfaceId() float32 {
+func (o *NetworkDeviceInterface) GetServerInterfaceId() int64 {
 	if o == nil || IsNil(o.ServerInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerInterfaceId
@@ -424,7 +477,7 @@ func (o *NetworkDeviceInterface) GetServerInterfaceId() float32 {
 
 // GetServerInterfaceIdOk returns a tuple with the ServerInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetServerInterfaceIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterface) GetServerInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerInterfaceId) {
 		return nil, false
 	}
@@ -440,15 +493,15 @@ func (o *NetworkDeviceInterface) HasServerInterfaceId() bool {
 	return false
 }
 
-// SetServerInterfaceId gets a reference to the given float32 and assigns it to the ServerInterfaceId field.
-func (o *NetworkDeviceInterface) SetServerInterfaceId(v float32) {
+// SetServerInterfaceId gets a reference to the given int64 and assigns it to the ServerInterfaceId field.
+func (o *NetworkDeviceInterface) SetServerInterfaceId(v int64) {
 	o.ServerInterfaceId = &v
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
-func (o *NetworkDeviceInterface) GetServerId() float32 {
+func (o *NetworkDeviceInterface) GetServerId() int64 {
 	if o == nil || IsNil(o.ServerId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerId
@@ -456,7 +509,7 @@ func (o *NetworkDeviceInterface) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterface) GetServerIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterface) GetServerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerId) {
 		return nil, false
 	}
@@ -472,8 +525,8 @@ func (o *NetworkDeviceInterface) HasServerId() bool {
 	return false
 }
 
-// SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
-func (o *NetworkDeviceInterface) SetServerId(v float32) {
+// SetServerId gets a reference to the given int64 and assigns it to the ServerId field.
+func (o *NetworkDeviceInterface) SetServerId(v int64) {
 	o.ServerId = &v
 }
 
@@ -749,6 +802,102 @@ func (o *NetworkDeviceInterface) SetLinks(v []Link) {
 	o.Links = v
 }
 
+// GetTags returns the Tags field value
+func (o *NetworkDeviceInterface) GetTags() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetTagsOk() (*map[string]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// SetTags sets field value
+func (o *NetworkDeviceInterface) SetTags(v map[string]string) {
+	o.Tags = v
+}
+
+// GetConfig returns the Config field value
+func (o *NetworkDeviceInterface) GetConfig() NetworkEquipmentInterfaceConfig {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceConfig
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetConfigOk() (*NetworkEquipmentInterfaceConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// SetConfig sets field value
+func (o *NetworkDeviceInterface) SetConfig(v NetworkEquipmentInterfaceConfig) {
+	o.Config = v
+}
+
+// GetIpv4 returns the Ipv4 field value
+func (o *NetworkDeviceInterface) GetIpv4() NetworkEquipmentInterfaceIpFamily {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceIpFamily
+		return ret
+	}
+
+	return o.Ipv4
+}
+
+// GetIpv4Ok returns a tuple with the Ipv4 field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetIpv4Ok() (*NetworkEquipmentInterfaceIpFamily, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv4, true
+}
+
+// SetIpv4 sets field value
+func (o *NetworkDeviceInterface) SetIpv4(v NetworkEquipmentInterfaceIpFamily) {
+	o.Ipv4 = v
+}
+
+// GetIpv6 returns the Ipv6 field value
+func (o *NetworkDeviceInterface) GetIpv6() NetworkEquipmentInterfaceIpFamily {
+	if o == nil {
+		var ret NetworkEquipmentInterfaceIpFamily
+		return ret
+	}
+
+	return o.Ipv6
+}
+
+// GetIpv6Ok returns a tuple with the Ipv6 field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceInterface) GetIpv6Ok() (*NetworkEquipmentInterfaceIpFamily, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv6, true
+}
+
+// SetIpv6 sets field value
+func (o *NetworkDeviceInterface) SetIpv6(v NetworkEquipmentInterfaceIpFamily) {
+	o.Ipv6 = v
+}
+
 func (o NetworkDeviceInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -784,6 +933,9 @@ func (o NetworkDeviceInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LagIdentifier) {
 		toSerialize["lagIdentifier"] = o.LagIdentifier
 	}
+	if o.NetworkDeviceLag.IsSet() {
+		toSerialize["networkDeviceLag"] = o.NetworkDeviceLag.Get()
+	}
 	if !IsNil(o.ServerInterfaceId) {
 		toSerialize["serverInterfaceId"] = o.ServerInterfaceId
 	}
@@ -813,6 +965,10 @@ func (o NetworkDeviceInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
+	toSerialize["tags"] = o.Tags
+	toSerialize["config"] = o.Config
+	toSerialize["ipv4"] = o.Ipv4
+	toSerialize["ipv6"] = o.Ipv6
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -832,6 +988,10 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		"kind",
 		"dirtyBit",
 		"cachedUpdatedTimestamp",
+		"tags",
+		"config",
+		"ipv4",
+		"ipv6",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -872,6 +1032,7 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "linkedSwitchHostname")
 		delete(additionalProperties, "interfaceIndex")
 		delete(additionalProperties, "lagIdentifier")
+		delete(additionalProperties, "networkDeviceLag")
 		delete(additionalProperties, "serverInterfaceId")
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "numaNode")
@@ -883,6 +1044,10 @@ func (o *NetworkDeviceInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "cachedUpdatedTimestamp")
 		delete(additionalProperties, "interfaceLLDPInformationServerInterface")
 		delete(additionalProperties, "links")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "ipv6")
 		o.AdditionalProperties = additionalProperties
 	}
 

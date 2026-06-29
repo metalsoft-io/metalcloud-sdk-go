@@ -24,6 +24,8 @@ type UpdateServerCleanupPolicy struct {
 	Label *string `json:"label,omitempty"`
 	// Cleanup drives for oob enabled server
 	CleanupDrivesForOobEnabledServer *float32 `json:"cleanupDrivesForOobEnabledServer,omitempty"`
+	// Whether to clear TPM
+	ClearTpm *float32 `json:"clearTpm,omitempty"`
 	// Recreate raid
 	RecreateRaid *float32 `json:"recreateRaid,omitempty"`
 	// Reset raid controllers to default
@@ -124,6 +126,38 @@ func (o *UpdateServerCleanupPolicy) HasCleanupDrivesForOobEnabledServer() bool {
 // SetCleanupDrivesForOobEnabledServer gets a reference to the given float32 and assigns it to the CleanupDrivesForOobEnabledServer field.
 func (o *UpdateServerCleanupPolicy) SetCleanupDrivesForOobEnabledServer(v float32) {
 	o.CleanupDrivesForOobEnabledServer = &v
+}
+
+// GetClearTpm returns the ClearTpm field value if set, zero value otherwise.
+func (o *UpdateServerCleanupPolicy) GetClearTpm() float32 {
+	if o == nil || IsNil(o.ClearTpm) {
+		var ret float32
+		return ret
+	}
+	return *o.ClearTpm
+}
+
+// GetClearTpmOk returns a tuple with the ClearTpm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServerCleanupPolicy) GetClearTpmOk() (*float32, bool) {
+	if o == nil || IsNil(o.ClearTpm) {
+		return nil, false
+	}
+	return o.ClearTpm, true
+}
+
+// HasClearTpm returns a boolean if a field has been set.
+func (o *UpdateServerCleanupPolicy) HasClearTpm() bool {
+	if o != nil && !IsNil(o.ClearTpm) {
+		return true
+	}
+
+	return false
+}
+
+// SetClearTpm gets a reference to the given float32 and assigns it to the ClearTpm field.
+func (o *UpdateServerCleanupPolicy) SetClearTpm(v float32) {
+	o.ClearTpm = &v
 }
 
 // GetRecreateRaid returns the RecreateRaid field value if set, zero value otherwise.
@@ -398,6 +432,9 @@ func (o UpdateServerCleanupPolicy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CleanupDrivesForOobEnabledServer) {
 		toSerialize["cleanupDrivesForOobEnabledServer"] = o.CleanupDrivesForOobEnabledServer
 	}
+	if !IsNil(o.ClearTpm) {
+		toSerialize["clearTpm"] = o.ClearTpm
+	}
 	if !IsNil(o.RecreateRaid) {
 		toSerialize["recreateRaid"] = o.RecreateRaid
 	}
@@ -446,6 +483,7 @@ func (o *UpdateServerCleanupPolicy) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "cleanupDrivesForOobEnabledServer")
+		delete(additionalProperties, "clearTpm")
 		delete(additionalProperties, "recreateRaid")
 		delete(additionalProperties, "resetRaidControllers")
 		delete(additionalProperties, "disableEmbeddedNics")

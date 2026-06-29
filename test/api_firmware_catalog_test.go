@@ -38,7 +38,7 @@ func Test_sdk_FirmwareCatalogAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareCatalogId float32
+		var firmwareCatalogId int64
 
 		httpRes, err := apiClient.FirmwareCatalogAPI.DeleteFirmwareCatalog(context.Background(), firmwareCatalogId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_FirmwareCatalogAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareCatalogId float32
+		var firmwareCatalogId int64
 
 		resp, httpRes, err := apiClient.FirmwareCatalogAPI.GetFirmwareCatalog(context.Background(), firmwareCatalogId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_FirmwareCatalogAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareCatalogId float32
+		var firmwareCatalogId int64
 
 		resp, httpRes, err := apiClient.FirmwareCatalogAPI.UpdateFirmwareCatalog(context.Background(), firmwareCatalogId).Execute()
 

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **Name** | **string** |  | 
 **Annotations** | **map[string]string** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
-**FabricId** | **int32** |  | 
-**InfrastructureId** | **NullableInt32** |  | 
-**ExtensionInstanceId** | Pointer to **NullableInt32** |  | [optional] 
+**FabricId** | **int64** |  | 
+**InfrastructureId** | **NullableInt64** |  | 
+**ExtensionInstanceId** | Pointer to **NullableInt64** |  | [optional] 
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
-**LastAppliedLogicalNetworkProfileId** | **NullableInt32** |  | 
+**LastAppliedLogicalNetworkProfileId** | **NullableInt64** |  | 
 **LastLogicalNetworkProfileAppliedAt** | **time.Time** |  | 
 **ExternalId** | Pointer to **NullableString** | External identifier for this logical network on the controller | [optional] 
 **Config** | [**LogicalNetworkConfig**](LogicalNetworkConfig.md) |  | 
@@ -26,14 +26,15 @@ Name | Type | Description | Notes
 **Zone** | Pointer to [**LogicalNetworkZoneProperties**](LogicalNetworkZoneProperties.md) |  | [optional] 
 **Ipv4** | Pointer to [**LogicalNetworkIpv4Properties**](LogicalNetworkIpv4Properties.md) |  | [optional] 
 **Ipv6** | Pointer to [**LogicalNetworkIpv6Properties**](LogicalNetworkIpv6Properties.md) |  | [optional] 
-**RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
+**RouteDomainId** | Pointer to **NullableInt64** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
+**L3Only** | Pointer to **bool** | When true, this is a routed-access (L3-only) network delivered over point-to-point links. | [optional] [default to false]
 
 ## Methods
 
 ### NewLogicalNetwork
 
-`func NewLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config LogicalNetworkConfig, ) *LogicalNetwork`
+`func NewLogicalNetwork(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, kind LogicalNetworkKind, fabricId int64, infrastructureId NullableInt64, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt64, lastLogicalNetworkProfileAppliedAt time.Time, config LogicalNetworkConfig, ) *LogicalNetwork`
 
 NewLogicalNetwork instantiates a new LogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +51,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *LogicalNetwork) GetId() int32`
+`func (o *LogicalNetwork) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LogicalNetwork) GetIdOk() (*int32, bool)`
+`func (o *LogicalNetwork) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *LogicalNetwork) SetId(v int32)`
+`func (o *LogicalNetwork) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -170,20 +171,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *LogicalNetwork) GetRevision() int32`
+`func (o *LogicalNetwork) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *LogicalNetwork) GetRevisionOk() (*int32, bool)`
+`func (o *LogicalNetwork) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *LogicalNetwork) SetRevision(v int32)`
+`func (o *LogicalNetwork) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -210,40 +211,40 @@ SetKind sets Kind field to given value.
 
 ### GetFabricId
 
-`func (o *LogicalNetwork) GetFabricId() int32`
+`func (o *LogicalNetwork) GetFabricId() int64`
 
 GetFabricId returns the FabricId field if non-nil, zero value otherwise.
 
 ### GetFabricIdOk
 
-`func (o *LogicalNetwork) GetFabricIdOk() (*int32, bool)`
+`func (o *LogicalNetwork) GetFabricIdOk() (*int64, bool)`
 
 GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricId
 
-`func (o *LogicalNetwork) SetFabricId(v int32)`
+`func (o *LogicalNetwork) SetFabricId(v int64)`
 
 SetFabricId sets FabricId field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *LogicalNetwork) GetInfrastructureId() int32`
+`func (o *LogicalNetwork) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *LogicalNetwork) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *LogicalNetwork) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *LogicalNetwork) SetInfrastructureId(v int32)`
+`func (o *LogicalNetwork) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -260,20 +261,20 @@ SetInfrastructureId sets InfrastructureId field to given value.
 UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
 ### GetExtensionInstanceId
 
-`func (o *LogicalNetwork) GetExtensionInstanceId() int32`
+`func (o *LogicalNetwork) GetExtensionInstanceId() int64`
 
 GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
 ### GetExtensionInstanceIdOk
 
-`func (o *LogicalNetwork) GetExtensionInstanceIdOk() (*int32, bool)`
+`func (o *LogicalNetwork) GetExtensionInstanceIdOk() (*int64, bool)`
 
 GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtensionInstanceId
 
-`func (o *LogicalNetwork) SetExtensionInstanceId(v int32)`
+`func (o *LogicalNetwork) SetExtensionInstanceId(v int64)`
 
 SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
@@ -315,20 +316,20 @@ SetServiceStatus sets ServiceStatus field to given value.
 
 ### GetLastAppliedLogicalNetworkProfileId
 
-`func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileId() int32`
+`func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileId() int64`
 
 GetLastAppliedLogicalNetworkProfileId returns the LastAppliedLogicalNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetLastAppliedLogicalNetworkProfileIdOk
 
-`func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileIdOk() (*int32, bool)`
+`func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileIdOk() (*int64, bool)`
 
 GetLastAppliedLogicalNetworkProfileIdOk returns a tuple with the LastAppliedLogicalNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastAppliedLogicalNetworkProfileId
 
-`func (o *LogicalNetwork) SetLastAppliedLogicalNetworkProfileId(v int32)`
+`func (o *LogicalNetwork) SetLastAppliedLogicalNetworkProfileId(v int64)`
 
 SetLastAppliedLogicalNetworkProfileId sets LastAppliedLogicalNetworkProfileId field to given value.
 
@@ -570,20 +571,20 @@ HasIpv6 returns a boolean if a field has been set.
 
 ### GetRouteDomainId
 
-`func (o *LogicalNetwork) GetRouteDomainId() int32`
+`func (o *LogicalNetwork) GetRouteDomainId() int64`
 
 GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
 
 ### GetRouteDomainIdOk
 
-`func (o *LogicalNetwork) GetRouteDomainIdOk() (*int32, bool)`
+`func (o *LogicalNetwork) GetRouteDomainIdOk() (*int64, bool)`
 
 GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouteDomainId
 
-`func (o *LogicalNetwork) SetRouteDomainId(v int32)`
+`func (o *LogicalNetwork) SetRouteDomainId(v int64)`
 
 SetRouteDomainId sets RouteDomainId field to given value.
 
@@ -638,6 +639,31 @@ HasMtu returns a boolean if a field has been set.
 `func (o *LogicalNetwork) UnsetMtu()`
 
 UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+### GetL3Only
+
+`func (o *LogicalNetwork) GetL3Only() bool`
+
+GetL3Only returns the L3Only field if non-nil, zero value otherwise.
+
+### GetL3OnlyOk
+
+`func (o *LogicalNetwork) GetL3OnlyOk() (*bool, bool)`
+
+GetL3OnlyOk returns a tuple with the L3Only field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL3Only
+
+`func (o *LogicalNetwork) SetL3Only(v bool)`
+
+SetL3Only sets L3Only field to given value.
+
+### HasL3Only
+
+`func (o *LogicalNetwork) HasL3Only() bool`
+
+HasL3Only returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

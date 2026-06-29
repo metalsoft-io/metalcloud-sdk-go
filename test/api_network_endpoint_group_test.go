@@ -26,7 +26,7 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId int32
+		var networkEndpointGroupId int64
 
 		httpRes, err := apiClient.NetworkEndpointGroupAPI.AddLogicalNetworksToNetworkEndpointGroup(context.Background(), networkEndpointGroupId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId float32
+		var networkEndpointGroupId int64
 
 		httpRes, err := apiClient.NetworkEndpointGroupAPI.DeleteNetworkEndpointGroup(context.Background(), networkEndpointGroupId).Execute()
 
@@ -64,7 +64,7 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId float32
+		var networkEndpointGroupId int64
 
 		resp, httpRes, err := apiClient.NetworkEndpointGroupAPI.GetNetworkEndpointGroupById(context.Background(), networkEndpointGroupId).Execute()
 
@@ -78,8 +78,8 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId int32
-		var logicalNetworkId int32
+		var networkEndpointGroupId int64
+		var logicalNetworkId int64
 
 		resp, httpRes, err := apiClient.NetworkEndpointGroupAPI.GetNetworkEndpointGroupLogicalNetwork(context.Background(), networkEndpointGroupId, logicalNetworkId).Execute()
 
@@ -93,7 +93,7 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId int32
+		var networkEndpointGroupId int64
 
 		resp, httpRes, err := apiClient.NetworkEndpointGroupAPI.GetNetworkEndpointGroupLogicalNetworks(context.Background(), networkEndpointGroupId).Execute()
 
@@ -119,8 +119,8 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId int32
-		var logicalNetworkId int32
+		var networkEndpointGroupId int64
+		var logicalNetworkId int64
 
 		httpRes, err := apiClient.NetworkEndpointGroupAPI.RemoveLogicalNetworkFromNetworkEndpointGroup(context.Background(), networkEndpointGroupId, logicalNetworkId).Execute()
 
@@ -133,7 +133,7 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId int32
+		var networkEndpointGroupId int64
 
 		resp, httpRes, err := apiClient.NetworkEndpointGroupAPI.UpdateNetworkEndpointGroup(context.Background(), networkEndpointGroupId).Execute()
 
@@ -147,8 +147,8 @@ func Test_sdk_NetworkEndpointGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkEndpointGroupId int32
-		var logicalNetworkId int32
+		var networkEndpointGroupId int64
+		var logicalNetworkId int64
 
 		resp, httpRes, err := apiClient.NetworkEndpointGroupAPI.UpdateNetworkEndpointGroupLogicalNetwork(context.Background(), networkEndpointGroupId, logicalNetworkId).Execute()
 

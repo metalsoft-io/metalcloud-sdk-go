@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The device auth provider ID | [readonly] 
-**SiteId** | **int32** | The ID of the site this provider belongs to. | 
+**Id** | **int64** | The device auth provider ID | [readonly] 
+**SiteId** | **int64** | The ID of the site this provider belongs to. | 
 **Label** | **string** | The device auth provider label. Must be unique. | 
 **Name** | **string** | The device auth provider display name. | 
 **Annotations** | Pointer to **map[string]string** | Key-value annotations for storing additional metadata. | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **HasSharedSecret** | **bool** | Indicates whether a shared secret is configured. | [readonly] 
 **HasPassword** | **bool** | Indicates whether a password is configured. | [readonly] 
 **Status** | **string** | The current status of the device auth provider. | 
-**Revision** | **int32** | The revision number used for optimistic concurrency control. | [readonly] 
+**Revision** | **int64** | The revision number used for optimistic concurrency control. | [readonly] 
 **CreatedBy** | **int32** | The ID of the user who created this provider. | [readonly] 
 **UpdatedBy** | Pointer to **int32** | The ID of the user who last updated this provider. | [optional] [readonly] 
 **CreatedAt** | **time.Time** | The date and time the provider was created. | [readonly] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewDeviceAuthProvider
 
-`func NewDeviceAuthProvider(id int32, siteId int32, label string, name string, kind string, ipAddress string, port int32, username string, hasSharedSecret bool, hasPassword bool, status string, revision int32, createdBy int32, createdAt time.Time, ) *DeviceAuthProvider`
+`func NewDeviceAuthProvider(id int64, siteId int64, label string, name string, kind string, ipAddress string, port int32, username string, hasSharedSecret bool, hasPassword bool, status string, revision int64, createdBy int32, createdAt time.Time, ) *DeviceAuthProvider`
 
 NewDeviceAuthProvider instantiates a new DeviceAuthProvider object
 This constructor will assign default values to properties that have it defined,
@@ -43,40 +43,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *DeviceAuthProvider) GetId() int32`
+`func (o *DeviceAuthProvider) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DeviceAuthProvider) GetIdOk() (*int32, bool)`
+`func (o *DeviceAuthProvider) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DeviceAuthProvider) SetId(v int32)`
+`func (o *DeviceAuthProvider) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetSiteId
 
-`func (o *DeviceAuthProvider) GetSiteId() int32`
+`func (o *DeviceAuthProvider) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *DeviceAuthProvider) GetSiteIdOk() (*int32, bool)`
+`func (o *DeviceAuthProvider) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *DeviceAuthProvider) SetSiteId(v int32)`
+`func (o *DeviceAuthProvider) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -288,20 +288,20 @@ SetStatus sets Status field to given value.
 
 ### GetRevision
 
-`func (o *DeviceAuthProvider) GetRevision() int32`
+`func (o *DeviceAuthProvider) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *DeviceAuthProvider) GetRevisionOk() (*int32, bool)`
+`func (o *DeviceAuthProvider) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *DeviceAuthProvider) SetRevision(v int32)`
+`func (o *DeviceAuthProvider) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

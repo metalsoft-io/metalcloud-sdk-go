@@ -22,13 +22,13 @@ var _ MappedNullable = &RouteDomain{}
 
 // RouteDomain struct for RouteDomain
 type RouteDomain struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	Name string `json:"name"`
 	Annotations map[string]string `json:"annotations"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Kind RouteDomainKind `json:"kind"`
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
 	// If true, VRFs belonging to this route domain will not be deleted from switches during cleanup.
@@ -55,7 +55,7 @@ type _RouteDomain RouteDomain
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRouteDomain(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, serviceStatus GenericServiceStatus, preventVrfCleanup bool, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig) *RouteDomain {
+func NewRouteDomain(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, kind RouteDomainKind, serviceStatus GenericServiceStatus, preventVrfCleanup bool, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig) *RouteDomain {
 	this := RouteDomain{}
 	this.Id = id
 	this.Label = label
@@ -84,9 +84,9 @@ func NewRouteDomainWithDefaults() *RouteDomain {
 }
 
 // GetId returns the Id field value
-func (o *RouteDomain) GetId() int32 {
+func (o *RouteDomain) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *RouteDomain) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RouteDomain) GetIdOk() (*int32, bool) {
+func (o *RouteDomain) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,7 +103,7 @@ func (o *RouteDomain) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *RouteDomain) SetId(v int32) {
+func (o *RouteDomain) SetId(v int64) {
 	o.Id = v
 }
 
@@ -228,9 +228,9 @@ func (o *RouteDomain) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *RouteDomain) GetRevision() int32 {
+func (o *RouteDomain) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -239,7 +239,7 @@ func (o *RouteDomain) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *RouteDomain) GetRevisionOk() (*int32, bool) {
+func (o *RouteDomain) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -247,7 +247,7 @@ func (o *RouteDomain) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *RouteDomain) SetRevision(v int32) {
+func (o *RouteDomain) SetRevision(v int64) {
 	o.Revision = v
 }
 

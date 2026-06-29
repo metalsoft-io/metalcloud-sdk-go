@@ -38,7 +38,7 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
+		var externalConnectionId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.CreateExternalConnectionInterface(context.Background(), externalConnectionId).Execute()
 
@@ -52,7 +52,7 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
+		var externalConnectionId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.CreateExternalConnectionLogicalNetwork(context.Background(), externalConnectionId).Execute()
 
@@ -66,7 +66,7 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
+		var externalConnectionId int64
 
 		httpRes, err := apiClient.ExternalConnectionAPI.DeleteExternalConnection(context.Background(), externalConnectionId).Execute()
 
@@ -79,8 +79,8 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
-		var externalConnectionInterfaceId int32
+		var externalConnectionId int64
+		var externalConnectionInterfaceId int64
 
 		httpRes, err := apiClient.ExternalConnectionAPI.DeleteExternalConnectionInterface(context.Background(), externalConnectionId, externalConnectionInterfaceId).Execute()
 
@@ -93,8 +93,8 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
-		var id int32
+		var externalConnectionId int64
+		var id int64
 
 		httpRes, err := apiClient.ExternalConnectionAPI.DeleteExternalConnectionLogicalNetwork(context.Background(), externalConnectionId, id).Execute()
 
@@ -107,7 +107,7 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
+		var externalConnectionId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.GetExternalConnectionById(context.Background(), externalConnectionId).Execute()
 
@@ -121,8 +121,8 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
-		var externalConnectionInterfaceId int32
+		var externalConnectionId int64
+		var externalConnectionInterfaceId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.GetExternalConnectionInterfaceById(context.Background(), externalConnectionId, externalConnectionInterfaceId).Execute()
 
@@ -136,7 +136,7 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
+		var externalConnectionId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.GetExternalConnectionInterfaces(context.Background(), externalConnectionId).Execute()
 
@@ -150,8 +150,8 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
-		var id int32
+		var externalConnectionId int64
+		var id int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.GetExternalConnectionLogicalNetworkById(context.Background(), externalConnectionId, id).Execute()
 
@@ -165,7 +165,7 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
+		var externalConnectionId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.GetExternalConnectionLogicalNetworks(context.Background(), externalConnectionId).Execute()
 
@@ -205,7 +205,7 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
+		var externalConnectionId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.UpdateExternalConnection(context.Background(), externalConnectionId).Execute()
 
@@ -219,8 +219,8 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalConnectionId int32
-		var externalConnectionInterfaceId int32
+		var externalConnectionId int64
+		var externalConnectionInterfaceId int64
 
 		resp, httpRes, err := apiClient.ExternalConnectionAPI.UpdateExternalConnectionInterface(context.Background(), externalConnectionId, externalConnectionInterfaceId).Execute()
 

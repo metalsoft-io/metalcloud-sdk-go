@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **UserIdOwner** | **float32** | User ID of the owner | 
 **StartTimestamp** | **string** | Start timestamp for the resource utilization | 
 **EndTimestamp** | **string** | End timestamp for the resource utilization | 
-**InfrastructureIds** | Pointer to **[]float32** | List of infrastructure IDs | [optional] 
-**SiteIds** | Pointer to **[]float32** | List of site IDs | [optional] 
+**InfrastructureIds** | Pointer to **[]int64** | List of infrastructure IDs | [optional] 
+**SiteIds** | Pointer to **[]int64** | List of site IDs | [optional] 
 
 ## Methods
 
@@ -91,20 +91,20 @@ SetEndTimestamp sets EndTimestamp field to given value.
 
 ### GetInfrastructureIds
 
-`func (o *GetResourceUtilizationDetailed) GetInfrastructureIds() []float32`
+`func (o *GetResourceUtilizationDetailed) GetInfrastructureIds() []int64`
 
 GetInfrastructureIds returns the InfrastructureIds field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdsOk
 
-`func (o *GetResourceUtilizationDetailed) GetInfrastructureIdsOk() (*[]float32, bool)`
+`func (o *GetResourceUtilizationDetailed) GetInfrastructureIdsOk() (*[]int64, bool)`
 
 GetInfrastructureIdsOk returns a tuple with the InfrastructureIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureIds
 
-`func (o *GetResourceUtilizationDetailed) SetInfrastructureIds(v []float32)`
+`func (o *GetResourceUtilizationDetailed) SetInfrastructureIds(v []int64)`
 
 SetInfrastructureIds sets InfrastructureIds field to given value.
 
@@ -116,20 +116,20 @@ HasInfrastructureIds returns a boolean if a field has been set.
 
 ### GetSiteIds
 
-`func (o *GetResourceUtilizationDetailed) GetSiteIds() []float32`
+`func (o *GetResourceUtilizationDetailed) GetSiteIds() []int64`
 
 GetSiteIds returns the SiteIds field if non-nil, zero value otherwise.
 
 ### GetSiteIdsOk
 
-`func (o *GetResourceUtilizationDetailed) GetSiteIdsOk() (*[]float32, bool)`
+`func (o *GetResourceUtilizationDetailed) GetSiteIdsOk() (*[]int64, bool)`
 
 GetSiteIdsOk returns a tuple with the SiteIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteIds
 
-`func (o *GetResourceUtilizationDetailed) SetSiteIds(v []float32)`
+`func (o *GetResourceUtilizationDetailed) SetSiteIds(v []int64)`
 
 SetSiteIds sets SiteIds field to given value.
 

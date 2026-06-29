@@ -139,7 +139,7 @@ func (a *StorageAPIService) CreateStorageExecute(r StorageAPICreateStorageReques
 type StorageAPIDeleteStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 	ifMatch *string
 }
 
@@ -162,7 +162,7 @@ Deletes a Storage
  @param storageId
  @return StorageAPIDeleteStorageRequest
 */
-func (a *StorageAPIService) DeleteStorage(ctx context.Context, storageId float32) StorageAPIDeleteStorageRequest {
+func (a *StorageAPIService) DeleteStorage(ctx context.Context, storageId int64) StorageAPIDeleteStorageRequest {
 	return StorageAPIDeleteStorageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -241,7 +241,7 @@ func (a *StorageAPIService) DeleteStorageExecute(r StorageAPIDeleteStorageReques
 type StorageAPIGetStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 }
 
 func (r StorageAPIGetStorageRequest) Execute() (*Storage, *http.Response, error) {
@@ -257,7 +257,7 @@ Retrieves a Storage
  @param storageId
  @return StorageAPIGetStorageRequest
 */
-func (a *StorageAPIService) GetStorage(ctx context.Context, storageId float32) StorageAPIGetStorageRequest {
+func (a *StorageAPIService) GetStorage(ctx context.Context, storageId int64) StorageAPIGetStorageRequest {
 	return StorageAPIGetStorageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -344,7 +344,7 @@ func (a *StorageAPIService) GetStorageExecute(r StorageAPIGetStorageRequest) (*S
 type StorageAPIGetStorageBucketsRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -451,7 +451,7 @@ Returns list of all Buckets linked to the specified Storage
  @param storageId
  @return StorageAPIGetStorageBucketsRequest
 */
-func (a *StorageAPIService) GetStorageBuckets(ctx context.Context, storageId float32) StorageAPIGetStorageBucketsRequest {
+func (a *StorageAPIService) GetStorageBuckets(ctx context.Context, storageId int64) StorageAPIGetStorageBucketsRequest {
 	return StorageAPIGetStorageBucketsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -657,7 +657,7 @@ func (a *StorageAPIService) GetStorageBucketsExecute(r StorageAPIGetStorageBucke
 type StorageAPIGetStorageCredentialsRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 }
 
 func (r StorageAPIGetStorageCredentialsRequest) Execute() (*StorageCredentials, *http.Response, error) {
@@ -673,7 +673,7 @@ Returns Storage credentials
  @param storageId
  @return StorageAPIGetStorageCredentialsRequest
 */
-func (a *StorageAPIService) GetStorageCredentials(ctx context.Context, storageId float32) StorageAPIGetStorageCredentialsRequest {
+func (a *StorageAPIService) GetStorageCredentials(ctx context.Context, storageId int64) StorageAPIGetStorageCredentialsRequest {
 	return StorageAPIGetStorageCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -760,7 +760,7 @@ func (a *StorageAPIService) GetStorageCredentialsExecute(r StorageAPIGetStorageC
 type StorageAPIGetStorageDrivesRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 	page *float32
 	limit *float32
 	filterLabel *[]string
@@ -909,7 +909,7 @@ Returns list of all Drives linked to the specified Storage
  @param storageId
  @return StorageAPIGetStorageDrivesRequest
 */
-func (a *StorageAPIService) GetStorageDrives(ctx context.Context, storageId float32) StorageAPIGetStorageDrivesRequest {
+func (a *StorageAPIService) GetStorageDrives(ctx context.Context, storageId int64) StorageAPIGetStorageDrivesRequest {
 	return StorageAPIGetStorageDrivesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1181,7 +1181,7 @@ func (a *StorageAPIService) GetStorageDrivesExecute(r StorageAPIGetStorageDrives
 type StorageAPIGetStorageFileSharesRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1288,7 +1288,7 @@ Returns list of all File Shares linked to the specified Storage
  @param storageId
  @return StorageAPIGetStorageFileSharesRequest
 */
-func (a *StorageAPIService) GetStorageFileShares(ctx context.Context, storageId float32) StorageAPIGetStorageFileSharesRequest {
+func (a *StorageAPIService) GetStorageFileShares(ctx context.Context, storageId int64) StorageAPIGetStorageFileSharesRequest {
 	return StorageAPIGetStorageFileSharesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1494,8 +1494,8 @@ func (a *StorageAPIService) GetStorageFileSharesExecute(r StorageAPIGetStorageFi
 type StorageAPIGetStorageInterfaceRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
-	interfaceId float32
+	storageId int64
+	interfaceId int64
 }
 
 func (r StorageAPIGetStorageInterfaceRequest) Execute() (*StorageInterface, *http.Response, error) {
@@ -1512,7 +1512,7 @@ Retrieves a Storage Interface
  @param interfaceId
  @return StorageAPIGetStorageInterfaceRequest
 */
-func (a *StorageAPIService) GetStorageInterface(ctx context.Context, storageId float32, interfaceId float32) StorageAPIGetStorageInterfaceRequest {
+func (a *StorageAPIService) GetStorageInterface(ctx context.Context, storageId int64, interfaceId int64) StorageAPIGetStorageInterfaceRequest {
 	return StorageAPIGetStorageInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1601,7 +1601,7 @@ func (a *StorageAPIService) GetStorageInterfaceExecute(r StorageAPIGetStorageInt
 type StorageAPIGetStorageInterfacesRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1687,7 +1687,7 @@ Retrieves Storage interfaces
  @param storageId
  @return StorageAPIGetStorageInterfacesRequest
 */
-func (a *StorageAPIService) GetStorageInterfaces(ctx context.Context, storageId float32) StorageAPIGetStorageInterfacesRequest {
+func (a *StorageAPIService) GetStorageInterfaces(ctx context.Context, storageId int64) StorageAPIGetStorageInterfacesRequest {
 	return StorageAPIGetStorageInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1860,7 +1860,7 @@ func (a *StorageAPIService) GetStorageInterfacesExecute(r StorageAPIGetStorageIn
 type StorageAPIGetStorageStatisticsRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 }
 
 func (r StorageAPIGetStorageStatisticsRequest) Execute() (*StorageStatistics, *http.Response, error) {
@@ -1876,7 +1876,7 @@ Returns Storages statistics
  @param storageId
  @return StorageAPIGetStorageStatisticsRequest
 */
-func (a *StorageAPIService) GetStorageStatistics(ctx context.Context, storageId float32) StorageAPIGetStorageStatisticsRequest {
+func (a *StorageAPIService) GetStorageStatistics(ctx context.Context, storageId int64) StorageAPIGetStorageStatisticsRequest {
 	return StorageAPIGetStorageStatisticsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2329,7 +2329,7 @@ func (a *StorageAPIService) GetStoragesStatisticsExecute(r StorageAPIGetStorages
 type StorageAPIUpdateStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
+	storageId int64
 	updateStorage *UpdateStorage
 	ifMatch *string
 }
@@ -2359,7 +2359,7 @@ Updates a Storage
  @param storageId
  @return StorageAPIUpdateStorageRequest
 */
-func (a *StorageAPIService) UpdateStorage(ctx context.Context, storageId float32) StorageAPIUpdateStorageRequest {
+func (a *StorageAPIService) UpdateStorage(ctx context.Context, storageId int64) StorageAPIUpdateStorageRequest {
 	return StorageAPIUpdateStorageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2454,8 +2454,8 @@ func (a *StorageAPIService) UpdateStorageExecute(r StorageAPIUpdateStorageReques
 type StorageAPIUpdateStorageInterfaceRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	storageId float32
-	interfaceId float32
+	storageId int64
+	interfaceId int64
 	updateStorageInterface *UpdateStorageInterface
 	ifMatch *string
 }
@@ -2486,7 +2486,7 @@ Updates a Storage Interface
  @param interfaceId
  @return StorageAPIUpdateStorageInterfaceRequest
 */
-func (a *StorageAPIService) UpdateStorageInterface(ctx context.Context, storageId float32, interfaceId float32) StorageAPIUpdateStorageInterfaceRequest {
+func (a *StorageAPIService) UpdateStorageInterface(ctx context.Context, storageId int64, interfaceId int64) StorageAPIUpdateStorageInterfaceRequest {
 	return StorageAPIUpdateStorageInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,

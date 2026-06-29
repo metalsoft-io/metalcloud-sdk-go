@@ -28,7 +28,7 @@ type NetworkEndpointGroupAPIService service
 type NetworkEndpointGroupAPIAddLogicalNetworksToNetworkEndpointGroupRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId int32
+	networkEndpointGroupId int64
 	createNetworkEndpointGroupLogicalNetwork *CreateNetworkEndpointGroupLogicalNetwork
 }
 
@@ -49,7 +49,7 @@ AddLogicalNetworksToNetworkEndpointGroup Add a list of logical networks to a net
  @param networkEndpointGroupId The ID of the network endpoint group
  @return NetworkEndpointGroupAPIAddLogicalNetworksToNetworkEndpointGroupRequest
 */
-func (a *NetworkEndpointGroupAPIService) AddLogicalNetworksToNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId int32) NetworkEndpointGroupAPIAddLogicalNetworksToNetworkEndpointGroupRequest {
+func (a *NetworkEndpointGroupAPIService) AddLogicalNetworksToNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId int64) NetworkEndpointGroupAPIAddLogicalNetworksToNetworkEndpointGroupRequest {
 	return NetworkEndpointGroupAPIAddLogicalNetworksToNetworkEndpointGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -239,7 +239,7 @@ func (a *NetworkEndpointGroupAPIService) CreateNetworkEndpointGroupExecute(r Net
 type NetworkEndpointGroupAPIDeleteNetworkEndpointGroupRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId float32
+	networkEndpointGroupId int64
 }
 
 func (r NetworkEndpointGroupAPIDeleteNetworkEndpointGroupRequest) Execute() (*http.Response, error) {
@@ -253,7 +253,7 @@ DeleteNetworkEndpointGroup Delete a network endpoint group
  @param networkEndpointGroupId
  @return NetworkEndpointGroupAPIDeleteNetworkEndpointGroupRequest
 */
-func (a *NetworkEndpointGroupAPIService) DeleteNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId float32) NetworkEndpointGroupAPIDeleteNetworkEndpointGroupRequest {
+func (a *NetworkEndpointGroupAPIService) DeleteNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId int64) NetworkEndpointGroupAPIDeleteNetworkEndpointGroupRequest {
 	return NetworkEndpointGroupAPIDeleteNetworkEndpointGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -329,7 +329,7 @@ func (a *NetworkEndpointGroupAPIService) DeleteNetworkEndpointGroupExecute(r Net
 type NetworkEndpointGroupAPIGetNetworkEndpointGroupByIdRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId float32
+	networkEndpointGroupId int64
 }
 
 func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupByIdRequest) Execute() (*NetworkEndpointGroup, *http.Response, error) {
@@ -343,7 +343,7 @@ GetNetworkEndpointGroupById Get a network endpoint group by ID
  @param networkEndpointGroupId
  @return NetworkEndpointGroupAPIGetNetworkEndpointGroupByIdRequest
 */
-func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupById(ctx context.Context, networkEndpointGroupId float32) NetworkEndpointGroupAPIGetNetworkEndpointGroupByIdRequest {
+func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupById(ctx context.Context, networkEndpointGroupId int64) NetworkEndpointGroupAPIGetNetworkEndpointGroupByIdRequest {
 	return NetworkEndpointGroupAPIGetNetworkEndpointGroupByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -430,8 +430,8 @@ func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupByIdExecute(r Ne
 type NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId int32
-	logicalNetworkId int32
+	networkEndpointGroupId int64
+	logicalNetworkId int64
 }
 
 func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest) Execute() (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
@@ -446,7 +446,7 @@ GetNetworkEndpointGroupLogicalNetwork Get a logical network by its ID
  @param logicalNetworkId The ID of the logical network
  @return NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest
 */
-func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetwork(ctx context.Context, networkEndpointGroupId int32, logicalNetworkId int32) NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest {
+func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetwork(ctx context.Context, networkEndpointGroupId int64, logicalNetworkId int64) NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest {
 	return NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -535,7 +535,7 @@ func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetworkEx
 type NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworksRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId int32
+	networkEndpointGroupId int64
 }
 
 func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworksRequest) Execute() (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
@@ -549,7 +549,7 @@ GetNetworkEndpointGroupLogicalNetworks Get a network endpoint group with its log
  @param networkEndpointGroupId The id of the network endpoint group
  @return NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworksRequest
 */
-func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetworks(ctx context.Context, networkEndpointGroupId int32) NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworksRequest {
+func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetworks(ctx context.Context, networkEndpointGroupId int64) NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworksRequest {
 	return NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -899,8 +899,8 @@ func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupsExecute(r Netwo
 type NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId int32
-	logicalNetworkId int32
+	networkEndpointGroupId int64
+	logicalNetworkId int64
 }
 
 func (r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) Execute() (*http.Response, error) {
@@ -915,7 +915,7 @@ RemoveLogicalNetworkFromNetworkEndpointGroup Remove a logical network from a net
  @param logicalNetworkId The ID of the logical network to remove from the network endpoint group
  @return NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest
 */
-func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId int32, logicalNetworkId int32) NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest {
+func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId int64, logicalNetworkId int64) NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest {
 	return NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -993,7 +993,7 @@ func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpoint
 type NetworkEndpointGroupAPIUpdateNetworkEndpointGroupRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId int32
+	networkEndpointGroupId int64
 	updateNetworkEndpointGroup *UpdateNetworkEndpointGroup
 	ifMatch *string
 }
@@ -1021,7 +1021,7 @@ UpdateNetworkEndpointGroup Update a network endpoint group
  @param networkEndpointGroupId The ID of the network endpoint group to update
  @return NetworkEndpointGroupAPIUpdateNetworkEndpointGroupRequest
 */
-func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId int32) NetworkEndpointGroupAPIUpdateNetworkEndpointGroupRequest {
+func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroup(ctx context.Context, networkEndpointGroupId int64) NetworkEndpointGroupAPIUpdateNetworkEndpointGroupRequest {
 	return NetworkEndpointGroupAPIUpdateNetworkEndpointGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1116,8 +1116,8 @@ func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupExecute(r Net
 type NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest struct {
 	ctx context.Context
 	ApiService *NetworkEndpointGroupAPIService
-	networkEndpointGroupId int32
-	logicalNetworkId int32
+	networkEndpointGroupId int64
+	logicalNetworkId int64
 	updateNetworkEndpointGroupLogicalNetwork *UpdateNetworkEndpointGroupLogicalNetwork
 	ifMatch *string
 }
@@ -1146,7 +1146,7 @@ UpdateNetworkEndpointGroupLogicalNetwork Update a logical network in a network e
  @param logicalNetworkId The ID of the logical network
  @return NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest
 */
-func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupLogicalNetwork(ctx context.Context, networkEndpointGroupId int32, logicalNetworkId int32) NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest {
+func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupLogicalNetwork(ctx context.Context, networkEndpointGroupId int64, logicalNetworkId int64) NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest {
 	return NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest{
 		ApiService: a,
 		ctx: ctx,

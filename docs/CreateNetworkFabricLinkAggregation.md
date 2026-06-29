@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | Type of the network fabric link aggregation | 
 **MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain (applicable only for mlag-peer-link type) | [optional] 
-**LinkIds** | **[]float32** | List of link IDs to be associated with the link aggregation | 
+**LinkIds** | **[]int64** | List of link IDs to be associated with the link aggregation | 
 
 ## Methods
 
 ### NewCreateNetworkFabricLinkAggregation
 
-`func NewCreateNetworkFabricLinkAggregation(type_ string, linkIds []float32, ) *CreateNetworkFabricLinkAggregation`
+`func NewCreateNetworkFabricLinkAggregation(type_ string, linkIds []int64, ) *CreateNetworkFabricLinkAggregation`
 
 NewCreateNetworkFabricLinkAggregation instantiates a new CreateNetworkFabricLinkAggregation object
 This constructor will assign default values to properties that have it defined,
@@ -74,20 +74,20 @@ HasMlagDomainIdentifier returns a boolean if a field has been set.
 
 ### GetLinkIds
 
-`func (o *CreateNetworkFabricLinkAggregation) GetLinkIds() []float32`
+`func (o *CreateNetworkFabricLinkAggregation) GetLinkIds() []int64`
 
 GetLinkIds returns the LinkIds field if non-nil, zero value otherwise.
 
 ### GetLinkIdsOk
 
-`func (o *CreateNetworkFabricLinkAggregation) GetLinkIdsOk() (*[]float32, bool)`
+`func (o *CreateNetworkFabricLinkAggregation) GetLinkIdsOk() (*[]int64, bool)`
 
 GetLinkIdsOk returns a tuple with the LinkIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkIds
 
-`func (o *CreateNetworkFabricLinkAggregation) SetLinkIds(v []float32)`
+`func (o *CreateNetworkFabricLinkAggregation) SetLinkIds(v []int64)`
 
 SetLinkIds sets LinkIds field to given value.
 

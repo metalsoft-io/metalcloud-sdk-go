@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RepoURL** | **string** | Repository details | 
-**DnsZoneId** | Pointer to **int32** | ID of the DNS zone associated with the site | [optional] 
+**DnsZoneId** | Pointer to **int64** | ID of the DNS zone associated with the site | [optional] 
 **DnsZoneName** | Pointer to **string** | The name of the DNS zone (without a terminating dot). | [optional] 
 **DNSServers** | **[]string** | List of DNS Servers | 
 **NTPServers** | **[]string** | List of NTP Servers | 
@@ -51,20 +51,20 @@ SetRepoURL sets RepoURL field to given value.
 
 ### GetDnsZoneId
 
-`func (o *SiteConfigOSInstallationData) GetDnsZoneId() int32`
+`func (o *SiteConfigOSInstallationData) GetDnsZoneId() int64`
 
 GetDnsZoneId returns the DnsZoneId field if non-nil, zero value otherwise.
 
 ### GetDnsZoneIdOk
 
-`func (o *SiteConfigOSInstallationData) GetDnsZoneIdOk() (*int32, bool)`
+`func (o *SiteConfigOSInstallationData) GetDnsZoneIdOk() (*int64, bool)`
 
 GetDnsZoneIdOk returns a tuple with the DnsZoneId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsZoneId
 
-`func (o *SiteConfigOSInstallationData) SetDnsZoneId(v int32)`
+`func (o *SiteConfigOSInstallationData) SetDnsZoneId(v int64)`
 
 SetDnsZoneId sets DnsZoneId field to given value.
 

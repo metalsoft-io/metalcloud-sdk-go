@@ -5,8 +5,10 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AcceptNetworkFabricInterconnectDeploy**](NetworkFabricInterconnectAPI.md#AcceptNetworkFabricInterconnectDeploy) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/accept-deploy | Accepts the deployment of the specified network fabric interconnect
+[**ActivateNetworkFabricInterconnectLinks**](NetworkFabricInterconnectAPI.md#ActivateNetworkFabricInterconnectLinks) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/activate-links | Activates links on an active fabric interconnect and makes them part of the interconnect
 [**CreateInterconnectLink**](NetworkFabricInterconnectAPI.md#CreateInterconnectLink) | **Post** /api/v2/network-fabric-interconnects/{id}/links | Create a new link within an interconnect
 [**CreateNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#CreateNetworkFabricInterconnect) | **Post** /api/v2/network-fabric-interconnects | Create a new network fabric interconnect
+[**DeactivateNetworkFabricInterconnectLinks**](NetworkFabricInterconnectAPI.md#DeactivateNetworkFabricInterconnectLinks) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/deactivate-links | Deactivates links on an active fabric interconnect and moves them back to draft state
 [**DeleteInterconnectLink**](NetworkFabricInterconnectAPI.md#DeleteInterconnectLink) | **Delete** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Delete a specific fabric interconnect link
 [**DeleteNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#DeleteNetworkFabricInterconnect) | **Delete** /api/v2/network-fabric-interconnects/{id} | Delete a network fabric interconnect by ID
 [**DeployNetworkFabricInterconnect**](NetworkFabricInterconnectAPI.md#DeployNetworkFabricInterconnect) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/deploy | Deploys the specified network fabric interconnect
@@ -16,6 +18,7 @@ Method | HTTP request | Description
 [**GetInterconnectLink**](NetworkFabricInterconnectAPI.md#GetInterconnectLink) | **Get** /api/v2/network-fabric-interconnects/{id}/links/{linkId} | Get a specific fabric interconnect link
 [**GetInterconnectLinks**](NetworkFabricInterconnectAPI.md#GetInterconnectLinks) | **Get** /api/v2/network-fabric-interconnects/{id}/links | Get all fabric interconnect links
 [**GetNetworkFabricInterconnectById**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectById) | **Get** /api/v2/network-fabric-interconnects/{id} | Get a network fabric interconnect by ID
+[**GetNetworkFabricInterconnectDeploymentCheck**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectDeploymentCheck) | **Post** /api/v2/network-fabric-interconnects/{id}/actions/deployment-check | Checks whether interconnect links can be activated
 [**GetNetworkFabricInterconnectDeploymentInfo**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectDeploymentInfo) | **Get** /api/v2/network-fabric-interconnects/{id}/deployment-info | Get deployment info for a network fabric interconnect
 [**GetNetworkFabricInterconnectTemplateByType**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnectTemplateByType) | **Get** /api/v2/network-fabric-interconnects/template/{interconnectType} | Get a network fabric interconnect template configuration by type
 [**GetNetworkFabricInterconnects**](NetworkFabricInterconnectAPI.md#GetNetworkFabricInterconnects) | **Get** /api/v2/network-fabric-interconnects | Get all network fabric interconnects
@@ -45,7 +48,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -63,7 +66,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -92,6 +95,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ActivateNetworkFabricInterconnectLinks
+
+> JobInfo ActivateNetworkFabricInterconnectLinks(ctx, id).NetworkFabricInterconnectLinksDeployOptions(networkFabricInterconnectLinksDeployOptions).Execute()
+
+Activates links on an active fabric interconnect and makes them part of the interconnect
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := int64(789) // int64 | The ID of the network fabric interconnect
+	networkFabricInterconnectLinksDeployOptions := *openapiclient.NewNetworkFabricInterconnectLinksDeployOptions([]int64{int64(123)}, true) // NetworkFabricInterconnectLinksDeployOptions | Activate links options
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.ActivateNetworkFabricInterconnectLinks(context.Background(), id).NetworkFabricInterconnectLinksDeployOptions(networkFabricInterconnectLinksDeployOptions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.ActivateNetworkFabricInterconnectLinks``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ActivateNetworkFabricInterconnectLinks`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricInterconnectAPI.ActivateNetworkFabricInterconnectLinks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int64** | The ID of the network fabric interconnect | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiActivateNetworkFabricInterconnectLinksRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **networkFabricInterconnectLinksDeployOptions** | [**NetworkFabricInterconnectLinksDeployOptions**](NetworkFabricInterconnectLinksDeployOptions.md) | Activate links options | 
+
+### Return type
+
+[**JobInfo**](JobInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateInterconnectLink
 
 > NetworkFabricInterconnectLink CreateInterconnectLink(ctx, id).CreateNetworkFabricInterconnectLink(createNetworkFabricInterconnectLink).Execute()
@@ -113,8 +188,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
-	createNetworkFabricInterconnectLink := *openapiclient.NewCreateNetworkFabricInterconnectLink(int32(2), int32(1)) // CreateNetworkFabricInterconnectLink | The network fabric link to create
+	id := int64(789) // int64 | The ID of the network fabric interconnect
+	createNetworkFabricInterconnectLink := *openapiclient.NewCreateNetworkFabricInterconnectLink(int64(2), int64(1)) // CreateNetworkFabricInterconnectLink | The network fabric link to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -134,7 +209,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -228,6 +303,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeactivateNetworkFabricInterconnectLinks
+
+> JobInfo DeactivateNetworkFabricInterconnectLinks(ctx, id).NetworkFabricInterconnectDeactivateLinks(networkFabricInterconnectDeactivateLinks).Execute()
+
+Deactivates links on an active fabric interconnect and moves them back to draft state
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := int64(789) // int64 | 
+	networkFabricInterconnectDeactivateLinks := *openapiclient.NewNetworkFabricInterconnectDeactivateLinks([]int64{int64(123)}, true) // NetworkFabricInterconnectDeactivateLinks | IDs of the ACTIVE links to deactivate
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.DeactivateNetworkFabricInterconnectLinks(context.Background(), id).NetworkFabricInterconnectDeactivateLinks(networkFabricInterconnectDeactivateLinks).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.DeactivateNetworkFabricInterconnectLinks``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeactivateNetworkFabricInterconnectLinks`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricInterconnectAPI.DeactivateNetworkFabricInterconnectLinks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeactivateNetworkFabricInterconnectLinksRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **networkFabricInterconnectDeactivateLinks** | [**NetworkFabricInterconnectDeactivateLinks**](NetworkFabricInterconnectDeactivateLinks.md) | IDs of the ACTIVE links to deactivate | 
+
+### Return type
+
+[**JobInfo**](JobInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteInterconnectLink
 
 > DeleteInterconnectLink(ctx, id, linkId).IfMatch(ifMatch).Execute()
@@ -249,8 +396,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
-	linkId := int32(56) // int32 | The ID of the network fabric link
+	id := int64(789) // int64 | The ID of the network fabric interconnect
+	linkId := int64(789) // int64 | The ID of the network fabric link
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -269,8 +416,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
-**linkId** | **int32** | The ID of the network fabric link | 
+**id** | **int64** | The ID of the network fabric interconnect | 
+**linkId** | **int64** | The ID of the network fabric link | 
 
 ### Other Parameters
 
@@ -320,7 +467,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect to delete
+	id := int64(789) // int64 | The ID of the network fabric interconnect to delete
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -338,7 +485,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect to delete | 
+**id** | **int64** | The ID of the network fabric interconnect to delete | 
 
 ### Other Parameters
 
@@ -388,7 +535,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	networkFabricInterconnectDeployOptions := *openapiclient.NewNetworkFabricInterconnectDeployOptions(true) // NetworkFabricInterconnectDeployOptions | Network fabric interconnect deploy options
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +556,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -460,7 +607,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -480,7 +627,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -530,7 +677,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -561,7 +708,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -622,7 +769,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -642,7 +789,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -692,8 +839,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
-	linkId := int32(56) // int32 | The ID of the network fabric link
+	id := int64(789) // int64 | The ID of the network fabric interconnect
+	linkId := int64(789) // int64 | The ID of the network fabric link
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -713,8 +860,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
-**linkId** | **int32** | The ID of the network fabric link | 
+**id** | **int64** | The ID of the network fabric interconnect | 
+**linkId** | **int64** | The ID of the network fabric link | 
 
 ### Other Parameters
 
@@ -765,7 +912,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$eq:John Doe&filter.id=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
@@ -794,7 +941,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -853,7 +1000,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect to retrieve
+	id := int64(789) // int64 | The ID of the network fabric interconnect to retrieve
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -873,7 +1020,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect to retrieve | 
+**id** | **int64** | The ID of the network fabric interconnect to retrieve | 
 
 ### Other Parameters
 
@@ -902,6 +1049,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetNetworkFabricInterconnectDeploymentCheck
+
+> []NetworkFabricInterconnectLinkValidation GetNetworkFabricInterconnectDeploymentCheck(ctx, id).NetworkFabricInterconnectDeploymentCheckRequest(networkFabricInterconnectDeploymentCheckRequest).Execute()
+
+Checks whether interconnect links can be activated
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := int64(789) // int64 | The ID of the network fabric interconnect
+	networkFabricInterconnectDeploymentCheckRequest := *openapiclient.NewNetworkFabricInterconnectDeploymentCheckRequest() // NetworkFabricInterconnectDeploymentCheckRequest | Optional link filter. Omit or pass an empty linkIds array to check all links. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentCheck(context.Background(), id).NetworkFabricInterconnectDeploymentCheckRequest(networkFabricInterconnectDeploymentCheckRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentCheck``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkFabricInterconnectDeploymentCheck`: []NetworkFabricInterconnectLinkValidation
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentCheck`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int64** | The ID of the network fabric interconnect | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkFabricInterconnectDeploymentCheckRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **networkFabricInterconnectDeploymentCheckRequest** | [**NetworkFabricInterconnectDeploymentCheckRequest**](NetworkFabricInterconnectDeploymentCheckRequest.md) | Optional link filter. Omit or pass an empty linkIds array to check all links. | 
+
+### Return type
+
+[**[]NetworkFabricInterconnectLinkValidation**](NetworkFabricInterconnectLinkValidation.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetNetworkFabricInterconnectDeploymentInfo
 
 > NetworkFabricInterconnectDeploymentInfo GetNetworkFabricInterconnectDeploymentInfo(ctx, id).Execute()
@@ -923,7 +1142,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect
+	id := int64(789) // int64 | The ID of the network fabric interconnect
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -943,7 +1162,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect | 
+**id** | **int64** | The ID of the network fabric interconnect | 
 
 ### Other Parameters
 
@@ -1147,7 +1366,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1165,7 +1384,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1213,7 +1432,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the network fabric interconnect to update
+	id := int64(789) // int64 | The ID of the network fabric interconnect to update
 	updateNetworkFabricInterconnect := *openapiclient.NewUpdateNetworkFabricInterconnect() // UpdateNetworkFabricInterconnect | The network fabric interconnect update entity
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1235,7 +1454,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the network fabric interconnect to update | 
+**id** | **int64** | The ID of the network fabric interconnect to update | 
 
 ### Other Parameters
 

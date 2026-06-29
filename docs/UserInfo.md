@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **LastLoginTimestamp** | **string** | The timestamp when the user logged in last | 
 **AccessLevel** | **string** | The access level of the user | 
 **IsArchived** | **bool** | Whether the user is a archived | 
-**AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
-**Id** | **float32** | User ID | 
-**Revision** | **float32** | Revision of the user | 
+**AccountId** | Pointer to **int64** | The account ID of the user | [optional] 
+**Id** | **int64** | User ID | 
+**Revision** | **int64** | Revision of the user | 
 **Email** | **string** | The email address of the user | 
 **CreatedTimestamp** | **string** | The timestamp when the user was created | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewUserInfo
 
-`func NewUserInfo(displayName string, emailStatus string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string, ) *UserInfo`
+`func NewUserInfo(displayName string, emailStatus string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id int64, revision int64, email string, createdTimestamp string, ) *UserInfo`
 
 NewUserInfo instantiates a new UserInfo object
 This constructor will assign default values to properties that have it defined,
@@ -158,20 +158,20 @@ SetIsArchived sets IsArchived field to given value.
 
 ### GetAccountId
 
-`func (o *UserInfo) GetAccountId() float32`
+`func (o *UserInfo) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *UserInfo) GetAccountIdOk() (*float32, bool)`
+`func (o *UserInfo) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountId
 
-`func (o *UserInfo) SetAccountId(v float32)`
+`func (o *UserInfo) SetAccountId(v int64)`
 
 SetAccountId sets AccountId field to given value.
 
@@ -183,40 +183,40 @@ HasAccountId returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *UserInfo) GetId() float32`
+`func (o *UserInfo) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *UserInfo) GetIdOk() (*float32, bool)`
+`func (o *UserInfo) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *UserInfo) SetId(v float32)`
+`func (o *UserInfo) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *UserInfo) GetRevision() float32`
+`func (o *UserInfo) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *UserInfo) GetRevisionOk() (*float32, bool)`
+`func (o *UserInfo) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *UserInfo) SetRevision(v float32)`
+`func (o *UserInfo) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

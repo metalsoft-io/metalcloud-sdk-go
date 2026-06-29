@@ -21,7 +21,7 @@ var _ MappedNullable = &Ipv6SubnetAllocation{}
 
 // Ipv6SubnetAllocation struct for Ipv6SubnetAllocation
 type Ipv6SubnetAllocation struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Scope ResourceScope `json:"scope"`
 	Status ResourceAllocationStatus `json:"status"`
 	NetworkAddress string `json:"networkAddress"`
@@ -37,7 +37,7 @@ type _Ipv6SubnetAllocation Ipv6SubnetAllocation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIpv6SubnetAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string, gatewayPlacement NullableSubnetGatewayPlacement) *Ipv6SubnetAllocation {
+func NewIpv6SubnetAllocation(id int64, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string, gatewayPlacement NullableSubnetGatewayPlacement) *Ipv6SubnetAllocation {
 	this := Ipv6SubnetAllocation{}
 	this.Id = id
 	this.Scope = scope
@@ -58,9 +58,9 @@ func NewIpv6SubnetAllocationWithDefaults() *Ipv6SubnetAllocation {
 }
 
 // GetId returns the Id field value
-func (o *Ipv6SubnetAllocation) GetId() int32 {
+func (o *Ipv6SubnetAllocation) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -69,7 +69,7 @@ func (o *Ipv6SubnetAllocation) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Ipv6SubnetAllocation) GetIdOk() (*int32, bool) {
+func (o *Ipv6SubnetAllocation) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,7 +77,7 @@ func (o *Ipv6SubnetAllocation) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Ipv6SubnetAllocation) SetId(v int32) {
+func (o *Ipv6SubnetAllocation) SetId(v int64) {
 	o.Id = v
 }
 

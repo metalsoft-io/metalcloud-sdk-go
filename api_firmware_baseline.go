@@ -138,7 +138,7 @@ func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBas
 type FirmwareBaselineAPIDeleteFirmwareBaselineRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBaselineAPIService
-	firmwareBaselineId float32
+	firmwareBaselineId int64
 }
 
 func (r FirmwareBaselineAPIDeleteFirmwareBaselineRequest) Execute() (*http.Response, error) {
@@ -154,7 +154,7 @@ Deletes a firmware baseline
  @param firmwareBaselineId The firmware baseline id
  @return FirmwareBaselineAPIDeleteFirmwareBaselineRequest
 */
-func (a *FirmwareBaselineAPIService) DeleteFirmwareBaseline(ctx context.Context, firmwareBaselineId float32) FirmwareBaselineAPIDeleteFirmwareBaselineRequest {
+func (a *FirmwareBaselineAPIService) DeleteFirmwareBaseline(ctx context.Context, firmwareBaselineId int64) FirmwareBaselineAPIDeleteFirmwareBaselineRequest {
 	return FirmwareBaselineAPIDeleteFirmwareBaselineRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,7 +230,7 @@ func (a *FirmwareBaselineAPIService) DeleteFirmwareBaselineExecute(r FirmwareBas
 type FirmwareBaselineAPIGetFirmwareBaselineRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBaselineAPIService
-	firmwareBaselineId float32
+	firmwareBaselineId int64
 }
 
 func (r FirmwareBaselineAPIGetFirmwareBaselineRequest) Execute() (*FirmwareBaseline, *http.Response, error) {
@@ -246,7 +246,7 @@ Returns a firmware baseline
  @param firmwareBaselineId The firmware baseline id
  @return FirmwareBaselineAPIGetFirmwareBaselineRequest
 */
-func (a *FirmwareBaselineAPIService) GetFirmwareBaseline(ctx context.Context, firmwareBaselineId float32) FirmwareBaselineAPIGetFirmwareBaselineRequest {
+func (a *FirmwareBaselineAPIService) GetFirmwareBaseline(ctx context.Context, firmwareBaselineId int64) FirmwareBaselineAPIGetFirmwareBaselineRequest {
 	return FirmwareBaselineAPIGetFirmwareBaselineRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -508,7 +508,7 @@ func (a *FirmwareBaselineAPIService) GetFirmwareBaselinesExecute(r FirmwareBasel
 type FirmwareBaselineAPIUpdateFirmwareBaselineRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBaselineAPIService
-	firmwareBaselineId float32
+	firmwareBaselineId int64
 	updateFirmwareBaseline *UpdateFirmwareBaseline
 }
 
@@ -530,7 +530,7 @@ Updates a firmware baseline
  @param firmwareBaselineId The firmware baseline id
  @return FirmwareBaselineAPIUpdateFirmwareBaselineRequest
 */
-func (a *FirmwareBaselineAPIService) UpdateFirmwareBaseline(ctx context.Context, firmwareBaselineId float32) FirmwareBaselineAPIUpdateFirmwareBaselineRequest {
+func (a *FirmwareBaselineAPIService) UpdateFirmwareBaseline(ctx context.Context, firmwareBaselineId int64) FirmwareBaselineAPIUpdateFirmwareBaselineRequest {
 	return FirmwareBaselineAPIUpdateFirmwareBaselineRequest{
 		ApiService: a,
 		ctx: ctx,

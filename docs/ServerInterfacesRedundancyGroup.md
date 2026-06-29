@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerInterfaceIds** | **[]float32** | The id of the server interfaces | 
+**ServerInterfaceIds** | **[]int64** | The id of the server interfaces | 
 **RedundancyGroupIndex** | **NullableFloat32** | The redundancy group index | 
 
 ## Methods
 
 ### NewServerInterfacesRedundancyGroup
 
-`func NewServerInterfacesRedundancyGroup(serverInterfaceIds []float32, redundancyGroupIndex NullableFloat32, ) *ServerInterfacesRedundancyGroup`
+`func NewServerInterfacesRedundancyGroup(serverInterfaceIds []int64, redundancyGroupIndex NullableFloat32, ) *ServerInterfacesRedundancyGroup`
 
 NewServerInterfacesRedundancyGroup instantiates a new ServerInterfacesRedundancyGroup object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerInterfaceIds
 
-`func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIds() []float32`
+`func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIds() []int64`
 
 GetServerInterfaceIds returns the ServerInterfaceIds field if non-nil, zero value otherwise.
 
 ### GetServerInterfaceIdsOk
 
-`func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIdsOk() (*[]float32, bool)`
+`func (o *ServerInterfacesRedundancyGroup) GetServerInterfaceIdsOk() (*[]int64, bool)`
 
 GetServerInterfaceIdsOk returns a tuple with the ServerInterfaceIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerInterfaceIds
 
-`func (o *ServerInterfacesRedundancyGroup) SetServerInterfaceIds(v []float32)`
+`func (o *ServerInterfacesRedundancyGroup) SetServerInterfaceIds(v []int64)`
 
 SetServerInterfaceIds sets ServerInterfaceIds field to given value.
 

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The site ID | 
-**Revision** | **float32** | Revision number | 
+**Id** | **int64** | The site ID | 
+**Revision** | **int64** | Revision number | 
 **Slug** | **string** | The site unique slug | 
 **Name** | **string** | The site name | 
 **Location** | Pointer to [**Location**](Location.md) | Location details | [optional] 
-**OwnerId** | Pointer to **int32** | ID of the site owner | [optional] 
+**OwnerId** | Pointer to **int64** | ID of the site owner | [optional] 
 
 ## Methods
 
 ### NewSiteVariables
 
-`func NewSiteVariables(id int32, revision float32, slug string, name string, ) *SiteVariables`
+`func NewSiteVariables(id int64, revision int64, slug string, name string, ) *SiteVariables`
 
 NewSiteVariables instantiates a new SiteVariables object
 This constructor will assign default values to properties that have it defined,
@@ -32,40 +32,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *SiteVariables) GetId() int32`
+`func (o *SiteVariables) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SiteVariables) GetIdOk() (*int32, bool)`
+`func (o *SiteVariables) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SiteVariables) SetId(v int32)`
+`func (o *SiteVariables) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *SiteVariables) GetRevision() float32`
+`func (o *SiteVariables) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *SiteVariables) GetRevisionOk() (*float32, bool)`
+`func (o *SiteVariables) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *SiteVariables) SetRevision(v float32)`
+`func (o *SiteVariables) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -137,20 +137,20 @@ HasLocation returns a boolean if a field has been set.
 
 ### GetOwnerId
 
-`func (o *SiteVariables) GetOwnerId() int32`
+`func (o *SiteVariables) GetOwnerId() int64`
 
 GetOwnerId returns the OwnerId field if non-nil, zero value otherwise.
 
 ### GetOwnerIdOk
 
-`func (o *SiteVariables) GetOwnerIdOk() (*int32, bool)`
+`func (o *SiteVariables) GetOwnerIdOk() (*int64, bool)`
 
 GetOwnerIdOk returns a tuple with the OwnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerId
 
-`func (o *SiteVariables) SetOwnerId(v int32)`
+`func (o *SiteVariables) SetOwnerId(v int64)`
 
 SetOwnerId sets OwnerId field to given value.
 

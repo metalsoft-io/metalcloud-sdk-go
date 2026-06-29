@@ -28,8 +28,8 @@ type ResourcePoolAPIService service
 type ResourcePoolAPIAddResourcePoolUserRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
-	userId float32
+	resourcePoolId int64
+	userId int64
 }
 
 func (r ResourcePoolAPIAddResourcePoolUserRequest) Execute() (*http.Response, error) {
@@ -46,7 +46,7 @@ Add a user to a Resource Pool
  @param userId
  @return ResourcePoolAPIAddResourcePoolUserRequest
 */
-func (a *ResourcePoolAPIService) AddResourcePoolUser(ctx context.Context, resourcePoolId float32, userId float32) ResourcePoolAPIAddResourcePoolUserRequest {
+func (a *ResourcePoolAPIService) AddResourcePoolUser(ctx context.Context, resourcePoolId int64, userId int64) ResourcePoolAPIAddResourcePoolUserRequest {
 	return ResourcePoolAPIAddResourcePoolUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -124,8 +124,8 @@ func (a *ResourcePoolAPIService) AddResourcePoolUserExecute(r ResourcePoolAPIAdd
 type ResourcePoolAPIAddServerToResourcePoolRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
-	serverId float32
+	resourcePoolId int64
+	serverId int64
 }
 
 func (r ResourcePoolAPIAddServerToResourcePoolRequest) Execute() (*http.Response, error) {
@@ -142,7 +142,7 @@ Add a server to a Resource Pool
  @param serverId
  @return ResourcePoolAPIAddServerToResourcePoolRequest
 */
-func (a *ResourcePoolAPIService) AddServerToResourcePool(ctx context.Context, resourcePoolId float32, serverId float32) ResourcePoolAPIAddServerToResourcePoolRequest {
+func (a *ResourcePoolAPIService) AddServerToResourcePool(ctx context.Context, resourcePoolId int64, serverId int64) ResourcePoolAPIAddServerToResourcePoolRequest {
 	return ResourcePoolAPIAddServerToResourcePoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -220,8 +220,8 @@ func (a *ResourcePoolAPIService) AddServerToResourcePoolExecute(r ResourcePoolAP
 type ResourcePoolAPIAddSubnetPoolToResourcePoolRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
-	subnetPoolId float32
+	resourcePoolId int64
+	subnetPoolId int64
 }
 
 func (r ResourcePoolAPIAddSubnetPoolToResourcePoolRequest) Execute() (*http.Response, error) {
@@ -238,7 +238,7 @@ Add a subnet pool to a resource pool
  @param subnetPoolId
  @return ResourcePoolAPIAddSubnetPoolToResourcePoolRequest
 */
-func (a *ResourcePoolAPIService) AddSubnetPoolToResourcePool(ctx context.Context, resourcePoolId float32, subnetPoolId float32) ResourcePoolAPIAddSubnetPoolToResourcePoolRequest {
+func (a *ResourcePoolAPIService) AddSubnetPoolToResourcePool(ctx context.Context, resourcePoolId int64, subnetPoolId int64) ResourcePoolAPIAddSubnetPoolToResourcePoolRequest {
 	return ResourcePoolAPIAddSubnetPoolToResourcePoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -427,7 +427,7 @@ func (a *ResourcePoolAPIService) CreateResourcePoolExecute(r ResourcePoolAPICrea
 type ResourcePoolAPIDeleteResourcePoolRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
+	resourcePoolId int64
 }
 
 func (r ResourcePoolAPIDeleteResourcePoolRequest) Execute() (*http.Response, error) {
@@ -443,7 +443,7 @@ Deletes a Resource Pool
  @param resourcePoolId
  @return ResourcePoolAPIDeleteResourcePoolRequest
 */
-func (a *ResourcePoolAPIService) DeleteResourcePool(ctx context.Context, resourcePoolId float32) ResourcePoolAPIDeleteResourcePoolRequest {
+func (a *ResourcePoolAPIService) DeleteResourcePool(ctx context.Context, resourcePoolId int64) ResourcePoolAPIDeleteResourcePoolRequest {
 	return ResourcePoolAPIDeleteResourcePoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -622,7 +622,7 @@ func (a *ResourcePoolAPIService) GetResourcePoolExecute(r ResourcePoolAPIGetReso
 type ResourcePoolAPIGetResourcePoolServersRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
+	resourcePoolId int64
 }
 
 func (r ResourcePoolAPIGetResourcePoolServersRequest) Execute() ([]float32, *http.Response, error) {
@@ -638,7 +638,7 @@ Returns list of all servers that are part of a Resource Pool
  @param resourcePoolId
  @return ResourcePoolAPIGetResourcePoolServersRequest
 */
-func (a *ResourcePoolAPIService) GetResourcePoolServers(ctx context.Context, resourcePoolId float32) ResourcePoolAPIGetResourcePoolServersRequest {
+func (a *ResourcePoolAPIService) GetResourcePoolServers(ctx context.Context, resourcePoolId int64) ResourcePoolAPIGetResourcePoolServersRequest {
 	return ResourcePoolAPIGetResourcePoolServersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -725,7 +725,7 @@ func (a *ResourcePoolAPIService) GetResourcePoolServersExecute(r ResourcePoolAPI
 type ResourcePoolAPIGetResourcePoolSubnetPoolsRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
+	resourcePoolId int64
 }
 
 func (r ResourcePoolAPIGetResourcePoolSubnetPoolsRequest) Execute() ([]float32, *http.Response, error) {
@@ -741,7 +741,7 @@ Returns list of all subnet pools that are part of a resource pool
  @param resourcePoolId
  @return ResourcePoolAPIGetResourcePoolSubnetPoolsRequest
 */
-func (a *ResourcePoolAPIService) GetResourcePoolSubnetPools(ctx context.Context, resourcePoolId float32) ResourcePoolAPIGetResourcePoolSubnetPoolsRequest {
+func (a *ResourcePoolAPIService) GetResourcePoolSubnetPools(ctx context.Context, resourcePoolId int64) ResourcePoolAPIGetResourcePoolSubnetPoolsRequest {
 	return ResourcePoolAPIGetResourcePoolSubnetPoolsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -828,7 +828,7 @@ func (a *ResourcePoolAPIService) GetResourcePoolSubnetPoolsExecute(r ResourcePoo
 type ResourcePoolAPIGetResourcePoolUsersRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
+	resourcePoolId int64
 }
 
 func (r ResourcePoolAPIGetResourcePoolUsersRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
@@ -844,7 +844,7 @@ Returns list of all users that have access to a Resource Pool
  @param resourcePoolId
  @return ResourcePoolAPIGetResourcePoolUsersRequest
 */
-func (a *ResourcePoolAPIService) GetResourcePoolUsers(ctx context.Context, resourcePoolId float32) ResourcePoolAPIGetResourcePoolUsersRequest {
+func (a *ResourcePoolAPIService) GetResourcePoolUsers(ctx context.Context, resourcePoolId int64) ResourcePoolAPIGetResourcePoolUsersRequest {
 	return ResourcePoolAPIGetResourcePoolUsersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1186,7 +1186,7 @@ func (a *ResourcePoolAPIService) GetResourcePoolsExecute(r ResourcePoolAPIGetRes
 type ResourcePoolAPIGetUserResourcePoolsRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	userId float32
+	userId int64
 }
 
 func (r ResourcePoolAPIGetUserResourcePoolsRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
@@ -1202,7 +1202,7 @@ Returns list of all Resource Pools that a user has access to
  @param userId
  @return ResourcePoolAPIGetUserResourcePoolsRequest
 */
-func (a *ResourcePoolAPIService) GetUserResourcePools(ctx context.Context, userId float32) ResourcePoolAPIGetUserResourcePoolsRequest {
+func (a *ResourcePoolAPIService) GetUserResourcePools(ctx context.Context, userId int64) ResourcePoolAPIGetUserResourcePoolsRequest {
 	return ResourcePoolAPIGetUserResourcePoolsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1289,8 +1289,8 @@ func (a *ResourcePoolAPIService) GetUserResourcePoolsExecute(r ResourcePoolAPIGe
 type ResourcePoolAPIRemoveResourcePoolUserRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
-	userId float32
+	resourcePoolId int64
+	userId int64
 }
 
 func (r ResourcePoolAPIRemoveResourcePoolUserRequest) Execute() (*http.Response, error) {
@@ -1307,7 +1307,7 @@ Remove a user from a Resource Pool
  @param userId
  @return ResourcePoolAPIRemoveResourcePoolUserRequest
 */
-func (a *ResourcePoolAPIService) RemoveResourcePoolUser(ctx context.Context, resourcePoolId float32, userId float32) ResourcePoolAPIRemoveResourcePoolUserRequest {
+func (a *ResourcePoolAPIService) RemoveResourcePoolUser(ctx context.Context, resourcePoolId int64, userId int64) ResourcePoolAPIRemoveResourcePoolUserRequest {
 	return ResourcePoolAPIRemoveResourcePoolUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1385,8 +1385,8 @@ func (a *ResourcePoolAPIService) RemoveResourcePoolUserExecute(r ResourcePoolAPI
 type ResourcePoolAPIRemoveServerFromResourcePoolRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
-	serverId float32
+	resourcePoolId int64
+	serverId int64
 }
 
 func (r ResourcePoolAPIRemoveServerFromResourcePoolRequest) Execute() (*http.Response, error) {
@@ -1403,7 +1403,7 @@ Remove a server from a Resource Pool
  @param serverId
  @return ResourcePoolAPIRemoveServerFromResourcePoolRequest
 */
-func (a *ResourcePoolAPIService) RemoveServerFromResourcePool(ctx context.Context, resourcePoolId float32, serverId float32) ResourcePoolAPIRemoveServerFromResourcePoolRequest {
+func (a *ResourcePoolAPIService) RemoveServerFromResourcePool(ctx context.Context, resourcePoolId int64, serverId int64) ResourcePoolAPIRemoveServerFromResourcePoolRequest {
 	return ResourcePoolAPIRemoveServerFromResourcePoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1481,8 +1481,8 @@ func (a *ResourcePoolAPIService) RemoveServerFromResourcePoolExecute(r ResourceP
 type ResourcePoolAPIRemoveSubnetPoolFromResourcePoolRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
-	subnetPoolId float32
+	resourcePoolId int64
+	subnetPoolId int64
 }
 
 func (r ResourcePoolAPIRemoveSubnetPoolFromResourcePoolRequest) Execute() (*http.Response, error) {
@@ -1499,7 +1499,7 @@ Remove a subnet from a resource pool
  @param subnetPoolId
  @return ResourcePoolAPIRemoveSubnetPoolFromResourcePoolRequest
 */
-func (a *ResourcePoolAPIService) RemoveSubnetPoolFromResourcePool(ctx context.Context, resourcePoolId float32, subnetPoolId float32) ResourcePoolAPIRemoveSubnetPoolFromResourcePoolRequest {
+func (a *ResourcePoolAPIService) RemoveSubnetPoolFromResourcePool(ctx context.Context, resourcePoolId int64, subnetPoolId int64) ResourcePoolAPIRemoveSubnetPoolFromResourcePoolRequest {
 	return ResourcePoolAPIRemoveSubnetPoolFromResourcePoolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1577,7 +1577,7 @@ func (a *ResourcePoolAPIService) RemoveSubnetPoolFromResourcePoolExecute(r Resou
 type ResourcePoolAPIUpdateResourcePoolRequest struct {
 	ctx context.Context
 	ApiService *ResourcePoolAPIService
-	resourcePoolId float32
+	resourcePoolId int64
 	updateResourcePool *UpdateResourcePool
 }
 
@@ -1600,7 +1600,7 @@ Updates Resource Pool information
  @param resourcePoolId
  @return ResourcePoolAPIUpdateResourcePoolRequest
 */
-func (a *ResourcePoolAPIService) UpdateResourcePool(ctx context.Context, resourcePoolId float32) ResourcePoolAPIUpdateResourcePoolRequest {
+func (a *ResourcePoolAPIService) UpdateResourcePool(ctx context.Context, resourcePoolId int64) ResourcePoolAPIUpdateResourcePoolRequest {
 	return ResourcePoolAPIUpdateResourcePoolRequest{
 		ApiService: a,
 		ctx: ctx,

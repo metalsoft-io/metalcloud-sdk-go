@@ -28,6 +28,7 @@ Method | HTTP request | Description
 [**GetNetworkFabrics**](NetworkFabricAPI.md#GetNetworkFabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
 [**RejectNetworkFabricDeploy**](NetworkFabricAPI.md#RejectNetworkFabricDeploy) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/reject-deploy | Rejects the deployment of the specified network fabric
 [**RemoveNetworkDeviceFromFabric**](NetworkFabricAPI.md#RemoveNetworkDeviceFromFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
+[**RescanNetworkFabricLinks**](NetworkFabricAPI.md#RescanNetworkFabricLinks) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/rescan-links | Re-scans the links of the specified network fabric
 [**UpdateNetworkFabric**](NetworkFabricAPI.md#UpdateNetworkFabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 [**UpdateNetworkFabricLinkAggregation**](NetworkFabricAPI.md#UpdateNetworkFabricLinkAggregation) | **Patch** /api/v2/network-fabrics/{networkFabricId}/link-aggregations/{linkAggregationId} | Update a network fabric link aggregation
 
@@ -54,7 +55,7 @@ import (
 )
 
 func main() {
-	networkFabricId := float32(8.14) // float32 | 
+	networkFabricId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -72,7 +73,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **float32** |  | 
+**networkFabricId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -120,7 +121,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the network fabric to activate
+	networkFabricId := int64(789) // int64 | The ID of the network fabric to activate
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -141,7 +142,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the network fabric to activate | 
+**networkFabricId** | **int64** | The ID of the network fabric to activate | 
 
 ### Other Parameters
 
@@ -190,8 +191,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
-	networkDevicesToFabric := *openapiclient.NewNetworkDevicesToFabric([]float32{float32(123)}) // NetworkDevicesToFabric | The network device list containing the IDs of the network devices to add to the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric
+	networkDevicesToFabric := *openapiclient.NewNetworkDevicesToFabric([]int64{int64(123)}) // NetworkDevicesToFabric | The network device list containing the IDs of the network devices to add to the fabric
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -211,7 +212,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -324,7 +325,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric
 	createNetworkFabricBGPSession := *openapiclient.NewCreateNetworkFabricBGPSession("inherited", "disabled") // CreateNetworkFabricBGPSession | The network fabric BGP session object
 
 	configuration := openapiclient.NewConfiguration()
@@ -345,7 +346,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -394,7 +395,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric
 	createNetworkFabricLink := *openapiclient.NewCreateNetworkFabricLink("point-to-point") // CreateNetworkFabricLink | The network fabric link object
 
 	configuration := openapiclient.NewConfiguration()
@@ -415,7 +416,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -464,8 +465,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
-	createNetworkFabricLinkAggregation := *openapiclient.NewCreateNetworkFabricLinkAggregation("lag", []float32{float32(123)}) // CreateNetworkFabricLinkAggregation | The network fabric link aggregation object
+	networkFabricId := int64(789) // int64 | The ID of the fabric
+	createNetworkFabricLinkAggregation := *openapiclient.NewCreateNetworkFabricLinkAggregation("lag", []int64{int64(123)}) // CreateNetworkFabricLinkAggregation | The network fabric link aggregation object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -485,7 +486,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -534,7 +535,7 @@ import (
 )
 
 func main() {
-	networkFabricId := float32(8.14) // float32 | 
+	networkFabricId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -552,7 +553,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **float32** |  | 
+**networkFabricId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -600,8 +601,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric to remove the network device from
-	bgpSessionId := int32(56) // int32 | The ID of the network fabric BGP session
+	networkFabricId := int64(789) // int64 | The ID of the fabric to remove the network device from
+	bgpSessionId := int64(789) // int64 | The ID of the network fabric BGP session
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -619,8 +620,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric to remove the network device from | 
-**bgpSessionId** | **int32** | The ID of the network fabric BGP session | 
+**networkFabricId** | **int64** | The ID of the fabric to remove the network device from | 
+**bgpSessionId** | **int64** | The ID of the network fabric BGP session | 
 
 ### Other Parameters
 
@@ -669,8 +670,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric to remove the network device from
-	networkFabricLinkId := int32(56) // int32 | The ID of the network fabric link
+	networkFabricId := int64(789) // int64 | The ID of the fabric to remove the network device from
+	networkFabricLinkId := int64(789) // int64 | The ID of the network fabric link
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -688,8 +689,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric to remove the network device from | 
-**networkFabricLinkId** | **int32** | The ID of the network fabric link | 
+**networkFabricId** | **int64** | The ID of the fabric to remove the network device from | 
+**networkFabricLinkId** | **int64** | The ID of the network fabric link | 
 
 ### Other Parameters
 
@@ -738,8 +739,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric to remove the network device from
-	linkAggregationId := int32(56) // int32 | The ID of the network fabric link aggregation
+	networkFabricId := int64(789) // int64 | The ID of the fabric to remove the network device from
+	linkAggregationId := int64(789) // int64 | The ID of the network fabric link aggregation
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -757,8 +758,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric to remove the network device from | 
-**linkAggregationId** | **int32** | The ID of the network fabric link aggregation | 
+**networkFabricId** | **int64** | The ID of the fabric to remove the network device from | 
+**linkAggregationId** | **int64** | The ID of the network fabric link aggregation | 
 
 ### Other Parameters
 
@@ -809,7 +810,7 @@ import (
 )
 
 func main() {
-	networkFabricId := float32(8.14) // float32 | 
+	networkFabricId := int64(789) // int64 | 
 	networkFabricDeployOptions := *openapiclient.NewNetworkFabricDeployOptions(true) // NetworkFabricDeployOptions | Network fabric deploy options
 
 	configuration := openapiclient.NewConfiguration()
@@ -830,7 +831,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **float32** |  | 
+**networkFabricId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -862,7 +863,7 @@ Name | Type | Description  | Notes
 
 ## GetFabricNetworkDevices
 
-> NetworkDevicePaginatedList GetFabricNetworkDevices(ctx, networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> NetworkDevicePaginatedList GetFabricNetworkDevices(ctx, networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get paginated Network Devices
 
@@ -879,7 +880,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -894,13 +895,15 @@ func main() {
 	filterPosition := []string{"Inner_example"} // []string | Filter by position query param.  **Format:** filter.position={$not}:OPERATION:VALUE    **Example:** filter.position=$btw:John Doe&filter.position=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterIdentifierString := []string{"Inner_example"} // []string | Filter by identifierString query param.  **Format:** filter.identifierString={$not}:OPERATION:VALUE    **Example:** filter.identifierString=$btw:John Doe&filter.identifierString=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.  **Format:** filter.serverId={$not}:OPERATION:VALUE    **Example:** filter.serverId=$btw:John Doe&filter.serverId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  (optional)
+	filterHealthStatus := []string{"Inner_example"} // []string | Filter by healthStatus query param.  **Format:** filter.healthStatus={$not}:OPERATION:VALUE    **Example:** filter.healthStatus=$btw:John Doe&filter.healthStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterDriftDetectionSyncStatus := []string{"Inner_example"} // []string | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus=$btw:John Doe&filter.driftDetectionSyncStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricAPI.GetFabricNetworkDevices(context.Background(), networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.NetworkFabricAPI.GetFabricNetworkDevices(context.Background(), networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.GetFabricNetworkDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -916,7 +919,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -940,9 +943,11 @@ Name | Type | Description  | Notes
  **filterPosition** | **[]string** | Filter by position query param.  **Format:** filter.position&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.position&#x3D;$btw:John Doe&amp;filter.position&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterIdentifierString** | **[]string** | Filter by identifierString query param.  **Format:** filter.identifierString&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.identifierString&#x3D;$btw:John Doe&amp;filter.identifierString&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterServerId** | **[]string** | Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  | 
+ **filterHealthStatus** | **[]string** | Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterDriftDetectionSyncStatus** | **[]string** | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$btw:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  | 
 
 ### Return type
 
@@ -981,7 +986,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the network fabric
+	networkFabricId := int64(789) // int64 | The ID of the network fabric
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -1011,7 +1016,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the network fabric | 
+**networkFabricId** | **int64** | The ID of the network fabric | 
 
 ### Other Parameters
 
@@ -1069,8 +1074,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
-	bgpSessionId := int32(56) // int32 | The ID of the network fabric BGP session
+	networkFabricId := int64(789) // int64 | The ID of the fabric
+	bgpSessionId := int64(789) // int64 | The ID of the network fabric BGP session
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1090,8 +1095,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
-**bgpSessionId** | **int32** | The ID of the network fabric BGP session | 
+**networkFabricId** | **int64** | The ID of the fabric | 
+**bgpSessionId** | **int64** | The ID of the network fabric BGP session | 
 
 ### Other Parameters
 
@@ -1140,7 +1145,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -1170,7 +1175,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -1228,7 +1233,7 @@ import (
 )
 
 func main() {
-	networkFabricId := float32(8.14) // float32 | 
+	networkFabricId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1248,7 +1253,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **float32** |  | 
+**networkFabricId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1296,8 +1301,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
-	networkFabricLinkId := int32(56) // int32 | The ID of the network fabric link
+	networkFabricId := int64(789) // int64 | The ID of the fabric
+	networkFabricLinkId := int64(789) // int64 | The ID of the network fabric link
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1317,8 +1322,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
-**networkFabricLinkId** | **int32** | The ID of the network fabric link | 
+**networkFabricId** | **int64** | The ID of the fabric | 
+**networkFabricLinkId** | **int64** | The ID of the network fabric link | 
 
 ### Other Parameters
 
@@ -1367,8 +1372,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
-	linkAggregationId := int32(56) // int32 | The ID of the network fabric link aggregation
+	networkFabricId := int64(789) // int64 | The ID of the fabric
+	linkAggregationId := int64(789) // int64 | The ID of the network fabric link aggregation
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1388,8 +1393,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
-**linkAggregationId** | **int32** | The ID of the network fabric link aggregation | 
+**networkFabricId** | **int64** | The ID of the fabric | 
+**linkAggregationId** | **int64** | The ID of the network fabric link aggregation | 
 
 ### Other Parameters
 
@@ -1438,7 +1443,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -1467,7 +1472,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -1524,7 +1529,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -1553,7 +1558,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric | 
 
 ### Other Parameters
 
@@ -1696,7 +1701,7 @@ import (
 )
 
 func main() {
-	networkFabricId := float32(8.14) // float32 | 
+	networkFabricId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1714,7 +1719,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **float32** |  | 
+**networkFabricId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1762,8 +1767,8 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric to remove the network device from
-	networkDeviceId := int32(56) // int32 | The ID of the network device to remove from the fabric
+	networkFabricId := int64(789) // int64 | The ID of the fabric to remove the network device from
+	networkDeviceId := int64(789) // int64 | The ID of the network device to remove from the fabric
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1783,8 +1788,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric to remove the network device from | 
-**networkDeviceId** | **int32** | The ID of the network device to remove from the fabric | 
+**networkFabricId** | **int64** | The ID of the fabric to remove the network device from | 
+**networkDeviceId** | **int64** | The ID of the network device to remove from the fabric | 
 
 ### Other Parameters
 
@@ -1814,6 +1819,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RescanNetworkFabricLinks
+
+> JobInfo RescanNetworkFabricLinks(ctx, networkFabricId).NetworkFabricLinkRescanOptions(networkFabricLinkRescanOptions).Execute()
+
+Re-scans the links of the specified network fabric
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkFabricId := int64(789) // int64 | 
+	networkFabricLinkRescanOptions := *openapiclient.NewNetworkFabricLinkRescanOptions() // NetworkFabricLinkRescanOptions | Network fabric link rescan options
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricAPI.RescanNetworkFabricLinks(context.Background(), networkFabricId).NetworkFabricLinkRescanOptions(networkFabricLinkRescanOptions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.RescanNetworkFabricLinks``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RescanNetworkFabricLinks`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.RescanNetworkFabricLinks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkFabricId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRescanNetworkFabricLinksRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **networkFabricLinkRescanOptions** | [**NetworkFabricLinkRescanOptions**](NetworkFabricLinkRescanOptions.md) | Network fabric link rescan options | 
+
+### Return type
+
+[**JobInfo**](JobInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateNetworkFabric
 
 > NetworkFabric UpdateNetworkFabric(ctx, networkFabricId).UpdateNetworkFabric(updateNetworkFabric).IfMatch(ifMatch).Execute()
@@ -1833,7 +1910,7 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the network fabric to update
+	networkFabricId := int64(789) // int64 | The ID of the network fabric to update
 	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric(openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric(openapiclient.FabricType("ethernet"))}) // UpdateNetworkFabric | Network fabric updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1855,7 +1932,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the network fabric to update | 
+**networkFabricId** | **int64** | The ID of the network fabric to update | 
 
 ### Other Parameters
 
@@ -1905,9 +1982,9 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric
-	linkAggregationId := int32(56) // int32 | The ID of the network fabric link aggregation
-	updateNetworkFabricLinkAggregation := *openapiclient.NewUpdateNetworkFabricLinkAggregation([]float32{float32(123)}) // UpdateNetworkFabricLinkAggregation | The network fabric link aggregation object
+	networkFabricId := int64(789) // int64 | The ID of the fabric
+	linkAggregationId := int64(789) // int64 | The ID of the network fabric link aggregation
+	updateNetworkFabricLinkAggregation := *openapiclient.NewUpdateNetworkFabricLinkAggregation([]int64{int64(123)}) // UpdateNetworkFabricLinkAggregation | The network fabric link aggregation object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1927,8 +2004,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric | 
-**linkAggregationId** | **int32** | The ID of the network fabric link aggregation | 
+**networkFabricId** | **int64** | The ID of the fabric | 
+**linkAggregationId** | **int64** | The ID of the network fabric link aggregation | 
 
 ### Other Parameters
 

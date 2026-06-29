@@ -9,6 +9,8 @@
 
 * `EXTENSION_INPUT_BOOLEAN` (value: `"ExtensionInputBoolean"`)
 
+* `EXTENSION_INPUT_ENUM` (value: `"ExtensionInputEnum"`)
+
 * `EXTENSION_INPUT_SERVER_TYPE` (value: `"ExtensionInputServerType"`)
 
 * `EXTENSION_INPUT_OS_TEMPLATE` (value: `"ExtensionInputOsTemplate"`)

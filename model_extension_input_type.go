@@ -24,6 +24,7 @@ const (
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_STRING ExtensionInputType = "ExtensionInputString"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_INTEGER ExtensionInputType = "ExtensionInputInteger"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_BOOLEAN ExtensionInputType = "ExtensionInputBoolean"
+	EXTENSIONINPUTTYPE_EXTENSION_INPUT_ENUM ExtensionInputType = "ExtensionInputEnum"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_SERVER_TYPE ExtensionInputType = "ExtensionInputServerType"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_OS_TEMPLATE ExtensionInputType = "ExtensionInputOsTemplate"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_NETWORK_PROFILE ExtensionInputType = "ExtensionInputNetworkProfile"
@@ -34,6 +35,7 @@ var AllowedExtensionInputTypeEnumValues = []ExtensionInputType{
 	"ExtensionInputString",
 	"ExtensionInputInteger",
 	"ExtensionInputBoolean",
+	"ExtensionInputEnum",
 	"ExtensionInputServerType",
 	"ExtensionInputOsTemplate",
 	"ExtensionInputNetworkProfile",

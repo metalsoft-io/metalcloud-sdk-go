@@ -133,46 +133,145 @@ func (a *AuthenticationAPIService) GetAuthenticationProviderExecute(r Authentica
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AuthenticationAPIGetCaptchaEnabledRequest struct {
+type AuthenticationAPIGetBrandingRequest struct {
 	ctx context.Context
 	ApiService *AuthenticationAPIService
 }
 
-func (r AuthenticationAPIGetCaptchaEnabledRequest) Execute() (*CaptchaEnabled, *http.Response, error) {
-	return r.ApiService.GetCaptchaEnabledExecute(r)
+func (r AuthenticationAPIGetBrandingRequest) Execute() (*Branding, *http.Response, error) {
+	return r.ApiService.GetBrandingExecute(r)
 }
 
 /*
-GetCaptchaEnabled Check if CAPTCHA is enabled
+GetBranding Get branding configuration
 
-Returns whether CAPTCHA is enabled for the password reset form.
+Returns the branding configuration (logos, favicon, company name, UI template).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return AuthenticationAPIGetCaptchaEnabledRequest
+ @return AuthenticationAPIGetBrandingRequest
 */
-func (a *AuthenticationAPIService) GetCaptchaEnabled(ctx context.Context) AuthenticationAPIGetCaptchaEnabledRequest {
-	return AuthenticationAPIGetCaptchaEnabledRequest{
+func (a *AuthenticationAPIService) GetBranding(ctx context.Context) AuthenticationAPIGetBrandingRequest {
+	return AuthenticationAPIGetBrandingRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CaptchaEnabled
-func (a *AuthenticationAPIService) GetCaptchaEnabledExecute(r AuthenticationAPIGetCaptchaEnabledRequest) (*CaptchaEnabled, *http.Response, error) {
+//  @return Branding
+func (a *AuthenticationAPIService) GetBrandingExecute(r AuthenticationAPIGetBrandingRequest) (*Branding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CaptchaEnabled
+		localVarReturnValue  *Branding
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetCaptchaEnabled")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetBranding")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/captcha-enabled"
+	localVarPath := localBasePath + "/api/v2/branding"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AuthenticationAPIGetCaptchaConfigRequest struct {
+	ctx context.Context
+	ApiService *AuthenticationAPIService
+}
+
+func (r AuthenticationAPIGetCaptchaConfigRequest) Execute() (*CaptchaConfig, *http.Response, error) {
+	return r.ApiService.GetCaptchaConfigExecute(r)
+}
+
+/*
+GetCaptchaConfig Get CAPTCHA configuration
+
+Returns whether CAPTCHA is enabled and the site keys for each widget.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return AuthenticationAPIGetCaptchaConfigRequest
+*/
+func (a *AuthenticationAPIService) GetCaptchaConfig(ctx context.Context) AuthenticationAPIGetCaptchaConfigRequest {
+	return AuthenticationAPIGetCaptchaConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return CaptchaConfig
+func (a *AuthenticationAPIService) GetCaptchaConfigExecute(r AuthenticationAPIGetCaptchaConfigRequest) (*CaptchaConfig, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CaptchaConfig
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetCaptchaConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/captcha"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -235,13 +334,6 @@ func (a *AuthenticationAPIService) GetCaptchaEnabledExecute(r AuthenticationAPIG
 type AuthenticationAPIGetCurrentUserRequest struct {
 	ctx context.Context
 	ApiService *AuthenticationAPIService
-	recursion *float32
-}
-
-// The recursion level of the displayed details. Default is 0.
-func (r AuthenticationAPIGetCurrentUserRequest) Recursion(recursion float32) AuthenticationAPIGetCurrentUserRequest {
-	r.recursion = &recursion
-	return r
 }
 
 func (r AuthenticationAPIGetCurrentUserRequest) Execute() (*User, *http.Response, error) {
@@ -284,9 +376,6 @@ func (a *AuthenticationAPIService) GetCurrentUserExecute(r AuthenticationAPIGetC
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.recursion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "recursion", r.recursion, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

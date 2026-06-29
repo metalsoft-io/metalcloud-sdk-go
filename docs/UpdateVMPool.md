@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Username** | Pointer to **string** | Username of the VM Pool | [optional] 
 **Password** | Pointer to **string** | Password of the VM Pool | [optional] 
 **Options** | Pointer to [**UpdateVMPoolOptions**](UpdateVMPoolOptions.md) | Options for the VM Pool | [optional] 
-**NetworkFabricId** | Pointer to **float32** | The network fabric linked to the VM Pool. | [optional] 
+**NetworkFabricId** | Pointer to **int64** | The network fabric linked to the VM Pool. | [optional] 
 
 ## Methods
 
@@ -313,20 +313,20 @@ HasOptions returns a boolean if a field has been set.
 
 ### GetNetworkFabricId
 
-`func (o *UpdateVMPool) GetNetworkFabricId() float32`
+`func (o *UpdateVMPool) GetNetworkFabricId() int64`
 
 GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricIdOk
 
-`func (o *UpdateVMPool) GetNetworkFabricIdOk() (*float32, bool)`
+`func (o *UpdateVMPool) GetNetworkFabricIdOk() (*int64, bool)`
 
 GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricId
 
-`func (o *UpdateVMPool) SetNetworkFabricId(v float32)`
+`func (o *UpdateVMPool) SetNetworkFabricId(v int64)`
 
 SetNetworkFabricId sets NetworkFabricId field to given value.
 

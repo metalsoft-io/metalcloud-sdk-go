@@ -50,7 +50,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var siteId float32
+		var siteId int64
 
 		httpRes, err := apiClient.SiteAPI.DecommissionSite(context.Background(), siteId).Execute()
 
@@ -63,7 +63,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.SiteAPI.DeleteDeviceAuthProvider(context.Background(), id).Execute()
 
@@ -76,7 +76,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var siteId float32
+		var siteId int64
 
 		resp, httpRes, err := apiClient.SiteAPI.GetAgents(context.Background(), siteId).Execute()
 
@@ -90,7 +90,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.SiteAPI.GetDeviceAuthProviderById(context.Background(), id).Execute()
 
@@ -104,7 +104,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.SiteAPI.GetDeviceAuthProviderCredentials(context.Background(), id).Execute()
 
@@ -130,7 +130,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var siteId float32
+		var siteId int64
 
 		resp, httpRes, err := apiClient.SiteAPI.GetSite(context.Background(), siteId).Execute()
 
@@ -144,7 +144,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var siteId float32
+		var siteId int64
 
 		resp, httpRes, err := apiClient.SiteAPI.GetSiteConfig(context.Background(), siteId).Execute()
 
@@ -158,7 +158,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var siteId float32
+		var siteId int64
 
 		resp, httpRes, err := apiClient.SiteAPI.GetSiteControllerOneLiner(context.Background(), siteId).Execute()
 
@@ -208,7 +208,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.SiteAPI.UpdateDeviceAuthProvider(context.Background(), id).Execute()
 
@@ -222,7 +222,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.SiteAPI.UpdateDeviceAuthProviderSharedSecret(context.Background(), id).Execute()
 
@@ -235,7 +235,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var siteId float32
+		var siteId int64
 
 		resp, httpRes, err := apiClient.SiteAPI.UpdateSite(context.Background(), siteId).Execute()
 
@@ -249,7 +249,7 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var siteId float32
+		var siteId int64
 
 		resp, httpRes, err := apiClient.SiteAPI.UpdateSiteConfig(context.Background(), siteId).Execute()
 

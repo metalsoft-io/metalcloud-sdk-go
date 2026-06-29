@@ -38,7 +38,7 @@ func Test_sdk_NetworkDeviceBGPConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceBGPConfigurationTemplateId float32
+		var networkDeviceBGPConfigurationTemplateId int64
 
 		httpRes, err := apiClient.NetworkDeviceBGPConfigurationTemplateAPI.DeleteNetworkDeviceBGPConfigurationTemplate(context.Background(), networkDeviceBGPConfigurationTemplateId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_NetworkDeviceBGPConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceBGPConfigurationTemplateId float32
+		var networkDeviceBGPConfigurationTemplateId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceBGPConfigurationTemplateAPI.GetNetworkDeviceBGPConfigurationTemplate(context.Background(), networkDeviceBGPConfigurationTemplateId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_NetworkDeviceBGPConfigurationTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkDeviceBGPConfigurationTemplateId float32
+		var networkDeviceBGPConfigurationTemplateId int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceBGPConfigurationTemplateAPI.UpdateNetworkDeviceBGPConfigurationTemplate(context.Background(), networkDeviceBGPConfigurationTemplateId).Execute()
 

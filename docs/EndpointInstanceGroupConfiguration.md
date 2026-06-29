@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **int32** | Revision number | 
+**Revision** | **int64** | Revision number | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **EndpointGroupName** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** | Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \&quot;endpoint-instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;dnsLoadBalancingRecord\&quot; is true. It will be automatically suffixed with the endpoint instance group ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
-**DnsSubdomainChangeId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
-**InfrastructureDeployId** | Pointer to **int32** | Id of the deployment for the Product Instance | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the Product Instance | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the Product Instance | [optional] 
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
 **DeployType** | **string** | Product Instance deploy type | [default to "create"]
 **DeployStatus** | **string** | Product Instance deploy status | [default to "not_started"]
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewEndpointInstanceGroupConfiguration
 
-`func NewEndpointInstanceGroupConfiguration(revision int32, label string, updatedTimestamp string, deployType string, deployStatus string, ) *EndpointInstanceGroupConfiguration`
+`func NewEndpointInstanceGroupConfiguration(revision int64, label string, updatedTimestamp string, deployType string, deployStatus string, ) *EndpointInstanceGroupConfiguration`
 
 NewEndpointInstanceGroupConfiguration instantiates a new EndpointInstanceGroupConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *EndpointInstanceGroupConfiguration) GetRevision() int32`
+`func (o *EndpointInstanceGroupConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *EndpointInstanceGroupConfiguration) GetRevisionOk() (*int32, bool)`
+`func (o *EndpointInstanceGroupConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *EndpointInstanceGroupConfiguration) SetRevision(v int32)`
+`func (o *EndpointInstanceGroupConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -172,20 +172,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeId() int32`
+`func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool)`
+`func (o *EndpointInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *EndpointInstanceGroupConfiguration) SetDnsSubdomainChangeId(v int32)`
+`func (o *EndpointInstanceGroupConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -197,20 +197,20 @@ HasDnsSubdomainChangeId returns a boolean if a field has been set.
 
 ### GetInfrastructureDeployId
 
-`func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployId() int32`
+`func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*int32, bool)`
+`func (o *EndpointInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *EndpointInstanceGroupConfiguration) SetInfrastructureDeployId(v int32)`
+`func (o *EndpointInstanceGroupConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 

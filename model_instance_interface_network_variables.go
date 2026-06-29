@@ -22,13 +22,13 @@ var _ MappedNullable = &InstanceInterfaceNetworkVariables{}
 // InstanceInterfaceNetworkVariables struct for InstanceInterfaceNetworkVariables
 type InstanceInterfaceNetworkVariables struct {
 	InterfaceType InstanceInterfaceType `json:"interfaceType"`
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	LogicalNetworkName *string `json:"logicalNetworkName,omitempty"`
 	LogicalNetworkLabel *string `json:"logicalNetworkLabel,omitempty"`
-	TypeInterfaceId float32 `json:"typeInterfaceId"`
+	TypeInterfaceId int64 `json:"typeInterfaceId"`
 	MacAddress *string `json:"macAddress,omitempty"`
 	Mtu *float32 `json:"mtu,omitempty"`
-	VlanId *float32 `json:"vlanId,omitempty"`
+	VlanId *int32 `json:"vlanId,omitempty"`
 	Ipv4Addresses []InstanceInterfaceIpv4AddressVariables `json:"ipv4Addresses,omitempty"`
 	Ipv6Addresses []InstanceInterfaceIpv6AddressVariables `json:"ipv6Addresses,omitempty"`
 	Routes []InstanceInterfaceRouteVariables `json:"routes,omitempty"`
@@ -43,7 +43,7 @@ type _InstanceInterfaceNetworkVariables InstanceInterfaceNetworkVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceInterfaceNetworkVariables(interfaceType InstanceInterfaceType, typeInterfaceId float32) *InstanceInterfaceNetworkVariables {
+func NewInstanceInterfaceNetworkVariables(interfaceType InstanceInterfaceType, typeInterfaceId int64) *InstanceInterfaceNetworkVariables {
 	this := InstanceInterfaceNetworkVariables{}
 	this.InterfaceType = interfaceType
 	this.TypeInterfaceId = typeInterfaceId
@@ -83,9 +83,9 @@ func (o *InstanceInterfaceNetworkVariables) SetInterfaceType(v InstanceInterface
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkId() float32 {
+func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -93,7 +93,7 @@ func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -109,8 +109,8 @@ func (o *InstanceInterfaceNetworkVariables) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 
@@ -179,9 +179,9 @@ func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkLabel(v string) {
 }
 
 // GetTypeInterfaceId returns the TypeInterfaceId field value
-func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceId() float32 {
+func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -190,7 +190,7 @@ func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceId() float32 {
 
 // GetTypeInterfaceIdOk returns a tuple with the TypeInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceIdOk() (*float32, bool) {
+func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -198,7 +198,7 @@ func (o *InstanceInterfaceNetworkVariables) GetTypeInterfaceIdOk() (*float32, bo
 }
 
 // SetTypeInterfaceId sets field value
-func (o *InstanceInterfaceNetworkVariables) SetTypeInterfaceId(v float32) {
+func (o *InstanceInterfaceNetworkVariables) SetTypeInterfaceId(v int64) {
 	o.TypeInterfaceId = v
 }
 
@@ -267,9 +267,9 @@ func (o *InstanceInterfaceNetworkVariables) SetMtu(v float32) {
 }
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
-func (o *InstanceInterfaceNetworkVariables) GetVlanId() float32 {
+func (o *InstanceInterfaceNetworkVariables) GetVlanId() int32 {
 	if o == nil || IsNil(o.VlanId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.VlanId
@@ -277,7 +277,7 @@ func (o *InstanceInterfaceNetworkVariables) GetVlanId() float32 {
 
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceInterfaceNetworkVariables) GetVlanIdOk() (*float32, bool) {
+func (o *InstanceInterfaceNetworkVariables) GetVlanIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.VlanId) {
 		return nil, false
 	}
@@ -293,8 +293,8 @@ func (o *InstanceInterfaceNetworkVariables) HasVlanId() bool {
 	return false
 }
 
-// SetVlanId gets a reference to the given float32 and assigns it to the VlanId field.
-func (o *InstanceInterfaceNetworkVariables) SetVlanId(v float32) {
+// SetVlanId gets a reference to the given int32 and assigns it to the VlanId field.
+func (o *InstanceInterfaceNetworkVariables) SetVlanId(v int32) {
 	o.VlanId = &v
 }
 

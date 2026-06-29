@@ -21,7 +21,7 @@ var _ MappedNullable = &GenerateFirmwareUpgradeAudit{}
 // GenerateFirmwareUpgradeAudit struct for GenerateFirmwareUpgradeAudit
 type GenerateFirmwareUpgradeAudit struct {
 	// The list of server ids for which firmware upgrade audit should be generated.
-	ServerIds []float32 `json:"serverIds,omitempty"`
+	ServerIds []int64 `json:"serverIds,omitempty"`
 	// Vendor name pattern to match servers (e.g., \"HPE\", \"Dell\"). Used with vendorModelPattern. Cannot be used with serverIds.
 	VendorPattern *string `json:"vendorPattern,omitempty"`
 	// Model name pattern with wildcards to match servers (e.g., \"DL360*\", \"*Gen10\", \"PowerEdge.*\"). Used with vendorPattern. Cannot be used with serverIds.
@@ -49,9 +49,9 @@ func NewGenerateFirmwareUpgradeAuditWithDefaults() *GenerateFirmwareUpgradeAudit
 }
 
 // GetServerIds returns the ServerIds field value if set, zero value otherwise.
-func (o *GenerateFirmwareUpgradeAudit) GetServerIds() []float32 {
+func (o *GenerateFirmwareUpgradeAudit) GetServerIds() []int64 {
 	if o == nil || IsNil(o.ServerIds) {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.ServerIds
@@ -59,7 +59,7 @@ func (o *GenerateFirmwareUpgradeAudit) GetServerIds() []float32 {
 
 // GetServerIdsOk returns a tuple with the ServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateFirmwareUpgradeAudit) GetServerIdsOk() ([]float32, bool) {
+func (o *GenerateFirmwareUpgradeAudit) GetServerIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.ServerIds) {
 		return nil, false
 	}
@@ -75,8 +75,8 @@ func (o *GenerateFirmwareUpgradeAudit) HasServerIds() bool {
 	return false
 }
 
-// SetServerIds gets a reference to the given []float32 and assigns it to the ServerIds field.
-func (o *GenerateFirmwareUpgradeAudit) SetServerIds(v []float32) {
+// SetServerIds gets a reference to the given []int64 and assigns it to the ServerIds field.
+func (o *GenerateFirmwareUpgradeAudit) SetServerIds(v []int64) {
 	o.ServerIds = v
 }
 

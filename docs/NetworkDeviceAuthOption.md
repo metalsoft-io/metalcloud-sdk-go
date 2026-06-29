@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | **string** | The authentication method kind. | 
-**DeviceAuthProviderId** | Pointer to **int32** | The ID of the DeviceAuthProvider. Required when kind is tacacs. | [optional] 
+**DeviceAuthProviderId** | Pointer to **int64** | The ID of the DeviceAuthProvider. Required when kind is tacacs. | [optional] 
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetKind sets Kind field to given value.
 
 ### GetDeviceAuthProviderId
 
-`func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderId() int32`
+`func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderId() int64`
 
 GetDeviceAuthProviderId returns the DeviceAuthProviderId field if non-nil, zero value otherwise.
 
 ### GetDeviceAuthProviderIdOk
 
-`func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderIdOk() (*int32, bool)`
+`func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderIdOk() (*int64, bool)`
 
 GetDeviceAuthProviderIdOk returns a tuple with the DeviceAuthProviderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeviceAuthProviderId
 
-`func (o *NetworkDeviceAuthOption) SetDeviceAuthProviderId(v int32)`
+`func (o *NetworkDeviceAuthOption) SetDeviceAuthProviderId(v int64)`
 
 SetDeviceAuthProviderId sets DeviceAuthProviderId field to given value.
 

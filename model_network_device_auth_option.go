@@ -24,7 +24,7 @@ type NetworkDeviceAuthOption struct {
 	// The authentication method kind.
 	Kind string `json:"kind"`
 	// The ID of the DeviceAuthProvider. Required when kind is tacacs.
-	DeviceAuthProviderId *int32 `json:"deviceAuthProviderId,omitempty"`
+	DeviceAuthProviderId *int64 `json:"deviceAuthProviderId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,9 +73,9 @@ func (o *NetworkDeviceAuthOption) SetKind(v string) {
 }
 
 // GetDeviceAuthProviderId returns the DeviceAuthProviderId field value if set, zero value otherwise.
-func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderId() int32 {
+func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderId() int64 {
 	if o == nil || IsNil(o.DeviceAuthProviderId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DeviceAuthProviderId
@@ -83,7 +83,7 @@ func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderId() int32 {
 
 // GetDeviceAuthProviderIdOk returns a tuple with the DeviceAuthProviderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderIdOk() (*int32, bool) {
+func (o *NetworkDeviceAuthOption) GetDeviceAuthProviderIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DeviceAuthProviderId) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *NetworkDeviceAuthOption) HasDeviceAuthProviderId() bool {
 	return false
 }
 
-// SetDeviceAuthProviderId gets a reference to the given int32 and assigns it to the DeviceAuthProviderId field.
-func (o *NetworkDeviceAuthOption) SetDeviceAuthProviderId(v int32) {
+// SetDeviceAuthProviderId gets a reference to the given int64 and assigns it to the DeviceAuthProviderId field.
+func (o *NetworkDeviceAuthOption) SetDeviceAuthProviderId(v int64) {
 	o.DeviceAuthProviderId = &v
 }
 

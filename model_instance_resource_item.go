@@ -21,7 +21,7 @@ var _ MappedNullable = &InstanceResourceItem{}
 
 // InstanceResourceItem struct for InstanceResourceItem
 type InstanceResourceItem struct {
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	StartTimestamp string `json:"startTimestamp"`
 	EndTimestamp string `json:"endTimestamp"`
@@ -29,13 +29,13 @@ type InstanceResourceItem struct {
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
 	Tags *string `json:"tags,omitempty"`
-	ServerTypeId float32 `json:"serverTypeId"`
-	ServerId float32 `json:"serverId"`
+	ServerTypeId int64 `json:"serverTypeId"`
+	ServerId int64 `json:"serverId"`
 	ServerTypeName string `json:"serverTypeName"`
 	OperatingSystemType string `json:"operatingSystemType"`
 	OperatingSystemVersion string `json:"operatingSystemVersion"`
 	OperatingSystemDisplayName string `json:"operatingSystemDisplayName"`
-	OperatingSystemTemplateId float32 `json:"operatingSystemTemplateId"`
+	OperatingSystemTemplateId int64 `json:"operatingSystemTemplateId"`
 	OriginalStartTimestamp string `json:"originalStartTimestamp"`
 	AdditionalProperties map[string]interface{}
 }
@@ -46,7 +46,7 @@ type _InstanceResourceItem InstanceResourceItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceResourceItem(id float32, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId float32, serverId float32, serverTypeName string, operatingSystemType string, operatingSystemVersion string, operatingSystemDisplayName string, operatingSystemTemplateId float32, originalStartTimestamp string) *InstanceResourceItem {
+func NewInstanceResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId int64, serverId int64, serverTypeName string, operatingSystemType string, operatingSystemVersion string, operatingSystemDisplayName string, operatingSystemTemplateId int64, originalStartTimestamp string) *InstanceResourceItem {
 	this := InstanceResourceItem{}
 	this.Id = id
 	this.Label = label
@@ -75,9 +75,9 @@ func NewInstanceResourceItemWithDefaults() *InstanceResourceItem {
 }
 
 // GetId returns the Id field value
-func (o *InstanceResourceItem) GetId() float32 {
+func (o *InstanceResourceItem) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *InstanceResourceItem) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetIdOk() (*float32, bool) {
+func (o *InstanceResourceItem) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *InstanceResourceItem) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *InstanceResourceItem) SetId(v float32) {
+func (o *InstanceResourceItem) SetId(v int64) {
 	o.Id = v
 }
 
@@ -275,9 +275,9 @@ func (o *InstanceResourceItem) SetTags(v string) {
 }
 
 // GetServerTypeId returns the ServerTypeId field value
-func (o *InstanceResourceItem) GetServerTypeId() float32 {
+func (o *InstanceResourceItem) GetServerTypeId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -286,7 +286,7 @@ func (o *InstanceResourceItem) GetServerTypeId() float32 {
 
 // GetServerTypeIdOk returns a tuple with the ServerTypeId field value
 // and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetServerTypeIdOk() (*float32, bool) {
+func (o *InstanceResourceItem) GetServerTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -294,14 +294,14 @@ func (o *InstanceResourceItem) GetServerTypeIdOk() (*float32, bool) {
 }
 
 // SetServerTypeId sets field value
-func (o *InstanceResourceItem) SetServerTypeId(v float32) {
+func (o *InstanceResourceItem) SetServerTypeId(v int64) {
 	o.ServerTypeId = v
 }
 
 // GetServerId returns the ServerId field value
-func (o *InstanceResourceItem) GetServerId() float32 {
+func (o *InstanceResourceItem) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -310,7 +310,7 @@ func (o *InstanceResourceItem) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetServerIdOk() (*float32, bool) {
+func (o *InstanceResourceItem) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -318,7 +318,7 @@ func (o *InstanceResourceItem) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *InstanceResourceItem) SetServerId(v float32) {
+func (o *InstanceResourceItem) SetServerId(v int64) {
 	o.ServerId = v
 }
 
@@ -419,9 +419,9 @@ func (o *InstanceResourceItem) SetOperatingSystemDisplayName(v string) {
 }
 
 // GetOperatingSystemTemplateId returns the OperatingSystemTemplateId field value
-func (o *InstanceResourceItem) GetOperatingSystemTemplateId() float32 {
+func (o *InstanceResourceItem) GetOperatingSystemTemplateId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -430,7 +430,7 @@ func (o *InstanceResourceItem) GetOperatingSystemTemplateId() float32 {
 
 // GetOperatingSystemTemplateIdOk returns a tuple with the OperatingSystemTemplateId field value
 // and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetOperatingSystemTemplateIdOk() (*float32, bool) {
+func (o *InstanceResourceItem) GetOperatingSystemTemplateIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -438,7 +438,7 @@ func (o *InstanceResourceItem) GetOperatingSystemTemplateIdOk() (*float32, bool)
 }
 
 // SetOperatingSystemTemplateId sets field value
-func (o *InstanceResourceItem) SetOperatingSystemTemplateId(v float32) {
+func (o *InstanceResourceItem) SetOperatingSystemTemplateId(v int64) {
 	o.OperatingSystemTemplateId = v
 }
 

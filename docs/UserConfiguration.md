@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the user configuration | 
+**Revision** | **int64** | Revision of the user configuration | 
 **DisplayName** | **string** | The display name of the user | 
 **EmailStatus** | **string** | The email status of the user | 
 **Language** | **string** | The language of the user | 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **IsTestAccount** | **bool** | Whether the user is a test account | 
 **IsArchived** | **bool** | Whether the user is a archived | 
 **IsDatastorePublisher** | **bool** | Whether the user is a datastore publisher | 
-**AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**AccountId** | Pointer to **int64** | The account ID of the user | [optional] 
 **Provider** | **string** | The provider of the user | [default to "mysql"]
 **PasswordLastChangedTimestamp** | **string** | The timestamp when the user last changed their password | 
 
@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewUserConfiguration
 
-`func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string, ) *UserConfiguration`
+`func NewUserConfiguration(revision int64, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string, ) *UserConfiguration`
 
 NewUserConfiguration instantiates a new UserConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -52,20 +52,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *UserConfiguration) GetRevision() float32`
+`func (o *UserConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *UserConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *UserConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *UserConfiguration) SetRevision(v float32)`
+`func (o *UserConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -532,20 +532,20 @@ SetIsDatastorePublisher sets IsDatastorePublisher field to given value.
 
 ### GetAccountId
 
-`func (o *UserConfiguration) GetAccountId() float32`
+`func (o *UserConfiguration) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *UserConfiguration) GetAccountIdOk() (*float32, bool)`
+`func (o *UserConfiguration) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountId
 
-`func (o *UserConfiguration) SetAccountId(v float32)`
+`func (o *UserConfiguration) SetAccountId(v int64)`
 
 SetAccountId sets AccountId field to given value.
 

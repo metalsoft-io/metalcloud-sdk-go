@@ -22,7 +22,7 @@ var _ MappedNullable = &AutoVlanAllocationStrategy{}
 
 // AutoVlanAllocationStrategy struct for AutoVlanAllocationStrategy
 type AutoVlanAllocationStrategy struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
@@ -37,7 +37,7 @@ type _AutoVlanAllocationStrategy AutoVlanAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAutoVlanAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, granularityLevel NullableVlanAllocationGranularityLevel) *AutoVlanAllocationStrategy {
+func NewAutoVlanAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, granularityLevel NullableVlanAllocationGranularityLevel) *AutoVlanAllocationStrategy {
 	this := AutoVlanAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -57,9 +57,9 @@ func NewAutoVlanAllocationStrategyWithDefaults() *AutoVlanAllocationStrategy {
 }
 
 // GetId returns the Id field value
-func (o *AutoVlanAllocationStrategy) GetId() int32 {
+func (o *AutoVlanAllocationStrategy) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *AutoVlanAllocationStrategy) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AutoVlanAllocationStrategy) GetIdOk() (*int32, bool) {
+func (o *AutoVlanAllocationStrategy) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *AutoVlanAllocationStrategy) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *AutoVlanAllocationStrategy) SetId(v int32) {
+func (o *AutoVlanAllocationStrategy) SetId(v int64) {
 	o.Id = v
 }
 

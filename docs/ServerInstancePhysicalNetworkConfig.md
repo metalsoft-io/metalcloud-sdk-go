@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InterfaceType** | **string** |  | 
-**TypeInterfaceId** | **float32** |  | 
-**LogicalNetworkId** | Pointer to **float32** |  | [optional] 
+**TypeInterfaceId** | **int64** |  | 
+**LogicalNetworkId** | Pointer to **int64** |  | [optional] 
 **LogicalNetworkName** | Pointer to **string** |  | [optional] 
 **LogicalNetworkLabel** | Pointer to **string** |  | [optional] 
 **Ipv4Addresses** | Pointer to [**[]ServerInstanceNetworkConfigIpInfo**](ServerInstanceNetworkConfigIpInfo.md) | The list of IPv4 addresses. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstancePhysicalNetworkConfig
 
-`func NewServerInstancePhysicalNetworkConfig(interfaceType string, typeInterfaceId float32, ) *ServerInstancePhysicalNetworkConfig`
+`func NewServerInstancePhysicalNetworkConfig(interfaceType string, typeInterfaceId int64, ) *ServerInstancePhysicalNetworkConfig`
 
 NewServerInstancePhysicalNetworkConfig instantiates a new ServerInstancePhysicalNetworkConfig object
 This constructor will assign default values to properties that have it defined,
@@ -55,40 +55,40 @@ SetInterfaceType sets InterfaceType field to given value.
 
 ### GetTypeInterfaceId
 
-`func (o *ServerInstancePhysicalNetworkConfig) GetTypeInterfaceId() float32`
+`func (o *ServerInstancePhysicalNetworkConfig) GetTypeInterfaceId() int64`
 
 GetTypeInterfaceId returns the TypeInterfaceId field if non-nil, zero value otherwise.
 
 ### GetTypeInterfaceIdOk
 
-`func (o *ServerInstancePhysicalNetworkConfig) GetTypeInterfaceIdOk() (*float32, bool)`
+`func (o *ServerInstancePhysicalNetworkConfig) GetTypeInterfaceIdOk() (*int64, bool)`
 
 GetTypeInterfaceIdOk returns a tuple with the TypeInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeInterfaceId
 
-`func (o *ServerInstancePhysicalNetworkConfig) SetTypeInterfaceId(v float32)`
+`func (o *ServerInstancePhysicalNetworkConfig) SetTypeInterfaceId(v int64)`
 
 SetTypeInterfaceId sets TypeInterfaceId field to given value.
 
 
 ### GetLogicalNetworkId
 
-`func (o *ServerInstancePhysicalNetworkConfig) GetLogicalNetworkId() float32`
+`func (o *ServerInstancePhysicalNetworkConfig) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *ServerInstancePhysicalNetworkConfig) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *ServerInstancePhysicalNetworkConfig) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *ServerInstancePhysicalNetworkConfig) SetLogicalNetworkId(v float32)`
+`func (o *ServerInstancePhysicalNetworkConfig) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

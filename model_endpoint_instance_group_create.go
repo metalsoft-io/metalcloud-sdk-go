@@ -23,11 +23,11 @@ type EndpointInstanceGroupCreate struct {
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
 	EndpointGroupName *string `json:"endpointGroupName,omitempty"`
-	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
+	ExtensionInstanceId *int64 `json:"extensionInstanceId,omitempty"`
 	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"endpoint-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the endpoint instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
 	Hostname *string `json:"hostname,omitempty"`
 	// The resource pool assigned to this instance array
-	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
+	ResourcePoolId *int64 `json:"resourcePoolId,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -116,9 +116,9 @@ func (o *EndpointInstanceGroupCreate) SetEndpointGroupName(v string) {
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroupCreate) GetExtensionInstanceId() int32 {
+func (o *EndpointInstanceGroupCreate) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId
@@ -126,7 +126,7 @@ func (o *EndpointInstanceGroupCreate) GetExtensionInstanceId() int32 {
 
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupCreate) GetExtensionInstanceIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroupCreate) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
@@ -142,8 +142,8 @@ func (o *EndpointInstanceGroupCreate) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given int32 and assigns it to the ExtensionInstanceId field.
-func (o *EndpointInstanceGroupCreate) SetExtensionInstanceId(v int32) {
+// SetExtensionInstanceId gets a reference to the given int64 and assigns it to the ExtensionInstanceId field.
+func (o *EndpointInstanceGroupCreate) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId = &v
 }
 
@@ -180,9 +180,9 @@ func (o *EndpointInstanceGroupCreate) SetHostname(v string) {
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroupCreate) GetResourcePoolId() int32 {
+func (o *EndpointInstanceGroupCreate) GetResourcePoolId() int64 {
 	if o == nil || IsNil(o.ResourcePoolId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ResourcePoolId
@@ -190,7 +190,7 @@ func (o *EndpointInstanceGroupCreate) GetResourcePoolId() int32 {
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupCreate) GetResourcePoolIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroupCreate) GetResourcePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ResourcePoolId) {
 		return nil, false
 	}
@@ -206,8 +206,8 @@ func (o *EndpointInstanceGroupCreate) HasResourcePoolId() bool {
 	return false
 }
 
-// SetResourcePoolId gets a reference to the given int32 and assigns it to the ResourcePoolId field.
-func (o *EndpointInstanceGroupCreate) SetResourcePoolId(v int32) {
+// SetResourcePoolId gets a reference to the given int64 and assigns it to the ResourcePoolId field.
+func (o *EndpointInstanceGroupCreate) SetResourcePoolId(v int64) {
 	o.ResourcePoolId = &v
 }
 

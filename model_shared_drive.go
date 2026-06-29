@@ -24,7 +24,7 @@ type SharedDrive struct {
 	// Label of the Drive.
 	Label string `json:"label"`
 	// Id of the storage pool the Drive is assigned to
-	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
+	StoragePoolId *int64 `json:"storagePoolId,omitempty"`
 	// Disk size in MiB for Drive
 	SizeMb float32 `json:"sizeMb"`
 	// The name of the storage image used by the Drive.
@@ -36,15 +36,15 @@ type SharedDrive struct {
 	// Subdomain of the Drive.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the Logical Network for the Drive.
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	// Timestamp of the Drive last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Id of the Drive
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the Drive State
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Infrastructure id of the Drive
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Infrastructure information
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Service status of the Drive
@@ -67,9 +67,9 @@ type SharedDrive struct {
 	// Subdomain permanent of the Drive.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the Drive.
-	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Drive.
-	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	// The current changes to be deployed for the Drive.
 	Config SharedDriveConfiguration `json:"config"`
 	// Timestamp of the Drive creation.
@@ -89,7 +89,7 @@ type _SharedDrive SharedDrive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta) *SharedDrive {
+func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta) *SharedDrive {
 	this := SharedDrive{}
 	this.Label = label
 	this.SizeMb = sizeMb
@@ -144,9 +144,9 @@ func (o *SharedDrive) SetLabel(v string) {
 }
 
 // GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *SharedDrive) GetStoragePoolId() float32 {
+func (o *SharedDrive) GetStoragePoolId() int64 {
 	if o == nil || IsNil(o.StoragePoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.StoragePoolId
@@ -154,7 +154,7 @@ func (o *SharedDrive) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetStoragePoolIdOk() (*float32, bool) {
+func (o *SharedDrive) GetStoragePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.StoragePoolId) {
 		return nil, false
 	}
@@ -170,8 +170,8 @@ func (o *SharedDrive) HasStoragePoolId() bool {
 	return false
 }
 
-// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
-func (o *SharedDrive) SetStoragePoolId(v float32) {
+// SetStoragePoolId gets a reference to the given int64 and assigns it to the StoragePoolId field.
+func (o *SharedDrive) SetStoragePoolId(v int64) {
 	o.StoragePoolId = &v
 }
 
@@ -320,9 +320,9 @@ func (o *SharedDrive) SetSubdomain(v string) {
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *SharedDrive) GetLogicalNetworkId() float32 {
+func (o *SharedDrive) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -330,7 +330,7 @@ func (o *SharedDrive) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *SharedDrive) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -346,8 +346,8 @@ func (o *SharedDrive) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *SharedDrive) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *SharedDrive) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 
@@ -376,9 +376,9 @@ func (o *SharedDrive) SetUpdatedTimestamp(v string) {
 }
 
 // GetId returns the Id field value
-func (o *SharedDrive) GetId() float32 {
+func (o *SharedDrive) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -387,7 +387,7 @@ func (o *SharedDrive) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetIdOk() (*float32, bool) {
+func (o *SharedDrive) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -395,14 +395,14 @@ func (o *SharedDrive) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *SharedDrive) SetId(v float32) {
+func (o *SharedDrive) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *SharedDrive) GetRevision() float32 {
+func (o *SharedDrive) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -411,7 +411,7 @@ func (o *SharedDrive) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetRevisionOk() (*float32, bool) {
+func (o *SharedDrive) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -419,14 +419,14 @@ func (o *SharedDrive) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *SharedDrive) SetRevision(v float32) {
+func (o *SharedDrive) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *SharedDrive) GetInfrastructureId() float32 {
+func (o *SharedDrive) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -435,7 +435,7 @@ func (o *SharedDrive) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetInfrastructureIdOk() (*float32, bool) {
+func (o *SharedDrive) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -443,7 +443,7 @@ func (o *SharedDrive) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *SharedDrive) SetInfrastructureId(v float32) {
+func (o *SharedDrive) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
@@ -760,9 +760,9 @@ func (o *SharedDrive) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *SharedDrive) GetDnsSubdomainId() float32 {
+func (o *SharedDrive) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -770,7 +770,7 @@ func (o *SharedDrive) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *SharedDrive) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -786,15 +786,15 @@ func (o *SharedDrive) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *SharedDrive) SetDnsSubdomainId(v float32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *SharedDrive) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *SharedDrive) GetDnsSubdomainPermanentId() float32 {
+func (o *SharedDrive) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -802,7 +802,7 @@ func (o *SharedDrive) GetDnsSubdomainPermanentId() float32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+func (o *SharedDrive) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -818,8 +818,8 @@ func (o *SharedDrive) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *SharedDrive) SetDnsSubdomainPermanentId(v float32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *SharedDrive) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 

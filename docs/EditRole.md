@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | Role label | 
-**Description** | Pointer to **string** | Role description | [optional] 
-**Permissions** | **[]string** | List of permissions assigned to the role | 
+**Label** | Pointer to **string** | Role label. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
+**Description** | Pointer to **string** | Role description. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
+**Permissions** | Pointer to [**[]MetalsoftPermissions**](MetalsoftPermissions.md) | List of permissions assigned to the role. Omit to keep the current value. Cannot be changed on built-in roles. | [optional] 
+**QuotaProfileId** | Pointer to **string** | Quota profile assigned to this role | [optional] 
 
 ## Methods
 
 ### NewEditRole
 
-`func NewEditRole(label string, permissions []string, ) *EditRole`
+`func NewEditRole() *EditRole`
 
 NewEditRole instantiates a new EditRole object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
+### HasLabel
+
+`func (o *EditRole) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -74,23 +80,53 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetPermissions
 
-`func (o *EditRole) GetPermissions() []string`
+`func (o *EditRole) GetPermissions() []MetalsoftPermissions`
 
 GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
 ### GetPermissionsOk
 
-`func (o *EditRole) GetPermissionsOk() (*[]string, bool)`
+`func (o *EditRole) GetPermissionsOk() (*[]MetalsoftPermissions, bool)`
 
 GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPermissions
 
-`func (o *EditRole) SetPermissions(v []string)`
+`func (o *EditRole) SetPermissions(v []MetalsoftPermissions)`
 
 SetPermissions sets Permissions field to given value.
 
+### HasPermissions
+
+`func (o *EditRole) HasPermissions() bool`
+
+HasPermissions returns a boolean if a field has been set.
+
+### GetQuotaProfileId
+
+`func (o *EditRole) GetQuotaProfileId() string`
+
+GetQuotaProfileId returns the QuotaProfileId field if non-nil, zero value otherwise.
+
+### GetQuotaProfileIdOk
+
+`func (o *EditRole) GetQuotaProfileIdOk() (*string, bool)`
+
+GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuotaProfileId
+
+`func (o *EditRole) SetQuotaProfileId(v string)`
+
+SetQuotaProfileId sets QuotaProfileId field to given value.
+
+### HasQuotaProfileId
+
+`func (o *EditRole) HasQuotaProfileId() bool`
+
+HasQuotaProfileId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

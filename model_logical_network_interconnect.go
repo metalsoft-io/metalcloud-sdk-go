@@ -35,9 +35,9 @@ type LogicalNetworkInterconnect struct {
 	// Kind of the logical network interconnect
 	Kind LogicalNetworkInterconnectKind `json:"kind"`
 	// Fabric Interconnect identifier
-	FabricInterconnectId int32 `json:"fabricInterconnectId"`
+	FabricInterconnectId int64 `json:"fabricInterconnectId"`
 	// Transport ID allocated from range 999999999-900000000 (descending)
-	TransportId *int32 `json:"transportId,omitempty"`
+	TransportId *int64 `json:"transportId,omitempty"`
 	// Status of the logical network interconnect
 	Status LogicalNetworkInterconnectStatus `json:"status"`
 	// The date and time the entity was created
@@ -53,7 +53,7 @@ type _LogicalNetworkInterconnect LogicalNetworkInterconnect
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogicalNetworkInterconnect(revision string, id string, label string, name string, kind LogicalNetworkInterconnectKind, fabricInterconnectId int32, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time) *LogicalNetworkInterconnect {
+func NewLogicalNetworkInterconnect(revision string, id string, label string, name string, kind LogicalNetworkInterconnectKind, fabricInterconnectId int64, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time) *LogicalNetworkInterconnect {
 	this := LogicalNetworkInterconnect{}
 	this.Revision = revision
 	this.Id = id
@@ -228,9 +228,9 @@ func (o *LogicalNetworkInterconnect) SetKind(v LogicalNetworkInterconnectKind) {
 }
 
 // GetFabricInterconnectId returns the FabricInterconnectId field value
-func (o *LogicalNetworkInterconnect) GetFabricInterconnectId() int32 {
+func (o *LogicalNetworkInterconnect) GetFabricInterconnectId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -239,7 +239,7 @@ func (o *LogicalNetworkInterconnect) GetFabricInterconnectId() int32 {
 
 // GetFabricInterconnectIdOk returns a tuple with the FabricInterconnectId field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int32, bool) {
+func (o *LogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -247,14 +247,14 @@ func (o *LogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int32, bool) 
 }
 
 // SetFabricInterconnectId sets field value
-func (o *LogicalNetworkInterconnect) SetFabricInterconnectId(v int32) {
+func (o *LogicalNetworkInterconnect) SetFabricInterconnectId(v int64) {
 	o.FabricInterconnectId = v
 }
 
 // GetTransportId returns the TransportId field value if set, zero value otherwise.
-func (o *LogicalNetworkInterconnect) GetTransportId() int32 {
+func (o *LogicalNetworkInterconnect) GetTransportId() int64 {
 	if o == nil || IsNil(o.TransportId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TransportId
@@ -262,7 +262,7 @@ func (o *LogicalNetworkInterconnect) GetTransportId() int32 {
 
 // GetTransportIdOk returns a tuple with the TransportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkInterconnect) GetTransportIdOk() (*int32, bool) {
+func (o *LogicalNetworkInterconnect) GetTransportIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.TransportId) {
 		return nil, false
 	}
@@ -278,8 +278,8 @@ func (o *LogicalNetworkInterconnect) HasTransportId() bool {
 	return false
 }
 
-// SetTransportId gets a reference to the given int32 and assigns it to the TransportId field.
-func (o *LogicalNetworkInterconnect) SetTransportId(v int32) {
+// SetTransportId gets a reference to the given int64 and assigns it to the TransportId field.
+func (o *LogicalNetworkInterconnect) SetTransportId(v int64) {
 	o.TransportId = &v
 }
 

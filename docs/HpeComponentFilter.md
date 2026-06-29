@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vendor** | **string** | Discriminator field set to hpe | 
-**Id** | **float32** | ID of the HP component filter | 
+**Id** | **int64** | ID of the HP component filter | 
 **DeviceClass** | **string** | Device class for HP | 
 **Targets** | **[]string** | Targets for HP | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewHpeComponentFilter
 
-`func NewHpeComponentFilter(vendor string, id float32, deviceClass string, targets []string, ) *HpeComponentFilter`
+`func NewHpeComponentFilter(vendor string, id int64, deviceClass string, targets []string, ) *HpeComponentFilter`
 
 NewHpeComponentFilter instantiates a new HpeComponentFilter object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetVendor sets Vendor field to given value.
 
 ### GetId
 
-`func (o *HpeComponentFilter) GetId() float32`
+`func (o *HpeComponentFilter) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *HpeComponentFilter) GetIdOk() (*float32, bool)`
+`func (o *HpeComponentFilter) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *HpeComponentFilter) SetId(v float32)`
+`func (o *HpeComponentFilter) SetId(v int64)`
 
 SetId sets Id field to given value.
 

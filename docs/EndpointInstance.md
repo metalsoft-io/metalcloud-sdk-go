@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The Product Instance ID. | 
-**Revision** | **int32** | Revision number | 
+**Id** | **int64** | The Product Instance ID. | 
+**Revision** | **int64** | Revision number | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **CreatedTimestamp** | **string** | Timestamp of the Product Instance creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
-**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
-**InfrastructureId** | **int32** |  | 
-**GroupId** | **int32** |  | 
-**EndpointId** | Pointer to **int32** | The ID of the endpoint assigned to the instance. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
+**InfrastructureId** | **int64** |  | 
+**GroupId** | **int64** |  | 
+**EndpointId** | Pointer to **int64** | The ID of the endpoint assigned to the instance. | [optional] 
 **Hostname** | Pointer to **string** | The subdomain of the server instance. | [optional] 
 **ServiceStatus** | **string** | Current status of the endpoint instance. | 
 **Meta** | [**GenericMeta**](GenericMeta.md) |  | 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewEndpointInstance
 
-`func NewEndpointInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, meta GenericMeta, ) *EndpointInstance`
+`func NewEndpointInstance(id int64, revision int64, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int64, groupId int64, serviceStatus string, meta GenericMeta, ) *EndpointInstance`
 
 NewEndpointInstance instantiates a new EndpointInstance object
 This constructor will assign default values to properties that have it defined,
@@ -43,40 +43,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *EndpointInstance) GetId() int32`
+`func (o *EndpointInstance) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *EndpointInstance) GetIdOk() (*int32, bool)`
+`func (o *EndpointInstance) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *EndpointInstance) SetId(v int32)`
+`func (o *EndpointInstance) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *EndpointInstance) GetRevision() int32`
+`func (o *EndpointInstance) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *EndpointInstance) GetRevisionOk() (*int32, bool)`
+`func (o *EndpointInstance) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *EndpointInstance) SetRevision(v int32)`
+`func (o *EndpointInstance) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -193,20 +193,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *EndpointInstance) GetDnsSubdomainId() int32`
+`func (o *EndpointInstance) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *EndpointInstance) GetDnsSubdomainIdOk() (*int32, bool)`
+`func (o *EndpointInstance) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *EndpointInstance) SetDnsSubdomainId(v int32)`
+`func (o *EndpointInstance) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -218,20 +218,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *EndpointInstance) GetDnsSubdomainPermanentId() int32`
+`func (o *EndpointInstance) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *EndpointInstance) GetDnsSubdomainPermanentIdOk() (*int32, bool)`
+`func (o *EndpointInstance) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *EndpointInstance) SetDnsSubdomainPermanentId(v int32)`
+`func (o *EndpointInstance) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
@@ -243,60 +243,60 @@ HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
 ### GetInfrastructureId
 
-`func (o *EndpointInstance) GetInfrastructureId() int32`
+`func (o *EndpointInstance) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *EndpointInstance) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *EndpointInstance) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *EndpointInstance) SetInfrastructureId(v int32)`
+`func (o *EndpointInstance) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetGroupId
 
-`func (o *EndpointInstance) GetGroupId() int32`
+`func (o *EndpointInstance) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *EndpointInstance) GetGroupIdOk() (*int32, bool)`
+`func (o *EndpointInstance) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *EndpointInstance) SetGroupId(v int32)`
+`func (o *EndpointInstance) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
 
 ### GetEndpointId
 
-`func (o *EndpointInstance) GetEndpointId() int32`
+`func (o *EndpointInstance) GetEndpointId() int64`
 
 GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
 
 ### GetEndpointIdOk
 
-`func (o *EndpointInstance) GetEndpointIdOk() (*int32, bool)`
+`func (o *EndpointInstance) GetEndpointIdOk() (*int64, bool)`
 
 GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndpointId
 
-`func (o *EndpointInstance) SetEndpointId(v int32)`
+`func (o *EndpointInstance) SetEndpointId(v int64)`
 
 SetEndpointId sets EndpointId field to given value.
 

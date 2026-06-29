@@ -25,16 +25,18 @@ type CreateLogicalNetworkProfile struct {
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	Kind LogicalNetworkKind `json:"kind"`
-	FabricId int32 `json:"fabricId"`
+	FabricId int64 `json:"fabricId"`
 	Vlan *CreateLogicalNetworkVlanProperties `json:"vlan,omitempty"`
 	Vxlan *CreateLogicalNetworkVxlanProperties `json:"vxlan,omitempty"`
 	Pkey *CreateLogicalNetworkPkeyProperties `json:"pkey,omitempty"`
 	Zone *CreateLogicalNetworkZoneProperties `json:"zone,omitempty"`
 	Ipv4 *CreateLogicalNetworkIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *CreateLogicalNetworkIpv6Properties `json:"ipv6,omitempty"`
-	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
+	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
+	// When true, logical networks created from this profile are routed-access (L3-only): no VLAN/VNI/subnet, addressed over their point-to-point links. VXLAN only.
+	L3Only *bool `json:"l3Only,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,10 +46,12 @@ type _CreateLogicalNetworkProfile CreateLogicalNetworkProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateLogicalNetworkProfile(kind LogicalNetworkKind, fabricId int32) *CreateLogicalNetworkProfile {
+func NewCreateLogicalNetworkProfile(kind LogicalNetworkKind, fabricId int64) *CreateLogicalNetworkProfile {
 	this := CreateLogicalNetworkProfile{}
 	this.Kind = kind
 	this.FabricId = fabricId
+	var l3Only bool = false
+	this.L3Only = &l3Only
 	return &this
 }
 
@@ -56,6 +60,8 @@ func NewCreateLogicalNetworkProfile(kind LogicalNetworkKind, fabricId int32) *Cr
 // but it doesn't guarantee that properties required by API are set
 func NewCreateLogicalNetworkProfileWithDefaults() *CreateLogicalNetworkProfile {
 	this := CreateLogicalNetworkProfile{}
+	var l3Only bool = false
+	this.L3Only = &l3Only
 	return &this
 }
 
@@ -180,9 +186,9 @@ func (o *CreateLogicalNetworkProfile) SetKind(v LogicalNetworkKind) {
 }
 
 // GetFabricId returns the FabricId field value
-func (o *CreateLogicalNetworkProfile) GetFabricId() int32 {
+func (o *CreateLogicalNetworkProfile) GetFabricId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -191,7 +197,7 @@ func (o *CreateLogicalNetworkProfile) GetFabricId() int32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetworkProfile) GetFabricIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkProfile) GetFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -199,7 +205,7 @@ func (o *CreateLogicalNetworkProfile) GetFabricIdOk() (*int32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *CreateLogicalNetworkProfile) SetFabricId(v int32) {
+func (o *CreateLogicalNetworkProfile) SetFabricId(v int64) {
 	o.FabricId = v
 }
 
@@ -396,9 +402,9 @@ func (o *CreateLogicalNetworkProfile) SetIpv6(v CreateLogicalNetworkIpv6Properti
 }
 
 // GetRouteDomainId returns the RouteDomainId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateLogicalNetworkProfile) GetRouteDomainId() int32 {
+func (o *CreateLogicalNetworkProfile) GetRouteDomainId() int64 {
 	if o == nil || IsNil(o.RouteDomainId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RouteDomainId.Get()
@@ -407,7 +413,7 @@ func (o *CreateLogicalNetworkProfile) GetRouteDomainId() int32 {
 // GetRouteDomainIdOk returns a tuple with the RouteDomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateLogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkProfile) GetRouteDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -423,8 +429,8 @@ func (o *CreateLogicalNetworkProfile) HasRouteDomainId() bool {
 	return false
 }
 
-// SetRouteDomainId gets a reference to the given NullableInt32 and assigns it to the RouteDomainId field.
-func (o *CreateLogicalNetworkProfile) SetRouteDomainId(v int32) {
+// SetRouteDomainId gets a reference to the given NullableInt64 and assigns it to the RouteDomainId field.
+func (o *CreateLogicalNetworkProfile) SetRouteDomainId(v int64) {
 	o.RouteDomainId.Set(&v)
 }
 // SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
@@ -479,6 +485,38 @@ func (o *CreateLogicalNetworkProfile) UnsetMtu() {
 	o.Mtu.Unset()
 }
 
+// GetL3Only returns the L3Only field value if set, zero value otherwise.
+func (o *CreateLogicalNetworkProfile) GetL3Only() bool {
+	if o == nil || IsNil(o.L3Only) {
+		var ret bool
+		return ret
+	}
+	return *o.L3Only
+}
+
+// GetL3OnlyOk returns a tuple with the L3Only field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLogicalNetworkProfile) GetL3OnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.L3Only) {
+		return nil, false
+	}
+	return o.L3Only, true
+}
+
+// HasL3Only returns a boolean if a field has been set.
+func (o *CreateLogicalNetworkProfile) HasL3Only() bool {
+	if o != nil && !IsNil(o.L3Only) {
+		return true
+	}
+
+	return false
+}
+
+// SetL3Only gets a reference to the given bool and assigns it to the L3Only field.
+func (o *CreateLogicalNetworkProfile) SetL3Only(v bool) {
+	o.L3Only = &v
+}
+
 func (o CreateLogicalNetworkProfile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -523,6 +561,9 @@ func (o CreateLogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Mtu.IsSet() {
 		toSerialize["mtu"] = o.Mtu.Get()
+	}
+	if !IsNil(o.L3Only) {
+		toSerialize["l3Only"] = o.L3Only
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -581,6 +622,7 @@ func (o *CreateLogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "l3Only")
 		o.AdditionalProperties = additionalProperties
 	}
 

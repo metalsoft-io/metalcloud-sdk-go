@@ -22,19 +22,19 @@ var _ MappedNullable = &LogicalNetwork{}
 
 // LogicalNetwork struct for LogicalNetwork
 type LogicalNetwork struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	Name string `json:"name"`
 	Annotations map[string]string `json:"annotations"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Kind LogicalNetworkKind `json:"kind"`
-	FabricId int32 `json:"fabricId"`
-	InfrastructureId NullableInt32 `json:"infrastructureId"`
-	ExtensionInstanceId NullableInt32 `json:"extensionInstanceId,omitempty"`
+	FabricId int64 `json:"fabricId"`
+	InfrastructureId NullableInt64 `json:"infrastructureId"`
+	ExtensionInstanceId NullableInt64 `json:"extensionInstanceId,omitempty"`
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
-	LastAppliedLogicalNetworkProfileId NullableInt32 `json:"lastAppliedLogicalNetworkProfileId"`
+	LastAppliedLogicalNetworkProfileId NullableInt64 `json:"lastAppliedLogicalNetworkProfileId"`
 	LastLogicalNetworkProfileAppliedAt time.Time `json:"lastLogicalNetworkProfileAppliedAt"`
 	// External identifier for this logical network on the controller
 	ExternalId NullableString `json:"externalId,omitempty"`
@@ -45,9 +45,11 @@ type LogicalNetwork struct {
 	Zone *LogicalNetworkZoneProperties `json:"zone,omitempty"`
 	Ipv4 *LogicalNetworkIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *LogicalNetworkIpv6Properties `json:"ipv6,omitempty"`
-	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
+	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
+	// When true, this is a routed-access (L3-only) network delivered over point-to-point links.
+	L3Only *bool `json:"l3Only,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,7 +59,7 @@ type _LogicalNetwork LogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config LogicalNetworkConfig) *LogicalNetwork {
+func NewLogicalNetwork(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, kind LogicalNetworkKind, fabricId int64, infrastructureId NullableInt64, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt64, lastLogicalNetworkProfileAppliedAt time.Time, config LogicalNetworkConfig) *LogicalNetwork {
 	this := LogicalNetwork{}
 	this.Id = id
 	this.Label = label
@@ -73,6 +75,8 @@ func NewLogicalNetwork(id int32, label string, name string, annotations map[stri
 	this.LastAppliedLogicalNetworkProfileId = lastAppliedLogicalNetworkProfileId
 	this.LastLogicalNetworkProfileAppliedAt = lastLogicalNetworkProfileAppliedAt
 	this.Config = config
+	var l3Only bool = false
+	this.L3Only = &l3Only
 	return &this
 }
 
@@ -81,13 +85,15 @@ func NewLogicalNetwork(id int32, label string, name string, annotations map[stri
 // but it doesn't guarantee that properties required by API are set
 func NewLogicalNetworkWithDefaults() *LogicalNetwork {
 	this := LogicalNetwork{}
+	var l3Only bool = false
+	this.L3Only = &l3Only
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *LogicalNetwork) GetId() int32 {
+func (o *LogicalNetwork) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -96,7 +102,7 @@ func (o *LogicalNetwork) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetwork) GetIdOk() (*int32, bool) {
+func (o *LogicalNetwork) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -104,7 +110,7 @@ func (o *LogicalNetwork) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *LogicalNetwork) SetId(v int32) {
+func (o *LogicalNetwork) SetId(v int64) {
 	o.Id = v
 }
 
@@ -229,9 +235,9 @@ func (o *LogicalNetwork) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *LogicalNetwork) GetRevision() int32 {
+func (o *LogicalNetwork) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -240,7 +246,7 @@ func (o *LogicalNetwork) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetwork) GetRevisionOk() (*int32, bool) {
+func (o *LogicalNetwork) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -248,7 +254,7 @@ func (o *LogicalNetwork) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *LogicalNetwork) SetRevision(v int32) {
+func (o *LogicalNetwork) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -277,9 +283,9 @@ func (o *LogicalNetwork) SetKind(v LogicalNetworkKind) {
 }
 
 // GetFabricId returns the FabricId field value
-func (o *LogicalNetwork) GetFabricId() int32 {
+func (o *LogicalNetwork) GetFabricId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -288,7 +294,7 @@ func (o *LogicalNetwork) GetFabricId() int32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetwork) GetFabricIdOk() (*int32, bool) {
+func (o *LogicalNetwork) GetFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -296,15 +302,15 @@ func (o *LogicalNetwork) GetFabricIdOk() (*int32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *LogicalNetwork) SetFabricId(v int32) {
+func (o *LogicalNetwork) SetFabricId(v int64) {
 	o.FabricId = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *LogicalNetwork) GetInfrastructureId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *LogicalNetwork) GetInfrastructureId() int64 {
 	if o == nil || o.InfrastructureId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -314,7 +320,7 @@ func (o *LogicalNetwork) GetInfrastructureId() int32 {
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LogicalNetwork) GetInfrastructureIdOk() (*int32, bool) {
+func (o *LogicalNetwork) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -322,14 +328,14 @@ func (o *LogicalNetwork) GetInfrastructureIdOk() (*int32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *LogicalNetwork) SetInfrastructureId(v int32) {
+func (o *LogicalNetwork) SetInfrastructureId(v int64) {
 	o.InfrastructureId.Set(&v)
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LogicalNetwork) GetExtensionInstanceId() int32 {
+func (o *LogicalNetwork) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId.Get()
@@ -338,7 +344,7 @@ func (o *LogicalNetwork) GetExtensionInstanceId() int32 {
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LogicalNetwork) GetExtensionInstanceIdOk() (*int32, bool) {
+func (o *LogicalNetwork) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -354,8 +360,8 @@ func (o *LogicalNetwork) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given NullableInt32 and assigns it to the ExtensionInstanceId field.
-func (o *LogicalNetwork) SetExtensionInstanceId(v int32) {
+// SetExtensionInstanceId gets a reference to the given NullableInt64 and assigns it to the ExtensionInstanceId field.
+func (o *LogicalNetwork) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId.Set(&v)
 }
 // SetExtensionInstanceIdNil sets the value for ExtensionInstanceId to be an explicit nil
@@ -393,10 +399,10 @@ func (o *LogicalNetwork) SetServiceStatus(v GenericServiceStatus) {
 }
 
 // GetLastAppliedLogicalNetworkProfileId returns the LastAppliedLogicalNetworkProfileId field value
-// If the value is explicit nil, the zero value for int32 will be returned
-func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileId() int32 {
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileId() int64 {
 	if o == nil || o.LastAppliedLogicalNetworkProfileId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -406,7 +412,7 @@ func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileId() int32 {
 // GetLastAppliedLogicalNetworkProfileIdOk returns a tuple with the LastAppliedLogicalNetworkProfileId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileIdOk() (*int32, bool) {
+func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -414,7 +420,7 @@ func (o *LogicalNetwork) GetLastAppliedLogicalNetworkProfileIdOk() (*int32, bool
 }
 
 // SetLastAppliedLogicalNetworkProfileId sets field value
-func (o *LogicalNetwork) SetLastAppliedLogicalNetworkProfileId(v int32) {
+func (o *LogicalNetwork) SetLastAppliedLogicalNetworkProfileId(v int64) {
 	o.LastAppliedLogicalNetworkProfileId.Set(&v)
 }
 
@@ -701,9 +707,9 @@ func (o *LogicalNetwork) SetIpv6(v LogicalNetworkIpv6Properties) {
 }
 
 // GetRouteDomainId returns the RouteDomainId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LogicalNetwork) GetRouteDomainId() int32 {
+func (o *LogicalNetwork) GetRouteDomainId() int64 {
 	if o == nil || IsNil(o.RouteDomainId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RouteDomainId.Get()
@@ -712,7 +718,7 @@ func (o *LogicalNetwork) GetRouteDomainId() int32 {
 // GetRouteDomainIdOk returns a tuple with the RouteDomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LogicalNetwork) GetRouteDomainIdOk() (*int32, bool) {
+func (o *LogicalNetwork) GetRouteDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -728,8 +734,8 @@ func (o *LogicalNetwork) HasRouteDomainId() bool {
 	return false
 }
 
-// SetRouteDomainId gets a reference to the given NullableInt32 and assigns it to the RouteDomainId field.
-func (o *LogicalNetwork) SetRouteDomainId(v int32) {
+// SetRouteDomainId gets a reference to the given NullableInt64 and assigns it to the RouteDomainId field.
+func (o *LogicalNetwork) SetRouteDomainId(v int64) {
 	o.RouteDomainId.Set(&v)
 }
 // SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
@@ -782,6 +788,38 @@ func (o *LogicalNetwork) SetMtuNil() {
 // UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
 func (o *LogicalNetwork) UnsetMtu() {
 	o.Mtu.Unset()
+}
+
+// GetL3Only returns the L3Only field value if set, zero value otherwise.
+func (o *LogicalNetwork) GetL3Only() bool {
+	if o == nil || IsNil(o.L3Only) {
+		var ret bool
+		return ret
+	}
+	return *o.L3Only
+}
+
+// GetL3OnlyOk returns a tuple with the L3Only field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogicalNetwork) GetL3OnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.L3Only) {
+		return nil, false
+	}
+	return o.L3Only, true
+}
+
+// HasL3Only returns a boolean if a field has been set.
+func (o *LogicalNetwork) HasL3Only() bool {
+	if o != nil && !IsNil(o.L3Only) {
+		return true
+	}
+
+	return false
+}
+
+// SetL3Only gets a reference to the given bool and assigns it to the L3Only field.
+func (o *LogicalNetwork) SetL3Only(v bool) {
+	o.L3Only = &v
 }
 
 func (o LogicalNetwork) MarshalJSON() ([]byte, error) {
@@ -837,6 +875,9 @@ func (o LogicalNetwork) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Mtu.IsSet() {
 		toSerialize["mtu"] = o.Mtu.Get()
+	}
+	if !IsNil(o.L3Only) {
+		toSerialize["l3Only"] = o.L3Only
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -918,6 +959,7 @@ func (o *LogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "l3Only")
 		o.AdditionalProperties = additionalProperties
 	}
 

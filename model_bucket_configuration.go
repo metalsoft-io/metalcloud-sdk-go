@@ -22,27 +22,27 @@ var _ MappedNullable = &BucketConfiguration{}
 // BucketConfiguration struct for BucketConfiguration
 type BucketConfiguration struct {
 	// Revision of the Bucket Configuration
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Disk size in GB for Bucket
 	SizeGB float32 `json:"sizeGB"`
 	// Timestamp of the Bucket last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Id of the storage pool the Bucket is assigned to
-	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
+	StoragePoolId *int64 `json:"storagePoolId,omitempty"`
 	// Label of the Bucket.
 	Label string `json:"label"`
 	// Subdomain of the Bucket.
 	Subdomain string `json:"subdomain"`
 	// Id of the DNS subdomain for the Drive Group.
-	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Deploy type of the Drive Group
 	DeployType string `json:"deployType"`
 	// Deploy status of the Drive Group
 	DeployStatus string `json:"deployStatus"`
 	// Id of the deployment for the Drive Group.
-	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Id of the Logical Network for the Bucket.
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,7 +52,7 @@ type _BucketConfiguration BucketConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketConfiguration(revision float32, sizeGB float32, updatedTimestamp string, label string, subdomain string, deployType string, deployStatus string) *BucketConfiguration {
+func NewBucketConfiguration(revision int64, sizeGB float32, updatedTimestamp string, label string, subdomain string, deployType string, deployStatus string) *BucketConfiguration {
 	this := BucketConfiguration{}
 	this.Revision = revision
 	this.SizeGB = sizeGB
@@ -77,9 +77,9 @@ func NewBucketConfigurationWithDefaults() *BucketConfiguration {
 }
 
 // GetRevision returns the Revision field value
-func (o *BucketConfiguration) GetRevision() float32 {
+func (o *BucketConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -88,7 +88,7 @@ func (o *BucketConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *BucketConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *BucketConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *BucketConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *BucketConfiguration) SetRevision(v float32) {
+func (o *BucketConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -149,9 +149,9 @@ func (o *BucketConfiguration) SetUpdatedTimestamp(v string) {
 }
 
 // GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *BucketConfiguration) GetStoragePoolId() float32 {
+func (o *BucketConfiguration) GetStoragePoolId() int64 {
 	if o == nil || IsNil(o.StoragePoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.StoragePoolId
@@ -159,7 +159,7 @@ func (o *BucketConfiguration) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BucketConfiguration) GetStoragePoolIdOk() (*float32, bool) {
+func (o *BucketConfiguration) GetStoragePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.StoragePoolId) {
 		return nil, false
 	}
@@ -175,8 +175,8 @@ func (o *BucketConfiguration) HasStoragePoolId() bool {
 	return false
 }
 
-// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
-func (o *BucketConfiguration) SetStoragePoolId(v float32) {
+// SetStoragePoolId gets a reference to the given int64 and assigns it to the StoragePoolId field.
+func (o *BucketConfiguration) SetStoragePoolId(v int64) {
 	o.StoragePoolId = &v
 }
 
@@ -229,9 +229,9 @@ func (o *BucketConfiguration) SetSubdomain(v string) {
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *BucketConfiguration) GetDnsSubdomainChangeId() float32 {
+func (o *BucketConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -239,7 +239,7 @@ func (o *BucketConfiguration) GetDnsSubdomainChangeId() float32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BucketConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool) {
+func (o *BucketConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -255,8 +255,8 @@ func (o *BucketConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given float32 and assigns it to the DnsSubdomainChangeId field.
-func (o *BucketConfiguration) SetDnsSubdomainChangeId(v float32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *BucketConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
@@ -309,9 +309,9 @@ func (o *BucketConfiguration) SetDeployStatus(v string) {
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *BucketConfiguration) GetInfrastructureDeployId() float32 {
+func (o *BucketConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -319,7 +319,7 @@ func (o *BucketConfiguration) GetInfrastructureDeployId() float32 {
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BucketConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
+func (o *BucketConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -335,15 +335,15 @@ func (o *BucketConfiguration) HasInfrastructureDeployId() bool {
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
-func (o *BucketConfiguration) SetInfrastructureDeployId(v float32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *BucketConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *BucketConfiguration) GetLogicalNetworkId() float32 {
+func (o *BucketConfiguration) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -351,7 +351,7 @@ func (o *BucketConfiguration) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BucketConfiguration) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *BucketConfiguration) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -367,8 +367,8 @@ func (o *BucketConfiguration) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *BucketConfiguration) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *BucketConfiguration) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 

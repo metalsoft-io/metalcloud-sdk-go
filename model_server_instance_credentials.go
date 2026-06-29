@@ -30,6 +30,10 @@ type ServerInstanceCredentials struct {
 	IscsiInitiatorUsername *string `json:"iscsiInitiatorUsername,omitempty"`
 	// The iSCSI initiator password.
 	IscsiInitiatorPassword *string `json:"iscsiInitiatorPassword,omitempty"`
+	// The iSCSI target username.
+	IscsiTargetUsername *string `json:"iscsiTargetUsername,omitempty"`
+	// The iSCSI target password.
+	IscsiTargetPassword *string `json:"iscsiTargetPassword,omitempty"`
 	// The credentials that will be used starting with next deploy
 	Config map[string]interface{} `json:"config,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -214,6 +218,70 @@ func (o *ServerInstanceCredentials) SetIscsiInitiatorPassword(v string) {
 	o.IscsiInitiatorPassword = &v
 }
 
+// GetIscsiTargetUsername returns the IscsiTargetUsername field value if set, zero value otherwise.
+func (o *ServerInstanceCredentials) GetIscsiTargetUsername() string {
+	if o == nil || IsNil(o.IscsiTargetUsername) {
+		var ret string
+		return ret
+	}
+	return *o.IscsiTargetUsername
+}
+
+// GetIscsiTargetUsernameOk returns a tuple with the IscsiTargetUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceCredentials) GetIscsiTargetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.IscsiTargetUsername) {
+		return nil, false
+	}
+	return o.IscsiTargetUsername, true
+}
+
+// HasIscsiTargetUsername returns a boolean if a field has been set.
+func (o *ServerInstanceCredentials) HasIscsiTargetUsername() bool {
+	if o != nil && !IsNil(o.IscsiTargetUsername) {
+		return true
+	}
+
+	return false
+}
+
+// SetIscsiTargetUsername gets a reference to the given string and assigns it to the IscsiTargetUsername field.
+func (o *ServerInstanceCredentials) SetIscsiTargetUsername(v string) {
+	o.IscsiTargetUsername = &v
+}
+
+// GetIscsiTargetPassword returns the IscsiTargetPassword field value if set, zero value otherwise.
+func (o *ServerInstanceCredentials) GetIscsiTargetPassword() string {
+	if o == nil || IsNil(o.IscsiTargetPassword) {
+		var ret string
+		return ret
+	}
+	return *o.IscsiTargetPassword
+}
+
+// GetIscsiTargetPasswordOk returns a tuple with the IscsiTargetPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceCredentials) GetIscsiTargetPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.IscsiTargetPassword) {
+		return nil, false
+	}
+	return o.IscsiTargetPassword, true
+}
+
+// HasIscsiTargetPassword returns a boolean if a field has been set.
+func (o *ServerInstanceCredentials) HasIscsiTargetPassword() bool {
+	if o != nil && !IsNil(o.IscsiTargetPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetIscsiTargetPassword gets a reference to the given string and assigns it to the IscsiTargetPassword field.
+func (o *ServerInstanceCredentials) SetIscsiTargetPassword(v string) {
+	o.IscsiTargetPassword = &v
+}
+
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *ServerInstanceCredentials) GetConfig() map[string]interface{} {
 	if o == nil || IsNil(o.Config) {
@@ -271,6 +339,12 @@ func (o ServerInstanceCredentials) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IscsiInitiatorPassword) {
 		toSerialize["iscsiInitiatorPassword"] = o.IscsiInitiatorPassword
 	}
+	if !IsNil(o.IscsiTargetUsername) {
+		toSerialize["iscsiTargetUsername"] = o.IscsiTargetUsername
+	}
+	if !IsNil(o.IscsiTargetPassword) {
+		toSerialize["iscsiTargetPassword"] = o.IscsiTargetPassword
+	}
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
@@ -301,6 +375,8 @@ func (o *ServerInstanceCredentials) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "publicSshKey")
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPassword")
+		delete(additionalProperties, "iscsiTargetUsername")
+		delete(additionalProperties, "iscsiTargetPassword")
 		delete(additionalProperties, "config")
 		o.AdditionalProperties = additionalProperties
 	}

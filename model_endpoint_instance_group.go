@@ -22,9 +22,9 @@ var _ MappedNullable = &EndpointInstanceGroup{}
 // EndpointInstanceGroup struct for EndpointInstanceGroup
 type EndpointInstanceGroup struct {
 	// The Product Instance ID.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Timestamp of the Product Instance creation.
@@ -36,19 +36,19 @@ type EndpointInstanceGroup struct {
 	// Subdomain permanent of the Product Instance.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the Product Instance
-	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Product Instance
-	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	EndpointGroupName *string `json:"endpointGroupName,omitempty"`
-	InfrastructureId int32 `json:"infrastructureId"`
-	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
+	InfrastructureId int64 `json:"infrastructureId"`
+	ExtensionInstanceId *int64 `json:"extensionInstanceId,omitempty"`
 	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"endpoint-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the endpoint instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
 	Hostname *string `json:"hostname,omitempty"`
 	// Current status of the Endpoint Instance Group.
 	ServiceStatus string `json:"serviceStatus"`
 	// The resource pool assigned to this instance array
-	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
-	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
+	ResourcePoolId *int64 `json:"resourcePoolId,omitempty"`
+	NetworkEndpointGroupId *int64 `json:"networkEndpointGroupId,omitempty"`
 	Meta GenericMeta `json:"meta"`
 	Config *EndpointInstanceGroupConfiguration `json:"config,omitempty"`
 	// Reference links
@@ -62,7 +62,7 @@ type _EndpointInstanceGroup EndpointInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, serviceStatus string, meta GenericMeta) *EndpointInstanceGroup {
+func NewEndpointInstanceGroup(id int64, revision int64, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int64, serviceStatus string, meta GenericMeta) *EndpointInstanceGroup {
 	this := EndpointInstanceGroup{}
 	this.Id = id
 	this.Revision = revision
@@ -84,9 +84,9 @@ func NewEndpointInstanceGroupWithDefaults() *EndpointInstanceGroup {
 }
 
 // GetId returns the Id field value
-func (o *EndpointInstanceGroup) GetId() int32 {
+func (o *EndpointInstanceGroup) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *EndpointInstanceGroup) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,14 +103,14 @@ func (o *EndpointInstanceGroup) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *EndpointInstanceGroup) SetId(v int32) {
+func (o *EndpointInstanceGroup) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *EndpointInstanceGroup) GetRevision() int32 {
+func (o *EndpointInstanceGroup) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -119,7 +119,7 @@ func (o *EndpointInstanceGroup) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetRevisionOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *EndpointInstanceGroup) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *EndpointInstanceGroup) SetRevision(v int32) {
+func (o *EndpointInstanceGroup) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -268,9 +268,9 @@ func (o *EndpointInstanceGroup) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroup) GetDnsSubdomainId() int32 {
+func (o *EndpointInstanceGroup) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -278,7 +278,7 @@ func (o *EndpointInstanceGroup) GetDnsSubdomainId() int32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetDnsSubdomainIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -294,15 +294,15 @@ func (o *EndpointInstanceGroup) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given int32 and assigns it to the DnsSubdomainId field.
-func (o *EndpointInstanceGroup) SetDnsSubdomainId(v int32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *EndpointInstanceGroup) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroup) GetDnsSubdomainPermanentId() int32 {
+func (o *EndpointInstanceGroup) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -310,7 +310,7 @@ func (o *EndpointInstanceGroup) GetDnsSubdomainPermanentId() int32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetDnsSubdomainPermanentIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -326,8 +326,8 @@ func (o *EndpointInstanceGroup) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given int32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *EndpointInstanceGroup) SetDnsSubdomainPermanentId(v int32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *EndpointInstanceGroup) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 
@@ -364,9 +364,9 @@ func (o *EndpointInstanceGroup) SetEndpointGroupName(v string) {
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *EndpointInstanceGroup) GetInfrastructureId() int32 {
+func (o *EndpointInstanceGroup) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -375,7 +375,7 @@ func (o *EndpointInstanceGroup) GetInfrastructureId() int32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetInfrastructureIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -383,14 +383,14 @@ func (o *EndpointInstanceGroup) GetInfrastructureIdOk() (*int32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *EndpointInstanceGroup) SetInfrastructureId(v int32) {
+func (o *EndpointInstanceGroup) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroup) GetExtensionInstanceId() int32 {
+func (o *EndpointInstanceGroup) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId
@@ -398,7 +398,7 @@ func (o *EndpointInstanceGroup) GetExtensionInstanceId() int32 {
 
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetExtensionInstanceIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
@@ -414,8 +414,8 @@ func (o *EndpointInstanceGroup) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given int32 and assigns it to the ExtensionInstanceId field.
-func (o *EndpointInstanceGroup) SetExtensionInstanceId(v int32) {
+// SetExtensionInstanceId gets a reference to the given int64 and assigns it to the ExtensionInstanceId field.
+func (o *EndpointInstanceGroup) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId = &v
 }
 
@@ -476,9 +476,9 @@ func (o *EndpointInstanceGroup) SetServiceStatus(v string) {
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroup) GetResourcePoolId() int32 {
+func (o *EndpointInstanceGroup) GetResourcePoolId() int64 {
 	if o == nil || IsNil(o.ResourcePoolId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ResourcePoolId
@@ -486,7 +486,7 @@ func (o *EndpointInstanceGroup) GetResourcePoolId() int32 {
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetResourcePoolIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetResourcePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ResourcePoolId) {
 		return nil, false
 	}
@@ -502,15 +502,15 @@ func (o *EndpointInstanceGroup) HasResourcePoolId() bool {
 	return false
 }
 
-// SetResourcePoolId gets a reference to the given int32 and assigns it to the ResourcePoolId field.
-func (o *EndpointInstanceGroup) SetResourcePoolId(v int32) {
+// SetResourcePoolId gets a reference to the given int64 and assigns it to the ResourcePoolId field.
+func (o *EndpointInstanceGroup) SetResourcePoolId(v int64) {
 	o.ResourcePoolId = &v
 }
 
 // GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value if set, zero value otherwise.
-func (o *EndpointInstanceGroup) GetNetworkEndpointGroupId() int32 {
+func (o *EndpointInstanceGroup) GetNetworkEndpointGroupId() int64 {
 	if o == nil || IsNil(o.NetworkEndpointGroupId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEndpointGroupId
@@ -518,7 +518,7 @@ func (o *EndpointInstanceGroup) GetNetworkEndpointGroupId() int32 {
 
 // GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool) {
+func (o *EndpointInstanceGroup) GetNetworkEndpointGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEndpointGroupId) {
 		return nil, false
 	}
@@ -534,8 +534,8 @@ func (o *EndpointInstanceGroup) HasNetworkEndpointGroupId() bool {
 	return false
 }
 
-// SetNetworkEndpointGroupId gets a reference to the given int32 and assigns it to the NetworkEndpointGroupId field.
-func (o *EndpointInstanceGroup) SetNetworkEndpointGroupId(v int32) {
+// SetNetworkEndpointGroupId gets a reference to the given int64 and assigns it to the NetworkEndpointGroupId field.
+func (o *EndpointInstanceGroup) SetNetworkEndpointGroupId(v int64) {
 	o.NetworkEndpointGroupId = &v
 }
 

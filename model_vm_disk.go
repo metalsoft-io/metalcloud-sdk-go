@@ -22,9 +22,9 @@ var _ MappedNullable = &VMDisk{}
 // VMDisk struct for VMDisk
 type VMDisk struct {
 	// VM ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// VM ID
-	VmId float32 `json:"vmId"`
+	VmId int64 `json:"vmId"`
 	// Name of the VM Disk datastore
 	Datastore string `json:"datastore"`
 	// Size of the VM Disk in GB
@@ -38,7 +38,7 @@ type _VMDisk VMDisk
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMDisk(id float32, vmId float32, datastore string, sizeGB float32) *VMDisk {
+func NewVMDisk(id int64, vmId int64, datastore string, sizeGB float32) *VMDisk {
 	this := VMDisk{}
 	this.Id = id
 	this.VmId = vmId
@@ -56,9 +56,9 @@ func NewVMDiskWithDefaults() *VMDisk {
 }
 
 // GetId returns the Id field value
-func (o *VMDisk) GetId() float32 {
+func (o *VMDisk) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *VMDisk) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMDisk) GetIdOk() (*float32, bool) {
+func (o *VMDisk) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,14 +75,14 @@ func (o *VMDisk) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMDisk) SetId(v float32) {
+func (o *VMDisk) SetId(v int64) {
 	o.Id = v
 }
 
 // GetVmId returns the VmId field value
-func (o *VMDisk) GetVmId() float32 {
+func (o *VMDisk) GetVmId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *VMDisk) GetVmId() float32 {
 
 // GetVmIdOk returns a tuple with the VmId field value
 // and a boolean to check if the value has been set.
-func (o *VMDisk) GetVmIdOk() (*float32, bool) {
+func (o *VMDisk) GetVmIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *VMDisk) GetVmIdOk() (*float32, bool) {
 }
 
 // SetVmId sets field value
-func (o *VMDisk) SetVmId(v float32) {
+func (o *VMDisk) SetVmId(v int64) {
 	o.VmId = v
 }
 

@@ -25,6 +25,8 @@ type CreateServerCleanupPolicy struct {
 	Label string `json:"label"`
 	// Cleanup drives for oob enabled server
 	CleanupDrivesForOobEnabledServer float32 `json:"cleanupDrivesForOobEnabledServer"`
+	// Whether to clear TPM
+	ClearTpm float32 `json:"clearTpm"`
 	// Recreate raid
 	RecreateRaid float32 `json:"recreateRaid"`
 	// Reset raid controllers to default
@@ -50,10 +52,11 @@ type _CreateServerCleanupPolicy CreateServerCleanupPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateServerCleanupPolicy(label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, skipRaidActions []string) *CreateServerCleanupPolicy {
+func NewCreateServerCleanupPolicy(label string, cleanupDrivesForOobEnabledServer float32, clearTpm float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, skipRaidActions []string) *CreateServerCleanupPolicy {
 	this := CreateServerCleanupPolicy{}
 	this.Label = label
 	this.CleanupDrivesForOobEnabledServer = cleanupDrivesForOobEnabledServer
+	this.ClearTpm = clearTpm
 	this.RecreateRaid = recreateRaid
 	this.ResetRaidControllers = resetRaidControllers
 	this.DisableEmbeddedNics = disableEmbeddedNics
@@ -119,6 +122,30 @@ func (o *CreateServerCleanupPolicy) GetCleanupDrivesForOobEnabledServerOk() (*fl
 // SetCleanupDrivesForOobEnabledServer sets field value
 func (o *CreateServerCleanupPolicy) SetCleanupDrivesForOobEnabledServer(v float32) {
 	o.CleanupDrivesForOobEnabledServer = v
+}
+
+// GetClearTpm returns the ClearTpm field value
+func (o *CreateServerCleanupPolicy) GetClearTpm() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ClearTpm
+}
+
+// GetClearTpmOk returns a tuple with the ClearTpm field value
+// and a boolean to check if the value has been set.
+func (o *CreateServerCleanupPolicy) GetClearTpmOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ClearTpm, true
+}
+
+// SetClearTpm sets field value
+func (o *CreateServerCleanupPolicy) SetClearTpm(v float32) {
+	o.ClearTpm = v
 }
 
 // GetRecreateRaid returns the RecreateRaid field value
@@ -325,6 +352,7 @@ func (o CreateServerCleanupPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["cleanupDrivesForOobEnabledServer"] = o.CleanupDrivesForOobEnabledServer
+	toSerialize["clearTpm"] = o.ClearTpm
 	toSerialize["recreateRaid"] = o.RecreateRaid
 	toSerialize["resetRaidControllers"] = o.ResetRaidControllers
 	toSerialize["disableEmbeddedNics"] = o.DisableEmbeddedNics
@@ -348,6 +376,7 @@ func (o *CreateServerCleanupPolicy) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"label",
 		"cleanupDrivesForOobEnabledServer",
+		"clearTpm",
 		"recreateRaid",
 		"resetRaidControllers",
 		"disableEmbeddedNics",
@@ -387,6 +416,7 @@ func (o *CreateServerCleanupPolicy) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "cleanupDrivesForOobEnabledServer")
+		delete(additionalProperties, "clearTpm")
 		delete(additionalProperties, "recreateRaid")
 		delete(additionalProperties, "resetRaidControllers")
 		delete(additionalProperties, "disableEmbeddedNics")

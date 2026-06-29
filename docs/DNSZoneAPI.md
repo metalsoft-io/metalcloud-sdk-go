@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-	dnsZoneId := float32(8.14) // float32 | The ID of the DNS Zone
+	dnsZoneId := int64(789) // int64 | The ID of the DNS Zone
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dnsZoneId** | **float32** | The ID of the DNS Zone | 
+**dnsZoneId** | **int64** | The ID of the DNS Zone | 
 
 ### Other Parameters
 
@@ -170,8 +170,8 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | The ID of the DNS Zone
-	recordSetId := float32(8.14) // float32 | The ID of the DNS RecordSet
+	id := int64(789) // int64 | The ID of the DNS Zone
+	recordSetId := int64(789) // int64 | The ID of the DNS RecordSet
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -191,8 +191,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** | The ID of the DNS Zone | 
-**recordSetId** | **float32** | The ID of the DNS RecordSet | 
+**id** | **int64** | The ID of the DNS Zone | 
+**recordSetId** | **int64** | The ID of the DNS RecordSet | 
 
 ### Other Parameters
 
@@ -243,7 +243,7 @@ import (
 )
 
 func main() {
-	dnsZoneId := float32(8.14) // float32 | The ID of the DNS Zone
+	dnsZoneId := int64(789) // int64 | The ID of the DNS Zone
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -263,7 +263,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dnsZoneId** | **float32** | The ID of the DNS Zone | 
+**dnsZoneId** | **int64** | The ID of the DNS Zone | 
 
 ### Other Parameters
 
@@ -313,7 +313,7 @@ import (
 )
 
 func main() {
-	dnsZoneId := float32(8.14) // float32 | The ID of the DNS Zone
+	dnsZoneId := int64(789) // int64 | The ID of the DNS Zone
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -333,7 +333,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dnsZoneId** | **float32** | The ID of the DNS Zone | 
+**dnsZoneId** | **int64** | The ID of the DNS Zone | 
 
 ### Other Parameters
 
@@ -471,7 +471,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | The ID of the DNS Zone
+	id := int64(789) // int64 | The ID of the DNS Zone
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -502,7 +502,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** | The ID of the DNS Zone | 
+**id** | **int64** | The ID of the DNS Zone | 
 
 ### Other Parameters
 
@@ -563,7 +563,7 @@ import (
 )
 
 func main() {
-	dnsZoneId := float32(8.14) // float32 | The ID of the DNS Zone
+	dnsZoneId := int64(789) // int64 | The ID of the DNS Zone
 	updateDnsZone := *openapiclient.NewUpdateDnsZone() // UpdateDnsZone | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -584,7 +584,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dnsZoneId** | **float32** | The ID of the DNS Zone | 
+**dnsZoneId** | **int64** | The ID of the DNS Zone | 
 
 ### Other Parameters
 

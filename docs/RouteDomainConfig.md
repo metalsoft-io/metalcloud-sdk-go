@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **DeployType** | **string** |  | 
 **DeployStatus** | **string** |  | 
 **CreatedAt** | **time.Time** | Creation timestamp for the entity. | 
 **UpdatedAt** | **time.Time** | Last update timestamp for the entity. | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Kind** | [**RouteDomainKind**](RouteDomainKind.md) |  | 
 **VrfAllocationStrategies** | [**[]CreateVrfAllocationStrategy**](CreateVrfAllocationStrategy.md) |  | 
 **AutoRouteDistinguisher** | Pointer to **bool** | When true, the switch auto-generates the EVPN Route Distinguisher for the L3 VNI. Only applicable to EVPN_L3VPN route domains. | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewRouteDomainConfig
 
-`func NewRouteDomainConfig(id int32, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, vrfAllocationStrategies []CreateVrfAllocationStrategy, ) *RouteDomainConfig`
+`func NewRouteDomainConfig(id int64, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int64, kind RouteDomainKind, vrfAllocationStrategies []CreateVrfAllocationStrategy, ) *RouteDomainConfig`
 
 NewRouteDomainConfig instantiates a new RouteDomainConfig object
 This constructor will assign default values to properties that have it defined,
@@ -38,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *RouteDomainConfig) GetId() int32`
+`func (o *RouteDomainConfig) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *RouteDomainConfig) GetIdOk() (*int32, bool)`
+`func (o *RouteDomainConfig) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *RouteDomainConfig) SetId(v int32)`
+`func (o *RouteDomainConfig) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -138,20 +138,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *RouteDomainConfig) GetRevision() int32`
+`func (o *RouteDomainConfig) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *RouteDomainConfig) GetRevisionOk() (*int32, bool)`
+`func (o *RouteDomainConfig) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *RouteDomainConfig) SetRevision(v int32)`
+`func (o *RouteDomainConfig) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

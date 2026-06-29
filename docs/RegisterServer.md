@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | **float32** | The site id where the server is located. | 
+**SiteId** | **int64** | The site id where the server is located. | 
 **ServerUUID** | Pointer to **string** | The UUID of the server. | [optional] 
 **SerialNumber** | Pointer to **string** | The Serial Number of the server. | [optional] 
 **ManagementAddress** | Pointer to **string** | The Management Address of the server. | [optional] 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **BmcMacAddress** | Pointer to **string** | The MAC address of the server. | [optional] 
 **Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
 **Model** | Pointer to **string** | The model of the server. | [optional] 
-**RegistrationProfileId** | Pointer to **float32** | The registration profile id of the server. | [optional] 
+**RegistrationProfileId** | Pointer to **int64** | The registration profile id of the server. | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
 **DpuCredentials** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewRegisterServer
 
-`func NewRegisterServer(siteId float32, ) *RegisterServer`
+`func NewRegisterServer(siteId int64, ) *RegisterServer`
 
 NewRegisterServer instantiates a new RegisterServer object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *RegisterServer) GetSiteId() float32`
+`func (o *RegisterServer) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *RegisterServer) GetSiteIdOk() (*float32, bool)`
+`func (o *RegisterServer) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *RegisterServer) SetSiteId(v float32)`
+`func (o *RegisterServer) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -232,20 +232,20 @@ HasModel returns a boolean if a field has been set.
 
 ### GetRegistrationProfileId
 
-`func (o *RegisterServer) GetRegistrationProfileId() float32`
+`func (o *RegisterServer) GetRegistrationProfileId() int64`
 
 GetRegistrationProfileId returns the RegistrationProfileId field if non-nil, zero value otherwise.
 
 ### GetRegistrationProfileIdOk
 
-`func (o *RegisterServer) GetRegistrationProfileIdOk() (*float32, bool)`
+`func (o *RegisterServer) GetRegistrationProfileIdOk() (*int64, bool)`
 
 GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRegistrationProfileId
 
-`func (o *RegisterServer) SetRegistrationProfileId(v float32)`
+`func (o *RegisterServer) SetRegistrationProfileId(v int64)`
 
 SetRegistrationProfileId sets RegistrationProfileId field to given value.
 

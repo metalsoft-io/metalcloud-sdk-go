@@ -38,7 +38,7 @@ func Test_sdk_OSTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var osTemplateId float32
+		var osTemplateId int64
 
 		httpRes, err := apiClient.OSTemplateAPI.DeleteOSTemplate(context.Background(), osTemplateId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_OSTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var osTemplateId float32
+		var osTemplateId int64
 
 		resp, httpRes, err := apiClient.OSTemplateAPI.GetOSTemplate(context.Background(), osTemplateId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_OSTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var osTemplateId float32
+		var osTemplateId int64
 
 		resp, httpRes, err := apiClient.OSTemplateAPI.GetOSTemplateCredentials(context.Background(), osTemplateId).Execute()
 
@@ -91,7 +91,7 @@ func Test_sdk_OSTemplateAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var osTemplateId float32
+		var osTemplateId int64
 
 		resp, httpRes, err := apiClient.OSTemplateAPI.UpdateOSTemplate(context.Background(), osTemplateId).Execute()
 

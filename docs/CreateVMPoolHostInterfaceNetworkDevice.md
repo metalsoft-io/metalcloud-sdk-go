@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkDeviceId** | **float32** | ID of the network equipment (switch). Must be active and in leaf position. | 
+**NetworkDeviceId** | **int64** | ID of the network equipment (switch). Must be active and in leaf position. | 
 **NetworkDeviceInterfaceName** | **string** | Name of the interface on the network equipment | 
 
 ## Methods
 
 ### NewCreateVMPoolHostInterfaceNetworkDevice
 
-`func NewCreateVMPoolHostInterfaceNetworkDevice(networkDeviceId float32, networkDeviceInterfaceName string, ) *CreateVMPoolHostInterfaceNetworkDevice`
+`func NewCreateVMPoolHostInterfaceNetworkDevice(networkDeviceId int64, networkDeviceInterfaceName string, ) *CreateVMPoolHostInterfaceNetworkDevice`
 
 NewCreateVMPoolHostInterfaceNetworkDevice instantiates a new CreateVMPoolHostInterfaceNetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNetworkDeviceId
 
-`func (o *CreateVMPoolHostInterfaceNetworkDevice) GetNetworkDeviceId() float32`
+`func (o *CreateVMPoolHostInterfaceNetworkDevice) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *CreateVMPoolHostInterfaceNetworkDevice) GetNetworkDeviceIdOk() (*float32, bool)`
+`func (o *CreateVMPoolHostInterfaceNetworkDevice) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *CreateVMPoolHostInterfaceNetworkDevice) SetNetworkDeviceId(v float32)`
+`func (o *CreateVMPoolHostInterfaceNetworkDevice) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 

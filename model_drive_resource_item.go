@@ -21,7 +21,7 @@ var _ MappedNullable = &DriveResourceItem{}
 
 // DriveResourceItem struct for DriveResourceItem
 type DriveResourceItem struct {
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	StartTimestamp string `json:"startTimestamp"`
 	EndTimestamp string `json:"endTimestamp"`
@@ -40,7 +40,7 @@ type _DriveResourceItem DriveResourceItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveResourceItem(id float32, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, driveSizeMbytes float32, driveStorageType string) *DriveResourceItem {
+func NewDriveResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, driveSizeMbytes float32, driveStorageType string) *DriveResourceItem {
 	this := DriveResourceItem{}
 	this.Id = id
 	this.Label = label
@@ -63,9 +63,9 @@ func NewDriveResourceItemWithDefaults() *DriveResourceItem {
 }
 
 // GetId returns the Id field value
-func (o *DriveResourceItem) GetId() float32 {
+func (o *DriveResourceItem) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *DriveResourceItem) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DriveResourceItem) GetIdOk() (*float32, bool) {
+func (o *DriveResourceItem) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *DriveResourceItem) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *DriveResourceItem) SetId(v float32) {
+func (o *DriveResourceItem) SetId(v int64) {
 	o.Id = v
 }
 

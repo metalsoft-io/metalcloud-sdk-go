@@ -43,7 +43,7 @@ type UpdateVMPool struct {
 	// Options for the VM Pool
 	Options *UpdateVMPoolOptions `json:"options,omitempty"`
 	// The network fabric linked to the VM Pool.
-	NetworkFabricId *float32 `json:"networkFabricId,omitempty"`
+	NetworkFabricId *int64 `json:"networkFabricId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -419,9 +419,9 @@ func (o *UpdateVMPool) SetOptions(v UpdateVMPoolOptions) {
 }
 
 // GetNetworkFabricId returns the NetworkFabricId field value if set, zero value otherwise.
-func (o *UpdateVMPool) GetNetworkFabricId() float32 {
+func (o *UpdateVMPool) GetNetworkFabricId() int64 {
 	if o == nil || IsNil(o.NetworkFabricId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkFabricId
@@ -429,7 +429,7 @@ func (o *UpdateVMPool) GetNetworkFabricId() float32 {
 
 // GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMPool) GetNetworkFabricIdOk() (*float32, bool) {
+func (o *UpdateVMPool) GetNetworkFabricIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkFabricId) {
 		return nil, false
 	}
@@ -445,8 +445,8 @@ func (o *UpdateVMPool) HasNetworkFabricId() bool {
 	return false
 }
 
-// SetNetworkFabricId gets a reference to the given float32 and assigns it to the NetworkFabricId field.
-func (o *UpdateVMPool) SetNetworkFabricId(v float32) {
+// SetNetworkFabricId gets a reference to the given int64 and assigns it to the NetworkFabricId field.
+func (o *UpdateVMPool) SetNetworkFabricId(v int64) {
 	o.NetworkFabricId = &v
 }
 

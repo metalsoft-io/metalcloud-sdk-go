@@ -28,7 +28,7 @@ type ServerAPIService service
 type ServerAPIArchiveServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	ifMatch *string
 }
 
@@ -51,7 +51,7 @@ Archives a Server
  @param serverId
  @return ServerAPIArchiveServerRequest
 */
-func (a *ServerAPIService) ArchiveServer(ctx context.Context, serverId float32) ServerAPIArchiveServerRequest {
+func (a *ServerAPIService) ArchiveServer(ctx context.Context, serverId int64) ServerAPIArchiveServerRequest {
 	return ServerAPIArchiveServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -130,7 +130,7 @@ func (a *ServerAPIService) ArchiveServerExecute(r ServerAPIArchiveServerRequest)
 type ServerAPIConnectServerInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	serverConnectInterface *ServerConnectInterface
 }
 
@@ -153,7 +153,7 @@ Connects a server interface to a switch
  @param serverId
  @return ServerAPIConnectServerInterfaceRequest
 */
-func (a *ServerAPIService) ConnectServerInterface(ctx context.Context, serverId float32) ServerAPIConnectServerInterfaceRequest {
+func (a *ServerAPIService) ConnectServerInterface(ctx context.Context, serverId int64) ServerAPIConnectServerInterfaceRequest {
 	return ServerAPIConnectServerInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -234,7 +234,7 @@ func (a *ServerAPIService) ConnectServerInterfaceExecute(r ServerAPIConnectServe
 type ServerAPIDeleteServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	ifMatch *string
 }
 
@@ -257,7 +257,7 @@ Deletes a Server
  @param serverId
  @return ServerAPIDeleteServerRequest
 */
-func (a *ServerAPIService) DeleteServer(ctx context.Context, serverId float32) ServerAPIDeleteServerRequest {
+func (a *ServerAPIService) DeleteServer(ctx context.Context, serverId int64) ServerAPIDeleteServerRequest {
 	return ServerAPIDeleteServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -336,7 +336,7 @@ func (a *ServerAPIService) DeleteServerExecute(r ServerAPIDeleteServerRequest) (
 type ServerAPIEnableServerSyslogRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	ifMatch *string
 }
 
@@ -359,7 +359,7 @@ Enables remote syslog for a server
  @param serverId
  @return ServerAPIEnableServerSyslogRequest
 */
-func (a *ServerAPIService) EnableServerSyslog(ctx context.Context, serverId float32) ServerAPIEnableServerSyslogRequest {
+func (a *ServerAPIService) EnableServerSyslog(ctx context.Context, serverId int64) ServerAPIEnableServerSyslogRequest {
 	return ServerAPIEnableServerSyslogRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -438,7 +438,7 @@ func (a *ServerAPIService) EnableServerSyslogExecute(r ServerAPIEnableServerSysl
 type ServerAPIGetServerCapabilitiesRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerAPIGetServerCapabilitiesRequest) Execute() (*ServerCapabilities, *http.Response, error) {
@@ -454,7 +454,7 @@ Returns Server capabilities
  @param serverId
  @return ServerAPIGetServerCapabilitiesRequest
 */
-func (a *ServerAPIService) GetServerCapabilities(ctx context.Context, serverId float32) ServerAPIGetServerCapabilitiesRequest {
+func (a *ServerAPIService) GetServerCapabilities(ctx context.Context, serverId int64) ServerAPIGetServerCapabilitiesRequest {
 	return ServerAPIGetServerCapabilitiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -541,7 +541,7 @@ func (a *ServerAPIService) GetServerCapabilitiesExecute(r ServerAPIGetServerCapa
 type ServerAPIGetServerCredentialsRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerAPIGetServerCredentialsRequest) Execute() (*ServerCredentials, *http.Response, error) {
@@ -557,7 +557,7 @@ Returns Server credentials
  @param serverId
  @return ServerAPIGetServerCredentialsRequest
 */
-func (a *ServerAPIService) GetServerCredentials(ctx context.Context, serverId float32) ServerAPIGetServerCredentialsRequest {
+func (a *ServerAPIService) GetServerCredentials(ctx context.Context, serverId int64) ServerAPIGetServerCredentialsRequest {
 	return ServerAPIGetServerCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -644,7 +644,7 @@ func (a *ServerAPIService) GetServerCredentialsExecute(r ServerAPIGetServerCrede
 type ServerAPIGetServerInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerAPIGetServerInfoRequest) Execute() (*Server, *http.Response, error) {
@@ -660,7 +660,7 @@ Returns Server information
  @param serverId
  @return ServerAPIGetServerInfoRequest
 */
-func (a *ServerAPIService) GetServerInfo(ctx context.Context, serverId float32) ServerAPIGetServerInfoRequest {
+func (a *ServerAPIService) GetServerInfo(ctx context.Context, serverId int64) ServerAPIGetServerInfoRequest {
 	return ServerAPIGetServerInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -747,7 +747,7 @@ func (a *ServerAPIService) GetServerInfoExecute(r ServerAPIGetServerInfoRequest)
 type ServerAPIGetServerPowerStatusRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerAPIGetServerPowerStatusRequest) Execute() (string, *http.Response, error) {
@@ -763,7 +763,7 @@ Gets the power state of a server
  @param serverId
  @return ServerAPIGetServerPowerStatusRequest
 */
-func (a *ServerAPIService) GetServerPowerStatus(ctx context.Context, serverId float32) ServerAPIGetServerPowerStatusRequest {
+func (a *ServerAPIService) GetServerPowerStatus(ctx context.Context, serverId int64) ServerAPIGetServerPowerStatusRequest {
 	return ServerAPIGetServerPowerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -850,7 +850,7 @@ func (a *ServerAPIService) GetServerPowerStatusExecute(r ServerAPIGetServerPower
 type ServerAPIGetServerRemoteConsoleInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerAPIGetServerRemoteConsoleInfoRequest) Execute() (*RemoteConsoleInfo, *http.Response, error) {
@@ -866,7 +866,7 @@ Returns Remote Console information
  @param serverId
  @return ServerAPIGetServerRemoteConsoleInfoRequest
 */
-func (a *ServerAPIService) GetServerRemoteConsoleInfo(ctx context.Context, serverId float32) ServerAPIGetServerRemoteConsoleInfoRequest {
+func (a *ServerAPIService) GetServerRemoteConsoleInfo(ctx context.Context, serverId int64) ServerAPIGetServerRemoteConsoleInfoRequest {
 	return ServerAPIGetServerRemoteConsoleInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -953,7 +953,7 @@ func (a *ServerAPIService) GetServerRemoteConsoleInfoExecute(r ServerAPIGetServe
 type ServerAPIGetServerVNCInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerAPIGetServerVNCInfoRequest) Execute() (*ServerVNCInfo, *http.Response, error) {
@@ -969,7 +969,7 @@ Returns VNC information
  @param serverId
  @return ServerAPIGetServerVNCInfoRequest
 */
-func (a *ServerAPIService) GetServerVNCInfo(ctx context.Context, serverId float32) ServerAPIGetServerVNCInfoRequest {
+func (a *ServerAPIService) GetServerVNCInfo(ctx context.Context, serverId int64) ServerAPIGetServerVNCInfoRequest {
 	return ServerAPIGetServerVNCInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1163,7 +1163,7 @@ func (r ServerAPIGetServersRequest) FilterServerClass(filterServerClass []string
 	return r
 }
 
-// Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+// Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe&amp;filter.serverStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterServerStatus(filterServerStatus []string) ServerAPIGetServersRequest {
 	r.filterServerStatus = &filterServerStatus
 	return r
@@ -1608,7 +1608,7 @@ func (a *ServerAPIService) GetServersStatisticsExecute(r ServerAPIGetServersStat
 type ServerAPIIdentifyServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerAPIIdentifyServerRequest) Execute() (*http.Response, error) {
@@ -1624,7 +1624,7 @@ identify the server chassis by blinking the LED
  @param serverId
  @return ServerAPIIdentifyServerRequest
 */
-func (a *ServerAPIService) IdentifyServer(ctx context.Context, serverId float32) ServerAPIIdentifyServerRequest {
+func (a *ServerAPIService) IdentifyServer(ctx context.Context, serverId int64) ServerAPIIdentifyServerRequest {
 	return ServerAPIIdentifyServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1700,7 +1700,7 @@ func (a *ServerAPIService) IdentifyServerExecute(r ServerAPIIdentifyServerReques
 type ServerAPIReRegisterServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	ifMatch *string
 }
 
@@ -1723,7 +1723,7 @@ Re-registers a server
  @param serverId
  @return ServerAPIReRegisterServerRequest
 */
-func (a *ServerAPIService) ReRegisterServer(ctx context.Context, serverId float32) ServerAPIReRegisterServerRequest {
+func (a *ServerAPIService) ReRegisterServer(ctx context.Context, serverId int64) ServerAPIReRegisterServerRequest {
 	return ServerAPIReRegisterServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2035,7 +2035,7 @@ func (a *ServerAPIService) RegisterServerExecute(r ServerAPIRegisterServerReques
 type ServerAPIResetServerToFactoryDefaultsRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	ifMatch *string
 }
 
@@ -2058,7 +2058,7 @@ Resets a server to factory defaults
  @param serverId
  @return ServerAPIResetServerToFactoryDefaultsRequest
 */
-func (a *ServerAPIService) ResetServerToFactoryDefaults(ctx context.Context, serverId float32) ServerAPIResetServerToFactoryDefaultsRequest {
+func (a *ServerAPIService) ResetServerToFactoryDefaults(ctx context.Context, serverId int64) ServerAPIResetServerToFactoryDefaultsRequest {
 	return ServerAPIResetServerToFactoryDefaultsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2137,7 +2137,7 @@ func (a *ServerAPIService) ResetServerToFactoryDefaultsExecute(r ServerAPIResetS
 type ServerAPIServerHardwareRescanRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	ifMatch *string
 	hardwareRescanServerRequest *HardwareRescanServerRequest
 }
@@ -2166,7 +2166,7 @@ Initiates a hardware rescan for a used server. Rediscovers interfaces and hardwa
  @param serverId
  @return ServerAPIServerHardwareRescanRequest
 */
-func (a *ServerAPIService) ServerHardwareRescan(ctx context.Context, serverId float32) ServerAPIServerHardwareRescanRequest {
+func (a *ServerAPIService) ServerHardwareRescan(ctx context.Context, serverId int64) ServerAPIServerHardwareRescanRequest {
 	return ServerAPIServerHardwareRescanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2258,7 +2258,7 @@ func (a *ServerAPIService) ServerHardwareRescanExecute(r ServerAPIServerHardware
 type ServerAPISetServerInterfacesDefaultFabricRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	serverInterfacesDefaultFabric *ServerInterfacesDefaultFabric
 }
 
@@ -2281,7 +2281,7 @@ Sets the default fabric for the specified server interfaces
  @param serverId
  @return ServerAPISetServerInterfacesDefaultFabricRequest
 */
-func (a *ServerAPIService) SetServerInterfacesDefaultFabric(ctx context.Context, serverId float32) ServerAPISetServerInterfacesDefaultFabricRequest {
+func (a *ServerAPIService) SetServerInterfacesDefaultFabric(ctx context.Context, serverId int64) ServerAPISetServerInterfacesDefaultFabricRequest {
 	return ServerAPISetServerInterfacesDefaultFabricRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2362,7 +2362,7 @@ func (a *ServerAPIService) SetServerInterfacesDefaultFabricExecute(r ServerAPISe
 type ServerAPISetServerInterfacesRedundancyGroupRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	serverInterfacesRedundancyGroup *ServerInterfacesRedundancyGroup
 }
 
@@ -2385,7 +2385,7 @@ Sets the redundancy group index for the specified server interfaces
  @param serverId
  @return ServerAPISetServerInterfacesRedundancyGroupRequest
 */
-func (a *ServerAPIService) SetServerInterfacesRedundancyGroup(ctx context.Context, serverId float32) ServerAPISetServerInterfacesRedundancyGroupRequest {
+func (a *ServerAPIService) SetServerInterfacesRedundancyGroup(ctx context.Context, serverId int64) ServerAPISetServerInterfacesRedundancyGroupRequest {
 	return ServerAPISetServerInterfacesRedundancyGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2466,7 +2466,7 @@ func (a *ServerAPIService) SetServerInterfacesRedundancyGroupExecute(r ServerAPI
 type ServerAPISetServerPowerStateRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	serverPowerSet *ServerPowerSet
 	ifMatch *string
 }
@@ -2496,7 +2496,7 @@ Sets the power state of a server
  @param serverId
  @return ServerAPISetServerPowerStateRequest
 */
-func (a *ServerAPIService) SetServerPowerState(ctx context.Context, serverId float32) ServerAPISetServerPowerStateRequest {
+func (a *ServerAPIService) SetServerPowerState(ctx context.Context, serverId int64) ServerAPISetServerPowerStateRequest {
 	return ServerAPISetServerPowerStateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2580,7 +2580,7 @@ func (a *ServerAPIService) SetServerPowerStateExecute(r ServerAPISetServerPowerS
 type ServerAPIUpdateServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	updateServer *UpdateServer
 	ifMatch *string
 }
@@ -2610,7 +2610,7 @@ Updates the server information
  @param serverId
  @return ServerAPIUpdateServerRequest
 */
-func (a *ServerAPIService) UpdateServer(ctx context.Context, serverId float32) ServerAPIUpdateServerRequest {
+func (a *ServerAPIService) UpdateServer(ctx context.Context, serverId int64) ServerAPIUpdateServerRequest {
 	return ServerAPIUpdateServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2705,7 +2705,7 @@ func (a *ServerAPIService) UpdateServerExecute(r ServerAPIUpdateServerRequest) (
 type ServerAPIUpdateServerEnableSnmpRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	ifMatch *string
 }
 
@@ -2728,7 +2728,7 @@ Enables SNMP on a Server
  @param serverId
  @return ServerAPIUpdateServerEnableSnmpRequest
 */
-func (a *ServerAPIService) UpdateServerEnableSnmp(ctx context.Context, serverId float32) ServerAPIUpdateServerEnableSnmpRequest {
+func (a *ServerAPIService) UpdateServerEnableSnmp(ctx context.Context, serverId int64) ServerAPIUpdateServerEnableSnmpRequest {
 	return ServerAPIUpdateServerEnableSnmpRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2818,7 +2818,7 @@ func (a *ServerAPIService) UpdateServerEnableSnmpExecute(r ServerAPIUpdateServer
 type ServerAPIUpdateServerIpmiCredentialsRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	serverId float32
+	serverId int64
 	updateServerIpmiCredentials *UpdateServerIpmiCredentials
 	ifMatch *string
 }
@@ -2848,7 +2848,7 @@ Updates Server ipmi credentials
  @param serverId
  @return ServerAPIUpdateServerIpmiCredentialsRequest
 */
-func (a *ServerAPIService) UpdateServerIpmiCredentials(ctx context.Context, serverId float32) ServerAPIUpdateServerIpmiCredentialsRequest {
+func (a *ServerAPIService) UpdateServerIpmiCredentials(ctx context.Context, serverId int64) ServerAPIUpdateServerIpmiCredentialsRequest {
 	return ServerAPIUpdateServerIpmiCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
-**Vendor** | [**ServerFirmwareCatalogVendor**](ServerFirmwareCatalogVendor.md) |  | 
-**UpdateType** | [**CatalogUpdateType**](CatalogUpdateType.md) |  | 
+**Vendor** | **string** |  | 
+**UpdateType** | **string** |  | 
 **VendorId** | Pointer to **string** |  | [optional] 
 **VendorUrl** | Pointer to **string** |  | [optional] 
 **VendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateFirmwareCatalog
 
-`func NewUpdateFirmwareCatalog(name string, vendor ServerFirmwareCatalogVendor, updateType CatalogUpdateType, ) *UpdateFirmwareCatalog`
+`func NewUpdateFirmwareCatalog(name string, vendor string, updateType string, ) *UpdateFirmwareCatalog`
 
 NewUpdateFirmwareCatalog instantiates a new UpdateFirmwareCatalog object
 This constructor will assign default values to properties that have it defined,
@@ -80,40 +80,40 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetVendor
 
-`func (o *UpdateFirmwareCatalog) GetVendor() ServerFirmwareCatalogVendor`
+`func (o *UpdateFirmwareCatalog) GetVendor() string`
 
 GetVendor returns the Vendor field if non-nil, zero value otherwise.
 
 ### GetVendorOk
 
-`func (o *UpdateFirmwareCatalog) GetVendorOk() (*ServerFirmwareCatalogVendor, bool)`
+`func (o *UpdateFirmwareCatalog) GetVendorOk() (*string, bool)`
 
 GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendor
 
-`func (o *UpdateFirmwareCatalog) SetVendor(v ServerFirmwareCatalogVendor)`
+`func (o *UpdateFirmwareCatalog) SetVendor(v string)`
 
 SetVendor sets Vendor field to given value.
 
 
 ### GetUpdateType
 
-`func (o *UpdateFirmwareCatalog) GetUpdateType() CatalogUpdateType`
+`func (o *UpdateFirmwareCatalog) GetUpdateType() string`
 
 GetUpdateType returns the UpdateType field if non-nil, zero value otherwise.
 
 ### GetUpdateTypeOk
 
-`func (o *UpdateFirmwareCatalog) GetUpdateTypeOk() (*CatalogUpdateType, bool)`
+`func (o *UpdateFirmwareCatalog) GetUpdateTypeOk() (*string, bool)`
 
 GetUpdateTypeOk returns a tuple with the UpdateType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdateType
 
-`func (o *UpdateFirmwareCatalog) SetUpdateType(v CatalogUpdateType)`
+`func (o *UpdateFirmwareCatalog) SetUpdateType(v string)`
 
 SetUpdateType sets UpdateType field to given value.
 

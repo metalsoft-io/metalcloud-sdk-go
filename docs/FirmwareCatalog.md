@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Unique identifier for the firmware catalog | 
+**Id** | **int64** | Unique identifier for the firmware catalog | 
 **Name** | **string** | Name of the catalog, must be unique | 
 **Description** | Pointer to **string** | User description of the catalog | [optional] 
 **Vendor** | **string** | Firmware catalog vendor: dell, lenovo, hp, supermicro | 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewFirmwareCatalog
 
-`func NewFirmwareCatalog(id float32, name string, vendor string, updateType string, createdTimestamp string, links []Link, ) *FirmwareCatalog`
+`func NewFirmwareCatalog(id int64, name string, vendor string, updateType string, createdTimestamp string, links []Link, ) *FirmwareCatalog`
 
 NewFirmwareCatalog instantiates a new FirmwareCatalog object
 This constructor will assign default values to properties that have it defined,
@@ -38,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *FirmwareCatalog) GetId() float32`
+`func (o *FirmwareCatalog) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *FirmwareCatalog) GetIdOk() (*float32, bool)`
+`func (o *FirmwareCatalog) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *FirmwareCatalog) SetId(v float32)`
+`func (o *FirmwareCatalog) SetId(v int64)`
 
 SetId sets Id field to given value.
 

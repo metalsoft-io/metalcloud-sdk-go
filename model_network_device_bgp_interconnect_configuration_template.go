@@ -47,7 +47,7 @@ type NetworkDeviceBGPInterconnectConfigurationTemplate struct {
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	// Id
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,7 +57,7 @@ type _NetworkDeviceBGPInterconnectConfigurationTemplate NetworkDeviceBGPIntercon
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32) *NetworkDeviceBGPInterconnectConfigurationTemplate {
+func NewNetworkDeviceBGPInterconnectConfigurationTemplate(label string, name string, networkDeviceDriver string, executionType string, createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64) *NetworkDeviceBGPInterconnectConfigurationTemplate {
 	this := NetworkDeviceBGPInterconnectConfigurationTemplate{}
 	this.Label = label
 	this.Name = name
@@ -407,9 +407,9 @@ func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) SetLinks(v []Link) {
 }
 
 // GetId returns the Id field value
-func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetId() float32 {
+func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -418,7 +418,7 @@ func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetIdOk() (*float32, bool) {
+func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -426,7 +426,7 @@ func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) GetIdOk() (*float32,
 }
 
 // SetId sets field value
-func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) SetId(v float32) {
+func (o *NetworkDeviceBGPInterconnectConfigurationTemplate) SetId(v int64) {
 	o.Id = v
 }
 

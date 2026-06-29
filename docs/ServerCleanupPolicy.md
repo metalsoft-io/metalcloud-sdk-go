@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Server cleanup policy id | 
+**Id** | **int64** | Server cleanup policy id | 
 **Label** | **string** | Server cleanup policy label | 
 **CleanupDrivesForOobEnabledServer** | **float32** | Cleanup drives for oob enabled server | 
+**ClearTpm** | **float32** | Whether to clear TPM | 
 **RecreateRaid** | **float32** | Recreate raid | 
 **ResetRaidControllers** | **float32** | Reset raid controllers to default | 
 **DisableEmbeddedNics** | **float32** | Disable embedded nics | 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewServerCleanupPolicy
 
-`func NewServerCleanupPolicy(id float32, label string, cleanupDrivesForOobEnabledServer float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string, ) *ServerCleanupPolicy`
+`func NewServerCleanupPolicy(id int64, label string, cleanupDrivesForOobEnabledServer float32, clearTpm float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string, ) *ServerCleanupPolicy`
 
 NewServerCleanupPolicy instantiates a new ServerCleanupPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -40,20 +41,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerCleanupPolicy) GetId() float32`
+`func (o *ServerCleanupPolicy) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerCleanupPolicy) GetIdOk() (*float32, bool)`
+`func (o *ServerCleanupPolicy) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerCleanupPolicy) SetId(v float32)`
+`func (o *ServerCleanupPolicy) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -96,6 +97,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerCleanupPolicy) SetCleanupDrivesForOobEnabledServer(v float32)`
 
 SetCleanupDrivesForOobEnabledServer sets CleanupDrivesForOobEnabledServer field to given value.
+
+
+### GetClearTpm
+
+`func (o *ServerCleanupPolicy) GetClearTpm() float32`
+
+GetClearTpm returns the ClearTpm field if non-nil, zero value otherwise.
+
+### GetClearTpmOk
+
+`func (o *ServerCleanupPolicy) GetClearTpmOk() (*float32, bool)`
+
+GetClearTpmOk returns a tuple with the ClearTpm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClearTpm
+
+`func (o *ServerCleanupPolicy) SetClearTpm(v float32)`
+
+SetClearTpm sets ClearTpm field to given value.
 
 
 ### GetRecreateRaid

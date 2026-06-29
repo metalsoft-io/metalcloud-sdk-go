@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | VM Type ID | 
+**Id** | **int64** | VM Type ID | 
 **Name** | **string** | Name of the VM Pool type | 
 **DisplayName** | Pointer to **string** | Display name of the VM Pool type | [optional] 
 **Label** | Pointer to **string** | Label of the VM Pool type | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewVMType
 
-`func NewVMType(id float32, name string, cpuCores float32, ramGB float32, ) *VMType`
+`func NewVMType(id int64, name string, cpuCores float32, ramGB float32, ) *VMType`
 
 NewVMType instantiates a new VMType object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VMType) GetId() float32`
+`func (o *VMType) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMType) GetIdOk() (*float32, bool)`
+`func (o *VMType) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMType) SetId(v float32)`
+`func (o *VMType) SetId(v int64)`
 
 SetId sets Id field to given value.
 

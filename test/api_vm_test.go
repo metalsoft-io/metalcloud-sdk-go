@@ -26,7 +26,7 @@ func Test_sdk_VMAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmId float32
+		var vmId int64
 
 		resp, httpRes, err := apiClient.VMAPI.GetVM(context.Background(), vmId).Execute()
 
@@ -40,7 +40,7 @@ func Test_sdk_VMAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmId float32
+		var vmId int64
 
 		resp, httpRes, err := apiClient.VMAPI.GetVMPowerStatus(context.Background(), vmId).Execute()
 
@@ -54,9 +54,21 @@ func Test_sdk_VMAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmId float32
+		var vmId int64
 
 		resp, httpRes, err := apiClient.VMAPI.GetVMRemoteConsoleInfo(context.Background(), vmId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMAPIService GetVMs", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.VMAPI.GetVMs(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -68,7 +80,7 @@ func Test_sdk_VMAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmId float32
+		var vmId int64
 
 		httpRes, err := apiClient.VMAPI.RebootVM(context.Background(), vmId).Execute()
 
@@ -81,7 +93,7 @@ func Test_sdk_VMAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmId float32
+		var vmId int64
 
 		httpRes, err := apiClient.VMAPI.ShutdownVM(context.Background(), vmId).Execute()
 
@@ -94,7 +106,7 @@ func Test_sdk_VMAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmId float32
+		var vmId int64
 
 		httpRes, err := apiClient.VMAPI.StartVM(context.Background(), vmId).Execute()
 
@@ -107,7 +119,7 @@ func Test_sdk_VMAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmId float32
+		var vmId int64
 
 		resp, httpRes, err := apiClient.VMAPI.UpdateVM(context.Background(), vmId).Execute()
 

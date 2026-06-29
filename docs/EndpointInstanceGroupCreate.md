@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
 **EndpointGroupName** | Pointer to **string** |  | [optional] 
-**ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
+**ExtensionInstanceId** | Pointer to **int64** |  | [optional] 
 **Hostname** | Pointer to **string** | Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \&quot;endpoint-instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;dnsLoadBalancingRecord\&quot; is true. It will be automatically suffixed with the endpoint instance group ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
-**ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
+**ResourcePoolId** | Pointer to **int64** | The resource pool assigned to this instance array | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -82,20 +82,20 @@ HasEndpointGroupName returns a boolean if a field has been set.
 
 ### GetExtensionInstanceId
 
-`func (o *EndpointInstanceGroupCreate) GetExtensionInstanceId() int32`
+`func (o *EndpointInstanceGroupCreate) GetExtensionInstanceId() int64`
 
 GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
 ### GetExtensionInstanceIdOk
 
-`func (o *EndpointInstanceGroupCreate) GetExtensionInstanceIdOk() (*int32, bool)`
+`func (o *EndpointInstanceGroupCreate) GetExtensionInstanceIdOk() (*int64, bool)`
 
 GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtensionInstanceId
 
-`func (o *EndpointInstanceGroupCreate) SetExtensionInstanceId(v int32)`
+`func (o *EndpointInstanceGroupCreate) SetExtensionInstanceId(v int64)`
 
 SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
@@ -132,20 +132,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetResourcePoolId
 
-`func (o *EndpointInstanceGroupCreate) GetResourcePoolId() int32`
+`func (o *EndpointInstanceGroupCreate) GetResourcePoolId() int64`
 
 GetResourcePoolId returns the ResourcePoolId field if non-nil, zero value otherwise.
 
 ### GetResourcePoolIdOk
 
-`func (o *EndpointInstanceGroupCreate) GetResourcePoolIdOk() (*int32, bool)`
+`func (o *EndpointInstanceGroupCreate) GetResourcePoolIdOk() (*int64, bool)`
 
 GetResourcePoolIdOk returns a tuple with the ResourcePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResourcePoolId
 
-`func (o *EndpointInstanceGroupCreate) SetResourcePoolId(v int32)`
+`func (o *EndpointInstanceGroupCreate) SetResourcePoolId(v int64)`
 
 SetResourcePoolId sets ResourcePoolId field to given value.
 

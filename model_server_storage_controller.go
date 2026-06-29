@@ -22,9 +22,9 @@ var _ MappedNullable = &ServerStorageController{}
 // ServerStorageController struct for ServerStorageController
 type ServerStorageController struct {
 	// The id of the storage controller.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The id of the server.
-	ServerId float32 `json:"serverId"`
+	ServerId int64 `json:"serverId"`
 	// The name of the storage controller.
 	Name string `json:"name"`
 	// The label of the storage controller.
@@ -44,7 +44,7 @@ type _ServerStorageController ServerStorageController
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerStorageController(id float32, serverId float32, name string, label string, description string, options ServerTypeStorageControllerOptions, mode string) *ServerStorageController {
+func NewServerStorageController(id int64, serverId int64, name string, label string, description string, options ServerTypeStorageControllerOptions, mode string) *ServerStorageController {
 	this := ServerStorageController{}
 	this.Id = id
 	this.ServerId = serverId
@@ -65,9 +65,9 @@ func NewServerStorageControllerWithDefaults() *ServerStorageController {
 }
 
 // GetId returns the Id field value
-func (o *ServerStorageController) GetId() float32 {
+func (o *ServerStorageController) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *ServerStorageController) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerStorageController) GetIdOk() (*float32, bool) {
+func (o *ServerStorageController) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,14 +84,14 @@ func (o *ServerStorageController) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerStorageController) SetId(v float32) {
+func (o *ServerStorageController) SetId(v int64) {
 	o.Id = v
 }
 
 // GetServerId returns the ServerId field value
-func (o *ServerStorageController) GetServerId() float32 {
+func (o *ServerStorageController) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *ServerStorageController) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *ServerStorageController) GetServerIdOk() (*float32, bool) {
+func (o *ServerStorageController) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *ServerStorageController) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *ServerStorageController) SetServerId(v float32) {
+func (o *ServerStorageController) SetServerId(v int64) {
 	o.ServerId = v
 }
 

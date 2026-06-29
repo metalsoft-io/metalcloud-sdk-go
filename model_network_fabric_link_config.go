@@ -22,9 +22,9 @@ var _ MappedNullable = &NetworkFabricLinkConfig{}
 // NetworkFabricLinkConfig struct for NetworkFabricLinkConfig
 type NetworkFabricLinkConfig struct {
 	// Unique identifier for the network fabric link
-	NetworkFabricLinkId float32 `json:"networkFabricLinkId"`
+	NetworkFabricLinkId int64 `json:"networkFabricLinkId"`
 	// Unique identifier for the network fabric link aggregation to be associated with that link
-	NetworkFabricLinkAggregationId *float32 `json:"networkFabricLinkAggregationId,omitempty"`
+	NetworkFabricLinkAggregationId *int64 `json:"networkFabricLinkAggregationId,omitempty"`
 	// Associated network fabric link
 	NetworkFabricLink *NetworkFabricLink `json:"networkFabricLink,omitempty"`
 	// Network Fabric Link Aggregation associated with this link
@@ -40,7 +40,7 @@ type _NetworkFabricLinkConfig NetworkFabricLinkConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricLinkConfig(networkFabricLinkId float32, status string) *NetworkFabricLinkConfig {
+func NewNetworkFabricLinkConfig(networkFabricLinkId int64, status string) *NetworkFabricLinkConfig {
 	this := NetworkFabricLinkConfig{}
 	this.NetworkFabricLinkId = networkFabricLinkId
 	this.Status = status
@@ -56,9 +56,9 @@ func NewNetworkFabricLinkConfigWithDefaults() *NetworkFabricLinkConfig {
 }
 
 // GetNetworkFabricLinkId returns the NetworkFabricLinkId field value
-func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkId() float32 {
+func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkId() float32 {
 
 // GetNetworkFabricLinkIdOk returns a tuple with the NetworkFabricLinkId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkIdOk() (*float32, bool) {
+func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,14 +75,14 @@ func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkIdOk() (*float32, bool) {
 }
 
 // SetNetworkFabricLinkId sets field value
-func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkId(v float32) {
+func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkId(v int64) {
 	o.NetworkFabricLinkId = v
 }
 
 // GetNetworkFabricLinkAggregationId returns the NetworkFabricLinkAggregationId field value if set, zero value otherwise.
-func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationId() float32 {
+func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationId() int64 {
 	if o == nil || IsNil(o.NetworkFabricLinkAggregationId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkFabricLinkAggregationId
@@ -90,7 +90,7 @@ func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationId() float32 {
 
 // GetNetworkFabricLinkAggregationIdOk returns a tuple with the NetworkFabricLinkAggregationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationIdOk() (*float32, bool) {
+func (o *NetworkFabricLinkConfig) GetNetworkFabricLinkAggregationIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkFabricLinkAggregationId) {
 		return nil, false
 	}
@@ -106,8 +106,8 @@ func (o *NetworkFabricLinkConfig) HasNetworkFabricLinkAggregationId() bool {
 	return false
 }
 
-// SetNetworkFabricLinkAggregationId gets a reference to the given float32 and assigns it to the NetworkFabricLinkAggregationId field.
-func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkAggregationId(v float32) {
+// SetNetworkFabricLinkAggregationId gets a reference to the given int64 and assigns it to the NetworkFabricLinkAggregationId field.
+func (o *NetworkFabricLinkConfig) SetNetworkFabricLinkAggregationId(v int64) {
 	o.NetworkFabricLinkAggregationId = &v
 }
 

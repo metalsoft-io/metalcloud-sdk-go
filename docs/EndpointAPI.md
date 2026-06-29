@@ -40,7 +40,7 @@ import (
 )
 
 func main() {
-	bulkCreateEndpoints := *openapiclient.NewBulkCreateEndpoints([]openapiclient.CreateEndpoint{*openapiclient.NewCreateEndpoint(int32(123), "Server 1", "lan-finance-1")}) // BulkCreateEndpoints | An object containing an array of endpoints to create
+	bulkCreateEndpoints := *openapiclient.NewBulkCreateEndpoints([]openapiclient.CreateEndpoint{*openapiclient.NewCreateEndpoint(int64(123), "Server 1", "lan-finance-1")}) // BulkCreateEndpoints | An object containing an array of endpoints to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	createEndpoint := *openapiclient.NewCreateEndpoint(int32(123), "Server 1", "lan-finance-1") // CreateEndpoint | The endpoint to create
+	createEndpoint := *openapiclient.NewCreateEndpoint(int64(123), "Server 1", "lan-finance-1") // CreateEndpoint | The endpoint to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -170,8 +170,8 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
-	createEndpointInterface := *openapiclient.NewCreateEndpointInterface(float32(1)) // CreateEndpointInterface | The endpoint interface to create
+	endpointId := int64(789) // int64 | 
+	createEndpointInterface := *openapiclient.NewCreateEndpointInterface(int64(1)) // CreateEndpointInterface | The endpoint interface to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -191,7 +191,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
+**endpointId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -242,7 +242,7 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
+	endpointId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -261,7 +261,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
+**endpointId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -312,8 +312,8 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
-	endpointInterfaceId := int32(56) // int32 | 
+	endpointId := int64(789) // int64 | 
+	endpointInterfaceId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -332,8 +332,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
-**endpointInterfaceId** | **int32** |  | 
+**endpointId** | **int64** |  | 
+**endpointInterfaceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -385,7 +385,7 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
+	endpointId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -405,7 +405,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
+**endpointId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -455,8 +455,8 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
-	endpointInterfaceId := int32(56) // int32 | 
+	endpointId := int64(789) // int64 | 
+	endpointInterfaceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -476,8 +476,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
-**endpointInterfaceId** | **int32** |  | 
+**endpointId** | **int64** |  | 
+**endpointInterfaceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -528,7 +528,7 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
+	endpointId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -557,7 +557,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
+**endpointId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -768,7 +768,7 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
+	endpointId := int64(789) // int64 | 
 	updateEndpoint := *openapiclient.NewUpdateEndpoint() // UpdateEndpoint | The endpoint configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -790,7 +790,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
+**endpointId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -842,8 +842,8 @@ import (
 )
 
 func main() {
-	endpointId := int32(56) // int32 | 
-	endpointInterfaceId := int32(56) // int32 | 
+	endpointId := int64(789) // int64 | 
+	endpointInterfaceId := int64(789) // int64 | 
 	updateEndpointInterface := *openapiclient.NewUpdateEndpointInterface() // UpdateEndpointInterface | The endpoint interface configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -865,8 +865,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **int32** |  | 
-**endpointInterfaceId** | **int32** |  | 
+**endpointId** | **int64** |  | 
+**endpointInterfaceId** | **int64** |  | 
 
 ### Other Parameters
 

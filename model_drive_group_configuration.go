@@ -22,16 +22,16 @@ var _ MappedNullable = &DriveGroupConfiguration{}
 // DriveGroupConfiguration struct for DriveGroupConfiguration
 type DriveGroupConfiguration struct {
 	// Revision of the Drive Group Configuration
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Label of the Drive Group.
 	Label string `json:"label"`
 	// Infrastructure id of the Drive Group
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Template Id
-	TemplateId *float32 `json:"templateId,omitempty"`
+	TemplateId *int64 `json:"templateId,omitempty"`
 	// Default disk size in MB for new Drives in the Drive Group
 	DriveSizeMbDefault float32 `json:"driveSizeMbDefault"`
-	ServerInstanceGroupId *float32 `json:"serverInstanceGroupId,omitempty"`
+	ServerInstanceGroupId *int64 `json:"serverInstanceGroupId,omitempty"`
 	// Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance
 	ExpandWithServerInstanceGroup float32 `json:"expandWithServerInstanceGroup"`
 	// The IO limit policy of the Drive Group.
@@ -45,13 +45,13 @@ type DriveGroupConfiguration struct {
 	// Timestamp of the Drive Group last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Id of the DNS subdomain for the Drive Group.
-	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Deploy type of the Drive Group
 	DeployType string `json:"deployType"`
 	// Deploy status of the Drive Group
 	DeployStatus string `json:"deployStatus"`
 	// Id of the deployment for the Drive Group.
-	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,7 +61,7 @@ type _DriveGroupConfiguration DriveGroupConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string) *DriveGroupConfiguration {
+func NewDriveGroupConfiguration(revision int64, label string, infrastructureId int64, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string) *DriveGroupConfiguration {
 	this := DriveGroupConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -90,9 +90,9 @@ func NewDriveGroupConfigurationWithDefaults() *DriveGroupConfiguration {
 }
 
 // GetRevision returns the Revision field value
-func (o *DriveGroupConfiguration) GetRevision() float32 {
+func (o *DriveGroupConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -101,7 +101,7 @@ func (o *DriveGroupConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *DriveGroupConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,7 +109,7 @@ func (o *DriveGroupConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *DriveGroupConfiguration) SetRevision(v float32) {
+func (o *DriveGroupConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -138,9 +138,9 @@ func (o *DriveGroupConfiguration) SetLabel(v string) {
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *DriveGroupConfiguration) GetInfrastructureId() float32 {
+func (o *DriveGroupConfiguration) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -149,7 +149,7 @@ func (o *DriveGroupConfiguration) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetInfrastructureIdOk() (*float32, bool) {
+func (o *DriveGroupConfiguration) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -157,14 +157,14 @@ func (o *DriveGroupConfiguration) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *DriveGroupConfiguration) SetInfrastructureId(v float32) {
+func (o *DriveGroupConfiguration) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
 // GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *DriveGroupConfiguration) GetTemplateId() float32 {
+func (o *DriveGroupConfiguration) GetTemplateId() int64 {
 	if o == nil || IsNil(o.TemplateId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.TemplateId
@@ -172,7 +172,7 @@ func (o *DriveGroupConfiguration) GetTemplateId() float32 {
 
 // GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetTemplateIdOk() (*float32, bool) {
+func (o *DriveGroupConfiguration) GetTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.TemplateId) {
 		return nil, false
 	}
@@ -188,8 +188,8 @@ func (o *DriveGroupConfiguration) HasTemplateId() bool {
 	return false
 }
 
-// SetTemplateId gets a reference to the given float32 and assigns it to the TemplateId field.
-func (o *DriveGroupConfiguration) SetTemplateId(v float32) {
+// SetTemplateId gets a reference to the given int64 and assigns it to the TemplateId field.
+func (o *DriveGroupConfiguration) SetTemplateId(v int64) {
 	o.TemplateId = &v
 }
 
@@ -218,9 +218,9 @@ func (o *DriveGroupConfiguration) SetDriveSizeMbDefault(v float32) {
 }
 
 // GetServerInstanceGroupId returns the ServerInstanceGroupId field value if set, zero value otherwise.
-func (o *DriveGroupConfiguration) GetServerInstanceGroupId() float32 {
+func (o *DriveGroupConfiguration) GetServerInstanceGroupId() int64 {
 	if o == nil || IsNil(o.ServerInstanceGroupId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerInstanceGroupId
@@ -228,7 +228,7 @@ func (o *DriveGroupConfiguration) GetServerInstanceGroupId() float32 {
 
 // GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetServerInstanceGroupIdOk() (*float32, bool) {
+func (o *DriveGroupConfiguration) GetServerInstanceGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerInstanceGroupId) {
 		return nil, false
 	}
@@ -244,8 +244,8 @@ func (o *DriveGroupConfiguration) HasServerInstanceGroupId() bool {
 	return false
 }
 
-// SetServerInstanceGroupId gets a reference to the given float32 and assigns it to the ServerInstanceGroupId field.
-func (o *DriveGroupConfiguration) SetServerInstanceGroupId(v float32) {
+// SetServerInstanceGroupId gets a reference to the given int64 and assigns it to the ServerInstanceGroupId field.
+func (o *DriveGroupConfiguration) SetServerInstanceGroupId(v int64) {
 	o.ServerInstanceGroupId = &v
 }
 
@@ -418,9 +418,9 @@ func (o *DriveGroupConfiguration) SetUpdatedTimestamp(v string) {
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *DriveGroupConfiguration) GetDnsSubdomainChangeId() float32 {
+func (o *DriveGroupConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -428,7 +428,7 @@ func (o *DriveGroupConfiguration) GetDnsSubdomainChangeId() float32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool) {
+func (o *DriveGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -444,8 +444,8 @@ func (o *DriveGroupConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given float32 and assigns it to the DnsSubdomainChangeId field.
-func (o *DriveGroupConfiguration) SetDnsSubdomainChangeId(v float32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *DriveGroupConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
@@ -498,9 +498,9 @@ func (o *DriveGroupConfiguration) SetDeployStatus(v string) {
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *DriveGroupConfiguration) GetInfrastructureDeployId() float32 {
+func (o *DriveGroupConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -508,7 +508,7 @@ func (o *DriveGroupConfiguration) GetInfrastructureDeployId() float32 {
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
+func (o *DriveGroupConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -524,8 +524,8 @@ func (o *DriveGroupConfiguration) HasInfrastructureDeployId() bool {
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
-func (o *DriveGroupConfiguration) SetInfrastructureDeployId(v float32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *DriveGroupConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &RegisterStorageResponse{}
 // RegisterStorageResponse struct for RegisterStorageResponse
 type RegisterStorageResponse struct {
 	// Id of the Storage
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Job info
 	JobInfo *JobInfo `json:"jobInfo,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _RegisterStorageResponse RegisterStorageResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterStorageResponse(id float32) *RegisterStorageResponse {
+func NewRegisterStorageResponse(id int64) *RegisterStorageResponse {
 	this := RegisterStorageResponse{}
 	this.Id = id
 	return &this
@@ -49,9 +49,9 @@ func NewRegisterStorageResponseWithDefaults() *RegisterStorageResponse {
 }
 
 // GetId returns the Id field value
-func (o *RegisterStorageResponse) GetId() float32 {
+func (o *RegisterStorageResponse) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *RegisterStorageResponse) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RegisterStorageResponse) GetIdOk() (*float32, bool) {
+func (o *RegisterStorageResponse) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *RegisterStorageResponse) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *RegisterStorageResponse) SetId(v float32) {
+func (o *RegisterStorageResponse) SetId(v int64) {
 	o.Id = v
 }
 

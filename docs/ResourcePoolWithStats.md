@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ResourcePoolId** | **float32** | Resource Pool ID | 
+**ResourcePoolId** | **int64** | Resource Pool ID | 
 **ResourcePoolLabel** | **string** | Label of the Resource Pool | 
 **ResourcePoolDescription** | **string** | Description of the Resource Pool | 
 **ResourcePoolCreatedTimestamp** | **string** | Resource Pool Created Timestamp | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewResourcePoolWithStats
 
-`func NewResourcePoolWithStats(resourcePoolId float32, resourcePoolLabel string, resourcePoolDescription string, resourcePoolCreatedTimestamp string, resourcePoolUpdatedTimestamp string, statistics ResourcePoolStatistics, ) *ResourcePoolWithStats`
+`func NewResourcePoolWithStats(resourcePoolId int64, resourcePoolLabel string, resourcePoolDescription string, resourcePoolCreatedTimestamp string, resourcePoolUpdatedTimestamp string, statistics ResourcePoolStatistics, ) *ResourcePoolWithStats`
 
 NewResourcePoolWithStats instantiates a new ResourcePoolWithStats object
 This constructor will assign default values to properties that have it defined,
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetResourcePoolId
 
-`func (o *ResourcePoolWithStats) GetResourcePoolId() float32`
+`func (o *ResourcePoolWithStats) GetResourcePoolId() int64`
 
 GetResourcePoolId returns the ResourcePoolId field if non-nil, zero value otherwise.
 
 ### GetResourcePoolIdOk
 
-`func (o *ResourcePoolWithStats) GetResourcePoolIdOk() (*float32, bool)`
+`func (o *ResourcePoolWithStats) GetResourcePoolIdOk() (*int64, bool)`
 
 GetResourcePoolIdOk returns a tuple with the ResourcePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResourcePoolId
 
-`func (o *ResourcePoolWithStats) SetResourcePoolId(v float32)`
+`func (o *ResourcePoolWithStats) SetResourcePoolId(v int64)`
 
 SetResourcePoolId sets ResourcePoolId field to given value.
 

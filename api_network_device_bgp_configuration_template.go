@@ -139,7 +139,7 @@ func (a *NetworkDeviceBGPConfigurationTemplateAPIService) CreateNetworkDeviceBGP
 type NetworkDeviceBGPConfigurationTemplateAPIDeleteNetworkDeviceBGPConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceBGPConfigurationTemplateAPIService
-	networkDeviceBGPConfigurationTemplateId float32
+	networkDeviceBGPConfigurationTemplateId int64
 }
 
 func (r NetworkDeviceBGPConfigurationTemplateAPIDeleteNetworkDeviceBGPConfigurationTemplateRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes a Network Device BGP Configuration Template
  @param networkDeviceBGPConfigurationTemplateId
  @return NetworkDeviceBGPConfigurationTemplateAPIDeleteNetworkDeviceBGPConfigurationTemplateRequest
 */
-func (a *NetworkDeviceBGPConfigurationTemplateAPIService) DeleteNetworkDeviceBGPConfigurationTemplate(ctx context.Context, networkDeviceBGPConfigurationTemplateId float32) NetworkDeviceBGPConfigurationTemplateAPIDeleteNetworkDeviceBGPConfigurationTemplateRequest {
+func (a *NetworkDeviceBGPConfigurationTemplateAPIService) DeleteNetworkDeviceBGPConfigurationTemplate(ctx context.Context, networkDeviceBGPConfigurationTemplateId int64) NetworkDeviceBGPConfigurationTemplateAPIDeleteNetworkDeviceBGPConfigurationTemplateRequest {
 	return NetworkDeviceBGPConfigurationTemplateAPIDeleteNetworkDeviceBGPConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *NetworkDeviceBGPConfigurationTemplateAPIService) DeleteNetworkDeviceBGP
 type NetworkDeviceBGPConfigurationTemplateAPIGetNetworkDeviceBGPConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceBGPConfigurationTemplateAPIService
-	networkDeviceBGPConfigurationTemplateId float32
+	networkDeviceBGPConfigurationTemplateId int64
 }
 
 func (r NetworkDeviceBGPConfigurationTemplateAPIGetNetworkDeviceBGPConfigurationTemplateRequest) Execute() (*NetworkDeviceBGPConfigurationTemplate, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns Network Device BGP Configuration Template information
  @param networkDeviceBGPConfigurationTemplateId
  @return NetworkDeviceBGPConfigurationTemplateAPIGetNetworkDeviceBGPConfigurationTemplateRequest
 */
-func (a *NetworkDeviceBGPConfigurationTemplateAPIService) GetNetworkDeviceBGPConfigurationTemplate(ctx context.Context, networkDeviceBGPConfigurationTemplateId float32) NetworkDeviceBGPConfigurationTemplateAPIGetNetworkDeviceBGPConfigurationTemplateRequest {
+func (a *NetworkDeviceBGPConfigurationTemplateAPIService) GetNetworkDeviceBGPConfigurationTemplate(ctx context.Context, networkDeviceBGPConfigurationTemplateId int64) NetworkDeviceBGPConfigurationTemplateAPIGetNetworkDeviceBGPConfigurationTemplateRequest {
 	return NetworkDeviceBGPConfigurationTemplateAPIGetNetworkDeviceBGPConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -679,7 +679,7 @@ func (a *NetworkDeviceBGPConfigurationTemplateAPIService) GetNetworkDeviceBGPCon
 type NetworkDeviceBGPConfigurationTemplateAPIUpdateNetworkDeviceBGPConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceBGPConfigurationTemplateAPIService
-	networkDeviceBGPConfigurationTemplateId float32
+	networkDeviceBGPConfigurationTemplateId int64
 	updateNetworkDeviceBGPConfigurationTemplate *UpdateNetworkDeviceBGPConfigurationTemplate
 }
 
@@ -702,7 +702,7 @@ Updates Network Device BGP Configuration Template information
  @param networkDeviceBGPConfigurationTemplateId
  @return NetworkDeviceBGPConfigurationTemplateAPIUpdateNetworkDeviceBGPConfigurationTemplateRequest
 */
-func (a *NetworkDeviceBGPConfigurationTemplateAPIService) UpdateNetworkDeviceBGPConfigurationTemplate(ctx context.Context, networkDeviceBGPConfigurationTemplateId float32) NetworkDeviceBGPConfigurationTemplateAPIUpdateNetworkDeviceBGPConfigurationTemplateRequest {
+func (a *NetworkDeviceBGPConfigurationTemplateAPIService) UpdateNetworkDeviceBGPConfigurationTemplate(ctx context.Context, networkDeviceBGPConfigurationTemplateId int64) NetworkDeviceBGPConfigurationTemplateAPIUpdateNetworkDeviceBGPConfigurationTemplateRequest {
 	return NetworkDeviceBGPConfigurationTemplateAPIUpdateNetworkDeviceBGPConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,

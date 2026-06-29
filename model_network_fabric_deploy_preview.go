@@ -22,11 +22,11 @@ var _ MappedNullable = &NetworkFabricDeployPreview{}
 // NetworkFabricDeployPreview struct for NetworkFabricDeployPreview
 type NetworkFabricDeployPreview struct {
 	// Unique identifier for the network device.
-	NetworkDeviceId float32 `json:"networkDeviceId"`
+	NetworkDeviceId int64 `json:"networkDeviceId"`
 	// Unique identifier for the network fabric link
-	NetworkFabricLinkId float32 `json:"networkFabricLinkId"`
+	NetworkFabricLinkId int64 `json:"networkFabricLinkId"`
 	// Unique identifier for the Network Device Configuration Template
-	NetworkDeviceConfigurationTemplateId float32 `json:"networkDeviceConfigurationTemplateId"`
+	NetworkDeviceConfigurationTemplateId int64 `json:"networkDeviceConfigurationTemplateId"`
 	// Type of the Network Device Configuration Template
 	NetworkDeviceConfigurationTemplateType NetworkDeviceConfigurationTemplateType `json:"networkDeviceConfigurationTemplateType"`
 	// Preview of the BGP preparation for the network device encoded in base64 format
@@ -42,7 +42,7 @@ type _NetworkFabricDeployPreview NetworkFabricDeployPreview
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricDeployPreview(networkDeviceId float32, networkFabricLinkId float32, networkDeviceConfigurationTemplateId float32, networkDeviceConfigurationTemplateType NetworkDeviceConfigurationTemplateType) *NetworkFabricDeployPreview {
+func NewNetworkFabricDeployPreview(networkDeviceId int64, networkFabricLinkId int64, networkDeviceConfigurationTemplateId int64, networkDeviceConfigurationTemplateType NetworkDeviceConfigurationTemplateType) *NetworkFabricDeployPreview {
 	this := NetworkFabricDeployPreview{}
 	this.NetworkDeviceId = networkDeviceId
 	this.NetworkFabricLinkId = networkFabricLinkId
@@ -60,9 +60,9 @@ func NewNetworkFabricDeployPreviewWithDefaults() *NetworkFabricDeployPreview {
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *NetworkFabricDeployPreview) GetNetworkDeviceId() float32 {
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -71,7 +71,7 @@ func (o *NetworkFabricDeployPreview) GetNetworkDeviceId() float32 {
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricDeployPreview) GetNetworkDeviceIdOk() (*float32, bool) {
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,14 +79,14 @@ func (o *NetworkFabricDeployPreview) GetNetworkDeviceIdOk() (*float32, bool) {
 }
 
 // SetNetworkDeviceId sets field value
-func (o *NetworkFabricDeployPreview) SetNetworkDeviceId(v float32) {
+func (o *NetworkFabricDeployPreview) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 
 // GetNetworkFabricLinkId returns the NetworkFabricLinkId field value
-func (o *NetworkFabricDeployPreview) GetNetworkFabricLinkId() float32 {
+func (o *NetworkFabricDeployPreview) GetNetworkFabricLinkId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *NetworkFabricDeployPreview) GetNetworkFabricLinkId() float32 {
 
 // GetNetworkFabricLinkIdOk returns a tuple with the NetworkFabricLinkId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricDeployPreview) GetNetworkFabricLinkIdOk() (*float32, bool) {
+func (o *NetworkFabricDeployPreview) GetNetworkFabricLinkIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,14 +103,14 @@ func (o *NetworkFabricDeployPreview) GetNetworkFabricLinkIdOk() (*float32, bool)
 }
 
 // SetNetworkFabricLinkId sets field value
-func (o *NetworkFabricDeployPreview) SetNetworkFabricLinkId(v float32) {
+func (o *NetworkFabricDeployPreview) SetNetworkFabricLinkId(v int64) {
 	o.NetworkFabricLinkId = v
 }
 
 // GetNetworkDeviceConfigurationTemplateId returns the NetworkDeviceConfigurationTemplateId field value
-func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateId() float32 {
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -119,7 +119,7 @@ func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateId() f
 
 // GetNetworkDeviceConfigurationTemplateIdOk returns a tuple with the NetworkDeviceConfigurationTemplateId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateIdOk() (*float32, bool) {
+func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *NetworkFabricDeployPreview) GetNetworkDeviceConfigurationTemplateIdOk()
 }
 
 // SetNetworkDeviceConfigurationTemplateId sets field value
-func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateId(v float32) {
+func (o *NetworkFabricDeployPreview) SetNetworkDeviceConfigurationTemplateId(v int64) {
 	o.NetworkDeviceConfigurationTemplateId = v
 }
 

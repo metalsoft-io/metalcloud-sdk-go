@@ -21,7 +21,7 @@ var _ MappedNullable = &InstanceLicenseResourceItem{}
 
 // InstanceLicenseResourceItem struct for InstanceLicenseResourceItem
 type InstanceLicenseResourceItem struct {
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	StartTimestamp string `json:"startTimestamp"`
 	EndTimestamp string `json:"endTimestamp"`
@@ -41,7 +41,7 @@ type _InstanceLicenseResourceItem InstanceLicenseResourceItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceLicenseResourceItem(id float32, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, licenseId string, licenseType string, licenseUtilizationType string) *InstanceLicenseResourceItem {
+func NewInstanceLicenseResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, licenseId string, licenseType string, licenseUtilizationType string) *InstanceLicenseResourceItem {
 	this := InstanceLicenseResourceItem{}
 	this.Id = id
 	this.Label = label
@@ -65,9 +65,9 @@ func NewInstanceLicenseResourceItemWithDefaults() *InstanceLicenseResourceItem {
 }
 
 // GetId returns the Id field value
-func (o *InstanceLicenseResourceItem) GetId() float32 {
+func (o *InstanceLicenseResourceItem) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *InstanceLicenseResourceItem) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *InstanceLicenseResourceItem) GetIdOk() (*float32, bool) {
+func (o *InstanceLicenseResourceItem) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +84,7 @@ func (o *InstanceLicenseResourceItem) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *InstanceLicenseResourceItem) SetId(v float32) {
+func (o *InstanceLicenseResourceItem) SetId(v int64) {
 	o.Id = v
 }
 

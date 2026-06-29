@@ -26,9 +26,9 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
-		var vmTypeId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
+		var vmTypeId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.ApplyVMTypeOnVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId, vmTypeId).Execute()
 
@@ -42,7 +42,7 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.CreateVMInstanceGroup(context.Background(), infrastructureId).Execute()
 
@@ -56,8 +56,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceGroupId int32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.CreateVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -71,8 +71,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		httpRes, err := apiClient.VMInstanceGroupAPI.DeleteVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -85,9 +85,9 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceGroupId int32
-		var connectionId int32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
+		var connectionId int64
 
 		httpRes, err := apiClient.VMInstanceGroupAPI.DeleteVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
 
@@ -100,8 +100,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetInfrastructureVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -115,7 +115,7 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetInfrastructureVMInstanceGroups(context.Background(), infrastructureId).Execute()
 
@@ -129,8 +129,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupConfigInfo(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -144,9 +144,9 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
-		var vmInstanceGroupInterfaceId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
+		var vmInstanceGroupInterfaceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupInterfaceInfo(context.Background(), infrastructureId, vmInstanceGroupId, vmInstanceGroupInterfaceId).Execute()
 
@@ -160,8 +160,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupInterfaces(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -175,9 +175,9 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceGroupId int32
-		var connectionId int32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
+		var connectionId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnectionById(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
 
@@ -191,8 +191,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceGroupId int32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnections(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -206,8 +206,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupVMInstances(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -221,8 +221,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceGroupId int32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVmInstanceGroupNetworkConfiguration(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -236,8 +236,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.PatchVMInstanceGroupMeta(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -251,8 +251,8 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceGroupId float32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.UpdateVMInstanceGroupConfig(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
@@ -266,9 +266,9 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceGroupId int32
-		var connectionId int32
+		var infrastructureId int64
+		var vmInstanceGroupId int64
+		var connectionId int64
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.UpdateVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
 

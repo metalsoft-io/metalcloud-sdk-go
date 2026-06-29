@@ -25,9 +25,9 @@ type LogicalNetworkInterconnectLogicalNetwork struct {
 	// The ID of the logical network interconnect to logical network relationship
 	Id string `json:"id"`
 	// Foreign key to logical_networks
-	LogicalNetworkId int32 `json:"logicalNetworkId"`
+	LogicalNetworkId int64 `json:"logicalNetworkId"`
 	// Foreign key to logical_network_interconnect
-	LogicalNetworkInterconnectId int32 `json:"logicalNetworkInterconnectId"`
+	LogicalNetworkInterconnectId int64 `json:"logicalNetworkInterconnectId"`
 	// Status of the logical network interconnect to logical network relationship
 	Status LogicalNetworkInterconnectStatus `json:"status"`
 	// The date and time the entity was created
@@ -43,7 +43,7 @@ type _LogicalNetworkInterconnectLogicalNetwork LogicalNetworkInterconnectLogical
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogicalNetworkInterconnectLogicalNetwork(id string, logicalNetworkId int32, logicalNetworkInterconnectId int32, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time) *LogicalNetworkInterconnectLogicalNetwork {
+func NewLogicalNetworkInterconnectLogicalNetwork(id string, logicalNetworkId int64, logicalNetworkInterconnectId int64, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time) *LogicalNetworkInterconnectLogicalNetwork {
 	this := LogicalNetworkInterconnectLogicalNetwork{}
 	this.Id = id
 	this.LogicalNetworkId = logicalNetworkId
@@ -87,9 +87,9 @@ func (o *LogicalNetworkInterconnectLogicalNetwork) SetId(v string) {
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value
-func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkId() int32 {
+func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -98,7 +98,7 @@ func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkId() int32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkIdOk() (*int32, bool) {
+func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,14 +106,14 @@ func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkIdOk() (*int
 }
 
 // SetLogicalNetworkId sets field value
-func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkId(v int32) {
+func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = v
 }
 
 // GetLogicalNetworkInterconnectId returns the LogicalNetworkInterconnectId field value
-func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectId() int32 {
+func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -122,7 +122,7 @@ func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnect
 
 // GetLogicalNetworkInterconnectIdOk returns a tuple with the LogicalNetworkInterconnectId field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectIdOk() (*int32, bool) {
+func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnect
 }
 
 // SetLogicalNetworkInterconnectId sets field value
-func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkInterconnectId(v int32) {
+func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkInterconnectId(v int64) {
 	o.LogicalNetworkInterconnectId = v
 }
 

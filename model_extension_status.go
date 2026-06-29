@@ -23,14 +23,18 @@ type ExtensionStatus string
 const (
 	EXTENSIONSTATUS_DRAFT ExtensionStatus = "draft"
 	EXTENSIONSTATUS_ACTIVE ExtensionStatus = "active"
+	EXTENSIONSTATUS_SUSPENDED ExtensionStatus = "suspended"
 	EXTENSIONSTATUS_ARCHIVED ExtensionStatus = "archived"
+	EXTENSIONSTATUS_DELETED ExtensionStatus = "deleted"
 )
 
 // All allowed values of ExtensionStatus enum
 var AllowedExtensionStatusEnumValues = []ExtensionStatus{
 	"draft",
 	"active",
+	"suspended",
 	"archived",
+	"deleted",
 }
 
 func (v *ExtensionStatus) UnmarshalJSON(src []byte) error {

@@ -29,7 +29,7 @@ type ServerRegistrationProfile struct {
 	// Revision number of the entity
 	Revision string `json:"revision"`
 	// Unique identifier for the server registration profile
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the server registration profile
 	Name string `json:"name"`
 	// Server registration profile settings
@@ -47,7 +47,7 @@ type _ServerRegistrationProfile ServerRegistrationProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, name string, settings ServerRegistrationProfileSettings, isDefault bool) *ServerRegistrationProfile {
+func NewServerRegistrationProfile(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, name string, settings ServerRegistrationProfileSettings, isDefault bool) *ServerRegistrationProfile {
 	this := ServerRegistrationProfile{}
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -140,9 +140,9 @@ func (o *ServerRegistrationProfile) SetRevision(v string) {
 }
 
 // GetId returns the Id field value
-func (o *ServerRegistrationProfile) GetId() float32 {
+func (o *ServerRegistrationProfile) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -151,7 +151,7 @@ func (o *ServerRegistrationProfile) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerRegistrationProfile) GetIdOk() (*float32, bool) {
+func (o *ServerRegistrationProfile) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -159,7 +159,7 @@ func (o *ServerRegistrationProfile) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerRegistrationProfile) SetId(v float32) {
+func (o *ServerRegistrationProfile) SetId(v int64) {
 	o.Id = v
 }
 

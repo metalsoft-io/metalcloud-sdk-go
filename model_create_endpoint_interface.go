@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateEndpointInterface{}
 // CreateEndpointInterface struct for CreateEndpointInterface
 type CreateEndpointInterface struct {
 	// Network device interface id
-	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
+	NetworkDeviceInterfaceId int64 `json:"networkDeviceInterfaceId"`
 	// Device interface mac address
 	MacAddress *string `json:"macAddress,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _CreateEndpointInterface CreateEndpointInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateEndpointInterface(networkDeviceInterfaceId float32) *CreateEndpointInterface {
+func NewCreateEndpointInterface(networkDeviceInterfaceId int64) *CreateEndpointInterface {
 	this := CreateEndpointInterface{}
 	this.NetworkDeviceInterfaceId = networkDeviceInterfaceId
 	return &this
@@ -49,9 +49,9 @@ func NewCreateEndpointInterfaceWithDefaults() *CreateEndpointInterface {
 }
 
 // GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value
-func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceId() float32 {
+func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceId() float32 {
 
 // GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, boo
 }
 
 // SetNetworkDeviceInterfaceId sets field value
-func (o *CreateEndpointInterface) SetNetworkDeviceInterfaceId(v float32) {
+func (o *CreateEndpointInterface) SetNetworkDeviceInterfaceId(v int64) {
 	o.NetworkDeviceInterfaceId = v
 }
 

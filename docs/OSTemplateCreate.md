@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Os** | [**OSTemplateOs**](OSTemplateOs.md) |  | 
 **Visibility** | Pointer to **string** | The visibility of the OS template.                     If the visibility is PUBLIC any user can use the OS template in deployments                     If the visibility is PRIVATE the OS template can be used in deployments only                     by the user who created and/or updated the template | [optional] [default to "private"]
 **Tags** | Pointer to **[]string** | The tags associated with the OS template | [optional] 
-**FirmwareBaselineId** | Pointer to **int32** | The firmware baseline ID associated with the OS template | [optional] 
+**FirmwareBaselineId** | Pointer to **int64** | The firmware baseline ID associated with the OS template | [optional] 
 
 ## Methods
 
@@ -262,20 +262,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetFirmwareBaselineId
 
-`func (o *OSTemplateCreate) GetFirmwareBaselineId() int32`
+`func (o *OSTemplateCreate) GetFirmwareBaselineId() int64`
 
 GetFirmwareBaselineId returns the FirmwareBaselineId field if non-nil, zero value otherwise.
 
 ### GetFirmwareBaselineIdOk
 
-`func (o *OSTemplateCreate) GetFirmwareBaselineIdOk() (*int32, bool)`
+`func (o *OSTemplateCreate) GetFirmwareBaselineIdOk() (*int64, bool)`
 
 GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirmwareBaselineId
 
-`func (o *OSTemplateCreate) SetFirmwareBaselineId(v int32)`
+`func (o *OSTemplateCreate) SetFirmwareBaselineId(v int64)`
 
 SetFirmwareBaselineId sets FirmwareBaselineId field to given value.
 

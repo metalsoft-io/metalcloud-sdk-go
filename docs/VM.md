@@ -4,25 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | VM ID | 
+**Id** | **int64** | VM ID | 
 **Name** | **string** | Name of the VM | 
-**SiteId** | **float32** | Id of the site for the VM | 
-**DatacenterName** | **string** | Datacenter of the VM | 
-**InfrastructureId** | **float32** | ID of the infrastructure where this VM is deployed | 
-**UserId** | **float32** | ID of the user that owns this VM | 
-**UserEmail** | **string** | Email of the user that owns this VM | 
-**InstanceId** | **float32** | ID of the instance where this VM is deployed | 
-**VmInstanceId** | **float32** | The id of the VM Instance. This is a number. | 
+**SiteId** | **int64** | Id of the site for the VM | 
+**InfrastructureId** | **int64** | ID of the infrastructure where this VM is deployed | 
+**UserId** | **int64** | ID of the user that owns this VM | 
+**InstanceId** | **int64** | ID of the instance where this VM is deployed | 
+**VmInstanceId** | **int64** | The id of the VM Instance. This is a number. | 
 **Host** | **string** | Name of the host | 
 **Hosts** | **[]string** | List of hosts | 
 **CpuCores** | **float32** | Number of CPU cores for the VM | 
 **RamGB** | **float32** | RAM in GB for the VM | 
 **DiskSizeGB** | **float32** | Disk size in GB for the VM | 
 **GpuInfo** | Pointer to [**[]VMGpuInfoDto**](VMGpuInfoDto.md) | Information about GPUs assigned to this VM | [optional] 
-**TypeId** | **float32** | The id of the VM Type. This is a number. | 
-**PoolId** | **float32** | The id of the VM Pool. This is a number. | 
+**TypeId** | **int64** | The id of the VM Type. This is a number. | 
+**PoolId** | **int64** | The id of the VM Pool. This is a number. | 
 **AdministrationState** | **string** | The administration state of the VM. | 
 **Comments** | Pointer to **float32** | VM comments. | [optional] 
+**NumaNodes** | Pointer to **[]float32** | NUMA nodes the VM is assigned to. Only applicable for VMs with GPU / DPU requirements. | [optional] 
 **PowerState** | **string** | The power state of the VM. | 
 **PowerStateLastUpdatedTimestamp** | **string** | Timestamp when the VM power state was last updated. | 
 **CreatedTimestamp** | **string** | Timestamp when the VM was created | 
@@ -35,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewVM
 
-`func NewVM(id float32, name string, siteId float32, datacenterName string, infrastructureId float32, userId float32, userEmail string, instanceId float32, vmInstanceId float32, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId float32, poolId float32, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk, ) *VM`
+`func NewVM(id int64, name string, siteId int64, infrastructureId int64, userId int64, instanceId int64, vmInstanceId int64, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId int64, poolId int64, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk, ) *VM`
 
 NewVM instantiates a new VM object
 This constructor will assign default values to properties that have it defined,
@@ -52,20 +51,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VM) GetId() float32`
+`func (o *VM) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VM) GetIdOk() (*float32, bool)`
+`func (o *VM) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VM) SetId(v float32)`
+`func (o *VM) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -92,140 +91,100 @@ SetName sets Name field to given value.
 
 ### GetSiteId
 
-`func (o *VM) GetSiteId() float32`
+`func (o *VM) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *VM) GetSiteIdOk() (*float32, bool)`
+`func (o *VM) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *VM) SetSiteId(v float32)`
+`func (o *VM) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
 
-### GetDatacenterName
-
-`func (o *VM) GetDatacenterName() string`
-
-GetDatacenterName returns the DatacenterName field if non-nil, zero value otherwise.
-
-### GetDatacenterNameOk
-
-`func (o *VM) GetDatacenterNameOk() (*string, bool)`
-
-GetDatacenterNameOk returns a tuple with the DatacenterName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDatacenterName
-
-`func (o *VM) SetDatacenterName(v string)`
-
-SetDatacenterName sets DatacenterName field to given value.
-
-
 ### GetInfrastructureId
 
-`func (o *VM) GetInfrastructureId() float32`
+`func (o *VM) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *VM) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *VM) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *VM) SetInfrastructureId(v float32)`
+`func (o *VM) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetUserId
 
-`func (o *VM) GetUserId() float32`
+`func (o *VM) GetUserId() int64`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *VM) GetUserIdOk() (*float32, bool)`
+`func (o *VM) GetUserIdOk() (*int64, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *VM) SetUserId(v float32)`
+`func (o *VM) SetUserId(v int64)`
 
 SetUserId sets UserId field to given value.
 
 
-### GetUserEmail
-
-`func (o *VM) GetUserEmail() string`
-
-GetUserEmail returns the UserEmail field if non-nil, zero value otherwise.
-
-### GetUserEmailOk
-
-`func (o *VM) GetUserEmailOk() (*string, bool)`
-
-GetUserEmailOk returns a tuple with the UserEmail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUserEmail
-
-`func (o *VM) SetUserEmail(v string)`
-
-SetUserEmail sets UserEmail field to given value.
-
-
 ### GetInstanceId
 
-`func (o *VM) GetInstanceId() float32`
+`func (o *VM) GetInstanceId() int64`
 
 GetInstanceId returns the InstanceId field if non-nil, zero value otherwise.
 
 ### GetInstanceIdOk
 
-`func (o *VM) GetInstanceIdOk() (*float32, bool)`
+`func (o *VM) GetInstanceIdOk() (*int64, bool)`
 
 GetInstanceIdOk returns a tuple with the InstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceId
 
-`func (o *VM) SetInstanceId(v float32)`
+`func (o *VM) SetInstanceId(v int64)`
 
 SetInstanceId sets InstanceId field to given value.
 
 
 ### GetVmInstanceId
 
-`func (o *VM) GetVmInstanceId() float32`
+`func (o *VM) GetVmInstanceId() int64`
 
 GetVmInstanceId returns the VmInstanceId field if non-nil, zero value otherwise.
 
 ### GetVmInstanceIdOk
 
-`func (o *VM) GetVmInstanceIdOk() (*float32, bool)`
+`func (o *VM) GetVmInstanceIdOk() (*int64, bool)`
 
 GetVmInstanceIdOk returns a tuple with the VmInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmInstanceId
 
-`func (o *VM) SetVmInstanceId(v float32)`
+`func (o *VM) SetVmInstanceId(v int64)`
 
 SetVmInstanceId sets VmInstanceId field to given value.
 
@@ -357,40 +316,40 @@ HasGpuInfo returns a boolean if a field has been set.
 
 ### GetTypeId
 
-`func (o *VM) GetTypeId() float32`
+`func (o *VM) GetTypeId() int64`
 
 GetTypeId returns the TypeId field if non-nil, zero value otherwise.
 
 ### GetTypeIdOk
 
-`func (o *VM) GetTypeIdOk() (*float32, bool)`
+`func (o *VM) GetTypeIdOk() (*int64, bool)`
 
 GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeId
 
-`func (o *VM) SetTypeId(v float32)`
+`func (o *VM) SetTypeId(v int64)`
 
 SetTypeId sets TypeId field to given value.
 
 
 ### GetPoolId
 
-`func (o *VM) GetPoolId() float32`
+`func (o *VM) GetPoolId() int64`
 
 GetPoolId returns the PoolId field if non-nil, zero value otherwise.
 
 ### GetPoolIdOk
 
-`func (o *VM) GetPoolIdOk() (*float32, bool)`
+`func (o *VM) GetPoolIdOk() (*int64, bool)`
 
 GetPoolIdOk returns a tuple with the PoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPoolId
 
-`func (o *VM) SetPoolId(v float32)`
+`func (o *VM) SetPoolId(v int64)`
 
 SetPoolId sets PoolId field to given value.
 
@@ -439,6 +398,31 @@ SetComments sets Comments field to given value.
 `func (o *VM) HasComments() bool`
 
 HasComments returns a boolean if a field has been set.
+
+### GetNumaNodes
+
+`func (o *VM) GetNumaNodes() []float32`
+
+GetNumaNodes returns the NumaNodes field if non-nil, zero value otherwise.
+
+### GetNumaNodesOk
+
+`func (o *VM) GetNumaNodesOk() (*[]float32, bool)`
+
+GetNumaNodesOk returns a tuple with the NumaNodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumaNodes
+
+`func (o *VM) SetNumaNodes(v []float32)`
+
+SetNumaNodes sets NumaNodes field to given value.
+
+### HasNumaNodes
+
+`func (o *VM) HasNumaNodes() bool`
+
+HasNumaNodes returns a boolean if a field has been set.
 
 ### GetPowerState
 

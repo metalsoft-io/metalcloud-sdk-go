@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Unique identifier for the network device controller. | 
-**Revision** | **int32** | Revision number | 
+**Revision** | **int64** | Revision number | 
 **Status** | **string** | Current status of the network device controller | 
-**SiteId** | **float32** | Site ID | 
+**SiteId** | **int64** | Site ID | 
 **IdentifierString** | **string** | Hostname of the network device controller | 
 **Description** | **NullableString** | Description of the network device controller | 
 **DatacenterName** | **string** | Datacenter metadata | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceController
 
-`func NewNetworkDeviceController(id string, revision int32, status string, siteId float32, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string, ) *NetworkDeviceController`
+`func NewNetworkDeviceController(id string, revision int64, status string, siteId int64, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string, ) *NetworkDeviceController`
 
 NewNetworkDeviceController instantiates a new NetworkDeviceController object
 This constructor will assign default values to properties that have it defined,
@@ -60,20 +60,20 @@ SetId sets Id field to given value.
 
 ### GetRevision
 
-`func (o *NetworkDeviceController) GetRevision() int32`
+`func (o *NetworkDeviceController) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *NetworkDeviceController) GetRevisionOk() (*int32, bool)`
+`func (o *NetworkDeviceController) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *NetworkDeviceController) SetRevision(v int32)`
+`func (o *NetworkDeviceController) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -100,20 +100,20 @@ SetStatus sets Status field to given value.
 
 ### GetSiteId
 
-`func (o *NetworkDeviceController) GetSiteId() float32`
+`func (o *NetworkDeviceController) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *NetworkDeviceController) GetSiteIdOk() (*float32, bool)`
+`func (o *NetworkDeviceController) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *NetworkDeviceController) SetSiteId(v float32)`
+`func (o *NetworkDeviceController) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

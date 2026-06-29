@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Id of the Storage | 
-**Revision** | **float32** | Revision of the Storage | 
-**UserId** | Pointer to **float32** | Id of the owner | [optional] 
-**SiteId** | **float32** | Id of the site | 
+**Id** | **int64** | Id of the Storage | 
+**Revision** | **int64** | Revision of the Storage | 
+**UserId** | Pointer to **int64** | Id of the owner | [optional] 
+**SiteId** | **int64** | Id of the site | 
 **DatacenterName** | **string** | The name of the datacenter where the storage is located. | 
 **Driver** | **string** | Storage driver | 
 **Technologies** | **[]string** | Storage technology | 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags | [optional] 
 **SubnetType** | **string** | Subnet type | 
 **Interfaces** | Pointer to [**[]StorageInterface**](StorageInterface.md) | Interfaces of the Storage | [optional] 
-**NetworkFabricId** | Pointer to **float32** | Network fabric ID this Storage is connected to | [optional] 
+**NetworkFabricId** | Pointer to **int64** | Network fabric ID this Storage is connected to | [optional] 
 **JobStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) |  | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 
 ### NewStorage
 
-`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, status string, operationMode string, name string, managementHost string, subnetType string, ) *Storage`
+`func NewStorage(id int64, revision int64, siteId int64, datacenterName string, driver string, technologies []string, status string, operationMode string, name string, managementHost string, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -55,60 +55,60 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Storage) GetId() float32`
+`func (o *Storage) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Storage) GetIdOk() (*float32, bool)`
+`func (o *Storage) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Storage) SetId(v float32)`
+`func (o *Storage) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *Storage) GetRevision() float32`
+`func (o *Storage) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *Storage) GetRevisionOk() (*float32, bool)`
+`func (o *Storage) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *Storage) SetRevision(v float32)`
+`func (o *Storage) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetUserId
 
-`func (o *Storage) GetUserId() float32`
+`func (o *Storage) GetUserId() int64`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *Storage) GetUserIdOk() (*float32, bool)`
+`func (o *Storage) GetUserIdOk() (*int64, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *Storage) SetUserId(v float32)`
+`func (o *Storage) SetUserId(v int64)`
 
 SetUserId sets UserId field to given value.
 
@@ -120,20 +120,20 @@ HasUserId returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *Storage) GetSiteId() float32`
+`func (o *Storage) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *Storage) GetSiteIdOk() (*float32, bool)`
+`func (o *Storage) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *Storage) SetSiteId(v float32)`
+`func (o *Storage) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -625,20 +625,20 @@ HasInterfaces returns a boolean if a field has been set.
 
 ### GetNetworkFabricId
 
-`func (o *Storage) GetNetworkFabricId() float32`
+`func (o *Storage) GetNetworkFabricId() int64`
 
 GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricIdOk
 
-`func (o *Storage) GetNetworkFabricIdOk() (*float32, bool)`
+`func (o *Storage) GetNetworkFabricIdOk() (*int64, bool)`
 
 GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricId
 
-`func (o *Storage) SetNetworkFabricId(v float32)`
+`func (o *Storage) SetNetworkFabricId(v int64)`
 
 SetNetworkFabricId sets NetworkFabricId field to given value.
 

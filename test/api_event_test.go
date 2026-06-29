@@ -26,7 +26,7 @@ func Test_sdk_EventAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var eventId float32
+		var eventId int64
 
 		resp, httpRes, err := apiClient.EventAPI.GetEvent(context.Background(), eventId).Execute()
 

@@ -22,23 +22,21 @@ var _ MappedNullable = &Extension{}
 // Extension struct for Extension
 type Extension struct {
 	// The extension ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The extension unique slug
 	Slug *string `json:"slug,omitempty"`
 	// The extension name
 	Name string `json:"name"`
 	// The extension unique label
-	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*[-_]$)[a-z]{1}[a-z0-9-_]{0,62}$"`
+	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
 	// The extension description
 	Description string `json:"description"`
 	// Extension status
 	Status ExtensionStatus `json:"status"`
 	// Extension kind
 	Kind string `json:"kind"`
-	// Is the extension public
-	IsPublic *bool `json:"isPublic,omitempty"`
 	Definition ExtensionDefinition `json:"definition"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -51,7 +49,7 @@ type _Extension Extension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtension(id float32, revision float32, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition) *Extension {
+func NewExtension(id int64, revision int64, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition) *Extension {
 	this := Extension{}
 	this.Id = id
 	this.Revision = revision
@@ -59,8 +57,6 @@ func NewExtension(id float32, revision float32, name string, description string,
 	this.Description = description
 	this.Status = status
 	this.Kind = kind
-	var isPublic bool = false
-	this.IsPublic = &isPublic
 	this.Definition = definition
 	return &this
 }
@@ -70,15 +66,13 @@ func NewExtension(id float32, revision float32, name string, description string,
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionWithDefaults() *Extension {
 	this := Extension{}
-	var isPublic bool = false
-	this.IsPublic = &isPublic
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *Extension) GetId() float32 {
+func (o *Extension) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -87,7 +81,7 @@ func (o *Extension) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Extension) GetIdOk() (*float32, bool) {
+func (o *Extension) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,14 +89,14 @@ func (o *Extension) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Extension) SetId(v float32) {
+func (o *Extension) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Extension) GetRevision() float32 {
+func (o *Extension) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -111,7 +105,7 @@ func (o *Extension) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Extension) GetRevisionOk() (*float32, bool) {
+func (o *Extension) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,7 +113,7 @@ func (o *Extension) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Extension) SetRevision(v float32) {
+func (o *Extension) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -283,38 +277,6 @@ func (o *Extension) SetKind(v string) {
 	o.Kind = v
 }
 
-// GetIsPublic returns the IsPublic field value if set, zero value otherwise.
-func (o *Extension) GetIsPublic() bool {
-	if o == nil || IsNil(o.IsPublic) {
-		var ret bool
-		return ret
-	}
-	return *o.IsPublic
-}
-
-// GetIsPublicOk returns a tuple with the IsPublic field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Extension) GetIsPublicOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsPublic) {
-		return nil, false
-	}
-	return o.IsPublic, true
-}
-
-// HasIsPublic returns a boolean if a field has been set.
-func (o *Extension) HasIsPublic() bool {
-	if o != nil && !IsNil(o.IsPublic) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsPublic gets a reference to the given bool and assigns it to the IsPublic field.
-func (o *Extension) SetIsPublic(v bool) {
-	o.IsPublic = &v
-}
-
 // GetDefinition returns the Definition field value
 func (o *Extension) GetDefinition() ExtensionDefinition {
 	if o == nil {
@@ -393,9 +355,6 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	toSerialize["description"] = o.Description
 	toSerialize["status"] = o.Status
 	toSerialize["kind"] = o.Kind
-	if !IsNil(o.IsPublic) {
-		toSerialize["isPublic"] = o.IsPublic
-	}
 	toSerialize["definition"] = o.Definition
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -457,7 +416,6 @@ func (o *Extension) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "kind")
-		delete(additionalProperties, "isPublic")
 		delete(additionalProperties, "definition")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

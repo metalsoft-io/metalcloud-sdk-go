@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := int32(56) // int32 | The ID of the network endpoint group
+	networkEndpointGroupId := int64(789) // int64 | The ID of the network endpoint group
 	createNetworkEndpointGroupLogicalNetwork := *openapiclient.NewCreateNetworkEndpointGroupLogicalNetwork("1", true, openapiclient.NetworkEndpointGroupAllowedAccessMode("l2")) // CreateNetworkEndpointGroupLogicalNetwork | The logical network id and settings to add to the network endpoint group
 
 	configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **int32** | The ID of the network endpoint group | 
+**networkEndpointGroupId** | **int64** | The ID of the network endpoint group | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := float32(8.14) // float32 | 
+	networkEndpointGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -186,7 +186,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **float32** |  | 
+**networkEndpointGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -234,7 +234,7 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := float32(8.14) // float32 | 
+	networkEndpointGroupId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -254,7 +254,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **float32** |  | 
+**networkEndpointGroupId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -302,8 +302,8 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := int32(56) // int32 | The ID of the network endpoint group
-	logicalNetworkId := int32(56) // int32 | The ID of the logical network
+	networkEndpointGroupId := int64(789) // int64 | The ID of the network endpoint group
+	logicalNetworkId := int64(789) // int64 | The ID of the logical network
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -323,8 +323,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **int32** | The ID of the network endpoint group | 
-**logicalNetworkId** | **int32** | The ID of the logical network | 
+**networkEndpointGroupId** | **int64** | The ID of the network endpoint group | 
+**logicalNetworkId** | **int64** | The ID of the logical network | 
 
 ### Other Parameters
 
@@ -373,7 +373,7 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := int32(56) // int32 | The id of the network endpoint group
+	networkEndpointGroupId := int64(789) // int64 | The id of the network endpoint group
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -393,7 +393,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **int32** | The id of the network endpoint group | 
+**networkEndpointGroupId** | **int64** | The id of the network endpoint group | 
 
 ### Other Parameters
 
@@ -525,8 +525,8 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := int32(56) // int32 | The ID of the network endpoint group
-	logicalNetworkId := int32(56) // int32 | The ID of the logical network to remove from the network endpoint group
+	networkEndpointGroupId := int64(789) // int64 | The ID of the network endpoint group
+	logicalNetworkId := int64(789) // int64 | The ID of the logical network to remove from the network endpoint group
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -544,8 +544,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **int32** | The ID of the network endpoint group | 
-**logicalNetworkId** | **int32** | The ID of the logical network to remove from the network endpoint group | 
+**networkEndpointGroupId** | **int64** | The ID of the network endpoint group | 
+**logicalNetworkId** | **int64** | The ID of the logical network to remove from the network endpoint group | 
 
 ### Other Parameters
 
@@ -594,7 +594,7 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := int32(56) // int32 | The ID of the network endpoint group to update
+	networkEndpointGroupId := int64(789) // int64 | The ID of the network endpoint group to update
 	updateNetworkEndpointGroup := *openapiclient.NewUpdateNetworkEndpointGroup() // UpdateNetworkEndpointGroup | Network endpoint group updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -616,7 +616,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **int32** | The ID of the network endpoint group to update | 
+**networkEndpointGroupId** | **int64** | The ID of the network endpoint group to update | 
 
 ### Other Parameters
 
@@ -666,8 +666,8 @@ import (
 )
 
 func main() {
-	networkEndpointGroupId := int32(56) // int32 | The ID of the network endpoint group
-	logicalNetworkId := int32(56) // int32 | The ID of the logical network
+	networkEndpointGroupId := int64(789) // int64 | The ID of the network endpoint group
+	logicalNetworkId := int64(789) // int64 | The ID of the logical network
 	updateNetworkEndpointGroupLogicalNetwork := *openapiclient.NewUpdateNetworkEndpointGroupLogicalNetwork() // UpdateNetworkEndpointGroupLogicalNetwork | The logical network id and settings to add to the network endpoint group
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -689,8 +689,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkEndpointGroupId** | **int32** | The ID of the network endpoint group | 
-**logicalNetworkId** | **int32** | The ID of the logical network | 
+**networkEndpointGroupId** | **int64** | The ID of the network endpoint group | 
+**logicalNetworkId** | **int64** | The ID of the logical network | 
 
 ### Other Parameters
 

@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the File Share Configuration | 
+**Revision** | **int64** | Revision of the File Share Configuration | 
 **SizeGB** | **float32** | Disk size in GB for File Share | 
 **UpdatedTimestamp** | **string** | Timestamp of the File Share last update. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the File Share is assigned to | [optional] 
+**StoragePoolId** | Pointer to **int64** | Id of the storage pool the File Share is assigned to | [optional] 
 **Label** | **string** | Label of the File Share. | 
 **Subdomain** | Pointer to **string** | Subdomain of the File Share. | [optional] 
-**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the File Share. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the File Share. | [optional] 
 **DeployType** | **string** | Deploy type of the File Share | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the File Share | [default to "not_started"]
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the File Share. | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the File Share. | [optional] 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the File Share. | [optional] 
 
 ## Methods
 
 ### NewFileShareConfiguration
 
-`func NewFileShareConfiguration(revision float32, sizeGB float32, updatedTimestamp string, label string, deployType string, deployStatus string, ) *FileShareConfiguration`
+`func NewFileShareConfiguration(revision int64, sizeGB float32, updatedTimestamp string, label string, deployType string, deployStatus string, ) *FileShareConfiguration`
 
 NewFileShareConfiguration instantiates a new FileShareConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *FileShareConfiguration) GetRevision() float32`
+`func (o *FileShareConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *FileShareConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *FileShareConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *FileShareConfiguration) SetRevision(v float32)`
+`func (o *FileShareConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -97,20 +97,20 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetStoragePoolId
 
-`func (o *FileShareConfiguration) GetStoragePoolId() float32`
+`func (o *FileShareConfiguration) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *FileShareConfiguration) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *FileShareConfiguration) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *FileShareConfiguration) SetStoragePoolId(v float32)`
+`func (o *FileShareConfiguration) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
@@ -167,20 +167,20 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *FileShareConfiguration) GetDnsSubdomainChangeId() float32`
+`func (o *FileShareConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *FileShareConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool)`
+`func (o *FileShareConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *FileShareConfiguration) SetDnsSubdomainChangeId(v float32)`
+`func (o *FileShareConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -232,20 +232,20 @@ SetDeployStatus sets DeployStatus field to given value.
 
 ### GetInfrastructureDeployId
 
-`func (o *FileShareConfiguration) GetInfrastructureDeployId() float32`
+`func (o *FileShareConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *FileShareConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+`func (o *FileShareConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *FileShareConfiguration) SetInfrastructureDeployId(v float32)`
+`func (o *FileShareConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 
@@ -257,20 +257,20 @@ HasInfrastructureDeployId returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *FileShareConfiguration) GetLogicalNetworkId() float32`
+`func (o *FileShareConfiguration) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *FileShareConfiguration) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *FileShareConfiguration) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *FileShareConfiguration) SetLogicalNetworkId(v float32)`
+`func (o *FileShareConfiguration) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

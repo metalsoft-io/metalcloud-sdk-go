@@ -29,9 +29,9 @@ type NetworkFabricLinkAggregation struct {
 	// Revision number of the entity
 	Revision string `json:"revision"`
 	// Unique identifier for the network fabric link aggregation
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Unique identifier for the network fabric
-	NetworkFabricId float32 `json:"networkFabricId"`
+	NetworkFabricId int64 `json:"networkFabricId"`
 	// Name of the network fabric link aggregation
 	Name string `json:"name"`
 	// Type of the network fabric link aggregation
@@ -57,7 +57,7 @@ type _NetworkFabricLinkAggregation NetworkFabricLinkAggregation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabricLinkAggregation(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, name string, type_ string, status string) *NetworkFabricLinkAggregation {
+func NewNetworkFabricLinkAggregation(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, networkFabricId int64, name string, type_ string, status string) *NetworkFabricLinkAggregation {
 	this := NetworkFabricLinkAggregation{}
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -151,9 +151,9 @@ func (o *NetworkFabricLinkAggregation) SetRevision(v string) {
 }
 
 // GetId returns the Id field value
-func (o *NetworkFabricLinkAggregation) GetId() float32 {
+func (o *NetworkFabricLinkAggregation) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -162,7 +162,7 @@ func (o *NetworkFabricLinkAggregation) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricLinkAggregation) GetIdOk() (*float32, bool) {
+func (o *NetworkFabricLinkAggregation) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -170,14 +170,14 @@ func (o *NetworkFabricLinkAggregation) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *NetworkFabricLinkAggregation) SetId(v float32) {
+func (o *NetworkFabricLinkAggregation) SetId(v int64) {
 	o.Id = v
 }
 
 // GetNetworkFabricId returns the NetworkFabricId field value
-func (o *NetworkFabricLinkAggregation) GetNetworkFabricId() float32 {
+func (o *NetworkFabricLinkAggregation) GetNetworkFabricId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -186,7 +186,7 @@ func (o *NetworkFabricLinkAggregation) GetNetworkFabricId() float32 {
 
 // GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabricLinkAggregation) GetNetworkFabricIdOk() (*float32, bool) {
+func (o *NetworkFabricLinkAggregation) GetNetworkFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *NetworkFabricLinkAggregation) GetNetworkFabricIdOk() (*float32, bool) {
 }
 
 // SetNetworkFabricId sets field value
-func (o *NetworkFabricLinkAggregation) SetNetworkFabricId(v float32) {
+func (o *NetworkFabricLinkAggregation) SetNetworkFabricId(v int64) {
 	o.NetworkFabricId = v
 }
 

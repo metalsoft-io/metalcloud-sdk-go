@@ -26,7 +26,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ApplyProfilesToLogicalNetworkConfig(context.Background(), id).Execute()
 
@@ -52,7 +52,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id).Execute()
 
@@ -66,7 +66,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id).Execute()
 
@@ -80,7 +80,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id).Execute()
 
@@ -94,7 +94,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id).Execute()
 
@@ -108,7 +108,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigVniAllocationStrategy(context.Background(), id).Execute()
 
@@ -122,7 +122,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.CreateLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id).Execute()
 
@@ -148,7 +148,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetwork(context.Background(), id).Execute()
 
@@ -161,8 +161,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -175,8 +175,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -189,8 +189,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -203,8 +203,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -217,8 +217,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -231,8 +231,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -245,8 +245,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var externalConnectionId float32
+		var id int64
+		var externalConnectionId int64
 
 		httpRes, err := apiClient.LogicalNetworkAPI.DetachExternalConnectionLogicalNetwork(context.Background(), id, externalConnectionId).Execute()
 
@@ -259,7 +259,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetwork(context.Background(), id).Execute()
 
@@ -273,7 +273,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkAttachedExternalConnectionLogicalNetworks(context.Background(), id).Execute()
 
@@ -287,7 +287,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkAttachedExternalConnections(context.Background(), id).Execute()
 
@@ -301,7 +301,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkAttachedLogicalNetworkInterconnects(context.Background(), id).Execute()
 
@@ -315,7 +315,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfig(context.Background(), id).Execute()
 
@@ -329,7 +329,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigIpv4SubnetAllocationStrategies(context.Background(), id).Execute()
 
@@ -343,8 +343,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -358,7 +358,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigIpv6SubnetAllocationStrategies(context.Background(), id).Execute()
 
@@ -372,8 +372,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -387,7 +387,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategies(context.Background(), id).Execute()
 
@@ -401,8 +401,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -416,7 +416,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigVlanAllocationStrategies(context.Background(), id).Execute()
 
@@ -430,8 +430,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -445,7 +445,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigVniAllocationStrategies(context.Background(), id).Execute()
 
@@ -459,8 +459,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -474,7 +474,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategies(context.Background(), id).Execute()
 
@@ -488,8 +488,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -515,8 +515,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -530,8 +530,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -545,8 +545,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigPkeyAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -560,8 +560,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVlanAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -575,8 +575,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -590,8 +590,8 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.ReplaceLogicalNetworkConfigZoneAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -605,7 +605,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.UpdateLogicalNetwork(context.Background(), id).Execute()
 
@@ -619,7 +619,7 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.UpdateLogicalNetworkConfig(context.Background(), id).Execute()
 

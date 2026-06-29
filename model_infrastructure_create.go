@@ -22,7 +22,7 @@ var _ MappedNullable = &InfrastructureCreate{}
 // InfrastructureCreate struct for InfrastructureCreate
 type InfrastructureCreate struct {
 	// The ID of the site where the Infrastructure is located.
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Custom variables in JSON format.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// User ID of the owner of the Infrastructure.
@@ -39,7 +39,7 @@ type _InfrastructureCreate InfrastructureCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureCreate(siteId float32) *InfrastructureCreate {
+func NewInfrastructureCreate(siteId int64) *InfrastructureCreate {
 	this := InfrastructureCreate{}
 	this.SiteId = siteId
 	return &this
@@ -54,9 +54,9 @@ func NewInfrastructureCreateWithDefaults() *InfrastructureCreate {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *InfrastructureCreate) GetSiteId() float32 {
+func (o *InfrastructureCreate) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *InfrastructureCreate) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureCreate) GetSiteIdOk() (*float32, bool) {
+func (o *InfrastructureCreate) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *InfrastructureCreate) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *InfrastructureCreate) SetSiteId(v float32) {
+func (o *InfrastructureCreate) SetSiteId(v int64) {
 	o.SiteId = v
 }
 

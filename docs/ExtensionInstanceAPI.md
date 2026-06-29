@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	createExtensionInstance := *openapiclient.NewCreateExtensionInstance() // CreateExtensionInstance | The extension instance to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -106,7 +106,7 @@ import (
 )
 
 func main() {
-	extensionInstanceId := float32(8.14) // float32 | 
+	extensionInstanceId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -125,7 +125,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionInstanceId** | **float32** |  | 
+**extensionInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -176,7 +176,7 @@ import (
 )
 
 func main() {
-	extensionInstanceId := float32(8.14) // float32 | 
+	extensionInstanceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -196,7 +196,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionInstanceId** | **float32** |  | 
+**extensionInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -246,7 +246,7 @@ import (
 )
 
 func main() {
-	extensionInstanceId := int32(56) // int32 | 
+	extensionInstanceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -266,7 +266,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionInstanceId** | **int32** |  | 
+**extensionInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
+	infrastructureId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterExtensionId := []string{"Inner_example"} // []string | Filter by extensionId query param.  **Format:** filter.extensionId={$not}:OPERATION:VALUE    **Example:** filter.extensionId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -346,7 +346,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -406,7 +406,7 @@ import (
 )
 
 func main() {
-	extensionInstanceId := float32(8.14) // float32 | 
+	extensionInstanceId := int64(789) // int64 | 
 	updateExtensionInstance := *openapiclient.NewUpdateExtensionInstance() // UpdateExtensionInstance | The extension instance changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -428,7 +428,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**extensionInstanceId** | **float32** |  | 
+**extensionInstanceId** | **int64** |  | 
 
 ### Other Parameters
 

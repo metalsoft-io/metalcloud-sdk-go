@@ -21,7 +21,7 @@ var _ MappedNullable = &VlanAllocation{}
 
 // VlanAllocation struct for VlanAllocation
 type VlanAllocation struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Scope ResourceScope `json:"scope"`
 	Status ResourceAllocationStatus `json:"status"`
 	VlanId int32 `json:"vlanId"`
@@ -34,7 +34,7 @@ type _VlanAllocation VlanAllocation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVlanAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, vlanId int32) *VlanAllocation {
+func NewVlanAllocation(id int64, scope ResourceScope, status ResourceAllocationStatus, vlanId int32) *VlanAllocation {
 	this := VlanAllocation{}
 	this.Id = id
 	this.Scope = scope
@@ -52,9 +52,9 @@ func NewVlanAllocationWithDefaults() *VlanAllocation {
 }
 
 // GetId returns the Id field value
-func (o *VlanAllocation) GetId() int32 {
+func (o *VlanAllocation) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *VlanAllocation) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VlanAllocation) GetIdOk() (*int32, bool) {
+func (o *VlanAllocation) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *VlanAllocation) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *VlanAllocation) SetId(v int32) {
+func (o *VlanAllocation) SetId(v int64) {
 	o.Id = v
 }
 

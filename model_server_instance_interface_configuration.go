@@ -22,24 +22,24 @@ var _ MappedNullable = &ServerInstanceInterfaceConfiguration{}
 // ServerInstanceInterfaceConfiguration struct for ServerInstanceInterfaceConfiguration
 type ServerInstanceInterfaceConfiguration struct {
 	// Revision number
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Timestamp of the latest update of the Product Instance.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Subdomain of the Product Instance.
 	Subdomain *string `json:"subdomain,omitempty"`
-	InstanceId int32 `json:"instanceId"`
+	InstanceId int64 `json:"instanceId"`
 	// The index of the interface (0-based) on this server.
 	Index int32 `json:"index"`
 	CapacityMbps int32 `json:"capacityMbps"`
 	// The ID of the network to which this interface is to be attached to.
-	NetworkId *int32 `json:"networkId,omitempty"`
-	ServerInterfaceId *int32 `json:"serverInterfaceId,omitempty"`
+	NetworkId *int64 `json:"networkId,omitempty"`
+	ServerInterfaceId *int64 `json:"serverInterfaceId,omitempty"`
 	// Id of the DNS subdomain for the Product Instance
-	DnsSubdomainChangeId *int32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Id of the deployment for the Product Instance
-	InfrastructureDeployId *int32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Number of empty edits
 	EmptyEdit *int32 `json:"emptyEdit,omitempty"`
 	// Product Instance deploy type
@@ -55,7 +55,7 @@ type _ServerInstanceInterfaceConfiguration ServerInstanceInterfaceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceInterfaceConfiguration(revision int32, label string, updatedTimestamp string, instanceId int32, index int32, capacityMbps int32, deployType string, deployStatus string) *ServerInstanceInterfaceConfiguration {
+func NewServerInstanceInterfaceConfiguration(revision int64, label string, updatedTimestamp string, instanceId int64, index int32, capacityMbps int32, deployType string, deployStatus string) *ServerInstanceInterfaceConfiguration {
 	this := ServerInstanceInterfaceConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -81,9 +81,9 @@ func NewServerInstanceInterfaceConfigurationWithDefaults() *ServerInstanceInterf
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstanceInterfaceConfiguration) GetRevision() int32 {
+func (o *ServerInstanceInterfaceConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceConfiguration) GetRevisionOk() (*int32, bool) {
+func (o *ServerInstanceInterfaceConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ServerInstanceInterfaceConfiguration) SetRevision(v int32) {
+func (o *ServerInstanceInterfaceConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -185,9 +185,9 @@ func (o *ServerInstanceInterfaceConfiguration) SetSubdomain(v string) {
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *ServerInstanceInterfaceConfiguration) GetInstanceId() int32 {
+func (o *ServerInstanceInterfaceConfiguration) GetInstanceId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -196,7 +196,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetInstanceId() int32 {
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceConfiguration) GetInstanceIdOk() (*int32, bool) {
+func (o *ServerInstanceInterfaceConfiguration) GetInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,7 +204,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetInstanceIdOk() (*int32, bool) 
 }
 
 // SetInstanceId sets field value
-func (o *ServerInstanceInterfaceConfiguration) SetInstanceId(v int32) {
+func (o *ServerInstanceInterfaceConfiguration) SetInstanceId(v int64) {
 	o.InstanceId = v
 }
 
@@ -257,9 +257,9 @@ func (o *ServerInstanceInterfaceConfiguration) SetCapacityMbps(v int32) {
 }
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
-func (o *ServerInstanceInterfaceConfiguration) GetNetworkId() int32 {
+func (o *ServerInstanceInterfaceConfiguration) GetNetworkId() int64 {
 	if o == nil || IsNil(o.NetworkId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkId
@@ -267,7 +267,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetNetworkId() int32 {
 
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceConfiguration) GetNetworkIdOk() (*int32, bool) {
+func (o *ServerInstanceInterfaceConfiguration) GetNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkId) {
 		return nil, false
 	}
@@ -283,15 +283,15 @@ func (o *ServerInstanceInterfaceConfiguration) HasNetworkId() bool {
 	return false
 }
 
-// SetNetworkId gets a reference to the given int32 and assigns it to the NetworkId field.
-func (o *ServerInstanceInterfaceConfiguration) SetNetworkId(v int32) {
+// SetNetworkId gets a reference to the given int64 and assigns it to the NetworkId field.
+func (o *ServerInstanceInterfaceConfiguration) SetNetworkId(v int64) {
 	o.NetworkId = &v
 }
 
 // GetServerInterfaceId returns the ServerInterfaceId field value if set, zero value otherwise.
-func (o *ServerInstanceInterfaceConfiguration) GetServerInterfaceId() int32 {
+func (o *ServerInstanceInterfaceConfiguration) GetServerInterfaceId() int64 {
 	if o == nil || IsNil(o.ServerInterfaceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ServerInterfaceId
@@ -299,7 +299,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetServerInterfaceId() int32 {
 
 // GetServerInterfaceIdOk returns a tuple with the ServerInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceConfiguration) GetServerInterfaceIdOk() (*int32, bool) {
+func (o *ServerInstanceInterfaceConfiguration) GetServerInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerInterfaceId) {
 		return nil, false
 	}
@@ -315,15 +315,15 @@ func (o *ServerInstanceInterfaceConfiguration) HasServerInterfaceId() bool {
 	return false
 }
 
-// SetServerInterfaceId gets a reference to the given int32 and assigns it to the ServerInterfaceId field.
-func (o *ServerInstanceInterfaceConfiguration) SetServerInterfaceId(v int32) {
+// SetServerInterfaceId gets a reference to the given int64 and assigns it to the ServerInterfaceId field.
+func (o *ServerInstanceInterfaceConfiguration) SetServerInterfaceId(v int64) {
 	o.ServerInterfaceId = &v
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *ServerInstanceInterfaceConfiguration) GetDnsSubdomainChangeId() int32 {
+func (o *ServerInstanceInterfaceConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -331,7 +331,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetDnsSubdomainChangeId() int32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool) {
+func (o *ServerInstanceInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -347,15 +347,15 @@ func (o *ServerInstanceInterfaceConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given int32 and assigns it to the DnsSubdomainChangeId field.
-func (o *ServerInstanceInterfaceConfiguration) SetDnsSubdomainChangeId(v int32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *ServerInstanceInterfaceConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *ServerInstanceInterfaceConfiguration) GetInfrastructureDeployId() int32 {
+func (o *ServerInstanceInterfaceConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -363,7 +363,7 @@ func (o *ServerInstanceInterfaceConfiguration) GetInfrastructureDeployId() int32
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool) {
+func (o *ServerInstanceInterfaceConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -379,8 +379,8 @@ func (o *ServerInstanceInterfaceConfiguration) HasInfrastructureDeployId() bool 
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given int32 and assigns it to the InfrastructureDeployId field.
-func (o *ServerInstanceInterfaceConfiguration) SetInfrastructureDeployId(v int32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *ServerInstanceInterfaceConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 

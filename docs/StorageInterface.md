@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Id of the Storage Interface | 
-**Revision** | **float32** | Revision of the Storage Interface | 
-**StorageId** | **float32** | Id of the Storage | 
+**Id** | **int64** | Id of the Storage Interface | 
+**Revision** | **int64** | Revision of the Storage Interface | 
+**StorageId** | **int64** | Id of the Storage | 
 **Name** | **string** | Name of the Storage Interface | 
 **NodeIds** | **[]string** | Node IDs on which the Storage Interface is located | 
 **Protocols** | **[]string** | Types of the Storage Interface | 
 **IsUplink** | **bool** | Specifies if the Storage Interface is an uplink. Uplink interfaces will be provisioned on network device. | 
 **UseForDeploys** | **bool** | Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource). | 
-**NetworkEquipmentInterfaceId** | Pointer to **float32** | Id of the Network Equipment Interface associated to this Storage Interface | [optional] 
+**NetworkEquipmentInterfaceId** | Pointer to **int64** | Id of the Network Equipment Interface associated to this Storage Interface | [optional] 
 **LinkedNetworkDeviceInformation** | Pointer to [**StorageInterfaceNetworkDeviceInformation**](StorageInterfaceNetworkDeviceInformation.md) | Network device information | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewStorageInterface
 
-`func NewStorageInterface(id float32, revision float32, storageId float32, name string, nodeIds []string, protocols []string, isUplink bool, useForDeploys bool, ) *StorageInterface`
+`func NewStorageInterface(id int64, revision int64, storageId int64, name string, nodeIds []string, protocols []string, isUplink bool, useForDeploys bool, ) *StorageInterface`
 
 NewStorageInterface instantiates a new StorageInterface object
 This constructor will assign default values to properties that have it defined,
@@ -37,60 +37,60 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *StorageInterface) GetId() float32`
+`func (o *StorageInterface) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *StorageInterface) GetIdOk() (*float32, bool)`
+`func (o *StorageInterface) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *StorageInterface) SetId(v float32)`
+`func (o *StorageInterface) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *StorageInterface) GetRevision() float32`
+`func (o *StorageInterface) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *StorageInterface) GetRevisionOk() (*float32, bool)`
+`func (o *StorageInterface) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *StorageInterface) SetRevision(v float32)`
+`func (o *StorageInterface) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetStorageId
 
-`func (o *StorageInterface) GetStorageId() float32`
+`func (o *StorageInterface) GetStorageId() int64`
 
 GetStorageId returns the StorageId field if non-nil, zero value otherwise.
 
 ### GetStorageIdOk
 
-`func (o *StorageInterface) GetStorageIdOk() (*float32, bool)`
+`func (o *StorageInterface) GetStorageIdOk() (*int64, bool)`
 
 GetStorageIdOk returns a tuple with the StorageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageId
 
-`func (o *StorageInterface) SetStorageId(v float32)`
+`func (o *StorageInterface) SetStorageId(v int64)`
 
 SetStorageId sets StorageId field to given value.
 
@@ -197,20 +197,20 @@ SetUseForDeploys sets UseForDeploys field to given value.
 
 ### GetNetworkEquipmentInterfaceId
 
-`func (o *StorageInterface) GetNetworkEquipmentInterfaceId() float32`
+`func (o *StorageInterface) GetNetworkEquipmentInterfaceId() int64`
 
 GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkEquipmentInterfaceIdOk
 
-`func (o *StorageInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool)`
+`func (o *StorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool)`
 
 GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkEquipmentInterfaceId
 
-`func (o *StorageInterface) SetNetworkEquipmentInterfaceId(v float32)`
+`func (o *StorageInterface) SetNetworkEquipmentInterfaceId(v int64)`
 
 SetNetworkEquipmentInterfaceId sets NetworkEquipmentInterfaceId field to given value.
 

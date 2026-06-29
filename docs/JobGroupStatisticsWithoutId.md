@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**GroupType** | **string** | Group type | 
 **GroupCreatedTimestamp** | **string** | Group created timestamp | 
 **GroupCompletedTimestamp** | **string** | Group completed timestamp | 
 **JobsThrownError** | **int32** | Total count of jobs with errors | 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewJobGroupStatisticsWithoutId
 
-`func NewJobGroupStatisticsWithoutId(groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32, ) *JobGroupStatisticsWithoutId`
+`func NewJobGroupStatisticsWithoutId(groupType string, groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32, ) *JobGroupStatisticsWithoutId`
 
 NewJobGroupStatisticsWithoutId instantiates a new JobGroupStatisticsWithoutId object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +29,26 @@ will change when the set of required properties is changed
 NewJobGroupStatisticsWithoutIdWithDefaults instantiates a new JobGroupStatisticsWithoutId object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetGroupType
+
+`func (o *JobGroupStatisticsWithoutId) GetGroupType() string`
+
+GetGroupType returns the GroupType field if non-nil, zero value otherwise.
+
+### GetGroupTypeOk
+
+`func (o *JobGroupStatisticsWithoutId) GetGroupTypeOk() (*string, bool)`
+
+GetGroupTypeOk returns a tuple with the GroupType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupType
+
+`func (o *JobGroupStatisticsWithoutId) SetGroupType(v string)`
+
+SetGroupType sets GroupType field to given value.
+
 
 ### GetGroupCreatedTimestamp
 

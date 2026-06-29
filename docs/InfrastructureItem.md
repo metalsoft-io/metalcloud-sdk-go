@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InfrastructureId** | **float32** | Infrastructure ID | 
+**InfrastructureId** | **int64** | Infrastructure ID | 
 **InfrastructureLabel** | **string** | Infrastructure label | 
 **InfrastructureServiceStatus** | **string** | Infrastructure service status | 
 **Tags** | Pointer to **string** |  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewInfrastructureItem
 
-`func NewInfrastructureItem(infrastructureId float32, infrastructureLabel string, infrastructureServiceStatus string, ) *InfrastructureItem`
+`func NewInfrastructureItem(infrastructureId int64, infrastructureLabel string, infrastructureServiceStatus string, ) *InfrastructureItem`
 
 NewInfrastructureItem instantiates a new InfrastructureItem object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInfrastructureId
 
-`func (o *InfrastructureItem) GetInfrastructureId() float32`
+`func (o *InfrastructureItem) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *InfrastructureItem) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *InfrastructureItem) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *InfrastructureItem) SetInfrastructureId(v float32)`
+`func (o *InfrastructureItem) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 

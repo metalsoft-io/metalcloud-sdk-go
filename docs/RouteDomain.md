@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **Name** | **string** |  | 
 **Annotations** | **map[string]string** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Kind** | [**RouteDomainKind**](RouteDomainKind.md) |  | 
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
 **PreventVrfCleanup** | **bool** | If true, VRFs belonging to this route domain will not be deleted from switches during cleanup. | [default to false]
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewRouteDomain
 
-`func NewRouteDomain(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind RouteDomainKind, serviceStatus GenericServiceStatus, preventVrfCleanup bool, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig, ) *RouteDomain`
+`func NewRouteDomain(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, kind RouteDomainKind, serviceStatus GenericServiceStatus, preventVrfCleanup bool, vrfs []VrfAllocation, vrfAllocationStrategies []VrfAllocationStrategy, config RouteDomainConfig, ) *RouteDomain`
 
 NewRouteDomain instantiates a new RouteDomain object
 This constructor will assign default values to properties that have it defined,
@@ -46,20 +46,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *RouteDomain) GetId() int32`
+`func (o *RouteDomain) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *RouteDomain) GetIdOk() (*int32, bool)`
+`func (o *RouteDomain) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *RouteDomain) SetId(v int32)`
+`func (o *RouteDomain) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -166,20 +166,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *RouteDomain) GetRevision() int32`
+`func (o *RouteDomain) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *RouteDomain) GetRevisionOk() (*int32, bool)`
+`func (o *RouteDomain) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *RouteDomain) SetRevision(v int32)`
+`func (o *RouteDomain) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

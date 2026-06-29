@@ -48,7 +48,7 @@ import (
 )
 
 func main() {
-	createRouteDomain := *openapiclient.NewCreateRouteDomain(openapiclient.RouteDomainKind("vrf_lite"), []openapiclient.CreateVrfAllocationStrategy{openapiclient.CreateVrfAllocationStrategy{CreateManualVrfAllocationStrategy: openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), "Name_example")}}) // CreateRouteDomain | The route domain to create
+	createRouteDomain := *openapiclient.NewCreateRouteDomain(openapiclient.RouteDomainKind("vrf_lite"), []openapiclient.CreateVrfAllocationStrategy{openapiclient.CreateVrfAllocationStrategy{CreateManualVrfAllocationStrategy: openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), "Name_example")}}) // CreateRouteDomain | The route domain to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,9 +112,9 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVlanAllocationStrategy | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -134,7 +134,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -184,9 +184,9 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVniAllocationStrategy | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -206,7 +206,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -256,9 +256,9 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), "Name_example") // CreateManualVrfAllocationStrategy | 
+	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), "Name_example") // CreateManualVrfAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -278,7 +278,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -328,7 +328,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
@@ -347,7 +347,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -396,8 +396,8 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
@@ -416,8 +416,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -467,8 +467,8 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
@@ -487,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -538,8 +538,8 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
@@ -558,8 +558,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -609,7 +609,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -629,7 +629,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -677,7 +677,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -697,7 +697,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -745,7 +745,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -770,7 +770,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -823,8 +823,8 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -844,8 +844,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -894,7 +894,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -919,7 +919,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -972,8 +972,8 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -993,8 +993,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1043,7 +1043,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 100    **Max Value:** 1000   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -1068,7 +1068,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1121,8 +1121,8 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1142,8 +1142,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1282,10 +1282,10 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVlanAllocationStrategy | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1305,8 +1305,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1357,10 +1357,10 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateVniAllocationStrategy | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1380,8 +1380,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1432,10 +1432,10 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
-	allocationStrategyId := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
+	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), "Name_example") // CreateManualVrfAllocationStrategy | 
+	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), "Name_example") // CreateManualVrfAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1455,8 +1455,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
-**allocationStrategyId** | **float32** |  | 
+**id** | **int64** |  | 
+**allocationStrategyId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1507,7 +1507,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 	updateRouteDomain := *openapiclient.NewUpdateRouteDomain() // UpdateRouteDomain | 
 
@@ -1529,7 +1529,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1579,7 +1579,7 @@ import (
 )
 
 func main() {
-	id := float32(8.14) // float32 | 
+	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 	updateRouteDomainConfigGlobalSettings := *openapiclient.NewUpdateRouteDomainConfigGlobalSettings() // UpdateRouteDomainConfigGlobalSettings | 
 
@@ -1601,7 +1601,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **float32** |  | 
+**id** | **int64** |  | 
 
 ### Other Parameters
 

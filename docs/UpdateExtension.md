@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The extension name | 
+**Name** | Pointer to **string** | The extension name | [optional] 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
-**Description** | **string** | The extension description | 
+**Description** | Pointer to **string** | The extension description | [optional] 
 **Definition** | [**ExtensionDefinition**](ExtensionDefinition.md) |  | 
 
 ## Methods
 
 ### NewUpdateExtension
 
-`func NewUpdateExtension(name string, description string, definition ExtensionDefinition, ) *UpdateExtension`
+`func NewUpdateExtension(definition ExtensionDefinition, ) *UpdateExtension`
 
 NewUpdateExtension instantiates a new UpdateExtension object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *UpdateExtension) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetLabel
 
@@ -92,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+### HasDescription
+
+`func (o *UpdateExtension) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetDefinition
 

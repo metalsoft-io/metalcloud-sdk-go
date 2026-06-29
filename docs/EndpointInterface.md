@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Unique identifier for the endpoint interface | 
+**Id** | **int64** | Unique identifier for the endpoint interface | 
 **Revision** | **string** | Revision number of the endpoint interface | 
-**NetworkDeviceId** | **float32** | Network device id | 
-**NetworkDeviceInterfaceId** | **float32** | Network device interface id | 
+**NetworkDeviceId** | **int64** | Network device id | 
+**NetworkDeviceInterfaceId** | **int64** | Network device interface id | 
 **NetworkDeviceInterfaceName** | **string** | Network device interface name | 
 **MacAddress** | Pointer to **string** | Device interface mac address | [optional] 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewEndpointInterface
 
-`func NewEndpointInterface(id float32, revision string, networkDeviceId float32, networkDeviceInterfaceId float32, networkDeviceInterfaceName string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *EndpointInterface`
+`func NewEndpointInterface(id int64, revision string, networkDeviceId int64, networkDeviceInterfaceId int64, networkDeviceInterfaceName string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *EndpointInterface`
 
 NewEndpointInterface instantiates a new EndpointInterface object
 This constructor will assign default values to properties that have it defined,
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *EndpointInterface) GetId() float32`
+`func (o *EndpointInterface) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *EndpointInterface) GetIdOk() (*float32, bool)`
+`func (o *EndpointInterface) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *EndpointInterface) SetId(v float32)`
+`func (o *EndpointInterface) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -75,40 +75,40 @@ SetRevision sets Revision field to given value.
 
 ### GetNetworkDeviceId
 
-`func (o *EndpointInterface) GetNetworkDeviceId() float32`
+`func (o *EndpointInterface) GetNetworkDeviceId() int64`
 
 GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceIdOk
 
-`func (o *EndpointInterface) GetNetworkDeviceIdOk() (*float32, bool)`
+`func (o *EndpointInterface) GetNetworkDeviceIdOk() (*int64, bool)`
 
 GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceId
 
-`func (o *EndpointInterface) SetNetworkDeviceId(v float32)`
+`func (o *EndpointInterface) SetNetworkDeviceId(v int64)`
 
 SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
 
 ### GetNetworkDeviceInterfaceId
 
-`func (o *EndpointInterface) GetNetworkDeviceInterfaceId() float32`
+`func (o *EndpointInterface) GetNetworkDeviceInterfaceId() int64`
 
 GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceInterfaceIdOk
 
-`func (o *EndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool)`
+`func (o *EndpointInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool)`
 
 GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceInterfaceId
 
-`func (o *EndpointInterface) SetNetworkDeviceInterfaceId(v float32)`
+`func (o *EndpointInterface) SetNetworkDeviceInterfaceId(v int64)`
 
 SetNetworkDeviceInterfaceId sets NetworkDeviceInterfaceId field to given value.
 

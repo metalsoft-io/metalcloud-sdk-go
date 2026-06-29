@@ -26,27 +26,27 @@ type VMInstanceGroupInterface struct {
 	// Interface index
 	Index float32 `json:"index"`
 	// Network ID
-	NetworkId *float32 `json:"networkId,omitempty"`
+	NetworkId *int64 `json:"networkId,omitempty"`
 	// Subdomain of the VM Instance Group Interface.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Timestamp of the VM Instance Group Interface update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Interface ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the VM Instance Group Interface Configuration
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Service status of the VM Instance Group Interface.
 	ServiceStatus string `json:"serviceStatus"`
 	// VM Instance Group ID
-	GroupId float32 `json:"groupId"`
+	GroupId int64 `json:"groupId"`
 	// Infrastructure ID
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Subdomain permanent of the VM Instance Group Interface.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the VM Instance Group Interface.
-	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the VM Instance Group Interface.
-	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	// The current changes to be deployed for the VM Instance Group Interface.
 	Config VMInstanceGroupInterfaceConfiguration `json:"config"`
 	// Meta information of the VM Instance Group Interface.
@@ -64,7 +64,7 @@ type _VMInstanceGroupInterface VMInstanceGroupInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta map[string]interface{}, createdTimestamp string) *VMInstanceGroupInterface {
+func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id int64, revision int64, serviceStatus string, groupId int64, infrastructureId int64, config VMInstanceGroupInterfaceConfiguration, meta map[string]interface{}, createdTimestamp string) *VMInstanceGroupInterface {
 	this := VMInstanceGroupInterface{}
 	this.Label = label
 	this.Index = index
@@ -137,9 +137,9 @@ func (o *VMInstanceGroupInterface) SetIndex(v float32) {
 }
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
-func (o *VMInstanceGroupInterface) GetNetworkId() float32 {
+func (o *VMInstanceGroupInterface) GetNetworkId() int64 {
 	if o == nil || IsNil(o.NetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkId
@@ -147,7 +147,7 @@ func (o *VMInstanceGroupInterface) GetNetworkId() float32 {
 
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetNetworkIdOk() (*float32, bool) {
+func (o *VMInstanceGroupInterface) GetNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkId) {
 		return nil, false
 	}
@@ -163,8 +163,8 @@ func (o *VMInstanceGroupInterface) HasNetworkId() bool {
 	return false
 }
 
-// SetNetworkId gets a reference to the given float32 and assigns it to the NetworkId field.
-func (o *VMInstanceGroupInterface) SetNetworkId(v float32) {
+// SetNetworkId gets a reference to the given int64 and assigns it to the NetworkId field.
+func (o *VMInstanceGroupInterface) SetNetworkId(v int64) {
 	o.NetworkId = &v
 }
 
@@ -225,9 +225,9 @@ func (o *VMInstanceGroupInterface) SetUpdatedTimestamp(v string) {
 }
 
 // GetId returns the Id field value
-func (o *VMInstanceGroupInterface) GetId() float32 {
+func (o *VMInstanceGroupInterface) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -236,7 +236,7 @@ func (o *VMInstanceGroupInterface) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetIdOk() (*float32, bool) {
+func (o *VMInstanceGroupInterface) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -244,14 +244,14 @@ func (o *VMInstanceGroupInterface) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMInstanceGroupInterface) SetId(v float32) {
+func (o *VMInstanceGroupInterface) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *VMInstanceGroupInterface) GetRevision() float32 {
+func (o *VMInstanceGroupInterface) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -260,7 +260,7 @@ func (o *VMInstanceGroupInterface) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetRevisionOk() (*float32, bool) {
+func (o *VMInstanceGroupInterface) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -268,7 +268,7 @@ func (o *VMInstanceGroupInterface) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *VMInstanceGroupInterface) SetRevision(v float32) {
+func (o *VMInstanceGroupInterface) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -297,9 +297,9 @@ func (o *VMInstanceGroupInterface) SetServiceStatus(v string) {
 }
 
 // GetGroupId returns the GroupId field value
-func (o *VMInstanceGroupInterface) GetGroupId() float32 {
+func (o *VMInstanceGroupInterface) GetGroupId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -308,7 +308,7 @@ func (o *VMInstanceGroupInterface) GetGroupId() float32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetGroupIdOk() (*float32, bool) {
+func (o *VMInstanceGroupInterface) GetGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -316,14 +316,14 @@ func (o *VMInstanceGroupInterface) GetGroupIdOk() (*float32, bool) {
 }
 
 // SetGroupId sets field value
-func (o *VMInstanceGroupInterface) SetGroupId(v float32) {
+func (o *VMInstanceGroupInterface) SetGroupId(v int64) {
 	o.GroupId = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *VMInstanceGroupInterface) GetInfrastructureId() float32 {
+func (o *VMInstanceGroupInterface) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -332,7 +332,7 @@ func (o *VMInstanceGroupInterface) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetInfrastructureIdOk() (*float32, bool) {
+func (o *VMInstanceGroupInterface) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -340,7 +340,7 @@ func (o *VMInstanceGroupInterface) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *VMInstanceGroupInterface) SetInfrastructureId(v float32) {
+func (o *VMInstanceGroupInterface) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
@@ -377,9 +377,9 @@ func (o *VMInstanceGroupInterface) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *VMInstanceGroupInterface) GetDnsSubdomainId() float32 {
+func (o *VMInstanceGroupInterface) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -387,7 +387,7 @@ func (o *VMInstanceGroupInterface) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *VMInstanceGroupInterface) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -403,15 +403,15 @@ func (o *VMInstanceGroupInterface) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *VMInstanceGroupInterface) SetDnsSubdomainId(v float32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *VMInstanceGroupInterface) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *VMInstanceGroupInterface) GetDnsSubdomainPermanentId() float32 {
+func (o *VMInstanceGroupInterface) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -419,7 +419,7 @@ func (o *VMInstanceGroupInterface) GetDnsSubdomainPermanentId() float32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+func (o *VMInstanceGroupInterface) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -435,8 +435,8 @@ func (o *VMInstanceGroupInterface) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *VMInstanceGroupInterface) SetDnsSubdomainPermanentId(v float32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *VMInstanceGroupInterface) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 

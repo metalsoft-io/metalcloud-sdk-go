@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **Label** | **string** | Unique label for the network fabric interconnect | 
 **Name** | Pointer to **string** | Name of the network fabric interconnect | [optional] 
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
-**BgpConfigurationTemplateId** | Pointer to **int32** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
-**TransportId** | Pointer to **int32** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
+**BgpConfigurationTemplateId** | Pointer to **int64** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
+**TransportId** | Pointer to **int64** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
-**DeployId** | Pointer to **int32** | The deploy ID of the network fabric interconnect, if it is being deployed. | [optional] 
+**DeployId** | Pointer to **int64** | The deploy ID of the network fabric interconnect, if it is being deployed. | [optional] 
 **DeployPreview** | Pointer to [**[]NetworkFabricInterconnectDeployPreview**](NetworkFabricInterconnectDeployPreview.md) | The deploy preview for the network fabric interconnect, if it is being deployed. | [optional] 
 **Status** | Pointer to [**InterconnectStatus**](InterconnectStatus.md) | The status of the network interconnect, by default it is in draft mode. | [optional] 
 
@@ -150,20 +150,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetBgpConfigurationTemplateId
 
-`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateId() int32`
+`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateId() int64`
 
 GetBgpConfigurationTemplateId returns the BgpConfigurationTemplateId field if non-nil, zero value otherwise.
 
 ### GetBgpConfigurationTemplateIdOk
 
-`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int32, bool)`
+`func (o *NetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int64, bool)`
 
 GetBgpConfigurationTemplateIdOk returns a tuple with the BgpConfigurationTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBgpConfigurationTemplateId
 
-`func (o *NetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int32)`
+`func (o *NetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int64)`
 
 SetBgpConfigurationTemplateId sets BgpConfigurationTemplateId field to given value.
 
@@ -175,20 +175,20 @@ HasBgpConfigurationTemplateId returns a boolean if a field has been set.
 
 ### GetTransportId
 
-`func (o *NetworkFabricInterconnect) GetTransportId() int32`
+`func (o *NetworkFabricInterconnect) GetTransportId() int64`
 
 GetTransportId returns the TransportId field if non-nil, zero value otherwise.
 
 ### GetTransportIdOk
 
-`func (o *NetworkFabricInterconnect) GetTransportIdOk() (*int32, bool)`
+`func (o *NetworkFabricInterconnect) GetTransportIdOk() (*int64, bool)`
 
 GetTransportIdOk returns a tuple with the TransportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransportId
 
-`func (o *NetworkFabricInterconnect) SetTransportId(v int32)`
+`func (o *NetworkFabricInterconnect) SetTransportId(v int64)`
 
 SetTransportId sets TransportId field to given value.
 
@@ -285,20 +285,20 @@ HasLinks returns a boolean if a field has been set.
 
 ### GetDeployId
 
-`func (o *NetworkFabricInterconnect) GetDeployId() int32`
+`func (o *NetworkFabricInterconnect) GetDeployId() int64`
 
 GetDeployId returns the DeployId field if non-nil, zero value otherwise.
 
 ### GetDeployIdOk
 
-`func (o *NetworkFabricInterconnect) GetDeployIdOk() (*int32, bool)`
+`func (o *NetworkFabricInterconnect) GetDeployIdOk() (*int64, bool)`
 
 GetDeployIdOk returns a tuple with the DeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeployId
 
-`func (o *NetworkFabricInterconnect) SetDeployId(v int32)`
+`func (o *NetworkFabricInterconnect) SetDeployId(v int64)`
 
 SetDeployId sets DeployId field to given value.
 

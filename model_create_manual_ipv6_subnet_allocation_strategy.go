@@ -24,7 +24,7 @@ type CreateManualIpv6SubnetAllocationStrategy struct {
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	GatewayPlacement *SubnetGatewayPlacement `json:"gatewayPlacement,omitempty"`
-	SubnetId int32 `json:"subnetId"`
+	SubnetId int64 `json:"subnetId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _CreateManualIpv6SubnetAllocationStrategy CreateManualIpv6SubnetAllocationS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateManualIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int32) *CreateManualIpv6SubnetAllocationStrategy {
+func NewCreateManualIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int64) *CreateManualIpv6SubnetAllocationStrategy {
 	this := CreateManualIpv6SubnetAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -135,9 +135,9 @@ func (o *CreateManualIpv6SubnetAllocationStrategy) SetGatewayPlacement(v SubnetG
 }
 
 // GetSubnetId returns the SubnetId field value
-func (o *CreateManualIpv6SubnetAllocationStrategy) GetSubnetId() int32 {
+func (o *CreateManualIpv6SubnetAllocationStrategy) GetSubnetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -146,7 +146,7 @@ func (o *CreateManualIpv6SubnetAllocationStrategy) GetSubnetId() int32 {
 
 // GetSubnetIdOk returns a tuple with the SubnetId field value
 // and a boolean to check if the value has been set.
-func (o *CreateManualIpv6SubnetAllocationStrategy) GetSubnetIdOk() (*int32, bool) {
+func (o *CreateManualIpv6SubnetAllocationStrategy) GetSubnetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -154,7 +154,7 @@ func (o *CreateManualIpv6SubnetAllocationStrategy) GetSubnetIdOk() (*int32, bool
 }
 
 // SetSubnetId sets field value
-func (o *CreateManualIpv6SubnetAllocationStrategy) SetSubnetId(v int32) {
+func (o *CreateManualIpv6SubnetAllocationStrategy) SetSubnetId(v int64) {
 	o.SubnetId = v
 }
 

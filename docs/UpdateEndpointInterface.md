@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MacAddress** | Pointer to **string** | Device interface mac address | [optional] 
-**NetworkDeviceInterfaceId** | Pointer to **float32** | Network device interface id | [optional] 
+**NetworkDeviceInterfaceId** | Pointer to **int64** | Network device interface id | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasMacAddress returns a boolean if a field has been set.
 
 ### GetNetworkDeviceInterfaceId
 
-`func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceId() float32`
+`func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceId() int64`
 
 GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceInterfaceIdOk
 
-`func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool)`
+`func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool)`
 
 GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceInterfaceId
 
-`func (o *UpdateEndpointInterface) SetNetworkDeviceInterfaceId(v float32)`
+`func (o *UpdateEndpointInterface) SetNetworkDeviceInterfaceId(v int64)`
 
 SetNetworkDeviceInterfaceId sets NetworkDeviceInterfaceId field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerInterfaceId** | **float32** | The id of the server interface | 
+**ServerInterfaceId** | **int64** | The id of the server interface | 
 **NetworkDevicePortId** | **string** | The network device port name | 
 **NetworkDeviceHostname** | **string** | The network device hostname | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewServerConnectInterface
 
-`func NewServerConnectInterface(serverInterfaceId float32, networkDevicePortId string, networkDeviceHostname string, ) *ServerConnectInterface`
+`func NewServerConnectInterface(serverInterfaceId int64, networkDevicePortId string, networkDeviceHostname string, ) *ServerConnectInterface`
 
 NewServerConnectInterface instantiates a new ServerConnectInterface object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerInterfaceId
 
-`func (o *ServerConnectInterface) GetServerInterfaceId() float32`
+`func (o *ServerConnectInterface) GetServerInterfaceId() int64`
 
 GetServerInterfaceId returns the ServerInterfaceId field if non-nil, zero value otherwise.
 
 ### GetServerInterfaceIdOk
 
-`func (o *ServerConnectInterface) GetServerInterfaceIdOk() (*float32, bool)`
+`func (o *ServerConnectInterface) GetServerInterfaceIdOk() (*int64, bool)`
 
 GetServerInterfaceIdOk returns a tuple with the ServerInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerInterfaceId
 
-`func (o *ServerConnectInterface) SetServerInterfaceId(v float32)`
+`func (o *ServerConnectInterface) SetServerInterfaceId(v int64)`
 
 SetServerInterfaceId sets ServerInterfaceId field to given value.
 

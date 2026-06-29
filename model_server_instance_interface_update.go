@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInstanceInterfaceUpdate{}
 type ServerInstanceInterfaceUpdate struct {
 	CapacityMbps *int32 `json:"capacityMbps,omitempty"`
 	// The ID of the network to which this interface is to be attached to.
-	NetworkId *int32 `json:"networkId,omitempty"`
+	NetworkId *int64 `json:"networkId,omitempty"`
 	// The server instance interface label.
 	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -80,9 +80,9 @@ func (o *ServerInstanceInterfaceUpdate) SetCapacityMbps(v int32) {
 }
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
-func (o *ServerInstanceInterfaceUpdate) GetNetworkId() int32 {
+func (o *ServerInstanceInterfaceUpdate) GetNetworkId() int64 {
 	if o == nil || IsNil(o.NetworkId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkId
@@ -90,7 +90,7 @@ func (o *ServerInstanceInterfaceUpdate) GetNetworkId() int32 {
 
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceUpdate) GetNetworkIdOk() (*int32, bool) {
+func (o *ServerInstanceInterfaceUpdate) GetNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkId) {
 		return nil, false
 	}
@@ -106,8 +106,8 @@ func (o *ServerInstanceInterfaceUpdate) HasNetworkId() bool {
 	return false
 }
 
-// SetNetworkId gets a reference to the given int32 and assigns it to the NetworkId field.
-func (o *ServerInstanceInterfaceUpdate) SetNetworkId(v int32) {
+// SetNetworkId gets a reference to the given int64 and assigns it to the NetworkId field.
+func (o *ServerInstanceInterfaceUpdate) SetNetworkId(v int64) {
 	o.NetworkId = &v
 }
 

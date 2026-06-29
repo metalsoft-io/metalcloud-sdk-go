@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **MacAddressOnHostOS** | **string** | The MAC address of the DPU as seen from the Host OS. Example: 00:1A:2B:3C:4D:5E | 
 **Username** | **string** | The username to use for the DPU. | 
 **Password** | **string** | The password to use for the DPU. | 
+**ApiUsername** | Pointer to **string** | The username to use for the DPU API if different from the management username. | [optional] 
+**ApiPassword** | Pointer to **string** | The password to use for the DPU API if different from the management password. | [optional] 
 
 ## Methods
 
@@ -107,6 +109,56 @@ and a boolean to check if the value has been set.
 
 SetPassword sets Password field to given value.
 
+
+### GetApiUsername
+
+`func (o *ServerDPUCredentials) GetApiUsername() string`
+
+GetApiUsername returns the ApiUsername field if non-nil, zero value otherwise.
+
+### GetApiUsernameOk
+
+`func (o *ServerDPUCredentials) GetApiUsernameOk() (*string, bool)`
+
+GetApiUsernameOk returns a tuple with the ApiUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiUsername
+
+`func (o *ServerDPUCredentials) SetApiUsername(v string)`
+
+SetApiUsername sets ApiUsername field to given value.
+
+### HasApiUsername
+
+`func (o *ServerDPUCredentials) HasApiUsername() bool`
+
+HasApiUsername returns a boolean if a field has been set.
+
+### GetApiPassword
+
+`func (o *ServerDPUCredentials) GetApiPassword() string`
+
+GetApiPassword returns the ApiPassword field if non-nil, zero value otherwise.
+
+### GetApiPasswordOk
+
+`func (o *ServerDPUCredentials) GetApiPasswordOk() (*string, bool)`
+
+GetApiPasswordOk returns a tuple with the ApiPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiPassword
+
+`func (o *ServerDPUCredentials) SetApiPassword(v string)`
+
+SetApiPassword sets ApiPassword field to given value.
+
+### HasApiPassword
+
+`func (o *ServerDPUCredentials) HasApiPassword() bool`
+
+HasApiPassword returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

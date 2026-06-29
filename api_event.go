@@ -28,7 +28,7 @@ type EventAPIService service
 type EventAPIGetEventRequest struct {
 	ctx context.Context
 	ApiService *EventAPIService
-	eventId float32
+	eventId int64
 }
 
 func (r EventAPIGetEventRequest) Execute() (*Event, *http.Response, error) {
@@ -44,7 +44,7 @@ Returns Event information
  @param eventId
  @return EventAPIGetEventRequest
 */
-func (a *EventAPIService) GetEvent(ctx context.Context, eventId float32) EventAPIGetEventRequest {
+func (a *EventAPIService) GetEvent(ctx context.Context, eventId int64) EventAPIGetEventRequest {
 	return EventAPIGetEventRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -136,7 +136,7 @@ type EventAPIGetEventsRequest struct {
 	filterId *[]string
 	filterUserIdAuthenticated *[]string
 	filterType *[]string
-	filterSeverity *[]string
+	filterLevel *[]string
 	filterVisibility *[]string
 	filterInfrastructureId *[]string
 	filterUserId *[]string
@@ -179,9 +179,9 @@ func (r EventAPIGetEventsRequest) FilterType(filterType []string) EventAPIGetEve
 	return r
 }
 
-// Filter by severity query param.  **Format:** filter.severity&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.severity&#x3D;$eq:John Doe&amp;filter.severity&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
-func (r EventAPIGetEventsRequest) FilterSeverity(filterSeverity []string) EventAPIGetEventsRequest {
-	r.filterSeverity = &filterSeverity
+// Filter by level query param.  **Format:** filter.level&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.level&#x3D;$eq:John Doe&amp;filter.level&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r EventAPIGetEventsRequest) FilterLevel(filterLevel []string) EventAPIGetEventsRequest {
+	r.filterLevel = &filterLevel
 	return r
 }
 
@@ -239,7 +239,7 @@ func (r EventAPIGetEventsRequest) Search(search string) EventAPIGetEventsRequest
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,type,severity,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - severity  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message 
+// List of fields to search by term to filter result values  **Example:** id,type,level,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - level  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message 
 func (r EventAPIGetEventsRequest) SearchBy(searchBy []string) EventAPIGetEventsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -324,15 +324,15 @@ func (a *EventAPIService) GetEventsExecute(r EventAPIGetEventsRequest) (*EventPa
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", t, "form", "multi")
 		}
 	}
-	if r.filterSeverity != nil {
-		t := *r.filterSeverity
+	if r.filterLevel != nil {
+		t := *r.filterLevel
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.severity", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.level", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.severity", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.level", t, "form", "multi")
 		}
 	}
 	if r.filterVisibility != nil {

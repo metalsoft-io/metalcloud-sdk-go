@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExtensionId** | **float32** | The physical device ID | 
+**ExtensionId** | **int64** | The physical device ID | 
 **InputArguments** | **map[string]interface{}** | Input arguments | 
 
 ## Methods
 
 ### NewRunExtensionOnPhysicalDevice
 
-`func NewRunExtensionOnPhysicalDevice(extensionId float32, inputArguments map[string]interface{}, ) *RunExtensionOnPhysicalDevice`
+`func NewRunExtensionOnPhysicalDevice(extensionId int64, inputArguments map[string]interface{}, ) *RunExtensionOnPhysicalDevice`
 
 NewRunExtensionOnPhysicalDevice instantiates a new RunExtensionOnPhysicalDevice object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetExtensionId
 
-`func (o *RunExtensionOnPhysicalDevice) GetExtensionId() float32`
+`func (o *RunExtensionOnPhysicalDevice) GetExtensionId() int64`
 
 GetExtensionId returns the ExtensionId field if non-nil, zero value otherwise.
 
 ### GetExtensionIdOk
 
-`func (o *RunExtensionOnPhysicalDevice) GetExtensionIdOk() (*float32, bool)`
+`func (o *RunExtensionOnPhysicalDevice) GetExtensionIdOk() (*int64, bool)`
 
 GetExtensionIdOk returns a tuple with the ExtensionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtensionId
 
-`func (o *RunExtensionOnPhysicalDevice) SetExtensionId(v float32)`
+`func (o *RunExtensionOnPhysicalDevice) SetExtensionId(v int64)`
 
 SetExtensionId sets ExtensionId field to given value.
 

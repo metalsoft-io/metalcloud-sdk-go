@@ -21,7 +21,7 @@ var _ MappedNullable = &SearchFirmwareBinary{}
 
 // SearchFirmwareBinary struct for SearchFirmwareBinary
 type SearchFirmwareBinary struct {
-	Vendor ServerFirmwareCatalogVendor `json:"vendor"`
+	Vendor string `json:"vendor"`
 	BaselineIds []string `json:"baselineIds,omitempty"`
 	ServerComponentFilter *SearchFirmwareBinaryServerComponentFilter `json:"serverComponentFilter,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _SearchFirmwareBinary SearchFirmwareBinary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSearchFirmwareBinary(vendor ServerFirmwareCatalogVendor) *SearchFirmwareBinary {
+func NewSearchFirmwareBinary(vendor string) *SearchFirmwareBinary {
 	this := SearchFirmwareBinary{}
 	this.Vendor = vendor
 	return &this
@@ -48,9 +48,9 @@ func NewSearchFirmwareBinaryWithDefaults() *SearchFirmwareBinary {
 }
 
 // GetVendor returns the Vendor field value
-func (o *SearchFirmwareBinary) GetVendor() ServerFirmwareCatalogVendor {
+func (o *SearchFirmwareBinary) GetVendor() string {
 	if o == nil {
-		var ret ServerFirmwareCatalogVendor
+		var ret string
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *SearchFirmwareBinary) GetVendor() ServerFirmwareCatalogVendor {
 
 // GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *SearchFirmwareBinary) GetVendorOk() (*ServerFirmwareCatalogVendor, bool) {
+func (o *SearchFirmwareBinary) GetVendorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *SearchFirmwareBinary) GetVendorOk() (*ServerFirmwareCatalogVendor, bool
 }
 
 // SetVendor sets field value
-func (o *SearchFirmwareBinary) SetVendor(v ServerFirmwareCatalogVendor) {
+func (o *SearchFirmwareBinary) SetVendor(v string) {
 	o.Vendor = v
 }
 

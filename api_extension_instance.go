@@ -28,7 +28,7 @@ type ExtensionInstanceAPIService service
 type ExtensionInstanceAPICreateExtensionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ExtensionInstanceAPIService
-	infrastructureId float32
+	infrastructureId int64
 	createExtensionInstance *CreateExtensionInstance
 }
 
@@ -51,7 +51,7 @@ Adds extension instance to the specified infrastructure. Note that a infrastruct
  @param infrastructureId
  @return ExtensionInstanceAPICreateExtensionInstanceRequest
 */
-func (a *ExtensionInstanceAPIService) CreateExtensionInstance(ctx context.Context, infrastructureId float32) ExtensionInstanceAPICreateExtensionInstanceRequest {
+func (a *ExtensionInstanceAPIService) CreateExtensionInstance(ctx context.Context, infrastructureId int64) ExtensionInstanceAPICreateExtensionInstanceRequest {
 	return ExtensionInstanceAPICreateExtensionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -143,7 +143,7 @@ func (a *ExtensionInstanceAPIService) CreateExtensionInstanceExecute(r Extension
 type ExtensionInstanceAPIDeleteExtensionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ExtensionInstanceAPIService
-	extensionInstanceId float32
+	extensionInstanceId int64
 	ifMatch *string
 }
 
@@ -166,7 +166,7 @@ Deletes the specified extension instance
  @param extensionInstanceId
  @return ExtensionInstanceAPIDeleteExtensionInstanceRequest
 */
-func (a *ExtensionInstanceAPIService) DeleteExtensionInstance(ctx context.Context, extensionInstanceId float32) ExtensionInstanceAPIDeleteExtensionInstanceRequest {
+func (a *ExtensionInstanceAPIService) DeleteExtensionInstance(ctx context.Context, extensionInstanceId int64) ExtensionInstanceAPIDeleteExtensionInstanceRequest {
 	return ExtensionInstanceAPIDeleteExtensionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -245,7 +245,7 @@ func (a *ExtensionInstanceAPIService) DeleteExtensionInstanceExecute(r Extension
 type ExtensionInstanceAPIGetExtensionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ExtensionInstanceAPIService
-	extensionInstanceId float32
+	extensionInstanceId int64
 }
 
 func (r ExtensionInstanceAPIGetExtensionInstanceRequest) Execute() (*ExtensionInstance, *http.Response, error) {
@@ -261,7 +261,7 @@ Returns the details of the specified extension instance
  @param extensionInstanceId
  @return ExtensionInstanceAPIGetExtensionInstanceRequest
 */
-func (a *ExtensionInstanceAPIService) GetExtensionInstance(ctx context.Context, extensionInstanceId float32) ExtensionInstanceAPIGetExtensionInstanceRequest {
+func (a *ExtensionInstanceAPIService) GetExtensionInstance(ctx context.Context, extensionInstanceId int64) ExtensionInstanceAPIGetExtensionInstanceRequest {
 	return ExtensionInstanceAPIGetExtensionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -348,7 +348,7 @@ func (a *ExtensionInstanceAPIService) GetExtensionInstanceExecute(r ExtensionIns
 type ExtensionInstanceAPIGetExtensionInstanceCredentialsRequest struct {
 	ctx context.Context
 	ApiService *ExtensionInstanceAPIService
-	extensionInstanceId int32
+	extensionInstanceId int64
 }
 
 func (r ExtensionInstanceAPIGetExtensionInstanceCredentialsRequest) Execute() (*ExtensionInstanceCredentials, *http.Response, error) {
@@ -364,7 +364,7 @@ Returns the credentials of the specified Extension Instance
  @param extensionInstanceId
  @return ExtensionInstanceAPIGetExtensionInstanceCredentialsRequest
 */
-func (a *ExtensionInstanceAPIService) GetExtensionInstanceCredentials(ctx context.Context, extensionInstanceId int32) ExtensionInstanceAPIGetExtensionInstanceCredentialsRequest {
+func (a *ExtensionInstanceAPIService) GetExtensionInstanceCredentials(ctx context.Context, extensionInstanceId int64) ExtensionInstanceAPIGetExtensionInstanceCredentialsRequest {
 	return ExtensionInstanceAPIGetExtensionInstanceCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -451,7 +451,7 @@ func (a *ExtensionInstanceAPIService) GetExtensionInstanceCredentialsExecute(r E
 type ExtensionInstanceAPIGetExtensionInstancesRequest struct {
 	ctx context.Context
 	ApiService *ExtensionInstanceAPIService
-	infrastructureId float32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterExtensionId *[]string
@@ -537,7 +537,7 @@ Returns list of extension instances
  @param infrastructureId
  @return ExtensionInstanceAPIGetExtensionInstancesRequest
 */
-func (a *ExtensionInstanceAPIService) GetExtensionInstances(ctx context.Context, infrastructureId float32) ExtensionInstanceAPIGetExtensionInstancesRequest {
+func (a *ExtensionInstanceAPIService) GetExtensionInstances(ctx context.Context, infrastructureId int64) ExtensionInstanceAPIGetExtensionInstancesRequest {
 	return ExtensionInstanceAPIGetExtensionInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -710,7 +710,7 @@ func (a *ExtensionInstanceAPIService) GetExtensionInstancesExecute(r ExtensionIn
 type ExtensionInstanceAPIUpdateExtensionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ExtensionInstanceAPIService
-	extensionInstanceId float32
+	extensionInstanceId int64
 	updateExtensionInstance *UpdateExtensionInstance
 	ifMatch *string
 }
@@ -740,7 +740,7 @@ Updates the specified extension instance
  @param extensionInstanceId
  @return ExtensionInstanceAPIUpdateExtensionInstanceRequest
 */
-func (a *ExtensionInstanceAPIService) UpdateExtensionInstance(ctx context.Context, extensionInstanceId float32) ExtensionInstanceAPIUpdateExtensionInstanceRequest {
+func (a *ExtensionInstanceAPIService) UpdateExtensionInstance(ctx context.Context, extensionInstanceId int64) ExtensionInstanceAPIUpdateExtensionInstanceRequest {
 	return ExtensionInstanceAPIUpdateExtensionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,

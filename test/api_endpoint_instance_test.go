@@ -26,7 +26,7 @@ func Test_sdk_EndpointInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.EndpointInstanceAPI.CreateEndpointInstance(context.Background(), infrastructureId).Execute()
 
@@ -40,7 +40,7 @@ func Test_sdk_EndpointInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointInstanceId int32
+		var endpointInstanceId int64
 
 		httpRes, err := apiClient.EndpointInstanceAPI.DeleteEndpointInstance(context.Background(), endpointInstanceId).Execute()
 
@@ -53,7 +53,7 @@ func Test_sdk_EndpointInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointInstanceId int32
+		var endpointInstanceId int64
 
 		resp, httpRes, err := apiClient.EndpointInstanceAPI.GetEndpointInstance(context.Background(), endpointInstanceId).Execute()
 
@@ -67,7 +67,7 @@ func Test_sdk_EndpointInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointInstanceId int32
+		var endpointInstanceId int64
 
 		resp, httpRes, err := apiClient.EndpointInstanceAPI.GetEndpointInstanceConfig(context.Background(), endpointInstanceId).Execute()
 
@@ -93,7 +93,7 @@ func Test_sdk_EndpointInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.EndpointInstanceAPI.GetInfrastructureEndpointInstances(context.Background(), infrastructureId).Execute()
 
@@ -107,7 +107,7 @@ func Test_sdk_EndpointInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointInstanceId int32
+		var endpointInstanceId int64
 
 		resp, httpRes, err := apiClient.EndpointInstanceAPI.UpdateEndpointInstanceConfig(context.Background(), endpointInstanceId).Execute()
 
@@ -121,7 +121,7 @@ func Test_sdk_EndpointInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var endpointInstanceId int32
+		var endpointInstanceId int64
 
 		httpRes, err := apiClient.EndpointInstanceAPI.UpdateEndpointInstanceMeta(context.Background(), endpointInstanceId).Execute()
 

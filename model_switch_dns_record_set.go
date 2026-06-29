@@ -22,7 +22,7 @@ var _ MappedNullable = &SwitchDNSRecordSet{}
 // SwitchDNSRecordSet struct for SwitchDNSRecordSet
 type SwitchDNSRecordSet struct {
 	// The id of the switch.
-	SwitchId float32 `json:"switchId"`
+	SwitchId int64 `json:"switchId"`
 	// The DNS zone information.
 	Zone GenericDNSZoneInformation `json:"zone"`
 	// The management address of the switch.
@@ -44,7 +44,7 @@ type _SwitchDNSRecordSet SwitchDNSRecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSwitchDNSRecordSet(switchId float32, zone GenericDNSZoneInformation, managementAddress string, hostname string, fqdn string, ip map[string]interface{}, operation string) *SwitchDNSRecordSet {
+func NewSwitchDNSRecordSet(switchId int64, zone GenericDNSZoneInformation, managementAddress string, hostname string, fqdn string, ip map[string]interface{}, operation string) *SwitchDNSRecordSet {
 	this := SwitchDNSRecordSet{}
 	this.SwitchId = switchId
 	this.Zone = zone
@@ -65,9 +65,9 @@ func NewSwitchDNSRecordSetWithDefaults() *SwitchDNSRecordSet {
 }
 
 // GetSwitchId returns the SwitchId field value
-func (o *SwitchDNSRecordSet) GetSwitchId() float32 {
+func (o *SwitchDNSRecordSet) GetSwitchId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *SwitchDNSRecordSet) GetSwitchId() float32 {
 
 // GetSwitchIdOk returns a tuple with the SwitchId field value
 // and a boolean to check if the value has been set.
-func (o *SwitchDNSRecordSet) GetSwitchIdOk() (*float32, bool) {
+func (o *SwitchDNSRecordSet) GetSwitchIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +84,7 @@ func (o *SwitchDNSRecordSet) GetSwitchIdOk() (*float32, bool) {
 }
 
 // SetSwitchId sets field value
-func (o *SwitchDNSRecordSet) SetSwitchId(v float32) {
+func (o *SwitchDNSRecordSet) SetSwitchId(v int64) {
 	o.SwitchId = v
 }
 

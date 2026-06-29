@@ -239,7 +239,7 @@ func (a *EndpointAPIService) CreateEndpointExecute(r EndpointAPICreateEndpointRe
 type EndpointAPICreateEndpointInterfaceRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
+	endpointId int64
 	createEndpointInterface *CreateEndpointInterface
 }
 
@@ -262,7 +262,7 @@ Creates a new endpoint interface for the specified endpoint
  @param endpointId
  @return EndpointAPICreateEndpointInterfaceRequest
 */
-func (a *EndpointAPIService) CreateEndpointInterface(ctx context.Context, endpointId int32) EndpointAPICreateEndpointInterfaceRequest {
+func (a *EndpointAPIService) CreateEndpointInterface(ctx context.Context, endpointId int64) EndpointAPICreateEndpointInterfaceRequest {
 	return EndpointAPICreateEndpointInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -354,7 +354,7 @@ func (a *EndpointAPIService) CreateEndpointInterfaceExecute(r EndpointAPICreateE
 type EndpointAPIDeleteEndpointRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
+	endpointId int64
 	ifMatch *string
 }
 
@@ -377,7 +377,7 @@ Deletes the specified endpoint
  @param endpointId
  @return EndpointAPIDeleteEndpointRequest
 */
-func (a *EndpointAPIService) DeleteEndpoint(ctx context.Context, endpointId int32) EndpointAPIDeleteEndpointRequest {
+func (a *EndpointAPIService) DeleteEndpoint(ctx context.Context, endpointId int64) EndpointAPIDeleteEndpointRequest {
 	return EndpointAPIDeleteEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -456,8 +456,8 @@ func (a *EndpointAPIService) DeleteEndpointExecute(r EndpointAPIDeleteEndpointRe
 type EndpointAPIDeleteEndpointInterfaceRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
-	endpointInterfaceId int32
+	endpointId int64
+	endpointInterfaceId int64
 	ifMatch *string
 }
 
@@ -481,7 +481,7 @@ Deletes the specified endpoint interface
  @param endpointInterfaceId
  @return EndpointAPIDeleteEndpointInterfaceRequest
 */
-func (a *EndpointAPIService) DeleteEndpointInterface(ctx context.Context, endpointId int32, endpointInterfaceId int32) EndpointAPIDeleteEndpointInterfaceRequest {
+func (a *EndpointAPIService) DeleteEndpointInterface(ctx context.Context, endpointId int64, endpointInterfaceId int64) EndpointAPIDeleteEndpointInterfaceRequest {
 	return EndpointAPIDeleteEndpointInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -562,7 +562,7 @@ func (a *EndpointAPIService) DeleteEndpointInterfaceExecute(r EndpointAPIDeleteE
 type EndpointAPIGetEndpointByIdRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
+	endpointId int64
 }
 
 func (r EndpointAPIGetEndpointByIdRequest) Execute() (*Endpoint, *http.Response, error) {
@@ -578,7 +578,7 @@ Returns the details of the specified endpoint
  @param endpointId
  @return EndpointAPIGetEndpointByIdRequest
 */
-func (a *EndpointAPIService) GetEndpointById(ctx context.Context, endpointId int32) EndpointAPIGetEndpointByIdRequest {
+func (a *EndpointAPIService) GetEndpointById(ctx context.Context, endpointId int64) EndpointAPIGetEndpointByIdRequest {
 	return EndpointAPIGetEndpointByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -665,8 +665,8 @@ func (a *EndpointAPIService) GetEndpointByIdExecute(r EndpointAPIGetEndpointById
 type EndpointAPIGetEndpointInterfaceByIdRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
-	endpointInterfaceId int32
+	endpointId int64
+	endpointInterfaceId int64
 }
 
 func (r EndpointAPIGetEndpointInterfaceByIdRequest) Execute() (*EndpointInterface, *http.Response, error) {
@@ -683,7 +683,7 @@ Returns the details of the specified endpoint interface
  @param endpointInterfaceId
  @return EndpointAPIGetEndpointInterfaceByIdRequest
 */
-func (a *EndpointAPIService) GetEndpointInterfaceById(ctx context.Context, endpointId int32, endpointInterfaceId int32) EndpointAPIGetEndpointInterfaceByIdRequest {
+func (a *EndpointAPIService) GetEndpointInterfaceById(ctx context.Context, endpointId int64, endpointInterfaceId int64) EndpointAPIGetEndpointInterfaceByIdRequest {
 	return EndpointAPIGetEndpointInterfaceByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -772,7 +772,7 @@ func (a *EndpointAPIService) GetEndpointInterfaceByIdExecute(r EndpointAPIGetEnd
 type EndpointAPIGetEndpointInterfacesRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
+	endpointId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -851,7 +851,7 @@ Returns list of endpoint interfaces for the specified endpoint
  @param endpointId
  @return EndpointAPIGetEndpointInterfacesRequest
 */
-func (a *EndpointAPIService) GetEndpointInterfaces(ctx context.Context, endpointId int32) EndpointAPIGetEndpointInterfacesRequest {
+func (a *EndpointAPIService) GetEndpointInterfaces(ctx context.Context, endpointId int64) EndpointAPIGetEndpointInterfacesRequest {
 	return EndpointAPIGetEndpointInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1369,7 +1369,7 @@ func (a *EndpointAPIService) GetNetworkDeviceInterfacesAndEndpointsExecute(r End
 type EndpointAPIUpdateEndpointRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
+	endpointId int64
 	updateEndpoint *UpdateEndpoint
 	ifMatch *string
 }
@@ -1399,7 +1399,7 @@ Updates the specified endpoint
  @param endpointId
  @return EndpointAPIUpdateEndpointRequest
 */
-func (a *EndpointAPIService) UpdateEndpoint(ctx context.Context, endpointId int32) EndpointAPIUpdateEndpointRequest {
+func (a *EndpointAPIService) UpdateEndpoint(ctx context.Context, endpointId int64) EndpointAPIUpdateEndpointRequest {
 	return EndpointAPIUpdateEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1494,8 +1494,8 @@ func (a *EndpointAPIService) UpdateEndpointExecute(r EndpointAPIUpdateEndpointRe
 type EndpointAPIUpdateEndpointInterfaceRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	endpointId int32
-	endpointInterfaceId int32
+	endpointId int64
+	endpointInterfaceId int64
 	updateEndpointInterface *UpdateEndpointInterface
 	ifMatch *string
 }
@@ -1526,7 +1526,7 @@ Updates the specified endpoint interface
  @param endpointInterfaceId
  @return EndpointAPIUpdateEndpointInterfaceRequest
 */
-func (a *EndpointAPIService) UpdateEndpointInterface(ctx context.Context, endpointId int32, endpointInterfaceId int32) EndpointAPIUpdateEndpointInterfaceRequest {
+func (a *EndpointAPIService) UpdateEndpointInterface(ctx context.Context, endpointId int64, endpointInterfaceId int64) EndpointAPIUpdateEndpointInterfaceRequest {
 	return EndpointAPIUpdateEndpointInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,

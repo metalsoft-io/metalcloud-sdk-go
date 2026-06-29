@@ -22,9 +22,9 @@ var _ MappedNullable = &ServerInstanceGroupVariables{}
 // ServerInstanceGroupVariables struct for ServerInstanceGroupVariables
 type ServerInstanceGroupVariables struct {
 	// The Product Instance ID.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Timestamp of the Product Instance creation.
@@ -36,16 +36,16 @@ type ServerInstanceGroupVariables struct {
 	// Subdomain permanent of the Product Instance.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the Product Instance
-	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Product Instance
-	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
-	InfrastructureId int32 `json:"infrastructureId"`
-	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
+	InfrastructureId int64 `json:"infrastructureId"`
+	ExtensionInstanceId *int64 `json:"extensionInstanceId,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount int32 `json:"instanceCount"`
 	// The server type ID that will be assigned to newly created instances.
-	DefaultServerTypeId int32 `json:"defaultServerTypeId"`
+	DefaultServerTypeId int64 `json:"defaultServerTypeId"`
 	// Default Custom Storage Profile for the newly created Instances.
 	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
@@ -53,11 +53,11 @@ type ServerInstanceGroupVariables struct {
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto int32 `json:"ipv4SubnetCreateAuto"`
 	// Array of firmware policy ids containing associated firmware policies.
-	FirmwarePolicyIds []float32 `json:"firmwarePolicyIds,omitempty"`
+	FirmwarePolicyIds []int64 `json:"firmwarePolicyIds,omitempty"`
 	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
-	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Object containing custom variables and variable overrides.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// The CPU count on each instance.
@@ -78,23 +78,23 @@ type ServerInstanceGroupVariables struct {
 	VirtualInterfacesEnabled int32 `json:"virtualInterfacesEnabled"`
 	// Contains info about additional ips to be assigned to the WAN interfaces.
 	AdditionalWanIpv4Json map[string]interface{} `json:"additionalWanIpv4Json,omitempty"`
-	NetworkProfileGroupId *int32 `json:"networkProfileGroupId,omitempty"`
-	NetworkProfileSnapshotId *int32 `json:"networkProfileSnapshotId,omitempty"`
+	NetworkProfileGroupId *int64 `json:"networkProfileGroupId,omitempty"`
+	NetworkProfileSnapshotId *int64 `json:"networkProfileSnapshotId,omitempty"`
 	// The ipv4 vlan that should override the default from the WAN Network for the primary ip.
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
 	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group.
-	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
+	NetworkEquipmentForceSubnetPoolIpv4WanId *int64 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// Current status of the Server Instance Group.
 	ServiceStatus string `json:"serviceStatus"`
 	// The resource pool assigned to this instance array
-	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
+	ResourcePoolId *int64 `json:"resourcePoolId,omitempty"`
 	// Flag to indicate if the Server Instance Group is belongs to a VM.
 	IsVmGroup int32 `json:"isVmGroup"`
 	// Flag to indicate if the Server Instance Group is belongs to a Endpoint.
 	IsEndpointInstanceGroup int32 `json:"isEndpointInstanceGroup"`
 	// Id of the VM Instance Group this Server Instance Group belongs to.
-	VmInstanceGroupId *int32 `json:"vmInstanceGroupId,omitempty"`
-	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
+	VmInstanceGroupId *int64 `json:"vmInstanceGroupId,omitempty"`
+	NetworkEndpointGroupId *int64 `json:"networkEndpointGroupId,omitempty"`
 	Config *ServerInstanceGroupConfiguration `json:"config,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -105,7 +105,7 @@ type _ServerInstanceGroupVariables ServerInstanceGroupVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupVariables(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, isEndpointInstanceGroup int32) *ServerInstanceGroupVariables {
+func NewServerInstanceGroupVariables(id int64, revision int64, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int64, instanceCount int32, defaultServerTypeId int64, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, isEndpointInstanceGroup int32) *ServerInstanceGroupVariables {
 	this := ServerInstanceGroupVariables{}
 	this.Id = id
 	this.Revision = revision
@@ -161,9 +161,9 @@ func NewServerInstanceGroupVariablesWithDefaults() *ServerInstanceGroupVariables
 }
 
 // GetId returns the Id field value
-func (o *ServerInstanceGroupVariables) GetId() int32 {
+func (o *ServerInstanceGroupVariables) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -172,7 +172,7 @@ func (o *ServerInstanceGroupVariables) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -180,14 +180,14 @@ func (o *ServerInstanceGroupVariables) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerInstanceGroupVariables) SetId(v int32) {
+func (o *ServerInstanceGroupVariables) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstanceGroupVariables) GetRevision() int32 {
+func (o *ServerInstanceGroupVariables) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -196,7 +196,7 @@ func (o *ServerInstanceGroupVariables) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetRevisionOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,7 +204,7 @@ func (o *ServerInstanceGroupVariables) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ServerInstanceGroupVariables) SetRevision(v int32) {
+func (o *ServerInstanceGroupVariables) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -345,9 +345,9 @@ func (o *ServerInstanceGroupVariables) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetDnsSubdomainId() int32 {
+func (o *ServerInstanceGroupVariables) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -355,7 +355,7 @@ func (o *ServerInstanceGroupVariables) GetDnsSubdomainId() int32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetDnsSubdomainIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -371,15 +371,15 @@ func (o *ServerInstanceGroupVariables) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given int32 and assigns it to the DnsSubdomainId field.
-func (o *ServerInstanceGroupVariables) SetDnsSubdomainId(v int32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *ServerInstanceGroupVariables) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetDnsSubdomainPermanentId() int32 {
+func (o *ServerInstanceGroupVariables) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -387,7 +387,7 @@ func (o *ServerInstanceGroupVariables) GetDnsSubdomainPermanentId() int32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetDnsSubdomainPermanentIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -403,8 +403,8 @@ func (o *ServerInstanceGroupVariables) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given int32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *ServerInstanceGroupVariables) SetDnsSubdomainPermanentId(v int32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *ServerInstanceGroupVariables) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 
@@ -441,9 +441,9 @@ func (o *ServerInstanceGroupVariables) SetServerGroupName(v string) {
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *ServerInstanceGroupVariables) GetInfrastructureId() int32 {
+func (o *ServerInstanceGroupVariables) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -452,7 +452,7 @@ func (o *ServerInstanceGroupVariables) GetInfrastructureId() int32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetInfrastructureIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -460,14 +460,14 @@ func (o *ServerInstanceGroupVariables) GetInfrastructureIdOk() (*int32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *ServerInstanceGroupVariables) SetInfrastructureId(v int32) {
+func (o *ServerInstanceGroupVariables) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetExtensionInstanceId() int32 {
+func (o *ServerInstanceGroupVariables) GetExtensionInstanceId() int64 {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ExtensionInstanceId
@@ -475,7 +475,7 @@ func (o *ServerInstanceGroupVariables) GetExtensionInstanceId() int32 {
 
 // GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetExtensionInstanceIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetExtensionInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
@@ -491,8 +491,8 @@ func (o *ServerInstanceGroupVariables) HasExtensionInstanceId() bool {
 	return false
 }
 
-// SetExtensionInstanceId gets a reference to the given int32 and assigns it to the ExtensionInstanceId field.
-func (o *ServerInstanceGroupVariables) SetExtensionInstanceId(v int32) {
+// SetExtensionInstanceId gets a reference to the given int64 and assigns it to the ExtensionInstanceId field.
+func (o *ServerInstanceGroupVariables) SetExtensionInstanceId(v int64) {
 	o.ExtensionInstanceId = &v
 }
 
@@ -521,9 +521,9 @@ func (o *ServerInstanceGroupVariables) SetInstanceCount(v int32) {
 }
 
 // GetDefaultServerTypeId returns the DefaultServerTypeId field value
-func (o *ServerInstanceGroupVariables) GetDefaultServerTypeId() int32 {
+func (o *ServerInstanceGroupVariables) GetDefaultServerTypeId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -532,7 +532,7 @@ func (o *ServerInstanceGroupVariables) GetDefaultServerTypeId() int32 {
 
 // GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetDefaultServerTypeIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetDefaultServerTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -540,7 +540,7 @@ func (o *ServerInstanceGroupVariables) GetDefaultServerTypeIdOk() (*int32, bool)
 }
 
 // SetDefaultServerTypeId sets field value
-func (o *ServerInstanceGroupVariables) SetDefaultServerTypeId(v int32) {
+func (o *ServerInstanceGroupVariables) SetDefaultServerTypeId(v int64) {
 	o.DefaultServerTypeId = v
 }
 
@@ -625,9 +625,9 @@ func (o *ServerInstanceGroupVariables) SetIpv4SubnetCreateAuto(v int32) {
 }
 
 // GetFirmwarePolicyIds returns the FirmwarePolicyIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIds() []float32 {
+func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.FirmwarePolicyIds
@@ -636,7 +636,7 @@ func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIds() []float32 {
 // GetFirmwarePolicyIdsOk returns a tuple with the FirmwarePolicyIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIdsOk() ([]float32, bool) {
+func (o *ServerInstanceGroupVariables) GetFirmwarePolicyIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.FirmwarePolicyIds) {
 		return nil, false
 	}
@@ -652,8 +652,8 @@ func (o *ServerInstanceGroupVariables) HasFirmwarePolicyIds() bool {
 	return false
 }
 
-// SetFirmwarePolicyIds gets a reference to the given []float32 and assigns it to the FirmwarePolicyIds field.
-func (o *ServerInstanceGroupVariables) SetFirmwarePolicyIds(v []float32) {
+// SetFirmwarePolicyIds gets a reference to the given []int64 and assigns it to the FirmwarePolicyIds field.
+func (o *ServerInstanceGroupVariables) SetFirmwarePolicyIds(v []int64) {
 	o.FirmwarePolicyIds = v
 }
 
@@ -690,9 +690,9 @@ func (o *ServerInstanceGroupVariables) SetHostname(v string) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetOsTemplateId() int32 {
+func (o *ServerInstanceGroupVariables) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -700,7 +700,7 @@ func (o *ServerInstanceGroupVariables) GetOsTemplateId() int32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetOsTemplateIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -716,8 +716,8 @@ func (o *ServerInstanceGroupVariables) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
-func (o *ServerInstanceGroupVariables) SetOsTemplateId(v int32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceGroupVariables) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 
@@ -986,9 +986,9 @@ func (o *ServerInstanceGroupVariables) SetAdditionalWanIpv4Json(v map[string]int
 }
 
 // GetNetworkProfileGroupId returns the NetworkProfileGroupId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetNetworkProfileGroupId() int32 {
+func (o *ServerInstanceGroupVariables) GetNetworkProfileGroupId() int64 {
 	if o == nil || IsNil(o.NetworkProfileGroupId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkProfileGroupId
@@ -996,7 +996,7 @@ func (o *ServerInstanceGroupVariables) GetNetworkProfileGroupId() int32 {
 
 // GetNetworkProfileGroupIdOk returns a tuple with the NetworkProfileGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetNetworkProfileGroupIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetNetworkProfileGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkProfileGroupId) {
 		return nil, false
 	}
@@ -1012,15 +1012,15 @@ func (o *ServerInstanceGroupVariables) HasNetworkProfileGroupId() bool {
 	return false
 }
 
-// SetNetworkProfileGroupId gets a reference to the given int32 and assigns it to the NetworkProfileGroupId field.
-func (o *ServerInstanceGroupVariables) SetNetworkProfileGroupId(v int32) {
+// SetNetworkProfileGroupId gets a reference to the given int64 and assigns it to the NetworkProfileGroupId field.
+func (o *ServerInstanceGroupVariables) SetNetworkProfileGroupId(v int64) {
 	o.NetworkProfileGroupId = &v
 }
 
 // GetNetworkProfileSnapshotId returns the NetworkProfileSnapshotId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetNetworkProfileSnapshotId() int32 {
+func (o *ServerInstanceGroupVariables) GetNetworkProfileSnapshotId() int64 {
 	if o == nil || IsNil(o.NetworkProfileSnapshotId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkProfileSnapshotId
@@ -1028,7 +1028,7 @@ func (o *ServerInstanceGroupVariables) GetNetworkProfileSnapshotId() int32 {
 
 // GetNetworkProfileSnapshotIdOk returns a tuple with the NetworkProfileSnapshotId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetNetworkProfileSnapshotIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetNetworkProfileSnapshotIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkProfileSnapshotId) {
 		return nil, false
 	}
@@ -1044,8 +1044,8 @@ func (o *ServerInstanceGroupVariables) HasNetworkProfileSnapshotId() bool {
 	return false
 }
 
-// SetNetworkProfileSnapshotId gets a reference to the given int32 and assigns it to the NetworkProfileSnapshotId field.
-func (o *ServerInstanceGroupVariables) SetNetworkProfileSnapshotId(v int32) {
+// SetNetworkProfileSnapshotId gets a reference to the given int64 and assigns it to the NetworkProfileSnapshotId field.
+func (o *ServerInstanceGroupVariables) SetNetworkProfileSnapshotId(v int64) {
 	o.NetworkProfileSnapshotId = &v
 }
 
@@ -1082,9 +1082,9 @@ func (o *ServerInstanceGroupVariables) SetOverrideIpv4WanVlanId(v int32) {
 }
 
 // GetNetworkEquipmentForceSubnetPoolIpv4WanId returns the NetworkEquipmentForceSubnetPoolIpv4WanId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int32 {
+func (o *ServerInstanceGroupVariables) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int64 {
 	if o == nil || IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEquipmentForceSubnetPoolIpv4WanId
@@ -1092,7 +1092,7 @@ func (o *ServerInstanceGroupVariables) GetNetworkEquipmentForceSubnetPoolIpv4Wan
 
 // GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk returns a tuple with the NetworkEquipmentForceSubnetPoolIpv4WanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
 		return nil, false
 	}
@@ -1108,8 +1108,8 @@ func (o *ServerInstanceGroupVariables) HasNetworkEquipmentForceSubnetPoolIpv4Wan
 	return false
 }
 
-// SetNetworkEquipmentForceSubnetPoolIpv4WanId gets a reference to the given int32 and assigns it to the NetworkEquipmentForceSubnetPoolIpv4WanId field.
-func (o *ServerInstanceGroupVariables) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int32) {
+// SetNetworkEquipmentForceSubnetPoolIpv4WanId gets a reference to the given int64 and assigns it to the NetworkEquipmentForceSubnetPoolIpv4WanId field.
+func (o *ServerInstanceGroupVariables) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int64) {
 	o.NetworkEquipmentForceSubnetPoolIpv4WanId = &v
 }
 
@@ -1138,9 +1138,9 @@ func (o *ServerInstanceGroupVariables) SetServiceStatus(v string) {
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetResourcePoolId() int32 {
+func (o *ServerInstanceGroupVariables) GetResourcePoolId() int64 {
 	if o == nil || IsNil(o.ResourcePoolId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ResourcePoolId
@@ -1148,7 +1148,7 @@ func (o *ServerInstanceGroupVariables) GetResourcePoolId() int32 {
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetResourcePoolIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetResourcePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ResourcePoolId) {
 		return nil, false
 	}
@@ -1164,8 +1164,8 @@ func (o *ServerInstanceGroupVariables) HasResourcePoolId() bool {
 	return false
 }
 
-// SetResourcePoolId gets a reference to the given int32 and assigns it to the ResourcePoolId field.
-func (o *ServerInstanceGroupVariables) SetResourcePoolId(v int32) {
+// SetResourcePoolId gets a reference to the given int64 and assigns it to the ResourcePoolId field.
+func (o *ServerInstanceGroupVariables) SetResourcePoolId(v int64) {
 	o.ResourcePoolId = &v
 }
 
@@ -1218,9 +1218,9 @@ func (o *ServerInstanceGroupVariables) SetIsEndpointInstanceGroup(v int32) {
 }
 
 // GetVmInstanceGroupId returns the VmInstanceGroupId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetVmInstanceGroupId() int32 {
+func (o *ServerInstanceGroupVariables) GetVmInstanceGroupId() int64 {
 	if o == nil || IsNil(o.VmInstanceGroupId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.VmInstanceGroupId
@@ -1228,7 +1228,7 @@ func (o *ServerInstanceGroupVariables) GetVmInstanceGroupId() int32 {
 
 // GetVmInstanceGroupIdOk returns a tuple with the VmInstanceGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetVmInstanceGroupIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetVmInstanceGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmInstanceGroupId) {
 		return nil, false
 	}
@@ -1244,15 +1244,15 @@ func (o *ServerInstanceGroupVariables) HasVmInstanceGroupId() bool {
 	return false
 }
 
-// SetVmInstanceGroupId gets a reference to the given int32 and assigns it to the VmInstanceGroupId field.
-func (o *ServerInstanceGroupVariables) SetVmInstanceGroupId(v int32) {
+// SetVmInstanceGroupId gets a reference to the given int64 and assigns it to the VmInstanceGroupId field.
+func (o *ServerInstanceGroupVariables) SetVmInstanceGroupId(v int64) {
 	o.VmInstanceGroupId = &v
 }
 
 // GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetNetworkEndpointGroupId() int32 {
+func (o *ServerInstanceGroupVariables) GetNetworkEndpointGroupId() int64 {
 	if o == nil || IsNil(o.NetworkEndpointGroupId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEndpointGroupId
@@ -1260,7 +1260,7 @@ func (o *ServerInstanceGroupVariables) GetNetworkEndpointGroupId() int32 {
 
 // GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetNetworkEndpointGroupIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupVariables) GetNetworkEndpointGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEndpointGroupId) {
 		return nil, false
 	}
@@ -1276,8 +1276,8 @@ func (o *ServerInstanceGroupVariables) HasNetworkEndpointGroupId() bool {
 	return false
 }
 
-// SetNetworkEndpointGroupId gets a reference to the given int32 and assigns it to the NetworkEndpointGroupId field.
-func (o *ServerInstanceGroupVariables) SetNetworkEndpointGroupId(v int32) {
+// SetNetworkEndpointGroupId gets a reference to the given int64 and assigns it to the NetworkEndpointGroupId field.
+func (o *ServerInstanceGroupVariables) SetNetworkEndpointGroupId(v int64) {
 	o.NetworkEndpointGroupId = &v
 }
 

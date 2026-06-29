@@ -28,7 +28,7 @@ type AccountAPIService service
 type AccountAPIAccountControllerGetUserConfigurationRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 }
 
 func (r AccountAPIAccountControllerGetUserConfigurationRequest) Execute() (*AccountConfig, *http.Response, error) {
@@ -42,7 +42,7 @@ AccountControllerGetUserConfiguration Get account configuration by ID
  @param accountId
  @return AccountAPIAccountControllerGetUserConfigurationRequest
 */
-func (a *AccountAPIService) AccountControllerGetUserConfiguration(ctx context.Context, accountId float32) AccountAPIAccountControllerGetUserConfigurationRequest {
+func (a *AccountAPIService) AccountControllerGetUserConfiguration(ctx context.Context, accountId int64) AccountAPIAccountControllerGetUserConfigurationRequest {
 	return AccountAPIAccountControllerGetUserConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -129,7 +129,7 @@ func (a *AccountAPIService) AccountControllerGetUserConfigurationExecute(r Accou
 type AccountAPIArchiveAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	ifMatch *string
 }
 
@@ -152,7 +152,7 @@ Archives an account
  @param accountId
  @return AccountAPIArchiveAccountRequest
 */
-func (a *AccountAPIService) ArchiveAccount(ctx context.Context, accountId float32) AccountAPIArchiveAccountRequest {
+func (a *AccountAPIService) ArchiveAccount(ctx context.Context, accountId int64) AccountAPIArchiveAccountRequest {
 	return AccountAPIArchiveAccountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -353,14 +353,7 @@ func (a *AccountAPIService) CreateAccountExecute(r AccountAPICreateAccountReques
 type AccountAPIGetAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
-	recursion *float32
-}
-
-// The recursion level of the displayed details. Default is 0.
-func (r AccountAPIGetAccountRequest) Recursion(recursion float32) AccountAPIGetAccountRequest {
-	r.recursion = &recursion
-	return r
+	accountId int64
 }
 
 func (r AccountAPIGetAccountRequest) Execute() (*Account, *http.Response, error) {
@@ -376,7 +369,7 @@ Returns an account by id
  @param accountId
  @return AccountAPIGetAccountRequest
 */
-func (a *AccountAPIService) GetAccount(ctx context.Context, accountId float32) AccountAPIGetAccountRequest {
+func (a *AccountAPIService) GetAccount(ctx context.Context, accountId int64) AccountAPIGetAccountRequest {
 	return AccountAPIGetAccountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -400,112 +393,6 @@ func (a *AccountAPIService) GetAccountExecute(r AccountAPIGetAccountRequest) (*A
 	}
 
 	localVarPath := localBasePath + "/api/v2/accounts/{accountId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.recursion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "recursion", r.recursion, "form", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type AccountAPIGetAccountLimitsRequest struct {
-	ctx context.Context
-	ApiService *AccountAPIService
-	accountId float32
-}
-
-func (r AccountAPIGetAccountLimitsRequest) Execute() (*AccountLimits, *http.Response, error) {
-	return r.ApiService.GetAccountLimitsExecute(r)
-}
-
-/*
-GetAccountLimits Get account limits
-
-Returns the limits of an account
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountId
- @return AccountAPIGetAccountLimitsRequest
-*/
-func (a *AccountAPIService) GetAccountLimits(ctx context.Context, accountId float32) AccountAPIGetAccountLimitsRequest {
-	return AccountAPIGetAccountLimitsRequest{
-		ApiService: a,
-		ctx: ctx,
-		accountId: accountId,
-	}
-}
-
-// Execute executes the request
-//  @return AccountLimits
-func (a *AccountAPIService) GetAccountLimitsExecute(r AccountAPIGetAccountLimitsRequest) (*AccountLimits, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AccountLimits
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.GetAccountLimits")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/accounts/{accountId}/limits"
 	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -569,7 +456,7 @@ func (a *AccountAPIService) GetAccountLimitsExecute(r AccountAPIGetAccountLimits
 type AccountAPIGetAccountUsersRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -676,7 +563,7 @@ Returns users for an account
  @param accountId
  @return AccountAPIGetAccountUsersRequest
 */
-func (a *AccountAPIService) GetAccountUsers(ctx context.Context, accountId float32) AccountAPIGetAccountUsersRequest {
+func (a *AccountAPIService) GetAccountUsers(ctx context.Context, accountId int64) AccountAPIGetAccountUsersRequest {
 	return AccountAPIGetAccountUsersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -890,6 +777,7 @@ type AccountAPIGetAccountsRequest struct {
 	filterSecondaryContactId *[]string
 	filterArchived *[]string
 	filterCode *[]string
+	filterQuotaProfileId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -940,6 +828,12 @@ func (r AccountAPIGetAccountsRequest) FilterArchived(filterArchived []string) Ac
 // Filter by code query param.  **Format:** filter.code&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.code&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r AccountAPIGetAccountsRequest) FilterCode(filterCode []string) AccountAPIGetAccountsRequest {
 	r.filterCode = &filterCode
+	return r
+}
+
+// Filter by quotaProfileId query param.  **Format:** filter.quotaProfileId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.quotaProfileId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r AccountAPIGetAccountsRequest) FilterQuotaProfileId(filterQuotaProfileId []string) AccountAPIGetAccountsRequest {
+	r.filterQuotaProfileId = &filterQuotaProfileId
 	return r
 }
 
@@ -1073,6 +967,17 @@ func (a *AccountAPIService) GetAccountsExecute(r AccountAPIGetAccountsRequest) (
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.code", t, "form", "multi")
 		}
 	}
+	if r.filterQuotaProfileId != nil {
+		t := *r.filterQuotaProfileId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.quotaProfileId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.quotaProfileId", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1155,7 +1060,7 @@ func (a *AccountAPIService) GetAccountsExecute(r AccountAPIGetAccountsRequest) (
 type AccountAPIUnarchiveAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	ifMatch *string
 }
 
@@ -1178,7 +1083,7 @@ Unarchive an account
  @param accountId
  @return AccountAPIUnarchiveAccountRequest
 */
-func (a *AccountAPIService) UnarchiveAccount(ctx context.Context, accountId float32) AccountAPIUnarchiveAccountRequest {
+func (a *AccountAPIService) UnarchiveAccount(ctx context.Context, accountId int64) AccountAPIUnarchiveAccountRequest {
 	return AccountAPIUnarchiveAccountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1268,7 +1173,7 @@ func (a *AccountAPIService) UnarchiveAccountExecute(r AccountAPIUnarchiveAccount
 type AccountAPIUpdateAccountConfigRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	accountId float32
+	accountId int64
 	updateAccount *UpdateAccount
 	ifMatch *string
 }
@@ -1298,7 +1203,7 @@ Updates an account configuration
  @param accountId
  @return AccountAPIUpdateAccountConfigRequest
 */
-func (a *AccountAPIService) UpdateAccountConfig(ctx context.Context, accountId float32) AccountAPIUpdateAccountConfigRequest {
+func (a *AccountAPIService) UpdateAccountConfig(ctx context.Context, accountId int64) AccountAPIUpdateAccountConfigRequest {
 	return AccountAPIUpdateAccountConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1353,131 +1258,6 @@ func (a *AccountAPIService) UpdateAccountConfigExecute(r AccountAPIUpdateAccount
 	}
 	// body params
 	localVarPostBody = r.updateAccount
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type AccountAPIUpdateAccountLimitsRequest struct {
-	ctx context.Context
-	ApiService *AccountAPIService
-	accountId float32
-	accountLimits *AccountLimits
-	ifMatch *string
-}
-
-// The account limits updates
-func (r AccountAPIUpdateAccountLimitsRequest) AccountLimits(accountLimits AccountLimits) AccountAPIUpdateAccountLimitsRequest {
-	r.accountLimits = &accountLimits
-	return r
-}
-
-// Entity tag
-func (r AccountAPIUpdateAccountLimitsRequest) IfMatch(ifMatch string) AccountAPIUpdateAccountLimitsRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r AccountAPIUpdateAccountLimitsRequest) Execute() (*AccountLimits, *http.Response, error) {
-	return r.ApiService.UpdateAccountLimitsExecute(r)
-}
-
-/*
-UpdateAccountLimits Update account limits
-
-Updates the limits of an account
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountId
- @return AccountAPIUpdateAccountLimitsRequest
-*/
-func (a *AccountAPIService) UpdateAccountLimits(ctx context.Context, accountId float32) AccountAPIUpdateAccountLimitsRequest {
-	return AccountAPIUpdateAccountLimitsRequest{
-		ApiService: a,
-		ctx: ctx,
-		accountId: accountId,
-	}
-}
-
-// Execute executes the request
-//  @return AccountLimits
-func (a *AccountAPIService) UpdateAccountLimitsExecute(r AccountAPIUpdateAccountLimitsRequest) (*AccountLimits, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AccountLimits
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.UpdateAccountLimits")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/accounts/{accountId}/actions/change-limits"
-	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.accountLimits == nil {
-		return localVarReturnValue, nil, reportError("accountLimits is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.accountLimits
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

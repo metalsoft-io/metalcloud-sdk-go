@@ -22,7 +22,7 @@ var _ MappedNullable = &FirmwareCatalog{}
 // FirmwareCatalog struct for FirmwareCatalog
 type FirmwareCatalog struct {
 	// Unique identifier for the firmware catalog
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the catalog, must be unique
 	Name string `json:"name"`
 	// User description of the catalog
@@ -54,7 +54,7 @@ type _FirmwareCatalog FirmwareCatalog
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareCatalog(id float32, name string, vendor string, updateType string, createdTimestamp string, links []Link) *FirmwareCatalog {
+func NewFirmwareCatalog(id int64, name string, vendor string, updateType string, createdTimestamp string, links []Link) *FirmwareCatalog {
 	this := FirmwareCatalog{}
 	this.Id = id
 	this.Name = name
@@ -76,9 +76,9 @@ func NewFirmwareCatalogWithDefaults() *FirmwareCatalog {
 }
 
 // GetId returns the Id field value
-func (o *FirmwareCatalog) GetId() float32 {
+func (o *FirmwareCatalog) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -87,7 +87,7 @@ func (o *FirmwareCatalog) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareCatalog) GetIdOk() (*float32, bool) {
+func (o *FirmwareCatalog) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *FirmwareCatalog) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *FirmwareCatalog) SetId(v float32) {
+func (o *FirmwareCatalog) SetId(v int64) {
 	o.Id = v
 }
 

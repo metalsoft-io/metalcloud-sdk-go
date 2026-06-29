@@ -24,7 +24,7 @@ type VMPoolImportVMs struct {
 	// List of VM names to import
 	VmNames []string `json:"vmNames"`
 	// If provided, the VMs will be added into this infrastructure
-	InfrastructureId *float32 `json:"infrastructureId,omitempty"`
+	InfrastructureId *int64 `json:"infrastructureId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,9 +73,9 @@ func (o *VMPoolImportVMs) SetVmNames(v []string) {
 }
 
 // GetInfrastructureId returns the InfrastructureId field value if set, zero value otherwise.
-func (o *VMPoolImportVMs) GetInfrastructureId() float32 {
+func (o *VMPoolImportVMs) GetInfrastructureId() int64 {
 	if o == nil || IsNil(o.InfrastructureId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureId
@@ -83,7 +83,7 @@ func (o *VMPoolImportVMs) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMPoolImportVMs) GetInfrastructureIdOk() (*float32, bool) {
+func (o *VMPoolImportVMs) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureId) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *VMPoolImportVMs) HasInfrastructureId() bool {
 	return false
 }
 
-// SetInfrastructureId gets a reference to the given float32 and assigns it to the InfrastructureId field.
-func (o *VMPoolImportVMs) SetInfrastructureId(v float32) {
+// SetInfrastructureId gets a reference to the given int64 and assigns it to the InfrastructureId field.
+func (o *VMPoolImportVMs) SetInfrastructureId(v int64) {
 	o.InfrastructureId = &v
 }
 

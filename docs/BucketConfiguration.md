@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the Bucket Configuration | 
+**Revision** | **int64** | Revision of the Bucket Configuration | 
 **SizeGB** | **float32** | Disk size in GB for Bucket | 
 **UpdatedTimestamp** | **string** | Timestamp of the Bucket last update. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Bucket is assigned to | [optional] 
+**StoragePoolId** | Pointer to **int64** | Id of the storage pool the Bucket is assigned to | [optional] 
 **Label** | **string** | Label of the Bucket. | 
 **Subdomain** | **string** | Subdomain of the Bucket. | 
-**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the Drive Group. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the Drive Group. | [optional] 
 **DeployType** | **string** | Deploy type of the Drive Group | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the Drive Group | [default to "not_started"]
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Drive Group. | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Bucket. | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the Drive Group. | [optional] 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the Bucket. | [optional] 
 
 ## Methods
 
 ### NewBucketConfiguration
 
-`func NewBucketConfiguration(revision float32, sizeGB float32, updatedTimestamp string, label string, subdomain string, deployType string, deployStatus string, ) *BucketConfiguration`
+`func NewBucketConfiguration(revision int64, sizeGB float32, updatedTimestamp string, label string, subdomain string, deployType string, deployStatus string, ) *BucketConfiguration`
 
 NewBucketConfiguration instantiates a new BucketConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *BucketConfiguration) GetRevision() float32`
+`func (o *BucketConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *BucketConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *BucketConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *BucketConfiguration) SetRevision(v float32)`
+`func (o *BucketConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -97,20 +97,20 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetStoragePoolId
 
-`func (o *BucketConfiguration) GetStoragePoolId() float32`
+`func (o *BucketConfiguration) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *BucketConfiguration) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *BucketConfiguration) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *BucketConfiguration) SetStoragePoolId(v float32)`
+`func (o *BucketConfiguration) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
@@ -162,20 +162,20 @@ SetSubdomain sets Subdomain field to given value.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *BucketConfiguration) GetDnsSubdomainChangeId() float32`
+`func (o *BucketConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *BucketConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool)`
+`func (o *BucketConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *BucketConfiguration) SetDnsSubdomainChangeId(v float32)`
+`func (o *BucketConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -227,20 +227,20 @@ SetDeployStatus sets DeployStatus field to given value.
 
 ### GetInfrastructureDeployId
 
-`func (o *BucketConfiguration) GetInfrastructureDeployId() float32`
+`func (o *BucketConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *BucketConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+`func (o *BucketConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *BucketConfiguration) SetInfrastructureDeployId(v float32)`
+`func (o *BucketConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 
@@ -252,20 +252,20 @@ HasInfrastructureDeployId returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *BucketConfiguration) GetLogicalNetworkId() float32`
+`func (o *BucketConfiguration) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *BucketConfiguration) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *BucketConfiguration) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *BucketConfiguration) SetLogicalNetworkId(v float32)`
+`func (o *BucketConfiguration) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

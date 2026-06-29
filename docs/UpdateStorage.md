@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DrivePriority** | Pointer to **float32** | Specifies the drive priority | [optional] 
 **SharedDrivePriority** | Pointer to **float32** | Specifies the shared drive priority | [optional] 
 **Tags** | Pointer to **[]string** | Tags | [optional] 
-**NetworkFabricId** | Pointer to **float32** | Network fabric ID this Storage is connected to | [optional] 
+**NetworkFabricId** | Pointer to **int64** | Network fabric ID this Storage is connected to | [optional] 
 **Options** | Pointer to [**UpdateStorageOptions**](UpdateStorageOptions.md) | Options for the storage | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
 **ClientId** | Pointer to **string** | The client ID to use (for certain storage drivers) | [optional] 
@@ -163,20 +163,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetNetworkFabricId
 
-`func (o *UpdateStorage) GetNetworkFabricId() float32`
+`func (o *UpdateStorage) GetNetworkFabricId() int64`
 
 GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricIdOk
 
-`func (o *UpdateStorage) GetNetworkFabricIdOk() (*float32, bool)`
+`func (o *UpdateStorage) GetNetworkFabricIdOk() (*int64, bool)`
 
 GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricId
 
-`func (o *UpdateStorage) SetNetworkFabricId(v float32)`
+`func (o *UpdateStorage) SetNetworkFabricId(v int64)`
 
 SetNetworkFabricId sets NetworkFabricId field to given value.
 

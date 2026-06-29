@@ -22,9 +22,9 @@ var _ MappedNullable = &CreateStorage{}
 // CreateStorage struct for CreateStorage
 type CreateStorage struct {
 	// Id of the owner
-	UserId *float32 `json:"userId,omitempty"`
+	UserId *int64 `json:"userId,omitempty"`
 	// Id of the site
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Storage driver
 	Driver string `json:"driver"`
 	// Storage technology
@@ -78,7 +78,7 @@ type _CreateStorage CreateStorage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorage(siteId float32, driver string, technologies []string, name string, managementHost string, subnetType string) *CreateStorage {
+func NewCreateStorage(siteId int64, driver string, technologies []string, name string, managementHost string, subnetType string) *CreateStorage {
 	this := CreateStorage{}
 	this.SiteId = siteId
 	this.Driver = driver
@@ -98,9 +98,9 @@ func NewCreateStorageWithDefaults() *CreateStorage {
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *CreateStorage) GetUserId() float32 {
+func (o *CreateStorage) GetUserId() int64 {
 	if o == nil || IsNil(o.UserId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.UserId
@@ -108,7 +108,7 @@ func (o *CreateStorage) GetUserId() float32 {
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateStorage) GetUserIdOk() (*float32, bool) {
+func (o *CreateStorage) GetUserIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
@@ -124,15 +124,15 @@ func (o *CreateStorage) HasUserId() bool {
 	return false
 }
 
-// SetUserId gets a reference to the given float32 and assigns it to the UserId field.
-func (o *CreateStorage) SetUserId(v float32) {
+// SetUserId gets a reference to the given int64 and assigns it to the UserId field.
+func (o *CreateStorage) SetUserId(v int64) {
 	o.UserId = &v
 }
 
 // GetSiteId returns the SiteId field value
-func (o *CreateStorage) GetSiteId() float32 {
+func (o *CreateStorage) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -141,7 +141,7 @@ func (o *CreateStorage) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *CreateStorage) GetSiteIdOk() (*float32, bool) {
+func (o *CreateStorage) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,7 +149,7 @@ func (o *CreateStorage) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *CreateStorage) SetSiteId(v float32) {
+func (o *CreateStorage) SetSiteId(v int64) {
 	o.SiteId = v
 }
 

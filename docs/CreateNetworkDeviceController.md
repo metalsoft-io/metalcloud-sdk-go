@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | Pointer to **int32** | Site identifier | [optional] 
+**SiteId** | Pointer to **int64** | Site identifier | [optional] 
 **DatacenterName** | **string** | Name of the datacenter | 
 **IdentifierString** | Pointer to **string** | Unique identifier string for the network device controller | [optional] 
 **OverwriteWithHostnameFromFetchedSwitchController** | Pointer to **bool** | Whether to overwrite the hostname with the one fetched from the controller | [optional] 
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *CreateNetworkDeviceController) GetSiteId() int32`
+`func (o *CreateNetworkDeviceController) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *CreateNetworkDeviceController) GetSiteIdOk() (*int32, bool)`
+`func (o *CreateNetworkDeviceController) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *CreateNetworkDeviceController) SetSiteId(v int32)`
+`func (o *CreateNetworkDeviceController) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

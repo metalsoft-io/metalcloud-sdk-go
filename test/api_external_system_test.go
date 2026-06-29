@@ -38,7 +38,7 @@ func Test_sdk_ExternalSystemAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalSystemId int32
+		var externalSystemId int64
 
 		httpRes, err := apiClient.ExternalSystemAPI.DeleteExternalSystem(context.Background(), externalSystemId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_ExternalSystemAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalSystemId int32
+		var externalSystemId int64
 
 		resp, httpRes, err := apiClient.ExternalSystemAPI.GetExternalSystemById(context.Background(), externalSystemId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_ExternalSystemAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var externalSystemId int32
+		var externalSystemId int64
 
 		resp, httpRes, err := apiClient.ExternalSystemAPI.UpdateExternalSystem(context.Background(), externalSystemId).Execute()
 

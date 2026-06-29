@@ -24,11 +24,11 @@ type NetworkDeviceController struct {
 	// Unique identifier for the network device controller.
 	Id string `json:"id"`
 	// Revision number
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Current status of the network device controller
 	Status string `json:"status"`
 	// Site ID
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Hostname of the network device controller
 	IdentifierString string `json:"identifierString"`
 	// Description of the network device controller
@@ -58,7 +58,7 @@ type _NetworkDeviceController NetworkDeviceController
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceController(id string, revision int32, status string, siteId float32, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string) *NetworkDeviceController {
+func NewNetworkDeviceController(id string, revision int64, status string, siteId int64, identifierString string, description NullableString, datacenterName string, managementAddress string, managementPort int32, username string, driver SwitchControllerDriver, tags []string) *NetworkDeviceController {
 	this := NetworkDeviceController{}
 	this.Id = id
 	this.Revision = revision
@@ -108,9 +108,9 @@ func (o *NetworkDeviceController) SetId(v string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *NetworkDeviceController) GetRevision() int32 {
+func (o *NetworkDeviceController) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -119,7 +119,7 @@ func (o *NetworkDeviceController) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceController) GetRevisionOk() (*int32, bool) {
+func (o *NetworkDeviceController) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *NetworkDeviceController) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *NetworkDeviceController) SetRevision(v int32) {
+func (o *NetworkDeviceController) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -156,9 +156,9 @@ func (o *NetworkDeviceController) SetStatus(v string) {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *NetworkDeviceController) GetSiteId() float32 {
+func (o *NetworkDeviceController) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -167,7 +167,7 @@ func (o *NetworkDeviceController) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceController) GetSiteIdOk() (*float32, bool) {
+func (o *NetworkDeviceController) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -175,7 +175,7 @@ func (o *NetworkDeviceController) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *NetworkDeviceController) SetSiteId(v float32) {
+func (o *NetworkDeviceController) SetSiteId(v int64) {
 	o.SiteId = v
 }
 

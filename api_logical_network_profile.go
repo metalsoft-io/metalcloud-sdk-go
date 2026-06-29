@@ -136,7 +136,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileExecute(r L
 type LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	createIpv4SubnetAllocationStrategy *CreateIpv4SubnetAllocationStrategy
 	ifMatch *string
 }
@@ -163,7 +163,7 @@ CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy Create Ipv4 Subnet alloc
  @param id
  @return LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id int64) LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,7 +258,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileIpv4SubnetA
 type LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	createIpv6SubnetAllocationStrategy *CreateIpv6SubnetAllocationStrategy
 	ifMatch *string
 }
@@ -285,7 +285,7 @@ CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy Create Ipv6 Subnet alloc
  @param id
  @return LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id int64) LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPICreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -380,7 +380,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileIpv6SubnetA
 type LogicalNetworkProfileAPICreateLogicalNetworkProfilePkeyAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	createPkeyAllocationStrategy *CreatePkeyAllocationStrategy
 	ifMatch *string
 }
@@ -407,7 +407,7 @@ CreateLogicalNetworkProfilePkeyAllocationStrategy Create Pkey allocation strateg
  @param id
  @return LogicalNetworkProfileAPICreateLogicalNetworkProfilePkeyAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfilePkeyAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id int64) LogicalNetworkProfileAPICreateLogicalNetworkProfilePkeyAllocationStrategyRequest {
 	return LogicalNetworkProfileAPICreateLogicalNetworkProfilePkeyAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -502,7 +502,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfilePkeyAllocat
 type LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	createVlanAllocationStrategy *CreateVlanAllocationStrategy
 	ifMatch *string
 }
@@ -529,7 +529,7 @@ CreateLogicalNetworkProfileVlanAllocationStrategy Create Vlan allocation strateg
  @param id
  @return LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id int64) LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest {
 	return LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -624,7 +624,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVlanAllocat
 type LogicalNetworkProfileAPICreateLogicalNetworkProfileVniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	createVniAllocationStrategy *CreateVniAllocationStrategy
 	ifMatch *string
 }
@@ -651,7 +651,7 @@ CreateLogicalNetworkProfileVniAllocationStrategy Create Vni allocation strategy.
  @param id
  @return LogicalNetworkProfileAPICreateLogicalNetworkProfileVniAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfileVniAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id int64) LogicalNetworkProfileAPICreateLogicalNetworkProfileVniAllocationStrategyRequest {
 	return LogicalNetworkProfileAPICreateLogicalNetworkProfileVniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -746,7 +746,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVniAllocati
 type LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	createZoneAllocationStrategy *CreateZoneAllocationStrategy
 	ifMatch *string
 }
@@ -773,7 +773,7 @@ CreateLogicalNetworkProfileZoneAllocationStrategy Create Zone allocation strateg
  @param id
  @return LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id int64) LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest {
 	return LogicalNetworkProfileAPICreateLogicalNetworkProfileZoneAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -868,7 +868,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileZoneAllocat
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	ifMatch *string
 }
 
@@ -889,7 +889,7 @@ DeleteLogicalNetworkProfile Delete a Logical Network Profile.
  @param id
  @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileRequest
 */
-func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfile(ctx context.Context, id float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileRequest {
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfile(ctx context.Context, id int64) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileRequest {
 	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -968,8 +968,8 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileExecute(r L
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -991,7 +991,7 @@ DeleteLogicalNetworkProfileIpv4SubnetAllocationStrategy Delete Ipv4 Subnet alloc
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1072,8 +1072,8 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileIpv4SubnetA
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -1095,7 +1095,7 @@ DeleteLogicalNetworkProfileIpv6SubnetAllocationStrategy Delete Ipv6 Subnet alloc
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1176,8 +1176,8 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileIpv6SubnetA
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfilePkeyAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -1199,7 +1199,7 @@ DeleteLogicalNetworkProfilePkeyAllocationStrategy Delete Pkey allocation strateg
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfilePkeyAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfilePkeyAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIDeleteLogicalNetworkProfilePkeyAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfilePkeyAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1280,8 +1280,8 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfilePkeyAllocat
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -1303,7 +1303,7 @@ DeleteLogicalNetworkProfileVlanAllocationStrategy Delete Vlan allocation strateg
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVlanAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVlanAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVlanAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1384,8 +1384,8 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileVlanAllocat
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -1407,7 +1407,7 @@ DeleteLogicalNetworkProfileVniAllocationStrategy Delete Vni allocation strategy.
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVniAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVniAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVniAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileVniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1488,8 +1488,8 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileVniAllocati
 type LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -1511,7 +1511,7 @@ DeleteLogicalNetworkProfileZoneAllocationStrategy Delete Zone allocation strateg
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIDeleteLogicalNetworkProfileZoneAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1592,7 +1592,7 @@ func (a *LogicalNetworkProfileAPIService) DeleteLogicalNetworkProfileZoneAllocat
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 }
 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest) Execute() (*LogicalNetworkProfile, *http.Response, error) {
@@ -1606,7 +1606,7 @@ GetLogicalNetworkProfile Get a Logical Network Profile.
  @param id
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfile(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfile(ctx context.Context, id int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1693,7 +1693,7 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileExecute(r Logi
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1742,7 +1742,7 @@ GetLogicalNetworkProfileIpv4SubnetAllocationStrategies Get all Ipv4 Subnet alloc
  @param id
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategiesRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv4SubnetAllocationStrategies(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategiesRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv4SubnetAllocationStrategies(ctx context.Context, id int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategiesRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1868,8 +1868,8 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv4SubnetAllo
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest) Execute() (*Ipv4SubnetAllocationStrategy, *http.Response, error) {
@@ -1884,7 +1884,7 @@ GetLogicalNetworkProfileIpv4SubnetAllocationStrategy Get a Ipv4 Subnet allocatio
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1973,7 +1973,7 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv4SubnetAllo
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -2022,7 +2022,7 @@ GetLogicalNetworkProfileIpv6SubnetAllocationStrategies Get all Ipv6 Subnet alloc
  @param id
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategiesRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv6SubnetAllocationStrategies(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategiesRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv6SubnetAllocationStrategies(ctx context.Context, id int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategiesRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2148,8 +2148,8 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv6SubnetAllo
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest) Execute() (*Ipv6SubnetAllocationStrategy, *http.Response, error) {
@@ -2164,7 +2164,7 @@ GetLogicalNetworkProfileIpv6SubnetAllocationStrategy Get a Ipv6 Subnet allocatio
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2253,7 +2253,7 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileIpv6SubnetAllo
 type LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -2302,7 +2302,7 @@ GetLogicalNetworkProfilePkeyAllocationStrategies Get all Pkey allocation strateg
  @param id
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategiesRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilePkeyAllocationStrategies(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategiesRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilePkeyAllocationStrategies(ctx context.Context, id int64) LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategiesRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2428,8 +2428,8 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilePkeyAllocation
 type LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategyRequest) Execute() (*PkeyAllocationStrategy, *http.Response, error) {
@@ -2444,7 +2444,7 @@ GetLogicalNetworkProfilePkeyAllocationStrategy Get a Pkey allocation strategy.
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfilePkeyAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2533,7 +2533,7 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilePkeyAllocation
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -2582,7 +2582,7 @@ GetLogicalNetworkProfileVlanAllocationStrategies Get all Vlan allocation strateg
  @param id
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategiesRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocationStrategies(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategiesRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocationStrategies(ctx context.Context, id int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategiesRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2708,8 +2708,8 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocation
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest) Execute() (*VlanAllocationStrategy, *http.Response, error) {
@@ -2724,7 +2724,7 @@ GetLogicalNetworkProfileVlanAllocationStrategy Get a Vlan allocation strategy.
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2813,7 +2813,7 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocation
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -2862,7 +2862,7 @@ GetLogicalNetworkProfileVniAllocationStrategies Get all Vni allocation strategie
  @param id
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategiesRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVniAllocationStrategies(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategiesRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVniAllocationStrategies(ctx context.Context, id int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategiesRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2988,8 +2988,8 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVniAllocationS
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategyRequest) Execute() (*VniAllocationStrategy, *http.Response, error) {
@@ -3004,7 +3004,7 @@ GetLogicalNetworkProfileVniAllocationStrategy Get a Vni allocation strategy.
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileVniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3093,7 +3093,7 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVniAllocationS
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -3142,7 +3142,7 @@ GetLogicalNetworkProfileZoneAllocationStrategies Get all Zone allocation strateg
  @param id
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategies(ctx context.Context, id float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategies(ctx context.Context, id int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3268,8 +3268,8 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocation
 type LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest) Execute() (*ZoneAllocationStrategy, *http.Response, error) {
@@ -3284,7 +3284,7 @@ GetLogicalNetworkProfileZoneAllocationStrategy Get a Zone allocation strategy.
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIGetLogicalNetworkProfileZoneAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3644,8 +3644,8 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilesExecute(r Log
 type LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	createIpv4SubnetAllocationStrategy *CreateIpv4SubnetAllocationStrategy
 	ifMatch *string
 }
@@ -3673,7 +3673,7 @@ ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategy Replace Ipv4 Subnet all
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3770,8 +3770,8 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileIpv4Subnet
 type LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	createIpv6SubnetAllocationStrategy *CreateIpv6SubnetAllocationStrategy
 	ifMatch *string
 }
@@ -3799,7 +3799,7 @@ ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategy Replace Ipv6 Subnet all
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3896,8 +3896,8 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileIpv6Subnet
 type LogicalNetworkProfileAPIReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	createPkeyAllocationStrategy *CreatePkeyAllocationStrategy
 	ifMatch *string
 }
@@ -3925,7 +3925,7 @@ ReplaceLogicalNetworkProfilePkeyAllocationStrategy Replace Pkey allocation strat
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfilePkeyAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIReplaceLogicalNetworkProfilePkeyAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4022,8 +4022,8 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfilePkeyAlloca
 type LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	createVlanAllocationStrategy *CreateVlanAllocationStrategy
 	ifMatch *string
 }
@@ -4051,7 +4051,7 @@ ReplaceLogicalNetworkProfileVlanAllocationStrategy Replace Vlan allocation strat
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4148,8 +4148,8 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAlloca
 type LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	createVniAllocationStrategy *CreateVniAllocationStrategy
 	ifMatch *string
 }
@@ -4177,7 +4177,7 @@ ReplaceLogicalNetworkProfileVniAllocationStrategy Replace Vni allocation strateg
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVniAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVniAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVniAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVniAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4274,8 +4274,8 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVniAllocat
 type LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	createZoneAllocationStrategy *CreateZoneAllocationStrategy
 	ifMatch *string
 }
@@ -4303,7 +4303,7 @@ ReplaceLogicalNetworkProfileZoneAllocationStrategy Replace Zone allocation strat
  @param allocationStrategyId
  @return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest
 */
-func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest {
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileZoneAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest {
 	return LogicalNetworkProfileAPIReplaceLogicalNetworkProfileZoneAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4400,7 +4400,7 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileZoneAlloca
 type LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	id float32
+	id int64
 	updateLogicalNetworkProfile *UpdateLogicalNetworkProfile
 	ifMatch *string
 }
@@ -4427,7 +4427,7 @@ UpdateLogicalNetworkProfile Update Logical Network Profile
  @param id
  @return LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest
 */
-func (a *LogicalNetworkProfileAPIService) UpdateLogicalNetworkProfile(ctx context.Context, id float32) LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest {
+func (a *LogicalNetworkProfileAPIService) UpdateLogicalNetworkProfile(ctx context.Context, id int64) LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest {
 	return LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest{
 		ApiService: a,
 		ctx: ctx,

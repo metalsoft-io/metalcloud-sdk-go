@@ -28,7 +28,7 @@ type ServerInstanceGroupAPIService service
 type ServerInstanceGroupAPICreateServerInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	infrastructureId int32
+	infrastructureId int64
 	serverInstanceGroupCreate *ServerInstanceGroupCreate
 }
 
@@ -49,7 +49,7 @@ CreateServerInstanceGroup Add a Server Instance Group to an infrastructure. By d
  @param infrastructureId
  @return ServerInstanceGroupAPICreateServerInstanceGroupRequest
 */
-func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroup(ctx context.Context, infrastructureId int32) ServerInstanceGroupAPICreateServerInstanceGroupRequest {
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroup(ctx context.Context, infrastructureId int64) ServerInstanceGroupAPICreateServerInstanceGroupRequest {
 	return ServerInstanceGroupAPICreateServerInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -141,8 +141,8 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupExecute(r Serve
 type ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	connectionId int32
+	serverInstanceGroupId int64
+	connectionId int64
 	createLogicalNetworkACL *CreateLogicalNetworkACL
 }
 
@@ -164,7 +164,7 @@ CreateServerInstanceGroupLogicalNetworkACL Create a security rule for a logical 
  @param connectionId
  @return ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest
 */
-func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int32, connectionId int32) ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest {
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int64, connectionId int64) ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest {
 	return ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,7 +258,7 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkA
 type ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 	createServerInstanceGroupNetworkConnection *CreateServerInstanceGroupNetworkConnection
 }
 
@@ -279,7 +279,7 @@ CreateServerInstanceGroupNetworkConfigurationConnection Create a network connect
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
 	return ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -371,7 +371,7 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigur
 type ServerInstanceGroupAPIDeleteServerInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 	ifMatch *string
 }
 
@@ -394,7 +394,7 @@ Delete Server Instance Group. Will not take effect if there are instances in thi
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIDeleteServerInstanceGroupRequest
 */
-func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroup(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIDeleteServerInstanceGroupRequest {
+func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroup(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIDeleteServerInstanceGroupRequest {
 	return ServerInstanceGroupAPIDeleteServerInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -473,9 +473,9 @@ func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupExecute(r Serve
 type ServerInstanceGroupAPIDeleteServerInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	connectionId int32
-	ruleId int32
+	serverInstanceGroupId int64
+	connectionId int64
+	ruleId int64
 }
 
 func (r ServerInstanceGroupAPIDeleteServerInstanceGroupLogicalNetworkACLRequest) Execute() (*http.Response, error) {
@@ -491,7 +491,7 @@ DeleteServerInstanceGroupLogicalNetworkACL Delete a security rule for a logical 
  @param ruleId
  @return ServerInstanceGroupAPIDeleteServerInstanceGroupLogicalNetworkACLRequest
 */
-func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int32, connectionId int32, ruleId int32) ServerInstanceGroupAPIDeleteServerInstanceGroupLogicalNetworkACLRequest {
+func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int64, connectionId int64, ruleId int64) ServerInstanceGroupAPIDeleteServerInstanceGroupLogicalNetworkACLRequest {
 	return ServerInstanceGroupAPIDeleteServerInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -571,8 +571,8 @@ func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupLogicalNetworkA
 type ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	connectionId int32
+	serverInstanceGroupId int64
+	connectionId int64
 }
 
 func (r ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*http.Response, error) {
@@ -587,7 +587,7 @@ DeleteServerInstanceGroupNetworkConfigurationConnection Delete a network connect
  @param connectionId
  @return ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int32, connectionId int32) ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int64, connectionId int64) ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest {
 	return ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -665,7 +665,7 @@ func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupNetworkConfigur
 type ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	infrastructureId int32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -751,7 +751,7 @@ Returns list of Server Instance Groups in the specified infrastructure
  @param infrastructureId
  @return ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest
 */
-func (a *ServerInstanceGroupAPIService) GetInfrastructureServerInstanceGroups(ctx context.Context, infrastructureId int32) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
+func (a *ServerInstanceGroupAPIService) GetInfrastructureServerInstanceGroups(ctx context.Context, infrastructureId int64) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
 	return ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -924,7 +924,7 @@ func (a *ServerInstanceGroupAPIService) GetInfrastructureServerInstanceGroupsExe
 type ServerInstanceGroupAPIGetServerInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupRequest) Execute() (*ServerInstanceGroup, *http.Response, error) {
@@ -940,7 +940,7 @@ Returns the details of the specified Server Instance Group
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIGetServerInstanceGroupRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroup(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroup(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIGetServerInstanceGroupRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1027,7 +1027,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupExecute(r ServerIn
 type ServerInstanceGroupAPIGetServerInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupConfigRequest) Execute() (*ServerInstanceGroupConfiguration, *http.Response, error) {
@@ -1043,7 +1043,7 @@ Returns the config details of the specified Server Instance Group
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIGetServerInstanceGroupConfigRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupConfig(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupConfigRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupConfig(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIGetServerInstanceGroupConfigRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1130,7 +1130,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupConfigExecute(r Se
 type ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest) Execute() (*DriveGroupList, *http.Response, error) {
@@ -1146,7 +1146,7 @@ Returns the drive groups
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupDriveGroups(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupDriveGroups(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1233,8 +1233,8 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupDriveGroupsExecute
 type ServerInstanceGroupAPIGetServerInstanceGroupInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	interfaceId int32
+	serverInstanceGroupId int64
+	interfaceId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupInterfaceRequest) Execute() (*ServerInstanceGroupInterface, *http.Response, error) {
@@ -1251,7 +1251,7 @@ Returns the details of the specified Server Instance Group Interface
  @param interfaceId
  @return ServerInstanceGroupAPIGetServerInstanceGroupInterfaceRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterface(ctx context.Context, serverInstanceGroupId int32, interfaceId int32) ServerInstanceGroupAPIGetServerInstanceGroupInterfaceRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterface(ctx context.Context, serverInstanceGroupId int64, interfaceId int64) ServerInstanceGroupAPIGetServerInstanceGroupInterfaceRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1340,7 +1340,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterfaceExecute(r
 type ServerInstanceGroupAPIGetServerInstanceGroupInterfacesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -1419,7 +1419,7 @@ Returns the interfaces for the specified Server Instance Group
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIGetServerInstanceGroupInterfacesRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterfaces(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupInterfacesRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterfaces(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIGetServerInstanceGroupInterfacesRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1581,8 +1581,8 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterfacesExecute(
 type ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	connectionId int32
+	serverInstanceGroupId int64
+	connectionId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
@@ -1597,7 +1597,7 @@ GetServerInstanceGroupLogicalNetworkACL Get the security rules for a logical net
  @param connectionId
  @return ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int32, connectionId int32) ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int64, connectionId int64) ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1686,9 +1686,9 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLE
 type ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	connectionId int32
-	ruleId int32
+	serverInstanceGroupId int64
+	connectionId int64
+	ruleId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
@@ -1704,7 +1704,7 @@ GetServerInstanceGroupLogicalNetworkACLById Get a security rule for a logical ne
  @param ruleId
  @return ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLById(ctx context.Context, serverInstanceGroupId int32, connectionId int32, ruleId int32) ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLById(ctx context.Context, serverInstanceGroupId int64, connectionId int64, ruleId int64) ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1795,7 +1795,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLB
 type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest) Execute() (*NetworkEndpointGroup, *http.Response, error) {
@@ -1811,7 +1811,7 @@ Returns the network configuration of the specified server instance group
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfiguration(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfiguration(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1898,8 +1898,8 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	connectionId int32
+	serverInstanceGroupId int64
+	connectionId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*ServerInstanceGroupNetworkConnection, *http.Response, error) {
@@ -1916,7 +1916,7 @@ Returns the connection by id of the specified server instance group
  @param connectionId
  @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, serverInstanceGroupId int32, connectionId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, serverInstanceGroupId int64, connectionId int64) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2005,7 +2005,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 }
 
 func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest) Execute() (*ServerInstanceGroupNetworkConnectionsList, *http.Response, error) {
@@ -2019,7 +2019,7 @@ GetServerInstanceGroupNetworkConfigurationConnections Get server instance group'
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnections(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnections(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2106,7 +2106,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 type ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -2206,7 +2206,7 @@ Returns list of Server Instances in the specified group
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupServerInstances(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupServerInstances(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
 	return ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2401,7 +2401,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupServerInstancesExe
 type ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 	serverInstanceGroupUpdate *ServerInstanceGroupUpdate
 	ifMatch *string
 }
@@ -2431,7 +2431,7 @@ Updates the specified Server Instance Group configuration
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest
 */
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupConfig(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest {
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupConfig(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest {
 	return ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2526,9 +2526,9 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupConfigExecute(r
 type ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	connectionId int32
-	ruleId int32
+	serverInstanceGroupId int64
+	connectionId int64
+	ruleId int64
 	updateLogicalNetworkACL *UpdateLogicalNetworkACL
 }
 
@@ -2551,7 +2551,7 @@ UpdateServerInstanceGroupLogicalNetworkACL Update a security rule for a logical 
  @param ruleId
  @return ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest
 */
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int32, connectionId int32, ruleId int32) ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest {
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkACL(ctx context.Context, serverInstanceGroupId int64, connectionId int64, ruleId int64) ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest {
 	return ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2647,7 +2647,7 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkA
 type ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 	genericMeta *GenericMeta
 }
 
@@ -2670,7 +2670,7 @@ Updates the specified Server Instance Group meta information
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest
 */
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMeta(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest {
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMeta(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest {
 	return ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2751,7 +2751,7 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMetaExecute(r S
 type ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 }
 
 func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationRequest) Execute() (*NetworkEndpointGroup, *http.Response, error) {
@@ -2765,7 +2765,7 @@ UpdateServerInstanceGroupNetworkConfiguration Create or return the network confi
  @param serverInstanceGroupId
  @return ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationRequest
 */
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfiguration(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationRequest {
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfiguration(ctx context.Context, serverInstanceGroupId int64) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationRequest {
 	return ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2852,7 +2852,7 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigur
 type ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
+	serverInstanceGroupId int64
 	connectionId float32
 	updateNetworkEndpointGroupLogicalNetwork *UpdateNetworkEndpointGroupLogicalNetwork
 }
@@ -2875,7 +2875,7 @@ UpdateServerInstanceGroupNetworkConfigurationConnection Update a network connect
  @param connectionId
  @return ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest
 */
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int32, connectionId float32) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest {
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int64, connectionId float32) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest {
 	return ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest{
 		ApiService: a,
 		ctx: ctx,

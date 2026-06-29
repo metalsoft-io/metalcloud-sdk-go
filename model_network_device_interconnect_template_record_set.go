@@ -22,9 +22,9 @@ var _ MappedNullable = &NetworkDeviceInterconnectTemplateRecordSet{}
 // NetworkDeviceInterconnectTemplateRecordSet struct for NetworkDeviceInterconnectTemplateRecordSet
 type NetworkDeviceInterconnectTemplateRecordSet struct {
 	// The database id of the local network equipment.
-	LocalId float32 `json:"local_id"`
+	LocalId int64 `json:"local_id"`
 	// The database id of the remote network equipment.
-	RemoteId float32 `json:"remote_id"`
+	RemoteId int64 `json:"remote_id"`
 	// The BGP ASN assigned for the local network equipment.
 	LocalAsn int64 `json:"local_asn"`
 	// The BGP ASN assigned for the remote network equipment.
@@ -50,7 +50,7 @@ type _NetworkDeviceInterconnectTemplateRecordSet NetworkDeviceInterconnectTempla
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceInterconnectTemplateRecordSet(localId float32, remoteId float32, localAsn int64, remoteAsn int64, localLoopbackIpv4 string, remoteLoopbackIpv4 string, localVtepIpv4 string, remoteVtepIpv4 string, localVtepExternalIpv4 string, remoteVtepExternalIpv4 string) *NetworkDeviceInterconnectTemplateRecordSet {
+func NewNetworkDeviceInterconnectTemplateRecordSet(localId int64, remoteId int64, localAsn int64, remoteAsn int64, localLoopbackIpv4 string, remoteLoopbackIpv4 string, localVtepIpv4 string, remoteVtepIpv4 string, localVtepExternalIpv4 string, remoteVtepExternalIpv4 string) *NetworkDeviceInterconnectTemplateRecordSet {
 	this := NetworkDeviceInterconnectTemplateRecordSet{}
 	this.LocalId = localId
 	this.RemoteId = remoteId
@@ -74,9 +74,9 @@ func NewNetworkDeviceInterconnectTemplateRecordSetWithDefaults() *NetworkDeviceI
 }
 
 // GetLocalId returns the LocalId field value
-func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalId() float32 {
+func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalId() float32 {
 
 // GetLocalIdOk returns a tuple with the LocalId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,14 +93,14 @@ func (o *NetworkDeviceInterconnectTemplateRecordSet) GetLocalIdOk() (*float32, b
 }
 
 // SetLocalId sets field value
-func (o *NetworkDeviceInterconnectTemplateRecordSet) SetLocalId(v float32) {
+func (o *NetworkDeviceInterconnectTemplateRecordSet) SetLocalId(v int64) {
 	o.LocalId = v
 }
 
 // GetRemoteId returns the RemoteId field value
-func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteId() float32 {
+func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -109,7 +109,7 @@ func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteId() float32 {
 
 // GetRemoteIdOk returns a tuple with the RemoteId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteIdOk() (*float32, bool) {
+func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *NetworkDeviceInterconnectTemplateRecordSet) GetRemoteIdOk() (*float32, 
 }
 
 // SetRemoteId sets field value
-func (o *NetworkDeviceInterconnectTemplateRecordSet) SetRemoteId(v float32) {
+func (o *NetworkDeviceInterconnectTemplateRecordSet) SetRemoteId(v int64) {
 	o.RemoteId = v
 }
 

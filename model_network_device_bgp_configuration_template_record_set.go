@@ -21,8 +21,10 @@ var _ MappedNullable = &NetworkDeviceBGPConfigurationTemplateRecordSet{}
 
 // NetworkDeviceBGPConfigurationTemplateRecordSet struct for NetworkDeviceBGPConfigurationTemplateRecordSet
 type NetworkDeviceBGPConfigurationTemplateRecordSet struct {
+	// Identifier for the MLAG domain
+	MlagDomainIdentifier *string `json:"mlag_domain_identifier,omitempty"`
 	// The ID of the local switch.
-	LocalSwitchId float32 `json:"local_switch_id"`
+	LocalSwitchId int64 `json:"local_switch_id"`
 	// The identifier of the local switch.
 	LocalSwitchIdentifier string `json:"local_switch_identifier"`
 	// The role of the local switch.
@@ -30,11 +32,13 @@ type NetworkDeviceBGPConfigurationTemplateRecordSet struct {
 	// The name of the local switch interface.
 	LocalSwitchInterfaceName string `json:"local_switch_interface_name"`
 	// The LAG ID of the local switch interface.
-	LocalSwitchInterfaceLagId *float32 `json:"local_switch_interface_lag_id,omitempty"`
+	LocalSwitchInterfaceLagId *int64 `json:"local_switch_interface_lag_id,omitempty"`
 	// The Autonomous System Number of the local switch.
 	LocalSwitchAsn *int64 `json:"local_switch_asn,omitempty"`
+	// The local switch loopback IPv4 address.
+	LocalSwitchLoopbackAddressIpv4 *string `json:"local_switch_loopback_address_ipv4,omitempty"`
 	// The ID of the remote switch.
-	RemoteSwitchId float32 `json:"remote_switch_id"`
+	RemoteSwitchId int64 `json:"remote_switch_id"`
 	// The identifier of the remote switch.
 	RemoteSwitchIdentifier string `json:"remote_switch_identifier"`
 	// The role of the remote switch.
@@ -42,9 +46,11 @@ type NetworkDeviceBGPConfigurationTemplateRecordSet struct {
 	// The name of the remote switch interface.
 	RemoteSwitchInterfaceName string `json:"remote_switch_interface_name"`
 	// The LAG ID of the remote switch interface.
-	RemoteSwitchInterfaceLagId *float32 `json:"remote_switch_interface_lag_id,omitempty"`
+	RemoteSwitchInterfaceLagId *int64 `json:"remote_switch_interface_lag_id,omitempty"`
 	// The Autonomous System Number of the remote switch.
 	RemoteSwitchAsn *int64 `json:"remote_switch_asn,omitempty"`
+	// The remote switch loopback IPv4 address.
+	RemoteSwitchLoopbackAddressIpv4 *string `json:"remote_switch_loopback_address_ipv4,omitempty"`
 	// BGP numbering
 	BgpNumbering string `json:"bgp_numbering"`
 	// Custom variables for the fabric.
@@ -55,6 +61,10 @@ type NetworkDeviceBGPConfigurationTemplateRecordSet struct {
 	LocalSwitchCustomVariables map[string]interface{} `json:"local_switch_custom_variables,omitempty"`
 	// Custom variables for the remote switch.
 	RemoteSwitchCustomVariables map[string]interface{} `json:"remote_switch_custom_variables,omitempty"`
+	// Custom variables for the MLAG pair of the local switch (if any).
+	MlagPeerCustomVariables map[string]interface{} `json:"mlag_peer_custom_variables,omitempty"`
+	// The IP address of the remote interface of the P2P link. Present only when BGP numbering is NUMBERED.
+	RemoteP2pLinkIp *string `json:"remote_p2p_link_ip,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,7 +74,7 @@ type _NetworkDeviceBGPConfigurationTemplateRecordSet NetworkDeviceBGPConfigurati
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId float32, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId float32, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string) *NetworkDeviceBGPConfigurationTemplateRecordSet {
+func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId int64, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string) *NetworkDeviceBGPConfigurationTemplateRecordSet {
 	this := NetworkDeviceBGPConfigurationTemplateRecordSet{}
 	this.LocalSwitchId = localSwitchId
 	this.LocalSwitchIdentifier = localSwitchIdentifier
@@ -86,10 +96,42 @@ func NewNetworkDeviceBGPConfigurationTemplateRecordSetWithDefaults() *NetworkDev
 	return &this
 }
 
+// GetMlagDomainIdentifier returns the MlagDomainIdentifier field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagDomainIdentifier() string {
+	if o == nil || IsNil(o.MlagDomainIdentifier) {
+		var ret string
+		return ret
+	}
+	return *o.MlagDomainIdentifier
+}
+
+// GetMlagDomainIdentifierOk returns a tuple with the MlagDomainIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagDomainIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.MlagDomainIdentifier) {
+		return nil, false
+	}
+	return o.MlagDomainIdentifier, true
+}
+
+// HasMlagDomainIdentifier returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasMlagDomainIdentifier() bool {
+	if o != nil && !IsNil(o.MlagDomainIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetMlagDomainIdentifier gets a reference to the given string and assigns it to the MlagDomainIdentifier field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetMlagDomainIdentifier(v string) {
+	o.MlagDomainIdentifier = &v
+}
+
 // GetLocalSwitchId returns the LocalSwitchId field value
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchId() float32 {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -98,7 +140,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchId() floa
 
 // GetLocalSwitchIdOk returns a tuple with the LocalSwitchId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*float32, bool) {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,7 +148,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*
 }
 
 // SetLocalSwitchId sets field value
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchId(v float32) {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchId(v int64) {
 	o.LocalSwitchId = v
 }
 
@@ -183,9 +225,9 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchInterface
 }
 
 // GetLocalSwitchInterfaceLagId returns the LocalSwitchInterfaceLagId field value if set, zero value otherwise.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagId() float32 {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagId() int64 {
 	if o == nil || IsNil(o.LocalSwitchInterfaceLagId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LocalSwitchInterfaceLagId
@@ -193,7 +235,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterface
 
 // GetLocalSwitchInterfaceLagIdOk returns a tuple with the LocalSwitchInterfaceLagId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagIdOk() (*float32, bool) {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LocalSwitchInterfaceLagId) {
 		return nil, false
 	}
@@ -209,8 +251,8 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasLocalSwitchInterface
 	return false
 }
 
-// SetLocalSwitchInterfaceLagId gets a reference to the given float32 and assigns it to the LocalSwitchInterfaceLagId field.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchInterfaceLagId(v float32) {
+// SetLocalSwitchInterfaceLagId gets a reference to the given int64 and assigns it to the LocalSwitchInterfaceLagId field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchInterfaceLagId(v int64) {
 	o.LocalSwitchInterfaceLagId = &v
 }
 
@@ -246,10 +288,42 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchAsn(v int
 	o.LocalSwitchAsn = &v
 }
 
+// GetLocalSwitchLoopbackAddressIpv4 returns the LocalSwitchLoopbackAddressIpv4 field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchLoopbackAddressIpv4() string {
+	if o == nil || IsNil(o.LocalSwitchLoopbackAddressIpv4) {
+		var ret string
+		return ret
+	}
+	return *o.LocalSwitchLoopbackAddressIpv4
+}
+
+// GetLocalSwitchLoopbackAddressIpv4Ok returns a tuple with the LocalSwitchLoopbackAddressIpv4 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchLoopbackAddressIpv4Ok() (*string, bool) {
+	if o == nil || IsNil(o.LocalSwitchLoopbackAddressIpv4) {
+		return nil, false
+	}
+	return o.LocalSwitchLoopbackAddressIpv4, true
+}
+
+// HasLocalSwitchLoopbackAddressIpv4 returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasLocalSwitchLoopbackAddressIpv4() bool {
+	if o != nil && !IsNil(o.LocalSwitchLoopbackAddressIpv4) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalSwitchLoopbackAddressIpv4 gets a reference to the given string and assigns it to the LocalSwitchLoopbackAddressIpv4 field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchLoopbackAddressIpv4(v string) {
+	o.LocalSwitchLoopbackAddressIpv4 = &v
+}
+
 // GetRemoteSwitchId returns the RemoteSwitchId field value
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchId() float32 {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -258,7 +332,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchId() flo
 
 // GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*float32, bool) {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -266,7 +340,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (
 }
 
 // SetRemoteSwitchId sets field value
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchId(v float32) {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchId(v int64) {
 	o.RemoteSwitchId = v
 }
 
@@ -343,9 +417,9 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchInterfac
 }
 
 // GetRemoteSwitchInterfaceLagId returns the RemoteSwitchInterfaceLagId field value if set, zero value otherwise.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagId() float32 {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagId() int64 {
 	if o == nil || IsNil(o.RemoteSwitchInterfaceLagId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.RemoteSwitchInterfaceLagId
@@ -353,7 +427,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfac
 
 // GetRemoteSwitchInterfaceLagIdOk returns a tuple with the RemoteSwitchInterfaceLagId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagIdOk() (*float32, bool) {
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.RemoteSwitchInterfaceLagId) {
 		return nil, false
 	}
@@ -369,8 +443,8 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchInterfac
 	return false
 }
 
-// SetRemoteSwitchInterfaceLagId gets a reference to the given float32 and assigns it to the RemoteSwitchInterfaceLagId field.
-func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceLagId(v float32) {
+// SetRemoteSwitchInterfaceLagId gets a reference to the given int64 and assigns it to the RemoteSwitchInterfaceLagId field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceLagId(v int64) {
 	o.RemoteSwitchInterfaceLagId = &v
 }
 
@@ -404,6 +478,38 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchAsn() bo
 // SetRemoteSwitchAsn gets a reference to the given int64 and assigns it to the RemoteSwitchAsn field.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchAsn(v int64) {
 	o.RemoteSwitchAsn = &v
+}
+
+// GetRemoteSwitchLoopbackAddressIpv4 returns the RemoteSwitchLoopbackAddressIpv4 field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchLoopbackAddressIpv4() string {
+	if o == nil || IsNil(o.RemoteSwitchLoopbackAddressIpv4) {
+		var ret string
+		return ret
+	}
+	return *o.RemoteSwitchLoopbackAddressIpv4
+}
+
+// GetRemoteSwitchLoopbackAddressIpv4Ok returns a tuple with the RemoteSwitchLoopbackAddressIpv4 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchLoopbackAddressIpv4Ok() (*string, bool) {
+	if o == nil || IsNil(o.RemoteSwitchLoopbackAddressIpv4) {
+		return nil, false
+	}
+	return o.RemoteSwitchLoopbackAddressIpv4, true
+}
+
+// HasRemoteSwitchLoopbackAddressIpv4 returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchLoopbackAddressIpv4() bool {
+	if o != nil && !IsNil(o.RemoteSwitchLoopbackAddressIpv4) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchLoopbackAddressIpv4 gets a reference to the given string and assigns it to the RemoteSwitchLoopbackAddressIpv4 field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchLoopbackAddressIpv4(v string) {
+	o.RemoteSwitchLoopbackAddressIpv4 = &v
 }
 
 // GetBgpNumbering returns the BgpNumbering field value
@@ -558,6 +664,70 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchCustomVa
 	o.RemoteSwitchCustomVariables = v
 }
 
+// GetMlagPeerCustomVariables returns the MlagPeerCustomVariables field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagPeerCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.MlagPeerCustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.MlagPeerCustomVariables
+}
+
+// GetMlagPeerCustomVariablesOk returns a tuple with the MlagPeerCustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagPeerCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.MlagPeerCustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.MlagPeerCustomVariables, true
+}
+
+// HasMlagPeerCustomVariables returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasMlagPeerCustomVariables() bool {
+	if o != nil && !IsNil(o.MlagPeerCustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetMlagPeerCustomVariables gets a reference to the given map[string]interface{} and assigns it to the MlagPeerCustomVariables field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetMlagPeerCustomVariables(v map[string]interface{}) {
+	o.MlagPeerCustomVariables = v
+}
+
+// GetRemoteP2pLinkIp returns the RemoteP2pLinkIp field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIp() string {
+	if o == nil || IsNil(o.RemoteP2pLinkIp) {
+		var ret string
+		return ret
+	}
+	return *o.RemoteP2pLinkIp
+}
+
+// GetRemoteP2pLinkIpOk returns a tuple with the RemoteP2pLinkIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIpOk() (*string, bool) {
+	if o == nil || IsNil(o.RemoteP2pLinkIp) {
+		return nil, false
+	}
+	return o.RemoteP2pLinkIp, true
+}
+
+// HasRemoteP2pLinkIp returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteP2pLinkIp() bool {
+	if o != nil && !IsNil(o.RemoteP2pLinkIp) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteP2pLinkIp gets a reference to the given string and assigns it to the RemoteP2pLinkIp field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteP2pLinkIp(v string) {
+	o.RemoteP2pLinkIp = &v
+}
+
 func (o NetworkDeviceBGPConfigurationTemplateRecordSet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -568,6 +738,9 @@ func (o NetworkDeviceBGPConfigurationTemplateRecordSet) MarshalJSON() ([]byte, e
 
 func (o NetworkDeviceBGPConfigurationTemplateRecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MlagDomainIdentifier) {
+		toSerialize["mlag_domain_identifier"] = o.MlagDomainIdentifier
+	}
 	toSerialize["local_switch_id"] = o.LocalSwitchId
 	toSerialize["local_switch_identifier"] = o.LocalSwitchIdentifier
 	toSerialize["local_switch_role"] = o.LocalSwitchRole
@@ -578,6 +751,9 @@ func (o NetworkDeviceBGPConfigurationTemplateRecordSet) ToMap() (map[string]inte
 	if !IsNil(o.LocalSwitchAsn) {
 		toSerialize["local_switch_asn"] = o.LocalSwitchAsn
 	}
+	if !IsNil(o.LocalSwitchLoopbackAddressIpv4) {
+		toSerialize["local_switch_loopback_address_ipv4"] = o.LocalSwitchLoopbackAddressIpv4
+	}
 	toSerialize["remote_switch_id"] = o.RemoteSwitchId
 	toSerialize["remote_switch_identifier"] = o.RemoteSwitchIdentifier
 	toSerialize["remote_switch_role"] = o.RemoteSwitchRole
@@ -587,6 +763,9 @@ func (o NetworkDeviceBGPConfigurationTemplateRecordSet) ToMap() (map[string]inte
 	}
 	if !IsNil(o.RemoteSwitchAsn) {
 		toSerialize["remote_switch_asn"] = o.RemoteSwitchAsn
+	}
+	if !IsNil(o.RemoteSwitchLoopbackAddressIpv4) {
+		toSerialize["remote_switch_loopback_address_ipv4"] = o.RemoteSwitchLoopbackAddressIpv4
 	}
 	toSerialize["bgp_numbering"] = o.BgpNumbering
 	if !IsNil(o.FabricCustomVariables) {
@@ -600,6 +779,12 @@ func (o NetworkDeviceBGPConfigurationTemplateRecordSet) ToMap() (map[string]inte
 	}
 	if !IsNil(o.RemoteSwitchCustomVariables) {
 		toSerialize["remote_switch_custom_variables"] = o.RemoteSwitchCustomVariables
+	}
+	if !IsNil(o.MlagPeerCustomVariables) {
+		toSerialize["mlag_peer_custom_variables"] = o.MlagPeerCustomVariables
+	}
+	if !IsNil(o.RemoteP2pLinkIp) {
+		toSerialize["remote_p2p_link_ip"] = o.RemoteP2pLinkIp
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -652,23 +837,28 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) UnmarshalJSON(data []by
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "mlag_domain_identifier")
 		delete(additionalProperties, "local_switch_id")
 		delete(additionalProperties, "local_switch_identifier")
 		delete(additionalProperties, "local_switch_role")
 		delete(additionalProperties, "local_switch_interface_name")
 		delete(additionalProperties, "local_switch_interface_lag_id")
 		delete(additionalProperties, "local_switch_asn")
+		delete(additionalProperties, "local_switch_loopback_address_ipv4")
 		delete(additionalProperties, "remote_switch_id")
 		delete(additionalProperties, "remote_switch_identifier")
 		delete(additionalProperties, "remote_switch_role")
 		delete(additionalProperties, "remote_switch_interface_name")
 		delete(additionalProperties, "remote_switch_interface_lag_id")
 		delete(additionalProperties, "remote_switch_asn")
+		delete(additionalProperties, "remote_switch_loopback_address_ipv4")
 		delete(additionalProperties, "bgp_numbering")
 		delete(additionalProperties, "fabric_custom_variables")
 		delete(additionalProperties, "link_custom_variables")
 		delete(additionalProperties, "local_switch_custom_variables")
 		delete(additionalProperties, "remote_switch_custom_variables")
+		delete(additionalProperties, "mlag_peer_custom_variables")
+		delete(additionalProperties, "remote_p2p_link_ip")
 		o.AdditionalProperties = additionalProperties
 	}
 

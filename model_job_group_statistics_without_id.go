@@ -21,6 +21,8 @@ var _ MappedNullable = &JobGroupStatisticsWithoutId{}
 
 // JobGroupStatisticsWithoutId struct for JobGroupStatisticsWithoutId
 type JobGroupStatisticsWithoutId struct {
+	// Group type
+	GroupType string `json:"groupType"`
 	// Group created timestamp
 	GroupCreatedTimestamp string `json:"groupCreatedTimestamp"`
 	// Group completed timestamp
@@ -40,8 +42,9 @@ type _JobGroupStatisticsWithoutId JobGroupStatisticsWithoutId
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobGroupStatisticsWithoutId(groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32) *JobGroupStatisticsWithoutId {
+func NewJobGroupStatisticsWithoutId(groupType string, groupCreatedTimestamp string, groupCompletedTimestamp string, jobsThrownError int32, jobsCompleted int32, jobsTotal int32) *JobGroupStatisticsWithoutId {
 	this := JobGroupStatisticsWithoutId{}
+	this.GroupType = groupType
 	this.GroupCreatedTimestamp = groupCreatedTimestamp
 	this.GroupCompletedTimestamp = groupCompletedTimestamp
 	this.JobsThrownError = jobsThrownError
@@ -56,6 +59,30 @@ func NewJobGroupStatisticsWithoutId(groupCreatedTimestamp string, groupCompleted
 func NewJobGroupStatisticsWithoutIdWithDefaults() *JobGroupStatisticsWithoutId {
 	this := JobGroupStatisticsWithoutId{}
 	return &this
+}
+
+// GetGroupType returns the GroupType field value
+func (o *JobGroupStatisticsWithoutId) GetGroupType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.GroupType
+}
+
+// GetGroupTypeOk returns a tuple with the GroupType field value
+// and a boolean to check if the value has been set.
+func (o *JobGroupStatisticsWithoutId) GetGroupTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GroupType, true
+}
+
+// SetGroupType sets field value
+func (o *JobGroupStatisticsWithoutId) SetGroupType(v string) {
+	o.GroupType = v
 }
 
 // GetGroupCreatedTimestamp returns the GroupCreatedTimestamp field value
@@ -188,6 +215,7 @@ func (o JobGroupStatisticsWithoutId) MarshalJSON() ([]byte, error) {
 
 func (o JobGroupStatisticsWithoutId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["groupType"] = o.GroupType
 	toSerialize["groupCreatedTimestamp"] = o.GroupCreatedTimestamp
 	toSerialize["groupCompletedTimestamp"] = o.GroupCompletedTimestamp
 	toSerialize["jobsThrownError"] = o.JobsThrownError
@@ -206,6 +234,7 @@ func (o *JobGroupStatisticsWithoutId) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"groupType",
 		"groupCreatedTimestamp",
 		"groupCompletedTimestamp",
 		"jobsThrownError",
@@ -240,6 +269,7 @@ func (o *JobGroupStatisticsWithoutId) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "groupType")
 		delete(additionalProperties, "groupCreatedTimestamp")
 		delete(additionalProperties, "groupCompletedTimestamp")
 		delete(additionalProperties, "jobsThrownError")

@@ -28,7 +28,7 @@ type NetworkFabricAPIService service
 type NetworkFabricAPIAcceptNetworkFabricDeployRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId float32
+	networkFabricId int64
 }
 
 func (r NetworkFabricAPIAcceptNetworkFabricDeployRequest) Execute() (*http.Response, error) {
@@ -44,7 +44,7 @@ Accepts the deployment of the specified network fabric
  @param networkFabricId
  @return NetworkFabricAPIAcceptNetworkFabricDeployRequest
 */
-func (a *NetworkFabricAPIService) AcceptNetworkFabricDeploy(ctx context.Context, networkFabricId float32) NetworkFabricAPIAcceptNetworkFabricDeployRequest {
+func (a *NetworkFabricAPIService) AcceptNetworkFabricDeploy(ctx context.Context, networkFabricId int64) NetworkFabricAPIAcceptNetworkFabricDeployRequest {
 	return NetworkFabricAPIAcceptNetworkFabricDeployRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -120,7 +120,7 @@ func (a *NetworkFabricAPIService) AcceptNetworkFabricDeployExecute(r NetworkFabr
 type NetworkFabricAPIActivateNetworkFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	ifMatch *string
 }
 
@@ -141,7 +141,7 @@ ActivateNetworkFabric Activate a network fabric
  @param networkFabricId The ID of the network fabric to activate
  @return NetworkFabricAPIActivateNetworkFabricRequest
 */
-func (a *NetworkFabricAPIService) ActivateNetworkFabric(ctx context.Context, networkFabricId int32) NetworkFabricAPIActivateNetworkFabricRequest {
+func (a *NetworkFabricAPIService) ActivateNetworkFabric(ctx context.Context, networkFabricId int64) NetworkFabricAPIActivateNetworkFabricRequest {
 	return NetworkFabricAPIActivateNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *NetworkFabricAPIService) ActivateNetworkFabricExecute(r NetworkFabricAP
 type NetworkFabricAPIAddNetworkDevicesToFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	networkDevicesToFabric *NetworkDevicesToFabric
 }
 
@@ -252,7 +252,7 @@ AddNetworkDevicesToFabric Add a list of network devices to a fabric
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPIAddNetworkDevicesToFabricRequest
 */
-func (a *NetworkFabricAPIService) AddNetworkDevicesToFabric(ctx context.Context, networkFabricId int32) NetworkFabricAPIAddNetworkDevicesToFabricRequest {
+func (a *NetworkFabricAPIService) AddNetworkDevicesToFabric(ctx context.Context, networkFabricId int64) NetworkFabricAPIAddNetworkDevicesToFabricRequest {
 	return NetworkFabricAPIAddNetworkDevicesToFabricRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -453,7 +453,7 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricExecute(r NetworkFabricAPIC
 type NetworkFabricAPICreateNetworkFabricBgpSessionRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	createNetworkFabricBGPSession *CreateNetworkFabricBGPSession
 }
 
@@ -474,7 +474,7 @@ CreateNetworkFabricBgpSession Create a new network fabric BGP session
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPICreateNetworkFabricBgpSessionRequest
 */
-func (a *NetworkFabricAPIService) CreateNetworkFabricBgpSession(ctx context.Context, networkFabricId int32) NetworkFabricAPICreateNetworkFabricBgpSessionRequest {
+func (a *NetworkFabricAPIService) CreateNetworkFabricBgpSession(ctx context.Context, networkFabricId int64) NetworkFabricAPICreateNetworkFabricBgpSessionRequest {
 	return NetworkFabricAPICreateNetworkFabricBgpSessionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -566,7 +566,7 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricBgpSessionExecute(r Network
 type NetworkFabricAPICreateNetworkFabricLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	createNetworkFabricLink *CreateNetworkFabricLink
 }
 
@@ -587,7 +587,7 @@ CreateNetworkFabricLink Create a new network fabric link
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPICreateNetworkFabricLinkRequest
 */
-func (a *NetworkFabricAPIService) CreateNetworkFabricLink(ctx context.Context, networkFabricId int32) NetworkFabricAPICreateNetworkFabricLinkRequest {
+func (a *NetworkFabricAPIService) CreateNetworkFabricLink(ctx context.Context, networkFabricId int64) NetworkFabricAPICreateNetworkFabricLinkRequest {
 	return NetworkFabricAPICreateNetworkFabricLinkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -679,7 +679,7 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricLinkExecute(r NetworkFabric
 type NetworkFabricAPICreateNetworkFabricLinkAggregationRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	createNetworkFabricLinkAggregation *CreateNetworkFabricLinkAggregation
 }
 
@@ -700,7 +700,7 @@ CreateNetworkFabricLinkAggregation Create a new network fabric link aggregation
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPICreateNetworkFabricLinkAggregationRequest
 */
-func (a *NetworkFabricAPIService) CreateNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32) NetworkFabricAPICreateNetworkFabricLinkAggregationRequest {
+func (a *NetworkFabricAPIService) CreateNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int64) NetworkFabricAPICreateNetworkFabricLinkAggregationRequest {
 	return NetworkFabricAPICreateNetworkFabricLinkAggregationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -792,7 +792,7 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricLinkAggregationExecute(r Ne
 type NetworkFabricAPIDeleteNetworkFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId float32
+	networkFabricId int64
 }
 
 func (r NetworkFabricAPIDeleteNetworkFabricRequest) Execute() (*http.Response, error) {
@@ -806,7 +806,7 @@ DeleteNetworkFabric Delete a network fabric
  @param networkFabricId
  @return NetworkFabricAPIDeleteNetworkFabricRequest
 */
-func (a *NetworkFabricAPIService) DeleteNetworkFabric(ctx context.Context, networkFabricId float32) NetworkFabricAPIDeleteNetworkFabricRequest {
+func (a *NetworkFabricAPIService) DeleteNetworkFabric(ctx context.Context, networkFabricId int64) NetworkFabricAPIDeleteNetworkFabricRequest {
 	return NetworkFabricAPIDeleteNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -882,8 +882,8 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricExecute(r NetworkFabricAPID
 type NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	bgpSessionId int32
+	networkFabricId int64
+	bgpSessionId int64
 }
 
 func (r NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest) Execute() (*http.Response, error) {
@@ -898,7 +898,7 @@ DeleteNetworkFabricBgpSession Remove a network fabric BGP session
  @param bgpSessionId The ID of the network fabric BGP session
  @return NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest
 */
-func (a *NetworkFabricAPIService) DeleteNetworkFabricBgpSession(ctx context.Context, networkFabricId int32, bgpSessionId int32) NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest {
+func (a *NetworkFabricAPIService) DeleteNetworkFabricBgpSession(ctx context.Context, networkFabricId int64, bgpSessionId int64) NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest {
 	return NetworkFabricAPIDeleteNetworkFabricBgpSessionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -976,8 +976,8 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricBgpSessionExecute(r Network
 type NetworkFabricAPIDeleteNetworkFabricLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	networkFabricLinkId int32
+	networkFabricId int64
+	networkFabricLinkId int64
 }
 
 func (r NetworkFabricAPIDeleteNetworkFabricLinkRequest) Execute() (*http.Response, error) {
@@ -992,7 +992,7 @@ DeleteNetworkFabricLink Remove a network fabric link
  @param networkFabricLinkId The ID of the network fabric link
  @return NetworkFabricAPIDeleteNetworkFabricLinkRequest
 */
-func (a *NetworkFabricAPIService) DeleteNetworkFabricLink(ctx context.Context, networkFabricId int32, networkFabricLinkId int32) NetworkFabricAPIDeleteNetworkFabricLinkRequest {
+func (a *NetworkFabricAPIService) DeleteNetworkFabricLink(ctx context.Context, networkFabricId int64, networkFabricLinkId int64) NetworkFabricAPIDeleteNetworkFabricLinkRequest {
 	return NetworkFabricAPIDeleteNetworkFabricLinkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1070,8 +1070,8 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricLinkExecute(r NetworkFabric
 type NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	linkAggregationId int32
+	networkFabricId int64
+	linkAggregationId int64
 }
 
 func (r NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest) Execute() (*http.Response, error) {
@@ -1086,7 +1086,7 @@ DeleteNetworkFabricLinkAggregation Remove a network fabric link aggregation
  @param linkAggregationId The ID of the network fabric link aggregation
  @return NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest
 */
-func (a *NetworkFabricAPIService) DeleteNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32, linkAggregationId int32) NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest {
+func (a *NetworkFabricAPIService) DeleteNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int64, linkAggregationId int64) NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest {
 	return NetworkFabricAPIDeleteNetworkFabricLinkAggregationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1164,7 +1164,7 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricLinkAggregationExecute(r Ne
 type NetworkFabricAPIDeployNetworkFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId float32
+	networkFabricId int64
 	networkFabricDeployOptions *NetworkFabricDeployOptions
 }
 
@@ -1187,7 +1187,7 @@ Deploys the specified network fabric
  @param networkFabricId
  @return NetworkFabricAPIDeployNetworkFabricRequest
 */
-func (a *NetworkFabricAPIService) DeployNetworkFabric(ctx context.Context, networkFabricId float32) NetworkFabricAPIDeployNetworkFabricRequest {
+func (a *NetworkFabricAPIService) DeployNetworkFabric(ctx context.Context, networkFabricId int64) NetworkFabricAPIDeployNetworkFabricRequest {
 	return NetworkFabricAPIDeployNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1279,7 +1279,7 @@ func (a *NetworkFabricAPIService) DeployNetworkFabricExecute(r NetworkFabricAPID
 type NetworkFabricAPIGetFabricNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1294,6 +1294,8 @@ type NetworkFabricAPIGetFabricNetworkDevicesRequest struct {
 	filterPosition *[]string
 	filterIdentifierString *[]string
 	filterServerId *[]string
+	filterHealthStatus *[]string
+	filterDriftDetectionSyncStatus *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1383,7 +1385,19 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterServerId(filterSer
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress 
+// Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterHealthStatus(filterHealthStatus []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterHealthStatus = &filterHealthStatus
+	return r
+}
+
+// Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$btw:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterDriftDetectionSyncStatus = &filterDriftDetectionSyncStatus
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SortBy(sortBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1395,7 +1409,7 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) Search(search string) Ne
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description 
+// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SearchBy(searchBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1412,7 +1426,7 @@ GetFabricNetworkDevices Get paginated Network Devices
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPIGetFabricNetworkDevicesRequest
 */
-func (a *NetworkFabricAPIService) GetFabricNetworkDevices(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+func (a *NetworkFabricAPIService) GetFabricNetworkDevices(ctx context.Context, networkFabricId int64) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	return NetworkFabricAPIGetFabricNetworkDevicesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1580,6 +1594,28 @@ func (a *NetworkFabricAPIService) GetFabricNetworkDevicesExecute(r NetworkFabric
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
 		}
 	}
+	if r.filterHealthStatus != nil {
+		t := *r.filterHealthStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.healthStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.healthStatus", t, "form", "multi")
+		}
+	}
+	if r.filterDriftDetectionSyncStatus != nil {
+		t := *r.filterDriftDetectionSyncStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionSyncStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionSyncStatus", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1662,7 +1698,7 @@ func (a *NetworkFabricAPIService) GetFabricNetworkDevicesExecute(r NetworkFabric
 type NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1746,7 +1782,7 @@ GetFabricsNetworkFabricInterconnects Get a paginated list of network fabric inte
  @param networkFabricId The ID of the network fabric
  @return NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest
 */
-func (a *NetworkFabricAPIService) GetFabricsNetworkFabricInterconnects(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
+func (a *NetworkFabricAPIService) GetFabricsNetworkFabricInterconnects(ctx context.Context, networkFabricId int64) NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest {
 	return NetworkFabricAPIGetFabricsNetworkFabricInterconnectsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1919,8 +1955,8 @@ func (a *NetworkFabricAPIService) GetFabricsNetworkFabricInterconnectsExecute(r 
 type NetworkFabricAPIGetNetworkFabricBGPSessionRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	bgpSessionId int32
+	networkFabricId int64
+	bgpSessionId int64
 }
 
 func (r NetworkFabricAPIGetNetworkFabricBGPSessionRequest) Execute() (*NetworkFabricBGPSession, *http.Response, error) {
@@ -1935,7 +1971,7 @@ GetNetworkFabricBGPSession Get a specific Network Fabric BGP Session
  @param bgpSessionId The ID of the network fabric BGP session
  @return NetworkFabricAPIGetNetworkFabricBGPSessionRequest
 */
-func (a *NetworkFabricAPIService) GetNetworkFabricBGPSession(ctx context.Context, networkFabricId int32, bgpSessionId int32) NetworkFabricAPIGetNetworkFabricBGPSessionRequest {
+func (a *NetworkFabricAPIService) GetNetworkFabricBGPSession(ctx context.Context, networkFabricId int64, bgpSessionId int64) NetworkFabricAPIGetNetworkFabricBGPSessionRequest {
 	return NetworkFabricAPIGetNetworkFabricBGPSessionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2024,7 +2060,7 @@ func (a *NetworkFabricAPIService) GetNetworkFabricBGPSessionExecute(r NetworkFab
 type NetworkFabricAPIGetNetworkFabricBgpSessionsRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -2108,7 +2144,7 @@ GetNetworkFabricBgpSessions Get paginated Network Fabric BGP Sessions
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPIGetNetworkFabricBgpSessionsRequest
 */
-func (a *NetworkFabricAPIService) GetNetworkFabricBgpSessions(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
+func (a *NetworkFabricAPIService) GetNetworkFabricBgpSessions(ctx context.Context, networkFabricId int64) NetworkFabricAPIGetNetworkFabricBgpSessionsRequest {
 	return NetworkFabricAPIGetNetworkFabricBgpSessionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2281,7 +2317,7 @@ func (a *NetworkFabricAPIService) GetNetworkFabricBgpSessionsExecute(r NetworkFa
 type NetworkFabricAPIGetNetworkFabricByIdRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId float32
+	networkFabricId int64
 }
 
 func (r NetworkFabricAPIGetNetworkFabricByIdRequest) Execute() (*NetworkFabric, *http.Response, error) {
@@ -2295,7 +2331,7 @@ GetNetworkFabricById Get a network fabric by ID
  @param networkFabricId
  @return NetworkFabricAPIGetNetworkFabricByIdRequest
 */
-func (a *NetworkFabricAPIService) GetNetworkFabricById(ctx context.Context, networkFabricId float32) NetworkFabricAPIGetNetworkFabricByIdRequest {
+func (a *NetworkFabricAPIService) GetNetworkFabricById(ctx context.Context, networkFabricId int64) NetworkFabricAPIGetNetworkFabricByIdRequest {
 	return NetworkFabricAPIGetNetworkFabricByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2382,8 +2418,8 @@ func (a *NetworkFabricAPIService) GetNetworkFabricByIdExecute(r NetworkFabricAPI
 type NetworkFabricAPIGetNetworkFabricLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	networkFabricLinkId int32
+	networkFabricId int64
+	networkFabricLinkId int64
 }
 
 func (r NetworkFabricAPIGetNetworkFabricLinkRequest) Execute() (*NetworkFabricLink, *http.Response, error) {
@@ -2398,7 +2434,7 @@ GetNetworkFabricLink Get a specific Network Fabric Link
  @param networkFabricLinkId The ID of the network fabric link
  @return NetworkFabricAPIGetNetworkFabricLinkRequest
 */
-func (a *NetworkFabricAPIService) GetNetworkFabricLink(ctx context.Context, networkFabricId int32, networkFabricLinkId int32) NetworkFabricAPIGetNetworkFabricLinkRequest {
+func (a *NetworkFabricAPIService) GetNetworkFabricLink(ctx context.Context, networkFabricId int64, networkFabricLinkId int64) NetworkFabricAPIGetNetworkFabricLinkRequest {
 	return NetworkFabricAPIGetNetworkFabricLinkRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2487,8 +2523,8 @@ func (a *NetworkFabricAPIService) GetNetworkFabricLinkExecute(r NetworkFabricAPI
 type NetworkFabricAPIGetNetworkFabricLinkAggregationRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	linkAggregationId int32
+	networkFabricId int64
+	linkAggregationId int64
 }
 
 func (r NetworkFabricAPIGetNetworkFabricLinkAggregationRequest) Execute() (*NetworkFabricLinkAggregation, *http.Response, error) {
@@ -2503,7 +2539,7 @@ GetNetworkFabricLinkAggregation Get a specific Network Fabric Link Aggregation
  @param linkAggregationId The ID of the network fabric link aggregation
  @return NetworkFabricAPIGetNetworkFabricLinkAggregationRequest
 */
-func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32, linkAggregationId int32) NetworkFabricAPIGetNetworkFabricLinkAggregationRequest {
+func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int64, linkAggregationId int64) NetworkFabricAPIGetNetworkFabricLinkAggregationRequest {
 	return NetworkFabricAPIGetNetworkFabricLinkAggregationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2592,7 +2628,7 @@ func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregationExecute(r Netwo
 type NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -2669,7 +2705,7 @@ GetNetworkFabricLinkAggregations Get paginated Network Fabric Link Aggregations
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest
 */
-func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregations(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
+func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregations(ctx context.Context, networkFabricId int64) NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest {
 	return NetworkFabricAPIGetNetworkFabricLinkAggregationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2831,7 +2867,7 @@ func (a *NetworkFabricAPIService) GetNetworkFabricLinkAggregationsExecute(r Netw
 type NetworkFabricAPIGetNetworkFabricLinksRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -2908,7 +2944,7 @@ GetNetworkFabricLinks Get paginated Network Fabric Links
  @param networkFabricId The ID of the fabric
  @return NetworkFabricAPIGetNetworkFabricLinksRequest
 */
-func (a *NetworkFabricAPIService) GetNetworkFabricLinks(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetNetworkFabricLinksRequest {
+func (a *NetworkFabricAPIService) GetNetworkFabricLinks(ctx context.Context, networkFabricId int64) NetworkFabricAPIGetNetworkFabricLinksRequest {
 	return NetworkFabricAPIGetNetworkFabricLinksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3341,7 +3377,7 @@ func (a *NetworkFabricAPIService) GetNetworkFabricsExecute(r NetworkFabricAPIGet
 type NetworkFabricAPIRejectNetworkFabricDeployRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId float32
+	networkFabricId int64
 }
 
 func (r NetworkFabricAPIRejectNetworkFabricDeployRequest) Execute() (*http.Response, error) {
@@ -3357,7 +3393,7 @@ Rejects the deployment of the specified network fabric
  @param networkFabricId
  @return NetworkFabricAPIRejectNetworkFabricDeployRequest
 */
-func (a *NetworkFabricAPIService) RejectNetworkFabricDeploy(ctx context.Context, networkFabricId float32) NetworkFabricAPIRejectNetworkFabricDeployRequest {
+func (a *NetworkFabricAPIService) RejectNetworkFabricDeploy(ctx context.Context, networkFabricId int64) NetworkFabricAPIRejectNetworkFabricDeployRequest {
 	return NetworkFabricAPIRejectNetworkFabricDeployRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3433,8 +3469,8 @@ func (a *NetworkFabricAPIService) RejectNetworkFabricDeployExecute(r NetworkFabr
 type NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	networkDeviceId int32
+	networkFabricId int64
+	networkDeviceId int64
 }
 
 func (r NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
@@ -3449,7 +3485,7 @@ RemoveNetworkDeviceFromFabric Remove a network device from a fabric
  @param networkDeviceId The ID of the network device to remove from the fabric
  @return NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest
 */
-func (a *NetworkFabricAPIService) RemoveNetworkDeviceFromFabric(ctx context.Context, networkFabricId int32, networkDeviceId int32) NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest {
+func (a *NetworkFabricAPIService) RemoveNetworkDeviceFromFabric(ctx context.Context, networkFabricId int64, networkDeviceId int64) NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest {
 	return NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3535,10 +3571,125 @@ func (a *NetworkFabricAPIService) RemoveNetworkDeviceFromFabricExecute(r Network
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkFabricAPIRescanNetworkFabricLinksRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int64
+	networkFabricLinkRescanOptions *NetworkFabricLinkRescanOptions
+}
+
+// Network fabric link rescan options
+func (r NetworkFabricAPIRescanNetworkFabricLinksRequest) NetworkFabricLinkRescanOptions(networkFabricLinkRescanOptions NetworkFabricLinkRescanOptions) NetworkFabricAPIRescanNetworkFabricLinksRequest {
+	r.networkFabricLinkRescanOptions = &networkFabricLinkRescanOptions
+	return r
+}
+
+func (r NetworkFabricAPIRescanNetworkFabricLinksRequest) Execute() (*JobInfo, *http.Response, error) {
+	return r.ApiService.RescanNetworkFabricLinksExecute(r)
+}
+
+/*
+RescanNetworkFabricLinks Re-scans the links of the specified network fabric
+
+Re-scans the links of the specified network fabric
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId
+ @return NetworkFabricAPIRescanNetworkFabricLinksRequest
+*/
+func (a *NetworkFabricAPIService) RescanNetworkFabricLinks(ctx context.Context, networkFabricId int64) NetworkFabricAPIRescanNetworkFabricLinksRequest {
+	return NetworkFabricAPIRescanNetworkFabricLinksRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return JobInfo
+func (a *NetworkFabricAPIService) RescanNetworkFabricLinksExecute(r NetworkFabricAPIRescanNetworkFabricLinksRequest) (*JobInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *JobInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.RescanNetworkFabricLinks")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/actions/rescan-links"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.networkFabricLinkRescanOptions == nil {
+		return localVarReturnValue, nil, reportError("networkFabricLinkRescanOptions is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.networkFabricLinkRescanOptions
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkFabricAPIUpdateNetworkFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
+	networkFabricId int64
 	updateNetworkFabric *UpdateNetworkFabric
 	ifMatch *string
 }
@@ -3566,7 +3717,7 @@ UpdateNetworkFabric Update a network fabric
  @param networkFabricId The ID of the network fabric to update
  @return NetworkFabricAPIUpdateNetworkFabricRequest
 */
-func (a *NetworkFabricAPIService) UpdateNetworkFabric(ctx context.Context, networkFabricId int32) NetworkFabricAPIUpdateNetworkFabricRequest {
+func (a *NetworkFabricAPIService) UpdateNetworkFabric(ctx context.Context, networkFabricId int64) NetworkFabricAPIUpdateNetworkFabricRequest {
 	return NetworkFabricAPIUpdateNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3661,8 +3812,8 @@ func (a *NetworkFabricAPIService) UpdateNetworkFabricExecute(r NetworkFabricAPIU
 type NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId int32
-	linkAggregationId int32
+	networkFabricId int64
+	linkAggregationId int64
 	updateNetworkFabricLinkAggregation *UpdateNetworkFabricLinkAggregation
 }
 
@@ -3684,7 +3835,7 @@ UpdateNetworkFabricLinkAggregation Update a network fabric link aggregation
  @param linkAggregationId The ID of the network fabric link aggregation
  @return NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest
 */
-func (a *NetworkFabricAPIService) UpdateNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int32, linkAggregationId int32) NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest {
+func (a *NetworkFabricAPIService) UpdateNetworkFabricLinkAggregation(ctx context.Context, networkFabricId int64, linkAggregationId int64) NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest {
 	return NetworkFabricAPIUpdateNetworkFabricLinkAggregationRequest{
 		ApiService: a,
 		ctx: ctx,

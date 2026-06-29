@@ -26,9 +26,9 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
-		var vmTypeId float32
+		var infrastructureId int64
+		var vmInstanceId int64
+		var vmTypeId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.ApplyVMTypeOnVMInstance(context.Background(), infrastructureId, vmInstanceId, vmTypeId).Execute()
 
@@ -42,7 +42,7 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.CreateVMInstance(context.Background(), infrastructureId).Execute()
 
@@ -56,8 +56,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		httpRes, err := apiClient.VMInstanceAPI.DeleteVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -70,8 +70,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetInfrastructureVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -85,7 +85,7 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetInfrastructureVMInstances(context.Background(), infrastructureId).Execute()
 
@@ -99,8 +99,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstanceConfigInfo(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -114,8 +114,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceId int32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstanceCredentials(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -129,8 +129,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstancePowerStatus(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -144,8 +144,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceId int32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetVmInstanceOSInstallationData(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -159,8 +159,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId int32
-		var vmInstanceId int32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetVmInstanceVariables(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -174,8 +174,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.PatchVMInstanceMeta(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -189,8 +189,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		httpRes, err := apiClient.VMInstanceAPI.RebootVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -203,8 +203,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		httpRes, err := apiClient.VMInstanceAPI.ShutdownVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -217,8 +217,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		httpRes, err := apiClient.VMInstanceAPI.StartVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
 
@@ -231,8 +231,8 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var vmInstanceId float32
+		var infrastructureId int64
+		var vmInstanceId int64
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.UpdateVMInstanceConfig(context.Background(), infrastructureId, vmInstanceId).Execute()
 

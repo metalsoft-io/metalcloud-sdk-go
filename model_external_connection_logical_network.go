@@ -23,11 +23,11 @@ var _ MappedNullable = &ExternalConnectionLogicalNetwork{}
 // ExternalConnectionLogicalNetwork struct for ExternalConnectionLogicalNetwork
 type ExternalConnectionLogicalNetwork struct {
 	// The external connection logical network id.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the external connection identifier this entity belongs to.
-	ExternalConnectionId int32 `json:"externalConnectionId"`
+	ExternalConnectionId int64 `json:"externalConnectionId"`
 	// The ID of the logical network identifier this entity belongs to.
-	LogicalNetworkId int32 `json:"logicalNetworkId"`
+	LogicalNetworkId int64 `json:"logicalNetworkId"`
 	// The status of the external connection logical network
 	Status string `json:"status"`
 	// The date and time the entity was created
@@ -45,7 +45,7 @@ type _ExternalConnectionLogicalNetwork ExternalConnectionLogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExternalConnectionLogicalNetwork(id float32, externalConnectionId int32, logicalNetworkId int32, status string, createdAt time.Time, updatedAt time.Time) *ExternalConnectionLogicalNetwork {
+func NewExternalConnectionLogicalNetwork(id int64, externalConnectionId int64, logicalNetworkId int64, status string, createdAt time.Time, updatedAt time.Time) *ExternalConnectionLogicalNetwork {
 	this := ExternalConnectionLogicalNetwork{}
 	this.Id = id
 	this.ExternalConnectionId = externalConnectionId
@@ -65,9 +65,9 @@ func NewExternalConnectionLogicalNetworkWithDefaults() *ExternalConnectionLogica
 }
 
 // GetId returns the Id field value
-func (o *ExternalConnectionLogicalNetwork) GetId() float32 {
+func (o *ExternalConnectionLogicalNetwork) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *ExternalConnectionLogicalNetwork) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ExternalConnectionLogicalNetwork) GetIdOk() (*float32, bool) {
+func (o *ExternalConnectionLogicalNetwork) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,14 +84,14 @@ func (o *ExternalConnectionLogicalNetwork) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ExternalConnectionLogicalNetwork) SetId(v float32) {
+func (o *ExternalConnectionLogicalNetwork) SetId(v int64) {
 	o.Id = v
 }
 
 // GetExternalConnectionId returns the ExternalConnectionId field value
-func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionId() int32 {
+func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionId() int32 {
 
 // GetExternalConnectionIdOk returns a tuple with the ExternalConnectionId field value
 // and a boolean to check if the value has been set.
-func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionIdOk() (*int32, bool) {
+func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,14 +108,14 @@ func (o *ExternalConnectionLogicalNetwork) GetExternalConnectionIdOk() (*int32, 
 }
 
 // SetExternalConnectionId sets field value
-func (o *ExternalConnectionLogicalNetwork) SetExternalConnectionId(v int32) {
+func (o *ExternalConnectionLogicalNetwork) SetExternalConnectionId(v int64) {
 	o.ExternalConnectionId = v
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value
-func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkId() int32 {
+func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -124,7 +124,7 @@ func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkId() int32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value
 // and a boolean to check if the value has been set.
-func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkIdOk() (*int32, bool) {
+func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -132,7 +132,7 @@ func (o *ExternalConnectionLogicalNetwork) GetLogicalNetworkIdOk() (*int32, bool
 }
 
 // SetLogicalNetworkId sets field value
-func (o *ExternalConnectionLogicalNetwork) SetLogicalNetworkId(v int32) {
+func (o *ExternalConnectionLogicalNetwork) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = v
 }
 

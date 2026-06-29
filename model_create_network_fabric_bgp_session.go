@@ -26,9 +26,9 @@ type CreateNetworkFabricBGPSession struct {
 	// BGP link configuration type
 	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
 	// The ID of the link to associate with the BGP session. Either linkId or linkAggregationId should be provided.
-	LinkId *float32 `json:"linkId,omitempty"`
+	LinkId *int64 `json:"linkId,omitempty"`
 	// The ID of the link aggregation to associate with the BGP session. Either linkId or linkAggregationId should be provided.
-	LinkAggregationId *float32 `json:"linkAggregationId,omitempty"`
+	LinkAggregationId *int64 `json:"linkAggregationId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -102,9 +102,9 @@ func (o *CreateNetworkFabricBGPSession) SetBgpLinkConfiguration(v string) {
 }
 
 // GetLinkId returns the LinkId field value if set, zero value otherwise.
-func (o *CreateNetworkFabricBGPSession) GetLinkId() float32 {
+func (o *CreateNetworkFabricBGPSession) GetLinkId() int64 {
 	if o == nil || IsNil(o.LinkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LinkId
@@ -112,7 +112,7 @@ func (o *CreateNetworkFabricBGPSession) GetLinkId() float32 {
 
 // GetLinkIdOk returns a tuple with the LinkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricBGPSession) GetLinkIdOk() (*float32, bool) {
+func (o *CreateNetworkFabricBGPSession) GetLinkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LinkId) {
 		return nil, false
 	}
@@ -128,15 +128,15 @@ func (o *CreateNetworkFabricBGPSession) HasLinkId() bool {
 	return false
 }
 
-// SetLinkId gets a reference to the given float32 and assigns it to the LinkId field.
-func (o *CreateNetworkFabricBGPSession) SetLinkId(v float32) {
+// SetLinkId gets a reference to the given int64 and assigns it to the LinkId field.
+func (o *CreateNetworkFabricBGPSession) SetLinkId(v int64) {
 	o.LinkId = &v
 }
 
 // GetLinkAggregationId returns the LinkAggregationId field value if set, zero value otherwise.
-func (o *CreateNetworkFabricBGPSession) GetLinkAggregationId() float32 {
+func (o *CreateNetworkFabricBGPSession) GetLinkAggregationId() int64 {
 	if o == nil || IsNil(o.LinkAggregationId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LinkAggregationId
@@ -144,7 +144,7 @@ func (o *CreateNetworkFabricBGPSession) GetLinkAggregationId() float32 {
 
 // GetLinkAggregationIdOk returns a tuple with the LinkAggregationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricBGPSession) GetLinkAggregationIdOk() (*float32, bool) {
+func (o *CreateNetworkFabricBGPSession) GetLinkAggregationIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LinkAggregationId) {
 		return nil, false
 	}
@@ -160,8 +160,8 @@ func (o *CreateNetworkFabricBGPSession) HasLinkAggregationId() bool {
 	return false
 }
 
-// SetLinkAggregationId gets a reference to the given float32 and assigns it to the LinkAggregationId field.
-func (o *CreateNetworkFabricBGPSession) SetLinkAggregationId(v float32) {
+// SetLinkAggregationId gets a reference to the given int64 and assigns it to the LinkAggregationId field.
+func (o *CreateNetworkFabricBGPSession) SetLinkAggregationId(v int64) {
 	o.LinkAggregationId = &v
 }
 

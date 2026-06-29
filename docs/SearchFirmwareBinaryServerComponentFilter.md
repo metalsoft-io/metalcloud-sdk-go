@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vendor** | **string** | Discriminator field set to hpe | 
-**Id** | **float32** | ID of the HP component filter | 
+**Id** | **int64** | ID of the HP component filter | 
 **ComponentId** | **string** | Component ID for Dell | 
 **ServerModel** | **string** | Server model for Dell | 
 **Submodel** | **string** | Submodel for Lenovo | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSearchFirmwareBinaryServerComponentFilter
 
-`func NewSearchFirmwareBinaryServerComponentFilter(vendor string, id float32, componentId string, serverModel string, submodel string, serialNumber string, componentName string, deviceClass string, targets []string, ) *SearchFirmwareBinaryServerComponentFilter`
+`func NewSearchFirmwareBinaryServerComponentFilter(vendor string, id int64, componentId string, serverModel string, submodel string, serialNumber string, componentName string, deviceClass string, targets []string, ) *SearchFirmwareBinaryServerComponentFilter`
 
 NewSearchFirmwareBinaryServerComponentFilter instantiates a new SearchFirmwareBinaryServerComponentFilter object
 This constructor will assign default values to properties that have it defined,
@@ -55,20 +55,20 @@ SetVendor sets Vendor field to given value.
 
 ### GetId
 
-`func (o *SearchFirmwareBinaryServerComponentFilter) GetId() float32`
+`func (o *SearchFirmwareBinaryServerComponentFilter) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SearchFirmwareBinaryServerComponentFilter) GetIdOk() (*float32, bool)`
+`func (o *SearchFirmwareBinaryServerComponentFilter) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SearchFirmwareBinaryServerComponentFilter) SetId(v float32)`
+`func (o *SearchFirmwareBinaryServerComponentFilter) SetId(v int64)`
 
 SetId sets Id field to given value.
 

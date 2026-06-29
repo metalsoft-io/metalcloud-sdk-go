@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **float32** | The extension ID | [optional] 
+**Id** | Pointer to **int64** | The extension ID | [optional] 
 **Slug** | Pointer to **string** | The extension unique slug | [optional] 
 **Name** | Pointer to **string** | The extension name | [optional] 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
 **Description** | Pointer to **string** | The extension description | [optional] 
 **Status** | Pointer to [**ExtensionStatus**](ExtensionStatus.md) | Extension status | [optional] 
 **Kind** | Pointer to **string** | Extension kind | [optional] 
-**IsPublic** | Pointer to **bool** | Is the extension public | [optional] [default to false]
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Icon** | Pointer to **string** | Icon of the extension. | [optional] 
 
@@ -36,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ExtensionInfo) GetId() float32`
+`func (o *ExtensionInfo) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ExtensionInfo) GetIdOk() (*float32, bool)`
+`func (o *ExtensionInfo) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ExtensionInfo) SetId(v float32)`
+`func (o *ExtensionInfo) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -208,31 +207,6 @@ SetKind sets Kind field to given value.
 `func (o *ExtensionInfo) HasKind() bool`
 
 HasKind returns a boolean if a field has been set.
-
-### GetIsPublic
-
-`func (o *ExtensionInfo) GetIsPublic() bool`
-
-GetIsPublic returns the IsPublic field if non-nil, zero value otherwise.
-
-### GetIsPublicOk
-
-`func (o *ExtensionInfo) GetIsPublicOk() (*bool, bool)`
-
-GetIsPublicOk returns a tuple with the IsPublic field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsPublic
-
-`func (o *ExtensionInfo) SetIsPublic(v bool)`
-
-SetIsPublic sets IsPublic field to given value.
-
-### HasIsPublic
-
-`func (o *ExtensionInfo) HasIsPublic() bool`
-
-HasIsPublic returns a boolean if a field has been set.
 
 ### GetLinks
 

@@ -26,19 +26,19 @@ type Bucket struct {
 	// Timestamp of the Bucket last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Id of the storage pool the Bucket is assigned to
-	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
+	StoragePoolId *int64 `json:"storagePoolId,omitempty"`
 	// Label of the Bucket.
 	Label string `json:"label"`
 	// Subdomain of the Bucket.
 	Subdomain string `json:"subdomain"`
 	// Id of the Logical Network for the Bucket.
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	// Id of the Bucket
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the Bucket
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Infrastructure id of the Bucket
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Infrastructure information
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Timestamp of the Bucket creation.
@@ -48,7 +48,7 @@ type Bucket struct {
 	// Subdomain permanent of the Bucket.
 	SubdomainPermanent string `json:"subdomainPermanent"`
 	// Id of the DNS subdomain for the Bucket.
-	DnsSubdomainId float32 `json:"dnsSubdomainId"`
+	DnsSubdomainId int64 `json:"dnsSubdomainId"`
 	// Discover information of the Bucket.
 	DiscoverInformation *GenericBucketDiscoverInformation `json:"discoverInformation,omitempty"`
 	// Access Key ID of the Bucket.
@@ -68,7 +68,7 @@ type _Bucket Bucket
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta) *Bucket {
+func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId int64, config BucketConfiguration, meta BucketMeta) *Bucket {
 	this := Bucket{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -144,9 +144,9 @@ func (o *Bucket) SetUpdatedTimestamp(v string) {
 }
 
 // GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *Bucket) GetStoragePoolId() float32 {
+func (o *Bucket) GetStoragePoolId() int64 {
 	if o == nil || IsNil(o.StoragePoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.StoragePoolId
@@ -154,7 +154,7 @@ func (o *Bucket) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetStoragePoolIdOk() (*float32, bool) {
+func (o *Bucket) GetStoragePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.StoragePoolId) {
 		return nil, false
 	}
@@ -170,8 +170,8 @@ func (o *Bucket) HasStoragePoolId() bool {
 	return false
 }
 
-// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
-func (o *Bucket) SetStoragePoolId(v float32) {
+// SetStoragePoolId gets a reference to the given int64 and assigns it to the StoragePoolId field.
+func (o *Bucket) SetStoragePoolId(v int64) {
 	o.StoragePoolId = &v
 }
 
@@ -224,9 +224,9 @@ func (o *Bucket) SetSubdomain(v string) {
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *Bucket) GetLogicalNetworkId() float32 {
+func (o *Bucket) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -234,7 +234,7 @@ func (o *Bucket) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *Bucket) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -250,15 +250,15 @@ func (o *Bucket) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *Bucket) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *Bucket) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 
 // GetId returns the Id field value
-func (o *Bucket) GetId() float32 {
+func (o *Bucket) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -267,7 +267,7 @@ func (o *Bucket) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetIdOk() (*float32, bool) {
+func (o *Bucket) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -275,14 +275,14 @@ func (o *Bucket) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Bucket) SetId(v float32) {
+func (o *Bucket) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Bucket) GetRevision() float32 {
+func (o *Bucket) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -291,7 +291,7 @@ func (o *Bucket) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetRevisionOk() (*float32, bool) {
+func (o *Bucket) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -299,14 +299,14 @@ func (o *Bucket) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Bucket) SetRevision(v float32) {
+func (o *Bucket) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *Bucket) GetInfrastructureId() float32 {
+func (o *Bucket) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -315,7 +315,7 @@ func (o *Bucket) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetInfrastructureIdOk() (*float32, bool) {
+func (o *Bucket) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -323,7 +323,7 @@ func (o *Bucket) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *Bucket) SetInfrastructureId(v float32) {
+func (o *Bucket) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
@@ -424,9 +424,9 @@ func (o *Bucket) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value
-func (o *Bucket) GetDnsSubdomainId() float32 {
+func (o *Bucket) GetDnsSubdomainId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -435,7 +435,7 @@ func (o *Bucket) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *Bucket) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -443,7 +443,7 @@ func (o *Bucket) GetDnsSubdomainIdOk() (*float32, bool) {
 }
 
 // SetDnsSubdomainId sets field value
-func (o *Bucket) SetDnsSubdomainId(v float32) {
+func (o *Bucket) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = v
 }
 

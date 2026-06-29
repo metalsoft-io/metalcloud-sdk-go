@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The extension instance label. Will be automatically generated if not provided. | [optional] 
-**ExtensionId** | Pointer to **float32** | The extension ID. | [optional] 
+**ExtensionId** | Pointer to **int64** | The extension ID. | [optional] 
 **InputVariables** | Pointer to [**[]ExtensionVariable**](ExtensionVariable.md) | Input variables values. | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetExtensionId
 
-`func (o *CreateExtensionInstance) GetExtensionId() float32`
+`func (o *CreateExtensionInstance) GetExtensionId() int64`
 
 GetExtensionId returns the ExtensionId field if non-nil, zero value otherwise.
 
 ### GetExtensionIdOk
 
-`func (o *CreateExtensionInstance) GetExtensionIdOk() (*float32, bool)`
+`func (o *CreateExtensionInstance) GetExtensionIdOk() (*int64, bool)`
 
 GetExtensionIdOk returns a tuple with the ExtensionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtensionId
 
-`func (o *CreateExtensionInstance) SetExtensionId(v float32)`
+`func (o *CreateExtensionInstance) SetExtensionId(v int64)`
 
 SetExtensionId sets ExtensionId field to given value.
 

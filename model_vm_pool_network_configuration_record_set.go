@@ -24,7 +24,7 @@ type VMPoolNetworkConfigurationRecordSet struct {
 	// The name of the network.
 	VmNetName string `json:"vm_net_name"`
 	// The VLAN ID of the network.
-	VlanId float32 `json:"vlan_id"`
+	VlanId int32 `json:"vlan_id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _VMPoolNetworkConfigurationRecordSet VMPoolNetworkConfigurationRecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolNetworkConfigurationRecordSet(vmNetName string, vlanId float32) *VMPoolNetworkConfigurationRecordSet {
+func NewVMPoolNetworkConfigurationRecordSet(vmNetName string, vlanId int32) *VMPoolNetworkConfigurationRecordSet {
 	this := VMPoolNetworkConfigurationRecordSet{}
 	this.VmNetName = vmNetName
 	this.VlanId = vlanId
@@ -74,9 +74,9 @@ func (o *VMPoolNetworkConfigurationRecordSet) SetVmNetName(v string) {
 }
 
 // GetVlanId returns the VlanId field value
-func (o *VMPoolNetworkConfigurationRecordSet) GetVlanId() float32 {
+func (o *VMPoolNetworkConfigurationRecordSet) GetVlanId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *VMPoolNetworkConfigurationRecordSet) GetVlanId() float32 {
 
 // GetVlanIdOk returns a tuple with the VlanId field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolNetworkConfigurationRecordSet) GetVlanIdOk() (*float32, bool) {
+func (o *VMPoolNetworkConfigurationRecordSet) GetVlanIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *VMPoolNetworkConfigurationRecordSet) GetVlanIdOk() (*float32, bool) {
 }
 
 // SetVlanId sets field value
-func (o *VMPoolNetworkConfigurationRecordSet) SetVlanId(v float32) {
+func (o *VMPoolNetworkConfigurationRecordSet) SetVlanId(v int32) {
 	o.VlanId = v
 }
 

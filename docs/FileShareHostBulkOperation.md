@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerInstanceGroupId** | **float32** | Id of the Server Instance Group Host that will be modified | 
+**ServerInstanceGroupId** | **int64** | Id of the Server Instance Group Host that will be modified | 
 **OperationType** | **string** | Operation type for the Server Instance Group Host | 
 
 ## Methods
 
 ### NewFileShareHostBulkOperation
 
-`func NewFileShareHostBulkOperation(serverInstanceGroupId float32, operationType string, ) *FileShareHostBulkOperation`
+`func NewFileShareHostBulkOperation(serverInstanceGroupId int64, operationType string, ) *FileShareHostBulkOperation`
 
 NewFileShareHostBulkOperation instantiates a new FileShareHostBulkOperation object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerInstanceGroupId
 
-`func (o *FileShareHostBulkOperation) GetServerInstanceGroupId() float32`
+`func (o *FileShareHostBulkOperation) GetServerInstanceGroupId() int64`
 
 GetServerInstanceGroupId returns the ServerInstanceGroupId field if non-nil, zero value otherwise.
 
 ### GetServerInstanceGroupIdOk
 
-`func (o *FileShareHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, bool)`
+`func (o *FileShareHostBulkOperation) GetServerInstanceGroupIdOk() (*int64, bool)`
 
 GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerInstanceGroupId
 
-`func (o *FileShareHostBulkOperation) SetServerInstanceGroupId(v float32)`
+`func (o *FileShareHostBulkOperation) SetServerInstanceGroupId(v int64)`
 
 SetServerInstanceGroupId sets ServerInstanceGroupId field to given value.
 

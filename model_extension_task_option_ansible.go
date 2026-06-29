@@ -20,6 +20,8 @@ var _ MappedNullable = &ExtensionTaskOptionAnsible{}
 
 // ExtensionTaskOptionAnsible struct for ExtensionTaskOptionAnsible
 type ExtensionTaskOptionAnsible struct {
+	// Custom execution environment for the Ansible task.
+	Ee *string `json:"ee,omitempty"`
 	// Asset for the Ansible task.
 	Asset *string `json:"asset,omitempty"`
 	// Playbook for the Ansible task.
@@ -50,6 +52,38 @@ func NewExtensionTaskOptionAnsible() *ExtensionTaskOptionAnsible {
 func NewExtensionTaskOptionAnsibleWithDefaults() *ExtensionTaskOptionAnsible {
 	this := ExtensionTaskOptionAnsible{}
 	return &this
+}
+
+// GetEe returns the Ee field value if set, zero value otherwise.
+func (o *ExtensionTaskOptionAnsible) GetEe() string {
+	if o == nil || IsNil(o.Ee) {
+		var ret string
+		return ret
+	}
+	return *o.Ee
+}
+
+// GetEeOk returns a tuple with the Ee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionTaskOptionAnsible) GetEeOk() (*string, bool) {
+	if o == nil || IsNil(o.Ee) {
+		return nil, false
+	}
+	return o.Ee, true
+}
+
+// HasEe returns a boolean if a field has been set.
+func (o *ExtensionTaskOptionAnsible) HasEe() bool {
+	if o != nil && !IsNil(o.Ee) {
+		return true
+	}
+
+	return false
+}
+
+// SetEe gets a reference to the given string and assigns it to the Ee field.
+func (o *ExtensionTaskOptionAnsible) SetEe(v string) {
+	o.Ee = &v
 }
 
 // GetAsset returns the Asset field value if set, zero value otherwise.
@@ -222,6 +256,9 @@ func (o ExtensionTaskOptionAnsible) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionTaskOptionAnsible) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ee) {
+		toSerialize["ee"] = o.Ee
+	}
 	if !IsNil(o.Asset) {
 		toSerialize["asset"] = o.Asset
 	}
@@ -259,6 +296,7 @@ func (o *ExtensionTaskOptionAnsible) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ee")
 		delete(additionalProperties, "asset")
 		delete(additionalProperties, "playbook")
 		delete(additionalProperties, "executionTimeout")

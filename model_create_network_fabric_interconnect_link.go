@@ -22,9 +22,9 @@ var _ MappedNullable = &CreateNetworkFabricInterconnectLink{}
 // CreateNetworkFabricInterconnectLink struct for CreateNetworkFabricInterconnectLink
 type CreateNetworkFabricInterconnectLink struct {
 	// The ID of the network fabric this interconnect link belongs to
-	FabricId int32 `json:"fabricId"`
+	FabricId int64 `json:"fabricId"`
 	// The ID of the network equipment in the fabric
-	NetworkEquipmentId int32 `json:"networkEquipmentId"`
+	NetworkEquipmentId int64 `json:"networkEquipmentId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _CreateNetworkFabricInterconnectLink CreateNetworkFabricInterconnectLink
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkFabricInterconnectLink(fabricId int32, networkEquipmentId int32) *CreateNetworkFabricInterconnectLink {
+func NewCreateNetworkFabricInterconnectLink(fabricId int64, networkEquipmentId int64) *CreateNetworkFabricInterconnectLink {
 	this := CreateNetworkFabricInterconnectLink{}
 	this.FabricId = fabricId
 	this.NetworkEquipmentId = networkEquipmentId
@@ -50,9 +50,9 @@ func NewCreateNetworkFabricInterconnectLinkWithDefaults() *CreateNetworkFabricIn
 }
 
 // GetFabricId returns the FabricId field value
-func (o *CreateNetworkFabricInterconnectLink) GetFabricId() int32 {
+func (o *CreateNetworkFabricInterconnectLink) GetFabricId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *CreateNetworkFabricInterconnectLink) GetFabricId() int32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricInterconnectLink) GetFabricIdOk() (*int32, bool) {
+func (o *CreateNetworkFabricInterconnectLink) GetFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,14 +69,14 @@ func (o *CreateNetworkFabricInterconnectLink) GetFabricIdOk() (*int32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *CreateNetworkFabricInterconnectLink) SetFabricId(v int32) {
+func (o *CreateNetworkFabricInterconnectLink) SetFabricId(v int64) {
 	o.FabricId = v
 }
 
 // GetNetworkEquipmentId returns the NetworkEquipmentId field value
-func (o *CreateNetworkFabricInterconnectLink) GetNetworkEquipmentId() int32 {
+func (o *CreateNetworkFabricInterconnectLink) GetNetworkEquipmentId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *CreateNetworkFabricInterconnectLink) GetNetworkEquipmentId() int32 {
 
 // GetNetworkEquipmentIdOk returns a tuple with the NetworkEquipmentId field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricInterconnectLink) GetNetworkEquipmentIdOk() (*int32, bool) {
+func (o *CreateNetworkFabricInterconnectLink) GetNetworkEquipmentIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *CreateNetworkFabricInterconnectLink) GetNetworkEquipmentIdOk() (*int32,
 }
 
 // SetNetworkEquipmentId sets field value
-func (o *CreateNetworkFabricInterconnectLink) SetNetworkEquipmentId(v int32) {
+func (o *CreateNetworkFabricInterconnectLink) SetNetworkEquipmentId(v int64) {
 	o.NetworkEquipmentId = v
 }
 

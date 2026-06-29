@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The id of the server allocated to the instance. | 
+**Id** | **int64** | The id of the server allocated to the instance. | 
 **Vendor** | **string** | The vendor of the server allocated to the instance. | 
 **Model** | Pointer to **string** | The model of the server allocated to the instance. | [optional] 
 **VendorInfo** | Pointer to [**ServerVendorInfo**](ServerVendorInfo.md) | The vendor specific information of the server allocated to the instance. | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceAllocatedServerInfo
 
-`func NewServerInstanceAllocatedServerInfo(id float32, vendor string, ) *ServerInstanceAllocatedServerInfo`
+`func NewServerInstanceAllocatedServerInfo(id int64, vendor string, ) *ServerInstanceAllocatedServerInfo`
 
 NewServerInstanceAllocatedServerInfo instantiates a new ServerInstanceAllocatedServerInfo object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerInstanceAllocatedServerInfo) GetId() float32`
+`func (o *ServerInstanceAllocatedServerInfo) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerInstanceAllocatedServerInfo) GetIdOk() (*float32, bool)`
+`func (o *ServerInstanceAllocatedServerInfo) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerInstanceAllocatedServerInfo) SetId(v float32)`
+`func (o *ServerInstanceAllocatedServerInfo) SetId(v int64)`
 
 SetId sets Id field to given value.
 

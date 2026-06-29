@@ -23,9 +23,9 @@ var _ MappedNullable = &UserSuspendReason{}
 // UserSuspendReason struct for UserSuspendReason
 type UserSuspendReason struct {
 	// The ID of the user suspend reasons
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the user
-	UserId float32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// The type of the user suspend reason
 	Type string `json:"type"`
 	// The timestamp when the user logged in
@@ -45,7 +45,7 @@ type _UserSuspendReason UserSuspendReason
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserSuspendReason(id float32, userId float32, type_ string, createdTimestamp time.Time, publicComment string) *UserSuspendReason {
+func NewUserSuspendReason(id int64, userId int64, type_ string, createdTimestamp time.Time, publicComment string) *UserSuspendReason {
 	this := UserSuspendReason{}
 	this.Id = id
 	this.UserId = userId
@@ -64,9 +64,9 @@ func NewUserSuspendReasonWithDefaults() *UserSuspendReason {
 }
 
 // GetId returns the Id field value
-func (o *UserSuspendReason) GetId() float32 {
+func (o *UserSuspendReason) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *UserSuspendReason) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *UserSuspendReason) GetIdOk() (*float32, bool) {
+func (o *UserSuspendReason) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,14 +83,14 @@ func (o *UserSuspendReason) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *UserSuspendReason) SetId(v float32) {
+func (o *UserSuspendReason) SetId(v int64) {
 	o.Id = v
 }
 
 // GetUserId returns the UserId field value
-func (o *UserSuspendReason) GetUserId() float32 {
+func (o *UserSuspendReason) GetUserId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -99,7 +99,7 @@ func (o *UserSuspendReason) GetUserId() float32 {
 
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *UserSuspendReason) GetUserIdOk() (*float32, bool) {
+func (o *UserSuspendReason) GetUserIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -107,7 +107,7 @@ func (o *UserSuspendReason) GetUserIdOk() (*float32, bool) {
 }
 
 // SetUserId sets field value
-func (o *UserSuspendReason) SetUserId(v float32) {
+func (o *UserSuspendReason) SetUserId(v int64) {
 	o.UserId = v
 }
 

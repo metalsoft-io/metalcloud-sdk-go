@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-	subnetId := int32(56) // int32 | 
+	subnetId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subnetId** | **int32** |  | 
+**subnetId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -171,8 +171,8 @@ import (
 )
 
 func main() {
-	subnetId := int32(56) // int32 | 
-	ipId := int32(56) // int32 | 
+	subnetId := int64(789) // int64 | 
+	ipId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
@@ -191,8 +191,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subnetId** | **int32** |  | 
-**ipId** | **int32** |  | 
+**subnetId** | **int64** |  | 
+**ipId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -244,8 +244,8 @@ import (
 )
 
 func main() {
-	subnetId := int32(56) // int32 | 
-	ipRangeId := int32(56) // int32 | 
+	subnetId := int64(789) // int64 | 
+	ipRangeId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
@@ -264,8 +264,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subnetId** | **int32** |  | 
-**ipRangeId** | **int32** |  | 
+**subnetId** | **int64** |  | 
+**ipRangeId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -317,7 +317,7 @@ import (
 )
 
 func main() {
-	subnetId := float32(8.14) // float32 | 
+	subnetId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subnetId** | **float32** |  | 
+**subnetId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -649,7 +649,7 @@ import (
 )
 
 func main() {
-	subnetId := int32(56) // int32 | 
+	subnetId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
 	updateSubnet := *openapiclient.NewUpdateSubnet() // UpdateSubnet | The Subnet changes
 
@@ -671,7 +671,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subnetId** | **int32** |  | 
+**subnetId** | **int64** |  | 
 
 ### Other Parameters
 

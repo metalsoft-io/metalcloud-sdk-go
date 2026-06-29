@@ -37,8 +37,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The id of the logical network interconnect
-	addLogicalNetworkToInterconnect := *openapiclient.NewAddLogicalNetworkToInterconnect(int32(1)) // AddLogicalNetworkToInterconnect | The logical network to add
+	id := int64(789) // int64 | The id of the logical network interconnect
+	addLogicalNetworkToInterconnect := *openapiclient.NewAddLogicalNetworkToInterconnect(int64(1)) // AddLogicalNetworkToInterconnect | The logical network to add
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -58,7 +58,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The id of the logical network interconnect | 
+**id** | **int64** | The id of the logical network interconnect | 
 
 ### Other Parameters
 
@@ -107,7 +107,7 @@ import (
 )
 
 func main() {
-	createLogicalNetworkInterconnect := *openapiclient.NewCreateLogicalNetworkInterconnect("logical-network-interconnect-01", "Primary Logical Network Interconnect", int32(1)) // CreateLogicalNetworkInterconnect | The logical network interconnect to create
+	createLogicalNetworkInterconnect := *openapiclient.NewCreateLogicalNetworkInterconnect("logical-network-interconnect-01", "Primary Logical Network Interconnect", int64(1)) // CreateLogicalNetworkInterconnect | The logical network interconnect to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -171,7 +171,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the logical network interconnect to delete
+	id := int64(789) // int64 | The ID of the logical network interconnect to delete
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the logical network interconnect to delete | 
+**id** | **int64** | The ID of the logical network interconnect to delete | 
 
 ### Other Parameters
 
@@ -241,7 +241,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the logical network interconnect to retrieve
+	id := int64(789) // int64 | The ID of the logical network interconnect to retrieve
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -261,7 +261,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the logical network interconnect to retrieve | 
+**id** | **int64** | The ID of the logical network interconnect to retrieve | 
 
 ### Other Parameters
 
@@ -311,8 +311,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The id of the logical network interconnect
-	linkId := int32(56) // int32 | The id of the link
+	id := int64(789) // int64 | The id of the logical network interconnect
+	linkId := int64(789) // int64 | The id of the link
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -332,8 +332,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The id of the logical network interconnect | 
-**linkId** | **int32** | The id of the link | 
+**id** | **int64** | The id of the logical network interconnect | 
+**linkId** | **int64** | The id of the link | 
 
 ### Other Parameters
 
@@ -384,7 +384,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the logical network interconnect
+	id := int64(789) // int64 | The ID of the logical network interconnect
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
@@ -414,7 +414,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the logical network interconnect | 
+**id** | **int64** | The ID of the logical network interconnect | 
 
 ### Other Parameters
 
@@ -562,8 +562,8 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The id of the logical network interconnect
-	linkId := int32(56) // int32 | The id of link association to remove
+	id := int64(789) // int64 | The id of the logical network interconnect
+	linkId := int64(789) // int64 | The id of link association to remove
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -581,8 +581,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The id of the logical network interconnect | 
-**linkId** | **int32** | The id of link association to remove | 
+**id** | **int64** | The id of the logical network interconnect | 
+**linkId** | **int64** | The id of link association to remove | 
 
 ### Other Parameters
 
@@ -631,7 +631,7 @@ import (
 )
 
 func main() {
-	id := int32(56) // int32 | The ID of the logical network interconnect to update
+	id := int64(789) // int64 | The ID of the logical network interconnect to update
 	updateLogicalNetworkInterconnectDto := *openapiclient.NewUpdateLogicalNetworkInterconnectDto() // UpdateLogicalNetworkInterconnectDto | The logical network interconnect update entity
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -653,7 +653,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | The ID of the logical network interconnect to update | 
+**id** | **int64** | The ID of the logical network interconnect to update | 
 
 ### Other Parameters
 

@@ -34,7 +34,7 @@ type CreateUser struct {
 	// Whether an account should be created with the user
 	CreateWithAccount *bool `json:"createWithAccount,omitempty"`
 	// The account ID of the user
-	AccountId *float32 `json:"accountId,omitempty"`
+	AccountId *int64 `json:"accountId,omitempty"`
 	// CAPTCHA verification token from the client-side widget
 	CaptchaToken *string `json:"captchaToken,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -239,9 +239,9 @@ func (o *CreateUser) SetCreateWithAccount(v bool) {
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *CreateUser) GetAccountId() float32 {
+func (o *CreateUser) GetAccountId() int64 {
 	if o == nil || IsNil(o.AccountId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.AccountId
@@ -249,7 +249,7 @@ func (o *CreateUser) GetAccountId() float32 {
 
 // GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateUser) GetAccountIdOk() (*float32, bool) {
+func (o *CreateUser) GetAccountIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.AccountId) {
 		return nil, false
 	}
@@ -265,8 +265,8 @@ func (o *CreateUser) HasAccountId() bool {
 	return false
 }
 
-// SetAccountId gets a reference to the given float32 and assigns it to the AccountId field.
-func (o *CreateUser) SetAccountId(v float32) {
+// SetAccountId gets a reference to the given int64 and assigns it to the AccountId field.
+func (o *CreateUser) SetAccountId(v int64) {
 	o.AccountId = &v
 }
 

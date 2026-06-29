@@ -21,7 +21,7 @@ var _ MappedNullable = &ZoneAllocation{}
 
 // ZoneAllocation struct for ZoneAllocation
 type ZoneAllocation struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Scope ResourceScope `json:"scope"`
 	Status ResourceAllocationStatus `json:"status"`
 	ZoneName string `json:"zoneName"`
@@ -34,7 +34,7 @@ type _ZoneAllocation ZoneAllocation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZoneAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, zoneName string) *ZoneAllocation {
+func NewZoneAllocation(id int64, scope ResourceScope, status ResourceAllocationStatus, zoneName string) *ZoneAllocation {
 	this := ZoneAllocation{}
 	this.Id = id
 	this.Scope = scope
@@ -52,9 +52,9 @@ func NewZoneAllocationWithDefaults() *ZoneAllocation {
 }
 
 // GetId returns the Id field value
-func (o *ZoneAllocation) GetId() int32 {
+func (o *ZoneAllocation) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *ZoneAllocation) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ZoneAllocation) GetIdOk() (*int32, bool) {
+func (o *ZoneAllocation) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *ZoneAllocation) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ZoneAllocation) SetId(v int32) {
+func (o *ZoneAllocation) SetId(v int64) {
 	o.Id = v
 }
 

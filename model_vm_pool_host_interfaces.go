@@ -22,15 +22,17 @@ var _ MappedNullable = &VMPoolHostInterfaces{}
 // VMPoolHostInterfaces struct for VMPoolHostInterfaces
 type VMPoolHostInterfaces struct {
 	// VM Pool Host Interface ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// VM Pool Host ID
-	HostId float32 `json:"hostId"`
+	HostId int64 `json:"hostId"`
 	// Status of the VM Pool Host Interface
 	Status VMPoolHostInterfaceStatus `json:"status"`
 	// Name of the VM Pool Host Interface
 	Name string `json:"name"`
 	// MAC Address of the VM Pool Host Interface
 	MacAddress string `json:"macAddress"`
+	// Fabric type of the VM Pool Host Interface
+	Fabric *GenericNetworkFabric `json:"fabric,omitempty"`
 	// Network device assignments for this interface
 	NetworkDevices []VMPoolHostInterfaceNetworkDevice `json:"networkDevices,omitempty"`
 	// Reference links
@@ -44,7 +46,7 @@ type _VMPoolHostInterfaces VMPoolHostInterfaces
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHostInterfaces(id float32, hostId float32, status VMPoolHostInterfaceStatus, name string, macAddress string) *VMPoolHostInterfaces {
+func NewVMPoolHostInterfaces(id int64, hostId int64, status VMPoolHostInterfaceStatus, name string, macAddress string) *VMPoolHostInterfaces {
 	this := VMPoolHostInterfaces{}
 	this.Id = id
 	this.HostId = hostId
@@ -63,9 +65,9 @@ func NewVMPoolHostInterfacesWithDefaults() *VMPoolHostInterfaces {
 }
 
 // GetId returns the Id field value
-func (o *VMPoolHostInterfaces) GetId() float32 {
+func (o *VMPoolHostInterfaces) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -74,7 +76,7 @@ func (o *VMPoolHostInterfaces) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolHostInterfaces) GetIdOk() (*float32, bool) {
+func (o *VMPoolHostInterfaces) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,14 +84,14 @@ func (o *VMPoolHostInterfaces) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMPoolHostInterfaces) SetId(v float32) {
+func (o *VMPoolHostInterfaces) SetId(v int64) {
 	o.Id = v
 }
 
 // GetHostId returns the HostId field value
-func (o *VMPoolHostInterfaces) GetHostId() float32 {
+func (o *VMPoolHostInterfaces) GetHostId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -98,7 +100,7 @@ func (o *VMPoolHostInterfaces) GetHostId() float32 {
 
 // GetHostIdOk returns a tuple with the HostId field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolHostInterfaces) GetHostIdOk() (*float32, bool) {
+func (o *VMPoolHostInterfaces) GetHostIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,7 +108,7 @@ func (o *VMPoolHostInterfaces) GetHostIdOk() (*float32, bool) {
 }
 
 // SetHostId sets field value
-func (o *VMPoolHostInterfaces) SetHostId(v float32) {
+func (o *VMPoolHostInterfaces) SetHostId(v int64) {
 	o.HostId = v
 }
 
@@ -180,6 +182,38 @@ func (o *VMPoolHostInterfaces) GetMacAddressOk() (*string, bool) {
 // SetMacAddress sets field value
 func (o *VMPoolHostInterfaces) SetMacAddress(v string) {
 	o.MacAddress = v
+}
+
+// GetFabric returns the Fabric field value if set, zero value otherwise.
+func (o *VMPoolHostInterfaces) GetFabric() GenericNetworkFabric {
+	if o == nil || IsNil(o.Fabric) {
+		var ret GenericNetworkFabric
+		return ret
+	}
+	return *o.Fabric
+}
+
+// GetFabricOk returns a tuple with the Fabric field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHostInterfaces) GetFabricOk() (*GenericNetworkFabric, bool) {
+	if o == nil || IsNil(o.Fabric) {
+		return nil, false
+	}
+	return o.Fabric, true
+}
+
+// HasFabric returns a boolean if a field has been set.
+func (o *VMPoolHostInterfaces) HasFabric() bool {
+	if o != nil && !IsNil(o.Fabric) {
+		return true
+	}
+
+	return false
+}
+
+// SetFabric gets a reference to the given GenericNetworkFabric and assigns it to the Fabric field.
+func (o *VMPoolHostInterfaces) SetFabric(v GenericNetworkFabric) {
+	o.Fabric = &v
 }
 
 // GetNetworkDevices returns the NetworkDevices field value if set, zero value otherwise.
@@ -261,6 +295,9 @@ func (o VMPoolHostInterfaces) ToMap() (map[string]interface{}, error) {
 	toSerialize["status"] = o.Status
 	toSerialize["name"] = o.Name
 	toSerialize["macAddress"] = o.MacAddress
+	if !IsNil(o.Fabric) {
+		toSerialize["fabric"] = o.Fabric
+	}
 	if !IsNil(o.NetworkDevices) {
 		toSerialize["networkDevices"] = o.NetworkDevices
 	}
@@ -319,6 +356,7 @@ func (o *VMPoolHostInterfaces) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "macAddress")
+		delete(additionalProperties, "fabric")
 		delete(additionalProperties, "networkDevices")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

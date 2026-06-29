@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Annotations** | **map[string]string** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Tags** | **map[string]string** |  | 
 **IpVersion** | [**IpVersion**](IpVersion.md) |  | 
 **Address** | **string** |  | 
-**SubnetId** | **int32** |  | 
+**SubnetId** | **int64** |  | 
 
 ## Methods
 
 ### NewIp
 
-`func NewIp(id int32, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, tags map[string]string, ipVersion IpVersion, address string, subnetId int32, ) *Ip`
+`func NewIp(id int64, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, tags map[string]string, ipVersion IpVersion, address string, subnetId int64, ) *Ip`
 
 NewIp instantiates a new Ip object
 This constructor will assign default values to properties that have it defined,
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Ip) GetId() int32`
+`func (o *Ip) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Ip) GetIdOk() (*int32, bool)`
+`func (o *Ip) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Ip) SetId(v int32)`
+`func (o *Ip) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -136,20 +136,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *Ip) GetRevision() int32`
+`func (o *Ip) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *Ip) GetRevisionOk() (*int32, bool)`
+`func (o *Ip) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *Ip) SetRevision(v int32)`
+`func (o *Ip) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -216,20 +216,20 @@ SetAddress sets Address field to given value.
 
 ### GetSubnetId
 
-`func (o *Ip) GetSubnetId() int32`
+`func (o *Ip) GetSubnetId() int64`
 
 GetSubnetId returns the SubnetId field if non-nil, zero value otherwise.
 
 ### GetSubnetIdOk
 
-`func (o *Ip) GetSubnetIdOk() (*int32, bool)`
+`func (o *Ip) GetSubnetIdOk() (*int64, bool)`
 
 GetSubnetIdOk returns a tuple with the SubnetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetId
 
-`func (o *Ip) SetSubnetId(v int32)`
+`func (o *Ip) SetSubnetId(v int64)`
 
 SetSubnetId sets SubnetId field to given value.
 

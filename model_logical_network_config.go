@@ -22,14 +22,14 @@ var _ MappedNullable = &LogicalNetworkConfig{}
 
 // LogicalNetworkConfig struct for LogicalNetworkConfig
 type LogicalNetworkConfig struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	DeployType string `json:"deployType"`
 	DeployStatus string `json:"deployStatus"`
 	// Creation timestamp for the entity.
 	CreatedAt time.Time `json:"createdAt"`
 	// Last update timestamp for the entity.
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Kind LogicalNetworkKind `json:"kind"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
@@ -48,7 +48,7 @@ type _LogicalNetworkConfig LogicalNetworkConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogicalNetworkConfig(id int32, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind) *LogicalNetworkConfig {
+func NewLogicalNetworkConfig(id int64, deployType string, deployStatus string, createdAt time.Time, updatedAt time.Time, revision int64, kind LogicalNetworkKind) *LogicalNetworkConfig {
 	this := LogicalNetworkConfig{}
 	this.Id = id
 	this.DeployType = deployType
@@ -69,9 +69,9 @@ func NewLogicalNetworkConfigWithDefaults() *LogicalNetworkConfig {
 }
 
 // GetId returns the Id field value
-func (o *LogicalNetworkConfig) GetId() int32 {
+func (o *LogicalNetworkConfig) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -80,7 +80,7 @@ func (o *LogicalNetworkConfig) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkConfig) GetIdOk() (*int32, bool) {
+func (o *LogicalNetworkConfig) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *LogicalNetworkConfig) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *LogicalNetworkConfig) SetId(v int32) {
+func (o *LogicalNetworkConfig) SetId(v int64) {
 	o.Id = v
 }
 
@@ -189,9 +189,9 @@ func (o *LogicalNetworkConfig) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *LogicalNetworkConfig) GetRevision() int32 {
+func (o *LogicalNetworkConfig) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -200,7 +200,7 @@ func (o *LogicalNetworkConfig) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkConfig) GetRevisionOk() (*int32, bool) {
+func (o *LogicalNetworkConfig) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -208,7 +208,7 @@ func (o *LogicalNetworkConfig) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *LogicalNetworkConfig) SetRevision(v int32) {
+func (o *LogicalNetworkConfig) SetRevision(v int64) {
 	o.Revision = v
 }
 

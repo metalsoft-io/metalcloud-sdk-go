@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**JobId** | Pointer to **float32** | The id of the job. | [optional] 
-**JobGroupId** | **float32** | The id of the job group. | 
+**JobId** | Pointer to **int64** | The id of the job. | [optional] 
+**JobGroupId** | **int64** | The id of the job group. | 
 
 ## Methods
 
 ### NewJobInfo
 
-`func NewJobInfo(jobGroupId float32, ) *JobInfo`
+`func NewJobInfo(jobGroupId int64, ) *JobInfo`
 
 NewJobInfo instantiates a new JobInfo object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetJobId
 
-`func (o *JobInfo) GetJobId() float32`
+`func (o *JobInfo) GetJobId() int64`
 
 GetJobId returns the JobId field if non-nil, zero value otherwise.
 
 ### GetJobIdOk
 
-`func (o *JobInfo) GetJobIdOk() (*float32, bool)`
+`func (o *JobInfo) GetJobIdOk() (*int64, bool)`
 
 GetJobIdOk returns a tuple with the JobId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJobId
 
-`func (o *JobInfo) SetJobId(v float32)`
+`func (o *JobInfo) SetJobId(v int64)`
 
 SetJobId sets JobId field to given value.
 
@@ -53,20 +53,20 @@ HasJobId returns a boolean if a field has been set.
 
 ### GetJobGroupId
 
-`func (o *JobInfo) GetJobGroupId() float32`
+`func (o *JobInfo) GetJobGroupId() int64`
 
 GetJobGroupId returns the JobGroupId field if non-nil, zero value otherwise.
 
 ### GetJobGroupIdOk
 
-`func (o *JobInfo) GetJobGroupIdOk() (*float32, bool)`
+`func (o *JobInfo) GetJobGroupIdOk() (*int64, bool)`
 
 GetJobGroupIdOk returns a tuple with the JobGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJobGroupId
 
-`func (o *JobInfo) SetJobGroupId(v float32)`
+`func (o *JobInfo) SetJobGroupId(v int64)`
 
 SetJobGroupId sets JobGroupId field to given value.
 

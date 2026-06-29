@@ -23,9 +23,9 @@ var _ MappedNullable = &EndpointInstanceCreate{}
 type EndpointInstanceCreate struct {
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
-	GroupId *int32 `json:"groupId,omitempty"`
+	GroupId *int64 `json:"groupId,omitempty"`
 	// Id of endpoint for this Instance.
-	EndpointId int32 `json:"endpointId"`
+	EndpointId int64 `json:"endpointId"`
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -36,7 +36,7 @@ type _EndpointInstanceCreate EndpointInstanceCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointInstanceCreate(endpointId int32) *EndpointInstanceCreate {
+func NewEndpointInstanceCreate(endpointId int64) *EndpointInstanceCreate {
 	this := EndpointInstanceCreate{}
 	this.EndpointId = endpointId
 	return &this
@@ -83,9 +83,9 @@ func (o *EndpointInstanceCreate) SetLabel(v string) {
 }
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
-func (o *EndpointInstanceCreate) GetGroupId() int32 {
+func (o *EndpointInstanceCreate) GetGroupId() int64 {
 	if o == nil || IsNil(o.GroupId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.GroupId
@@ -93,7 +93,7 @@ func (o *EndpointInstanceCreate) GetGroupId() int32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceCreate) GetGroupIdOk() (*int32, bool) {
+func (o *EndpointInstanceCreate) GetGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
@@ -109,15 +109,15 @@ func (o *EndpointInstanceCreate) HasGroupId() bool {
 	return false
 }
 
-// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
-func (o *EndpointInstanceCreate) SetGroupId(v int32) {
+// SetGroupId gets a reference to the given int64 and assigns it to the GroupId field.
+func (o *EndpointInstanceCreate) SetGroupId(v int64) {
 	o.GroupId = &v
 }
 
 // GetEndpointId returns the EndpointId field value
-func (o *EndpointInstanceCreate) GetEndpointId() int32 {
+func (o *EndpointInstanceCreate) GetEndpointId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -126,7 +126,7 @@ func (o *EndpointInstanceCreate) GetEndpointId() int32 {
 
 // GetEndpointIdOk returns a tuple with the EndpointId field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceCreate) GetEndpointIdOk() (*int32, bool) {
+func (o *EndpointInstanceCreate) GetEndpointIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *EndpointInstanceCreate) GetEndpointIdOk() (*int32, bool) {
 }
 
 // SetEndpointId sets field value
-func (o *EndpointInstanceCreate) SetEndpointId(v int32) {
+func (o *EndpointInstanceCreate) SetEndpointId(v int64) {
 	o.EndpointId = v
 }
 

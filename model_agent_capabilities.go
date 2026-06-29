@@ -47,6 +47,14 @@ type AgentCapabilities struct {
 	AnsibleRunnerEnabled bool `json:"ansibleRunnerEnabled"`
 	// Build image capability status
 	BuildImageEnabled bool `json:"buildImageEnabled"`
+	// HTTP request capability status
+	HttpRequestEnabled bool `json:"httpRequestEnabled"`
+	// SSH command capability status
+	SshCommandEnabled bool `json:"sshCommandEnabled"`
+	// Switch SNMP health monitoring capability status
+	SwitchSnmpHealthEnabled bool `json:"switchSnmpHealthEnabled"`
+	// Inband WebMKS capability status
+	InbandWebmksEnabled bool `json:"inbandWebmksEnabled"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,7 +64,7 @@ type _AgentCapabilities AgentCapabilities
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool, buildImageEnabled bool) *AgentCapabilities {
+func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fileTransferEnabled bool, inbandFileTransferEnabled bool, switchSubscriptionEnabled bool, commandExecutionEnabled bool, vncEnabled bool, spiceEnabled bool, syslogEnabled bool, dhcpOobEnabled bool, netconfEnabled bool, ansibleRunnerEnabled bool, buildImageEnabled bool, httpRequestEnabled bool, sshCommandEnabled bool, switchSnmpHealthEnabled bool, inbandWebmksEnabled bool) *AgentCapabilities {
 	this := AgentCapabilities{}
 	this.HttpProxyEnabled = httpProxyEnabled
 	this.InbandHttpProxyEnabled = inbandHttpProxyEnabled
@@ -71,6 +79,10 @@ func NewAgentCapabilities(httpProxyEnabled bool, inbandHttpProxyEnabled bool, fi
 	this.NetconfEnabled = netconfEnabled
 	this.AnsibleRunnerEnabled = ansibleRunnerEnabled
 	this.BuildImageEnabled = buildImageEnabled
+	this.HttpRequestEnabled = httpRequestEnabled
+	this.SshCommandEnabled = sshCommandEnabled
+	this.SwitchSnmpHealthEnabled = switchSnmpHealthEnabled
+	this.InbandWebmksEnabled = inbandWebmksEnabled
 	return &this
 }
 
@@ -394,6 +406,102 @@ func (o *AgentCapabilities) SetBuildImageEnabled(v bool) {
 	o.BuildImageEnabled = v
 }
 
+// GetHttpRequestEnabled returns the HttpRequestEnabled field value
+func (o *AgentCapabilities) GetHttpRequestEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HttpRequestEnabled
+}
+
+// GetHttpRequestEnabledOk returns a tuple with the HttpRequestEnabled field value
+// and a boolean to check if the value has been set.
+func (o *AgentCapabilities) GetHttpRequestEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HttpRequestEnabled, true
+}
+
+// SetHttpRequestEnabled sets field value
+func (o *AgentCapabilities) SetHttpRequestEnabled(v bool) {
+	o.HttpRequestEnabled = v
+}
+
+// GetSshCommandEnabled returns the SshCommandEnabled field value
+func (o *AgentCapabilities) GetSshCommandEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SshCommandEnabled
+}
+
+// GetSshCommandEnabledOk returns a tuple with the SshCommandEnabled field value
+// and a boolean to check if the value has been set.
+func (o *AgentCapabilities) GetSshCommandEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SshCommandEnabled, true
+}
+
+// SetSshCommandEnabled sets field value
+func (o *AgentCapabilities) SetSshCommandEnabled(v bool) {
+	o.SshCommandEnabled = v
+}
+
+// GetSwitchSnmpHealthEnabled returns the SwitchSnmpHealthEnabled field value
+func (o *AgentCapabilities) GetSwitchSnmpHealthEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SwitchSnmpHealthEnabled
+}
+
+// GetSwitchSnmpHealthEnabledOk returns a tuple with the SwitchSnmpHealthEnabled field value
+// and a boolean to check if the value has been set.
+func (o *AgentCapabilities) GetSwitchSnmpHealthEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SwitchSnmpHealthEnabled, true
+}
+
+// SetSwitchSnmpHealthEnabled sets field value
+func (o *AgentCapabilities) SetSwitchSnmpHealthEnabled(v bool) {
+	o.SwitchSnmpHealthEnabled = v
+}
+
+// GetInbandWebmksEnabled returns the InbandWebmksEnabled field value
+func (o *AgentCapabilities) GetInbandWebmksEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.InbandWebmksEnabled
+}
+
+// GetInbandWebmksEnabledOk returns a tuple with the InbandWebmksEnabled field value
+// and a boolean to check if the value has been set.
+func (o *AgentCapabilities) GetInbandWebmksEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InbandWebmksEnabled, true
+}
+
+// SetInbandWebmksEnabled sets field value
+func (o *AgentCapabilities) SetInbandWebmksEnabled(v bool) {
+	o.InbandWebmksEnabled = v
+}
+
 func (o AgentCapabilities) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -417,6 +525,10 @@ func (o AgentCapabilities) ToMap() (map[string]interface{}, error) {
 	toSerialize["netconfEnabled"] = o.NetconfEnabled
 	toSerialize["ansibleRunnerEnabled"] = o.AnsibleRunnerEnabled
 	toSerialize["buildImageEnabled"] = o.BuildImageEnabled
+	toSerialize["httpRequestEnabled"] = o.HttpRequestEnabled
+	toSerialize["sshCommandEnabled"] = o.SshCommandEnabled
+	toSerialize["switchSnmpHealthEnabled"] = o.SwitchSnmpHealthEnabled
+	toSerialize["inbandWebmksEnabled"] = o.InbandWebmksEnabled
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -443,6 +555,10 @@ func (o *AgentCapabilities) UnmarshalJSON(data []byte) (err error) {
 		"netconfEnabled",
 		"ansibleRunnerEnabled",
 		"buildImageEnabled",
+		"httpRequestEnabled",
+		"sshCommandEnabled",
+		"switchSnmpHealthEnabled",
+		"inbandWebmksEnabled",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -485,6 +601,10 @@ func (o *AgentCapabilities) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "netconfEnabled")
 		delete(additionalProperties, "ansibleRunnerEnabled")
 		delete(additionalProperties, "buildImageEnabled")
+		delete(additionalProperties, "httpRequestEnabled")
+		delete(additionalProperties, "sshCommandEnabled")
+		delete(additionalProperties, "switchSnmpHealthEnabled")
+		delete(additionalProperties, "inbandWebmksEnabled")
 		o.AdditionalProperties = additionalProperties
 	}
 

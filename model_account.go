@@ -22,7 +22,7 @@ var _ MappedNullable = &Account{}
 // Account struct for Account
 type Account struct {
 	// The ID of the parent account
-	ParentAccountId *float32 `json:"parentAccountId,omitempty"`
+	ParentAccountId *int64 `json:"parentAccountId,omitempty"`
 	// The name of the account
 	Name string `json:"name"`
 	// The code of the account
@@ -31,16 +31,17 @@ type Account struct {
 	FiscalNumber *string `json:"fiscalNumber,omitempty"`
 	Address *AccountAddress `json:"address,omitempty"`
 	// The user ID of the primary contact
-	PrimaryContactId *float32 `json:"primaryContactId,omitempty"`
+	PrimaryContactId *int64 `json:"primaryContactId,omitempty"`
 	// The user ID of the secondary contact
-	SecondaryContactId *float32 `json:"secondaryContactId,omitempty"`
+	SecondaryContactId *int64 `json:"secondaryContactId,omitempty"`
+	// The ID of the quota profile assigned to this account
+	QuotaProfileId *string `json:"quotaProfileId,omitempty"`
 	// Whether the account is archived
 	IsArchived *bool `json:"isArchived,omitempty"`
 	// Account ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
-	Limits AccountLimits `json:"limits"`
+	Revision int64 `json:"revision"`
 	// The new configuration of the account.
 	Config AccountConfig `json:"config"`
 	// Reference links
@@ -54,12 +55,11 @@ type _Account Account
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccount(name string, id float32, revision float32, limits AccountLimits, config AccountConfig) *Account {
+func NewAccount(name string, id int64, revision int64, config AccountConfig) *Account {
 	this := Account{}
 	this.Name = name
 	this.Id = id
 	this.Revision = revision
-	this.Limits = limits
 	this.Config = config
 	return &this
 }
@@ -73,9 +73,9 @@ func NewAccountWithDefaults() *Account {
 }
 
 // GetParentAccountId returns the ParentAccountId field value if set, zero value otherwise.
-func (o *Account) GetParentAccountId() float32 {
+func (o *Account) GetParentAccountId() int64 {
 	if o == nil || IsNil(o.ParentAccountId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ParentAccountId
@@ -83,7 +83,7 @@ func (o *Account) GetParentAccountId() float32 {
 
 // GetParentAccountIdOk returns a tuple with the ParentAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetParentAccountIdOk() (*float32, bool) {
+func (o *Account) GetParentAccountIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ParentAccountId) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *Account) HasParentAccountId() bool {
 	return false
 }
 
-// SetParentAccountId gets a reference to the given float32 and assigns it to the ParentAccountId field.
-func (o *Account) SetParentAccountId(v float32) {
+// SetParentAccountId gets a reference to the given int64 and assigns it to the ParentAccountId field.
+func (o *Account) SetParentAccountId(v int64) {
 	o.ParentAccountId = &v
 }
 
@@ -225,9 +225,9 @@ func (o *Account) SetAddress(v AccountAddress) {
 }
 
 // GetPrimaryContactId returns the PrimaryContactId field value if set, zero value otherwise.
-func (o *Account) GetPrimaryContactId() float32 {
+func (o *Account) GetPrimaryContactId() int64 {
 	if o == nil || IsNil(o.PrimaryContactId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.PrimaryContactId
@@ -235,7 +235,7 @@ func (o *Account) GetPrimaryContactId() float32 {
 
 // GetPrimaryContactIdOk returns a tuple with the PrimaryContactId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetPrimaryContactIdOk() (*float32, bool) {
+func (o *Account) GetPrimaryContactIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.PrimaryContactId) {
 		return nil, false
 	}
@@ -251,15 +251,15 @@ func (o *Account) HasPrimaryContactId() bool {
 	return false
 }
 
-// SetPrimaryContactId gets a reference to the given float32 and assigns it to the PrimaryContactId field.
-func (o *Account) SetPrimaryContactId(v float32) {
+// SetPrimaryContactId gets a reference to the given int64 and assigns it to the PrimaryContactId field.
+func (o *Account) SetPrimaryContactId(v int64) {
 	o.PrimaryContactId = &v
 }
 
 // GetSecondaryContactId returns the SecondaryContactId field value if set, zero value otherwise.
-func (o *Account) GetSecondaryContactId() float32 {
+func (o *Account) GetSecondaryContactId() int64 {
 	if o == nil || IsNil(o.SecondaryContactId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.SecondaryContactId
@@ -267,7 +267,7 @@ func (o *Account) GetSecondaryContactId() float32 {
 
 // GetSecondaryContactIdOk returns a tuple with the SecondaryContactId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetSecondaryContactIdOk() (*float32, bool) {
+func (o *Account) GetSecondaryContactIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SecondaryContactId) {
 		return nil, false
 	}
@@ -283,9 +283,41 @@ func (o *Account) HasSecondaryContactId() bool {
 	return false
 }
 
-// SetSecondaryContactId gets a reference to the given float32 and assigns it to the SecondaryContactId field.
-func (o *Account) SetSecondaryContactId(v float32) {
+// SetSecondaryContactId gets a reference to the given int64 and assigns it to the SecondaryContactId field.
+func (o *Account) SetSecondaryContactId(v int64) {
 	o.SecondaryContactId = &v
+}
+
+// GetQuotaProfileId returns the QuotaProfileId field value if set, zero value otherwise.
+func (o *Account) GetQuotaProfileId() string {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		var ret string
+		return ret
+	}
+	return *o.QuotaProfileId
+}
+
+// GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Account) GetQuotaProfileIdOk() (*string, bool) {
+	if o == nil || IsNil(o.QuotaProfileId) {
+		return nil, false
+	}
+	return o.QuotaProfileId, true
+}
+
+// HasQuotaProfileId returns a boolean if a field has been set.
+func (o *Account) HasQuotaProfileId() bool {
+	if o != nil && !IsNil(o.QuotaProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuotaProfileId gets a reference to the given string and assigns it to the QuotaProfileId field.
+func (o *Account) SetQuotaProfileId(v string) {
+	o.QuotaProfileId = &v
 }
 
 // GetIsArchived returns the IsArchived field value if set, zero value otherwise.
@@ -321,9 +353,9 @@ func (o *Account) SetIsArchived(v bool) {
 }
 
 // GetId returns the Id field value
-func (o *Account) GetId() float32 {
+func (o *Account) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -332,7 +364,7 @@ func (o *Account) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Account) GetIdOk() (*float32, bool) {
+func (o *Account) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -340,14 +372,14 @@ func (o *Account) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Account) SetId(v float32) {
+func (o *Account) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Account) GetRevision() float32 {
+func (o *Account) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -356,7 +388,7 @@ func (o *Account) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Account) GetRevisionOk() (*float32, bool) {
+func (o *Account) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -364,32 +396,8 @@ func (o *Account) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Account) SetRevision(v float32) {
+func (o *Account) SetRevision(v int64) {
 	o.Revision = v
-}
-
-// GetLimits returns the Limits field value
-func (o *Account) GetLimits() AccountLimits {
-	if o == nil {
-		var ret AccountLimits
-		return ret
-	}
-
-	return o.Limits
-}
-
-// GetLimitsOk returns a tuple with the Limits field value
-// and a boolean to check if the value has been set.
-func (o *Account) GetLimitsOk() (*AccountLimits, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Limits, true
-}
-
-// SetLimits sets field value
-func (o *Account) SetLimits(v AccountLimits) {
-	o.Limits = v
 }
 
 // GetConfig returns the Config field value
@@ -477,12 +485,14 @@ func (o Account) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SecondaryContactId) {
 		toSerialize["secondaryContactId"] = o.SecondaryContactId
 	}
+	if !IsNil(o.QuotaProfileId) {
+		toSerialize["quotaProfileId"] = o.QuotaProfileId
+	}
 	if !IsNil(o.IsArchived) {
 		toSerialize["isArchived"] = o.IsArchived
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
-	toSerialize["limits"] = o.Limits
 	toSerialize["config"] = o.Config
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -503,7 +513,6 @@ func (o *Account) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"id",
 		"revision",
-		"limits",
 		"config",
 	}
 
@@ -541,10 +550,10 @@ func (o *Account) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "primaryContactId")
 		delete(additionalProperties, "secondaryContactId")
+		delete(additionalProperties, "quotaProfileId")
 		delete(additionalProperties, "isArchived")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
-		delete(additionalProperties, "limits")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

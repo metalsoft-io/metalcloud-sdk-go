@@ -29,7 +29,7 @@ type EthernetFabric struct {
 	ServerOnlyOperationEnabled *bool `json:"serverOnlyOperationEnabled,omitempty"`
 	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
-	BgpNumbering *BgpNumberingType `json:"bgpNumbering,omitempty"`
+	BgpNumbering *string `json:"bgpNumbering,omitempty"`
 	// Library label for the Ethernet fabric configuration, used to identify the Network Device Configuration Templates that can be used for deploy.
 	LibraryLabel *string `json:"libraryLabel,omitempty"`
 	// Flag to indicate if DPU mode should be used if available on the fabric.
@@ -194,9 +194,9 @@ func (o *EthernetFabric) SetSyslogMonitoringEnabled(v bool) {
 }
 
 // GetBgpNumbering returns the BgpNumbering field value if set, zero value otherwise.
-func (o *EthernetFabric) GetBgpNumbering() BgpNumberingType {
+func (o *EthernetFabric) GetBgpNumbering() string {
 	if o == nil || IsNil(o.BgpNumbering) {
-		var ret BgpNumberingType
+		var ret string
 		return ret
 	}
 	return *o.BgpNumbering
@@ -204,7 +204,7 @@ func (o *EthernetFabric) GetBgpNumbering() BgpNumberingType {
 
 // GetBgpNumberingOk returns a tuple with the BgpNumbering field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetBgpNumberingOk() (*BgpNumberingType, bool) {
+func (o *EthernetFabric) GetBgpNumberingOk() (*string, bool) {
 	if o == nil || IsNil(o.BgpNumbering) {
 		return nil, false
 	}
@@ -220,8 +220,8 @@ func (o *EthernetFabric) HasBgpNumbering() bool {
 	return false
 }
 
-// SetBgpNumbering gets a reference to the given BgpNumberingType and assigns it to the BgpNumbering field.
-func (o *EthernetFabric) SetBgpNumbering(v BgpNumberingType) {
+// SetBgpNumbering gets a reference to the given string and assigns it to the BgpNumbering field.
+func (o *EthernetFabric) SetBgpNumbering(v string) {
 	o.BgpNumbering = &v
 }
 

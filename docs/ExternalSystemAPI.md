@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	externalSystemId := int32(56) // int32 | 
+	externalSystemId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalSystemId** | **int32** |  | 
+**externalSystemId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	externalSystemId := int32(56) // int32 | 
+	externalSystemId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -187,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalSystemId** | **int32** |  | 
+**externalSystemId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -321,7 +321,7 @@ import (
 )
 
 func main() {
-	externalSystemId := int32(56) // int32 | 
+	externalSystemId := int64(789) // int64 | 
 	updateExternalSystem := *openapiclient.NewUpdateExternalSystem() // UpdateExternalSystem | The external system configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -343,7 +343,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**externalSystemId** | **int32** |  | 
+**externalSystemId** | **int64** |  | 
 
 ### Other Parameters
 

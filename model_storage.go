@@ -22,13 +22,13 @@ var _ MappedNullable = &Storage{}
 // Storage struct for Storage
 type Storage struct {
 	// Id of the Storage
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the Storage
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Id of the owner
-	UserId *float32 `json:"userId,omitempty"`
+	UserId *int64 `json:"userId,omitempty"`
 	// Id of the site
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The name of the datacenter where the storage is located.
 	DatacenterName string `json:"datacenterName"`
 	// Storage driver
@@ -72,7 +72,7 @@ type Storage struct {
 	// Interfaces of the Storage
 	Interfaces []StorageInterface `json:"interfaces,omitempty"`
 	// Network fabric ID this Storage is connected to
-	NetworkFabricId *float32 `json:"networkFabricId,omitempty"`
+	NetworkFabricId *int64 `json:"networkFabricId,omitempty"`
 	JobStatistics *JobGroupStatistics `json:"jobStatistics,omitempty"`
 	// The extension execution info of the storage.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
@@ -87,7 +87,7 @@ type _Storage Storage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, status string, operationMode string, name string, managementHost string, subnetType string) *Storage {
+func NewStorage(id int64, revision int64, siteId int64, datacenterName string, driver string, technologies []string, status string, operationMode string, name string, managementHost string, subnetType string) *Storage {
 	this := Storage{}
 	this.Id = id
 	this.Revision = revision
@@ -112,9 +112,9 @@ func NewStorageWithDefaults() *Storage {
 }
 
 // GetId returns the Id field value
-func (o *Storage) GetId() float32 {
+func (o *Storage) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -123,7 +123,7 @@ func (o *Storage) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetIdOk() (*float32, bool) {
+func (o *Storage) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -131,14 +131,14 @@ func (o *Storage) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Storage) SetId(v float32) {
+func (o *Storage) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Storage) GetRevision() float32 {
+func (o *Storage) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -147,7 +147,7 @@ func (o *Storage) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetRevisionOk() (*float32, bool) {
+func (o *Storage) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,14 +155,14 @@ func (o *Storage) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Storage) SetRevision(v float32) {
+func (o *Storage) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *Storage) GetUserId() float32 {
+func (o *Storage) GetUserId() int64 {
 	if o == nil || IsNil(o.UserId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.UserId
@@ -170,7 +170,7 @@ func (o *Storage) GetUserId() float32 {
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Storage) GetUserIdOk() (*float32, bool) {
+func (o *Storage) GetUserIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
@@ -186,15 +186,15 @@ func (o *Storage) HasUserId() bool {
 	return false
 }
 
-// SetUserId gets a reference to the given float32 and assigns it to the UserId field.
-func (o *Storage) SetUserId(v float32) {
+// SetUserId gets a reference to the given int64 and assigns it to the UserId field.
+func (o *Storage) SetUserId(v int64) {
 	o.UserId = &v
 }
 
 // GetSiteId returns the SiteId field value
-func (o *Storage) GetSiteId() float32 {
+func (o *Storage) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -203,7 +203,7 @@ func (o *Storage) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetSiteIdOk() (*float32, bool) {
+func (o *Storage) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -211,7 +211,7 @@ func (o *Storage) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *Storage) SetSiteId(v float32) {
+func (o *Storage) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -824,9 +824,9 @@ func (o *Storage) SetInterfaces(v []StorageInterface) {
 }
 
 // GetNetworkFabricId returns the NetworkFabricId field value if set, zero value otherwise.
-func (o *Storage) GetNetworkFabricId() float32 {
+func (o *Storage) GetNetworkFabricId() int64 {
 	if o == nil || IsNil(o.NetworkFabricId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkFabricId
@@ -834,7 +834,7 @@ func (o *Storage) GetNetworkFabricId() float32 {
 
 // GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Storage) GetNetworkFabricIdOk() (*float32, bool) {
+func (o *Storage) GetNetworkFabricIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkFabricId) {
 		return nil, false
 	}
@@ -850,8 +850,8 @@ func (o *Storage) HasNetworkFabricId() bool {
 	return false
 }
 
-// SetNetworkFabricId gets a reference to the given float32 and assigns it to the NetworkFabricId field.
-func (o *Storage) SetNetworkFabricId(v float32) {
+// SetNetworkFabricId gets a reference to the given int64 and assigns it to the NetworkFabricId field.
+func (o *Storage) SetNetworkFabricId(v int64) {
 	o.NetworkFabricId = &v
 }
 

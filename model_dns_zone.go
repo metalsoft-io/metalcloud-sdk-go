@@ -23,7 +23,7 @@ var _ MappedNullable = &DnsZone{}
 // DnsZone struct for DnsZone
 type DnsZone struct {
 	// The DNS zone ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The DNS zone label. It must be unique
 	Label string `json:"label"`
 	// The DNS zone description
@@ -47,7 +47,7 @@ type DnsZone struct {
 	// The tags associated with the DNS zone
 	Tags []string `json:"tags,omitempty"`
 	// The revision number of the DNS zone
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The user ID of the user who created the DNS zone
 	CreatedBy int32 `json:"createdBy"`
 	// The user ID of the user who last modified the DNS zone
@@ -67,7 +67,7 @@ type _DnsZone DnsZone
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDnsZone(id int32, label string, zoneName string, zoneType string, soaEmail string, soaSerial int32, ttl int32, nameServers []string, isDefault bool, status string, revision int32, createdBy int32, createdAt time.Time) *DnsZone {
+func NewDnsZone(id int64, label string, zoneName string, zoneType string, soaEmail string, soaSerial int32, ttl int32, nameServers []string, isDefault bool, status string, revision int64, createdBy int32, createdAt time.Time) *DnsZone {
 	this := DnsZone{}
 	this.Id = id
 	this.Label = label
@@ -100,9 +100,9 @@ func NewDnsZoneWithDefaults() *DnsZone {
 }
 
 // GetId returns the Id field value
-func (o *DnsZone) GetId() int32 {
+func (o *DnsZone) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -111,7 +111,7 @@ func (o *DnsZone) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DnsZone) GetIdOk() (*int32, bool) {
+func (o *DnsZone) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,7 +119,7 @@ func (o *DnsZone) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *DnsZone) SetId(v int32) {
+func (o *DnsZone) SetId(v int64) {
 	o.Id = v
 }
 
@@ -404,9 +404,9 @@ func (o *DnsZone) SetTags(v []string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *DnsZone) GetRevision() int32 {
+func (o *DnsZone) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -415,7 +415,7 @@ func (o *DnsZone) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *DnsZone) GetRevisionOk() (*int32, bool) {
+func (o *DnsZone) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -423,7 +423,7 @@ func (o *DnsZone) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *DnsZone) SetRevision(v int32) {
+func (o *DnsZone) SetRevision(v int64) {
 	o.Revision = v
 }
 

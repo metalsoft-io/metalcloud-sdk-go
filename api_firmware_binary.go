@@ -138,7 +138,7 @@ func (a *FirmwareBinaryAPIService) CreateFirmwareBinaryExecute(r FirmwareBinaryA
 type FirmwareBinaryAPIDeleteFirmwareBinaryRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBinaryAPIService
-	firmwareBinaryId float32
+	firmwareBinaryId int64
 }
 
 func (r FirmwareBinaryAPIDeleteFirmwareBinaryRequest) Execute() (*http.Response, error) {
@@ -154,7 +154,7 @@ Deletes a firmware binary
  @param firmwareBinaryId The firmware binary id
  @return FirmwareBinaryAPIDeleteFirmwareBinaryRequest
 */
-func (a *FirmwareBinaryAPIService) DeleteFirmwareBinary(ctx context.Context, firmwareBinaryId float32) FirmwareBinaryAPIDeleteFirmwareBinaryRequest {
+func (a *FirmwareBinaryAPIService) DeleteFirmwareBinary(ctx context.Context, firmwareBinaryId int64) FirmwareBinaryAPIDeleteFirmwareBinaryRequest {
 	return FirmwareBinaryAPIDeleteFirmwareBinaryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -567,7 +567,7 @@ func (a *FirmwareBinaryAPIService) GetFirmwareBinariesExecute(r FirmwareBinaryAP
 type FirmwareBinaryAPIGetFirmwareBinaryRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBinaryAPIService
-	firmwareBinaryId float32
+	firmwareBinaryId int64
 }
 
 func (r FirmwareBinaryAPIGetFirmwareBinaryRequest) Execute() (*FirmwareBinary, *http.Response, error) {
@@ -583,7 +583,7 @@ Returns a firmware binary
  @param firmwareBinaryId The firmware binary id
  @return FirmwareBinaryAPIGetFirmwareBinaryRequest
 */
-func (a *FirmwareBinaryAPIService) GetFirmwareBinary(ctx context.Context, firmwareBinaryId float32) FirmwareBinaryAPIGetFirmwareBinaryRequest {
+func (a *FirmwareBinaryAPIService) GetFirmwareBinary(ctx context.Context, firmwareBinaryId int64) FirmwareBinaryAPIGetFirmwareBinaryRequest {
 	return FirmwareBinaryAPIGetFirmwareBinaryRequest{
 		ApiService: a,
 		ctx: ctx,

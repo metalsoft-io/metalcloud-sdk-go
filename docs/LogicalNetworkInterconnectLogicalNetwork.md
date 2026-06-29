@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the logical network interconnect to logical network relationship | 
-**LogicalNetworkId** | **int32** | Foreign key to logical_networks | 
-**LogicalNetworkInterconnectId** | **int32** | Foreign key to logical_network_interconnect | 
+**LogicalNetworkId** | **int64** | Foreign key to logical_networks | 
+**LogicalNetworkInterconnectId** | **int64** | Foreign key to logical_network_interconnect | 
 **Status** | [**LogicalNetworkInterconnectStatus**](LogicalNetworkInterconnectStatus.md) | Status of the logical network interconnect to logical network relationship | 
 **CreatedAt** | **time.Time** | The date and time the entity was created | [readonly] 
 **UpdatedAt** | **time.Time** | The date and time the entity was last updated | [readonly] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewLogicalNetworkInterconnectLogicalNetwork
 
-`func NewLogicalNetworkInterconnectLogicalNetwork(id string, logicalNetworkId int32, logicalNetworkInterconnectId int32, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time, ) *LogicalNetworkInterconnectLogicalNetwork`
+`func NewLogicalNetworkInterconnectLogicalNetwork(id string, logicalNetworkId int64, logicalNetworkInterconnectId int64, status LogicalNetworkInterconnectStatus, createdAt time.Time, updatedAt time.Time, ) *LogicalNetworkInterconnectLogicalNetwork`
 
 NewLogicalNetworkInterconnectLogicalNetwork instantiates a new LogicalNetworkInterconnectLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -52,40 +52,40 @@ SetId sets Id field to given value.
 
 ### GetLogicalNetworkId
 
-`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkId() int32`
+`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkIdOk() (*int32, bool)`
+`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkId(v int32)`
+`func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
 
 ### GetLogicalNetworkInterconnectId
 
-`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectId() int32`
+`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectId() int64`
 
 GetLogicalNetworkInterconnectId returns the LogicalNetworkInterconnectId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkInterconnectIdOk
 
-`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectIdOk() (*int32, bool)`
+`func (o *LogicalNetworkInterconnectLogicalNetwork) GetLogicalNetworkInterconnectIdOk() (*int64, bool)`
 
 GetLogicalNetworkInterconnectIdOk returns a tuple with the LogicalNetworkInterconnectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkInterconnectId
 
-`func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkInterconnectId(v int32)`
+`func (o *LogicalNetworkInterconnectLogicalNetwork) SetLogicalNetworkInterconnectId(v int64)`
 
 SetLogicalNetworkInterconnectId sets LogicalNetworkInterconnectId field to given value.
 

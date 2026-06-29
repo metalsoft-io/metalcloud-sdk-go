@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | VM Pool ID | 
-**SiteId** | **float32** | Id of the site for the VM | 
+**Id** | **int64** | VM Pool ID | 
+**SiteId** | **int64** | Id of the site for the VM | 
 **DatacenterName** | **string** | Datacenter of the VM | 
 **ManagementHost** | **string** | Host of the VM Pool | 
 **ManagementPort** | **float32** | Port of the VM Pool | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **ExternalIdentifier** | Pointer to **string** | External identifier of the VM Pool | [optional] 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
-**NetworkFabricId** | **float32** | The network fabric linked to the VM Pool. | 
+**NetworkFabricId** | **int64** | The network fabric linked to the VM Pool. | 
 **CreatedTimestamp** | **string** | Timestamp when the VM Pool was created | 
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool was updated | 
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewVMPool
 
-`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string, ) *VMPool`
+`func NewVMPool(id int64, siteId int64, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId int64, createdTimestamp string, updatedTimestamp string, ) *VMPool`
 
 NewVMPool instantiates a new VMPool object
 This constructor will assign default values to properties that have it defined,
@@ -46,40 +46,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VMPool) GetId() float32`
+`func (o *VMPool) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMPool) GetIdOk() (*float32, bool)`
+`func (o *VMPool) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMPool) SetId(v float32)`
+`func (o *VMPool) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetSiteId
 
-`func (o *VMPool) GetSiteId() float32`
+`func (o *VMPool) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *VMPool) GetSiteIdOk() (*float32, bool)`
+`func (o *VMPool) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *VMPool) SetSiteId(v float32)`
+`func (o *VMPool) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -331,20 +331,20 @@ HasIsExperimental returns a boolean if a field has been set.
 
 ### GetNetworkFabricId
 
-`func (o *VMPool) GetNetworkFabricId() float32`
+`func (o *VMPool) GetNetworkFabricId() int64`
 
 GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricIdOk
 
-`func (o *VMPool) GetNetworkFabricIdOk() (*float32, bool)`
+`func (o *VMPool) GetNetworkFabricIdOk() (*int64, bool)`
 
 GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricId
 
-`func (o *VMPool) SetNetworkFabricId(v float32)`
+`func (o *VMPool) SetNetworkFabricId(v int64)`
 
 SetNetworkFabricId sets NetworkFabricId field to given value.
 

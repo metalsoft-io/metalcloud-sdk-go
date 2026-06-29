@@ -25,13 +25,13 @@ type CreateVMInstanceGroup struct {
 	// Disk size in GB for each VM Instance in the VM Instance Group.
 	DiskSizeGB float32 `json:"diskSizeGB"`
 	// Id of the VM Type.
-	TypeId float32 `json:"typeId"`
+	TypeId int64 `json:"typeId"`
 	// Id of the template used by the VM Instance Group.
-	OsTemplateId float32 `json:"osTemplateId"`
+	OsTemplateId int64 `json:"osTemplateId"`
 	// Tags for the VM Instance Group.
 	Tags []string `json:"tags,omitempty"`
 	// Id of the VM Pool on which the VM Instance Group will be provisioned.
-	VmPoolId float32 `json:"vmPoolId"`
+	VmPoolId int64 `json:"vmPoolId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,7 +41,7 @@ type _CreateVMInstanceGroup CreateVMInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, osTemplateId float32, vmPoolId float32) *CreateVMInstanceGroup {
+func NewCreateVMInstanceGroup(diskSizeGB float32, typeId int64, osTemplateId int64, vmPoolId int64) *CreateVMInstanceGroup {
 	this := CreateVMInstanceGroup{}
 	var instanceCount float32 = 1
 	this.InstanceCount = &instanceCount
@@ -119,9 +119,9 @@ func (o *CreateVMInstanceGroup) SetDiskSizeGB(v float32) {
 }
 
 // GetTypeId returns the TypeId field value
-func (o *CreateVMInstanceGroup) GetTypeId() float32 {
+func (o *CreateVMInstanceGroup) GetTypeId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -130,7 +130,7 @@ func (o *CreateVMInstanceGroup) GetTypeId() float32 {
 
 // GetTypeIdOk returns a tuple with the TypeId field value
 // and a boolean to check if the value has been set.
-func (o *CreateVMInstanceGroup) GetTypeIdOk() (*float32, bool) {
+func (o *CreateVMInstanceGroup) GetTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,14 +138,14 @@ func (o *CreateVMInstanceGroup) GetTypeIdOk() (*float32, bool) {
 }
 
 // SetTypeId sets field value
-func (o *CreateVMInstanceGroup) SetTypeId(v float32) {
+func (o *CreateVMInstanceGroup) SetTypeId(v int64) {
 	o.TypeId = v
 }
 
 // GetOsTemplateId returns the OsTemplateId field value
-func (o *CreateVMInstanceGroup) GetOsTemplateId() float32 {
+func (o *CreateVMInstanceGroup) GetOsTemplateId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -154,7 +154,7 @@ func (o *CreateVMInstanceGroup) GetOsTemplateId() float32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value
 // and a boolean to check if the value has been set.
-func (o *CreateVMInstanceGroup) GetOsTemplateIdOk() (*float32, bool) {
+func (o *CreateVMInstanceGroup) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -162,7 +162,7 @@ func (o *CreateVMInstanceGroup) GetOsTemplateIdOk() (*float32, bool) {
 }
 
 // SetOsTemplateId sets field value
-func (o *CreateVMInstanceGroup) SetOsTemplateId(v float32) {
+func (o *CreateVMInstanceGroup) SetOsTemplateId(v int64) {
 	o.OsTemplateId = v
 }
 
@@ -199,9 +199,9 @@ func (o *CreateVMInstanceGroup) SetTags(v []string) {
 }
 
 // GetVmPoolId returns the VmPoolId field value
-func (o *CreateVMInstanceGroup) GetVmPoolId() float32 {
+func (o *CreateVMInstanceGroup) GetVmPoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -210,7 +210,7 @@ func (o *CreateVMInstanceGroup) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value
 // and a boolean to check if the value has been set.
-func (o *CreateVMInstanceGroup) GetVmPoolIdOk() (*float32, bool) {
+func (o *CreateVMInstanceGroup) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -218,7 +218,7 @@ func (o *CreateVMInstanceGroup) GetVmPoolIdOk() (*float32, bool) {
 }
 
 // SetVmPoolId sets field value
-func (o *CreateVMInstanceGroup) SetVmPoolId(v float32) {
+func (o *CreateVMInstanceGroup) SetVmPoolId(v int64) {
 	o.VmPoolId = v
 }
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInstanceGroupOSInstallationData{}
 // ServerInstanceGroupOSInstallationData struct for ServerInstanceGroupOSInstallationData
 type ServerInstanceGroupOSInstallationData struct {
 	// The Product Instance ID.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Subdomain permanent of the Product Instance.
@@ -43,7 +43,7 @@ type _ServerInstanceGroupOSInstallationData ServerInstanceGroupOSInstallationDat
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupOSInstallationData(id int32, label string, isVmGroup int32, isEndpointInstanceGroup int32) *ServerInstanceGroupOSInstallationData {
+func NewServerInstanceGroupOSInstallationData(id int64, label string, isVmGroup int32, isEndpointInstanceGroup int32) *ServerInstanceGroupOSInstallationData {
 	this := ServerInstanceGroupOSInstallationData{}
 	this.Id = id
 	this.Label = label
@@ -61,9 +61,9 @@ func NewServerInstanceGroupOSInstallationDataWithDefaults() *ServerInstanceGroup
 }
 
 // GetId returns the Id field value
-func (o *ServerInstanceGroupOSInstallationData) GetId() int32 {
+func (o *ServerInstanceGroupOSInstallationData) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -72,7 +72,7 @@ func (o *ServerInstanceGroupOSInstallationData) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupOSInstallationData) GetIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupOSInstallationData) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *ServerInstanceGroupOSInstallationData) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerInstanceGroupOSInstallationData) SetId(v int32) {
+func (o *ServerInstanceGroupOSInstallationData) SetId(v int64) {
 	o.Id = v
 }
 

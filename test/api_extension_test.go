@@ -22,11 +22,24 @@ func Test_sdk_ExtensionAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test ExtensionAPIService ActivateExtension", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+
+		httpRes, err := apiClient.ExtensionAPI.ActivateExtension(context.Background(), extensionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ExtensionAPIService ArchiveExtension", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var extensionId float32
+		var extensionId int64
 
 		httpRes, err := apiClient.ExtensionAPI.ArchiveExtension(context.Background(), extensionId).Execute()
 
@@ -47,13 +60,84 @@ func Test_sdk_ExtensionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ExtensionAPIService DeleteExtension", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+
+		httpRes, err := apiClient.ExtensionAPI.DeleteExtension(context.Background(), extensionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ExtensionAPIService DeleteExtensionSiteConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+		var siteId int64
+
+		httpRes, err := apiClient.ExtensionAPI.DeleteExtensionSiteConfig(context.Background(), extensionId, siteId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ExtensionAPIService GetExtension", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var extensionId float32
+		var extensionId int64
 
 		resp, httpRes, err := apiClient.ExtensionAPI.GetExtension(context.Background(), extensionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ExtensionAPIService GetExtensionSiteConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+		var siteId int64
+
+		resp, httpRes, err := apiClient.ExtensionAPI.GetExtensionSiteConfig(context.Background(), extensionId, siteId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ExtensionAPIService GetExtensionSiteConfigs", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+
+		resp, httpRes, err := apiClient.ExtensionAPI.GetExtensionSiteConfigs(context.Background(), extensionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ExtensionAPIService GetExtensionSiteCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+		var siteId int64
+
+		resp, httpRes, err := apiClient.ExtensionAPI.GetExtensionSiteCredentials(context.Background(), extensionId, siteId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -73,15 +157,16 @@ func Test_sdk_ExtensionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ExtensionAPIService MakePublicExtension", func(t *testing.T) {
+	t.Run("Test ExtensionAPIService GetSiteExtensionConfigs", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var extensionId float32
+		var siteId int64
 
-		httpRes, err := apiClient.ExtensionAPI.MakePublicExtension(context.Background(), extensionId).Execute()
+		resp, httpRes, err := apiClient.ExtensionAPI.GetSiteExtensionConfigs(context.Background(), siteId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -90,9 +175,36 @@ func Test_sdk_ExtensionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var extensionId float32
+		var extensionId int64
 
 		httpRes, err := apiClient.ExtensionAPI.PublishExtension(context.Background(), extensionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ExtensionAPIService SetExtensionSiteConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+		var siteId int64
+
+		httpRes, err := apiClient.ExtensionAPI.SetExtensionSiteConfig(context.Background(), extensionId, siteId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ExtensionAPIService SuspendExtension", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId int64
+
+		httpRes, err := apiClient.ExtensionAPI.SuspendExtension(context.Background(), extensionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -103,7 +215,7 @@ func Test_sdk_ExtensionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var extensionId float32
+		var extensionId int64
 
 		resp, httpRes, err := apiClient.ExtensionAPI.UpdateExtension(context.Background(), extensionId).Execute()
 

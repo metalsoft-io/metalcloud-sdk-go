@@ -22,7 +22,7 @@ var _ MappedNullable = &StoragePoolForUsage{}
 // StoragePoolForUsage struct for StoragePoolForUsage
 type StoragePoolForUsage struct {
 	// Id of the Storage Pool
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the Storage Pool
 	Name string `json:"name"`
 	// Storage technology
@@ -30,7 +30,7 @@ type StoragePoolForUsage struct {
 	// Driver of the Storage Pool
 	Driver string `json:"driver"`
 	// Fabric ID of the Storage Pool
-	FabricId float32 `json:"fabricId"`
+	FabricId int64 `json:"fabricId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +40,7 @@ type _StoragePoolForUsage StoragePoolForUsage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStoragePoolForUsage(id float32, name string, technologies []string, driver string, fabricId float32) *StoragePoolForUsage {
+func NewStoragePoolForUsage(id int64, name string, technologies []string, driver string, fabricId int64) *StoragePoolForUsage {
 	this := StoragePoolForUsage{}
 	this.Id = id
 	this.Name = name
@@ -59,9 +59,9 @@ func NewStoragePoolForUsageWithDefaults() *StoragePoolForUsage {
 }
 
 // GetId returns the Id field value
-func (o *StoragePoolForUsage) GetId() float32 {
+func (o *StoragePoolForUsage) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -70,7 +70,7 @@ func (o *StoragePoolForUsage) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *StoragePoolForUsage) GetIdOk() (*float32, bool) {
+func (o *StoragePoolForUsage) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,7 +78,7 @@ func (o *StoragePoolForUsage) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *StoragePoolForUsage) SetId(v float32) {
+func (o *StoragePoolForUsage) SetId(v int64) {
 	o.Id = v
 }
 
@@ -155,9 +155,9 @@ func (o *StoragePoolForUsage) SetDriver(v string) {
 }
 
 // GetFabricId returns the FabricId field value
-func (o *StoragePoolForUsage) GetFabricId() float32 {
+func (o *StoragePoolForUsage) GetFabricId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -166,7 +166,7 @@ func (o *StoragePoolForUsage) GetFabricId() float32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *StoragePoolForUsage) GetFabricIdOk() (*float32, bool) {
+func (o *StoragePoolForUsage) GetFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -174,7 +174,7 @@ func (o *StoragePoolForUsage) GetFabricIdOk() (*float32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *StoragePoolForUsage) SetFabricId(v float32) {
+func (o *StoragePoolForUsage) SetFabricId(v int64) {
 	o.FabricId = v
 }
 

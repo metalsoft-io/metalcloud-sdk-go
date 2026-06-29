@@ -31,7 +31,7 @@ type UpdateServerDefaultCredentials struct {
 	// The default UUID of the server
 	DefaultUuid *string `json:"defaultUuid,omitempty"`
 	// The default registration profile ID of the server
-	DefaultRegistrationProfileId *float32 `json:"defaultRegistrationProfileId,omitempty"`
+	DefaultRegistrationProfileId *int64 `json:"defaultRegistrationProfileId,omitempty"`
 	// The default username of the server
 	DefaultUsername *string `json:"defaultUsername,omitempty"`
 	// The default password of the server
@@ -219,9 +219,9 @@ func (o *UpdateServerDefaultCredentials) SetDefaultUuid(v string) {
 }
 
 // GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field value if set, zero value otherwise.
-func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileId() float32 {
+func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileId() int64 {
 	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultRegistrationProfileId
@@ -229,7 +229,7 @@ func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileId() float
 
 // GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool) {
+func (o *UpdateServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DefaultRegistrationProfileId) {
 		return nil, false
 	}
@@ -245,8 +245,8 @@ func (o *UpdateServerDefaultCredentials) HasDefaultRegistrationProfileId() bool 
 	return false
 }
 
-// SetDefaultRegistrationProfileId gets a reference to the given float32 and assigns it to the DefaultRegistrationProfileId field.
-func (o *UpdateServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32) {
+// SetDefaultRegistrationProfileId gets a reference to the given int64 and assigns it to the DefaultRegistrationProfileId field.
+func (o *UpdateServerDefaultCredentials) SetDefaultRegistrationProfileId(v int64) {
 	o.DefaultRegistrationProfileId = &v
 }
 

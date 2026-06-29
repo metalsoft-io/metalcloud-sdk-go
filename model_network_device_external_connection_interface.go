@@ -22,15 +22,15 @@ var _ MappedNullable = &NetworkDeviceExternalConnectionInterface{}
 // NetworkDeviceExternalConnectionInterface struct for NetworkDeviceExternalConnectionInterface
 type NetworkDeviceExternalConnectionInterface struct {
 	// Network device id
-	NetworkDeviceId float32 `json:"networkDeviceId"`
+	NetworkDeviceId int64 `json:"networkDeviceId"`
 	// Network device interface id
-	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
+	NetworkDeviceInterfaceId int64 `json:"networkDeviceInterfaceId"`
 	// Network device interface name
 	NetworkDeviceInterfaceName *string `json:"networkDeviceInterfaceName,omitempty"`
 	// Network external connection id, null if not connected to an existing external connection
-	ExternalConnectionId *float32 `json:"externalConnectionId,omitempty"`
+	ExternalConnectionId *int64 `json:"externalConnectionId,omitempty"`
 	// external connection interface id, null if not connected to an existing external connection interface
-	ExternalConnectionInterfaceId *float32 `json:"externalConnectionInterfaceId,omitempty"`
+	ExternalConnectionInterfaceId *int64 `json:"externalConnectionInterfaceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +40,7 @@ type _NetworkDeviceExternalConnectionInterface NetworkDeviceExternalConnectionIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceExternalConnectionInterface(networkDeviceId float32, networkDeviceInterfaceId float32) *NetworkDeviceExternalConnectionInterface {
+func NewNetworkDeviceExternalConnectionInterface(networkDeviceId int64, networkDeviceInterfaceId int64) *NetworkDeviceExternalConnectionInterface {
 	this := NetworkDeviceExternalConnectionInterface{}
 	this.NetworkDeviceId = networkDeviceId
 	this.NetworkDeviceInterfaceId = networkDeviceInterfaceId
@@ -56,9 +56,9 @@ func NewNetworkDeviceExternalConnectionInterfaceWithDefaults() *NetworkDeviceExt
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value
-func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceId() float32 {
+func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceId() float32 
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceIdOk() (*float32, bool) {
+func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,14 +75,14 @@ func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceIdOk() (*floa
 }
 
 // SetNetworkDeviceId sets field value
-func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceId(v float32) {
+func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = v
 }
 
 // GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value
-func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceId() float32 {
+func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceId()
 
 // GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *NetworkDeviceExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk
 }
 
 // SetNetworkDeviceInterfaceId sets field value
-func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceInterfaceId(v float32) {
+func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceInterfaceId(v int64) {
 	o.NetworkDeviceInterfaceId = v
 }
 
@@ -136,9 +136,9 @@ func (o *NetworkDeviceExternalConnectionInterface) SetNetworkDeviceInterfaceName
 }
 
 // GetExternalConnectionId returns the ExternalConnectionId field value if set, zero value otherwise.
-func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionId() float32 {
+func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionId() int64 {
 	if o == nil || IsNil(o.ExternalConnectionId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ExternalConnectionId
@@ -146,7 +146,7 @@ func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionId() flo
 
 // GetExternalConnectionIdOk returns a tuple with the ExternalConnectionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionIdOk() (*float32, bool) {
+func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExternalConnectionId) {
 		return nil, false
 	}
@@ -162,15 +162,15 @@ func (o *NetworkDeviceExternalConnectionInterface) HasExternalConnectionId() boo
 	return false
 }
 
-// SetExternalConnectionId gets a reference to the given float32 and assigns it to the ExternalConnectionId field.
-func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionId(v float32) {
+// SetExternalConnectionId gets a reference to the given int64 and assigns it to the ExternalConnectionId field.
+func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionId(v int64) {
 	o.ExternalConnectionId = &v
 }
 
 // GetExternalConnectionInterfaceId returns the ExternalConnectionInterfaceId field value if set, zero value otherwise.
-func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceId() float32 {
+func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceId() int64 {
 	if o == nil || IsNil(o.ExternalConnectionInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ExternalConnectionInterfaceId
@@ -178,7 +178,7 @@ func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfac
 
 // GetExternalConnectionInterfaceIdOk returns a tuple with the ExternalConnectionInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceIdOk() (*float32, bool) {
+func (o *NetworkDeviceExternalConnectionInterface) GetExternalConnectionInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ExternalConnectionInterfaceId) {
 		return nil, false
 	}
@@ -194,8 +194,8 @@ func (o *NetworkDeviceExternalConnectionInterface) HasExternalConnectionInterfac
 	return false
 }
 
-// SetExternalConnectionInterfaceId gets a reference to the given float32 and assigns it to the ExternalConnectionInterfaceId field.
-func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionInterfaceId(v float32) {
+// SetExternalConnectionInterfaceId gets a reference to the given int64 and assigns it to the ExternalConnectionInterfaceId field.
+func (o *NetworkDeviceExternalConnectionInterface) SetExternalConnectionInterfaceId(v int64) {
 	o.ExternalConnectionInterfaceId = &v
 }
 

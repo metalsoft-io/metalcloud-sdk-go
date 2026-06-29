@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ParentAccountId** | Pointer to **float32** | The ID of the parent account | [optional] 
+**ParentAccountId** | Pointer to **int64** | The ID of the parent account | [optional] 
 **Name** | **string** | The name of the account | 
 **Code** | Pointer to **string** | The code of the account | [optional] 
 **FiscalNumber** | Pointer to **string** | The fiscal number of the account | [optional] 
+**QuotaProfileId** | Pointer to **string** | The ID of the quota profile assigned to this account | [optional] 
 **Address** | Pointer to [**AccountAddress**](AccountAddress.md) |  | [optional] 
 
 ## Methods
@@ -31,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetParentAccountId
 
-`func (o *CreateAccount) GetParentAccountId() float32`
+`func (o *CreateAccount) GetParentAccountId() int64`
 
 GetParentAccountId returns the ParentAccountId field if non-nil, zero value otherwise.
 
 ### GetParentAccountIdOk
 
-`func (o *CreateAccount) GetParentAccountIdOk() (*float32, bool)`
+`func (o *CreateAccount) GetParentAccountIdOk() (*int64, bool)`
 
 GetParentAccountIdOk returns a tuple with the ParentAccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentAccountId
 
-`func (o *CreateAccount) SetParentAccountId(v float32)`
+`func (o *CreateAccount) SetParentAccountId(v int64)`
 
 SetParentAccountId sets ParentAccountId field to given value.
 
@@ -123,6 +124,31 @@ SetFiscalNumber sets FiscalNumber field to given value.
 `func (o *CreateAccount) HasFiscalNumber() bool`
 
 HasFiscalNumber returns a boolean if a field has been set.
+
+### GetQuotaProfileId
+
+`func (o *CreateAccount) GetQuotaProfileId() string`
+
+GetQuotaProfileId returns the QuotaProfileId field if non-nil, zero value otherwise.
+
+### GetQuotaProfileIdOk
+
+`func (o *CreateAccount) GetQuotaProfileIdOk() (*string, bool)`
+
+GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuotaProfileId
+
+`func (o *CreateAccount) SetQuotaProfileId(v string)`
+
+SetQuotaProfileId sets QuotaProfileId field to given value.
+
+### HasQuotaProfileId
+
+`func (o *CreateAccount) HasQuotaProfileId() bool`
+
+HasQuotaProfileId returns a boolean if a field has been set.
 
 ### GetAddress
 

@@ -22,9 +22,9 @@ var _ MappedNullable = &VMPool{}
 // VMPool struct for VMPool
 type VMPool struct {
 	// VM Pool ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Id of the site for the VM
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// Datacenter of the VM
 	DatacenterName string `json:"datacenterName"`
 	// Host of the VM Pool
@@ -48,7 +48,7 @@ type VMPool struct {
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
 	// The network fabric linked to the VM Pool.
-	NetworkFabricId float32 `json:"networkFabricId"`
+	NetworkFabricId int64 `json:"networkFabricId"`
 	// Timestamp when the VM Pool was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp when the VM Pool was updated
@@ -70,7 +70,7 @@ type _VMPool VMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId float32, createdTimestamp string, updatedTimestamp string) *VMPool {
+func NewVMPool(id int64, siteId int64, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, networkFabricId int64, createdTimestamp string, updatedTimestamp string) *VMPool {
 	this := VMPool{}
 	this.Id = id
 	this.SiteId = siteId
@@ -95,9 +95,9 @@ func NewVMPoolWithDefaults() *VMPool {
 }
 
 // GetId returns the Id field value
-func (o *VMPool) GetId() float32 {
+func (o *VMPool) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -106,7 +106,7 @@ func (o *VMPool) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMPool) GetIdOk() (*float32, bool) {
+func (o *VMPool) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,14 +114,14 @@ func (o *VMPool) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMPool) SetId(v float32) {
+func (o *VMPool) SetId(v int64) {
 	o.Id = v
 }
 
 // GetSiteId returns the SiteId field value
-func (o *VMPool) GetSiteId() float32 {
+func (o *VMPool) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -130,7 +130,7 @@ func (o *VMPool) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *VMPool) GetSiteIdOk() (*float32, bool) {
+func (o *VMPool) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,7 +138,7 @@ func (o *VMPool) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *VMPool) SetSiteId(v float32) {
+func (o *VMPool) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -447,9 +447,9 @@ func (o *VMPool) SetIsExperimental(v float32) {
 }
 
 // GetNetworkFabricId returns the NetworkFabricId field value
-func (o *VMPool) GetNetworkFabricId() float32 {
+func (o *VMPool) GetNetworkFabricId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -458,7 +458,7 @@ func (o *VMPool) GetNetworkFabricId() float32 {
 
 // GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
 // and a boolean to check if the value has been set.
-func (o *VMPool) GetNetworkFabricIdOk() (*float32, bool) {
+func (o *VMPool) GetNetworkFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -466,7 +466,7 @@ func (o *VMPool) GetNetworkFabricIdOk() (*float32, bool) {
 }
 
 // SetNetworkFabricId sets field value
-func (o *VMPool) SetNetworkFabricId(v float32) {
+func (o *VMPool) SetNetworkFabricId(v int64) {
 	o.NetworkFabricId = v
 }
 

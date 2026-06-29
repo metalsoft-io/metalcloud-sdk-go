@@ -43,7 +43,7 @@ type NetworkDeviceLinkAggregationConfigurationTemplate struct {
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	// Network Device Link Aggregation Configuration Template Id
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -53,7 +53,7 @@ type _NetworkDeviceLinkAggregationConfigurationTemplate NetworkDeviceLinkAggrega
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceLinkAggregationConfigurationTemplate(action string, aggregationType string, networkDeviceDriver string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32) *NetworkDeviceLinkAggregationConfigurationTemplate {
+func NewNetworkDeviceLinkAggregationConfigurationTemplate(action string, aggregationType string, networkDeviceDriver string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id int64) *NetworkDeviceLinkAggregationConfigurationTemplate {
 	this := NetworkDeviceLinkAggregationConfigurationTemplate{}
 	this.Action = action
 	this.AggregationType = aggregationType
@@ -332,9 +332,9 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplate) SetLinks(v []Link) {
 }
 
 // GetId returns the Id field value
-func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetId() float32 {
+func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -343,7 +343,7 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetIdOk() (*float32, bool) {
+func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -351,7 +351,7 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplate) GetIdOk() (*float32,
 }
 
 // SetId sets field value
-func (o *NetworkDeviceLinkAggregationConfigurationTemplate) SetId(v float32) {
+func (o *NetworkDeviceLinkAggregationConfigurationTemplate) SetId(v int64) {
 	o.Id = v
 }
 

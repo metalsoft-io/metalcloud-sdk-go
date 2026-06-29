@@ -26,6 +26,8 @@ type ServerRegistrationProfileUpdateSettings struct {
 	MinimumNumberOfConnectedInterfaces *float32 `json:"minimumNumberOfConnectedInterfaces,omitempty"`
 	// Whether to always attempt to discover interfaces with BDK
 	AlwaysDiscoverInterfacesWithBDK *bool `json:"alwaysDiscoverInterfacesWithBDK,omitempty"`
+	// Whether to clear TPM
+	ClearTpm *bool `json:"clearTpm,omitempty"`
 	// Whether to enable TPM
 	EnableTpm *bool `json:"enableTpm,omitempty"`
 	// Whether to enable Intel TXT
@@ -37,7 +39,7 @@ type ServerRegistrationProfileUpdateSettings struct {
 	// Default protocol for virtual media
 	DefaultVirtualMediaProtocol *string `json:"defaultVirtualMediaProtocol,omitempty"`
 	// Firmware baseline ID to apply during registration
-	FirmwareBaselineId *float32 `json:"firmwareBaselineId,omitempty"`
+	FirmwareBaselineId *int64 `json:"firmwareBaselineId,omitempty"`
 	// Whether to reset RAID controllers to factory defaults
 	ResetRaidControllers *bool `json:"resetRaidControllers,omitempty"`
 	// Whether to cleanup drives
@@ -58,8 +60,8 @@ type ServerRegistrationProfileUpdateSettings struct {
 	BiosProfile []ServerRegistrationBiosProfile `json:"biosProfile,omitempty"`
 	// Whether to register the server in DPU or NIC mode.
 	DpuMode *string `json:"dpuMode,omitempty"`
-	// Maximum number of virtual interfaces to create on DPUs. This setting is only applicable if dpuMode is set to DPU.
-	MaxDpuVirtualInterfaces *float32 `json:"maxDpuVirtualInterfaces,omitempty"`
+	// Maximum number of virtual functions to create on DPUs. This setting is only applicable if dpuMode is set to DPU.
+	DpuMaxVirtualFunctions *float32 `json:"dpuMaxVirtualFunctions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,8 +75,8 @@ func NewServerRegistrationProfileUpdateSettings() *ServerRegistrationProfileUpda
 	this := ServerRegistrationProfileUpdateSettings{}
 	var dpuMode string = "dpu"
 	this.DpuMode = &dpuMode
-	var maxDpuVirtualInterfaces float32 = 64
-	this.MaxDpuVirtualInterfaces = &maxDpuVirtualInterfaces
+	var dpuMaxVirtualFunctions float32 = 64
+	this.DpuMaxVirtualFunctions = &dpuMaxVirtualFunctions
 	return &this
 }
 
@@ -85,8 +87,8 @@ func NewServerRegistrationProfileUpdateSettingsWithDefaults() *ServerRegistratio
 	this := ServerRegistrationProfileUpdateSettings{}
 	var dpuMode string = "dpu"
 	this.DpuMode = &dpuMode
-	var maxDpuVirtualInterfaces float32 = 64
-	this.MaxDpuVirtualInterfaces = &maxDpuVirtualInterfaces
+	var dpuMaxVirtualFunctions float32 = 64
+	this.DpuMaxVirtualFunctions = &dpuMaxVirtualFunctions
 	return &this
 }
 
@@ -184,6 +186,38 @@ func (o *ServerRegistrationProfileUpdateSettings) HasAlwaysDiscoverInterfacesWit
 // SetAlwaysDiscoverInterfacesWithBDK gets a reference to the given bool and assigns it to the AlwaysDiscoverInterfacesWithBDK field.
 func (o *ServerRegistrationProfileUpdateSettings) SetAlwaysDiscoverInterfacesWithBDK(v bool) {
 	o.AlwaysDiscoverInterfacesWithBDK = &v
+}
+
+// GetClearTpm returns the ClearTpm field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileUpdateSettings) GetClearTpm() bool {
+	if o == nil || IsNil(o.ClearTpm) {
+		var ret bool
+		return ret
+	}
+	return *o.ClearTpm
+}
+
+// GetClearTpmOk returns a tuple with the ClearTpm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerRegistrationProfileUpdateSettings) GetClearTpmOk() (*bool, bool) {
+	if o == nil || IsNil(o.ClearTpm) {
+		return nil, false
+	}
+	return o.ClearTpm, true
+}
+
+// HasClearTpm returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileUpdateSettings) HasClearTpm() bool {
+	if o != nil && !IsNil(o.ClearTpm) {
+		return true
+	}
+
+	return false
+}
+
+// SetClearTpm gets a reference to the given bool and assigns it to the ClearTpm field.
+func (o *ServerRegistrationProfileUpdateSettings) SetClearTpm(v bool) {
+	o.ClearTpm = &v
 }
 
 // GetEnableTpm returns the EnableTpm field value if set, zero value otherwise.
@@ -347,9 +381,9 @@ func (o *ServerRegistrationProfileUpdateSettings) SetDefaultVirtualMediaProtocol
 }
 
 // GetFirmwareBaselineId returns the FirmwareBaselineId field value if set, zero value otherwise.
-func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineId() float32 {
+func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineId() int64 {
 	if o == nil || IsNil(o.FirmwareBaselineId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.FirmwareBaselineId
@@ -357,7 +391,7 @@ func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineId() float3
 
 // GetFirmwareBaselineIdOk returns a tuple with the FirmwareBaselineId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineIdOk() (*float32, bool) {
+func (o *ServerRegistrationProfileUpdateSettings) GetFirmwareBaselineIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.FirmwareBaselineId) {
 		return nil, false
 	}
@@ -373,8 +407,8 @@ func (o *ServerRegistrationProfileUpdateSettings) HasFirmwareBaselineId() bool {
 	return false
 }
 
-// SetFirmwareBaselineId gets a reference to the given float32 and assigns it to the FirmwareBaselineId field.
-func (o *ServerRegistrationProfileUpdateSettings) SetFirmwareBaselineId(v float32) {
+// SetFirmwareBaselineId gets a reference to the given int64 and assigns it to the FirmwareBaselineId field.
+func (o *ServerRegistrationProfileUpdateSettings) SetFirmwareBaselineId(v int64) {
 	o.FirmwareBaselineId = &v
 }
 
@@ -698,36 +732,36 @@ func (o *ServerRegistrationProfileUpdateSettings) SetDpuMode(v string) {
 	o.DpuMode = &v
 }
 
-// GetMaxDpuVirtualInterfaces returns the MaxDpuVirtualInterfaces field value if set, zero value otherwise.
-func (o *ServerRegistrationProfileUpdateSettings) GetMaxDpuVirtualInterfaces() float32 {
-	if o == nil || IsNil(o.MaxDpuVirtualInterfaces) {
+// GetDpuMaxVirtualFunctions returns the DpuMaxVirtualFunctions field value if set, zero value otherwise.
+func (o *ServerRegistrationProfileUpdateSettings) GetDpuMaxVirtualFunctions() float32 {
+	if o == nil || IsNil(o.DpuMaxVirtualFunctions) {
 		var ret float32
 		return ret
 	}
-	return *o.MaxDpuVirtualInterfaces
+	return *o.DpuMaxVirtualFunctions
 }
 
-// GetMaxDpuVirtualInterfacesOk returns a tuple with the MaxDpuVirtualInterfaces field value if set, nil otherwise
+// GetDpuMaxVirtualFunctionsOk returns a tuple with the DpuMaxVirtualFunctions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerRegistrationProfileUpdateSettings) GetMaxDpuVirtualInterfacesOk() (*float32, bool) {
-	if o == nil || IsNil(o.MaxDpuVirtualInterfaces) {
+func (o *ServerRegistrationProfileUpdateSettings) GetDpuMaxVirtualFunctionsOk() (*float32, bool) {
+	if o == nil || IsNil(o.DpuMaxVirtualFunctions) {
 		return nil, false
 	}
-	return o.MaxDpuVirtualInterfaces, true
+	return o.DpuMaxVirtualFunctions, true
 }
 
-// HasMaxDpuVirtualInterfaces returns a boolean if a field has been set.
-func (o *ServerRegistrationProfileUpdateSettings) HasMaxDpuVirtualInterfaces() bool {
-	if o != nil && !IsNil(o.MaxDpuVirtualInterfaces) {
+// HasDpuMaxVirtualFunctions returns a boolean if a field has been set.
+func (o *ServerRegistrationProfileUpdateSettings) HasDpuMaxVirtualFunctions() bool {
+	if o != nil && !IsNil(o.DpuMaxVirtualFunctions) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxDpuVirtualInterfaces gets a reference to the given float32 and assigns it to the MaxDpuVirtualInterfaces field.
-func (o *ServerRegistrationProfileUpdateSettings) SetMaxDpuVirtualInterfaces(v float32) {
-	o.MaxDpuVirtualInterfaces = &v
+// SetDpuMaxVirtualFunctions gets a reference to the given float32 and assigns it to the DpuMaxVirtualFunctions field.
+func (o *ServerRegistrationProfileUpdateSettings) SetDpuMaxVirtualFunctions(v float32) {
+	o.DpuMaxVirtualFunctions = &v
 }
 
 func (o ServerRegistrationProfileUpdateSettings) MarshalJSON() ([]byte, error) {
@@ -748,6 +782,9 @@ func (o ServerRegistrationProfileUpdateSettings) ToMap() (map[string]interface{}
 	}
 	if !IsNil(o.AlwaysDiscoverInterfacesWithBDK) {
 		toSerialize["alwaysDiscoverInterfacesWithBDK"] = o.AlwaysDiscoverInterfacesWithBDK
+	}
+	if !IsNil(o.ClearTpm) {
+		toSerialize["clearTpm"] = o.ClearTpm
 	}
 	if !IsNil(o.EnableTpm) {
 		toSerialize["enableTpm"] = o.EnableTpm
@@ -797,8 +834,8 @@ func (o ServerRegistrationProfileUpdateSettings) ToMap() (map[string]interface{}
 	if !IsNil(o.DpuMode) {
 		toSerialize["dpuMode"] = o.DpuMode
 	}
-	if !IsNil(o.MaxDpuVirtualInterfaces) {
-		toSerialize["maxDpuVirtualInterfaces"] = o.MaxDpuVirtualInterfaces
+	if !IsNil(o.DpuMaxVirtualFunctions) {
+		toSerialize["dpuMaxVirtualFunctions"] = o.DpuMaxVirtualFunctions
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -825,6 +862,7 @@ func (o *ServerRegistrationProfileUpdateSettings) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "registerCredentials")
 		delete(additionalProperties, "minimumNumberOfConnectedInterfaces")
 		delete(additionalProperties, "alwaysDiscoverInterfacesWithBDK")
+		delete(additionalProperties, "clearTpm")
 		delete(additionalProperties, "enableTpm")
 		delete(additionalProperties, "enableIntelTxt")
 		delete(additionalProperties, "enableSyslogMonitoring")
@@ -841,7 +879,7 @@ func (o *ServerRegistrationProfileUpdateSettings) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "raidOddNumberMoreThanOneDrive")
 		delete(additionalProperties, "biosProfile")
 		delete(additionalProperties, "dpuMode")
-		delete(additionalProperties, "maxDpuVirtualInterfaces")
+		delete(additionalProperties, "dpuMaxVirtualFunctions")
 		o.AdditionalProperties = additionalProperties
 	}
 

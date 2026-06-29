@@ -38,7 +38,7 @@ func Test_sdk_TemplateAssetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var templateAssetId float32
+		var templateAssetId int64
 
 		httpRes, err := apiClient.TemplateAssetAPI.DeleteTemplateAsset(context.Background(), templateAssetId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_TemplateAssetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var templateAssetId float32
+		var templateAssetId int64
 
 		resp, httpRes, err := apiClient.TemplateAssetAPI.GetTemplateAsset(context.Background(), templateAssetId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_TemplateAssetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var templateAssetId float32
+		var templateAssetId int64
 
 		resp, httpRes, err := apiClient.TemplateAssetAPI.UpdateTemplateAsset(context.Background(), templateAssetId).Execute()
 

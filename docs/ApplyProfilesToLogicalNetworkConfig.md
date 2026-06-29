@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LogicalNetworkProfileId** | Pointer to **NullableInt32** |  | [optional] 
+**LogicalNetworkProfileId** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLogicalNetworkProfileId
 
-`func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileId() int32`
+`func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileId() int64`
 
 GetLogicalNetworkProfileId returns the LogicalNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkProfileIdOk
 
-`func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileIdOk() (*int32, bool)`
+`func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileIdOk() (*int64, bool)`
 
 GetLogicalNetworkProfileIdOk returns a tuple with the LogicalNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkProfileId
 
-`func (o *ApplyProfilesToLogicalNetworkConfig) SetLogicalNetworkProfileId(v int32)`
+`func (o *ApplyProfilesToLogicalNetworkConfig) SetLogicalNetworkProfileId(v int64)`
 
 SetLogicalNetworkProfileId sets LogicalNetworkProfileId field to given value.
 

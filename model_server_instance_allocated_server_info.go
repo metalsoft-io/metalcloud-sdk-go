@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInstanceAllocatedServerInfo{}
 // ServerInstanceAllocatedServerInfo struct for ServerInstanceAllocatedServerInfo
 type ServerInstanceAllocatedServerInfo struct {
 	// The id of the server allocated to the instance.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The vendor of the server allocated to the instance.
 	Vendor string `json:"vendor"`
 	// The model of the server allocated to the instance.
@@ -38,7 +38,7 @@ type _ServerInstanceAllocatedServerInfo ServerInstanceAllocatedServerInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceAllocatedServerInfo(id float32, vendor string) *ServerInstanceAllocatedServerInfo {
+func NewServerInstanceAllocatedServerInfo(id int64, vendor string) *ServerInstanceAllocatedServerInfo {
 	this := ServerInstanceAllocatedServerInfo{}
 	this.Id = id
 	this.Vendor = vendor
@@ -54,9 +54,9 @@ func NewServerInstanceAllocatedServerInfoWithDefaults() *ServerInstanceAllocated
 }
 
 // GetId returns the Id field value
-func (o *ServerInstanceAllocatedServerInfo) GetId() float32 {
+func (o *ServerInstanceAllocatedServerInfo) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *ServerInstanceAllocatedServerInfo) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceAllocatedServerInfo) GetIdOk() (*float32, bool) {
+func (o *ServerInstanceAllocatedServerInfo) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *ServerInstanceAllocatedServerInfo) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerInstanceAllocatedServerInfo) SetId(v float32) {
+func (o *ServerInstanceAllocatedServerInfo) SetId(v int64) {
 	o.Id = v
 }
 

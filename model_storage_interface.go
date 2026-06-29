@@ -22,11 +22,11 @@ var _ MappedNullable = &StorageInterface{}
 // StorageInterface struct for StorageInterface
 type StorageInterface struct {
 	// Id of the Storage Interface
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the Storage Interface
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Id of the Storage
-	StorageId float32 `json:"storageId"`
+	StorageId int64 `json:"storageId"`
 	// Name of the Storage Interface
 	Name string `json:"name"`
 	// Node IDs on which the Storage Interface is located
@@ -38,7 +38,7 @@ type StorageInterface struct {
 	// Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource).
 	UseForDeploys bool `json:"useForDeploys"`
 	// Id of the Network Equipment Interface associated to this Storage Interface
-	NetworkEquipmentInterfaceId *float32 `json:"networkEquipmentInterfaceId,omitempty"`
+	NetworkEquipmentInterfaceId *int64 `json:"networkEquipmentInterfaceId,omitempty"`
 	// Network device information
 	LinkedNetworkDeviceInformation *StorageInterfaceNetworkDeviceInformation `json:"linkedNetworkDeviceInformation,omitempty"`
 	// Reference links
@@ -52,7 +52,7 @@ type _StorageInterface StorageInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageInterface(id float32, revision float32, storageId float32, name string, nodeIds []string, protocols []string, isUplink bool, useForDeploys bool) *StorageInterface {
+func NewStorageInterface(id int64, revision int64, storageId int64, name string, nodeIds []string, protocols []string, isUplink bool, useForDeploys bool) *StorageInterface {
 	this := StorageInterface{}
 	this.Id = id
 	this.Revision = revision
@@ -74,9 +74,9 @@ func NewStorageInterfaceWithDefaults() *StorageInterface {
 }
 
 // GetId returns the Id field value
-func (o *StorageInterface) GetId() float32 {
+func (o *StorageInterface) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *StorageInterface) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *StorageInterface) GetIdOk() (*float32, bool) {
+func (o *StorageInterface) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,14 +93,14 @@ func (o *StorageInterface) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *StorageInterface) SetId(v float32) {
+func (o *StorageInterface) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *StorageInterface) GetRevision() float32 {
+func (o *StorageInterface) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -109,7 +109,7 @@ func (o *StorageInterface) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *StorageInterface) GetRevisionOk() (*float32, bool) {
+func (o *StorageInterface) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,14 +117,14 @@ func (o *StorageInterface) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *StorageInterface) SetRevision(v float32) {
+func (o *StorageInterface) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetStorageId returns the StorageId field value
-func (o *StorageInterface) GetStorageId() float32 {
+func (o *StorageInterface) GetStorageId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -133,7 +133,7 @@ func (o *StorageInterface) GetStorageId() float32 {
 
 // GetStorageIdOk returns a tuple with the StorageId field value
 // and a boolean to check if the value has been set.
-func (o *StorageInterface) GetStorageIdOk() (*float32, bool) {
+func (o *StorageInterface) GetStorageIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -141,7 +141,7 @@ func (o *StorageInterface) GetStorageIdOk() (*float32, bool) {
 }
 
 // SetStorageId sets field value
-func (o *StorageInterface) SetStorageId(v float32) {
+func (o *StorageInterface) SetStorageId(v int64) {
 	o.StorageId = v
 }
 
@@ -266,9 +266,9 @@ func (o *StorageInterface) SetUseForDeploys(v bool) {
 }
 
 // GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field value if set, zero value otherwise.
-func (o *StorageInterface) GetNetworkEquipmentInterfaceId() float32 {
+func (o *StorageInterface) GetNetworkEquipmentInterfaceId() int64 {
 	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEquipmentInterfaceId
@@ -276,7 +276,7 @@ func (o *StorageInterface) GetNetworkEquipmentInterfaceId() float32 {
 
 // GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool) {
+func (o *StorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
 		return nil, false
 	}
@@ -292,8 +292,8 @@ func (o *StorageInterface) HasNetworkEquipmentInterfaceId() bool {
 	return false
 }
 
-// SetNetworkEquipmentInterfaceId gets a reference to the given float32 and assigns it to the NetworkEquipmentInterfaceId field.
-func (o *StorageInterface) SetNetworkEquipmentInterfaceId(v float32) {
+// SetNetworkEquipmentInterfaceId gets a reference to the given int64 and assigns it to the NetworkEquipmentInterfaceId field.
+func (o *StorageInterface) SetNetworkEquipmentInterfaceId(v int64) {
 	o.NetworkEquipmentInterfaceId = &v
 }
 

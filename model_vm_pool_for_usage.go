@@ -22,13 +22,13 @@ var _ MappedNullable = &VMPoolForUsage{}
 // VMPoolForUsage struct for VMPoolForUsage
 type VMPoolForUsage struct {
 	// Id of the VM Pool
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the VM Pool
 	Name string `json:"name"`
 	// Driver of the VM Pool
 	Driver string `json:"driver"`
 	// Fabric ID of the VM Pool
-	FabricId float32 `json:"fabricId"`
+	FabricId int64 `json:"fabricId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,7 +38,7 @@ type _VMPoolForUsage VMPoolForUsage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolForUsage(id float32, name string, driver string, fabricId float32) *VMPoolForUsage {
+func NewVMPoolForUsage(id int64, name string, driver string, fabricId int64) *VMPoolForUsage {
 	this := VMPoolForUsage{}
 	this.Id = id
 	this.Name = name
@@ -56,9 +56,9 @@ func NewVMPoolForUsageWithDefaults() *VMPoolForUsage {
 }
 
 // GetId returns the Id field value
-func (o *VMPoolForUsage) GetId() float32 {
+func (o *VMPoolForUsage) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *VMPoolForUsage) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolForUsage) GetIdOk() (*float32, bool) {
+func (o *VMPoolForUsage) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,7 +75,7 @@ func (o *VMPoolForUsage) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMPoolForUsage) SetId(v float32) {
+func (o *VMPoolForUsage) SetId(v int64) {
 	o.Id = v
 }
 
@@ -128,9 +128,9 @@ func (o *VMPoolForUsage) SetDriver(v string) {
 }
 
 // GetFabricId returns the FabricId field value
-func (o *VMPoolForUsage) GetFabricId() float32 {
+func (o *VMPoolForUsage) GetFabricId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -139,7 +139,7 @@ func (o *VMPoolForUsage) GetFabricId() float32 {
 
 // GetFabricIdOk returns a tuple with the FabricId field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolForUsage) GetFabricIdOk() (*float32, bool) {
+func (o *VMPoolForUsage) GetFabricIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,7 +147,7 @@ func (o *VMPoolForUsage) GetFabricIdOk() (*float32, bool) {
 }
 
 // SetFabricId sets field value
-func (o *VMPoolForUsage) SetFabricId(v float32) {
+func (o *VMPoolForUsage) SetFabricId(v int64) {
 	o.FabricId = v
 }
 

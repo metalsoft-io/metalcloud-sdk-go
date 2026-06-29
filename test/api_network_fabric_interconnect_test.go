@@ -26,7 +26,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.NetworkFabricInterconnectAPI.AcceptNetworkFabricInterconnectDeploy(context.Background(), id).Execute()
 
@@ -35,11 +35,25 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricInterconnectAPIService ActivateNetworkFabricInterconnectLinks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id int64
+
+		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.ActivateNetworkFabricInterconnectLinks(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricInterconnectAPIService CreateInterconnectLink", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.CreateInterconnectLink(context.Background(), id).Execute()
 
@@ -61,12 +75,26 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricInterconnectAPIService DeactivateNetworkFabricInterconnectLinks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id int64
+
+		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.DeactivateNetworkFabricInterconnectLinks(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricInterconnectAPIService DeleteInterconnectLink", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
-		var linkId int32
+		var id int64
+		var linkId int64
 
 		httpRes, err := apiClient.NetworkFabricInterconnectAPI.DeleteInterconnectLink(context.Background(), id, linkId).Execute()
 
@@ -79,7 +107,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		httpRes, err := apiClient.NetworkFabricInterconnectAPI.DeleteNetworkFabricInterconnect(context.Background(), id).Execute()
 
@@ -92,7 +120,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.DeployNetworkFabricInterconnect(context.Background(), id).Execute()
 
@@ -106,7 +134,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.DetachNetworkFabricInterconnect(context.Background(), id).Execute()
 
@@ -120,7 +148,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetFabricInterconnectAvailableFabrics(context.Background(), id).Execute()
 
@@ -134,7 +162,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetFabricInterconnectFabrics(context.Background(), id).Execute()
 
@@ -148,8 +176,8 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
-		var linkId int32
+		var id int64
+		var linkId int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetInterconnectLink(context.Background(), id, linkId).Execute()
 
@@ -163,7 +191,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetInterconnectLinks(context.Background(), id).Execute()
 
@@ -177,9 +205,23 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectById(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricInterconnectAPIService GetNetworkFabricInterconnectDeploymentCheck", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id int64
+
+		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentCheck(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -191,7 +233,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.GetNetworkFabricInterconnectDeploymentInfo(context.Background(), id).Execute()
 
@@ -231,7 +273,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.NetworkFabricInterconnectAPI.RejectNetworkFabricInterconnectDeploy(context.Background(), id).Execute()
 
@@ -244,7 +286,7 @@ func Test_sdk_NetworkFabricInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkFabricInterconnectAPI.UpdateNetworkFabricInterconnect(context.Background(), id).Execute()
 

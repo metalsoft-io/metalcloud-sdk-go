@@ -26,19 +26,19 @@ type FileShareVariables struct {
 	// Timestamp of the File Share last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Id of the storage pool the File Share is assigned to
-	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
+	StoragePoolId *int64 `json:"storagePoolId,omitempty"`
 	// Label of the File Share.
 	Label string `json:"label"`
 	// Subdomain of the File Share.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the Logical Network for the File Share.
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	// Id of the File Share
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the File Share
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Infrastructure id of the File Share
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Infrastructure information
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Timestamp of the File Share creation.
@@ -48,9 +48,9 @@ type FileShareVariables struct {
 	// Subdomain permanent of the File Share.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the File Share.
-	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the VLAN for the File Share.
-	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
+	NetworkVlanId *int32 `json:"networkVlanId,omitempty"`
 	// Discover information of the File Share.
 	DiscoverInformation *GenericFileShareDiscoverInformation `json:"discoverInformation,omitempty"`
 	// The current changes to be deployed for the File Share.
@@ -64,7 +64,7 @@ type _FileShareVariables FileShareVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileShareVariables(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, config FileShareConfiguration) *FileShareVariables {
+func NewFileShareVariables(sizeGB float32, updatedTimestamp string, label string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, config FileShareConfiguration) *FileShareVariables {
 	this := FileShareVariables{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -136,9 +136,9 @@ func (o *FileShareVariables) SetUpdatedTimestamp(v string) {
 }
 
 // GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *FileShareVariables) GetStoragePoolId() float32 {
+func (o *FileShareVariables) GetStoragePoolId() int64 {
 	if o == nil || IsNil(o.StoragePoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.StoragePoolId
@@ -146,7 +146,7 @@ func (o *FileShareVariables) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetStoragePoolIdOk() (*float32, bool) {
+func (o *FileShareVariables) GetStoragePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.StoragePoolId) {
 		return nil, false
 	}
@@ -162,8 +162,8 @@ func (o *FileShareVariables) HasStoragePoolId() bool {
 	return false
 }
 
-// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
-func (o *FileShareVariables) SetStoragePoolId(v float32) {
+// SetStoragePoolId gets a reference to the given int64 and assigns it to the StoragePoolId field.
+func (o *FileShareVariables) SetStoragePoolId(v int64) {
 	o.StoragePoolId = &v
 }
 
@@ -224,9 +224,9 @@ func (o *FileShareVariables) SetSubdomain(v string) {
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *FileShareVariables) GetLogicalNetworkId() float32 {
+func (o *FileShareVariables) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -234,7 +234,7 @@ func (o *FileShareVariables) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *FileShareVariables) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -250,15 +250,15 @@ func (o *FileShareVariables) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *FileShareVariables) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *FileShareVariables) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 
 // GetId returns the Id field value
-func (o *FileShareVariables) GetId() float32 {
+func (o *FileShareVariables) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -267,7 +267,7 @@ func (o *FileShareVariables) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetIdOk() (*float32, bool) {
+func (o *FileShareVariables) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -275,14 +275,14 @@ func (o *FileShareVariables) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *FileShareVariables) SetId(v float32) {
+func (o *FileShareVariables) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *FileShareVariables) GetRevision() float32 {
+func (o *FileShareVariables) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -291,7 +291,7 @@ func (o *FileShareVariables) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetRevisionOk() (*float32, bool) {
+func (o *FileShareVariables) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -299,14 +299,14 @@ func (o *FileShareVariables) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *FileShareVariables) SetRevision(v float32) {
+func (o *FileShareVariables) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *FileShareVariables) GetInfrastructureId() float32 {
+func (o *FileShareVariables) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -315,7 +315,7 @@ func (o *FileShareVariables) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetInfrastructureIdOk() (*float32, bool) {
+func (o *FileShareVariables) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -323,7 +323,7 @@ func (o *FileShareVariables) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *FileShareVariables) SetInfrastructureId(v float32) {
+func (o *FileShareVariables) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
@@ -432,9 +432,9 @@ func (o *FileShareVariables) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *FileShareVariables) GetDnsSubdomainId() float32 {
+func (o *FileShareVariables) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -442,7 +442,7 @@ func (o *FileShareVariables) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *FileShareVariables) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -458,15 +458,15 @@ func (o *FileShareVariables) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *FileShareVariables) SetDnsSubdomainId(v float32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *FileShareVariables) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetNetworkVlanId returns the NetworkVlanId field value if set, zero value otherwise.
-func (o *FileShareVariables) GetNetworkVlanId() float32 {
+func (o *FileShareVariables) GetNetworkVlanId() int32 {
 	if o == nil || IsNil(o.NetworkVlanId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.NetworkVlanId
@@ -474,7 +474,7 @@ func (o *FileShareVariables) GetNetworkVlanId() float32 {
 
 // GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareVariables) GetNetworkVlanIdOk() (*float32, bool) {
+func (o *FileShareVariables) GetNetworkVlanIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.NetworkVlanId) {
 		return nil, false
 	}
@@ -490,8 +490,8 @@ func (o *FileShareVariables) HasNetworkVlanId() bool {
 	return false
 }
 
-// SetNetworkVlanId gets a reference to the given float32 and assigns it to the NetworkVlanId field.
-func (o *FileShareVariables) SetNetworkVlanId(v float32) {
+// SetNetworkVlanId gets a reference to the given int32 and assigns it to the NetworkVlanId field.
+func (o *FileShareVariables) SetNetworkVlanId(v int32) {
 	o.NetworkVlanId = &v
 }
 

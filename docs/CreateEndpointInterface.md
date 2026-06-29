@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkDeviceInterfaceId** | **float32** | Network device interface id | 
+**NetworkDeviceInterfaceId** | **int64** | Network device interface id | 
 **MacAddress** | Pointer to **string** | Device interface mac address | [optional] 
 
 ## Methods
 
 ### NewCreateEndpointInterface
 
-`func NewCreateEndpointInterface(networkDeviceInterfaceId float32, ) *CreateEndpointInterface`
+`func NewCreateEndpointInterface(networkDeviceInterfaceId int64, ) *CreateEndpointInterface`
 
 NewCreateEndpointInterface instantiates a new CreateEndpointInterface object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNetworkDeviceInterfaceId
 
-`func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceId() float32`
+`func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceId() int64`
 
 GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field if non-nil, zero value otherwise.
 
 ### GetNetworkDeviceInterfaceIdOk
 
-`func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool)`
+`func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool)`
 
 GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDeviceInterfaceId
 
-`func (o *CreateEndpointInterface) SetNetworkDeviceInterfaceId(v float32)`
+`func (o *CreateEndpointInterface) SetNetworkDeviceInterfaceId(v int64)`
 
 SetNetworkDeviceInterfaceId sets NetworkDeviceInterfaceId field to given value.
 

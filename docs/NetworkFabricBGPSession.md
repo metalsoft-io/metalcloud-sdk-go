@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Revision** | **string** | Revision number of the entity | 
-**Id** | **float32** | Unique identifier for the network fabric BGP session | 
-**NetworkFabricId** | **float32** | Unique identifier for the network fabric | 
-**NetworkFabricLinkId** | Pointer to **float32** | Unique identifier for the network fabric link | [optional] 
-**NetworkFabricLinkAggregationId** | Pointer to **float32** | Unique identifier for the network fabric link aggregation | [optional] 
+**Id** | **int64** | Unique identifier for the network fabric BGP session | 
+**NetworkFabricId** | **int64** | Unique identifier for the network fabric | 
+**NetworkFabricLinkId** | Pointer to **int64** | Unique identifier for the network fabric link | [optional] 
+**NetworkFabricLinkAggregationId** | Pointer to **int64** | Unique identifier for the network fabric link aggregation | [optional] 
 **Name** | **string** | Name of the network fabric BGP session | 
 **BgpNumbering** | **string** | BGP numbering type for the link | 
 **BgpLinkConfiguration** | **string** | BGP link configuration type | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricBGPSession
 
-`func NewNetworkFabricBGPSession(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, name string, bgpNumbering string, bgpLinkConfiguration string, status string, ) *NetworkFabricBGPSession`
+`func NewNetworkFabricBGPSession(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, networkFabricId int64, name string, bgpNumbering string, bgpLinkConfiguration string, status string, ) *NetworkFabricBGPSession`
 
 NewNetworkFabricBGPSession instantiates a new NetworkFabricBGPSession object
 This constructor will assign default values to properties that have it defined,
@@ -100,60 +100,60 @@ SetRevision sets Revision field to given value.
 
 ### GetId
 
-`func (o *NetworkFabricBGPSession) GetId() float32`
+`func (o *NetworkFabricBGPSession) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkFabricBGPSession) GetIdOk() (*float32, bool)`
+`func (o *NetworkFabricBGPSession) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkFabricBGPSession) SetId(v float32)`
+`func (o *NetworkFabricBGPSession) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetNetworkFabricId
 
-`func (o *NetworkFabricBGPSession) GetNetworkFabricId() float32`
+`func (o *NetworkFabricBGPSession) GetNetworkFabricId() int64`
 
 GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricIdOk
 
-`func (o *NetworkFabricBGPSession) GetNetworkFabricIdOk() (*float32, bool)`
+`func (o *NetworkFabricBGPSession) GetNetworkFabricIdOk() (*int64, bool)`
 
 GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricId
 
-`func (o *NetworkFabricBGPSession) SetNetworkFabricId(v float32)`
+`func (o *NetworkFabricBGPSession) SetNetworkFabricId(v int64)`
 
 SetNetworkFabricId sets NetworkFabricId field to given value.
 
 
 ### GetNetworkFabricLinkId
 
-`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkId() float32`
+`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkId() int64`
 
 GetNetworkFabricLinkId returns the NetworkFabricLinkId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricLinkIdOk
 
-`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkIdOk() (*float32, bool)`
+`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkIdOk() (*int64, bool)`
 
 GetNetworkFabricLinkIdOk returns a tuple with the NetworkFabricLinkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricLinkId
 
-`func (o *NetworkFabricBGPSession) SetNetworkFabricLinkId(v float32)`
+`func (o *NetworkFabricBGPSession) SetNetworkFabricLinkId(v int64)`
 
 SetNetworkFabricLinkId sets NetworkFabricLinkId field to given value.
 
@@ -165,20 +165,20 @@ HasNetworkFabricLinkId returns a boolean if a field has been set.
 
 ### GetNetworkFabricLinkAggregationId
 
-`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationId() float32`
+`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationId() int64`
 
 GetNetworkFabricLinkAggregationId returns the NetworkFabricLinkAggregationId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricLinkAggregationIdOk
 
-`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationIdOk() (*float32, bool)`
+`func (o *NetworkFabricBGPSession) GetNetworkFabricLinkAggregationIdOk() (*int64, bool)`
 
 GetNetworkFabricLinkAggregationIdOk returns a tuple with the NetworkFabricLinkAggregationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricLinkAggregationId
 
-`func (o *NetworkFabricBGPSession) SetNetworkFabricLinkAggregationId(v float32)`
+`func (o *NetworkFabricBGPSession) SetNetworkFabricLinkAggregationId(v int64)`
 
 SetNetworkFabricLinkAggregationId sets NetworkFabricLinkAggregationId field to given value.
 

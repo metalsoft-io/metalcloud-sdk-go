@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerType{}
 // ServerType struct for ServerType
 type ServerType struct {
 	// The id of the server type.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The RAM GB of the server type.
 	RamGbytes float32 `json:"ramGbytes"`
 	// The processor count of the server type.
@@ -79,7 +79,7 @@ type _ServerType ServerType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerType(id float32, ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, label string, networkTotalCapacityMbps float32, networkInterfaceCount float32, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string) *ServerType {
+func NewServerType(id int64, ramGbytes float32, processorCount float32, processorCoreMhz float32, processorCoreCount float32, name string, label string, networkTotalCapacityMbps float32, networkInterfaceCount float32, networkInterfaceSpeeds []float32, processorNames []string, diskCount float32, serverClass string) *ServerType {
 	this := ServerType{}
 	this.Id = id
 	this.RamGbytes = ramGbytes
@@ -126,9 +126,9 @@ func NewServerTypeWithDefaults() *ServerType {
 }
 
 // GetId returns the Id field value
-func (o *ServerType) GetId() float32 {
+func (o *ServerType) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -137,7 +137,7 @@ func (o *ServerType) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerType) GetIdOk() (*float32, bool) {
+func (o *ServerType) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -145,7 +145,7 @@ func (o *ServerType) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerType) SetId(v float32) {
+func (o *ServerType) SetId(v int64) {
 	o.Id = v
 }
 

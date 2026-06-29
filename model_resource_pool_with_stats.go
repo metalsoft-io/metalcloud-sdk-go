@@ -22,7 +22,7 @@ var _ MappedNullable = &ResourcePoolWithStats{}
 // ResourcePoolWithStats struct for ResourcePoolWithStats
 type ResourcePoolWithStats struct {
 	// Resource Pool ID
-	ResourcePoolId float32 `json:"resourcePoolId"`
+	ResourcePoolId int64 `json:"resourcePoolId"`
 	// Label of the Resource Pool
 	ResourcePoolLabel string `json:"resourcePoolLabel"`
 	// Description of the Resource Pool
@@ -43,7 +43,7 @@ type _ResourcePoolWithStats ResourcePoolWithStats
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourcePoolWithStats(resourcePoolId float32, resourcePoolLabel string, resourcePoolDescription string, resourcePoolCreatedTimestamp string, resourcePoolUpdatedTimestamp string, statistics ResourcePoolStatistics) *ResourcePoolWithStats {
+func NewResourcePoolWithStats(resourcePoolId int64, resourcePoolLabel string, resourcePoolDescription string, resourcePoolCreatedTimestamp string, resourcePoolUpdatedTimestamp string, statistics ResourcePoolStatistics) *ResourcePoolWithStats {
 	this := ResourcePoolWithStats{}
 	this.ResourcePoolId = resourcePoolId
 	this.ResourcePoolLabel = resourcePoolLabel
@@ -63,9 +63,9 @@ func NewResourcePoolWithStatsWithDefaults() *ResourcePoolWithStats {
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value
-func (o *ResourcePoolWithStats) GetResourcePoolId() float32 {
+func (o *ResourcePoolWithStats) GetResourcePoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *ResourcePoolWithStats) GetResourcePoolId() float32 {
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value
 // and a boolean to check if the value has been set.
-func (o *ResourcePoolWithStats) GetResourcePoolIdOk() (*float32, bool) {
+func (o *ResourcePoolWithStats) GetResourcePoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *ResourcePoolWithStats) GetResourcePoolIdOk() (*float32, bool) {
 }
 
 // SetResourcePoolId sets field value
-func (o *ResourcePoolWithStats) SetResourcePoolId(v float32) {
+func (o *ResourcePoolWithStats) SetResourcePoolId(v int64) {
 	o.ResourcePoolId = v
 }
 

@@ -66,6 +66,8 @@ type APIClient struct {
 
 	DNSZoneAPI *DNSZoneAPIService
 
+	DeviceConfigurationTemplateAPI *DeviceConfigurationTemplateAPIService
+
 	DriveAPI *DriveAPIService
 
 	EmailTemplateAPI *EmailTemplateAPIService
@@ -96,8 +98,6 @@ type APIClient struct {
 
 	FirmwareCatalogAPI *FirmwareCatalogAPIService
 
-	FirmwarePolicyAPI *FirmwarePolicyAPIService
-
 	InfrastructureAPI *InfrastructureAPIService
 
 	JobAPI *JobAPIService
@@ -127,6 +127,8 @@ type APIClient struct {
 	NetworkFabricInterconnectAPI *NetworkFabricInterconnectAPIService
 
 	OSTemplateAPI *OSTemplateAPIService
+
+	PointToPointLinkAPI *PointToPointLinkAPIService
 
 	ResourcePoolAPI *ResourcePoolAPIService
 
@@ -205,6 +207,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
 	c.DNSRecordSetAPI = (*DNSRecordSetAPIService)(&c.common)
 	c.DNSZoneAPI = (*DNSZoneAPIService)(&c.common)
+	c.DeviceConfigurationTemplateAPI = (*DeviceConfigurationTemplateAPIService)(&c.common)
 	c.DriveAPI = (*DriveAPIService)(&c.common)
 	c.EmailTemplateAPI = (*EmailTemplateAPIService)(&c.common)
 	c.EndpointAPI = (*EndpointAPIService)(&c.common)
@@ -220,7 +223,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.FirmwareBaselineSearchAPI = (*FirmwareBaselineSearchAPIService)(&c.common)
 	c.FirmwareBinaryAPI = (*FirmwareBinaryAPIService)(&c.common)
 	c.FirmwareCatalogAPI = (*FirmwareCatalogAPIService)(&c.common)
-	c.FirmwarePolicyAPI = (*FirmwarePolicyAPIService)(&c.common)
 	c.InfrastructureAPI = (*InfrastructureAPIService)(&c.common)
 	c.JobAPI = (*JobAPIService)(&c.common)
 	c.LogicalNetworkAPI = (*LogicalNetworkAPIService)(&c.common)
@@ -236,6 +238,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
 	c.NetworkFabricInterconnectAPI = (*NetworkFabricInterconnectAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)
+	c.PointToPointLinkAPI = (*PointToPointLinkAPIService)(&c.common)
 	c.ResourcePoolAPI = (*ResourcePoolAPIService)(&c.common)
 	c.RouteDomainAPI = (*RouteDomainAPIService)(&c.common)
 	c.SecretsAPI = (*SecretsAPIService)(&c.common)

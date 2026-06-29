@@ -26,8 +26,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.CreateFileShareSnapshot(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -41,7 +41,7 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.CreateInfrastructureFileShare(context.Background(), infrastructureId).Execute()
 
@@ -55,8 +55,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		httpRes, err := apiClient.FileShareAPI.DeleteFileShare(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -69,8 +69,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		httpRes, err := apiClient.FileShareAPI.DeleteFileShareSnapshot(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -83,7 +83,7 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var fileShareId float32
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.GetFileShare(context.Background(), fileShareId).Execute()
 
@@ -97,8 +97,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.GetFileShareConfigInfo(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -112,8 +112,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.GetFileShareHosts(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -127,8 +127,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.GetFileShareSnapshots(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -142,8 +142,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.GetInfrastructureFileShare(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -157,7 +157,7 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.GetInfrastructureFileShares(context.Background(), infrastructureId).Execute()
 
@@ -171,8 +171,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.PatchFileShareMeta(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -186,8 +186,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		httpRes, err := apiClient.FileShareAPI.RestoreFileShareToSnapshot(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -200,8 +200,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.UpdateFileShareConfig(context.Background(), infrastructureId, fileShareId).Execute()
 
@@ -215,8 +215,8 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var fileShareId float32
+		var infrastructureId int64
+		var fileShareId int64
 
 		resp, httpRes, err := apiClient.FileShareAPI.UpdateFileShareInstanceArrayHostsBulk(context.Background(), infrastructureId, fileShareId).Execute()
 

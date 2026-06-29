@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInstanceNetworkConfigMembers{}
 // ServerInstanceNetworkConfigMembers struct for ServerInstanceNetworkConfigMembers
 type ServerInstanceNetworkConfigMembers struct {
 	// The id of the network configuration member.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The type of the network configuration member.
 	InterfaceType string `json:"interfaceType"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _ServerInstanceNetworkConfigMembers ServerInstanceNetworkConfigMembers
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceNetworkConfigMembers(id float32, interfaceType string) *ServerInstanceNetworkConfigMembers {
+func NewServerInstanceNetworkConfigMembers(id int64, interfaceType string) *ServerInstanceNetworkConfigMembers {
 	this := ServerInstanceNetworkConfigMembers{}
 	this.Id = id
 	this.InterfaceType = interfaceType
@@ -50,9 +50,9 @@ func NewServerInstanceNetworkConfigMembersWithDefaults() *ServerInstanceNetworkC
 }
 
 // GetId returns the Id field value
-func (o *ServerInstanceNetworkConfigMembers) GetId() float32 {
+func (o *ServerInstanceNetworkConfigMembers) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *ServerInstanceNetworkConfigMembers) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceNetworkConfigMembers) GetIdOk() (*float32, bool) {
+func (o *ServerInstanceNetworkConfigMembers) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *ServerInstanceNetworkConfigMembers) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerInstanceNetworkConfigMembers) SetId(v float32) {
+func (o *ServerInstanceNetworkConfigMembers) SetId(v int64) {
 	o.Id = v
 }
 

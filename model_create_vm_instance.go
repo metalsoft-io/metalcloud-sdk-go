@@ -22,9 +22,9 @@ var _ MappedNullable = &CreateVMInstance{}
 // CreateVMInstance struct for CreateVMInstance
 type CreateVMInstance struct {
 	// Id of the VM Type.
-	TypeId float32 `json:"typeId"`
+	TypeId int64 `json:"typeId"`
 	// Id of the VM Instance Group.
-	GroupId float32 `json:"groupId"`
+	GroupId int64 `json:"groupId"`
 	// Disk size in GB of the VM Instance. If not passed, the default disk size from the group will be used
 	DiskSizeGB *float32 `json:"diskSizeGB,omitempty"`
 	// Tags for the VM Instance.
@@ -38,7 +38,7 @@ type _CreateVMInstance CreateVMInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMInstance(typeId float32, groupId float32) *CreateVMInstance {
+func NewCreateVMInstance(typeId int64, groupId int64) *CreateVMInstance {
 	this := CreateVMInstance{}
 	this.TypeId = typeId
 	this.GroupId = groupId
@@ -54,9 +54,9 @@ func NewCreateVMInstanceWithDefaults() *CreateVMInstance {
 }
 
 // GetTypeId returns the TypeId field value
-func (o *CreateVMInstance) GetTypeId() float32 {
+func (o *CreateVMInstance) GetTypeId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *CreateVMInstance) GetTypeId() float32 {
 
 // GetTypeIdOk returns a tuple with the TypeId field value
 // and a boolean to check if the value has been set.
-func (o *CreateVMInstance) GetTypeIdOk() (*float32, bool) {
+func (o *CreateVMInstance) GetTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,14 +73,14 @@ func (o *CreateVMInstance) GetTypeIdOk() (*float32, bool) {
 }
 
 // SetTypeId sets field value
-func (o *CreateVMInstance) SetTypeId(v float32) {
+func (o *CreateVMInstance) SetTypeId(v int64) {
 	o.TypeId = v
 }
 
 // GetGroupId returns the GroupId field value
-func (o *CreateVMInstance) GetGroupId() float32 {
+func (o *CreateVMInstance) GetGroupId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *CreateVMInstance) GetGroupId() float32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value
 // and a boolean to check if the value has been set.
-func (o *CreateVMInstance) GetGroupIdOk() (*float32, bool) {
+func (o *CreateVMInstance) GetGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *CreateVMInstance) GetGroupIdOk() (*float32, bool) {
 }
 
 // SetGroupId sets field value
-func (o *CreateVMInstance) SetGroupId(v float32) {
+func (o *CreateVMInstance) SetGroupId(v int64) {
 	o.GroupId = v
 }
 

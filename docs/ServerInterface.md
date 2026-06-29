@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerInterfaceId** | **float32** | The id of the server interface. | 
-**ServerId** | **float32** | The id of the server. | 
+**ServerInterfaceId** | **int64** | The id of the server interface. | 
+**ServerId** | **int64** | The id of the server. | 
 **MacAddress** | **string** | The MAC address of the server interface. | 
 **Index** | **float32** | The index of the server interface. | 
 **SwitchPortId** | Pointer to **string** | The switch port id of the server interface. | [optional] 
@@ -25,8 +25,8 @@ Name | Type | Description | Notes
 **NetworkDeviceInterface** | Pointer to **map[string]interface{}** | The network device interface linked to the server. | [optional] 
 **Ipv4Addresses** | Pointer to **[]string** | The deployed IPv4 addresses of the server interface. | [optional] 
 **Ipv6Addresses** | Pointer to **[]string** | The deployed IPv6 addresses of the server interface. | [optional] 
-**VlanId** | Pointer to **float32** | The deployed VLAN ID of the server interface. | [optional] 
-**DefaultFabricId** | Pointer to **float32** | The default fabric ID of the server interface. | [optional] 
+**VlanId** | Pointer to **int32** | The deployed VLAN ID of the server interface. | [optional] 
+**DefaultFabricId** | Pointer to **int64** | The default fabric ID of the server interface. | [optional] 
 **RedundancyGroupIndex** | Pointer to **float32** | The redundancy group index of the server interface. | [optional] 
 **LldpInfo** | Pointer to **string** | The LLDP information of the server interface. | [optional] 
 **LinkNetworkTechnology** | Pointer to **string** | The link network technology of the server interface. | [optional] 
@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 
 ### NewServerInterface
 
-`func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, switchMacAddress string, osInfo string, ) *ServerInterface`
+`func NewServerInterface(serverInterfaceId int64, serverId int64, macAddress string, index float32, switchMacAddress string, osInfo string, ) *ServerInterface`
 
 NewServerInterface instantiates a new ServerInterface object
 This constructor will assign default values to properties that have it defined,
@@ -53,40 +53,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerInterfaceId
 
-`func (o *ServerInterface) GetServerInterfaceId() float32`
+`func (o *ServerInterface) GetServerInterfaceId() int64`
 
 GetServerInterfaceId returns the ServerInterfaceId field if non-nil, zero value otherwise.
 
 ### GetServerInterfaceIdOk
 
-`func (o *ServerInterface) GetServerInterfaceIdOk() (*float32, bool)`
+`func (o *ServerInterface) GetServerInterfaceIdOk() (*int64, bool)`
 
 GetServerInterfaceIdOk returns a tuple with the ServerInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerInterfaceId
 
-`func (o *ServerInterface) SetServerInterfaceId(v float32)`
+`func (o *ServerInterface) SetServerInterfaceId(v int64)`
 
 SetServerInterfaceId sets ServerInterfaceId field to given value.
 
 
 ### GetServerId
 
-`func (o *ServerInterface) GetServerId() float32`
+`func (o *ServerInterface) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *ServerInterface) GetServerIdOk() (*float32, bool)`
+`func (o *ServerInterface) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *ServerInterface) SetServerId(v float32)`
+`func (o *ServerInterface) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -548,20 +548,20 @@ HasIpv6Addresses returns a boolean if a field has been set.
 
 ### GetVlanId
 
-`func (o *ServerInterface) GetVlanId() float32`
+`func (o *ServerInterface) GetVlanId() int32`
 
 GetVlanId returns the VlanId field if non-nil, zero value otherwise.
 
 ### GetVlanIdOk
 
-`func (o *ServerInterface) GetVlanIdOk() (*float32, bool)`
+`func (o *ServerInterface) GetVlanIdOk() (*int32, bool)`
 
 GetVlanIdOk returns a tuple with the VlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanId
 
-`func (o *ServerInterface) SetVlanId(v float32)`
+`func (o *ServerInterface) SetVlanId(v int32)`
 
 SetVlanId sets VlanId field to given value.
 
@@ -573,20 +573,20 @@ HasVlanId returns a boolean if a field has been set.
 
 ### GetDefaultFabricId
 
-`func (o *ServerInterface) GetDefaultFabricId() float32`
+`func (o *ServerInterface) GetDefaultFabricId() int64`
 
 GetDefaultFabricId returns the DefaultFabricId field if non-nil, zero value otherwise.
 
 ### GetDefaultFabricIdOk
 
-`func (o *ServerInterface) GetDefaultFabricIdOk() (*float32, bool)`
+`func (o *ServerInterface) GetDefaultFabricIdOk() (*int64, bool)`
 
 GetDefaultFabricIdOk returns a tuple with the DefaultFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultFabricId
 
-`func (o *ServerInterface) SetDefaultFabricId(v float32)`
+`func (o *ServerInterface) SetDefaultFabricId(v int64)`
 
 SetDefaultFabricId sets DefaultFabricId field to given value.
 

@@ -38,7 +38,7 @@ func Test_sdk_VMTypeAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmTypeId float32
+		var vmTypeId int64
 
 		httpRes, err := apiClient.VMTypeAPI.DeleteVMType(context.Background(), vmTypeId).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_VMTypeAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmTypeId float32
+		var vmTypeId int64
 
 		resp, httpRes, err := apiClient.VMTypeAPI.GetVMsByVMType(context.Background(), vmTypeId).Execute()
 
@@ -91,7 +91,7 @@ func Test_sdk_VMTypeAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var vmTypeId float32
+		var vmTypeId int64
 
 		resp, httpRes, err := apiClient.VMTypeAPI.UpdateVMType(context.Background(), vmTypeId).Execute()
 

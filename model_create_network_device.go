@@ -22,13 +22,13 @@ var _ MappedNullable = &CreateNetworkDevice{}
 // CreateNetworkDevice struct for CreateNetworkDevice
 type CreateNetworkDevice struct {
 	// Site identifier
-	SiteId *int32 `json:"siteId,omitempty"`
+	SiteId *int64 `json:"siteId,omitempty"`
 	// Name of the datacenter
 	DatacenterName *string `json:"datacenterName,omitempty"`
 	// Unique identifier string for the network device
 	IdentifierString *string `json:"identifierString,omitempty"`
 	// ID of the rack where the network device chassis is installed
-	ChassisRackId *int32 `json:"chassisRackId,omitempty"`
+	ChassisRackId *int64 `json:"chassisRackId,omitempty"`
 	// Unique identifier for the network device chassis
 	ChassisIdentifier NullableString `json:"chassisIdentifier,omitempty"`
 	// Driver software used to communicate with the network device
@@ -39,6 +39,10 @@ type CreateNetworkDevice struct {
 	IsGateway *bool `json:"isGateway,omitempty"`
 	// Indicates if syslog logging is enabled for this network device
 	SyslogEnabled NullableBool `json:"syslogEnabled,omitempty"`
+	// Indicates if SNMP service is enabled for this network device
+	SnmpServiceEnabled NullableBool `json:"snmpServiceEnabled,omitempty"`
+	// Indicates if SNMP monitoring is enabled for this network device
+	SnmpMonitoringEnabled NullableBool `json:"snmpMonitoringEnabled,omitempty"`
 	// Indicates if this network device is dedicated to storage traffic
 	IsStorageSwitch *bool `json:"isStorageSwitch,omitempty"`
 	// Indicates if this network device functions as a border device connecting to external networks
@@ -53,6 +57,10 @@ type CreateNetworkDevice struct {
 	Username NullableString `json:"username"`
 	// The password used for management authentication
 	ManagementPassword string `json:"managementPassword"`
+	// The username to access the network device API, if different from the management username.
+	ApiUsername *string `json:"apiUsername,omitempty"`
+	// The password to access the network device API, if different from the management password.
+	ApiPassword *string `json:"apiPassword,omitempty"`
 	// The gateway IP address for the management network
 	// Deprecated
 	ManagementAddressGateway NullableString `json:"managementAddressGateway,omitempty"`
@@ -95,20 +103,30 @@ type CreateNetworkDevice struct {
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
 	// Tags for categorizing and filtering network devices
 	Tags []string `json:"tags,omitempty"`
+	// Key/value tags (key-map). The forthcoming replacement for the legacy string[] `tags`.
+	TagsMap *map[string]string `json:"tagsMap,omitempty"`
 	// Indicates if the device requires OS installation before provisioning
 	RequiresOsInstall *bool `json:"requiresOsInstall,omitempty"`
 	// Whether to overwrite the hostname with the one fetched from the device
 	OverwriteWithHostnameFromFetchedSwitch NullableBool `json:"overwriteWithHostnameFromFetchedSwitch,omitempty"`
 	// ID of the VM pool associated with the network device
-	VmPoolId *float32 `json:"vmPoolId,omitempty"`
+	VmPoolId *int64 `json:"vmPoolId,omitempty"`
 	// Custom variables for the network device
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU
-	ServerId *float32 `json:"serverId,omitempty"`
+	ServerId *int64 `json:"serverId,omitempty"`
 	// NUMA node of the network device for optimal resource allocation
 	NumaNode *float32 `json:"numaNode,omitempty"`
 	// ID of the network device controller managing this switch. Only applicable for controller-managed drivers (e.g. NDFC).
-	SwitchControllerId *float32 `json:"switchControllerId,omitempty"`
+	SwitchControllerId *int64 `json:"switchControllerId,omitempty"`
+	// Network device SNMP community string
+	SnmpPassword *string `json:"snmpPassword,omitempty"`
+	// SNMP port of the network device
+	SnmpPort *float32 `json:"snmpPort,omitempty"`
+	// SNMP system contact for the network device
+	SnmpSystemContact *string `json:"snmpSystemContact,omitempty"`
+	// SNMP version used by the network device
+	SnmpVersion *float32 `json:"snmpVersion,omitempty"`
 	// Ordered list of authentication options. Credentials are resolved from the first active entry.
 	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -138,9 +156,9 @@ func NewCreateNetworkDeviceWithDefaults() *CreateNetworkDevice {
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *CreateNetworkDevice) GetSiteId() int32 {
+func (o *CreateNetworkDevice) GetSiteId() int64 {
 	if o == nil || IsNil(o.SiteId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SiteId
@@ -148,7 +166,7 @@ func (o *CreateNetworkDevice) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDevice) GetSiteIdOk() (*int32, bool) {
+func (o *CreateNetworkDevice) GetSiteIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -164,8 +182,8 @@ func (o *CreateNetworkDevice) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
-func (o *CreateNetworkDevice) SetSiteId(v int32) {
+// SetSiteId gets a reference to the given int64 and assigns it to the SiteId field.
+func (o *CreateNetworkDevice) SetSiteId(v int64) {
 	o.SiteId = &v
 }
 
@@ -234,9 +252,9 @@ func (o *CreateNetworkDevice) SetIdentifierString(v string) {
 }
 
 // GetChassisRackId returns the ChassisRackId field value if set, zero value otherwise.
-func (o *CreateNetworkDevice) GetChassisRackId() int32 {
+func (o *CreateNetworkDevice) GetChassisRackId() int64 {
 	if o == nil || IsNil(o.ChassisRackId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ChassisRackId
@@ -244,7 +262,7 @@ func (o *CreateNetworkDevice) GetChassisRackId() int32 {
 
 // GetChassisRackIdOk returns a tuple with the ChassisRackId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDevice) GetChassisRackIdOk() (*int32, bool) {
+func (o *CreateNetworkDevice) GetChassisRackIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ChassisRackId) {
 		return nil, false
 	}
@@ -260,8 +278,8 @@ func (o *CreateNetworkDevice) HasChassisRackId() bool {
 	return false
 }
 
-// SetChassisRackId gets a reference to the given int32 and assigns it to the ChassisRackId field.
-func (o *CreateNetworkDevice) SetChassisRackId(v int32) {
+// SetChassisRackId gets a reference to the given int64 and assigns it to the ChassisRackId field.
+func (o *CreateNetworkDevice) SetChassisRackId(v int64) {
 	o.ChassisRackId = &v
 }
 
@@ -427,6 +445,90 @@ func (o *CreateNetworkDevice) SetSyslogEnabledNil() {
 // UnsetSyslogEnabled ensures that no value is present for SyslogEnabled, not even an explicit nil
 func (o *CreateNetworkDevice) UnsetSyslogEnabled() {
 	o.SyslogEnabled.Unset()
+}
+
+// GetSnmpServiceEnabled returns the SnmpServiceEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateNetworkDevice) GetSnmpServiceEnabled() bool {
+	if o == nil || IsNil(o.SnmpServiceEnabled.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SnmpServiceEnabled.Get()
+}
+
+// GetSnmpServiceEnabledOk returns a tuple with the SnmpServiceEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateNetworkDevice) GetSnmpServiceEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SnmpServiceEnabled.Get(), o.SnmpServiceEnabled.IsSet()
+}
+
+// HasSnmpServiceEnabled returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasSnmpServiceEnabled() bool {
+	if o != nil && o.SnmpServiceEnabled.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpServiceEnabled gets a reference to the given NullableBool and assigns it to the SnmpServiceEnabled field.
+func (o *CreateNetworkDevice) SetSnmpServiceEnabled(v bool) {
+	o.SnmpServiceEnabled.Set(&v)
+}
+// SetSnmpServiceEnabledNil sets the value for SnmpServiceEnabled to be an explicit nil
+func (o *CreateNetworkDevice) SetSnmpServiceEnabledNil() {
+	o.SnmpServiceEnabled.Set(nil)
+}
+
+// UnsetSnmpServiceEnabled ensures that no value is present for SnmpServiceEnabled, not even an explicit nil
+func (o *CreateNetworkDevice) UnsetSnmpServiceEnabled() {
+	o.SnmpServiceEnabled.Unset()
+}
+
+// GetSnmpMonitoringEnabled returns the SnmpMonitoringEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateNetworkDevice) GetSnmpMonitoringEnabled() bool {
+	if o == nil || IsNil(o.SnmpMonitoringEnabled.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SnmpMonitoringEnabled.Get()
+}
+
+// GetSnmpMonitoringEnabledOk returns a tuple with the SnmpMonitoringEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateNetworkDevice) GetSnmpMonitoringEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SnmpMonitoringEnabled.Get(), o.SnmpMonitoringEnabled.IsSet()
+}
+
+// HasSnmpMonitoringEnabled returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasSnmpMonitoringEnabled() bool {
+	if o != nil && o.SnmpMonitoringEnabled.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpMonitoringEnabled gets a reference to the given NullableBool and assigns it to the SnmpMonitoringEnabled field.
+func (o *CreateNetworkDevice) SetSnmpMonitoringEnabled(v bool) {
+	o.SnmpMonitoringEnabled.Set(&v)
+}
+// SetSnmpMonitoringEnabledNil sets the value for SnmpMonitoringEnabled to be an explicit nil
+func (o *CreateNetworkDevice) SetSnmpMonitoringEnabledNil() {
+	o.SnmpMonitoringEnabled.Set(nil)
+}
+
+// UnsetSnmpMonitoringEnabled ensures that no value is present for SnmpMonitoringEnabled, not even an explicit nil
+func (o *CreateNetworkDevice) UnsetSnmpMonitoringEnabled() {
+	o.SnmpMonitoringEnabled.Unset()
 }
 
 // GetIsStorageSwitch returns the IsStorageSwitch field value if set, zero value otherwise.
@@ -657,6 +759,70 @@ func (o *CreateNetworkDevice) GetManagementPasswordOk() (*string, bool) {
 // SetManagementPassword sets field value
 func (o *CreateNetworkDevice) SetManagementPassword(v string) {
 	o.ManagementPassword = v
+}
+
+// GetApiUsername returns the ApiUsername field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetApiUsername() string {
+	if o == nil || IsNil(o.ApiUsername) {
+		var ret string
+		return ret
+	}
+	return *o.ApiUsername
+}
+
+// GetApiUsernameOk returns a tuple with the ApiUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetApiUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiUsername) {
+		return nil, false
+	}
+	return o.ApiUsername, true
+}
+
+// HasApiUsername returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasApiUsername() bool {
+	if o != nil && !IsNil(o.ApiUsername) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiUsername gets a reference to the given string and assigns it to the ApiUsername field.
+func (o *CreateNetworkDevice) SetApiUsername(v string) {
+	o.ApiUsername = &v
+}
+
+// GetApiPassword returns the ApiPassword field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetApiPassword() string {
+	if o == nil || IsNil(o.ApiPassword) {
+		var ret string
+		return ret
+	}
+	return *o.ApiPassword
+}
+
+// GetApiPasswordOk returns a tuple with the ApiPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetApiPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiPassword) {
+		return nil, false
+	}
+	return o.ApiPassword, true
+}
+
+// HasApiPassword returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasApiPassword() bool {
+	if o != nil && !IsNil(o.ApiPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiPassword gets a reference to the given string and assigns it to the ApiPassword field.
+func (o *CreateNetworkDevice) SetApiPassword(v string) {
+	o.ApiPassword = &v
 }
 
 // GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1476,6 +1642,38 @@ func (o *CreateNetworkDevice) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetTagsMap returns the TagsMap field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetTagsMap() map[string]string {
+	if o == nil || IsNil(o.TagsMap) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.TagsMap
+}
+
+// GetTagsMapOk returns a tuple with the TagsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetTagsMapOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.TagsMap) {
+		return nil, false
+	}
+	return o.TagsMap, true
+}
+
+// HasTagsMap returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasTagsMap() bool {
+	if o != nil && !IsNil(o.TagsMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetTagsMap gets a reference to the given map[string]string and assigns it to the TagsMap field.
+func (o *CreateNetworkDevice) SetTagsMap(v map[string]string) {
+	o.TagsMap = &v
+}
+
 // GetRequiresOsInstall returns the RequiresOsInstall field value if set, zero value otherwise.
 func (o *CreateNetworkDevice) GetRequiresOsInstall() bool {
 	if o == nil || IsNil(o.RequiresOsInstall) {
@@ -1551,9 +1749,9 @@ func (o *CreateNetworkDevice) UnsetOverwriteWithHostnameFromFetchedSwitch() {
 }
 
 // GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
-func (o *CreateNetworkDevice) GetVmPoolId() float32 {
+func (o *CreateNetworkDevice) GetVmPoolId() int64 {
 	if o == nil || IsNil(o.VmPoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.VmPoolId
@@ -1561,7 +1759,7 @@ func (o *CreateNetworkDevice) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDevice) GetVmPoolIdOk() (*float32, bool) {
+func (o *CreateNetworkDevice) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmPoolId) {
 		return nil, false
 	}
@@ -1577,8 +1775,8 @@ func (o *CreateNetworkDevice) HasVmPoolId() bool {
 	return false
 }
 
-// SetVmPoolId gets a reference to the given float32 and assigns it to the VmPoolId field.
-func (o *CreateNetworkDevice) SetVmPoolId(v float32) {
+// SetVmPoolId gets a reference to the given int64 and assigns it to the VmPoolId field.
+func (o *CreateNetworkDevice) SetVmPoolId(v int64) {
 	o.VmPoolId = &v
 }
 
@@ -1615,9 +1813,9 @@ func (o *CreateNetworkDevice) SetCustomVariables(v map[string]interface{}) {
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
-func (o *CreateNetworkDevice) GetServerId() float32 {
+func (o *CreateNetworkDevice) GetServerId() int64 {
 	if o == nil || IsNil(o.ServerId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerId
@@ -1625,7 +1823,7 @@ func (o *CreateNetworkDevice) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDevice) GetServerIdOk() (*float32, bool) {
+func (o *CreateNetworkDevice) GetServerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerId) {
 		return nil, false
 	}
@@ -1641,8 +1839,8 @@ func (o *CreateNetworkDevice) HasServerId() bool {
 	return false
 }
 
-// SetServerId gets a reference to the given float32 and assigns it to the ServerId field.
-func (o *CreateNetworkDevice) SetServerId(v float32) {
+// SetServerId gets a reference to the given int64 and assigns it to the ServerId field.
+func (o *CreateNetworkDevice) SetServerId(v int64) {
 	o.ServerId = &v
 }
 
@@ -1679,9 +1877,9 @@ func (o *CreateNetworkDevice) SetNumaNode(v float32) {
 }
 
 // GetSwitchControllerId returns the SwitchControllerId field value if set, zero value otherwise.
-func (o *CreateNetworkDevice) GetSwitchControllerId() float32 {
+func (o *CreateNetworkDevice) GetSwitchControllerId() int64 {
 	if o == nil || IsNil(o.SwitchControllerId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.SwitchControllerId
@@ -1689,7 +1887,7 @@ func (o *CreateNetworkDevice) GetSwitchControllerId() float32 {
 
 // GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDevice) GetSwitchControllerIdOk() (*float32, bool) {
+func (o *CreateNetworkDevice) GetSwitchControllerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SwitchControllerId) {
 		return nil, false
 	}
@@ -1705,9 +1903,137 @@ func (o *CreateNetworkDevice) HasSwitchControllerId() bool {
 	return false
 }
 
-// SetSwitchControllerId gets a reference to the given float32 and assigns it to the SwitchControllerId field.
-func (o *CreateNetworkDevice) SetSwitchControllerId(v float32) {
+// SetSwitchControllerId gets a reference to the given int64 and assigns it to the SwitchControllerId field.
+func (o *CreateNetworkDevice) SetSwitchControllerId(v int64) {
 	o.SwitchControllerId = &v
+}
+
+// GetSnmpPassword returns the SnmpPassword field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetSnmpPassword() string {
+	if o == nil || IsNil(o.SnmpPassword) {
+		var ret string
+		return ret
+	}
+	return *o.SnmpPassword
+}
+
+// GetSnmpPasswordOk returns a tuple with the SnmpPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetSnmpPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.SnmpPassword) {
+		return nil, false
+	}
+	return o.SnmpPassword, true
+}
+
+// HasSnmpPassword returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasSnmpPassword() bool {
+	if o != nil && !IsNil(o.SnmpPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpPassword gets a reference to the given string and assigns it to the SnmpPassword field.
+func (o *CreateNetworkDevice) SetSnmpPassword(v string) {
+	o.SnmpPassword = &v
+}
+
+// GetSnmpPort returns the SnmpPort field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetSnmpPort() float32 {
+	if o == nil || IsNil(o.SnmpPort) {
+		var ret float32
+		return ret
+	}
+	return *o.SnmpPort
+}
+
+// GetSnmpPortOk returns a tuple with the SnmpPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetSnmpPortOk() (*float32, bool) {
+	if o == nil || IsNil(o.SnmpPort) {
+		return nil, false
+	}
+	return o.SnmpPort, true
+}
+
+// HasSnmpPort returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasSnmpPort() bool {
+	if o != nil && !IsNil(o.SnmpPort) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpPort gets a reference to the given float32 and assigns it to the SnmpPort field.
+func (o *CreateNetworkDevice) SetSnmpPort(v float32) {
+	o.SnmpPort = &v
+}
+
+// GetSnmpSystemContact returns the SnmpSystemContact field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetSnmpSystemContact() string {
+	if o == nil || IsNil(o.SnmpSystemContact) {
+		var ret string
+		return ret
+	}
+	return *o.SnmpSystemContact
+}
+
+// GetSnmpSystemContactOk returns a tuple with the SnmpSystemContact field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetSnmpSystemContactOk() (*string, bool) {
+	if o == nil || IsNil(o.SnmpSystemContact) {
+		return nil, false
+	}
+	return o.SnmpSystemContact, true
+}
+
+// HasSnmpSystemContact returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasSnmpSystemContact() bool {
+	if o != nil && !IsNil(o.SnmpSystemContact) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpSystemContact gets a reference to the given string and assigns it to the SnmpSystemContact field.
+func (o *CreateNetworkDevice) SetSnmpSystemContact(v string) {
+	o.SnmpSystemContact = &v
+}
+
+// GetSnmpVersion returns the SnmpVersion field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetSnmpVersion() float32 {
+	if o == nil || IsNil(o.SnmpVersion) {
+		var ret float32
+		return ret
+	}
+	return *o.SnmpVersion
+}
+
+// GetSnmpVersionOk returns a tuple with the SnmpVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetSnmpVersionOk() (*float32, bool) {
+	if o == nil || IsNil(o.SnmpVersion) {
+		return nil, false
+	}
+	return o.SnmpVersion, true
+}
+
+// HasSnmpVersion returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasSnmpVersion() bool {
+	if o != nil && !IsNil(o.SnmpVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpVersion gets a reference to the given float32 and assigns it to the SnmpVersion field.
+func (o *CreateNetworkDevice) SetSnmpVersion(v float32) {
+	o.SnmpVersion = &v
 }
 
 // GetAuthenticationOptions returns the AuthenticationOptions field value if set, zero value otherwise.
@@ -1775,6 +2101,12 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.SyslogEnabled.IsSet() {
 		toSerialize["syslogEnabled"] = o.SyslogEnabled.Get()
 	}
+	if o.SnmpServiceEnabled.IsSet() {
+		toSerialize["snmpServiceEnabled"] = o.SnmpServiceEnabled.Get()
+	}
+	if o.SnmpMonitoringEnabled.IsSet() {
+		toSerialize["snmpMonitoringEnabled"] = o.SnmpMonitoringEnabled.Get()
+	}
 	if !IsNil(o.IsStorageSwitch) {
 		toSerialize["isStorageSwitch"] = o.IsStorageSwitch
 	}
@@ -1792,6 +2124,12 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["username"] = o.Username.Get()
 	toSerialize["managementPassword"] = o.ManagementPassword
+	if !IsNil(o.ApiUsername) {
+		toSerialize["apiUsername"] = o.ApiUsername
+	}
+	if !IsNil(o.ApiPassword) {
+		toSerialize["apiPassword"] = o.ApiPassword
+	}
 	if o.ManagementAddressGateway.IsSet() {
 		toSerialize["managementAddressGateway"] = o.ManagementAddressGateway.Get()
 	}
@@ -1852,6 +2190,9 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	if !IsNil(o.TagsMap) {
+		toSerialize["tagsMap"] = o.TagsMap
+	}
 	if !IsNil(o.RequiresOsInstall) {
 		toSerialize["requiresOsInstall"] = o.RequiresOsInstall
 	}
@@ -1872,6 +2213,18 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SwitchControllerId) {
 		toSerialize["switchControllerId"] = o.SwitchControllerId
+	}
+	if !IsNil(o.SnmpPassword) {
+		toSerialize["snmpPassword"] = o.SnmpPassword
+	}
+	if !IsNil(o.SnmpPort) {
+		toSerialize["snmpPort"] = o.SnmpPort
+	}
+	if !IsNil(o.SnmpSystemContact) {
+		toSerialize["snmpSystemContact"] = o.SnmpSystemContact
+	}
+	if !IsNil(o.SnmpVersion) {
+		toSerialize["snmpVersion"] = o.SnmpVersion
 	}
 	if !IsNil(o.AuthenticationOptions) {
 		toSerialize["authenticationOptions"] = o.AuthenticationOptions
@@ -1931,6 +2284,8 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "position")
 		delete(additionalProperties, "isGateway")
 		delete(additionalProperties, "syslogEnabled")
+		delete(additionalProperties, "snmpServiceEnabled")
+		delete(additionalProperties, "snmpMonitoringEnabled")
 		delete(additionalProperties, "isStorageSwitch")
 		delete(additionalProperties, "isBorderDevice")
 		delete(additionalProperties, "quarantineVlan")
@@ -1938,6 +2293,8 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "managementPassword")
+		delete(additionalProperties, "apiUsername")
+		delete(additionalProperties, "apiPassword")
 		delete(additionalProperties, "managementAddressGateway")
 		delete(additionalProperties, "managementAddressMask")
 		delete(additionalProperties, "managementMAC")
@@ -1958,6 +2315,7 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "orderIndex")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "tagsMap")
 		delete(additionalProperties, "requiresOsInstall")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")
 		delete(additionalProperties, "vmPoolId")
@@ -1965,6 +2323,10 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "switchControllerId")
+		delete(additionalProperties, "snmpPassword")
+		delete(additionalProperties, "snmpPort")
+		delete(additionalProperties, "snmpSystemContact")
+		delete(additionalProperties, "snmpVersion")
 		delete(additionalProperties, "authenticationOptions")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the VM Instance Group Interface Configuration | 
+**Revision** | **int64** | Revision of the VM Instance Group Interface Configuration | 
 **Label** | **string** | Name of the VM Instance Group Interface. | 
 **Index** | **float32** | Interface index | 
-**NetworkId** | Pointer to **float32** | Network ID | [optional] 
+**NetworkId** | Pointer to **int64** | Network ID | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain of the VM Instance Group Interface. | [optional] 
-**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance Group Interface. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the VM Instance Group Interface. | [optional] 
 **DeployType** | **string** | Deploy type of the VM Instance Group Interface | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the VM Instance Group Interface | [default to "not_started"]
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the VM Instance Group Interface. | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the VM Instance Group Interface. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the VM Instance Group Interface update. | 
 
 ## Methods
 
 ### NewVMInstanceGroupInterfaceConfiguration
 
-`func NewVMInstanceGroupInterfaceConfiguration(revision float32, label string, index float32, deployType string, deployStatus string, updatedTimestamp string, ) *VMInstanceGroupInterfaceConfiguration`
+`func NewVMInstanceGroupInterfaceConfiguration(revision int64, label string, index float32, deployType string, deployStatus string, updatedTimestamp string, ) *VMInstanceGroupInterfaceConfiguration`
 
 NewVMInstanceGroupInterfaceConfiguration instantiates a new VMInstanceGroupInterfaceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetRevision() float32`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *VMInstanceGroupInterfaceConfiguration) SetRevision(v float32)`
+`func (o *VMInstanceGroupInterfaceConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -96,20 +96,20 @@ SetIndex sets Index field to given value.
 
 ### GetNetworkId
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetNetworkId() float32`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetNetworkId() int64`
 
 GetNetworkId returns the NetworkId field if non-nil, zero value otherwise.
 
 ### GetNetworkIdOk
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetNetworkIdOk() (*float32, bool)`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetNetworkIdOk() (*int64, bool)`
 
 GetNetworkIdOk returns a tuple with the NetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkId
 
-`func (o *VMInstanceGroupInterfaceConfiguration) SetNetworkId(v float32)`
+`func (o *VMInstanceGroupInterfaceConfiguration) SetNetworkId(v int64)`
 
 SetNetworkId sets NetworkId field to given value.
 
@@ -146,20 +146,20 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeId() float32`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool)`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *VMInstanceGroupInterfaceConfiguration) SetDnsSubdomainChangeId(v float32)`
+`func (o *VMInstanceGroupInterfaceConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -211,20 +211,20 @@ SetDeployStatus sets DeployStatus field to given value.
 
 ### GetInfrastructureDeployId
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetInfrastructureDeployId() float32`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *VMInstanceGroupInterfaceConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+`func (o *VMInstanceGroupInterfaceConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *VMInstanceGroupInterfaceConfiguration) SetInfrastructureDeployId(v float32)`
+`func (o *VMInstanceGroupInterfaceConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 

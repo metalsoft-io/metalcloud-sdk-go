@@ -34,6 +34,18 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SecurityAPIService CreateQuotaProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SecurityAPI.CreateQuotaProfile(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SecurityAPIService CreateRole", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -53,6 +65,19 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 		var permissionName string
 
 		httpRes, err := apiClient.SecurityAPI.DeletePermission(context.Background(), permissionName).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService DeleteQuotaProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var profileId string
+
+		httpRes, err := apiClient.SecurityAPI.DeleteQuotaProfile(context.Background(), profileId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -96,6 +121,32 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SecurityAPIService GetQuotaProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var profileId string
+
+		resp, httpRes, err := apiClient.SecurityAPI.GetQuotaProfile(context.Background(), profileId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService GetQuotaProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SecurityAPI.GetQuotaProfiles(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SecurityAPIService GetRole", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -129,6 +180,20 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 		var name string
 
 		resp, httpRes, err := apiClient.SecurityAPI.UpdateProvider(context.Background(), name).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService UpdateQuotaProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var profileId string
+
+		resp, httpRes, err := apiClient.SecurityAPI.UpdateQuotaProfile(context.Background(), profileId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

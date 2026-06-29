@@ -22,22 +22,22 @@ var _ MappedNullable = &ServerInstanceGroupInterfaceConfiguration{}
 // ServerInstanceGroupInterfaceConfiguration struct for ServerInstanceGroupInterfaceConfiguration
 type ServerInstanceGroupInterfaceConfiguration struct {
 	// Revision number
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Timestamp of the latest update of the Product Instance.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Subdomain of the Product Instance.
 	Subdomain *string `json:"subdomain,omitempty"`
-	GroupId int32 `json:"groupId"`
+	GroupId int64 `json:"groupId"`
 	// The index of the interface (0-based) on this server.
 	Index int32 `json:"index"`
 	// The ID of the network to which this interface is to be attached to.
-	NetworkId *int32 `json:"networkId,omitempty"`
+	NetworkId *int64 `json:"networkId,omitempty"`
 	// Id of the DNS subdomain for the Product Instance
-	DnsSubdomainChangeId *int32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Id of the deployment for the Product Instance
-	InfrastructureDeployId *int32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Number of empty edits
 	EmptyEdit *int32 `json:"emptyEdit,omitempty"`
 	// Product Instance deploy type
@@ -53,7 +53,7 @@ type _ServerInstanceGroupInterfaceConfiguration ServerInstanceGroupInterfaceConf
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupInterfaceConfiguration(revision int32, label string, updatedTimestamp string, groupId int32, index int32, deployType string, deployStatus string) *ServerInstanceGroupInterfaceConfiguration {
+func NewServerInstanceGroupInterfaceConfiguration(revision int64, label string, updatedTimestamp string, groupId int64, index int32, deployType string, deployStatus string) *ServerInstanceGroupInterfaceConfiguration {
 	this := ServerInstanceGroupInterfaceConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -78,9 +78,9 @@ func NewServerInstanceGroupInterfaceConfigurationWithDefaults() *ServerInstanceG
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstanceGroupInterfaceConfiguration) GetRevision() int32 {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetRevisionOk() (*int32, bool) {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetRevisionOk() (*int32, boo
 }
 
 // SetRevision sets field value
-func (o *ServerInstanceGroupInterfaceConfiguration) SetRevision(v int32) {
+func (o *ServerInstanceGroupInterfaceConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -182,9 +182,9 @@ func (o *ServerInstanceGroupInterfaceConfiguration) SetSubdomain(v string) {
 }
 
 // GetGroupId returns the GroupId field value
-func (o *ServerInstanceGroupInterfaceConfiguration) GetGroupId() int32 {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetGroupId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -193,7 +193,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetGroupId() int32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetGroupIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -201,7 +201,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetGroupIdOk() (*int32, bool
 }
 
 // SetGroupId sets field value
-func (o *ServerInstanceGroupInterfaceConfiguration) SetGroupId(v int32) {
+func (o *ServerInstanceGroupInterfaceConfiguration) SetGroupId(v int64) {
 	o.GroupId = v
 }
 
@@ -230,9 +230,9 @@ func (o *ServerInstanceGroupInterfaceConfiguration) SetIndex(v int32) {
 }
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetNetworkId() int32 {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetNetworkId() int64 {
 	if o == nil || IsNil(o.NetworkId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkId
@@ -240,7 +240,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetNetworkId() int32 {
 
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetNetworkIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkId) {
 		return nil, false
 	}
@@ -256,15 +256,15 @@ func (o *ServerInstanceGroupInterfaceConfiguration) HasNetworkId() bool {
 	return false
 }
 
-// SetNetworkId gets a reference to the given int32 and assigns it to the NetworkId field.
-func (o *ServerInstanceGroupInterfaceConfiguration) SetNetworkId(v int32) {
+// SetNetworkId gets a reference to the given int64 and assigns it to the NetworkId field.
+func (o *ServerInstanceGroupInterfaceConfiguration) SetNetworkId(v int64) {
 	o.NetworkId = &v
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeId() int32 {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -272,7 +272,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeId() in
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -288,15 +288,15 @@ func (o *ServerInstanceGroupInterfaceConfiguration) HasDnsSubdomainChangeId() bo
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given int32 and assigns it to the DnsSubdomainChangeId field.
-func (o *ServerInstanceGroupInterfaceConfiguration) SetDnsSubdomainChangeId(v int32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *ServerInstanceGroupInterfaceConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployId() int32 {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -304,7 +304,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployId() 
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -320,8 +320,8 @@ func (o *ServerInstanceGroupInterfaceConfiguration) HasInfrastructureDeployId() 
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given int32 and assigns it to the InfrastructureDeployId field.
-func (o *ServerInstanceGroupInterfaceConfiguration) SetInfrastructureDeployId(v int32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *ServerInstanceGroupInterfaceConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 

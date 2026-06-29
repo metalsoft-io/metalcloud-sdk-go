@@ -22,27 +22,27 @@ var _ MappedNullable = &JobArchive{}
 // JobArchive struct for JobArchive
 type JobArchive struct {
 	// Job Id
-	JobId int32 `json:"jobId"`
+	JobId int64 `json:"jobId"`
 	// Site Id
-	SiteId *int32 `json:"siteId,omitempty"`
+	SiteId *int64 `json:"siteId,omitempty"`
 	// Instance Id
-	InstanceId *int32 `json:"instanceId,omitempty"`
+	InstanceId *int64 `json:"instanceId,omitempty"`
 	// Server Id
-	ServerId *int32 `json:"serverId,omitempty"`
+	ServerId *int64 `json:"serverId,omitempty"`
 	// VM Pool Id
-	VmPoolId *int32 `json:"vmPoolId,omitempty"`
+	VmPoolId *int64 `json:"vmPoolId,omitempty"`
 	// Storage Pool Id
-	StorageId *int32 `json:"storageId,omitempty"`
+	StorageId *int64 `json:"storageId,omitempty"`
 	// Network Equipment Id
-	NetworkDeviceId *int32 `json:"networkDeviceId,omitempty"`
+	NetworkDeviceId *int64 `json:"networkDeviceId,omitempty"`
 	// Infrastructure Id
-	InfrastructureId *int32 `json:"infrastructureId,omitempty"`
+	InfrastructureId *int64 `json:"infrastructureId,omitempty"`
 	// The id of the next job that should be executed after this job
 	JobIdBlocked *int32 `json:"jobIdBlocked,omitempty"`
 	// The id of the job that is blocking this job from executing
 	JobIdBlockedBy *int32 `json:"jobIdBlockedBy,omitempty"`
 	// The id of the group that this job belongs to
-	JobGroupId *int32 `json:"jobGroupId,omitempty"`
+	JobGroupId *int64 `json:"jobGroupId,omitempty"`
 	// The type of the job
 	Type string `json:"type"`
 	// The status of the job
@@ -88,7 +88,7 @@ type _JobArchive JobArchive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link) *JobArchive {
+func NewJobArchive(jobId int64, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links []Link) *JobArchive {
 	this := JobArchive{}
 	this.JobId = jobId
 	this.Type = type_
@@ -117,9 +117,9 @@ func NewJobArchiveWithDefaults() *JobArchive {
 }
 
 // GetJobId returns the JobId field value
-func (o *JobArchive) GetJobId() int32 {
+func (o *JobArchive) GetJobId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -128,7 +128,7 @@ func (o *JobArchive) GetJobId() int32 {
 
 // GetJobIdOk returns a tuple with the JobId field value
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetJobIdOk() (*int32, bool) {
+func (o *JobArchive) GetJobIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,14 +136,14 @@ func (o *JobArchive) GetJobIdOk() (*int32, bool) {
 }
 
 // SetJobId sets field value
-func (o *JobArchive) SetJobId(v int32) {
+func (o *JobArchive) SetJobId(v int64) {
 	o.JobId = v
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *JobArchive) GetSiteId() int32 {
+func (o *JobArchive) GetSiteId() int64 {
 	if o == nil || IsNil(o.SiteId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SiteId
@@ -151,7 +151,7 @@ func (o *JobArchive) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetSiteIdOk() (*int32, bool) {
+func (o *JobArchive) GetSiteIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -167,15 +167,15 @@ func (o *JobArchive) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
-func (o *JobArchive) SetSiteId(v int32) {
+// SetSiteId gets a reference to the given int64 and assigns it to the SiteId field.
+func (o *JobArchive) SetSiteId(v int64) {
 	o.SiteId = &v
 }
 
 // GetInstanceId returns the InstanceId field value if set, zero value otherwise.
-func (o *JobArchive) GetInstanceId() int32 {
+func (o *JobArchive) GetInstanceId() int64 {
 	if o == nil || IsNil(o.InstanceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InstanceId
@@ -183,7 +183,7 @@ func (o *JobArchive) GetInstanceId() int32 {
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetInstanceIdOk() (*int32, bool) {
+func (o *JobArchive) GetInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InstanceId) {
 		return nil, false
 	}
@@ -199,15 +199,15 @@ func (o *JobArchive) HasInstanceId() bool {
 	return false
 }
 
-// SetInstanceId gets a reference to the given int32 and assigns it to the InstanceId field.
-func (o *JobArchive) SetInstanceId(v int32) {
+// SetInstanceId gets a reference to the given int64 and assigns it to the InstanceId field.
+func (o *JobArchive) SetInstanceId(v int64) {
 	o.InstanceId = &v
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
-func (o *JobArchive) GetServerId() int32 {
+func (o *JobArchive) GetServerId() int64 {
 	if o == nil || IsNil(o.ServerId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ServerId
@@ -215,7 +215,7 @@ func (o *JobArchive) GetServerId() int32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetServerIdOk() (*int32, bool) {
+func (o *JobArchive) GetServerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerId) {
 		return nil, false
 	}
@@ -231,15 +231,15 @@ func (o *JobArchive) HasServerId() bool {
 	return false
 }
 
-// SetServerId gets a reference to the given int32 and assigns it to the ServerId field.
-func (o *JobArchive) SetServerId(v int32) {
+// SetServerId gets a reference to the given int64 and assigns it to the ServerId field.
+func (o *JobArchive) SetServerId(v int64) {
 	o.ServerId = &v
 }
 
 // GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
-func (o *JobArchive) GetVmPoolId() int32 {
+func (o *JobArchive) GetVmPoolId() int64 {
 	if o == nil || IsNil(o.VmPoolId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.VmPoolId
@@ -247,7 +247,7 @@ func (o *JobArchive) GetVmPoolId() int32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetVmPoolIdOk() (*int32, bool) {
+func (o *JobArchive) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmPoolId) {
 		return nil, false
 	}
@@ -263,15 +263,15 @@ func (o *JobArchive) HasVmPoolId() bool {
 	return false
 }
 
-// SetVmPoolId gets a reference to the given int32 and assigns it to the VmPoolId field.
-func (o *JobArchive) SetVmPoolId(v int32) {
+// SetVmPoolId gets a reference to the given int64 and assigns it to the VmPoolId field.
+func (o *JobArchive) SetVmPoolId(v int64) {
 	o.VmPoolId = &v
 }
 
 // GetStorageId returns the StorageId field value if set, zero value otherwise.
-func (o *JobArchive) GetStorageId() int32 {
+func (o *JobArchive) GetStorageId() int64 {
 	if o == nil || IsNil(o.StorageId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StorageId
@@ -279,7 +279,7 @@ func (o *JobArchive) GetStorageId() int32 {
 
 // GetStorageIdOk returns a tuple with the StorageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetStorageIdOk() (*int32, bool) {
+func (o *JobArchive) GetStorageIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.StorageId) {
 		return nil, false
 	}
@@ -295,15 +295,15 @@ func (o *JobArchive) HasStorageId() bool {
 	return false
 }
 
-// SetStorageId gets a reference to the given int32 and assigns it to the StorageId field.
-func (o *JobArchive) SetStorageId(v int32) {
+// SetStorageId gets a reference to the given int64 and assigns it to the StorageId field.
+func (o *JobArchive) SetStorageId(v int64) {
 	o.StorageId = &v
 }
 
 // GetNetworkDeviceId returns the NetworkDeviceId field value if set, zero value otherwise.
-func (o *JobArchive) GetNetworkDeviceId() int32 {
+func (o *JobArchive) GetNetworkDeviceId() int64 {
 	if o == nil || IsNil(o.NetworkDeviceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkDeviceId
@@ -311,7 +311,7 @@ func (o *JobArchive) GetNetworkDeviceId() int32 {
 
 // GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetNetworkDeviceIdOk() (*int32, bool) {
+func (o *JobArchive) GetNetworkDeviceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkDeviceId) {
 		return nil, false
 	}
@@ -327,15 +327,15 @@ func (o *JobArchive) HasNetworkDeviceId() bool {
 	return false
 }
 
-// SetNetworkDeviceId gets a reference to the given int32 and assigns it to the NetworkDeviceId field.
-func (o *JobArchive) SetNetworkDeviceId(v int32) {
+// SetNetworkDeviceId gets a reference to the given int64 and assigns it to the NetworkDeviceId field.
+func (o *JobArchive) SetNetworkDeviceId(v int64) {
 	o.NetworkDeviceId = &v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value if set, zero value otherwise.
-func (o *JobArchive) GetInfrastructureId() int32 {
+func (o *JobArchive) GetInfrastructureId() int64 {
 	if o == nil || IsNil(o.InfrastructureId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureId
@@ -343,7 +343,7 @@ func (o *JobArchive) GetInfrastructureId() int32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetInfrastructureIdOk() (*int32, bool) {
+func (o *JobArchive) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureId) {
 		return nil, false
 	}
@@ -359,8 +359,8 @@ func (o *JobArchive) HasInfrastructureId() bool {
 	return false
 }
 
-// SetInfrastructureId gets a reference to the given int32 and assigns it to the InfrastructureId field.
-func (o *JobArchive) SetInfrastructureId(v int32) {
+// SetInfrastructureId gets a reference to the given int64 and assigns it to the InfrastructureId field.
+func (o *JobArchive) SetInfrastructureId(v int64) {
 	o.InfrastructureId = &v
 }
 
@@ -429,9 +429,9 @@ func (o *JobArchive) SetJobIdBlockedBy(v int32) {
 }
 
 // GetJobGroupId returns the JobGroupId field value if set, zero value otherwise.
-func (o *JobArchive) GetJobGroupId() int32 {
+func (o *JobArchive) GetJobGroupId() int64 {
 	if o == nil || IsNil(o.JobGroupId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.JobGroupId
@@ -439,7 +439,7 @@ func (o *JobArchive) GetJobGroupId() int32 {
 
 // GetJobGroupIdOk returns a tuple with the JobGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobArchive) GetJobGroupIdOk() (*int32, bool) {
+func (o *JobArchive) GetJobGroupIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.JobGroupId) {
 		return nil, false
 	}
@@ -455,8 +455,8 @@ func (o *JobArchive) HasJobGroupId() bool {
 	return false
 }
 
-// SetJobGroupId gets a reference to the given int32 and assigns it to the JobGroupId field.
-func (o *JobArchive) SetJobGroupId(v int32) {
+// SetJobGroupId gets a reference to the given int64 and assigns it to the JobGroupId field.
+func (o *JobArchive) SetJobGroupId(v int64) {
 	o.JobGroupId = &v
 }
 

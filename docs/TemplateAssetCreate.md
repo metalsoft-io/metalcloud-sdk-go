@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TemplateId** | **int32** | The ID of the OS template that this template asset belongs to | 
+**TemplateId** | **int64** | The ID of the OS template that this template asset belongs to | 
 **Usage** | **string** | The template asset usage | 
 **File** | [**TemplateAssetFile**](TemplateAssetFile.md) |  | 
 **Tags** | Pointer to **[]string** | The tags associated with the template asset | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewTemplateAssetCreate
 
-`func NewTemplateAssetCreate(templateId int32, usage string, file TemplateAssetFile, ) *TemplateAssetCreate`
+`func NewTemplateAssetCreate(templateId int64, usage string, file TemplateAssetFile, ) *TemplateAssetCreate`
 
 NewTemplateAssetCreate instantiates a new TemplateAssetCreate object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTemplateId
 
-`func (o *TemplateAssetCreate) GetTemplateId() int32`
+`func (o *TemplateAssetCreate) GetTemplateId() int64`
 
 GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
 ### GetTemplateIdOk
 
-`func (o *TemplateAssetCreate) GetTemplateIdOk() (*int32, bool)`
+`func (o *TemplateAssetCreate) GetTemplateIdOk() (*int64, bool)`
 
 GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplateId
 
-`func (o *TemplateAssetCreate) SetTemplateId(v int32)`
+`func (o *TemplateAssetCreate) SetTemplateId(v int64)`
 
 SetTemplateId sets TemplateId field to given value.
 

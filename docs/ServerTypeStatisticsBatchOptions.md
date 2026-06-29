@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserIdOwner** | Pointer to **float32** | The id of user owning the resources. Used for filtering | [optional] 
-**SiteId** | **float32** | The id of the site where the resources are located. Used for filtering | 
+**SiteId** | **int64** | The id of the site where the resources are located. Used for filtering | 
 **MaximumResultsPerServerType** | Pointer to **float32** | The maximum returned results per server type. | [optional] 
-**ServerTypeIds** | Pointer to **[]float32** | The id of the server types to get statistics for. | [optional] 
-**InstanceArrayId** | Pointer to **float32** | If specified, treats only the active Instances of the Instance Array as available, instead of all active instances of userIdOwner. | [optional] 
+**ServerTypeIds** | Pointer to **[]int64** | The id of the server types to get statistics for. | [optional] 
+**InstanceArrayId** | Pointer to **int64** | If specified, treats only the active Instances of the Instance Array as available, instead of all active instances of userIdOwner. | [optional] 
 
 ## Methods
 
 ### NewServerTypeStatisticsBatchOptions
 
-`func NewServerTypeStatisticsBatchOptions(siteId float32, ) *ServerTypeStatisticsBatchOptions`
+`func NewServerTypeStatisticsBatchOptions(siteId int64, ) *ServerTypeStatisticsBatchOptions`
 
 NewServerTypeStatisticsBatchOptions instantiates a new ServerTypeStatisticsBatchOptions object
 This constructor will assign default values to properties that have it defined,
@@ -56,20 +56,20 @@ HasUserIdOwner returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *ServerTypeStatisticsBatchOptions) GetSiteId() float32`
+`func (o *ServerTypeStatisticsBatchOptions) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *ServerTypeStatisticsBatchOptions) GetSiteIdOk() (*float32, bool)`
+`func (o *ServerTypeStatisticsBatchOptions) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *ServerTypeStatisticsBatchOptions) SetSiteId(v float32)`
+`func (o *ServerTypeStatisticsBatchOptions) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -101,20 +101,20 @@ HasMaximumResultsPerServerType returns a boolean if a field has been set.
 
 ### GetServerTypeIds
 
-`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIds() []float32`
+`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIds() []int64`
 
 GetServerTypeIds returns the ServerTypeIds field if non-nil, zero value otherwise.
 
 ### GetServerTypeIdsOk
 
-`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIdsOk() (*[]float32, bool)`
+`func (o *ServerTypeStatisticsBatchOptions) GetServerTypeIdsOk() (*[]int64, bool)`
 
 GetServerTypeIdsOk returns a tuple with the ServerTypeIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerTypeIds
 
-`func (o *ServerTypeStatisticsBatchOptions) SetServerTypeIds(v []float32)`
+`func (o *ServerTypeStatisticsBatchOptions) SetServerTypeIds(v []int64)`
 
 SetServerTypeIds sets ServerTypeIds field to given value.
 
@@ -126,20 +126,20 @@ HasServerTypeIds returns a boolean if a field has been set.
 
 ### GetInstanceArrayId
 
-`func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayId() float32`
+`func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayId() int64`
 
 GetInstanceArrayId returns the InstanceArrayId field if non-nil, zero value otherwise.
 
 ### GetInstanceArrayIdOk
 
-`func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayIdOk() (*float32, bool)`
+`func (o *ServerTypeStatisticsBatchOptions) GetInstanceArrayIdOk() (*int64, bool)`
 
 GetInstanceArrayIdOk returns a tuple with the InstanceArrayId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceArrayId
 
-`func (o *ServerTypeStatisticsBatchOptions) SetInstanceArrayId(v float32)`
+`func (o *ServerTypeStatisticsBatchOptions) SetInstanceArrayId(v int64)`
 
 SetInstanceArrayId sets InstanceArrayId field to given value.
 

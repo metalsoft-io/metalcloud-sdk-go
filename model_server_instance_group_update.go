@@ -32,7 +32,7 @@ type ServerInstanceGroupUpdate struct {
 	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
-	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Object containing custom variables and variable overrides.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// The CPU count on each instance.
@@ -56,9 +56,9 @@ type ServerInstanceGroupUpdate struct {
 	// The ipv4 vlan that should override the default from the WAN Network for the primary ip.
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
 	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group.
-	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
+	NetworkEquipmentForceSubnetPoolIpv4WanId *int64 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// The server type ID that will be assigned to newly created instances.
-	DefaultServerTypeId *int32 `json:"defaultServerTypeId,omitempty"`
+	DefaultServerTypeId *int64 `json:"defaultServerTypeId,omitempty"`
 	// Default Custom Storage Profile for the newly created Instances.
 	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	// Server filtering rules for allocating servers to instances. If provided, servers must match all rules to be eligible for allocation.
@@ -318,9 +318,9 @@ func (o *ServerInstanceGroupUpdate) SetHostname(v string) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetOsTemplateId() int32 {
+func (o *ServerInstanceGroupUpdate) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -328,7 +328,7 @@ func (o *ServerInstanceGroupUpdate) GetOsTemplateId() int32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetOsTemplateIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupUpdate) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -344,8 +344,8 @@ func (o *ServerInstanceGroupUpdate) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
-func (o *ServerInstanceGroupUpdate) SetOsTemplateId(v int32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceGroupUpdate) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 
@@ -702,9 +702,9 @@ func (o *ServerInstanceGroupUpdate) SetOverrideIpv4WanVlanId(v int32) {
 }
 
 // GetNetworkEquipmentForceSubnetPoolIpv4WanId returns the NetworkEquipmentForceSubnetPoolIpv4WanId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int32 {
+func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int64 {
 	if o == nil || IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEquipmentForceSubnetPoolIpv4WanId
@@ -712,7 +712,7 @@ func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanId(
 
 // GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk returns a tuple with the NetworkEquipmentForceSubnetPoolIpv4WanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
 		return nil, false
 	}
@@ -728,15 +728,15 @@ func (o *ServerInstanceGroupUpdate) HasNetworkEquipmentForceSubnetPoolIpv4WanId(
 	return false
 }
 
-// SetNetworkEquipmentForceSubnetPoolIpv4WanId gets a reference to the given int32 and assigns it to the NetworkEquipmentForceSubnetPoolIpv4WanId field.
-func (o *ServerInstanceGroupUpdate) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int32) {
+// SetNetworkEquipmentForceSubnetPoolIpv4WanId gets a reference to the given int64 and assigns it to the NetworkEquipmentForceSubnetPoolIpv4WanId field.
+func (o *ServerInstanceGroupUpdate) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int64) {
 	o.NetworkEquipmentForceSubnetPoolIpv4WanId = &v
 }
 
 // GetDefaultServerTypeId returns the DefaultServerTypeId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeId() int32 {
+func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeId() int64 {
 	if o == nil || IsNil(o.DefaultServerTypeId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultServerTypeId
@@ -744,7 +744,7 @@ func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeId() int32 {
 
 // GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeIdOk() (*int32, bool) {
+func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DefaultServerTypeId) {
 		return nil, false
 	}
@@ -760,8 +760,8 @@ func (o *ServerInstanceGroupUpdate) HasDefaultServerTypeId() bool {
 	return false
 }
 
-// SetDefaultServerTypeId gets a reference to the given int32 and assigns it to the DefaultServerTypeId field.
-func (o *ServerInstanceGroupUpdate) SetDefaultServerTypeId(v int32) {
+// SetDefaultServerTypeId gets a reference to the given int64 and assigns it to the DefaultServerTypeId field.
+func (o *ServerInstanceGroupUpdate) SetDefaultServerTypeId(v int64) {
 	o.DefaultServerTypeId = &v
 }
 

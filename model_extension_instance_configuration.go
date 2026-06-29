@@ -22,7 +22,7 @@ var _ MappedNullable = &ExtensionInstanceConfiguration{}
 // ExtensionInstanceConfiguration struct for ExtensionInstanceConfiguration
 type ExtensionInstanceConfiguration struct {
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The extension instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Flag specifying if the extension instance supports automatic management.
@@ -30,13 +30,13 @@ type ExtensionInstanceConfiguration struct {
 	// Subdomain of the Extension Instance.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the DNS subdomain for the Extension Instance.
-	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Deploy type of the Extension Instance
 	DeployType string `json:"deployType"`
 	// Deploy status of the Extension Instance
 	DeployStatus string `json:"deployStatus"`
 	// Id of the deployment for the Extension Instance.
-	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Timestamp of the Extension Instance last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	AdditionalProperties map[string]interface{}
@@ -48,7 +48,7 @@ type _ExtensionInstanceConfiguration ExtensionInstanceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstanceConfiguration(revision float32, label string, automaticManagement float32, deployType string, deployStatus string, updatedTimestamp string) *ExtensionInstanceConfiguration {
+func NewExtensionInstanceConfiguration(revision int64, label string, automaticManagement float32, deployType string, deployStatus string, updatedTimestamp string) *ExtensionInstanceConfiguration {
 	this := ExtensionInstanceConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -72,9 +72,9 @@ func NewExtensionInstanceConfigurationWithDefaults() *ExtensionInstanceConfigura
 }
 
 // GetRevision returns the Revision field value
-func (o *ExtensionInstanceConfiguration) GetRevision() float32 {
+func (o *ExtensionInstanceConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -83,7 +83,7 @@ func (o *ExtensionInstanceConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstanceConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *ExtensionInstanceConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *ExtensionInstanceConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ExtensionInstanceConfiguration) SetRevision(v float32) {
+func (o *ExtensionInstanceConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -176,9 +176,9 @@ func (o *ExtensionInstanceConfiguration) SetSubdomain(v string) {
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeId() float32 {
+func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -186,7 +186,7 @@ func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeId() float32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool) {
+func (o *ExtensionInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *ExtensionInstanceConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given float32 and assigns it to the DnsSubdomainChangeId field.
-func (o *ExtensionInstanceConfiguration) SetDnsSubdomainChangeId(v float32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *ExtensionInstanceConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
@@ -256,9 +256,9 @@ func (o *ExtensionInstanceConfiguration) SetDeployStatus(v string) {
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployId() float32 {
+func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -266,7 +266,7 @@ func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployId() float32 {
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
+func (o *ExtensionInstanceConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -282,8 +282,8 @@ func (o *ExtensionInstanceConfiguration) HasInfrastructureDeployId() bool {
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
-func (o *ExtensionInstanceConfiguration) SetInfrastructureDeployId(v float32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *ExtensionInstanceConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 

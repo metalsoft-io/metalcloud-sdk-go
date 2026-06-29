@@ -137,7 +137,7 @@ func (a *RouteDomainAPIService) CreateRouteDomainExecute(r RouteDomainAPICreateR
 type RouteDomainAPICreateRouteDomainConfigL3VlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	ifMatch *string
 	createVlanAllocationStrategy *CreateVlanAllocationStrategy
 }
@@ -164,7 +164,7 @@ CreateRouteDomainConfigL3VlanAllocationStrategy Create L3 Vlan allocation strate
  @param id
  @return RouteDomainAPICreateRouteDomainConfigL3VlanAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) CreateRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id float32) RouteDomainAPICreateRouteDomainConfigL3VlanAllocationStrategyRequest {
+func (a *RouteDomainAPIService) CreateRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id int64) RouteDomainAPICreateRouteDomainConfigL3VlanAllocationStrategyRequest {
 	return RouteDomainAPICreateRouteDomainConfigL3VlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -260,7 +260,7 @@ func (a *RouteDomainAPIService) CreateRouteDomainConfigL3VlanAllocationStrategyE
 type RouteDomainAPICreateRouteDomainConfigVniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	ifMatch *string
 	createVniAllocationStrategy *CreateVniAllocationStrategy
 }
@@ -287,7 +287,7 @@ CreateRouteDomainConfigVniAllocationStrategy Create Vni allocation strategy.
  @param id
  @return RouteDomainAPICreateRouteDomainConfigVniAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) CreateRouteDomainConfigVniAllocationStrategy(ctx context.Context, id float32) RouteDomainAPICreateRouteDomainConfigVniAllocationStrategyRequest {
+func (a *RouteDomainAPIService) CreateRouteDomainConfigVniAllocationStrategy(ctx context.Context, id int64) RouteDomainAPICreateRouteDomainConfigVniAllocationStrategyRequest {
 	return RouteDomainAPICreateRouteDomainConfigVniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -383,7 +383,7 @@ func (a *RouteDomainAPIService) CreateRouteDomainConfigVniAllocationStrategyExec
 type RouteDomainAPICreateRouteDomainConfigVrfAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	ifMatch *string
 	createManualVrfAllocationStrategy *CreateManualVrfAllocationStrategy
 }
@@ -410,7 +410,7 @@ CreateRouteDomainConfigVrfAllocationStrategy Create Vrf allocation strategy.
  @param id
  @return RouteDomainAPICreateRouteDomainConfigVrfAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) CreateRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id float32) RouteDomainAPICreateRouteDomainConfigVrfAllocationStrategyRequest {
+func (a *RouteDomainAPIService) CreateRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id int64) RouteDomainAPICreateRouteDomainConfigVrfAllocationStrategyRequest {
 	return RouteDomainAPICreateRouteDomainConfigVrfAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -506,7 +506,7 @@ func (a *RouteDomainAPIService) CreateRouteDomainConfigVrfAllocationStrategyExec
 type RouteDomainAPIDeleteRouteDomainRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	ifMatch *string
 }
 
@@ -527,7 +527,7 @@ DeleteRouteDomain Delete a Route Domain.
  @param id
  @return RouteDomainAPIDeleteRouteDomainRequest
 */
-func (a *RouteDomainAPIService) DeleteRouteDomain(ctx context.Context, id float32) RouteDomainAPIDeleteRouteDomainRequest {
+func (a *RouteDomainAPIService) DeleteRouteDomain(ctx context.Context, id int64) RouteDomainAPIDeleteRouteDomainRequest {
 	return RouteDomainAPIDeleteRouteDomainRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -607,8 +607,8 @@ func (a *RouteDomainAPIService) DeleteRouteDomainExecute(r RouteDomainAPIDeleteR
 type RouteDomainAPIDeleteRouteDomainConfigL3VlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -630,7 +630,7 @@ DeleteRouteDomainConfigL3VlanAllocationStrategy Delete L3 Vlan allocation strate
  @param allocationStrategyId
  @return RouteDomainAPIDeleteRouteDomainConfigL3VlanAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) DeleteRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIDeleteRouteDomainConfigL3VlanAllocationStrategyRequest {
+func (a *RouteDomainAPIService) DeleteRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIDeleteRouteDomainConfigL3VlanAllocationStrategyRequest {
 	return RouteDomainAPIDeleteRouteDomainConfigL3VlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -712,8 +712,8 @@ func (a *RouteDomainAPIService) DeleteRouteDomainConfigL3VlanAllocationStrategyE
 type RouteDomainAPIDeleteRouteDomainConfigL3VniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -735,7 +735,7 @@ DeleteRouteDomainConfigL3VniAllocationStrategy Delete L3 Vni allocation strategy
  @param allocationStrategyId
  @return RouteDomainAPIDeleteRouteDomainConfigL3VniAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) DeleteRouteDomainConfigL3VniAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIDeleteRouteDomainConfigL3VniAllocationStrategyRequest {
+func (a *RouteDomainAPIService) DeleteRouteDomainConfigL3VniAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIDeleteRouteDomainConfigL3VniAllocationStrategyRequest {
 	return RouteDomainAPIDeleteRouteDomainConfigL3VniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -817,8 +817,8 @@ func (a *RouteDomainAPIService) DeleteRouteDomainConfigL3VniAllocationStrategyEx
 type RouteDomainAPIDeleteRouteDomainConfigVrfAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 }
 
@@ -840,7 +840,7 @@ DeleteRouteDomainConfigVrfAllocationStrategy Delete Vrf allocation strategy.
  @param allocationStrategyId
  @return RouteDomainAPIDeleteRouteDomainConfigVrfAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) DeleteRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIDeleteRouteDomainConfigVrfAllocationStrategyRequest {
+func (a *RouteDomainAPIService) DeleteRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIDeleteRouteDomainConfigVrfAllocationStrategyRequest {
 	return RouteDomainAPIDeleteRouteDomainConfigVrfAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -922,7 +922,7 @@ func (a *RouteDomainAPIService) DeleteRouteDomainConfigVrfAllocationStrategyExec
 type RouteDomainAPIGetRouteDomainRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 }
 
 func (r RouteDomainAPIGetRouteDomainRequest) Execute() (*RouteDomain, *http.Response, error) {
@@ -936,7 +936,7 @@ GetRouteDomain Get a Route Domain.
  @param id
  @return RouteDomainAPIGetRouteDomainRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomain(ctx context.Context, id float32) RouteDomainAPIGetRouteDomainRequest {
+func (a *RouteDomainAPIService) GetRouteDomain(ctx context.Context, id int64) RouteDomainAPIGetRouteDomainRequest {
 	return RouteDomainAPIGetRouteDomainRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1023,7 +1023,7 @@ func (a *RouteDomainAPIService) GetRouteDomainExecute(r RouteDomainAPIGetRouteDo
 type RouteDomainAPIGetRouteDomainConfigRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 }
 
 func (r RouteDomainAPIGetRouteDomainConfigRequest) Execute() (*RouteDomainConfig, *http.Response, error) {
@@ -1037,7 +1037,7 @@ GetRouteDomainConfig Get the config for a Route Domain.
  @param id
  @return RouteDomainAPIGetRouteDomainConfigRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomainConfig(ctx context.Context, id float32) RouteDomainAPIGetRouteDomainConfigRequest {
+func (a *RouteDomainAPIService) GetRouteDomainConfig(ctx context.Context, id int64) RouteDomainAPIGetRouteDomainConfigRequest {
 	return RouteDomainAPIGetRouteDomainConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1124,7 +1124,7 @@ func (a *RouteDomainAPIService) GetRouteDomainConfigExecute(r RouteDomainAPIGetR
 type RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1173,7 +1173,7 @@ GetRouteDomainConfigL3VlanAllocationStrategies Get all L3 Vlan allocation strate
  @param id
  @return RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategiesRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomainConfigL3VlanAllocationStrategies(ctx context.Context, id float32) RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategiesRequest {
+func (a *RouteDomainAPIService) GetRouteDomainConfigL3VlanAllocationStrategies(ctx context.Context, id int64) RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategiesRequest {
 	return RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1299,8 +1299,8 @@ func (a *RouteDomainAPIService) GetRouteDomainConfigL3VlanAllocationStrategiesEx
 type RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategyRequest) Execute() (*VlanAllocationStrategy, *http.Response, error) {
@@ -1315,7 +1315,7 @@ GetRouteDomainConfigL3VlanAllocationStrategy Get a L3 Vlan allocation strategy.
  @param allocationStrategyId
  @return RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategyRequest {
+func (a *RouteDomainAPIService) GetRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategyRequest {
 	return RouteDomainAPIGetRouteDomainConfigL3VlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1404,7 +1404,7 @@ func (a *RouteDomainAPIService) GetRouteDomainConfigL3VlanAllocationStrategyExec
 type RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1453,7 +1453,7 @@ GetRouteDomainConfigL3VniAllocationStrategies Get all L3 Vni allocation strategi
  @param id
  @return RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategiesRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomainConfigL3VniAllocationStrategies(ctx context.Context, id float32) RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategiesRequest {
+func (a *RouteDomainAPIService) GetRouteDomainConfigL3VniAllocationStrategies(ctx context.Context, id int64) RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategiesRequest {
 	return RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1579,8 +1579,8 @@ func (a *RouteDomainAPIService) GetRouteDomainConfigL3VniAllocationStrategiesExe
 type RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategyRequest) Execute() (*VniAllocationStrategy, *http.Response, error) {
@@ -1595,7 +1595,7 @@ GetRouteDomainConfigL3VniAllocationStrategy Get a L3 Vni allocation strategy.
  @param allocationStrategyId
  @return RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomainConfigL3VniAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategyRequest {
+func (a *RouteDomainAPIService) GetRouteDomainConfigL3VniAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategyRequest {
 	return RouteDomainAPIGetRouteDomainConfigL3VniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1684,7 +1684,7 @@ func (a *RouteDomainAPIService) GetRouteDomainConfigL3VniAllocationStrategyExecu
 type RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategiesRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -1733,7 +1733,7 @@ GetRouteDomainConfigVrfAllocationStrategies Get all Vrf allocation strategies.
  @param id
  @return RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategiesRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomainConfigVrfAllocationStrategies(ctx context.Context, id float32) RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategiesRequest {
+func (a *RouteDomainAPIService) GetRouteDomainConfigVrfAllocationStrategies(ctx context.Context, id int64) RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategiesRequest {
 	return RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1859,8 +1859,8 @@ func (a *RouteDomainAPIService) GetRouteDomainConfigVrfAllocationStrategiesExecu
 type RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 }
 
 func (r RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategyRequest) Execute() (*ManualVrfAllocationStrategy, *http.Response, error) {
@@ -1875,7 +1875,7 @@ GetRouteDomainConfigVrfAllocationStrategy Get a Vrf allocation strategy.
  @param allocationStrategyId
  @return RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) GetRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategyRequest {
+func (a *RouteDomainAPIService) GetRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategyRequest {
 	return RouteDomainAPIGetRouteDomainConfigVrfAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2289,8 +2289,8 @@ func (a *RouteDomainAPIService) GetRouteDomainsExecute(r RouteDomainAPIGetRouteD
 type RouteDomainAPIReplaceRouteDomainConfigL3VlanAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 	createVlanAllocationStrategy *CreateVlanAllocationStrategy
 }
@@ -2318,7 +2318,7 @@ ReplaceRouteDomainConfigL3VlanAllocationStrategy Replace L3 Vlan allocation stra
  @param allocationStrategyId
  @return RouteDomainAPIReplaceRouteDomainConfigL3VlanAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) ReplaceRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIReplaceRouteDomainConfigL3VlanAllocationStrategyRequest {
+func (a *RouteDomainAPIService) ReplaceRouteDomainConfigL3VlanAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIReplaceRouteDomainConfigL3VlanAllocationStrategyRequest {
 	return RouteDomainAPIReplaceRouteDomainConfigL3VlanAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2416,8 +2416,8 @@ func (a *RouteDomainAPIService) ReplaceRouteDomainConfigL3VlanAllocationStrategy
 type RouteDomainAPIReplaceRouteDomainConfigL3VniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 	createVniAllocationStrategy *CreateVniAllocationStrategy
 }
@@ -2445,7 +2445,7 @@ ReplaceRouteDomainConfigL3VniAllocationStrategy Replace L3 Vni allocation strate
  @param allocationStrategyId
  @return RouteDomainAPIReplaceRouteDomainConfigL3VniAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) ReplaceRouteDomainConfigL3VniAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIReplaceRouteDomainConfigL3VniAllocationStrategyRequest {
+func (a *RouteDomainAPIService) ReplaceRouteDomainConfigL3VniAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIReplaceRouteDomainConfigL3VniAllocationStrategyRequest {
 	return RouteDomainAPIReplaceRouteDomainConfigL3VniAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2543,8 +2543,8 @@ func (a *RouteDomainAPIService) ReplaceRouteDomainConfigL3VniAllocationStrategyE
 type RouteDomainAPIReplaceRouteDomainConfigVrfAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
-	allocationStrategyId float32
+	id int64
+	allocationStrategyId int64
 	ifMatch *string
 	createManualVrfAllocationStrategy *CreateManualVrfAllocationStrategy
 }
@@ -2572,7 +2572,7 @@ ReplaceRouteDomainConfigVrfAllocationStrategy Replace Vrf allocation strategy
  @param allocationStrategyId
  @return RouteDomainAPIReplaceRouteDomainConfigVrfAllocationStrategyRequest
 */
-func (a *RouteDomainAPIService) ReplaceRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id float32, allocationStrategyId float32) RouteDomainAPIReplaceRouteDomainConfigVrfAllocationStrategyRequest {
+func (a *RouteDomainAPIService) ReplaceRouteDomainConfigVrfAllocationStrategy(ctx context.Context, id int64, allocationStrategyId int64) RouteDomainAPIReplaceRouteDomainConfigVrfAllocationStrategyRequest {
 	return RouteDomainAPIReplaceRouteDomainConfigVrfAllocationStrategyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2670,7 +2670,7 @@ func (a *RouteDomainAPIService) ReplaceRouteDomainConfigVrfAllocationStrategyExe
 type RouteDomainAPIUpdateRouteDomainRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	ifMatch *string
 	updateRouteDomain *UpdateRouteDomain
 }
@@ -2697,7 +2697,7 @@ UpdateRouteDomain Update Route Domain
  @param id
  @return RouteDomainAPIUpdateRouteDomainRequest
 */
-func (a *RouteDomainAPIService) UpdateRouteDomain(ctx context.Context, id float32) RouteDomainAPIUpdateRouteDomainRequest {
+func (a *RouteDomainAPIService) UpdateRouteDomain(ctx context.Context, id int64) RouteDomainAPIUpdateRouteDomainRequest {
 	return RouteDomainAPIUpdateRouteDomainRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2793,7 +2793,7 @@ func (a *RouteDomainAPIService) UpdateRouteDomainExecute(r RouteDomainAPIUpdateR
 type RouteDomainAPIUpdateRouteDomainConfigRequest struct {
 	ctx context.Context
 	ApiService *RouteDomainAPIService
-	id float32
+	id int64
 	ifMatch *string
 	updateRouteDomainConfigGlobalSettings *UpdateRouteDomainConfigGlobalSettings
 }
@@ -2820,7 +2820,7 @@ UpdateRouteDomainConfig Update Route Domain config
  @param id
  @return RouteDomainAPIUpdateRouteDomainConfigRequest
 */
-func (a *RouteDomainAPIService) UpdateRouteDomainConfig(ctx context.Context, id float32) RouteDomainAPIUpdateRouteDomainConfigRequest {
+func (a *RouteDomainAPIService) UpdateRouteDomainConfig(ctx context.Context, id int64) RouteDomainAPIUpdateRouteDomainConfigRequest {
 	return RouteDomainAPIUpdateRouteDomainConfigRequest{
 		ApiService: a,
 		ctx: ctx,

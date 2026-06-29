@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Revision** | **string** | Revision number of the entity | 
-**Id** | **float32** | Unique identifier for the network fabric link aggregation | 
-**NetworkFabricId** | **float32** | Unique identifier for the network fabric | 
+**Id** | **int64** | Unique identifier for the network fabric link aggregation | 
+**NetworkFabricId** | **int64** | Unique identifier for the network fabric | 
 **Name** | **string** | Name of the network fabric link aggregation | 
 **Type** | **string** | Type of the network fabric link aggregation | 
 **MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain (applicable only for mlag-peer-link type) | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricLinkAggregation
 
-`func NewNetworkFabricLinkAggregation(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id float32, networkFabricId float32, name string, type_ string, status string, ) *NetworkFabricLinkAggregation`
+`func NewNetworkFabricLinkAggregation(createdTimestamp time.Time, updatedTimestamp time.Time, revision string, id int64, networkFabricId int64, name string, type_ string, status string, ) *NetworkFabricLinkAggregation`
 
 NewNetworkFabricLinkAggregation instantiates a new NetworkFabricLinkAggregation object
 This constructor will assign default values to properties that have it defined,
@@ -99,40 +99,40 @@ SetRevision sets Revision field to given value.
 
 ### GetId
 
-`func (o *NetworkFabricLinkAggregation) GetId() float32`
+`func (o *NetworkFabricLinkAggregation) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkFabricLinkAggregation) GetIdOk() (*float32, bool)`
+`func (o *NetworkFabricLinkAggregation) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkFabricLinkAggregation) SetId(v float32)`
+`func (o *NetworkFabricLinkAggregation) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetNetworkFabricId
 
-`func (o *NetworkFabricLinkAggregation) GetNetworkFabricId() float32`
+`func (o *NetworkFabricLinkAggregation) GetNetworkFabricId() int64`
 
 GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
 
 ### GetNetworkFabricIdOk
 
-`func (o *NetworkFabricLinkAggregation) GetNetworkFabricIdOk() (*float32, bool)`
+`func (o *NetworkFabricLinkAggregation) GetNetworkFabricIdOk() (*int64, bool)`
 
 GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkFabricId
 
-`func (o *NetworkFabricLinkAggregation) SetNetworkFabricId(v float32)`
+`func (o *NetworkFabricLinkAggregation) SetNetworkFabricId(v int64)`
 
 SetNetworkFabricId sets NetworkFabricId field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The ID of the custom ISO | 
+**Id** | **int64** | The ID of the custom ISO | 
 **UserIdOwner** | Pointer to **float32** | The ID of the user who owns the custom ISO. If public then null | [optional] 
 **ModifiedBy** | Pointer to **float32** | The ID of the user who last edited the custom ISO | [optional] 
 **Label** | **string** | The label of the custom ISO | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewCustomIso
 
-`func NewCustomIso(id float32, label string, name string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string, ) *CustomIso`
+`func NewCustomIso(id int64, label string, name string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string, ) *CustomIso`
 
 NewCustomIso instantiates a new CustomIso object
 This constructor will assign default values to properties that have it defined,
@@ -39,20 +39,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *CustomIso) GetId() float32`
+`func (o *CustomIso) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CustomIso) GetIdOk() (*float32, bool)`
+`func (o *CustomIso) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CustomIso) SetId(v float32)`
+`func (o *CustomIso) SetId(v int64)`
 
 SetId sets Id field to given value.
 

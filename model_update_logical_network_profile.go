@@ -23,7 +23,9 @@ type UpdateLogicalNetworkProfile struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
-	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
+	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
+	// When true, logical networks created from this profile are routed-access (L3-only) over point-to-point links. VXLAN only. Create-time only: the value cannot be changed once the profile exists (a different value here is rejected; echoing the current value back is accepted).
+	L3Only *bool `json:"l3Only,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
 	Vxlan *UpdateLogicalNetworkConfigVxlanProperties `json:"vxlan,omitempty"`
@@ -146,9 +148,9 @@ func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]string) {
 }
 
 // GetRouteDomainId returns the RouteDomainId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int32 {
+func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int64 {
 	if o == nil || IsNil(o.RouteDomainId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RouteDomainId.Get()
@@ -157,7 +159,7 @@ func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int32 {
 // GetRouteDomainIdOk returns a tuple with the RouteDomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool) {
+func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,8 +175,8 @@ func (o *UpdateLogicalNetworkProfile) HasRouteDomainId() bool {
 	return false
 }
 
-// SetRouteDomainId gets a reference to the given NullableInt32 and assigns it to the RouteDomainId field.
-func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int32) {
+// SetRouteDomainId gets a reference to the given NullableInt64 and assigns it to the RouteDomainId field.
+func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int64) {
 	o.RouteDomainId.Set(&v)
 }
 // SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
@@ -185,6 +187,38 @@ func (o *UpdateLogicalNetworkProfile) SetRouteDomainIdNil() {
 // UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
 func (o *UpdateLogicalNetworkProfile) UnsetRouteDomainId() {
 	o.RouteDomainId.Unset()
+}
+
+// GetL3Only returns the L3Only field value if set, zero value otherwise.
+func (o *UpdateLogicalNetworkProfile) GetL3Only() bool {
+	if o == nil || IsNil(o.L3Only) {
+		var ret bool
+		return ret
+	}
+	return *o.L3Only
+}
+
+// GetL3OnlyOk returns a tuple with the L3Only field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLogicalNetworkProfile) GetL3OnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.L3Only) {
+		return nil, false
+	}
+	return o.L3Only, true
+}
+
+// HasL3Only returns a boolean if a field has been set.
+func (o *UpdateLogicalNetworkProfile) HasL3Only() bool {
+	if o != nil && !IsNil(o.L3Only) {
+		return true
+	}
+
+	return false
+}
+
+// SetL3Only gets a reference to the given bool and assigns it to the L3Only field.
+func (o *UpdateLogicalNetworkProfile) SetL3Only(v bool) {
+	o.L3Only = &v
 }
 
 // GetMtu returns the Mtu field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -283,6 +317,9 @@ func (o UpdateLogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 	if o.RouteDomainId.IsSet() {
 		toSerialize["routeDomainId"] = o.RouteDomainId.Get()
 	}
+	if !IsNil(o.L3Only) {
+		toSerialize["l3Only"] = o.L3Only
+	}
 	if o.Mtu.IsSet() {
 		toSerialize["mtu"] = o.Mtu.Get()
 	}
@@ -315,6 +352,7 @@ func (o *UpdateLogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "annotations")
 		delete(additionalProperties, "routeDomainId")
+		delete(additionalProperties, "l3Only")
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "vxlan")
 		o.AdditionalProperties = additionalProperties

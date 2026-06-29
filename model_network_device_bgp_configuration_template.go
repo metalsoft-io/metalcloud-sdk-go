@@ -51,7 +51,7 @@ type NetworkDeviceBGPConfigurationTemplate struct {
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	// Network Device Configuration Template Id
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,7 +61,7 @@ type _NetworkDeviceBGPConfigurationTemplate NetworkDeviceBGPConfigurationTemplat
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceBGPConfigurationTemplate(action string, networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, bgpNumbering string, bgpLinkConfiguration string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32) *NetworkDeviceBGPConfigurationTemplate {
+func NewNetworkDeviceBGPConfigurationTemplate(action string, networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, bgpNumbering string, bgpLinkConfiguration string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id int64) *NetworkDeviceBGPConfigurationTemplate {
 	this := NetworkDeviceBGPConfigurationTemplate{}
 	this.Action = action
 	this.NetworkType = networkType
@@ -440,9 +440,9 @@ func (o *NetworkDeviceBGPConfigurationTemplate) SetLinks(v []Link) {
 }
 
 // GetId returns the Id field value
-func (o *NetworkDeviceBGPConfigurationTemplate) GetId() float32 {
+func (o *NetworkDeviceBGPConfigurationTemplate) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -451,7 +451,7 @@ func (o *NetworkDeviceBGPConfigurationTemplate) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceBGPConfigurationTemplate) GetIdOk() (*float32, bool) {
+func (o *NetworkDeviceBGPConfigurationTemplate) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -459,7 +459,7 @@ func (o *NetworkDeviceBGPConfigurationTemplate) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *NetworkDeviceBGPConfigurationTemplate) SetId(v float32) {
+func (o *NetworkDeviceBGPConfigurationTemplate) SetId(v int64) {
 	o.Id = v
 }
 

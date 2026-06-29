@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerTypesForUsage{}
 // ServerTypesForUsage struct for ServerTypesForUsage
 type ServerTypesForUsage struct {
 	// Id of the server type
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the server type
 	Name string `json:"name"`
 	// Count of servers available for this server type
@@ -36,7 +36,7 @@ type _ServerTypesForUsage ServerTypesForUsage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerTypesForUsage(id float32, name string, serversAvailable float32) *ServerTypesForUsage {
+func NewServerTypesForUsage(id int64, name string, serversAvailable float32) *ServerTypesForUsage {
 	this := ServerTypesForUsage{}
 	this.Id = id
 	this.Name = name
@@ -53,9 +53,9 @@ func NewServerTypesForUsageWithDefaults() *ServerTypesForUsage {
 }
 
 // GetId returns the Id field value
-func (o *ServerTypesForUsage) GetId() float32 {
+func (o *ServerTypesForUsage) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *ServerTypesForUsage) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerTypesForUsage) GetIdOk() (*float32, bool) {
+func (o *ServerTypesForUsage) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *ServerTypesForUsage) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerTypesForUsage) SetId(v float32) {
+func (o *ServerTypesForUsage) SetId(v int64) {
 	o.Id = v
 }
 

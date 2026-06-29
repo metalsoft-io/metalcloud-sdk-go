@@ -23,7 +23,7 @@ var _ MappedNullable = &NetworkFabric{}
 // NetworkFabric struct for NetworkFabric
 type NetworkFabric struct {
 	// The ID of the site where the entity is located.
-	SiteId *int32 `json:"siteId,omitempty"`
+	SiteId *int64 `json:"siteId,omitempty"`
 	// The network fabric name
 	Name string `json:"name"`
 	// The external identifier for this fabric on the controller (e.g. NDFC fabric name)
@@ -44,9 +44,9 @@ type NetworkFabric struct {
 	// The status of the network fabric, by default it is in draft mode.
 	Status *FabricStatus `json:"status,omitempty"`
 	// The deploy ID of the network fabric, if it is being deployed.
-	DeployId *int32 `json:"deployId,omitempty"`
+	DeployId *int64 `json:"deployId,omitempty"`
 	// The deploy ID of the network fabric, if it is being deployed.
-	TransportId NullableInt32 `json:"transportId,omitempty"`
+	TransportId NullableInt64 `json:"transportId,omitempty"`
 	// The deploy preview for the network fabric, if it is being deployed.
 	DeployPreview []NetworkFabricDeployPreview `json:"deployPreview,omitempty"`
 	// The network equipments in the fabric
@@ -82,9 +82,9 @@ func NewNetworkFabricWithDefaults() *NetworkFabric {
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *NetworkFabric) GetSiteId() int32 {
+func (o *NetworkFabric) GetSiteId() int64 {
 	if o == nil || IsNil(o.SiteId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SiteId
@@ -92,7 +92,7 @@ func (o *NetworkFabric) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkFabric) GetSiteIdOk() (*int32, bool) {
+func (o *NetworkFabric) GetSiteIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -108,8 +108,8 @@ func (o *NetworkFabric) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
-func (o *NetworkFabric) SetSiteId(v int32) {
+// SetSiteId gets a reference to the given int64 and assigns it to the SiteId field.
+func (o *NetworkFabric) SetSiteId(v int64) {
 	o.SiteId = &v
 }
 
@@ -386,9 +386,9 @@ func (o *NetworkFabric) SetStatus(v FabricStatus) {
 }
 
 // GetDeployId returns the DeployId field value if set, zero value otherwise.
-func (o *NetworkFabric) GetDeployId() int32 {
+func (o *NetworkFabric) GetDeployId() int64 {
 	if o == nil || IsNil(o.DeployId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DeployId
@@ -396,7 +396,7 @@ func (o *NetworkFabric) GetDeployId() int32 {
 
 // GetDeployIdOk returns a tuple with the DeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkFabric) GetDeployIdOk() (*int32, bool) {
+func (o *NetworkFabric) GetDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DeployId) {
 		return nil, false
 	}
@@ -412,15 +412,15 @@ func (o *NetworkFabric) HasDeployId() bool {
 	return false
 }
 
-// SetDeployId gets a reference to the given int32 and assigns it to the DeployId field.
-func (o *NetworkFabric) SetDeployId(v int32) {
+// SetDeployId gets a reference to the given int64 and assigns it to the DeployId field.
+func (o *NetworkFabric) SetDeployId(v int64) {
 	o.DeployId = &v
 }
 
 // GetTransportId returns the TransportId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NetworkFabric) GetTransportId() int32 {
+func (o *NetworkFabric) GetTransportId() int64 {
 	if o == nil || IsNil(o.TransportId.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TransportId.Get()
@@ -429,7 +429,7 @@ func (o *NetworkFabric) GetTransportId() int32 {
 // GetTransportIdOk returns a tuple with the TransportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NetworkFabric) GetTransportIdOk() (*int32, bool) {
+func (o *NetworkFabric) GetTransportIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -445,8 +445,8 @@ func (o *NetworkFabric) HasTransportId() bool {
 	return false
 }
 
-// SetTransportId gets a reference to the given NullableInt32 and assigns it to the TransportId field.
-func (o *NetworkFabric) SetTransportId(v int32) {
+// SetTransportId gets a reference to the given NullableInt64 and assigns it to the TransportId field.
+func (o *NetworkFabric) SetTransportId(v int64) {
 	o.TransportId.Set(&v)
 }
 // SetTransportIdNil sets the value for TransportId to be an explicit nil

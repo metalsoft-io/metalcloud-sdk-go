@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **SizeGB** | **float32** | Disk size in GB for File Share | 
 **Label** | Pointer to **string** | Display name of the File Share. | [optional] 
 **Meta** | Pointer to [**FileShareMeta**](FileShareMeta.md) |  | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
-**StoragePoolId** | **float32** | Id of the storage pool the File Share is assigned to | 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the File Share. | [optional] 
+**StoragePoolId** | **int64** | Id of the storage pool the File Share is assigned to | 
 
 ## Methods
 
 ### NewCreateFileShare
 
-`func NewCreateFileShare(sizeGB float32, storagePoolId float32, ) *CreateFileShare`
+`func NewCreateFileShare(sizeGB float32, storagePoolId int64, ) *CreateFileShare`
 
 NewCreateFileShare instantiates a new CreateFileShare object
 This constructor will assign default values to properties that have it defined,
@@ -101,20 +101,20 @@ HasMeta returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *CreateFileShare) GetLogicalNetworkId() float32`
+`func (o *CreateFileShare) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *CreateFileShare) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *CreateFileShare) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *CreateFileShare) SetLogicalNetworkId(v float32)`
+`func (o *CreateFileShare) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -126,20 +126,20 @@ HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 
-`func (o *CreateFileShare) GetStoragePoolId() float32`
+`func (o *CreateFileShare) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *CreateFileShare) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *CreateFileShare) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *CreateFileShare) SetStoragePoolId(v float32)`
+`func (o *CreateFileShare) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 

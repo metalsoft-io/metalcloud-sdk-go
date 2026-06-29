@@ -24,7 +24,7 @@ type LenovoComponentFilter struct {
 	// Discriminator field set to lenovo
 	Vendor string `json:"vendor"`
 	// ID of the Lenovo component filter
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Submodel for Lenovo
 	Submodel string `json:"submodel"`
 	// Serial number for Lenovo
@@ -40,7 +40,7 @@ type _LenovoComponentFilter LenovoComponentFilter
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLenovoComponentFilter(vendor string, id float32, submodel string, serialNumber string, componentName string) *LenovoComponentFilter {
+func NewLenovoComponentFilter(vendor string, id int64, submodel string, serialNumber string, componentName string) *LenovoComponentFilter {
 	this := LenovoComponentFilter{}
 	this.Vendor = vendor
 	this.Id = id
@@ -83,9 +83,9 @@ func (o *LenovoComponentFilter) SetVendor(v string) {
 }
 
 // GetId returns the Id field value
-func (o *LenovoComponentFilter) GetId() float32 {
+func (o *LenovoComponentFilter) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -94,7 +94,7 @@ func (o *LenovoComponentFilter) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *LenovoComponentFilter) GetIdOk() (*float32, bool) {
+func (o *LenovoComponentFilter) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *LenovoComponentFilter) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *LenovoComponentFilter) SetId(v float32) {
+func (o *LenovoComponentFilter) SetId(v int64) {
 	o.Id = v
 }
 

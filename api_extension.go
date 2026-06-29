@@ -25,10 +25,112 @@ import (
 // ExtensionAPIService ExtensionAPI service
 type ExtensionAPIService service
 
+type ExtensionAPIActivateExtensionRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+	ifMatch *string
+}
+
+// Entity tag
+func (r ExtensionAPIActivateExtensionRequest) IfMatch(ifMatch string) ExtensionAPIActivateExtensionRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ExtensionAPIActivateExtensionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ActivateExtensionExecute(r)
+}
+
+/*
+ActivateExtension Activates draft or suspended extension
+
+Activates draft or suspended extension.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @return ExtensionAPIActivateExtensionRequest
+*/
+func (a *ExtensionAPIService) ActivateExtension(ctx context.Context, extensionId int64) ExtensionAPIActivateExtensionRequest {
+	return ExtensionAPIActivateExtensionRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExtensionAPIService) ActivateExtensionExecute(r ExtensionAPIActivateExtensionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.ActivateExtension")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/actions/activate"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ExtensionAPIArchiveExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -51,7 +153,7 @@ Archives published extension.
  @param extensionId
  @return ExtensionAPIArchiveExtensionRequest
 */
-func (a *ExtensionAPIService) ArchiveExtension(ctx context.Context, extensionId float32) ExtensionAPIArchiveExtensionRequest {
+func (a *ExtensionAPIService) ArchiveExtension(ctx context.Context, extensionId int64) ExtensionAPIArchiveExtensionRequest {
 	return ExtensionAPIArchiveExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -238,10 +340,208 @@ func (a *ExtensionAPIService) CreateExtensionExecute(r ExtensionAPICreateExtensi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ExtensionAPIDeleteExtensionRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+	ifMatch *string
+}
+
+// Entity tag
+func (r ExtensionAPIDeleteExtensionRequest) IfMatch(ifMatch string) ExtensionAPIDeleteExtensionRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ExtensionAPIDeleteExtensionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExtensionExecute(r)
+}
+
+/*
+DeleteExtension Delete extension
+
+Delete extension.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @return ExtensionAPIDeleteExtensionRequest
+*/
+func (a *ExtensionAPIService) DeleteExtension(ctx context.Context, extensionId int64) ExtensionAPIDeleteExtensionRequest {
+	return ExtensionAPIDeleteExtensionRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExtensionAPIService) DeleteExtensionExecute(r ExtensionAPIDeleteExtensionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.DeleteExtension")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/actions/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ExtensionAPIDeleteExtensionSiteConfigRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+	siteId int64
+}
+
+func (r ExtensionAPIDeleteExtensionSiteConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExtensionSiteConfigExecute(r)
+}
+
+/*
+DeleteExtensionSiteConfig 
+
+Deletes the per site extension config & disables the extension for the site.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @param siteId
+ @return ExtensionAPIDeleteExtensionSiteConfigRequest
+*/
+func (a *ExtensionAPIService) DeleteExtensionSiteConfig(ctx context.Context, extensionId int64, siteId int64) ExtensionAPIDeleteExtensionSiteConfigRequest {
+	return ExtensionAPIDeleteExtensionSiteConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+		siteId: siteId,
+	}
+}
+
+// Execute executes the request
+func (a *ExtensionAPIService) DeleteExtensionSiteConfigExecute(r ExtensionAPIDeleteExtensionSiteConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.DeleteExtensionSiteConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/siteConfig/{siteId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ExtensionAPIGetExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 }
 
 func (r ExtensionAPIGetExtensionRequest) Execute() (*Extension, *http.Response, error) {
@@ -257,7 +557,7 @@ Returns details of the specified extension
  @param extensionId
  @return ExtensionAPIGetExtensionRequest
 */
-func (a *ExtensionAPIService) GetExtension(ctx context.Context, extensionId float32) ExtensionAPIGetExtensionRequest {
+func (a *ExtensionAPIService) GetExtension(ctx context.Context, extensionId int64) ExtensionAPIGetExtensionRequest {
 	return ExtensionAPIGetExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -341,15 +641,328 @@ func (a *ExtensionAPIService) GetExtensionExecute(r ExtensionAPIGetExtensionRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ExtensionAPIGetExtensionSiteConfigRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+	siteId int64
+}
+
+func (r ExtensionAPIGetExtensionSiteConfigRequest) Execute() ([]ExtensionConfigValue, *http.Response, error) {
+	return r.ApiService.GetExtensionSiteConfigExecute(r)
+}
+
+/*
+GetExtensionSiteConfig 
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @param siteId
+ @return ExtensionAPIGetExtensionSiteConfigRequest
+*/
+func (a *ExtensionAPIService) GetExtensionSiteConfig(ctx context.Context, extensionId int64, siteId int64) ExtensionAPIGetExtensionSiteConfigRequest {
+	return ExtensionAPIGetExtensionSiteConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+		siteId: siteId,
+	}
+}
+
+// Execute executes the request
+//  @return []ExtensionConfigValue
+func (a *ExtensionAPIService) GetExtensionSiteConfigExecute(r ExtensionAPIGetExtensionSiteConfigRequest) ([]ExtensionConfigValue, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ExtensionConfigValue
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.GetExtensionSiteConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/siteConfig/{siteId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ExtensionAPIGetExtensionSiteConfigsRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+}
+
+func (r ExtensionAPIGetExtensionSiteConfigsRequest) Execute() ([]ExtensionSiteConfig, *http.Response, error) {
+	return r.ApiService.GetExtensionSiteConfigsExecute(r)
+}
+
+/*
+GetExtensionSiteConfigs 
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @return ExtensionAPIGetExtensionSiteConfigsRequest
+*/
+func (a *ExtensionAPIService) GetExtensionSiteConfigs(ctx context.Context, extensionId int64) ExtensionAPIGetExtensionSiteConfigsRequest {
+	return ExtensionAPIGetExtensionSiteConfigsRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+	}
+}
+
+// Execute executes the request
+//  @return []ExtensionSiteConfig
+func (a *ExtensionAPIService) GetExtensionSiteConfigsExecute(r ExtensionAPIGetExtensionSiteConfigsRequest) ([]ExtensionSiteConfig, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ExtensionSiteConfig
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.GetExtensionSiteConfigs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/siteConfig"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ExtensionAPIGetExtensionSiteCredentialsRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+	siteId int64
+}
+
+func (r ExtensionAPIGetExtensionSiteCredentialsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.GetExtensionSiteCredentialsExecute(r)
+}
+
+/*
+GetExtensionSiteCredentials Get Extension Site Config credentials
+
+Returns the credentials of the specified Extension Site config
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @param siteId
+ @return ExtensionAPIGetExtensionSiteCredentialsRequest
+*/
+func (a *ExtensionAPIService) GetExtensionSiteCredentials(ctx context.Context, extensionId int64, siteId int64) ExtensionAPIGetExtensionSiteCredentialsRequest {
+	return ExtensionAPIGetExtensionSiteCredentialsRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+		siteId: siteId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *ExtensionAPIService) GetExtensionSiteCredentialsExecute(r ExtensionAPIGetExtensionSiteCredentialsRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.GetExtensionSiteCredentials")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/siteConfig/{siteId}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ExtensionAPIGetExtensionsRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
 	page *float32
 	limit *float32
+	filterKind *[]string
 	filterStatus *[]string
 	filterName *[]string
 	filterLabel *[]string
-	filterIsPublic *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -367,7 +980,13 @@ func (r ExtensionAPIGetExtensionsRequest) Limit(limit float32) ExtensionAPIGetEx
 	return r
 }
 
-// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+// Filter by kind query param.  **Format:** filter.kind&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.kind&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r ExtensionAPIGetExtensionsRequest) FilterKind(filterKind []string) ExtensionAPIGetExtensionsRequest {
+	r.filterKind = &filterKind
+	return r
+}
+
+// Filter by status query param.  **Format:** filter.status&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.status&#x3D;$eq:John Doe&amp;filter.status&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r ExtensionAPIGetExtensionsRequest) FilterStatus(filterStatus []string) ExtensionAPIGetExtensionsRequest {
 	r.filterStatus = &filterStatus
 	return r
@@ -382,12 +1001,6 @@ func (r ExtensionAPIGetExtensionsRequest) FilterName(filterName []string) Extens
 // Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$eq:John Doe&amp;filter.label&#x3D;$ilike:John Doe  **Available Operations** - $eq  - $null  - $ilike  - $and  - $or
 func (r ExtensionAPIGetExtensionsRequest) FilterLabel(filterLabel []string) ExtensionAPIGetExtensionsRequest {
 	r.filterLabel = &filterLabel
-	return r
-}
-
-// Filter by isPublic query param.  **Format:** filter.isPublic&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.isPublic&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
-func (r ExtensionAPIGetExtensionsRequest) FilterIsPublic(filterIsPublic []string) ExtensionAPIGetExtensionsRequest {
-	r.filterIsPublic = &filterIsPublic
 	return r
 }
 
@@ -455,6 +1068,17 @@ func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRe
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
+	if r.filterKind != nil {
+		t := *r.filterKind
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.kind", t, "form", "multi")
+		}
+	}
 	if r.filterStatus != nil {
 		t := *r.filterStatus
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -486,17 +1110,6 @@ func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRe
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
-		}
-	}
-	if r.filterIsPublic != nil {
-		t := *r.filterIsPublic
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isPublic", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isPublic", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -578,55 +1191,48 @@ func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ExtensionAPIMakePublicExtensionRequest struct {
+type ExtensionAPIGetSiteExtensionConfigsRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
-	ifMatch *string
+	siteId int64
 }
 
-// Entity tag
-func (r ExtensionAPIMakePublicExtensionRequest) IfMatch(ifMatch string) ExtensionAPIMakePublicExtensionRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ExtensionAPIMakePublicExtensionRequest) Execute() (*http.Response, error) {
-	return r.ApiService.MakePublicExtensionExecute(r)
+func (r ExtensionAPIGetSiteExtensionConfigsRequest) Execute() ([]SiteExtensionConfig, *http.Response, error) {
+	return r.ApiService.GetSiteExtensionConfigsExecute(r)
 }
 
 /*
-MakePublicExtension Makes extension public
-
-Makes the extension public.
+GetSiteExtensionConfigs 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param extensionId
- @return ExtensionAPIMakePublicExtensionRequest
+ @param siteId
+ @return ExtensionAPIGetSiteExtensionConfigsRequest
 */
-func (a *ExtensionAPIService) MakePublicExtension(ctx context.Context, extensionId float32) ExtensionAPIMakePublicExtensionRequest {
-	return ExtensionAPIMakePublicExtensionRequest{
+func (a *ExtensionAPIService) GetSiteExtensionConfigs(ctx context.Context, siteId int64) ExtensionAPIGetSiteExtensionConfigsRequest {
+	return ExtensionAPIGetSiteExtensionConfigsRequest{
 		ApiService: a,
 		ctx: ctx,
-		extensionId: extensionId,
+		siteId: siteId,
 	}
 }
 
 // Execute executes the request
-func (a *ExtensionAPIService) MakePublicExtensionExecute(r ExtensionAPIMakePublicExtensionRequest) (*http.Response, error) {
+//  @return []SiteExtensionConfig
+func (a *ExtensionAPIService) GetSiteExtensionConfigsExecute(r ExtensionAPIGetSiteExtensionConfigsRequest) ([]SiteExtensionConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  []SiteExtensionConfig
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.MakePublicExtension")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.GetSiteExtensionConfigs")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/actions/make-public"
-	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+	localVarPath := localBasePath + "/api/v2/extensions/siteConfig/{siteId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -642,31 +1248,28 @@ func (a *ExtensionAPIService) MakePublicExtensionExecute(r ExtensionAPIMakePubli
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -674,16 +1277,25 @@ func (a *ExtensionAPIService) MakePublicExtensionExecute(r ExtensionAPIMakePubli
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ExtensionAPIPublishExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	ifMatch *string
 }
 
@@ -698,15 +1310,15 @@ func (r ExtensionAPIPublishExtensionRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PublishExtension Publish draft extension
+PublishExtension Activates draft or suspended extension
 
-Publishes draft extension.
+Activates draft or suspended extension. Deprecated - use activateExtension.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param extensionId
  @return ExtensionAPIPublishExtensionRequest
 */
-func (a *ExtensionAPIService) PublishExtension(ctx context.Context, extensionId float32) ExtensionAPIPublishExtensionRequest {
+func (a *ExtensionAPIService) PublishExtension(ctx context.Context, extensionId int64) ExtensionAPIPublishExtensionRequest {
 	return ExtensionAPIPublishExtensionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -782,10 +1394,220 @@ func (a *ExtensionAPIService) PublishExtensionExecute(r ExtensionAPIPublishExten
 	return localVarHTTPResponse, nil
 }
 
+type ExtensionAPISetExtensionSiteConfigRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+	siteId int64
+	extensionConfigValue *[]ExtensionConfigValue
+}
+
+// The extension configuration details
+func (r ExtensionAPISetExtensionSiteConfigRequest) ExtensionConfigValue(extensionConfigValue []ExtensionConfigValue) ExtensionAPISetExtensionSiteConfigRequest {
+	r.extensionConfigValue = &extensionConfigValue
+	return r
+}
+
+func (r ExtensionAPISetExtensionSiteConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SetExtensionSiteConfigExecute(r)
+}
+
+/*
+SetExtensionSiteConfig 
+
+Sets (Creates or Updates) the per site extension config & enables the extension for the site. All variables from the extension definition not having default value must be specified in order for the request to succeed.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @param siteId
+ @return ExtensionAPISetExtensionSiteConfigRequest
+*/
+func (a *ExtensionAPIService) SetExtensionSiteConfig(ctx context.Context, extensionId int64, siteId int64) ExtensionAPISetExtensionSiteConfigRequest {
+	return ExtensionAPISetExtensionSiteConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+		siteId: siteId,
+	}
+}
+
+// Execute executes the request
+func (a *ExtensionAPIService) SetExtensionSiteConfigExecute(r ExtensionAPISetExtensionSiteConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.SetExtensionSiteConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/siteConfig/{siteId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.extensionConfigValue == nil {
+		return nil, reportError("extensionConfigValue is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.extensionConfigValue
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ExtensionAPISuspendExtensionRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId int64
+	ifMatch *string
+}
+
+// Entity tag
+func (r ExtensionAPISuspendExtensionRequest) IfMatch(ifMatch string) ExtensionAPISuspendExtensionRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ExtensionAPISuspendExtensionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SuspendExtensionExecute(r)
+}
+
+/*
+SuspendExtension Suspend extension
+
+Suspend extension.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @return ExtensionAPISuspendExtensionRequest
+*/
+func (a *ExtensionAPIService) SuspendExtension(ctx context.Context, extensionId int64) ExtensionAPISuspendExtensionRequest {
+	return ExtensionAPISuspendExtensionRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExtensionAPIService) SuspendExtensionExecute(r ExtensionAPISuspendExtensionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.SuspendExtension")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/actions/suspend"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ExtensionAPIUpdateExtensionRequest struct {
 	ctx context.Context
 	ApiService *ExtensionAPIService
-	extensionId float32
+	extensionId int64
 	updateExtension *UpdateExtension
 	ifMatch *string
 }
@@ -815,7 +1637,7 @@ Returns details of the updated extension
  @param extensionId
  @return ExtensionAPIUpdateExtensionRequest
 */
-func (a *ExtensionAPIService) UpdateExtension(ctx context.Context, extensionId float32) ExtensionAPIUpdateExtensionRequest {
+func (a *ExtensionAPIService) UpdateExtension(ctx context.Context, extensionId int64) ExtensionAPIUpdateExtensionRequest {
 	return ExtensionAPIUpdateExtensionRequest{
 		ApiService: a,
 		ctx: ctx,

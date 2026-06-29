@@ -22,7 +22,7 @@ var _ MappedNullable = &RegisterProductionServer{}
 // RegisterProductionServer struct for RegisterProductionServer
 type RegisterProductionServer struct {
 	// The site id where the server is located.
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The UUID of the server.
 	ServerUUID *string `json:"serverUUID,omitempty"`
 	// The Serial Number of the server.
@@ -38,7 +38,7 @@ type RegisterProductionServer struct {
 	// The model of the server.
 	Model *string `json:"model,omitempty"`
 	// The registration profile id of the server.
-	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
+	RegistrationProfileId *int64 `json:"registrationProfileId,omitempty"`
 	// The password to use.
 	Password *string `json:"password,omitempty"`
 	// DPU credentials. Only use if the server has a DPU installed.
@@ -54,7 +54,7 @@ type _RegisterProductionServer RegisterProductionServer
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterProductionServer(siteId float32, settings RegisterProductionServerSettings) *RegisterProductionServer {
+func NewRegisterProductionServer(siteId int64, settings RegisterProductionServerSettings) *RegisterProductionServer {
 	this := RegisterProductionServer{}
 	this.SiteId = siteId
 	this.Settings = settings
@@ -70,9 +70,9 @@ func NewRegisterProductionServerWithDefaults() *RegisterProductionServer {
 }
 
 // GetSiteId returns the SiteId field value
-func (o *RegisterProductionServer) GetSiteId() float32 {
+func (o *RegisterProductionServer) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -81,7 +81,7 @@ func (o *RegisterProductionServer) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *RegisterProductionServer) GetSiteIdOk() (*float32, bool) {
+func (o *RegisterProductionServer) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *RegisterProductionServer) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *RegisterProductionServer) SetSiteId(v float32) {
+func (o *RegisterProductionServer) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -318,9 +318,9 @@ func (o *RegisterProductionServer) SetModel(v string) {
 }
 
 // GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
-func (o *RegisterProductionServer) GetRegistrationProfileId() float32 {
+func (o *RegisterProductionServer) GetRegistrationProfileId() int64 {
 	if o == nil || IsNil(o.RegistrationProfileId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.RegistrationProfileId
@@ -328,7 +328,7 @@ func (o *RegisterProductionServer) GetRegistrationProfileId() float32 {
 
 // GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegisterProductionServer) GetRegistrationProfileIdOk() (*float32, bool) {
+func (o *RegisterProductionServer) GetRegistrationProfileIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.RegistrationProfileId) {
 		return nil, false
 	}
@@ -344,8 +344,8 @@ func (o *RegisterProductionServer) HasRegistrationProfileId() bool {
 	return false
 }
 
-// SetRegistrationProfileId gets a reference to the given float32 and assigns it to the RegistrationProfileId field.
-func (o *RegisterProductionServer) SetRegistrationProfileId(v float32) {
+// SetRegistrationProfileId gets a reference to the given int64 and assigns it to the RegistrationProfileId field.
+func (o *RegisterProductionServer) SetRegistrationProfileId(v int64) {
 	o.RegistrationProfileId = &v
 }
 

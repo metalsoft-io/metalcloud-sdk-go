@@ -6,13 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Role label | 
 **Description** | Pointer to **string** | Role description | [optional] 
-**Permissions** | **[]string** | List of permissions assigned to the role | 
+**Permissions** | [**[]MetalsoftPermissions**](MetalsoftPermissions.md) | List of permissions assigned to the role | 
+**QuotaProfileId** | Pointer to **string** | Quota profile assigned to this role | [optional] 
 
 ## Methods
 
 ### NewCreateRole
 
-`func NewCreateRole(label string, permissions []string, ) *CreateRole`
+`func NewCreateRole(label string, permissions []MetalsoftPermissions, ) *CreateRole`
 
 NewCreateRole instantiates a new CreateRole object
 This constructor will assign default values to properties that have it defined,
@@ -74,23 +75,48 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetPermissions
 
-`func (o *CreateRole) GetPermissions() []string`
+`func (o *CreateRole) GetPermissions() []MetalsoftPermissions`
 
 GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
 ### GetPermissionsOk
 
-`func (o *CreateRole) GetPermissionsOk() (*[]string, bool)`
+`func (o *CreateRole) GetPermissionsOk() (*[]MetalsoftPermissions, bool)`
 
 GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPermissions
 
-`func (o *CreateRole) SetPermissions(v []string)`
+`func (o *CreateRole) SetPermissions(v []MetalsoftPermissions)`
 
 SetPermissions sets Permissions field to given value.
 
+
+### GetQuotaProfileId
+
+`func (o *CreateRole) GetQuotaProfileId() string`
+
+GetQuotaProfileId returns the QuotaProfileId field if non-nil, zero value otherwise.
+
+### GetQuotaProfileIdOk
+
+`func (o *CreateRole) GetQuotaProfileIdOk() (*string, bool)`
+
+GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuotaProfileId
+
+`func (o *CreateRole) SetQuotaProfileId(v string)`
+
+SetQuotaProfileId sets QuotaProfileId field to given value.
+
+### HasQuotaProfileId
+
+`func (o *CreateRole) HasQuotaProfileId() bool`
+
+HasQuotaProfileId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

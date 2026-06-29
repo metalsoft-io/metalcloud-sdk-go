@@ -28,7 +28,7 @@ type ServerFirmwareAPIService service
 type ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
+	serverId int64
 	batchScheduleServerFirmwareUpgrade *BatchScheduleServerFirmwareUpgrade
 }
 
@@ -51,7 +51,7 @@ Schedules a firmware upgrade for the specified Server
  @param serverId
  @return ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest
 */
-func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgrade(ctx context.Context, serverId float32) ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest {
+func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgrade(ctx context.Context, serverId int64) ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest {
 	return ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -143,7 +143,7 @@ func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r S
 type ServerFirmwareAPIFetchAndUpdateServerFirmwareAvailableVersionsRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerFirmwareAPIFetchAndUpdateServerFirmwareAvailableVersionsRequest) Execute() (*http.Response, error) {
@@ -159,7 +159,7 @@ Fetches and updates the available firmware versions for the specified Server
  @param serverId
  @return ServerFirmwareAPIFetchAndUpdateServerFirmwareAvailableVersionsRequest
 */
-func (a *ServerFirmwareAPIService) FetchAndUpdateServerFirmwareAvailableVersions(ctx context.Context, serverId float32) ServerFirmwareAPIFetchAndUpdateServerFirmwareAvailableVersionsRequest {
+func (a *ServerFirmwareAPIService) FetchAndUpdateServerFirmwareAvailableVersions(ctx context.Context, serverId int64) ServerFirmwareAPIFetchAndUpdateServerFirmwareAvailableVersionsRequest {
 	return ServerFirmwareAPIFetchAndUpdateServerFirmwareAvailableVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -346,8 +346,8 @@ func (a *ServerFirmwareAPIService) GenerateServersFirmwareUpgradeAuditExecute(r 
 type ServerFirmwareAPIGetServerComponentInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
-	componentId float32
+	serverId int64
+	componentId int64
 }
 
 func (r ServerFirmwareAPIGetServerComponentInfoRequest) Execute() (*ServerComponent, *http.Response, error) {
@@ -364,7 +364,7 @@ Returns Server component information
  @param componentId
  @return ServerFirmwareAPIGetServerComponentInfoRequest
 */
-func (a *ServerFirmwareAPIService) GetServerComponentInfo(ctx context.Context, serverId float32, componentId float32) ServerFirmwareAPIGetServerComponentInfoRequest {
+func (a *ServerFirmwareAPIService) GetServerComponentInfo(ctx context.Context, serverId int64, componentId int64) ServerFirmwareAPIGetServerComponentInfoRequest {
 	return ServerFirmwareAPIGetServerComponentInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -453,7 +453,7 @@ func (a *ServerFirmwareAPIService) GetServerComponentInfoExecute(r ServerFirmwar
 type ServerFirmwareAPIGetServerComponentsRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
+	serverId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -567,7 +567,7 @@ Returns a list of Server Components
  @param serverId
  @return ServerFirmwareAPIGetServerComponentsRequest
 */
-func (a *ServerFirmwareAPIService) GetServerComponents(ctx context.Context, serverId float32) ServerFirmwareAPIGetServerComponentsRequest {
+func (a *ServerFirmwareAPIService) GetServerComponents(ctx context.Context, serverId int64) ServerFirmwareAPIGetServerComponentsRequest {
 	return ServerFirmwareAPIGetServerComponentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -784,7 +784,7 @@ func (a *ServerFirmwareAPIService) GetServerComponentsExecute(r ServerFirmwareAP
 type ServerFirmwareAPIGetServerFirmwareInventoryRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerFirmwareAPIGetServerFirmwareInventoryRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
@@ -800,7 +800,7 @@ Retrieves server firmware inventory from redfish
  @param serverId
  @return ServerFirmwareAPIGetServerFirmwareInventoryRequest
 */
-func (a *ServerFirmwareAPIService) GetServerFirmwareInventory(ctx context.Context, serverId float32) ServerFirmwareAPIGetServerFirmwareInventoryRequest {
+func (a *ServerFirmwareAPIService) GetServerFirmwareInventory(ctx context.Context, serverId int64) ServerFirmwareAPIGetServerFirmwareInventoryRequest {
 	return ServerFirmwareAPIGetServerFirmwareInventoryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -887,7 +887,7 @@ func (a *ServerFirmwareAPIService) GetServerFirmwareInventoryExecute(r ServerFir
 type ServerFirmwareAPIScheduleServerFirmwareUpgradeRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
+	serverId int64
 	scheduleFirmwareUpgrade *ScheduleFirmwareUpgrade
 }
 
@@ -910,7 +910,7 @@ Schedules a firmware upgrade for the specified Server
  @param serverId
  @return ServerFirmwareAPIScheduleServerFirmwareUpgradeRequest
 */
-func (a *ServerFirmwareAPIService) ScheduleServerFirmwareUpgrade(ctx context.Context, serverId float32) ServerFirmwareAPIScheduleServerFirmwareUpgradeRequest {
+func (a *ServerFirmwareAPIService) ScheduleServerFirmwareUpgrade(ctx context.Context, serverId int64) ServerFirmwareAPIScheduleServerFirmwareUpgradeRequest {
 	return ServerFirmwareAPIScheduleServerFirmwareUpgradeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -991,8 +991,8 @@ func (a *ServerFirmwareAPIService) ScheduleServerFirmwareUpgradeExecute(r Server
 type ServerFirmwareAPIUpdateServerComponentRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
-	componentId float32
+	serverId int64
+	componentId int64
 	updateServerComponent *UpdateServerComponent
 }
 
@@ -1016,7 +1016,7 @@ Updates a Server Component
  @param componentId
  @return ServerFirmwareAPIUpdateServerComponentRequest
 */
-func (a *ServerFirmwareAPIService) UpdateServerComponent(ctx context.Context, serverId float32, componentId float32) ServerFirmwareAPIUpdateServerComponentRequest {
+func (a *ServerFirmwareAPIService) UpdateServerComponent(ctx context.Context, serverId int64, componentId int64) ServerFirmwareAPIUpdateServerComponentRequest {
 	return ServerFirmwareAPIUpdateServerComponentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1110,7 +1110,7 @@ func (a *ServerFirmwareAPIService) UpdateServerComponentExecute(r ServerFirmware
 type ServerFirmwareAPIUpdateServerFirmwareInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerFirmwareAPIUpdateServerFirmwareInfoRequest) Execute() (*http.Response, error) {
@@ -1126,7 +1126,7 @@ Updates the firmware information of the Server Components
  @param serverId
  @return ServerFirmwareAPIUpdateServerFirmwareInfoRequest
 */
-func (a *ServerFirmwareAPIService) UpdateServerFirmwareInfo(ctx context.Context, serverId float32) ServerFirmwareAPIUpdateServerFirmwareInfoRequest {
+func (a *ServerFirmwareAPIService) UpdateServerFirmwareInfo(ctx context.Context, serverId int64) ServerFirmwareAPIUpdateServerFirmwareInfoRequest {
 	return ServerFirmwareAPIUpdateServerFirmwareInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1202,7 +1202,7 @@ func (a *ServerFirmwareAPIService) UpdateServerFirmwareInfoExecute(r ServerFirmw
 type ServerFirmwareAPIUpgradeFirmwareOfServerRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
+	serverId int64
 }
 
 func (r ServerFirmwareAPIUpgradeFirmwareOfServerRequest) Execute() (*JobInfo, *http.Response, error) {
@@ -1218,7 +1218,7 @@ Upgrades the firmware of all updatable components on Server
  @param serverId
  @return ServerFirmwareAPIUpgradeFirmwareOfServerRequest
 */
-func (a *ServerFirmwareAPIService) UpgradeFirmwareOfServer(ctx context.Context, serverId float32) ServerFirmwareAPIUpgradeFirmwareOfServerRequest {
+func (a *ServerFirmwareAPIService) UpgradeFirmwareOfServer(ctx context.Context, serverId int64) ServerFirmwareAPIUpgradeFirmwareOfServerRequest {
 	return ServerFirmwareAPIUpgradeFirmwareOfServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1305,8 +1305,8 @@ func (a *ServerFirmwareAPIService) UpgradeFirmwareOfServerExecute(r ServerFirmwa
 type ServerFirmwareAPIUpgradeFirmwareOfServerComponentRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId float32
-	serverComponentId float32
+	serverId int64
+	serverComponentId int64
 	firmwareUpgrade *FirmwareUpgrade
 }
 
@@ -1330,7 +1330,7 @@ Upgrades the firmware of the specified component on Server
  @param serverComponentId
  @return ServerFirmwareAPIUpgradeFirmwareOfServerComponentRequest
 */
-func (a *ServerFirmwareAPIService) UpgradeFirmwareOfServerComponent(ctx context.Context, serverId float32, serverComponentId float32) ServerFirmwareAPIUpgradeFirmwareOfServerComponentRequest {
+func (a *ServerFirmwareAPIService) UpgradeFirmwareOfServerComponent(ctx context.Context, serverId int64, serverComponentId int64) ServerFirmwareAPIUpgradeFirmwareOfServerComponentRequest {
 	return ServerFirmwareAPIUpgradeFirmwareOfServerComponentRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewVniAllocationStrategy
 
-`func NewVniAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, vni int32, ) *VniAllocationStrategy`
+`func NewVniAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, vni int32, ) *VniAllocationStrategy`
 
 NewVniAllocationStrategy instantiates a new VniAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VniAllocationStrategy) GetId() int32`
+`func (o *VniAllocationStrategy) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VniAllocationStrategy) GetIdOk() (*int32, bool)`
+`func (o *VniAllocationStrategy) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VniAllocationStrategy) SetId(v int32)`
+`func (o *VniAllocationStrategy) SetId(v int64)`
 
 SetId sets Id field to given value.
 

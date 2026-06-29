@@ -32,7 +32,9 @@ type Role struct {
 	// Role type
 	Type string `json:"type"`
 	// List of permissions assigned to the role
-	Permissions []string `json:"permissions"`
+	Permissions []MetalsoftPermissions `json:"permissions"`
+	// Quota profile assigned to this role
+	QuotaProfileId string `json:"quotaProfileId"`
 	// Number of users with this role
 	UsersWithRole *float32 `json:"usersWithRole,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -44,13 +46,14 @@ type _Role Role
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRole(id string, name string, label string, type_ string, permissions []string) *Role {
+func NewRole(id string, name string, label string, type_ string, permissions []MetalsoftPermissions, quotaProfileId string) *Role {
 	this := Role{}
 	this.Id = id
 	this.Name = name
 	this.Label = label
 	this.Type = type_
 	this.Permissions = permissions
+	this.QuotaProfileId = quotaProfileId
 	return &this
 }
 
@@ -191,9 +194,9 @@ func (o *Role) SetType(v string) {
 }
 
 // GetPermissions returns the Permissions field value
-func (o *Role) GetPermissions() []string {
+func (o *Role) GetPermissions() []MetalsoftPermissions {
 	if o == nil {
-		var ret []string
+		var ret []MetalsoftPermissions
 		return ret
 	}
 
@@ -202,7 +205,7 @@ func (o *Role) GetPermissions() []string {
 
 // GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *Role) GetPermissionsOk() ([]string, bool) {
+func (o *Role) GetPermissionsOk() ([]MetalsoftPermissions, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -210,8 +213,32 @@ func (o *Role) GetPermissionsOk() ([]string, bool) {
 }
 
 // SetPermissions sets field value
-func (o *Role) SetPermissions(v []string) {
+func (o *Role) SetPermissions(v []MetalsoftPermissions) {
 	o.Permissions = v
+}
+
+// GetQuotaProfileId returns the QuotaProfileId field value
+func (o *Role) GetQuotaProfileId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.QuotaProfileId
+}
+
+// GetQuotaProfileIdOk returns a tuple with the QuotaProfileId field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetQuotaProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.QuotaProfileId, true
+}
+
+// SetQuotaProfileId sets field value
+func (o *Role) SetQuotaProfileId(v string) {
+	o.QuotaProfileId = v
 }
 
 // GetUsersWithRole returns the UsersWithRole field value if set, zero value otherwise.
@@ -264,6 +291,7 @@ func (o Role) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["permissions"] = o.Permissions
+	toSerialize["quotaProfileId"] = o.QuotaProfileId
 	if !IsNil(o.UsersWithRole) {
 		toSerialize["usersWithRole"] = o.UsersWithRole
 	}
@@ -285,6 +313,7 @@ func (o *Role) UnmarshalJSON(data []byte) (err error) {
 		"label",
 		"type",
 		"permissions",
+		"quotaProfileId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -320,6 +349,7 @@ func (o *Role) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "quotaProfileId")
 		delete(additionalProperties, "usersWithRole")
 		o.AdditionalProperties = additionalProperties
 	}

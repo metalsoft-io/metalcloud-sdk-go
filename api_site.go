@@ -247,7 +247,7 @@ func (a *SiteAPIService) CreateSiteExecute(r SiteAPICreateSiteRequest) (*Site, *
 type SiteAPIDecommissionSiteRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	siteId float32
+	siteId int64
 	ifMatch *string
 }
 
@@ -270,7 +270,7 @@ Decommissions a Site
  @param siteId
  @return SiteAPIDecommissionSiteRequest
 */
-func (a *SiteAPIService) DecommissionSite(ctx context.Context, siteId float32) SiteAPIDecommissionSiteRequest {
+func (a *SiteAPIService) DecommissionSite(ctx context.Context, siteId int64) SiteAPIDecommissionSiteRequest {
 	return SiteAPIDecommissionSiteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -349,7 +349,7 @@ func (a *SiteAPIService) DecommissionSiteExecute(r SiteAPIDecommissionSiteReques
 type SiteAPIDeleteDeviceAuthProviderRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	id float32
+	id int64
 	ifMatch *string
 }
 
@@ -370,7 +370,7 @@ DeleteDeviceAuthProvider Delete a device auth provider by ID
  @param id
  @return SiteAPIDeleteDeviceAuthProviderRequest
 */
-func (a *SiteAPIService) DeleteDeviceAuthProvider(ctx context.Context, id float32) SiteAPIDeleteDeviceAuthProviderRequest {
+func (a *SiteAPIService) DeleteDeviceAuthProvider(ctx context.Context, id int64) SiteAPIDeleteDeviceAuthProviderRequest {
 	return SiteAPIDeleteDeviceAuthProviderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -449,7 +449,7 @@ func (a *SiteAPIService) DeleteDeviceAuthProviderExecute(r SiteAPIDeleteDeviceAu
 type SiteAPIGetAgentsRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	siteId float32
+	siteId int64
 }
 
 func (r SiteAPIGetAgentsRequest) Execute() ([]AgentInfo, *http.Response, error) {
@@ -465,7 +465,7 @@ Returns a list of agents for a site
  @param siteId
  @return SiteAPIGetAgentsRequest
 */
-func (a *SiteAPIService) GetAgents(ctx context.Context, siteId float32) SiteAPIGetAgentsRequest {
+func (a *SiteAPIService) GetAgents(ctx context.Context, siteId int64) SiteAPIGetAgentsRequest {
 	return SiteAPIGetAgentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -552,7 +552,7 @@ func (a *SiteAPIService) GetAgentsExecute(r SiteAPIGetAgentsRequest) ([]AgentInf
 type SiteAPIGetDeviceAuthProviderByIdRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	id float32
+	id int64
 }
 
 func (r SiteAPIGetDeviceAuthProviderByIdRequest) Execute() (*DeviceAuthProvider, *http.Response, error) {
@@ -566,7 +566,7 @@ GetDeviceAuthProviderById Get a device auth provider by ID
  @param id
  @return SiteAPIGetDeviceAuthProviderByIdRequest
 */
-func (a *SiteAPIService) GetDeviceAuthProviderById(ctx context.Context, id float32) SiteAPIGetDeviceAuthProviderByIdRequest {
+func (a *SiteAPIService) GetDeviceAuthProviderById(ctx context.Context, id int64) SiteAPIGetDeviceAuthProviderByIdRequest {
 	return SiteAPIGetDeviceAuthProviderByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -653,7 +653,7 @@ func (a *SiteAPIService) GetDeviceAuthProviderByIdExecute(r SiteAPIGetDeviceAuth
 type SiteAPIGetDeviceAuthProviderCredentialsRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	id float32
+	id int64
 }
 
 func (r SiteAPIGetDeviceAuthProviderCredentialsRequest) Execute() (*DeviceAuthProviderCredentials, *http.Response, error) {
@@ -669,7 +669,7 @@ Returns the decrypted username, password, and shared secret for the device auth 
  @param id
  @return SiteAPIGetDeviceAuthProviderCredentialsRequest
 */
-func (a *SiteAPIService) GetDeviceAuthProviderCredentials(ctx context.Context, id float32) SiteAPIGetDeviceAuthProviderCredentialsRequest {
+func (a *SiteAPIService) GetDeviceAuthProviderCredentials(ctx context.Context, id int64) SiteAPIGetDeviceAuthProviderCredentialsRequest {
 	return SiteAPIGetDeviceAuthProviderCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -855,7 +855,7 @@ func (a *SiteAPIService) GetRegistryUrlsExecute(r SiteAPIGetRegistryUrlsRequest)
 type SiteAPIGetSiteRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	siteId float32
+	siteId int64
 }
 
 func (r SiteAPIGetSiteRequest) Execute() (*Site, *http.Response, error) {
@@ -871,7 +871,7 @@ Returns Site information
  @param siteId
  @return SiteAPIGetSiteRequest
 */
-func (a *SiteAPIService) GetSite(ctx context.Context, siteId float32) SiteAPIGetSiteRequest {
+func (a *SiteAPIService) GetSite(ctx context.Context, siteId int64) SiteAPIGetSiteRequest {
 	return SiteAPIGetSiteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -958,7 +958,7 @@ func (a *SiteAPIService) GetSiteExecute(r SiteAPIGetSiteRequest) (*Site, *http.R
 type SiteAPIGetSiteConfigRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	siteId float32
+	siteId int64
 }
 
 func (r SiteAPIGetSiteConfigRequest) Execute() (*SiteConfig, *http.Response, error) {
@@ -974,7 +974,7 @@ Returns Site Config information
  @param siteId
  @return SiteAPIGetSiteConfigRequest
 */
-func (a *SiteAPIService) GetSiteConfig(ctx context.Context, siteId float32) SiteAPIGetSiteConfigRequest {
+func (a *SiteAPIService) GetSiteConfig(ctx context.Context, siteId int64) SiteAPIGetSiteConfigRequest {
 	return SiteAPIGetSiteConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1061,7 +1061,7 @@ func (a *SiteAPIService) GetSiteConfigExecute(r SiteAPIGetSiteConfigRequest) (*S
 type SiteAPIGetSiteControllerOneLinerRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	siteId float32
+	siteId int64
 	generateSiteControllerOneliner *GenerateSiteControllerOneliner
 }
 
@@ -1084,7 +1084,7 @@ Returns the one liner
  @param siteId
  @return SiteAPIGetSiteControllerOneLinerRequest
 */
-func (a *SiteAPIService) GetSiteControllerOneLiner(ctx context.Context, siteId float32) SiteAPIGetSiteControllerOneLinerRequest {
+func (a *SiteAPIService) GetSiteControllerOneLiner(ctx context.Context, siteId int64) SiteAPIGetSiteControllerOneLinerRequest {
 	return SiteAPIGetSiteControllerOneLinerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1795,7 +1795,7 @@ func (a *SiteAPIService) ListDeviceAuthProvidersExecute(r SiteAPIListDeviceAuthP
 type SiteAPIUpdateDeviceAuthProviderRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	id float32
+	id int64
 	updateDeviceAuthProvider *UpdateDeviceAuthProvider
 	ifMatch *string
 }
@@ -1824,7 +1824,7 @@ Updates a device auth provider. To update the shared secret use the dedicated PA
  @param id
  @return SiteAPIUpdateDeviceAuthProviderRequest
 */
-func (a *SiteAPIService) UpdateDeviceAuthProvider(ctx context.Context, id float32) SiteAPIUpdateDeviceAuthProviderRequest {
+func (a *SiteAPIService) UpdateDeviceAuthProvider(ctx context.Context, id int64) SiteAPIUpdateDeviceAuthProviderRequest {
 	return SiteAPIUpdateDeviceAuthProviderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1919,7 +1919,7 @@ func (a *SiteAPIService) UpdateDeviceAuthProviderExecute(r SiteAPIUpdateDeviceAu
 type SiteAPIUpdateDeviceAuthProviderSharedSecretRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	id float32
+	id int64
 	updateDeviceAuthProviderSharedSecret *UpdateDeviceAuthProviderSharedSecret
 	ifMatch *string
 }
@@ -1948,7 +1948,7 @@ Updates the shared secret used to encrypt communication with the TACACS+ server.
  @param id
  @return SiteAPIUpdateDeviceAuthProviderSharedSecretRequest
 */
-func (a *SiteAPIService) UpdateDeviceAuthProviderSharedSecret(ctx context.Context, id float32) SiteAPIUpdateDeviceAuthProviderSharedSecretRequest {
+func (a *SiteAPIService) UpdateDeviceAuthProviderSharedSecret(ctx context.Context, id int64) SiteAPIUpdateDeviceAuthProviderSharedSecretRequest {
 	return SiteAPIUpdateDeviceAuthProviderSharedSecretRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2032,7 +2032,7 @@ func (a *SiteAPIService) UpdateDeviceAuthProviderSharedSecretExecute(r SiteAPIUp
 type SiteAPIUpdateSiteRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	siteId float32
+	siteId int64
 	siteUpdate *SiteUpdate
 	ifMatch *string
 }
@@ -2062,7 +2062,7 @@ Updates a Site
  @param siteId
  @return SiteAPIUpdateSiteRequest
 */
-func (a *SiteAPIService) UpdateSite(ctx context.Context, siteId float32) SiteAPIUpdateSiteRequest {
+func (a *SiteAPIService) UpdateSite(ctx context.Context, siteId int64) SiteAPIUpdateSiteRequest {
 	return SiteAPIUpdateSiteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2157,7 +2157,7 @@ func (a *SiteAPIService) UpdateSiteExecute(r SiteAPIUpdateSiteRequest) (*Site, *
 type SiteAPIUpdateSiteConfigRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService
-	siteId float32
+	siteId int64
 	siteConfigUpdate *SiteConfigUpdate
 	ifMatch *string
 }
@@ -2187,7 +2187,7 @@ Updates a Site Config
  @param siteId
  @return SiteAPIUpdateSiteConfigRequest
 */
-func (a *SiteAPIService) UpdateSiteConfig(ctx context.Context, siteId float32) SiteAPIUpdateSiteConfigRequest {
+func (a *SiteAPIService) UpdateSiteConfig(ctx context.Context, siteId int64) SiteAPIUpdateSiteConfigRequest {
 	return SiteAPIUpdateSiteConfigRequest{
 		ApiService: a,
 		ctx: ctx,

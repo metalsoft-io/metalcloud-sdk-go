@@ -21,8 +21,8 @@ var _ MappedNullable = &FirmwareBinary{}
 
 // FirmwareBinary struct for FirmwareBinary
 type FirmwareBinary struct {
-	Id float32 `json:"id"`
-	CatalogId float32 `json:"catalogId"`
+	Id int64 `json:"id"`
+	CatalogId int64 `json:"catalogId"`
 	ExternalId *string `json:"externalId,omitempty"`
 	VendorInfoUrl *string `json:"vendorInfoUrl,omitempty"`
 	VendorDownloadUrl string `json:"vendorDownloadUrl"`
@@ -31,7 +31,7 @@ type FirmwareBinary struct {
 	PackageId *string `json:"packageId,omitempty"`
 	PackageVersion *string `json:"packageVersion,omitempty"`
 	RebootRequired bool `json:"rebootRequired"`
-	UpdateSeverity FirmwareBinaryUpdateSeverity `json:"updateSeverity"`
+	UpdateSeverity string `json:"updateSeverity"`
 	VendorSupportedDevices []map[string]interface{} `json:"vendorSupportedDevices"`
 	VendorSupportedSystems []map[string]interface{} `json:"vendorSupportedSystems"`
 	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
@@ -47,7 +47,7 @@ type _FirmwareBinary FirmwareBinary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBinary(id float32, catalogId float32, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity FirmwareBinaryUpdateSeverity, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links []Link) *FirmwareBinary {
+func NewFirmwareBinary(id int64, catalogId int64, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity string, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links []Link) *FirmwareBinary {
 	this := FirmwareBinary{}
 	this.Id = id
 	this.CatalogId = catalogId
@@ -71,9 +71,9 @@ func NewFirmwareBinaryWithDefaults() *FirmwareBinary {
 }
 
 // GetId returns the Id field value
-func (o *FirmwareBinary) GetId() float32 {
+func (o *FirmwareBinary) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -82,7 +82,7 @@ func (o *FirmwareBinary) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinary) GetIdOk() (*float32, bool) {
+func (o *FirmwareBinary) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,14 +90,14 @@ func (o *FirmwareBinary) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *FirmwareBinary) SetId(v float32) {
+func (o *FirmwareBinary) SetId(v int64) {
 	o.Id = v
 }
 
 // GetCatalogId returns the CatalogId field value
-func (o *FirmwareBinary) GetCatalogId() float32 {
+func (o *FirmwareBinary) GetCatalogId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -106,7 +106,7 @@ func (o *FirmwareBinary) GetCatalogId() float32 {
 
 // GetCatalogIdOk returns a tuple with the CatalogId field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinary) GetCatalogIdOk() (*float32, bool) {
+func (o *FirmwareBinary) GetCatalogIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,7 +114,7 @@ func (o *FirmwareBinary) GetCatalogIdOk() (*float32, bool) {
 }
 
 // SetCatalogId sets field value
-func (o *FirmwareBinary) SetCatalogId(v float32) {
+func (o *FirmwareBinary) SetCatalogId(v int64) {
 	o.CatalogId = v
 }
 
@@ -351,9 +351,9 @@ func (o *FirmwareBinary) SetRebootRequired(v bool) {
 }
 
 // GetUpdateSeverity returns the UpdateSeverity field value
-func (o *FirmwareBinary) GetUpdateSeverity() FirmwareBinaryUpdateSeverity {
+func (o *FirmwareBinary) GetUpdateSeverity() string {
 	if o == nil {
-		var ret FirmwareBinaryUpdateSeverity
+		var ret string
 		return ret
 	}
 
@@ -362,7 +362,7 @@ func (o *FirmwareBinary) GetUpdateSeverity() FirmwareBinaryUpdateSeverity {
 
 // GetUpdateSeverityOk returns a tuple with the UpdateSeverity field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinary) GetUpdateSeverityOk() (*FirmwareBinaryUpdateSeverity, bool) {
+func (o *FirmwareBinary) GetUpdateSeverityOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -370,7 +370,7 @@ func (o *FirmwareBinary) GetUpdateSeverityOk() (*FirmwareBinaryUpdateSeverity, b
 }
 
 // SetUpdateSeverity sets field value
-func (o *FirmwareBinary) SetUpdateSeverity(v FirmwareBinaryUpdateSeverity) {
+func (o *FirmwareBinary) SetUpdateSeverity(v string) {
 	o.UpdateSeverity = v
 }
 

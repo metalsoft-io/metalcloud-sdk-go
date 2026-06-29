@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -95,6 +96,114 @@ func (a *SecurityAPIService) CreatePermissionExecute(r SecurityAPICreatePermissi
 	}
 	// body params
 	localVarPostBody = r.createPermission
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SecurityAPICreateQuotaProfileRequest struct {
+	ctx context.Context
+	ApiService *SecurityAPIService
+	createQuotaProfile *CreateQuotaProfile
+}
+
+func (r SecurityAPICreateQuotaProfileRequest) CreateQuotaProfile(createQuotaProfile CreateQuotaProfile) SecurityAPICreateQuotaProfileRequest {
+	r.createQuotaProfile = &createQuotaProfile
+	return r
+}
+
+func (r SecurityAPICreateQuotaProfileRequest) Execute() (*QuotaProfile, *http.Response, error) {
+	return r.ApiService.CreateQuotaProfileExecute(r)
+}
+
+/*
+CreateQuotaProfile Create a new quota profile
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return SecurityAPICreateQuotaProfileRequest
+*/
+func (a *SecurityAPIService) CreateQuotaProfile(ctx context.Context) SecurityAPICreateQuotaProfileRequest {
+	return SecurityAPICreateQuotaProfileRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return QuotaProfile
+func (a *SecurityAPIService) CreateQuotaProfileExecute(r SecurityAPICreateQuotaProfileRequest) (*QuotaProfile, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *QuotaProfile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.CreateQuotaProfile")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/quota-profiles"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createQuotaProfile == nil {
+		return localVarReturnValue, nil, reportError("createQuotaProfile is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createQuotaProfile
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -330,6 +439,96 @@ func (a *SecurityAPIService) DeletePermissionExecute(r SecurityAPIDeletePermissi
 	return localVarHTTPResponse, nil
 }
 
+type SecurityAPIDeleteQuotaProfileRequest struct {
+	ctx context.Context
+	ApiService *SecurityAPIService
+	profileId string
+}
+
+func (r SecurityAPIDeleteQuotaProfileRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteQuotaProfileExecute(r)
+}
+
+/*
+DeleteQuotaProfile Delete a quota profile by id
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param profileId The quota profile id
+ @return SecurityAPIDeleteQuotaProfileRequest
+*/
+func (a *SecurityAPIService) DeleteQuotaProfile(ctx context.Context, profileId string) SecurityAPIDeleteQuotaProfileRequest {
+	return SecurityAPIDeleteQuotaProfileRequest{
+		ApiService: a,
+		ctx: ctx,
+		profileId: profileId,
+	}
+}
+
+// Execute executes the request
+func (a *SecurityAPIService) DeleteQuotaProfileExecute(r SecurityAPIDeleteQuotaProfileRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.DeleteQuotaProfile")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/quota-profiles/{profileId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterValueToString(r.profileId, "profileId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type SecurityAPIDeleteRoleRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
@@ -423,9 +622,51 @@ func (a *SecurityAPIService) DeleteRoleExecute(r SecurityAPIDeleteRoleRequest) (
 type SecurityAPIGetPermissionsRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
+	page *float32
+	limit *float32
+	filterType *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
-func (r SecurityAPIGetPermissionsRequest) Execute() (*PermissionList, *http.Response, error) {
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SecurityAPIGetPermissionsRequest) Page(page float32) SecurityAPIGetPermissionsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r SecurityAPIGetPermissionsRequest) Limit(limit float32) SecurityAPIGetPermissionsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetPermissionsRequest) FilterType(filterType []string) SecurityAPIGetPermissionsRequest {
+	r.filterType = &filterType
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label 
+func (r SecurityAPIGetPermissionsRequest) SortBy(sortBy []string) SecurityAPIGetPermissionsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SecurityAPIGetPermissionsRequest) Search(search string) SecurityAPIGetPermissionsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description 
+func (r SecurityAPIGetPermissionsRequest) SearchBy(searchBy []string) SecurityAPIGetPermissionsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SecurityAPIGetPermissionsRequest) Execute() (*PermissionPaginatedList, *http.Response, error) {
 	return r.ApiService.GetPermissionsExecute(r)
 }
 
@@ -443,13 +684,13 @@ func (a *SecurityAPIService) GetPermissions(ctx context.Context) SecurityAPIGetP
 }
 
 // Execute executes the request
-//  @return PermissionList
-func (a *SecurityAPIService) GetPermissionsExecute(r SecurityAPIGetPermissionsRequest) (*PermissionList, *http.Response, error) {
+//  @return PermissionPaginatedList
+func (a *SecurityAPIService) GetPermissionsExecute(r SecurityAPIGetPermissionsRequest) (*PermissionPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PermissionList
+		localVarReturnValue  *PermissionPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.GetPermissions")
@@ -463,6 +704,48 @@ func (a *SecurityAPIService) GetPermissionsExecute(r SecurityAPIGetPermissionsRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterType != nil {
+		t := *r.filterType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -562,6 +845,288 @@ func (a *SecurityAPIService) GetProvidersExecute(r SecurityAPIGetProvidersReques
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SecurityAPIGetQuotaProfileRequest struct {
+	ctx context.Context
+	ApiService *SecurityAPIService
+	profileId string
+}
+
+func (r SecurityAPIGetQuotaProfileRequest) Execute() (*QuotaProfile, *http.Response, error) {
+	return r.ApiService.GetQuotaProfileExecute(r)
+}
+
+/*
+GetQuotaProfile Get a quota profile by id
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param profileId The quota profile id
+ @return SecurityAPIGetQuotaProfileRequest
+*/
+func (a *SecurityAPIService) GetQuotaProfile(ctx context.Context, profileId string) SecurityAPIGetQuotaProfileRequest {
+	return SecurityAPIGetQuotaProfileRequest{
+		ApiService: a,
+		ctx: ctx,
+		profileId: profileId,
+	}
+}
+
+// Execute executes the request
+//  @return QuotaProfile
+func (a *SecurityAPIService) GetQuotaProfileExecute(r SecurityAPIGetQuotaProfileRequest) (*QuotaProfile, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *QuotaProfile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.GetQuotaProfile")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/quota-profiles/{profileId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterValueToString(r.profileId, "profileId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SecurityAPIGetQuotaProfilesRequest struct {
+	ctx context.Context
+	ApiService *SecurityAPIService
+	page *float32
+	limit *float32
+	filterId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SecurityAPIGetQuotaProfilesRequest) Page(page float32) SecurityAPIGetQuotaProfilesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r SecurityAPIGetQuotaProfilesRequest) Limit(limit float32) SecurityAPIGetQuotaProfilesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetQuotaProfilesRequest) FilterId(filterId []string) SecurityAPIGetQuotaProfilesRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** name:ASC  **Available Fields** - id  - name 
+func (r SecurityAPIGetQuotaProfilesRequest) SortBy(sortBy []string) SecurityAPIGetQuotaProfilesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SecurityAPIGetQuotaProfilesRequest) Search(search string) SecurityAPIGetQuotaProfilesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,name,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - description 
+func (r SecurityAPIGetQuotaProfilesRequest) SearchBy(searchBy []string) SecurityAPIGetQuotaProfilesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SecurityAPIGetQuotaProfilesRequest) Execute() (*QuotaProfilePaginatedList, *http.Response, error) {
+	return r.ApiService.GetQuotaProfilesExecute(r)
+}
+
+/*
+GetQuotaProfiles Get all quota profiles
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return SecurityAPIGetQuotaProfilesRequest
+*/
+func (a *SecurityAPIService) GetQuotaProfiles(ctx context.Context) SecurityAPIGetQuotaProfilesRequest {
+	return SecurityAPIGetQuotaProfilesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return QuotaProfilePaginatedList
+func (a *SecurityAPIService) GetQuotaProfilesExecute(r SecurityAPIGetQuotaProfilesRequest) (*QuotaProfilePaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *QuotaProfilePaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.GetQuotaProfiles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/quota-profiles"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -720,9 +1285,58 @@ func (a *SecurityAPIService) GetRoleExecute(r SecurityAPIGetRoleRequest) (*Role,
 type SecurityAPIGetRolesRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
+	page *float32
+	limit *float32
+	filterType *[]string
+	filterQuotaProfileId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
-func (r SecurityAPIGetRolesRequest) Execute() (*RoleList, *http.Response, error) {
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r SecurityAPIGetRolesRequest) Page(page float32) SecurityAPIGetRolesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r SecurityAPIGetRolesRequest) Limit(limit float32) SecurityAPIGetRolesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by type query param.  **Format:** filter.type&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.type&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetRolesRequest) FilterType(filterType []string) SecurityAPIGetRolesRequest {
+	r.filterType = &filterType
+	return r
+}
+
+// Filter by quotaProfileId query param.  **Format:** filter.quotaProfileId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.quotaProfileId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r SecurityAPIGetRolesRequest) FilterQuotaProfileId(filterQuotaProfileId []string) SecurityAPIGetRolesRequest {
+	r.filterQuotaProfileId = &filterQuotaProfileId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** label:ASC  **Available Fields** - id  - name  - label 
+func (r SecurityAPIGetRolesRequest) SortBy(sortBy []string) SecurityAPIGetRolesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r SecurityAPIGetRolesRequest) Search(search string) SecurityAPIGetRolesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** name,label,description   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label  - description 
+func (r SecurityAPIGetRolesRequest) SearchBy(searchBy []string) SecurityAPIGetRolesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r SecurityAPIGetRolesRequest) Execute() (*RolePaginatedList, *http.Response, error) {
 	return r.ApiService.GetRolesExecute(r)
 }
 
@@ -740,13 +1354,13 @@ func (a *SecurityAPIService) GetRoles(ctx context.Context) SecurityAPIGetRolesRe
 }
 
 // Execute executes the request
-//  @return RoleList
-func (a *SecurityAPIService) GetRolesExecute(r SecurityAPIGetRolesRequest) (*RoleList, *http.Response, error) {
+//  @return RolePaginatedList
+func (a *SecurityAPIService) GetRolesExecute(r SecurityAPIGetRolesRequest) (*RolePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RoleList
+		localVarReturnValue  *RolePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.GetRoles")
@@ -760,6 +1374,59 @@ func (a *SecurityAPIService) GetRolesExecute(r SecurityAPIGetRolesRequest) (*Rol
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterType != nil {
+		t := *r.filterType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.type", t, "form", "multi")
+		}
+	}
+	if r.filterQuotaProfileId != nil {
+		t := *r.filterQuotaProfileId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.quotaProfileId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.quotaProfileId", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -892,6 +1559,118 @@ func (a *SecurityAPIService) UpdateProviderExecute(r SecurityAPIUpdateProviderRe
 	}
 	// body params
 	localVarPostBody = r.authenticationProviderUpdate
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SecurityAPIUpdateQuotaProfileRequest struct {
+	ctx context.Context
+	ApiService *SecurityAPIService
+	profileId string
+	editQuotaProfile *EditQuotaProfile
+}
+
+func (r SecurityAPIUpdateQuotaProfileRequest) EditQuotaProfile(editQuotaProfile EditQuotaProfile) SecurityAPIUpdateQuotaProfileRequest {
+	r.editQuotaProfile = &editQuotaProfile
+	return r
+}
+
+func (r SecurityAPIUpdateQuotaProfileRequest) Execute() (*QuotaProfile, *http.Response, error) {
+	return r.ApiService.UpdateQuotaProfileExecute(r)
+}
+
+/*
+UpdateQuotaProfile Update a quota profile by id
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param profileId The quota profile id
+ @return SecurityAPIUpdateQuotaProfileRequest
+*/
+func (a *SecurityAPIService) UpdateQuotaProfile(ctx context.Context, profileId string) SecurityAPIUpdateQuotaProfileRequest {
+	return SecurityAPIUpdateQuotaProfileRequest{
+		ApiService: a,
+		ctx: ctx,
+		profileId: profileId,
+	}
+}
+
+// Execute executes the request
+//  @return QuotaProfile
+func (a *SecurityAPIService) UpdateQuotaProfileExecute(r SecurityAPIUpdateQuotaProfileRequest) (*QuotaProfile, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *QuotaProfile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.UpdateQuotaProfile")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/quota-profiles/{profileId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterValueToString(r.profileId, "profileId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.editQuotaProfile == nil {
+		return localVarReturnValue, nil, reportError("editQuotaProfile is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.editQuotaProfile
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

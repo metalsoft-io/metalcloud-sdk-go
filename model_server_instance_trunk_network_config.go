@@ -22,8 +22,8 @@ var _ MappedNullable = &ServerInstanceTrunkNetworkConfig{}
 // ServerInstanceTrunkNetworkConfig struct for ServerInstanceTrunkNetworkConfig
 type ServerInstanceTrunkNetworkConfig struct {
 	InterfaceType string `json:"interfaceType"`
-	TypeInterfaceId float32 `json:"typeInterfaceId"`
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	TypeInterfaceId int64 `json:"typeInterfaceId"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	LogicalNetworkName *string `json:"logicalNetworkName,omitempty"`
 	LogicalNetworkLabel *string `json:"logicalNetworkLabel,omitempty"`
 	// The list of IPv4 addresses.
@@ -32,7 +32,7 @@ type ServerInstanceTrunkNetworkConfig struct {
 	Ipv6Addresses []ServerInstanceNetworkConfigIpInfo `json:"ipv6Addresses,omitempty"`
 	// The list of static routes.
 	Routes []ServerInstanceNetworkConfigRoute `json:"routes,omitempty"`
-	VlanId float32 `json:"vlanId"`
+	VlanId int32 `json:"vlanId"`
 	// The list of network configuration members.
 	Links []ServerInstanceNetworkConfigMembers `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -44,7 +44,7 @@ type _ServerInstanceTrunkNetworkConfig ServerInstanceTrunkNetworkConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceTrunkNetworkConfig(interfaceType string, typeInterfaceId float32, vlanId float32) *ServerInstanceTrunkNetworkConfig {
+func NewServerInstanceTrunkNetworkConfig(interfaceType string, typeInterfaceId int64, vlanId int32) *ServerInstanceTrunkNetworkConfig {
 	this := ServerInstanceTrunkNetworkConfig{}
 	this.InterfaceType = interfaceType
 	this.TypeInterfaceId = typeInterfaceId
@@ -85,9 +85,9 @@ func (o *ServerInstanceTrunkNetworkConfig) SetInterfaceType(v string) {
 }
 
 // GetTypeInterfaceId returns the TypeInterfaceId field value
-func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceId() float32 {
+func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -96,7 +96,7 @@ func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceId() float32 {
 
 // GetTypeInterfaceIdOk returns a tuple with the TypeInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceIdOk() (*float32, bool) {
+func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -104,14 +104,14 @@ func (o *ServerInstanceTrunkNetworkConfig) GetTypeInterfaceIdOk() (*float32, boo
 }
 
 // SetTypeInterfaceId sets field value
-func (o *ServerInstanceTrunkNetworkConfig) SetTypeInterfaceId(v float32) {
+func (o *ServerInstanceTrunkNetworkConfig) SetTypeInterfaceId(v int64) {
 	o.TypeInterfaceId = v
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkId() float32 {
+func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -119,7 +119,7 @@ func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *ServerInstanceTrunkNetworkConfig) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *ServerInstanceTrunkNetworkConfig) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *ServerInstanceTrunkNetworkConfig) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *ServerInstanceTrunkNetworkConfig) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 
@@ -301,9 +301,9 @@ func (o *ServerInstanceTrunkNetworkConfig) SetRoutes(v []ServerInstanceNetworkCo
 }
 
 // GetVlanId returns the VlanId field value
-func (o *ServerInstanceTrunkNetworkConfig) GetVlanId() float32 {
+func (o *ServerInstanceTrunkNetworkConfig) GetVlanId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -312,7 +312,7 @@ func (o *ServerInstanceTrunkNetworkConfig) GetVlanId() float32 {
 
 // GetVlanIdOk returns a tuple with the VlanId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceTrunkNetworkConfig) GetVlanIdOk() (*float32, bool) {
+func (o *ServerInstanceTrunkNetworkConfig) GetVlanIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -320,7 +320,7 @@ func (o *ServerInstanceTrunkNetworkConfig) GetVlanIdOk() (*float32, bool) {
 }
 
 // SetVlanId sets field value
-func (o *ServerInstanceTrunkNetworkConfig) SetVlanId(v float32) {
+func (o *ServerInstanceTrunkNetworkConfig) SetVlanId(v int32) {
 	o.VlanId = v
 }
 

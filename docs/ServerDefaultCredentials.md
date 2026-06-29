@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The ID of the server default credentials | 
-**SiteId** | **float32** | The site ID of the server default credentials | 
+**Id** | **int64** | The ID of the server default credentials | 
+**SiteId** | **int64** | The site ID of the server default credentials | 
 **ServerSerialNumber** | Pointer to **string** | The serial number of the server | [optional] 
 **ServerMacAddress** | Pointer to **string** | The MAC address of the server | [optional] 
 **DefaultUsername** | **string** | The default username of the server | 
@@ -14,14 +14,14 @@ Name | Type | Description | Notes
 **DefaultRackPositionUpperUnit** | Pointer to **string** | The default rack position upper unit of the server | [optional] 
 **DefaultInventoryId** | Pointer to **string** | The default inventory ID of the server | [optional] 
 **DefaultUuid** | Pointer to **string** | The default UUID of the server | [optional] 
-**DefaultRegistrationProfileId** | Pointer to **float32** | The default registration profile ID of the server | [optional] 
+**DefaultRegistrationProfileId** | Pointer to **int64** | The default registration profile ID of the server | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewServerDefaultCredentials
 
-`func NewServerDefaultCredentials(id float32, siteId float32, defaultUsername string, ) *ServerDefaultCredentials`
+`func NewServerDefaultCredentials(id int64, siteId int64, defaultUsername string, ) *ServerDefaultCredentials`
 
 NewServerDefaultCredentials instantiates a new ServerDefaultCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -38,40 +38,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerDefaultCredentials) GetId() float32`
+`func (o *ServerDefaultCredentials) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerDefaultCredentials) GetIdOk() (*float32, bool)`
+`func (o *ServerDefaultCredentials) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerDefaultCredentials) SetId(v float32)`
+`func (o *ServerDefaultCredentials) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetSiteId
 
-`func (o *ServerDefaultCredentials) GetSiteId() float32`
+`func (o *ServerDefaultCredentials) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *ServerDefaultCredentials) GetSiteIdOk() (*float32, bool)`
+`func (o *ServerDefaultCredentials) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *ServerDefaultCredentials) SetSiteId(v float32)`
+`func (o *ServerDefaultCredentials) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -273,20 +273,20 @@ HasDefaultUuid returns a boolean if a field has been set.
 
 ### GetDefaultRegistrationProfileId
 
-`func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileId() float32`
+`func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileId() int64`
 
 GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field if non-nil, zero value otherwise.
 
 ### GetDefaultRegistrationProfileIdOk
 
-`func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool)`
+`func (o *ServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*int64, bool)`
 
 GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultRegistrationProfileId
 
-`func (o *ServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32)`
+`func (o *ServerDefaultCredentials) SetDefaultRegistrationProfileId(v int64)`
 
 SetDefaultRegistrationProfileId sets DefaultRegistrationProfileId field to given value.
 

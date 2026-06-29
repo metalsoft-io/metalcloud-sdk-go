@@ -26,7 +26,7 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.CreateInfrastructureBucket(context.Background(), infrastructureId).Execute()
 
@@ -40,8 +40,8 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var bucketId float32
+		var infrastructureId int64
+		var bucketId int64
 
 		httpRes, err := apiClient.BucketAPI.DeleteBucket(context.Background(), infrastructureId, bucketId).Execute()
 
@@ -54,7 +54,7 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var bucketId float32
+		var bucketId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.GetBucket(context.Background(), bucketId).Execute()
 
@@ -68,8 +68,8 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var bucketId float32
+		var infrastructureId int64
+		var bucketId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.GetBucketConfigInfo(context.Background(), infrastructureId, bucketId).Execute()
 
@@ -84,7 +84,7 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var infrastructureId float32
-		var bucketId float32
+		var bucketId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.GetBucketCredentials(context.Background(), infrastructureId, bucketId).Execute()
 
@@ -98,8 +98,8 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var bucketId float32
+		var infrastructureId int64
+		var bucketId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.GetInfrastructureBucket(context.Background(), infrastructureId, bucketId).Execute()
 
@@ -113,7 +113,7 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
+		var infrastructureId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.GetInfrastructureBuckets(context.Background(), infrastructureId).Execute()
 
@@ -127,8 +127,8 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var bucketId float32
+		var infrastructureId int64
+		var bucketId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.UpdateBucket(context.Background(), infrastructureId, bucketId).Execute()
 
@@ -142,8 +142,8 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-		var bucketId float32
+		var infrastructureId int64
+		var bucketId int64
 
 		resp, httpRes, err := apiClient.BucketAPI.UpdateBucketMeta(context.Background(), infrastructureId, bucketId).Execute()
 

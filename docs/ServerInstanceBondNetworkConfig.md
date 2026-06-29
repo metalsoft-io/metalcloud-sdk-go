@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InterfaceType** | **string** |  | 
-**TypeInterfaceId** | **float32** |  | 
-**LogicalNetworkId** | Pointer to **float32** |  | [optional] 
+**TypeInterfaceId** | **int64** |  | 
+**LogicalNetworkId** | Pointer to **int64** |  | [optional] 
 **LogicalNetworkName** | Pointer to **string** |  | [optional] 
 **LogicalNetworkLabel** | Pointer to **string** |  | [optional] 
 **Ipv4Addresses** | Pointer to [**[]ServerInstanceNetworkConfigIpInfo**](ServerInstanceNetworkConfigIpInfo.md) | The list of IPv4 addresses. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceBondNetworkConfig
 
-`func NewServerInstanceBondNetworkConfig(interfaceType string, typeInterfaceId float32, ) *ServerInstanceBondNetworkConfig`
+`func NewServerInstanceBondNetworkConfig(interfaceType string, typeInterfaceId int64, ) *ServerInstanceBondNetworkConfig`
 
 NewServerInstanceBondNetworkConfig instantiates a new ServerInstanceBondNetworkConfig object
 This constructor will assign default values to properties that have it defined,
@@ -55,40 +55,40 @@ SetInterfaceType sets InterfaceType field to given value.
 
 ### GetTypeInterfaceId
 
-`func (o *ServerInstanceBondNetworkConfig) GetTypeInterfaceId() float32`
+`func (o *ServerInstanceBondNetworkConfig) GetTypeInterfaceId() int64`
 
 GetTypeInterfaceId returns the TypeInterfaceId field if non-nil, zero value otherwise.
 
 ### GetTypeInterfaceIdOk
 
-`func (o *ServerInstanceBondNetworkConfig) GetTypeInterfaceIdOk() (*float32, bool)`
+`func (o *ServerInstanceBondNetworkConfig) GetTypeInterfaceIdOk() (*int64, bool)`
 
 GetTypeInterfaceIdOk returns a tuple with the TypeInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeInterfaceId
 
-`func (o *ServerInstanceBondNetworkConfig) SetTypeInterfaceId(v float32)`
+`func (o *ServerInstanceBondNetworkConfig) SetTypeInterfaceId(v int64)`
 
 SetTypeInterfaceId sets TypeInterfaceId field to given value.
 
 
 ### GetLogicalNetworkId
 
-`func (o *ServerInstanceBondNetworkConfig) GetLogicalNetworkId() float32`
+`func (o *ServerInstanceBondNetworkConfig) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *ServerInstanceBondNetworkConfig) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *ServerInstanceBondNetworkConfig) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *ServerInstanceBondNetworkConfig) SetLogicalNetworkId(v float32)`
+`func (o *ServerInstanceBondNetworkConfig) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

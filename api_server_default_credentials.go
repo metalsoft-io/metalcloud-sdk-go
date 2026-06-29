@@ -139,7 +139,7 @@ func (a *ServerDefaultCredentialsAPIService) CreateServerDefaultCredentialsExecu
 type ServerDefaultCredentialsAPIDeleteServerDefaultCredentialsRequest struct {
 	ctx context.Context
 	ApiService *ServerDefaultCredentialsAPIService
-	serverDefaultCredentialsId float32
+	serverDefaultCredentialsId int64
 }
 
 func (r ServerDefaultCredentialsAPIDeleteServerDefaultCredentialsRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes a Server Default Credentials
  @param serverDefaultCredentialsId
  @return ServerDefaultCredentialsAPIDeleteServerDefaultCredentialsRequest
 */
-func (a *ServerDefaultCredentialsAPIService) DeleteServerDefaultCredentials(ctx context.Context, serverDefaultCredentialsId float32) ServerDefaultCredentialsAPIDeleteServerDefaultCredentialsRequest {
+func (a *ServerDefaultCredentialsAPIService) DeleteServerDefaultCredentials(ctx context.Context, serverDefaultCredentialsId int64) ServerDefaultCredentialsAPIDeleteServerDefaultCredentialsRequest {
 	return ServerDefaultCredentialsAPIDeleteServerDefaultCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,7 +231,7 @@ func (a *ServerDefaultCredentialsAPIService) DeleteServerDefaultCredentialsExecu
 type ServerDefaultCredentialsAPIGetServerDefaultCredentialsCredentialsRequest struct {
 	ctx context.Context
 	ApiService *ServerDefaultCredentialsAPIService
-	serverDefaultCredentialsId float32
+	serverDefaultCredentialsId int64
 }
 
 func (r ServerDefaultCredentialsAPIGetServerDefaultCredentialsCredentialsRequest) Execute() (*ServerDefaultCredentialsCredentials, *http.Response, error) {
@@ -247,7 +247,7 @@ Returns Server Default Credentials unencrypted
  @param serverDefaultCredentialsId
  @return ServerDefaultCredentialsAPIGetServerDefaultCredentialsCredentialsRequest
 */
-func (a *ServerDefaultCredentialsAPIService) GetServerDefaultCredentialsCredentials(ctx context.Context, serverDefaultCredentialsId float32) ServerDefaultCredentialsAPIGetServerDefaultCredentialsCredentialsRequest {
+func (a *ServerDefaultCredentialsAPIService) GetServerDefaultCredentialsCredentials(ctx context.Context, serverDefaultCredentialsId int64) ServerDefaultCredentialsAPIGetServerDefaultCredentialsCredentialsRequest {
 	return ServerDefaultCredentialsAPIGetServerDefaultCredentialsCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -334,7 +334,7 @@ func (a *ServerDefaultCredentialsAPIService) GetServerDefaultCredentialsCredenti
 type ServerDefaultCredentialsAPIGetServerDefaultCredentialsInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerDefaultCredentialsAPIService
-	serverDefaultCredentialsId float32
+	serverDefaultCredentialsId int64
 }
 
 func (r ServerDefaultCredentialsAPIGetServerDefaultCredentialsInfoRequest) Execute() (*ServerDefaultCredentials, *http.Response, error) {
@@ -350,7 +350,7 @@ Returns Server Default Credentials information
  @param serverDefaultCredentialsId
  @return ServerDefaultCredentialsAPIGetServerDefaultCredentialsInfoRequest
 */
-func (a *ServerDefaultCredentialsAPIService) GetServerDefaultCredentialsInfo(ctx context.Context, serverDefaultCredentialsId float32) ServerDefaultCredentialsAPIGetServerDefaultCredentialsInfoRequest {
+func (a *ServerDefaultCredentialsAPIService) GetServerDefaultCredentialsInfo(ctx context.Context, serverDefaultCredentialsId int64) ServerDefaultCredentialsAPIGetServerDefaultCredentialsInfoRequest {
 	return ServerDefaultCredentialsAPIGetServerDefaultCredentialsInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -656,7 +656,7 @@ func (a *ServerDefaultCredentialsAPIService) GetServersDefaultCredentialsExecute
 type ServerDefaultCredentialsAPIUpdateServerDefaultCredentialsRequest struct {
 	ctx context.Context
 	ApiService *ServerDefaultCredentialsAPIService
-	serverDefaultCredentialsId float32
+	serverDefaultCredentialsId int64
 	updateServerDefaultCredentials *UpdateServerDefaultCredentials
 }
 
@@ -679,7 +679,7 @@ Updates a Server Default Credentials
  @param serverDefaultCredentialsId
  @return ServerDefaultCredentialsAPIUpdateServerDefaultCredentialsRequest
 */
-func (a *ServerDefaultCredentialsAPIService) UpdateServerDefaultCredentials(ctx context.Context, serverDefaultCredentialsId float32) ServerDefaultCredentialsAPIUpdateServerDefaultCredentialsRequest {
+func (a *ServerDefaultCredentialsAPIService) UpdateServerDefaultCredentials(ctx context.Context, serverDefaultCredentialsId int64) ServerDefaultCredentialsAPIUpdateServerDefaultCredentialsRequest {
 	return ServerDefaultCredentialsAPIUpdateServerDefaultCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,

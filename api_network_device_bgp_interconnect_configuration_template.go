@@ -139,7 +139,7 @@ func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) CreateNetw
 type NetworkDeviceBGPInterconnectConfigurationTemplateAPIDeleteNetworkDeviceBGPInterconnectConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService
-	id float32
+	id int64
 	ifMatch *string
 }
 
@@ -162,7 +162,7 @@ Deletes a Network Device BGP Interconnect Configuration Template
  @param id
  @return NetworkDeviceBGPInterconnectConfigurationTemplateAPIDeleteNetworkDeviceBGPInterconnectConfigurationTemplateRequest
 */
-func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) DeleteNetworkDeviceBGPInterconnectConfigurationTemplate(ctx context.Context, id float32) NetworkDeviceBGPInterconnectConfigurationTemplateAPIDeleteNetworkDeviceBGPInterconnectConfigurationTemplateRequest {
+func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) DeleteNetworkDeviceBGPInterconnectConfigurationTemplate(ctx context.Context, id int64) NetworkDeviceBGPInterconnectConfigurationTemplateAPIDeleteNetworkDeviceBGPInterconnectConfigurationTemplateRequest {
 	return NetworkDeviceBGPInterconnectConfigurationTemplateAPIDeleteNetworkDeviceBGPInterconnectConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -241,7 +241,7 @@ func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) DeleteNetw
 type NetworkDeviceBGPInterconnectConfigurationTemplateAPIGetNetworkDeviceBGPInterconnectConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService
-	id float32
+	id int64
 }
 
 func (r NetworkDeviceBGPInterconnectConfigurationTemplateAPIGetNetworkDeviceBGPInterconnectConfigurationTemplateRequest) Execute() (*NetworkDeviceBGPInterconnectConfigurationTemplate, *http.Response, error) {
@@ -257,7 +257,7 @@ Returns Network Device BGP Interconnect Configuration Template information
  @param id
  @return NetworkDeviceBGPInterconnectConfigurationTemplateAPIGetNetworkDeviceBGPInterconnectConfigurationTemplateRequest
 */
-func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) GetNetworkDeviceBGPInterconnectConfigurationTemplate(ctx context.Context, id float32) NetworkDeviceBGPInterconnectConfigurationTemplateAPIGetNetworkDeviceBGPInterconnectConfigurationTemplateRequest {
+func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) GetNetworkDeviceBGPInterconnectConfigurationTemplate(ctx context.Context, id int64) NetworkDeviceBGPInterconnectConfigurationTemplateAPIGetNetworkDeviceBGPInterconnectConfigurationTemplateRequest {
 	return NetworkDeviceBGPInterconnectConfigurationTemplateAPIGetNetworkDeviceBGPInterconnectConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -563,7 +563,7 @@ func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) GetNetwork
 type NetworkDeviceBGPInterconnectConfigurationTemplateAPIUpdateNetworkDeviceBGPInterconnectConfigurationTemplateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService
-	id float32
+	id int64
 	updateNetworkDeviceBGPInterconnectConfigurationTemplate *UpdateNetworkDeviceBGPInterconnectConfigurationTemplate
 	ifMatch *string
 }
@@ -593,7 +593,7 @@ Updates Network Device BGP Interconnect Configuration Template information
  @param id
  @return NetworkDeviceBGPInterconnectConfigurationTemplateAPIUpdateNetworkDeviceBGPInterconnectConfigurationTemplateRequest
 */
-func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) UpdateNetworkDeviceBGPInterconnectConfigurationTemplate(ctx context.Context, id float32) NetworkDeviceBGPInterconnectConfigurationTemplateAPIUpdateNetworkDeviceBGPInterconnectConfigurationTemplateRequest {
+func (a *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService) UpdateNetworkDeviceBGPInterconnectConfigurationTemplate(ctx context.Context, id int64) NetworkDeviceBGPInterconnectConfigurationTemplateAPIUpdateNetworkDeviceBGPInterconnectConfigurationTemplateRequest {
 	return NetworkDeviceBGPInterconnectConfigurationTemplateAPIUpdateNetworkDeviceBGPInterconnectConfigurationTemplateRequest{
 		ApiService: a,
 		ctx: ctx,

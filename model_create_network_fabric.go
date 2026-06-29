@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateNetworkFabric{}
 // CreateNetworkFabric struct for CreateNetworkFabric
 type CreateNetworkFabric struct {
 	// The ID of the site where the entity is located.
-	SiteId *int32 `json:"siteId,omitempty"`
+	SiteId *int64 `json:"siteId,omitempty"`
 	// The network fabric name
 	Name string `json:"name"`
 	// The external identifier for this fabric on the controller (e.g. NDFC fabric name)
@@ -55,9 +55,9 @@ func NewCreateNetworkFabricWithDefaults() *CreateNetworkFabric {
 }
 
 // GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *CreateNetworkFabric) GetSiteId() int32 {
+func (o *CreateNetworkFabric) GetSiteId() int64 {
 	if o == nil || IsNil(o.SiteId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SiteId
@@ -65,7 +65,7 @@ func (o *CreateNetworkFabric) GetSiteId() int32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabric) GetSiteIdOk() (*int32, bool) {
+func (o *CreateNetworkFabric) GetSiteIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SiteId) {
 		return nil, false
 	}
@@ -81,8 +81,8 @@ func (o *CreateNetworkFabric) HasSiteId() bool {
 	return false
 }
 
-// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
-func (o *CreateNetworkFabric) SetSiteId(v int32) {
+// SetSiteId gets a reference to the given int64 and assigns it to the SiteId field.
+func (o *CreateNetworkFabric) SetSiteId(v int64) {
 	o.SiteId = &v
 }
 

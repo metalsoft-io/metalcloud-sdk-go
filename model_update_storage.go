@@ -31,7 +31,7 @@ type UpdateStorage struct {
 	// Tags
 	Tags []string `json:"tags,omitempty"`
 	// Network fabric ID this Storage is connected to
-	NetworkFabricId *float32 `json:"networkFabricId,omitempty"`
+	NetworkFabricId *int64 `json:"networkFabricId,omitempty"`
 	// Options for the storage
 	Options *UpdateStorageOptions `json:"options,omitempty"`
 	// The password to use.
@@ -227,9 +227,9 @@ func (o *UpdateStorage) SetTags(v []string) {
 }
 
 // GetNetworkFabricId returns the NetworkFabricId field value if set, zero value otherwise.
-func (o *UpdateStorage) GetNetworkFabricId() float32 {
+func (o *UpdateStorage) GetNetworkFabricId() int64 {
 	if o == nil || IsNil(o.NetworkFabricId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkFabricId
@@ -237,7 +237,7 @@ func (o *UpdateStorage) GetNetworkFabricId() float32 {
 
 // GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetNetworkFabricIdOk() (*float32, bool) {
+func (o *UpdateStorage) GetNetworkFabricIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkFabricId) {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *UpdateStorage) HasNetworkFabricId() bool {
 	return false
 }
 
-// SetNetworkFabricId gets a reference to the given float32 and assigns it to the NetworkFabricId field.
-func (o *UpdateStorage) SetNetworkFabricId(v float32) {
+// SetNetworkFabricId gets a reference to the given int64 and assigns it to the NetworkFabricId field.
+func (o *UpdateStorage) SetNetworkFabricId(v int64) {
 	o.NetworkFabricId = &v
 }
 

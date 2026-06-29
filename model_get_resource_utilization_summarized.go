@@ -28,7 +28,7 @@ type GetResourceUtilizationSummarized struct {
 	// End timestamp for the resource utilization
 	EndTimestamp string `json:"endTimestamp"`
 	// List of infrastructure IDs
-	InfrastructureIds []float32 `json:"infrastructureIds,omitempty"`
+	InfrastructureIds []int64 `json:"infrastructureIds,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -127,9 +127,9 @@ func (o *GetResourceUtilizationSummarized) SetEndTimestamp(v string) {
 }
 
 // GetInfrastructureIds returns the InfrastructureIds field value if set, zero value otherwise.
-func (o *GetResourceUtilizationSummarized) GetInfrastructureIds() []float32 {
+func (o *GetResourceUtilizationSummarized) GetInfrastructureIds() []int64 {
 	if o == nil || IsNil(o.InfrastructureIds) {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 	return o.InfrastructureIds
@@ -137,7 +137,7 @@ func (o *GetResourceUtilizationSummarized) GetInfrastructureIds() []float32 {
 
 // GetInfrastructureIdsOk returns a tuple with the InfrastructureIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetResourceUtilizationSummarized) GetInfrastructureIdsOk() ([]float32, bool) {
+func (o *GetResourceUtilizationSummarized) GetInfrastructureIdsOk() ([]int64, bool) {
 	if o == nil || IsNil(o.InfrastructureIds) {
 		return nil, false
 	}
@@ -153,8 +153,8 @@ func (o *GetResourceUtilizationSummarized) HasInfrastructureIds() bool {
 	return false
 }
 
-// SetInfrastructureIds gets a reference to the given []float32 and assigns it to the InfrastructureIds field.
-func (o *GetResourceUtilizationSummarized) SetInfrastructureIds(v []float32) {
+// SetInfrastructureIds gets a reference to the given []int64 and assigns it to the InfrastructureIds field.
+func (o *GetResourceUtilizationSummarized) SetInfrastructureIds(v []int64) {
 	o.InfrastructureIds = v
 }
 

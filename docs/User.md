@@ -26,23 +26,20 @@ Name | Type | Description | Notes
 **IsTestAccount** | **bool** | Whether the user is a test account | 
 **IsArchived** | **bool** | Whether the user is a archived | 
 **IsDatastorePublisher** | **bool** | Whether the user is a datastore publisher | 
-**AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**AccountId** | Pointer to **int64** | The account ID of the user | [optional] 
 **Provider** | **string** | The provider of the user | [default to "mysql"]
 **PasswordLastChangedTimestamp** | **string** | The timestamp when the user last changed their password | 
-**Id** | **float32** | User ID | 
-**Revision** | **float32** | Revision of the user | 
+**Id** | **int64** | User ID | 
+**Revision** | **int64** | Revision of the user | 
 **Email** | **string** | The email address of the user | 
 **Franchise** | **string** | The franchise of the user | 
 **CreatedTimestamp** | **string** | The timestamp when the user was created | 
 **PlanType** | **string** | The plan type of the user | [default to "vanilla"]
-**Permissions** | Pointer to [**UserPermissions**](UserPermissions.md) | The permissions of the user | [optional] 
-**Limits** | Pointer to [**UserLimits**](UserLimits.md) |  | [optional] 
-**DisabledLimits** | Pointer to [**UserLimitsDisabled**](UserLimitsDisabled.md) | The disabled limits for the user, if list is empty all options are available | [optional] 
 **ParentDelegates** | Pointer to **[]string** | The email addresses of the parent delegate users | [optional] 
 **ChildDelegates** | Pointer to **[]string** | The email addresses of the child delegate users | [optional] 
 **IsSuspended** | **bool** | Whether the user is suspended | 
 **AuthenticatorEnabled** | **bool** | Whether the user has an authenticator | 
-**AccessibleResources** | Pointer to **map[string]interface{}** | The resources accessible by the user | [optional] 
+**AccessibleResources** | Pointer to **map[string][]string** | The resources accessible by the user | [optional] 
 **Config** | [**UserConfiguration**](UserConfiguration.md) | The new configuration of the user. | 
 **Meta** | [**UserMeta**](UserMeta.md) | Meta information of the user. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -51,7 +48,7 @@ Name | Type | Description | Notes
 
 ### NewUser
 
-`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta, ) *User`
+`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, provider string, passwordLastChangedTimestamp string, id int64, revision int64, email string, franchise string, createdTimestamp string, planType string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta, ) *User`
 
 NewUser instantiates a new User object
 This constructor will assign default values to properties that have it defined,
@@ -528,20 +525,20 @@ SetIsDatastorePublisher sets IsDatastorePublisher field to given value.
 
 ### GetAccountId
 
-`func (o *User) GetAccountId() float32`
+`func (o *User) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *User) GetAccountIdOk() (*float32, bool)`
+`func (o *User) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountId
 
-`func (o *User) SetAccountId(v float32)`
+`func (o *User) SetAccountId(v int64)`
 
 SetAccountId sets AccountId field to given value.
 
@@ -593,40 +590,40 @@ SetPasswordLastChangedTimestamp sets PasswordLastChangedTimestamp field to given
 
 ### GetId
 
-`func (o *User) GetId() float32`
+`func (o *User) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *User) GetIdOk() (*float32, bool)`
+`func (o *User) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *User) SetId(v float32)`
+`func (o *User) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *User) GetRevision() float32`
+`func (o *User) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *User) GetRevisionOk() (*float32, bool)`
+`func (o *User) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *User) SetRevision(v float32)`
+`func (o *User) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -710,81 +707,6 @@ and a boolean to check if the value has been set.
 
 SetPlanType sets PlanType field to given value.
 
-
-### GetPermissions
-
-`func (o *User) GetPermissions() UserPermissions`
-
-GetPermissions returns the Permissions field if non-nil, zero value otherwise.
-
-### GetPermissionsOk
-
-`func (o *User) GetPermissionsOk() (*UserPermissions, bool)`
-
-GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPermissions
-
-`func (o *User) SetPermissions(v UserPermissions)`
-
-SetPermissions sets Permissions field to given value.
-
-### HasPermissions
-
-`func (o *User) HasPermissions() bool`
-
-HasPermissions returns a boolean if a field has been set.
-
-### GetLimits
-
-`func (o *User) GetLimits() UserLimits`
-
-GetLimits returns the Limits field if non-nil, zero value otherwise.
-
-### GetLimitsOk
-
-`func (o *User) GetLimitsOk() (*UserLimits, bool)`
-
-GetLimitsOk returns a tuple with the Limits field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLimits
-
-`func (o *User) SetLimits(v UserLimits)`
-
-SetLimits sets Limits field to given value.
-
-### HasLimits
-
-`func (o *User) HasLimits() bool`
-
-HasLimits returns a boolean if a field has been set.
-
-### GetDisabledLimits
-
-`func (o *User) GetDisabledLimits() UserLimitsDisabled`
-
-GetDisabledLimits returns the DisabledLimits field if non-nil, zero value otherwise.
-
-### GetDisabledLimitsOk
-
-`func (o *User) GetDisabledLimitsOk() (*UserLimitsDisabled, bool)`
-
-GetDisabledLimitsOk returns a tuple with the DisabledLimits field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisabledLimits
-
-`func (o *User) SetDisabledLimits(v UserLimitsDisabled)`
-
-SetDisabledLimits sets DisabledLimits field to given value.
-
-### HasDisabledLimits
-
-`func (o *User) HasDisabledLimits() bool`
-
-HasDisabledLimits returns a boolean if a field has been set.
 
 ### GetParentDelegates
 
@@ -878,20 +800,20 @@ SetAuthenticatorEnabled sets AuthenticatorEnabled field to given value.
 
 ### GetAccessibleResources
 
-`func (o *User) GetAccessibleResources() map[string]interface{}`
+`func (o *User) GetAccessibleResources() map[string][]string`
 
 GetAccessibleResources returns the AccessibleResources field if non-nil, zero value otherwise.
 
 ### GetAccessibleResourcesOk
 
-`func (o *User) GetAccessibleResourcesOk() (*map[string]interface{}, bool)`
+`func (o *User) GetAccessibleResourcesOk() (*map[string][]string, bool)`
 
 GetAccessibleResourcesOk returns a tuple with the AccessibleResources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccessibleResources
 
-`func (o *User) SetAccessibleResources(v map[string]interface{})`
+`func (o *User) SetAccessibleResources(v map[string][]string)`
 
 SetAccessibleResources sets AccessibleResources field to given value.
 

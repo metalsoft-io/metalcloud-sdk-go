@@ -22,9 +22,9 @@ var _ MappedNullable = &ServerInstanceInterface{}
 // ServerInstanceInterface struct for ServerInstanceInterface
 type ServerInstanceInterface struct {
 	// The Product Instance ID.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
 	// Timestamp of the Product Instance creation.
@@ -36,21 +36,21 @@ type ServerInstanceInterface struct {
 	// Subdomain permanent of the Product Instance.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the Product Instance
-	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Product Instance
-	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
-	InfrastructureId int32 `json:"infrastructureId"`
-	InstanceId int32 `json:"instanceId"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
+	InfrastructureId int64 `json:"infrastructureId"`
+	InstanceId int64 `json:"instanceId"`
 	// The index of the interface (0-based) on this server.
 	Index int32 `json:"index"`
 	CapacityMbps int32 `json:"capacityMbps"`
 	// The ID of the network to which this interface is to be attached to.
-	NetworkId *int32 `json:"networkId,omitempty"`
+	NetworkId *int64 `json:"networkId,omitempty"`
 	SubnetPoolSanIndex *int32 `json:"subnetPoolSanIndex,omitempty"`
 	VlanIdentifier *int32 `json:"vlanIdentifier,omitempty"`
 	AclIdentifier *int32 `json:"aclIdentifier,omitempty"`
-	NetworkEquipmentSubnetPoolSanId *int32 `json:"networkEquipmentSubnetPoolSanId,omitempty"`
-	ServerInterfaceId *int32 `json:"serverInterfaceId,omitempty"`
+	NetworkEquipmentSubnetPoolSanId *int64 `json:"networkEquipmentSubnetPoolSanId,omitempty"`
+	ServerInterfaceId *int64 `json:"serverInterfaceId,omitempty"`
 	DirtyBit bool `json:"dirtyBit"`
 	// Current status of the server instance interface.
 	ServiceStatus string `json:"serviceStatus"`
@@ -66,7 +66,7 @@ type _ServerInstanceInterface ServerInstanceInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceInterface(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceId int32, index int32, capacityMbps int32, dirtyBit bool, serviceStatus string) *ServerInstanceInterface {
+func NewServerInstanceInterface(id int64, revision int64, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int64, instanceId int64, index int32, capacityMbps int32, dirtyBit bool, serviceStatus string) *ServerInstanceInterface {
 	this := ServerInstanceInterface{}
 	this.Id = id
 	this.Revision = revision
@@ -91,9 +91,9 @@ func NewServerInstanceInterfaceWithDefaults() *ServerInstanceInterface {
 }
 
 // GetId returns the Id field value
-func (o *ServerInstanceInterface) GetId() int32 {
+func (o *ServerInstanceInterface) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -102,7 +102,7 @@ func (o *ServerInstanceInterface) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,14 +110,14 @@ func (o *ServerInstanceInterface) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerInstanceInterface) SetId(v int32) {
+func (o *ServerInstanceInterface) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstanceInterface) GetRevision() int32 {
+func (o *ServerInstanceInterface) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -126,7 +126,7 @@ func (o *ServerInstanceInterface) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetRevisionOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *ServerInstanceInterface) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ServerInstanceInterface) SetRevision(v int32) {
+func (o *ServerInstanceInterface) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -275,9 +275,9 @@ func (o *ServerInstanceInterface) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *ServerInstanceInterface) GetDnsSubdomainId() int32 {
+func (o *ServerInstanceInterface) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -285,7 +285,7 @@ func (o *ServerInstanceInterface) GetDnsSubdomainId() int32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetDnsSubdomainIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -301,15 +301,15 @@ func (o *ServerInstanceInterface) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given int32 and assigns it to the DnsSubdomainId field.
-func (o *ServerInstanceInterface) SetDnsSubdomainId(v int32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *ServerInstanceInterface) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *ServerInstanceInterface) GetDnsSubdomainPermanentId() int32 {
+func (o *ServerInstanceInterface) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -317,7 +317,7 @@ func (o *ServerInstanceInterface) GetDnsSubdomainPermanentId() int32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetDnsSubdomainPermanentIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -333,15 +333,15 @@ func (o *ServerInstanceInterface) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given int32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *ServerInstanceInterface) SetDnsSubdomainPermanentId(v int32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *ServerInstanceInterface) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *ServerInstanceInterface) GetInfrastructureId() int32 {
+func (o *ServerInstanceInterface) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -350,7 +350,7 @@ func (o *ServerInstanceInterface) GetInfrastructureId() int32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetInfrastructureIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -358,14 +358,14 @@ func (o *ServerInstanceInterface) GetInfrastructureIdOk() (*int32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *ServerInstanceInterface) SetInfrastructureId(v int32) {
+func (o *ServerInstanceInterface) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *ServerInstanceInterface) GetInstanceId() int32 {
+func (o *ServerInstanceInterface) GetInstanceId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -374,7 +374,7 @@ func (o *ServerInstanceInterface) GetInstanceId() int32 {
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetInstanceIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetInstanceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -382,7 +382,7 @@ func (o *ServerInstanceInterface) GetInstanceIdOk() (*int32, bool) {
 }
 
 // SetInstanceId sets field value
-func (o *ServerInstanceInterface) SetInstanceId(v int32) {
+func (o *ServerInstanceInterface) SetInstanceId(v int64) {
 	o.InstanceId = v
 }
 
@@ -435,9 +435,9 @@ func (o *ServerInstanceInterface) SetCapacityMbps(v int32) {
 }
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
-func (o *ServerInstanceInterface) GetNetworkId() int32 {
+func (o *ServerInstanceInterface) GetNetworkId() int64 {
 	if o == nil || IsNil(o.NetworkId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkId
@@ -445,7 +445,7 @@ func (o *ServerInstanceInterface) GetNetworkId() int32 {
 
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetNetworkIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkId) {
 		return nil, false
 	}
@@ -461,8 +461,8 @@ func (o *ServerInstanceInterface) HasNetworkId() bool {
 	return false
 }
 
-// SetNetworkId gets a reference to the given int32 and assigns it to the NetworkId field.
-func (o *ServerInstanceInterface) SetNetworkId(v int32) {
+// SetNetworkId gets a reference to the given int64 and assigns it to the NetworkId field.
+func (o *ServerInstanceInterface) SetNetworkId(v int64) {
 	o.NetworkId = &v
 }
 
@@ -563,9 +563,9 @@ func (o *ServerInstanceInterface) SetAclIdentifier(v int32) {
 }
 
 // GetNetworkEquipmentSubnetPoolSanId returns the NetworkEquipmentSubnetPoolSanId field value if set, zero value otherwise.
-func (o *ServerInstanceInterface) GetNetworkEquipmentSubnetPoolSanId() int32 {
+func (o *ServerInstanceInterface) GetNetworkEquipmentSubnetPoolSanId() int64 {
 	if o == nil || IsNil(o.NetworkEquipmentSubnetPoolSanId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEquipmentSubnetPoolSanId
@@ -573,7 +573,7 @@ func (o *ServerInstanceInterface) GetNetworkEquipmentSubnetPoolSanId() int32 {
 
 // GetNetworkEquipmentSubnetPoolSanIdOk returns a tuple with the NetworkEquipmentSubnetPoolSanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetNetworkEquipmentSubnetPoolSanIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetNetworkEquipmentSubnetPoolSanIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEquipmentSubnetPoolSanId) {
 		return nil, false
 	}
@@ -589,15 +589,15 @@ func (o *ServerInstanceInterface) HasNetworkEquipmentSubnetPoolSanId() bool {
 	return false
 }
 
-// SetNetworkEquipmentSubnetPoolSanId gets a reference to the given int32 and assigns it to the NetworkEquipmentSubnetPoolSanId field.
-func (o *ServerInstanceInterface) SetNetworkEquipmentSubnetPoolSanId(v int32) {
+// SetNetworkEquipmentSubnetPoolSanId gets a reference to the given int64 and assigns it to the NetworkEquipmentSubnetPoolSanId field.
+func (o *ServerInstanceInterface) SetNetworkEquipmentSubnetPoolSanId(v int64) {
 	o.NetworkEquipmentSubnetPoolSanId = &v
 }
 
 // GetServerInterfaceId returns the ServerInterfaceId field value if set, zero value otherwise.
-func (o *ServerInstanceInterface) GetServerInterfaceId() int32 {
+func (o *ServerInstanceInterface) GetServerInterfaceId() int64 {
 	if o == nil || IsNil(o.ServerInterfaceId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ServerInterfaceId
@@ -605,7 +605,7 @@ func (o *ServerInstanceInterface) GetServerInterfaceId() int32 {
 
 // GetServerInterfaceIdOk returns a tuple with the ServerInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetServerInterfaceIdOk() (*int32, bool) {
+func (o *ServerInstanceInterface) GetServerInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerInterfaceId) {
 		return nil, false
 	}
@@ -621,8 +621,8 @@ func (o *ServerInstanceInterface) HasServerInterfaceId() bool {
 	return false
 }
 
-// SetServerInterfaceId gets a reference to the given int32 and assigns it to the ServerInterfaceId field.
-func (o *ServerInstanceInterface) SetServerInterfaceId(v int32) {
+// SetServerInterfaceId gets a reference to the given int64 and assigns it to the ServerInterfaceId field.
+func (o *ServerInstanceInterface) SetServerInterfaceId(v int64) {
 	o.ServerInterfaceId = &v
 }
 

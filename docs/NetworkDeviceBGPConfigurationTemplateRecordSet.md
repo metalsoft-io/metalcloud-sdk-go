@@ -4,29 +4,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LocalSwitchId** | **float32** | The ID of the local switch. | 
+**MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain | [optional] 
+**LocalSwitchId** | **int64** | The ID of the local switch. | 
 **LocalSwitchIdentifier** | **string** | The identifier of the local switch. | 
 **LocalSwitchRole** | **string** | The role of the local switch. | 
 **LocalSwitchInterfaceName** | **string** | The name of the local switch interface. | 
-**LocalSwitchInterfaceLagId** | Pointer to **float32** | The LAG ID of the local switch interface. | [optional] 
+**LocalSwitchInterfaceLagId** | Pointer to **int64** | The LAG ID of the local switch interface. | [optional] 
 **LocalSwitchAsn** | Pointer to **int64** | The Autonomous System Number of the local switch. | [optional] 
-**RemoteSwitchId** | **float32** | The ID of the remote switch. | 
+**LocalSwitchLoopbackAddressIpv4** | Pointer to **string** | The local switch loopback IPv4 address. | [optional] 
+**RemoteSwitchId** | **int64** | The ID of the remote switch. | 
 **RemoteSwitchIdentifier** | **string** | The identifier of the remote switch. | 
 **RemoteSwitchRole** | **string** | The role of the remote switch. | 
 **RemoteSwitchInterfaceName** | **string** | The name of the remote switch interface. | 
-**RemoteSwitchInterfaceLagId** | Pointer to **float32** | The LAG ID of the remote switch interface. | [optional] 
+**RemoteSwitchInterfaceLagId** | Pointer to **int64** | The LAG ID of the remote switch interface. | [optional] 
 **RemoteSwitchAsn** | Pointer to **int64** | The Autonomous System Number of the remote switch. | [optional] 
+**RemoteSwitchLoopbackAddressIpv4** | Pointer to **string** | The remote switch loopback IPv4 address. | [optional] 
 **BgpNumbering** | **string** | BGP numbering | 
 **FabricCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the fabric. | [optional] 
 **LinkCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the link. | [optional] 
 **LocalSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the local switch. | [optional] 
 **RemoteSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the remote switch. | [optional] 
+**MlagPeerCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the MLAG pair of the local switch (if any). | [optional] 
+**RemoteP2pLinkIp** | Pointer to **string** | The IP address of the remote interface of the P2P link. Present only when BGP numbering is NUMBERED. | [optional] 
 
 ## Methods
 
 ### NewNetworkDeviceBGPConfigurationTemplateRecordSet
 
-`func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId float32, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId float32, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string, ) *NetworkDeviceBGPConfigurationTemplateRecordSet`
+`func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId int64, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string, ) *NetworkDeviceBGPConfigurationTemplateRecordSet`
 
 NewNetworkDeviceBGPConfigurationTemplateRecordSet instantiates a new NetworkDeviceBGPConfigurationTemplateRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -41,22 +46,47 @@ NewNetworkDeviceBGPConfigurationTemplateRecordSetWithDefaults instantiates a new
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetMlagDomainIdentifier
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagDomainIdentifier() string`
+
+GetMlagDomainIdentifier returns the MlagDomainIdentifier field if non-nil, zero value otherwise.
+
+### GetMlagDomainIdentifierOk
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagDomainIdentifierOk() (*string, bool)`
+
+GetMlagDomainIdentifierOk returns a tuple with the MlagDomainIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMlagDomainIdentifier
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetMlagDomainIdentifier(v string)`
+
+SetMlagDomainIdentifier sets MlagDomainIdentifier field to given value.
+
+### HasMlagDomainIdentifier
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasMlagDomainIdentifier() bool`
+
+HasMlagDomainIdentifier returns a boolean if a field has been set.
+
 ### GetLocalSwitchId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchId() float32`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchId() int64`
 
 GetLocalSwitchId returns the LocalSwitchId field if non-nil, zero value otherwise.
 
 ### GetLocalSwitchIdOk
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*float32, bool)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*int64, bool)`
 
 GetLocalSwitchIdOk returns a tuple with the LocalSwitchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalSwitchId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchId(v float32)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchId(v int64)`
 
 SetLocalSwitchId sets LocalSwitchId field to given value.
 
@@ -123,20 +153,20 @@ SetLocalSwitchInterfaceName sets LocalSwitchInterfaceName field to given value.
 
 ### GetLocalSwitchInterfaceLagId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagId() float32`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagId() int64`
 
 GetLocalSwitchInterfaceLagId returns the LocalSwitchInterfaceLagId field if non-nil, zero value otherwise.
 
 ### GetLocalSwitchInterfaceLagIdOk
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagIdOk() (*float32, bool)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagIdOk() (*int64, bool)`
 
 GetLocalSwitchInterfaceLagIdOk returns a tuple with the LocalSwitchInterfaceLagId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalSwitchInterfaceLagId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchInterfaceLagId(v float32)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchInterfaceLagId(v int64)`
 
 SetLocalSwitchInterfaceLagId sets LocalSwitchInterfaceLagId field to given value.
 
@@ -171,22 +201,47 @@ SetLocalSwitchAsn sets LocalSwitchAsn field to given value.
 
 HasLocalSwitchAsn returns a boolean if a field has been set.
 
+### GetLocalSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchLoopbackAddressIpv4() string`
+
+GetLocalSwitchLoopbackAddressIpv4 returns the LocalSwitchLoopbackAddressIpv4 field if non-nil, zero value otherwise.
+
+### GetLocalSwitchLoopbackAddressIpv4Ok
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLocalSwitchLoopbackAddressIpv4Ok() (*string, bool)`
+
+GetLocalSwitchLoopbackAddressIpv4Ok returns a tuple with the LocalSwitchLoopbackAddressIpv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchLoopbackAddressIpv4(v string)`
+
+SetLocalSwitchLoopbackAddressIpv4 sets LocalSwitchLoopbackAddressIpv4 field to given value.
+
+### HasLocalSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasLocalSwitchLoopbackAddressIpv4() bool`
+
+HasLocalSwitchLoopbackAddressIpv4 returns a boolean if a field has been set.
+
 ### GetRemoteSwitchId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchId() float32`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchId() int64`
 
 GetRemoteSwitchId returns the RemoteSwitchId field if non-nil, zero value otherwise.
 
 ### GetRemoteSwitchIdOk
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*float32, bool)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*int64, bool)`
 
 GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteSwitchId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchId(v float32)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchId(v int64)`
 
 SetRemoteSwitchId sets RemoteSwitchId field to given value.
 
@@ -253,20 +308,20 @@ SetRemoteSwitchInterfaceName sets RemoteSwitchInterfaceName field to given value
 
 ### GetRemoteSwitchInterfaceLagId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagId() float32`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagId() int64`
 
 GetRemoteSwitchInterfaceLagId returns the RemoteSwitchInterfaceLagId field if non-nil, zero value otherwise.
 
 ### GetRemoteSwitchInterfaceLagIdOk
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagIdOk() (*float32, bool)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagIdOk() (*int64, bool)`
 
 GetRemoteSwitchInterfaceLagIdOk returns a tuple with the RemoteSwitchInterfaceLagId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteSwitchInterfaceLagId
 
-`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceLagId(v float32)`
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceLagId(v int64)`
 
 SetRemoteSwitchInterfaceLagId sets RemoteSwitchInterfaceLagId field to given value.
 
@@ -300,6 +355,31 @@ SetRemoteSwitchAsn sets RemoteSwitchAsn field to given value.
 `func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchAsn() bool`
 
 HasRemoteSwitchAsn returns a boolean if a field has been set.
+
+### GetRemoteSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchLoopbackAddressIpv4() string`
+
+GetRemoteSwitchLoopbackAddressIpv4 returns the RemoteSwitchLoopbackAddressIpv4 field if non-nil, zero value otherwise.
+
+### GetRemoteSwitchLoopbackAddressIpv4Ok
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchLoopbackAddressIpv4Ok() (*string, bool)`
+
+GetRemoteSwitchLoopbackAddressIpv4Ok returns a tuple with the RemoteSwitchLoopbackAddressIpv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchLoopbackAddressIpv4(v string)`
+
+SetRemoteSwitchLoopbackAddressIpv4 sets RemoteSwitchLoopbackAddressIpv4 field to given value.
+
+### HasRemoteSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchLoopbackAddressIpv4() bool`
+
+HasRemoteSwitchLoopbackAddressIpv4 returns a boolean if a field has been set.
 
 ### GetBgpNumbering
 
@@ -420,6 +500,56 @@ SetRemoteSwitchCustomVariables sets RemoteSwitchCustomVariables field to given v
 `func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchCustomVariables() bool`
 
 HasRemoteSwitchCustomVariables returns a boolean if a field has been set.
+
+### GetMlagPeerCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagPeerCustomVariables() map[string]interface{}`
+
+GetMlagPeerCustomVariables returns the MlagPeerCustomVariables field if non-nil, zero value otherwise.
+
+### GetMlagPeerCustomVariablesOk
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagPeerCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetMlagPeerCustomVariablesOk returns a tuple with the MlagPeerCustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMlagPeerCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetMlagPeerCustomVariables(v map[string]interface{})`
+
+SetMlagPeerCustomVariables sets MlagPeerCustomVariables field to given value.
+
+### HasMlagPeerCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasMlagPeerCustomVariables() bool`
+
+HasMlagPeerCustomVariables returns a boolean if a field has been set.
+
+### GetRemoteP2pLinkIp
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIp() string`
+
+GetRemoteP2pLinkIp returns the RemoteP2pLinkIp field if non-nil, zero value otherwise.
+
+### GetRemoteP2pLinkIpOk
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteP2pLinkIpOk() (*string, bool)`
+
+GetRemoteP2pLinkIpOk returns a tuple with the RemoteP2pLinkIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteP2pLinkIp
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteP2pLinkIp(v string)`
+
+SetRemoteP2pLinkIp sets RemoteP2pLinkIp field to given value.
+
+### HasRemoteP2pLinkIp
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteP2pLinkIp() bool`
+
+HasRemoteP2pLinkIp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

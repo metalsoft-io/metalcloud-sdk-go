@@ -28,7 +28,7 @@ type ServerInstanceAPIService service
 type ServerInstanceAPICreateServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	infrastructureId int32
+	infrastructureId int64
 	serverInstanceCreate *ServerInstanceCreate
 }
 
@@ -51,7 +51,7 @@ Adds Server Instance to the specified infrastructure
  @param infrastructureId
  @return ServerInstanceAPICreateServerInstanceRequest
 */
-func (a *ServerInstanceAPIService) CreateServerInstance(ctx context.Context, infrastructureId int32) ServerInstanceAPICreateServerInstanceRequest {
+func (a *ServerInstanceAPIService) CreateServerInstance(ctx context.Context, infrastructureId int64) ServerInstanceAPICreateServerInstanceRequest {
 	return ServerInstanceAPICreateServerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -143,7 +143,7 @@ func (a *ServerInstanceAPIService) CreateServerInstanceExecute(r ServerInstanceA
 type ServerInstanceAPIDeleteServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	ifMatch *string
 }
 
@@ -166,7 +166,7 @@ Deletes the specified Server Instance
  @param serverInstanceId
  @return ServerInstanceAPIDeleteServerInstanceRequest
 */
-func (a *ServerInstanceAPIService) DeleteServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPIDeleteServerInstanceRequest {
+func (a *ServerInstanceAPIService) DeleteServerInstance(ctx context.Context, serverInstanceId int64) ServerInstanceAPIDeleteServerInstanceRequest {
 	return ServerInstanceAPIDeleteServerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -245,7 +245,7 @@ func (a *ServerInstanceAPIService) DeleteServerInstanceExecute(r ServerInstanceA
 type ServerInstanceAPIGetInfrastructureServerInstancesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	infrastructureId int32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -345,7 +345,7 @@ Returns list of Server Instances in the specified infrastructure
  @param infrastructureId
  @return ServerInstanceAPIGetInfrastructureServerInstancesRequest
 */
-func (a *ServerInstanceAPIService) GetInfrastructureServerInstances(ctx context.Context, infrastructureId int32) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+func (a *ServerInstanceAPIService) GetInfrastructureServerInstances(ctx context.Context, infrastructureId int64) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
 	return ServerInstanceAPIGetInfrastructureServerInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -540,7 +540,7 @@ func (a *ServerInstanceAPIService) GetInfrastructureServerInstancesExecute(r Ser
 type ServerInstanceAPIGetPowerFromServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 }
 
 func (r ServerInstanceAPIGetPowerFromServerInstanceRequest) Execute() (string, *http.Response, error) {
@@ -556,7 +556,7 @@ Get the power status of the Server Instance.
  @param serverInstanceId
  @return ServerInstanceAPIGetPowerFromServerInstanceRequest
 */
-func (a *ServerInstanceAPIService) GetPowerFromServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetPowerFromServerInstanceRequest {
+func (a *ServerInstanceAPIService) GetPowerFromServerInstance(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetPowerFromServerInstanceRequest {
 	return ServerInstanceAPIGetPowerFromServerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -643,7 +643,7 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerIns
 type ServerInstanceAPIGetPowerStatusBatchRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	infrastructureId int32
+	infrastructureId int64
 	requestBody *[]string
 }
 
@@ -666,7 +666,7 @@ Gets the power status of the servers associated with specified instances
  @param infrastructureId
  @return ServerInstanceAPIGetPowerStatusBatchRequest
 */
-func (a *ServerInstanceAPIService) GetPowerStatusBatch(ctx context.Context, infrastructureId int32) ServerInstanceAPIGetPowerStatusBatchRequest {
+func (a *ServerInstanceAPIService) GetPowerStatusBatch(ctx context.Context, infrastructureId int64) ServerInstanceAPIGetPowerStatusBatchRequest {
 	return ServerInstanceAPIGetPowerStatusBatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -758,7 +758,7 @@ func (a *ServerInstanceAPIService) GetPowerStatusBatchExecute(r ServerInstanceAP
 type ServerInstanceAPIGetServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 }
 
 func (r ServerInstanceAPIGetServerInstanceRequest) Execute() (*ServerInstance, *http.Response, error) {
@@ -774,7 +774,7 @@ Returns the details of the specified Server Instance
  @param serverInstanceId
  @return ServerInstanceAPIGetServerInstanceRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceRequest {
+func (a *ServerInstanceAPIService) GetServerInstance(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetServerInstanceRequest {
 	return ServerInstanceAPIGetServerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -861,7 +861,7 @@ func (a *ServerInstanceAPIService) GetServerInstanceExecute(r ServerInstanceAPIG
 type ServerInstanceAPIGetServerInstanceConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 }
 
 func (r ServerInstanceAPIGetServerInstanceConfigRequest) Execute() (*ServerInstanceConfiguration, *http.Response, error) {
@@ -877,7 +877,7 @@ Returns the config details of the specified Server Instance
  @param serverInstanceId
  @return ServerInstanceAPIGetServerInstanceConfigRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstanceConfig(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceConfigRequest {
+func (a *ServerInstanceAPIService) GetServerInstanceConfig(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetServerInstanceConfigRequest {
 	return ServerInstanceAPIGetServerInstanceConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -964,7 +964,7 @@ func (a *ServerInstanceAPIService) GetServerInstanceConfigExecute(r ServerInstan
 type ServerInstanceAPIGetServerInstanceCredentialsRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 }
 
 func (r ServerInstanceAPIGetServerInstanceCredentialsRequest) Execute() (*ServerInstanceCredentials, *http.Response, error) {
@@ -980,7 +980,7 @@ Returns the credentials for various protocols including the IPs allocated
  @param serverInstanceId
  @return ServerInstanceAPIGetServerInstanceCredentialsRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstanceCredentials(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceCredentialsRequest {
+func (a *ServerInstanceAPIService) GetServerInstanceCredentials(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetServerInstanceCredentialsRequest {
 	return ServerInstanceAPIGetServerInstanceCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1067,7 +1067,7 @@ func (a *ServerInstanceAPIService) GetServerInstanceCredentialsExecute(r ServerI
 type ServerInstanceAPIGetServerInstanceDrivesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 }
 
 func (r ServerInstanceAPIGetServerInstanceDrivesRequest) Execute() (*DriveList, *http.Response, error) {
@@ -1083,7 +1083,7 @@ Returns the drives
  @param serverInstanceId
  @return ServerInstanceAPIGetServerInstanceDrivesRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstanceDrives(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceDrivesRequest {
+func (a *ServerInstanceAPIService) GetServerInstanceDrives(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetServerInstanceDrivesRequest {
 	return ServerInstanceAPIGetServerInstanceDrivesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1170,8 +1170,8 @@ func (a *ServerInstanceAPIService) GetServerInstanceDrivesExecute(r ServerInstan
 type ServerInstanceAPIGetServerInstanceInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
-	interfaceId int32
+	serverInstanceId int64
+	interfaceId int64
 }
 
 func (r ServerInstanceAPIGetServerInstanceInterfaceRequest) Execute() (*ServerInstanceInterface, *http.Response, error) {
@@ -1188,7 +1188,7 @@ Returns the details of the specified Server Instance Interface
  @param interfaceId
  @return ServerInstanceAPIGetServerInstanceInterfaceRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstanceInterface(ctx context.Context, serverInstanceId int32, interfaceId int32) ServerInstanceAPIGetServerInstanceInterfaceRequest {
+func (a *ServerInstanceAPIService) GetServerInstanceInterface(ctx context.Context, serverInstanceId int64, interfaceId int64) ServerInstanceAPIGetServerInstanceInterfaceRequest {
 	return ServerInstanceAPIGetServerInstanceInterfaceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1277,7 +1277,7 @@ func (a *ServerInstanceAPIService) GetServerInstanceInterfaceExecute(r ServerIns
 type ServerInstanceAPIGetServerInstanceInterfacesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -1356,7 +1356,7 @@ Returns the interfaces for the specified Server Instance
  @param serverInstanceId
  @return ServerInstanceAPIGetServerInstanceInterfacesRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstanceInterfaces(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceInterfacesRequest {
+func (a *ServerInstanceAPIService) GetServerInstanceInterfaces(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetServerInstanceInterfacesRequest {
 	return ServerInstanceAPIGetServerInstanceInterfacesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1518,7 +1518,7 @@ func (a *ServerInstanceAPIService) GetServerInstanceInterfacesExecute(r ServerIn
 type ServerInstanceAPIGetServerInstanceOSInstallationDataRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	usage *VariableUsageType
 	removeEmpty *int32
 }
@@ -1546,7 +1546,7 @@ GetServerInstanceOSInstallationData Get server instance OS installation data
  @param serverInstanceId
  @return ServerInstanceAPIGetServerInstanceOSInstallationDataRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstanceOSInstallationData(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceOSInstallationDataRequest {
+func (a *ServerInstanceAPIService) GetServerInstanceOSInstallationData(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetServerInstanceOSInstallationDataRequest {
 	return ServerInstanceAPIGetServerInstanceOSInstallationDataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1738,7 +1738,7 @@ func (a *ServerInstanceAPIService) GetServerInstanceStatisticsExecute(r ServerIn
 type ServerInstanceAPIGetServerInstanceVariablesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	usage *VariableUsageType
 }
 
@@ -1759,7 +1759,7 @@ GetServerInstanceVariables Get server instance variables
  @param serverInstanceId
  @return ServerInstanceAPIGetServerInstanceVariablesRequest
 */
-func (a *ServerInstanceAPIService) GetServerInstanceVariables(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceVariablesRequest {
+func (a *ServerInstanceAPIService) GetServerInstanceVariables(ctx context.Context, serverInstanceId int64) ServerInstanceAPIGetServerInstanceVariablesRequest {
 	return ServerInstanceAPIGetServerInstanceVariablesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2140,7 +2140,7 @@ func (a *ServerInstanceAPIService) GetServerInstancesExecute(r ServerInstanceAPI
 type ServerInstanceAPIReinstallServerInstanceOSRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	serverInstanceReinstallOS *ServerInstanceReinstallOS
 	ifMatch *string
 }
@@ -2170,7 +2170,7 @@ Manage the flag to reinstall the operating system on the server. The reinstall o
  @param serverInstanceId
  @return ServerInstanceAPIReinstallServerInstanceOSRequest
 */
-func (a *ServerInstanceAPIService) ReinstallServerInstanceOS(ctx context.Context, serverInstanceId int32) ServerInstanceAPIReinstallServerInstanceOSRequest {
+func (a *ServerInstanceAPIService) ReinstallServerInstanceOS(ctx context.Context, serverInstanceId int64) ServerInstanceAPIReinstallServerInstanceOSRequest {
 	return ServerInstanceAPIReinstallServerInstanceOSRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2254,7 +2254,7 @@ func (a *ServerInstanceAPIService) ReinstallServerInstanceOSExecute(r ServerInst
 type ServerInstanceAPIResetServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	ifMatch *string
 }
 
@@ -2277,7 +2277,7 @@ Resets deployed server. The operation is executed immediately.
  @param serverInstanceId
  @return ServerInstanceAPIResetServerInstanceRequest
 */
-func (a *ServerInstanceAPIService) ResetServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPIResetServerInstanceRequest {
+func (a *ServerInstanceAPIService) ResetServerInstance(ctx context.Context, serverInstanceId int64) ServerInstanceAPIResetServerInstanceRequest {
 	return ServerInstanceAPIResetServerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2356,7 +2356,7 @@ func (a *ServerInstanceAPIService) ResetServerInstanceExecute(r ServerInstanceAP
 type ServerInstanceAPISetPowerStatusBatchRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	infrastructureId int32
+	infrastructureId int64
 	instancesSetPowerState *InstancesSetPowerState
 }
 
@@ -2379,7 +2379,7 @@ Initiates shutdown or powers on the servers associated with the specified instan
  @param infrastructureId
  @return ServerInstanceAPISetPowerStatusBatchRequest
 */
-func (a *ServerInstanceAPIService) SetPowerStatusBatch(ctx context.Context, infrastructureId int32) ServerInstanceAPISetPowerStatusBatchRequest {
+func (a *ServerInstanceAPIService) SetPowerStatusBatch(ctx context.Context, infrastructureId int64) ServerInstanceAPISetPowerStatusBatchRequest {
 	return ServerInstanceAPISetPowerStatusBatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2460,7 +2460,7 @@ func (a *ServerInstanceAPIService) SetPowerStatusBatchExecute(r ServerInstanceAP
 type ServerInstanceAPISetPowerToServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	serverInstancePowerSet *ServerInstancePowerSet
 	ifMatch *string
 }
@@ -2489,7 +2489,7 @@ Set power to this Server Instance.
  @param serverInstanceId
  @return ServerInstanceAPISetPowerToServerInstanceRequest
 */
-func (a *ServerInstanceAPIService) SetPowerToServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPISetPowerToServerInstanceRequest {
+func (a *ServerInstanceAPIService) SetPowerToServerInstance(ctx context.Context, serverInstanceId int64) ServerInstanceAPISetPowerToServerInstanceRequest {
 	return ServerInstanceAPISetPowerToServerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2573,7 +2573,7 @@ func (a *ServerInstanceAPIService) SetPowerToServerInstanceExecute(r ServerInsta
 type ServerInstanceAPIUpdateServerInstanceConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	serverInstanceUpdate *ServerInstanceUpdate
 	ifMatch *string
 }
@@ -2603,7 +2603,7 @@ Updates the specified Server Instance configuration
  @param serverInstanceId
  @return ServerInstanceAPIUpdateServerInstanceConfigRequest
 */
-func (a *ServerInstanceAPIService) UpdateServerInstanceConfig(ctx context.Context, serverInstanceId int32) ServerInstanceAPIUpdateServerInstanceConfigRequest {
+func (a *ServerInstanceAPIService) UpdateServerInstanceConfig(ctx context.Context, serverInstanceId int64) ServerInstanceAPIUpdateServerInstanceConfigRequest {
 	return ServerInstanceAPIUpdateServerInstanceConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2698,8 +2698,8 @@ func (a *ServerInstanceAPIService) UpdateServerInstanceConfigExecute(r ServerIns
 type ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
-	interfaceId int32
+	serverInstanceId int64
+	interfaceId int64
 	serverInstanceInterfaceUpdate *ServerInstanceInterfaceUpdate
 	ifMatch *string
 }
@@ -2730,7 +2730,7 @@ Updates a Server Instance Interface (such as by attaching it to a network)
  @param interfaceId
  @return ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest
 */
-func (a *ServerInstanceAPIService) UpdateServerInstanceInterfaceConfig(ctx context.Context, serverInstanceId int32, interfaceId int32) ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest {
+func (a *ServerInstanceAPIService) UpdateServerInstanceInterfaceConfig(ctx context.Context, serverInstanceId int64, interfaceId int64) ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest {
 	return ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2827,7 +2827,7 @@ func (a *ServerInstanceAPIService) UpdateServerInstanceInterfaceConfigExecute(r 
 type ServerInstanceAPIUpdateServerInstanceMetaRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
+	serverInstanceId int64
 	genericMeta *GenericMeta
 }
 
@@ -2850,7 +2850,7 @@ Updates the specified Server Instance meta information
  @param serverInstanceId
  @return ServerInstanceAPIUpdateServerInstanceMetaRequest
 */
-func (a *ServerInstanceAPIService) UpdateServerInstanceMeta(ctx context.Context, serverInstanceId int32) ServerInstanceAPIUpdateServerInstanceMetaRequest {
+func (a *ServerInstanceAPIService) UpdateServerInstanceMeta(ctx context.Context, serverInstanceId int64) ServerInstanceAPIUpdateServerInstanceMetaRequest {
 	return ServerInstanceAPIUpdateServerInstanceMetaRequest{
 		ApiService: a,
 		ctx: ctx,

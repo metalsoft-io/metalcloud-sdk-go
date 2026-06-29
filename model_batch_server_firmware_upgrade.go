@@ -22,7 +22,7 @@ var _ MappedNullable = &BatchServerFirmwareUpgrade{}
 // BatchServerFirmwareUpgrade struct for BatchServerFirmwareUpgrade
 type BatchServerFirmwareUpgrade struct {
 	// The list of server ids to upgrade.
-	ServerIds []float32 `json:"serverIds"`
+	ServerIds []int64 `json:"serverIds"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _BatchServerFirmwareUpgrade BatchServerFirmwareUpgrade
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBatchServerFirmwareUpgrade(serverIds []float32) *BatchServerFirmwareUpgrade {
+func NewBatchServerFirmwareUpgrade(serverIds []int64) *BatchServerFirmwareUpgrade {
 	this := BatchServerFirmwareUpgrade{}
 	this.ServerIds = serverIds
 	return &this
@@ -47,9 +47,9 @@ func NewBatchServerFirmwareUpgradeWithDefaults() *BatchServerFirmwareUpgrade {
 }
 
 // GetServerIds returns the ServerIds field value
-func (o *BatchServerFirmwareUpgrade) GetServerIds() []float32 {
+func (o *BatchServerFirmwareUpgrade) GetServerIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *BatchServerFirmwareUpgrade) GetServerIds() []float32 {
 
 // GetServerIdsOk returns a tuple with the ServerIds field value
 // and a boolean to check if the value has been set.
-func (o *BatchServerFirmwareUpgrade) GetServerIdsOk() ([]float32, bool) {
+func (o *BatchServerFirmwareUpgrade) GetServerIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *BatchServerFirmwareUpgrade) GetServerIdsOk() ([]float32, bool) {
 }
 
 // SetServerIds sets field value
-func (o *BatchServerFirmwareUpgrade) SetServerIds(v []float32) {
+func (o *BatchServerFirmwareUpgrade) SetServerIds(v []int64) {
 	o.ServerIds = v
 }
 

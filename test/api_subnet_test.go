@@ -38,7 +38,7 @@ func Test_sdk_SubnetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var subnetId int32
+		var subnetId int64
 
 		httpRes, err := apiClient.SubnetAPI.DeleteSubnet(context.Background(), subnetId).Execute()
 
@@ -51,8 +51,8 @@ func Test_sdk_SubnetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var subnetId int32
-		var ipId int32
+		var subnetId int64
+		var ipId int64
 
 		httpRes, err := apiClient.SubnetAPI.DeleteSubnetIp(context.Background(), subnetId, ipId).Execute()
 
@@ -65,8 +65,8 @@ func Test_sdk_SubnetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var subnetId int32
-		var ipRangeId int32
+		var subnetId int64
+		var ipRangeId int64
 
 		httpRes, err := apiClient.SubnetAPI.DeleteSubnetIpRange(context.Background(), subnetId, ipRangeId).Execute()
 
@@ -79,7 +79,7 @@ func Test_sdk_SubnetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var subnetId float32
+		var subnetId int64
 
 		resp, httpRes, err := apiClient.SubnetAPI.GetSubnet(context.Background(), subnetId).Execute()
 
@@ -133,7 +133,7 @@ func Test_sdk_SubnetAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var subnetId int32
+		var subnetId int64
 
 		resp, httpRes, err := apiClient.SubnetAPI.UpdateSubnet(context.Background(), subnetId).Execute()
 

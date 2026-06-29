@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | ID of the GPU | 
-**VmPoolId** | **float32** | ID of the VM Pool linked to the GPU | 
-**HostId** | Pointer to **float32** | ID of the host linked to the GPU | [optional] 
+**Id** | **int64** | ID of the GPU | 
+**VmPoolId** | **int64** | ID of the VM Pool linked to the GPU | 
+**HostId** | Pointer to **int64** | ID of the host linked to the GPU | [optional] 
 **Model** | Pointer to **string** | Model of the GPU | [optional] 
 **Vendor** | Pointer to **string** | Vendor of the GPU | [optional] 
 **PciAddress** | Pointer to **string** | PCI address of the GPU | [optional] 
 **NumaNode** | Pointer to **float32** | NUMA node of the GPU | [optional] 
 **DeploymentStatus** | **string** | Deployment status of the GPU | 
-**VmInstanceId** | Pointer to **float32** | ID of the VM Instance linked to the GPU | [optional] 
+**VmInstanceId** | Pointer to **int64** | ID of the VM Instance linked to the GPU | [optional] 
 
 ## Methods
 
 ### NewVMPoolGPU
 
-`func NewVMPoolGPU(id float32, vmPoolId float32, deploymentStatus string, ) *VMPoolGPU`
+`func NewVMPoolGPU(id int64, vmPoolId int64, deploymentStatus string, ) *VMPoolGPU`
 
 NewVMPoolGPU instantiates a new VMPoolGPU object
 This constructor will assign default values to properties that have it defined,
@@ -35,60 +35,60 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *VMPoolGPU) GetId() float32`
+`func (o *VMPoolGPU) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMPoolGPU) GetIdOk() (*float32, bool)`
+`func (o *VMPoolGPU) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMPoolGPU) SetId(v float32)`
+`func (o *VMPoolGPU) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetVmPoolId
 
-`func (o *VMPoolGPU) GetVmPoolId() float32`
+`func (o *VMPoolGPU) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *VMPoolGPU) GetVmPoolIdOk() (*float32, bool)`
+`func (o *VMPoolGPU) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *VMPoolGPU) SetVmPoolId(v float32)`
+`func (o *VMPoolGPU) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 
 
 ### GetHostId
 
-`func (o *VMPoolGPU) GetHostId() float32`
+`func (o *VMPoolGPU) GetHostId() int64`
 
 GetHostId returns the HostId field if non-nil, zero value otherwise.
 
 ### GetHostIdOk
 
-`func (o *VMPoolGPU) GetHostIdOk() (*float32, bool)`
+`func (o *VMPoolGPU) GetHostIdOk() (*int64, bool)`
 
 GetHostIdOk returns a tuple with the HostId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHostId
 
-`func (o *VMPoolGPU) SetHostId(v float32)`
+`func (o *VMPoolGPU) SetHostId(v int64)`
 
 SetHostId sets HostId field to given value.
 
@@ -220,20 +220,20 @@ SetDeploymentStatus sets DeploymentStatus field to given value.
 
 ### GetVmInstanceId
 
-`func (o *VMPoolGPU) GetVmInstanceId() float32`
+`func (o *VMPoolGPU) GetVmInstanceId() int64`
 
 GetVmInstanceId returns the VmInstanceId field if non-nil, zero value otherwise.
 
 ### GetVmInstanceIdOk
 
-`func (o *VMPoolGPU) GetVmInstanceIdOk() (*float32, bool)`
+`func (o *VMPoolGPU) GetVmInstanceIdOk() (*int64, bool)`
 
 GetVmInstanceIdOk returns a tuple with the VmInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmInstanceId
 
-`func (o *VMPoolGPU) SetVmInstanceId(v float32)`
+`func (o *VMPoolGPU) SetVmInstanceId(v int64)`
 
 SetVmInstanceId sets VmInstanceId field to given value.
 

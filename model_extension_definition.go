@@ -28,7 +28,7 @@ type ExtensionDefinition struct {
 	// Name of the extension.
 	Name string `json:"name"`
 	// Label of the extension.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^(?!.*_$)[a-zA-Z]{1}[a-zA-Z0-9_]{0,62}$"`
 	// Type of the extension.
 	ExtensionType string `json:"extensionType"`
 	// Vendor of the extension.
@@ -57,6 +57,8 @@ type ExtensionDefinition struct {
 	Actions []InfrastructureExtensionActionsTasksDataItem `json:"actions,omitempty"`
 	// Tasks to be executed when an asset changes. Only for extensions of kind workflow
 	OnAssetChange []AssetExtensionActions `json:"onAssetChange,omitempty"`
+	// List of site configuration variables.
+	ConfigVars []ExtensionDefinitionConfigVarsDataItem `json:"configVars,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -603,6 +605,38 @@ func (o *ExtensionDefinition) SetOnAssetChange(v []AssetExtensionActions) {
 	o.OnAssetChange = v
 }
 
+// GetConfigVars returns the ConfigVars field value if set, zero value otherwise.
+func (o *ExtensionDefinition) GetConfigVars() []ExtensionDefinitionConfigVarsDataItem {
+	if o == nil || IsNil(o.ConfigVars) {
+		var ret []ExtensionDefinitionConfigVarsDataItem
+		return ret
+	}
+	return o.ConfigVars
+}
+
+// GetConfigVarsOk returns a tuple with the ConfigVars field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionDefinition) GetConfigVarsOk() ([]ExtensionDefinitionConfigVarsDataItem, bool) {
+	if o == nil || IsNil(o.ConfigVars) {
+		return nil, false
+	}
+	return o.ConfigVars, true
+}
+
+// HasConfigVars returns a boolean if a field has been set.
+func (o *ExtensionDefinition) HasConfigVars() bool {
+	if o != nil && !IsNil(o.ConfigVars) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfigVars gets a reference to the given []ExtensionDefinitionConfigVarsDataItem and assigns it to the ConfigVars field.
+func (o *ExtensionDefinition) SetConfigVars(v []ExtensionDefinitionConfigVarsDataItem) {
+	o.ConfigVars = v
+}
+
 func (o ExtensionDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -645,6 +679,9 @@ func (o ExtensionDefinition) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.OnAssetChange) {
 		toSerialize["onAssetChange"] = o.OnAssetChange
+	}
+	if !IsNil(o.ConfigVars) {
+		toSerialize["configVars"] = o.ConfigVars
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -719,6 +756,7 @@ func (o *ExtensionDefinition) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "onDelete")
 		delete(additionalProperties, "actions")
 		delete(additionalProperties, "onAssetChange")
+		delete(additionalProperties, "configVars")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the logical network interconnect | 
 **Annotations** | Pointer to **map[string]string** | JSON object containing additional metadata or annotations | [optional] 
 **Kind** | Pointer to [**LogicalNetworkInterconnectKind**](LogicalNetworkInterconnectKind.md) | Kind of the logical network interconnect | [optional] 
-**FabricInterconnectId** | **int32** | Fabric Interconnect identifier | 
+**FabricInterconnectId** | **int64** | Fabric Interconnect identifier | 
 
 ## Methods
 
 ### NewCreateLogicalNetworkInterconnect
 
-`func NewCreateLogicalNetworkInterconnect(label string, name string, fabricInterconnectId int32, ) *CreateLogicalNetworkInterconnect`
+`func NewCreateLogicalNetworkInterconnect(label string, name string, fabricInterconnectId int64, ) *CreateLogicalNetworkInterconnect`
 
 NewCreateLogicalNetworkInterconnect instantiates a new CreateLogicalNetworkInterconnect object
 This constructor will assign default values to properties that have it defined,
@@ -121,20 +121,20 @@ HasKind returns a boolean if a field has been set.
 
 ### GetFabricInterconnectId
 
-`func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectId() int32`
+`func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectId() int64`
 
 GetFabricInterconnectId returns the FabricInterconnectId field if non-nil, zero value otherwise.
 
 ### GetFabricInterconnectIdOk
 
-`func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkInterconnect) GetFabricInterconnectIdOk() (*int64, bool)`
 
 GetFabricInterconnectIdOk returns a tuple with the FabricInterconnectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricInterconnectId
 
-`func (o *CreateLogicalNetworkInterconnect) SetFabricInterconnectId(v int32)`
+`func (o *CreateLogicalNetworkInterconnect) SetFabricInterconnectId(v int64)`
 
 SetFabricInterconnectId sets FabricInterconnectId field to given value.
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &RunExtensionOnPhysicalDevice{}
 // RunExtensionOnPhysicalDevice struct for RunExtensionOnPhysicalDevice
 type RunExtensionOnPhysicalDevice struct {
 	// The physical device ID
-	ExtensionId float32 `json:"extensionId"`
+	ExtensionId int64 `json:"extensionId"`
 	// Input arguments
 	InputArguments map[string]interface{} `json:"inputArguments"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _RunExtensionOnPhysicalDevice RunExtensionOnPhysicalDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRunExtensionOnPhysicalDevice(extensionId float32, inputArguments map[string]interface{}) *RunExtensionOnPhysicalDevice {
+func NewRunExtensionOnPhysicalDevice(extensionId int64, inputArguments map[string]interface{}) *RunExtensionOnPhysicalDevice {
 	this := RunExtensionOnPhysicalDevice{}
 	this.ExtensionId = extensionId
 	this.InputArguments = inputArguments
@@ -50,9 +50,9 @@ func NewRunExtensionOnPhysicalDeviceWithDefaults() *RunExtensionOnPhysicalDevice
 }
 
 // GetExtensionId returns the ExtensionId field value
-func (o *RunExtensionOnPhysicalDevice) GetExtensionId() float32 {
+func (o *RunExtensionOnPhysicalDevice) GetExtensionId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *RunExtensionOnPhysicalDevice) GetExtensionId() float32 {
 
 // GetExtensionIdOk returns a tuple with the ExtensionId field value
 // and a boolean to check if the value has been set.
-func (o *RunExtensionOnPhysicalDevice) GetExtensionIdOk() (*float32, bool) {
+func (o *RunExtensionOnPhysicalDevice) GetExtensionIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *RunExtensionOnPhysicalDevice) GetExtensionIdOk() (*float32, bool) {
 }
 
 // SetExtensionId sets field value
-func (o *RunExtensionOnPhysicalDevice) SetExtensionId(v float32) {
+func (o *RunExtensionOnPhysicalDevice) SetExtensionId(v int64) {
 	o.ExtensionId = v
 }
 

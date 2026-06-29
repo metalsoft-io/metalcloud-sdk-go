@@ -26,7 +26,7 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.AddLogicalNetworkToLogicalNetworkInterconnect(context.Background(), id).Execute()
 
@@ -52,7 +52,7 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		httpRes, err := apiClient.LogicalNetworkInterconnectAPI.DeleteLogicalNetworkInterconnect(context.Background(), id).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.GetLogicalNetworkInterconnectById(context.Background(), id).Execute()
 
@@ -79,8 +79,8 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
-		var linkId int32
+		var id int64
+		var linkId int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.GetLogicalNetworkInterconnectLinkById(context.Background(), id, linkId).Execute()
 
@@ -94,7 +94,7 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.GetLogicalNetworkInterconnectLinks(context.Background(), id).Execute()
 
@@ -120,8 +120,8 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
-		var linkId int32
+		var id int64
+		var linkId int64
 
 		httpRes, err := apiClient.LogicalNetworkInterconnectAPI.RemoveLogicalNetworkFromLogicalNetworkInterconnect(context.Background(), id, linkId).Execute()
 
@@ -134,7 +134,7 @@ func Test_sdk_LogicalNetworkInterconnectAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var id int64
 
 		resp, httpRes, err := apiClient.LogicalNetworkInterconnectAPI.UpdateLogicalNetworkInterconnect(context.Background(), id).Execute()
 

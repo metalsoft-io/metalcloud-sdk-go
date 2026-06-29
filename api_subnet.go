@@ -137,7 +137,7 @@ func (a *SubnetAPIService) CreateSubnetExecute(r SubnetAPICreateSubnetRequest) (
 type SubnetAPIDeleteSubnetRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
-	subnetId int32
+	subnetId int64
 	ifMatch *string
 }
 
@@ -160,7 +160,7 @@ Delete Subnet
  @param subnetId
  @return SubnetAPIDeleteSubnetRequest
 */
-func (a *SubnetAPIService) DeleteSubnet(ctx context.Context, subnetId int32) SubnetAPIDeleteSubnetRequest {
+func (a *SubnetAPIService) DeleteSubnet(ctx context.Context, subnetId int64) SubnetAPIDeleteSubnetRequest {
 	return SubnetAPIDeleteSubnetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -240,8 +240,8 @@ func (a *SubnetAPIService) DeleteSubnetExecute(r SubnetAPIDeleteSubnetRequest) (
 type SubnetAPIDeleteSubnetIpRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
-	subnetId int32
-	ipId int32
+	subnetId int64
+	ipId int64
 	ifMatch *string
 }
 
@@ -265,7 +265,7 @@ Delete Subnet IP
  @param ipId
  @return SubnetAPIDeleteSubnetIpRequest
 */
-func (a *SubnetAPIService) DeleteSubnetIp(ctx context.Context, subnetId int32, ipId int32) SubnetAPIDeleteSubnetIpRequest {
+func (a *SubnetAPIService) DeleteSubnetIp(ctx context.Context, subnetId int64, ipId int64) SubnetAPIDeleteSubnetIpRequest {
 	return SubnetAPIDeleteSubnetIpRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -347,8 +347,8 @@ func (a *SubnetAPIService) DeleteSubnetIpExecute(r SubnetAPIDeleteSubnetIpReques
 type SubnetAPIDeleteSubnetIpRangeRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
-	subnetId int32
-	ipRangeId int32
+	subnetId int64
+	ipRangeId int64
 	ifMatch *string
 }
 
@@ -372,7 +372,7 @@ Delete Subnet IP Range
  @param ipRangeId
  @return SubnetAPIDeleteSubnetIpRangeRequest
 */
-func (a *SubnetAPIService) DeleteSubnetIpRange(ctx context.Context, subnetId int32, ipRangeId int32) SubnetAPIDeleteSubnetIpRangeRequest {
+func (a *SubnetAPIService) DeleteSubnetIpRange(ctx context.Context, subnetId int64, ipRangeId int64) SubnetAPIDeleteSubnetIpRangeRequest {
 	return SubnetAPIDeleteSubnetIpRangeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -454,7 +454,7 @@ func (a *SubnetAPIService) DeleteSubnetIpRangeExecute(r SubnetAPIDeleteSubnetIpR
 type SubnetAPIGetSubnetRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
-	subnetId float32
+	subnetId int64
 }
 
 func (r SubnetAPIGetSubnetRequest) Execute() (*Subnet, *http.Response, error) {
@@ -470,7 +470,7 @@ Retrieves the Subnet information
  @param subnetId
  @return SubnetAPIGetSubnetRequest
 */
-func (a *SubnetAPIService) GetSubnet(ctx context.Context, subnetId float32) SubnetAPIGetSubnetRequest {
+func (a *SubnetAPIService) GetSubnet(ctx context.Context, subnetId int64) SubnetAPIGetSubnetRequest {
 	return SubnetAPIGetSubnetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1312,7 +1312,7 @@ func (a *SubnetAPIService) GetSubnetsExecute(r SubnetAPIGetSubnetsRequest) (*Sub
 type SubnetAPIUpdateSubnetRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
-	subnetId int32
+	subnetId int64
 	ifMatch *string
 	updateSubnet *UpdateSubnet
 }
@@ -1342,7 +1342,7 @@ Updates the specified Subnet
  @param subnetId
  @return SubnetAPIUpdateSubnetRequest
 */
-func (a *SubnetAPIService) UpdateSubnet(ctx context.Context, subnetId int32) SubnetAPIUpdateSubnetRequest {
+func (a *SubnetAPIService) UpdateSubnet(ctx context.Context, subnetId int64) SubnetAPIUpdateSubnetRequest {
 	return SubnetAPIUpdateSubnetRequest{
 		ApiService: a,
 		ctx: ctx,

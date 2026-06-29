@@ -6,12 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The id of the event | 
 **UserIdAuthenticated** | Pointer to **string** | The id of the user who triggered the event | [optional] 
-**Type** | **string** | The type of the event | 
-**Severity** | **string** | The severity of the event | 
-**Visibility** | **string** | The visibility of the event | 
+**Type** | [**EventTypes**](EventTypes.md) | The type of the event | 
+**Level** | [**EventLevel**](EventLevel.md) | The level of the event | 
+**Visibility** | [**EventVisibility**](EventVisibility.md) | The visibility of the event | 
 **InfrastructureId** | Pointer to **string** | The id of the infrastructure linked to the event | [optional] 
 **UserId** | Pointer to **string** | The id of the user linked to the event | [optional] 
 **ServerId** | Pointer to **string** | The id of the server linked to the event | [optional] 
+**NetworkDeviceId** | Pointer to **string** | The id of the network device linked to the event | [optional] 
+**NetworkDeviceControllerId** | Pointer to **string** | The id of the network device controller linked to the event | [optional] 
+**StorageId** | Pointer to **string** | The id of the storage linked to the event | [optional] 
+**VmPoolId** | Pointer to **string** | The id of the vm pool linked to the event | [optional] 
 **JobId** | Pointer to **string** | The id of the job linked to the event | [optional] 
 **SiteId** | Pointer to **string** | The id of the site linked to the event | [optional] 
 **Title** | **string** | The title of the event | 
@@ -27,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewEvent
 
-`func NewEvent(id string, type_ string, severity string, visibility string, title string, message string, occurredTimestamp string, ) *Event`
+`func NewEvent(id string, type_ EventTypes, level EventLevel, visibility EventVisibility, title string, message string, occurredTimestamp string, ) *Event`
 
 NewEvent instantiates a new Event object
 This constructor will assign default values to properties that have it defined,
@@ -89,60 +93,60 @@ HasUserIdAuthenticated returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Event) GetType() string`
+`func (o *Event) GetType() EventTypes`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Event) GetTypeOk() (*string, bool)`
+`func (o *Event) GetTypeOk() (*EventTypes, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Event) SetType(v string)`
+`func (o *Event) SetType(v EventTypes)`
 
 SetType sets Type field to given value.
 
 
-### GetSeverity
+### GetLevel
 
-`func (o *Event) GetSeverity() string`
+`func (o *Event) GetLevel() EventLevel`
 
-GetSeverity returns the Severity field if non-nil, zero value otherwise.
+GetLevel returns the Level field if non-nil, zero value otherwise.
 
-### GetSeverityOk
+### GetLevelOk
 
-`func (o *Event) GetSeverityOk() (*string, bool)`
+`func (o *Event) GetLevelOk() (*EventLevel, bool)`
 
-GetSeverityOk returns a tuple with the Severity field if it's non-nil, zero value otherwise
+GetLevelOk returns a tuple with the Level field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSeverity
+### SetLevel
 
-`func (o *Event) SetSeverity(v string)`
+`func (o *Event) SetLevel(v EventLevel)`
 
-SetSeverity sets Severity field to given value.
+SetLevel sets Level field to given value.
 
 
 ### GetVisibility
 
-`func (o *Event) GetVisibility() string`
+`func (o *Event) GetVisibility() EventVisibility`
 
 GetVisibility returns the Visibility field if non-nil, zero value otherwise.
 
 ### GetVisibilityOk
 
-`func (o *Event) GetVisibilityOk() (*string, bool)`
+`func (o *Event) GetVisibilityOk() (*EventVisibility, bool)`
 
 GetVisibilityOk returns a tuple with the Visibility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVisibility
 
-`func (o *Event) SetVisibility(v string)`
+`func (o *Event) SetVisibility(v EventVisibility)`
 
 SetVisibility sets Visibility field to given value.
 
@@ -221,6 +225,106 @@ SetServerId sets ServerId field to given value.
 `func (o *Event) HasServerId() bool`
 
 HasServerId returns a boolean if a field has been set.
+
+### GetNetworkDeviceId
+
+`func (o *Event) GetNetworkDeviceId() string`
+
+GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceIdOk
+
+`func (o *Event) GetNetworkDeviceIdOk() (*string, bool)`
+
+GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceId
+
+`func (o *Event) SetNetworkDeviceId(v string)`
+
+SetNetworkDeviceId sets NetworkDeviceId field to given value.
+
+### HasNetworkDeviceId
+
+`func (o *Event) HasNetworkDeviceId() bool`
+
+HasNetworkDeviceId returns a boolean if a field has been set.
+
+### GetNetworkDeviceControllerId
+
+`func (o *Event) GetNetworkDeviceControllerId() string`
+
+GetNetworkDeviceControllerId returns the NetworkDeviceControllerId field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceControllerIdOk
+
+`func (o *Event) GetNetworkDeviceControllerIdOk() (*string, bool)`
+
+GetNetworkDeviceControllerIdOk returns a tuple with the NetworkDeviceControllerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceControllerId
+
+`func (o *Event) SetNetworkDeviceControllerId(v string)`
+
+SetNetworkDeviceControllerId sets NetworkDeviceControllerId field to given value.
+
+### HasNetworkDeviceControllerId
+
+`func (o *Event) HasNetworkDeviceControllerId() bool`
+
+HasNetworkDeviceControllerId returns a boolean if a field has been set.
+
+### GetStorageId
+
+`func (o *Event) GetStorageId() string`
+
+GetStorageId returns the StorageId field if non-nil, zero value otherwise.
+
+### GetStorageIdOk
+
+`func (o *Event) GetStorageIdOk() (*string, bool)`
+
+GetStorageIdOk returns a tuple with the StorageId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorageId
+
+`func (o *Event) SetStorageId(v string)`
+
+SetStorageId sets StorageId field to given value.
+
+### HasStorageId
+
+`func (o *Event) HasStorageId() bool`
+
+HasStorageId returns a boolean if a field has been set.
+
+### GetVmPoolId
+
+`func (o *Event) GetVmPoolId() string`
+
+GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
+
+### GetVmPoolIdOk
+
+`func (o *Event) GetVmPoolIdOk() (*string, bool)`
+
+GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolId
+
+`func (o *Event) SetVmPoolId(v string)`
+
+SetVmPoolId sets VmPoolId field to given value.
+
+### HasVmPoolId
+
+`func (o *Event) HasVmPoolId() bool`
+
+HasVmPoolId returns a boolean if a field has been set.
 
 ### GetJobId
 

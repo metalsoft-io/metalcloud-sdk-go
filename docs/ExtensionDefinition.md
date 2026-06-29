@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **OnDelete** | Pointer to [**[]InfrastructureExtensionActions**](InfrastructureExtensionActions.md) | Actions for the onDelete event. | [optional] 
 **Actions** | Pointer to [**[]InfrastructureExtensionActionsTasksDataItem**](InfrastructureExtensionActionsTasksDataItem.md) | Actions. Only for extensions of kind action | [optional] 
 **OnAssetChange** | Pointer to [**[]AssetExtensionActions**](AssetExtensionActions.md) | Tasks to be executed when an asset changes. Only for extensions of kind workflow | [optional] 
+**ConfigVars** | Pointer to [**[]ExtensionDefinitionConfigVarsDataItem**](ExtensionDefinitionConfigVarsDataItem.md) | List of site configuration variables. | [optional] 
 
 ## Methods
 
@@ -457,6 +458,31 @@ SetOnAssetChange sets OnAssetChange field to given value.
 `func (o *ExtensionDefinition) HasOnAssetChange() bool`
 
 HasOnAssetChange returns a boolean if a field has been set.
+
+### GetConfigVars
+
+`func (o *ExtensionDefinition) GetConfigVars() []ExtensionDefinitionConfigVarsDataItem`
+
+GetConfigVars returns the ConfigVars field if non-nil, zero value otherwise.
+
+### GetConfigVarsOk
+
+`func (o *ExtensionDefinition) GetConfigVarsOk() (*[]ExtensionDefinitionConfigVarsDataItem, bool)`
+
+GetConfigVarsOk returns a tuple with the ConfigVars field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfigVars
+
+`func (o *ExtensionDefinition) SetConfigVars(v []ExtensionDefinitionConfigVarsDataItem)`
+
+SetConfigVars sets ConfigVars field to given value.
+
+### HasConfigVars
+
+`func (o *ExtensionDefinition) HasConfigVars() bool`
+
+HasConfigVars returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,9 +22,9 @@ var _ MappedNullable = &ServerInterface{}
 // ServerInterface struct for ServerInterface
 type ServerInterface struct {
 	// The id of the server interface.
-	ServerInterfaceId float32 `json:"serverInterfaceId"`
+	ServerInterfaceId int64 `json:"serverInterfaceId"`
 	// The id of the server.
-	ServerId float32 `json:"serverId"`
+	ServerId int64 `json:"serverId"`
 	// The MAC address of the server interface.
 	MacAddress string `json:"macAddress"`
 	// The index of the server interface.
@@ -64,9 +64,9 @@ type ServerInterface struct {
 	// The deployed IPv6 addresses of the server interface.
 	Ipv6Addresses []string `json:"ipv6Addresses,omitempty"`
 	// The deployed VLAN ID of the server interface.
-	VlanId *float32 `json:"vlanId,omitempty"`
+	VlanId *int32 `json:"vlanId,omitempty"`
 	// The default fabric ID of the server interface.
-	DefaultFabricId *float32 `json:"defaultFabricId,omitempty"`
+	DefaultFabricId *int64 `json:"defaultFabricId,omitempty"`
 	// The redundancy group index of the server interface.
 	RedundancyGroupIndex *float32 `json:"redundancyGroupIndex,omitempty"`
 	// The LLDP information of the server interface.
@@ -84,7 +84,7 @@ type _ServerInterface ServerInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, switchMacAddress string, osInfo string) *ServerInterface {
+func NewServerInterface(serverInterfaceId int64, serverId int64, macAddress string, index float32, switchMacAddress string, osInfo string) *ServerInterface {
 	this := ServerInterface{}
 	this.ServerInterfaceId = serverInterfaceId
 	this.ServerId = serverId
@@ -106,9 +106,9 @@ func NewServerInterfaceWithDefaults() *ServerInterface {
 }
 
 // GetServerInterfaceId returns the ServerInterfaceId field value
-func (o *ServerInterface) GetServerInterfaceId() float32 {
+func (o *ServerInterface) GetServerInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -117,7 +117,7 @@ func (o *ServerInterface) GetServerInterfaceId() float32 {
 
 // GetServerInterfaceIdOk returns a tuple with the ServerInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInterface) GetServerInterfaceIdOk() (*float32, bool) {
+func (o *ServerInterface) GetServerInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,14 +125,14 @@ func (o *ServerInterface) GetServerInterfaceIdOk() (*float32, bool) {
 }
 
 // SetServerInterfaceId sets field value
-func (o *ServerInterface) SetServerInterfaceId(v float32) {
+func (o *ServerInterface) SetServerInterfaceId(v int64) {
 	o.ServerInterfaceId = v
 }
 
 // GetServerId returns the ServerId field value
-func (o *ServerInterface) GetServerId() float32 {
+func (o *ServerInterface) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -141,7 +141,7 @@ func (o *ServerInterface) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInterface) GetServerIdOk() (*float32, bool) {
+func (o *ServerInterface) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,7 +149,7 @@ func (o *ServerInterface) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *ServerInterface) SetServerId(v float32) {
+func (o *ServerInterface) SetServerId(v int64) {
 	o.ServerId = v
 }
 
@@ -730,9 +730,9 @@ func (o *ServerInterface) SetIpv6Addresses(v []string) {
 }
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
-func (o *ServerInterface) GetVlanId() float32 {
+func (o *ServerInterface) GetVlanId() int32 {
 	if o == nil || IsNil(o.VlanId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.VlanId
@@ -740,7 +740,7 @@ func (o *ServerInterface) GetVlanId() float32 {
 
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInterface) GetVlanIdOk() (*float32, bool) {
+func (o *ServerInterface) GetVlanIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.VlanId) {
 		return nil, false
 	}
@@ -756,15 +756,15 @@ func (o *ServerInterface) HasVlanId() bool {
 	return false
 }
 
-// SetVlanId gets a reference to the given float32 and assigns it to the VlanId field.
-func (o *ServerInterface) SetVlanId(v float32) {
+// SetVlanId gets a reference to the given int32 and assigns it to the VlanId field.
+func (o *ServerInterface) SetVlanId(v int32) {
 	o.VlanId = &v
 }
 
 // GetDefaultFabricId returns the DefaultFabricId field value if set, zero value otherwise.
-func (o *ServerInterface) GetDefaultFabricId() float32 {
+func (o *ServerInterface) GetDefaultFabricId() int64 {
 	if o == nil || IsNil(o.DefaultFabricId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultFabricId
@@ -772,7 +772,7 @@ func (o *ServerInterface) GetDefaultFabricId() float32 {
 
 // GetDefaultFabricIdOk returns a tuple with the DefaultFabricId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInterface) GetDefaultFabricIdOk() (*float32, bool) {
+func (o *ServerInterface) GetDefaultFabricIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DefaultFabricId) {
 		return nil, false
 	}
@@ -788,8 +788,8 @@ func (o *ServerInterface) HasDefaultFabricId() bool {
 	return false
 }
 
-// SetDefaultFabricId gets a reference to the given float32 and assigns it to the DefaultFabricId field.
-func (o *ServerInterface) SetDefaultFabricId(v float32) {
+// SetDefaultFabricId gets a reference to the given int64 and assigns it to the DefaultFabricId field.
+func (o *ServerInterface) SetDefaultFabricId(v int64) {
 	o.DefaultFabricId = &v
 }
 

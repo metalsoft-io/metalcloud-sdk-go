@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The DNS Resource Record Set (RRSet) ID | [readonly] 
+**Id** | **int64** | The DNS Resource Record Set (RRSet) ID | [readonly] 
 **Status** | **string** | The status of the DNS Record Set | 
-**SiteId** | **int32** | The site ID | 
-**InfrastructureId** | **int32** | The infrastructure ID | 
-**ZoneId** | **int32** | The ID of the DNS zone | 
+**SiteId** | **int64** | The site ID | 
+**InfrastructureId** | **int64** | The infrastructure ID | 
+**ZoneId** | **int64** | The ID of the DNS zone | 
 **ZoneName** | **string** | The name of the DNS zone (without a terminating dot) | 
 **Name** | **string** | DNS Name for the RecordSet | 
 **Type** | **string** | The type of DNS record (e.g., A, AAAA, CNAME, NS, PTR, TXT, SOA) | 
 **Ttl** | Pointer to **int32** | TTL (Time to Live) for the DNS Record Set. | [optional] [default to 3600]
 **Records** | **[]string** | The record data for this DNS record set | 
 **Tags** | Pointer to **[]string** | The tags associated with the DNS Record Set | [optional] 
-**Revision** | **int32** | The revision number of the DNS Record Set | [readonly] 
+**Revision** | **int64** | The revision number of the DNS Record Set | [readonly] 
 **CreatedBy** | **int32** | The user ID of the user who created the DNS Record Set | 
 **UpdatedBy** | Pointer to **int32** | The user ID of the user who last modified the DNS Record Set | [optional] 
 **CreatedAt** | **time.Time** | The date and time the DNS Record Set was created | [readonly] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewDnsRecordSet
 
-`func NewDnsRecordSet(id int32, status string, siteId int32, infrastructureId int32, zoneId int32, zoneName string, name string, type_ string, records []string, revision int32, createdBy int32, createdAt time.Time, ) *DnsRecordSet`
+`func NewDnsRecordSet(id int64, status string, siteId int64, infrastructureId int64, zoneId int64, zoneName string, name string, type_ string, records []string, revision int64, createdBy int32, createdAt time.Time, ) *DnsRecordSet`
 
 NewDnsRecordSet instantiates a new DnsRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -43,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *DnsRecordSet) GetId() int32`
+`func (o *DnsRecordSet) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DnsRecordSet) GetIdOk() (*int32, bool)`
+`func (o *DnsRecordSet) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DnsRecordSet) SetId(v int32)`
+`func (o *DnsRecordSet) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -83,60 +83,60 @@ SetStatus sets Status field to given value.
 
 ### GetSiteId
 
-`func (o *DnsRecordSet) GetSiteId() int32`
+`func (o *DnsRecordSet) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *DnsRecordSet) GetSiteIdOk() (*int32, bool)`
+`func (o *DnsRecordSet) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *DnsRecordSet) SetSiteId(v int32)`
+`func (o *DnsRecordSet) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *DnsRecordSet) GetInfrastructureId() int32`
+`func (o *DnsRecordSet) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *DnsRecordSet) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *DnsRecordSet) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *DnsRecordSet) SetInfrastructureId(v int32)`
+`func (o *DnsRecordSet) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetZoneId
 
-`func (o *DnsRecordSet) GetZoneId() int32`
+`func (o *DnsRecordSet) GetZoneId() int64`
 
 GetZoneId returns the ZoneId field if non-nil, zero value otherwise.
 
 ### GetZoneIdOk
 
-`func (o *DnsRecordSet) GetZoneIdOk() (*int32, bool)`
+`func (o *DnsRecordSet) GetZoneIdOk() (*int64, bool)`
 
 GetZoneIdOk returns a tuple with the ZoneId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetZoneId
 
-`func (o *DnsRecordSet) SetZoneId(v int32)`
+`func (o *DnsRecordSet) SetZoneId(v int64)`
 
 SetZoneId sets ZoneId field to given value.
 
@@ -273,20 +273,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *DnsRecordSet) GetRevision() int32`
+`func (o *DnsRecordSet) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *DnsRecordSet) GetRevisionOk() (*int32, bool)`
+`func (o *DnsRecordSet) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *DnsRecordSet) SetRevision(v int32)`
+`func (o *DnsRecordSet) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateExternalConnectionInterface{}
 // UpdateExternalConnectionInterface struct for UpdateExternalConnectionInterface
 type UpdateExternalConnectionInterface struct {
 	// Network device interface id
-	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
+	NetworkDeviceInterfaceId int64 `json:"networkDeviceInterfaceId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _UpdateExternalConnectionInterface UpdateExternalConnectionInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateExternalConnectionInterface(networkDeviceInterfaceId float32) *UpdateExternalConnectionInterface {
+func NewUpdateExternalConnectionInterface(networkDeviceInterfaceId int64) *UpdateExternalConnectionInterface {
 	this := UpdateExternalConnectionInterface{}
 	this.NetworkDeviceInterfaceId = networkDeviceInterfaceId
 	return &this
@@ -47,9 +47,9 @@ func NewUpdateExternalConnectionInterfaceWithDefaults() *UpdateExternalConnectio
 }
 
 // GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value
-func (o *UpdateExternalConnectionInterface) GetNetworkDeviceInterfaceId() float32 {
+func (o *UpdateExternalConnectionInterface) GetNetworkDeviceInterfaceId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *UpdateExternalConnectionInterface) GetNetworkDeviceInterfaceId() float3
 
 // GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *UpdateExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+func (o *UpdateExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *UpdateExternalConnectionInterface) GetNetworkDeviceInterfaceIdOk() (*fl
 }
 
 // SetNetworkDeviceInterfaceId sets field value
-func (o *UpdateExternalConnectionInterface) SetNetworkDeviceInterfaceId(v float32) {
+func (o *UpdateExternalConnectionInterface) SetNetworkDeviceInterfaceId(v int64) {
 	o.NetworkDeviceInterfaceId = v
 }
 

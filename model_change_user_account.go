@@ -22,7 +22,7 @@ var _ MappedNullable = &ChangeUserAccount{}
 // ChangeUserAccount struct for ChangeUserAccount
 type ChangeUserAccount struct {
 	// The ID of the parent account
-	NewAccountId float32 `json:"newAccountId"`
+	NewAccountId int64 `json:"newAccountId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _ChangeUserAccount ChangeUserAccount
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChangeUserAccount(newAccountId float32) *ChangeUserAccount {
+func NewChangeUserAccount(newAccountId int64) *ChangeUserAccount {
 	this := ChangeUserAccount{}
 	this.NewAccountId = newAccountId
 	return &this
@@ -47,9 +47,9 @@ func NewChangeUserAccountWithDefaults() *ChangeUserAccount {
 }
 
 // GetNewAccountId returns the NewAccountId field value
-func (o *ChangeUserAccount) GetNewAccountId() float32 {
+func (o *ChangeUserAccount) GetNewAccountId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *ChangeUserAccount) GetNewAccountId() float32 {
 
 // GetNewAccountIdOk returns a tuple with the NewAccountId field value
 // and a boolean to check if the value has been set.
-func (o *ChangeUserAccount) GetNewAccountIdOk() (*float32, bool) {
+func (o *ChangeUserAccount) GetNewAccountIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *ChangeUserAccount) GetNewAccountIdOk() (*float32, bool) {
 }
 
 // SetNewAccountId sets field value
-func (o *ChangeUserAccount) SetNewAccountId(v float32) {
+func (o *ChangeUserAccount) SetNewAccountId(v int64) {
 	o.NewAccountId = v
 }
 

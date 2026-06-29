@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerId** | **float32** | The id of the server. | 
-**Revision** | **float32** | Revision number | 
+**ServerId** | **int64** | The id of the server. | 
+**Revision** | **int64** | Revision number | 
 **JobInfo** | Pointer to [**JobInfo**](JobInfo.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewHardwareRescanServerResponse
 
-`func NewHardwareRescanServerResponse(serverId float32, revision float32, ) *HardwareRescanServerResponse`
+`func NewHardwareRescanServerResponse(serverId int64, revision int64, ) *HardwareRescanServerResponse`
 
 NewHardwareRescanServerResponse instantiates a new HardwareRescanServerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -30,40 +30,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetServerId
 
-`func (o *HardwareRescanServerResponse) GetServerId() float32`
+`func (o *HardwareRescanServerResponse) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *HardwareRescanServerResponse) GetServerIdOk() (*float32, bool)`
+`func (o *HardwareRescanServerResponse) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *HardwareRescanServerResponse) SetServerId(v float32)`
+`func (o *HardwareRescanServerResponse) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
 
 ### GetRevision
 
-`func (o *HardwareRescanServerResponse) GetRevision() float32`
+`func (o *HardwareRescanServerResponse) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *HardwareRescanServerResponse) GetRevisionOk() (*float32, bool)`
+`func (o *HardwareRescanServerResponse) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *HardwareRescanServerResponse) SetRevision(v float32)`
+`func (o *HardwareRescanServerResponse) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

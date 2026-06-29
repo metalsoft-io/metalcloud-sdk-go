@@ -22,9 +22,9 @@ var _ MappedNullable = &ServerDisk{}
 // ServerDisk struct for ServerDisk
 type ServerDisk struct {
 	// The id of the disk.
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// The id of the server.
-	ServerId float32 `json:"serverId"`
+	ServerId int64 `json:"serverId"`
 	// The model of the disk
 	Model string `json:"model"`
 	// The size of the disk in GB
@@ -38,7 +38,7 @@ type ServerDisk struct {
 	// The type of the disk
 	Type string `json:"type"`
 	// The id of the storage controller
-	ServerStorageControllerId *float32 `json:"serverStorageControllerId,omitempty"`
+	ServerStorageControllerId *int64 `json:"serverStorageControllerId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,7 +48,7 @@ type _ServerDisk ServerDisk
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerDisk(id float32, serverId float32, model string, diskSizeGb float32, serial string, vendor string, status string, type_ string) *ServerDisk {
+func NewServerDisk(id int64, serverId int64, model string, diskSizeGb float32, serial string, vendor string, status string, type_ string) *ServerDisk {
 	this := ServerDisk{}
 	this.Id = id
 	this.ServerId = serverId
@@ -70,9 +70,9 @@ func NewServerDiskWithDefaults() *ServerDisk {
 }
 
 // GetId returns the Id field value
-func (o *ServerDisk) GetId() float32 {
+func (o *ServerDisk) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -81,7 +81,7 @@ func (o *ServerDisk) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerDisk) GetIdOk() (*float32, bool) {
+func (o *ServerDisk) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,14 +89,14 @@ func (o *ServerDisk) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *ServerDisk) SetId(v float32) {
+func (o *ServerDisk) SetId(v int64) {
 	o.Id = v
 }
 
 // GetServerId returns the ServerId field value
-func (o *ServerDisk) GetServerId() float32 {
+func (o *ServerDisk) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -105,7 +105,7 @@ func (o *ServerDisk) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *ServerDisk) GetServerIdOk() (*float32, bool) {
+func (o *ServerDisk) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *ServerDisk) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *ServerDisk) SetServerId(v float32) {
+func (o *ServerDisk) SetServerId(v int64) {
 	o.ServerId = v
 }
 
@@ -262,9 +262,9 @@ func (o *ServerDisk) SetType(v string) {
 }
 
 // GetServerStorageControllerId returns the ServerStorageControllerId field value if set, zero value otherwise.
-func (o *ServerDisk) GetServerStorageControllerId() float32 {
+func (o *ServerDisk) GetServerStorageControllerId() int64 {
 	if o == nil || IsNil(o.ServerStorageControllerId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerStorageControllerId
@@ -272,7 +272,7 @@ func (o *ServerDisk) GetServerStorageControllerId() float32 {
 
 // GetServerStorageControllerIdOk returns a tuple with the ServerStorageControllerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerDisk) GetServerStorageControllerIdOk() (*float32, bool) {
+func (o *ServerDisk) GetServerStorageControllerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerStorageControllerId) {
 		return nil, false
 	}
@@ -288,8 +288,8 @@ func (o *ServerDisk) HasServerStorageControllerId() bool {
 	return false
 }
 
-// SetServerStorageControllerId gets a reference to the given float32 and assigns it to the ServerStorageControllerId field.
-func (o *ServerDisk) SetServerStorageControllerId(v float32) {
+// SetServerStorageControllerId gets a reference to the given int64 and assigns it to the ServerStorageControllerId field.
+func (o *ServerDisk) SetServerStorageControllerId(v int64) {
 	o.ServerStorageControllerId = &v
 }
 

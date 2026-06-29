@@ -28,7 +28,7 @@ type EndpointInstanceAPIService service
 type EndpointInstanceAPICreateEndpointInstanceRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceAPIService
-	infrastructureId int32
+	infrastructureId int64
 	endpointInstanceCreate *EndpointInstanceCreate
 }
 
@@ -51,7 +51,7 @@ Adds Endpoint Instance to the specified infrastructure
  @param infrastructureId
  @return EndpointInstanceAPICreateEndpointInstanceRequest
 */
-func (a *EndpointInstanceAPIService) CreateEndpointInstance(ctx context.Context, infrastructureId int32) EndpointInstanceAPICreateEndpointInstanceRequest {
+func (a *EndpointInstanceAPIService) CreateEndpointInstance(ctx context.Context, infrastructureId int64) EndpointInstanceAPICreateEndpointInstanceRequest {
 	return EndpointInstanceAPICreateEndpointInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -143,7 +143,7 @@ func (a *EndpointInstanceAPIService) CreateEndpointInstanceExecute(r EndpointIns
 type EndpointInstanceAPIDeleteEndpointInstanceRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceAPIService
-	endpointInstanceId int32
+	endpointInstanceId int64
 	ifMatch *string
 }
 
@@ -166,7 +166,7 @@ Deletes the specified Endpoint Instance
  @param endpointInstanceId
  @return EndpointInstanceAPIDeleteEndpointInstanceRequest
 */
-func (a *EndpointInstanceAPIService) DeleteEndpointInstance(ctx context.Context, endpointInstanceId int32) EndpointInstanceAPIDeleteEndpointInstanceRequest {
+func (a *EndpointInstanceAPIService) DeleteEndpointInstance(ctx context.Context, endpointInstanceId int64) EndpointInstanceAPIDeleteEndpointInstanceRequest {
 	return EndpointInstanceAPIDeleteEndpointInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -245,7 +245,7 @@ func (a *EndpointInstanceAPIService) DeleteEndpointInstanceExecute(r EndpointIns
 type EndpointInstanceAPIGetEndpointInstanceRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceAPIService
-	endpointInstanceId int32
+	endpointInstanceId int64
 }
 
 func (r EndpointInstanceAPIGetEndpointInstanceRequest) Execute() (*EndpointInstance, *http.Response, error) {
@@ -261,7 +261,7 @@ Returns the details of the specified Endpoint Instance
  @param endpointInstanceId
  @return EndpointInstanceAPIGetEndpointInstanceRequest
 */
-func (a *EndpointInstanceAPIService) GetEndpointInstance(ctx context.Context, endpointInstanceId int32) EndpointInstanceAPIGetEndpointInstanceRequest {
+func (a *EndpointInstanceAPIService) GetEndpointInstance(ctx context.Context, endpointInstanceId int64) EndpointInstanceAPIGetEndpointInstanceRequest {
 	return EndpointInstanceAPIGetEndpointInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -348,7 +348,7 @@ func (a *EndpointInstanceAPIService) GetEndpointInstanceExecute(r EndpointInstan
 type EndpointInstanceAPIGetEndpointInstanceConfigRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceAPIService
-	endpointInstanceId int32
+	endpointInstanceId int64
 }
 
 func (r EndpointInstanceAPIGetEndpointInstanceConfigRequest) Execute() (*EndpointInstanceConfiguration, *http.Response, error) {
@@ -364,7 +364,7 @@ Returns the config details of the specified Endpoint Instance
  @param endpointInstanceId
  @return EndpointInstanceAPIGetEndpointInstanceConfigRequest
 */
-func (a *EndpointInstanceAPIService) GetEndpointInstanceConfig(ctx context.Context, endpointInstanceId int32) EndpointInstanceAPIGetEndpointInstanceConfigRequest {
+func (a *EndpointInstanceAPIService) GetEndpointInstanceConfig(ctx context.Context, endpointInstanceId int64) EndpointInstanceAPIGetEndpointInstanceConfigRequest {
 	return EndpointInstanceAPIGetEndpointInstanceConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -742,7 +742,7 @@ func (a *EndpointInstanceAPIService) GetEndpointInstancesExecute(r EndpointInsta
 type EndpointInstanceAPIGetInfrastructureEndpointInstancesRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceAPIService
-	infrastructureId int32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterInfrastructureId *[]string
@@ -842,7 +842,7 @@ Returns list of Endpoint Instances in the specified infrastructure
  @param infrastructureId
  @return EndpointInstanceAPIGetInfrastructureEndpointInstancesRequest
 */
-func (a *EndpointInstanceAPIService) GetInfrastructureEndpointInstances(ctx context.Context, infrastructureId int32) EndpointInstanceAPIGetInfrastructureEndpointInstancesRequest {
+func (a *EndpointInstanceAPIService) GetInfrastructureEndpointInstances(ctx context.Context, infrastructureId int64) EndpointInstanceAPIGetInfrastructureEndpointInstancesRequest {
 	return EndpointInstanceAPIGetInfrastructureEndpointInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1037,7 +1037,7 @@ func (a *EndpointInstanceAPIService) GetInfrastructureEndpointInstancesExecute(r
 type EndpointInstanceAPIUpdateEndpointInstanceConfigRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceAPIService
-	endpointInstanceId int32
+	endpointInstanceId int64
 	endpointInstanceUpdate *EndpointInstanceUpdate
 	ifMatch *string
 }
@@ -1067,7 +1067,7 @@ Updates the specified Endpoint Instance configuration
  @param endpointInstanceId
  @return EndpointInstanceAPIUpdateEndpointInstanceConfigRequest
 */
-func (a *EndpointInstanceAPIService) UpdateEndpointInstanceConfig(ctx context.Context, endpointInstanceId int32) EndpointInstanceAPIUpdateEndpointInstanceConfigRequest {
+func (a *EndpointInstanceAPIService) UpdateEndpointInstanceConfig(ctx context.Context, endpointInstanceId int64) EndpointInstanceAPIUpdateEndpointInstanceConfigRequest {
 	return EndpointInstanceAPIUpdateEndpointInstanceConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1162,7 +1162,7 @@ func (a *EndpointInstanceAPIService) UpdateEndpointInstanceConfigExecute(r Endpo
 type EndpointInstanceAPIUpdateEndpointInstanceMetaRequest struct {
 	ctx context.Context
 	ApiService *EndpointInstanceAPIService
-	endpointInstanceId int32
+	endpointInstanceId int64
 	genericMeta *GenericMeta
 }
 
@@ -1185,7 +1185,7 @@ Updates the specified Endpoint Instance meta information
  @param endpointInstanceId
  @return EndpointInstanceAPIUpdateEndpointInstanceMetaRequest
 */
-func (a *EndpointInstanceAPIService) UpdateEndpointInstanceMeta(ctx context.Context, endpointInstanceId int32) EndpointInstanceAPIUpdateEndpointInstanceMetaRequest {
+func (a *EndpointInstanceAPIService) UpdateEndpointInstanceMeta(ctx context.Context, endpointInstanceId int64) EndpointInstanceAPIUpdateEndpointInstanceMetaRequest {
 	return EndpointInstanceAPIUpdateEndpointInstanceMetaRequest{
 		ApiService: a,
 		ctx: ctx,

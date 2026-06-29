@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	createServerDefaultCredentials := *openapiclient.NewCreateServerDefaultCredentials(float32(123), "DefaultUsername_example", "DefaultPassword_example") // CreateServerDefaultCredentials | The Server Default Credentials create object
+	createServerDefaultCredentials := *openapiclient.NewCreateServerDefaultCredentials(int64(123), "DefaultUsername_example", "DefaultPassword_example") // CreateServerDefaultCredentials | The Server Default Credentials create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	serverDefaultCredentialsId := float32(8.14) // float32 | 
+	serverDefaultCredentialsId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverDefaultCredentialsId** | **float32** |  | 
+**serverDefaultCredentialsId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-	serverDefaultCredentialsId := float32(8.14) // float32 | 
+	serverDefaultCredentialsId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverDefaultCredentialsId** | **float32** |  | 
+**serverDefaultCredentialsId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -238,7 +238,7 @@ import (
 )
 
 func main() {
-	serverDefaultCredentialsId := float32(8.14) // float32 | 
+	serverDefaultCredentialsId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -258,7 +258,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverDefaultCredentialsId** | **float32** |  | 
+**serverDefaultCredentialsId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	serverDefaultCredentialsId := float32(8.14) // float32 | 
+	serverDefaultCredentialsId := int64(789) // int64 | 
 	updateServerDefaultCredentials := *openapiclient.NewUpdateServerDefaultCredentials() // UpdateServerDefaultCredentials | The Server Default Credentials update object
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverDefaultCredentialsId** | **float32** |  | 
+**serverDefaultCredentialsId** | **int64** |  | 
 
 ### Other Parameters
 

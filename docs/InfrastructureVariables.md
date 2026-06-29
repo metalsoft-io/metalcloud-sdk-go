@@ -22,15 +22,15 @@ Name | Type | Description | Notes
 **DeferredDeployAttemptLastErrorJson** | Pointer to **map[string]interface{}** | Last error of deferred deploy attempt. | [optional] 
 **IsAutomanaged** | Pointer to **float32** | Whether the infrastructure is automanaged. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Infrastructure. | 
-**Id** | **float32** | Infrastructure Id | 
-**Revision** | **float32** | Revision of the Infrastructure | 
+**Id** | **int64** | Infrastructure Id | 
+**Revision** | **int64** | Revision of the Infrastructure | 
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) | Service status of the Infrastructure | 
 **DatacenterName** | **string** | Datacenter name where the Infrastructure is located. | 
-**SiteId** | **float32** | The ID of the site where the Infrastructure is located. | 
+**SiteId** | **int64** | The ID of the site where the Infrastructure is located. | 
 **CreatedTimestamp** | **string** | Timestamp of the Infrastructure creation. | 
 **SubdomainPermanent** | Pointer to **string** | Permanent subdomain associated with the Infrastructure. | [optional] 
-**DnsSubdomainId** | Pointer to **float32** | DNS Subdomain ID. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **float32** | Permanent DNS Subdomain ID. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | DNS Subdomain ID. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Permanent DNS Subdomain ID. | [optional] 
 **DesignIsLocked** | **float32** | Infrastructure design locked flag. | 
 **Config** | [**InfrastructureConfig**](InfrastructureConfig.md) | The current changes to be deployed for the Infrastructure. | 
 
@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 
 ### NewInfrastructureVariables
 
-`func NewInfrastructureVariables(label string, updatedTimestamp string, id float32, revision float32, serviceStatus GenericServiceStatus, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig, ) *InfrastructureVariables`
+`func NewInfrastructureVariables(label string, updatedTimestamp string, id int64, revision int64, serviceStatus GenericServiceStatus, datacenterName string, siteId int64, createdTimestamp string, designIsLocked float32, config InfrastructureConfig, ) *InfrastructureVariables`
 
 NewInfrastructureVariables instantiates a new InfrastructureVariables object
 This constructor will assign default values to properties that have it defined,
@@ -495,40 +495,40 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetId
 
-`func (o *InfrastructureVariables) GetId() float32`
+`func (o *InfrastructureVariables) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *InfrastructureVariables) GetIdOk() (*float32, bool)`
+`func (o *InfrastructureVariables) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *InfrastructureVariables) SetId(v float32)`
+`func (o *InfrastructureVariables) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *InfrastructureVariables) GetRevision() float32`
+`func (o *InfrastructureVariables) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *InfrastructureVariables) GetRevisionOk() (*float32, bool)`
+`func (o *InfrastructureVariables) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *InfrastructureVariables) SetRevision(v float32)`
+`func (o *InfrastructureVariables) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -575,20 +575,20 @@ SetDatacenterName sets DatacenterName field to given value.
 
 ### GetSiteId
 
-`func (o *InfrastructureVariables) GetSiteId() float32`
+`func (o *InfrastructureVariables) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *InfrastructureVariables) GetSiteIdOk() (*float32, bool)`
+`func (o *InfrastructureVariables) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *InfrastructureVariables) SetSiteId(v float32)`
+`func (o *InfrastructureVariables) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -640,20 +640,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *InfrastructureVariables) GetDnsSubdomainId() float32`
+`func (o *InfrastructureVariables) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *InfrastructureVariables) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *InfrastructureVariables) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *InfrastructureVariables) SetDnsSubdomainId(v float32)`
+`func (o *InfrastructureVariables) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -665,20 +665,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *InfrastructureVariables) GetDnsSubdomainPermanentId() float32`
+`func (o *InfrastructureVariables) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *InfrastructureVariables) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+`func (o *InfrastructureVariables) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *InfrastructureVariables) SetDnsSubdomainPermanentId(v float32)`
+`func (o *InfrastructureVariables) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 

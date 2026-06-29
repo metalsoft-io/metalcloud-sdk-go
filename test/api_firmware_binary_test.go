@@ -38,7 +38,7 @@ func Test_sdk_FirmwareBinaryAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareBinaryId float32
+		var firmwareBinaryId int64
 
 		httpRes, err := apiClient.FirmwareBinaryAPI.DeleteFirmwareBinary(context.Background(), firmwareBinaryId).Execute()
 
@@ -63,7 +63,7 @@ func Test_sdk_FirmwareBinaryAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var firmwareBinaryId float32
+		var firmwareBinaryId int64
 
 		resp, httpRes, err := apiClient.FirmwareBinaryAPI.GetFirmwareBinary(context.Background(), firmwareBinaryId).Execute()
 

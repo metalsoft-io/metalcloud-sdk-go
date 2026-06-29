@@ -6,19 +6,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SizeGB** | **float32** | Disk size in GB for File Share | 
 **UpdatedTimestamp** | **string** | Timestamp of the File Share last update. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the File Share is assigned to | [optional] 
+**StoragePoolId** | Pointer to **int64** | Id of the storage pool the File Share is assigned to | [optional] 
 **Label** | **string** | Label of the File Share. | 
 **Subdomain** | Pointer to **string** | Subdomain of the File Share. | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
-**Id** | **float32** | Id of the File Share | 
-**Revision** | **float32** | Revision of the File Share | 
-**InfrastructureId** | **float32** | Infrastructure id of the File Share | 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the File Share. | [optional] 
+**Id** | **int64** | Id of the File Share | 
+**Revision** | **int64** | Revision of the File Share | 
+**InfrastructureId** | **int64** | Infrastructure id of the File Share | 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **CreatedTimestamp** | **string** | Timestamp of the File Share creation. | 
 **ServiceStatus** | **string** | Service status of the File Share | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the File Share. | [optional] 
-**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the File Share. | [optional] 
-**NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the File Share. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the File Share. | [optional] 
+**NetworkVlanId** | Pointer to **int32** | Id of the VLAN for the File Share. | [optional] 
 **DiscoverInformation** | Pointer to [**GenericFileShareDiscoverInformation**](GenericFileShareDiscoverInformation.md) | Discover information of the File Share. | [optional] 
 **Config** | [**FileShareConfiguration**](FileShareConfiguration.md) | The current changes to be deployed for the File Share. | 
 **Meta** | [**FileShareMeta**](FileShareMeta.md) | Meta information of the File Share. | 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewFileShare
 
-`func NewFileShare(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, config FileShareConfiguration, meta FileShareMeta, ) *FileShare`
+`func NewFileShare(sizeGB float32, updatedTimestamp string, label string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, config FileShareConfiguration, meta FileShareMeta, ) *FileShare`
 
 NewFileShare instantiates a new FileShare object
 This constructor will assign default values to properties that have it defined,
@@ -85,20 +85,20 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetStoragePoolId
 
-`func (o *FileShare) GetStoragePoolId() float32`
+`func (o *FileShare) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *FileShare) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *FileShare) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *FileShare) SetStoragePoolId(v float32)`
+`func (o *FileShare) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
@@ -155,20 +155,20 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *FileShare) GetLogicalNetworkId() float32`
+`func (o *FileShare) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *FileShare) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *FileShare) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *FileShare) SetLogicalNetworkId(v float32)`
+`func (o *FileShare) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
@@ -180,60 +180,60 @@ HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *FileShare) GetId() float32`
+`func (o *FileShare) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *FileShare) GetIdOk() (*float32, bool)`
+`func (o *FileShare) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *FileShare) SetId(v float32)`
+`func (o *FileShare) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *FileShare) GetRevision() float32`
+`func (o *FileShare) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *FileShare) GetRevisionOk() (*float32, bool)`
+`func (o *FileShare) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *FileShare) SetRevision(v float32)`
+`func (o *FileShare) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *FileShare) GetInfrastructureId() float32`
+`func (o *FileShare) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *FileShare) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *FileShare) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *FileShare) SetInfrastructureId(v float32)`
+`func (o *FileShare) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -325,20 +325,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *FileShare) GetDnsSubdomainId() float32`
+`func (o *FileShare) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *FileShare) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *FileShare) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *FileShare) SetDnsSubdomainId(v float32)`
+`func (o *FileShare) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -350,20 +350,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetNetworkVlanId
 
-`func (o *FileShare) GetNetworkVlanId() float32`
+`func (o *FileShare) GetNetworkVlanId() int32`
 
 GetNetworkVlanId returns the NetworkVlanId field if non-nil, zero value otherwise.
 
 ### GetNetworkVlanIdOk
 
-`func (o *FileShare) GetNetworkVlanIdOk() (*float32, bool)`
+`func (o *FileShare) GetNetworkVlanIdOk() (*int32, bool)`
 
 GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkVlanId
 
-`func (o *FileShare) SetNetworkVlanId(v float32)`
+`func (o *FileShare) SetNetworkVlanId(v int32)`
 
 SetNetworkVlanId sets NetworkVlanId field to given value.
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | Unique label for the network fabric interconnect | [optional] 
 **Name** | Pointer to **string** | Name of the network fabric interconnect | [optional] 
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
-**BgpConfigurationTemplateId** | Pointer to **int32** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
+**BgpConfigurationTemplateId** | Pointer to **int64** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetBgpConfigurationTemplateId
 
-`func (o *UpdateNetworkFabricInterconnect) GetBgpConfigurationTemplateId() int32`
+`func (o *UpdateNetworkFabricInterconnect) GetBgpConfigurationTemplateId() int64`
 
 GetBgpConfigurationTemplateId returns the BgpConfigurationTemplateId field if non-nil, zero value otherwise.
 
 ### GetBgpConfigurationTemplateIdOk
 
-`func (o *UpdateNetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int32, bool)`
+`func (o *UpdateNetworkFabricInterconnect) GetBgpConfigurationTemplateIdOk() (*int64, bool)`
 
 GetBgpConfigurationTemplateIdOk returns a tuple with the BgpConfigurationTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBgpConfigurationTemplateId
 
-`func (o *UpdateNetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int32)`
+`func (o *UpdateNetworkFabricInterconnect) SetBgpConfigurationTemplateId(v int64)`
 
 SetBgpConfigurationTemplateId sets BgpConfigurationTemplateId field to given value.
 

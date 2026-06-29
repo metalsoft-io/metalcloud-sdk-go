@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the Drive Configuration | 
+**Revision** | **int64** | Revision of the Drive Configuration | 
 **Label** | **string** | Label of the Drive. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
+**StoragePoolId** | Pointer to **int64** | Id of the storage pool the Drive is assigned to | [optional] 
 **SizeMb** | **float32** | Disk size in MiB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
 **QoS** | Pointer to **string** | The QoS of the Drive. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
-**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the Drive. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int64** | Id of the DNS subdomain for the Drive. | [optional] 
 **DeployType** | **string** | Deploy type of the Drive | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the Drive | [default to "not_started"]
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Drive. | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
+**InfrastructureDeployId** | Pointer to **int64** | Id of the deployment for the Drive. | [optional] 
+**LogicalNetworkId** | Pointer to **int64** | Id of the Logical Network for the Drive. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Drive last update. | 
 
 ## Methods
 
 ### NewSharedDriveConfiguration
 
-`func NewSharedDriveConfiguration(revision float32, label string, sizeMb float32, storageType string, deployType string, deployStatus string, updatedTimestamp string, ) *SharedDriveConfiguration`
+`func NewSharedDriveConfiguration(revision int64, label string, sizeMb float32, storageType string, deployType string, deployStatus string, updatedTimestamp string, ) *SharedDriveConfiguration`
 
 NewSharedDriveConfiguration instantiates a new SharedDriveConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -40,20 +40,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *SharedDriveConfiguration) GetRevision() float32`
+`func (o *SharedDriveConfiguration) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *SharedDriveConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *SharedDriveConfiguration) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *SharedDriveConfiguration) SetRevision(v float32)`
+`func (o *SharedDriveConfiguration) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -80,20 +80,20 @@ SetLabel sets Label field to given value.
 
 ### GetStoragePoolId
 
-`func (o *SharedDriveConfiguration) GetStoragePoolId() float32`
+`func (o *SharedDriveConfiguration) GetStoragePoolId() int64`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *SharedDriveConfiguration) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *SharedDriveConfiguration) GetStoragePoolIdOk() (*int64, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *SharedDriveConfiguration) SetStoragePoolId(v float32)`
+`func (o *SharedDriveConfiguration) SetStoragePoolId(v int64)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
@@ -220,20 +220,20 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
-`func (o *SharedDriveConfiguration) GetDnsSubdomainChangeId() float32`
+`func (o *SharedDriveConfiguration) GetDnsSubdomainChangeId() int64`
 
 GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainChangeIdOk
 
-`func (o *SharedDriveConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool)`
+`func (o *SharedDriveConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool)`
 
 GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainChangeId
 
-`func (o *SharedDriveConfiguration) SetDnsSubdomainChangeId(v float32)`
+`func (o *SharedDriveConfiguration) SetDnsSubdomainChangeId(v int64)`
 
 SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 
@@ -285,20 +285,20 @@ SetDeployStatus sets DeployStatus field to given value.
 
 ### GetInfrastructureDeployId
 
-`func (o *SharedDriveConfiguration) GetInfrastructureDeployId() float32`
+`func (o *SharedDriveConfiguration) GetInfrastructureDeployId() int64`
 
 GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployIdOk
 
-`func (o *SharedDriveConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+`func (o *SharedDriveConfiguration) GetInfrastructureDeployIdOk() (*int64, bool)`
 
 GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployId
 
-`func (o *SharedDriveConfiguration) SetInfrastructureDeployId(v float32)`
+`func (o *SharedDriveConfiguration) SetInfrastructureDeployId(v int64)`
 
 SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 
@@ -310,20 +310,20 @@ HasInfrastructureDeployId returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *SharedDriveConfiguration) GetLogicalNetworkId() float32`
+`func (o *SharedDriveConfiguration) GetLogicalNetworkId() int64`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *SharedDriveConfiguration) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *SharedDriveConfiguration) GetLogicalNetworkIdOk() (*int64, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *SharedDriveConfiguration) SetLogicalNetworkId(v float32)`
+`func (o *SharedDriveConfiguration) SetLogicalNetworkId(v int64)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 

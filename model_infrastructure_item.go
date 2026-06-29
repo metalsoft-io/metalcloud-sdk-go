@@ -22,7 +22,7 @@ var _ MappedNullable = &InfrastructureItem{}
 // InfrastructureItem struct for InfrastructureItem
 type InfrastructureItem struct {
 	// Infrastructure ID
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Infrastructure label
 	InfrastructureLabel string `json:"infrastructureLabel"`
 	// Infrastructure service status
@@ -37,7 +37,7 @@ type _InfrastructureItem InfrastructureItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureItem(infrastructureId float32, infrastructureLabel string, infrastructureServiceStatus string) *InfrastructureItem {
+func NewInfrastructureItem(infrastructureId int64, infrastructureLabel string, infrastructureServiceStatus string) *InfrastructureItem {
 	this := InfrastructureItem{}
 	this.InfrastructureId = infrastructureId
 	this.InfrastructureLabel = infrastructureLabel
@@ -54,9 +54,9 @@ func NewInfrastructureItemWithDefaults() *InfrastructureItem {
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *InfrastructureItem) GetInfrastructureId() float32 {
+func (o *InfrastructureItem) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *InfrastructureItem) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureItem) GetInfrastructureIdOk() (*float32, bool) {
+func (o *InfrastructureItem) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *InfrastructureItem) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *InfrastructureItem) SetInfrastructureId(v float32) {
+func (o *InfrastructureItem) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 

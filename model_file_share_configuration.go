@@ -22,27 +22,27 @@ var _ MappedNullable = &FileShareConfiguration{}
 // FileShareConfiguration struct for FileShareConfiguration
 type FileShareConfiguration struct {
 	// Revision of the File Share Configuration
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Disk size in GB for File Share
 	SizeGB float32 `json:"sizeGB"`
 	// Timestamp of the File Share last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Id of the storage pool the File Share is assigned to
-	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
+	StoragePoolId *int64 `json:"storagePoolId,omitempty"`
 	// Label of the File Share.
 	Label string `json:"label"`
 	// Subdomain of the File Share.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the DNS subdomain for the File Share.
-	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
+	DnsSubdomainChangeId *int64 `json:"dnsSubdomainChangeId,omitempty"`
 	// Deploy type of the File Share
 	DeployType string `json:"deployType"`
 	// Deploy status of the File Share
 	DeployStatus string `json:"deployStatus"`
 	// Id of the deployment for the File Share.
-	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	InfrastructureDeployId *int64 `json:"infrastructureDeployId,omitempty"`
 	// Id of the Logical Network for the File Share.
-	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkId *int64 `json:"logicalNetworkId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,7 +52,7 @@ type _FileShareConfiguration FileShareConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileShareConfiguration(revision float32, sizeGB float32, updatedTimestamp string, label string, deployType string, deployStatus string) *FileShareConfiguration {
+func NewFileShareConfiguration(revision int64, sizeGB float32, updatedTimestamp string, label string, deployType string, deployStatus string) *FileShareConfiguration {
 	this := FileShareConfiguration{}
 	this.Revision = revision
 	this.SizeGB = sizeGB
@@ -76,9 +76,9 @@ func NewFileShareConfigurationWithDefaults() *FileShareConfiguration {
 }
 
 // GetRevision returns the Revision field value
-func (o *FileShareConfiguration) GetRevision() float32 {
+func (o *FileShareConfiguration) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -87,7 +87,7 @@ func (o *FileShareConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *FileShareConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *FileShareConfiguration) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *FileShareConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *FileShareConfiguration) SetRevision(v float32) {
+func (o *FileShareConfiguration) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -148,9 +148,9 @@ func (o *FileShareConfiguration) SetUpdatedTimestamp(v string) {
 }
 
 // GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *FileShareConfiguration) GetStoragePoolId() float32 {
+func (o *FileShareConfiguration) GetStoragePoolId() int64 {
 	if o == nil || IsNil(o.StoragePoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.StoragePoolId
@@ -158,7 +158,7 @@ func (o *FileShareConfiguration) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareConfiguration) GetStoragePoolIdOk() (*float32, bool) {
+func (o *FileShareConfiguration) GetStoragePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.StoragePoolId) {
 		return nil, false
 	}
@@ -174,8 +174,8 @@ func (o *FileShareConfiguration) HasStoragePoolId() bool {
 	return false
 }
 
-// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
-func (o *FileShareConfiguration) SetStoragePoolId(v float32) {
+// SetStoragePoolId gets a reference to the given int64 and assigns it to the StoragePoolId field.
+func (o *FileShareConfiguration) SetStoragePoolId(v int64) {
 	o.StoragePoolId = &v
 }
 
@@ -236,9 +236,9 @@ func (o *FileShareConfiguration) SetSubdomain(v string) {
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *FileShareConfiguration) GetDnsSubdomainChangeId() float32 {
+func (o *FileShareConfiguration) GetDnsSubdomainChangeId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainChangeId
@@ -246,7 +246,7 @@ func (o *FileShareConfiguration) GetDnsSubdomainChangeId() float32 {
 
 // GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareConfiguration) GetDnsSubdomainChangeIdOk() (*float32, bool) {
+func (o *FileShareConfiguration) GetDnsSubdomainChangeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainChangeId) {
 		return nil, false
 	}
@@ -262,8 +262,8 @@ func (o *FileShareConfiguration) HasDnsSubdomainChangeId() bool {
 	return false
 }
 
-// SetDnsSubdomainChangeId gets a reference to the given float32 and assigns it to the DnsSubdomainChangeId field.
-func (o *FileShareConfiguration) SetDnsSubdomainChangeId(v float32) {
+// SetDnsSubdomainChangeId gets a reference to the given int64 and assigns it to the DnsSubdomainChangeId field.
+func (o *FileShareConfiguration) SetDnsSubdomainChangeId(v int64) {
 	o.DnsSubdomainChangeId = &v
 }
 
@@ -316,9 +316,9 @@ func (o *FileShareConfiguration) SetDeployStatus(v string) {
 }
 
 // GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *FileShareConfiguration) GetInfrastructureDeployId() float32 {
+func (o *FileShareConfiguration) GetInfrastructureDeployId() int64 {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InfrastructureDeployId
@@ -326,7 +326,7 @@ func (o *FileShareConfiguration) GetInfrastructureDeployId() float32 {
 
 // GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
+func (o *FileShareConfiguration) GetInfrastructureDeployIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InfrastructureDeployId) {
 		return nil, false
 	}
@@ -342,15 +342,15 @@ func (o *FileShareConfiguration) HasInfrastructureDeployId() bool {
 	return false
 }
 
-// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
-func (o *FileShareConfiguration) SetInfrastructureDeployId(v float32) {
+// SetInfrastructureDeployId gets a reference to the given int64 and assigns it to the InfrastructureDeployId field.
+func (o *FileShareConfiguration) SetInfrastructureDeployId(v int64) {
 	o.InfrastructureDeployId = &v
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *FileShareConfiguration) GetLogicalNetworkId() float32 {
+func (o *FileShareConfiguration) GetLogicalNetworkId() int64 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.LogicalNetworkId
@@ -358,7 +358,7 @@ func (o *FileShareConfiguration) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileShareConfiguration) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *FileShareConfiguration) GetLogicalNetworkIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -374,8 +374,8 @@ func (o *FileShareConfiguration) HasLogicalNetworkId() bool {
 	return false
 }
 
-// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *FileShareConfiguration) SetLogicalNetworkId(v float32) {
+// SetLogicalNetworkId gets a reference to the given int64 and assigns it to the LogicalNetworkId field.
+func (o *FileShareConfiguration) SetLogicalNetworkId(v int64) {
 	o.LogicalNetworkId = &v
 }
 

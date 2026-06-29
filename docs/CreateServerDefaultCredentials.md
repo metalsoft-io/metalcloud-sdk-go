@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | **float32** | The site ID of the server default credentials | 
+**SiteId** | **int64** | The site ID of the server default credentials | 
 **ServerSerialNumber** | Pointer to **string** | The serial number of the server | [optional] 
 **ServerMacAddress** | Pointer to **string** | The MAC address of the server | [optional] 
 **DefaultUsername** | **string** | The default username of the server | 
@@ -13,14 +13,14 @@ Name | Type | Description | Notes
 **DefaultRackPositionUpperUnit** | Pointer to **string** | The default rack position upper unit of the server | [optional] 
 **DefaultInventoryId** | Pointer to **string** | The default inventory ID of the server | [optional] 
 **DefaultUuid** | Pointer to **string** | The default UUID of the server | [optional] 
-**DefaultRegistrationProfileId** | Pointer to **float32** | The default registration profile ID of the server | [optional] 
+**DefaultRegistrationProfileId** | Pointer to **int64** | The default registration profile ID of the server | [optional] 
 **DefaultPassword** | **string** | The default password of the server | 
 
 ## Methods
 
 ### NewCreateServerDefaultCredentials
 
-`func NewCreateServerDefaultCredentials(siteId float32, defaultUsername string, defaultPassword string, ) *CreateServerDefaultCredentials`
+`func NewCreateServerDefaultCredentials(siteId int64, defaultUsername string, defaultPassword string, ) *CreateServerDefaultCredentials`
 
 NewCreateServerDefaultCredentials instantiates a new CreateServerDefaultCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSiteId
 
-`func (o *CreateServerDefaultCredentials) GetSiteId() float32`
+`func (o *CreateServerDefaultCredentials) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *CreateServerDefaultCredentials) GetSiteIdOk() (*float32, bool)`
+`func (o *CreateServerDefaultCredentials) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *CreateServerDefaultCredentials) SetSiteId(v float32)`
+`func (o *CreateServerDefaultCredentials) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -252,20 +252,20 @@ HasDefaultUuid returns a boolean if a field has been set.
 
 ### GetDefaultRegistrationProfileId
 
-`func (o *CreateServerDefaultCredentials) GetDefaultRegistrationProfileId() float32`
+`func (o *CreateServerDefaultCredentials) GetDefaultRegistrationProfileId() int64`
 
 GetDefaultRegistrationProfileId returns the DefaultRegistrationProfileId field if non-nil, zero value otherwise.
 
 ### GetDefaultRegistrationProfileIdOk
 
-`func (o *CreateServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*float32, bool)`
+`func (o *CreateServerDefaultCredentials) GetDefaultRegistrationProfileIdOk() (*int64, bool)`
 
 GetDefaultRegistrationProfileIdOk returns a tuple with the DefaultRegistrationProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultRegistrationProfileId
 
-`func (o *CreateServerDefaultCredentials) SetDefaultRegistrationProfileId(v float32)`
+`func (o *CreateServerDefaultCredentials) SetDefaultRegistrationProfileId(v int64)`
 
 SetDefaultRegistrationProfileId sets DefaultRegistrationProfileId field to given value.
 

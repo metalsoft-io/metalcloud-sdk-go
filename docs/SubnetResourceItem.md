@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **StartTimestamp** | **string** |  | 
 **EndTimestamp** | **string** |  | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewSubnetResourceItem
 
-`func NewSubnetResourceItem(id float32, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, subnetIpCount string, subnetPrefixSize float32, subnetType string, ) *SubnetResourceItem`
+`func NewSubnetResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, subnetIpCount string, subnetPrefixSize float32, subnetType string, ) *SubnetResourceItem`
 
 NewSubnetResourceItem instantiates a new SubnetResourceItem object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *SubnetResourceItem) GetId() float32`
+`func (o *SubnetResourceItem) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SubnetResourceItem) GetIdOk() (*float32, bool)`
+`func (o *SubnetResourceItem) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SubnetResourceItem) SetId(v float32)`
+`func (o *SubnetResourceItem) SetId(v int64)`
 
 SetId sets Id field to given value.
 

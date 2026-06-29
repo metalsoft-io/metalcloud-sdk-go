@@ -25,7 +25,7 @@ type UpdateStorageInterface struct {
 	// Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource).
 	UseForDeploys *bool `json:"useForDeploys,omitempty"`
 	// Id of the Network Equipment Interface associated to this Storage Interface
-	NetworkEquipmentInterfaceId *float32 `json:"networkEquipmentInterfaceId,omitempty"`
+	NetworkEquipmentInterfaceId *int64 `json:"networkEquipmentInterfaceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -113,9 +113,9 @@ func (o *UpdateStorageInterface) SetUseForDeploys(v bool) {
 }
 
 // GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field value if set, zero value otherwise.
-func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceId() float32 {
+func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceId() int64 {
 	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkEquipmentInterfaceId
@@ -123,7 +123,7 @@ func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceId() float32 {
 
 // GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool) {
+func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
 		return nil, false
 	}
@@ -139,8 +139,8 @@ func (o *UpdateStorageInterface) HasNetworkEquipmentInterfaceId() bool {
 	return false
 }
 
-// SetNetworkEquipmentInterfaceId gets a reference to the given float32 and assigns it to the NetworkEquipmentInterfaceId field.
-func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceId(v float32) {
+// SetNetworkEquipmentInterfaceId gets a reference to the given int64 and assigns it to the NetworkEquipmentInterfaceId field.
+func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceId(v int64) {
 	o.NetworkEquipmentInterfaceId = &v
 }
 

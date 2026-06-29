@@ -22,9 +22,9 @@ var _ MappedNullable = &JobInfo{}
 // JobInfo struct for JobInfo
 type JobInfo struct {
 	// The id of the job.
-	JobId *float32 `json:"jobId,omitempty"`
+	JobId *int64 `json:"jobId,omitempty"`
 	// The id of the job group.
-	JobGroupId float32 `json:"jobGroupId"`
+	JobGroupId int64 `json:"jobGroupId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _JobInfo JobInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobInfo(jobGroupId float32) *JobInfo {
+func NewJobInfo(jobGroupId int64) *JobInfo {
 	this := JobInfo{}
 	this.JobGroupId = jobGroupId
 	return &this
@@ -49,9 +49,9 @@ func NewJobInfoWithDefaults() *JobInfo {
 }
 
 // GetJobId returns the JobId field value if set, zero value otherwise.
-func (o *JobInfo) GetJobId() float32 {
+func (o *JobInfo) GetJobId() int64 {
 	if o == nil || IsNil(o.JobId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.JobId
@@ -59,7 +59,7 @@ func (o *JobInfo) GetJobId() float32 {
 
 // GetJobIdOk returns a tuple with the JobId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobInfo) GetJobIdOk() (*float32, bool) {
+func (o *JobInfo) GetJobIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.JobId) {
 		return nil, false
 	}
@@ -75,15 +75,15 @@ func (o *JobInfo) HasJobId() bool {
 	return false
 }
 
-// SetJobId gets a reference to the given float32 and assigns it to the JobId field.
-func (o *JobInfo) SetJobId(v float32) {
+// SetJobId gets a reference to the given int64 and assigns it to the JobId field.
+func (o *JobInfo) SetJobId(v int64) {
 	o.JobId = &v
 }
 
 // GetJobGroupId returns the JobGroupId field value
-func (o *JobInfo) GetJobGroupId() float32 {
+func (o *JobInfo) GetJobGroupId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *JobInfo) GetJobGroupId() float32 {
 
 // GetJobGroupIdOk returns a tuple with the JobGroupId field value
 // and a boolean to check if the value has been set.
-func (o *JobInfo) GetJobGroupIdOk() (*float32, bool) {
+func (o *JobInfo) GetJobGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *JobInfo) GetJobGroupIdOk() (*float32, bool) {
 }
 
 // SetJobGroupId sets field value
-func (o *JobInfo) SetJobGroupId(v float32) {
+func (o *JobInfo) SetJobGroupId(v int64) {
 	o.JobGroupId = v
 }
 

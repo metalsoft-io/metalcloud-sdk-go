@@ -6,13 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Location** | Pointer to [**PartialLocation**](PartialLocation.md) | Location details | [optional] 
 **Repo** | Pointer to [**Repo**](Repo.md) | Repository details | [optional] 
-**DnsZoneId** | Pointer to **int32** | ID of the DNS zone associated with the site | [optional] 
+**DnsZoneId** | Pointer to **int64** | ID of the DNS zone associated with the site | [optional] 
 **DNSServers** | Pointer to **[]string** | List of DNS Servers | [optional] 
 **NTPServers** | Pointer to **[]string** | List of NTP Servers | [optional] 
 **NetworkDevicePolicy** | Pointer to [**PartialNetworkDevicePolicy**](PartialNetworkDevicePolicy.md) | Network device policies | [optional] 
 **ServerPolicy** | Pointer to [**ServerPolicyUpdate**](ServerPolicyUpdate.md) | Server policies | [optional] 
 **ControllerPolicy** | Pointer to [**ControllerPolicy**](ControllerPolicy.md) | Controller policies | [optional] 
-**InfrastructurePolicy** | Pointer to [**InfrastructurePolicy**](InfrastructurePolicy.md) | Infrastructure policies | [optional] 
 
 ## Methods
 
@@ -85,20 +84,20 @@ HasRepo returns a boolean if a field has been set.
 
 ### GetDnsZoneId
 
-`func (o *SiteConfigUpdate) GetDnsZoneId() int32`
+`func (o *SiteConfigUpdate) GetDnsZoneId() int64`
 
 GetDnsZoneId returns the DnsZoneId field if non-nil, zero value otherwise.
 
 ### GetDnsZoneIdOk
 
-`func (o *SiteConfigUpdate) GetDnsZoneIdOk() (*int32, bool)`
+`func (o *SiteConfigUpdate) GetDnsZoneIdOk() (*int64, bool)`
 
 GetDnsZoneIdOk returns a tuple with the DnsZoneId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsZoneId
 
-`func (o *SiteConfigUpdate) SetDnsZoneId(v int32)`
+`func (o *SiteConfigUpdate) SetDnsZoneId(v int64)`
 
 SetDnsZoneId sets DnsZoneId field to given value.
 
@@ -232,31 +231,6 @@ SetControllerPolicy sets ControllerPolicy field to given value.
 `func (o *SiteConfigUpdate) HasControllerPolicy() bool`
 
 HasControllerPolicy returns a boolean if a field has been set.
-
-### GetInfrastructurePolicy
-
-`func (o *SiteConfigUpdate) GetInfrastructurePolicy() InfrastructurePolicy`
-
-GetInfrastructurePolicy returns the InfrastructurePolicy field if non-nil, zero value otherwise.
-
-### GetInfrastructurePolicyOk
-
-`func (o *SiteConfigUpdate) GetInfrastructurePolicyOk() (*InfrastructurePolicy, bool)`
-
-GetInfrastructurePolicyOk returns a tuple with the InfrastructurePolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfrastructurePolicy
-
-`func (o *SiteConfigUpdate) SetInfrastructurePolicy(v InfrastructurePolicy)`
-
-SetInfrastructurePolicy sets InfrastructurePolicy field to given value.
-
-### HasInfrastructurePolicy
-
-`func (o *SiteConfigUpdate) HasInfrastructurePolicy() bool`
-
-HasInfrastructurePolicy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

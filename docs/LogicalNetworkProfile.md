@@ -4,29 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** |  | 
+**Id** | **int64** |  | 
 **Label** | **string** |  | 
 **Name** | **string** |  | 
 **Annotations** | **map[string]string** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Revision** | **int32** |  | 
+**Revision** | **int64** |  | 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
-**FabricId** | **int32** |  | 
+**FabricId** | **int64** |  | 
 **Vlan** | Pointer to [**LogicalNetworkProfileVlanProperties**](LogicalNetworkProfileVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**LogicalNetworkProfileVxlanProperties**](LogicalNetworkProfileVxlanProperties.md) |  | [optional] 
 **Pkey** | Pointer to [**LogicalNetworkProfilePkeyProperties**](LogicalNetworkProfilePkeyProperties.md) |  | [optional] 
 **Zone** | Pointer to [**LogicalNetworkProfileZoneProperties**](LogicalNetworkProfileZoneProperties.md) |  | [optional] 
 **Ipv4** | Pointer to [**LogicalNetworkProfileIpv4Properties**](LogicalNetworkProfileIpv4Properties.md) |  | [optional] 
 **Ipv6** | Pointer to [**LogicalNetworkProfileIpv6Properties**](LogicalNetworkProfileIpv6Properties.md) |  | [optional] 
-**RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
+**RouteDomainId** | Pointer to **NullableInt64** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
+**L3Only** | Pointer to **bool** | When true, networks created from this profile are routed-access (L3-only) over point-to-point links. | [optional] [default to false]
 
 ## Methods
 
 ### NewLogicalNetworkProfile
 
-`func NewLogicalNetworkProfile(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, ) *LogicalNetworkProfile`
+`func NewLogicalNetworkProfile(id int64, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, kind LogicalNetworkKind, fabricId int64, ) *LogicalNetworkProfile`
 
 NewLogicalNetworkProfile instantiates a new LogicalNetworkProfile object
 This constructor will assign default values to properties that have it defined,
@@ -43,20 +44,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *LogicalNetworkProfile) GetId() int32`
+`func (o *LogicalNetworkProfile) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LogicalNetworkProfile) GetIdOk() (*int32, bool)`
+`func (o *LogicalNetworkProfile) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *LogicalNetworkProfile) SetId(v int32)`
+`func (o *LogicalNetworkProfile) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -163,20 +164,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetRevision
 
-`func (o *LogicalNetworkProfile) GetRevision() int32`
+`func (o *LogicalNetworkProfile) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *LogicalNetworkProfile) GetRevisionOk() (*int32, bool)`
+`func (o *LogicalNetworkProfile) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *LogicalNetworkProfile) SetRevision(v int32)`
+`func (o *LogicalNetworkProfile) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -203,20 +204,20 @@ SetKind sets Kind field to given value.
 
 ### GetFabricId
 
-`func (o *LogicalNetworkProfile) GetFabricId() int32`
+`func (o *LogicalNetworkProfile) GetFabricId() int64`
 
 GetFabricId returns the FabricId field if non-nil, zero value otherwise.
 
 ### GetFabricIdOk
 
-`func (o *LogicalNetworkProfile) GetFabricIdOk() (*int32, bool)`
+`func (o *LogicalNetworkProfile) GetFabricIdOk() (*int64, bool)`
 
 GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricId
 
-`func (o *LogicalNetworkProfile) SetFabricId(v int32)`
+`func (o *LogicalNetworkProfile) SetFabricId(v int64)`
 
 SetFabricId sets FabricId field to given value.
 
@@ -373,20 +374,20 @@ HasIpv6 returns a boolean if a field has been set.
 
 ### GetRouteDomainId
 
-`func (o *LogicalNetworkProfile) GetRouteDomainId() int32`
+`func (o *LogicalNetworkProfile) GetRouteDomainId() int64`
 
 GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
 
 ### GetRouteDomainIdOk
 
-`func (o *LogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool)`
+`func (o *LogicalNetworkProfile) GetRouteDomainIdOk() (*int64, bool)`
 
 GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouteDomainId
 
-`func (o *LogicalNetworkProfile) SetRouteDomainId(v int32)`
+`func (o *LogicalNetworkProfile) SetRouteDomainId(v int64)`
 
 SetRouteDomainId sets RouteDomainId field to given value.
 
@@ -441,6 +442,31 @@ HasMtu returns a boolean if a field has been set.
 `func (o *LogicalNetworkProfile) UnsetMtu()`
 
 UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+### GetL3Only
+
+`func (o *LogicalNetworkProfile) GetL3Only() bool`
+
+GetL3Only returns the L3Only field if non-nil, zero value otherwise.
+
+### GetL3OnlyOk
+
+`func (o *LogicalNetworkProfile) GetL3OnlyOk() (*bool, bool)`
+
+GetL3OnlyOk returns a tuple with the L3Only field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL3Only
+
+`func (o *LogicalNetworkProfile) SetL3Only(v bool)`
+
+SetL3Only sets L3Only field to given value.
+
+### HasL3Only
+
+`func (o *LogicalNetworkProfile) HasL3Only() bool`
+
+HasL3Only returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

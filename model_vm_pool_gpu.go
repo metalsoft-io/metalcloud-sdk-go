@@ -22,11 +22,11 @@ var _ MappedNullable = &VMPoolGPU{}
 // VMPoolGPU struct for VMPoolGPU
 type VMPoolGPU struct {
 	// ID of the GPU
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// ID of the VM Pool linked to the GPU
-	VmPoolId float32 `json:"vmPoolId"`
+	VmPoolId int64 `json:"vmPoolId"`
 	// ID of the host linked to the GPU
-	HostId *float32 `json:"hostId,omitempty"`
+	HostId *int64 `json:"hostId,omitempty"`
 	// Model of the GPU
 	Model *string `json:"model,omitempty"`
 	// Vendor of the GPU
@@ -38,7 +38,7 @@ type VMPoolGPU struct {
 	// Deployment status of the GPU
 	DeploymentStatus string `json:"deploymentStatus"`
 	// ID of the VM Instance linked to the GPU
-	VmInstanceId *float32 `json:"vmInstanceId,omitempty"`
+	VmInstanceId *int64 `json:"vmInstanceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,7 +48,7 @@ type _VMPoolGPU VMPoolGPU
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolGPU(id float32, vmPoolId float32, deploymentStatus string) *VMPoolGPU {
+func NewVMPoolGPU(id int64, vmPoolId int64, deploymentStatus string) *VMPoolGPU {
 	this := VMPoolGPU{}
 	this.Id = id
 	this.VmPoolId = vmPoolId
@@ -65,9 +65,9 @@ func NewVMPoolGPUWithDefaults() *VMPoolGPU {
 }
 
 // GetId returns the Id field value
-func (o *VMPoolGPU) GetId() float32 {
+func (o *VMPoolGPU) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *VMPoolGPU) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolGPU) GetIdOk() (*float32, bool) {
+func (o *VMPoolGPU) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,14 +84,14 @@ func (o *VMPoolGPU) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMPoolGPU) SetId(v float32) {
+func (o *VMPoolGPU) SetId(v int64) {
 	o.Id = v
 }
 
 // GetVmPoolId returns the VmPoolId field value
-func (o *VMPoolGPU) GetVmPoolId() float32 {
+func (o *VMPoolGPU) GetVmPoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *VMPoolGPU) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value
 // and a boolean to check if the value has been set.
-func (o *VMPoolGPU) GetVmPoolIdOk() (*float32, bool) {
+func (o *VMPoolGPU) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,14 +108,14 @@ func (o *VMPoolGPU) GetVmPoolIdOk() (*float32, bool) {
 }
 
 // SetVmPoolId sets field value
-func (o *VMPoolGPU) SetVmPoolId(v float32) {
+func (o *VMPoolGPU) SetVmPoolId(v int64) {
 	o.VmPoolId = v
 }
 
 // GetHostId returns the HostId field value if set, zero value otherwise.
-func (o *VMPoolGPU) GetHostId() float32 {
+func (o *VMPoolGPU) GetHostId() int64 {
 	if o == nil || IsNil(o.HostId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.HostId
@@ -123,7 +123,7 @@ func (o *VMPoolGPU) GetHostId() float32 {
 
 // GetHostIdOk returns a tuple with the HostId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMPoolGPU) GetHostIdOk() (*float32, bool) {
+func (o *VMPoolGPU) GetHostIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.HostId) {
 		return nil, false
 	}
@@ -139,8 +139,8 @@ func (o *VMPoolGPU) HasHostId() bool {
 	return false
 }
 
-// SetHostId gets a reference to the given float32 and assigns it to the HostId field.
-func (o *VMPoolGPU) SetHostId(v float32) {
+// SetHostId gets a reference to the given int64 and assigns it to the HostId field.
+func (o *VMPoolGPU) SetHostId(v int64) {
 	o.HostId = &v
 }
 
@@ -297,9 +297,9 @@ func (o *VMPoolGPU) SetDeploymentStatus(v string) {
 }
 
 // GetVmInstanceId returns the VmInstanceId field value if set, zero value otherwise.
-func (o *VMPoolGPU) GetVmInstanceId() float32 {
+func (o *VMPoolGPU) GetVmInstanceId() int64 {
 	if o == nil || IsNil(o.VmInstanceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.VmInstanceId
@@ -307,7 +307,7 @@ func (o *VMPoolGPU) GetVmInstanceId() float32 {
 
 // GetVmInstanceIdOk returns a tuple with the VmInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMPoolGPU) GetVmInstanceIdOk() (*float32, bool) {
+func (o *VMPoolGPU) GetVmInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmInstanceId) {
 		return nil, false
 	}
@@ -323,8 +323,8 @@ func (o *VMPoolGPU) HasVmInstanceId() bool {
 	return false
 }
 
-// SetVmInstanceId gets a reference to the given float32 and assigns it to the VmInstanceId field.
-func (o *VMPoolGPU) SetVmInstanceId(v float32) {
+// SetVmInstanceId gets a reference to the given int64 and assigns it to the VmInstanceId field.
+func (o *VMPoolGPU) SetVmInstanceId(v int64) {
 	o.VmInstanceId = &v
 }
 

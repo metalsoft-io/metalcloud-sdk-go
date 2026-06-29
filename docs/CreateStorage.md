@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **float32** | Id of the owner | [optional] 
-**SiteId** | **float32** | Id of the site | 
+**UserId** | Pointer to **int64** | Id of the owner | [optional] 
+**SiteId** | **int64** | Id of the site | 
 **Driver** | **string** | Storage driver | 
 **Technologies** | **[]string** | Storage technology | 
 **Type** | Pointer to **string** | Storage type | [optional] 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewCreateStorage
 
-`func NewCreateStorage(siteId float32, driver string, technologies []string, name string, managementHost string, subnetType string, ) *CreateStorage`
+`func NewCreateStorage(siteId int64, driver string, technologies []string, name string, managementHost string, subnetType string, ) *CreateStorage`
 
 NewCreateStorage instantiates a new CreateStorage object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUserId
 
-`func (o *CreateStorage) GetUserId() float32`
+`func (o *CreateStorage) GetUserId() int64`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *CreateStorage) GetUserIdOk() (*float32, bool)`
+`func (o *CreateStorage) GetUserIdOk() (*int64, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *CreateStorage) SetUserId(v float32)`
+`func (o *CreateStorage) SetUserId(v int64)`
 
 SetUserId sets UserId field to given value.
 
@@ -75,20 +75,20 @@ HasUserId returns a boolean if a field has been set.
 
 ### GetSiteId
 
-`func (o *CreateStorage) GetSiteId() float32`
+`func (o *CreateStorage) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *CreateStorage) GetSiteIdOk() (*float32, bool)`
+`func (o *CreateStorage) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *CreateStorage) SetSiteId(v float32)`
+`func (o *CreateStorage) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 

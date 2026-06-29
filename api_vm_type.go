@@ -139,7 +139,7 @@ func (a *VMTypeAPIService) CreateVMTypeExecute(r VMTypeAPICreateVMTypeRequest) (
 type VMTypeAPIDeleteVMTypeRequest struct {
 	ctx context.Context
 	ApiService *VMTypeAPIService
-	vmTypeId float32
+	vmTypeId int64
 }
 
 func (r VMTypeAPIDeleteVMTypeRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes a VM Type
  @param vmTypeId
  @return VMTypeAPIDeleteVMTypeRequest
 */
-func (a *VMTypeAPIService) DeleteVMType(ctx context.Context, vmTypeId float32) VMTypeAPIDeleteVMTypeRequest {
+func (a *VMTypeAPIService) DeleteVMType(ctx context.Context, vmTypeId int64) VMTypeAPIDeleteVMTypeRequest {
 	return VMTypeAPIDeleteVMTypeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -571,12 +571,20 @@ func (a *VMTypeAPIService) GetVMTypesExecute(r VMTypeAPIGetVMTypesRequest) (*VMT
 type VMTypeAPIGetVMsByVMTypeRequest struct {
 	ctx context.Context
 	ApiService *VMTypeAPIService
-	vmTypeId float32
+	vmTypeId int64
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterSiteId *[]string
 	filterName *[]string
 	filterAddress *[]string
+	filterHost *[]string
+	filterHosts *[]string
+	filterTypeId *[]string
+	filterPoolId *[]string
+	filterAdministrationState *[]string
+	filterNumaNodes *[]string
+	filterInfrastructureId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -600,6 +608,12 @@ func (r VMTypeAPIGetVMsByVMTypeRequest) FilterId(filterId []string) VMTypeAPIGet
 	return r
 }
 
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterSiteId(filterSiteId []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterSiteId = &filterSiteId
+	return r
+}
+
 // Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r VMTypeAPIGetVMsByVMTypeRequest) FilterName(filterName []string) VMTypeAPIGetVMsByVMTypeRequest {
 	r.filterName = &filterName
@@ -612,7 +626,49 @@ func (r VMTypeAPIGetVMsByVMTypeRequest) FilterAddress(filterAddress []string) VM
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name 
+// Filter by host query param.  **Format:** filter.host&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.host&#x3D;$btw:John Doe&amp;filter.host&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterHost(filterHost []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterHost = &filterHost
+	return r
+}
+
+// Filter by hosts query param.  **Format:** filter.hosts&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.hosts&#x3D;$btw:John Doe&amp;filter.hosts&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterHosts(filterHosts []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterHosts = &filterHosts
+	return r
+}
+
+// Filter by typeId query param.  **Format:** filter.typeId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.typeId&#x3D;$btw:John Doe&amp;filter.typeId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterTypeId(filterTypeId []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterTypeId = &filterTypeId
+	return r
+}
+
+// Filter by poolId query param.  **Format:** filter.poolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.poolId&#x3D;$btw:John Doe&amp;filter.poolId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterPoolId(filterPoolId []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterPoolId = &filterPoolId
+	return r
+}
+
+// Filter by administrationState query param.  **Format:** filter.administrationState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.administrationState&#x3D;$btw:John Doe&amp;filter.administrationState&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterAdministrationState(filterAdministrationState []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterAdministrationState = &filterAdministrationState
+	return r
+}
+
+// Filter by numaNodes query param.  **Format:** filter.numaNodes&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.numaNodes&#x3D;$btw:John Doe&amp;filter.numaNodes&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterNumaNodes(filterNumaNodes []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterNumaNodes = &filterNumaNodes
+	return r
+}
+
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMTypeAPIGetVMsByVMTypeRequest) FilterInfrastructureId(filterInfrastructureId []string) VMTypeAPIGetVMsByVMTypeRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - host  - administrationState 
 func (r VMTypeAPIGetVMsByVMTypeRequest) SortBy(sortBy []string) VMTypeAPIGetVMsByVMTypeRequest {
 	r.sortBy = &sortBy
 	return r
@@ -624,7 +680,7 @@ func (r VMTypeAPIGetVMsByVMTypeRequest) Search(search string) VMTypeAPIGetVMsByV
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name 
+// List of fields to search by term to filter result values  **Example:** id,name,host,hosts,administrationState   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - host  - hosts  - administrationState 
 func (r VMTypeAPIGetVMsByVMTypeRequest) SearchBy(searchBy []string) VMTypeAPIGetVMsByVMTypeRequest {
 	r.searchBy = &searchBy
 	return r
@@ -643,7 +699,7 @@ Returns all VMs linked to the VM Type
  @param vmTypeId
  @return VMTypeAPIGetVMsByVMTypeRequest
 */
-func (a *VMTypeAPIService) GetVMsByVMType(ctx context.Context, vmTypeId float32) VMTypeAPIGetVMsByVMTypeRequest {
+func (a *VMTypeAPIService) GetVMsByVMType(ctx context.Context, vmTypeId int64) VMTypeAPIGetVMsByVMTypeRequest {
 	return VMTypeAPIGetVMsByVMTypeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -690,6 +746,17 @@ func (a *VMTypeAPIService) GetVMsByVMTypeExecute(r VMTypeAPIGetVMsByVMTypeReques
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
 	if r.filterName != nil {
 		t := *r.filterName
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -710,6 +777,83 @@ func (a *VMTypeAPIService) GetVMsByVMTypeExecute(r VMTypeAPIGetVMsByVMTypeReques
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", t, "form", "multi")
+		}
+	}
+	if r.filterHost != nil {
+		t := *r.filterHost
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", t, "form", "multi")
+		}
+	}
+	if r.filterHosts != nil {
+		t := *r.filterHosts
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", t, "form", "multi")
+		}
+	}
+	if r.filterTypeId != nil {
+		t := *r.filterTypeId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", t, "form", "multi")
+		}
+	}
+	if r.filterPoolId != nil {
+		t := *r.filterPoolId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", t, "form", "multi")
+		}
+	}
+	if r.filterAdministrationState != nil {
+		t := *r.filterAdministrationState
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", t, "form", "multi")
+		}
+	}
+	if r.filterNumaNodes != nil {
+		t := *r.filterNumaNodes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -794,7 +938,7 @@ func (a *VMTypeAPIService) GetVMsByVMTypeExecute(r VMTypeAPIGetVMsByVMTypeReques
 type VMTypeAPIUpdateVMTypeRequest struct {
 	ctx context.Context
 	ApiService *VMTypeAPIService
-	vmTypeId float32
+	vmTypeId int64
 	updateVMType *UpdateVMType
 }
 
@@ -817,7 +961,7 @@ Updates VM Type information
  @param vmTypeId
  @return VMTypeAPIUpdateVMTypeRequest
 */
-func (a *VMTypeAPIService) UpdateVMType(ctx context.Context, vmTypeId float32) VMTypeAPIUpdateVMTypeRequest {
+func (a *VMTypeAPIService) UpdateVMType(ctx context.Context, vmTypeId int64) VMTypeAPIUpdateVMTypeRequest {
 	return VMTypeAPIUpdateVMTypeRequest{
 		ApiService: a,
 		ctx: ctx,

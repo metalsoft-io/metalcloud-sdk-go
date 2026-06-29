@@ -22,13 +22,13 @@ var _ MappedNullable = &ServerVariables{}
 // ServerVariables struct for ServerVariables
 type ServerVariables struct {
 	// The id of the server.
-	ServerId float32 `json:"serverId"`
+	ServerId int64 `json:"serverId"`
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The id of the server type.
-	ServerTypeId *float32 `json:"serverTypeId,omitempty"`
+	ServerTypeId *int64 `json:"serverTypeId,omitempty"`
 	// The site id where the server is located.
-	SiteId float32 `json:"siteId"`
+	SiteId int64 `json:"siteId"`
 	// The name of the datacenter where the server is located.
 	DatacenterName string `json:"datacenterName"`
 	// The UUID of the server.
@@ -82,13 +82,13 @@ type ServerVariables struct {
 	// Flag to indicate if the server is basic campus endpoint.
 	IsBasicCampusEndpoint *float32 `json:"isBasicCampusEndpoint,omitempty"`
 	// The cleanup policy id of the server.
-	ServerCleanupPolicyId *float32 `json:"serverCleanupPolicyId,omitempty"`
+	ServerCleanupPolicyId *int64 `json:"serverCleanupPolicyId,omitempty"`
 	// The last applied firmware baseline id on the server.
-	CurrentFirmwareBaselineId *float32 `json:"currentFirmwareBaselineId,omitempty"`
+	CurrentFirmwareBaselineId *int64 `json:"currentFirmwareBaselineId,omitempty"`
 	// The target firmware baseline id on the server.
-	TargetFirmwareBaselineId *float32 `json:"targetFirmwareBaselineId,omitempty"`
+	TargetFirmwareBaselineId *int64 `json:"targetFirmwareBaselineId,omitempty"`
 	// The registration profile id of the server.
-	RegistrationProfileId *float32 `json:"registrationProfileId,omitempty"`
+	RegistrationProfileId *int64 `json:"registrationProfileId,omitempty"`
 	// Flag to indicate if the server required re-registration.
 	RequiresReRegister float32 `json:"requiresReRegister"`
 	// Flag to indicate if the supports SOL.
@@ -147,7 +147,7 @@ type ServerVariables struct {
 	ServerAllocationTimestamp *string `json:"serverAllocationTimestamp,omitempty"`
 	JobInfo *JobInfo `json:"jobInfo,omitempty"`
 	// The chassis rack id of the server.
-	ChassisRackId *float32 `json:"chassisRackId,omitempty"`
+	ChassisRackId *int64 `json:"chassisRackId,omitempty"`
 	// The chassis rack name of the server.
 	RackName *string `json:"rackName,omitempty"`
 	// The chassis rack upper unit position of the server.
@@ -167,7 +167,7 @@ type ServerVariables struct {
 	// Tags for the Server.
 	Tags []string `json:"tags,omitempty"`
 	// Resource Pool ID
-	ResourcePoolId *float32 `json:"resourcePoolId,omitempty"`
+	ResourcePoolId *int64 `json:"resourcePoolId,omitempty"`
 	// The server instance.
 	AllocationInfo *ServerAllocationInfo `json:"allocationInfo,omitempty"`
 	// The extension execution info of the server.
@@ -193,7 +193,7 @@ type _ServerVariables ServerVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerVariables(serverId float32, revision float32, siteId float32, datacenterName string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string) *ServerVariables {
+func NewServerVariables(serverId int64, revision int64, siteId int64, datacenterName string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string) *ServerVariables {
 	this := ServerVariables{}
 	this.ServerId = serverId
 	this.Revision = revision
@@ -221,9 +221,9 @@ func NewServerVariablesWithDefaults() *ServerVariables {
 }
 
 // GetServerId returns the ServerId field value
-func (o *ServerVariables) GetServerId() float32 {
+func (o *ServerVariables) GetServerId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -232,7 +232,7 @@ func (o *ServerVariables) GetServerId() float32 {
 
 // GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetServerIdOk() (*float32, bool) {
+func (o *ServerVariables) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -240,14 +240,14 @@ func (o *ServerVariables) GetServerIdOk() (*float32, bool) {
 }
 
 // SetServerId sets field value
-func (o *ServerVariables) SetServerId(v float32) {
+func (o *ServerVariables) SetServerId(v int64) {
 	o.ServerId = v
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerVariables) GetRevision() float32 {
+func (o *ServerVariables) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -256,7 +256,7 @@ func (o *ServerVariables) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetRevisionOk() (*float32, bool) {
+func (o *ServerVariables) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -264,14 +264,14 @@ func (o *ServerVariables) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ServerVariables) SetRevision(v float32) {
+func (o *ServerVariables) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
-func (o *ServerVariables) GetServerTypeId() float32 {
+func (o *ServerVariables) GetServerTypeId() int64 {
 	if o == nil || IsNil(o.ServerTypeId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerTypeId
@@ -279,7 +279,7 @@ func (o *ServerVariables) GetServerTypeId() float32 {
 
 // GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetServerTypeIdOk() (*float32, bool) {
+func (o *ServerVariables) GetServerTypeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerTypeId) {
 		return nil, false
 	}
@@ -295,15 +295,15 @@ func (o *ServerVariables) HasServerTypeId() bool {
 	return false
 }
 
-// SetServerTypeId gets a reference to the given float32 and assigns it to the ServerTypeId field.
-func (o *ServerVariables) SetServerTypeId(v float32) {
+// SetServerTypeId gets a reference to the given int64 and assigns it to the ServerTypeId field.
+func (o *ServerVariables) SetServerTypeId(v int64) {
 	o.ServerTypeId = &v
 }
 
 // GetSiteId returns the SiteId field value
-func (o *ServerVariables) GetSiteId() float32 {
+func (o *ServerVariables) GetSiteId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -312,7 +312,7 @@ func (o *ServerVariables) GetSiteId() float32 {
 
 // GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetSiteIdOk() (*float32, bool) {
+func (o *ServerVariables) GetSiteIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -320,7 +320,7 @@ func (o *ServerVariables) GetSiteIdOk() (*float32, bool) {
 }
 
 // SetSiteId sets field value
-func (o *ServerVariables) SetSiteId(v float32) {
+func (o *ServerVariables) SetSiteId(v int64) {
 	o.SiteId = v
 }
 
@@ -1141,9 +1141,9 @@ func (o *ServerVariables) SetIsBasicCampusEndpoint(v float32) {
 }
 
 // GetServerCleanupPolicyId returns the ServerCleanupPolicyId field value if set, zero value otherwise.
-func (o *ServerVariables) GetServerCleanupPolicyId() float32 {
+func (o *ServerVariables) GetServerCleanupPolicyId() int64 {
 	if o == nil || IsNil(o.ServerCleanupPolicyId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ServerCleanupPolicyId
@@ -1151,7 +1151,7 @@ func (o *ServerVariables) GetServerCleanupPolicyId() float32 {
 
 // GetServerCleanupPolicyIdOk returns a tuple with the ServerCleanupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetServerCleanupPolicyIdOk() (*float32, bool) {
+func (o *ServerVariables) GetServerCleanupPolicyIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerCleanupPolicyId) {
 		return nil, false
 	}
@@ -1167,15 +1167,15 @@ func (o *ServerVariables) HasServerCleanupPolicyId() bool {
 	return false
 }
 
-// SetServerCleanupPolicyId gets a reference to the given float32 and assigns it to the ServerCleanupPolicyId field.
-func (o *ServerVariables) SetServerCleanupPolicyId(v float32) {
+// SetServerCleanupPolicyId gets a reference to the given int64 and assigns it to the ServerCleanupPolicyId field.
+func (o *ServerVariables) SetServerCleanupPolicyId(v int64) {
 	o.ServerCleanupPolicyId = &v
 }
 
 // GetCurrentFirmwareBaselineId returns the CurrentFirmwareBaselineId field value if set, zero value otherwise.
-func (o *ServerVariables) GetCurrentFirmwareBaselineId() float32 {
+func (o *ServerVariables) GetCurrentFirmwareBaselineId() int64 {
 	if o == nil || IsNil(o.CurrentFirmwareBaselineId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.CurrentFirmwareBaselineId
@@ -1183,7 +1183,7 @@ func (o *ServerVariables) GetCurrentFirmwareBaselineId() float32 {
 
 // GetCurrentFirmwareBaselineIdOk returns a tuple with the CurrentFirmwareBaselineId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetCurrentFirmwareBaselineIdOk() (*float32, bool) {
+func (o *ServerVariables) GetCurrentFirmwareBaselineIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.CurrentFirmwareBaselineId) {
 		return nil, false
 	}
@@ -1199,15 +1199,15 @@ func (o *ServerVariables) HasCurrentFirmwareBaselineId() bool {
 	return false
 }
 
-// SetCurrentFirmwareBaselineId gets a reference to the given float32 and assigns it to the CurrentFirmwareBaselineId field.
-func (o *ServerVariables) SetCurrentFirmwareBaselineId(v float32) {
+// SetCurrentFirmwareBaselineId gets a reference to the given int64 and assigns it to the CurrentFirmwareBaselineId field.
+func (o *ServerVariables) SetCurrentFirmwareBaselineId(v int64) {
 	o.CurrentFirmwareBaselineId = &v
 }
 
 // GetTargetFirmwareBaselineId returns the TargetFirmwareBaselineId field value if set, zero value otherwise.
-func (o *ServerVariables) GetTargetFirmwareBaselineId() float32 {
+func (o *ServerVariables) GetTargetFirmwareBaselineId() int64 {
 	if o == nil || IsNil(o.TargetFirmwareBaselineId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.TargetFirmwareBaselineId
@@ -1215,7 +1215,7 @@ func (o *ServerVariables) GetTargetFirmwareBaselineId() float32 {
 
 // GetTargetFirmwareBaselineIdOk returns a tuple with the TargetFirmwareBaselineId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetTargetFirmwareBaselineIdOk() (*float32, bool) {
+func (o *ServerVariables) GetTargetFirmwareBaselineIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.TargetFirmwareBaselineId) {
 		return nil, false
 	}
@@ -1231,15 +1231,15 @@ func (o *ServerVariables) HasTargetFirmwareBaselineId() bool {
 	return false
 }
 
-// SetTargetFirmwareBaselineId gets a reference to the given float32 and assigns it to the TargetFirmwareBaselineId field.
-func (o *ServerVariables) SetTargetFirmwareBaselineId(v float32) {
+// SetTargetFirmwareBaselineId gets a reference to the given int64 and assigns it to the TargetFirmwareBaselineId field.
+func (o *ServerVariables) SetTargetFirmwareBaselineId(v int64) {
 	o.TargetFirmwareBaselineId = &v
 }
 
 // GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
-func (o *ServerVariables) GetRegistrationProfileId() float32 {
+func (o *ServerVariables) GetRegistrationProfileId() int64 {
 	if o == nil || IsNil(o.RegistrationProfileId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.RegistrationProfileId
@@ -1247,7 +1247,7 @@ func (o *ServerVariables) GetRegistrationProfileId() float32 {
 
 // GetRegistrationProfileIdOk returns a tuple with the RegistrationProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetRegistrationProfileIdOk() (*float32, bool) {
+func (o *ServerVariables) GetRegistrationProfileIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.RegistrationProfileId) {
 		return nil, false
 	}
@@ -1263,8 +1263,8 @@ func (o *ServerVariables) HasRegistrationProfileId() bool {
 	return false
 }
 
-// SetRegistrationProfileId gets a reference to the given float32 and assigns it to the RegistrationProfileId field.
-func (o *ServerVariables) SetRegistrationProfileId(v float32) {
+// SetRegistrationProfileId gets a reference to the given int64 and assigns it to the RegistrationProfileId field.
+func (o *ServerVariables) SetRegistrationProfileId(v int64) {
 	o.RegistrationProfileId = &v
 }
 
@@ -2125,9 +2125,9 @@ func (o *ServerVariables) SetJobInfo(v JobInfo) {
 }
 
 // GetChassisRackId returns the ChassisRackId field value if set, zero value otherwise.
-func (o *ServerVariables) GetChassisRackId() float32 {
+func (o *ServerVariables) GetChassisRackId() int64 {
 	if o == nil || IsNil(o.ChassisRackId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ChassisRackId
@@ -2135,7 +2135,7 @@ func (o *ServerVariables) GetChassisRackId() float32 {
 
 // GetChassisRackIdOk returns a tuple with the ChassisRackId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetChassisRackIdOk() (*float32, bool) {
+func (o *ServerVariables) GetChassisRackIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ChassisRackId) {
 		return nil, false
 	}
@@ -2151,8 +2151,8 @@ func (o *ServerVariables) HasChassisRackId() bool {
 	return false
 }
 
-// SetChassisRackId gets a reference to the given float32 and assigns it to the ChassisRackId field.
-func (o *ServerVariables) SetChassisRackId(v float32) {
+// SetChassisRackId gets a reference to the given int64 and assigns it to the ChassisRackId field.
+func (o *ServerVariables) SetChassisRackId(v int64) {
 	o.ChassisRackId = &v
 }
 
@@ -2445,9 +2445,9 @@ func (o *ServerVariables) SetTags(v []string) {
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise.
-func (o *ServerVariables) GetResourcePoolId() float32 {
+func (o *ServerVariables) GetResourcePoolId() int64 {
 	if o == nil || IsNil(o.ResourcePoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.ResourcePoolId
@@ -2455,7 +2455,7 @@ func (o *ServerVariables) GetResourcePoolId() float32 {
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetResourcePoolIdOk() (*float32, bool) {
+func (o *ServerVariables) GetResourcePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ResourcePoolId) {
 		return nil, false
 	}
@@ -2471,8 +2471,8 @@ func (o *ServerVariables) HasResourcePoolId() bool {
 	return false
 }
 
-// SetResourcePoolId gets a reference to the given float32 and assigns it to the ResourcePoolId field.
-func (o *ServerVariables) SetResourcePoolId(v float32) {
+// SetResourcePoolId gets a reference to the given int64 and assigns it to the ResourcePoolId field.
+func (o *ServerVariables) SetResourcePoolId(v int64) {
 	o.ResourcePoolId = &v
 }
 

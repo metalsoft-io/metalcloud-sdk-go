@@ -24,10 +24,10 @@ type Drive struct {
 	// Label of the Drive.
 	Label string `json:"label"`
 	// Drive Array Id
-	GroupId float32 `json:"groupId"`
-	InstanceId *float32 `json:"instanceId,omitempty"`
+	GroupId int64 `json:"groupId"`
+	InstanceId *int64 `json:"instanceId,omitempty"`
 	// Id of the storage pool the Drive is assigned to
-	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
+	StoragePoolId *int64 `json:"storagePoolId,omitempty"`
 	// Disk size in MiB for Drive
 	SizeMb float32 `json:"sizeMb"`
 	// The name of the storage image used by the Drive.
@@ -35,7 +35,7 @@ type Drive struct {
 	// The iSCSI Index in hex format of the Drive.
 	IscsiIndexHex *string `json:"iscsiIndexHex,omitempty"`
 	// Template Id
-	TemplateId *float32 `json:"templateId,omitempty"`
+	TemplateId *int64 `json:"templateId,omitempty"`
 	// The OS Admin Username the Drive will use.
 	OsAdminUsername *string `json:"osAdminUsername,omitempty"`
 	// Storage type of the Drive
@@ -51,11 +51,11 @@ type Drive struct {
 	// Filesystem information of the Drive.
 	FilesystemInfo map[string]interface{} `json:"filesystemInfo,omitempty"`
 	// Id of the Drive
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the Drive State
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Infrastructure id of the Drive
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Infrastructure information
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Service status of the Drive
@@ -80,11 +80,11 @@ type Drive struct {
 	// Subdomain permanent of the Drive.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the Drive.
-	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Drive.
-	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	// Id of the VLAN for the Drive.
-	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
+	NetworkVlanId *int32 `json:"networkVlanId,omitempty"`
 	// The current changes to be deployed for the Drive.
 	Config DriveConfiguration `json:"config"`
 	// Timestamp of the Drive creation.
@@ -102,7 +102,7 @@ type _Drive Drive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDrive(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta) *Drive {
+func NewDrive(label string, groupId int64, sizeMb float32, storageType string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta) *Drive {
 	this := Drive{}
 	this.Label = label
 	this.GroupId = groupId
@@ -157,9 +157,9 @@ func (o *Drive) SetLabel(v string) {
 }
 
 // GetGroupId returns the GroupId field value
-func (o *Drive) GetGroupId() float32 {
+func (o *Drive) GetGroupId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -168,7 +168,7 @@ func (o *Drive) GetGroupId() float32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetGroupIdOk() (*float32, bool) {
+func (o *Drive) GetGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -176,14 +176,14 @@ func (o *Drive) GetGroupIdOk() (*float32, bool) {
 }
 
 // SetGroupId sets field value
-func (o *Drive) SetGroupId(v float32) {
+func (o *Drive) SetGroupId(v int64) {
 	o.GroupId = v
 }
 
 // GetInstanceId returns the InstanceId field value if set, zero value otherwise.
-func (o *Drive) GetInstanceId() float32 {
+func (o *Drive) GetInstanceId() int64 {
 	if o == nil || IsNil(o.InstanceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.InstanceId
@@ -191,7 +191,7 @@ func (o *Drive) GetInstanceId() float32 {
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetInstanceIdOk() (*float32, bool) {
+func (o *Drive) GetInstanceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.InstanceId) {
 		return nil, false
 	}
@@ -207,15 +207,15 @@ func (o *Drive) HasInstanceId() bool {
 	return false
 }
 
-// SetInstanceId gets a reference to the given float32 and assigns it to the InstanceId field.
-func (o *Drive) SetInstanceId(v float32) {
+// SetInstanceId gets a reference to the given int64 and assigns it to the InstanceId field.
+func (o *Drive) SetInstanceId(v int64) {
 	o.InstanceId = &v
 }
 
 // GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *Drive) GetStoragePoolId() float32 {
+func (o *Drive) GetStoragePoolId() int64 {
 	if o == nil || IsNil(o.StoragePoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.StoragePoolId
@@ -223,7 +223,7 @@ func (o *Drive) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStoragePoolIdOk() (*float32, bool) {
+func (o *Drive) GetStoragePoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.StoragePoolId) {
 		return nil, false
 	}
@@ -239,8 +239,8 @@ func (o *Drive) HasStoragePoolId() bool {
 	return false
 }
 
-// SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
-func (o *Drive) SetStoragePoolId(v float32) {
+// SetStoragePoolId gets a reference to the given int64 and assigns it to the StoragePoolId field.
+func (o *Drive) SetStoragePoolId(v int64) {
 	o.StoragePoolId = &v
 }
 
@@ -333,9 +333,9 @@ func (o *Drive) SetIscsiIndexHex(v string) {
 }
 
 // GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *Drive) GetTemplateId() float32 {
+func (o *Drive) GetTemplateId() int64 {
 	if o == nil || IsNil(o.TemplateId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.TemplateId
@@ -343,7 +343,7 @@ func (o *Drive) GetTemplateId() float32 {
 
 // GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetTemplateIdOk() (*float32, bool) {
+func (o *Drive) GetTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.TemplateId) {
 		return nil, false
 	}
@@ -359,8 +359,8 @@ func (o *Drive) HasTemplateId() bool {
 	return false
 }
 
-// SetTemplateId gets a reference to the given float32 and assigns it to the TemplateId field.
-func (o *Drive) SetTemplateId(v float32) {
+// SetTemplateId gets a reference to the given int64 and assigns it to the TemplateId field.
+func (o *Drive) SetTemplateId(v int64) {
 	o.TemplateId = &v
 }
 
@@ -573,9 +573,9 @@ func (o *Drive) SetFilesystemInfo(v map[string]interface{}) {
 }
 
 // GetId returns the Id field value
-func (o *Drive) GetId() float32 {
+func (o *Drive) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -584,7 +584,7 @@ func (o *Drive) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetIdOk() (*float32, bool) {
+func (o *Drive) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -592,14 +592,14 @@ func (o *Drive) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Drive) SetId(v float32) {
+func (o *Drive) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Drive) GetRevision() float32 {
+func (o *Drive) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -608,7 +608,7 @@ func (o *Drive) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetRevisionOk() (*float32, bool) {
+func (o *Drive) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -616,14 +616,14 @@ func (o *Drive) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Drive) SetRevision(v float32) {
+func (o *Drive) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *Drive) GetInfrastructureId() float32 {
+func (o *Drive) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -632,7 +632,7 @@ func (o *Drive) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetInfrastructureIdOk() (*float32, bool) {
+func (o *Drive) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -640,7 +640,7 @@ func (o *Drive) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *Drive) SetInfrastructureId(v float32) {
+func (o *Drive) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
@@ -997,9 +997,9 @@ func (o *Drive) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *Drive) GetDnsSubdomainId() float32 {
+func (o *Drive) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -1007,7 +1007,7 @@ func (o *Drive) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *Drive) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -1023,15 +1023,15 @@ func (o *Drive) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *Drive) SetDnsSubdomainId(v float32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *Drive) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *Drive) GetDnsSubdomainPermanentId() float32 {
+func (o *Drive) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -1039,7 +1039,7 @@ func (o *Drive) GetDnsSubdomainPermanentId() float32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+func (o *Drive) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -1055,15 +1055,15 @@ func (o *Drive) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *Drive) SetDnsSubdomainPermanentId(v float32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *Drive) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 
 // GetNetworkVlanId returns the NetworkVlanId field value if set, zero value otherwise.
-func (o *Drive) GetNetworkVlanId() float32 {
+func (o *Drive) GetNetworkVlanId() int32 {
 	if o == nil || IsNil(o.NetworkVlanId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.NetworkVlanId
@@ -1071,7 +1071,7 @@ func (o *Drive) GetNetworkVlanId() float32 {
 
 // GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetNetworkVlanIdOk() (*float32, bool) {
+func (o *Drive) GetNetworkVlanIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.NetworkVlanId) {
 		return nil, false
 	}
@@ -1087,8 +1087,8 @@ func (o *Drive) HasNetworkVlanId() bool {
 	return false
 }
 
-// SetNetworkVlanId gets a reference to the given float32 and assigns it to the NetworkVlanId field.
-func (o *Drive) SetNetworkVlanId(v float32) {
+// SetNetworkVlanId gets a reference to the given int32 and assigns it to the NetworkVlanId field.
+func (o *Drive) SetNetworkVlanId(v int32) {
 	o.NetworkVlanId = &v
 }
 

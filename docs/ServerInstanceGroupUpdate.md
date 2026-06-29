@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [optional] [default to 1]
 **Ipv4SubnetCreateAuto** | Pointer to **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [optional] [default to 1]
 **Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \&quot;instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionLoadBalancingDnsRecord\&quot; is true.  | [optional] 
-**OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
+**OsTemplateId** | Pointer to **int64** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | Pointer to **int32** | The CPU count on each instance. | [optional] [default to 1]
 **ProcessorCoreCount** | Pointer to **int32** | The minimum cores of a CPU. | [optional] [default to 1]
@@ -22,8 +22,8 @@ Name | Type | Description | Notes
 **VirtualInterfacesEnabled** | Pointer to **int32** | Enable virtual interfaces | [optional] [default to 0]
 **AdditionalWanIpv4Json** | Pointer to **map[string]interface{}** | Contains info about additional ips to be assigned to the WAN interfaces. | [optional] 
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
-**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
-**DefaultServerTypeId** | Pointer to **int32** | The server type ID that will be assigned to newly created instances. | [optional] 
+**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int64** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
+**DefaultServerTypeId** | Pointer to **int64** | The server type ID that will be assigned to newly created instances. | [optional] 
 **DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
 **ServerFilteringRules** | Pointer to [**[]ServerFilterRule**](ServerFilterRule.md) | Server filtering rules for allocating servers to instances. If provided, servers must match all rules to be eligible for allocation. | [optional] 
 
@@ -198,20 +198,20 @@ HasHostname returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 
-`func (o *ServerInstanceGroupUpdate) GetOsTemplateId() int32`
+`func (o *ServerInstanceGroupUpdate) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *ServerInstanceGroupUpdate) GetOsTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupUpdate) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *ServerInstanceGroupUpdate) SetOsTemplateId(v int32)`
+`func (o *ServerInstanceGroupUpdate) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 
@@ -498,20 +498,20 @@ HasOverrideIpv4WanVlanId returns a boolean if a field has been set.
 
 ### GetNetworkEquipmentForceSubnetPoolIpv4WanId
 
-`func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int32`
+`func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanId() int64`
 
 GetNetworkEquipmentForceSubnetPoolIpv4WanId returns the NetworkEquipmentForceSubnetPoolIpv4WanId field if non-nil, zero value otherwise.
 
 ### GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk
 
-`func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupUpdate) GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk() (*int64, bool)`
 
 GetNetworkEquipmentForceSubnetPoolIpv4WanIdOk returns a tuple with the NetworkEquipmentForceSubnetPoolIpv4WanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkEquipmentForceSubnetPoolIpv4WanId
 
-`func (o *ServerInstanceGroupUpdate) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int32)`
+`func (o *ServerInstanceGroupUpdate) SetNetworkEquipmentForceSubnetPoolIpv4WanId(v int64)`
 
 SetNetworkEquipmentForceSubnetPoolIpv4WanId sets NetworkEquipmentForceSubnetPoolIpv4WanId field to given value.
 
@@ -523,20 +523,20 @@ HasNetworkEquipmentForceSubnetPoolIpv4WanId returns a boolean if a field has bee
 
 ### GetDefaultServerTypeId
 
-`func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeId() int32`
+`func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeId() int64`
 
 GetDefaultServerTypeId returns the DefaultServerTypeId field if non-nil, zero value otherwise.
 
 ### GetDefaultServerTypeIdOk
 
-`func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeIdOk() (*int64, bool)`
 
 GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultServerTypeId
 
-`func (o *ServerInstanceGroupUpdate) SetDefaultServerTypeId(v int32)`
+`func (o *ServerInstanceGroupUpdate) SetDefaultServerTypeId(v int64)`
 
 SetDefaultServerTypeId sets DefaultServerTypeId field to given value.
 

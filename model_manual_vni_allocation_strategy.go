@@ -22,7 +22,7 @@ var _ MappedNullable = &ManualVniAllocationStrategy{}
 
 // ManualVniAllocationStrategy struct for ManualVniAllocationStrategy
 type ManualVniAllocationStrategy struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
@@ -38,7 +38,7 @@ type _ManualVniAllocationStrategy ManualVniAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualVniAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, vni int32) *ManualVniAllocationStrategy {
+func NewManualVniAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, vni int32) *ManualVniAllocationStrategy {
 	this := ManualVniAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -58,9 +58,9 @@ func NewManualVniAllocationStrategyWithDefaults() *ManualVniAllocationStrategy {
 }
 
 // GetId returns the Id field value
-func (o *ManualVniAllocationStrategy) GetId() int32 {
+func (o *ManualVniAllocationStrategy) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -69,7 +69,7 @@ func (o *ManualVniAllocationStrategy) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ManualVniAllocationStrategy) GetIdOk() (*int32, bool) {
+func (o *ManualVniAllocationStrategy) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,7 +77,7 @@ func (o *ManualVniAllocationStrategy) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ManualVniAllocationStrategy) SetId(v int32) {
+func (o *ManualVniAllocationStrategy) SetId(v int64) {
 	o.Id = v
 }
 

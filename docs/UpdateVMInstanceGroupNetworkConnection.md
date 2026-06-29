@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Tagged** | Pointer to **bool** | Whether the logical network is tagged. | [optional] 
 **AccessMode** | Pointer to [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | [optional] 
 **Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
+**InterfaceCount** | Pointer to **NullableInt32** | Minimum number of interfaces for this connection. Only configurable when the logical network is l3Only. Null/unset means no minimum. | [optional] 
 **ProvidesDefaultRoute** | Pointer to **bool** | Whether the logical network provides a default route | [optional] [default to false]
 **DisableAutoIpAllocation** | Pointer to **bool** | Disable automatic IP allocation for IPv4 addresses on this network connection | [optional] [default to false]
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
@@ -106,6 +107,41 @@ SetMtu sets Mtu field to given value.
 
 HasMtu returns a boolean if a field has been set.
 
+### GetInterfaceCount
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) GetInterfaceCount() int32`
+
+GetInterfaceCount returns the InterfaceCount field if non-nil, zero value otherwise.
+
+### GetInterfaceCountOk
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) GetInterfaceCountOk() (*int32, bool)`
+
+GetInterfaceCountOk returns a tuple with the InterfaceCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaceCount
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) SetInterfaceCount(v int32)`
+
+SetInterfaceCount sets InterfaceCount field to given value.
+
+### HasInterfaceCount
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) HasInterfaceCount() bool`
+
+HasInterfaceCount returns a boolean if a field has been set.
+
+### SetInterfaceCountNil
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) SetInterfaceCountNil(b bool)`
+
+ SetInterfaceCountNil sets the value for InterfaceCount to be an explicit nil
+
+### UnsetInterfaceCount
+`func (o *UpdateVMInstanceGroupNetworkConnection) UnsetInterfaceCount()`
+
+UnsetInterfaceCount ensures that no value is present for InterfaceCount, not even an explicit nil
 ### GetProvidesDefaultRoute
 
 `func (o *UpdateVMInstanceGroupNetworkConnection) GetProvidesDefaultRoute() bool`

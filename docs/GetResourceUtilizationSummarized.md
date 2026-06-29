@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **UserIdOwner** | **float32** | User ID of the owner | 
 **StartTimestamp** | **string** | Start timestamp for the resource utilization | 
 **EndTimestamp** | **string** | End timestamp for the resource utilization | 
-**InfrastructureIds** | Pointer to **[]float32** | List of infrastructure IDs | [optional] 
+**InfrastructureIds** | Pointer to **[]int64** | List of infrastructure IDs | [optional] 
 
 ## Methods
 
@@ -90,20 +90,20 @@ SetEndTimestamp sets EndTimestamp field to given value.
 
 ### GetInfrastructureIds
 
-`func (o *GetResourceUtilizationSummarized) GetInfrastructureIds() []float32`
+`func (o *GetResourceUtilizationSummarized) GetInfrastructureIds() []int64`
 
 GetInfrastructureIds returns the InfrastructureIds field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdsOk
 
-`func (o *GetResourceUtilizationSummarized) GetInfrastructureIdsOk() (*[]float32, bool)`
+`func (o *GetResourceUtilizationSummarized) GetInfrastructureIdsOk() (*[]int64, bool)`
 
 GetInfrastructureIdsOk returns a tuple with the InfrastructureIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureIds
 
-`func (o *GetResourceUtilizationSummarized) SetInfrastructureIds(v []float32)`
+`func (o *GetResourceUtilizationSummarized) SetInfrastructureIds(v []int64)`
 
 SetInfrastructureIds sets InfrastructureIds field to given value.
 

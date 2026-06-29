@@ -24,7 +24,7 @@ type SiteConfigOSInstallationData struct {
 	// Repository details
 	RepoURL string `json:"repoURL"`
 	// ID of the DNS zone associated with the site
-	DnsZoneId *int32 `json:"dnsZoneId,omitempty"`
+	DnsZoneId *int64 `json:"dnsZoneId,omitempty"`
 	// The name of the DNS zone (without a terminating dot).
 	DnsZoneName *string `json:"dnsZoneName,omitempty"`
 	// List of DNS Servers
@@ -81,9 +81,9 @@ func (o *SiteConfigOSInstallationData) SetRepoURL(v string) {
 }
 
 // GetDnsZoneId returns the DnsZoneId field value if set, zero value otherwise.
-func (o *SiteConfigOSInstallationData) GetDnsZoneId() int32 {
+func (o *SiteConfigOSInstallationData) GetDnsZoneId() int64 {
 	if o == nil || IsNil(o.DnsZoneId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DnsZoneId
@@ -91,7 +91,7 @@ func (o *SiteConfigOSInstallationData) GetDnsZoneId() int32 {
 
 // GetDnsZoneIdOk returns a tuple with the DnsZoneId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigOSInstallationData) GetDnsZoneIdOk() (*int32, bool) {
+func (o *SiteConfigOSInstallationData) GetDnsZoneIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsZoneId) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *SiteConfigOSInstallationData) HasDnsZoneId() bool {
 	return false
 }
 
-// SetDnsZoneId gets a reference to the given int32 and assigns it to the DnsZoneId field.
-func (o *SiteConfigOSInstallationData) SetDnsZoneId(v int32) {
+// SetDnsZoneId gets a reference to the given int64 and assigns it to the DnsZoneId field.
+func (o *SiteConfigOSInstallationData) SetDnsZoneId(v int64) {
 	o.DnsZoneId = &v
 }
 

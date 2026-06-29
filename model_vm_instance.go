@@ -24,13 +24,13 @@ type VMInstance struct {
 	// Name of the VM Instance.
 	Label string `json:"label"`
 	// Id of the VM.
-	VmId *float32 `json:"vmId,omitempty"`
+	VmId *int64 `json:"vmId,omitempty"`
 	// Id of the VM Type.
-	TypeId float32 `json:"typeId"`
+	TypeId int64 `json:"typeId"`
 	// Subdomain of the VM Instance.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the VM Pool.
-	VmPoolId *float32 `json:"vmPoolId,omitempty"`
+	VmPoolId *int64 `json:"vmPoolId,omitempty"`
 	// Disk size in GB of the VM Instance.
 	DiskSizeGB float32 `json:"diskSizeGB"`
 	// RAM size in GB of the VM Instance.
@@ -38,19 +38,19 @@ type VMInstance struct {
 	// Number of CPU cores for the VM Instance.
 	CpuCores float32 `json:"cpuCores"`
 	// Id of the template used by the VM Instance.
-	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Custom variables for the VM Instance.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Timestamp of the VM Instance last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// VM Instance ID
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision of the VM Instance
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// Id of the VM Instance Group.
-	GroupId float32 `json:"groupId"`
+	GroupId int64 `json:"groupId"`
 	// Id of the Infrastructure.
-	InfrastructureId float32 `json:"infrastructureId"`
+	InfrastructureId int64 `json:"infrastructureId"`
 	// Infrastructure information
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Service status of the VM Instance.
@@ -60,9 +60,9 @@ type VMInstance struct {
 	// Subdomain permanent of the VM Instance.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	// Id of the DNS subdomain for the VM Instance.
-	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	DnsSubdomainId *int64 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the VM Instance.
-	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	DnsSubdomainPermanentId *int64 `json:"dnsSubdomainPermanentId,omitempty"`
 	// Unique index of the VM Instance.
 	UniqueIndex *float32 `json:"uniqueIndex,omitempty"`
 	// Timestamp of the VM Instance creation.
@@ -86,7 +86,7 @@ type _VMInstance VMInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta) *VMInstance {
+func NewVMInstance(label string, typeId int64, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id int64, revision int64, groupId int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta) *VMInstance {
 	this := VMInstance{}
 	this.Label = label
 	this.TypeId = typeId
@@ -139,9 +139,9 @@ func (o *VMInstance) SetLabel(v string) {
 }
 
 // GetVmId returns the VmId field value if set, zero value otherwise.
-func (o *VMInstance) GetVmId() float32 {
+func (o *VMInstance) GetVmId() int64 {
 	if o == nil || IsNil(o.VmId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.VmId
@@ -149,7 +149,7 @@ func (o *VMInstance) GetVmId() float32 {
 
 // GetVmIdOk returns a tuple with the VmId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetVmIdOk() (*float32, bool) {
+func (o *VMInstance) GetVmIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmId) {
 		return nil, false
 	}
@@ -165,15 +165,15 @@ func (o *VMInstance) HasVmId() bool {
 	return false
 }
 
-// SetVmId gets a reference to the given float32 and assigns it to the VmId field.
-func (o *VMInstance) SetVmId(v float32) {
+// SetVmId gets a reference to the given int64 and assigns it to the VmId field.
+func (o *VMInstance) SetVmId(v int64) {
 	o.VmId = &v
 }
 
 // GetTypeId returns the TypeId field value
-func (o *VMInstance) GetTypeId() float32 {
+func (o *VMInstance) GetTypeId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -182,7 +182,7 @@ func (o *VMInstance) GetTypeId() float32 {
 
 // GetTypeIdOk returns a tuple with the TypeId field value
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetTypeIdOk() (*float32, bool) {
+func (o *VMInstance) GetTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -190,7 +190,7 @@ func (o *VMInstance) GetTypeIdOk() (*float32, bool) {
 }
 
 // SetTypeId sets field value
-func (o *VMInstance) SetTypeId(v float32) {
+func (o *VMInstance) SetTypeId(v int64) {
 	o.TypeId = v
 }
 
@@ -227,9 +227,9 @@ func (o *VMInstance) SetSubdomain(v string) {
 }
 
 // GetVmPoolId returns the VmPoolId field value if set, zero value otherwise.
-func (o *VMInstance) GetVmPoolId() float32 {
+func (o *VMInstance) GetVmPoolId() int64 {
 	if o == nil || IsNil(o.VmPoolId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.VmPoolId
@@ -237,7 +237,7 @@ func (o *VMInstance) GetVmPoolId() float32 {
 
 // GetVmPoolIdOk returns a tuple with the VmPoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetVmPoolIdOk() (*float32, bool) {
+func (o *VMInstance) GetVmPoolIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VmPoolId) {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *VMInstance) HasVmPoolId() bool {
 	return false
 }
 
-// SetVmPoolId gets a reference to the given float32 and assigns it to the VmPoolId field.
-func (o *VMInstance) SetVmPoolId(v float32) {
+// SetVmPoolId gets a reference to the given int64 and assigns it to the VmPoolId field.
+func (o *VMInstance) SetVmPoolId(v int64) {
 	o.VmPoolId = &v
 }
 
@@ -331,9 +331,9 @@ func (o *VMInstance) SetCpuCores(v float32) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *VMInstance) GetOsTemplateId() float32 {
+func (o *VMInstance) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -341,7 +341,7 @@ func (o *VMInstance) GetOsTemplateId() float32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetOsTemplateIdOk() (*float32, bool) {
+func (o *VMInstance) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -357,8 +357,8 @@ func (o *VMInstance) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
-func (o *VMInstance) SetOsTemplateId(v float32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *VMInstance) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 
@@ -419,9 +419,9 @@ func (o *VMInstance) SetUpdatedTimestamp(v string) {
 }
 
 // GetId returns the Id field value
-func (o *VMInstance) GetId() float32 {
+func (o *VMInstance) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -430,7 +430,7 @@ func (o *VMInstance) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetIdOk() (*float32, bool) {
+func (o *VMInstance) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -438,14 +438,14 @@ func (o *VMInstance) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *VMInstance) SetId(v float32) {
+func (o *VMInstance) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *VMInstance) GetRevision() float32 {
+func (o *VMInstance) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -454,7 +454,7 @@ func (o *VMInstance) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetRevisionOk() (*float32, bool) {
+func (o *VMInstance) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -462,14 +462,14 @@ func (o *VMInstance) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *VMInstance) SetRevision(v float32) {
+func (o *VMInstance) SetRevision(v int64) {
 	o.Revision = v
 }
 
 // GetGroupId returns the GroupId field value
-func (o *VMInstance) GetGroupId() float32 {
+func (o *VMInstance) GetGroupId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -478,7 +478,7 @@ func (o *VMInstance) GetGroupId() float32 {
 
 // GetGroupIdOk returns a tuple with the GroupId field value
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetGroupIdOk() (*float32, bool) {
+func (o *VMInstance) GetGroupIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -486,14 +486,14 @@ func (o *VMInstance) GetGroupIdOk() (*float32, bool) {
 }
 
 // SetGroupId sets field value
-func (o *VMInstance) SetGroupId(v float32) {
+func (o *VMInstance) SetGroupId(v int64) {
 	o.GroupId = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *VMInstance) GetInfrastructureId() float32 {
+func (o *VMInstance) GetInfrastructureId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -502,7 +502,7 @@ func (o *VMInstance) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetInfrastructureIdOk() (*float32, bool) {
+func (o *VMInstance) GetInfrastructureIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -510,7 +510,7 @@ func (o *VMInstance) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *VMInstance) SetInfrastructureId(v float32) {
+func (o *VMInstance) SetInfrastructureId(v int64) {
 	o.InfrastructureId = v
 }
 
@@ -627,9 +627,9 @@ func (o *VMInstance) SetSubdomainPermanent(v string) {
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *VMInstance) GetDnsSubdomainId() float32 {
+func (o *VMInstance) GetDnsSubdomainId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainId
@@ -637,7 +637,7 @@ func (o *VMInstance) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *VMInstance) GetDnsSubdomainIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -653,15 +653,15 @@ func (o *VMInstance) HasDnsSubdomainId() bool {
 	return false
 }
 
-// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *VMInstance) SetDnsSubdomainId(v float32) {
+// SetDnsSubdomainId gets a reference to the given int64 and assigns it to the DnsSubdomainId field.
+func (o *VMInstance) SetDnsSubdomainId(v int64) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *VMInstance) GetDnsSubdomainPermanentId() float32 {
+func (o *VMInstance) GetDnsSubdomainPermanentId() int64 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.DnsSubdomainPermanentId
@@ -669,7 +669,7 @@ func (o *VMInstance) GetDnsSubdomainPermanentId() float32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+func (o *VMInstance) GetDnsSubdomainPermanentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -685,8 +685,8 @@ func (o *VMInstance) HasDnsSubdomainPermanentId() bool {
 	return false
 }
 
-// SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *VMInstance) SetDnsSubdomainPermanentId(v float32) {
+// SetDnsSubdomainPermanentId gets a reference to the given int64 and assigns it to the DnsSubdomainPermanentId field.
+func (o *VMInstance) SetDnsSubdomainPermanentId(v int64) {
 	o.DnsSubdomainPermanentId = &v
 }
 

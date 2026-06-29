@@ -138,7 +138,7 @@ func (a *FirmwareCatalogAPIService) CreateFirmwareCatalogsExecute(r FirmwareCata
 type FirmwareCatalogAPIDeleteFirmwareCatalogRequest struct {
 	ctx context.Context
 	ApiService *FirmwareCatalogAPIService
-	firmwareCatalogId float32
+	firmwareCatalogId int64
 }
 
 func (r FirmwareCatalogAPIDeleteFirmwareCatalogRequest) Execute() (*http.Response, error) {
@@ -154,7 +154,7 @@ Deletes a firmware catalog
  @param firmwareCatalogId The firmware catalog id
  @return FirmwareCatalogAPIDeleteFirmwareCatalogRequest
 */
-func (a *FirmwareCatalogAPIService) DeleteFirmwareCatalog(ctx context.Context, firmwareCatalogId float32) FirmwareCatalogAPIDeleteFirmwareCatalogRequest {
+func (a *FirmwareCatalogAPIService) DeleteFirmwareCatalog(ctx context.Context, firmwareCatalogId int64) FirmwareCatalogAPIDeleteFirmwareCatalogRequest {
 	return FirmwareCatalogAPIDeleteFirmwareCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,7 +230,7 @@ func (a *FirmwareCatalogAPIService) DeleteFirmwareCatalogExecute(r FirmwareCatal
 type FirmwareCatalogAPIGetFirmwareCatalogRequest struct {
 	ctx context.Context
 	ApiService *FirmwareCatalogAPIService
-	firmwareCatalogId float32
+	firmwareCatalogId int64
 }
 
 func (r FirmwareCatalogAPIGetFirmwareCatalogRequest) Execute() (*FirmwareCatalog, *http.Response, error) {
@@ -246,7 +246,7 @@ Returns a firmware catalog
  @param firmwareCatalogId The firmware catalog id
  @return FirmwareCatalogAPIGetFirmwareCatalogRequest
 */
-func (a *FirmwareCatalogAPIService) GetFirmwareCatalog(ctx context.Context, firmwareCatalogId float32) FirmwareCatalogAPIGetFirmwareCatalogRequest {
+func (a *FirmwareCatalogAPIService) GetFirmwareCatalog(ctx context.Context, firmwareCatalogId int64) FirmwareCatalogAPIGetFirmwareCatalogRequest {
 	return FirmwareCatalogAPIGetFirmwareCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -670,7 +670,7 @@ func (a *FirmwareCatalogAPIService) GetFirmwareCatalogsExecute(r FirmwareCatalog
 type FirmwareCatalogAPIUpdateFirmwareCatalogRequest struct {
 	ctx context.Context
 	ApiService *FirmwareCatalogAPIService
-	firmwareCatalogId float32
+	firmwareCatalogId int64
 	updateFirmwareCatalog *UpdateFirmwareCatalog
 }
 
@@ -692,7 +692,7 @@ Updates a firmware catalog
  @param firmwareCatalogId The firmware catalog id
  @return FirmwareCatalogAPIUpdateFirmwareCatalogRequest
 */
-func (a *FirmwareCatalogAPIService) UpdateFirmwareCatalog(ctx context.Context, firmwareCatalogId float32) FirmwareCatalogAPIUpdateFirmwareCatalogRequest {
+func (a *FirmwareCatalogAPIService) UpdateFirmwareCatalog(ctx context.Context, firmwareCatalogId int64) FirmwareCatalogAPIUpdateFirmwareCatalogRequest {
 	return FirmwareCatalogAPIUpdateFirmwareCatalogRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -21,12 +21,8 @@ var _ MappedNullable = &UserPermissions{}
 
 // UserPermissions struct for UserPermissions
 type UserPermissions struct {
-	// Admin password reveal permissions
-	AdminPasswordRevealPermissions *AdminPasswordRevealPermissions `json:"adminPasswordRevealPermissions,omitempty"`
-	// Special permissions
-	SpecialPermissions *SpecialPermissions `json:"specialPermissions,omitempty"`
-	// Role permissions
-	RolePermissions []string `json:"rolePermissions"`
+	// List of permissions of the logged in user
+	Permissions []MetalsoftPermissions `json:"permissions"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,9 +32,9 @@ type _UserPermissions UserPermissions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserPermissions(rolePermissions []string) *UserPermissions {
+func NewUserPermissions(permissions []MetalsoftPermissions) *UserPermissions {
 	this := UserPermissions{}
-	this.RolePermissions = rolePermissions
+	this.Permissions = permissions
 	return &this
 }
 
@@ -50,92 +46,28 @@ func NewUserPermissionsWithDefaults() *UserPermissions {
 	return &this
 }
 
-// GetAdminPasswordRevealPermissions returns the AdminPasswordRevealPermissions field value if set, zero value otherwise.
-func (o *UserPermissions) GetAdminPasswordRevealPermissions() AdminPasswordRevealPermissions {
-	if o == nil || IsNil(o.AdminPasswordRevealPermissions) {
-		var ret AdminPasswordRevealPermissions
-		return ret
-	}
-	return *o.AdminPasswordRevealPermissions
-}
-
-// GetAdminPasswordRevealPermissionsOk returns a tuple with the AdminPasswordRevealPermissions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserPermissions) GetAdminPasswordRevealPermissionsOk() (*AdminPasswordRevealPermissions, bool) {
-	if o == nil || IsNil(o.AdminPasswordRevealPermissions) {
-		return nil, false
-	}
-	return o.AdminPasswordRevealPermissions, true
-}
-
-// HasAdminPasswordRevealPermissions returns a boolean if a field has been set.
-func (o *UserPermissions) HasAdminPasswordRevealPermissions() bool {
-	if o != nil && !IsNil(o.AdminPasswordRevealPermissions) {
-		return true
-	}
-
-	return false
-}
-
-// SetAdminPasswordRevealPermissions gets a reference to the given AdminPasswordRevealPermissions and assigns it to the AdminPasswordRevealPermissions field.
-func (o *UserPermissions) SetAdminPasswordRevealPermissions(v AdminPasswordRevealPermissions) {
-	o.AdminPasswordRevealPermissions = &v
-}
-
-// GetSpecialPermissions returns the SpecialPermissions field value if set, zero value otherwise.
-func (o *UserPermissions) GetSpecialPermissions() SpecialPermissions {
-	if o == nil || IsNil(o.SpecialPermissions) {
-		var ret SpecialPermissions
-		return ret
-	}
-	return *o.SpecialPermissions
-}
-
-// GetSpecialPermissionsOk returns a tuple with the SpecialPermissions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserPermissions) GetSpecialPermissionsOk() (*SpecialPermissions, bool) {
-	if o == nil || IsNil(o.SpecialPermissions) {
-		return nil, false
-	}
-	return o.SpecialPermissions, true
-}
-
-// HasSpecialPermissions returns a boolean if a field has been set.
-func (o *UserPermissions) HasSpecialPermissions() bool {
-	if o != nil && !IsNil(o.SpecialPermissions) {
-		return true
-	}
-
-	return false
-}
-
-// SetSpecialPermissions gets a reference to the given SpecialPermissions and assigns it to the SpecialPermissions field.
-func (o *UserPermissions) SetSpecialPermissions(v SpecialPermissions) {
-	o.SpecialPermissions = &v
-}
-
-// GetRolePermissions returns the RolePermissions field value
-func (o *UserPermissions) GetRolePermissions() []string {
+// GetPermissions returns the Permissions field value
+func (o *UserPermissions) GetPermissions() []MetalsoftPermissions {
 	if o == nil {
-		var ret []string
+		var ret []MetalsoftPermissions
 		return ret
 	}
 
-	return o.RolePermissions
+	return o.Permissions
 }
 
-// GetRolePermissionsOk returns a tuple with the RolePermissions field value
+// GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *UserPermissions) GetRolePermissionsOk() ([]string, bool) {
+func (o *UserPermissions) GetPermissionsOk() ([]MetalsoftPermissions, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RolePermissions, true
+	return o.Permissions, true
 }
 
-// SetRolePermissions sets field value
-func (o *UserPermissions) SetRolePermissions(v []string) {
-	o.RolePermissions = v
+// SetPermissions sets field value
+func (o *UserPermissions) SetPermissions(v []MetalsoftPermissions) {
+	o.Permissions = v
 }
 
 func (o UserPermissions) MarshalJSON() ([]byte, error) {
@@ -148,13 +80,7 @@ func (o UserPermissions) MarshalJSON() ([]byte, error) {
 
 func (o UserPermissions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AdminPasswordRevealPermissions) {
-		toSerialize["adminPasswordRevealPermissions"] = o.AdminPasswordRevealPermissions
-	}
-	if !IsNil(o.SpecialPermissions) {
-		toSerialize["specialPermissions"] = o.SpecialPermissions
-	}
-	toSerialize["rolePermissions"] = o.RolePermissions
+	toSerialize["permissions"] = o.Permissions
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -168,7 +94,7 @@ func (o *UserPermissions) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"rolePermissions",
+		"permissions",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -198,9 +124,7 @@ func (o *UserPermissions) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "adminPasswordRevealPermissions")
-		delete(additionalProperties, "specialPermissions")
-		delete(additionalProperties, "rolePermissions")
+		delete(additionalProperties, "permissions")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,7 +21,7 @@ var _ MappedNullable = &SharedDriveResourceItem{}
 
 // SharedDriveResourceItem struct for SharedDriveResourceItem
 type SharedDriveResourceItem struct {
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	Label string `json:"label"`
 	StartTimestamp string `json:"startTimestamp"`
 	EndTimestamp string `json:"endTimestamp"`
@@ -40,7 +40,7 @@ type _SharedDriveResourceItem SharedDriveResourceItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveResourceItem(id float32, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, sharedDriveSizeMbytes float32, sharedDriveStorageType string) *SharedDriveResourceItem {
+func NewSharedDriveResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, sharedDriveSizeMbytes float32, sharedDriveStorageType string) *SharedDriveResourceItem {
 	this := SharedDriveResourceItem{}
 	this.Id = id
 	this.Label = label
@@ -63,9 +63,9 @@ func NewSharedDriveResourceItemWithDefaults() *SharedDriveResourceItem {
 }
 
 // GetId returns the Id field value
-func (o *SharedDriveResourceItem) GetId() float32 {
+func (o *SharedDriveResourceItem) GetId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *SharedDriveResourceItem) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveResourceItem) GetIdOk() (*float32, bool) {
+func (o *SharedDriveResourceItem) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *SharedDriveResourceItem) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *SharedDriveResourceItem) SetId(v float32) {
+func (o *SharedDriveResourceItem) SetId(v int64) {
 	o.Id = v
 }
 

@@ -139,7 +139,7 @@ func (a *ServerCleanupPolicyAPIService) CreateServerCleanupPolicyExecute(r Serve
 type ServerCleanupPolicyAPIDeleteServerCleanupPolicyRequest struct {
 	ctx context.Context
 	ApiService *ServerCleanupPolicyAPIService
-	serverCleanupPolicyId float32
+	serverCleanupPolicyId int64
 }
 
 func (r ServerCleanupPolicyAPIDeleteServerCleanupPolicyRequest) Execute() (*http.Response, error) {
@@ -155,7 +155,7 @@ Deletes a Server Cleanup Policy
  @param serverCleanupPolicyId
  @return ServerCleanupPolicyAPIDeleteServerCleanupPolicyRequest
 */
-func (a *ServerCleanupPolicyAPIService) DeleteServerCleanupPolicy(ctx context.Context, serverCleanupPolicyId float32) ServerCleanupPolicyAPIDeleteServerCleanupPolicyRequest {
+func (a *ServerCleanupPolicyAPIService) DeleteServerCleanupPolicy(ctx context.Context, serverCleanupPolicyId int64) ServerCleanupPolicyAPIDeleteServerCleanupPolicyRequest {
 	return ServerCleanupPolicyAPIDeleteServerCleanupPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -414,7 +414,7 @@ func (a *ServerCleanupPolicyAPIService) GetServerCleanupPoliciesExecute(r Server
 type ServerCleanupPolicyAPIGetServerCleanupPolicyInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerCleanupPolicyAPIService
-	serverCleanupPolicyId float32
+	serverCleanupPolicyId int64
 }
 
 func (r ServerCleanupPolicyAPIGetServerCleanupPolicyInfoRequest) Execute() (*ServerCleanupPolicy, *http.Response, error) {
@@ -430,7 +430,7 @@ Returns Server Cleanup Policy information
  @param serverCleanupPolicyId
  @return ServerCleanupPolicyAPIGetServerCleanupPolicyInfoRequest
 */
-func (a *ServerCleanupPolicyAPIService) GetServerCleanupPolicyInfo(ctx context.Context, serverCleanupPolicyId float32) ServerCleanupPolicyAPIGetServerCleanupPolicyInfoRequest {
+func (a *ServerCleanupPolicyAPIService) GetServerCleanupPolicyInfo(ctx context.Context, serverCleanupPolicyId int64) ServerCleanupPolicyAPIGetServerCleanupPolicyInfoRequest {
 	return ServerCleanupPolicyAPIGetServerCleanupPolicyInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -517,7 +517,7 @@ func (a *ServerCleanupPolicyAPIService) GetServerCleanupPolicyInfoExecute(r Serv
 type ServerCleanupPolicyAPIUpdateServerCleanupPolicyRequest struct {
 	ctx context.Context
 	ApiService *ServerCleanupPolicyAPIService
-	serverCleanupPolicyId float32
+	serverCleanupPolicyId int64
 	updateServerCleanupPolicy *UpdateServerCleanupPolicy
 }
 
@@ -540,7 +540,7 @@ Updates a Server Cleanup Policy
  @param serverCleanupPolicyId
  @return ServerCleanupPolicyAPIUpdateServerCleanupPolicyRequest
 */
-func (a *ServerCleanupPolicyAPIService) UpdateServerCleanupPolicy(ctx context.Context, serverCleanupPolicyId float32) ServerCleanupPolicyAPIUpdateServerCleanupPolicyRequest {
+func (a *ServerCleanupPolicyAPIService) UpdateServerCleanupPolicy(ctx context.Context, serverCleanupPolicyId int64) ServerCleanupPolicyAPIUpdateServerCleanupPolicyRequest {
 	return ServerCleanupPolicyAPIUpdateServerCleanupPolicyRequest{
 		ApiService: a,
 		ctx: ctx,

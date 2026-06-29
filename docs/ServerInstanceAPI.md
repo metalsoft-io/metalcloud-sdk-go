@@ -50,7 +50,7 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
 	serverInstanceCreate := *openapiclient.NewServerInstanceCreate() // ServerInstanceCreate | The Server Instance to create
 
 	configuration := openapiclient.NewConfiguration()
@@ -71,7 +71,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -141,7 +141,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -192,7 +192,7 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -224,7 +224,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -286,7 +286,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -306,7 +306,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -356,7 +356,7 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
 	requestBody := []string{"Property_example"} // []string | The list of server instance ids
 
 	configuration := openapiclient.NewConfiguration()
@@ -377,7 +377,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -428,7 +428,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -448,7 +448,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -498,7 +498,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -518,7 +518,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -568,7 +568,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -588,7 +588,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -638,7 +638,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -658,7 +658,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -708,8 +708,8 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
-	interfaceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
+	interfaceId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -729,8 +729,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
-**interfaceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
+**interfaceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -781,7 +781,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
@@ -810,7 +810,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -867,7 +867,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	usage := openapiclient.VariableUsageType("HTTPRequest") // VariableUsageType | Filter by variable usage (optional)
 	removeEmpty := int32(56) // int32 | Remove empty fields from the response (optional)
 
@@ -889,7 +889,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1000,7 +1000,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	usage := openapiclient.VariableUsageType("HTTPRequest") // VariableUsageType | Filter by variable usage (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1021,7 +1021,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1160,7 +1160,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	serverInstanceReinstallOS := *openapiclient.NewServerInstanceReinstallOS(false, false) // ServerInstanceReinstallOS | reinstall OS options
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1180,7 +1180,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1232,7 +1232,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1251,7 +1251,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1302,7 +1302,7 @@ import (
 )
 
 func main() {
-	infrastructureId := int32(56) // int32 | 
+	infrastructureId := int64(789) // int64 | 
 	instancesSetPowerState := *openapiclient.NewInstancesSetPowerState([]string{"Instances_example"}, "PowerCommand_example") // InstancesSetPowerState | The list of server instance ids
 
 	configuration := openapiclient.NewConfiguration()
@@ -1321,7 +1321,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **int32** |  | 
+**infrastructureId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1372,7 +1372,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	serverInstancePowerSet := *openapiclient.NewServerInstancePowerSet("PowerCommand_example") // ServerInstancePowerSet | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1392,7 +1392,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1444,7 +1444,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	serverInstanceUpdate := *openapiclient.NewServerInstanceUpdate() // ServerInstanceUpdate | The Server Instance configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1466,7 +1466,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1518,8 +1518,8 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
-	interfaceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
+	interfaceId := int64(789) // int64 | 
 	serverInstanceInterfaceUpdate := *openapiclient.NewServerInstanceInterfaceUpdate() // ServerInstanceInterfaceUpdate | The Server Instance Interface configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
@@ -1541,8 +1541,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
-**interfaceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
+**interfaceId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -1595,7 +1595,7 @@ import (
 )
 
 func main() {
-	serverInstanceId := int32(56) // int32 | 
+	serverInstanceId := int64(789) // int64 | 
 	genericMeta := *openapiclient.NewGenericMeta() // GenericMeta | The Server Instance meta information
 
 	configuration := openapiclient.NewConfiguration()
@@ -1614,7 +1614,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
+**serverInstanceId** | **int64** |  | 
 
 ### Other Parameters
 

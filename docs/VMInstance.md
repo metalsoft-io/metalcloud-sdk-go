@@ -5,26 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Name of the VM Instance. | 
-**VmId** | Pointer to **float32** | Id of the VM. | [optional] 
-**TypeId** | **float32** | Id of the VM Type. | 
+**VmId** | Pointer to **int64** | Id of the VM. | [optional] 
+**TypeId** | **int64** | Id of the VM Type. | 
 **Subdomain** | Pointer to **string** | Subdomain of the VM Instance. | [optional] 
-**VmPoolId** | Pointer to **float32** | Id of the VM Pool. | [optional] 
+**VmPoolId** | Pointer to **int64** | Id of the VM Pool. | [optional] 
 **DiskSizeGB** | **float32** | Disk size in GB of the VM Instance. | 
 **RamGB** | **float32** | RAM size in GB of the VM Instance. | 
 **CpuCores** | **float32** | Number of CPU cores for the VM Instance. | 
-**OsTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance. | [optional] 
+**OsTemplateId** | Pointer to **int64** | Id of the template used by the VM Instance. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the VM Instance. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the VM Instance last update. | 
-**Id** | **float32** | VM Instance ID | 
-**Revision** | **float32** | Revision of the VM Instance | 
-**GroupId** | **float32** | Id of the VM Instance Group. | 
-**InfrastructureId** | **float32** | Id of the Infrastructure. | 
+**Id** | **int64** | VM Instance ID | 
+**Revision** | **int64** | Revision of the VM Instance | 
+**GroupId** | **int64** | Id of the VM Instance Group. | 
+**InfrastructureId** | **int64** | Id of the Infrastructure. | 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Service status of the VM Instance. | 
 **GpuInfo** | Pointer to [**[]VMTypeGPUInfo**](VMTypeGPUInfo.md) | Information about GPUs available for this VM Instance | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance. | [optional] 
-**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the VM Instance. | [optional] 
+**DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the VM Instance. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int64** | Id of the permanent DNS subdomain for the VM Instance. | [optional] 
 **UniqueIndex** | Pointer to **float32** | Unique index of the VM Instance. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp of the VM Instance creation. | 
 **Config** | [**VMInstanceConfiguration**](VMInstanceConfiguration.md) | The current changes to be deployed for the VM Instance. | 
@@ -37,7 +37,7 @@ Name | Type | Description | Notes
 
 ### NewVMInstance
 
-`func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, ) *VMInstance`
+`func NewVMInstance(label string, typeId int64, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id int64, revision int64, groupId int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, ) *VMInstance`
 
 NewVMInstance instantiates a new VMInstance object
 This constructor will assign default values to properties that have it defined,
@@ -74,20 +74,20 @@ SetLabel sets Label field to given value.
 
 ### GetVmId
 
-`func (o *VMInstance) GetVmId() float32`
+`func (o *VMInstance) GetVmId() int64`
 
 GetVmId returns the VmId field if non-nil, zero value otherwise.
 
 ### GetVmIdOk
 
-`func (o *VMInstance) GetVmIdOk() (*float32, bool)`
+`func (o *VMInstance) GetVmIdOk() (*int64, bool)`
 
 GetVmIdOk returns a tuple with the VmId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmId
 
-`func (o *VMInstance) SetVmId(v float32)`
+`func (o *VMInstance) SetVmId(v int64)`
 
 SetVmId sets VmId field to given value.
 
@@ -99,20 +99,20 @@ HasVmId returns a boolean if a field has been set.
 
 ### GetTypeId
 
-`func (o *VMInstance) GetTypeId() float32`
+`func (o *VMInstance) GetTypeId() int64`
 
 GetTypeId returns the TypeId field if non-nil, zero value otherwise.
 
 ### GetTypeIdOk
 
-`func (o *VMInstance) GetTypeIdOk() (*float32, bool)`
+`func (o *VMInstance) GetTypeIdOk() (*int64, bool)`
 
 GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTypeId
 
-`func (o *VMInstance) SetTypeId(v float32)`
+`func (o *VMInstance) SetTypeId(v int64)`
 
 SetTypeId sets TypeId field to given value.
 
@@ -144,20 +144,20 @@ HasSubdomain returns a boolean if a field has been set.
 
 ### GetVmPoolId
 
-`func (o *VMInstance) GetVmPoolId() float32`
+`func (o *VMInstance) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *VMInstance) GetVmPoolIdOk() (*float32, bool)`
+`func (o *VMInstance) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *VMInstance) SetVmPoolId(v float32)`
+`func (o *VMInstance) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 
@@ -229,20 +229,20 @@ SetCpuCores sets CpuCores field to given value.
 
 ### GetOsTemplateId
 
-`func (o *VMInstance) GetOsTemplateId() float32`
+`func (o *VMInstance) GetOsTemplateId() int64`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *VMInstance) GetOsTemplateIdOk() (*float32, bool)`
+`func (o *VMInstance) GetOsTemplateIdOk() (*int64, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *VMInstance) SetOsTemplateId(v float32)`
+`func (o *VMInstance) SetOsTemplateId(v int64)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 
@@ -299,80 +299,80 @@ SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 ### GetId
 
-`func (o *VMInstance) GetId() float32`
+`func (o *VMInstance) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VMInstance) GetIdOk() (*float32, bool)`
+`func (o *VMInstance) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VMInstance) SetId(v float32)`
+`func (o *VMInstance) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *VMInstance) GetRevision() float32`
+`func (o *VMInstance) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *VMInstance) GetRevisionOk() (*float32, bool)`
+`func (o *VMInstance) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *VMInstance) SetRevision(v float32)`
+`func (o *VMInstance) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetGroupId
 
-`func (o *VMInstance) GetGroupId() float32`
+`func (o *VMInstance) GetGroupId() int64`
 
 GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
 ### GetGroupIdOk
 
-`func (o *VMInstance) GetGroupIdOk() (*float32, bool)`
+`func (o *VMInstance) GetGroupIdOk() (*int64, bool)`
 
 GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupId
 
-`func (o *VMInstance) SetGroupId(v float32)`
+`func (o *VMInstance) SetGroupId(v int64)`
 
 SetGroupId sets GroupId field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *VMInstance) GetInfrastructureId() float32`
+`func (o *VMInstance) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *VMInstance) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *VMInstance) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *VMInstance) SetInfrastructureId(v float32)`
+`func (o *VMInstance) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -469,20 +469,20 @@ HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *VMInstance) GetDnsSubdomainId() float32`
+`func (o *VMInstance) GetDnsSubdomainId() int64`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *VMInstance) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *VMInstance) GetDnsSubdomainIdOk() (*int64, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *VMInstance) SetDnsSubdomainId(v float32)`
+`func (o *VMInstance) SetDnsSubdomainId(v int64)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
@@ -494,20 +494,20 @@ HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *VMInstance) GetDnsSubdomainPermanentId() float32`
+`func (o *VMInstance) GetDnsSubdomainPermanentId() int64`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *VMInstance) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+`func (o *VMInstance) GetDnsSubdomainPermanentIdOk() (*int64, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *VMInstance) SetDnsSubdomainPermanentId(v float32)`
+`func (o *VMInstance) SetDnsSubdomainPermanentId(v int64)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 

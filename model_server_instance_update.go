@@ -23,11 +23,11 @@ type ServerInstanceUpdate struct {
 	// The server instance label.
 	Label *string `json:"label,omitempty"`
 	// The server type ID.
-	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
+	ServerTypeId *int64 `json:"serverTypeId,omitempty"`
 	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \"instance\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
-	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Custom Storage Profile for the Instance.
 	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
@@ -86,9 +86,9 @@ func (o *ServerInstanceUpdate) SetLabel(v string) {
 }
 
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
-func (o *ServerInstanceUpdate) GetServerTypeId() int32 {
+func (o *ServerInstanceUpdate) GetServerTypeId() int64 {
 	if o == nil || IsNil(o.ServerTypeId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ServerTypeId
@@ -96,7 +96,7 @@ func (o *ServerInstanceUpdate) GetServerTypeId() int32 {
 
 // GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceUpdate) GetServerTypeIdOk() (*int32, bool) {
+func (o *ServerInstanceUpdate) GetServerTypeIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ServerTypeId) {
 		return nil, false
 	}
@@ -112,8 +112,8 @@ func (o *ServerInstanceUpdate) HasServerTypeId() bool {
 	return false
 }
 
-// SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
-func (o *ServerInstanceUpdate) SetServerTypeId(v int32) {
+// SetServerTypeId gets a reference to the given int64 and assigns it to the ServerTypeId field.
+func (o *ServerInstanceUpdate) SetServerTypeId(v int64) {
 	o.ServerTypeId = &v
 }
 
@@ -150,9 +150,9 @@ func (o *ServerInstanceUpdate) SetHostname(v string) {
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceUpdate) GetOsTemplateId() int32 {
+func (o *ServerInstanceUpdate) GetOsTemplateId() int64 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OsTemplateId
@@ -160,7 +160,7 @@ func (o *ServerInstanceUpdate) GetOsTemplateId() int32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceUpdate) GetOsTemplateIdOk() (*int32, bool) {
+func (o *ServerInstanceUpdate) GetOsTemplateIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -176,8 +176,8 @@ func (o *ServerInstanceUpdate) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
-func (o *ServerInstanceUpdate) SetOsTemplateId(v int32) {
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceUpdate) SetOsTemplateId(v int64) {
 	o.OsTemplateId = &v
 }
 

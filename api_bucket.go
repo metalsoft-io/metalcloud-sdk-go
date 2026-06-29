@@ -28,7 +28,7 @@ type BucketAPIService service
 type BucketAPICreateInfrastructureBucketRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	infrastructureId float32
+	infrastructureId int64
 	createBucket *CreateBucket
 }
 
@@ -51,7 +51,7 @@ Creates a Bucket
  @param infrastructureId
  @return BucketAPICreateInfrastructureBucketRequest
 */
-func (a *BucketAPIService) CreateInfrastructureBucket(ctx context.Context, infrastructureId float32) BucketAPICreateInfrastructureBucketRequest {
+func (a *BucketAPIService) CreateInfrastructureBucket(ctx context.Context, infrastructureId int64) BucketAPICreateInfrastructureBucketRequest {
 	return BucketAPICreateInfrastructureBucketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -143,8 +143,8 @@ func (a *BucketAPIService) CreateInfrastructureBucketExecute(r BucketAPICreateIn
 type BucketAPIDeleteBucketRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	infrastructureId float32
-	bucketId float32
+	infrastructureId int64
+	bucketId int64
 	ifMatch *string
 }
 
@@ -168,7 +168,7 @@ Deletes a Bucket
  @param bucketId
  @return BucketAPIDeleteBucketRequest
 */
-func (a *BucketAPIService) DeleteBucket(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIDeleteBucketRequest {
+func (a *BucketAPIService) DeleteBucket(ctx context.Context, infrastructureId int64, bucketId int64) BucketAPIDeleteBucketRequest {
 	return BucketAPIDeleteBucketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -249,7 +249,7 @@ func (a *BucketAPIService) DeleteBucketExecute(r BucketAPIDeleteBucketRequest) (
 type BucketAPIGetBucketRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	bucketId float32
+	bucketId int64
 }
 
 func (r BucketAPIGetBucketRequest) Execute() (*Bucket, *http.Response, error) {
@@ -265,7 +265,7 @@ Returns Bucket information
  @param bucketId
  @return BucketAPIGetBucketRequest
 */
-func (a *BucketAPIService) GetBucket(ctx context.Context, bucketId float32) BucketAPIGetBucketRequest {
+func (a *BucketAPIService) GetBucket(ctx context.Context, bucketId int64) BucketAPIGetBucketRequest {
 	return BucketAPIGetBucketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -352,8 +352,8 @@ func (a *BucketAPIService) GetBucketExecute(r BucketAPIGetBucketRequest) (*Bucke
 type BucketAPIGetBucketConfigInfoRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	infrastructureId float32
-	bucketId float32
+	infrastructureId int64
+	bucketId int64
 }
 
 func (r BucketAPIGetBucketConfigInfoRequest) Execute() (*BucketConfiguration, *http.Response, error) {
@@ -368,7 +368,7 @@ GetBucketConfigInfo Get configuration information about the specified Bucket
  @param bucketId
  @return BucketAPIGetBucketConfigInfoRequest
 */
-func (a *BucketAPIService) GetBucketConfigInfo(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIGetBucketConfigInfoRequest {
+func (a *BucketAPIService) GetBucketConfigInfo(ctx context.Context, infrastructureId int64, bucketId int64) BucketAPIGetBucketConfigInfoRequest {
 	return BucketAPIGetBucketConfigInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -458,7 +458,7 @@ type BucketAPIGetBucketCredentialsRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
 	infrastructureId float32
-	bucketId float32
+	bucketId int64
 }
 
 func (r BucketAPIGetBucketCredentialsRequest) Execute() (*BucketCredentials, *http.Response, error) {
@@ -475,7 +475,7 @@ Returns Bucket credentials
  @param bucketId
  @return BucketAPIGetBucketCredentialsRequest
 */
-func (a *BucketAPIService) GetBucketCredentials(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIGetBucketCredentialsRequest {
+func (a *BucketAPIService) GetBucketCredentials(ctx context.Context, infrastructureId float32, bucketId int64) BucketAPIGetBucketCredentialsRequest {
 	return BucketAPIGetBucketCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -564,8 +564,8 @@ func (a *BucketAPIService) GetBucketCredentialsExecute(r BucketAPIGetBucketCrede
 type BucketAPIGetInfrastructureBucketRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	infrastructureId float32
-	bucketId float32
+	infrastructureId int64
+	bucketId int64
 }
 
 func (r BucketAPIGetInfrastructureBucketRequest) Execute() (*Bucket, *http.Response, error) {
@@ -582,7 +582,7 @@ Returns Bucket information
  @param bucketId
  @return BucketAPIGetInfrastructureBucketRequest
 */
-func (a *BucketAPIService) GetInfrastructureBucket(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIGetInfrastructureBucketRequest {
+func (a *BucketAPIService) GetInfrastructureBucket(ctx context.Context, infrastructureId int64, bucketId int64) BucketAPIGetInfrastructureBucketRequest {
 	return BucketAPIGetInfrastructureBucketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -671,7 +671,7 @@ func (a *BucketAPIService) GetInfrastructureBucketExecute(r BucketAPIGetInfrastr
 type BucketAPIGetInfrastructureBucketsRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	infrastructureId float32
+	infrastructureId int64
 	page *float32
 	limit *float32
 	filterId *[]string
@@ -792,7 +792,7 @@ Returns list of all Buckets
  @param infrastructureId
  @return BucketAPIGetInfrastructureBucketsRequest
 */
-func (a *BucketAPIService) GetInfrastructureBuckets(ctx context.Context, infrastructureId float32) BucketAPIGetInfrastructureBucketsRequest {
+func (a *BucketAPIService) GetInfrastructureBuckets(ctx context.Context, infrastructureId int64) BucketAPIGetInfrastructureBucketsRequest {
 	return BucketAPIGetInfrastructureBucketsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1020,8 +1020,8 @@ func (a *BucketAPIService) GetInfrastructureBucketsExecute(r BucketAPIGetInfrast
 type BucketAPIUpdateBucketRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	infrastructureId float32
-	bucketId float32
+	infrastructureId int64
+	bucketId int64
 	updateBucket *UpdateBucket
 	ifMatch *string
 }
@@ -1052,7 +1052,7 @@ Updates Bucket information
  @param bucketId
  @return BucketAPIUpdateBucketRequest
 */
-func (a *BucketAPIService) UpdateBucket(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIUpdateBucketRequest {
+func (a *BucketAPIService) UpdateBucket(ctx context.Context, infrastructureId int64, bucketId int64) BucketAPIUpdateBucketRequest {
 	return BucketAPIUpdateBucketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1149,8 +1149,8 @@ func (a *BucketAPIService) UpdateBucketExecute(r BucketAPIUpdateBucketRequest) (
 type BucketAPIUpdateBucketMetaRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
-	infrastructureId float32
-	bucketId float32
+	infrastructureId int64
+	bucketId int64
 	updateBucketMeta *UpdateBucketMeta
 }
 
@@ -1171,7 +1171,7 @@ UpdateBucketMeta Updates the meta of a Bucket
  @param bucketId
  @return BucketAPIUpdateBucketMetaRequest
 */
-func (a *BucketAPIService) UpdateBucketMeta(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIUpdateBucketMetaRequest {
+func (a *BucketAPIService) UpdateBucketMeta(ctx context.Context, infrastructureId int64, bucketId int64) BucketAPIUpdateBucketMetaRequest {
 	return BucketAPIUpdateBucketMetaRequest{
 		ApiService: a,
 		ctx: ctx,

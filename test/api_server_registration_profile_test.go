@@ -38,7 +38,7 @@ func Test_sdk_ServerRegistrationProfileAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverRegistrationProfileId float32
+		var serverRegistrationProfileId int64
 
 		httpRes, err := apiClient.ServerRegistrationProfileAPI.DeleteServerRegistrationProfile(context.Background(), serverRegistrationProfileId).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_ServerRegistrationProfileAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverRegistrationProfileId float32
+		var serverRegistrationProfileId int64
 
 		resp, httpRes, err := apiClient.ServerRegistrationProfileAPI.GetServerRegistrationProfileInfo(context.Background(), serverRegistrationProfileId).Execute()
 
@@ -65,7 +65,7 @@ func Test_sdk_ServerRegistrationProfileAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverId float32
+		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerRegistrationProfileAPI.GetServerRegistrationProfileInfoForServer(context.Background(), serverId).Execute()
 
@@ -115,7 +115,7 @@ func Test_sdk_ServerRegistrationProfileAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serverRegistrationProfileId float32
+		var serverRegistrationProfileId int64
 
 		resp, httpRes, err := apiClient.ServerRegistrationProfileAPI.UpdateServerRegistrationProfile(context.Background(), serverRegistrationProfileId).Execute()
 

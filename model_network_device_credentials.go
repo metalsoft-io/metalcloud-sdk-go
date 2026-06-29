@@ -23,11 +23,17 @@ var _ MappedNullable = &NetworkDeviceCredentials{}
 type NetworkDeviceCredentials struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
+	// The SNMP password of the network device.
+	SnmpPassword *string `json:"snmpPassword,omitempty"`
 	Host string `json:"host"`
 	Port int32 `json:"port"`
 	Datacenter string `json:"datacenter"`
 	Driver string `json:"driver"`
 	Hostname string `json:"hostname"`
+	// The username to access the network device API, if different from the management username.
+	ApiUsername *string `json:"apiUsername,omitempty"`
+	// The password to access the network device API, if different from the management password.
+	ApiPassword *string `json:"apiPassword,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -103,6 +109,38 @@ func (o *NetworkDeviceCredentials) GetPasswordOk() (*string, bool) {
 // SetPassword sets field value
 func (o *NetworkDeviceCredentials) SetPassword(v string) {
 	o.Password = v
+}
+
+// GetSnmpPassword returns the SnmpPassword field value if set, zero value otherwise.
+func (o *NetworkDeviceCredentials) GetSnmpPassword() string {
+	if o == nil || IsNil(o.SnmpPassword) {
+		var ret string
+		return ret
+	}
+	return *o.SnmpPassword
+}
+
+// GetSnmpPasswordOk returns a tuple with the SnmpPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceCredentials) GetSnmpPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.SnmpPassword) {
+		return nil, false
+	}
+	return o.SnmpPassword, true
+}
+
+// HasSnmpPassword returns a boolean if a field has been set.
+func (o *NetworkDeviceCredentials) HasSnmpPassword() bool {
+	if o != nil && !IsNil(o.SnmpPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnmpPassword gets a reference to the given string and assigns it to the SnmpPassword field.
+func (o *NetworkDeviceCredentials) SetSnmpPassword(v string) {
+	o.SnmpPassword = &v
 }
 
 // GetHost returns the Host field value
@@ -225,6 +263,70 @@ func (o *NetworkDeviceCredentials) SetHostname(v string) {
 	o.Hostname = v
 }
 
+// GetApiUsername returns the ApiUsername field value if set, zero value otherwise.
+func (o *NetworkDeviceCredentials) GetApiUsername() string {
+	if o == nil || IsNil(o.ApiUsername) {
+		var ret string
+		return ret
+	}
+	return *o.ApiUsername
+}
+
+// GetApiUsernameOk returns a tuple with the ApiUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceCredentials) GetApiUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiUsername) {
+		return nil, false
+	}
+	return o.ApiUsername, true
+}
+
+// HasApiUsername returns a boolean if a field has been set.
+func (o *NetworkDeviceCredentials) HasApiUsername() bool {
+	if o != nil && !IsNil(o.ApiUsername) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiUsername gets a reference to the given string and assigns it to the ApiUsername field.
+func (o *NetworkDeviceCredentials) SetApiUsername(v string) {
+	o.ApiUsername = &v
+}
+
+// GetApiPassword returns the ApiPassword field value if set, zero value otherwise.
+func (o *NetworkDeviceCredentials) GetApiPassword() string {
+	if o == nil || IsNil(o.ApiPassword) {
+		var ret string
+		return ret
+	}
+	return *o.ApiPassword
+}
+
+// GetApiPasswordOk returns a tuple with the ApiPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceCredentials) GetApiPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiPassword) {
+		return nil, false
+	}
+	return o.ApiPassword, true
+}
+
+// HasApiPassword returns a boolean if a field has been set.
+func (o *NetworkDeviceCredentials) HasApiPassword() bool {
+	if o != nil && !IsNil(o.ApiPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiPassword gets a reference to the given string and assigns it to the ApiPassword field.
+func (o *NetworkDeviceCredentials) SetApiPassword(v string) {
+	o.ApiPassword = &v
+}
+
 func (o NetworkDeviceCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -237,11 +339,20 @@ func (o NetworkDeviceCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["username"] = o.Username
 	toSerialize["password"] = o.Password
+	if !IsNil(o.SnmpPassword) {
+		toSerialize["snmpPassword"] = o.SnmpPassword
+	}
 	toSerialize["host"] = o.Host
 	toSerialize["port"] = o.Port
 	toSerialize["datacenter"] = o.Datacenter
 	toSerialize["driver"] = o.Driver
 	toSerialize["hostname"] = o.Hostname
+	if !IsNil(o.ApiUsername) {
+		toSerialize["apiUsername"] = o.ApiUsername
+	}
+	if !IsNil(o.ApiPassword) {
+		toSerialize["apiPassword"] = o.ApiPassword
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -293,11 +404,14 @@ func (o *NetworkDeviceCredentials) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "snmpPassword")
 		delete(additionalProperties, "host")
 		delete(additionalProperties, "port")
 		delete(additionalProperties, "datacenter")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "apiUsername")
+		delete(additionalProperties, "apiPassword")
 		o.AdditionalProperties = additionalProperties
 	}
 

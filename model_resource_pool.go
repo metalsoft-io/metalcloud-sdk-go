@@ -22,7 +22,7 @@ var _ MappedNullable = &ResourcePool{}
 // ResourcePool struct for ResourcePool
 type ResourcePool struct {
 	// Resource Pool ID
-	ResourcePoolId float32 `json:"resourcePoolId"`
+	ResourcePoolId int64 `json:"resourcePoolId"`
 	// Label of the Resource Pool
 	ResourcePoolLabel string `json:"resourcePoolLabel"`
 	// Description of the Resource Pool
@@ -36,7 +36,7 @@ type _ResourcePool ResourcePool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourcePool(resourcePoolId float32, resourcePoolLabel string, resourcePoolDescription string) *ResourcePool {
+func NewResourcePool(resourcePoolId int64, resourcePoolLabel string, resourcePoolDescription string) *ResourcePool {
 	this := ResourcePool{}
 	this.ResourcePoolId = resourcePoolId
 	this.ResourcePoolLabel = resourcePoolLabel
@@ -53,9 +53,9 @@ func NewResourcePoolWithDefaults() *ResourcePool {
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value
-func (o *ResourcePool) GetResourcePoolId() float32 {
+func (o *ResourcePool) GetResourcePoolId() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *ResourcePool) GetResourcePoolId() float32 {
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value
 // and a boolean to check if the value has been set.
-func (o *ResourcePool) GetResourcePoolIdOk() (*float32, bool) {
+func (o *ResourcePool) GetResourcePoolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *ResourcePool) GetResourcePoolIdOk() (*float32, bool) {
 }
 
 // SetResourcePoolId sets field value
-func (o *ResourcePool) SetResourcePoolId(v float32) {
+func (o *ResourcePool) SetResourcePoolId(v int64) {
 	o.ResourcePoolId = v
 }
 

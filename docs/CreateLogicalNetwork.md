@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
-**FabricId** | **int32** |  | 
-**InfrastructureId** | Pointer to **NullableInt32** |  | [optional] 
+**FabricId** | **int64** |  | 
+**InfrastructureId** | Pointer to **NullableInt64** |  | [optional] 
 **ExternalId** | Pointer to **string** | External identifier for this logical network on the controller | [optional] 
 **Vlan** | Pointer to [**CreateLogicalNetworkVlanProperties**](CreateLogicalNetworkVlanProperties.md) |  | [optional] 
 **Vxlan** | Pointer to [**CreateLogicalNetworkVxlanProperties**](CreateLogicalNetworkVxlanProperties.md) |  | [optional] 
@@ -17,14 +17,15 @@ Name | Type | Description | Notes
 **Zone** | Pointer to [**CreateLogicalNetworkZoneProperties**](CreateLogicalNetworkZoneProperties.md) |  | [optional] 
 **Ipv4** | Pointer to [**CreateLogicalNetworkIpv4Properties**](CreateLogicalNetworkIpv4Properties.md) |  | [optional] 
 **Ipv6** | Pointer to [**CreateLogicalNetworkIpv6Properties**](CreateLogicalNetworkIpv6Properties.md) |  | [optional] 
-**RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
+**RouteDomainId** | Pointer to **NullableInt64** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
+**L3Only** | Pointer to **bool** | When true, this is a routed-access (L3-only) network: it carries no VLAN/VNI/shared subnet and connected hosts are addressed over their point-to-point links, with the switch-side interface placed in this network&#39;s route-domain VRF. Create-time only and immutable thereafter. VXLAN networks only. | [optional] [default to false]
 
 ## Methods
 
 ### NewCreateLogicalNetwork
 
-`func NewCreateLogicalNetwork(kind LogicalNetworkKind, fabricId int32, ) *CreateLogicalNetwork`
+`func NewCreateLogicalNetwork(kind LogicalNetworkKind, fabricId int64, ) *CreateLogicalNetwork`
 
 NewCreateLogicalNetwork instantiates a new CreateLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -136,40 +137,40 @@ SetKind sets Kind field to given value.
 
 ### GetFabricId
 
-`func (o *CreateLogicalNetwork) GetFabricId() int32`
+`func (o *CreateLogicalNetwork) GetFabricId() int64`
 
 GetFabricId returns the FabricId field if non-nil, zero value otherwise.
 
 ### GetFabricIdOk
 
-`func (o *CreateLogicalNetwork) GetFabricIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetwork) GetFabricIdOk() (*int64, bool)`
 
 GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricId
 
-`func (o *CreateLogicalNetwork) SetFabricId(v int32)`
+`func (o *CreateLogicalNetwork) SetFabricId(v int64)`
 
 SetFabricId sets FabricId field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *CreateLogicalNetwork) GetInfrastructureId() int32`
+`func (o *CreateLogicalNetwork) GetInfrastructureId() int64`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *CreateLogicalNetwork) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetwork) GetInfrastructureIdOk() (*int64, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *CreateLogicalNetwork) SetInfrastructureId(v int32)`
+`func (o *CreateLogicalNetwork) SetInfrastructureId(v int64)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
@@ -366,20 +367,20 @@ HasIpv6 returns a boolean if a field has been set.
 
 ### GetRouteDomainId
 
-`func (o *CreateLogicalNetwork) GetRouteDomainId() int32`
+`func (o *CreateLogicalNetwork) GetRouteDomainId() int64`
 
 GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
 
 ### GetRouteDomainIdOk
 
-`func (o *CreateLogicalNetwork) GetRouteDomainIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetwork) GetRouteDomainIdOk() (*int64, bool)`
 
 GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouteDomainId
 
-`func (o *CreateLogicalNetwork) SetRouteDomainId(v int32)`
+`func (o *CreateLogicalNetwork) SetRouteDomainId(v int64)`
 
 SetRouteDomainId sets RouteDomainId field to given value.
 
@@ -434,6 +435,31 @@ HasMtu returns a boolean if a field has been set.
 `func (o *CreateLogicalNetwork) UnsetMtu()`
 
 UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+### GetL3Only
+
+`func (o *CreateLogicalNetwork) GetL3Only() bool`
+
+GetL3Only returns the L3Only field if non-nil, zero value otherwise.
+
+### GetL3OnlyOk
+
+`func (o *CreateLogicalNetwork) GetL3OnlyOk() (*bool, bool)`
+
+GetL3OnlyOk returns a tuple with the L3Only field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL3Only
+
+`func (o *CreateLogicalNetwork) SetL3Only(v bool)`
+
+SetL3Only sets L3Only field to given value.
+
+### HasL3Only
+
+`func (o *CreateLogicalNetwork) HasL3Only() bool`
+
+HasL3Only returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

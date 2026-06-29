@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -27,7 +28,7 @@ type VMAPIService service
 type VMAPIGetVMRequest struct {
 	ctx context.Context
 	ApiService *VMAPIService
-	vmId float32
+	vmId int64
 }
 
 func (r VMAPIGetVMRequest) Execute() (*VM, *http.Response, error) {
@@ -43,7 +44,7 @@ Retrieves the VM information
  @param vmId
  @return VMAPIGetVMRequest
 */
-func (a *VMAPIService) GetVM(ctx context.Context, vmId float32) VMAPIGetVMRequest {
+func (a *VMAPIService) GetVM(ctx context.Context, vmId int64) VMAPIGetVMRequest {
 	return VMAPIGetVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -130,7 +131,7 @@ func (a *VMAPIService) GetVMExecute(r VMAPIGetVMRequest) (*VM, *http.Response, e
 type VMAPIGetVMPowerStatusRequest struct {
 	ctx context.Context
 	ApiService *VMAPIService
-	vmId float32
+	vmId int64
 }
 
 func (r VMAPIGetVMPowerStatusRequest) Execute() (string, *http.Response, error) {
@@ -146,7 +147,7 @@ Retrieves the power status of the VM
  @param vmId
  @return VMAPIGetVMPowerStatusRequest
 */
-func (a *VMAPIService) GetVMPowerStatus(ctx context.Context, vmId float32) VMAPIGetVMPowerStatusRequest {
+func (a *VMAPIService) GetVMPowerStatus(ctx context.Context, vmId int64) VMAPIGetVMPowerStatusRequest {
 	return VMAPIGetVMPowerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -233,7 +234,7 @@ func (a *VMAPIService) GetVMPowerStatusExecute(r VMAPIGetVMPowerStatusRequest) (
 type VMAPIGetVMRemoteConsoleInfoRequest struct {
 	ctx context.Context
 	ApiService *VMAPIService
-	vmId float32
+	vmId int64
 }
 
 func (r VMAPIGetVMRemoteConsoleInfoRequest) Execute() (*RemoteConsoleInfo, *http.Response, error) {
@@ -249,7 +250,7 @@ Returns Remote Console information
  @param vmId
  @return VMAPIGetVMRemoteConsoleInfoRequest
 */
-func (a *VMAPIService) GetVMRemoteConsoleInfo(ctx context.Context, vmId float32) VMAPIGetVMRemoteConsoleInfoRequest {
+func (a *VMAPIService) GetVMRemoteConsoleInfo(ctx context.Context, vmId int64) VMAPIGetVMRemoteConsoleInfoRequest {
 	return VMAPIGetVMRemoteConsoleInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -333,10 +334,373 @@ func (a *VMAPIService) GetVMRemoteConsoleInfoExecute(r VMAPIGetVMRemoteConsoleIn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMAPIGetVMsRequest struct {
+	ctx context.Context
+	ApiService *VMAPIService
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterSiteId *[]string
+	filterName *[]string
+	filterAddress *[]string
+	filterHost *[]string
+	filterHosts *[]string
+	filterTypeId *[]string
+	filterPoolId *[]string
+	filterAdministrationState *[]string
+	filterNumaNodes *[]string
+	filterInfrastructureId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r VMAPIGetVMsRequest) Page(page float32) VMAPIGetVMsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r VMAPIGetVMsRequest) Limit(limit float32) VMAPIGetVMsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterId(filterId []string) VMAPIGetVMsRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterSiteId(filterSiteId []string) VMAPIGetVMsRequest {
+	r.filterSiteId = &filterSiteId
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterName(filterName []string) VMAPIGetVMsRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by address query param.  **Format:** filter.address&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.address&#x3D;$btw:John Doe&amp;filter.address&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterAddress(filterAddress []string) VMAPIGetVMsRequest {
+	r.filterAddress = &filterAddress
+	return r
+}
+
+// Filter by host query param.  **Format:** filter.host&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.host&#x3D;$btw:John Doe&amp;filter.host&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterHost(filterHost []string) VMAPIGetVMsRequest {
+	r.filterHost = &filterHost
+	return r
+}
+
+// Filter by hosts query param.  **Format:** filter.hosts&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.hosts&#x3D;$btw:John Doe&amp;filter.hosts&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterHosts(filterHosts []string) VMAPIGetVMsRequest {
+	r.filterHosts = &filterHosts
+	return r
+}
+
+// Filter by typeId query param.  **Format:** filter.typeId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.typeId&#x3D;$btw:John Doe&amp;filter.typeId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterTypeId(filterTypeId []string) VMAPIGetVMsRequest {
+	r.filterTypeId = &filterTypeId
+	return r
+}
+
+// Filter by poolId query param.  **Format:** filter.poolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.poolId&#x3D;$btw:John Doe&amp;filter.poolId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterPoolId(filterPoolId []string) VMAPIGetVMsRequest {
+	r.filterPoolId = &filterPoolId
+	return r
+}
+
+// Filter by administrationState query param.  **Format:** filter.administrationState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.administrationState&#x3D;$btw:John Doe&amp;filter.administrationState&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterAdministrationState(filterAdministrationState []string) VMAPIGetVMsRequest {
+	r.filterAdministrationState = &filterAdministrationState
+	return r
+}
+
+// Filter by numaNodes query param.  **Format:** filter.numaNodes&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.numaNodes&#x3D;$btw:John Doe&amp;filter.numaNodes&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterNumaNodes(filterNumaNodes []string) VMAPIGetVMsRequest {
+	r.filterNumaNodes = &filterNumaNodes
+	return r
+}
+
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMAPIGetVMsRequest) FilterInfrastructureId(filterInfrastructureId []string) VMAPIGetVMsRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - host  - administrationState 
+func (r VMAPIGetVMsRequest) SortBy(sortBy []string) VMAPIGetVMsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r VMAPIGetVMsRequest) Search(search string) VMAPIGetVMsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,name,host,hosts,administrationState   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - host  - hosts  - administrationState 
+func (r VMAPIGetVMsRequest) SearchBy(searchBy []string) VMAPIGetVMsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r VMAPIGetVMsRequest) Execute() (*VMPaginatedList, *http.Response, error) {
+	return r.ApiService.GetVMsExecute(r)
+}
+
+/*
+GetVMs Get a list of VMs
+
+Returns a list of VMs
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return VMAPIGetVMsRequest
+*/
+func (a *VMAPIService) GetVMs(ctx context.Context) VMAPIGetVMsRequest {
+	return VMAPIGetVMsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return VMPaginatedList
+func (a *VMAPIService) GetVMsExecute(r VMAPIGetVMsRequest) (*VMPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMAPIService.GetVMs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vms"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterAddress != nil {
+		t := *r.filterAddress
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", t, "form", "multi")
+		}
+	}
+	if r.filterHost != nil {
+		t := *r.filterHost
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", t, "form", "multi")
+		}
+	}
+	if r.filterHosts != nil {
+		t := *r.filterHosts
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", t, "form", "multi")
+		}
+	}
+	if r.filterTypeId != nil {
+		t := *r.filterTypeId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", t, "form", "multi")
+		}
+	}
+	if r.filterPoolId != nil {
+		t := *r.filterPoolId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", t, "form", "multi")
+		}
+	}
+	if r.filterAdministrationState != nil {
+		t := *r.filterAdministrationState
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", t, "form", "multi")
+		}
+	}
+	if r.filterNumaNodes != nil {
+		t := *r.filterNumaNodes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMAPIRebootVMRequest struct {
 	ctx context.Context
 	ApiService *VMAPIService
-	vmId float32
+	vmId int64
 }
 
 func (r VMAPIRebootVMRequest) Execute() (*http.Response, error) {
@@ -352,7 +716,7 @@ Reboots the VM
  @param vmId
  @return VMAPIRebootVMRequest
 */
-func (a *VMAPIService) RebootVM(ctx context.Context, vmId float32) VMAPIRebootVMRequest {
+func (a *VMAPIService) RebootVM(ctx context.Context, vmId int64) VMAPIRebootVMRequest {
 	return VMAPIRebootVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -428,7 +792,7 @@ func (a *VMAPIService) RebootVMExecute(r VMAPIRebootVMRequest) (*http.Response, 
 type VMAPIShutdownVMRequest struct {
 	ctx context.Context
 	ApiService *VMAPIService
-	vmId float32
+	vmId int64
 }
 
 func (r VMAPIShutdownVMRequest) Execute() (*http.Response, error) {
@@ -444,7 +808,7 @@ Shuts down the VM
  @param vmId
  @return VMAPIShutdownVMRequest
 */
-func (a *VMAPIService) ShutdownVM(ctx context.Context, vmId float32) VMAPIShutdownVMRequest {
+func (a *VMAPIService) ShutdownVM(ctx context.Context, vmId int64) VMAPIShutdownVMRequest {
 	return VMAPIShutdownVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -520,7 +884,7 @@ func (a *VMAPIService) ShutdownVMExecute(r VMAPIShutdownVMRequest) (*http.Respon
 type VMAPIStartVMRequest struct {
 	ctx context.Context
 	ApiService *VMAPIService
-	vmId float32
+	vmId int64
 }
 
 func (r VMAPIStartVMRequest) Execute() (*http.Response, error) {
@@ -536,7 +900,7 @@ Starts the VM
  @param vmId
  @return VMAPIStartVMRequest
 */
-func (a *VMAPIService) StartVM(ctx context.Context, vmId float32) VMAPIStartVMRequest {
+func (a *VMAPIService) StartVM(ctx context.Context, vmId int64) VMAPIStartVMRequest {
 	return VMAPIStartVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -612,7 +976,7 @@ func (a *VMAPIService) StartVMExecute(r VMAPIStartVMRequest) (*http.Response, er
 type VMAPIUpdateVMRequest struct {
 	ctx context.Context
 	ApiService *VMAPIService
-	vmId float32
+	vmId int64
 	updateVM *UpdateVM
 }
 
@@ -635,7 +999,7 @@ Updates VM information
  @param vmId
  @return VMAPIUpdateVMRequest
 */
-func (a *VMAPIService) UpdateVM(ctx context.Context, vmId float32) VMAPIUpdateVMRequest {
+func (a *VMAPIService) UpdateVM(ctx context.Context, vmId int64) VMAPIUpdateVMRequest {
 	return VMAPIUpdateVMRequest{
 		ApiService: a,
 		ctx: ctx,

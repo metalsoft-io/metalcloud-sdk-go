@@ -22,9 +22,9 @@ var _ MappedNullable = &Site{}
 // Site struct for Site
 type Site struct {
 	// The site ID
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	// The site unique slug
 	Slug string `json:"slug"`
 	// The site name
@@ -36,7 +36,7 @@ type Site struct {
 	// True if the site is in maintenance mode
 	IsInMaintenance *bool `json:"isInMaintenance,omitempty"`
 	// ID of the site owner
-	OwnerId *int32 `json:"ownerId,omitempty"`
+	OwnerId *int64 `json:"ownerId,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -48,7 +48,7 @@ type _Site Site
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSite(id int32, revision float32, slug string, name string) *Site {
+func NewSite(id int64, revision int64, slug string, name string) *Site {
 	this := Site{}
 	this.Id = id
 	this.Revision = revision
@@ -66,9 +66,9 @@ func NewSiteWithDefaults() *Site {
 }
 
 // GetId returns the Id field value
-func (o *Site) GetId() int32 {
+func (o *Site) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -77,7 +77,7 @@ func (o *Site) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Site) GetIdOk() (*int32, bool) {
+func (o *Site) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,14 +85,14 @@ func (o *Site) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *Site) SetId(v int32) {
+func (o *Site) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Site) GetRevision() float32 {
+func (o *Site) GetRevision() int64 {
 	if o == nil {
-		var ret float32
+		var ret int64
 		return ret
 	}
 
@@ -101,7 +101,7 @@ func (o *Site) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Site) GetRevisionOk() (*float32, bool) {
+func (o *Site) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,7 +109,7 @@ func (o *Site) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Site) SetRevision(v float32) {
+func (o *Site) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -258,9 +258,9 @@ func (o *Site) SetIsInMaintenance(v bool) {
 }
 
 // GetOwnerId returns the OwnerId field value if set, zero value otherwise.
-func (o *Site) GetOwnerId() int32 {
+func (o *Site) GetOwnerId() int64 {
 	if o == nil || IsNil(o.OwnerId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OwnerId
@@ -268,7 +268,7 @@ func (o *Site) GetOwnerId() int32 {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Site) GetOwnerIdOk() (*int32, bool) {
+func (o *Site) GetOwnerIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.OwnerId) {
 		return nil, false
 	}
@@ -284,8 +284,8 @@ func (o *Site) HasOwnerId() bool {
 	return false
 }
 
-// SetOwnerId gets a reference to the given int32 and assigns it to the OwnerId field.
-func (o *Site) SetOwnerId(v int32) {
+// SetOwnerId gets a reference to the given int64 and assigns it to the OwnerId field.
+func (o *Site) SetOwnerId(v int64) {
 	o.OwnerId = &v
 }
 

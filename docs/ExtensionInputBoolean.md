@@ -7,17 +7,17 @@ Name | Type | Description | Notes
 **Label** | **string** | Label of the input. | 
 **Name** | **string** | Name of the input. | 
 **InputType** | [**ExtensionInputType**](ExtensionInputType.md) |  | 
-**SetOnly** | Pointer to **bool** | Flag to indicate if the input is required. | [optional] [default to false]
+**SetOnly** | Pointer to **bool** | Flag to indicate if the input can be set only during extension instance creation. | [optional] [default to false]
 **Hidden** | Pointer to **bool** | Flag to indicate if the input is hidden in the UI. | [optional] [default to false]
 **IsPassword** | Pointer to **bool** | Flag to indicate if the input is a password. Only to be used with string input type. | [optional] [default to false]
 **DefaultValue** | Pointer to [**ExtensionInputStringDefaultValue**](ExtensionInputStringDefaultValue.md) |  | [optional] 
-**Options** | [**ExtensionInputOptionBoolean**](ExtensionInputOptionBoolean.md) |  | 
+**Options** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewExtensionInputBoolean
 
-`func NewExtensionInputBoolean(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionBoolean, ) *ExtensionInputBoolean`
+`func NewExtensionInputBoolean(label string, name string, inputType ExtensionInputType, options map[string]interface{}, ) *ExtensionInputBoolean`
 
 NewExtensionInputBoolean instantiates a new ExtensionInputBoolean object
 This constructor will assign default values to properties that have it defined,
@@ -194,20 +194,20 @@ HasDefaultValue returns a boolean if a field has been set.
 
 ### GetOptions
 
-`func (o *ExtensionInputBoolean) GetOptions() ExtensionInputOptionBoolean`
+`func (o *ExtensionInputBoolean) GetOptions() map[string]interface{}`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *ExtensionInputBoolean) GetOptionsOk() (*ExtensionInputOptionBoolean, bool)`
+`func (o *ExtensionInputBoolean) GetOptionsOk() (*map[string]interface{}, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *ExtensionInputBoolean) SetOptions(v ExtensionInputOptionBoolean)`
+`func (o *ExtensionInputBoolean) SetOptions(v map[string]interface{})`
 
 SetOptions sets Options field to given value.
 

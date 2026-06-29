@@ -38,7 +38,7 @@ func Test_sdk_NetworkDeviceBGPInterconnectConfigurationTemplateAPIService(t *tes
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.NetworkDeviceBGPInterconnectConfigurationTemplateAPI.DeleteNetworkDeviceBGPInterconnectConfigurationTemplate(context.Background(), id).Execute()
 
@@ -51,7 +51,7 @@ func Test_sdk_NetworkDeviceBGPInterconnectConfigurationTemplateAPIService(t *tes
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceBGPInterconnectConfigurationTemplateAPI.GetNetworkDeviceBGPInterconnectConfigurationTemplate(context.Background(), id).Execute()
 
@@ -77,7 +77,7 @@ func Test_sdk_NetworkDeviceBGPInterconnectConfigurationTemplateAPIService(t *tes
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.NetworkDeviceBGPInterconnectConfigurationTemplateAPI.UpdateNetworkDeviceBGPInterconnectConfigurationTemplate(context.Background(), id).Execute()
 

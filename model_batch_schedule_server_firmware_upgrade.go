@@ -22,7 +22,7 @@ var _ MappedNullable = &BatchScheduleServerFirmwareUpgrade{}
 // BatchScheduleServerFirmwareUpgrade struct for BatchScheduleServerFirmwareUpgrade
 type BatchScheduleServerFirmwareUpgrade struct {
 	// The list of server ids to upgrade.
-	ServerIds []float32 `json:"serverIds"`
+	ServerIds []int64 `json:"serverIds"`
 	// The time when the firmware update is scheduled to run.
 	ScheduleUpdateTimestamp *string `json:"scheduleUpdateTimestamp,omitempty"`
 	// Flag to indicate if the firmware update requires confirmation.
@@ -36,7 +36,7 @@ type _BatchScheduleServerFirmwareUpgrade BatchScheduleServerFirmwareUpgrade
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBatchScheduleServerFirmwareUpgrade(serverIds []float32) *BatchScheduleServerFirmwareUpgrade {
+func NewBatchScheduleServerFirmwareUpgrade(serverIds []int64) *BatchScheduleServerFirmwareUpgrade {
 	this := BatchScheduleServerFirmwareUpgrade{}
 	this.ServerIds = serverIds
 	return &this
@@ -51,9 +51,9 @@ func NewBatchScheduleServerFirmwareUpgradeWithDefaults() *BatchScheduleServerFir
 }
 
 // GetServerIds returns the ServerIds field value
-func (o *BatchScheduleServerFirmwareUpgrade) GetServerIds() []float32 {
+func (o *BatchScheduleServerFirmwareUpgrade) GetServerIds() []int64 {
 	if o == nil {
-		var ret []float32
+		var ret []int64
 		return ret
 	}
 
@@ -62,7 +62,7 @@ func (o *BatchScheduleServerFirmwareUpgrade) GetServerIds() []float32 {
 
 // GetServerIdsOk returns a tuple with the ServerIds field value
 // and a boolean to check if the value has been set.
-func (o *BatchScheduleServerFirmwareUpgrade) GetServerIdsOk() ([]float32, bool) {
+func (o *BatchScheduleServerFirmwareUpgrade) GetServerIdsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *BatchScheduleServerFirmwareUpgrade) GetServerIdsOk() ([]float32, bool) 
 }
 
 // SetServerIds sets field value
-func (o *BatchScheduleServerFirmwareUpgrade) SetServerIds(v []float32) {
+func (o *BatchScheduleServerFirmwareUpgrade) SetServerIds(v []int64) {
 	o.ServerIds = v
 }
 

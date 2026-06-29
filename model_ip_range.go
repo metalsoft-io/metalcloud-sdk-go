@@ -22,17 +22,17 @@ var _ MappedNullable = &IpRange{}
 
 // IpRange struct for IpRange
 type IpRange struct {
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	Annotations map[string]string `json:"annotations"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Revision int32 `json:"revision"`
+	Revision int64 `json:"revision"`
 	Tags map[string]string `json:"tags"`
 	IpVersion IpVersion `json:"ipVersion"`
 	StartAddress string `json:"startAddress"`
 	EndAddress string `json:"endAddress"`
-	SubnetId int32 `json:"subnetId"`
+	SubnetId int64 `json:"subnetId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,7 +42,7 @@ type _IpRange IpRange
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIpRange(id int32, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, tags map[string]string, ipVersion IpVersion, startAddress string, endAddress string, subnetId int32) *IpRange {
+func NewIpRange(id int64, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int64, tags map[string]string, ipVersion IpVersion, startAddress string, endAddress string, subnetId int64) *IpRange {
 	this := IpRange{}
 	this.Id = id
 	this.Name = name
@@ -67,9 +67,9 @@ func NewIpRangeWithDefaults() *IpRange {
 }
 
 // GetId returns the Id field value
-func (o *IpRange) GetId() int32 {
+func (o *IpRange) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -78,7 +78,7 @@ func (o *IpRange) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *IpRange) GetIdOk() (*int32, bool) {
+func (o *IpRange) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,7 +86,7 @@ func (o *IpRange) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *IpRange) SetId(v int32) {
+func (o *IpRange) SetId(v int64) {
 	o.Id = v
 }
 
@@ -187,9 +187,9 @@ func (o *IpRange) SetUpdatedAt(v time.Time) {
 }
 
 // GetRevision returns the Revision field value
-func (o *IpRange) GetRevision() int32 {
+func (o *IpRange) GetRevision() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -198,7 +198,7 @@ func (o *IpRange) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *IpRange) GetRevisionOk() (*int32, bool) {
+func (o *IpRange) GetRevisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -206,7 +206,7 @@ func (o *IpRange) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *IpRange) SetRevision(v int32) {
+func (o *IpRange) SetRevision(v int64) {
 	o.Revision = v
 }
 
@@ -307,9 +307,9 @@ func (o *IpRange) SetEndAddress(v string) {
 }
 
 // GetSubnetId returns the SubnetId field value
-func (o *IpRange) GetSubnetId() int32 {
+func (o *IpRange) GetSubnetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -318,7 +318,7 @@ func (o *IpRange) GetSubnetId() int32 {
 
 // GetSubnetIdOk returns a tuple with the SubnetId field value
 // and a boolean to check if the value has been set.
-func (o *IpRange) GetSubnetIdOk() (*int32, bool) {
+func (o *IpRange) GetSubnetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -326,7 +326,7 @@ func (o *IpRange) GetSubnetIdOk() (*int32, bool) {
 }
 
 // SetSubnetId sets field value
-func (o *IpRange) SetSubnetId(v int32) {
+func (o *IpRange) SetSubnetId(v int64) {
 	o.SubnetId = v
 }
 

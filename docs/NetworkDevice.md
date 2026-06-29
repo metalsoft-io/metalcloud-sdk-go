@@ -5,10 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Unique identifier for the network device. | 
-**Revision** | **float32** | Revision number | 
+**Revision** | **int64** | Revision number | 
 **Status** | **string** | Current status of the network device | 
-**SiteId** | **float32** | Site ID | 
+**VendorId** | **int64** | Vendor ID of the network device | 
+**SiteId** | **int64** | Site ID | 
 **IdentifierString** | **string** | Hostname of the network device | 
+**ApplyIdentifierAsHostnameOnNextDeploy** | **bool** | One-shot: when true, the next fabric deploy pushes identifierString as the switch system hostname (Cumulus Linux only) and the flag is cleared again after the successful push. | [default to false]
 **Description** | **string** | Description of the network device | 
 **ChassisIdentifier** | **string** | Chassis identifier of the network device | 
 **Country** | **string** | Country of the network device | 
@@ -23,18 +25,25 @@ Name | Type | Description | Notes
 **ManagementAddressGateway** | **string** | Management gateway address | 
 **ManagementPort** | **float32** | Management port of the network device | 
 **SyslogEnabled** | **float32** | Is the network device syslog enabled | 
+**SnmpServiceEnabled** | **bool** | Is the network device SNMP service enabled | 
+**SnmpMonitoringEnabled** | **bool** | Is the network device SNMP monitoring enabled | 
 **Username** | **string** | Username used to connect to the network device | 
+**ApiUsername** | Pointer to **string** | The username to access the network device API, if different from the management username. | [optional] 
 **ManagementMacAddress** | **string** | MAC address of the management interface | 
 **SerialNumber** | **string** | Serial number of the network device | 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
-**Position** | [**SwitchPosition**](SwitchPosition.md) | The physical or logical position of the network device in the network topology. | 
-**ServerId** | Pointer to **float32** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
+**Position** | **string** | The physical or logical position of the network device in the network topology. | 
+**DriftDetectionSyncStatus** | **string** | Whether the network device is in sync with the expected configuration. | 
+**DriftDetectionTargetSnapshotId** | Pointer to **string** | ID of the snapshot used as a target for drift detection. | [optional] 
+**ConfigurationDrift** | Pointer to **string** | The configuration drift for the network device.  | [optional] 
+**ServerId** | Pointer to **int64** | ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU | [optional] 
 **NumaNode** | Pointer to **float32** | NUMA node of the network device for optimal resource allocation | [optional] 
 **OrderIndex** | **float32** | Order index of the network device | 
 **Tags** | **[]string** | Tags associated with the network device for categorization and filtering | 
+**TagsMap** | **map[string]string** | Key/value tags (key-map). The forthcoming replacement for the legacy string[] &#x60;tags&#x60;; both are populated independently for now. Edited on this object via PATCH (a null value deletes a key) — same mechanism as annotations. | 
 **ReadyForInitialConfiguration** | **float32** | Whether the device is ready for initial configuration | 
 **BootstrapReadinessCheckInProgress** | **float32** | Whether bootstrap readiness check is in progress | 
-**SubnetOobId** | **float32** | Subnet ID for OOB management | 
+**SubnetOobId** | **int64** | Subnet ID for OOB management | 
 **SubnetOobIndex** | **float32** | Subnet OOB index | 
 **RequiresOsInstall** | **bool** | Whether the device requires OS installation | 
 **BootstrapExpectedPartnerHostname** | **string** | Expected partner hostname during bootstrap | 
@@ -45,17 +54,24 @@ Name | Type | Description | Notes
 **VtepAddressIpv6** | **string** | VTEP IPv6 address | 
 **ExternalVtepAddressIpv4** | Pointer to **string** | External VTEP IPv4 address | [optional] 
 **MlagSystemMac** | **string** | MLAG system MAC address | 
-**MlagDomainId** | **float32** | MLAG domain ID | 
+**MlagDomainId** | **int64** | MLAG domain ID | 
 **QuarantineVlan** | **float32** | Quarantine VLAN ID | 
 **VariablesMaterializedForOSAssets** | **map[string]interface{}** | Variables materialized for OS assets | 
 **SecretsMaterializedForOSAssets** | **map[string]interface{}** | Secrets materialized for OS assets | 
 **BootstrapReadinessCheckResult** | **map[string]interface{}** | Bootstrap readiness check result | 
 **IsGateway** | **bool** | Whether the network device is a gateway | 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the network device. | [optional] 
-**VmPoolId** | Pointer to **float32** | ID of the VM pool associated with the network device. | [optional] 
-**SwitchControllerId** | Pointer to **float32** | ID of the network device controller if any. | [optional] 
+**OngoingJobGroups** | Pointer to [**[]ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The ongoing job groups of the network device. | [optional] 
+**VmPoolId** | Pointer to **int64** | ID of the VM pool associated with the network device. | [optional] 
+**SwitchControllerId** | Pointer to **int64** | ID of the network device controller if any. | [optional] 
 **ExternalId** | Pointer to **string** | External ID of the network device. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the network device | [optional] 
+**SnmpPort** | Pointer to **float32** | SNMP port of the network device | [optional] 
+**SnmpSystemContact** | Pointer to **string** | SNMP system contact for the network device | [optional] 
+**SnmpVersion** | Pointer to **float32** | SNMP version used by the network device | [optional] 
+**HealthStatus** | Pointer to [**NullableNetworkDeviceHealthStatus**](NetworkDeviceHealthStatus.md) | Health status of the network device | [optional] 
+**HealthDetails** | Pointer to **map[string]interface{}** | Detailed health check results of the network device | [optional] 
+**HealthLastCheckedTimestamp** | Pointer to **NullableTime** | Timestamp of the last health check | [optional] 
 **AuthenticationOptions** | Pointer to [**[]NetworkDeviceAuthOption**](NetworkDeviceAuthOption.md) | Ordered list of authentication options. Credentials are resolved from the first active entry. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -63,7 +79,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, applyIdentifierAsHostnameOnNextDeploy bool, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, driftDetectionSyncStatus string, orderIndex float32, tags []string, tagsMap map[string]string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -100,20 +116,20 @@ SetId sets Id field to given value.
 
 ### GetRevision
 
-`func (o *NetworkDevice) GetRevision() float32`
+`func (o *NetworkDevice) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *NetworkDevice) GetRevisionOk() (*float32, bool)`
+`func (o *NetworkDevice) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *NetworkDevice) SetRevision(v float32)`
+`func (o *NetworkDevice) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 
@@ -138,22 +154,42 @@ and a boolean to check if the value has been set.
 SetStatus sets Status field to given value.
 
 
+### GetVendorId
+
+`func (o *NetworkDevice) GetVendorId() int64`
+
+GetVendorId returns the VendorId field if non-nil, zero value otherwise.
+
+### GetVendorIdOk
+
+`func (o *NetworkDevice) GetVendorIdOk() (*int64, bool)`
+
+GetVendorIdOk returns a tuple with the VendorId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVendorId
+
+`func (o *NetworkDevice) SetVendorId(v int64)`
+
+SetVendorId sets VendorId field to given value.
+
+
 ### GetSiteId
 
-`func (o *NetworkDevice) GetSiteId() float32`
+`func (o *NetworkDevice) GetSiteId() int64`
 
 GetSiteId returns the SiteId field if non-nil, zero value otherwise.
 
 ### GetSiteIdOk
 
-`func (o *NetworkDevice) GetSiteIdOk() (*float32, bool)`
+`func (o *NetworkDevice) GetSiteIdOk() (*int64, bool)`
 
 GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSiteId
 
-`func (o *NetworkDevice) SetSiteId(v float32)`
+`func (o *NetworkDevice) SetSiteId(v int64)`
 
 SetSiteId sets SiteId field to given value.
 
@@ -176,6 +212,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDevice) SetIdentifierString(v string)`
 
 SetIdentifierString sets IdentifierString field to given value.
+
+
+### GetApplyIdentifierAsHostnameOnNextDeploy
+
+`func (o *NetworkDevice) GetApplyIdentifierAsHostnameOnNextDeploy() bool`
+
+GetApplyIdentifierAsHostnameOnNextDeploy returns the ApplyIdentifierAsHostnameOnNextDeploy field if non-nil, zero value otherwise.
+
+### GetApplyIdentifierAsHostnameOnNextDeployOk
+
+`func (o *NetworkDevice) GetApplyIdentifierAsHostnameOnNextDeployOk() (*bool, bool)`
+
+GetApplyIdentifierAsHostnameOnNextDeployOk returns a tuple with the ApplyIdentifierAsHostnameOnNextDeploy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplyIdentifierAsHostnameOnNextDeploy
+
+`func (o *NetworkDevice) SetApplyIdentifierAsHostnameOnNextDeploy(v bool)`
+
+SetApplyIdentifierAsHostnameOnNextDeploy sets ApplyIdentifierAsHostnameOnNextDeploy field to given value.
 
 
 ### GetDescription
@@ -458,6 +514,46 @@ and a boolean to check if the value has been set.
 SetSyslogEnabled sets SyslogEnabled field to given value.
 
 
+### GetSnmpServiceEnabled
+
+`func (o *NetworkDevice) GetSnmpServiceEnabled() bool`
+
+GetSnmpServiceEnabled returns the SnmpServiceEnabled field if non-nil, zero value otherwise.
+
+### GetSnmpServiceEnabledOk
+
+`func (o *NetworkDevice) GetSnmpServiceEnabledOk() (*bool, bool)`
+
+GetSnmpServiceEnabledOk returns a tuple with the SnmpServiceEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpServiceEnabled
+
+`func (o *NetworkDevice) SetSnmpServiceEnabled(v bool)`
+
+SetSnmpServiceEnabled sets SnmpServiceEnabled field to given value.
+
+
+### GetSnmpMonitoringEnabled
+
+`func (o *NetworkDevice) GetSnmpMonitoringEnabled() bool`
+
+GetSnmpMonitoringEnabled returns the SnmpMonitoringEnabled field if non-nil, zero value otherwise.
+
+### GetSnmpMonitoringEnabledOk
+
+`func (o *NetworkDevice) GetSnmpMonitoringEnabledOk() (*bool, bool)`
+
+GetSnmpMonitoringEnabledOk returns a tuple with the SnmpMonitoringEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpMonitoringEnabled
+
+`func (o *NetworkDevice) SetSnmpMonitoringEnabled(v bool)`
+
+SetSnmpMonitoringEnabled sets SnmpMonitoringEnabled field to given value.
+
+
 ### GetUsername
 
 `func (o *NetworkDevice) GetUsername() string`
@@ -477,6 +573,31 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+
+### GetApiUsername
+
+`func (o *NetworkDevice) GetApiUsername() string`
+
+GetApiUsername returns the ApiUsername field if non-nil, zero value otherwise.
+
+### GetApiUsernameOk
+
+`func (o *NetworkDevice) GetApiUsernameOk() (*string, bool)`
+
+GetApiUsernameOk returns a tuple with the ApiUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiUsername
+
+`func (o *NetworkDevice) SetApiUsername(v string)`
+
+SetApiUsername sets ApiUsername field to given value.
+
+### HasApiUsername
+
+`func (o *NetworkDevice) HasApiUsername() bool`
+
+HasApiUsername returns a boolean if a field has been set.
 
 ### GetManagementMacAddress
 
@@ -540,40 +661,110 @@ SetDriver sets Driver field to given value.
 
 ### GetPosition
 
-`func (o *NetworkDevice) GetPosition() SwitchPosition`
+`func (o *NetworkDevice) GetPosition() string`
 
 GetPosition returns the Position field if non-nil, zero value otherwise.
 
 ### GetPositionOk
 
-`func (o *NetworkDevice) GetPositionOk() (*SwitchPosition, bool)`
+`func (o *NetworkDevice) GetPositionOk() (*string, bool)`
 
 GetPositionOk returns a tuple with the Position field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPosition
 
-`func (o *NetworkDevice) SetPosition(v SwitchPosition)`
+`func (o *NetworkDevice) SetPosition(v string)`
 
 SetPosition sets Position field to given value.
 
 
+### GetDriftDetectionSyncStatus
+
+`func (o *NetworkDevice) GetDriftDetectionSyncStatus() string`
+
+GetDriftDetectionSyncStatus returns the DriftDetectionSyncStatus field if non-nil, zero value otherwise.
+
+### GetDriftDetectionSyncStatusOk
+
+`func (o *NetworkDevice) GetDriftDetectionSyncStatusOk() (*string, bool)`
+
+GetDriftDetectionSyncStatusOk returns a tuple with the DriftDetectionSyncStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionSyncStatus
+
+`func (o *NetworkDevice) SetDriftDetectionSyncStatus(v string)`
+
+SetDriftDetectionSyncStatus sets DriftDetectionSyncStatus field to given value.
+
+
+### GetDriftDetectionTargetSnapshotId
+
+`func (o *NetworkDevice) GetDriftDetectionTargetSnapshotId() string`
+
+GetDriftDetectionTargetSnapshotId returns the DriftDetectionTargetSnapshotId field if non-nil, zero value otherwise.
+
+### GetDriftDetectionTargetSnapshotIdOk
+
+`func (o *NetworkDevice) GetDriftDetectionTargetSnapshotIdOk() (*string, bool)`
+
+GetDriftDetectionTargetSnapshotIdOk returns a tuple with the DriftDetectionTargetSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionTargetSnapshotId
+
+`func (o *NetworkDevice) SetDriftDetectionTargetSnapshotId(v string)`
+
+SetDriftDetectionTargetSnapshotId sets DriftDetectionTargetSnapshotId field to given value.
+
+### HasDriftDetectionTargetSnapshotId
+
+`func (o *NetworkDevice) HasDriftDetectionTargetSnapshotId() bool`
+
+HasDriftDetectionTargetSnapshotId returns a boolean if a field has been set.
+
+### GetConfigurationDrift
+
+`func (o *NetworkDevice) GetConfigurationDrift() string`
+
+GetConfigurationDrift returns the ConfigurationDrift field if non-nil, zero value otherwise.
+
+### GetConfigurationDriftOk
+
+`func (o *NetworkDevice) GetConfigurationDriftOk() (*string, bool)`
+
+GetConfigurationDriftOk returns a tuple with the ConfigurationDrift field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfigurationDrift
+
+`func (o *NetworkDevice) SetConfigurationDrift(v string)`
+
+SetConfigurationDrift sets ConfigurationDrift field to given value.
+
+### HasConfigurationDrift
+
+`func (o *NetworkDevice) HasConfigurationDrift() bool`
+
+HasConfigurationDrift returns a boolean if a field has been set.
+
 ### GetServerId
 
-`func (o *NetworkDevice) GetServerId() float32`
+`func (o *NetworkDevice) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *NetworkDevice) GetServerIdOk() (*float32, bool)`
+`func (o *NetworkDevice) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *NetworkDevice) SetServerId(v float32)`
+`func (o *NetworkDevice) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -658,6 +849,26 @@ SetTags sets Tags field to given value.
 `func (o *NetworkDevice) UnsetTags()`
 
 UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetTagsMap
+
+`func (o *NetworkDevice) GetTagsMap() map[string]string`
+
+GetTagsMap returns the TagsMap field if non-nil, zero value otherwise.
+
+### GetTagsMapOk
+
+`func (o *NetworkDevice) GetTagsMapOk() (*map[string]string, bool)`
+
+GetTagsMapOk returns a tuple with the TagsMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTagsMap
+
+`func (o *NetworkDevice) SetTagsMap(v map[string]string)`
+
+SetTagsMap sets TagsMap field to given value.
+
+
 ### GetReadyForInitialConfiguration
 
 `func (o *NetworkDevice) GetReadyForInitialConfiguration() float32`
@@ -700,20 +911,20 @@ SetBootstrapReadinessCheckInProgress sets BootstrapReadinessCheckInProgress fiel
 
 ### GetSubnetOobId
 
-`func (o *NetworkDevice) GetSubnetOobId() float32`
+`func (o *NetworkDevice) GetSubnetOobId() int64`
 
 GetSubnetOobId returns the SubnetOobId field if non-nil, zero value otherwise.
 
 ### GetSubnetOobIdOk
 
-`func (o *NetworkDevice) GetSubnetOobIdOk() (*float32, bool)`
+`func (o *NetworkDevice) GetSubnetOobIdOk() (*int64, bool)`
 
 GetSubnetOobIdOk returns a tuple with the SubnetOobId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubnetOobId
 
-`func (o *NetworkDevice) SetSubnetOobId(v float32)`
+`func (o *NetworkDevice) SetSubnetOobId(v int64)`
 
 SetSubnetOobId sets SubnetOobId field to given value.
 
@@ -935,20 +1146,20 @@ SetMlagSystemMac sets MlagSystemMac field to given value.
 
 ### GetMlagDomainId
 
-`func (o *NetworkDevice) GetMlagDomainId() float32`
+`func (o *NetworkDevice) GetMlagDomainId() int64`
 
 GetMlagDomainId returns the MlagDomainId field if non-nil, zero value otherwise.
 
 ### GetMlagDomainIdOk
 
-`func (o *NetworkDevice) GetMlagDomainIdOk() (*float32, bool)`
+`func (o *NetworkDevice) GetMlagDomainIdOk() (*int64, bool)`
 
 GetMlagDomainIdOk returns a tuple with the MlagDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagDomainId
 
-`func (o *NetworkDevice) SetMlagDomainId(v float32)`
+`func (o *NetworkDevice) SetMlagDomainId(v int64)`
 
 SetMlagDomainId sets MlagDomainId field to given value.
 
@@ -1078,22 +1289,47 @@ SetExtensionInfo sets ExtensionInfo field to given value.
 
 HasExtensionInfo returns a boolean if a field has been set.
 
+### GetOngoingJobGroups
+
+`func (o *NetworkDevice) GetOngoingJobGroups() []ExtensionExecutionInfo`
+
+GetOngoingJobGroups returns the OngoingJobGroups field if non-nil, zero value otherwise.
+
+### GetOngoingJobGroupsOk
+
+`func (o *NetworkDevice) GetOngoingJobGroupsOk() (*[]ExtensionExecutionInfo, bool)`
+
+GetOngoingJobGroupsOk returns a tuple with the OngoingJobGroups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOngoingJobGroups
+
+`func (o *NetworkDevice) SetOngoingJobGroups(v []ExtensionExecutionInfo)`
+
+SetOngoingJobGroups sets OngoingJobGroups field to given value.
+
+### HasOngoingJobGroups
+
+`func (o *NetworkDevice) HasOngoingJobGroups() bool`
+
+HasOngoingJobGroups returns a boolean if a field has been set.
+
 ### GetVmPoolId
 
-`func (o *NetworkDevice) GetVmPoolId() float32`
+`func (o *NetworkDevice) GetVmPoolId() int64`
 
 GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
 
 ### GetVmPoolIdOk
 
-`func (o *NetworkDevice) GetVmPoolIdOk() (*float32, bool)`
+`func (o *NetworkDevice) GetVmPoolIdOk() (*int64, bool)`
 
 GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmPoolId
 
-`func (o *NetworkDevice) SetVmPoolId(v float32)`
+`func (o *NetworkDevice) SetVmPoolId(v int64)`
 
 SetVmPoolId sets VmPoolId field to given value.
 
@@ -1105,20 +1341,20 @@ HasVmPoolId returns a boolean if a field has been set.
 
 ### GetSwitchControllerId
 
-`func (o *NetworkDevice) GetSwitchControllerId() float32`
+`func (o *NetworkDevice) GetSwitchControllerId() int64`
 
 GetSwitchControllerId returns the SwitchControllerId field if non-nil, zero value otherwise.
 
 ### GetSwitchControllerIdOk
 
-`func (o *NetworkDevice) GetSwitchControllerIdOk() (*float32, bool)`
+`func (o *NetworkDevice) GetSwitchControllerIdOk() (*int64, bool)`
 
 GetSwitchControllerIdOk returns a tuple with the SwitchControllerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSwitchControllerId
 
-`func (o *NetworkDevice) SetSwitchControllerId(v float32)`
+`func (o *NetworkDevice) SetSwitchControllerId(v int64)`
 
 SetSwitchControllerId sets SwitchControllerId field to given value.
 
@@ -1178,6 +1414,186 @@ SetCustomVariables sets CustomVariables field to given value.
 
 HasCustomVariables returns a boolean if a field has been set.
 
+### GetSnmpPort
+
+`func (o *NetworkDevice) GetSnmpPort() float32`
+
+GetSnmpPort returns the SnmpPort field if non-nil, zero value otherwise.
+
+### GetSnmpPortOk
+
+`func (o *NetworkDevice) GetSnmpPortOk() (*float32, bool)`
+
+GetSnmpPortOk returns a tuple with the SnmpPort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpPort
+
+`func (o *NetworkDevice) SetSnmpPort(v float32)`
+
+SetSnmpPort sets SnmpPort field to given value.
+
+### HasSnmpPort
+
+`func (o *NetworkDevice) HasSnmpPort() bool`
+
+HasSnmpPort returns a boolean if a field has been set.
+
+### GetSnmpSystemContact
+
+`func (o *NetworkDevice) GetSnmpSystemContact() string`
+
+GetSnmpSystemContact returns the SnmpSystemContact field if non-nil, zero value otherwise.
+
+### GetSnmpSystemContactOk
+
+`func (o *NetworkDevice) GetSnmpSystemContactOk() (*string, bool)`
+
+GetSnmpSystemContactOk returns a tuple with the SnmpSystemContact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpSystemContact
+
+`func (o *NetworkDevice) SetSnmpSystemContact(v string)`
+
+SetSnmpSystemContact sets SnmpSystemContact field to given value.
+
+### HasSnmpSystemContact
+
+`func (o *NetworkDevice) HasSnmpSystemContact() bool`
+
+HasSnmpSystemContact returns a boolean if a field has been set.
+
+### GetSnmpVersion
+
+`func (o *NetworkDevice) GetSnmpVersion() float32`
+
+GetSnmpVersion returns the SnmpVersion field if non-nil, zero value otherwise.
+
+### GetSnmpVersionOk
+
+`func (o *NetworkDevice) GetSnmpVersionOk() (*float32, bool)`
+
+GetSnmpVersionOk returns a tuple with the SnmpVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnmpVersion
+
+`func (o *NetworkDevice) SetSnmpVersion(v float32)`
+
+SetSnmpVersion sets SnmpVersion field to given value.
+
+### HasSnmpVersion
+
+`func (o *NetworkDevice) HasSnmpVersion() bool`
+
+HasSnmpVersion returns a boolean if a field has been set.
+
+### GetHealthStatus
+
+`func (o *NetworkDevice) GetHealthStatus() NetworkDeviceHealthStatus`
+
+GetHealthStatus returns the HealthStatus field if non-nil, zero value otherwise.
+
+### GetHealthStatusOk
+
+`func (o *NetworkDevice) GetHealthStatusOk() (*NetworkDeviceHealthStatus, bool)`
+
+GetHealthStatusOk returns a tuple with the HealthStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthStatus
+
+`func (o *NetworkDevice) SetHealthStatus(v NetworkDeviceHealthStatus)`
+
+SetHealthStatus sets HealthStatus field to given value.
+
+### HasHealthStatus
+
+`func (o *NetworkDevice) HasHealthStatus() bool`
+
+HasHealthStatus returns a boolean if a field has been set.
+
+### SetHealthStatusNil
+
+`func (o *NetworkDevice) SetHealthStatusNil(b bool)`
+
+ SetHealthStatusNil sets the value for HealthStatus to be an explicit nil
+
+### UnsetHealthStatus
+`func (o *NetworkDevice) UnsetHealthStatus()`
+
+UnsetHealthStatus ensures that no value is present for HealthStatus, not even an explicit nil
+### GetHealthDetails
+
+`func (o *NetworkDevice) GetHealthDetails() map[string]interface{}`
+
+GetHealthDetails returns the HealthDetails field if non-nil, zero value otherwise.
+
+### GetHealthDetailsOk
+
+`func (o *NetworkDevice) GetHealthDetailsOk() (*map[string]interface{}, bool)`
+
+GetHealthDetailsOk returns a tuple with the HealthDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthDetails
+
+`func (o *NetworkDevice) SetHealthDetails(v map[string]interface{})`
+
+SetHealthDetails sets HealthDetails field to given value.
+
+### HasHealthDetails
+
+`func (o *NetworkDevice) HasHealthDetails() bool`
+
+HasHealthDetails returns a boolean if a field has been set.
+
+### SetHealthDetailsNil
+
+`func (o *NetworkDevice) SetHealthDetailsNil(b bool)`
+
+ SetHealthDetailsNil sets the value for HealthDetails to be an explicit nil
+
+### UnsetHealthDetails
+`func (o *NetworkDevice) UnsetHealthDetails()`
+
+UnsetHealthDetails ensures that no value is present for HealthDetails, not even an explicit nil
+### GetHealthLastCheckedTimestamp
+
+`func (o *NetworkDevice) GetHealthLastCheckedTimestamp() time.Time`
+
+GetHealthLastCheckedTimestamp returns the HealthLastCheckedTimestamp field if non-nil, zero value otherwise.
+
+### GetHealthLastCheckedTimestampOk
+
+`func (o *NetworkDevice) GetHealthLastCheckedTimestampOk() (*time.Time, bool)`
+
+GetHealthLastCheckedTimestampOk returns a tuple with the HealthLastCheckedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthLastCheckedTimestamp
+
+`func (o *NetworkDevice) SetHealthLastCheckedTimestamp(v time.Time)`
+
+SetHealthLastCheckedTimestamp sets HealthLastCheckedTimestamp field to given value.
+
+### HasHealthLastCheckedTimestamp
+
+`func (o *NetworkDevice) HasHealthLastCheckedTimestamp() bool`
+
+HasHealthLastCheckedTimestamp returns a boolean if a field has been set.
+
+### SetHealthLastCheckedTimestampNil
+
+`func (o *NetworkDevice) SetHealthLastCheckedTimestampNil(b bool)`
+
+ SetHealthLastCheckedTimestampNil sets the value for HealthLastCheckedTimestamp to be an explicit nil
+
+### UnsetHealthLastCheckedTimestamp
+`func (o *NetworkDevice) UnsetHealthLastCheckedTimestamp()`
+
+UnsetHealthLastCheckedTimestamp ensures that no value is present for HealthLastCheckedTimestamp, not even an explicit nil
 ### GetAuthenticationOptions
 
 `func (o *NetworkDevice) GetAuthenticationOptions() []NetworkDeviceAuthOption`

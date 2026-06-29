@@ -6,16 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AggregationType** | **string** | The type of link aggregation | 
 **MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain | [optional] 
-**LocalSwitchId** | **float32** | The ID of the local switch. | 
+**LocalSwitchId** | **int64** | The ID of the local switch. | 
 **LocalSwitchIdentifier** | **string** | The identifier of the local switch. | 
 **LocalSwitchRole** | **string** | The role of the local switch. | 
 **LocalSwitchInterfaceName** | **string** | The name of the local switch interface. | 
-**LocalSwitchInterfaceLagId** | **float32** | The LAG ID of the local switch interface. | 
-**RemoteSwitchId** | **float32** | The ID of the remote switch. | 
+**LocalSwitchInterfaceLagId** | **int64** | The LAG ID of the local switch interface. | 
+**LocalSwitchLoopbackAddressIpv4** | Pointer to **string** | The local switch loopback IPv4 address. | [optional] 
+**RemoteSwitchId** | **int64** | The ID of the remote switch. | 
 **RemoteSwitchIdentifier** | **string** | The identifier of the remote switch. | 
 **RemoteSwitchRole** | **string** | The role of the remote switch. | 
 **RemoteSwitchInterfaceName** | **string** | The name of the remote switch interface. | 
-**RemoteSwitchInterfaceLagId** | **float32** | The LAG ID of the remote switch interface. | 
+**RemoteSwitchInterfaceLagId** | **int64** | The LAG ID of the remote switch interface. | 
+**RemoteSwitchLoopbackAddressIpv4** | Pointer to **string** | The remote switch loopback IPv4 address. | [optional] 
 **FabricCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the fabric. | [optional] 
 **LinkCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the link. | [optional] 
 **LocalSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the local switch. | [optional] 
@@ -25,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet
 
-`func NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(aggregationType string, localSwitchId float32, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, localSwitchInterfaceLagId float32, remoteSwitchId float32, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, remoteSwitchInterfaceLagId float32, ) *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet`
+`func NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(aggregationType string, localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, localSwitchInterfaceLagId int64, remoteSwitchId int64, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, remoteSwitchInterfaceLagId int64, ) *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet`
 
 NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet instantiates a new NetworkDeviceLinkAggregationConfigurationTemplateRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -87,20 +89,20 @@ HasMlagDomainIdentifier returns a boolean if a field has been set.
 
 ### GetLocalSwitchId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchId() float32`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchId() int64`
 
 GetLocalSwitchId returns the LocalSwitchId field if non-nil, zero value otherwise.
 
 ### GetLocalSwitchIdOk
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*float32, bool)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchIdOk() (*int64, bool)`
 
 GetLocalSwitchIdOk returns a tuple with the LocalSwitchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalSwitchId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLocalSwitchId(v float32)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLocalSwitchId(v int64)`
 
 SetLocalSwitchId sets LocalSwitchId field to given value.
 
@@ -167,40 +169,65 @@ SetLocalSwitchInterfaceName sets LocalSwitchInterfaceName field to given value.
 
 ### GetLocalSwitchInterfaceLagId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagId() float32`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagId() int64`
 
 GetLocalSwitchInterfaceLagId returns the LocalSwitchInterfaceLagId field if non-nil, zero value otherwise.
 
 ### GetLocalSwitchInterfaceLagIdOk
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagIdOk() (*float32, bool)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchInterfaceLagIdOk() (*int64, bool)`
 
 GetLocalSwitchInterfaceLagIdOk returns a tuple with the LocalSwitchInterfaceLagId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalSwitchInterfaceLagId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLocalSwitchInterfaceLagId(v float32)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLocalSwitchInterfaceLagId(v int64)`
 
 SetLocalSwitchInterfaceLagId sets LocalSwitchInterfaceLagId field to given value.
 
 
+### GetLocalSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchLoopbackAddressIpv4() string`
+
+GetLocalSwitchLoopbackAddressIpv4 returns the LocalSwitchLoopbackAddressIpv4 field if non-nil, zero value otherwise.
+
+### GetLocalSwitchLoopbackAddressIpv4Ok
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLocalSwitchLoopbackAddressIpv4Ok() (*string, bool)`
+
+GetLocalSwitchLoopbackAddressIpv4Ok returns a tuple with the LocalSwitchLoopbackAddressIpv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLocalSwitchLoopbackAddressIpv4(v string)`
+
+SetLocalSwitchLoopbackAddressIpv4 sets LocalSwitchLoopbackAddressIpv4 field to given value.
+
+### HasLocalSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasLocalSwitchLoopbackAddressIpv4() bool`
+
+HasLocalSwitchLoopbackAddressIpv4 returns a boolean if a field has been set.
+
 ### GetRemoteSwitchId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchId() float32`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchId() int64`
 
 GetRemoteSwitchId returns the RemoteSwitchId field if non-nil, zero value otherwise.
 
 ### GetRemoteSwitchIdOk
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*float32, bool)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*int64, bool)`
 
 GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteSwitchId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchId(v float32)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchId(v int64)`
 
 SetRemoteSwitchId sets RemoteSwitchId field to given value.
 
@@ -267,23 +294,48 @@ SetRemoteSwitchInterfaceName sets RemoteSwitchInterfaceName field to given value
 
 ### GetRemoteSwitchInterfaceLagId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagId() float32`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagId() int64`
 
 GetRemoteSwitchInterfaceLagId returns the RemoteSwitchInterfaceLagId field if non-nil, zero value otherwise.
 
 ### GetRemoteSwitchInterfaceLagIdOk
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagIdOk() (*float32, bool)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagIdOk() (*int64, bool)`
 
 GetRemoteSwitchInterfaceLagIdOk returns a tuple with the RemoteSwitchInterfaceLagId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRemoteSwitchInterfaceLagId
 
-`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceLagId(v float32)`
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceLagId(v int64)`
 
 SetRemoteSwitchInterfaceLagId sets RemoteSwitchInterfaceLagId field to given value.
 
+
+### GetRemoteSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchLoopbackAddressIpv4() string`
+
+GetRemoteSwitchLoopbackAddressIpv4 returns the RemoteSwitchLoopbackAddressIpv4 field if non-nil, zero value otherwise.
+
+### GetRemoteSwitchLoopbackAddressIpv4Ok
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchLoopbackAddressIpv4Ok() (*string, bool)`
+
+GetRemoteSwitchLoopbackAddressIpv4Ok returns a tuple with the RemoteSwitchLoopbackAddressIpv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchLoopbackAddressIpv4(v string)`
+
+SetRemoteSwitchLoopbackAddressIpv4 sets RemoteSwitchLoopbackAddressIpv4 field to given value.
+
+### HasRemoteSwitchLoopbackAddressIpv4
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchLoopbackAddressIpv4() bool`
+
+HasRemoteSwitchLoopbackAddressIpv4 returns a boolean if a field has been set.
 
 ### GetFabricCustomVariables
 

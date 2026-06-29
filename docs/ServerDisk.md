@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The id of the disk. | 
-**ServerId** | **float32** | The id of the server. | 
+**Id** | **int64** | The id of the disk. | 
+**ServerId** | **int64** | The id of the server. | 
 **Model** | **string** | The model of the disk | 
 **DiskSizeGb** | **float32** | The size of the disk in GB | 
 **Serial** | **string** | The serial number of the disk | 
 **Vendor** | **string** | The vendor of the disk | 
 **Status** | **string** | The status of the disk | 
 **Type** | **string** | The type of the disk | 
-**ServerStorageControllerId** | Pointer to **float32** | The id of the storage controller | [optional] 
+**ServerStorageControllerId** | Pointer to **int64** | The id of the storage controller | [optional] 
 
 ## Methods
 
 ### NewServerDisk
 
-`func NewServerDisk(id float32, serverId float32, model string, diskSizeGb float32, serial string, vendor string, status string, type_ string, ) *ServerDisk`
+`func NewServerDisk(id int64, serverId int64, model string, diskSizeGb float32, serial string, vendor string, status string, type_ string, ) *ServerDisk`
 
 NewServerDisk instantiates a new ServerDisk object
 This constructor will assign default values to properties that have it defined,
@@ -35,40 +35,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ServerDisk) GetId() float32`
+`func (o *ServerDisk) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ServerDisk) GetIdOk() (*float32, bool)`
+`func (o *ServerDisk) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ServerDisk) SetId(v float32)`
+`func (o *ServerDisk) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetServerId
 
-`func (o *ServerDisk) GetServerId() float32`
+`func (o *ServerDisk) GetServerId() int64`
 
 GetServerId returns the ServerId field if non-nil, zero value otherwise.
 
 ### GetServerIdOk
 
-`func (o *ServerDisk) GetServerIdOk() (*float32, bool)`
+`func (o *ServerDisk) GetServerIdOk() (*int64, bool)`
 
 GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerId
 
-`func (o *ServerDisk) SetServerId(v float32)`
+`func (o *ServerDisk) SetServerId(v int64)`
 
 SetServerId sets ServerId field to given value.
 
@@ -195,20 +195,20 @@ SetType sets Type field to given value.
 
 ### GetServerStorageControllerId
 
-`func (o *ServerDisk) GetServerStorageControllerId() float32`
+`func (o *ServerDisk) GetServerStorageControllerId() int64`
 
 GetServerStorageControllerId returns the ServerStorageControllerId field if non-nil, zero value otherwise.
 
 ### GetServerStorageControllerIdOk
 
-`func (o *ServerDisk) GetServerStorageControllerIdOk() (*float32, bool)`
+`func (o *ServerDisk) GetServerStorageControllerIdOk() (*int64, bool)`
 
 GetServerStorageControllerIdOk returns a tuple with the ServerStorageControllerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerStorageControllerId
 
-`func (o *ServerDisk) SetServerStorageControllerId(v float32)`
+`func (o *ServerDisk) SetServerStorageControllerId(v int64)`
 
 SetServerStorageControllerId sets ServerStorageControllerId field to given value.
 

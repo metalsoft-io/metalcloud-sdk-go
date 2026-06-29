@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultServerRegistrationProfileId** | Pointer to **float32** | ID of the default server registration profile | [optional] 
+**DefaultServerRegistrationProfileId** | Pointer to **int64** | ID of the default server registration profile | [optional] 
 **DhcpOption82ToIPMapping** | **map[string]interface{}** | Option82 to IP mapping | 
 **DhcpBmcMacAddressWhitelistEnabled** | **bool** | Whether to enable DHCP BMC MAC address whitelist | 
 **DhcpBmcMacAddressWhitelist** | **[]string** | List of DHCP BMC MAC address whitelist | 
-**DefaultServerCleanupPolicyID** | Pointer to **float32** | Default server cleanup policy ID | [optional] 
+**DefaultServerCleanupPolicyID** | Pointer to **int64** | Default server cleanup policy ID | [optional] 
 **AutomaticallyAllocateServerTypes** | **bool** | Automatically allocate server types | 
 **AutomaticallySetServersAsAvailable** | **bool** | Automatically set servers as available | 
 
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDefaultServerRegistrationProfileId
 
-`func (o *ServerPolicy) GetDefaultServerRegistrationProfileId() float32`
+`func (o *ServerPolicy) GetDefaultServerRegistrationProfileId() int64`
 
 GetDefaultServerRegistrationProfileId returns the DefaultServerRegistrationProfileId field if non-nil, zero value otherwise.
 
 ### GetDefaultServerRegistrationProfileIdOk
 
-`func (o *ServerPolicy) GetDefaultServerRegistrationProfileIdOk() (*float32, bool)`
+`func (o *ServerPolicy) GetDefaultServerRegistrationProfileIdOk() (*int64, bool)`
 
 GetDefaultServerRegistrationProfileIdOk returns a tuple with the DefaultServerRegistrationProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultServerRegistrationProfileId
 
-`func (o *ServerPolicy) SetDefaultServerRegistrationProfileId(v float32)`
+`func (o *ServerPolicy) SetDefaultServerRegistrationProfileId(v int64)`
 
 SetDefaultServerRegistrationProfileId sets DefaultServerRegistrationProfileId field to given value.
 
@@ -118,20 +118,20 @@ SetDhcpBmcMacAddressWhitelist sets DhcpBmcMacAddressWhitelist field to given val
 
 ### GetDefaultServerCleanupPolicyID
 
-`func (o *ServerPolicy) GetDefaultServerCleanupPolicyID() float32`
+`func (o *ServerPolicy) GetDefaultServerCleanupPolicyID() int64`
 
 GetDefaultServerCleanupPolicyID returns the DefaultServerCleanupPolicyID field if non-nil, zero value otherwise.
 
 ### GetDefaultServerCleanupPolicyIDOk
 
-`func (o *ServerPolicy) GetDefaultServerCleanupPolicyIDOk() (*float32, bool)`
+`func (o *ServerPolicy) GetDefaultServerCleanupPolicyIDOk() (*int64, bool)`
 
 GetDefaultServerCleanupPolicyIDOk returns a tuple with the DefaultServerCleanupPolicyID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultServerCleanupPolicyID
 
-`func (o *ServerPolicy) SetDefaultServerCleanupPolicyID(v float32)`
+`func (o *ServerPolicy) SetDefaultServerCleanupPolicyID(v int64)`
 
 SetDefaultServerCleanupPolicyID sets DefaultServerCleanupPolicyID field to given value.
 

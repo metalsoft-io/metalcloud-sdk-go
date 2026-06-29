@@ -23,7 +23,7 @@ type UpdateEndpointInterface struct {
 	// Device interface mac address
 	MacAddress *string `json:"macAddress,omitempty"`
 	// Network device interface id
-	NetworkDeviceInterfaceId *float32 `json:"networkDeviceInterfaceId,omitempty"`
+	NetworkDeviceInterfaceId *int64 `json:"networkDeviceInterfaceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,9 +79,9 @@ func (o *UpdateEndpointInterface) SetMacAddress(v string) {
 }
 
 // GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value if set, zero value otherwise.
-func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceId() float32 {
+func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceId() int64 {
 	if o == nil || IsNil(o.NetworkDeviceInterfaceId) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.NetworkDeviceInterfaceId
@@ -89,7 +89,7 @@ func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceId() float32 {
 
 // GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.NetworkDeviceInterfaceId) {
 		return nil, false
 	}
@@ -105,8 +105,8 @@ func (o *UpdateEndpointInterface) HasNetworkDeviceInterfaceId() bool {
 	return false
 }
 
-// SetNetworkDeviceInterfaceId gets a reference to the given float32 and assigns it to the NetworkDeviceInterfaceId field.
-func (o *UpdateEndpointInterface) SetNetworkDeviceInterfaceId(v float32) {
+// SetNetworkDeviceInterfaceId gets a reference to the given int64 and assigns it to the NetworkDeviceInterfaceId field.
+func (o *UpdateEndpointInterface) SetNetworkDeviceInterfaceId(v int64) {
 	o.NetworkDeviceInterfaceId = &v
 }
 

@@ -4,15 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdminPasswordRevealPermissions** | Pointer to [**AdminPasswordRevealPermissions**](AdminPasswordRevealPermissions.md) | Admin password reveal permissions | [optional] 
-**SpecialPermissions** | Pointer to [**SpecialPermissions**](SpecialPermissions.md) | Special permissions | [optional] 
-**RolePermissions** | **[]string** | Role permissions | 
+**Permissions** | [**[]MetalsoftPermissions**](MetalsoftPermissions.md) | List of permissions of the logged in user | 
 
 ## Methods
 
 ### NewUserPermissions
 
-`func NewUserPermissions(rolePermissions []string, ) *UserPermissions`
+`func NewUserPermissions(permissions []MetalsoftPermissions, ) *UserPermissions`
 
 NewUserPermissions instantiates a new UserPermissions object
 This constructor will assign default values to properties that have it defined,
@@ -27,74 +25,24 @@ NewUserPermissionsWithDefaults instantiates a new UserPermissions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAdminPasswordRevealPermissions
+### GetPermissions
 
-`func (o *UserPermissions) GetAdminPasswordRevealPermissions() AdminPasswordRevealPermissions`
+`func (o *UserPermissions) GetPermissions() []MetalsoftPermissions`
 
-GetAdminPasswordRevealPermissions returns the AdminPasswordRevealPermissions field if non-nil, zero value otherwise.
+GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
-### GetAdminPasswordRevealPermissionsOk
+### GetPermissionsOk
 
-`func (o *UserPermissions) GetAdminPasswordRevealPermissionsOk() (*AdminPasswordRevealPermissions, bool)`
+`func (o *UserPermissions) GetPermissionsOk() (*[]MetalsoftPermissions, bool)`
 
-GetAdminPasswordRevealPermissionsOk returns a tuple with the AdminPasswordRevealPermissions field if it's non-nil, zero value otherwise
+GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAdminPasswordRevealPermissions
+### SetPermissions
 
-`func (o *UserPermissions) SetAdminPasswordRevealPermissions(v AdminPasswordRevealPermissions)`
+`func (o *UserPermissions) SetPermissions(v []MetalsoftPermissions)`
 
-SetAdminPasswordRevealPermissions sets AdminPasswordRevealPermissions field to given value.
-
-### HasAdminPasswordRevealPermissions
-
-`func (o *UserPermissions) HasAdminPasswordRevealPermissions() bool`
-
-HasAdminPasswordRevealPermissions returns a boolean if a field has been set.
-
-### GetSpecialPermissions
-
-`func (o *UserPermissions) GetSpecialPermissions() SpecialPermissions`
-
-GetSpecialPermissions returns the SpecialPermissions field if non-nil, zero value otherwise.
-
-### GetSpecialPermissionsOk
-
-`func (o *UserPermissions) GetSpecialPermissionsOk() (*SpecialPermissions, bool)`
-
-GetSpecialPermissionsOk returns a tuple with the SpecialPermissions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSpecialPermissions
-
-`func (o *UserPermissions) SetSpecialPermissions(v SpecialPermissions)`
-
-SetSpecialPermissions sets SpecialPermissions field to given value.
-
-### HasSpecialPermissions
-
-`func (o *UserPermissions) HasSpecialPermissions() bool`
-
-HasSpecialPermissions returns a boolean if a field has been set.
-
-### GetRolePermissions
-
-`func (o *UserPermissions) GetRolePermissions() []string`
-
-GetRolePermissions returns the RolePermissions field if non-nil, zero value otherwise.
-
-### GetRolePermissionsOk
-
-`func (o *UserPermissions) GetRolePermissionsOk() (*[]string, bool)`
-
-GetRolePermissionsOk returns a tuple with the RolePermissions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRolePermissions
-
-`func (o *UserPermissions) SetRolePermissions(v []string)`
-
-SetRolePermissions sets RolePermissions field to given value.
+SetPermissions sets Permissions field to given value.
 
 
 

@@ -38,7 +38,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.CreateRouteDomainConfigL3VlanAllocationStrategy(context.Background(), id).Execute()
 
@@ -52,7 +52,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.CreateRouteDomainConfigVniAllocationStrategy(context.Background(), id).Execute()
 
@@ -66,7 +66,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.CreateRouteDomainConfigVrfAllocationStrategy(context.Background(), id).Execute()
 
@@ -80,7 +80,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		httpRes, err := apiClient.RouteDomainAPI.DeleteRouteDomain(context.Background(), id).Execute()
 
@@ -93,8 +93,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.RouteDomainAPI.DeleteRouteDomainConfigL3VlanAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -107,8 +107,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.RouteDomainAPI.DeleteRouteDomainConfigL3VniAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -121,8 +121,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		httpRes, err := apiClient.RouteDomainAPI.DeleteRouteDomainConfigVrfAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -135,7 +135,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomain(context.Background(), id).Execute()
 
@@ -149,7 +149,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomainConfig(context.Background(), id).Execute()
 
@@ -163,7 +163,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomainConfigL3VlanAllocationStrategies(context.Background(), id).Execute()
 
@@ -177,8 +177,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomainConfigL3VlanAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -192,7 +192,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomainConfigL3VniAllocationStrategies(context.Background(), id).Execute()
 
@@ -206,8 +206,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomainConfigL3VniAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -221,7 +221,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomainConfigVrfAllocationStrategies(context.Background(), id).Execute()
 
@@ -235,8 +235,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.GetRouteDomainConfigVrfAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -262,8 +262,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.ReplaceRouteDomainConfigL3VlanAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -277,8 +277,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.ReplaceRouteDomainConfigL3VniAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -292,8 +292,8 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
-		var allocationStrategyId float32
+		var id int64
+		var allocationStrategyId int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.ReplaceRouteDomainConfigVrfAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
 
@@ -307,7 +307,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.UpdateRouteDomain(context.Background(), id).Execute()
 
@@ -321,7 +321,7 @@ func Test_sdk_RouteDomainAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id float32
+		var id int64
 
 		resp, httpRes, err := apiClient.RouteDomainAPI.UpdateRouteDomainConfig(context.Background(), id).Execute()
 

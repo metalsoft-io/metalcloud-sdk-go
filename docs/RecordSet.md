@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **VmPoolNetworkRecordSet** | Pointer to [**VMPoolNetworkRecordSet**](VMPoolNetworkRecordSet.md) | The VM pool network record set. | [optional] 
 **ServerDNSRecordSet** | Pointer to [**ServerDNSRecordSet**](ServerDNSRecordSet.md) | The server DNS record set. | [optional] 
 **SwitchDNSRecordSet** | Pointer to [**SwitchDNSRecordSet**](SwitchDNSRecordSet.md) | The switch DNS record set. | [optional] 
+**SwitchVRFRecordSet** | Pointer to **map[string]interface{}** | The switch VRF record set. | [optional] 
 
 ## Methods
 
@@ -413,6 +414,31 @@ SetSwitchDNSRecordSet sets SwitchDNSRecordSet field to given value.
 `func (o *RecordSet) HasSwitchDNSRecordSet() bool`
 
 HasSwitchDNSRecordSet returns a boolean if a field has been set.
+
+### GetSwitchVRFRecordSet
+
+`func (o *RecordSet) GetSwitchVRFRecordSet() map[string]interface{}`
+
+GetSwitchVRFRecordSet returns the SwitchVRFRecordSet field if non-nil, zero value otherwise.
+
+### GetSwitchVRFRecordSetOk
+
+`func (o *RecordSet) GetSwitchVRFRecordSetOk() (*map[string]interface{}, bool)`
+
+GetSwitchVRFRecordSetOk returns a tuple with the SwitchVRFRecordSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchVRFRecordSet
+
+`func (o *RecordSet) SetSwitchVRFRecordSet(v map[string]interface{})`
+
+SetSwitchVRFRecordSet sets SwitchVRFRecordSet field to given value.
+
+### HasSwitchVRFRecordSet
+
+`func (o *RecordSet) HasSwitchVRFRecordSet() bool`
+
+HasSwitchVRFRecordSet returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
