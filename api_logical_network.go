@@ -2288,7 +2288,7 @@ func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) Fi
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - createdAt  - updatedAt 
 func (r LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest) SortBy(sortBy []string) LogicalNetworkAPIGetLogicalNetworkAttachedExternalConnectionsRequest {
 	r.sortBy = &sortBy
 	return r

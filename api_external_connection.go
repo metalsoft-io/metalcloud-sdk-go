@@ -873,9 +873,12 @@ type ExternalConnectionAPIGetExternalConnectionInterfacesRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterNetworkDeviceInterfaceId *[]string
 	filterCreatedAt *[]string
 	filterUpdatedAt *[]string
 	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
 // Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
@@ -896,6 +899,12 @@ func (r ExternalConnectionAPIGetExternalConnectionInterfacesRequest) FilterId(fi
 	return r
 }
 
+// Filter by networkDeviceInterfaceId query param.  **Format:** filter.networkDeviceInterfaceId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkDeviceInterfaceId&#x3D;$btw:John Doe&amp;filter.networkDeviceInterfaceId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r ExternalConnectionAPIGetExternalConnectionInterfacesRequest) FilterNetworkDeviceInterfaceId(filterNetworkDeviceInterfaceId []string) ExternalConnectionAPIGetExternalConnectionInterfacesRequest {
+	r.filterNetworkDeviceInterfaceId = &filterNetworkDeviceInterfaceId
+	return r
+}
+
 // Filter by createdAt query param.  **Format:** filter.createdAt&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdAt&#x3D;$btw:John Doe&amp;filter.createdAt&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ExternalConnectionAPIGetExternalConnectionInterfacesRequest) FilterCreatedAt(filterCreatedAt []string) ExternalConnectionAPIGetExternalConnectionInterfacesRequest {
 	r.filterCreatedAt = &filterCreatedAt
@@ -908,9 +917,21 @@ func (r ExternalConnectionAPIGetExternalConnectionInterfacesRequest) FilterUpdat
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;networkDeviceInterfaceId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - networkDeviceInterfaceId  - networkDeviceInterfaceName  - createdAt  - updatedAt 
 func (r ExternalConnectionAPIGetExternalConnectionInterfacesRequest) SortBy(sortBy []string) ExternalConnectionAPIGetExternalConnectionInterfacesRequest {
 	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r ExternalConnectionAPIGetExternalConnectionInterfacesRequest) Search(search string) ExternalConnectionAPIGetExternalConnectionInterfacesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,networkDeviceInterfaceId,networkDeviceInterfaceName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - networkDeviceInterfaceId  - networkDeviceInterfaceName 
+func (r ExternalConnectionAPIGetExternalConnectionInterfacesRequest) SearchBy(searchBy []string) ExternalConnectionAPIGetExternalConnectionInterfacesRequest {
+	r.searchBy = &searchBy
 	return r
 }
 
@@ -974,6 +995,17 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionInterfacesExecute(r 
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
+	if r.filterNetworkDeviceInterfaceId != nil {
+		t := *r.filterNetworkDeviceInterfaceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceInterfaceId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceInterfaceId", t, "form", "multi")
+		}
+	}
 	if r.filterCreatedAt != nil {
 		t := *r.filterCreatedAt
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1005,6 +1037,20 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionInterfacesExecute(r 
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1406,6 +1452,8 @@ type ExternalConnectionAPIGetExternalConnectionsRequest struct {
 	limit *float32
 	filterId *[]string
 	filterFabricId *[]string
+	filterName *[]string
+	filterLabel *[]string
 	filterCreatedAt *[]string
 	filterUpdatedAt *[]string
 	sortBy *[]string
@@ -1425,15 +1473,27 @@ func (r ExternalConnectionAPIGetExternalConnectionsRequest) Limit(limit float32)
 	return r
 }
 
-// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterId(filterId []string) ExternalConnectionAPIGetExternalConnectionsRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+// Filter by fabricId query param.  **Format:** filter.fabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.fabricId&#x3D;$btw:John Doe&amp;filter.fabricId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterFabricId(filterFabricId []string) ExternalConnectionAPIGetExternalConnectionsRequest {
 	r.filterFabricId = &filterFabricId
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterName(filterName []string) ExternalConnectionAPIGetExternalConnectionsRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$btw:John Doe&amp;filter.label&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterLabel(filterLabel []string) ExternalConnectionAPIGetExternalConnectionsRequest {
+	r.filterLabel = &filterLabel
 	return r
 }
 
@@ -1449,7 +1509,7 @@ func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterUpdatedAt(filt
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:DESC   **Default Value:** id:DESC  **Available Fields** - id  - createdAt  - updatedAt 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - createdAt  - updatedAt 
 func (r ExternalConnectionAPIGetExternalConnectionsRequest) SortBy(sortBy []string) ExternalConnectionAPIGetExternalConnectionsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1461,7 +1521,7 @@ func (r ExternalConnectionAPIGetExternalConnectionsRequest) Search(search string
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - name  - label 
+// List of fields to search by term to filter result values  **Example:** id,fabricId,name,label   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - fabricId  - name  - label 
 func (r ExternalConnectionAPIGetExternalConnectionsRequest) SearchBy(searchBy []string) ExternalConnectionAPIGetExternalConnectionsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1533,6 +1593,28 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionsExecute(r ExternalC
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricId", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
 		}
 	}
 	if r.filterCreatedAt != nil {
