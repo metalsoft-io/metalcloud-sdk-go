@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserEmail** | **string** | The email of the user | 
-**CreateIfNotExists** | **bool** | Create a new user if the user does not exist | [default to false]
+**UserEmail** | Pointer to **string** | The email of the user. Exactly one of userEmail or userId must be provided. | [optional] 
+**UserId** | Pointer to **int64** | The id of the user. Exactly one of userEmail or userId must be provided. Use userId to reference users without a valid email address (e.g. LDAP users). | [optional] 
+**CreateIfNotExists** | **bool** | Create a new user if the user does not exist. Only allowed when userEmail is provided. | [default to false]
 
 ## Methods
 
 ### NewAddUserToInfrastructure
 
-`func NewAddUserToInfrastructure(userEmail string, createIfNotExists bool, ) *AddUserToInfrastructure`
+`func NewAddUserToInfrastructure(createIfNotExists bool, ) *AddUserToInfrastructure`
 
 NewAddUserToInfrastructure instantiates a new AddUserToInfrastructure object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +46,36 @@ and a boolean to check if the value has been set.
 
 SetUserEmail sets UserEmail field to given value.
 
+### HasUserEmail
+
+`func (o *AddUserToInfrastructure) HasUserEmail() bool`
+
+HasUserEmail returns a boolean if a field has been set.
+
+### GetUserId
+
+`func (o *AddUserToInfrastructure) GetUserId() int64`
+
+GetUserId returns the UserId field if non-nil, zero value otherwise.
+
+### GetUserIdOk
+
+`func (o *AddUserToInfrastructure) GetUserIdOk() (*int64, bool)`
+
+GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserId
+
+`func (o *AddUserToInfrastructure) SetUserId(v int64)`
+
+SetUserId sets UserId field to given value.
+
+### HasUserId
+
+`func (o *AddUserToInfrastructure) HasUserId() bool`
+
+HasUserId returns a boolean if a field has been set.
 
 ### GetCreateIfNotExists
 

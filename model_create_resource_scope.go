@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateResourceScope{}
 // CreateResourceScope struct for CreateResourceScope
 type CreateResourceScope struct {
 	Kind ResourceScopeKind `json:"kind"`
-	ResourceId int64 `json:"resourceId"`
+	ResourceId NullableInt64 `json:"resourceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,10 +32,9 @@ type _CreateResourceScope CreateResourceScope
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateResourceScope(kind ResourceScopeKind, resourceId int64) *CreateResourceScope {
+func NewCreateResourceScope(kind ResourceScopeKind) *CreateResourceScope {
 	this := CreateResourceScope{}
 	this.Kind = kind
-	this.ResourceId = resourceId
 	return &this
 }
 
@@ -71,28 +70,46 @@ func (o *CreateResourceScope) SetKind(v ResourceScopeKind) {
 	o.Kind = v
 }
 
-// GetResourceId returns the ResourceId field value
+// GetResourceId returns the ResourceId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateResourceScope) GetResourceId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceId.Get()) {
 		var ret int64
 		return ret
 	}
-
-	return o.ResourceId
+	return *o.ResourceId.Get()
 }
 
-// GetResourceIdOk returns a tuple with the ResourceId field value
+// GetResourceIdOk returns a tuple with the ResourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateResourceScope) GetResourceIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ResourceId, true
+	return o.ResourceId.Get(), o.ResourceId.IsSet()
 }
 
-// SetResourceId sets field value
+// HasResourceId returns a boolean if a field has been set.
+func (o *CreateResourceScope) HasResourceId() bool {
+	if o != nil && o.ResourceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceId gets a reference to the given NullableInt64 and assigns it to the ResourceId field.
 func (o *CreateResourceScope) SetResourceId(v int64) {
-	o.ResourceId = v
+	o.ResourceId.Set(&v)
+}
+// SetResourceIdNil sets the value for ResourceId to be an explicit nil
+func (o *CreateResourceScope) SetResourceIdNil() {
+	o.ResourceId.Set(nil)
+}
+
+// UnsetResourceId ensures that no value is present for ResourceId, not even an explicit nil
+func (o *CreateResourceScope) UnsetResourceId() {
+	o.ResourceId.Unset()
 }
 
 func (o CreateResourceScope) MarshalJSON() ([]byte, error) {
@@ -106,7 +123,9 @@ func (o CreateResourceScope) MarshalJSON() ([]byte, error) {
 func (o CreateResourceScope) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["kind"] = o.Kind
-	toSerialize["resourceId"] = o.ResourceId
+	if o.ResourceId.IsSet() {
+		toSerialize["resourceId"] = o.ResourceId.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -121,7 +140,6 @@ func (o *CreateResourceScope) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"kind",
-		"resourceId",
 	}
 
 	allProperties := make(map[string]interface{})

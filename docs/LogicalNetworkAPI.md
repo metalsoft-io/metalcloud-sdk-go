@@ -207,7 +207,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), []int64{int64(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
+	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), []int64{int64(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -279,7 +279,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), []int64{int64(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
+	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), []int64{int64(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -351,7 +351,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreatePkeyAllocationStrategy | 
+	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreatePkeyAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -423,7 +423,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVlanAllocationStrategy | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -495,7 +495,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVniAllocationStrategy | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -567,7 +567,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createZoneAllocationStrategy := openapiclient.CreateZoneAllocationStrategy{CreateAutoZoneAllocationStrategy: openapiclient.NewCreateAutoZoneAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateZoneAllocationStrategy | 
+	createZoneAllocationStrategy := openapiclient.CreateZoneAllocationStrategy{CreateAutoZoneAllocationStrategy: openapiclient.NewCreateAutoZoneAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateZoneAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2655,7 +2655,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), []int64{int64(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
+	createIpv4SubnetAllocationStrategy := openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), []int64{int64(123)}, int32(123))} // CreateIpv4SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2730,7 +2730,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), []int64{int64(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
+	createIpv6SubnetAllocationStrategy := openapiclient.CreateIpv6SubnetAllocationStrategy{CreateAutoIpv6SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv6SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), []int64{int64(123)}, int32(123))} // CreateIpv6SubnetAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2805,7 +2805,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreatePkeyAllocationStrategy | 
+	createPkeyAllocationStrategy := openapiclient.CreatePkeyAllocationStrategy{CreateAutoPkeyAllocationStrategy: openapiclient.NewCreateAutoPkeyAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreatePkeyAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2880,7 +2880,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVlanAllocationStrategy | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2955,7 +2955,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVniAllocationStrategy | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3030,7 +3030,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createZoneAllocationStrategy := openapiclient.CreateZoneAllocationStrategy{CreateAutoZoneAllocationStrategy: openapiclient.NewCreateAutoZoneAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateZoneAllocationStrategy | 
+	createZoneAllocationStrategy := openapiclient.CreateZoneAllocationStrategy{CreateAutoZoneAllocationStrategy: openapiclient.NewCreateAutoZoneAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateZoneAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

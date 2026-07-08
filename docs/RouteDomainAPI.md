@@ -48,7 +48,7 @@ import (
 )
 
 func main() {
-	createRouteDomain := *openapiclient.NewCreateRouteDomain(openapiclient.RouteDomainKind("vrf_lite"), []openapiclient.CreateVrfAllocationStrategy{openapiclient.CreateVrfAllocationStrategy{CreateManualVrfAllocationStrategy: openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), "Name_example")}}) // CreateRouteDomain | The route domain to create
+	createRouteDomain := *openapiclient.NewCreateRouteDomain(openapiclient.RouteDomainKind("vrf_lite"), []openapiclient.CreateVrfAllocationStrategy{openapiclient.CreateVrfAllocationStrategy{CreateManualVrfAllocationStrategy: openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), "Name_example")}}) // CreateRouteDomain | The route domain to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -114,7 +114,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVlanAllocationStrategy | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -186,7 +186,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVniAllocationStrategy | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -258,7 +258,7 @@ import (
 func main() {
 	id := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), "Name_example") // CreateManualVrfAllocationStrategy | 
+	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), "Name_example") // CreateManualVrfAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1285,7 +1285,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVlanAllocationStrategy | 
+	createVlanAllocationStrategy := openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVlanAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1360,7 +1360,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)))} // CreateVniAllocationStrategy | 
+	createVniAllocationStrategy := openapiclient.CreateVniAllocationStrategy{CreateAutoVniAllocationStrategy: openapiclient.NewCreateAutoVniAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")))} // CreateVniAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1435,7 +1435,7 @@ func main() {
 	id := int64(789) // int64 | 
 	allocationStrategyId := int64(789) // int64 | 
 	ifMatch := "ifMatch_example" // string | Entity tag
-	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), "Name_example") // CreateManualVrfAllocationStrategy | 
+	createManualVrfAllocationStrategy := *openapiclient.NewCreateManualVrfAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), "Name_example") // CreateManualVrfAllocationStrategy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

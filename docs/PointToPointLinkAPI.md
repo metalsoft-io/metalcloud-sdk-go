@@ -111,7 +111,7 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Candidate revision (entity tag)
-	createPointToPointLinkConfigIpv4SubnetAllocationStrategyRequest := openapiclient.createPointToPointLinkConfigIpv4SubnetAllocationStrategy_request{CreateAutoIpv4PointToPointAllocationStrategy: openapiclient.NewCreateAutoIpv4PointToPointAllocationStrategy(openapiclient.PointToPointAllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), []int64{int64(123)})} // CreatePointToPointLinkConfigIpv4SubnetAllocationStrategyRequest | 
+	createPointToPointLinkConfigIpv4SubnetAllocationStrategyRequest := openapiclient.createPointToPointLinkConfigIpv4SubnetAllocationStrategy_request{CreateAutoIpv4PointToPointAllocationStrategy: openapiclient.NewCreateAutoIpv4PointToPointAllocationStrategy(openapiclient.PointToPointAllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), []int64{int64(123)})} // CreatePointToPointLinkConfigIpv4SubnetAllocationStrategyRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -183,7 +183,7 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	ifMatch := "ifMatch_example" // string | Candidate revision (entity tag)
-	createPointToPointLinkConfigIpv6SubnetAllocationStrategyRequest := openapiclient.createPointToPointLinkConfigIpv6SubnetAllocationStrategy_request{CreateAutoIpv6PointToPointAllocationStrategy: openapiclient.NewCreateAutoIpv6PointToPointAllocationStrategy(openapiclient.PointToPointAllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), int64(123)), []int64{int64(123)})} // CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest | 
+	createPointToPointLinkConfigIpv6SubnetAllocationStrategyRequest := openapiclient.createPointToPointLinkConfigIpv6SubnetAllocationStrategy_request{CreateAutoIpv6PointToPointAllocationStrategy: openapiclient.NewCreateAutoIpv6PointToPointAllocationStrategy(openapiclient.PointToPointAllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global")), []int64{int64(123)})} // CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

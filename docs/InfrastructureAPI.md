@@ -46,7 +46,7 @@ import (
 
 func main() {
 	infrastructureId := int64(789) // int64 | 
-	addUserToInfrastructure := *openapiclient.NewAddUserToInfrastructure("UserEmail_example", false) // AddUserToInfrastructure | Additional information for the user to add
+	addUserToInfrastructure := *openapiclient.NewAddUserToInfrastructure(false) // AddUserToInfrastructure | Additional information for the user to add
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

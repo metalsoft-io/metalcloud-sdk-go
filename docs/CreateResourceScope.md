@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | [**ResourceScopeKind**](ResourceScopeKind.md) |  | 
-**ResourceId** | **int64** |  | 
+**ResourceId** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
 ### NewCreateResourceScope
 
-`func NewCreateResourceScope(kind ResourceScopeKind, resourceId int64, ) *CreateResourceScope`
+`func NewCreateResourceScope(kind ResourceScopeKind, ) *CreateResourceScope`
 
 NewCreateResourceScope instantiates a new CreateResourceScope object
 This constructor will assign default values to properties that have it defined,
@@ -65,7 +65,22 @@ and a boolean to check if the value has been set.
 
 SetResourceId sets ResourceId field to given value.
 
+### HasResourceId
 
+`func (o *CreateResourceScope) HasResourceId() bool`
+
+HasResourceId returns a boolean if a field has been set.
+
+### SetResourceIdNil
+
+`func (o *CreateResourceScope) SetResourceIdNil(b bool)`
+
+ SetResourceIdNil sets the value for ResourceId to be an explicit nil
+
+### UnsetResourceId
+`func (o *CreateResourceScope) UnsetResourceId()`
+
+UnsetResourceId ensures that no value is present for ResourceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

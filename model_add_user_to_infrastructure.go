@@ -21,9 +21,11 @@ var _ MappedNullable = &AddUserToInfrastructure{}
 
 // AddUserToInfrastructure struct for AddUserToInfrastructure
 type AddUserToInfrastructure struct {
-	// The email of the user
-	UserEmail string `json:"userEmail"`
-	// Create a new user if the user does not exist
+	// The email of the user. Exactly one of userEmail or userId must be provided.
+	UserEmail *string `json:"userEmail,omitempty"`
+	// The id of the user. Exactly one of userEmail or userId must be provided. Use userId to reference users without a valid email address (e.g. LDAP users).
+	UserId *int64 `json:"userId,omitempty"`
+	// Create a new user if the user does not exist. Only allowed when userEmail is provided.
 	CreateIfNotExists bool `json:"createIfNotExists"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,9 +36,8 @@ type _AddUserToInfrastructure AddUserToInfrastructure
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddUserToInfrastructure(userEmail string, createIfNotExists bool) *AddUserToInfrastructure {
+func NewAddUserToInfrastructure(createIfNotExists bool) *AddUserToInfrastructure {
 	this := AddUserToInfrastructure{}
-	this.UserEmail = userEmail
 	this.CreateIfNotExists = createIfNotExists
 	return &this
 }
@@ -51,28 +52,68 @@ func NewAddUserToInfrastructureWithDefaults() *AddUserToInfrastructure {
 	return &this
 }
 
-// GetUserEmail returns the UserEmail field value
+// GetUserEmail returns the UserEmail field value if set, zero value otherwise.
 func (o *AddUserToInfrastructure) GetUserEmail() string {
-	if o == nil {
+	if o == nil || IsNil(o.UserEmail) {
 		var ret string
 		return ret
 	}
-
-	return o.UserEmail
+	return *o.UserEmail
 }
 
-// GetUserEmailOk returns a tuple with the UserEmail field value
+// GetUserEmailOk returns a tuple with the UserEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AddUserToInfrastructure) GetUserEmailOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserEmail) {
 		return nil, false
 	}
-	return &o.UserEmail, true
+	return o.UserEmail, true
 }
 
-// SetUserEmail sets field value
+// HasUserEmail returns a boolean if a field has been set.
+func (o *AddUserToInfrastructure) HasUserEmail() bool {
+	if o != nil && !IsNil(o.UserEmail) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserEmail gets a reference to the given string and assigns it to the UserEmail field.
 func (o *AddUserToInfrastructure) SetUserEmail(v string) {
-	o.UserEmail = v
+	o.UserEmail = &v
+}
+
+// GetUserId returns the UserId field value if set, zero value otherwise.
+func (o *AddUserToInfrastructure) GetUserId() int64 {
+	if o == nil || IsNil(o.UserId) {
+		var ret int64
+		return ret
+	}
+	return *o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddUserToInfrastructure) GetUserIdOk() (*int64, bool) {
+	if o == nil || IsNil(o.UserId) {
+		return nil, false
+	}
+	return o.UserId, true
+}
+
+// HasUserId returns a boolean if a field has been set.
+func (o *AddUserToInfrastructure) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int64 and assigns it to the UserId field.
+func (o *AddUserToInfrastructure) SetUserId(v int64) {
+	o.UserId = &v
 }
 
 // GetCreateIfNotExists returns the CreateIfNotExists field value
@@ -109,7 +150,12 @@ func (o AddUserToInfrastructure) MarshalJSON() ([]byte, error) {
 
 func (o AddUserToInfrastructure) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["userEmail"] = o.UserEmail
+	if !IsNil(o.UserEmail) {
+		toSerialize["userEmail"] = o.UserEmail
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["userId"] = o.UserId
+	}
 	toSerialize["createIfNotExists"] = o.CreateIfNotExists
 
 	for key, value := range o.AdditionalProperties {
@@ -124,7 +170,6 @@ func (o *AddUserToInfrastructure) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"userEmail",
 		"createIfNotExists",
 	}
 
@@ -156,6 +201,7 @@ func (o *AddUserToInfrastructure) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "userEmail")
+		delete(additionalProperties, "userId")
 		delete(additionalProperties, "createIfNotExists")
 		o.AdditionalProperties = additionalProperties
 	}
