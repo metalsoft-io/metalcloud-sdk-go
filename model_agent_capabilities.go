@@ -558,7 +558,7 @@ func (o *AgentCapabilities) UnmarshalJSON(data []byte) (err error) {
 		"httpRequestEnabled",
 		"sshCommandEnabled",
 		"switchSnmpHealthEnabled",
-		"inbandWebmksEnabled",
+		//"inbandWebmksEnabled",
 	}
 
 	allProperties := make(map[string]interface{})
