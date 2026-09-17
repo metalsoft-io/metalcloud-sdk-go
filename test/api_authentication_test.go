@@ -106,6 +106,28 @@ func Test_sdk_AuthenticationAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test AuthenticationAPIService LoginOidc", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.AuthenticationAPI.LoginOidc(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AuthenticationAPIService LoginOidcCallback", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.AuthenticationAPI.LoginOidcCallback(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AuthenticationAPIService LoginSaml", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -134,6 +156,54 @@ func Test_sdk_AuthenticationAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AuthenticationAPI.SignUp(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AuthenticationAPIService TestLdap", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AuthenticationAPI.TestLdap(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AuthenticationAPIService ValidateLdap", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AuthenticationAPI.ValidateLdap(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AuthenticationAPIService ValidateOidc", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AuthenticationAPI.ValidateOidc(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AuthenticationAPIService ValidateSaml", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AuthenticationAPI.ValidateSaml(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

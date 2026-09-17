@@ -30,6 +30,14 @@ type ExternalSystem struct {
 	Name string `json:"name"`
 	// Annotations - key/value pairs of additional metadata
 	Annotations map[string]interface{} `json:"annotations"`
+	// The BGP Autonomous System Number of the external system. Required to peer with it: a BGP session against this system renders its neighbor remote-as from this value.
+	Asn *int64 `json:"asn,omitempty"`
+	// The loopback IPv4 address of the external system. Used as the peer address of a multihop BGP session against it; a session running over the link itself takes its peer address from the link's point-to-point /31 instead.
+	LoopbackAddress *string `json:"loopbackAddress,omitempty"`
+	// The loopback IPv6 address of the external system.
+	LoopbackAddressIpv6 *string `json:"loopbackAddressIpv6,omitempty"`
+	// Custom variables exposed to network device configuration templates as the remote side of a link or BGP session terminating on this external system.
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Revision number of the entity
 	Revision string `json:"revision"`
 	// The date and time the entity was created
@@ -163,6 +171,134 @@ func (o *ExternalSystem) SetAnnotations(v map[string]interface{}) {
 	o.Annotations = v
 }
 
+// GetAsn returns the Asn field value if set, zero value otherwise.
+func (o *ExternalSystem) GetAsn() int64 {
+	if o == nil || IsNil(o.Asn) {
+		var ret int64
+		return ret
+	}
+	return *o.Asn
+}
+
+// GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExternalSystem) GetAsnOk() (*int64, bool) {
+	if o == nil || IsNil(o.Asn) {
+		return nil, false
+	}
+	return o.Asn, true
+}
+
+// HasAsn returns a boolean if a field has been set.
+func (o *ExternalSystem) HasAsn() bool {
+	if o != nil && !IsNil(o.Asn) {
+		return true
+	}
+
+	return false
+}
+
+// SetAsn gets a reference to the given int64 and assigns it to the Asn field.
+func (o *ExternalSystem) SetAsn(v int64) {
+	o.Asn = &v
+}
+
+// GetLoopbackAddress returns the LoopbackAddress field value if set, zero value otherwise.
+func (o *ExternalSystem) GetLoopbackAddress() string {
+	if o == nil || IsNil(o.LoopbackAddress) {
+		var ret string
+		return ret
+	}
+	return *o.LoopbackAddress
+}
+
+// GetLoopbackAddressOk returns a tuple with the LoopbackAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExternalSystem) GetLoopbackAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.LoopbackAddress) {
+		return nil, false
+	}
+	return o.LoopbackAddress, true
+}
+
+// HasLoopbackAddress returns a boolean if a field has been set.
+func (o *ExternalSystem) HasLoopbackAddress() bool {
+	if o != nil && !IsNil(o.LoopbackAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoopbackAddress gets a reference to the given string and assigns it to the LoopbackAddress field.
+func (o *ExternalSystem) SetLoopbackAddress(v string) {
+	o.LoopbackAddress = &v
+}
+
+// GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field value if set, zero value otherwise.
+func (o *ExternalSystem) GetLoopbackAddressIpv6() string {
+	if o == nil || IsNil(o.LoopbackAddressIpv6) {
+		var ret string
+		return ret
+	}
+	return *o.LoopbackAddressIpv6
+}
+
+// GetLoopbackAddressIpv6Ok returns a tuple with the LoopbackAddressIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExternalSystem) GetLoopbackAddressIpv6Ok() (*string, bool) {
+	if o == nil || IsNil(o.LoopbackAddressIpv6) {
+		return nil, false
+	}
+	return o.LoopbackAddressIpv6, true
+}
+
+// HasLoopbackAddressIpv6 returns a boolean if a field has been set.
+func (o *ExternalSystem) HasLoopbackAddressIpv6() bool {
+	if o != nil && !IsNil(o.LoopbackAddressIpv6) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoopbackAddressIpv6 gets a reference to the given string and assigns it to the LoopbackAddressIpv6 field.
+func (o *ExternalSystem) SetLoopbackAddressIpv6(v string) {
+	o.LoopbackAddressIpv6 = &v
+}
+
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *ExternalSystem) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExternalSystem) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *ExternalSystem) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *ExternalSystem) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 // GetRevision returns the Revision field value
 func (o *ExternalSystem) GetRevision() string {
 	if o == nil {
@@ -281,6 +417,18 @@ func (o ExternalSystem) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
 	toSerialize["annotations"] = o.Annotations
+	if !IsNil(o.Asn) {
+		toSerialize["asn"] = o.Asn
+	}
+	if !IsNil(o.LoopbackAddress) {
+		toSerialize["loopbackAddress"] = o.LoopbackAddress
+	}
+	if !IsNil(o.LoopbackAddressIpv6) {
+		toSerialize["loopbackAddressIpv6"] = o.LoopbackAddressIpv6
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
 	toSerialize["revision"] = o.Revision
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["updatedAt"] = o.UpdatedAt
@@ -340,6 +488,10 @@ func (o *ExternalSystem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "asn")
+		delete(additionalProperties, "loopbackAddress")
+		delete(additionalProperties, "loopbackAddressIpv6")
+		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "updatedAt")

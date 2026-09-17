@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **ServerMetricsMetadata** | Pointer to [**map[string][]ServerMetricsInfo**](array.md) | The metrics metadata of the server. | [optional] 
 **InstanceCustomInfo** | Pointer to **map[string]interface{}** | The instance custom info of the server. | [optional] 
 **CustomInfo** | Pointer to **map[string]interface{}** | The custom info of the server. | [optional] 
-**DpuInfo** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
+**DpuInfo** | Pointer to [**[]ServerDPUInfo**](ServerDPUInfo.md) | DPU information. Only present if the server has a DPU installed. | [optional] 
 **Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
 **VendorSkuId** | Pointer to **string** | The vendor sku id of the server. | [optional] 
 **Model** | Pointer to **string** | The model of the server. | [optional] 
@@ -37,6 +37,11 @@ Name | Type | Description | Notes
 **ServerCleanupPolicyId** | Pointer to **int64** | The cleanup policy id of the server. | [optional] 
 **CurrentFirmwareBaselineId** | Pointer to **int64** | The last applied firmware baseline id on the server. | [optional] 
 **TargetFirmwareBaselineId** | Pointer to **int64** | The target firmware baseline id on the server. | [optional] 
+**FirmwareBaselineComplianceStatus** | Pointer to **string** | Whether the server firmware meets the minimum versions of its configured baseline. Judged only against the baseline — independent of whether the configuration has drifted. | [optional] 
+**DriftDetectionSyncStatus** | Pointer to **string** | Whether the server configuration still matches the accepted snapshot. Set out_of_sync when an unplanned change is detected, in_sync when a planned change completes or the target is synced. Says nothing about baseline compliance — see firmwareBaselineComplianceStatus. | [optional] 
+**DriftDetectionTargetSnapshotId** | Pointer to **string** | The OID of the git snapshot accepted as the drift-detection target. | [optional] 
+**FirmwareBackupEnabled** | Pointer to **bool** | Whether firmware backup is enabled for this server. Combined with the site policy: the backup runs only when both allow it. Disabling it also stops drift detection. Defaults to true. | [optional] [default to true]
+**FirmwareDriftDetectionEnabled** | Pointer to **bool** | Whether drift detection is enabled for this server. Gates both checks: the configuration drift alert (this snapshot against the previous one) and the firmware baseline check (installed versions against the baseline minimums). Combined with the site policy: a check runs only when both allow it. Requires firmwareBackupEnabled. Defaults to true. | [optional] [default to true]
 **RegistrationProfileId** | Pointer to **int64** | The registration profile id of the server. | [optional] 
 **RequiresReRegister** | **float32** | Flag to indicate if the server required re-registration. | 
 **ServerSupportsSol** | Pointer to **float32** | Flag to indicate if the supports SOL. | [optional] 
@@ -683,20 +688,20 @@ HasCustomInfo returns a boolean if a field has been set.
 
 ### GetDpuInfo
 
-`func (o *ServerVariables) GetDpuInfo() []ServerDPUCredentials`
+`func (o *ServerVariables) GetDpuInfo() []ServerDPUInfo`
 
 GetDpuInfo returns the DpuInfo field if non-nil, zero value otherwise.
 
 ### GetDpuInfoOk
 
-`func (o *ServerVariables) GetDpuInfoOk() (*[]ServerDPUCredentials, bool)`
+`func (o *ServerVariables) GetDpuInfoOk() (*[]ServerDPUInfo, bool)`
 
 GetDpuInfoOk returns a tuple with the DpuInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDpuInfo
 
-`func (o *ServerVariables) SetDpuInfo(v []ServerDPUCredentials)`
+`func (o *ServerVariables) SetDpuInfo(v []ServerDPUInfo)`
 
 SetDpuInfo sets DpuInfo field to given value.
 
@@ -905,6 +910,131 @@ SetTargetFirmwareBaselineId sets TargetFirmwareBaselineId field to given value.
 `func (o *ServerVariables) HasTargetFirmwareBaselineId() bool`
 
 HasTargetFirmwareBaselineId returns a boolean if a field has been set.
+
+### GetFirmwareBaselineComplianceStatus
+
+`func (o *ServerVariables) GetFirmwareBaselineComplianceStatus() string`
+
+GetFirmwareBaselineComplianceStatus returns the FirmwareBaselineComplianceStatus field if non-nil, zero value otherwise.
+
+### GetFirmwareBaselineComplianceStatusOk
+
+`func (o *ServerVariables) GetFirmwareBaselineComplianceStatusOk() (*string, bool)`
+
+GetFirmwareBaselineComplianceStatusOk returns a tuple with the FirmwareBaselineComplianceStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareBaselineComplianceStatus
+
+`func (o *ServerVariables) SetFirmwareBaselineComplianceStatus(v string)`
+
+SetFirmwareBaselineComplianceStatus sets FirmwareBaselineComplianceStatus field to given value.
+
+### HasFirmwareBaselineComplianceStatus
+
+`func (o *ServerVariables) HasFirmwareBaselineComplianceStatus() bool`
+
+HasFirmwareBaselineComplianceStatus returns a boolean if a field has been set.
+
+### GetDriftDetectionSyncStatus
+
+`func (o *ServerVariables) GetDriftDetectionSyncStatus() string`
+
+GetDriftDetectionSyncStatus returns the DriftDetectionSyncStatus field if non-nil, zero value otherwise.
+
+### GetDriftDetectionSyncStatusOk
+
+`func (o *ServerVariables) GetDriftDetectionSyncStatusOk() (*string, bool)`
+
+GetDriftDetectionSyncStatusOk returns a tuple with the DriftDetectionSyncStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionSyncStatus
+
+`func (o *ServerVariables) SetDriftDetectionSyncStatus(v string)`
+
+SetDriftDetectionSyncStatus sets DriftDetectionSyncStatus field to given value.
+
+### HasDriftDetectionSyncStatus
+
+`func (o *ServerVariables) HasDriftDetectionSyncStatus() bool`
+
+HasDriftDetectionSyncStatus returns a boolean if a field has been set.
+
+### GetDriftDetectionTargetSnapshotId
+
+`func (o *ServerVariables) GetDriftDetectionTargetSnapshotId() string`
+
+GetDriftDetectionTargetSnapshotId returns the DriftDetectionTargetSnapshotId field if non-nil, zero value otherwise.
+
+### GetDriftDetectionTargetSnapshotIdOk
+
+`func (o *ServerVariables) GetDriftDetectionTargetSnapshotIdOk() (*string, bool)`
+
+GetDriftDetectionTargetSnapshotIdOk returns a tuple with the DriftDetectionTargetSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionTargetSnapshotId
+
+`func (o *ServerVariables) SetDriftDetectionTargetSnapshotId(v string)`
+
+SetDriftDetectionTargetSnapshotId sets DriftDetectionTargetSnapshotId field to given value.
+
+### HasDriftDetectionTargetSnapshotId
+
+`func (o *ServerVariables) HasDriftDetectionTargetSnapshotId() bool`
+
+HasDriftDetectionTargetSnapshotId returns a boolean if a field has been set.
+
+### GetFirmwareBackupEnabled
+
+`func (o *ServerVariables) GetFirmwareBackupEnabled() bool`
+
+GetFirmwareBackupEnabled returns the FirmwareBackupEnabled field if non-nil, zero value otherwise.
+
+### GetFirmwareBackupEnabledOk
+
+`func (o *ServerVariables) GetFirmwareBackupEnabledOk() (*bool, bool)`
+
+GetFirmwareBackupEnabledOk returns a tuple with the FirmwareBackupEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareBackupEnabled
+
+`func (o *ServerVariables) SetFirmwareBackupEnabled(v bool)`
+
+SetFirmwareBackupEnabled sets FirmwareBackupEnabled field to given value.
+
+### HasFirmwareBackupEnabled
+
+`func (o *ServerVariables) HasFirmwareBackupEnabled() bool`
+
+HasFirmwareBackupEnabled returns a boolean if a field has been set.
+
+### GetFirmwareDriftDetectionEnabled
+
+`func (o *ServerVariables) GetFirmwareDriftDetectionEnabled() bool`
+
+GetFirmwareDriftDetectionEnabled returns the FirmwareDriftDetectionEnabled field if non-nil, zero value otherwise.
+
+### GetFirmwareDriftDetectionEnabledOk
+
+`func (o *ServerVariables) GetFirmwareDriftDetectionEnabledOk() (*bool, bool)`
+
+GetFirmwareDriftDetectionEnabledOk returns a tuple with the FirmwareDriftDetectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareDriftDetectionEnabled
+
+`func (o *ServerVariables) SetFirmwareDriftDetectionEnabled(v bool)`
+
+SetFirmwareDriftDetectionEnabled sets FirmwareDriftDetectionEnabled field to given value.
+
+### HasFirmwareDriftDetectionEnabled
+
+`func (o *ServerVariables) HasFirmwareDriftDetectionEnabled() bool`
+
+HasFirmwareDriftDetectionEnabled returns a boolean if a field has been set.
 
 ### GetRegistrationProfileId
 

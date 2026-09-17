@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **InfrastructureId** | **int64** | Id of the Infrastructure. | 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Service status of the VM Instance. | 
+**InstanceType** | **string** | Type of the Instance. | 
 **GpuInfo** | Pointer to [**[]VMTypeGPUInfo**](VMTypeGPUInfo.md) | Information about GPUs available for this VM Instance | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance. | [optional] 
 **DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the VM Instance. | [optional] 
@@ -31,13 +32,14 @@ Name | Type | Description | Notes
 **Meta** | [**VMInstanceMeta**](VMInstanceMeta.md) | Meta information of the VM Instance. | 
 **AllocatedVMPoolInfo** | Pointer to [**VMInstanceAllocatedVMPoolInfo**](VMInstanceAllocatedVMPoolInfo.md) | Information about the allocated VM Pool. | [optional] 
 **AllocatedVMPoolGpusInfo** | Pointer to [**[]VMPoolGPU**](VMPoolGPU.md) | Information about the allocated GPUs from the VM Pool. | [optional] 
+**AllocatedVMPoolGpuPartitionsInfo** | Pointer to [**[]VMPoolGPUPartition**](VMPoolGPUPartition.md) | Information about the allocated GPU partitions from the VM Pool. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMInstance
 
-`func NewVMInstance(label string, typeId int64, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id int64, revision int64, groupId int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, ) *VMInstance`
+`func NewVMInstance(label string, typeId int64, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id int64, revision int64, groupId int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, instanceType string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, ) *VMInstance`
 
 NewVMInstance instantiates a new VMInstance object
 This constructor will assign default values to properties that have it defined,
@@ -417,6 +419,26 @@ and a boolean to check if the value has been set.
 SetServiceStatus sets ServiceStatus field to given value.
 
 
+### GetInstanceType
+
+`func (o *VMInstance) GetInstanceType() string`
+
+GetInstanceType returns the InstanceType field if non-nil, zero value otherwise.
+
+### GetInstanceTypeOk
+
+`func (o *VMInstance) GetInstanceTypeOk() (*string, bool)`
+
+GetInstanceTypeOk returns a tuple with the InstanceType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceType
+
+`func (o *VMInstance) SetInstanceType(v string)`
+
+SetInstanceType sets InstanceType field to given value.
+
+
 ### GetGpuInfo
 
 `func (o *VMInstance) GetGpuInfo() []VMTypeGPUInfo`
@@ -651,6 +673,31 @@ SetAllocatedVMPoolGpusInfo sets AllocatedVMPoolGpusInfo field to given value.
 `func (o *VMInstance) HasAllocatedVMPoolGpusInfo() bool`
 
 HasAllocatedVMPoolGpusInfo returns a boolean if a field has been set.
+
+### GetAllocatedVMPoolGpuPartitionsInfo
+
+`func (o *VMInstance) GetAllocatedVMPoolGpuPartitionsInfo() []VMPoolGPUPartition`
+
+GetAllocatedVMPoolGpuPartitionsInfo returns the AllocatedVMPoolGpuPartitionsInfo field if non-nil, zero value otherwise.
+
+### GetAllocatedVMPoolGpuPartitionsInfoOk
+
+`func (o *VMInstance) GetAllocatedVMPoolGpuPartitionsInfoOk() (*[]VMPoolGPUPartition, bool)`
+
+GetAllocatedVMPoolGpuPartitionsInfoOk returns a tuple with the AllocatedVMPoolGpuPartitionsInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocatedVMPoolGpuPartitionsInfo
+
+`func (o *VMInstance) SetAllocatedVMPoolGpuPartitionsInfo(v []VMPoolGPUPartition)`
+
+SetAllocatedVMPoolGpuPartitionsInfo sets AllocatedVMPoolGpuPartitionsInfo field to given value.
+
+### HasAllocatedVMPoolGpuPartitionsInfo
+
+`func (o *VMInstance) HasAllocatedVMPoolGpuPartitionsInfo() bool`
+
+HasAllocatedVMPoolGpuPartitionsInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

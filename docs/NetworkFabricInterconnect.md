@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Unique label for the network fabric interconnect | 
 **Name** | Pointer to **string** | Name of the network fabric interconnect | [optional] 
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
-**BgpConfigurationTemplateId** | Pointer to **int64** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
+**BgpConfigurationTemplateId** | **int64** | ID of the BGP interconnect configuration template assigned to this interconnect | 
 **TransportId** | Pointer to **int64** | Transport ID allocated for this interconnect, if any. Allocated from range 65534-1 (descending) | [optional] 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricInterconnect
 
-`func NewNetworkFabricInterconnect(id string, interconnectType NetworkFabricInterconnectType, label string, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *NetworkFabricInterconnect`
+`func NewNetworkFabricInterconnect(id string, interconnectType NetworkFabricInterconnectType, label string, bgpConfigurationTemplateId int64, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *NetworkFabricInterconnect`
 
 NewNetworkFabricInterconnect instantiates a new NetworkFabricInterconnect object
 This constructor will assign default values to properties that have it defined,
@@ -167,11 +167,6 @@ and a boolean to check if the value has been set.
 
 SetBgpConfigurationTemplateId sets BgpConfigurationTemplateId field to given value.
 
-### HasBgpConfigurationTemplateId
-
-`func (o *NetworkFabricInterconnect) HasBgpConfigurationTemplateId() bool`
-
-HasBgpConfigurationTemplateId returns a boolean if a field has been set.
 
 ### GetTransportId
 

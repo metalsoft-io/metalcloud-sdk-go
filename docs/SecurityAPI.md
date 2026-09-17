@@ -11,12 +11,10 @@ Method | HTTP request | Description
 [**DeleteQuotaProfile**](SecurityAPI.md#DeleteQuotaProfile) | **Delete** /api/v2/quota-profiles/{profileId} | Delete a quota profile by id
 [**DeleteRole**](SecurityAPI.md#DeleteRole) | **Delete** /api/v2/roles/{roleName} | Delete a role by name
 [**GetPermissions**](SecurityAPI.md#GetPermissions) | **Get** /api/v2/permissions | Get all permissions
-[**GetProviders**](SecurityAPI.md#GetProviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
 [**GetQuotaProfile**](SecurityAPI.md#GetQuotaProfile) | **Get** /api/v2/quota-profiles/{profileId} | Get a quota profile by id
 [**GetQuotaProfiles**](SecurityAPI.md#GetQuotaProfiles) | **Get** /api/v2/quota-profiles | Get all quota profiles
 [**GetRole**](SecurityAPI.md#GetRole) | **Get** /api/v2/roles/{roleName} | Get a role by name
 [**GetRoles**](SecurityAPI.md#GetRoles) | **Get** /api/v2/roles | Get all roles
-[**UpdateProvider**](SecurityAPI.md#UpdateProvider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
 [**UpdateQuotaProfile**](SecurityAPI.md#UpdateQuotaProfile) | **Patch** /api/v2/quota-profiles/{profileId} | Update a quota profile by id
 [**UpdateRole**](SecurityAPI.md#UpdateRole) | **Put** /api/v2/roles/{roleName} | Update a role by name
 
@@ -486,67 +484,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetProviders
-
-> []AuthenticationProvider GetProviders(ctx).Execute()
-
-Get available authentication providers
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityAPI.GetProviders(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.GetProviders``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetProviders`: []AuthenticationProvider
-	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.GetProviders`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetProvidersRequest struct via the builder pattern
-
-
-### Return type
-
-[**[]AuthenticationProvider**](AuthenticationProvider.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetQuotaProfile
 
 > QuotaProfile GetQuotaProfile(ctx, profileId).Execute()
@@ -826,78 +763,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UpdateProvider
-
-> AuthenticationProvider UpdateProvider(ctx, name).AuthenticationProviderUpdate(authenticationProviderUpdate).Execute()
-
-Updates authentication provider
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	name := "name_example" // string | The provider name
-	authenticationProviderUpdate := *openapiclient.NewAuthenticationProviderUpdate(false) // AuthenticationProviderUpdate | The provider updates
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityAPI.UpdateProvider(context.Background(), name).AuthenticationProviderUpdate(authenticationProviderUpdate).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.UpdateProvider``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateProvider`: AuthenticationProvider
-	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.UpdateProvider`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | The provider name | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateProviderRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **authenticationProviderUpdate** | [**AuthenticationProviderUpdate**](AuthenticationProviderUpdate.md) | The provider updates | 
-
-### Return type
-
-[**AuthenticationProvider**](AuthenticationProvider.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

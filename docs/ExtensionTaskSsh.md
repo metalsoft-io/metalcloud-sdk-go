@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the task. | 
-**TaskType** | [**ExtensionTaskType**](ExtensionTaskType.md) |  | 
+**TaskType** | **string** |  | 
 **Options** | [**ExtensionTaskOptionSsh**](ExtensionTaskOptionSsh.md) |  | 
 
 ## Methods
 
 ### NewExtensionTaskSsh
 
-`func NewExtensionTaskSsh(label string, taskType ExtensionTaskType, options ExtensionTaskOptionSsh, ) *ExtensionTaskSsh`
+`func NewExtensionTaskSsh(label string, taskType string, options ExtensionTaskOptionSsh, ) *ExtensionTaskSsh`
 
 NewExtensionTaskSsh instantiates a new ExtensionTaskSsh object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetLabel sets Label field to given value.
 
 ### GetTaskType
 
-`func (o *ExtensionTaskSsh) GetTaskType() ExtensionTaskType`
+`func (o *ExtensionTaskSsh) GetTaskType() string`
 
 GetTaskType returns the TaskType field if non-nil, zero value otherwise.
 
 ### GetTaskTypeOk
 
-`func (o *ExtensionTaskSsh) GetTaskTypeOk() (*ExtensionTaskType, bool)`
+`func (o *ExtensionTaskSsh) GetTaskTypeOk() (*string, bool)`
 
 GetTaskTypeOk returns a tuple with the TaskType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaskType
 
-`func (o *ExtensionTaskSsh) SetTaskType(v ExtensionTaskType)`
+`func (o *ExtensionTaskSsh) SetTaskType(v string)`
 
 SetTaskType sets TaskType field to given value.
 

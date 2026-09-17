@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateManualVlanAllocationStrategy{}
 
 // CreateManualVlanAllocationStrategy struct for CreateManualVlanAllocationStrategy
 type CreateManualVlanAllocationStrategy struct {
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	GranularityLevel NullableVlanAllocationGranularityLevel `json:"granularityLevel,omitempty"`
 	VlanId int32 `json:"vlanId"`
@@ -34,7 +34,7 @@ type _CreateManualVlanAllocationStrategy CreateManualVlanAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateManualVlanAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, vlanId int32) *CreateManualVlanAllocationStrategy {
+func NewCreateManualVlanAllocationStrategy(kind string, scope CreateResourceScope, vlanId int32) *CreateManualVlanAllocationStrategy {
 	this := CreateManualVlanAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -51,9 +51,9 @@ func NewCreateManualVlanAllocationStrategyWithDefaults() *CreateManualVlanAlloca
 }
 
 // GetKind returns the Kind field value
-func (o *CreateManualVlanAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *CreateManualVlanAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -62,7 +62,7 @@ func (o *CreateManualVlanAllocationStrategy) GetKind() AllocationStrategyKind {
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateManualVlanAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *CreateManualVlanAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *CreateManualVlanAllocationStrategy) GetKindOk() (*AllocationStrategyKin
 }
 
 // SetKind sets field value
-func (o *CreateManualVlanAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *CreateManualVlanAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

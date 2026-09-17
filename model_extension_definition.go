@@ -33,7 +33,7 @@ type ExtensionDefinition struct {
 	ExtensionType string `json:"extensionType"`
 	// Vendor of the extension.
 	Vendor string `json:"vendor"`
-	// Version of the extension.
+	// Version of the extension. Must be a valid semantic version (e.g. 1.2.3).
 	ExtensionVersion string `json:"extensionVersion"`
 	// Description of the extension.
 	Description *string `json:"description,omitempty"`

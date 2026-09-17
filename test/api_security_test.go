@@ -109,18 +109,6 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SecurityAPIService GetProviders", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.SecurityAPI.GetProviders(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test SecurityAPIService GetQuotaProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -166,20 +154,6 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.SecurityAPI.GetRoles(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test SecurityAPIService UpdateProvider", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var name string
-
-		resp, httpRes, err := apiClient.SecurityAPI.UpdateProvider(context.Background(), name).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

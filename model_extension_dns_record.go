@@ -23,7 +23,7 @@ var _ MappedNullable = &ExtensionDnsRecord{}
 type ExtensionDnsRecord struct {
 	// DNS name, allows the use of placeholder variables
 	Name string `json:"name"`
-	// The type of DNS record (e.g., A, AAAA, CNAME, NS, PTR, TXT, SOA) to create
+	// The type of DNS record (A, AAAA, CNAME, PTR) to create
 	RecordType DNSRecordType `json:"recordType"`
 	// Whether to generate a PTR record for this DNS record
 	GeneratePtrRecord *bool `json:"generatePtrRecord,omitempty"`

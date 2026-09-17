@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **GatewayPlacement** | Pointer to [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [optional] [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
 **SubnetId** | **int64** |  | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewCreateIpv4SubnetAllocationStrategy
 
-`func NewCreateIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int64, subnetPoolIds []int64, prefixLength int32, ) *CreateIpv4SubnetAllocationStrategy`
+`func NewCreateIpv4SubnetAllocationStrategy(kind string, scope CreateResourceScope, subnetId int64, subnetPoolIds []int64, prefixLength int32, ) *CreateIpv4SubnetAllocationStrategy`
 
 NewCreateIpv4SubnetAllocationStrategy instantiates a new CreateIpv4SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateIpv4SubnetAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateIpv4SubnetAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateIpv4SubnetAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateIpv4SubnetAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateIpv4SubnetAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateIpv4SubnetAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FabricType** | [**FabricType**](FabricType.md) | The type of network fabric | 
+**FabricType** | **string** | The type of network fabric | 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **ServerOnlyOperationEnabled** | Pointer to **bool** | Enables server-only operation mode on the network fabric. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewFibreChannelFabric
 
-`func NewFibreChannelFabric(fabricType FabricType, ) *FibreChannelFabric`
+`func NewFibreChannelFabric(fabricType string, ) *FibreChannelFabric`
 
 NewFibreChannelFabric instantiates a new FibreChannelFabric object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFabricType
 
-`func (o *FibreChannelFabric) GetFabricType() FabricType`
+`func (o *FibreChannelFabric) GetFabricType() string`
 
 GetFabricType returns the FabricType field if non-nil, zero value otherwise.
 
 ### GetFabricTypeOk
 
-`func (o *FibreChannelFabric) GetFabricTypeOk() (*FabricType, bool)`
+`func (o *FibreChannelFabric) GetFabricTypeOk() (*string, bool)`
 
 GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricType
 
-`func (o *FibreChannelFabric) SetFabricType(v FabricType)`
+`func (o *FibreChannelFabric) SetFabricType(v string)`
 
 SetFabricType sets FabricType field to given value.
 

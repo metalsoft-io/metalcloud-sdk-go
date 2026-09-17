@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Username** | Pointer to **string** | The username to use. | [optional] 
 **ServerCleanupPolicyId** | Pointer to **int64** | The cleanup policy id of the server. | [optional] 
 **TargetFirmwareBaselineId** | Pointer to **int64** | The target firmware baseline id on the server. | [optional] 
+**FirmwareBackupEnabled** | Pointer to **bool** | Whether firmware backup is enabled for this server. Combined with the site policy: the backup runs only when both allow it. Disabling it also stops drift detection. Defaults to true. | [optional] [default to true]
+**FirmwareDriftDetectionEnabled** | Pointer to **bool** | Whether drift detection is enabled for this server. Gates both checks: the configuration drift alert (this snapshot against the previous one) and the firmware baseline check (installed versions against the baseline minimums). Combined with the site policy: a check runs only when both allow it. Requires firmwareBackupEnabled. Defaults to true. | [optional] [default to true]
 **RegistrationProfileId** | Pointer to **int64** | The registration profile id of the server. | [optional] 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
 **ChassisRackId** | Pointer to **int64** | The chassis rack id of the server. | [optional] 
@@ -165,6 +167,56 @@ SetTargetFirmwareBaselineId sets TargetFirmwareBaselineId field to given value.
 `func (o *UpdateServer) HasTargetFirmwareBaselineId() bool`
 
 HasTargetFirmwareBaselineId returns a boolean if a field has been set.
+
+### GetFirmwareBackupEnabled
+
+`func (o *UpdateServer) GetFirmwareBackupEnabled() bool`
+
+GetFirmwareBackupEnabled returns the FirmwareBackupEnabled field if non-nil, zero value otherwise.
+
+### GetFirmwareBackupEnabledOk
+
+`func (o *UpdateServer) GetFirmwareBackupEnabledOk() (*bool, bool)`
+
+GetFirmwareBackupEnabledOk returns a tuple with the FirmwareBackupEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareBackupEnabled
+
+`func (o *UpdateServer) SetFirmwareBackupEnabled(v bool)`
+
+SetFirmwareBackupEnabled sets FirmwareBackupEnabled field to given value.
+
+### HasFirmwareBackupEnabled
+
+`func (o *UpdateServer) HasFirmwareBackupEnabled() bool`
+
+HasFirmwareBackupEnabled returns a boolean if a field has been set.
+
+### GetFirmwareDriftDetectionEnabled
+
+`func (o *UpdateServer) GetFirmwareDriftDetectionEnabled() bool`
+
+GetFirmwareDriftDetectionEnabled returns the FirmwareDriftDetectionEnabled field if non-nil, zero value otherwise.
+
+### GetFirmwareDriftDetectionEnabledOk
+
+`func (o *UpdateServer) GetFirmwareDriftDetectionEnabledOk() (*bool, bool)`
+
+GetFirmwareDriftDetectionEnabledOk returns a tuple with the FirmwareDriftDetectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareDriftDetectionEnabled
+
+`func (o *UpdateServer) SetFirmwareDriftDetectionEnabled(v bool)`
+
+SetFirmwareDriftDetectionEnabled sets FirmwareDriftDetectionEnabled field to given value.
+
+### HasFirmwareDriftDetectionEnabled
+
+`func (o *UpdateServer) HasFirmwareDriftDetectionEnabled() bool`
+
+HasFirmwareDriftDetectionEnabled returns a boolean if a field has been set.
 
 ### GetRegistrationProfileId
 

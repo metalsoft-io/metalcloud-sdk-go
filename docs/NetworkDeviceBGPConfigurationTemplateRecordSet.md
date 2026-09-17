@@ -12,18 +12,20 @@ Name | Type | Description | Notes
 **LocalSwitchInterfaceLagId** | Pointer to **int64** | The LAG ID of the local switch interface. | [optional] 
 **LocalSwitchAsn** | Pointer to **int64** | The Autonomous System Number of the local switch. | [optional] 
 **LocalSwitchLoopbackAddressIpv4** | Pointer to **string** | The local switch loopback IPv4 address. | [optional] 
-**RemoteSwitchId** | **int64** | The ID of the remote switch. | 
-**RemoteSwitchIdentifier** | **string** | The identifier of the remote switch. | 
-**RemoteSwitchRole** | **string** | The role of the remote switch. | 
-**RemoteSwitchInterfaceName** | **string** | The name of the remote switch interface. | 
+**RemoteSwitchId** | Pointer to **int64** | The ID of the remote switch. Unset when the remote side is an external system. | [optional] 
+**RemoteSwitchIdentifier** | Pointer to **string** | The identifier of the remote switch. Unset when the remote side is an external system. | [optional] 
+**RemoteSwitchRole** | **string** | The role of the remote switch — its position in the fabric. &#x60;other&#x60; when the remote side is an external system, which is the position the template library uses for a peer we do not manage. | 
+**RemoteSwitchInterfaceName** | Pointer to **string** | The name of the remote switch interface. Unset when the remote side is an external system, which has no interfaces of its own. | [optional] 
 **RemoteSwitchInterfaceLagId** | Pointer to **int64** | The LAG ID of the remote switch interface. | [optional] 
-**RemoteSwitchAsn** | Pointer to **int64** | The Autonomous System Number of the remote switch. | [optional] 
+**RemoteSwitchAsn** | Pointer to **int64** | The Autonomous System Number of the remote switch, or of the external system when the remote side is one. | [optional] 
 **RemoteSwitchLoopbackAddressIpv4** | Pointer to **string** | The remote switch loopback IPv4 address. | [optional] 
 **BgpNumbering** | **string** | BGP numbering | 
 **FabricCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the fabric. | [optional] 
 **LinkCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the link. | [optional] 
 **LocalSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the local switch. | [optional] 
 **RemoteSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the remote switch. | [optional] 
+**BgpSessionCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for this BGP session alone. Every other namespace is shared: link_custom_variables is common to all sessions on the link, and more than one session may exist on the same link or aggregation. | [optional] 
+**LinkAggregationCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the link aggregation this session runs over. Empty when the session is on a single link; it does not fall back to the link&#39;s own aggregation. | [optional] 
 **MlagPeerCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the MLAG pair of the local switch (if any). | [optional] 
 **RemoteP2pLinkIp** | Pointer to **string** | The IP address of the remote interface of the P2P link. Present only when BGP numbering is NUMBERED. | [optional] 
 
@@ -31,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDeviceBGPConfigurationTemplateRecordSet
 
-`func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId int64, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string, ) *NetworkDeviceBGPConfigurationTemplateRecordSet`
+`func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchRole string, bgpNumbering string, ) *NetworkDeviceBGPConfigurationTemplateRecordSet`
 
 NewNetworkDeviceBGPConfigurationTemplateRecordSet instantiates a new NetworkDeviceBGPConfigurationTemplateRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -245,6 +247,11 @@ and a boolean to check if the value has been set.
 
 SetRemoteSwitchId sets RemoteSwitchId field to given value.
 
+### HasRemoteSwitchId
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchId() bool`
+
+HasRemoteSwitchId returns a boolean if a field has been set.
 
 ### GetRemoteSwitchIdentifier
 
@@ -265,6 +272,11 @@ and a boolean to check if the value has been set.
 
 SetRemoteSwitchIdentifier sets RemoteSwitchIdentifier field to given value.
 
+### HasRemoteSwitchIdentifier
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchIdentifier() bool`
+
+HasRemoteSwitchIdentifier returns a boolean if a field has been set.
 
 ### GetRemoteSwitchRole
 
@@ -305,6 +317,11 @@ and a boolean to check if the value has been set.
 
 SetRemoteSwitchInterfaceName sets RemoteSwitchInterfaceName field to given value.
 
+### HasRemoteSwitchInterfaceName
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchInterfaceName() bool`
+
+HasRemoteSwitchInterfaceName returns a boolean if a field has been set.
 
 ### GetRemoteSwitchInterfaceLagId
 
@@ -500,6 +517,56 @@ SetRemoteSwitchCustomVariables sets RemoteSwitchCustomVariables field to given v
 `func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchCustomVariables() bool`
 
 HasRemoteSwitchCustomVariables returns a boolean if a field has been set.
+
+### GetBgpSessionCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetBgpSessionCustomVariables() map[string]interface{}`
+
+GetBgpSessionCustomVariables returns the BgpSessionCustomVariables field if non-nil, zero value otherwise.
+
+### GetBgpSessionCustomVariablesOk
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetBgpSessionCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetBgpSessionCustomVariablesOk returns a tuple with the BgpSessionCustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpSessionCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetBgpSessionCustomVariables(v map[string]interface{})`
+
+SetBgpSessionCustomVariables sets BgpSessionCustomVariables field to given value.
+
+### HasBgpSessionCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasBgpSessionCustomVariables() bool`
+
+HasBgpSessionCustomVariables returns a boolean if a field has been set.
+
+### GetLinkAggregationCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLinkAggregationCustomVariables() map[string]interface{}`
+
+GetLinkAggregationCustomVariables returns the LinkAggregationCustomVariables field if non-nil, zero value otherwise.
+
+### GetLinkAggregationCustomVariablesOk
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLinkAggregationCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetLinkAggregationCustomVariablesOk returns a tuple with the LinkAggregationCustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkAggregationCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLinkAggregationCustomVariables(v map[string]interface{})`
+
+SetLinkAggregationCustomVariables sets LinkAggregationCustomVariables field to given value.
+
+### HasLinkAggregationCustomVariables
+
+`func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasLinkAggregationCustomVariables() bool`
+
+HasLinkAggregationCustomVariables returns a boolean if a field has been set.
 
 ### GetMlagPeerCustomVariables
 

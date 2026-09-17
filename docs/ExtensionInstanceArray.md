@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Dependencies** | Pointer to **[]string** | Labels of instance arrays this one depends on. | [optional] 
 **LogicalNetworks** | Pointer to [**[]ExtensionInstanceArrayLogicalNetwork**](ExtensionInstanceArrayLogicalNetwork.md) | Logical networks for the instance array. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the Server Instance Group. | [optional] 
+**StorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default storage profile (per storage controller RAID/HBA mode and volumes) applied to the Server Instance Group. | [optional] 
 
 ## Methods
 
@@ -242,6 +243,31 @@ SetTags sets Tags field to given value.
 `func (o *ExtensionInstanceArray) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetStorageProfile
+
+`func (o *ExtensionInstanceArray) GetStorageProfile() ServerInstanceStorageProfile`
+
+GetStorageProfile returns the StorageProfile field if non-nil, zero value otherwise.
+
+### GetStorageProfileOk
+
+`func (o *ExtensionInstanceArray) GetStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
+
+GetStorageProfileOk returns a tuple with the StorageProfile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorageProfile
+
+`func (o *ExtensionInstanceArray) SetStorageProfile(v ServerInstanceStorageProfile)`
+
+SetStorageProfile sets StorageProfile field to given value.
+
+### HasStorageProfile
+
+`func (o *ExtensionInstanceArray) HasStorageProfile() bool`
+
+HasStorageProfile returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

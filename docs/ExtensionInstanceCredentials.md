@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InputVariables** | **map[string]interface{}** | Input variables values to be updated. | 
+**InputVariables** | **map[string]interface{}** | Input credential variable values. | 
+**OutputVariables** | **map[string]interface{}** | Output credential variable values. | 
 
 ## Methods
 
 ### NewExtensionInstanceCredentials
 
-`func NewExtensionInstanceCredentials(inputVariables map[string]interface{}, ) *ExtensionInstanceCredentials`
+`func NewExtensionInstanceCredentials(inputVariables map[string]interface{}, outputVariables map[string]interface{}, ) *ExtensionInstanceCredentials`
 
 NewExtensionInstanceCredentials instantiates a new ExtensionInstanceCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *ExtensionInstanceCredentials) SetInputVariables(v map[string]interface{})`
 
 SetInputVariables sets InputVariables field to given value.
+
+
+### GetOutputVariables
+
+`func (o *ExtensionInstanceCredentials) GetOutputVariables() map[string]interface{}`
+
+GetOutputVariables returns the OutputVariables field if non-nil, zero value otherwise.
+
+### GetOutputVariablesOk
+
+`func (o *ExtensionInstanceCredentials) GetOutputVariablesOk() (*map[string]interface{}, bool)`
+
+GetOutputVariablesOk returns a tuple with the OutputVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutputVariables
+
+`func (o *ExtensionInstanceCredentials) SetOutputVariables(v map[string]interface{})`
+
+SetOutputVariables sets OutputVariables field to given value.
 
 
 

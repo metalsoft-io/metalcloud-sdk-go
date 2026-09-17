@@ -25,59 +25,59 @@ import (
 // NetworkDeviceAPIService NetworkDeviceAPI service
 type NetworkDeviceAPIService service
 
-type NetworkDeviceAPIAddNetworkDeviceDefaultsRequest struct {
+type NetworkDeviceAPIAcknowledgeNetworkDeviceDriftRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
-	createNetworkDeviceDefaults *CreateNetworkDeviceDefaults
+	networkDeviceId int64
+	driftId int64
 }
 
-// Network device defaults
-func (r NetworkDeviceAPIAddNetworkDeviceDefaultsRequest) CreateNetworkDeviceDefaults(createNetworkDeviceDefaults CreateNetworkDeviceDefaults) NetworkDeviceAPIAddNetworkDeviceDefaultsRequest {
-	r.createNetworkDeviceDefaults = &createNetworkDeviceDefaults
-	return r
-}
-
-func (r NetworkDeviceAPIAddNetworkDeviceDefaultsRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AddNetworkDeviceDefaultsExecute(r)
+func (r NetworkDeviceAPIAcknowledgeNetworkDeviceDriftRequest) Execute() (*NetworkDeviceDriftHistory, *http.Response, error) {
+	return r.ApiService.AcknowledgeNetworkDeviceDriftExecute(r)
 }
 
 /*
-AddNetworkDeviceDefaults Add network device defaults
+AcknowledgeNetworkDeviceDrift Acknowledge a network device drift
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return NetworkDeviceAPIAddNetworkDeviceDefaultsRequest
+ @param networkDeviceId Network device ID
+ @param driftId Network device ID
+ @return NetworkDeviceAPIAcknowledgeNetworkDeviceDriftRequest
 */
-func (a *NetworkDeviceAPIService) AddNetworkDeviceDefaults(ctx context.Context) NetworkDeviceAPIAddNetworkDeviceDefaultsRequest {
-	return NetworkDeviceAPIAddNetworkDeviceDefaultsRequest{
+func (a *NetworkDeviceAPIService) AcknowledgeNetworkDeviceDrift(ctx context.Context, networkDeviceId int64, driftId int64) NetworkDeviceAPIAcknowledgeNetworkDeviceDriftRequest {
+	return NetworkDeviceAPIAcknowledgeNetworkDeviceDriftRequest{
 		ApiService: a,
 		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+		driftId: driftId,
 	}
 }
 
 // Execute executes the request
-func (a *NetworkDeviceAPIService) AddNetworkDeviceDefaultsExecute(r NetworkDeviceAPIAddNetworkDeviceDefaultsRequest) (*http.Response, error) {
+//  @return NetworkDeviceDriftHistory
+func (a *NetworkDeviceAPIService) AcknowledgeNetworkDeviceDriftExecute(r NetworkDeviceAPIAcknowledgeNetworkDeviceDriftRequest) (*NetworkDeviceDriftHistory, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *NetworkDeviceDriftHistory
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.AddNetworkDeviceDefaults")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.AcknowledgeNetworkDeviceDrift")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/defaults"
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/drift-history/{driftId}/actions/acknowledge"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driftId"+"}", url.PathEscape(parameterValueToString(r.driftId, "driftId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkDeviceDefaults == nil {
-		return nil, reportError("createNetworkDeviceDefaults is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,30 +86,28 @@ func (a *NetworkDeviceAPIService) AddNetworkDeviceDefaultsExecute(r NetworkDevic
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.createNetworkDeviceDefaults
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -117,10 +115,19 @@ func (a *NetworkDeviceAPIService) AddNetworkDeviceDefaultsExecute(r NetworkDevic
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type NetworkDeviceAPIAddNetworkDevicePortIpRequest struct {
@@ -945,6 +952,190 @@ func (a *NetworkDeviceAPIService) DeleteNetworkDevicePortExecute(r NetworkDevice
 	}
 	if r.ifMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIDeleteNetworkDeviceSecretRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+	name string
+}
+
+func (r NetworkDeviceAPIDeleteNetworkDeviceSecretRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteNetworkDeviceSecretExecute(r)
+}
+
+/*
+DeleteNetworkDeviceSecret Delete one Network Device secret
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @param name
+ @return NetworkDeviceAPIDeleteNetworkDeviceSecretRequest
+*/
+func (a *NetworkDeviceAPIService) DeleteNetworkDeviceSecret(ctx context.Context, networkDeviceId int64, name string) NetworkDeviceAPIDeleteNetworkDeviceSecretRequest {
+	return NetworkDeviceAPIDeleteNetworkDeviceSecretRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+		name: name,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkDeviceAPIService) DeleteNetworkDeviceSecretExecute(r NetworkDeviceAPIDeleteNetworkDeviceSecretRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.DeleteNetworkDeviceSecret")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/secrets/{name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIDeleteNetworkDeviceSecretsRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+}
+
+func (r NetworkDeviceAPIDeleteNetworkDeviceSecretsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteNetworkDeviceSecretsExecute(r)
+}
+
+/*
+DeleteNetworkDeviceSecrets Delete all secrets of a Network Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIDeleteNetworkDeviceSecretsRequest
+*/
+func (a *NetworkDeviceAPIService) DeleteNetworkDeviceSecrets(ctx context.Context, networkDeviceId int64) NetworkDeviceAPIDeleteNetworkDeviceSecretsRequest {
+	return NetworkDeviceAPIDeleteNetworkDeviceSecretsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkDeviceAPIService) DeleteNetworkDeviceSecretsExecute(r NetworkDeviceAPIDeleteNetworkDeviceSecretsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.DeleteNetworkDeviceSecrets")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/secrets"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2299,139 +2490,104 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceCredentialsExecute(r NetworkDe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkDeviceAPIGetNetworkDeviceDefaultsRequest struct {
+type NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
-	siteId float32
+	networkDeviceId float32
 	page *float32
 	limit *float32
 	filterId *[]string
-	filterSerialNumber *[]string
-	filterManagementMacAddress *[]string
-	filterPosition *[]string
-	filterIdentifierString *[]string
-	filterAsn *[]string
-	filterOsTemplateId *[]string
-	filterOrderIndex *[]string
+	filterSnapshotId *[]string
+	filterAcknowledgedBy *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
 }
 
 // Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Page(page float32) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) Page(page float32) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
 	r.page = &page
 	return r
 }
 
 // Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Limit(limit float32) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) Limit(limit float32) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
 	r.limit = &limit
 	return r
 }
 
 // Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterId(filterId []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) FilterId(filterId []string) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Filter by serialNumber query param.  **Format:** filter.serialNumber&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serialNumber&#x3D;$btw:John Doe&amp;filter.serialNumber&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterSerialNumber(filterSerialNumber []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	r.filterSerialNumber = &filterSerialNumber
+// Filter by snapshotId query param.  **Format:** filter.snapshotId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.snapshotId&#x3D;$btw:John Doe&amp;filter.snapshotId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) FilterSnapshotId(filterSnapshotId []string) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
+	r.filterSnapshotId = &filterSnapshotId
 	return r
 }
 
-// Filter by managementMacAddress query param.  **Format:** filter.managementMacAddress&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.managementMacAddress&#x3D;$btw:John Doe&amp;filter.managementMacAddress&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterManagementMacAddress(filterManagementMacAddress []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	r.filterManagementMacAddress = &filterManagementMacAddress
+// Filter by acknowledgedBy query param.  **Format:** filter.acknowledgedBy&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.acknowledgedBy&#x3D;$btw:John Doe&amp;filter.acknowledgedBy&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) FilterAcknowledgedBy(filterAcknowledgedBy []string) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
+	r.filterAcknowledgedBy = &filterAcknowledgedBy
 	return r
 }
 
-// Filter by position query param.  **Format:** filter.position&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.position&#x3D;$btw:John Doe&amp;filter.position&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterPosition(filterPosition []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	r.filterPosition = &filterPosition
-	return r
-}
-
-// Filter by identifierString query param.  **Format:** filter.identifierString&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.identifierString&#x3D;$btw:John Doe&amp;filter.identifierString&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterIdentifierString(filterIdentifierString []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	r.filterIdentifierString = &filterIdentifierString
-	return r
-}
-
-// Filter by asn query param.  **Format:** filter.asn&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.asn&#x3D;$btw:John Doe&amp;filter.asn&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterAsn(filterAsn []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	r.filterAsn = &filterAsn
-	return r
-}
-
-// Filter by osTemplateId query param.  **Format:** filter.osTemplateId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.osTemplateId&#x3D;$btw:John Doe&amp;filter.osTemplateId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterOsTemplateId(filterOsTemplateId []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	r.filterOsTemplateId = &filterOsTemplateId
-	return r
-}
-
-// Filter by orderIndex query param.  **Format:** filter.orderIndex&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.orderIndex&#x3D;$btw:John Doe&amp;filter.orderIndex&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) FilterOrderIndex(filterOrderIndex []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	r.filterOrderIndex = &filterOrderIndex
-	return r
-}
-
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serialNumber:DESC   **Default Value:** id:ASC  **Available Fields** - id  - serialNumber  - managementMacAddress  - position  - identifierString  - asn  - orderIndex  - osTemplateId  - isPartOfMlagPair  - mlagSystemMac  - mlagDomainId  - mlagPeerLinkPortChannelId  - mlagPartnerVlanId  - mlagPartnerHostname  - loopbackAddressIpv4  - loopbackAddressIpv6  - vtepAddressIpv4  - vtepAddressIpv6 
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) SortBy(sortBy []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;snapshotId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - snapshotId  - acknowledgedBy 
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) SortBy(sortBy []string) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
 // Search term to filter result values  **Example:** John   **Default Value:** No default value  
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Search(search string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) Search(search string) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** serialNumber,managementMacAddress,position,identifierString,mlagPartnerHostname   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - serialNumber  - managementMacAddress  - position  - identifierString  - mlagPartnerHostname 
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) SearchBy(searchBy []string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
+// List of fields to search by term to filter result values  **Example:** id,snapshotId,acknowledgedBy   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - snapshotId  - acknowledgedBy 
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) SearchBy(searchBy []string) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Execute() (*NetworkDeviceDefaultsPaginatedList, *http.Response, error) {
-	return r.ApiService.GetNetworkDeviceDefaultsExecute(r)
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) Execute() (*NetworkDeviceDriftHistoryPaginatedList, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceDriftHistoryExecute(r)
 }
 
 /*
-GetNetworkDeviceDefaults Get network device defaults for a site
+GetNetworkDeviceDriftHistory Get drift history for a specific network device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param siteId
- @return NetworkDeviceAPIGetNetworkDeviceDefaultsRequest
+ @param networkDeviceId
+ @return NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest
 */
-func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaults(ctx context.Context, siteId float32) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
-	return NetworkDeviceAPIGetNetworkDeviceDefaultsRequest{
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDriftHistory(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest {
+	return NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest{
 		ApiService: a,
 		ctx: ctx,
-		siteId: siteId,
+		networkDeviceId: networkDeviceId,
 	}
 }
 
 // Execute executes the request
-//  @return NetworkDeviceDefaultsPaginatedList
-func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaultsExecute(r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) (*NetworkDeviceDefaultsPaginatedList, *http.Response, error) {
+//  @return NetworkDeviceDriftHistoryPaginatedList
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDriftHistoryExecute(r NetworkDeviceAPIGetNetworkDeviceDriftHistoryRequest) (*NetworkDeviceDriftHistoryPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkDeviceDefaultsPaginatedList
+		localVarReturnValue  *NetworkDeviceDriftHistoryPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceDefaults")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceDriftHistory")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/defaults/{siteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/drift-history"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2454,81 +2610,26 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaultsExecute(r NetworkDevic
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
-	if r.filterSerialNumber != nil {
-		t := *r.filterSerialNumber
+	if r.filterSnapshotId != nil {
+		t := *r.filterSnapshotId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serialNumber", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.snapshotId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serialNumber", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.snapshotId", t, "form", "multi")
 		}
 	}
-	if r.filterManagementMacAddress != nil {
-		t := *r.filterManagementMacAddress
+	if r.filterAcknowledgedBy != nil {
+		t := *r.filterAcknowledgedBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.managementMacAddress", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.acknowledgedBy", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.managementMacAddress", t, "form", "multi")
-		}
-	}
-	if r.filterPosition != nil {
-		t := *r.filterPosition
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.position", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.position", t, "form", "multi")
-		}
-	}
-	if r.filterIdentifierString != nil {
-		t := *r.filterIdentifierString
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.identifierString", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.identifierString", t, "form", "multi")
-		}
-	}
-	if r.filterAsn != nil {
-		t := *r.filterAsn
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.asn", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.asn", t, "form", "multi")
-		}
-	}
-	if r.filterOsTemplateId != nil {
-		t := *r.filterOsTemplateId
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.osTemplateId", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.osTemplateId", t, "form", "multi")
-		}
-	}
-	if r.filterOrderIndex != nil {
-		t := *r.filterOrderIndex
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.orderIndex", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.orderIndex", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.acknowledgedBy", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -2555,6 +2656,218 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaultsExecute(r NetworkDevic
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIGetNetworkDeviceDriftHistoryByIdRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+	driftId float32
+}
+
+func (r NetworkDeviceAPIGetNetworkDeviceDriftHistoryByIdRequest) Execute() (*NetworkDeviceDriftHistory, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceDriftHistoryByIdExecute(r)
+}
+
+/*
+GetNetworkDeviceDriftHistoryById Get a specific drift history for a specific network device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @param driftId
+ @return NetworkDeviceAPIGetNetworkDeviceDriftHistoryByIdRequest
+*/
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDriftHistoryById(ctx context.Context, networkDeviceId float32, driftId float32) NetworkDeviceAPIGetNetworkDeviceDriftHistoryByIdRequest {
+	return NetworkDeviceAPIGetNetworkDeviceDriftHistoryByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+		driftId: driftId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDeviceDriftHistory
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDriftHistoryByIdExecute(r NetworkDeviceAPIGetNetworkDeviceDriftHistoryByIdRequest) (*NetworkDeviceDriftHistory, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDeviceDriftHistory
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceDriftHistoryById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/drift-history/{driftId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driftId"+"}", url.PathEscape(parameterValueToString(r.driftId, "driftId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	search *string
+}
+
+// Filter by driver name (substring)
+func (r NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest) Search(search string) NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest {
+	r.search = &search
+	return r
+}
+
+func (r NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest) Execute() ([]NetworkDeviceDriverCapabilities, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceDriverCapabilitiesExecute(r)
+}
+
+/*
+GetNetworkDeviceDriverCapabilities Get Network Device driver capabilities
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest
+*/
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDriverCapabilities(ctx context.Context) NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest {
+	return NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []NetworkDeviceDriverCapabilities
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDriverCapabilitiesExecute(r NetworkDeviceAPIGetNetworkDeviceDriverCapabilitiesRequest) ([]NetworkDeviceDriverCapabilities, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []NetworkDeviceDriverCapabilities
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceDriverCapabilities")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/drivers/capabilities"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3813,6 +4126,216 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceSNMPMonitoringAgentInfoBatchEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkDeviceAPIGetNetworkDeviceSecretCredentialsRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+	name string
+}
+
+func (r NetworkDeviceAPIGetNetworkDeviceSecretCredentialsRequest) Execute() (*NetworkDeviceSecretCredentials, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceSecretCredentialsExecute(r)
+}
+
+/*
+GetNetworkDeviceSecretCredentials Get one Network Device secret unencrypted
+
+Requires the permission that also guards reading Network Device credentials.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @param name
+ @return NetworkDeviceAPIGetNetworkDeviceSecretCredentialsRequest
+*/
+func (a *NetworkDeviceAPIService) GetNetworkDeviceSecretCredentials(ctx context.Context, networkDeviceId int64, name string) NetworkDeviceAPIGetNetworkDeviceSecretCredentialsRequest {
+	return NetworkDeviceAPIGetNetworkDeviceSecretCredentialsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+		name: name,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDeviceSecretCredentials
+func (a *NetworkDeviceAPIService) GetNetworkDeviceSecretCredentialsExecute(r NetworkDeviceAPIGetNetworkDeviceSecretCredentialsRequest) (*NetworkDeviceSecretCredentials, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDeviceSecretCredentials
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceSecretCredentials")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/secrets/{name}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIGetNetworkDeviceSecretsRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+}
+
+func (r NetworkDeviceAPIGetNetworkDeviceSecretsRequest) Execute() (*NetworkDeviceSecretNames, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceSecretsExecute(r)
+}
+
+/*
+GetNetworkDeviceSecrets List the names of the secrets set on a Network Device
+
+Secrets hold values that must reach the device configuration without being stored in clear text, such as BGP peer group passwords, OSPF keys and SNMP user passwords. A custom variable refers to a secret by name, and the value is injected when the device fetches its configuration. Only the names are returned here.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIGetNetworkDeviceSecretsRequest
+*/
+func (a *NetworkDeviceAPIService) GetNetworkDeviceSecrets(ctx context.Context, networkDeviceId int64) NetworkDeviceAPIGetNetworkDeviceSecretsRequest {
+	return NetworkDeviceAPIGetNetworkDeviceSecretsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDeviceSecretNames
+func (a *NetworkDeviceAPIService) GetNetworkDeviceSecretsExecute(r NetworkDeviceAPIGetNetworkDeviceSecretsRequest) (*NetworkDeviceSecretNames, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDeviceSecretNames
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceSecrets")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/secrets"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkDeviceAPIGetNetworkDeviceSnapshotsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
@@ -4724,6 +5247,9 @@ type NetworkDeviceAPIGetNetworkDevicesRequest struct {
 	filterServerId *[]string
 	filterHealthStatus *[]string
 	filterDriftDetectionSyncStatus *[]string
+	filterBackupEnabled *[]string
+	filterDriftDetectionEnabled *[]string
+	filterNetworkFabricId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -4825,7 +5351,25 @@ func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterDriftDetectionSyncStatus
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus 
+// Filter by backupEnabled query param.  **Format:** filter.backupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.backupEnabled&#x3D;$btw:John Doe&amp;filter.backupEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterBackupEnabled(filterBackupEnabled []string) NetworkDeviceAPIGetNetworkDevicesRequest {
+	r.filterBackupEnabled = &filterBackupEnabled
+	return r
+}
+
+// Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled&#x3D;$btw:John Doe&amp;filter.driftDetectionEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterDriftDetectionEnabled(filterDriftDetectionEnabled []string) NetworkDeviceAPIGetNetworkDevicesRequest {
+	r.filterDriftDetectionEnabled = &filterDriftDetectionEnabled
+	return r
+}
+
+// Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$eq:John Doe&amp;filter.networkFabricId&#x3D;$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or
+func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterNetworkFabricId(filterNetworkFabricId []string) NetworkDeviceAPIGetNetworkDevicesRequest {
+	r.filterNetworkFabricId = &filterNetworkFabricId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled 
 func (r NetworkDeviceAPIGetNetworkDevicesRequest) SortBy(sortBy []string) NetworkDeviceAPIGetNetworkDevicesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -4837,7 +5381,7 @@ func (r NetworkDeviceAPIGetNetworkDevicesRequest) Search(search string) NetworkD
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus 
+// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled 
 func (r NetworkDeviceAPIGetNetworkDevicesRequest) SearchBy(searchBy []string) NetworkDeviceAPIGetNetworkDevicesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -5039,6 +5583,39 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicesExecute(r NetworkDeviceAPIGet
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionSyncStatus", t, "form", "multi")
+		}
+	}
+	if r.filterBackupEnabled != nil {
+		t := *r.filterBackupEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.backupEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.backupEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterDriftDetectionEnabled != nil {
+		t := *r.filterDriftDetectionEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkFabricId != nil {
+		t := *r.filterNetworkFabricId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -5431,6 +6008,119 @@ func (a *NetworkDeviceAPIService) ListNetworkDevicePortIpsExecute(r NetworkDevic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+	ifMatch *string
+}
+
+// Entity tag
+func (r NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest) IfMatch(ifMatch string) NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest) Execute() (*NetworkDevice, *http.Response, error) {
+	return r.ApiService.MarkNetworkDeviceInstallationReadyExecute(r)
+}
+
+/*
+MarkNetworkDeviceInstallationReady Marks a planned network device as installable
+
+Moves the device from planned to install_ready. This does not install anything: it only makes the device answerable over DHCP, and the DHCP request type then decides between a full ONIE install and ZTP configuration only. A device left in planned is a draft and its DHCP requests are ignored.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest
+*/
+func (a *NetworkDeviceAPIService) MarkNetworkDeviceInstallationReady(ctx context.Context, networkDeviceId int64) NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest {
+	return NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDevice
+func (a *NetworkDeviceAPIService) MarkNetworkDeviceInstallationReadyExecute(r NetworkDeviceAPIMarkNetworkDeviceInstallationReadyRequest) (*NetworkDevice, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDevice
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.MarkNetworkDeviceInstallationReady")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/mark-installation-ready"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkDeviceAPINetworkDeviceSyncTargetSnapshotWithLatestSnapshotRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
@@ -5636,100 +6326,6 @@ func (a *NetworkDeviceAPIService) ReProvisionNetworkDeviceExecute(r NetworkDevic
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	siteId float32
-	id int64
-}
-
-func (r NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveNetworkDeviceDefaultsExecute(r)
-}
-
-/*
-RemoveNetworkDeviceDefaults Remove network device defaults
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param siteId
- @param id The ID of the network device default to remove
- @return NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest
-*/
-func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaults(ctx context.Context, siteId float32, id int64) NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest {
-	return NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest{
-		ApiService: a,
-		ctx: ctx,
-		siteId: siteId,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaultsExecute(r NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.RemoveNetworkDeviceDefaults")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/defaults/{siteId}/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
 }
 
 type NetworkDeviceAPIRemoveNetworkDevicePortIpRequest struct {
@@ -6179,6 +6775,130 @@ func (a *NetworkDeviceAPIService) ResetNetworkDeviceExecute(r NetworkDeviceAPIRe
 	return localVarHTTPResponse, nil
 }
 
+type NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+	returnNetworkDeviceToPlanned *ReturnNetworkDeviceToPlanned
+	ifMatch *string
+}
+
+func (r NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest) ReturnNetworkDeviceToPlanned(returnNetworkDeviceToPlanned ReturnNetworkDeviceToPlanned) NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest {
+	r.returnNetworkDeviceToPlanned = &returnNetworkDeviceToPlanned
+	return r
+}
+
+// Entity tag
+func (r NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest) IfMatch(ifMatch string) NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest) Execute() (*NetworkDevice, *http.Response, error) {
+	return r.ApiService.ReturnNetworkDeviceToPlannedExecute(r)
+}
+
+/*
+ReturnNetworkDeviceToPlanned Returns a network device to planned
+
+Puts an archived (decommissioned) network device back into the planned status so the zero-touch bring-up (ONIE + ZTP) can run again on the same record, keeping its identity and configuration instead of creating a new placeholder. Syslog and SNMP are disabled because the device is no longer reachable. Also accepted on an install_ready device, to cancel an installation that has not started yet: its DHCP requests stop being answered and it becomes a draft again.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest
+*/
+func (a *NetworkDeviceAPIService) ReturnNetworkDeviceToPlanned(ctx context.Context, networkDeviceId int64) NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest {
+	return NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDevice
+func (a *NetworkDeviceAPIService) ReturnNetworkDeviceToPlannedExecute(r NetworkDeviceAPIReturnNetworkDeviceToPlannedRequest) (*NetworkDevice, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDevice
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.ReturnNetworkDeviceToPlanned")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/return-to-planned"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.returnNetworkDeviceToPlanned == nil {
+		return localVarReturnValue, nil, reportError("returnNetworkDeviceToPlanned is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.returnNetworkDeviceToPlanned
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
@@ -6548,6 +7268,9 @@ type NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest struct {
 	filterServerId *[]string
 	filterHealthStatus *[]string
 	filterDriftDetectionSyncStatus *[]string
+	filterBackupEnabled *[]string
+	filterDriftDetectionEnabled *[]string
+	filterNetworkFabricId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -6654,7 +7377,25 @@ func (r NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest) FilterDri
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus 
+// Filter by backupEnabled query param.  **Format:** filter.backupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.backupEnabled&#x3D;$btw:John Doe&amp;filter.backupEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest) FilterBackupEnabled(filterBackupEnabled []string) NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest {
+	r.filterBackupEnabled = &filterBackupEnabled
+	return r
+}
+
+// Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled&#x3D;$btw:John Doe&amp;filter.driftDetectionEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest) FilterDriftDetectionEnabled(filterDriftDetectionEnabled []string) NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest {
+	r.filterDriftDetectionEnabled = &filterDriftDetectionEnabled
+	return r
+}
+
+// Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$eq:John Doe&amp;filter.networkFabricId&#x3D;$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or
+func (r NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest) FilterNetworkFabricId(filterNetworkFabricId []string) NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest {
+	r.filterNetworkFabricId = &filterNetworkFabricId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled 
 func (r NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest) SortBy(sortBy []string) NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest {
 	r.sortBy = &sortBy
 	return r
@@ -6666,7 +7407,7 @@ func (r NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest) Search(se
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus 
+// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled 
 func (r NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest) SearchBy(searchBy []string) NetworkDeviceAPISetNetworkDeviceHealthMonitoringFilterRequest {
 	r.searchBy = &searchBy
 	return r
@@ -6872,6 +7613,39 @@ func (a *NetworkDeviceAPIService) SetNetworkDeviceHealthMonitoringFilterExecute(
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionSyncStatus", t, "form", "multi")
 		}
 	}
+	if r.filterBackupEnabled != nil {
+		t := *r.filterBackupEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.backupEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.backupEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterDriftDetectionEnabled != nil {
+		t := *r.filterDriftDetectionEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkFabricId != nil {
+		t := *r.filterNetworkFabricId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -7042,6 +7816,233 @@ func (a *NetworkDeviceAPIService) SetNetworkDevicePortStatusExecute(r NetworkDev
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPISetNetworkDeviceSecretRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+	setNetworkDeviceSecret *SetNetworkDeviceSecret
+}
+
+func (r NetworkDeviceAPISetNetworkDeviceSecretRequest) SetNetworkDeviceSecret(setNetworkDeviceSecret SetNetworkDeviceSecret) NetworkDeviceAPISetNetworkDeviceSecretRequest {
+	r.setNetworkDeviceSecret = &setNetworkDeviceSecret
+	return r
+}
+
+func (r NetworkDeviceAPISetNetworkDeviceSecretRequest) Execute() (*NetworkDeviceSecretNames, *http.Response, error) {
+	return r.ApiService.SetNetworkDeviceSecretExecute(r)
+}
+
+/*
+SetNetworkDeviceSecret Create or replace one Network Device secret
+
+Sending a name that already exists replaces its value. The value is stored encrypted and is injected into the device configuration when the device fetches it.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPISetNetworkDeviceSecretRequest
+*/
+func (a *NetworkDeviceAPIService) SetNetworkDeviceSecret(ctx context.Context, networkDeviceId int64) NetworkDeviceAPISetNetworkDeviceSecretRequest {
+	return NetworkDeviceAPISetNetworkDeviceSecretRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDeviceSecretNames
+func (a *NetworkDeviceAPIService) SetNetworkDeviceSecretExecute(r NetworkDeviceAPISetNetworkDeviceSecretRequest) (*NetworkDeviceSecretNames, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDeviceSecretNames
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.SetNetworkDeviceSecret")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/secrets"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setNetworkDeviceSecret == nil {
+		return localVarReturnValue, nil, reportError("setNetworkDeviceSecret is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setNetworkDeviceSecret
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIStartNetworkDeviceRegistrationRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId int64
+	ifMatch *string
+}
+
+// Entity tag
+func (r NetworkDeviceAPIStartNetworkDeviceRegistrationRequest) IfMatch(ifMatch string) NetworkDeviceAPIStartNetworkDeviceRegistrationRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r NetworkDeviceAPIStartNetworkDeviceRegistrationRequest) Execute() (*NetworkDevice, *http.Response, error) {
+	return r.ApiService.StartNetworkDeviceRegistrationExecute(r)
+}
+
+/*
+StartNetworkDeviceRegistration Starts registration for a network device
+
+Moves the device to register_ready and queues the registration graph, whose first step moves it to registering. Use it for a switch that is already installed and reachable but was never brought up through zero touch, so the record must already carry the management address and port, credentials, position and identifier string. The device reaches active through the graph, not through this call. Accepts planned, register_ready and registration_failed, except a register_ready device whose registration graph is still in progress.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIStartNetworkDeviceRegistrationRequest
+*/
+func (a *NetworkDeviceAPIService) StartNetworkDeviceRegistration(ctx context.Context, networkDeviceId int64) NetworkDeviceAPIStartNetworkDeviceRegistrationRequest {
+	return NetworkDeviceAPIStartNetworkDeviceRegistrationRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDevice
+func (a *NetworkDeviceAPIService) StartNetworkDeviceRegistrationExecute(r NetworkDeviceAPIStartNetworkDeviceRegistrationRequest) (*NetworkDevice, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDevice
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.StartNetworkDeviceRegistration")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/start-registration"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type NetworkDeviceAPIUpdateNetworkDeviceRequest struct {

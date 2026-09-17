@@ -30,6 +30,7 @@ Method | HTTP request | Description
 [**RemoveNetworkDeviceFromFabric**](NetworkFabricAPI.md#RemoveNetworkDeviceFromFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
 [**RescanNetworkFabricLinks**](NetworkFabricAPI.md#RescanNetworkFabricLinks) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/rescan-links | Re-scans the links of the specified network fabric
 [**UpdateNetworkFabric**](NetworkFabricAPI.md#UpdateNetworkFabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
+[**UpdateNetworkFabricBgpSession**](NetworkFabricAPI.md#UpdateNetworkFabricBgpSession) | **Patch** /api/v2/network-fabrics/{networkFabricId}/bgp-sessions/{bgpSessionId} | Update a network fabric BGP session
 [**UpdateNetworkFabricLinkAggregation**](NetworkFabricAPI.md#UpdateNetworkFabricLinkAggregation) | **Patch** /api/v2/network-fabrics/{networkFabricId}/link-aggregations/{linkAggregationId} | Update a network fabric link aggregation
 
 
@@ -261,7 +262,7 @@ import (
 )
 
 func main() {
-	createNetworkFabric := *openapiclient.NewCreateNetworkFabric("My Network Fabric", openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric(openapiclient.FabricType("ethernet"))}) // CreateNetworkFabric | The network fabric create object
+	createNetworkFabric := *openapiclient.NewCreateNetworkFabric("My Network Fabric", openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric("ethernet")}) // CreateNetworkFabric | The network fabric create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -863,7 +864,7 @@ Name | Type | Description  | Notes
 
 ## GetFabricNetworkDevices
 
-> NetworkDevicePaginatedList GetFabricNetworkDevices(ctx, networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> NetworkDevicePaginatedList GetFabricNetworkDevices(ctx, networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterBackupEnabled(filterBackupEnabled).FilterDriftDetectionEnabled(filterDriftDetectionEnabled).FilterNetworkFabricId(filterNetworkFabricId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get paginated Network Devices
 
@@ -897,13 +898,16 @@ func main() {
 	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.  **Format:** filter.serverId={$not}:OPERATION:VALUE    **Example:** filter.serverId=$btw:John Doe&filter.serverId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterHealthStatus := []string{"Inner_example"} // []string | Filter by healthStatus query param.  **Format:** filter.healthStatus={$not}:OPERATION:VALUE    **Example:** filter.healthStatus=$btw:John Doe&filter.healthStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterDriftDetectionSyncStatus := []string{"Inner_example"} // []string | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus=$btw:John Doe&filter.driftDetectionSyncStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  (optional)
+	filterBackupEnabled := []string{"Inner_example"} // []string | Filter by backupEnabled query param.  **Format:** filter.backupEnabled={$not}:OPERATION:VALUE    **Example:** filter.backupEnabled=$btw:John Doe&filter.backupEnabled=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterDriftDetectionEnabled := []string{"Inner_example"} // []string | Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled=$btw:John Doe&filter.driftDetectionEnabled=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterNetworkFabricId := []string{"Inner_example"} // []string | Filter by networkFabricId query param.  **Format:** filter.networkFabricId={$not}:OPERATION:VALUE    **Example:** filter.networkFabricId=$eq:John Doe&filter.networkFabricId=$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricAPI.GetFabricNetworkDevices(context.Background(), networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.NetworkFabricAPI.GetFabricNetworkDevices(context.Background(), networkFabricId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterBackupEnabled(filterBackupEnabled).FilterDriftDetectionEnabled(filterDriftDetectionEnabled).FilterNetworkFabricId(filterNetworkFabricId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.GetFabricNetworkDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -945,9 +949,12 @@ Name | Type | Description  | Notes
  **filterServerId** | **[]string** | Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterHealthStatus** | **[]string** | Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterDriftDetectionSyncStatus** | **[]string** | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$btw:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  | 
+ **filterBackupEnabled** | **[]string** | Filter by backupEnabled query param.  **Format:** filter.backupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.backupEnabled&#x3D;$btw:John Doe&amp;filter.backupEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterDriftDetectionEnabled** | **[]string** | Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled&#x3D;$btw:John Doe&amp;filter.driftDetectionEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterNetworkFabricId** | **[]string** | Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$eq:John Doe&amp;filter.networkFabricId&#x3D;$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  | 
 
 ### Return type
 
@@ -1911,7 +1918,7 @@ import (
 
 func main() {
 	networkFabricId := int64(789) // int64 | The ID of the network fabric to update
-	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric(openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric(openapiclient.FabricType("ethernet"))}) // UpdateNetworkFabric | Network fabric updates
+	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric(openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric("ethernet")}) // UpdateNetworkFabric | Network fabric updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1948,6 +1955,81 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NetworkFabric**](NetworkFabric.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateNetworkFabricBgpSession
+
+> NetworkFabricBGPSession UpdateNetworkFabricBgpSession(ctx, networkFabricId, bgpSessionId).UpdateNetworkFabricBGPSession(updateNetworkFabricBGPSession).Execute()
+
+Update a network fabric BGP session
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkFabricId := int64(789) // int64 | The ID of the fabric
+	bgpSessionId := int64(789) // int64 | The ID of the network fabric BGP session
+	updateNetworkFabricBGPSession := *openapiclient.NewUpdateNetworkFabricBGPSession() // UpdateNetworkFabricBGPSession | The network fabric BGP session fields to update
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricAPI.UpdateNetworkFabricBgpSession(context.Background(), networkFabricId, bgpSessionId).UpdateNetworkFabricBGPSession(updateNetworkFabricBGPSession).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.UpdateNetworkFabricBgpSession``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateNetworkFabricBgpSession`: NetworkFabricBGPSession
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.UpdateNetworkFabricBgpSession`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkFabricId** | **int64** | The ID of the fabric | 
+**bgpSessionId** | **int64** | The ID of the network fabric BGP session | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateNetworkFabricBgpSessionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateNetworkFabricBGPSession** | [**UpdateNetworkFabricBGPSession**](UpdateNetworkFabricBGPSession.md) | The network fabric BGP session fields to update | 
+
+### Return type
+
+[**NetworkFabricBGPSession**](NetworkFabricBGPSession.md)
 
 ### Authorization
 

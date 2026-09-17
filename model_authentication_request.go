@@ -45,7 +45,7 @@ func NewAuthenticationRequest(provider string, properties AuthenticationRequestP
 // but it doesn't guarantee that properties required by API are set
 func NewAuthenticationRequestWithDefaults() *AuthenticationRequest {
 	this := AuthenticationRequest{}
-	var provider string = "mysql"
+	var provider string = "built-in"
 	this.Provider = provider
 	return &this
 }

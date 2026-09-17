@@ -48,6 +48,8 @@ type NetworkFabricBGPSession struct {
 	NetworkFabricLink *NetworkFabricLink `json:"networkFabricLink,omitempty"`
 	// Associated network fabric link aggregation
 	LinkAggregation *NetworkFabricLinkAggregation `json:"linkAggregation,omitempty"`
+	// Custom variables exposed to network device configuration templates as bgp_session_custom_variables
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -425,6 +427,38 @@ func (o *NetworkFabricBGPSession) SetLinkAggregation(v NetworkFabricLinkAggregat
 	o.LinkAggregation = &v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *NetworkFabricBGPSession) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricBGPSession) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *NetworkFabricBGPSession) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *NetworkFabricBGPSession) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkFabricBGPSession) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -487,6 +521,9 @@ func (o NetworkFabricBGPSession) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LinkAggregation) {
 		toSerialize["linkAggregation"] = o.LinkAggregation
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -555,6 +592,7 @@ func (o *NetworkFabricBGPSession) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "networkFabricLink")
 		delete(additionalProperties, "linkAggregation")
+		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -6,13 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SiteId** | Pointer to **int64** | Site identifier | [optional] 
 **DatacenterName** | Pointer to **string** | Name of the datacenter | [optional] 
+**Status** | Pointer to **string** | Initial status of the network device. &#x60;planned&#x60; &#x3D; draft, not installed yet (identified by MAC address or serial number, other fields optional). &#x60;install_ready&#x60; &#x3D; like planned but immediately ready for the zero-touch install, so an ONIE OS template is required. &#x60;register_ready&#x60; &#x3D; an already installed, reachable switch that starts registration right away, entering the graph one step earlier than &#x60;active&#x60; does; it needs a driver that supports the start-registration action. Defaults to &#x60;active&#x60;, meaning a reachable device — note such a device is created in &#x60;registering&#x60; and becomes &#x60;active&#x60; only once its registration completes, unless its driver supports no start-registration action, in which case it is created &#x60;active&#x60; outright. | [optional] [default to "active"]
 **IdentifierString** | Pointer to **string** | Unique identifier string for the network device | [optional] 
 **ChassisRackId** | Pointer to **int64** | ID of the rack where the network device chassis is installed | [optional] 
 **ChassisIdentifier** | Pointer to **NullableString** | Unique identifier for the network device chassis | [optional] 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
-**Position** | **string** | The physical or logical position of the network device in the network topology. | 
+**Position** | **string** | The physical or logical position of the network device in the network topology. Optional for planned devices. | 
 **IsGateway** | Pointer to **bool** | Indicates if this network device acts as a gateway for external network traffic | [optional] 
 **SyslogEnabled** | Pointer to **NullableBool** | Indicates if syslog logging is enabled for this network device | [optional] 
+**BackupEnabled** | Pointer to **bool** | Whether backup is enabled on the device | [optional] 
+**DriftDetectionEnabled** | Pointer to **bool** | Whether drift detection is enabled on the device | [optional] 
 **SnmpServiceEnabled** | Pointer to **NullableBool** | Indicates if SNMP service is enabled for this network device | [optional] 
 **SnmpMonitoringEnabled** | Pointer to **NullableBool** | Indicates if SNMP monitoring is enabled for this network device | [optional] 
 **IsStorageSwitch** | Pointer to **bool** | Indicates if this network device is dedicated to storage traffic | [optional] 
@@ -20,8 +23,8 @@ Name | Type | Description | Notes
 **QuarantineVlan** | Pointer to **int32** | The VLAN ID for the quarantine network | [optional] 
 **ManagementAddress** | Pointer to **NullableString** | The IP address used to manage the network device | [optional] 
 **ManagementPort** | Pointer to **NullableInt32** | The port number used for management connections | [optional] 
-**Username** | **NullableString** | The username used for management authentication | 
-**ManagementPassword** | **string** | The password used for management authentication | 
+**Username** | **NullableString** | The username used for management authentication. Optional for planned devices. | 
+**ManagementPassword** | **string** | The password used for management authentication. Optional for planned devices. | 
 **ApiUsername** | Pointer to **string** | The username to access the network device API, if different from the management username. | [optional] 
 **ApiPassword** | Pointer to **string** | The password to access the network device API, if different from the management password. | [optional] 
 **ManagementAddressGateway** | Pointer to **NullableString** | The gateway IP address for the management network | [optional] 
@@ -43,6 +46,7 @@ Name | Type | Description | Notes
 **RackPositionLowerUnit** | Pointer to **NullableInt32** | The lower rack unit position where the device is mounted | [optional] 
 **SerialNumber** | Pointer to **string** | The serial number of the network device | [optional] 
 **OrderIndex** | Pointer to **float32** | The order index for sorting network devices | [optional] 
+**OsTemplateId** | Pointer to **int64** | OS template used for zero-touch installation (must use the ONIE install method). Must be set on a planned device before the hardware is powered on. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for categorizing and filtering network devices | [optional] 
 **TagsMap** | Pointer to **map[string]string** | Key/value tags (key-map). The forthcoming replacement for the legacy string[] &#x60;tags&#x60;. | [optional] 
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
@@ -126,6 +130,31 @@ SetDatacenterName sets DatacenterName field to given value.
 `func (o *CreateNetworkDevice) HasDatacenterName() bool`
 
 HasDatacenterName returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *CreateNetworkDevice) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *CreateNetworkDevice) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *CreateNetworkDevice) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *CreateNetworkDevice) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetIdentifierString
 
@@ -312,6 +341,56 @@ HasSyslogEnabled returns a boolean if a field has been set.
 `func (o *CreateNetworkDevice) UnsetSyslogEnabled()`
 
 UnsetSyslogEnabled ensures that no value is present for SyslogEnabled, not even an explicit nil
+### GetBackupEnabled
+
+`func (o *CreateNetworkDevice) GetBackupEnabled() bool`
+
+GetBackupEnabled returns the BackupEnabled field if non-nil, zero value otherwise.
+
+### GetBackupEnabledOk
+
+`func (o *CreateNetworkDevice) GetBackupEnabledOk() (*bool, bool)`
+
+GetBackupEnabledOk returns a tuple with the BackupEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBackupEnabled
+
+`func (o *CreateNetworkDevice) SetBackupEnabled(v bool)`
+
+SetBackupEnabled sets BackupEnabled field to given value.
+
+### HasBackupEnabled
+
+`func (o *CreateNetworkDevice) HasBackupEnabled() bool`
+
+HasBackupEnabled returns a boolean if a field has been set.
+
+### GetDriftDetectionEnabled
+
+`func (o *CreateNetworkDevice) GetDriftDetectionEnabled() bool`
+
+GetDriftDetectionEnabled returns the DriftDetectionEnabled field if non-nil, zero value otherwise.
+
+### GetDriftDetectionEnabledOk
+
+`func (o *CreateNetworkDevice) GetDriftDetectionEnabledOk() (*bool, bool)`
+
+GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionEnabled
+
+`func (o *CreateNetworkDevice) SetDriftDetectionEnabled(v bool)`
+
+SetDriftDetectionEnabled sets DriftDetectionEnabled field to given value.
+
+### HasDriftDetectionEnabled
+
+`func (o *CreateNetworkDevice) HasDriftDetectionEnabled() bool`
+
+HasDriftDetectionEnabled returns a boolean if a field has been set.
+
 ### GetSnmpServiceEnabled
 
 `func (o *CreateNetworkDevice) GetSnmpServiceEnabled() bool`
@@ -1271,6 +1350,31 @@ SetOrderIndex sets OrderIndex field to given value.
 `func (o *CreateNetworkDevice) HasOrderIndex() bool`
 
 HasOrderIndex returns a boolean if a field has been set.
+
+### GetOsTemplateId
+
+`func (o *CreateNetworkDevice) GetOsTemplateId() int64`
+
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
+
+### GetOsTemplateIdOk
+
+`func (o *CreateNetworkDevice) GetOsTemplateIdOk() (*int64, bool)`
+
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsTemplateId
+
+`func (o *CreateNetworkDevice) SetOsTemplateId(v int64)`
+
+SetOsTemplateId sets OsTemplateId field to given value.
+
+### HasOsTemplateId
+
+`func (o *CreateNetworkDevice) HasOsTemplateId() bool`
+
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetTags
 

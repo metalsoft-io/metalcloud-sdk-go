@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **GranularityLevel** | Pointer to [**NullableVniAllocationGranularityLevel**](VniAllocationGranularityLevel.md) |  | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewCreateAutoVniAllocationStrategy
 
-`func NewCreateAutoVniAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, ) *CreateAutoVniAllocationStrategy`
+`func NewCreateAutoVniAllocationStrategy(kind string, scope CreateResourceScope, ) *CreateAutoVniAllocationStrategy`
 
 NewCreateAutoVniAllocationStrategy instantiates a new CreateAutoVniAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateAutoVniAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateAutoVniAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateAutoVniAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateAutoVniAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateAutoVniAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateAutoVniAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

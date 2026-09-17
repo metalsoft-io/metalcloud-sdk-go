@@ -23,8 +23,11 @@ var _ MappedNullable = &ServerPolicy{}
 type ServerPolicy struct {
 	// ID of the default server registration profile
 	DefaultServerRegistrationProfileId *int64 `json:"defaultServerRegistrationProfileId,omitempty"`
-	// Option82 to IP mapping
-	DhcpOption82ToIPMapping map[string]interface{} `json:"dhcpOption82ToIPMapping"`
+	// DEPRECATED — use DHCP reservations instead. Option82 to IP mapping.
+	// Deprecated
+	DhcpOption82ToIPMapping map[string]interface{} `json:"dhcpOption82ToIPMapping,omitempty"`
+	// Whether to allocate an IP for a DHCP request that matches no reservation. Defaults to true (allocate the next free IP across all site OOB subnets); set to false to reject unmatched requests.
+	DhcpAllocateUnmatched *bool `json:"dhcpAllocateUnmatched,omitempty"`
 	// Whether to enable DHCP BMC MAC address whitelist
 	DhcpBmcMacAddressWhitelistEnabled bool `json:"dhcpBmcMacAddressWhitelistEnabled"`
 	// List of DHCP BMC MAC address whitelist
@@ -35,6 +38,10 @@ type ServerPolicy struct {
 	AutomaticallyAllocateServerTypes bool `json:"automaticallyAllocateServerTypes"`
 	// Automatically set servers as available
 	AutomaticallySetServersAsAvailable bool `json:"automaticallySetServersAsAvailable"`
+	// Whether periodic server firmware backup (snapshotting the observed firmware to git) is enabled for             the site. Disabling it also stops firmware drift detection. Defaults to true.
+	FirmwareBackupEnabled *bool `json:"firmwareBackupEnabled,omitempty"`
+	// Whether server drift detection is enabled for the site. Gates both checks: the configuration             drift alert (each snapshot against the previous one) and the firmware baseline check (installed             versions against the baseline minimums). Requires firmwareBackupEnabled. Defaults to true.
+	FirmwareDriftDetectionEnabled *bool `json:"firmwareDriftDetectionEnabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,13 +51,18 @@ type _ServerPolicy ServerPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerPolicy(dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool) *ServerPolicy {
+func NewServerPolicy(dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool) *ServerPolicy {
 	this := ServerPolicy{}
-	this.DhcpOption82ToIPMapping = dhcpOption82ToIPMapping
+	var dhcpAllocateUnmatched bool = true
+	this.DhcpAllocateUnmatched = &dhcpAllocateUnmatched
 	this.DhcpBmcMacAddressWhitelistEnabled = dhcpBmcMacAddressWhitelistEnabled
 	this.DhcpBmcMacAddressWhitelist = dhcpBmcMacAddressWhitelist
 	this.AutomaticallyAllocateServerTypes = automaticallyAllocateServerTypes
 	this.AutomaticallySetServersAsAvailable = automaticallySetServersAsAvailable
+	var firmwareBackupEnabled bool = true
+	this.FirmwareBackupEnabled = &firmwareBackupEnabled
+	var firmwareDriftDetectionEnabled bool = true
+	this.FirmwareDriftDetectionEnabled = &firmwareDriftDetectionEnabled
 	return &this
 }
 
@@ -59,6 +71,12 @@ func NewServerPolicy(dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacA
 // but it doesn't guarantee that properties required by API are set
 func NewServerPolicyWithDefaults() *ServerPolicy {
 	this := ServerPolicy{}
+	var dhcpAllocateUnmatched bool = true
+	this.DhcpAllocateUnmatched = &dhcpAllocateUnmatched
+	var firmwareBackupEnabled bool = true
+	this.FirmwareBackupEnabled = &firmwareBackupEnabled
+	var firmwareDriftDetectionEnabled bool = true
+	this.FirmwareDriftDetectionEnabled = &firmwareDriftDetectionEnabled
 	return &this
 }
 
@@ -94,28 +112,71 @@ func (o *ServerPolicy) SetDefaultServerRegistrationProfileId(v int64) {
 	o.DefaultServerRegistrationProfileId = &v
 }
 
-// GetDhcpOption82ToIPMapping returns the DhcpOption82ToIPMapping field value
+// GetDhcpOption82ToIPMapping returns the DhcpOption82ToIPMapping field value if set, zero value otherwise.
+// Deprecated
 func (o *ServerPolicy) GetDhcpOption82ToIPMapping() map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.DhcpOption82ToIPMapping) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.DhcpOption82ToIPMapping
 }
 
-// GetDhcpOption82ToIPMappingOk returns a tuple with the DhcpOption82ToIPMapping field value
+// GetDhcpOption82ToIPMappingOk returns a tuple with the DhcpOption82ToIPMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ServerPolicy) GetDhcpOption82ToIPMappingOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DhcpOption82ToIPMapping) {
 		return map[string]interface{}{}, false
 	}
 	return o.DhcpOption82ToIPMapping, true
 }
 
-// SetDhcpOption82ToIPMapping sets field value
+// HasDhcpOption82ToIPMapping returns a boolean if a field has been set.
+func (o *ServerPolicy) HasDhcpOption82ToIPMapping() bool {
+	if o != nil && !IsNil(o.DhcpOption82ToIPMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetDhcpOption82ToIPMapping gets a reference to the given map[string]interface{} and assigns it to the DhcpOption82ToIPMapping field.
+// Deprecated
 func (o *ServerPolicy) SetDhcpOption82ToIPMapping(v map[string]interface{}) {
 	o.DhcpOption82ToIPMapping = v
+}
+
+// GetDhcpAllocateUnmatched returns the DhcpAllocateUnmatched field value if set, zero value otherwise.
+func (o *ServerPolicy) GetDhcpAllocateUnmatched() bool {
+	if o == nil || IsNil(o.DhcpAllocateUnmatched) {
+		var ret bool
+		return ret
+	}
+	return *o.DhcpAllocateUnmatched
+}
+
+// GetDhcpAllocateUnmatchedOk returns a tuple with the DhcpAllocateUnmatched field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerPolicy) GetDhcpAllocateUnmatchedOk() (*bool, bool) {
+	if o == nil || IsNil(o.DhcpAllocateUnmatched) {
+		return nil, false
+	}
+	return o.DhcpAllocateUnmatched, true
+}
+
+// HasDhcpAllocateUnmatched returns a boolean if a field has been set.
+func (o *ServerPolicy) HasDhcpAllocateUnmatched() bool {
+	if o != nil && !IsNil(o.DhcpAllocateUnmatched) {
+		return true
+	}
+
+	return false
+}
+
+// SetDhcpAllocateUnmatched gets a reference to the given bool and assigns it to the DhcpAllocateUnmatched field.
+func (o *ServerPolicy) SetDhcpAllocateUnmatched(v bool) {
+	o.DhcpAllocateUnmatched = &v
 }
 
 // GetDhcpBmcMacAddressWhitelistEnabled returns the DhcpBmcMacAddressWhitelistEnabled field value
@@ -246,6 +307,70 @@ func (o *ServerPolicy) SetAutomaticallySetServersAsAvailable(v bool) {
 	o.AutomaticallySetServersAsAvailable = v
 }
 
+// GetFirmwareBackupEnabled returns the FirmwareBackupEnabled field value if set, zero value otherwise.
+func (o *ServerPolicy) GetFirmwareBackupEnabled() bool {
+	if o == nil || IsNil(o.FirmwareBackupEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.FirmwareBackupEnabled
+}
+
+// GetFirmwareBackupEnabledOk returns a tuple with the FirmwareBackupEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerPolicy) GetFirmwareBackupEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.FirmwareBackupEnabled) {
+		return nil, false
+	}
+	return o.FirmwareBackupEnabled, true
+}
+
+// HasFirmwareBackupEnabled returns a boolean if a field has been set.
+func (o *ServerPolicy) HasFirmwareBackupEnabled() bool {
+	if o != nil && !IsNil(o.FirmwareBackupEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareBackupEnabled gets a reference to the given bool and assigns it to the FirmwareBackupEnabled field.
+func (o *ServerPolicy) SetFirmwareBackupEnabled(v bool) {
+	o.FirmwareBackupEnabled = &v
+}
+
+// GetFirmwareDriftDetectionEnabled returns the FirmwareDriftDetectionEnabled field value if set, zero value otherwise.
+func (o *ServerPolicy) GetFirmwareDriftDetectionEnabled() bool {
+	if o == nil || IsNil(o.FirmwareDriftDetectionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.FirmwareDriftDetectionEnabled
+}
+
+// GetFirmwareDriftDetectionEnabledOk returns a tuple with the FirmwareDriftDetectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerPolicy) GetFirmwareDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.FirmwareDriftDetectionEnabled) {
+		return nil, false
+	}
+	return o.FirmwareDriftDetectionEnabled, true
+}
+
+// HasFirmwareDriftDetectionEnabled returns a boolean if a field has been set.
+func (o *ServerPolicy) HasFirmwareDriftDetectionEnabled() bool {
+	if o != nil && !IsNil(o.FirmwareDriftDetectionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareDriftDetectionEnabled gets a reference to the given bool and assigns it to the FirmwareDriftDetectionEnabled field.
+func (o *ServerPolicy) SetFirmwareDriftDetectionEnabled(v bool) {
+	o.FirmwareDriftDetectionEnabled = &v
+}
+
 func (o ServerPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -259,7 +384,12 @@ func (o ServerPolicy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DefaultServerRegistrationProfileId) {
 		toSerialize["defaultServerRegistrationProfileId"] = o.DefaultServerRegistrationProfileId
 	}
-	toSerialize["dhcpOption82ToIPMapping"] = o.DhcpOption82ToIPMapping
+	if !IsNil(o.DhcpOption82ToIPMapping) {
+		toSerialize["dhcpOption82ToIPMapping"] = o.DhcpOption82ToIPMapping
+	}
+	if !IsNil(o.DhcpAllocateUnmatched) {
+		toSerialize["dhcpAllocateUnmatched"] = o.DhcpAllocateUnmatched
+	}
 	toSerialize["dhcpBmcMacAddressWhitelistEnabled"] = o.DhcpBmcMacAddressWhitelistEnabled
 	toSerialize["dhcpBmcMacAddressWhitelist"] = o.DhcpBmcMacAddressWhitelist
 	if !IsNil(o.DefaultServerCleanupPolicyID) {
@@ -267,6 +397,12 @@ func (o ServerPolicy) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["automaticallyAllocateServerTypes"] = o.AutomaticallyAllocateServerTypes
 	toSerialize["automaticallySetServersAsAvailable"] = o.AutomaticallySetServersAsAvailable
+	if !IsNil(o.FirmwareBackupEnabled) {
+		toSerialize["firmwareBackupEnabled"] = o.FirmwareBackupEnabled
+	}
+	if !IsNil(o.FirmwareDriftDetectionEnabled) {
+		toSerialize["firmwareDriftDetectionEnabled"] = o.FirmwareDriftDetectionEnabled
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -280,7 +416,6 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"dhcpOption82ToIPMapping",
 		"dhcpBmcMacAddressWhitelistEnabled",
 		"dhcpBmcMacAddressWhitelist",
 		"automaticallyAllocateServerTypes",
@@ -316,11 +451,14 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "defaultServerRegistrationProfileId")
 		delete(additionalProperties, "dhcpOption82ToIPMapping")
+		delete(additionalProperties, "dhcpAllocateUnmatched")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelistEnabled")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelist")
 		delete(additionalProperties, "defaultServerCleanupPolicyID")
 		delete(additionalProperties, "automaticallyAllocateServerTypes")
 		delete(additionalProperties, "automaticallySetServersAsAvailable")
+		delete(additionalProperties, "firmwareBackupEnabled")
+		delete(additionalProperties, "firmwareDriftDetectionEnabled")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **Name** | **string** |  | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewCreateManualVrfAllocationStrategy
 
-`func NewCreateManualVrfAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, name string, ) *CreateManualVrfAllocationStrategy`
+`func NewCreateManualVrfAllocationStrategy(kind string, scope CreateResourceScope, name string, ) *CreateManualVrfAllocationStrategy`
 
 NewCreateManualVrfAllocationStrategy instantiates a new CreateManualVrfAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateManualVrfAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateManualVrfAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateManualVrfAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateManualVrfAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateManualVrfAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateManualVrfAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

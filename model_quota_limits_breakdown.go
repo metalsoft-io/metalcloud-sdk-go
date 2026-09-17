@@ -32,13 +32,13 @@ type QuotaLimitsBreakdown struct {
 	// Limits from the quota profile assigned to the parent account, or null if none applies
 	ParentAccount NullableQuotaProfileLimits `json:"parentAccount,omitempty"`
 	// Current aggregate resource counts for this user — only populated when ?includeUsage=true
-	UserUsage NullableQuotaProfileLimits `json:"userUsage,omitempty"`
+	UserUsage NullableQuotaUsage `json:"userUsage,omitempty"`
 	// Aggregate resource counts across all LDAP/SAML group members — only populated when ?includeUsage=true
-	GroupUsage NullableQuotaProfileLimits `json:"groupUsage,omitempty"`
+	GroupUsage NullableQuotaUsage `json:"groupUsage,omitempty"`
 	// Aggregate resource counts across all users in the same account — only populated when ?includeUsage=true
-	AccountUsage NullableQuotaProfileLimits `json:"accountUsage,omitempty"`
+	AccountUsage NullableQuotaUsage `json:"accountUsage,omitempty"`
 	// Aggregate resource counts across all users in child accounts — only populated when ?includeUsage=true
-	ParentAccountUsage NullableQuotaProfileLimits `json:"parentAccountUsage,omitempty"`
+	ParentAccountUsage NullableQuotaUsage `json:"parentAccountUsage,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -255,9 +255,9 @@ func (o *QuotaLimitsBreakdown) UnsetParentAccount() {
 }
 
 // GetUserUsage returns the UserUsage field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotaLimitsBreakdown) GetUserUsage() QuotaProfileLimits {
+func (o *QuotaLimitsBreakdown) GetUserUsage() QuotaUsage {
 	if o == nil || IsNil(o.UserUsage.Get()) {
-		var ret QuotaProfileLimits
+		var ret QuotaUsage
 		return ret
 	}
 	return *o.UserUsage.Get()
@@ -266,7 +266,7 @@ func (o *QuotaLimitsBreakdown) GetUserUsage() QuotaProfileLimits {
 // GetUserUsageOk returns a tuple with the UserUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotaLimitsBreakdown) GetUserUsageOk() (*QuotaProfileLimits, bool) {
+func (o *QuotaLimitsBreakdown) GetUserUsageOk() (*QuotaUsage, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -282,8 +282,8 @@ func (o *QuotaLimitsBreakdown) HasUserUsage() bool {
 	return false
 }
 
-// SetUserUsage gets a reference to the given NullableQuotaProfileLimits and assigns it to the UserUsage field.
-func (o *QuotaLimitsBreakdown) SetUserUsage(v QuotaProfileLimits) {
+// SetUserUsage gets a reference to the given NullableQuotaUsage and assigns it to the UserUsage field.
+func (o *QuotaLimitsBreakdown) SetUserUsage(v QuotaUsage) {
 	o.UserUsage.Set(&v)
 }
 // SetUserUsageNil sets the value for UserUsage to be an explicit nil
@@ -297,9 +297,9 @@ func (o *QuotaLimitsBreakdown) UnsetUserUsage() {
 }
 
 // GetGroupUsage returns the GroupUsage field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotaLimitsBreakdown) GetGroupUsage() QuotaProfileLimits {
+func (o *QuotaLimitsBreakdown) GetGroupUsage() QuotaUsage {
 	if o == nil || IsNil(o.GroupUsage.Get()) {
-		var ret QuotaProfileLimits
+		var ret QuotaUsage
 		return ret
 	}
 	return *o.GroupUsage.Get()
@@ -308,7 +308,7 @@ func (o *QuotaLimitsBreakdown) GetGroupUsage() QuotaProfileLimits {
 // GetGroupUsageOk returns a tuple with the GroupUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotaLimitsBreakdown) GetGroupUsageOk() (*QuotaProfileLimits, bool) {
+func (o *QuotaLimitsBreakdown) GetGroupUsageOk() (*QuotaUsage, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -324,8 +324,8 @@ func (o *QuotaLimitsBreakdown) HasGroupUsage() bool {
 	return false
 }
 
-// SetGroupUsage gets a reference to the given NullableQuotaProfileLimits and assigns it to the GroupUsage field.
-func (o *QuotaLimitsBreakdown) SetGroupUsage(v QuotaProfileLimits) {
+// SetGroupUsage gets a reference to the given NullableQuotaUsage and assigns it to the GroupUsage field.
+func (o *QuotaLimitsBreakdown) SetGroupUsage(v QuotaUsage) {
 	o.GroupUsage.Set(&v)
 }
 // SetGroupUsageNil sets the value for GroupUsage to be an explicit nil
@@ -339,9 +339,9 @@ func (o *QuotaLimitsBreakdown) UnsetGroupUsage() {
 }
 
 // GetAccountUsage returns the AccountUsage field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotaLimitsBreakdown) GetAccountUsage() QuotaProfileLimits {
+func (o *QuotaLimitsBreakdown) GetAccountUsage() QuotaUsage {
 	if o == nil || IsNil(o.AccountUsage.Get()) {
-		var ret QuotaProfileLimits
+		var ret QuotaUsage
 		return ret
 	}
 	return *o.AccountUsage.Get()
@@ -350,7 +350,7 @@ func (o *QuotaLimitsBreakdown) GetAccountUsage() QuotaProfileLimits {
 // GetAccountUsageOk returns a tuple with the AccountUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotaLimitsBreakdown) GetAccountUsageOk() (*QuotaProfileLimits, bool) {
+func (o *QuotaLimitsBreakdown) GetAccountUsageOk() (*QuotaUsage, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -366,8 +366,8 @@ func (o *QuotaLimitsBreakdown) HasAccountUsage() bool {
 	return false
 }
 
-// SetAccountUsage gets a reference to the given NullableQuotaProfileLimits and assigns it to the AccountUsage field.
-func (o *QuotaLimitsBreakdown) SetAccountUsage(v QuotaProfileLimits) {
+// SetAccountUsage gets a reference to the given NullableQuotaUsage and assigns it to the AccountUsage field.
+func (o *QuotaLimitsBreakdown) SetAccountUsage(v QuotaUsage) {
 	o.AccountUsage.Set(&v)
 }
 // SetAccountUsageNil sets the value for AccountUsage to be an explicit nil
@@ -381,9 +381,9 @@ func (o *QuotaLimitsBreakdown) UnsetAccountUsage() {
 }
 
 // GetParentAccountUsage returns the ParentAccountUsage field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QuotaLimitsBreakdown) GetParentAccountUsage() QuotaProfileLimits {
+func (o *QuotaLimitsBreakdown) GetParentAccountUsage() QuotaUsage {
 	if o == nil || IsNil(o.ParentAccountUsage.Get()) {
-		var ret QuotaProfileLimits
+		var ret QuotaUsage
 		return ret
 	}
 	return *o.ParentAccountUsage.Get()
@@ -392,7 +392,7 @@ func (o *QuotaLimitsBreakdown) GetParentAccountUsage() QuotaProfileLimits {
 // GetParentAccountUsageOk returns a tuple with the ParentAccountUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QuotaLimitsBreakdown) GetParentAccountUsageOk() (*QuotaProfileLimits, bool) {
+func (o *QuotaLimitsBreakdown) GetParentAccountUsageOk() (*QuotaUsage, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -408,8 +408,8 @@ func (o *QuotaLimitsBreakdown) HasParentAccountUsage() bool {
 	return false
 }
 
-// SetParentAccountUsage gets a reference to the given NullableQuotaProfileLimits and assigns it to the ParentAccountUsage field.
-func (o *QuotaLimitsBreakdown) SetParentAccountUsage(v QuotaProfileLimits) {
+// SetParentAccountUsage gets a reference to the given NullableQuotaUsage and assigns it to the ParentAccountUsage field.
+func (o *QuotaLimitsBreakdown) SetParentAccountUsage(v QuotaUsage) {
 	o.ParentAccountUsage.Set(&v)
 }
 // SetParentAccountUsageNil sets the value for ParentAccountUsage to be an explicit nil

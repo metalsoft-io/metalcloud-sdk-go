@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **Pkey** | **int32** |  | 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewPkeyAllocationStrategy
 
-`func NewPkeyAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, pkey int32, ) *PkeyAllocationStrategy`
+`func NewPkeyAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, pkey int32, ) *PkeyAllocationStrategy`
 
 NewPkeyAllocationStrategy instantiates a new PkeyAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -92,20 +92,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetKind
 
-`func (o *PkeyAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *PkeyAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *PkeyAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *PkeyAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *PkeyAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *PkeyAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

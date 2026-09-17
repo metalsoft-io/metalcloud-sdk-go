@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Authentication provider identifier | 
+**Name** | [**UserProviderName**](UserProviderName.md) | Authentication provider identifier | 
 **Enabled** | **bool** | Whether this provider is active | 
 **Domains** | **[]string** | Email domains handled by this provider | 
 **Subtrees** | Pointer to **[]string** | LDAP subtrees for directory lookups — for non-email domain formats (LDAP only) | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewUserProvider
 
-`func NewUserProvider(name string, enabled bool, domains []string, ) *UserProvider`
+`func NewUserProvider(name UserProviderName, enabled bool, domains []string, ) *UserProvider`
 
 NewUserProvider instantiates a new UserProvider object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *UserProvider) GetName() string`
+`func (o *UserProvider) GetName() UserProviderName`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *UserProvider) GetNameOk() (*string, bool)`
+`func (o *UserProvider) GetNameOk() (*UserProviderName, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *UserProvider) SetName(v string)`
+`func (o *UserProvider) SetName(v UserProviderName)`
 
 SetName sets Name field to given value.
 

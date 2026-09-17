@@ -42,6 +42,8 @@ type VMInstanceGroup struct {
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Status of the VM Instance Group.
 	ServiceStatus string `json:"serviceStatus"`
+	// Type of the Instance Group.
+	InstanceGroupType string `json:"instanceGroupType"`
 	// Disk size in GB for each VM Instance in the VM Instance Group.
 	DiskSizeGB float32 `json:"diskSizeGB"`
 	// Subdomain permanent of the VM Instance Group.
@@ -69,7 +71,7 @@ type _VMInstanceGroup VMInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceGroup(label string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta) *VMInstanceGroup {
+func NewVMInstanceGroup(label string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, instanceGroupType string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta) *VMInstanceGroup {
 	this := VMInstanceGroup{}
 	this.Label = label
 	var instanceCount float32 = 1
@@ -80,6 +82,7 @@ func NewVMInstanceGroup(label string, updatedTimestamp string, id int64, revisio
 	this.InfrastructureId = infrastructureId
 	this.Infrastructure = infrastructure
 	this.ServiceStatus = serviceStatus
+	this.InstanceGroupType = instanceGroupType
 	this.DiskSizeGB = diskSizeGB
 	this.CreatedTimestamp = createdTimestamp
 	this.Config = config
@@ -393,6 +396,30 @@ func (o *VMInstanceGroup) SetServiceStatus(v string) {
 	o.ServiceStatus = v
 }
 
+// GetInstanceGroupType returns the InstanceGroupType field value
+func (o *VMInstanceGroup) GetInstanceGroupType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InstanceGroupType
+}
+
+// GetInstanceGroupTypeOk returns a tuple with the InstanceGroupType field value
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetInstanceGroupTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InstanceGroupType, true
+}
+
+// SetInstanceGroupType sets field value
+func (o *VMInstanceGroup) SetInstanceGroupType(v string) {
+	o.InstanceGroupType = v
+}
+
 // GetDiskSizeGB returns the DiskSizeGB field value
 func (o *VMInstanceGroup) GetDiskSizeGB() float32 {
 	if o == nil {
@@ -678,6 +705,7 @@ func (o VMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
+	toSerialize["instanceGroupType"] = o.InstanceGroupType
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
 	if !IsNil(o.SubdomainPermanent) {
 		toSerialize["subdomainPermanent"] = o.SubdomainPermanent
@@ -717,6 +745,7 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"infrastructureId",
 		"infrastructure",
 		"serviceStatus",
+		"instanceGroupType",
 		"diskSizeGB",
 		"createdTimestamp",
 		"config",
@@ -761,6 +790,7 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
+		delete(additionalProperties, "instanceGroupType")
 		delete(additionalProperties, "diskSizeGB")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")

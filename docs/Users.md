@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UsersProvider** | [**UsersProvider**](UsersProvider.md) | Enabled authentication provider flags | 
-**DefaultUserProvider** | **string** | Default authentication provider for new users | 
+**DefaultUserProvider** | [**UserProviderName**](UserProviderName.md) | Default authentication provider for new users | 
 **UserProviders** | [**[]UserProvider**](UserProvider.md) | Per-provider authentication configuration | 
 **MaxFailedLoginAttempts** | **map[string]interface{}** | Maximum consecutive failed login attempts before temporary lockout | 
 **FailedLoginAttemptsTTL** | **map[string]interface{}** | Duration in seconds for the failed login attempt counter to reset | 
 **UserCacheTTL** | **map[string]interface{}** | Duration in seconds to cache user data in memory | 
 **MaxUserSessionDuration** | **map[string]interface{}** | Maximum session duration in seconds before forced re-authentication | 
 **SessionInactivityTimeoutDuration** | **map[string]interface{}** | Idle timeout in seconds after which an inactive session expires | 
+**MaxActiveLoginSessions** | **map[string]interface{}** | Maximum number of concurrent active login sessions per user; a login exceeding the limit logs out the oldest session | 
 **PasswordRegex** | **map[string]interface{}** | Regular expression pattern that passwords must match | 
 **PasswordAllowedSpecialCharacters** | **map[string]interface{}** | Characters allowed as special characters in passwords | 
 **PasswordMinLength** | **map[string]interface{}** | Minimum password length | 
@@ -22,6 +23,8 @@ Name | Type | Description | Notes
 **PasswordMinDigits** | **map[string]interface{}** | Minimum number of digits required in passwords | 
 **PasswordReuseLockoutDuration** | **map[string]interface{}** | Duration in seconds during which a previously used password cannot be reused | 
 **PasswordValidityDuration** | **map[string]interface{}** | Duration in seconds after which passwords expire; 0 means passwords never expire | 
+**ApiKeyValidityDuration** | **map[string]interface{}** | Duration in seconds after which user API keys expire; 0 means API keys never expire. Can be overridden per account and per user. Accepted range: 0 - 4294967295. | 
+**ApiKeyVisibility** | [**ApiKeyVisibility**](ApiKeyVisibility.md) | Whether a user API key may be displayed in the API/UI: always (readable at any time) or once (returned only when regenerated). | 
 **CookieExpirationBufferDuration** | **map[string]interface{}** | Seconds added to the JWT exp beyond the session expiration to absorb client/server clock skew; kept small because session invalidation is enforced server-side | 
 **CaptchaEnabled** | **map[string]interface{}** | Whether CAPTCHA verification is required on the login page | 
 **CaptchaVerifyUrl** | **map[string]interface{}** | CAPTCHA server-side verification endpoint URL | 
@@ -32,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewUsers
 
-`func NewUsers(usersProvider UsersProvider, defaultUserProvider string, userProviders []UserProvider, maxFailedLoginAttempts map[string]interface{}, failedLoginAttemptsTTL map[string]interface{}, userCacheTTL map[string]interface{}, maxUserSessionDuration map[string]interface{}, sessionInactivityTimeoutDuration map[string]interface{}, passwordRegex map[string]interface{}, passwordAllowedSpecialCharacters map[string]interface{}, passwordMinLength map[string]interface{}, passwordMaxLength map[string]interface{}, passwordMinSpecialCharacters map[string]interface{}, passwordMinUppercaseCharacters map[string]interface{}, passwordMinLowercaseCharacters map[string]interface{}, passwordMinDigits map[string]interface{}, passwordReuseLockoutDuration map[string]interface{}, passwordValidityDuration map[string]interface{}, cookieExpirationBufferDuration map[string]interface{}, captchaEnabled map[string]interface{}, captchaVerifyUrl map[string]interface{}, ) *Users`
+`func NewUsers(usersProvider UsersProvider, defaultUserProvider UserProviderName, userProviders []UserProvider, maxFailedLoginAttempts map[string]interface{}, failedLoginAttemptsTTL map[string]interface{}, userCacheTTL map[string]interface{}, maxUserSessionDuration map[string]interface{}, sessionInactivityTimeoutDuration map[string]interface{}, maxActiveLoginSessions map[string]interface{}, passwordRegex map[string]interface{}, passwordAllowedSpecialCharacters map[string]interface{}, passwordMinLength map[string]interface{}, passwordMaxLength map[string]interface{}, passwordMinSpecialCharacters map[string]interface{}, passwordMinUppercaseCharacters map[string]interface{}, passwordMinLowercaseCharacters map[string]interface{}, passwordMinDigits map[string]interface{}, passwordReuseLockoutDuration map[string]interface{}, passwordValidityDuration map[string]interface{}, apiKeyValidityDuration map[string]interface{}, apiKeyVisibility ApiKeyVisibility, cookieExpirationBufferDuration map[string]interface{}, captchaEnabled map[string]interface{}, captchaVerifyUrl map[string]interface{}, ) *Users`
 
 NewUsers instantiates a new Users object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +72,20 @@ SetUsersProvider sets UsersProvider field to given value.
 
 ### GetDefaultUserProvider
 
-`func (o *Users) GetDefaultUserProvider() string`
+`func (o *Users) GetDefaultUserProvider() UserProviderName`
 
 GetDefaultUserProvider returns the DefaultUserProvider field if non-nil, zero value otherwise.
 
 ### GetDefaultUserProviderOk
 
-`func (o *Users) GetDefaultUserProviderOk() (*string, bool)`
+`func (o *Users) GetDefaultUserProviderOk() (*UserProviderName, bool)`
 
 GetDefaultUserProviderOk returns a tuple with the DefaultUserProvider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultUserProvider
 
-`func (o *Users) SetDefaultUserProvider(v string)`
+`func (o *Users) SetDefaultUserProvider(v UserProviderName)`
 
 SetDefaultUserProvider sets DefaultUserProvider field to given value.
 
@@ -205,6 +208,26 @@ and a boolean to check if the value has been set.
 `func (o *Users) SetSessionInactivityTimeoutDuration(v map[string]interface{})`
 
 SetSessionInactivityTimeoutDuration sets SessionInactivityTimeoutDuration field to given value.
+
+
+### GetMaxActiveLoginSessions
+
+`func (o *Users) GetMaxActiveLoginSessions() map[string]interface{}`
+
+GetMaxActiveLoginSessions returns the MaxActiveLoginSessions field if non-nil, zero value otherwise.
+
+### GetMaxActiveLoginSessionsOk
+
+`func (o *Users) GetMaxActiveLoginSessionsOk() (*map[string]interface{}, bool)`
+
+GetMaxActiveLoginSessionsOk returns a tuple with the MaxActiveLoginSessions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxActiveLoginSessions
+
+`func (o *Users) SetMaxActiveLoginSessions(v map[string]interface{})`
+
+SetMaxActiveLoginSessions sets MaxActiveLoginSessions field to given value.
 
 
 ### GetPasswordRegex
@@ -405,6 +428,46 @@ and a boolean to check if the value has been set.
 `func (o *Users) SetPasswordValidityDuration(v map[string]interface{})`
 
 SetPasswordValidityDuration sets PasswordValidityDuration field to given value.
+
+
+### GetApiKeyValidityDuration
+
+`func (o *Users) GetApiKeyValidityDuration() map[string]interface{}`
+
+GetApiKeyValidityDuration returns the ApiKeyValidityDuration field if non-nil, zero value otherwise.
+
+### GetApiKeyValidityDurationOk
+
+`func (o *Users) GetApiKeyValidityDurationOk() (*map[string]interface{}, bool)`
+
+GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyValidityDuration
+
+`func (o *Users) SetApiKeyValidityDuration(v map[string]interface{})`
+
+SetApiKeyValidityDuration sets ApiKeyValidityDuration field to given value.
+
+
+### GetApiKeyVisibility
+
+`func (o *Users) GetApiKeyVisibility() ApiKeyVisibility`
+
+GetApiKeyVisibility returns the ApiKeyVisibility field if non-nil, zero value otherwise.
+
+### GetApiKeyVisibilityOk
+
+`func (o *Users) GetApiKeyVisibilityOk() (*ApiKeyVisibility, bool)`
+
+GetApiKeyVisibilityOk returns a tuple with the ApiKeyVisibility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyVisibility
+
+`func (o *Users) SetApiKeyVisibility(v ApiKeyVisibility)`
+
+SetApiKeyVisibility sets ApiKeyVisibility field to given value.
 
 
 ### GetCookieExpirationBufferDuration

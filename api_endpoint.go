@@ -1020,6 +1020,7 @@ type EndpointAPIGetEndpointsRequest struct {
 	filterExternalId *[]string
 	filterCreatedTimestamp *[]string
 	filterUpdatedTimestamp *[]string
+	filterAvailability *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1064,6 +1065,12 @@ func (r EndpointAPIGetEndpointsRequest) FilterCreatedTimestamp(filterCreatedTime
 // Filter by updatedTimestamp query param.  **Format:** filter.updatedTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedTimestamp&#x3D;$btw:John Doe&amp;filter.updatedTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
 func (r EndpointAPIGetEndpointsRequest) FilterUpdatedTimestamp(filterUpdatedTimestamp []string) EndpointAPIGetEndpointsRequest {
 	r.filterUpdatedTimestamp = &filterUpdatedTimestamp
+	return r
+}
+
+// Filter by availability query param.  **Format:** filter.availability&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.availability&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r EndpointAPIGetEndpointsRequest) FilterAvailability(filterAvailability []string) EndpointAPIGetEndpointsRequest {
+	r.filterAvailability = &filterAvailability
 	return r
 }
 
@@ -1184,6 +1191,17 @@ func (a *EndpointAPIService) GetEndpointsExecute(r EndpointAPIGetEndpointsReques
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updatedTimestamp", t, "form", "multi")
+		}
+	}
+	if r.filterAvailability != nil {
+		t := *r.filterAvailability
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.availability", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.availability", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

@@ -25,59 +25,59 @@ import (
 // JobAPIService JobAPI service
 type JobAPIService service
 
-type JobAPICreateCronJobRequest struct {
+type JobAPICreateScheduledJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	createCronJob *CreateCronJob
+	scheduledCronJob *ScheduledCronJob
 }
 
-// The cron job details
-func (r JobAPICreateCronJobRequest) CreateCronJob(createCronJob CreateCronJob) JobAPICreateCronJobRequest {
-	r.createCronJob = &createCronJob
+// The scheduled job details
+func (r JobAPICreateScheduledJobRequest) ScheduledCronJob(scheduledCronJob ScheduledCronJob) JobAPICreateScheduledJobRequest {
+	r.scheduledCronJob = &scheduledCronJob
 	return r
 }
 
-func (r JobAPICreateCronJobRequest) Execute() (*CronJob, *http.Response, error) {
-	return r.ApiService.CreateCronJobExecute(r)
+func (r JobAPICreateScheduledJobRequest) Execute() (*ScheduledJob, *http.Response, error) {
+	return r.ApiService.CreateScheduledJobExecute(r)
 }
 
 /*
-CreateCronJob Creates a new cron job
+CreateScheduledJob Creates a new scheduled job
 
-Creates a new cron job
+Creates a new scheduled job
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return JobAPICreateCronJobRequest
+ @return JobAPICreateScheduledJobRequest
 */
-func (a *JobAPIService) CreateCronJob(ctx context.Context) JobAPICreateCronJobRequest {
-	return JobAPICreateCronJobRequest{
+func (a *JobAPIService) CreateScheduledJob(ctx context.Context) JobAPICreateScheduledJobRequest {
+	return JobAPICreateScheduledJobRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CronJob
-func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*CronJob, *http.Response, error) {
+//  @return ScheduledJob
+func (a *JobAPIService) CreateScheduledJobExecute(r JobAPICreateScheduledJobRequest) (*ScheduledJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CronJob
+		localVarReturnValue  *ScheduledJob
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.CreateCronJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.CreateScheduledJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cron-jobs"
+	localVarPath := localBasePath + "/api/v2/scheduled-jobs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createCronJob == nil {
-		return localVarReturnValue, nil, reportError("createCronJob is required and must be specified")
+	if r.scheduledCronJob == nil {
+		return localVarReturnValue, nil, reportError("scheduledCronJob is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*Cro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createCronJob
+	localVarPostBody = r.scheduledCronJob
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -136,48 +136,48 @@ func (a *JobAPIService) CreateCronJobExecute(r JobAPICreateCronJobRequest) (*Cro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type JobAPIDeleteCronJobRequest struct {
+type JobAPIDeleteScheduledJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	cronJobId int64
+	scheduledJobId int64
 }
 
-func (r JobAPIDeleteCronJobRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteCronJobExecute(r)
+func (r JobAPIDeleteScheduledJobRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteScheduledJobExecute(r)
 }
 
 /*
-DeleteCronJob Delete cron job
+DeleteScheduledJob Delete scheduled job
 
-Deletes a cron job by ID
+Deletes a scheduled job by ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param cronJobId
- @return JobAPIDeleteCronJobRequest
+ @param scheduledJobId
+ @return JobAPIDeleteScheduledJobRequest
 */
-func (a *JobAPIService) DeleteCronJob(ctx context.Context, cronJobId int64) JobAPIDeleteCronJobRequest {
-	return JobAPIDeleteCronJobRequest{
+func (a *JobAPIService) DeleteScheduledJob(ctx context.Context, scheduledJobId int64) JobAPIDeleteScheduledJobRequest {
+	return JobAPIDeleteScheduledJobRequest{
 		ApiService: a,
 		ctx: ctx,
-		cronJobId: cronJobId,
+		scheduledJobId: scheduledJobId,
 	}
 }
 
 // Execute executes the request
-func (a *JobAPIService) DeleteCronJobExecute(r JobAPIDeleteCronJobRequest) (*http.Response, error) {
+func (a *JobAPIService) DeleteScheduledJobExecute(r JobAPIDeleteScheduledJobRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.DeleteCronJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.DeleteScheduledJob")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cron-jobs/{cronJobId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cronJobId"+"}", url.PathEscape(parameterValueToString(r.cronJobId, "cronJobId")), -1)
+	localVarPath := localBasePath + "/api/v2/scheduled-jobs/{scheduledJobId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"scheduledJobId"+"}", url.PathEscape(parameterValueToString(r.scheduledJobId, "scheduledJobId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -226,445 +226,6 @@ func (a *JobAPIService) DeleteCronJobExecute(r JobAPIDeleteCronJobRequest) (*htt
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type JobAPIGetCronJobRequest struct {
-	ctx context.Context
-	ApiService *JobAPIService
-	cronJobId int64
-}
-
-func (r JobAPIGetCronJobRequest) Execute() (*CronJob, *http.Response, error) {
-	return r.ApiService.GetCronJobExecute(r)
-}
-
-/*
-GetCronJob Get cron job information
-
-Returns cron job information
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param cronJobId
- @return JobAPIGetCronJobRequest
-*/
-func (a *JobAPIService) GetCronJob(ctx context.Context, cronJobId int64) JobAPIGetCronJobRequest {
-	return JobAPIGetCronJobRequest{
-		ApiService: a,
-		ctx: ctx,
-		cronJobId: cronJobId,
-	}
-}
-
-// Execute executes the request
-//  @return CronJob
-func (a *JobAPIService) GetCronJobExecute(r JobAPIGetCronJobRequest) (*CronJob, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CronJob
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.GetCronJob")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/cron-jobs/{cronJobId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cronJobId"+"}", url.PathEscape(parameterValueToString(r.cronJobId, "cronJobId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type JobAPIGetCronJobsRequest struct {
-	ctx context.Context
-	ApiService *JobAPIService
-	page *float32
-	limit *float32
-	filterLabel *[]string
-	filterDescription *[]string
-	filterFunctionName *[]string
-	filterDisabled *[]string
-	sortBy *[]string
-	search *string
-	searchBy *[]string
-}
-
-// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
-func (r JobAPIGetCronJobsRequest) Page(page float32) JobAPIGetCronJobsRequest {
-	r.page = &page
-	return r
-}
-
-// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
-func (r JobAPIGetCronJobsRequest) Limit(limit float32) JobAPIGetCronJobsRequest {
-	r.limit = &limit
-	return r
-}
-
-// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or
-func (r JobAPIGetCronJobsRequest) FilterLabel(filterLabel []string) JobAPIGetCronJobsRequest {
-	r.filterLabel = &filterLabel
-	return r
-}
-
-// Filter by description query param.  **Format:** filter.description&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.description&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or
-func (r JobAPIGetCronJobsRequest) FilterDescription(filterDescription []string) JobAPIGetCronJobsRequest {
-	r.filterDescription = &filterDescription
-	return r
-}
-
-// Filter by functionName query param.  **Format:** filter.functionName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.functionName&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or
-func (r JobAPIGetCronJobsRequest) FilterFunctionName(filterFunctionName []string) JobAPIGetCronJobsRequest {
-	r.filterFunctionName = &filterFunctionName
-	return r
-}
-
-// Filter by disabled query param.  **Format:** filter.disabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.disabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
-func (r JobAPIGetCronJobsRequest) FilterDisabled(filterDisabled []string) JobAPIGetCronJobsRequest {
-	r.filterDisabled = &filterDisabled
-	return r
-}
-
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;label:DESC&amp;sortBy&#x3D;functionName:DESC   **Default Value:** id:ASC  **Available Fields** - label  - functionName  - disabled 
-func (r JobAPIGetCronJobsRequest) SortBy(sortBy []string) JobAPIGetCronJobsRequest {
-	r.sortBy = &sortBy
-	return r
-}
-
-// Search term to filter result values  **Example:** John   **Default Value:** No default value  
-func (r JobAPIGetCronJobsRequest) Search(search string) JobAPIGetCronJobsRequest {
-	r.search = &search
-	return r
-}
-
-// List of fields to search by term to filter result values  **Example:** label,description,functionName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - description  - functionName 
-func (r JobAPIGetCronJobsRequest) SearchBy(searchBy []string) JobAPIGetCronJobsRequest {
-	r.searchBy = &searchBy
-	return r
-}
-
-func (r JobAPIGetCronJobsRequest) Execute() (*CronJobPaginatedList, *http.Response, error) {
-	return r.ApiService.GetCronJobsExecute(r)
-}
-
-/*
-GetCronJobs Get a list of cron jobs
-
-Returns a list of cron Jobs
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return JobAPIGetCronJobsRequest
-*/
-func (a *JobAPIService) GetCronJobs(ctx context.Context) JobAPIGetCronJobsRequest {
-	return JobAPIGetCronJobsRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return CronJobPaginatedList
-func (a *JobAPIService) GetCronJobsExecute(r JobAPIGetCronJobsRequest) (*CronJobPaginatedList, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CronJobPaginatedList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.GetCronJobs")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/cron-jobs"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	}
-	if r.filterLabel != nil {
-		t := *r.filterLabel
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
-		}
-	}
-	if r.filterDescription != nil {
-		t := *r.filterDescription
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", t, "form", "multi")
-		}
-	}
-	if r.filterFunctionName != nil {
-		t := *r.filterFunctionName
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.functionName", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.functionName", t, "form", "multi")
-		}
-	}
-	if r.filterDisabled != nil {
-		t := *r.filterDisabled
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.disabled", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.disabled", t, "form", "multi")
-		}
-	}
-	if r.sortBy != nil {
-		t := *r.sortBy
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
-		}
-	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
-	}
-	if r.searchBy != nil {
-		t := *r.searchBy
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
-		}
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type JobAPIGetCronJobsSupportedFunctionsRequest struct {
-	ctx context.Context
-	ApiService *JobAPIService
-}
-
-func (r JobAPIGetCronJobsSupportedFunctionsRequest) Execute() ([]CronJobFunction, *http.Response, error) {
-	return r.ApiService.GetCronJobsSupportedFunctionsExecute(r)
-}
-
-/*
-GetCronJobsSupportedFunctions Get a list of supported functions for cron jobs
-
-Returns a list of supported functions for cron jobs
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return JobAPIGetCronJobsSupportedFunctionsRequest
-*/
-func (a *JobAPIService) GetCronJobsSupportedFunctions(ctx context.Context) JobAPIGetCronJobsSupportedFunctionsRequest {
-	return JobAPIGetCronJobsSupportedFunctionsRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return []CronJobFunction
-func (a *JobAPIService) GetCronJobsSupportedFunctionsExecute(r JobAPIGetCronJobsSupportedFunctionsRequest) ([]CronJobFunction, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []CronJobFunction
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.GetCronJobsSupportedFunctions")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/cron-jobs/supported-functions"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type JobAPIGetJobRequest struct {
@@ -2544,6 +2105,445 @@ func (a *JobAPIService) GetJobsStatisticsExecute(r JobAPIGetJobsStatisticsReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type JobAPIGetScheduledJobRequest struct {
+	ctx context.Context
+	ApiService *JobAPIService
+	scheduledJobId int64
+}
+
+func (r JobAPIGetScheduledJobRequest) Execute() (*ScheduledJob, *http.Response, error) {
+	return r.ApiService.GetScheduledJobExecute(r)
+}
+
+/*
+GetScheduledJob Get scheduled job information
+
+Returns scheduled job information
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param scheduledJobId
+ @return JobAPIGetScheduledJobRequest
+*/
+func (a *JobAPIService) GetScheduledJob(ctx context.Context, scheduledJobId int64) JobAPIGetScheduledJobRequest {
+	return JobAPIGetScheduledJobRequest{
+		ApiService: a,
+		ctx: ctx,
+		scheduledJobId: scheduledJobId,
+	}
+}
+
+// Execute executes the request
+//  @return ScheduledJob
+func (a *JobAPIService) GetScheduledJobExecute(r JobAPIGetScheduledJobRequest) (*ScheduledJob, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ScheduledJob
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.GetScheduledJob")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/scheduled-jobs/{scheduledJobId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"scheduledJobId"+"}", url.PathEscape(parameterValueToString(r.scheduledJobId, "scheduledJobId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type JobAPIGetScheduledJobsRequest struct {
+	ctx context.Context
+	ApiService *JobAPIService
+	page *float32
+	limit *float32
+	filterLabel *[]string
+	filterDescription *[]string
+	filterFunctionName *[]string
+	filterDisabled *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r JobAPIGetScheduledJobsRequest) Page(page float32) JobAPIGetScheduledJobsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r JobAPIGetScheduledJobsRequest) Limit(limit float32) JobAPIGetScheduledJobsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or
+func (r JobAPIGetScheduledJobsRequest) FilterLabel(filterLabel []string) JobAPIGetScheduledJobsRequest {
+	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by description query param.  **Format:** filter.description&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.description&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or
+func (r JobAPIGetScheduledJobsRequest) FilterDescription(filterDescription []string) JobAPIGetScheduledJobsRequest {
+	r.filterDescription = &filterDescription
+	return r
+}
+
+// Filter by functionName query param.  **Format:** filter.functionName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.functionName&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or
+func (r JobAPIGetScheduledJobsRequest) FilterFunctionName(filterFunctionName []string) JobAPIGetScheduledJobsRequest {
+	r.filterFunctionName = &filterFunctionName
+	return r
+}
+
+// Filter by disabled query param.  **Format:** filter.disabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.disabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r JobAPIGetScheduledJobsRequest) FilterDisabled(filterDisabled []string) JobAPIGetScheduledJobsRequest {
+	r.filterDisabled = &filterDisabled
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;label:DESC&amp;sortBy&#x3D;functionName:DESC   **Default Value:** id:ASC  **Available Fields** - label  - functionName  - disabled 
+func (r JobAPIGetScheduledJobsRequest) SortBy(sortBy []string) JobAPIGetScheduledJobsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r JobAPIGetScheduledJobsRequest) Search(search string) JobAPIGetScheduledJobsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** label,description,functionName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - description  - functionName 
+func (r JobAPIGetScheduledJobsRequest) SearchBy(searchBy []string) JobAPIGetScheduledJobsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r JobAPIGetScheduledJobsRequest) Execute() (*ScheduledJobPaginatedList, *http.Response, error) {
+	return r.ApiService.GetScheduledJobsExecute(r)
+}
+
+/*
+GetScheduledJobs Get a list of scheduled jobs
+
+Returns a list of scheduled Jobs
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return JobAPIGetScheduledJobsRequest
+*/
+func (a *JobAPIService) GetScheduledJobs(ctx context.Context) JobAPIGetScheduledJobsRequest {
+	return JobAPIGetScheduledJobsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ScheduledJobPaginatedList
+func (a *JobAPIService) GetScheduledJobsExecute(r JobAPIGetScheduledJobsRequest) (*ScheduledJobPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ScheduledJobPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.GetScheduledJobs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/scheduled-jobs"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterDescription != nil {
+		t := *r.filterDescription
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", t, "form", "multi")
+		}
+	}
+	if r.filterFunctionName != nil {
+		t := *r.filterFunctionName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.functionName", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.functionName", t, "form", "multi")
+		}
+	}
+	if r.filterDisabled != nil {
+		t := *r.filterDisabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.disabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.disabled", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type JobAPIGetScheduledJobsSupportedFunctionsRequest struct {
+	ctx context.Context
+	ApiService *JobAPIService
+}
+
+func (r JobAPIGetScheduledJobsSupportedFunctionsRequest) Execute() ([]ScheduledJobFunction, *http.Response, error) {
+	return r.ApiService.GetScheduledJobsSupportedFunctionsExecute(r)
+}
+
+/*
+GetScheduledJobsSupportedFunctions Get a list of supported functions for scheduled jobs
+
+Returns a list of supported functions for scheduled jobs
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return JobAPIGetScheduledJobsSupportedFunctionsRequest
+*/
+func (a *JobAPIService) GetScheduledJobsSupportedFunctions(ctx context.Context) JobAPIGetScheduledJobsSupportedFunctionsRequest {
+	return JobAPIGetScheduledJobsSupportedFunctionsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []ScheduledJobFunction
+func (a *JobAPIService) GetScheduledJobsSupportedFunctionsExecute(r JobAPIGetScheduledJobsSupportedFunctionsRequest) ([]ScheduledJobFunction, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ScheduledJobFunction
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.GetScheduledJobsSupportedFunctions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/scheduled-jobs/supported-functions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type JobAPIIssueCommandForJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
@@ -2844,63 +2844,63 @@ func (a *JobAPIService) SkipJobExecute(r JobAPISkipJobRequest) (*http.Response, 
 	return localVarHTTPResponse, nil
 }
 
-type JobAPIUpdateCronJobRequest struct {
+type JobAPIUpdateScheduledJobRequest struct {
 	ctx context.Context
 	ApiService *JobAPIService
-	cronJobId float32
-	updateCronJob *UpdateCronJob
+	scheduledJobId float32
+	updateScheduledJob *UpdateScheduledJob
 }
 
-// The cron job details
-func (r JobAPIUpdateCronJobRequest) UpdateCronJob(updateCronJob UpdateCronJob) JobAPIUpdateCronJobRequest {
-	r.updateCronJob = &updateCronJob
+// The scheduled job details
+func (r JobAPIUpdateScheduledJobRequest) UpdateScheduledJob(updateScheduledJob UpdateScheduledJob) JobAPIUpdateScheduledJobRequest {
+	r.updateScheduledJob = &updateScheduledJob
 	return r
 }
 
-func (r JobAPIUpdateCronJobRequest) Execute() (*CronJob, *http.Response, error) {
-	return r.ApiService.UpdateCronJobExecute(r)
+func (r JobAPIUpdateScheduledJobRequest) Execute() (*ScheduledJob, *http.Response, error) {
+	return r.ApiService.UpdateScheduledJobExecute(r)
 }
 
 /*
-UpdateCronJob Updates an existing cron job
+UpdateScheduledJob Updates an existing scheduled job
 
-Updates an existing cron job
+Updates an existing scheduled job
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param cronJobId
- @return JobAPIUpdateCronJobRequest
+ @param scheduledJobId
+ @return JobAPIUpdateScheduledJobRequest
 */
-func (a *JobAPIService) UpdateCronJob(ctx context.Context, cronJobId float32) JobAPIUpdateCronJobRequest {
-	return JobAPIUpdateCronJobRequest{
+func (a *JobAPIService) UpdateScheduledJob(ctx context.Context, scheduledJobId float32) JobAPIUpdateScheduledJobRequest {
+	return JobAPIUpdateScheduledJobRequest{
 		ApiService: a,
 		ctx: ctx,
-		cronJobId: cronJobId,
+		scheduledJobId: scheduledJobId,
 	}
 }
 
 // Execute executes the request
-//  @return CronJob
-func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*CronJob, *http.Response, error) {
+//  @return ScheduledJob
+func (a *JobAPIService) UpdateScheduledJobExecute(r JobAPIUpdateScheduledJobRequest) (*ScheduledJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CronJob
+		localVarReturnValue  *ScheduledJob
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.UpdateCronJob")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobAPIService.UpdateScheduledJob")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/cron-jobs/{cronJobId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cronJobId"+"}", url.PathEscape(parameterValueToString(r.cronJobId, "cronJobId")), -1)
+	localVarPath := localBasePath + "/api/v2/scheduled-jobs/{scheduledJobId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"scheduledJobId"+"}", url.PathEscape(parameterValueToString(r.scheduledJobId, "scheduledJobId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateCronJob == nil {
-		return localVarReturnValue, nil, reportError("updateCronJob is required and must be specified")
+	if r.updateScheduledJob == nil {
+		return localVarReturnValue, nil, reportError("updateScheduledJob is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2921,7 +2921,7 @@ func (a *JobAPIService) UpdateCronJobExecute(r JobAPIUpdateCronJobRequest) (*Cro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateCronJob
+	localVarPostBody = r.updateScheduledJob
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

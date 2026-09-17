@@ -8,10 +8,15 @@ Name | Type | Description | Notes
 **ServerHealthNotificationEmails** | Pointer to **[]string** | Email addresses to notify about server health events | [optional] 
 **NetworkDeviceHealthNotificationEmails** | Pointer to **[]string** | Email addresses to notify about network device health events | [optional] 
 **NetworkDeviceConfigurationDriftNotificationEmails** | Pointer to **[]string** | Email addresses to notify about network device configuration drift | [optional] 
+**ServerFirmwareBaselineDriftNotificationEmails** | Pointer to **[]string** | Email addresses to notify when a server falls below the minimum versions of its firmware baseline | [optional] 
+**ServerConfigurationDriftNotificationEmails** | Pointer to **[]string** | Email addresses to notify when a server’s configuration changes outside of a planned change. | [optional] 
 **VmPoolHealthNotificationEmails** | Pointer to **[]string** | Email addresses to notify about VM pool health events | [optional] 
 **EventRetention** | Pointer to **map[string]interface{}** | Event retention policy configuration | [optional] 
 **SyslogBufferTtlMs** | Pointer to **float32** | Time-to-live for buffered syslog messages in milliseconds | [optional] 
 **SyslogBufferMaxUnique** | Pointer to **float32** | Maximum number of unique syslog messages to buffer before flushing | [optional] 
+**ServerMonitoringAgentDiagnosticsEnabled** | Pointer to **bool** | Whether to invoke the monitoring agent for a diagnostic when a server health check degrades. When disabled the alert email is still sent, using the plain template. | [optional] 
+**NetworkDeviceMonitoringAgentDiagnosticsEnabled** | Pointer to **bool** | Whether to invoke the monitoring agent for a diagnostic when a network device health check degrades. When disabled the alert email is still sent, using the plain template. | [optional] 
+**MonitoringAgentHealthDiagnosticsTimeoutMs** | Pointer to **float32** | How long to wait for the monitoring agent diagnostic, in milliseconds. Once it elapses the alert email is sent without the monitoring agent section rather than being held back. | [optional] 
 
 ## Methods
 
@@ -132,6 +137,56 @@ SetNetworkDeviceConfigurationDriftNotificationEmails sets NetworkDeviceConfigura
 
 HasNetworkDeviceConfigurationDriftNotificationEmails returns a boolean if a field has been set.
 
+### GetServerFirmwareBaselineDriftNotificationEmails
+
+`func (o *NotificationConfiguration) GetServerFirmwareBaselineDriftNotificationEmails() []string`
+
+GetServerFirmwareBaselineDriftNotificationEmails returns the ServerFirmwareBaselineDriftNotificationEmails field if non-nil, zero value otherwise.
+
+### GetServerFirmwareBaselineDriftNotificationEmailsOk
+
+`func (o *NotificationConfiguration) GetServerFirmwareBaselineDriftNotificationEmailsOk() (*[]string, bool)`
+
+GetServerFirmwareBaselineDriftNotificationEmailsOk returns a tuple with the ServerFirmwareBaselineDriftNotificationEmails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerFirmwareBaselineDriftNotificationEmails
+
+`func (o *NotificationConfiguration) SetServerFirmwareBaselineDriftNotificationEmails(v []string)`
+
+SetServerFirmwareBaselineDriftNotificationEmails sets ServerFirmwareBaselineDriftNotificationEmails field to given value.
+
+### HasServerFirmwareBaselineDriftNotificationEmails
+
+`func (o *NotificationConfiguration) HasServerFirmwareBaselineDriftNotificationEmails() bool`
+
+HasServerFirmwareBaselineDriftNotificationEmails returns a boolean if a field has been set.
+
+### GetServerConfigurationDriftNotificationEmails
+
+`func (o *NotificationConfiguration) GetServerConfigurationDriftNotificationEmails() []string`
+
+GetServerConfigurationDriftNotificationEmails returns the ServerConfigurationDriftNotificationEmails field if non-nil, zero value otherwise.
+
+### GetServerConfigurationDriftNotificationEmailsOk
+
+`func (o *NotificationConfiguration) GetServerConfigurationDriftNotificationEmailsOk() (*[]string, bool)`
+
+GetServerConfigurationDriftNotificationEmailsOk returns a tuple with the ServerConfigurationDriftNotificationEmails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerConfigurationDriftNotificationEmails
+
+`func (o *NotificationConfiguration) SetServerConfigurationDriftNotificationEmails(v []string)`
+
+SetServerConfigurationDriftNotificationEmails sets ServerConfigurationDriftNotificationEmails field to given value.
+
+### HasServerConfigurationDriftNotificationEmails
+
+`func (o *NotificationConfiguration) HasServerConfigurationDriftNotificationEmails() bool`
+
+HasServerConfigurationDriftNotificationEmails returns a boolean if a field has been set.
+
 ### GetVmPoolHealthNotificationEmails
 
 `func (o *NotificationConfiguration) GetVmPoolHealthNotificationEmails() []string`
@@ -231,6 +286,81 @@ SetSyslogBufferMaxUnique sets SyslogBufferMaxUnique field to given value.
 `func (o *NotificationConfiguration) HasSyslogBufferMaxUnique() bool`
 
 HasSyslogBufferMaxUnique returns a boolean if a field has been set.
+
+### GetServerMonitoringAgentDiagnosticsEnabled
+
+`func (o *NotificationConfiguration) GetServerMonitoringAgentDiagnosticsEnabled() bool`
+
+GetServerMonitoringAgentDiagnosticsEnabled returns the ServerMonitoringAgentDiagnosticsEnabled field if non-nil, zero value otherwise.
+
+### GetServerMonitoringAgentDiagnosticsEnabledOk
+
+`func (o *NotificationConfiguration) GetServerMonitoringAgentDiagnosticsEnabledOk() (*bool, bool)`
+
+GetServerMonitoringAgentDiagnosticsEnabledOk returns a tuple with the ServerMonitoringAgentDiagnosticsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerMonitoringAgentDiagnosticsEnabled
+
+`func (o *NotificationConfiguration) SetServerMonitoringAgentDiagnosticsEnabled(v bool)`
+
+SetServerMonitoringAgentDiagnosticsEnabled sets ServerMonitoringAgentDiagnosticsEnabled field to given value.
+
+### HasServerMonitoringAgentDiagnosticsEnabled
+
+`func (o *NotificationConfiguration) HasServerMonitoringAgentDiagnosticsEnabled() bool`
+
+HasServerMonitoringAgentDiagnosticsEnabled returns a boolean if a field has been set.
+
+### GetNetworkDeviceMonitoringAgentDiagnosticsEnabled
+
+`func (o *NotificationConfiguration) GetNetworkDeviceMonitoringAgentDiagnosticsEnabled() bool`
+
+GetNetworkDeviceMonitoringAgentDiagnosticsEnabled returns the NetworkDeviceMonitoringAgentDiagnosticsEnabled field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk
+
+`func (o *NotificationConfiguration) GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk() (*bool, bool)`
+
+GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk returns a tuple with the NetworkDeviceMonitoringAgentDiagnosticsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceMonitoringAgentDiagnosticsEnabled
+
+`func (o *NotificationConfiguration) SetNetworkDeviceMonitoringAgentDiagnosticsEnabled(v bool)`
+
+SetNetworkDeviceMonitoringAgentDiagnosticsEnabled sets NetworkDeviceMonitoringAgentDiagnosticsEnabled field to given value.
+
+### HasNetworkDeviceMonitoringAgentDiagnosticsEnabled
+
+`func (o *NotificationConfiguration) HasNetworkDeviceMonitoringAgentDiagnosticsEnabled() bool`
+
+HasNetworkDeviceMonitoringAgentDiagnosticsEnabled returns a boolean if a field has been set.
+
+### GetMonitoringAgentHealthDiagnosticsTimeoutMs
+
+`func (o *NotificationConfiguration) GetMonitoringAgentHealthDiagnosticsTimeoutMs() float32`
+
+GetMonitoringAgentHealthDiagnosticsTimeoutMs returns the MonitoringAgentHealthDiagnosticsTimeoutMs field if non-nil, zero value otherwise.
+
+### GetMonitoringAgentHealthDiagnosticsTimeoutMsOk
+
+`func (o *NotificationConfiguration) GetMonitoringAgentHealthDiagnosticsTimeoutMsOk() (*float32, bool)`
+
+GetMonitoringAgentHealthDiagnosticsTimeoutMsOk returns a tuple with the MonitoringAgentHealthDiagnosticsTimeoutMs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitoringAgentHealthDiagnosticsTimeoutMs
+
+`func (o *NotificationConfiguration) SetMonitoringAgentHealthDiagnosticsTimeoutMs(v float32)`
+
+SetMonitoringAgentHealthDiagnosticsTimeoutMs sets MonitoringAgentHealthDiagnosticsTimeoutMs field to given value.
+
+### HasMonitoringAgentHealthDiagnosticsTimeoutMs
+
+`func (o *NotificationConfiguration) HasMonitoringAgentHealthDiagnosticsTimeoutMs() bool`
+
+HasMonitoringAgentHealthDiagnosticsTimeoutMs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -9,10 +9,10 @@ Name | Type | Description | Notes
 **Group** | Pointer to [**NullableQuotaProfileLimits**](QuotaProfileLimits.md) | Limits from the quota profile assigned to the user&#39;s LDAP/SAML group mapping, or null if none applies | [optional] 
 **Account** | Pointer to [**NullableQuotaProfileLimits**](QuotaProfileLimits.md) | Limits from the quota profile assigned to the user&#39;s account, or null if none applies | [optional] 
 **ParentAccount** | Pointer to [**NullableQuotaProfileLimits**](QuotaProfileLimits.md) | Limits from the quota profile assigned to the parent account, or null if none applies | [optional] 
-**UserUsage** | Pointer to [**NullableQuotaProfileLimits**](QuotaProfileLimits.md) | Current aggregate resource counts for this user — only populated when ?includeUsage&#x3D;true | [optional] 
-**GroupUsage** | Pointer to [**NullableQuotaProfileLimits**](QuotaProfileLimits.md) | Aggregate resource counts across all LDAP/SAML group members — only populated when ?includeUsage&#x3D;true | [optional] 
-**AccountUsage** | Pointer to [**NullableQuotaProfileLimits**](QuotaProfileLimits.md) | Aggregate resource counts across all users in the same account — only populated when ?includeUsage&#x3D;true | [optional] 
-**ParentAccountUsage** | Pointer to [**NullableQuotaProfileLimits**](QuotaProfileLimits.md) | Aggregate resource counts across all users in child accounts — only populated when ?includeUsage&#x3D;true | [optional] 
+**UserUsage** | Pointer to [**NullableQuotaUsage**](QuotaUsage.md) | Current aggregate resource counts for this user — only populated when ?includeUsage&#x3D;true | [optional] 
+**GroupUsage** | Pointer to [**NullableQuotaUsage**](QuotaUsage.md) | Aggregate resource counts across all LDAP/SAML group members — only populated when ?includeUsage&#x3D;true | [optional] 
+**AccountUsage** | Pointer to [**NullableQuotaUsage**](QuotaUsage.md) | Aggregate resource counts across all users in the same account — only populated when ?includeUsage&#x3D;true | [optional] 
+**ParentAccountUsage** | Pointer to [**NullableQuotaUsage**](QuotaUsage.md) | Aggregate resource counts across all users in child accounts — only populated when ?includeUsage&#x3D;true | [optional] 
 
 ## Methods
 
@@ -195,20 +195,20 @@ HasParentAccount returns a boolean if a field has been set.
 UnsetParentAccount ensures that no value is present for ParentAccount, not even an explicit nil
 ### GetUserUsage
 
-`func (o *QuotaLimitsBreakdown) GetUserUsage() QuotaProfileLimits`
+`func (o *QuotaLimitsBreakdown) GetUserUsage() QuotaUsage`
 
 GetUserUsage returns the UserUsage field if non-nil, zero value otherwise.
 
 ### GetUserUsageOk
 
-`func (o *QuotaLimitsBreakdown) GetUserUsageOk() (*QuotaProfileLimits, bool)`
+`func (o *QuotaLimitsBreakdown) GetUserUsageOk() (*QuotaUsage, bool)`
 
 GetUserUsageOk returns a tuple with the UserUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserUsage
 
-`func (o *QuotaLimitsBreakdown) SetUserUsage(v QuotaProfileLimits)`
+`func (o *QuotaLimitsBreakdown) SetUserUsage(v QuotaUsage)`
 
 SetUserUsage sets UserUsage field to given value.
 
@@ -230,20 +230,20 @@ HasUserUsage returns a boolean if a field has been set.
 UnsetUserUsage ensures that no value is present for UserUsage, not even an explicit nil
 ### GetGroupUsage
 
-`func (o *QuotaLimitsBreakdown) GetGroupUsage() QuotaProfileLimits`
+`func (o *QuotaLimitsBreakdown) GetGroupUsage() QuotaUsage`
 
 GetGroupUsage returns the GroupUsage field if non-nil, zero value otherwise.
 
 ### GetGroupUsageOk
 
-`func (o *QuotaLimitsBreakdown) GetGroupUsageOk() (*QuotaProfileLimits, bool)`
+`func (o *QuotaLimitsBreakdown) GetGroupUsageOk() (*QuotaUsage, bool)`
 
 GetGroupUsageOk returns a tuple with the GroupUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupUsage
 
-`func (o *QuotaLimitsBreakdown) SetGroupUsage(v QuotaProfileLimits)`
+`func (o *QuotaLimitsBreakdown) SetGroupUsage(v QuotaUsage)`
 
 SetGroupUsage sets GroupUsage field to given value.
 
@@ -265,20 +265,20 @@ HasGroupUsage returns a boolean if a field has been set.
 UnsetGroupUsage ensures that no value is present for GroupUsage, not even an explicit nil
 ### GetAccountUsage
 
-`func (o *QuotaLimitsBreakdown) GetAccountUsage() QuotaProfileLimits`
+`func (o *QuotaLimitsBreakdown) GetAccountUsage() QuotaUsage`
 
 GetAccountUsage returns the AccountUsage field if non-nil, zero value otherwise.
 
 ### GetAccountUsageOk
 
-`func (o *QuotaLimitsBreakdown) GetAccountUsageOk() (*QuotaProfileLimits, bool)`
+`func (o *QuotaLimitsBreakdown) GetAccountUsageOk() (*QuotaUsage, bool)`
 
 GetAccountUsageOk returns a tuple with the AccountUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccountUsage
 
-`func (o *QuotaLimitsBreakdown) SetAccountUsage(v QuotaProfileLimits)`
+`func (o *QuotaLimitsBreakdown) SetAccountUsage(v QuotaUsage)`
 
 SetAccountUsage sets AccountUsage field to given value.
 
@@ -300,20 +300,20 @@ HasAccountUsage returns a boolean if a field has been set.
 UnsetAccountUsage ensures that no value is present for AccountUsage, not even an explicit nil
 ### GetParentAccountUsage
 
-`func (o *QuotaLimitsBreakdown) GetParentAccountUsage() QuotaProfileLimits`
+`func (o *QuotaLimitsBreakdown) GetParentAccountUsage() QuotaUsage`
 
 GetParentAccountUsage returns the ParentAccountUsage field if non-nil, zero value otherwise.
 
 ### GetParentAccountUsageOk
 
-`func (o *QuotaLimitsBreakdown) GetParentAccountUsageOk() (*QuotaProfileLimits, bool)`
+`func (o *QuotaLimitsBreakdown) GetParentAccountUsageOk() (*QuotaUsage, bool)`
 
 GetParentAccountUsageOk returns a tuple with the ParentAccountUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentAccountUsage
 
-`func (o *QuotaLimitsBreakdown) SetParentAccountUsage(v QuotaProfileLimits)`
+`func (o *QuotaLimitsBreakdown) SetParentAccountUsage(v QuotaUsage)`
 
 SetParentAccountUsage sets ParentAccountUsage field to given value.
 

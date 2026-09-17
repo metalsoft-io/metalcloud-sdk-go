@@ -51,10 +51,14 @@ type VMPoolHosts struct {
 	Description *string `json:"description,omitempty"`
 	// Flag specifying if VMs can be created on the VM Pool Host
 	AllowVMsToBeCreated bool `json:"allowVMsToBeCreated"`
+	// Flag specifying if Containers can be created on the VM Pool Host
+	AllowContainersToBeCreated bool `json:"allowContainersToBeCreated"`
 	// List of VM Pool Host Interfaces
 	HostInterfaces []VMPoolHostInterfaces `json:"hostInterfaces,omitempty"`
 	// Timestamp when the VM Pool Host was updated
 	UpdatedTimestamp string `json:"updatedTimestamp"`
+	// List of VM Pool GPU partitions
+	GpuPartitions []VMPoolGPUPartition `json:"gpuPartitions,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -66,11 +70,12 @@ type _VMPoolHosts VMPoolHosts
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHosts(id int64, name string, allowVMsToBeCreated bool, updatedTimestamp string) *VMPoolHosts {
+func NewVMPoolHosts(id int64, name string, allowVMsToBeCreated bool, allowContainersToBeCreated bool, updatedTimestamp string) *VMPoolHosts {
 	this := VMPoolHosts{}
 	this.Id = id
 	this.Name = name
 	this.AllowVMsToBeCreated = allowVMsToBeCreated
+	this.AllowContainersToBeCreated = allowContainersToBeCreated
 	this.UpdatedTimestamp = updatedTimestamp
 	return &this
 }
@@ -82,6 +87,8 @@ func NewVMPoolHostsWithDefaults() *VMPoolHosts {
 	this := VMPoolHosts{}
 	var allowVMsToBeCreated bool = true
 	this.AllowVMsToBeCreated = allowVMsToBeCreated
+	var allowContainersToBeCreated bool = true
+	this.AllowContainersToBeCreated = allowContainersToBeCreated
 	return &this
 }
 
@@ -541,6 +548,30 @@ func (o *VMPoolHosts) SetAllowVMsToBeCreated(v bool) {
 	o.AllowVMsToBeCreated = v
 }
 
+// GetAllowContainersToBeCreated returns the AllowContainersToBeCreated field value
+func (o *VMPoolHosts) GetAllowContainersToBeCreated() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AllowContainersToBeCreated
+}
+
+// GetAllowContainersToBeCreatedOk returns a tuple with the AllowContainersToBeCreated field value
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetAllowContainersToBeCreatedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AllowContainersToBeCreated, true
+}
+
+// SetAllowContainersToBeCreated sets field value
+func (o *VMPoolHosts) SetAllowContainersToBeCreated(v bool) {
+	o.AllowContainersToBeCreated = v
+}
+
 // GetHostInterfaces returns the HostInterfaces field value if set, zero value otherwise.
 func (o *VMPoolHosts) GetHostInterfaces() []VMPoolHostInterfaces {
 	if o == nil || IsNil(o.HostInterfaces) {
@@ -595,6 +626,38 @@ func (o *VMPoolHosts) GetUpdatedTimestampOk() (*string, bool) {
 // SetUpdatedTimestamp sets field value
 func (o *VMPoolHosts) SetUpdatedTimestamp(v string) {
 	o.UpdatedTimestamp = v
+}
+
+// GetGpuPartitions returns the GpuPartitions field value if set, zero value otherwise.
+func (o *VMPoolHosts) GetGpuPartitions() []VMPoolGPUPartition {
+	if o == nil || IsNil(o.GpuPartitions) {
+		var ret []VMPoolGPUPartition
+		return ret
+	}
+	return o.GpuPartitions
+}
+
+// GetGpuPartitionsOk returns a tuple with the GpuPartitions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolHosts) GetGpuPartitionsOk() ([]VMPoolGPUPartition, bool) {
+	if o == nil || IsNil(o.GpuPartitions) {
+		return nil, false
+	}
+	return o.GpuPartitions, true
+}
+
+// HasGpuPartitions returns a boolean if a field has been set.
+func (o *VMPoolHosts) HasGpuPartitions() bool {
+	if o != nil && !IsNil(o.GpuPartitions) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuPartitions gets a reference to the given []VMPoolGPUPartition and assigns it to the GpuPartitions field.
+func (o *VMPoolHosts) SetGpuPartitions(v []VMPoolGPUPartition) {
+	o.GpuPartitions = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -678,10 +741,14 @@ func (o VMPoolHosts) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["allowVMsToBeCreated"] = o.AllowVMsToBeCreated
+	toSerialize["allowContainersToBeCreated"] = o.AllowContainersToBeCreated
 	if !IsNil(o.HostInterfaces) {
 		toSerialize["hostInterfaces"] = o.HostInterfaces
 	}
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
+	if !IsNil(o.GpuPartitions) {
+		toSerialize["gpuPartitions"] = o.GpuPartitions
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -701,6 +768,7 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"allowVMsToBeCreated",
+		"allowContainersToBeCreated",
 		"updatedTimestamp",
 	}
 
@@ -746,8 +814,10 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "healthLastCheckedTimestamp")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "allowVMsToBeCreated")
+		delete(additionalProperties, "allowContainersToBeCreated")
 		delete(additionalProperties, "hostInterfaces")
 		delete(additionalProperties, "updatedTimestamp")
+		delete(additionalProperties, "gpuPartitions")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

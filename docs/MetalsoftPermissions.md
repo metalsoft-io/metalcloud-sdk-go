@@ -11,9 +11,7 @@
 
 * `AI_READ` (value: `"ai_read"`)
 
-* `AUTHENTICATION_PROVIDERS_READ` (value: `"authentication_providers_read"`)
-
-* `AUTHENTICATION_PROVIDERS_WRITE` (value: `"authentication_providers_write"`)
+* `API_KEY_USE` (value: `"api_key_use"`)
 
 * `BUCKETS_READ` (value: `"buckets_read"`)
 
@@ -47,9 +45,9 @@
 
 * `CONTAINER_TYPES_WRITE` (value: `"container_types_write"`)
 
-* `CRON_JOBS_READ` (value: `"cron_jobs_read"`)
+* `SCHEDULED_JOBS_READ` (value: `"scheduled_jobs_read"`)
 
-* `CRON_JOBS_WRITE` (value: `"cron_jobs_write"`)
+* `SCHEDULED_JOBS_WRITE` (value: `"scheduled_jobs_write"`)
 
 * `CUSTOM_ISO_READ` (value: `"custom_iso_read"`)
 
@@ -187,6 +185,10 @@
 
 * `RESOURCE_POOLS_WRITE` (value: `"resource_pools_write"`)
 
+* `DHCP_RESERVATIONS_READ` (value: `"dhcp_reservations_read"`)
+
+* `DHCP_RESERVATIONS_WRITE` (value: `"dhcp_reservations_write"`)
+
 * `RESOURCE_POOL_USER_ACCESS_READ` (value: `"resource_pool_user_access_read"`)
 
 * `RESOURCE_POOL_USER_ACCESS_WRITE` (value: `"resource_pool_user_access_write"`)
@@ -246,6 +248,10 @@
 * `STORAGE_READ` (value: `"storage_read"`)
 
 * `STORAGE_WRITE` (value: `"storage_write"`)
+
+* `STORAGE_SCOPED_ACCESS_USER_CREDENTIALS_READ` (value: `"storage_scoped_access_user_credentials_read"`)
+
+* `STORAGE_SCOPED_ACCESS_USER_READ` (value: `"storage_scoped_access_user_read"`)
 
 * `SUBNETS_READ` (value: `"subnets_read"`)
 
@@ -313,7 +319,7 @@
 
 * `WORKFLOWS_WRITE` (value: `"workflows_write"`)
 
-* `UNKNOWN_DEFAULT_OPEN_API` (value: `"unknown_default_open_api"`)
+* `UNKNOWN_DEFAULT_OPEN_API` (value: `"11184809"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

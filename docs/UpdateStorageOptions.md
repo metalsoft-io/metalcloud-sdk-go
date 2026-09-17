@@ -4,9 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DefaultQoSPolicies** | Pointer to [**StorageOptionsDefaultQoSPolicies**](StorageOptionsDefaultQoSPolicies.md) | Default QoS policies that will apply to all objects (if supported by the Storage system) | [optional] 
+**DefaultQuotaPolicies** | Pointer to [**StorageOptionsDefaultQuotaPolicies**](StorageOptionsDefaultQuotaPolicies.md) | Default Quota policies that will apply to all objects (if supported by the Storage system) | [optional] 
+**DefaultSnapshotPolicies** | Pointer to [**StorageOptionsDefaultSnapshotPolicies**](StorageOptionsDefaultSnapshotPolicies.md) | Default Snapshot policies that will apply to all objects (if supported by the Storage system) | [optional] 
 **EnableDataReduction** | Pointer to **bool** | Enable data reduction | [optional] 
 **EnableAdvancedDeduplication** | Pointer to **bool** | Enable advanced deduplication | [optional] 
 **EnableDataReductionSharedVolume** | Pointer to **bool** | Enable data reduction on a newly created shared volume | [optional] 
+**CreateScopedAccessUsers** | Pointer to **bool** | Create users on the storage with permissions scoped to select resources. Used by Pure to create users with storage access scoped to Realms | [optional] 
 **VolumeName** | Pointer to **string** | Volume name | [optional] 
 **ArrayId** | Pointer to **string** | Array id to use (for certain storage drivers) | [optional] 
 **DirectorId** | Pointer to **string** | Director id to use (for certain storage drivers) | [optional] 
@@ -32,6 +36,81 @@ will change when the set of required properties is changed
 NewUpdateStorageOptionsWithDefaults instantiates a new UpdateStorageOptions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDefaultQoSPolicies
+
+`func (o *UpdateStorageOptions) GetDefaultQoSPolicies() StorageOptionsDefaultQoSPolicies`
+
+GetDefaultQoSPolicies returns the DefaultQoSPolicies field if non-nil, zero value otherwise.
+
+### GetDefaultQoSPoliciesOk
+
+`func (o *UpdateStorageOptions) GetDefaultQoSPoliciesOk() (*StorageOptionsDefaultQoSPolicies, bool)`
+
+GetDefaultQoSPoliciesOk returns a tuple with the DefaultQoSPolicies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultQoSPolicies
+
+`func (o *UpdateStorageOptions) SetDefaultQoSPolicies(v StorageOptionsDefaultQoSPolicies)`
+
+SetDefaultQoSPolicies sets DefaultQoSPolicies field to given value.
+
+### HasDefaultQoSPolicies
+
+`func (o *UpdateStorageOptions) HasDefaultQoSPolicies() bool`
+
+HasDefaultQoSPolicies returns a boolean if a field has been set.
+
+### GetDefaultQuotaPolicies
+
+`func (o *UpdateStorageOptions) GetDefaultQuotaPolicies() StorageOptionsDefaultQuotaPolicies`
+
+GetDefaultQuotaPolicies returns the DefaultQuotaPolicies field if non-nil, zero value otherwise.
+
+### GetDefaultQuotaPoliciesOk
+
+`func (o *UpdateStorageOptions) GetDefaultQuotaPoliciesOk() (*StorageOptionsDefaultQuotaPolicies, bool)`
+
+GetDefaultQuotaPoliciesOk returns a tuple with the DefaultQuotaPolicies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultQuotaPolicies
+
+`func (o *UpdateStorageOptions) SetDefaultQuotaPolicies(v StorageOptionsDefaultQuotaPolicies)`
+
+SetDefaultQuotaPolicies sets DefaultQuotaPolicies field to given value.
+
+### HasDefaultQuotaPolicies
+
+`func (o *UpdateStorageOptions) HasDefaultQuotaPolicies() bool`
+
+HasDefaultQuotaPolicies returns a boolean if a field has been set.
+
+### GetDefaultSnapshotPolicies
+
+`func (o *UpdateStorageOptions) GetDefaultSnapshotPolicies() StorageOptionsDefaultSnapshotPolicies`
+
+GetDefaultSnapshotPolicies returns the DefaultSnapshotPolicies field if non-nil, zero value otherwise.
+
+### GetDefaultSnapshotPoliciesOk
+
+`func (o *UpdateStorageOptions) GetDefaultSnapshotPoliciesOk() (*StorageOptionsDefaultSnapshotPolicies, bool)`
+
+GetDefaultSnapshotPoliciesOk returns a tuple with the DefaultSnapshotPolicies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultSnapshotPolicies
+
+`func (o *UpdateStorageOptions) SetDefaultSnapshotPolicies(v StorageOptionsDefaultSnapshotPolicies)`
+
+SetDefaultSnapshotPolicies sets DefaultSnapshotPolicies field to given value.
+
+### HasDefaultSnapshotPolicies
+
+`func (o *UpdateStorageOptions) HasDefaultSnapshotPolicies() bool`
+
+HasDefaultSnapshotPolicies returns a boolean if a field has been set.
 
 ### GetEnableDataReduction
 
@@ -107,6 +186,31 @@ SetEnableDataReductionSharedVolume sets EnableDataReductionSharedVolume field to
 `func (o *UpdateStorageOptions) HasEnableDataReductionSharedVolume() bool`
 
 HasEnableDataReductionSharedVolume returns a boolean if a field has been set.
+
+### GetCreateScopedAccessUsers
+
+`func (o *UpdateStorageOptions) GetCreateScopedAccessUsers() bool`
+
+GetCreateScopedAccessUsers returns the CreateScopedAccessUsers field if non-nil, zero value otherwise.
+
+### GetCreateScopedAccessUsersOk
+
+`func (o *UpdateStorageOptions) GetCreateScopedAccessUsersOk() (*bool, bool)`
+
+GetCreateScopedAccessUsersOk returns a tuple with the CreateScopedAccessUsers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateScopedAccessUsers
+
+`func (o *UpdateStorageOptions) SetCreateScopedAccessUsers(v bool)`
+
+SetCreateScopedAccessUsers sets CreateScopedAccessUsers field to given value.
+
+### HasCreateScopedAccessUsers
+
+`func (o *UpdateStorageOptions) HasCreateScopedAccessUsers() bool`
+
+HasCreateScopedAccessUsers returns a boolean if a field has been set.
 
 ### GetVolumeName
 

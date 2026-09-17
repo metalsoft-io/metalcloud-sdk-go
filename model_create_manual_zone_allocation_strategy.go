@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateManualZoneAllocationStrategy{}
 
 // CreateManualZoneAllocationStrategy struct for CreateManualZoneAllocationStrategy
 type CreateManualZoneAllocationStrategy struct {
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	ZoneName string `json:"zoneName"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _CreateManualZoneAllocationStrategy CreateManualZoneAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateManualZoneAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, zoneName string) *CreateManualZoneAllocationStrategy {
+func NewCreateManualZoneAllocationStrategy(kind string, scope CreateResourceScope, zoneName string) *CreateManualZoneAllocationStrategy {
 	this := CreateManualZoneAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -50,9 +50,9 @@ func NewCreateManualZoneAllocationStrategyWithDefaults() *CreateManualZoneAlloca
 }
 
 // GetKind returns the Kind field value
-func (o *CreateManualZoneAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *CreateManualZoneAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -61,7 +61,7 @@ func (o *CreateManualZoneAllocationStrategy) GetKind() AllocationStrategyKind {
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateManualZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *CreateManualZoneAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *CreateManualZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKin
 }
 
 // SetKind sets field value
-func (o *CreateManualZoneAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *CreateManualZoneAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

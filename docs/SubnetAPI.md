@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**DeleteSubnetIp**](SubnetAPI.md#DeleteSubnetIp) | **Delete** /api/v2/subnets/{subnetId}/ips/{ipId} | Delete Subnet IP
 [**DeleteSubnetIpRange**](SubnetAPI.md#DeleteSubnetIpRange) | **Delete** /api/v2/subnets/{subnetId}/ip-ranges/{ipRangeId} | Delete Subnet IP Range
 [**GetSubnet**](SubnetAPI.md#GetSubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
+[**GetSubnetCapacity**](SubnetAPI.md#GetSubnetCapacity) | **Get** /api/v2/subnets/{subnetId}/capacity | Retrieves the Subnet capacity
 [**GetSubnetIpRanges**](SubnetAPI.md#GetSubnetIpRanges) | **Get** /api/v2/subnets/{subnetId}/ip-ranges | List all Subnet IP Ranges
 [**GetSubnetIps**](SubnetAPI.md#GetSubnetIps) | **Get** /api/v2/subnets/{subnetId}/ips | List all Subnet IPs
 [**GetSubnets**](SubnetAPI.md#GetSubnets) | **Get** /api/v2/subnets | List all Subnets
@@ -351,6 +352,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Subnet**](Subnet.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSubnetCapacity
+
+> SubnetCapacity GetSubnetCapacity(ctx, subnetId).PrefixLength(prefixLength).Execute()
+
+Retrieves the Subnet capacity
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	subnetId := int64(789) // int64 | 
+	prefixLength := int32(56) // int32 | Pools only: also report how many blocks of this prefix length still fit. Must not be shorter than the pool prefix itself. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubnetAPI.GetSubnetCapacity(context.Background(), subnetId).PrefixLength(prefixLength).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.GetSubnetCapacity``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSubnetCapacity`: SubnetCapacity
+	fmt.Fprintf(os.Stdout, "Response from `SubnetAPI.GetSubnetCapacity`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subnetId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSubnetCapacityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **prefixLength** | **int32** | Pools only: also report how many blocks of this prefix length still fit. Must not be shorter than the pool prefix itself. | 
+
+### Return type
+
+[**SubnetCapacity**](SubnetCapacity.md)
 
 ### Authorization
 

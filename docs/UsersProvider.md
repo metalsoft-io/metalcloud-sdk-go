@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mysql** | **map[string]interface{}** | Whether MySQL/local user authentication is enabled | 
+**BuiltIn** | **map[string]interface{}** | Whether built-in user authentication is enabled | 
 
 ## Methods
 
 ### NewUsersProvider
 
-`func NewUsersProvider(mysql map[string]interface{}, ) *UsersProvider`
+`func NewUsersProvider(builtIn map[string]interface{}, ) *UsersProvider`
 
 NewUsersProvider instantiates a new UsersProvider object
 This constructor will assign default values to properties that have it defined,
@@ -25,24 +25,24 @@ NewUsersProviderWithDefaults instantiates a new UsersProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMysql
+### GetBuiltIn
 
-`func (o *UsersProvider) GetMysql() map[string]interface{}`
+`func (o *UsersProvider) GetBuiltIn() map[string]interface{}`
 
-GetMysql returns the Mysql field if non-nil, zero value otherwise.
+GetBuiltIn returns the BuiltIn field if non-nil, zero value otherwise.
 
-### GetMysqlOk
+### GetBuiltInOk
 
-`func (o *UsersProvider) GetMysqlOk() (*map[string]interface{}, bool)`
+`func (o *UsersProvider) GetBuiltInOk() (*map[string]interface{}, bool)`
 
-GetMysqlOk returns a tuple with the Mysql field if it's non-nil, zero value otherwise
+GetBuiltInOk returns a tuple with the BuiltIn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMysql
+### SetBuiltIn
 
-`func (o *UsersProvider) SetMysql(v map[string]interface{})`
+`func (o *UsersProvider) SetBuiltIn(v map[string]interface{})`
 
-SetMysql sets Mysql field to given value.
+SetBuiltIn sets BuiltIn field to given value.
 
 
 

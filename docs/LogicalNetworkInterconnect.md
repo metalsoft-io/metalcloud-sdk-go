@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Annotations** | Pointer to **map[string]string** | JSON object containing additional metadata or annotations | [optional] 
 **Kind** | [**LogicalNetworkInterconnectKind**](LogicalNetworkInterconnectKind.md) | Kind of the logical network interconnect | 
 **FabricInterconnectId** | **int64** | Fabric Interconnect identifier | 
-**TransportId** | Pointer to **int64** | Transport ID allocated from range 999999999-900000000 (descending) | [optional] 
+**TransportId** | Pointer to **int64** | Transport ID allocated from range 899999999-800000000 (descending) | [optional] 
 **Status** | [**LogicalNetworkInterconnectStatus**](LogicalNetworkInterconnectStatus.md) | Status of the logical network interconnect | 
 **CreatedAt** | **time.Time** | The date and time the entity was created | [readonly] 
 **UpdatedAt** | **time.Time** | The date and time the entity was last updated | [readonly] 

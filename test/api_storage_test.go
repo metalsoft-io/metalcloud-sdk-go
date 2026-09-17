@@ -146,6 +146,50 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test StorageAPIService GetStorageScopedAccessUser", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var storageId int64
+		var scopedAccessUserId int64
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStorageScopedAccessUser(context.Background(), storageId, scopedAccessUserId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test StorageAPIService GetStorageScopedAccessUserCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var storageId int64
+		var scopedAccessUserId int64
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStorageScopedAccessUserCredentials(context.Background(), storageId, scopedAccessUserId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test StorageAPIService GetStorageScopedAccessUsers", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var storageId int64
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStorageScopedAccessUsers(context.Background(), storageId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test StorageAPIService GetStorageStatistics", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

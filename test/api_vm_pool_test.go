@@ -108,6 +108,21 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMPoolAPIService GetVMPoolClusterHostContainers", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId int64
+		var vmPoolClusterHostId int64
+
+		resp, httpRes, err := apiClient.VMPoolAPI.GetVMPoolClusterHostContainers(context.Background(), vmPoolId, vmPoolClusterHostId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMPoolAPIService GetVMPoolClusterHostInterface", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -209,6 +224,20 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 		var vmPoolId int64
 
 		resp, httpRes, err := apiClient.VMPoolAPI.GetVMPoolClusterHosts(context.Background(), vmPoolId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMPoolAPIService GetVMPoolContainers", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId int64
+
+		resp, httpRes, err := apiClient.VMPoolAPI.GetVMPoolContainers(context.Background(), vmPoolId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

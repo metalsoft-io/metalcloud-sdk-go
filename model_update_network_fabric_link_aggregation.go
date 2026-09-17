@@ -21,8 +21,12 @@ var _ MappedNullable = &UpdateNetworkFabricLinkAggregation{}
 
 // UpdateNetworkFabricLinkAggregation struct for UpdateNetworkFabricLinkAggregation
 type UpdateNetworkFabricLinkAggregation struct {
+	// Custom variables exposed to network device configuration templates as link_aggregation_custom_variables
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// List of link IDs to be associated with the link aggregation
 	LinkIds []int64 `json:"linkIds"`
+	// Link aggregation options
+	Options *NetworkFabricLinkAggregationOptions `json:"options,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,6 +48,38 @@ func NewUpdateNetworkFabricLinkAggregation(linkIds []int64) *UpdateNetworkFabric
 func NewUpdateNetworkFabricLinkAggregationWithDefaults() *UpdateNetworkFabricLinkAggregation {
 	this := UpdateNetworkFabricLinkAggregation{}
 	return &this
+}
+
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *UpdateNetworkFabricLinkAggregation) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkFabricLinkAggregation) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *UpdateNetworkFabricLinkAggregation) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *UpdateNetworkFabricLinkAggregation) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
 }
 
 // GetLinkIds returns the LinkIds field value
@@ -70,6 +106,38 @@ func (o *UpdateNetworkFabricLinkAggregation) SetLinkIds(v []int64) {
 	o.LinkIds = v
 }
 
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *UpdateNetworkFabricLinkAggregation) GetOptions() NetworkFabricLinkAggregationOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret NetworkFabricLinkAggregationOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkFabricLinkAggregation) GetOptionsOk() (*NetworkFabricLinkAggregationOptions, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *UpdateNetworkFabricLinkAggregation) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given NetworkFabricLinkAggregationOptions and assigns it to the Options field.
+func (o *UpdateNetworkFabricLinkAggregation) SetOptions(v NetworkFabricLinkAggregationOptions) {
+	o.Options = &v
+}
+
 func (o UpdateNetworkFabricLinkAggregation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -80,7 +148,13 @@ func (o UpdateNetworkFabricLinkAggregation) MarshalJSON() ([]byte, error) {
 
 func (o UpdateNetworkFabricLinkAggregation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
 	toSerialize["linkIds"] = o.LinkIds
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -124,7 +198,9 @@ func (o *UpdateNetworkFabricLinkAggregation) UnmarshalJSON(data []byte) (err err
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "linkIds")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 

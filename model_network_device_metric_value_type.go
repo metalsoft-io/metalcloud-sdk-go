@@ -27,7 +27,7 @@ const (
 	NETWORKDEVICEMETRICVALUETYPE_BOOLEAN NetworkDeviceMetricValueType = "boolean"
 	NETWORKDEVICEMETRICVALUETYPE_DICTIONARY NetworkDeviceMetricValueType = "dictionary"
 	NETWORKDEVICEMETRICVALUETYPE_DICTIONARY_LIST NetworkDeviceMetricValueType = "dictionary_list"
-	NETWORKDEVICEMETRICVALUETYPE_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceMetricValueType = "unknown_default_open_api"
+	NETWORKDEVICEMETRICVALUETYPE_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceMetricValueType = "11184809"
 )
 
 // All allowed values of NetworkDeviceMetricValueType enum
@@ -38,7 +38,7 @@ var AllowedNetworkDeviceMetricValueTypeEnumValues = []NetworkDeviceMetricValueTy
 	"boolean",
 	"dictionary",
 	"dictionary_list",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *NetworkDeviceMetricValueType) UnmarshalJSON(src []byte) error {
@@ -55,8 +55,7 @@ func (v *NetworkDeviceMetricValueType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = NETWORKDEVICEMETRICVALUETYPE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid NetworkDeviceMetricValueType", value)
 }
 
 // NewNetworkDeviceMetricValueTypeFromValue returns a pointer to a valid NetworkDeviceMetricValueType

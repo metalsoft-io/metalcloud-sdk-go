@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Provider** | **string** | Type of the authentication request. | [default to "mysql"]
+**Provider** | **string** | Type of the authentication request. | [default to "built-in"]
 **Properties** | [**AuthenticationRequestProperties**](AuthenticationRequestProperties.md) |  | 
 
 ## Methods

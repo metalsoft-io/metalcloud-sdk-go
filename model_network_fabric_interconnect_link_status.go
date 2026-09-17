@@ -23,14 +23,14 @@ type NetworkFabricInterconnectLinkStatus string
 const (
 	NETWORKFABRICINTERCONNECTLINKSTATUS_DRAFT NetworkFabricInterconnectLinkStatus = "draft"
 	NETWORKFABRICINTERCONNECTLINKSTATUS_ACTIVE NetworkFabricInterconnectLinkStatus = "active"
-	NETWORKFABRICINTERCONNECTLINKSTATUS_UNKNOWN_DEFAULT_OPEN_API NetworkFabricInterconnectLinkStatus = "unknown_default_open_api"
+	NETWORKFABRICINTERCONNECTLINKSTATUS_UNKNOWN_DEFAULT_OPEN_API NetworkFabricInterconnectLinkStatus = "11184809"
 )
 
 // All allowed values of NetworkFabricInterconnectLinkStatus enum
 var AllowedNetworkFabricInterconnectLinkStatusEnumValues = []NetworkFabricInterconnectLinkStatus{
 	"draft",
 	"active",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *NetworkFabricInterconnectLinkStatus) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *NetworkFabricInterconnectLinkStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = NETWORKFABRICINTERCONNECTLINKSTATUS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid NetworkFabricInterconnectLinkStatus", value)
 }
 
 // NewNetworkFabricInterconnectLinkStatusFromValue returns a pointer to a valid NetworkFabricInterconnectLinkStatus

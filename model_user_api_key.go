@@ -21,8 +21,12 @@ var _ MappedNullable = &UserApiKey{}
 
 // UserApiKey struct for UserApiKey
 type UserApiKey struct {
-	// The user API key
-	ApiKey string `json:"apiKey"`
+	// The user API key; null when the configured visibility is `once`, which withholds it after creation
+	ApiKey NullableString `json:"apiKey,omitempty"`
+	// ISO-8601 timestamp (UTC) when this API key expires; null when the key never expires.
+	ApiKeyExpirationTimestamp NullableString `json:"apiKeyExpirationTimestamp,omitempty"`
+	// The effective visibility policy for this API key
+	ApiKeyVisibility ApiKeyVisibility `json:"apiKeyVisibility"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,9 +36,9 @@ type _UserApiKey UserApiKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserApiKey(apiKey string) *UserApiKey {
+func NewUserApiKey(apiKeyVisibility ApiKeyVisibility) *UserApiKey {
 	this := UserApiKey{}
-	this.ApiKey = apiKey
+	this.ApiKeyVisibility = apiKeyVisibility
 	return &this
 }
 
@@ -46,28 +50,112 @@ func NewUserApiKeyWithDefaults() *UserApiKey {
 	return &this
 }
 
-// GetApiKey returns the ApiKey field value
+// GetApiKey returns the ApiKey field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserApiKey) GetApiKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.ApiKey.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ApiKey
+	return *o.ApiKey.Get()
 }
 
-// GetApiKeyOk returns a tuple with the ApiKey field value
+// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserApiKey) GetApiKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ApiKey, true
+	return o.ApiKey.Get(), o.ApiKey.IsSet()
 }
 
-// SetApiKey sets field value
+// HasApiKey returns a boolean if a field has been set.
+func (o *UserApiKey) HasApiKey() bool {
+	if o != nil && o.ApiKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKey gets a reference to the given NullableString and assigns it to the ApiKey field.
 func (o *UserApiKey) SetApiKey(v string) {
-	o.ApiKey = v
+	o.ApiKey.Set(&v)
+}
+// SetApiKeyNil sets the value for ApiKey to be an explicit nil
+func (o *UserApiKey) SetApiKeyNil() {
+	o.ApiKey.Set(nil)
+}
+
+// UnsetApiKey ensures that no value is present for ApiKey, not even an explicit nil
+func (o *UserApiKey) UnsetApiKey() {
+	o.ApiKey.Unset()
+}
+
+// GetApiKeyExpirationTimestamp returns the ApiKeyExpirationTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserApiKey) GetApiKeyExpirationTimestamp() string {
+	if o == nil || IsNil(o.ApiKeyExpirationTimestamp.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ApiKeyExpirationTimestamp.Get()
+}
+
+// GetApiKeyExpirationTimestampOk returns a tuple with the ApiKeyExpirationTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UserApiKey) GetApiKeyExpirationTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ApiKeyExpirationTimestamp.Get(), o.ApiKeyExpirationTimestamp.IsSet()
+}
+
+// HasApiKeyExpirationTimestamp returns a boolean if a field has been set.
+func (o *UserApiKey) HasApiKeyExpirationTimestamp() bool {
+	if o != nil && o.ApiKeyExpirationTimestamp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKeyExpirationTimestamp gets a reference to the given NullableString and assigns it to the ApiKeyExpirationTimestamp field.
+func (o *UserApiKey) SetApiKeyExpirationTimestamp(v string) {
+	o.ApiKeyExpirationTimestamp.Set(&v)
+}
+// SetApiKeyExpirationTimestampNil sets the value for ApiKeyExpirationTimestamp to be an explicit nil
+func (o *UserApiKey) SetApiKeyExpirationTimestampNil() {
+	o.ApiKeyExpirationTimestamp.Set(nil)
+}
+
+// UnsetApiKeyExpirationTimestamp ensures that no value is present for ApiKeyExpirationTimestamp, not even an explicit nil
+func (o *UserApiKey) UnsetApiKeyExpirationTimestamp() {
+	o.ApiKeyExpirationTimestamp.Unset()
+}
+
+// GetApiKeyVisibility returns the ApiKeyVisibility field value
+func (o *UserApiKey) GetApiKeyVisibility() ApiKeyVisibility {
+	if o == nil {
+		var ret ApiKeyVisibility
+		return ret
+	}
+
+	return o.ApiKeyVisibility
+}
+
+// GetApiKeyVisibilityOk returns a tuple with the ApiKeyVisibility field value
+// and a boolean to check if the value has been set.
+func (o *UserApiKey) GetApiKeyVisibilityOk() (*ApiKeyVisibility, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiKeyVisibility, true
+}
+
+// SetApiKeyVisibility sets field value
+func (o *UserApiKey) SetApiKeyVisibility(v ApiKeyVisibility) {
+	o.ApiKeyVisibility = v
 }
 
 func (o UserApiKey) MarshalJSON() ([]byte, error) {
@@ -80,7 +168,13 @@ func (o UserApiKey) MarshalJSON() ([]byte, error) {
 
 func (o UserApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["apiKey"] = o.ApiKey
+	if o.ApiKey.IsSet() {
+		toSerialize["apiKey"] = o.ApiKey.Get()
+	}
+	if o.ApiKeyExpirationTimestamp.IsSet() {
+		toSerialize["apiKeyExpirationTimestamp"] = o.ApiKeyExpirationTimestamp.Get()
+	}
+	toSerialize["apiKeyVisibility"] = o.ApiKeyVisibility
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -94,7 +188,7 @@ func (o *UserApiKey) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"apiKey",
+		"apiKeyVisibility",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -125,6 +219,8 @@ func (o *UserApiKey) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "apiKey")
+		delete(additionalProperties, "apiKeyExpirationTimestamp")
+		delete(additionalProperties, "apiKeyVisibility")
 		o.AdditionalProperties = additionalProperties
 	}
 

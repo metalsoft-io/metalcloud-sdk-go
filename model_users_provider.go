@@ -21,8 +21,8 @@ var _ MappedNullable = &UsersProvider{}
 
 // UsersProvider struct for UsersProvider
 type UsersProvider struct {
-	// Whether MySQL/local user authentication is enabled
-	Mysql map[string]interface{} `json:"mysql"`
+	// Whether built-in user authentication is enabled
+	BuiltIn map[string]interface{} `json:"built-in"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,9 +32,9 @@ type _UsersProvider UsersProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsersProvider(mysql map[string]interface{}) *UsersProvider {
+func NewUsersProvider(builtIn map[string]interface{}) *UsersProvider {
 	this := UsersProvider{}
-	this.Mysql = mysql
+	this.BuiltIn = builtIn
 	return &this
 }
 
@@ -46,28 +46,28 @@ func NewUsersProviderWithDefaults() *UsersProvider {
 	return &this
 }
 
-// GetMysql returns the Mysql field value
-func (o *UsersProvider) GetMysql() map[string]interface{} {
+// GetBuiltIn returns the BuiltIn field value
+func (o *UsersProvider) GetBuiltIn() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
 
-	return o.Mysql
+	return o.BuiltIn
 }
 
-// GetMysqlOk returns a tuple with the Mysql field value
+// GetBuiltInOk returns a tuple with the BuiltIn field value
 // and a boolean to check if the value has been set.
-func (o *UsersProvider) GetMysqlOk() (map[string]interface{}, bool) {
+func (o *UsersProvider) GetBuiltInOk() (map[string]interface{}, bool) {
 	if o == nil {
 		return map[string]interface{}{}, false
 	}
-	return o.Mysql, true
+	return o.BuiltIn, true
 }
 
-// SetMysql sets field value
-func (o *UsersProvider) SetMysql(v map[string]interface{}) {
-	o.Mysql = v
+// SetBuiltIn sets field value
+func (o *UsersProvider) SetBuiltIn(v map[string]interface{}) {
+	o.BuiltIn = v
 }
 
 func (o UsersProvider) MarshalJSON() ([]byte, error) {
@@ -80,7 +80,7 @@ func (o UsersProvider) MarshalJSON() ([]byte, error) {
 
 func (o UsersProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["mysql"] = o.Mysql
+	toSerialize["built-in"] = o.BuiltIn
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -94,7 +94,7 @@ func (o *UsersProvider) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"mysql",
+		"built-in",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -124,7 +124,7 @@ func (o *UsersProvider) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "mysql")
+		delete(additionalProperties, "built-in")
 		o.AdditionalProperties = additionalProperties
 	}
 

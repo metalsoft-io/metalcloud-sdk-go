@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// DNSRecordType The type of DNS record (e.g., A, AAAA, CNAME, NS, PTR, TXT, SOA) to create
+// DNSRecordType The type of DNS record (A, AAAA, CNAME, PTR) to create
 type DNSRecordType string
 
 // List of DNSRecordType
@@ -24,11 +24,8 @@ const (
 	DNSRECORDTYPE_A DNSRecordType = "A"
 	DNSRECORDTYPE_AAAA DNSRecordType = "AAAA"
 	DNSRECORDTYPE_CNAME DNSRecordType = "CNAME"
-	DNSRECORDTYPE_NS DNSRecordType = "NS"
 	DNSRECORDTYPE_PTR DNSRecordType = "PTR"
-	DNSRECORDTYPE_SOA DNSRecordType = "SOA"
-	DNSRECORDTYPE_TXT DNSRecordType = "TXT"
-	DNSRECORDTYPE_UNKNOWN_DEFAULT_OPEN_API DNSRecordType = "unknown_default_open_api"
+	DNSRECORDTYPE_UNKNOWN_DEFAULT_OPEN_API DNSRecordType = "11184809"
 )
 
 // All allowed values of DNSRecordType enum
@@ -36,11 +33,8 @@ var AllowedDNSRecordTypeEnumValues = []DNSRecordType{
 	"A",
 	"AAAA",
 	"CNAME",
-	"NS",
 	"PTR",
-	"SOA",
-	"TXT",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *DNSRecordType) UnmarshalJSON(src []byte) error {
@@ -57,8 +51,7 @@ func (v *DNSRecordType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = DNSRECORDTYPE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid DNSRecordType", value)
 }
 
 // NewDNSRecordTypeFromValue returns a pointer to a valid DNSRecordType

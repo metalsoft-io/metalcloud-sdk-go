@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## EnableUser2FA
 
-> EnableUser2FA(ctx).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).IfMatch(ifMatch).Execute()
+> RecoveryCodes EnableUser2FA(ctx).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).IfMatch(ifMatch).Execute()
 
 Enable 2FA
 
@@ -100,16 +100,18 @@ import (
 )
 
 func main() {
-	twoFactorAuthenticationToken := *openapiclient.NewTwoFactorAuthenticationToken("Token_example") // TwoFactorAuthenticationToken | 
+	twoFactorAuthenticationToken := *openapiclient.NewTwoFactorAuthenticationToken() // TwoFactorAuthenticationToken | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.UserAPI.EnableUser2FA(context.Background()).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.UserAPI.EnableUser2FA(context.Background()).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.EnableUser2FA``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `EnableUser2FA`: RecoveryCodes
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.EnableUser2FA`: %v\n", resp)
 }
 ```
 
@@ -129,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**RecoveryCodes**](RecoveryCodes.md)
 
 ### Authorization
 
@@ -138,7 +140,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -452,7 +454,7 @@ Name | Type | Description  | Notes
 
 ## RegenerateUserApiKey
 
-> User RegenerateUserApiKey(ctx).IfMatch(ifMatch).Execute()
+> UserApiKeyRegenerated RegenerateUserApiKey(ctx).IfMatch(ifMatch).Execute()
 
 Regenerate user API key
 
@@ -478,7 +480,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.RegenerateUserApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RegenerateUserApiKey`: User
+	// response from `RegenerateUserApiKey`: UserApiKeyRegenerated
 	fmt.Fprintf(os.Stdout, "Response from `UserAPI.RegenerateUserApiKey`: %v\n", resp)
 }
 ```
@@ -498,7 +500,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**UserApiKeyRegenerated**](UserApiKeyRegenerated.md)
 
 ### Authorization
 

@@ -22,6 +22,21 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test ServerAPIService AcknowledgeServerDrift", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverId int64
+		var driftId int64
+
+		resp, httpRes, err := apiClient.ServerAPI.AcknowledgeServerDrift(context.Background(), serverId, driftId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerAPIService ArchiveServer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -102,6 +117,35 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerAPIService GetServerDriftHistory", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverId float32
+
+		resp, httpRes, err := apiClient.ServerAPI.GetServerDriftHistory(context.Background(), serverId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerAPIService GetServerDriftHistoryById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverId float32
+		var driftId float32
+
+		resp, httpRes, err := apiClient.ServerAPI.GetServerDriftHistoryById(context.Background(), serverId, driftId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerAPIService GetServerInfo", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -137,6 +181,20 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 		var serverId int64
 
 		resp, httpRes, err := apiClient.ServerAPI.GetServerRemoteConsoleInfo(context.Background(), serverId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerAPIService GetServerSnapshots", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverId int64
+
+		resp, httpRes, err := apiClient.ServerAPI.GetServerSnapshots(context.Background(), serverId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -256,6 +314,19 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerAPIService ServerSyncTargetSnapshotWithLatestSnapshot", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverId int64
+
+		httpRes, err := apiClient.ServerAPI.ServerSyncTargetSnapshotWithLatestSnapshot(context.Background(), serverId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the logical network interconnect | [optional] 
 **Annotations** | Pointer to **map[string]string** | JSON object containing additional metadata or annotations | [optional] 
 **Kind** | Pointer to [**LogicalNetworkInterconnectKind**](LogicalNetworkInterconnectKind.md) | Kind of the logical network interconnect | [optional] 
-**FabricInterconnectId** | Pointer to **int64** | Transport ID allocated from range 999999999-900000000 (descending) | [optional] 
+**FabricInterconnectId** | Pointer to **int64** | Fabric Interconnect identifier | [optional] 
 
 ## Methods
 

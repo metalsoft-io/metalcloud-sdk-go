@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Users** | Pointer to [**Users**](Users.md) | User management and authentication provider settings | [optional] 
 **Ldap** | Pointer to [**Ldap**](Ldap.md) | LDAP directory integration settings | [optional] 
 **Saml** | Pointer to [**Saml**](Saml.md) | SAML SSO integration settings | [optional] 
+**Oidc** | Pointer to [**Oidc**](Oidc.md) | OpenID Connect SSO integration settings | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetSaml sets Saml field to given value.
 `func (o *AuthConfiguration) HasSaml() bool`
 
 HasSaml returns a boolean if a field has been set.
+
+### GetOidc
+
+`func (o *AuthConfiguration) GetOidc() Oidc`
+
+GetOidc returns the Oidc field if non-nil, zero value otherwise.
+
+### GetOidcOk
+
+`func (o *AuthConfiguration) GetOidcOk() (*Oidc, bool)`
+
+GetOidcOk returns a tuple with the Oidc field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOidc
+
+`func (o *AuthConfiguration) SetOidc(v Oidc)`
+
+SetOidc sets Oidc field to given value.
+
+### HasOidc
+
+`func (o *AuthConfiguration) HasOidc() bool`
+
+HasOidc returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

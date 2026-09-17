@@ -80,18 +80,22 @@ type NetworkDevice struct {
 	Driver NetworkDeviceDriver `json:"driver"`
 	// The physical or logical position of the network device in the network topology.
 	Position string `json:"position"`
+	// Whether backup is enabled on the device
+	BackupEnabled bool `json:"backupEnabled"`
+	// Whether drift detection is enabled on the device
+	DriftDetectionEnabled bool `json:"driftDetectionEnabled"`
 	// Whether the network device is in sync with the expected configuration.
 	DriftDetectionSyncStatus string `json:"driftDetectionSyncStatus"`
 	// ID of the snapshot used as a target for drift detection.
 	DriftDetectionTargetSnapshotId *string `json:"driftDetectionTargetSnapshotId,omitempty"`
-	// The configuration drift for the network device. 
-	ConfigurationDrift *string `json:"configurationDrift,omitempty"`
 	// ID of the associated server if this network device is directly connected to a server. Applicable for Network Devices of type DPU
 	ServerId *int64 `json:"serverId,omitempty"`
 	// NUMA node of the network device for optimal resource allocation
 	NumaNode *float32 `json:"numaNode,omitempty"`
 	// Order index of the network device
 	OrderIndex float32 `json:"orderIndex"`
+	// OS template used for the zero-touch installation (ONIE install method).
+	OsTemplateId NullableInt64 `json:"osTemplateId,omitempty"`
 	// Tags associated with the network device for categorization and filtering
 	Tags []string `json:"tags"`
 	// Key/value tags (key-map). The forthcoming replacement for the legacy string[] `tags`; both are populated independently for now. Edited on this object via PATCH (a null value deletes a key) — same mechanism as annotations.
@@ -160,6 +164,8 @@ type NetworkDevice struct {
 	HealthLastCheckedTimestamp NullableTime `json:"healthLastCheckedTimestamp,omitempty"`
 	// Ordered list of authentication options. Credentials are resolved from the first active entry.
 	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
+	// Total count of network device ports
+	PortCount int32 `json:"portCount"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -171,7 +177,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, applyIdentifierAsHostnameOnNextDeploy bool, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, driftDetectionSyncStatus string, orderIndex float32, tags []string, tagsMap map[string]string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision int64, status string, vendorId int64, siteId int64, identifierString string, applyIdentifierAsHostnameOnNextDeploy bool, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, snmpServiceEnabled bool, snmpMonitoringEnabled bool, username string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position string, backupEnabled bool, driftDetectionEnabled bool, driftDetectionSyncStatus string, orderIndex float32, tags []string, tagsMap map[string]string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId int64, subnetOobIndex float32, requiresOsInstall bool, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn int64, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId int64, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, portCount int32) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -201,6 +207,8 @@ func NewNetworkDevice(id string, revision int64, status string, vendorId int64, 
 	this.SerialNumber = serialNumber
 	this.Driver = driver
 	this.Position = position
+	this.BackupEnabled = backupEnabled
+	this.DriftDetectionEnabled = driftDetectionEnabled
 	this.DriftDetectionSyncStatus = driftDetectionSyncStatus
 	this.OrderIndex = orderIndex
 	this.Tags = tags
@@ -221,6 +229,7 @@ func NewNetworkDevice(id string, revision int64, status string, vendorId int64, 
 	this.SecretsMaterializedForOSAssets = secretsMaterializedForOSAssets
 	this.BootstrapReadinessCheckResult = bootstrapReadinessCheckResult
 	this.IsGateway = isGateway
+	this.PortCount = portCount
 	return &this
 }
 
@@ -938,6 +947,54 @@ func (o *NetworkDevice) SetPosition(v string) {
 	o.Position = v
 }
 
+// GetBackupEnabled returns the BackupEnabled field value
+func (o *NetworkDevice) GetBackupEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.BackupEnabled
+}
+
+// GetBackupEnabledOk returns a tuple with the BackupEnabled field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetBackupEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BackupEnabled, true
+}
+
+// SetBackupEnabled sets field value
+func (o *NetworkDevice) SetBackupEnabled(v bool) {
+	o.BackupEnabled = v
+}
+
+// GetDriftDetectionEnabled returns the DriftDetectionEnabled field value
+func (o *NetworkDevice) GetDriftDetectionEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DriftDetectionEnabled
+}
+
+// GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DriftDetectionEnabled, true
+}
+
+// SetDriftDetectionEnabled sets field value
+func (o *NetworkDevice) SetDriftDetectionEnabled(v bool) {
+	o.DriftDetectionEnabled = v
+}
+
 // GetDriftDetectionSyncStatus returns the DriftDetectionSyncStatus field value
 func (o *NetworkDevice) GetDriftDetectionSyncStatus() string {
 	if o == nil {
@@ -992,38 +1049,6 @@ func (o *NetworkDevice) HasDriftDetectionTargetSnapshotId() bool {
 // SetDriftDetectionTargetSnapshotId gets a reference to the given string and assigns it to the DriftDetectionTargetSnapshotId field.
 func (o *NetworkDevice) SetDriftDetectionTargetSnapshotId(v string) {
 	o.DriftDetectionTargetSnapshotId = &v
-}
-
-// GetConfigurationDrift returns the ConfigurationDrift field value if set, zero value otherwise.
-func (o *NetworkDevice) GetConfigurationDrift() string {
-	if o == nil || IsNil(o.ConfigurationDrift) {
-		var ret string
-		return ret
-	}
-	return *o.ConfigurationDrift
-}
-
-// GetConfigurationDriftOk returns a tuple with the ConfigurationDrift field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetConfigurationDriftOk() (*string, bool) {
-	if o == nil || IsNil(o.ConfigurationDrift) {
-		return nil, false
-	}
-	return o.ConfigurationDrift, true
-}
-
-// HasConfigurationDrift returns a boolean if a field has been set.
-func (o *NetworkDevice) HasConfigurationDrift() bool {
-	if o != nil && !IsNil(o.ConfigurationDrift) {
-		return true
-	}
-
-	return false
-}
-
-// SetConfigurationDrift gets a reference to the given string and assigns it to the ConfigurationDrift field.
-func (o *NetworkDevice) SetConfigurationDrift(v string) {
-	o.ConfigurationDrift = &v
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
@@ -1112,6 +1137,48 @@ func (o *NetworkDevice) GetOrderIndexOk() (*float32, bool) {
 // SetOrderIndex sets field value
 func (o *NetworkDevice) SetOrderIndex(v float32) {
 	o.OrderIndex = v
+}
+
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkDevice) GetOsTemplateId() int64 {
+	if o == nil || IsNil(o.OsTemplateId.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.OsTemplateId.Get()
+}
+
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkDevice) GetOsTemplateIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OsTemplateId.Get(), o.OsTemplateId.IsSet()
+}
+
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *NetworkDevice) HasOsTemplateId() bool {
+	if o != nil && o.OsTemplateId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOsTemplateId gets a reference to the given NullableInt64 and assigns it to the OsTemplateId field.
+func (o *NetworkDevice) SetOsTemplateId(v int64) {
+	o.OsTemplateId.Set(&v)
+}
+// SetOsTemplateIdNil sets the value for OsTemplateId to be an explicit nil
+func (o *NetworkDevice) SetOsTemplateIdNil() {
+	o.OsTemplateId.Set(nil)
+}
+
+// UnsetOsTemplateId ensures that no value is present for OsTemplateId, not even an explicit nil
+func (o *NetworkDevice) UnsetOsTemplateId() {
+	o.OsTemplateId.Unset()
 }
 
 // GetTags returns the Tags field value
@@ -2081,6 +2148,30 @@ func (o *NetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOption) {
 	o.AuthenticationOptions = v
 }
 
+// GetPortCount returns the PortCount field value
+func (o *NetworkDevice) GetPortCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.PortCount
+}
+
+// GetPortCountOk returns a tuple with the PortCount field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetPortCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PortCount, true
+}
+
+// SetPortCount sets field value
+func (o *NetworkDevice) SetPortCount(v int32) {
+	o.PortCount = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -2154,12 +2245,11 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["serialNumber"] = o.SerialNumber
 	toSerialize["driver"] = o.Driver
 	toSerialize["position"] = o.Position
+	toSerialize["backupEnabled"] = o.BackupEnabled
+	toSerialize["driftDetectionEnabled"] = o.DriftDetectionEnabled
 	toSerialize["driftDetectionSyncStatus"] = o.DriftDetectionSyncStatus
 	if !IsNil(o.DriftDetectionTargetSnapshotId) {
 		toSerialize["driftDetectionTargetSnapshotId"] = o.DriftDetectionTargetSnapshotId
-	}
-	if !IsNil(o.ConfigurationDrift) {
-		toSerialize["configurationDrift"] = o.ConfigurationDrift
 	}
 	if !IsNil(o.ServerId) {
 		toSerialize["serverId"] = o.ServerId
@@ -2168,6 +2258,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 		toSerialize["numaNode"] = o.NumaNode
 	}
 	toSerialize["orderIndex"] = o.OrderIndex
+	if o.OsTemplateId.IsSet() {
+		toSerialize["osTemplateId"] = o.OsTemplateId.Get()
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -2236,6 +2329,7 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AuthenticationOptions) {
 		toSerialize["authenticationOptions"] = o.AuthenticationOptions
 	}
+	toSerialize["portCount"] = o.PortCount
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -2280,6 +2374,8 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"serialNumber",
 		"driver",
 		"position",
+		"backupEnabled",
+		"driftDetectionEnabled",
 		"driftDetectionSyncStatus",
 		"orderIndex",
 		"tags",
@@ -2300,6 +2396,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"secretsMaterializedForOSAssets",
 		"bootstrapReadinessCheckResult",
 		"isGateway",
+		"portCount",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -2358,12 +2455,14 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
+		delete(additionalProperties, "backupEnabled")
+		delete(additionalProperties, "driftDetectionEnabled")
 		delete(additionalProperties, "driftDetectionSyncStatus")
 		delete(additionalProperties, "driftDetectionTargetSnapshotId")
-		delete(additionalProperties, "configurationDrift")
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "orderIndex")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "tagsMap")
 		delete(additionalProperties, "readyForInitialConfiguration")
@@ -2398,6 +2497,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "healthDetails")
 		delete(additionalProperties, "healthLastCheckedTimestamp")
 		delete(additionalProperties, "authenticationOptions")
+		delete(additionalProperties, "portCount")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

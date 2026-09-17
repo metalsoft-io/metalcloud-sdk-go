@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the task. | 
-**TaskType** | [**ExtensionTaskType**](ExtensionTaskType.md) |  | 
+**TaskType** | **string** |  | 
 **Options** | [**ExtensionTaskOptionAnsible**](ExtensionTaskOptionAnsible.md) |  | 
 
 ## Methods
 
 ### NewExtensionTaskAnsible
 
-`func NewExtensionTaskAnsible(label string, taskType ExtensionTaskType, options ExtensionTaskOptionAnsible, ) *ExtensionTaskAnsible`
+`func NewExtensionTaskAnsible(label string, taskType string, options ExtensionTaskOptionAnsible, ) *ExtensionTaskAnsible`
 
 NewExtensionTaskAnsible instantiates a new ExtensionTaskAnsible object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetLabel sets Label field to given value.
 
 ### GetTaskType
 
-`func (o *ExtensionTaskAnsible) GetTaskType() ExtensionTaskType`
+`func (o *ExtensionTaskAnsible) GetTaskType() string`
 
 GetTaskType returns the TaskType field if non-nil, zero value otherwise.
 
 ### GetTaskTypeOk
 
-`func (o *ExtensionTaskAnsible) GetTaskTypeOk() (*ExtensionTaskType, bool)`
+`func (o *ExtensionTaskAnsible) GetTaskTypeOk() (*string, bool)`
 
 GetTaskTypeOk returns a tuple with the TaskType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaskType
 
-`func (o *ExtensionTaskAnsible) SetTaskType(v ExtensionTaskType)`
+`func (o *ExtensionTaskAnsible) SetTaskType(v string)`
 
 SetTaskType sets TaskType field to given value.
 

@@ -23,7 +23,7 @@ var _ MappedNullable = &ExtensionTaskAnsible{}
 type ExtensionTaskAnsible struct {
 	// Label of the task.
 	Label string `json:"label"`
-	TaskType ExtensionTaskType `json:"taskType"`
+	TaskType string `json:"taskType"`
 	Options ExtensionTaskOptionAnsible `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,7 +34,7 @@ type _ExtensionTaskAnsible ExtensionTaskAnsible
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionTaskAnsible(label string, taskType ExtensionTaskType, options ExtensionTaskOptionAnsible) *ExtensionTaskAnsible {
+func NewExtensionTaskAnsible(label string, taskType string, options ExtensionTaskOptionAnsible) *ExtensionTaskAnsible {
 	this := ExtensionTaskAnsible{}
 	this.Label = label
 	this.TaskType = taskType
@@ -75,9 +75,9 @@ func (o *ExtensionTaskAnsible) SetLabel(v string) {
 }
 
 // GetTaskType returns the TaskType field value
-func (o *ExtensionTaskAnsible) GetTaskType() ExtensionTaskType {
+func (o *ExtensionTaskAnsible) GetTaskType() string {
 	if o == nil {
-		var ret ExtensionTaskType
+		var ret string
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *ExtensionTaskAnsible) GetTaskType() ExtensionTaskType {
 
 // GetTaskTypeOk returns a tuple with the TaskType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskAnsible) GetTaskTypeOk() (*ExtensionTaskType, bool) {
+func (o *ExtensionTaskAnsible) GetTaskTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *ExtensionTaskAnsible) GetTaskTypeOk() (*ExtensionTaskType, bool) {
 }
 
 // SetTaskType sets field value
-func (o *ExtensionTaskAnsible) SetTaskType(v ExtensionTaskType) {
+func (o *ExtensionTaskAnsible) SetTaskType(v string) {
 	o.TaskType = v
 }
 

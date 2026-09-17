@@ -23,14 +23,14 @@ type FabricStatus string
 const (
 	FABRICSTATUS_DRAFT FabricStatus = "draft"
 	FABRICSTATUS_ACTIVE FabricStatus = "active"
-	FABRICSTATUS_UNKNOWN_DEFAULT_OPEN_API FabricStatus = "unknown_default_open_api"
+	FABRICSTATUS_UNKNOWN_DEFAULT_OPEN_API FabricStatus = "11184809"
 )
 
 // All allowed values of FabricStatus enum
 var AllowedFabricStatusEnumValues = []FabricStatus{
 	"draft",
 	"active",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *FabricStatus) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *FabricStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = FABRICSTATUS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid FabricStatus", value)
 }
 
 // NewFabricStatusFromValue returns a pointer to a valid FabricStatus

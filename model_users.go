@@ -24,7 +24,7 @@ type Users struct {
 	// Enabled authentication provider flags
 	UsersProvider UsersProvider `json:"usersProvider"`
 	// Default authentication provider for new users
-	DefaultUserProvider string `json:"defaultUserProvider"`
+	DefaultUserProvider UserProviderName `json:"defaultUserProvider"`
 	// Per-provider authentication configuration
 	UserProviders []UserProvider `json:"userProviders"`
 	// Maximum consecutive failed login attempts before temporary lockout
@@ -37,6 +37,8 @@ type Users struct {
 	MaxUserSessionDuration map[string]interface{} `json:"maxUserSessionDuration"`
 	// Idle timeout in seconds after which an inactive session expires
 	SessionInactivityTimeoutDuration map[string]interface{} `json:"sessionInactivityTimeoutDuration"`
+	// Maximum number of concurrent active login sessions per user; a login exceeding the limit logs out the oldest session
+	MaxActiveLoginSessions map[string]interface{} `json:"maxActiveLoginSessions"`
 	// Regular expression pattern that passwords must match
 	PasswordRegex map[string]interface{} `json:"passwordRegex"`
 	// Characters allowed as special characters in passwords
@@ -57,6 +59,10 @@ type Users struct {
 	PasswordReuseLockoutDuration map[string]interface{} `json:"passwordReuseLockoutDuration"`
 	// Duration in seconds after which passwords expire; 0 means passwords never expire
 	PasswordValidityDuration map[string]interface{} `json:"passwordValidityDuration"`
+	// Duration in seconds after which user API keys expire; 0 means API keys never expire. Can be overridden per account and per user. Accepted range: 0 - 4294967295.
+	ApiKeyValidityDuration map[string]interface{} `json:"apiKeyValidityDuration"`
+	// Whether a user API key may be displayed in the API/UI: always (readable at any time) or once (returned only when regenerated).
+	ApiKeyVisibility ApiKeyVisibility `json:"apiKeyVisibility"`
 	// Seconds added to the JWT exp beyond the session expiration to absorb client/server clock skew; kept small because session invalidation is enforced server-side
 	CookieExpirationBufferDuration map[string]interface{} `json:"cookieExpirationBufferDuration"`
 	// Whether CAPTCHA verification is required on the login page
@@ -76,7 +82,7 @@ type _Users Users
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsers(usersProvider UsersProvider, defaultUserProvider string, userProviders []UserProvider, maxFailedLoginAttempts map[string]interface{}, failedLoginAttemptsTTL map[string]interface{}, userCacheTTL map[string]interface{}, maxUserSessionDuration map[string]interface{}, sessionInactivityTimeoutDuration map[string]interface{}, passwordRegex map[string]interface{}, passwordAllowedSpecialCharacters map[string]interface{}, passwordMinLength map[string]interface{}, passwordMaxLength map[string]interface{}, passwordMinSpecialCharacters map[string]interface{}, passwordMinUppercaseCharacters map[string]interface{}, passwordMinLowercaseCharacters map[string]interface{}, passwordMinDigits map[string]interface{}, passwordReuseLockoutDuration map[string]interface{}, passwordValidityDuration map[string]interface{}, cookieExpirationBufferDuration map[string]interface{}, captchaEnabled map[string]interface{}, captchaVerifyUrl map[string]interface{}) *Users {
+func NewUsers(usersProvider UsersProvider, defaultUserProvider UserProviderName, userProviders []UserProvider, maxFailedLoginAttempts map[string]interface{}, failedLoginAttemptsTTL map[string]interface{}, userCacheTTL map[string]interface{}, maxUserSessionDuration map[string]interface{}, sessionInactivityTimeoutDuration map[string]interface{}, maxActiveLoginSessions map[string]interface{}, passwordRegex map[string]interface{}, passwordAllowedSpecialCharacters map[string]interface{}, passwordMinLength map[string]interface{}, passwordMaxLength map[string]interface{}, passwordMinSpecialCharacters map[string]interface{}, passwordMinUppercaseCharacters map[string]interface{}, passwordMinLowercaseCharacters map[string]interface{}, passwordMinDigits map[string]interface{}, passwordReuseLockoutDuration map[string]interface{}, passwordValidityDuration map[string]interface{}, apiKeyValidityDuration map[string]interface{}, apiKeyVisibility ApiKeyVisibility, cookieExpirationBufferDuration map[string]interface{}, captchaEnabled map[string]interface{}, captchaVerifyUrl map[string]interface{}) *Users {
 	this := Users{}
 	this.UsersProvider = usersProvider
 	this.DefaultUserProvider = defaultUserProvider
@@ -86,6 +92,7 @@ func NewUsers(usersProvider UsersProvider, defaultUserProvider string, userProvi
 	this.UserCacheTTL = userCacheTTL
 	this.MaxUserSessionDuration = maxUserSessionDuration
 	this.SessionInactivityTimeoutDuration = sessionInactivityTimeoutDuration
+	this.MaxActiveLoginSessions = maxActiveLoginSessions
 	this.PasswordRegex = passwordRegex
 	this.PasswordAllowedSpecialCharacters = passwordAllowedSpecialCharacters
 	this.PasswordMinLength = passwordMinLength
@@ -96,6 +103,8 @@ func NewUsers(usersProvider UsersProvider, defaultUserProvider string, userProvi
 	this.PasswordMinDigits = passwordMinDigits
 	this.PasswordReuseLockoutDuration = passwordReuseLockoutDuration
 	this.PasswordValidityDuration = passwordValidityDuration
+	this.ApiKeyValidityDuration = apiKeyValidityDuration
+	this.ApiKeyVisibility = apiKeyVisibility
 	this.CookieExpirationBufferDuration = cookieExpirationBufferDuration
 	this.CaptchaEnabled = captchaEnabled
 	this.CaptchaVerifyUrl = captchaVerifyUrl
@@ -135,9 +144,9 @@ func (o *Users) SetUsersProvider(v UsersProvider) {
 }
 
 // GetDefaultUserProvider returns the DefaultUserProvider field value
-func (o *Users) GetDefaultUserProvider() string {
+func (o *Users) GetDefaultUserProvider() UserProviderName {
 	if o == nil {
-		var ret string
+		var ret UserProviderName
 		return ret
 	}
 
@@ -146,7 +155,7 @@ func (o *Users) GetDefaultUserProvider() string {
 
 // GetDefaultUserProviderOk returns a tuple with the DefaultUserProvider field value
 // and a boolean to check if the value has been set.
-func (o *Users) GetDefaultUserProviderOk() (*string, bool) {
+func (o *Users) GetDefaultUserProviderOk() (*UserProviderName, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -154,7 +163,7 @@ func (o *Users) GetDefaultUserProviderOk() (*string, bool) {
 }
 
 // SetDefaultUserProvider sets field value
-func (o *Users) SetDefaultUserProvider(v string) {
+func (o *Users) SetDefaultUserProvider(v UserProviderName) {
 	o.DefaultUserProvider = v
 }
 
@@ -300,6 +309,30 @@ func (o *Users) GetSessionInactivityTimeoutDurationOk() (map[string]interface{},
 // SetSessionInactivityTimeoutDuration sets field value
 func (o *Users) SetSessionInactivityTimeoutDuration(v map[string]interface{}) {
 	o.SessionInactivityTimeoutDuration = v
+}
+
+// GetMaxActiveLoginSessions returns the MaxActiveLoginSessions field value
+func (o *Users) GetMaxActiveLoginSessions() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.MaxActiveLoginSessions
+}
+
+// GetMaxActiveLoginSessionsOk returns a tuple with the MaxActiveLoginSessions field value
+// and a boolean to check if the value has been set.
+func (o *Users) GetMaxActiveLoginSessionsOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
+	}
+	return o.MaxActiveLoginSessions, true
+}
+
+// SetMaxActiveLoginSessions sets field value
+func (o *Users) SetMaxActiveLoginSessions(v map[string]interface{}) {
+	o.MaxActiveLoginSessions = v
 }
 
 // GetPasswordRegex returns the PasswordRegex field value
@@ -542,6 +575,54 @@ func (o *Users) SetPasswordValidityDuration(v map[string]interface{}) {
 	o.PasswordValidityDuration = v
 }
 
+// GetApiKeyValidityDuration returns the ApiKeyValidityDuration field value
+func (o *Users) GetApiKeyValidityDuration() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.ApiKeyValidityDuration
+}
+
+// GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field value
+// and a boolean to check if the value has been set.
+func (o *Users) GetApiKeyValidityDurationOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
+	}
+	return o.ApiKeyValidityDuration, true
+}
+
+// SetApiKeyValidityDuration sets field value
+func (o *Users) SetApiKeyValidityDuration(v map[string]interface{}) {
+	o.ApiKeyValidityDuration = v
+}
+
+// GetApiKeyVisibility returns the ApiKeyVisibility field value
+func (o *Users) GetApiKeyVisibility() ApiKeyVisibility {
+	if o == nil {
+		var ret ApiKeyVisibility
+		return ret
+	}
+
+	return o.ApiKeyVisibility
+}
+
+// GetApiKeyVisibilityOk returns a tuple with the ApiKeyVisibility field value
+// and a boolean to check if the value has been set.
+func (o *Users) GetApiKeyVisibilityOk() (*ApiKeyVisibility, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiKeyVisibility, true
+}
+
+// SetApiKeyVisibility sets field value
+func (o *Users) SetApiKeyVisibility(v ApiKeyVisibility) {
+	o.ApiKeyVisibility = v
+}
+
 // GetCookieExpirationBufferDuration returns the CookieExpirationBufferDuration field value
 func (o *Users) GetCookieExpirationBufferDuration() map[string]interface{} {
 	if o == nil {
@@ -696,6 +777,7 @@ func (o Users) ToMap() (map[string]interface{}, error) {
 	toSerialize["userCacheTTL"] = o.UserCacheTTL
 	toSerialize["maxUserSessionDuration"] = o.MaxUserSessionDuration
 	toSerialize["sessionInactivityTimeoutDuration"] = o.SessionInactivityTimeoutDuration
+	toSerialize["maxActiveLoginSessions"] = o.MaxActiveLoginSessions
 	toSerialize["passwordRegex"] = o.PasswordRegex
 	toSerialize["passwordAllowedSpecialCharacters"] = o.PasswordAllowedSpecialCharacters
 	toSerialize["passwordMinLength"] = o.PasswordMinLength
@@ -706,6 +788,8 @@ func (o Users) ToMap() (map[string]interface{}, error) {
 	toSerialize["passwordMinDigits"] = o.PasswordMinDigits
 	toSerialize["passwordReuseLockoutDuration"] = o.PasswordReuseLockoutDuration
 	toSerialize["passwordValidityDuration"] = o.PasswordValidityDuration
+	toSerialize["apiKeyValidityDuration"] = o.ApiKeyValidityDuration
+	toSerialize["apiKeyVisibility"] = o.ApiKeyVisibility
 	toSerialize["cookieExpirationBufferDuration"] = o.CookieExpirationBufferDuration
 	toSerialize["captchaEnabled"] = o.CaptchaEnabled
 	toSerialize["captchaVerifyUrl"] = o.CaptchaVerifyUrl
@@ -736,6 +820,7 @@ func (o *Users) UnmarshalJSON(data []byte) (err error) {
 		"userCacheTTL",
 		"maxUserSessionDuration",
 		"sessionInactivityTimeoutDuration",
+		"maxActiveLoginSessions",
 		"passwordRegex",
 		"passwordAllowedSpecialCharacters",
 		"passwordMinLength",
@@ -746,6 +831,8 @@ func (o *Users) UnmarshalJSON(data []byte) (err error) {
 		"passwordMinDigits",
 		"passwordReuseLockoutDuration",
 		"passwordValidityDuration",
+		"apiKeyValidityDuration",
+		"apiKeyVisibility",
 		"cookieExpirationBufferDuration",
 		"captchaEnabled",
 		"captchaVerifyUrl",
@@ -786,6 +873,7 @@ func (o *Users) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "userCacheTTL")
 		delete(additionalProperties, "maxUserSessionDuration")
 		delete(additionalProperties, "sessionInactivityTimeoutDuration")
+		delete(additionalProperties, "maxActiveLoginSessions")
 		delete(additionalProperties, "passwordRegex")
 		delete(additionalProperties, "passwordAllowedSpecialCharacters")
 		delete(additionalProperties, "passwordMinLength")
@@ -796,6 +884,8 @@ func (o *Users) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "passwordMinDigits")
 		delete(additionalProperties, "passwordReuseLockoutDuration")
 		delete(additionalProperties, "passwordValidityDuration")
+		delete(additionalProperties, "apiKeyValidityDuration")
+		delete(additionalProperties, "apiKeyVisibility")
 		delete(additionalProperties, "cookieExpirationBufferDuration")
 		delete(additionalProperties, "captchaEnabled")
 		delete(additionalProperties, "captchaVerifyUrl")

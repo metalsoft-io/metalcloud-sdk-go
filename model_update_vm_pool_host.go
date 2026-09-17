@@ -22,6 +22,8 @@ var _ MappedNullable = &UpdateVMPoolHost{}
 type UpdateVMPoolHost struct {
 	// Flag specifying if VMs can be created on the VM Pool Host
 	AllowVMsToBeCreated *bool `json:"allowVMsToBeCreated,omitempty"`
+	// Flag specifying if Containers can be created on the VM Pool Host
+	AllowContainersToBeCreated *bool `json:"allowContainersToBeCreated,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,6 +78,38 @@ func (o *UpdateVMPoolHost) SetAllowVMsToBeCreated(v bool) {
 	o.AllowVMsToBeCreated = &v
 }
 
+// GetAllowContainersToBeCreated returns the AllowContainersToBeCreated field value if set, zero value otherwise.
+func (o *UpdateVMPoolHost) GetAllowContainersToBeCreated() bool {
+	if o == nil || IsNil(o.AllowContainersToBeCreated) {
+		var ret bool
+		return ret
+	}
+	return *o.AllowContainersToBeCreated
+}
+
+// GetAllowContainersToBeCreatedOk returns a tuple with the AllowContainersToBeCreated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVMPoolHost) GetAllowContainersToBeCreatedOk() (*bool, bool) {
+	if o == nil || IsNil(o.AllowContainersToBeCreated) {
+		return nil, false
+	}
+	return o.AllowContainersToBeCreated, true
+}
+
+// HasAllowContainersToBeCreated returns a boolean if a field has been set.
+func (o *UpdateVMPoolHost) HasAllowContainersToBeCreated() bool {
+	if o != nil && !IsNil(o.AllowContainersToBeCreated) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowContainersToBeCreated gets a reference to the given bool and assigns it to the AllowContainersToBeCreated field.
+func (o *UpdateVMPoolHost) SetAllowContainersToBeCreated(v bool) {
+	o.AllowContainersToBeCreated = &v
+}
+
 func (o UpdateVMPoolHost) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -88,6 +122,9 @@ func (o UpdateVMPoolHost) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AllowVMsToBeCreated) {
 		toSerialize["allowVMsToBeCreated"] = o.AllowVMsToBeCreated
+	}
+	if !IsNil(o.AllowContainersToBeCreated) {
+		toSerialize["allowContainersToBeCreated"] = o.AllowContainersToBeCreated
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -112,6 +149,7 @@ func (o *UpdateVMPoolHost) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowVMsToBeCreated")
+		delete(additionalProperties, "allowContainersToBeCreated")
 		o.AdditionalProperties = additionalProperties
 	}
 

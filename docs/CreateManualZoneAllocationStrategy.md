@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **ZoneName** | **string** |  | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewCreateManualZoneAllocationStrategy
 
-`func NewCreateManualZoneAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, zoneName string, ) *CreateManualZoneAllocationStrategy`
+`func NewCreateManualZoneAllocationStrategy(kind string, scope CreateResourceScope, zoneName string, ) *CreateManualZoneAllocationStrategy`
 
 NewCreateManualZoneAllocationStrategy instantiates a new CreateManualZoneAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateManualZoneAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateManualZoneAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateManualZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateManualZoneAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateManualZoneAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateManualZoneAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

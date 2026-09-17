@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateAutoZoneAllocationStrategy{}
 
 // CreateAutoZoneAllocationStrategy struct for CreateAutoZoneAllocationStrategy
 type CreateAutoZoneAllocationStrategy struct {
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	AdditionalProperties map[string]interface{}
 }
@@ -32,7 +32,7 @@ type _CreateAutoZoneAllocationStrategy CreateAutoZoneAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutoZoneAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope) *CreateAutoZoneAllocationStrategy {
+func NewCreateAutoZoneAllocationStrategy(kind string, scope CreateResourceScope) *CreateAutoZoneAllocationStrategy {
 	this := CreateAutoZoneAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -48,9 +48,9 @@ func NewCreateAutoZoneAllocationStrategyWithDefaults() *CreateAutoZoneAllocation
 }
 
 // GetKind returns the Kind field value
-func (o *CreateAutoZoneAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *CreateAutoZoneAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *CreateAutoZoneAllocationStrategy) GetKind() AllocationStrategyKind {
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutoZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *CreateAutoZoneAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *CreateAutoZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKind,
 }
 
 // SetKind sets field value
-func (o *CreateAutoZoneAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *CreateAutoZoneAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

@@ -31,6 +31,8 @@ type Extension struct {
 	Name string `json:"name"`
 	// The extension unique label
 	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	// The extension version (semver). Multiple versions may share a label.
+	Version *string `json:"version,omitempty"`
 	// The extension description
 	Description string `json:"description"`
 	// Extension status
@@ -205,6 +207,38 @@ func (o *Extension) SetLabel(v string) {
 	o.Label = &v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *Extension) GetVersion() string {
+	if o == nil || IsNil(o.Version) {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Extension) GetVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.Version) {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *Extension) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *Extension) SetVersion(v string) {
+	o.Version = &v
+}
+
 // GetDescription returns the Description field value
 func (o *Extension) GetDescription() string {
 	if o == nil {
@@ -352,6 +386,9 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
 	toSerialize["description"] = o.Description
 	toSerialize["status"] = o.Status
 	toSerialize["kind"] = o.Kind
@@ -413,6 +450,7 @@ func (o *Extension) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "slug")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "version")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "kind")

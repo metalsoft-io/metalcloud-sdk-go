@@ -9,12 +9,14 @@ Name | Type | Description | Notes
 **SyslogMonitoringEnabled** | **bool** | Whether syslog monitoring is enabled | 
 **LeafSwitchesHaveMlagPairs** | **bool** | Whether leaf switches have MLAG pairs | 
 **MinimumNumberOfSpinesNeededToBootstrapLeafs** | **int32** | Minimum number of spines needed to bootstrap leafs | 
+**BackupEnabled** | **bool** | Whether backup is enabled | 
+**DriftDetectionEnabled** | **bool** | Whether drift detection is enabled | 
 
 ## Methods
 
 ### NewNetworkDevicePolicy
 
-`func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs int32, ) *NetworkDevicePolicy`
+`func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs int32, backupEnabled bool, driftDetectionEnabled bool, ) *NetworkDevicePolicy`
 
 NewNetworkDevicePolicy instantiates a new NetworkDevicePolicy object
 This constructor will assign default values to properties that have it defined,
@@ -127,6 +129,46 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDevicePolicy) SetMinimumNumberOfSpinesNeededToBootstrapLeafs(v int32)`
 
 SetMinimumNumberOfSpinesNeededToBootstrapLeafs sets MinimumNumberOfSpinesNeededToBootstrapLeafs field to given value.
+
+
+### GetBackupEnabled
+
+`func (o *NetworkDevicePolicy) GetBackupEnabled() bool`
+
+GetBackupEnabled returns the BackupEnabled field if non-nil, zero value otherwise.
+
+### GetBackupEnabledOk
+
+`func (o *NetworkDevicePolicy) GetBackupEnabledOk() (*bool, bool)`
+
+GetBackupEnabledOk returns a tuple with the BackupEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBackupEnabled
+
+`func (o *NetworkDevicePolicy) SetBackupEnabled(v bool)`
+
+SetBackupEnabled sets BackupEnabled field to given value.
+
+
+### GetDriftDetectionEnabled
+
+`func (o *NetworkDevicePolicy) GetDriftDetectionEnabled() bool`
+
+GetDriftDetectionEnabled returns the DriftDetectionEnabled field if non-nil, zero value otherwise.
+
+### GetDriftDetectionEnabledOk
+
+`func (o *NetworkDevicePolicy) GetDriftDetectionEnabledOk() (*bool, bool)`
+
+GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionEnabled
+
+`func (o *NetworkDevicePolicy) SetDriftDetectionEnabled(v bool)`
+
+SetDriftDetectionEnabled sets DriftDetectionEnabled field to given value.
 
 
 

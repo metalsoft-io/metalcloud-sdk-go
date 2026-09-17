@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **GatewayPlacement** | Pointer to [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [optional] [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
 **SubnetPoolIds** | **[]int64** |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewCreateAutoIpv6SubnetAllocationStrategy
 
-`func NewCreateAutoIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetPoolIds []int64, prefixLength int32, ) *CreateAutoIpv6SubnetAllocationStrategy`
+`func NewCreateAutoIpv6SubnetAllocationStrategy(kind string, scope CreateResourceScope, subnetPoolIds []int64, prefixLength int32, ) *CreateAutoIpv6SubnetAllocationStrategy`
 
 NewCreateAutoIpv6SubnetAllocationStrategy instantiates a new CreateAutoIpv6SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateAutoIpv6SubnetAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateAutoIpv6SubnetAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

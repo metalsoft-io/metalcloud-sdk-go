@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateManualIpv6SubnetAllocationStrategy{}
 
 // CreateManualIpv6SubnetAllocationStrategy struct for CreateManualIpv6SubnetAllocationStrategy
 type CreateManualIpv6SubnetAllocationStrategy struct {
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	GatewayPlacement *SubnetGatewayPlacement `json:"gatewayPlacement,omitempty"`
 	SubnetId int64 `json:"subnetId"`
@@ -34,7 +34,7 @@ type _CreateManualIpv6SubnetAllocationStrategy CreateManualIpv6SubnetAllocationS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateManualIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetId int64) *CreateManualIpv6SubnetAllocationStrategy {
+func NewCreateManualIpv6SubnetAllocationStrategy(kind string, scope CreateResourceScope, subnetId int64) *CreateManualIpv6SubnetAllocationStrategy {
 	this := CreateManualIpv6SubnetAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -55,9 +55,9 @@ func NewCreateManualIpv6SubnetAllocationStrategyWithDefaults() *CreateManualIpv6
 }
 
 // GetKind returns the Kind field value
-func (o *CreateManualIpv6SubnetAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *CreateManualIpv6SubnetAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -66,7 +66,7 @@ func (o *CreateManualIpv6SubnetAllocationStrategy) GetKind() AllocationStrategyK
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateManualIpv6SubnetAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *CreateManualIpv6SubnetAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -74,7 +74,7 @@ func (o *CreateManualIpv6SubnetAllocationStrategy) GetKindOk() (*AllocationStrat
 }
 
 // SetKind sets field value
-func (o *CreateManualIpv6SubnetAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *CreateManualIpv6SubnetAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

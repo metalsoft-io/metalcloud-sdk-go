@@ -28,6 +28,10 @@ type NotificationConfiguration struct {
 	NetworkDeviceHealthNotificationEmails []string `json:"network_device_health_notification_emails,omitempty"`
 	// Email addresses to notify about network device configuration drift
 	NetworkDeviceConfigurationDriftNotificationEmails []string `json:"network_device_configuration_drift_notification_emails,omitempty"`
+	// Email addresses to notify when a server falls below the minimum versions of its firmware baseline
+	ServerFirmwareBaselineDriftNotificationEmails []string `json:"server_firmware_baseline_drift_notification_emails,omitempty"`
+	// Email addresses to notify when a server’s configuration changes outside of a planned change.
+	ServerConfigurationDriftNotificationEmails []string `json:"server_configuration_drift_notification_emails,omitempty"`
 	// Email addresses to notify about VM pool health events
 	VmPoolHealthNotificationEmails []string `json:"vm_pool_health_notification_emails,omitempty"`
 	// Event retention policy configuration
@@ -36,6 +40,12 @@ type NotificationConfiguration struct {
 	SyslogBufferTtlMs *float32 `json:"syslog_buffer_ttl_ms,omitempty"`
 	// Maximum number of unique syslog messages to buffer before flushing
 	SyslogBufferMaxUnique *float32 `json:"syslog_buffer_max_unique,omitempty"`
+	// Whether to invoke the monitoring agent for a diagnostic when a server health check degrades. When disabled the alert email is still sent, using the plain template.
+	ServerMonitoringAgentDiagnosticsEnabled *bool `json:"server_monitoring_agent_diagnostics_enabled,omitempty"`
+	// Whether to invoke the monitoring agent for a diagnostic when a network device health check degrades. When disabled the alert email is still sent, using the plain template.
+	NetworkDeviceMonitoringAgentDiagnosticsEnabled *bool `json:"network_device_monitoring_agent_diagnostics_enabled,omitempty"`
+	// How long to wait for the monitoring agent diagnostic, in milliseconds. Once it elapses the alert email is sent without the monitoring agent section rather than being held back.
+	MonitoringAgentHealthDiagnosticsTimeoutMs *float32 `json:"monitoring_agent_health_diagnostics_timeout_ms,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -186,6 +196,70 @@ func (o *NotificationConfiguration) SetNetworkDeviceConfigurationDriftNotificati
 	o.NetworkDeviceConfigurationDriftNotificationEmails = v
 }
 
+// GetServerFirmwareBaselineDriftNotificationEmails returns the ServerFirmwareBaselineDriftNotificationEmails field value if set, zero value otherwise.
+func (o *NotificationConfiguration) GetServerFirmwareBaselineDriftNotificationEmails() []string {
+	if o == nil || IsNil(o.ServerFirmwareBaselineDriftNotificationEmails) {
+		var ret []string
+		return ret
+	}
+	return o.ServerFirmwareBaselineDriftNotificationEmails
+}
+
+// GetServerFirmwareBaselineDriftNotificationEmailsOk returns a tuple with the ServerFirmwareBaselineDriftNotificationEmails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationConfiguration) GetServerFirmwareBaselineDriftNotificationEmailsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ServerFirmwareBaselineDriftNotificationEmails) {
+		return nil, false
+	}
+	return o.ServerFirmwareBaselineDriftNotificationEmails, true
+}
+
+// HasServerFirmwareBaselineDriftNotificationEmails returns a boolean if a field has been set.
+func (o *NotificationConfiguration) HasServerFirmwareBaselineDriftNotificationEmails() bool {
+	if o != nil && !IsNil(o.ServerFirmwareBaselineDriftNotificationEmails) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerFirmwareBaselineDriftNotificationEmails gets a reference to the given []string and assigns it to the ServerFirmwareBaselineDriftNotificationEmails field.
+func (o *NotificationConfiguration) SetServerFirmwareBaselineDriftNotificationEmails(v []string) {
+	o.ServerFirmwareBaselineDriftNotificationEmails = v
+}
+
+// GetServerConfigurationDriftNotificationEmails returns the ServerConfigurationDriftNotificationEmails field value if set, zero value otherwise.
+func (o *NotificationConfiguration) GetServerConfigurationDriftNotificationEmails() []string {
+	if o == nil || IsNil(o.ServerConfigurationDriftNotificationEmails) {
+		var ret []string
+		return ret
+	}
+	return o.ServerConfigurationDriftNotificationEmails
+}
+
+// GetServerConfigurationDriftNotificationEmailsOk returns a tuple with the ServerConfigurationDriftNotificationEmails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationConfiguration) GetServerConfigurationDriftNotificationEmailsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ServerConfigurationDriftNotificationEmails) {
+		return nil, false
+	}
+	return o.ServerConfigurationDriftNotificationEmails, true
+}
+
+// HasServerConfigurationDriftNotificationEmails returns a boolean if a field has been set.
+func (o *NotificationConfiguration) HasServerConfigurationDriftNotificationEmails() bool {
+	if o != nil && !IsNil(o.ServerConfigurationDriftNotificationEmails) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerConfigurationDriftNotificationEmails gets a reference to the given []string and assigns it to the ServerConfigurationDriftNotificationEmails field.
+func (o *NotificationConfiguration) SetServerConfigurationDriftNotificationEmails(v []string) {
+	o.ServerConfigurationDriftNotificationEmails = v
+}
+
 // GetVmPoolHealthNotificationEmails returns the VmPoolHealthNotificationEmails field value if set, zero value otherwise.
 func (o *NotificationConfiguration) GetVmPoolHealthNotificationEmails() []string {
 	if o == nil || IsNil(o.VmPoolHealthNotificationEmails) {
@@ -314,6 +388,102 @@ func (o *NotificationConfiguration) SetSyslogBufferMaxUnique(v float32) {
 	o.SyslogBufferMaxUnique = &v
 }
 
+// GetServerMonitoringAgentDiagnosticsEnabled returns the ServerMonitoringAgentDiagnosticsEnabled field value if set, zero value otherwise.
+func (o *NotificationConfiguration) GetServerMonitoringAgentDiagnosticsEnabled() bool {
+	if o == nil || IsNil(o.ServerMonitoringAgentDiagnosticsEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.ServerMonitoringAgentDiagnosticsEnabled
+}
+
+// GetServerMonitoringAgentDiagnosticsEnabledOk returns a tuple with the ServerMonitoringAgentDiagnosticsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationConfiguration) GetServerMonitoringAgentDiagnosticsEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.ServerMonitoringAgentDiagnosticsEnabled) {
+		return nil, false
+	}
+	return o.ServerMonitoringAgentDiagnosticsEnabled, true
+}
+
+// HasServerMonitoringAgentDiagnosticsEnabled returns a boolean if a field has been set.
+func (o *NotificationConfiguration) HasServerMonitoringAgentDiagnosticsEnabled() bool {
+	if o != nil && !IsNil(o.ServerMonitoringAgentDiagnosticsEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerMonitoringAgentDiagnosticsEnabled gets a reference to the given bool and assigns it to the ServerMonitoringAgentDiagnosticsEnabled field.
+func (o *NotificationConfiguration) SetServerMonitoringAgentDiagnosticsEnabled(v bool) {
+	o.ServerMonitoringAgentDiagnosticsEnabled = &v
+}
+
+// GetNetworkDeviceMonitoringAgentDiagnosticsEnabled returns the NetworkDeviceMonitoringAgentDiagnosticsEnabled field value if set, zero value otherwise.
+func (o *NotificationConfiguration) GetNetworkDeviceMonitoringAgentDiagnosticsEnabled() bool {
+	if o == nil || IsNil(o.NetworkDeviceMonitoringAgentDiagnosticsEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.NetworkDeviceMonitoringAgentDiagnosticsEnabled
+}
+
+// GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk returns a tuple with the NetworkDeviceMonitoringAgentDiagnosticsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationConfiguration) GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.NetworkDeviceMonitoringAgentDiagnosticsEnabled) {
+		return nil, false
+	}
+	return o.NetworkDeviceMonitoringAgentDiagnosticsEnabled, true
+}
+
+// HasNetworkDeviceMonitoringAgentDiagnosticsEnabled returns a boolean if a field has been set.
+func (o *NotificationConfiguration) HasNetworkDeviceMonitoringAgentDiagnosticsEnabled() bool {
+	if o != nil && !IsNil(o.NetworkDeviceMonitoringAgentDiagnosticsEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceMonitoringAgentDiagnosticsEnabled gets a reference to the given bool and assigns it to the NetworkDeviceMonitoringAgentDiagnosticsEnabled field.
+func (o *NotificationConfiguration) SetNetworkDeviceMonitoringAgentDiagnosticsEnabled(v bool) {
+	o.NetworkDeviceMonitoringAgentDiagnosticsEnabled = &v
+}
+
+// GetMonitoringAgentHealthDiagnosticsTimeoutMs returns the MonitoringAgentHealthDiagnosticsTimeoutMs field value if set, zero value otherwise.
+func (o *NotificationConfiguration) GetMonitoringAgentHealthDiagnosticsTimeoutMs() float32 {
+	if o == nil || IsNil(o.MonitoringAgentHealthDiagnosticsTimeoutMs) {
+		var ret float32
+		return ret
+	}
+	return *o.MonitoringAgentHealthDiagnosticsTimeoutMs
+}
+
+// GetMonitoringAgentHealthDiagnosticsTimeoutMsOk returns a tuple with the MonitoringAgentHealthDiagnosticsTimeoutMs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationConfiguration) GetMonitoringAgentHealthDiagnosticsTimeoutMsOk() (*float32, bool) {
+	if o == nil || IsNil(o.MonitoringAgentHealthDiagnosticsTimeoutMs) {
+		return nil, false
+	}
+	return o.MonitoringAgentHealthDiagnosticsTimeoutMs, true
+}
+
+// HasMonitoringAgentHealthDiagnosticsTimeoutMs returns a boolean if a field has been set.
+func (o *NotificationConfiguration) HasMonitoringAgentHealthDiagnosticsTimeoutMs() bool {
+	if o != nil && !IsNil(o.MonitoringAgentHealthDiagnosticsTimeoutMs) {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitoringAgentHealthDiagnosticsTimeoutMs gets a reference to the given float32 and assigns it to the MonitoringAgentHealthDiagnosticsTimeoutMs field.
+func (o *NotificationConfiguration) SetMonitoringAgentHealthDiagnosticsTimeoutMs(v float32) {
+	o.MonitoringAgentHealthDiagnosticsTimeoutMs = &v
+}
+
 func (o NotificationConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -336,6 +506,12 @@ func (o NotificationConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkDeviceConfigurationDriftNotificationEmails) {
 		toSerialize["network_device_configuration_drift_notification_emails"] = o.NetworkDeviceConfigurationDriftNotificationEmails
 	}
+	if !IsNil(o.ServerFirmwareBaselineDriftNotificationEmails) {
+		toSerialize["server_firmware_baseline_drift_notification_emails"] = o.ServerFirmwareBaselineDriftNotificationEmails
+	}
+	if !IsNil(o.ServerConfigurationDriftNotificationEmails) {
+		toSerialize["server_configuration_drift_notification_emails"] = o.ServerConfigurationDriftNotificationEmails
+	}
 	if !IsNil(o.VmPoolHealthNotificationEmails) {
 		toSerialize["vm_pool_health_notification_emails"] = o.VmPoolHealthNotificationEmails
 	}
@@ -347,6 +523,15 @@ func (o NotificationConfiguration) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SyslogBufferMaxUnique) {
 		toSerialize["syslog_buffer_max_unique"] = o.SyslogBufferMaxUnique
+	}
+	if !IsNil(o.ServerMonitoringAgentDiagnosticsEnabled) {
+		toSerialize["server_monitoring_agent_diagnostics_enabled"] = o.ServerMonitoringAgentDiagnosticsEnabled
+	}
+	if !IsNil(o.NetworkDeviceMonitoringAgentDiagnosticsEnabled) {
+		toSerialize["network_device_monitoring_agent_diagnostics_enabled"] = o.NetworkDeviceMonitoringAgentDiagnosticsEnabled
+	}
+	if !IsNil(o.MonitoringAgentHealthDiagnosticsTimeoutMs) {
+		toSerialize["monitoring_agent_health_diagnostics_timeout_ms"] = o.MonitoringAgentHealthDiagnosticsTimeoutMs
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -374,10 +559,15 @@ func (o *NotificationConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "server_health_notification_emails")
 		delete(additionalProperties, "network_device_health_notification_emails")
 		delete(additionalProperties, "network_device_configuration_drift_notification_emails")
+		delete(additionalProperties, "server_firmware_baseline_drift_notification_emails")
+		delete(additionalProperties, "server_configuration_drift_notification_emails")
 		delete(additionalProperties, "vm_pool_health_notification_emails")
 		delete(additionalProperties, "eventRetention")
 		delete(additionalProperties, "syslog_buffer_ttl_ms")
 		delete(additionalProperties, "syslog_buffer_max_unique")
+		delete(additionalProperties, "server_monitoring_agent_diagnostics_enabled")
+		delete(additionalProperties, "network_device_monitoring_agent_diagnostics_enabled")
+		delete(additionalProperties, "monitoring_agent_health_diagnostics_timeout_ms")
 		o.AdditionalProperties = additionalProperties
 	}
 

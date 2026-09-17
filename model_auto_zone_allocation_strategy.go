@@ -25,7 +25,7 @@ type AutoZoneAllocationStrategy struct {
 	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope ResourceScope `json:"scope"`
 	AdditionalProperties map[string]interface{}
 }
@@ -36,7 +36,7 @@ type _AutoZoneAllocationStrategy AutoZoneAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAutoZoneAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope) *AutoZoneAllocationStrategy {
+func NewAutoZoneAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope) *AutoZoneAllocationStrategy {
 	this := AutoZoneAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -127,9 +127,9 @@ func (o *AutoZoneAllocationStrategy) SetUpdatedAt(v time.Time) {
 }
 
 // GetKind returns the Kind field value
-func (o *AutoZoneAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *AutoZoneAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -138,7 +138,7 @@ func (o *AutoZoneAllocationStrategy) GetKind() AllocationStrategyKind {
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *AutoZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *AutoZoneAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -146,7 +146,7 @@ func (o *AutoZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)
 }
 
 // SetKind sets field value
-func (o *AutoZoneAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *AutoZoneAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

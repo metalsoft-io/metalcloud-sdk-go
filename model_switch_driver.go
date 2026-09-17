@@ -42,7 +42,7 @@ const (
 	SWITCHDRIVER_DELL_S4000 SwitchDriver = "dell_s4000"
 	SWITCHDRIVER_DELL_S6010 SwitchDriver = "dell_s6010"
 	SWITCHDRIVER_JUNOS18 SwitchDriver = "junos18"
-	SWITCHDRIVER_UNKNOWN_DEFAULT_OPEN_API SwitchDriver = "unknown_default_open_api"
+	SWITCHDRIVER_UNKNOWN_DEFAULT_OPEN_API SwitchDriver = "11184809"
 )
 
 // All allowed values of SwitchDriver enum
@@ -68,7 +68,7 @@ var AllowedSwitchDriverEnumValues = []SwitchDriver{
 	"dell_s4000",
 	"dell_s6010",
 	"junos18",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *SwitchDriver) UnmarshalJSON(src []byte) error {
@@ -85,8 +85,7 @@ func (v *SwitchDriver) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = SWITCHDRIVER_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid SwitchDriver", value)
 }
 
 // NewSwitchDriverFromValue returns a pointer to a valid SwitchDriver

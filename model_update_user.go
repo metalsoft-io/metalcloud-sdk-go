@@ -70,6 +70,10 @@ type UpdateUser struct {
 	Provider *string `json:"provider,omitempty"`
 	// The timestamp when the user last changed their password
 	PasswordLastChangedTimestamp *string `json:"passwordLastChangedTimestamp,omitempty"`
+	// The timestamp when the user API key was last regenerated
+	ApiKeyLastChangedTimestamp *string `json:"apiKeyLastChangedTimestamp,omitempty"`
+	// Per-user override for the API key validity duration in seconds; 0 means the API key never expires; unset means the account or global setting applies (MS-10501). Accepted range: 0 - 4294967295.
+	ApiKeyValidityDuration *int32 `json:"apiKeyValidityDuration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,7 +89,7 @@ func NewUpdateUser() *UpdateUser {
 	this.Brand = &brand
 	var lastLoginType string = "md5"
 	this.LastLoginType = &lastLoginType
-	var provider string = "mysql"
+	var provider string = "built-in"
 	this.Provider = &provider
 	return &this
 }
@@ -99,7 +103,7 @@ func NewUpdateUserWithDefaults() *UpdateUser {
 	this.Brand = &brand
 	var lastLoginType string = "md5"
 	this.LastLoginType = &lastLoginType
-	var provider string = "mysql"
+	var provider string = "built-in"
 	this.Provider = &provider
 	return &this
 }
@@ -904,6 +908,70 @@ func (o *UpdateUser) SetPasswordLastChangedTimestamp(v string) {
 	o.PasswordLastChangedTimestamp = &v
 }
 
+// GetApiKeyLastChangedTimestamp returns the ApiKeyLastChangedTimestamp field value if set, zero value otherwise.
+func (o *UpdateUser) GetApiKeyLastChangedTimestamp() string {
+	if o == nil || IsNil(o.ApiKeyLastChangedTimestamp) {
+		var ret string
+		return ret
+	}
+	return *o.ApiKeyLastChangedTimestamp
+}
+
+// GetApiKeyLastChangedTimestampOk returns a tuple with the ApiKeyLastChangedTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetApiKeyLastChangedTimestampOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiKeyLastChangedTimestamp) {
+		return nil, false
+	}
+	return o.ApiKeyLastChangedTimestamp, true
+}
+
+// HasApiKeyLastChangedTimestamp returns a boolean if a field has been set.
+func (o *UpdateUser) HasApiKeyLastChangedTimestamp() bool {
+	if o != nil && !IsNil(o.ApiKeyLastChangedTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKeyLastChangedTimestamp gets a reference to the given string and assigns it to the ApiKeyLastChangedTimestamp field.
+func (o *UpdateUser) SetApiKeyLastChangedTimestamp(v string) {
+	o.ApiKeyLastChangedTimestamp = &v
+}
+
+// GetApiKeyValidityDuration returns the ApiKeyValidityDuration field value if set, zero value otherwise.
+func (o *UpdateUser) GetApiKeyValidityDuration() int32 {
+	if o == nil || IsNil(o.ApiKeyValidityDuration) {
+		var ret int32
+		return ret
+	}
+	return *o.ApiKeyValidityDuration
+}
+
+// GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetApiKeyValidityDurationOk() (*int32, bool) {
+	if o == nil || IsNil(o.ApiKeyValidityDuration) {
+		return nil, false
+	}
+	return o.ApiKeyValidityDuration, true
+}
+
+// HasApiKeyValidityDuration returns a boolean if a field has been set.
+func (o *UpdateUser) HasApiKeyValidityDuration() bool {
+	if o != nil && !IsNil(o.ApiKeyValidityDuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKeyValidityDuration gets a reference to the given int32 and assigns it to the ApiKeyValidityDuration field.
+func (o *UpdateUser) SetApiKeyValidityDuration(v int32) {
+	o.ApiKeyValidityDuration = &v
+}
+
 func (o UpdateUser) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -989,6 +1057,12 @@ func (o UpdateUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PasswordLastChangedTimestamp) {
 		toSerialize["passwordLastChangedTimestamp"] = o.PasswordLastChangedTimestamp
 	}
+	if !IsNil(o.ApiKeyLastChangedTimestamp) {
+		toSerialize["apiKeyLastChangedTimestamp"] = o.ApiKeyLastChangedTimestamp
+	}
+	if !IsNil(o.ApiKeyValidityDuration) {
+		toSerialize["apiKeyValidityDuration"] = o.ApiKeyValidityDuration
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1036,6 +1110,8 @@ func (o *UpdateUser) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "accountId")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "passwordLastChangedTimestamp")
+		delete(additionalProperties, "apiKeyLastChangedTimestamp")
+		delete(additionalProperties, "apiKeyValidityDuration")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -258,7 +258,7 @@ import (
 )
 
 func main() {
-	createNetworkFabricInterconnect := *openapiclient.NewCreateNetworkFabricInterconnect(openapiclient.NetworkFabricInterconnectType("dci-evpn"), "dci-evpn-interconnect-01") // CreateNetworkFabricInterconnect | The network fabric interconnect to create
+	createNetworkFabricInterconnect := *openapiclient.NewCreateNetworkFabricInterconnect(openapiclient.NetworkFabricInterconnectType("dci-evpn"), "dci-evpn-interconnect-01", int64(1)) // CreateNetworkFabricInterconnect | The network fabric interconnect to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

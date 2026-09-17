@@ -28,7 +28,7 @@ type UpdateLogicalNetworkInterconnectDto struct {
 	Annotations *map[string]string `json:"annotations,omitempty"`
 	// Kind of the logical network interconnect
 	Kind *LogicalNetworkInterconnectKind `json:"kind,omitempty"`
-	// Transport ID allocated from range 999999999-900000000 (descending)
+	// Fabric Interconnect identifier
 	FabricInterconnectId *int64 `json:"fabricInterconnectId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

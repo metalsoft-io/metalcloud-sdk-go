@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddNetworkDeviceDefaults**](NetworkDeviceAPI.md#AddNetworkDeviceDefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
+[**AcknowledgeNetworkDeviceDrift**](NetworkDeviceAPI.md#AcknowledgeNetworkDeviceDrift) | **Post** /api/v2/network-devices/{networkDeviceId}/drift-history/{driftId}/actions/acknowledge | Acknowledge a network device drift
 [**AddNetworkDevicePortIp**](NetworkDeviceAPI.md#AddNetworkDevicePortIp) | **Post** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Stage adding an IP address of an address family to a port
 [**ArchiveNetworkDevice**](NetworkDeviceAPI.md#ArchiveNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
 [**CreateNetworkDevice**](NetworkDeviceAPI.md#CreateNetworkDevice) | **Post** /api/v2/network-devices | Create Network Device
@@ -13,6 +13,8 @@ Method | HTTP request | Description
 [**DeleteNetworkDevice**](NetworkDeviceAPI.md#DeleteNetworkDevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
 [**DeleteNetworkDeviceBreakout**](NetworkDeviceAPI.md#DeleteNetworkDeviceBreakout) | **Delete** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId} | Remove a port breakout (un-breakout)
 [**DeleteNetworkDevicePort**](NetworkDeviceAPI.md#DeleteNetworkDevicePort) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId} | Stage removal of a port
+[**DeleteNetworkDeviceSecret**](NetworkDeviceAPI.md#DeleteNetworkDeviceSecret) | **Delete** /api/v2/network-devices/{networkDeviceId}/secrets/{name} | Delete one Network Device secret
+[**DeleteNetworkDeviceSecrets**](NetworkDeviceAPI.md#DeleteNetworkDeviceSecrets) | **Delete** /api/v2/network-devices/{networkDeviceId}/secrets | Delete all secrets of a Network Device
 [**DisableNetworkDeviceSnmpMonitoring**](NetworkDeviceAPI.md#DisableNetworkDeviceSnmpMonitoring) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/snmp-monitoring-unsubscribe | Disables SNMP monitoring for a network device
 [**DisableNetworkDeviceSnmpMonitoringBatch**](NetworkDeviceAPI.md#DisableNetworkDeviceSnmpMonitoringBatch) | **Post** /api/v2/network-devices/actions/snmp-monitoring-unsubscribe/batch | Disables SNMP monitoring for a batch of network devices
 [**DisableNetworkDeviceSnmpService**](NetworkDeviceAPI.md#DisableNetworkDeviceSnmpService) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/snmp-service-disable | Disables SNMP service on a network device
@@ -26,7 +28,9 @@ Method | HTTP request | Description
 [**GetNetworkDeviceBreakout**](NetworkDeviceAPI.md#GetNetworkDeviceBreakout) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId} | Get a port breakout by id
 [**GetNetworkDeviceBreakoutConfig**](NetworkDeviceAPI.md#GetNetworkDeviceBreakoutConfig) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId}/config | Get the staged (desired) breakout groups for a port breakout
 [**GetNetworkDeviceCredentials**](NetworkDeviceAPI.md#GetNetworkDeviceCredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
-[**GetNetworkDeviceDefaults**](NetworkDeviceAPI.md#GetNetworkDeviceDefaults) | **Get** /api/v2/network-devices/defaults/{siteId} | Get network device defaults for a site
+[**GetNetworkDeviceDriftHistory**](NetworkDeviceAPI.md#GetNetworkDeviceDriftHistory) | **Get** /api/v2/network-devices/{networkDeviceId}/drift-history | Get drift history for a specific network device
+[**GetNetworkDeviceDriftHistoryById**](NetworkDeviceAPI.md#GetNetworkDeviceDriftHistoryById) | **Get** /api/v2/network-devices/{networkDeviceId}/drift-history/{driftId} | Get a specific drift history for a specific network device
+[**GetNetworkDeviceDriverCapabilities**](NetworkDeviceAPI.md#GetNetworkDeviceDriverCapabilities) | **Get** /api/v2/network-devices/drivers/capabilities | Get Network Device driver capabilities
 [**GetNetworkDeviceHealthSummary**](NetworkDeviceAPI.md#GetNetworkDeviceHealthSummary) | **Get** /api/v2/network-devices/{networkDeviceId}/health-summary | Get Network Device health summary
 [**GetNetworkDevicePort**](NetworkDeviceAPI.md#GetNetworkDevicePort) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId} | Get one port on a network device
 [**GetNetworkDevicePortConfig**](NetworkDeviceAPI.md#GetNetworkDevicePortConfig) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/config | Get the desired-state config for a port
@@ -35,6 +39,8 @@ Method | HTTP request | Description
 [**GetNetworkDevicePortVirtualFunctions**](NetworkDeviceAPI.md#GetNetworkDevicePortVirtualFunctions) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/virtual-functions | Get virtual functions for a specific port on a network device
 [**GetNetworkDevicePorts**](NetworkDeviceAPI.md#GetNetworkDevicePorts) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get paginated ports for a network device from the database
 [**GetNetworkDeviceSNMPMonitoringAgentInfoBatch**](NetworkDeviceAPI.md#GetNetworkDeviceSNMPMonitoringAgentInfoBatch) | **Get** /api/v2/network-devices/snmp-monitoring/agent-info/batch | Get Network Device SNMP Monitoring Agent Info Batch
+[**GetNetworkDeviceSecretCredentials**](NetworkDeviceAPI.md#GetNetworkDeviceSecretCredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/secrets/{name}/credentials | Get one Network Device secret unencrypted
+[**GetNetworkDeviceSecrets**](NetworkDeviceAPI.md#GetNetworkDeviceSecrets) | **Get** /api/v2/network-devices/{networkDeviceId}/secrets | List the names of the secrets set on a Network Device
 [**GetNetworkDeviceSnapshots**](NetworkDeviceAPI.md#GetNetworkDeviceSnapshots) | **Get** /api/v2/network-devices/{networkDeviceId}/snapshots | Get Network Device snapshots
 [**GetNetworkDeviceStatistics**](NetworkDeviceAPI.md#GetNetworkDeviceStatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
 [**GetNetworkDeviceVendor**](NetworkDeviceAPI.md#GetNetworkDeviceVendor) | **Get** /api/v2/network-devices/vendors/{vendorId} | Get Network Device Vendor
@@ -45,18 +51,21 @@ Method | HTTP request | Description
 [**GetPorts**](NetworkDeviceAPI.md#GetPorts) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
 [**ListNetworkDeviceBreakouts**](NetworkDeviceAPI.md#ListNetworkDeviceBreakouts) | **Get** /api/v2/network-devices/{networkDeviceId}/breakouts | List all port breakouts on a network device
 [**ListNetworkDevicePortIps**](NetworkDeviceAPI.md#ListNetworkDevicePortIps) | **Get** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | List IP addresses of an address family on a port
+[**MarkNetworkDeviceInstallationReady**](NetworkDeviceAPI.md#MarkNetworkDeviceInstallationReady) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/mark-installation-ready | Marks a planned network device as installable
 [**NetworkDeviceSyncTargetSnapshotWithLatestSnapshot**](NetworkDeviceAPI.md#NetworkDeviceSyncTargetSnapshotWithLatestSnapshot) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/sync-target-snapshot-with-latest-snapshot | Updates the target snapshot id to be the latest snapshot of the network device
 [**ReProvisionNetworkDevice**](NetworkDeviceAPI.md#ReProvisionNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/re-provision | Re-provision network device
-[**RemoveNetworkDeviceDefaults**](NetworkDeviceAPI.md#RemoveNetworkDeviceDefaults) | **Delete** /api/v2/network-devices/defaults/{siteId}/{id} | Remove network device defaults
 [**RemoveNetworkDevicePortIp**](NetworkDeviceAPI.md#RemoveNetworkDevicePortIp) | **Delete** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses/{ipId} | Stage removal of an IP address from a port
 [**ReplaceNetworkDevice**](NetworkDeviceAPI.md#ReplaceNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 [**ReplaceNetworkDevicePortIps**](NetworkDeviceAPI.md#ReplaceNetworkDevicePortIps) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Replace the full IP-address set of an address family on a port (diff against current)
 [**ResetNetworkDevice**](NetworkDeviceAPI.md#ResetNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
+[**ReturnNetworkDeviceToPlanned**](NetworkDeviceAPI.md#ReturnNetworkDeviceToPlanned) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/return-to-planned | Returns a network device to planned
 [**RevertNetworkDeviceFailedState**](NetworkDeviceAPI.md#RevertNetworkDeviceFailedState) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state | Revert network device failed state
 [**RunExtensionOnNetworkDevice**](NetworkDeviceAPI.md#RunExtensionOnNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
 [**SetNetworkDeviceAsFailed**](NetworkDeviceAPI.md#SetNetworkDeviceAsFailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
 [**SetNetworkDeviceHealthMonitoringFilter**](NetworkDeviceAPI.md#SetNetworkDeviceHealthMonitoringFilter) | **Get** /api/v2/network-devices/health-monitoring-filter | Set the health monitoring WebSocket filter for the current user
 [**SetNetworkDevicePortStatus**](NetworkDeviceAPI.md#SetNetworkDevicePortStatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
+[**SetNetworkDeviceSecret**](NetworkDeviceAPI.md#SetNetworkDeviceSecret) | **Patch** /api/v2/network-devices/{networkDeviceId}/secrets | Create or replace one Network Device secret
+[**StartNetworkDeviceRegistration**](NetworkDeviceAPI.md#StartNetworkDeviceRegistration) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/start-registration | Starts registration for a network device
 [**UpdateNetworkDevice**](NetworkDeviceAPI.md#UpdateNetworkDevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
 [**UpdateNetworkDeviceBreakoutConfig**](NetworkDeviceAPI.md#UpdateNetworkDeviceBreakoutConfig) | **Patch** /api/v2/network-devices/{networkDeviceId}/breakouts/{breakoutId}/config | Edit the staged breakout groups (reconciles child interfaces)
 [**UpdateNetworkDevicePortConfig**](NetworkDeviceAPI.md#UpdateNetworkDevicePortConfig) | **Patch** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/config | Stage an update to a port&#39;s desired-state config
@@ -64,11 +73,11 @@ Method | HTTP request | Description
 
 
 
-## AddNetworkDeviceDefaults
+## AcknowledgeNetworkDeviceDrift
 
-> AddNetworkDeviceDefaults(ctx).CreateNetworkDeviceDefaults(createNetworkDeviceDefaults).Execute()
+> NetworkDeviceDriftHistory AcknowledgeNetworkDeviceDrift(ctx, networkDeviceId, driftId).Execute()
 
-Add network device defaults
+Acknowledge a network device drift
 
 ### Example
 
@@ -83,34 +92,43 @@ import (
 )
 
 func main() {
-	createNetworkDeviceDefaults := *openapiclient.NewCreateNetworkDeviceDefaults("DatacenterName_example", "00:1A:2B:3C:4D:5E") // CreateNetworkDeviceDefaults | Network device defaults
+	networkDeviceId := int64(789) // int64 | Network device ID
+	driftId := int64(789) // int64 | Network device ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.AddNetworkDeviceDefaults(context.Background()).CreateNetworkDeviceDefaults(createNetworkDeviceDefaults).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.AcknowledgeNetworkDeviceDrift(context.Background(), networkDeviceId, driftId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.AddNetworkDeviceDefaults``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.AcknowledgeNetworkDeviceDrift``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `AcknowledgeNetworkDeviceDrift`: NetworkDeviceDriftHistory
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.AcknowledgeNetworkDeviceDrift`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** | Network device ID | 
+**driftId** | **int64** | Network device ID | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAddNetworkDeviceDefaultsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAcknowledgeNetworkDeviceDriftRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createNetworkDeviceDefaults** | [**CreateNetworkDeviceDefaults**](CreateNetworkDeviceDefaults.md) | Network device defaults | 
+
+
 
 ### Return type
 
- (empty response body)
+[**NetworkDeviceDriftHistory**](NetworkDeviceDriftHistory.md)
 
 ### Authorization
 
@@ -118,8 +136,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -663,6 +681,141 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteNetworkDeviceSecret
+
+> DeleteNetworkDeviceSecret(ctx, networkDeviceId, name).Execute()
+
+Delete one Network Device secret
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	name := "name_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkDeviceAPI.DeleteNetworkDeviceSecret(context.Background(), networkDeviceId, name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.DeleteNetworkDeviceSecret``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+**name** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteNetworkDeviceSecretRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteNetworkDeviceSecrets
+
+> DeleteNetworkDeviceSecrets(ctx, networkDeviceId).Execute()
+
+Delete all secrets of a Network Device
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkDeviceAPI.DeleteNetworkDeviceSecrets(context.Background(), networkDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.DeleteNetworkDeviceSecrets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteNetworkDeviceSecretsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -1578,11 +1731,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetNetworkDeviceDefaults
+## GetNetworkDeviceDriftHistory
 
-> NetworkDeviceDefaultsPaginatedList GetNetworkDeviceDefaults(ctx, siteId).Page(page).Limit(limit).FilterId(filterId).FilterSerialNumber(filterSerialNumber).FilterManagementMacAddress(filterManagementMacAddress).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterAsn(filterAsn).FilterOsTemplateId(filterOsTemplateId).FilterOrderIndex(filterOrderIndex).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> NetworkDeviceDriftHistoryPaginatedList GetNetworkDeviceDriftHistory(ctx, networkDeviceId).Page(page).Limit(limit).FilterId(filterId).FilterSnapshotId(filterSnapshotId).FilterAcknowledgedBy(filterAcknowledgedBy).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
-Get network device defaults for a site
+Get drift history for a specific network device
 
 ### Example
 
@@ -1597,30 +1750,25 @@ import (
 )
 
 func main() {
-	siteId := float32(8.14) // float32 | 
+	networkDeviceId := float32(8.14) // float32 | 
 	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
 	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
 	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterSerialNumber := []string{"Inner_example"} // []string | Filter by serialNumber query param.  **Format:** filter.serialNumber={$not}:OPERATION:VALUE    **Example:** filter.serialNumber=$btw:John Doe&filter.serialNumber=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterManagementMacAddress := []string{"Inner_example"} // []string | Filter by managementMacAddress query param.  **Format:** filter.managementMacAddress={$not}:OPERATION:VALUE    **Example:** filter.managementMacAddress=$btw:John Doe&filter.managementMacAddress=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterPosition := []string{"Inner_example"} // []string | Filter by position query param.  **Format:** filter.position={$not}:OPERATION:VALUE    **Example:** filter.position=$btw:John Doe&filter.position=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterIdentifierString := []string{"Inner_example"} // []string | Filter by identifierString query param.  **Format:** filter.identifierString={$not}:OPERATION:VALUE    **Example:** filter.identifierString=$btw:John Doe&filter.identifierString=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterAsn := []string{"Inner_example"} // []string | Filter by asn query param.  **Format:** filter.asn={$not}:OPERATION:VALUE    **Example:** filter.asn=$btw:John Doe&filter.asn=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterOsTemplateId := []string{"Inner_example"} // []string | Filter by osTemplateId query param.  **Format:** filter.osTemplateId={$not}:OPERATION:VALUE    **Example:** filter.osTemplateId=$btw:John Doe&filter.osTemplateId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	filterOrderIndex := []string{"Inner_example"} // []string | Filter by orderIndex query param.  **Format:** filter.orderIndex={$not}:OPERATION:VALUE    **Example:** filter.orderIndex=$btw:John Doe&filter.orderIndex=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=serialNumber:DESC   **Default Value:** id:ASC  **Available Fields** - id  - serialNumber  - managementMacAddress  - position  - identifierString  - asn  - orderIndex  - osTemplateId  - isPartOfMlagPair  - mlagSystemMac  - mlagDomainId  - mlagPeerLinkPortChannelId  - mlagPartnerVlanId  - mlagPartnerHostname  - loopbackAddressIpv4  - loopbackAddressIpv6  - vtepAddressIpv4  - vtepAddressIpv6  (optional)
+	filterSnapshotId := []string{"Inner_example"} // []string | Filter by snapshotId query param.  **Format:** filter.snapshotId={$not}:OPERATION:VALUE    **Example:** filter.snapshotId=$btw:John Doe&filter.snapshotId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterAcknowledgedBy := []string{"Inner_example"} // []string | Filter by acknowledgedBy query param.  **Format:** filter.acknowledgedBy={$not}:OPERATION:VALUE    **Example:** filter.acknowledgedBy=$btw:John Doe&filter.acknowledgedBy=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=snapshotId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - snapshotId  - acknowledgedBy  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** serialNumber,managementMacAddress,position,identifierString,mlagPartnerHostname   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - serialNumber  - managementMacAddress  - position  - identifierString  - mlagPartnerHostname  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,snapshotId,acknowledgedBy   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - snapshotId  - acknowledgedBy  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDefaults(context.Background(), siteId).Page(page).Limit(limit).FilterId(filterId).FilterSerialNumber(filterSerialNumber).FilterManagementMacAddress(filterManagementMacAddress).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterAsn(filterAsn).FilterOsTemplateId(filterOsTemplateId).FilterOrderIndex(filterOrderIndex).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDriftHistory(context.Background(), networkDeviceId).Page(page).Limit(limit).FilterId(filterId).FilterSnapshotId(filterSnapshotId).FilterAcknowledgedBy(filterAcknowledgedBy).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceDefaults``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceDriftHistory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetNetworkDeviceDefaults`: NetworkDeviceDefaultsPaginatedList
-	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceDefaults`: %v\n", resp)
+	// response from `GetNetworkDeviceDriftHistory`: NetworkDeviceDriftHistoryPaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceDriftHistory`: %v\n", resp)
 }
 ```
 
@@ -1630,11 +1778,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | **float32** |  | 
+**networkDeviceId** | **float32** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetNetworkDeviceDefaultsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetNetworkDeviceDriftHistoryRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -1643,20 +1791,150 @@ Name | Type | Description  | Notes
  **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
  **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
  **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterSerialNumber** | **[]string** | Filter by serialNumber query param.  **Format:** filter.serialNumber&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serialNumber&#x3D;$btw:John Doe&amp;filter.serialNumber&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterManagementMacAddress** | **[]string** | Filter by managementMacAddress query param.  **Format:** filter.managementMacAddress&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.managementMacAddress&#x3D;$btw:John Doe&amp;filter.managementMacAddress&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterPosition** | **[]string** | Filter by position query param.  **Format:** filter.position&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.position&#x3D;$btw:John Doe&amp;filter.position&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterIdentifierString** | **[]string** | Filter by identifierString query param.  **Format:** filter.identifierString&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.identifierString&#x3D;$btw:John Doe&amp;filter.identifierString&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterAsn** | **[]string** | Filter by asn query param.  **Format:** filter.asn&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.asn&#x3D;$btw:John Doe&amp;filter.asn&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterOsTemplateId** | **[]string** | Filter by osTemplateId query param.  **Format:** filter.osTemplateId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.osTemplateId&#x3D;$btw:John Doe&amp;filter.osTemplateId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **filterOrderIndex** | **[]string** | Filter by orderIndex query param.  **Format:** filter.orderIndex&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.orderIndex&#x3D;$btw:John Doe&amp;filter.orderIndex&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;serialNumber:DESC   **Default Value:** id:ASC  **Available Fields** - id  - serialNumber  - managementMacAddress  - position  - identifierString  - asn  - orderIndex  - osTemplateId  - isPartOfMlagPair  - mlagSystemMac  - mlagDomainId  - mlagPeerLinkPortChannelId  - mlagPartnerVlanId  - mlagPartnerHostname  - loopbackAddressIpv4  - loopbackAddressIpv6  - vtepAddressIpv4  - vtepAddressIpv6  | 
+ **filterSnapshotId** | **[]string** | Filter by snapshotId query param.  **Format:** filter.snapshotId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.snapshotId&#x3D;$btw:John Doe&amp;filter.snapshotId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterAcknowledgedBy** | **[]string** | Filter by acknowledgedBy query param.  **Format:** filter.acknowledgedBy&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.acknowledgedBy&#x3D;$btw:John Doe&amp;filter.acknowledgedBy&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;snapshotId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - snapshotId  - acknowledgedBy  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** serialNumber,managementMacAddress,position,identifierString,mlagPartnerHostname   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - serialNumber  - managementMacAddress  - position  - identifierString  - mlagPartnerHostname  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,snapshotId,acknowledgedBy   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - snapshotId  - acknowledgedBy  | 
 
 ### Return type
 
-[**NetworkDeviceDefaultsPaginatedList**](NetworkDeviceDefaultsPaginatedList.md)
+[**NetworkDeviceDriftHistoryPaginatedList**](NetworkDeviceDriftHistoryPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkDeviceDriftHistoryById
+
+> NetworkDeviceDriftHistory GetNetworkDeviceDriftHistoryById(ctx, networkDeviceId, driftId).Execute()
+
+Get a specific drift history for a specific network device
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := float32(8.14) // float32 | 
+	driftId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDriftHistoryById(context.Background(), networkDeviceId, driftId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceDriftHistoryById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkDeviceDriftHistoryById`: NetworkDeviceDriftHistory
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceDriftHistoryById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** |  | 
+**driftId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceDriftHistoryByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**NetworkDeviceDriftHistory**](NetworkDeviceDriftHistory.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkDeviceDriverCapabilities
+
+> []NetworkDeviceDriverCapabilities GetNetworkDeviceDriverCapabilities(ctx).Search(search).Execute()
+
+Get Network Device driver capabilities
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	search := "search_example" // string | Filter by driver name (substring) (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDriverCapabilities(context.Background()).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceDriverCapabilities``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkDeviceDriverCapabilities`: []NetworkDeviceDriverCapabilities
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceDriverCapabilities`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceDriverCapabilitiesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **search** | **string** | Filter by driver name (substring) | 
+
+### Return type
+
+[**[]NetworkDeviceDriverCapabilities**](NetworkDeviceDriverCapabilities.md)
 
 ### Authorization
 
@@ -2282,6 +2560,149 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetNetworkDeviceSecretCredentials
+
+> NetworkDeviceSecretCredentials GetNetworkDeviceSecretCredentials(ctx, networkDeviceId, name).Execute()
+
+Get one Network Device secret unencrypted
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	name := "name_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceSecretCredentials(context.Background(), networkDeviceId, name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceSecretCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkDeviceSecretCredentials`: NetworkDeviceSecretCredentials
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceSecretCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+**name** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceSecretCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**NetworkDeviceSecretCredentials**](NetworkDeviceSecretCredentials.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkDeviceSecrets
+
+> NetworkDeviceSecretNames GetNetworkDeviceSecrets(ctx, networkDeviceId).Execute()
+
+List the names of the secrets set on a Network Device
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceSecrets(context.Background(), networkDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceSecrets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkDeviceSecrets`: NetworkDeviceSecretNames
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceSecrets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceSecretsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NetworkDeviceSecretNames**](NetworkDeviceSecretNames.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetNetworkDeviceSnapshots
 
 > NetworkDeviceSnapshotPaginatedList GetNetworkDeviceSnapshots(ctx, networkDeviceId).Page(page).Limit(limit).Kind(kind).Search(search).Execute()
@@ -2722,7 +3143,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkDevices
 
-> NetworkDevicePaginatedList GetNetworkDevices(ctx).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> NetworkDevicePaginatedList GetNetworkDevices(ctx).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterBackupEnabled(filterBackupEnabled).FilterDriftDetectionEnabled(filterDriftDetectionEnabled).FilterNetworkFabricId(filterNetworkFabricId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get paginated Network Devices
 
@@ -2755,13 +3176,16 @@ func main() {
 	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.  **Format:** filter.serverId={$not}:OPERATION:VALUE    **Example:** filter.serverId=$btw:John Doe&filter.serverId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterHealthStatus := []string{"Inner_example"} // []string | Filter by healthStatus query param.  **Format:** filter.healthStatus={$not}:OPERATION:VALUE    **Example:** filter.healthStatus=$btw:John Doe&filter.healthStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterDriftDetectionSyncStatus := []string{"Inner_example"} // []string | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus=$btw:John Doe&filter.driftDetectionSyncStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  (optional)
+	filterBackupEnabled := []string{"Inner_example"} // []string | Filter by backupEnabled query param.  **Format:** filter.backupEnabled={$not}:OPERATION:VALUE    **Example:** filter.backupEnabled=$btw:John Doe&filter.backupEnabled=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterDriftDetectionEnabled := []string{"Inner_example"} // []string | Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled=$btw:John Doe&filter.driftDetectionEnabled=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterNetworkFabricId := []string{"Inner_example"} // []string | Filter by networkFabricId query param.  **Format:** filter.networkFabricId={$not}:OPERATION:VALUE    **Example:** filter.networkFabricId=$eq:John Doe&filter.networkFabricId=$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDevices(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDevices(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterBackupEnabled(filterBackupEnabled).FilterDriftDetectionEnabled(filterDriftDetectionEnabled).FilterNetworkFabricId(filterNetworkFabricId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2798,9 +3222,12 @@ Name | Type | Description  | Notes
  **filterServerId** | **[]string** | Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterHealthStatus** | **[]string** | Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterDriftDetectionSyncStatus** | **[]string** | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$btw:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  | 
+ **filterBackupEnabled** | **[]string** | Filter by backupEnabled query param.  **Format:** filter.backupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.backupEnabled&#x3D;$btw:John Doe&amp;filter.backupEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterDriftDetectionEnabled** | **[]string** | Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled&#x3D;$btw:John Doe&amp;filter.driftDetectionEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterNetworkFabricId** | **[]string** | Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$eq:John Doe&amp;filter.networkFabricId&#x3D;$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  | 
 
 ### Return type
 
@@ -3030,6 +3457,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## MarkNetworkDeviceInstallationReady
+
+> NetworkDevice MarkNetworkDeviceInstallationReady(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+
+Marks a planned network device as installable
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.MarkNetworkDeviceInstallationReady(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.MarkNetworkDeviceInstallationReady``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `MarkNetworkDeviceInstallationReady`: NetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.MarkNetworkDeviceInstallationReady`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMarkNetworkDeviceInstallationReadyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**NetworkDevice**](NetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## NetworkDeviceSyncTargetSnapshotWithLatestSnapshot
 
 > NetworkDeviceSyncTargetSnapshotWithLatestSnapshot(ctx, networkDeviceId).Execute()
@@ -3164,75 +3663,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## RemoveNetworkDeviceDefaults
-
-> RemoveNetworkDeviceDefaults(ctx, siteId, id).Execute()
-
-Remove network device defaults
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	siteId := float32(8.14) // float32 | 
-	id := int64(789) // int64 | The ID of the network device default to remove
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.RemoveNetworkDeviceDefaults(context.Background(), siteId, id).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.RemoveNetworkDeviceDefaults``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | **float32** |  | 
-**id** | **int64** | The ID of the network device default to remove | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRemoveNetworkDeviceDefaultsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -3532,6 +3962,80 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ReturnNetworkDeviceToPlanned
+
+> NetworkDevice ReturnNetworkDeviceToPlanned(ctx, networkDeviceId).ReturnNetworkDeviceToPlanned(returnNetworkDeviceToPlanned).IfMatch(ifMatch).Execute()
+
+Returns a network device to planned
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	returnNetworkDeviceToPlanned := *openapiclient.NewReturnNetworkDeviceToPlanned() // ReturnNetworkDeviceToPlanned | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.ReturnNetworkDeviceToPlanned(context.Background(), networkDeviceId).ReturnNetworkDeviceToPlanned(returnNetworkDeviceToPlanned).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ReturnNetworkDeviceToPlanned``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ReturnNetworkDeviceToPlanned`: NetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.ReturnNetworkDeviceToPlanned`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReturnNetworkDeviceToPlannedRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **returnNetworkDeviceToPlanned** | [**ReturnNetworkDeviceToPlanned**](ReturnNetworkDeviceToPlanned.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**NetworkDevice**](NetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RevertNetworkDeviceFailedState
 
 > NetworkDevice RevertNetworkDeviceFailedState(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
@@ -3750,7 +4254,7 @@ Name | Type | Description  | Notes
 
 ## SetNetworkDeviceHealthMonitoringFilter
 
-> SetNetworkDeviceHealthMonitoringFilter(ctx).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> SetNetworkDeviceHealthMonitoringFilter(ctx).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterBackupEnabled(filterBackupEnabled).FilterDriftDetectionEnabled(filterDriftDetectionEnabled).FilterNetworkFabricId(filterNetworkFabricId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Set the health monitoring WebSocket filter for the current user
 
@@ -3784,13 +4288,16 @@ func main() {
 	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.  **Format:** filter.serverId={$not}:OPERATION:VALUE    **Example:** filter.serverId=$btw:John Doe&filter.serverId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterHealthStatus := []string{"Inner_example"} // []string | Filter by healthStatus query param.  **Format:** filter.healthStatus={$not}:OPERATION:VALUE    **Example:** filter.healthStatus=$btw:John Doe&filter.healthStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterDriftDetectionSyncStatus := []string{"Inner_example"} // []string | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus=$btw:John Doe&filter.driftDetectionSyncStatus=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  (optional)
+	filterBackupEnabled := []string{"Inner_example"} // []string | Filter by backupEnabled query param.  **Format:** filter.backupEnabled={$not}:OPERATION:VALUE    **Example:** filter.backupEnabled=$btw:John Doe&filter.backupEnabled=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterDriftDetectionEnabled := []string{"Inner_example"} // []string | Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled=$btw:John Doe&filter.driftDetectionEnabled=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterNetworkFabricId := []string{"Inner_example"} // []string | Filter by networkFabricId query param.  **Format:** filter.networkFabricId={$not}:OPERATION:VALUE    **Example:** filter.networkFabricId=$eq:John Doe&filter.networkFabricId=$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceHealthMonitoringFilter(context.Background()).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceHealthMonitoringFilter(context.Background()).SocketId(socketId).Page(page).Limit(limit).FilterId(filterId).FilterStatus(filterStatus).FilterDatacenterName(filterDatacenterName).FilterSiteId(filterSiteId).FilterDriver(filterDriver).FilterChassisIdentifier(filterChassisIdentifier).FilterManagementAddress(filterManagementAddress).FilterManagementPort(filterManagementPort).FilterProvisionerType(filterProvisionerType).FilterPosition(filterPosition).FilterIdentifierString(filterIdentifierString).FilterServerId(filterServerId).FilterHealthStatus(filterHealthStatus).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterBackupEnabled(filterBackupEnabled).FilterDriftDetectionEnabled(filterDriftDetectionEnabled).FilterNetworkFabricId(filterNetworkFabricId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.SetNetworkDeviceHealthMonitoringFilter``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3826,9 +4333,12 @@ Name | Type | Description  | Notes
  **filterServerId** | **[]string** | Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$btw:John Doe&amp;filter.serverId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterHealthStatus** | **[]string** | Filter by healthStatus query param.  **Format:** filter.healthStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthStatus&#x3D;$btw:John Doe&amp;filter.healthStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterDriftDetectionSyncStatus** | **[]string** | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$btw:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  | 
+ **filterBackupEnabled** | **[]string** | Filter by backupEnabled query param.  **Format:** filter.backupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.backupEnabled&#x3D;$btw:John Doe&amp;filter.backupEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterDriftDetectionEnabled** | **[]string** | Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled&#x3D;$btw:John Doe&amp;filter.driftDetectionEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterNetworkFabricId** | **[]string** | Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$eq:John Doe&amp;filter.networkFabricId&#x3D;$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled  | 
 
 ### Return type
 
@@ -3910,6 +4420,150 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetNetworkDeviceSecret
+
+> NetworkDeviceSecretNames SetNetworkDeviceSecret(ctx, networkDeviceId).SetNetworkDeviceSecret(setNetworkDeviceSecret).Execute()
+
+Create or replace one Network Device secret
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	setNetworkDeviceSecret := *openapiclient.NewSetNetworkDeviceSecret("peer_group_backbone_password", "Secret_example") // SetNetworkDeviceSecret | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceSecret(context.Background(), networkDeviceId).SetNetworkDeviceSecret(setNetworkDeviceSecret).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.SetNetworkDeviceSecret``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetNetworkDeviceSecret`: NetworkDeviceSecretNames
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.SetNetworkDeviceSecret`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetNetworkDeviceSecretRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setNetworkDeviceSecret** | [**SetNetworkDeviceSecret**](SetNetworkDeviceSecret.md) |  | 
+
+### Return type
+
+[**NetworkDeviceSecretNames**](NetworkDeviceSecretNames.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StartNetworkDeviceRegistration
+
+> NetworkDevice StartNetworkDeviceRegistration(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+
+Starts registration for a network device
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := int64(789) // int64 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.StartNetworkDeviceRegistration(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.StartNetworkDeviceRegistration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StartNetworkDeviceRegistration`: NetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.StartNetworkDeviceRegistration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStartNetworkDeviceRegistrationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**NetworkDevice**](NetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

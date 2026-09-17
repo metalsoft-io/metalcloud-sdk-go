@@ -25,7 +25,7 @@ type AutoIpv4PointToPointAllocationStrategy struct {
 	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Kind PointToPointAllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope ResourceScope `json:"scope"`
 	SubnetPoolIds []int64 `json:"subnetPoolIds"`
 	PrefixLength int32 `json:"prefixLength"`
@@ -38,7 +38,7 @@ type _AutoIpv4PointToPointAllocationStrategy AutoIpv4PointToPointAllocationStrat
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAutoIpv4PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind PointToPointAllocationStrategyKind, scope ResourceScope, subnetPoolIds []int64, prefixLength int32) *AutoIpv4PointToPointAllocationStrategy {
+func NewAutoIpv4PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, subnetPoolIds []int64, prefixLength int32) *AutoIpv4PointToPointAllocationStrategy {
 	this := AutoIpv4PointToPointAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -131,9 +131,9 @@ func (o *AutoIpv4PointToPointAllocationStrategy) SetUpdatedAt(v time.Time) {
 }
 
 // GetKind returns the Kind field value
-func (o *AutoIpv4PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind {
+func (o *AutoIpv4PointToPointAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret PointToPointAllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -142,7 +142,7 @@ func (o *AutoIpv4PointToPointAllocationStrategy) GetKind() PointToPointAllocatio
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *AutoIpv4PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool) {
+func (o *AutoIpv4PointToPointAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -150,7 +150,7 @@ func (o *AutoIpv4PointToPointAllocationStrategy) GetKindOk() (*PointToPointAlloc
 }
 
 // SetKind sets field value
-func (o *AutoIpv4PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind) {
+func (o *AutoIpv4PointToPointAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

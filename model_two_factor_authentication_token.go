@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the TwoFactorAuthenticationToken type satisfies the MappedNullable interface at compile time
@@ -21,8 +20,10 @@ var _ MappedNullable = &TwoFactorAuthenticationToken{}
 
 // TwoFactorAuthenticationToken struct for TwoFactorAuthenticationToken
 type TwoFactorAuthenticationToken struct {
-	// The 2FA token
-	Token string `json:"token"`
+	// The 2FA token. Required unless a recovery code is supplied instead.
+	Token *string `json:"token,omitempty"`
+	// A single-use recovery code, used in place of the 2FA token when the authenticator is unavailable.
+	RecoveryCode *string `json:"recoveryCode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,9 +33,8 @@ type _TwoFactorAuthenticationToken TwoFactorAuthenticationToken
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTwoFactorAuthenticationToken(token string) *TwoFactorAuthenticationToken {
+func NewTwoFactorAuthenticationToken() *TwoFactorAuthenticationToken {
 	this := TwoFactorAuthenticationToken{}
-	this.Token = token
 	return &this
 }
 
@@ -46,28 +46,68 @@ func NewTwoFactorAuthenticationTokenWithDefaults() *TwoFactorAuthenticationToken
 	return &this
 }
 
-// GetToken returns the Token field value
+// GetToken returns the Token field value if set, zero value otherwise.
 func (o *TwoFactorAuthenticationToken) GetToken() string {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
-
-	return o.Token
+	return *o.Token
 }
 
-// GetTokenOk returns a tuple with the Token field value
+// GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TwoFactorAuthenticationToken) GetTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
-	return &o.Token, true
+	return o.Token, true
 }
 
-// SetToken sets field value
+// HasToken returns a boolean if a field has been set.
+func (o *TwoFactorAuthenticationToken) HasToken() bool {
+	if o != nil && !IsNil(o.Token) {
+		return true
+	}
+
+	return false
+}
+
+// SetToken gets a reference to the given string and assigns it to the Token field.
 func (o *TwoFactorAuthenticationToken) SetToken(v string) {
-	o.Token = v
+	o.Token = &v
+}
+
+// GetRecoveryCode returns the RecoveryCode field value if set, zero value otherwise.
+func (o *TwoFactorAuthenticationToken) GetRecoveryCode() string {
+	if o == nil || IsNil(o.RecoveryCode) {
+		var ret string
+		return ret
+	}
+	return *o.RecoveryCode
+}
+
+// GetRecoveryCodeOk returns a tuple with the RecoveryCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TwoFactorAuthenticationToken) GetRecoveryCodeOk() (*string, bool) {
+	if o == nil || IsNil(o.RecoveryCode) {
+		return nil, false
+	}
+	return o.RecoveryCode, true
+}
+
+// HasRecoveryCode returns a boolean if a field has been set.
+func (o *TwoFactorAuthenticationToken) HasRecoveryCode() bool {
+	if o != nil && !IsNil(o.RecoveryCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecoveryCode gets a reference to the given string and assigns it to the RecoveryCode field.
+func (o *TwoFactorAuthenticationToken) SetRecoveryCode(v string) {
+	o.RecoveryCode = &v
 }
 
 func (o TwoFactorAuthenticationToken) MarshalJSON() ([]byte, error) {
@@ -80,7 +120,12 @@ func (o TwoFactorAuthenticationToken) MarshalJSON() ([]byte, error) {
 
 func (o TwoFactorAuthenticationToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["token"] = o.Token
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
+	if !IsNil(o.RecoveryCode) {
+		toSerialize["recoveryCode"] = o.RecoveryCode
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -90,27 +135,6 @@ func (o TwoFactorAuthenticationToken) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *TwoFactorAuthenticationToken) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"token",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varTwoFactorAuthenticationToken := _TwoFactorAuthenticationToken{}
 
 	err = json.Unmarshal(data, &varTwoFactorAuthenticationToken)
@@ -125,6 +149,7 @@ func (o *TwoFactorAuthenticationToken) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "token")
+		delete(additionalProperties, "recoveryCode")
 		o.AdditionalProperties = additionalProperties
 	}
 

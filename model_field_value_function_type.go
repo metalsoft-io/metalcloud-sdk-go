@@ -27,7 +27,7 @@ const (
 	FIELDVALUEFUNCTIONTYPE_MIN FieldValueFunctionType = "min"
 	FIELDVALUEFUNCTIONTYPE_MAX FieldValueFunctionType = "max"
 	FIELDVALUEFUNCTIONTYPE_SUM FieldValueFunctionType = "sum"
-	FIELDVALUEFUNCTIONTYPE_UNKNOWN_DEFAULT_OPEN_API FieldValueFunctionType = "unknown_default_open_api"
+	FIELDVALUEFUNCTIONTYPE_UNKNOWN_DEFAULT_OPEN_API FieldValueFunctionType = "11184809"
 )
 
 // All allowed values of FieldValueFunctionType enum
@@ -38,7 +38,7 @@ var AllowedFieldValueFunctionTypeEnumValues = []FieldValueFunctionType{
 	"min",
 	"max",
 	"sum",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *FieldValueFunctionType) UnmarshalJSON(src []byte) error {
@@ -55,8 +55,7 @@ func (v *FieldValueFunctionType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = FIELDVALUEFUNCTIONTYPE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid FieldValueFunctionType", value)
 }
 
 // NewFieldValueFunctionTypeFromValue returns a pointer to a valid FieldValueFunctionType

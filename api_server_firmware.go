@@ -251,7 +251,7 @@ func (r ServerFirmwareAPIGenerateServersFirmwareUpgradeAuditRequest) Execute() (
 /*
 GenerateServersFirmwareUpgradeAudit Generates a Firmware Upgrade Audit for the specified Servers
 
-Generates a Firmware Upgrade Audit for the specified Servers
+Generates a Firmware Upgrade Audit for the specified Servers.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ServerFirmwareAPIGenerateServersFirmwareUpgradeAuditRequest

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**PointToPointAllocationStrategyKind**](PointToPointAllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **SubnetId** | **int64** | ID of a pre-existing IPAM subnet to use for the link. Must be a /127. The subnet is tracked in the IPAM allocation registry but its lifecycle stays external (it is not deleted when the link is). | 
 **InterfaceABinding** | Pointer to [**PointToPointInterfaceBinding**](PointToPointInterfaceBinding.md) |  | [optional] [default to POINTTOPOINTINTERFACEBINDING_AUTO]
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewCreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest
 
-`func NewCreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest(kind PointToPointAllocationStrategyKind, scope CreateResourceScope, subnetId int64, subnetPoolIds []int64, ) *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest`
+`func NewCreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest(kind string, scope CreateResourceScope, subnetId int64, subnetPoolIds []int64, ) *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest`
 
 NewCreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest instantiates a new CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest) GetKind() PointToPointAllocationStrategyKind`
+`func (o *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest) GetKindOk() (*PointToPointAllocationStrategyKind, bool)`
+`func (o *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest) SetKind(v PointToPointAllocationStrategyKind)`
+`func (o *CreatePointToPointLinkConfigIpv6SubnetAllocationStrategyRequest) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

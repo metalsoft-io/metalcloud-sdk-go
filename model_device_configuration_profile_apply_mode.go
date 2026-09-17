@@ -23,14 +23,14 @@ type DeviceConfigurationProfileApplyMode string
 const (
 	DEVICECONFIGURATIONPROFILEAPPLYMODE_ONCE DeviceConfigurationProfileApplyMode = "once"
 	DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS DeviceConfigurationProfileApplyMode = "always"
-	DEVICECONFIGURATIONPROFILEAPPLYMODE_UNKNOWN_DEFAULT_OPEN_API DeviceConfigurationProfileApplyMode = "unknown_default_open_api"
+	DEVICECONFIGURATIONPROFILEAPPLYMODE_UNKNOWN_DEFAULT_OPEN_API DeviceConfigurationProfileApplyMode = "11184809"
 )
 
 // All allowed values of DeviceConfigurationProfileApplyMode enum
 var AllowedDeviceConfigurationProfileApplyModeEnumValues = []DeviceConfigurationProfileApplyMode{
 	"once",
 	"always",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *DeviceConfigurationProfileApplyMode) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *DeviceConfigurationProfileApplyMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = DEVICECONFIGURATIONPROFILEAPPLYMODE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid DeviceConfigurationProfileApplyMode", value)
 }
 
 // NewDeviceConfigurationProfileApplyModeFromValue returns a pointer to a valid DeviceConfigurationProfileApplyMode

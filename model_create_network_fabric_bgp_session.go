@@ -25,6 +25,8 @@ type CreateNetworkFabricBGPSession struct {
 	BgpNumbering string `json:"bgpNumbering"`
 	// BGP link configuration type
 	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
+	// Custom variables exposed to network device configuration templates as bgp_session_custom_variables
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// The ID of the link to associate with the BGP session. Either linkId or linkAggregationId should be provided.
 	LinkId *int64 `json:"linkId,omitempty"`
 	// The ID of the link aggregation to associate with the BGP session. Either linkId or linkAggregationId should be provided.
@@ -99,6 +101,38 @@ func (o *CreateNetworkFabricBGPSession) GetBgpLinkConfigurationOk() (*string, bo
 // SetBgpLinkConfiguration sets field value
 func (o *CreateNetworkFabricBGPSession) SetBgpLinkConfiguration(v string) {
 	o.BgpLinkConfiguration = v
+}
+
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *CreateNetworkFabricBGPSession) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricBGPSession) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *CreateNetworkFabricBGPSession) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *CreateNetworkFabricBGPSession) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
 }
 
 // GetLinkId returns the LinkId field value if set, zero value otherwise.
@@ -177,6 +211,9 @@ func (o CreateNetworkFabricBGPSession) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["bgpNumbering"] = o.BgpNumbering
 	toSerialize["bgpLinkConfiguration"] = o.BgpLinkConfiguration
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
 	if !IsNil(o.LinkId) {
 		toSerialize["linkId"] = o.LinkId
 	}
@@ -229,6 +266,7 @@ func (o *CreateNetworkFabricBGPSession) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "bgpLinkConfiguration")
+		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "linkId")
 		delete(additionalProperties, "linkAggregationId")
 		o.AdditionalProperties = additionalProperties

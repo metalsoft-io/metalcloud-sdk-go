@@ -37,17 +37,17 @@ type NetworkDeviceBGPConfigurationTemplateRecordSet struct {
 	LocalSwitchAsn *int64 `json:"local_switch_asn,omitempty"`
 	// The local switch loopback IPv4 address.
 	LocalSwitchLoopbackAddressIpv4 *string `json:"local_switch_loopback_address_ipv4,omitempty"`
-	// The ID of the remote switch.
-	RemoteSwitchId int64 `json:"remote_switch_id"`
-	// The identifier of the remote switch.
-	RemoteSwitchIdentifier string `json:"remote_switch_identifier"`
-	// The role of the remote switch.
+	// The ID of the remote switch. Unset when the remote side is an external system.
+	RemoteSwitchId *int64 `json:"remote_switch_id,omitempty"`
+	// The identifier of the remote switch. Unset when the remote side is an external system.
+	RemoteSwitchIdentifier *string `json:"remote_switch_identifier,omitempty"`
+	// The role of the remote switch — its position in the fabric. `other` when the remote side is an external system, which is the position the template library uses for a peer we do not manage.
 	RemoteSwitchRole string `json:"remote_switch_role"`
-	// The name of the remote switch interface.
-	RemoteSwitchInterfaceName string `json:"remote_switch_interface_name"`
+	// The name of the remote switch interface. Unset when the remote side is an external system, which has no interfaces of its own.
+	RemoteSwitchInterfaceName *string `json:"remote_switch_interface_name,omitempty"`
 	// The LAG ID of the remote switch interface.
 	RemoteSwitchInterfaceLagId *int64 `json:"remote_switch_interface_lag_id,omitempty"`
-	// The Autonomous System Number of the remote switch.
+	// The Autonomous System Number of the remote switch, or of the external system when the remote side is one.
 	RemoteSwitchAsn *int64 `json:"remote_switch_asn,omitempty"`
 	// The remote switch loopback IPv4 address.
 	RemoteSwitchLoopbackAddressIpv4 *string `json:"remote_switch_loopback_address_ipv4,omitempty"`
@@ -61,6 +61,10 @@ type NetworkDeviceBGPConfigurationTemplateRecordSet struct {
 	LocalSwitchCustomVariables map[string]interface{} `json:"local_switch_custom_variables,omitempty"`
 	// Custom variables for the remote switch.
 	RemoteSwitchCustomVariables map[string]interface{} `json:"remote_switch_custom_variables,omitempty"`
+	// Custom variables for this BGP session alone. Every other namespace is shared: link_custom_variables is common to all sessions on the link, and more than one session may exist on the same link or aggregation.
+	BgpSessionCustomVariables map[string]interface{} `json:"bgp_session_custom_variables,omitempty"`
+	// Custom variables for the link aggregation this session runs over. Empty when the session is on a single link; it does not fall back to the link's own aggregation.
+	LinkAggregationCustomVariables map[string]interface{} `json:"link_aggregation_custom_variables,omitempty"`
 	// Custom variables for the MLAG pair of the local switch (if any).
 	MlagPeerCustomVariables map[string]interface{} `json:"mlag_peer_custom_variables,omitempty"`
 	// The IP address of the remote interface of the P2P link. Present only when BGP numbering is NUMBERED.
@@ -74,16 +78,13 @@ type _NetworkDeviceBGPConfigurationTemplateRecordSet NetworkDeviceBGPConfigurati
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchId int64, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, bgpNumbering string) *NetworkDeviceBGPConfigurationTemplateRecordSet {
+func NewNetworkDeviceBGPConfigurationTemplateRecordSet(localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, remoteSwitchRole string, bgpNumbering string) *NetworkDeviceBGPConfigurationTemplateRecordSet {
 	this := NetworkDeviceBGPConfigurationTemplateRecordSet{}
 	this.LocalSwitchId = localSwitchId
 	this.LocalSwitchIdentifier = localSwitchIdentifier
 	this.LocalSwitchRole = localSwitchRole
 	this.LocalSwitchInterfaceName = localSwitchInterfaceName
-	this.RemoteSwitchId = remoteSwitchId
-	this.RemoteSwitchIdentifier = remoteSwitchIdentifier
 	this.RemoteSwitchRole = remoteSwitchRole
-	this.RemoteSwitchInterfaceName = remoteSwitchInterfaceName
 	this.BgpNumbering = bgpNumbering
 	return &this
 }
@@ -320,52 +321,68 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLocalSwitchLoopbackA
 	o.LocalSwitchLoopbackAddressIpv4 = &v
 }
 
-// GetRemoteSwitchId returns the RemoteSwitchId field value
+// GetRemoteSwitchId returns the RemoteSwitchId field value if set, zero value otherwise.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchId) {
 		var ret int64
 		return ret
 	}
-
-	return o.RemoteSwitchId
+	return *o.RemoteSwitchId
 }
 
-// GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field value
+// GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchId) {
 		return nil, false
 	}
-	return &o.RemoteSwitchId, true
+	return o.RemoteSwitchId, true
 }
 
-// SetRemoteSwitchId sets field value
+// HasRemoteSwitchId returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchId() bool {
+	if o != nil && !IsNil(o.RemoteSwitchId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchId gets a reference to the given int64 and assigns it to the RemoteSwitchId field.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchId(v int64) {
-	o.RemoteSwitchId = v
+	o.RemoteSwitchId = &v
 }
 
-// GetRemoteSwitchIdentifier returns the RemoteSwitchIdentifier field value
+// GetRemoteSwitchIdentifier returns the RemoteSwitchIdentifier field value if set, zero value otherwise.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdentifier() string {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchIdentifier) {
 		var ret string
 		return ret
 	}
-
-	return o.RemoteSwitchIdentifier
+	return *o.RemoteSwitchIdentifier
 }
 
-// GetRemoteSwitchIdentifierOk returns a tuple with the RemoteSwitchIdentifier field value
+// GetRemoteSwitchIdentifierOk returns a tuple with the RemoteSwitchIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchIdentifierOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchIdentifier) {
 		return nil, false
 	}
-	return &o.RemoteSwitchIdentifier, true
+	return o.RemoteSwitchIdentifier, true
 }
 
-// SetRemoteSwitchIdentifier sets field value
+// HasRemoteSwitchIdentifier returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchIdentifier() bool {
+	if o != nil && !IsNil(o.RemoteSwitchIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchIdentifier gets a reference to the given string and assigns it to the RemoteSwitchIdentifier field.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchIdentifier(v string) {
-	o.RemoteSwitchIdentifier = v
+	o.RemoteSwitchIdentifier = &v
 }
 
 // GetRemoteSwitchRole returns the RemoteSwitchRole field value
@@ -392,28 +409,36 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchRole(v s
 	o.RemoteSwitchRole = v
 }
 
-// GetRemoteSwitchInterfaceName returns the RemoteSwitchInterfaceName field value
+// GetRemoteSwitchInterfaceName returns the RemoteSwitchInterfaceName field value if set, zero value otherwise.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceName() string {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchInterfaceName) {
 		var ret string
 		return ret
 	}
-
-	return o.RemoteSwitchInterfaceName
+	return *o.RemoteSwitchInterfaceName
 }
 
-// GetRemoteSwitchInterfaceNameOk returns a tuple with the RemoteSwitchInterfaceName field value
+// GetRemoteSwitchInterfaceNameOk returns a tuple with the RemoteSwitchInterfaceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchInterfaceName) {
 		return nil, false
 	}
-	return &o.RemoteSwitchInterfaceName, true
+	return o.RemoteSwitchInterfaceName, true
 }
 
-// SetRemoteSwitchInterfaceName sets field value
+// HasRemoteSwitchInterfaceName returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasRemoteSwitchInterfaceName() bool {
+	if o != nil && !IsNil(o.RemoteSwitchInterfaceName) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchInterfaceName gets a reference to the given string and assigns it to the RemoteSwitchInterfaceName field.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceName(v string) {
-	o.RemoteSwitchInterfaceName = v
+	o.RemoteSwitchInterfaceName = &v
 }
 
 // GetRemoteSwitchInterfaceLagId returns the RemoteSwitchInterfaceLagId field value if set, zero value otherwise.
@@ -664,6 +689,70 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetRemoteSwitchCustomVa
 	o.RemoteSwitchCustomVariables = v
 }
 
+// GetBgpSessionCustomVariables returns the BgpSessionCustomVariables field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetBgpSessionCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.BgpSessionCustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.BgpSessionCustomVariables
+}
+
+// GetBgpSessionCustomVariablesOk returns a tuple with the BgpSessionCustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetBgpSessionCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.BgpSessionCustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.BgpSessionCustomVariables, true
+}
+
+// HasBgpSessionCustomVariables returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasBgpSessionCustomVariables() bool {
+	if o != nil && !IsNil(o.BgpSessionCustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpSessionCustomVariables gets a reference to the given map[string]interface{} and assigns it to the BgpSessionCustomVariables field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetBgpSessionCustomVariables(v map[string]interface{}) {
+	o.BgpSessionCustomVariables = v
+}
+
+// GetLinkAggregationCustomVariables returns the LinkAggregationCustomVariables field value if set, zero value otherwise.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLinkAggregationCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.LinkAggregationCustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.LinkAggregationCustomVariables
+}
+
+// GetLinkAggregationCustomVariablesOk returns a tuple with the LinkAggregationCustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetLinkAggregationCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.LinkAggregationCustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.LinkAggregationCustomVariables, true
+}
+
+// HasLinkAggregationCustomVariables returns a boolean if a field has been set.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) HasLinkAggregationCustomVariables() bool {
+	if o != nil && !IsNil(o.LinkAggregationCustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkAggregationCustomVariables gets a reference to the given map[string]interface{} and assigns it to the LinkAggregationCustomVariables field.
+func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) SetLinkAggregationCustomVariables(v map[string]interface{}) {
+	o.LinkAggregationCustomVariables = v
+}
+
 // GetMlagPeerCustomVariables returns the MlagPeerCustomVariables field value if set, zero value otherwise.
 func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) GetMlagPeerCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.MlagPeerCustomVariables) {
@@ -754,10 +843,16 @@ func (o NetworkDeviceBGPConfigurationTemplateRecordSet) ToMap() (map[string]inte
 	if !IsNil(o.LocalSwitchLoopbackAddressIpv4) {
 		toSerialize["local_switch_loopback_address_ipv4"] = o.LocalSwitchLoopbackAddressIpv4
 	}
-	toSerialize["remote_switch_id"] = o.RemoteSwitchId
-	toSerialize["remote_switch_identifier"] = o.RemoteSwitchIdentifier
+	if !IsNil(o.RemoteSwitchId) {
+		toSerialize["remote_switch_id"] = o.RemoteSwitchId
+	}
+	if !IsNil(o.RemoteSwitchIdentifier) {
+		toSerialize["remote_switch_identifier"] = o.RemoteSwitchIdentifier
+	}
 	toSerialize["remote_switch_role"] = o.RemoteSwitchRole
-	toSerialize["remote_switch_interface_name"] = o.RemoteSwitchInterfaceName
+	if !IsNil(o.RemoteSwitchInterfaceName) {
+		toSerialize["remote_switch_interface_name"] = o.RemoteSwitchInterfaceName
+	}
 	if !IsNil(o.RemoteSwitchInterfaceLagId) {
 		toSerialize["remote_switch_interface_lag_id"] = o.RemoteSwitchInterfaceLagId
 	}
@@ -779,6 +874,12 @@ func (o NetworkDeviceBGPConfigurationTemplateRecordSet) ToMap() (map[string]inte
 	}
 	if !IsNil(o.RemoteSwitchCustomVariables) {
 		toSerialize["remote_switch_custom_variables"] = o.RemoteSwitchCustomVariables
+	}
+	if !IsNil(o.BgpSessionCustomVariables) {
+		toSerialize["bgp_session_custom_variables"] = o.BgpSessionCustomVariables
+	}
+	if !IsNil(o.LinkAggregationCustomVariables) {
+		toSerialize["link_aggregation_custom_variables"] = o.LinkAggregationCustomVariables
 	}
 	if !IsNil(o.MlagPeerCustomVariables) {
 		toSerialize["mlag_peer_custom_variables"] = o.MlagPeerCustomVariables
@@ -803,10 +904,7 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) UnmarshalJSON(data []by
 		"local_switch_identifier",
 		"local_switch_role",
 		"local_switch_interface_name",
-		"remote_switch_id",
-		"remote_switch_identifier",
 		"remote_switch_role",
-		"remote_switch_interface_name",
 		"bgp_numbering",
 	}
 
@@ -857,6 +955,8 @@ func (o *NetworkDeviceBGPConfigurationTemplateRecordSet) UnmarshalJSON(data []by
 		delete(additionalProperties, "link_custom_variables")
 		delete(additionalProperties, "local_switch_custom_variables")
 		delete(additionalProperties, "remote_switch_custom_variables")
+		delete(additionalProperties, "bgp_session_custom_variables")
+		delete(additionalProperties, "link_aggregation_custom_variables")
 		delete(additionalProperties, "mlag_peer_custom_variables")
 		delete(additionalProperties, "remote_p2p_link_ip")
 		o.AdditionalProperties = additionalProperties

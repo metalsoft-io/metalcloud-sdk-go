@@ -25,7 +25,7 @@ type ManualIpv4SubnetAllocationStrategy struct {
 	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope ResourceScope `json:"scope"`
 	GatewayPlacement SubnetGatewayPlacement `json:"gatewayPlacement"`
 	SubnetId int64 `json:"subnetId"`
@@ -38,7 +38,7 @@ type _ManualIpv4SubnetAllocationStrategy ManualIpv4SubnetAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualIpv4SubnetAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetId int64) *ManualIpv4SubnetAllocationStrategy {
+func NewManualIpv4SubnetAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetId int64) *ManualIpv4SubnetAllocationStrategy {
 	this := ManualIpv4SubnetAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -133,9 +133,9 @@ func (o *ManualIpv4SubnetAllocationStrategy) SetUpdatedAt(v time.Time) {
 }
 
 // GetKind returns the Kind field value
-func (o *ManualIpv4SubnetAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *ManualIpv4SubnetAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -144,7 +144,7 @@ func (o *ManualIpv4SubnetAllocationStrategy) GetKind() AllocationStrategyKind {
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *ManualIpv4SubnetAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *ManualIpv4SubnetAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -152,7 +152,7 @@ func (o *ManualIpv4SubnetAllocationStrategy) GetKindOk() (*AllocationStrategyKin
 }
 
 // SetKind sets field value
-func (o *ManualIpv4SubnetAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *ManualIpv4SubnetAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

@@ -24,7 +24,7 @@ const (
 	ROUTEDOMAINKIND_VRF_LITE RouteDomainKind = "vrf_lite"
 	ROUTEDOMAINKIND_MPLS_L3VPN RouteDomainKind = "mpls_l3vpn"
 	ROUTEDOMAINKIND_EVPN_L3VPN RouteDomainKind = "evpn_l3vpn"
-	ROUTEDOMAINKIND_UNKNOWN_DEFAULT_OPEN_API RouteDomainKind = "unknown_default_open_api"
+	ROUTEDOMAINKIND_UNKNOWN_DEFAULT_OPEN_API RouteDomainKind = "11184809"
 )
 
 // All allowed values of RouteDomainKind enum
@@ -32,7 +32,7 @@ var AllowedRouteDomainKindEnumValues = []RouteDomainKind{
 	"vrf_lite",
 	"mpls_l3vpn",
 	"evpn_l3vpn",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *RouteDomainKind) UnmarshalJSON(src []byte) error {
@@ -49,8 +49,7 @@ func (v *RouteDomainKind) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = ROUTEDOMAINKIND_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid RouteDomainKind", value)
 }
 
 // NewRouteDomainKindFromValue returns a pointer to a valid RouteDomainKind

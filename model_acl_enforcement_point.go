@@ -25,7 +25,7 @@ const (
 	ACLENFORCEMENTPOINT_PHYSICAL_INTERFACE_VLAN_SCOPED ACLEnforcementPoint = "physical-interface-vlan-scoped"
 	ACLENFORCEMENTPOINT_PHYSICAL_INTERFACE ACLEnforcementPoint = "physical-interface"
 	ACLENFORCEMENTPOINT_VLAN ACLEnforcementPoint = "vlan"
-	ACLENFORCEMENTPOINT_UNKNOWN_DEFAULT_OPEN_API ACLEnforcementPoint = "unknown_default_open_api"
+	ACLENFORCEMENTPOINT_UNKNOWN_DEFAULT_OPEN_API ACLEnforcementPoint = "11184809"
 )
 
 // All allowed values of ACLEnforcementPoint enum
@@ -34,7 +34,7 @@ var AllowedACLEnforcementPointEnumValues = []ACLEnforcementPoint{
 	"physical-interface-vlan-scoped",
 	"physical-interface",
 	"vlan",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *ACLEnforcementPoint) UnmarshalJSON(src []byte) error {
@@ -51,8 +51,7 @@ func (v *ACLEnforcementPoint) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = ACLENFORCEMENTPOINT_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid ACLEnforcementPoint", value)
 }
 
 // NewACLEnforcementPointFromValue returns a pointer to a valid ACLEnforcementPoint

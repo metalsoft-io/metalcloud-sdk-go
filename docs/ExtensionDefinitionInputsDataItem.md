@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the input. | 
 **Name** | **string** | Name of the input. | 
-**InputType** | [**ExtensionInputType**](ExtensionInputType.md) |  | 
+**HelpText** | Pointer to **string** | Help text describing the input. | [optional] 
+**InputType** | **string** |  | 
 **SetOnly** | Pointer to **bool** | Flag to indicate if the input can be set only during extension instance creation. | [optional] [default to false]
 **Hidden** | Pointer to **bool** | Flag to indicate if the input is hidden in the UI. | [optional] [default to false]
 **IsPassword** | Pointer to **bool** | Flag to indicate if the input is a password. Only to be used with string input type. | [optional] [default to false]
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewExtensionDefinitionInputsDataItem
 
-`func NewExtensionDefinitionInputsDataItem(label string, name string, inputType ExtensionInputType, options map[string]interface{}, ) *ExtensionDefinitionInputsDataItem`
+`func NewExtensionDefinitionInputsDataItem(label string, name string, inputType string, options map[string]interface{}, ) *ExtensionDefinitionInputsDataItem`
 
 NewExtensionDefinitionInputsDataItem instantiates a new ExtensionDefinitionInputsDataItem object
 This constructor will assign default values to properties that have it defined,
@@ -72,22 +73,47 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetHelpText
+
+`func (o *ExtensionDefinitionInputsDataItem) GetHelpText() string`
+
+GetHelpText returns the HelpText field if non-nil, zero value otherwise.
+
+### GetHelpTextOk
+
+`func (o *ExtensionDefinitionInputsDataItem) GetHelpTextOk() (*string, bool)`
+
+GetHelpTextOk returns a tuple with the HelpText field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHelpText
+
+`func (o *ExtensionDefinitionInputsDataItem) SetHelpText(v string)`
+
+SetHelpText sets HelpText field to given value.
+
+### HasHelpText
+
+`func (o *ExtensionDefinitionInputsDataItem) HasHelpText() bool`
+
+HasHelpText returns a boolean if a field has been set.
+
 ### GetInputType
 
-`func (o *ExtensionDefinitionInputsDataItem) GetInputType() ExtensionInputType`
+`func (o *ExtensionDefinitionInputsDataItem) GetInputType() string`
 
 GetInputType returns the InputType field if non-nil, zero value otherwise.
 
 ### GetInputTypeOk
 
-`func (o *ExtensionDefinitionInputsDataItem) GetInputTypeOk() (*ExtensionInputType, bool)`
+`func (o *ExtensionDefinitionInputsDataItem) GetInputTypeOk() (*string, bool)`
 
 GetInputTypeOk returns a tuple with the InputType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputType
 
-`func (o *ExtensionDefinitionInputsDataItem) SetInputType(v ExtensionInputType)`
+`func (o *ExtensionDefinitionInputsDataItem) SetInputType(v string)`
 
 SetInputType sets InputType field to given value.
 

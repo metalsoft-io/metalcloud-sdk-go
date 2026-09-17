@@ -25,7 +25,7 @@ type ManualIpv6PointToPointAllocationStrategy struct {
 	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Kind PointToPointAllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope ResourceScope `json:"scope"`
 	// ID of the IPAM subnet backing the link.
 	SubnetId int64 `json:"subnetId"`
@@ -39,7 +39,7 @@ type _ManualIpv6PointToPointAllocationStrategy ManualIpv6PointToPointAllocationS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualIpv6PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind PointToPointAllocationStrategyKind, scope ResourceScope, subnetId int64, interfaceABinding PointToPointInterfaceBinding) *ManualIpv6PointToPointAllocationStrategy {
+func NewManualIpv6PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, subnetId int64, interfaceABinding PointToPointInterfaceBinding) *ManualIpv6PointToPointAllocationStrategy {
 	this := ManualIpv6PointToPointAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -132,9 +132,9 @@ func (o *ManualIpv6PointToPointAllocationStrategy) SetUpdatedAt(v time.Time) {
 }
 
 // GetKind returns the Kind field value
-func (o *ManualIpv6PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind {
+func (o *ManualIpv6PointToPointAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret PointToPointAllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -143,7 +143,7 @@ func (o *ManualIpv6PointToPointAllocationStrategy) GetKind() PointToPointAllocat
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *ManualIpv6PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool) {
+func (o *ManualIpv6PointToPointAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,7 +151,7 @@ func (o *ManualIpv6PointToPointAllocationStrategy) GetKindOk() (*PointToPointAll
 }
 
 // SetKind sets field value
-func (o *ManualIpv6PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind) {
+func (o *ManualIpv6PointToPointAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

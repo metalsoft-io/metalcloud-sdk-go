@@ -502,7 +502,7 @@ func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) FilterIden
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - driver  - status  - managementAddress  - siteId 
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - managementAddress  - managementPort  - siteId 
 func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) SortBy(sortBy []string) NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest {
 	r.sortBy = &sortBy
 	return r
@@ -514,7 +514,7 @@ func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) Search(sea
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** managementAddress,identifierString   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - managementAddress  - identifierString 
+// List of fields to search by term to filter result values  **Example:** id,identifierString,managementAddress,managementPort,datacenterName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - managementAddress  - managementPort  - datacenterName  - description  - status  - driver 
 func (r NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest) SearchBy(searchBy []string) NetworkDeviceControllerAPIGetNetworkDeviceControllersRequest {
 	r.searchBy = &searchBy
 	return r

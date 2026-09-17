@@ -21,8 +21,6 @@ var _ MappedNullable = &Microservices{}
 
 // Microservices struct for Microservices
 type Microservices struct {
-	// Platform service connection settings
-	Bsi MicroservicesBsi `json:"bsi"`
 	// Authentication microservice settings
 	Auth MicroservicesAuth `json:"auth"`
 	AdditionalProperties map[string]interface{}
@@ -34,9 +32,8 @@ type _Microservices Microservices
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMicroservices(bsi MicroservicesBsi, auth MicroservicesAuth) *Microservices {
+func NewMicroservices(auth MicroservicesAuth) *Microservices {
 	this := Microservices{}
-	this.Bsi = bsi
 	this.Auth = auth
 	return &this
 }
@@ -47,30 +44,6 @@ func NewMicroservices(bsi MicroservicesBsi, auth MicroservicesAuth) *Microservic
 func NewMicroservicesWithDefaults() *Microservices {
 	this := Microservices{}
 	return &this
-}
-
-// GetBsi returns the Bsi field value
-func (o *Microservices) GetBsi() MicroservicesBsi {
-	if o == nil {
-		var ret MicroservicesBsi
-		return ret
-	}
-
-	return o.Bsi
-}
-
-// GetBsiOk returns a tuple with the Bsi field value
-// and a boolean to check if the value has been set.
-func (o *Microservices) GetBsiOk() (*MicroservicesBsi, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Bsi, true
-}
-
-// SetBsi sets field value
-func (o *Microservices) SetBsi(v MicroservicesBsi) {
-	o.Bsi = v
 }
 
 // GetAuth returns the Auth field value
@@ -107,7 +80,6 @@ func (o Microservices) MarshalJSON() ([]byte, error) {
 
 func (o Microservices) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bsi"] = o.Bsi
 	toSerialize["auth"] = o.Auth
 
 	for key, value := range o.AdditionalProperties {
@@ -122,7 +94,6 @@ func (o *Microservices) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"bsi",
 		"auth",
 	}
 
@@ -153,7 +124,6 @@ func (o *Microservices) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "bsi")
 		delete(additionalProperties, "auth")
 		o.AdditionalProperties = additionalProperties
 	}

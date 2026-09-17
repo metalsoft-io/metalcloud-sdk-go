@@ -23,14 +23,14 @@ type EventVisibility string
 const (
 	EVENTVISIBILITY_PRIVATE EventVisibility = "private"
 	EVENTVISIBILITY_PUBLIC EventVisibility = "public"
-	EVENTVISIBILITY_UNKNOWN_DEFAULT_OPEN_API EventVisibility = "unknown_default_open_api"
+	EVENTVISIBILITY_UNKNOWN_DEFAULT_OPEN_API EventVisibility = "11184809"
 )
 
 // All allowed values of EventVisibility enum
 var AllowedEventVisibilityEnumValues = []EventVisibility{
 	"private",
 	"public",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *EventVisibility) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *EventVisibility) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = EVENTVISIBILITY_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid EventVisibility", value)
 }
 
 // NewEventVisibilityFromValue returns a pointer to a valid EventVisibility

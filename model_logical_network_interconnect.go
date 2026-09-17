@@ -36,7 +36,7 @@ type LogicalNetworkInterconnect struct {
 	Kind LogicalNetworkInterconnectKind `json:"kind"`
 	// Fabric Interconnect identifier
 	FabricInterconnectId int64 `json:"fabricInterconnectId"`
-	// Transport ID allocated from range 999999999-900000000 (descending)
+	// Transport ID allocated from range 899999999-800000000 (descending)
 	TransportId *int64 `json:"transportId,omitempty"`
 	// Status of the logical network interconnect
 	Status LogicalNetworkInterconnectStatus `json:"status"`

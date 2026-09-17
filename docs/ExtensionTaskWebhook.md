@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the task. | 
-**TaskType** | [**ExtensionTaskType**](ExtensionTaskType.md) |  | 
+**TaskType** | **string** |  | 
 **Options** | [**ExtensionTaskOptionWebhook**](ExtensionTaskOptionWebhook.md) |  | 
 
 ## Methods
 
 ### NewExtensionTaskWebhook
 
-`func NewExtensionTaskWebhook(label string, taskType ExtensionTaskType, options ExtensionTaskOptionWebhook, ) *ExtensionTaskWebhook`
+`func NewExtensionTaskWebhook(label string, taskType string, options ExtensionTaskOptionWebhook, ) *ExtensionTaskWebhook`
 
 NewExtensionTaskWebhook instantiates a new ExtensionTaskWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetLabel sets Label field to given value.
 
 ### GetTaskType
 
-`func (o *ExtensionTaskWebhook) GetTaskType() ExtensionTaskType`
+`func (o *ExtensionTaskWebhook) GetTaskType() string`
 
 GetTaskType returns the TaskType field if non-nil, zero value otherwise.
 
 ### GetTaskTypeOk
 
-`func (o *ExtensionTaskWebhook) GetTaskTypeOk() (*ExtensionTaskType, bool)`
+`func (o *ExtensionTaskWebhook) GetTaskTypeOk() (*string, bool)`
 
 GetTaskTypeOk returns a tuple with the TaskType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaskType
 
-`func (o *ExtensionTaskWebhook) SetTaskType(v ExtensionTaskType)`
+`func (o *ExtensionTaskWebhook) SetTaskType(v string)`
 
 SetTaskType sets TaskType field to given value.
 

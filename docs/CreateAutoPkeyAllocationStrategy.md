@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 
 ## Methods
 
 ### NewCreateAutoPkeyAllocationStrategy
 
-`func NewCreateAutoPkeyAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, ) *CreateAutoPkeyAllocationStrategy`
+`func NewCreateAutoPkeyAllocationStrategy(kind string, scope CreateResourceScope, ) *CreateAutoPkeyAllocationStrategy`
 
 NewCreateAutoPkeyAllocationStrategy instantiates a new CreateAutoPkeyAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateAutoPkeyAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateAutoPkeyAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateAutoPkeyAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateAutoPkeyAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateAutoPkeyAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateAutoPkeyAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

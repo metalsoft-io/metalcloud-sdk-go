@@ -39,6 +39,8 @@ type ExtensionInstanceArray struct {
 	LogicalNetworks []ExtensionInstanceArrayLogicalNetwork `json:"logicalNetworks,omitempty"`
 	// Tags for the Server Instance Group.
 	Tags []string `json:"tags,omitempty"`
+	// Default storage profile (per storage controller RAID/HBA mode and volumes) applied to the Server Instance Group.
+	StorageProfile *ServerInstanceStorageProfile `json:"storageProfile,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -328,6 +330,38 @@ func (o *ExtensionInstanceArray) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetStorageProfile returns the StorageProfile field value if set, zero value otherwise.
+func (o *ExtensionInstanceArray) GetStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.StorageProfile) {
+		var ret ServerInstanceStorageProfile
+		return ret
+	}
+	return *o.StorageProfile
+}
+
+// GetStorageProfileOk returns a tuple with the StorageProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInstanceArray) GetStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.StorageProfile) {
+		return nil, false
+	}
+	return o.StorageProfile, true
+}
+
+// HasStorageProfile returns a boolean if a field has been set.
+func (o *ExtensionInstanceArray) HasStorageProfile() bool {
+	if o != nil && !IsNil(o.StorageProfile) {
+		return true
+	}
+
+	return false
+}
+
+// SetStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the StorageProfile field.
+func (o *ExtensionInstanceArray) SetStorageProfile(v ServerInstanceStorageProfile) {
+	o.StorageProfile = &v
+}
+
 func (o ExtensionInstanceArray) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -358,6 +392,9 @@ func (o ExtensionInstanceArray) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.StorageProfile) {
+		toSerialize["storageProfile"] = o.StorageProfile
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -413,6 +450,7 @@ func (o *ExtensionInstanceArray) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dependencies")
 		delete(additionalProperties, "logicalNetworks")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "storageProfile")
 		o.AdditionalProperties = additionalProperties
 	}
 

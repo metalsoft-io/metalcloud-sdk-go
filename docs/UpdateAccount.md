@@ -5,19 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ParentAccountId** | Pointer to **int64** | The ID of the parent account | [optional] 
-**Name** | **string** | The name of the account | 
+**Name** | Pointer to **string** | The name of the account | [optional] 
 **Code** | Pointer to **string** | The code of the account | [optional] 
 **FiscalNumber** | Pointer to **string** | The fiscal number of the account | [optional] 
 **Address** | Pointer to [**AccountAddress**](AccountAddress.md) |  | [optional] 
 **PrimaryContactId** | Pointer to **int64** | The user ID of the primary contact | [optional] 
 **SecondaryContactId** | Pointer to **int64** | The user ID of the secondary contact | [optional] 
 **QuotaProfileId** | Pointer to **string** | The ID of the quota profile assigned to this account | [optional] 
+**ApiKeyValidityDuration** | Pointer to **int32** | Per-account override for the API key validity duration in seconds; 0 means API keys of users in this account never expire; unset means the global setting applies (MS-10501). Accepted range: 0 - 4294967295. | [optional] 
 
 ## Methods
 
 ### NewUpdateAccount
 
-`func NewUpdateAccount(name string, ) *UpdateAccount`
+`func NewUpdateAccount() *UpdateAccount`
 
 NewUpdateAccount instantiates a new UpdateAccount object
 This constructor will assign default values to properties that have it defined,
@@ -76,6 +77,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *UpdateAccount) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -226,6 +232,31 @@ SetQuotaProfileId sets QuotaProfileId field to given value.
 `func (o *UpdateAccount) HasQuotaProfileId() bool`
 
 HasQuotaProfileId returns a boolean if a field has been set.
+
+### GetApiKeyValidityDuration
+
+`func (o *UpdateAccount) GetApiKeyValidityDuration() int32`
+
+GetApiKeyValidityDuration returns the ApiKeyValidityDuration field if non-nil, zero value otherwise.
+
+### GetApiKeyValidityDurationOk
+
+`func (o *UpdateAccount) GetApiKeyValidityDurationOk() (*int32, bool)`
+
+GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyValidityDuration
+
+`func (o *UpdateAccount) SetApiKeyValidityDuration(v int32)`
+
+SetApiKeyValidityDuration sets ApiKeyValidityDuration field to given value.
+
+### HasApiKeyValidityDuration
+
+`func (o *UpdateAccount) HasApiKeyValidityDuration() bool`
+
+HasApiKeyValidityDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

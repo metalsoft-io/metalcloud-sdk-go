@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **LifecycleStage** | Pointer to [**DeviceConfigurationProfileLifecycleStage**](DeviceConfigurationProfileLifecycleStage.md) | When this profile is consumed by the device lifecycle. Defaults to \&quot;configuration\&quot;. | [optional] 
 **Variables** | Pointer to **map[string]interface{}** | Per-profile render variable overrides. Highest precedence at render time: profile &gt; device.customVariables &gt; template.customVariablesJson. | [optional] 
 **IsEnabled** | Pointer to **bool** | Disable to skip applying this profile without deleting it from the system. | [optional] [default to true]
-**Priority** | Pointer to **float32** | Ordering hint when multiple enabled profiles match the same (device, lifecycleStage) tuple at deploy time — lower values apply first. Integer in the range [0, 1000]. Defaults to 100, which leaves headroom in both directions.  Recommended bands (convention, not enforced): - 0–49: system-level overrides — first thing on the wire after baseline reset. - 50–99: high-priority operator rules (e.g. emergency policy push). - 100: default — use this unless you have a reason not to. - 101–500: standard operator customizations. - 501–1000: low-priority fallbacks, applied last.  Ties (two profiles with the same priority for the same device + lifecycleStage) resolve in undefined order. Use distinct priorities if order matters. | [optional] [default to 100]
+**Priority** | Pointer to **int32** | Ordering hint when multiple enabled profiles match the same (device, lifecycleStage) tuple at deploy time — lower values apply first. Integer in the range [0, 1000]. Defaults to 100, which leaves headroom in both directions.  Recommended bands (convention, not enforced): - 0–49: system-level overrides — first thing on the wire after baseline reset. - 50–99: high-priority operator rules (e.g. emergency policy push). - 100: default — use this unless you have a reason not to. - 101–500: standard operator customizations. - 501–1000: low-priority fallbacks, applied last.  Ties (two profiles with the same priority for the same device + lifecycleStage) resolve in undefined order. Use distinct priorities if order matters. | [optional] [default to 100]
 **ApplyMode** | Pointer to [**DeviceConfigurationProfileApplyMode**](DeviceConfigurationProfileApplyMode.md) | How often this profile applies during fabric deploys. - &#39;always&#39; (default): re-applied on every deploy that matches. - &#39;once&#39;: applied to each matching device exactly once across all deploys, then skipped. Tracking lives in &#x60;device_configuration_template_history&#x60; — one row per successful apply, keyed on the profile id and the network device id. Reset by deleting those history rows. | [optional] [default to DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS]
 **Annotations** | Pointer to **map[string]string** | Key-value annotations for storing additional metadata. | [optional] 
 **Tags** | Pointer to **[]string** | Tags associated with the profile. Each entry is capped at 255 characters. | [optional] 
@@ -201,20 +201,20 @@ HasIsEnabled returns a boolean if a field has been set.
 
 ### GetPriority
 
-`func (o *CreateDeviceConfigurationTemplateProfile) GetPriority() float32`
+`func (o *CreateDeviceConfigurationTemplateProfile) GetPriority() int32`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *CreateDeviceConfigurationTemplateProfile) GetPriorityOk() (*float32, bool)`
+`func (o *CreateDeviceConfigurationTemplateProfile) GetPriorityOk() (*int32, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *CreateDeviceConfigurationTemplateProfile) SetPriority(v float32)`
+`func (o *CreateDeviceConfigurationTemplateProfile) SetPriority(v int32)`
 
 SetPriority sets Priority field to given value.
 

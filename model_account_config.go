@@ -38,6 +38,8 @@ type AccountConfig struct {
 	SecondaryContactId *int64 `json:"secondaryContactId,omitempty"`
 	// The ID of the quota profile assigned to this account
 	QuotaProfileId *string `json:"quotaProfileId,omitempty"`
+	// Per-account override for the API key validity duration in seconds; 0 means API keys of users in this account never expire; unset means the global setting applies (MS-10501). Accepted range: 0 - 4294967295.
+	ApiKeyValidityDuration *int32 `json:"apiKeyValidityDuration,omitempty"`
 	// Whether the account is archived
 	IsArchived *bool `json:"isArchived,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -336,6 +338,38 @@ func (o *AccountConfig) SetQuotaProfileId(v string) {
 	o.QuotaProfileId = &v
 }
 
+// GetApiKeyValidityDuration returns the ApiKeyValidityDuration field value if set, zero value otherwise.
+func (o *AccountConfig) GetApiKeyValidityDuration() int32 {
+	if o == nil || IsNil(o.ApiKeyValidityDuration) {
+		var ret int32
+		return ret
+	}
+	return *o.ApiKeyValidityDuration
+}
+
+// GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountConfig) GetApiKeyValidityDurationOk() (*int32, bool) {
+	if o == nil || IsNil(o.ApiKeyValidityDuration) {
+		return nil, false
+	}
+	return o.ApiKeyValidityDuration, true
+}
+
+// HasApiKeyValidityDuration returns a boolean if a field has been set.
+func (o *AccountConfig) HasApiKeyValidityDuration() bool {
+	if o != nil && !IsNil(o.ApiKeyValidityDuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKeyValidityDuration gets a reference to the given int32 and assigns it to the ApiKeyValidityDuration field.
+func (o *AccountConfig) SetApiKeyValidityDuration(v int32) {
+	o.ApiKeyValidityDuration = &v
+}
+
 // GetIsArchived returns the IsArchived field value if set, zero value otherwise.
 func (o *AccountConfig) GetIsArchived() bool {
 	if o == nil || IsNil(o.IsArchived) {
@@ -401,6 +435,9 @@ func (o AccountConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.QuotaProfileId) {
 		toSerialize["quotaProfileId"] = o.QuotaProfileId
 	}
+	if !IsNil(o.ApiKeyValidityDuration) {
+		toSerialize["apiKeyValidityDuration"] = o.ApiKeyValidityDuration
+	}
 	if !IsNil(o.IsArchived) {
 		toSerialize["isArchived"] = o.IsArchived
 	}
@@ -457,6 +494,7 @@ func (o *AccountConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "primaryContactId")
 		delete(additionalProperties, "secondaryContactId")
 		delete(additionalProperties, "quotaProfileId")
+		delete(additionalProperties, "apiKeyValidityDuration")
 		delete(additionalProperties, "isArchived")
 		o.AdditionalProperties = additionalProperties
 	}

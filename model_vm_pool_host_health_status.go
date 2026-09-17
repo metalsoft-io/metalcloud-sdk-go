@@ -24,7 +24,7 @@ const (
 	VMPOOLHOSTHEALTHSTATUS_NORMAL VMPoolHostHealthStatus = "normal"
 	VMPOOLHOSTHEALTHSTATUS_WARNING VMPoolHostHealthStatus = "warning"
 	VMPOOLHOSTHEALTHSTATUS_CRITICAL VMPoolHostHealthStatus = "critical"
-	VMPOOLHOSTHEALTHSTATUS_UNKNOWN_DEFAULT_OPEN_API VMPoolHostHealthStatus = "unknown_default_open_api"
+	VMPOOLHOSTHEALTHSTATUS_UNKNOWN_DEFAULT_OPEN_API VMPoolHostHealthStatus = "11184809"
 )
 
 // All allowed values of VMPoolHostHealthStatus enum
@@ -32,7 +32,7 @@ var AllowedVMPoolHostHealthStatusEnumValues = []VMPoolHostHealthStatus{
 	"normal",
 	"warning",
 	"critical",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *VMPoolHostHealthStatus) UnmarshalJSON(src []byte) error {
@@ -49,8 +49,7 @@ func (v *VMPoolHostHealthStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = VMPOOLHOSTHEALTHSTATUS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid VMPoolHostHealthStatus", value)
 }
 
 // NewVMPoolHostHealthStatusFromValue returns a pointer to a valid VMPoolHostHealthStatus

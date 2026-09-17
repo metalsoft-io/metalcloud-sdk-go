@@ -13,10 +13,12 @@ Name | Type | Description | Notes
 **Type** | **string** | Type of the network fabric link aggregation | 
 **MlagDomainIdentifier** | Pointer to **string** | Identifier for the MLAG domain (applicable only for mlag-peer-link type) | [optional] 
 **Status** | **string** | Status of the network fabric link aggregation | 
+**Options** | Pointer to [**NetworkFabricLinkAggregationOptions**](NetworkFabricLinkAggregationOptions.md) | Link aggregation options | [optional] 
 **NetworkFabricLinks** | Pointer to [**[]NetworkFabricLink**](NetworkFabricLink.md) | List of links associated with the network fabric link aggregation | [optional] 
 **NetworkFabricLinkConfigs** | Pointer to [**[]NetworkFabricLinkConfig**](NetworkFabricLinkConfig.md) | History of link configuration changes associated with this link aggregation | [optional] 
 **BgpSession** | Pointer to [**NetworkFabricBGPSession**](NetworkFabricBGPSession.md) | Timestamps information | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables exposed to network device configuration templates as link_aggregation_custom_variables | [optional] 
 
 ## Methods
 
@@ -222,6 +224,31 @@ and a boolean to check if the value has been set.
 SetStatus sets Status field to given value.
 
 
+### GetOptions
+
+`func (o *NetworkFabricLinkAggregation) GetOptions() NetworkFabricLinkAggregationOptions`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *NetworkFabricLinkAggregation) GetOptionsOk() (*NetworkFabricLinkAggregationOptions, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *NetworkFabricLinkAggregation) SetOptions(v NetworkFabricLinkAggregationOptions)`
+
+SetOptions sets Options field to given value.
+
+### HasOptions
+
+`func (o *NetworkFabricLinkAggregation) HasOptions() bool`
+
+HasOptions returns a boolean if a field has been set.
+
 ### GetNetworkFabricLinks
 
 `func (o *NetworkFabricLinkAggregation) GetNetworkFabricLinks() []NetworkFabricLink`
@@ -321,6 +348,31 @@ SetLinks sets Links field to given value.
 `func (o *NetworkFabricLinkAggregation) HasLinks() bool`
 
 HasLinks returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *NetworkFabricLinkAggregation) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *NetworkFabricLinkAggregation) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *NetworkFabricLinkAggregation) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *NetworkFabricLinkAggregation) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

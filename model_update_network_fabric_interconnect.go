@@ -26,7 +26,7 @@ type UpdateNetworkFabricInterconnect struct {
 	Name *string `json:"name,omitempty"`
 	// Short description of the network fabric interconnect
 	Description *string `json:"description,omitempty"`
-	// ID of the BGP interconnect configuration template assigned to this interconnect
+	// ID of the BGP interconnect configuration template assigned to this interconnect.
 	BgpConfigurationTemplateId *int64 `json:"bgpConfigurationTemplateId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -25,6 +25,14 @@ type CreateExternalSystem struct {
 	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
 	// The external system name
 	Name string `json:"name"`
+	// The BGP Autonomous System Number of the external system. Required to peer with it: a BGP session against this system renders its neighbor remote-as from this value.
+	Asn *int64 `json:"asn,omitempty"`
+	// The loopback IPv4 address of the external system. Used as the peer address of a multihop BGP session against it; a session running over the link itself takes its peer address from the link's point-to-point /31 instead.
+	LoopbackAddress *string `json:"loopbackAddress,omitempty"`
+	// The loopback IPv6 address of the external system.
+	LoopbackAddressIpv6 *string `json:"loopbackAddressIpv6,omitempty"`
+	// Custom variables exposed to network device configuration templates as the remote side of a link or BGP session terminating on this external system.
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Annotations - key/value pairs of additional metadata
 	Annotations map[string]interface{} `json:"annotations,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -99,6 +107,134 @@ func (o *CreateExternalSystem) SetName(v string) {
 	o.Name = v
 }
 
+// GetAsn returns the Asn field value if set, zero value otherwise.
+func (o *CreateExternalSystem) GetAsn() int64 {
+	if o == nil || IsNil(o.Asn) {
+		var ret int64
+		return ret
+	}
+	return *o.Asn
+}
+
+// GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateExternalSystem) GetAsnOk() (*int64, bool) {
+	if o == nil || IsNil(o.Asn) {
+		return nil, false
+	}
+	return o.Asn, true
+}
+
+// HasAsn returns a boolean if a field has been set.
+func (o *CreateExternalSystem) HasAsn() bool {
+	if o != nil && !IsNil(o.Asn) {
+		return true
+	}
+
+	return false
+}
+
+// SetAsn gets a reference to the given int64 and assigns it to the Asn field.
+func (o *CreateExternalSystem) SetAsn(v int64) {
+	o.Asn = &v
+}
+
+// GetLoopbackAddress returns the LoopbackAddress field value if set, zero value otherwise.
+func (o *CreateExternalSystem) GetLoopbackAddress() string {
+	if o == nil || IsNil(o.LoopbackAddress) {
+		var ret string
+		return ret
+	}
+	return *o.LoopbackAddress
+}
+
+// GetLoopbackAddressOk returns a tuple with the LoopbackAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateExternalSystem) GetLoopbackAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.LoopbackAddress) {
+		return nil, false
+	}
+	return o.LoopbackAddress, true
+}
+
+// HasLoopbackAddress returns a boolean if a field has been set.
+func (o *CreateExternalSystem) HasLoopbackAddress() bool {
+	if o != nil && !IsNil(o.LoopbackAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoopbackAddress gets a reference to the given string and assigns it to the LoopbackAddress field.
+func (o *CreateExternalSystem) SetLoopbackAddress(v string) {
+	o.LoopbackAddress = &v
+}
+
+// GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field value if set, zero value otherwise.
+func (o *CreateExternalSystem) GetLoopbackAddressIpv6() string {
+	if o == nil || IsNil(o.LoopbackAddressIpv6) {
+		var ret string
+		return ret
+	}
+	return *o.LoopbackAddressIpv6
+}
+
+// GetLoopbackAddressIpv6Ok returns a tuple with the LoopbackAddressIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateExternalSystem) GetLoopbackAddressIpv6Ok() (*string, bool) {
+	if o == nil || IsNil(o.LoopbackAddressIpv6) {
+		return nil, false
+	}
+	return o.LoopbackAddressIpv6, true
+}
+
+// HasLoopbackAddressIpv6 returns a boolean if a field has been set.
+func (o *CreateExternalSystem) HasLoopbackAddressIpv6() bool {
+	if o != nil && !IsNil(o.LoopbackAddressIpv6) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoopbackAddressIpv6 gets a reference to the given string and assigns it to the LoopbackAddressIpv6 field.
+func (o *CreateExternalSystem) SetLoopbackAddressIpv6(v string) {
+	o.LoopbackAddressIpv6 = &v
+}
+
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *CreateExternalSystem) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateExternalSystem) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *CreateExternalSystem) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *CreateExternalSystem) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
 func (o *CreateExternalSystem) GetAnnotations() map[string]interface{} {
 	if o == nil || IsNil(o.Annotations) {
@@ -143,6 +279,18 @@ func (o CreateExternalSystem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Asn) {
+		toSerialize["asn"] = o.Asn
+	}
+	if !IsNil(o.LoopbackAddress) {
+		toSerialize["loopbackAddress"] = o.LoopbackAddress
+	}
+	if !IsNil(o.LoopbackAddressIpv6) {
+		toSerialize["loopbackAddressIpv6"] = o.LoopbackAddressIpv6
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
 	if !IsNil(o.Annotations) {
 		toSerialize["annotations"] = o.Annotations
 	}
@@ -192,6 +340,10 @@ func (o *CreateExternalSystem) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "asn")
+		delete(additionalProperties, "loopbackAddress")
+		delete(additionalProperties, "loopbackAddressIpv6")
+		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "annotations")
 		o.AdditionalProperties = additionalProperties
 	}

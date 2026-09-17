@@ -19,15 +19,17 @@ Name | Type | Description | Notes
 **HealthLastCheckedTimestamp** | Pointer to **string** | Timestamp when the VM Pool Host health status was last checked | [optional] 
 **Description** | Pointer to **string** | Description of the VM Pool Host | [optional] 
 **AllowVMsToBeCreated** | **bool** | Flag specifying if VMs can be created on the VM Pool Host | [default to true]
+**AllowContainersToBeCreated** | **bool** | Flag specifying if Containers can be created on the VM Pool Host | [default to true]
 **HostInterfaces** | Pointer to [**[]VMPoolHostInterfaces**](VMPoolHostInterfaces.md) | List of VM Pool Host Interfaces | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool Host was updated | 
+**GpuPartitions** | Pointer to [**[]VMPoolGPUPartition**](VMPoolGPUPartition.md) | List of VM Pool GPU partitions | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMPoolHosts
 
-`func NewVMPoolHosts(id int64, name string, allowVMsToBeCreated bool, updatedTimestamp string, ) *VMPoolHosts`
+`func NewVMPoolHosts(id int64, name string, allowVMsToBeCreated bool, allowContainersToBeCreated bool, updatedTimestamp string, ) *VMPoolHosts`
 
 NewVMPoolHosts instantiates a new VMPoolHosts object
 This constructor will assign default values to properties that have it defined,
@@ -402,6 +404,26 @@ and a boolean to check if the value has been set.
 SetAllowVMsToBeCreated sets AllowVMsToBeCreated field to given value.
 
 
+### GetAllowContainersToBeCreated
+
+`func (o *VMPoolHosts) GetAllowContainersToBeCreated() bool`
+
+GetAllowContainersToBeCreated returns the AllowContainersToBeCreated field if non-nil, zero value otherwise.
+
+### GetAllowContainersToBeCreatedOk
+
+`func (o *VMPoolHosts) GetAllowContainersToBeCreatedOk() (*bool, bool)`
+
+GetAllowContainersToBeCreatedOk returns a tuple with the AllowContainersToBeCreated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowContainersToBeCreated
+
+`func (o *VMPoolHosts) SetAllowContainersToBeCreated(v bool)`
+
+SetAllowContainersToBeCreated sets AllowContainersToBeCreated field to given value.
+
+
 ### GetHostInterfaces
 
 `func (o *VMPoolHosts) GetHostInterfaces() []VMPoolHostInterfaces`
@@ -446,6 +468,31 @@ and a boolean to check if the value has been set.
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
+
+### GetGpuPartitions
+
+`func (o *VMPoolHosts) GetGpuPartitions() []VMPoolGPUPartition`
+
+GetGpuPartitions returns the GpuPartitions field if non-nil, zero value otherwise.
+
+### GetGpuPartitionsOk
+
+`func (o *VMPoolHosts) GetGpuPartitionsOk() (*[]VMPoolGPUPartition, bool)`
+
+GetGpuPartitionsOk returns a tuple with the GpuPartitions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpuPartitions
+
+`func (o *VMPoolHosts) SetGpuPartitions(v []VMPoolGPUPartition)`
+
+SetGpuPartitions sets GpuPartitions field to given value.
+
+### HasGpuPartitions
+
+`func (o *VMPoolHosts) HasGpuPartitions() bool`
+
+HasGpuPartitions returns a boolean if a field has been set.
 
 ### GetLinks
 

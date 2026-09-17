@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Kind** | [**PointToPointAllocationStrategyKind**](PointToPointAllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 
 ## Methods
 
 ### NewUnnumberedIpv6PointToPointAllocationStrategy
 
-`func NewUnnumberedIpv6PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind PointToPointAllocationStrategyKind, scope ResourceScope, ) *UnnumberedIpv6PointToPointAllocationStrategy`
+`func NewUnnumberedIpv6PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, ) *UnnumberedIpv6PointToPointAllocationStrategy`
 
 NewUnnumberedIpv6PointToPointAllocationStrategy instantiates a new UnnumberedIpv6PointToPointAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -91,20 +91,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetKind
 
-`func (o *UnnumberedIpv6PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind`
+`func (o *UnnumberedIpv6PointToPointAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *UnnumberedIpv6PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool)`
+`func (o *UnnumberedIpv6PointToPointAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *UnnumberedIpv6PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind)`
+`func (o *UnnumberedIpv6PointToPointAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

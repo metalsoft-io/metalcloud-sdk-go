@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AllowVMsToBeCreated** | Pointer to **bool** | Flag specifying if VMs can be created on the VM Pool Host | [optional] 
+**AllowContainersToBeCreated** | Pointer to **bool** | Flag specifying if Containers can be created on the VM Pool Host | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetAllowVMsToBeCreated sets AllowVMsToBeCreated field to given value.
 `func (o *UpdateVMPoolHost) HasAllowVMsToBeCreated() bool`
 
 HasAllowVMsToBeCreated returns a boolean if a field has been set.
+
+### GetAllowContainersToBeCreated
+
+`func (o *UpdateVMPoolHost) GetAllowContainersToBeCreated() bool`
+
+GetAllowContainersToBeCreated returns the AllowContainersToBeCreated field if non-nil, zero value otherwise.
+
+### GetAllowContainersToBeCreatedOk
+
+`func (o *UpdateVMPoolHost) GetAllowContainersToBeCreatedOk() (*bool, bool)`
+
+GetAllowContainersToBeCreatedOk returns a tuple with the AllowContainersToBeCreated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowContainersToBeCreated
+
+`func (o *UpdateVMPoolHost) SetAllowContainersToBeCreated(v bool)`
+
+SetAllowContainersToBeCreated sets AllowContainersToBeCreated field to given value.
+
+### HasAllowContainersToBeCreated
+
+`func (o *UpdateVMPoolHost) HasAllowContainersToBeCreated() bool`
+
+HasAllowContainersToBeCreated returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

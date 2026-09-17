@@ -597,7 +597,7 @@ Name | Type | Description  | Notes
 
 ## GetEndpoints
 
-> EndpointPaginatedList GetEndpoints(ctx).Page(page).Limit(limit).FilterId(filterId).FilterSiteId(filterSiteId).FilterExternalId(filterExternalId).FilterCreatedTimestamp(filterCreatedTimestamp).FilterUpdatedTimestamp(filterUpdatedTimestamp).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> EndpointPaginatedList GetEndpoints(ctx).Page(page).Limit(limit).FilterId(filterId).FilterSiteId(filterSiteId).FilterExternalId(filterExternalId).FilterCreatedTimestamp(filterCreatedTimestamp).FilterUpdatedTimestamp(filterUpdatedTimestamp).FilterAvailability(filterAvailability).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 List endpoints
 
@@ -623,13 +623,14 @@ func main() {
 	filterExternalId := []string{"Inner_example"} // []string | Filter by externalId query param.  **Format:** filter.externalId={$not}:OPERATION:VALUE    **Example:** filter.externalId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterCreatedTimestamp := []string{"Inner_example"} // []string | Filter by createdTimestamp query param.  **Format:** filter.createdTimestamp={$not}:OPERATION:VALUE    **Example:** filter.createdTimestamp=$btw:John Doe&filter.createdTimestamp=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
 	filterUpdatedTimestamp := []string{"Inner_example"} // []string | Filter by updatedTimestamp query param.  **Format:** filter.updatedTimestamp={$not}:OPERATION:VALUE    **Example:** filter.updatedTimestamp=$btw:John Doe&filter.updatedTimestamp=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterAvailability := []string{"Inner_example"} // []string | Filter by availability query param.  **Format:** filter.availability={$not}:OPERATION:VALUE    **Example:** filter.availability=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - siteId  - externalId  - createdTimestamp  - updatedTimestamp  (optional)
 	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,siteId,name,label,externalId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - siteId  - name  - label  - externalId  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EndpointAPI.GetEndpoints(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterSiteId(filterSiteId).FilterExternalId(filterExternalId).FilterCreatedTimestamp(filterCreatedTimestamp).FilterUpdatedTimestamp(filterUpdatedTimestamp).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.EndpointAPI.GetEndpoints(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterSiteId(filterSiteId).FilterExternalId(filterExternalId).FilterCreatedTimestamp(filterCreatedTimestamp).FilterUpdatedTimestamp(filterUpdatedTimestamp).FilterAvailability(filterAvailability).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EndpointAPI.GetEndpoints``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -657,6 +658,7 @@ Name | Type | Description  | Notes
  **filterExternalId** | **[]string** | Filter by externalId query param.  **Format:** filter.externalId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.externalId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterCreatedTimestamp** | **[]string** | Filter by createdTimestamp query param.  **Format:** filter.createdTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.createdTimestamp&#x3D;$btw:John Doe&amp;filter.createdTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
  **filterUpdatedTimestamp** | **[]string** | Filter by updatedTimestamp query param.  **Format:** filter.updatedTimestamp&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.updatedTimestamp&#x3D;$btw:John Doe&amp;filter.updatedTimestamp&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterAvailability** | **[]string** | Filter by availability query param.  **Format:** filter.availability&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.availability&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - label  - siteId  - externalId  - createdTimestamp  - updatedTimestamp  | 
  **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,siteId,name,label,externalId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - siteId  - name  - label  - externalId  | 

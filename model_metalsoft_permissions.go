@@ -25,8 +25,7 @@ const (
 	METALSOFTPERMISSIONS_AFC_READ MetalsoftPermissions = "afc_read"
 	METALSOFTPERMISSIONS_AFC_WRITE MetalsoftPermissions = "afc_write"
 	METALSOFTPERMISSIONS_AI_READ MetalsoftPermissions = "ai_read"
-	METALSOFTPERMISSIONS_AUTHENTICATION_PROVIDERS_READ MetalsoftPermissions = "authentication_providers_read"
-	METALSOFTPERMISSIONS_AUTHENTICATION_PROVIDERS_WRITE MetalsoftPermissions = "authentication_providers_write"
+	METALSOFTPERMISSIONS_API_KEY_USE MetalsoftPermissions = "api_key_use"
 	METALSOFTPERMISSIONS_BUCKETS_READ MetalsoftPermissions = "buckets_read"
 	METALSOFTPERMISSIONS_BUCKETS_WRITE MetalsoftPermissions = "buckets_write"
 	METALSOFTPERMISSIONS_BUCKET_CREDENTIALS_READ MetalsoftPermissions = "bucket_credentials_read"
@@ -43,8 +42,8 @@ const (
 	METALSOFTPERMISSIONS_CONTAINER_INSTANCE_GROUPS_WRITE MetalsoftPermissions = "container_instance_groups_write"
 	METALSOFTPERMISSIONS_CONTAINER_TYPES_READ MetalsoftPermissions = "container_types_read"
 	METALSOFTPERMISSIONS_CONTAINER_TYPES_WRITE MetalsoftPermissions = "container_types_write"
-	METALSOFTPERMISSIONS_CRON_JOBS_READ MetalsoftPermissions = "cron_jobs_read"
-	METALSOFTPERMISSIONS_CRON_JOBS_WRITE MetalsoftPermissions = "cron_jobs_write"
+	METALSOFTPERMISSIONS_SCHEDULED_JOBS_READ MetalsoftPermissions = "scheduled_jobs_read"
+	METALSOFTPERMISSIONS_SCHEDULED_JOBS_WRITE MetalsoftPermissions = "scheduled_jobs_write"
 	METALSOFTPERMISSIONS_CUSTOM_ISO_READ MetalsoftPermissions = "custom_iso_read"
 	METALSOFTPERMISSIONS_CUSTOM_ISO_WRITE MetalsoftPermissions = "custom_iso_write"
 	METALSOFTPERMISSIONS_DEVICE_AUTH_PROVIDERS_READ MetalsoftPermissions = "device_auth_providers_read"
@@ -113,6 +112,8 @@ const (
 	METALSOFTPERMISSIONS_OS_TEMPLATE_CREDENTIALS_READ MetalsoftPermissions = "os_template_credentials_read"
 	METALSOFTPERMISSIONS_RESOURCE_POOLS_READ MetalsoftPermissions = "resource_pools_read"
 	METALSOFTPERMISSIONS_RESOURCE_POOLS_WRITE MetalsoftPermissions = "resource_pools_write"
+	METALSOFTPERMISSIONS_DHCP_RESERVATIONS_READ MetalsoftPermissions = "dhcp_reservations_read"
+	METALSOFTPERMISSIONS_DHCP_RESERVATIONS_WRITE MetalsoftPermissions = "dhcp_reservations_write"
 	METALSOFTPERMISSIONS_RESOURCE_POOL_USER_ACCESS_READ MetalsoftPermissions = "resource_pool_user_access_read"
 	METALSOFTPERMISSIONS_RESOURCE_POOL_USER_ACCESS_WRITE MetalsoftPermissions = "resource_pool_user_access_write"
 	METALSOFTPERMISSIONS_ROLES_ASSIGN MetalsoftPermissions = "roles_assign"
@@ -143,6 +144,8 @@ const (
 	METALSOFTPERMISSIONS_STORAGE_CREDENTIALS_READ MetalsoftPermissions = "storage_credentials_read"
 	METALSOFTPERMISSIONS_STORAGE_READ MetalsoftPermissions = "storage_read"
 	METALSOFTPERMISSIONS_STORAGE_WRITE MetalsoftPermissions = "storage_write"
+	METALSOFTPERMISSIONS_STORAGE_SCOPED_ACCESS_USER_CREDENTIALS_READ MetalsoftPermissions = "storage_scoped_access_user_credentials_read"
+	METALSOFTPERMISSIONS_STORAGE_SCOPED_ACCESS_USER_READ MetalsoftPermissions = "storage_scoped_access_user_read"
 	METALSOFTPERMISSIONS_SUBNETS_READ MetalsoftPermissions = "subnets_read"
 	METALSOFTPERMISSIONS_SUBNETS_WRITE MetalsoftPermissions = "subnets_write"
 	METALSOFTPERMISSIONS_SUBSCRIPTIONS_READ MetalsoftPermissions = "subscriptions_read"
@@ -176,7 +179,7 @@ const (
 	METALSOFTPERMISSIONS_VM_TYPES_WRITE MetalsoftPermissions = "vm_types_write"
 	METALSOFTPERMISSIONS_WORKFLOWS_READ MetalsoftPermissions = "workflows_read"
 	METALSOFTPERMISSIONS_WORKFLOWS_WRITE MetalsoftPermissions = "workflows_write"
-	METALSOFTPERMISSIONS_UNKNOWN_DEFAULT_OPEN_API MetalsoftPermissions = "unknown_default_open_api"
+	METALSOFTPERMISSIONS_UNKNOWN_DEFAULT_OPEN_API MetalsoftPermissions = "11184809"
 )
 
 // All allowed values of MetalsoftPermissions enum
@@ -185,8 +188,7 @@ var AllowedMetalsoftPermissionsEnumValues = []MetalsoftPermissions{
 	"afc_read",
 	"afc_write",
 	"ai_read",
-	"authentication_providers_read",
-	"authentication_providers_write",
+	"api_key_use",
 	"buckets_read",
 	"buckets_write",
 	"bucket_credentials_read",
@@ -203,8 +205,8 @@ var AllowedMetalsoftPermissionsEnumValues = []MetalsoftPermissions{
 	"container_instance_groups_write",
 	"container_types_read",
 	"container_types_write",
-	"cron_jobs_read",
-	"cron_jobs_write",
+	"scheduled_jobs_read",
+	"scheduled_jobs_write",
 	"custom_iso_read",
 	"custom_iso_write",
 	"device_auth_providers_read",
@@ -273,6 +275,8 @@ var AllowedMetalsoftPermissionsEnumValues = []MetalsoftPermissions{
 	"os_template_credentials_read",
 	"resource_pools_read",
 	"resource_pools_write",
+	"dhcp_reservations_read",
+	"dhcp_reservations_write",
 	"resource_pool_user_access_read",
 	"resource_pool_user_access_write",
 	"roles_assign",
@@ -303,6 +307,8 @@ var AllowedMetalsoftPermissionsEnumValues = []MetalsoftPermissions{
 	"storage_credentials_read",
 	"storage_read",
 	"storage_write",
+	"storage_scoped_access_user_credentials_read",
+	"storage_scoped_access_user_read",
 	"subnets_read",
 	"subnets_write",
 	"subscriptions_read",
@@ -336,7 +342,7 @@ var AllowedMetalsoftPermissionsEnumValues = []MetalsoftPermissions{
 	"vm_types_write",
 	"workflows_read",
 	"workflows_write",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *MetalsoftPermissions) UnmarshalJSON(src []byte) error {
@@ -353,8 +359,7 @@ func (v *MetalsoftPermissions) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = METALSOFTPERMISSIONS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid MetalsoftPermissions", value)
 }
 
 // NewMetalsoftPermissionsFromValue returns a pointer to a valid MetalsoftPermissions

@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateAutoVlanAllocationStrategy{}
 
 // CreateAutoVlanAllocationStrategy struct for CreateAutoVlanAllocationStrategy
 type CreateAutoVlanAllocationStrategy struct {
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	GranularityLevel NullableVlanAllocationGranularityLevel `json:"granularityLevel,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _CreateAutoVlanAllocationStrategy CreateAutoVlanAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutoVlanAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope) *CreateAutoVlanAllocationStrategy {
+func NewCreateAutoVlanAllocationStrategy(kind string, scope CreateResourceScope) *CreateAutoVlanAllocationStrategy {
 	this := CreateAutoVlanAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -49,9 +49,9 @@ func NewCreateAutoVlanAllocationStrategyWithDefaults() *CreateAutoVlanAllocation
 }
 
 // GetKind returns the Kind field value
-func (o *CreateAutoVlanAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *CreateAutoVlanAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *CreateAutoVlanAllocationStrategy) GetKind() AllocationStrategyKind {
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutoVlanAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *CreateAutoVlanAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *CreateAutoVlanAllocationStrategy) GetKindOk() (*AllocationStrategyKind,
 }
 
 // SetKind sets field value
-func (o *CreateAutoVlanAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *CreateAutoVlanAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

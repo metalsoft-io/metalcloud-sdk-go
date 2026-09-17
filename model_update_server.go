@@ -30,6 +30,10 @@ type UpdateServer struct {
 	ServerCleanupPolicyId *int64 `json:"serverCleanupPolicyId,omitempty"`
 	// The target firmware baseline id on the server.
 	TargetFirmwareBaselineId *int64 `json:"targetFirmwareBaselineId,omitempty"`
+	// Whether firmware backup is enabled for this server. Combined with the site policy: the backup runs only when both allow it. Disabling it also stops drift detection. Defaults to true.
+	FirmwareBackupEnabled *bool `json:"firmwareBackupEnabled,omitempty"`
+	// Whether drift detection is enabled for this server. Gates both checks: the configuration drift alert (this snapshot against the previous one) and the firmware baseline check (installed versions against the baseline minimums). Combined with the site policy: a check runs only when both allow it. Requires firmwareBackupEnabled. Defaults to true.
+	FirmwareDriftDetectionEnabled *bool `json:"firmwareDriftDetectionEnabled,omitempty"`
 	// The registration profile id of the server.
 	RegistrationProfileId *int64 `json:"registrationProfileId,omitempty"`
 	// The comments of the server.
@@ -65,6 +69,10 @@ type _UpdateServer UpdateServer
 // will change when the set of required properties is changed
 func NewUpdateServer() *UpdateServer {
 	this := UpdateServer{}
+	var firmwareBackupEnabled bool = true
+	this.FirmwareBackupEnabled = &firmwareBackupEnabled
+	var firmwareDriftDetectionEnabled bool = true
+	this.FirmwareDriftDetectionEnabled = &firmwareDriftDetectionEnabled
 	return &this
 }
 
@@ -73,6 +81,10 @@ func NewUpdateServer() *UpdateServer {
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateServerWithDefaults() *UpdateServer {
 	this := UpdateServer{}
+	var firmwareBackupEnabled bool = true
+	this.FirmwareBackupEnabled = &firmwareBackupEnabled
+	var firmwareDriftDetectionEnabled bool = true
+	this.FirmwareDriftDetectionEnabled = &firmwareDriftDetectionEnabled
 	return &this
 }
 
@@ -234,6 +246,70 @@ func (o *UpdateServer) HasTargetFirmwareBaselineId() bool {
 // SetTargetFirmwareBaselineId gets a reference to the given int64 and assigns it to the TargetFirmwareBaselineId field.
 func (o *UpdateServer) SetTargetFirmwareBaselineId(v int64) {
 	o.TargetFirmwareBaselineId = &v
+}
+
+// GetFirmwareBackupEnabled returns the FirmwareBackupEnabled field value if set, zero value otherwise.
+func (o *UpdateServer) GetFirmwareBackupEnabled() bool {
+	if o == nil || IsNil(o.FirmwareBackupEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.FirmwareBackupEnabled
+}
+
+// GetFirmwareBackupEnabledOk returns a tuple with the FirmwareBackupEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServer) GetFirmwareBackupEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.FirmwareBackupEnabled) {
+		return nil, false
+	}
+	return o.FirmwareBackupEnabled, true
+}
+
+// HasFirmwareBackupEnabled returns a boolean if a field has been set.
+func (o *UpdateServer) HasFirmwareBackupEnabled() bool {
+	if o != nil && !IsNil(o.FirmwareBackupEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareBackupEnabled gets a reference to the given bool and assigns it to the FirmwareBackupEnabled field.
+func (o *UpdateServer) SetFirmwareBackupEnabled(v bool) {
+	o.FirmwareBackupEnabled = &v
+}
+
+// GetFirmwareDriftDetectionEnabled returns the FirmwareDriftDetectionEnabled field value if set, zero value otherwise.
+func (o *UpdateServer) GetFirmwareDriftDetectionEnabled() bool {
+	if o == nil || IsNil(o.FirmwareDriftDetectionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.FirmwareDriftDetectionEnabled
+}
+
+// GetFirmwareDriftDetectionEnabledOk returns a tuple with the FirmwareDriftDetectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServer) GetFirmwareDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.FirmwareDriftDetectionEnabled) {
+		return nil, false
+	}
+	return o.FirmwareDriftDetectionEnabled, true
+}
+
+// HasFirmwareDriftDetectionEnabled returns a boolean if a field has been set.
+func (o *UpdateServer) HasFirmwareDriftDetectionEnabled() bool {
+	if o != nil && !IsNil(o.FirmwareDriftDetectionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareDriftDetectionEnabled gets a reference to the given bool and assigns it to the FirmwareDriftDetectionEnabled field.
+func (o *UpdateServer) SetFirmwareDriftDetectionEnabled(v bool) {
+	o.FirmwareDriftDetectionEnabled = &v
 }
 
 // GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
@@ -645,6 +721,12 @@ func (o UpdateServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TargetFirmwareBaselineId) {
 		toSerialize["targetFirmwareBaselineId"] = o.TargetFirmwareBaselineId
 	}
+	if !IsNil(o.FirmwareBackupEnabled) {
+		toSerialize["firmwareBackupEnabled"] = o.FirmwareBackupEnabled
+	}
+	if !IsNil(o.FirmwareDriftDetectionEnabled) {
+		toSerialize["firmwareDriftDetectionEnabled"] = o.FirmwareDriftDetectionEnabled
+	}
 	if !IsNil(o.RegistrationProfileId) {
 		toSerialize["registrationProfileId"] = o.RegistrationProfileId
 	}
@@ -708,6 +790,8 @@ func (o *UpdateServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "serverCleanupPolicyId")
 		delete(additionalProperties, "targetFirmwareBaselineId")
+		delete(additionalProperties, "firmwareBackupEnabled")
+		delete(additionalProperties, "firmwareDriftDetectionEnabled")
 		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "serverComments")
 		delete(additionalProperties, "chassisRackId")

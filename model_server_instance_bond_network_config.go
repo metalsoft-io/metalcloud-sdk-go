@@ -34,6 +34,8 @@ type ServerInstanceBondNetworkConfig struct {
 	Routes []ServerInstanceNetworkConfigRoute `json:"routes,omitempty"`
 	// The list of network configuration members.
 	Members []ServerInstanceNetworkConfigMembers `json:"members,omitempty"`
+	// The bonding mode the OS should configure: 802.3ad when the switch side is a LAG, active-backup when the bond exists only on the server.
+	BondMode *ServerInstanceBondMode `json:"bondMode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -330,6 +332,38 @@ func (o *ServerInstanceBondNetworkConfig) SetMembers(v []ServerInstanceNetworkCo
 	o.Members = v
 }
 
+// GetBondMode returns the BondMode field value if set, zero value otherwise.
+func (o *ServerInstanceBondNetworkConfig) GetBondMode() ServerInstanceBondMode {
+	if o == nil || IsNil(o.BondMode) {
+		var ret ServerInstanceBondMode
+		return ret
+	}
+	return *o.BondMode
+}
+
+// GetBondModeOk returns a tuple with the BondMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceBondNetworkConfig) GetBondModeOk() (*ServerInstanceBondMode, bool) {
+	if o == nil || IsNil(o.BondMode) {
+		return nil, false
+	}
+	return o.BondMode, true
+}
+
+// HasBondMode returns a boolean if a field has been set.
+func (o *ServerInstanceBondNetworkConfig) HasBondMode() bool {
+	if o != nil && !IsNil(o.BondMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetBondMode gets a reference to the given ServerInstanceBondMode and assigns it to the BondMode field.
+func (o *ServerInstanceBondNetworkConfig) SetBondMode(v ServerInstanceBondMode) {
+	o.BondMode = &v
+}
+
 func (o ServerInstanceBondNetworkConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -362,6 +396,9 @@ func (o ServerInstanceBondNetworkConfig) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.Members) {
 		toSerialize["members"] = o.Members
+	}
+	if !IsNil(o.BondMode) {
+		toSerialize["bondMode"] = o.BondMode
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -416,6 +453,7 @@ func (o *ServerInstanceBondNetworkConfig) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "ipv6Addresses")
 		delete(additionalProperties, "routes")
 		delete(additionalProperties, "members")
+		delete(additionalProperties, "bondMode")
 		o.AdditionalProperties = additionalProperties
 	}
 

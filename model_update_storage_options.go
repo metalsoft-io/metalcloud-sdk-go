@@ -20,12 +20,20 @@ var _ MappedNullable = &UpdateStorageOptions{}
 
 // UpdateStorageOptions struct for UpdateStorageOptions
 type UpdateStorageOptions struct {
+	// Default QoS policies that will apply to all objects (if supported by the Storage system)
+	DefaultQoSPolicies *StorageOptionsDefaultQoSPolicies `json:"defaultQoSPolicies,omitempty"`
+	// Default Quota policies that will apply to all objects (if supported by the Storage system)
+	DefaultQuotaPolicies *StorageOptionsDefaultQuotaPolicies `json:"defaultQuotaPolicies,omitempty"`
+	// Default Snapshot policies that will apply to all objects (if supported by the Storage system)
+	DefaultSnapshotPolicies *StorageOptionsDefaultSnapshotPolicies `json:"defaultSnapshotPolicies,omitempty"`
 	// Enable data reduction
 	EnableDataReduction *bool `json:"enableDataReduction,omitempty"`
 	// Enable advanced deduplication
 	EnableAdvancedDeduplication *bool `json:"enableAdvancedDeduplication,omitempty"`
 	// Enable data reduction on a newly created shared volume
 	EnableDataReductionSharedVolume *bool `json:"enableDataReductionSharedVolume,omitempty"`
+	// Create users on the storage with permissions scoped to select resources. Used by Pure to create users with storage access scoped to Realms
+	CreateScopedAccessUsers *bool `json:"createScopedAccessUsers,omitempty"`
 	// Volume name
 	VolumeName *string `json:"volumeName,omitempty"`
 	// Array id to use (for certain storage drivers)
@@ -58,6 +66,102 @@ func NewUpdateStorageOptions() *UpdateStorageOptions {
 func NewUpdateStorageOptionsWithDefaults() *UpdateStorageOptions {
 	this := UpdateStorageOptions{}
 	return &this
+}
+
+// GetDefaultQoSPolicies returns the DefaultQoSPolicies field value if set, zero value otherwise.
+func (o *UpdateStorageOptions) GetDefaultQoSPolicies() StorageOptionsDefaultQoSPolicies {
+	if o == nil || IsNil(o.DefaultQoSPolicies) {
+		var ret StorageOptionsDefaultQoSPolicies
+		return ret
+	}
+	return *o.DefaultQoSPolicies
+}
+
+// GetDefaultQoSPoliciesOk returns a tuple with the DefaultQoSPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageOptions) GetDefaultQoSPoliciesOk() (*StorageOptionsDefaultQoSPolicies, bool) {
+	if o == nil || IsNil(o.DefaultQoSPolicies) {
+		return nil, false
+	}
+	return o.DefaultQoSPolicies, true
+}
+
+// HasDefaultQoSPolicies returns a boolean if a field has been set.
+func (o *UpdateStorageOptions) HasDefaultQoSPolicies() bool {
+	if o != nil && !IsNil(o.DefaultQoSPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultQoSPolicies gets a reference to the given StorageOptionsDefaultQoSPolicies and assigns it to the DefaultQoSPolicies field.
+func (o *UpdateStorageOptions) SetDefaultQoSPolicies(v StorageOptionsDefaultQoSPolicies) {
+	o.DefaultQoSPolicies = &v
+}
+
+// GetDefaultQuotaPolicies returns the DefaultQuotaPolicies field value if set, zero value otherwise.
+func (o *UpdateStorageOptions) GetDefaultQuotaPolicies() StorageOptionsDefaultQuotaPolicies {
+	if o == nil || IsNil(o.DefaultQuotaPolicies) {
+		var ret StorageOptionsDefaultQuotaPolicies
+		return ret
+	}
+	return *o.DefaultQuotaPolicies
+}
+
+// GetDefaultQuotaPoliciesOk returns a tuple with the DefaultQuotaPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageOptions) GetDefaultQuotaPoliciesOk() (*StorageOptionsDefaultQuotaPolicies, bool) {
+	if o == nil || IsNil(o.DefaultQuotaPolicies) {
+		return nil, false
+	}
+	return o.DefaultQuotaPolicies, true
+}
+
+// HasDefaultQuotaPolicies returns a boolean if a field has been set.
+func (o *UpdateStorageOptions) HasDefaultQuotaPolicies() bool {
+	if o != nil && !IsNil(o.DefaultQuotaPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultQuotaPolicies gets a reference to the given StorageOptionsDefaultQuotaPolicies and assigns it to the DefaultQuotaPolicies field.
+func (o *UpdateStorageOptions) SetDefaultQuotaPolicies(v StorageOptionsDefaultQuotaPolicies) {
+	o.DefaultQuotaPolicies = &v
+}
+
+// GetDefaultSnapshotPolicies returns the DefaultSnapshotPolicies field value if set, zero value otherwise.
+func (o *UpdateStorageOptions) GetDefaultSnapshotPolicies() StorageOptionsDefaultSnapshotPolicies {
+	if o == nil || IsNil(o.DefaultSnapshotPolicies) {
+		var ret StorageOptionsDefaultSnapshotPolicies
+		return ret
+	}
+	return *o.DefaultSnapshotPolicies
+}
+
+// GetDefaultSnapshotPoliciesOk returns a tuple with the DefaultSnapshotPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageOptions) GetDefaultSnapshotPoliciesOk() (*StorageOptionsDefaultSnapshotPolicies, bool) {
+	if o == nil || IsNil(o.DefaultSnapshotPolicies) {
+		return nil, false
+	}
+	return o.DefaultSnapshotPolicies, true
+}
+
+// HasDefaultSnapshotPolicies returns a boolean if a field has been set.
+func (o *UpdateStorageOptions) HasDefaultSnapshotPolicies() bool {
+	if o != nil && !IsNil(o.DefaultSnapshotPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultSnapshotPolicies gets a reference to the given StorageOptionsDefaultSnapshotPolicies and assigns it to the DefaultSnapshotPolicies field.
+func (o *UpdateStorageOptions) SetDefaultSnapshotPolicies(v StorageOptionsDefaultSnapshotPolicies) {
+	o.DefaultSnapshotPolicies = &v
 }
 
 // GetEnableDataReduction returns the EnableDataReduction field value if set, zero value otherwise.
@@ -154,6 +258,38 @@ func (o *UpdateStorageOptions) HasEnableDataReductionSharedVolume() bool {
 // SetEnableDataReductionSharedVolume gets a reference to the given bool and assigns it to the EnableDataReductionSharedVolume field.
 func (o *UpdateStorageOptions) SetEnableDataReductionSharedVolume(v bool) {
 	o.EnableDataReductionSharedVolume = &v
+}
+
+// GetCreateScopedAccessUsers returns the CreateScopedAccessUsers field value if set, zero value otherwise.
+func (o *UpdateStorageOptions) GetCreateScopedAccessUsers() bool {
+	if o == nil || IsNil(o.CreateScopedAccessUsers) {
+		var ret bool
+		return ret
+	}
+	return *o.CreateScopedAccessUsers
+}
+
+// GetCreateScopedAccessUsersOk returns a tuple with the CreateScopedAccessUsers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageOptions) GetCreateScopedAccessUsersOk() (*bool, bool) {
+	if o == nil || IsNil(o.CreateScopedAccessUsers) {
+		return nil, false
+	}
+	return o.CreateScopedAccessUsers, true
+}
+
+// HasCreateScopedAccessUsers returns a boolean if a field has been set.
+func (o *UpdateStorageOptions) HasCreateScopedAccessUsers() bool {
+	if o != nil && !IsNil(o.CreateScopedAccessUsers) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreateScopedAccessUsers gets a reference to the given bool and assigns it to the CreateScopedAccessUsers field.
+func (o *UpdateStorageOptions) SetCreateScopedAccessUsers(v bool) {
+	o.CreateScopedAccessUsers = &v
 }
 
 // GetVolumeName returns the VolumeName field value if set, zero value otherwise.
@@ -358,6 +494,15 @@ func (o UpdateStorageOptions) MarshalJSON() ([]byte, error) {
 
 func (o UpdateStorageOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultQoSPolicies) {
+		toSerialize["defaultQoSPolicies"] = o.DefaultQoSPolicies
+	}
+	if !IsNil(o.DefaultQuotaPolicies) {
+		toSerialize["defaultQuotaPolicies"] = o.DefaultQuotaPolicies
+	}
+	if !IsNil(o.DefaultSnapshotPolicies) {
+		toSerialize["defaultSnapshotPolicies"] = o.DefaultSnapshotPolicies
+	}
 	if !IsNil(o.EnableDataReduction) {
 		toSerialize["enableDataReduction"] = o.EnableDataReduction
 	}
@@ -366,6 +511,9 @@ func (o UpdateStorageOptions) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EnableDataReductionSharedVolume) {
 		toSerialize["enableDataReductionSharedVolume"] = o.EnableDataReductionSharedVolume
+	}
+	if !IsNil(o.CreateScopedAccessUsers) {
+		toSerialize["createScopedAccessUsers"] = o.CreateScopedAccessUsers
 	}
 	if !IsNil(o.VolumeName) {
 		toSerialize["volumeName"] = o.VolumeName
@@ -407,9 +555,13 @@ func (o *UpdateStorageOptions) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "defaultQoSPolicies")
+		delete(additionalProperties, "defaultQuotaPolicies")
+		delete(additionalProperties, "defaultSnapshotPolicies")
 		delete(additionalProperties, "enableDataReduction")
 		delete(additionalProperties, "enableAdvancedDeduplication")
 		delete(additionalProperties, "enableDataReductionSharedVolume")
+		delete(additionalProperties, "createScopedAccessUsers")
 		delete(additionalProperties, "volumeName")
 		delete(additionalProperties, "arrayId")
 		delete(additionalProperties, "directorId")

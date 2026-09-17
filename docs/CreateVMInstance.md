@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TypeId** | **int64** | Id of the VM Type. | 
 **GroupId** | **int64** | Id of the VM Instance Group. | 
-**DiskSizeGB** | Pointer to **float32** | Disk size in GB of the VM Instance. If not passed, the default disk size from the group will be used | [optional] 
-**Tags** | Pointer to **[]string** | Tags for the VM Instance. | [optional] 
+**DiskSizeGB** | Pointer to **float32** | Disk size in GB of the Instance. If not passed, the default disk size from the group will be used | [optional] 
+**Tags** | Pointer to **[]string** | Tags for the Instance. | [optional] 
 
 ## Methods
 

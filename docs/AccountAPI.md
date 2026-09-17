@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ArchiveAccount**](AccountAPI.md#ArchiveAccount) | **Post** /api/v2/accounts/{accountId}/actions/archive | Archive account
 [**CreateAccount**](AccountAPI.md#CreateAccount) | **Post** /api/v2/accounts | Create account
 [**GetAccount**](AccountAPI.md#GetAccount) | **Get** /api/v2/accounts/{accountId} | Get account by id
+[**GetAccountQuotaLimitsBreakdown**](AccountAPI.md#GetAccountQuotaLimitsBreakdown) | **Get** /api/v2/accounts/{accountId}/quota-limits-breakdown | Get quota limits breakdown for an account
 [**GetAccountUsers**](AccountAPI.md#GetAccountUsers) | **Get** /api/v2/accounts/{accountId}/users | Get users for account
 [**GetAccounts**](AccountAPI.md#GetAccounts) | **Get** /api/v2/accounts | Get all accounts
 [**UnarchiveAccount**](AccountAPI.md#UnarchiveAccount) | **Post** /api/v2/accounts/{accountId}/actions/unarchive | Unarchive account
@@ -276,6 +277,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Account**](Account.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAccountQuotaLimitsBreakdown
+
+> AccountQuotaLimitsBreakdown GetAccountQuotaLimitsBreakdown(ctx, accountId).IncludeUsage(includeUsage).Execute()
+
+Get quota limits breakdown for an account
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	accountId := int64(789) // int64 | 
+	includeUsage := true // bool |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AccountAPI.GetAccountQuotaLimitsBreakdown(context.Background(), accountId).IncludeUsage(includeUsage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.GetAccountQuotaLimitsBreakdown``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAccountQuotaLimitsBreakdown`: AccountQuotaLimitsBreakdown
+	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.GetAccountQuotaLimitsBreakdown`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**accountId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAccountQuotaLimitsBreakdownRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **includeUsage** | **bool** |  | 
+
+### Return type
+
+[**AccountQuotaLimitsBreakdown**](AccountQuotaLimitsBreakdown.md)
 
 ### Authorization
 
@@ -569,7 +642,7 @@ import (
 
 func main() {
 	accountId := int64(789) // int64 | 
-	updateAccount := *openapiclient.NewUpdateAccount("Name_example") // UpdateAccount | The account updates
+	updateAccount := *openapiclient.NewUpdateAccount() // UpdateAccount | The account updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **NetworkEndpointGroupId** | Pointer to **int64** | The network endpoint group identifier | [optional] 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Status of the VM Instance Group. | 
+**InstanceGroupType** | **string** | Type of the Instance Group. | 
 **DiskSizeGB** | **float32** | Disk size in GB for each VM Instance in the VM Instance Group. | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance Group. | [optional] 
 **DnsSubdomainId** | Pointer to **int64** | Id of the DNS subdomain for the VM Instance Group. | [optional] 
@@ -29,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewVMInstanceGroup
 
-`func NewVMInstanceGroup(label string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta, ) *VMInstanceGroup`
+`func NewVMInstanceGroup(label string, updatedTimestamp string, id int64, revision int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, instanceGroupType string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta, ) *VMInstanceGroup`
 
 NewVMInstanceGroup instantiates a new VMInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -282,6 +283,26 @@ and a boolean to check if the value has been set.
 `func (o *VMInstanceGroup) SetServiceStatus(v string)`
 
 SetServiceStatus sets ServiceStatus field to given value.
+
+
+### GetInstanceGroupType
+
+`func (o *VMInstanceGroup) GetInstanceGroupType() string`
+
+GetInstanceGroupType returns the InstanceGroupType field if non-nil, zero value otherwise.
+
+### GetInstanceGroupTypeOk
+
+`func (o *VMInstanceGroup) GetInstanceGroupTypeOk() (*string, bool)`
+
+GetInstanceGroupTypeOk returns a tuple with the InstanceGroupType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceGroupType
+
+`func (o *VMInstanceGroup) SetInstanceGroupType(v string)`
+
+SetInstanceGroupType sets InstanceGroupType field to given value.
 
 
 ### GetDiskSizeGB

@@ -23,14 +23,14 @@ type ExtensionAssetType string
 const (
 	EXTENSIONASSETTYPE_ANSIBLE_BUNDLE ExtensionAssetType = "AnsibleBundle"
 	EXTENSIONASSETTYPE_OCI_IMAGE ExtensionAssetType = "OciImage"
-	EXTENSIONASSETTYPE_UNKNOWN_DEFAULT_OPEN_API ExtensionAssetType = "unknown_default_open_api"
+	EXTENSIONASSETTYPE_UNKNOWN_DEFAULT_OPEN_API ExtensionAssetType = "11184809"
 )
 
 // All allowed values of ExtensionAssetType enum
 var AllowedExtensionAssetTypeEnumValues = []ExtensionAssetType{
 	"AnsibleBundle",
 	"OciImage",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *ExtensionAssetType) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *ExtensionAssetType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = EXTENSIONASSETTYPE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid ExtensionAssetType", value)
 }
 
 // NewExtensionAssetTypeFromValue returns a pointer to a valid ExtensionAssetType

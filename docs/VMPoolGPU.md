@@ -10,9 +10,12 @@ Name | Type | Description | Notes
 **Model** | Pointer to **string** | Model of the GPU | [optional] 
 **Vendor** | Pointer to **string** | Vendor of the GPU | [optional] 
 **PciAddress** | Pointer to **string** | PCI address of the GPU | [optional] 
+**ModuleId** | Pointer to **float32** | Module ID of the GPU | [optional] 
 **NumaNode** | Pointer to **float32** | NUMA node of the GPU | [optional] 
 **DeploymentStatus** | **string** | Deployment status of the GPU | 
 **VmInstanceId** | Pointer to **int64** | ID of the VM Instance linked to the GPU | [optional] 
+**ContainerInstanceId** | Pointer to **int64** | ID of the Container Instance linked to the GPU | [optional] 
+**PartitionLabels** | Pointer to **[]float32** | Labels of the GPU partitions this GPU belongs to | [optional] 
 
 ## Methods
 
@@ -173,6 +176,31 @@ SetPciAddress sets PciAddress field to given value.
 
 HasPciAddress returns a boolean if a field has been set.
 
+### GetModuleId
+
+`func (o *VMPoolGPU) GetModuleId() float32`
+
+GetModuleId returns the ModuleId field if non-nil, zero value otherwise.
+
+### GetModuleIdOk
+
+`func (o *VMPoolGPU) GetModuleIdOk() (*float32, bool)`
+
+GetModuleIdOk returns a tuple with the ModuleId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModuleId
+
+`func (o *VMPoolGPU) SetModuleId(v float32)`
+
+SetModuleId sets ModuleId field to given value.
+
+### HasModuleId
+
+`func (o *VMPoolGPU) HasModuleId() bool`
+
+HasModuleId returns a boolean if a field has been set.
+
 ### GetNumaNode
 
 `func (o *VMPoolGPU) GetNumaNode() float32`
@@ -242,6 +270,56 @@ SetVmInstanceId sets VmInstanceId field to given value.
 `func (o *VMPoolGPU) HasVmInstanceId() bool`
 
 HasVmInstanceId returns a boolean if a field has been set.
+
+### GetContainerInstanceId
+
+`func (o *VMPoolGPU) GetContainerInstanceId() int64`
+
+GetContainerInstanceId returns the ContainerInstanceId field if non-nil, zero value otherwise.
+
+### GetContainerInstanceIdOk
+
+`func (o *VMPoolGPU) GetContainerInstanceIdOk() (*int64, bool)`
+
+GetContainerInstanceIdOk returns a tuple with the ContainerInstanceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainerInstanceId
+
+`func (o *VMPoolGPU) SetContainerInstanceId(v int64)`
+
+SetContainerInstanceId sets ContainerInstanceId field to given value.
+
+### HasContainerInstanceId
+
+`func (o *VMPoolGPU) HasContainerInstanceId() bool`
+
+HasContainerInstanceId returns a boolean if a field has been set.
+
+### GetPartitionLabels
+
+`func (o *VMPoolGPU) GetPartitionLabels() []float32`
+
+GetPartitionLabels returns the PartitionLabels field if non-nil, zero value otherwise.
+
+### GetPartitionLabelsOk
+
+`func (o *VMPoolGPU) GetPartitionLabelsOk() (*[]float32, bool)`
+
+GetPartitionLabelsOk returns a tuple with the PartitionLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPartitionLabels
+
+`func (o *VMPoolGPU) SetPartitionLabels(v []float32)`
+
+SetPartitionLabels sets PartitionLabels field to given value.
+
+### HasPartitionLabels
+
+`func (o *VMPoolGPU) HasPartitionLabels() bool`
+
+HasPartitionLabels returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

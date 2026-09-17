@@ -55,6 +55,8 @@ type VMInstance struct {
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Service status of the VM Instance.
 	ServiceStatus string `json:"serviceStatus"`
+	// Type of the Instance.
+	InstanceType string `json:"instanceType"`
 	// Information about GPUs available for this VM Instance
 	GpuInfo []VMTypeGPUInfo `json:"gpuInfo,omitempty"`
 	// Subdomain permanent of the VM Instance.
@@ -75,6 +77,8 @@ type VMInstance struct {
 	AllocatedVMPoolInfo *VMInstanceAllocatedVMPoolInfo `json:"allocatedVMPoolInfo,omitempty"`
 	// Information about the allocated GPUs from the VM Pool.
 	AllocatedVMPoolGpusInfo []VMPoolGPU `json:"allocatedVMPoolGpusInfo,omitempty"`
+	// Information about the allocated GPU partitions from the VM Pool.
+	AllocatedVMPoolGpuPartitionsInfo []VMPoolGPUPartition `json:"allocatedVMPoolGpuPartitionsInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -86,7 +90,7 @@ type _VMInstance VMInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstance(label string, typeId int64, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id int64, revision int64, groupId int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta) *VMInstance {
+func NewVMInstance(label string, typeId int64, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id int64, revision int64, groupId int64, infrastructureId int64, infrastructure ParentInfrastructure, serviceStatus string, instanceType string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta) *VMInstance {
 	this := VMInstance{}
 	this.Label = label
 	this.TypeId = typeId
@@ -100,6 +104,7 @@ func NewVMInstance(label string, typeId int64, diskSizeGB float32, ramGB float32
 	this.InfrastructureId = infrastructureId
 	this.Infrastructure = infrastructure
 	this.ServiceStatus = serviceStatus
+	this.InstanceType = instanceType
 	this.CreatedTimestamp = createdTimestamp
 	this.Config = config
 	this.Meta = meta
@@ -562,6 +567,30 @@ func (o *VMInstance) SetServiceStatus(v string) {
 	o.ServiceStatus = v
 }
 
+// GetInstanceType returns the InstanceType field value
+func (o *VMInstance) GetInstanceType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InstanceType
+}
+
+// GetInstanceTypeOk returns a tuple with the InstanceType field value
+// and a boolean to check if the value has been set.
+func (o *VMInstance) GetInstanceTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InstanceType, true
+}
+
+// SetInstanceType sets field value
+func (o *VMInstance) SetInstanceType(v string) {
+	o.InstanceType = v
+}
+
 // GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
 func (o *VMInstance) GetGpuInfo() []VMTypeGPUInfo {
 	if o == nil || IsNil(o.GpuInfo) {
@@ -858,6 +887,38 @@ func (o *VMInstance) SetAllocatedVMPoolGpusInfo(v []VMPoolGPU) {
 	o.AllocatedVMPoolGpusInfo = v
 }
 
+// GetAllocatedVMPoolGpuPartitionsInfo returns the AllocatedVMPoolGpuPartitionsInfo field value if set, zero value otherwise.
+func (o *VMInstance) GetAllocatedVMPoolGpuPartitionsInfo() []VMPoolGPUPartition {
+	if o == nil || IsNil(o.AllocatedVMPoolGpuPartitionsInfo) {
+		var ret []VMPoolGPUPartition
+		return ret
+	}
+	return o.AllocatedVMPoolGpuPartitionsInfo
+}
+
+// GetAllocatedVMPoolGpuPartitionsInfoOk returns a tuple with the AllocatedVMPoolGpuPartitionsInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstance) GetAllocatedVMPoolGpuPartitionsInfoOk() ([]VMPoolGPUPartition, bool) {
+	if o == nil || IsNil(o.AllocatedVMPoolGpuPartitionsInfo) {
+		return nil, false
+	}
+	return o.AllocatedVMPoolGpuPartitionsInfo, true
+}
+
+// HasAllocatedVMPoolGpuPartitionsInfo returns a boolean if a field has been set.
+func (o *VMInstance) HasAllocatedVMPoolGpuPartitionsInfo() bool {
+	if o != nil && !IsNil(o.AllocatedVMPoolGpuPartitionsInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocatedVMPoolGpuPartitionsInfo gets a reference to the given []VMPoolGPUPartition and assigns it to the AllocatedVMPoolGpuPartitionsInfo field.
+func (o *VMInstance) SetAllocatedVMPoolGpuPartitionsInfo(v []VMPoolGPUPartition) {
+	o.AllocatedVMPoolGpuPartitionsInfo = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *VMInstance) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -927,6 +988,7 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
+	toSerialize["instanceType"] = o.InstanceType
 	if !IsNil(o.GpuInfo) {
 		toSerialize["gpuInfo"] = o.GpuInfo
 	}
@@ -950,6 +1012,9 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AllocatedVMPoolGpusInfo) {
 		toSerialize["allocatedVMPoolGpusInfo"] = o.AllocatedVMPoolGpusInfo
+	}
+	if !IsNil(o.AllocatedVMPoolGpuPartitionsInfo) {
+		toSerialize["allocatedVMPoolGpuPartitionsInfo"] = o.AllocatedVMPoolGpuPartitionsInfo
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -979,6 +1044,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		"infrastructureId",
 		"infrastructure",
 		"serviceStatus",
+		"instanceType",
 		"createdTimestamp",
 		"config",
 		"meta",
@@ -1028,6 +1094,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
+		delete(additionalProperties, "instanceType")
 		delete(additionalProperties, "gpuInfo")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
@@ -1038,6 +1105,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "allocatedVMPoolInfo")
 		delete(additionalProperties, "allocatedVMPoolGpusInfo")
+		delete(additionalProperties, "allocatedVMPoolGpuPartitionsInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

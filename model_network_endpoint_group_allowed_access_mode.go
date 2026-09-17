@@ -22,13 +22,13 @@ type NetworkEndpointGroupAllowedAccessMode string
 // List of NetworkEndpointGroupAllowedAccessMode
 const (
 	NETWORKENDPOINTGROUPALLOWEDACCESSMODE_L2 NetworkEndpointGroupAllowedAccessMode = "l2"
-	NETWORKENDPOINTGROUPALLOWEDACCESSMODE_UNKNOWN_DEFAULT_OPEN_API NetworkEndpointGroupAllowedAccessMode = "unknown_default_open_api"
+	NETWORKENDPOINTGROUPALLOWEDACCESSMODE_UNKNOWN_DEFAULT_OPEN_API NetworkEndpointGroupAllowedAccessMode = "11184809"
 )
 
 // All allowed values of NetworkEndpointGroupAllowedAccessMode enum
 var AllowedNetworkEndpointGroupAllowedAccessModeEnumValues = []NetworkEndpointGroupAllowedAccessMode{
 	"l2",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *NetworkEndpointGroupAllowedAccessMode) UnmarshalJSON(src []byte) error {
@@ -45,8 +45,7 @@ func (v *NetworkEndpointGroupAllowedAccessMode) UnmarshalJSON(src []byte) error 
 		}
 	}
 
-	*v = NETWORKENDPOINTGROUPALLOWEDACCESSMODE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid NetworkEndpointGroupAllowedAccessMode", value)
 }
 
 // NewNetworkEndpointGroupAllowedAccessModeFromValue returns a pointer to a valid NetworkEndpointGroupAllowedAccessMode

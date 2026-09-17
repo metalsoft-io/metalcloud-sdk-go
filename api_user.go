@@ -137,7 +137,7 @@ func (r UserAPIEnableUser2FARequest) IfMatch(ifMatch string) UserAPIEnableUser2F
 	return r
 }
 
-func (r UserAPIEnableUser2FARequest) Execute() (*http.Response, error) {
+func (r UserAPIEnableUser2FARequest) Execute() (*RecoveryCodes, *http.Response, error) {
 	return r.ApiService.EnableUser2FAExecute(r)
 }
 
@@ -155,16 +155,18 @@ func (a *UserAPIService) EnableUser2FA(ctx context.Context) UserAPIEnableUser2FA
 }
 
 // Execute executes the request
-func (a *UserAPIService) EnableUser2FAExecute(r UserAPIEnableUser2FARequest) (*http.Response, error) {
+//  @return RecoveryCodes
+func (a *UserAPIService) EnableUser2FAExecute(r UserAPIEnableUser2FARequest) (*RecoveryCodes, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *RecoveryCodes
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAPIService.EnableUser2FA")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/user/actions/2fa-enable"
@@ -173,7 +175,7 @@ func (a *UserAPIService) EnableUser2FAExecute(r UserAPIEnableUser2FARequest) (*h
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.twoFactorAuthenticationToken == nil {
-		return nil, reportError("twoFactorAuthenticationToken is required and must be specified")
+		return localVarReturnValue, nil, reportError("twoFactorAuthenticationToken is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -186,7 +188,7 @@ func (a *UserAPIService) EnableUser2FAExecute(r UserAPIEnableUser2FARequest) (*h
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -200,19 +202,19 @@ func (a *UserAPIService) EnableUser2FAExecute(r UserAPIEnableUser2FARequest) (*h
 	localVarPostBody = r.twoFactorAuthenticationToken
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -220,10 +222,19 @@ func (a *UserAPIService) EnableUser2FAExecute(r UserAPIEnableUser2FARequest) (*h
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type UserAPIGenerateUser2FASecretRequest struct {
@@ -737,7 +748,7 @@ func (r UserAPIRegenerateUserApiKeyRequest) IfMatch(ifMatch string) UserAPIRegen
 	return r
 }
 
-func (r UserAPIRegenerateUserApiKeyRequest) Execute() (*User, *http.Response, error) {
+func (r UserAPIRegenerateUserApiKeyRequest) Execute() (*UserApiKeyRegenerated, *http.Response, error) {
 	return r.ApiService.RegenerateUserApiKeyExecute(r)
 }
 
@@ -755,13 +766,13 @@ func (a *UserAPIService) RegenerateUserApiKey(ctx context.Context) UserAPIRegene
 }
 
 // Execute executes the request
-//  @return User
-func (a *UserAPIService) RegenerateUserApiKeyExecute(r UserAPIRegenerateUserApiKeyRequest) (*User, *http.Response, error) {
+//  @return UserApiKeyRegenerated
+func (a *UserAPIService) RegenerateUserApiKeyExecute(r UserAPIRegenerateUserApiKeyRequest) (*UserApiKeyRegenerated, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *User
+		localVarReturnValue  *UserApiKeyRegenerated
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAPIService.RegenerateUserApiKey")

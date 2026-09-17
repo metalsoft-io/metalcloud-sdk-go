@@ -140,8 +140,8 @@ type EventAPIGetEventsRequest struct {
 	filterVisibility *[]string
 	filterInfrastructureId *[]string
 	filterUserId *[]string
-	filterStoragePoolId *[]string
 	filterServerId *[]string
+	filterNetworkDeviceId *[]string
 	filterJobId *[]string
 	filterSiteId *[]string
 	sortBy *[]string
@@ -203,15 +203,15 @@ func (r EventAPIGetEventsRequest) FilterUserId(filterUserId []string) EventAPIGe
 	return r
 }
 
-// Filter by storagePoolId query param.  **Format:** filter.storagePoolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.storagePoolId&#x3D;$eq:John Doe&amp;filter.storagePoolId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
-func (r EventAPIGetEventsRequest) FilterStoragePoolId(filterStoragePoolId []string) EventAPIGetEventsRequest {
-	r.filterStoragePoolId = &filterStoragePoolId
-	return r
-}
-
 // Filter by serverId query param.  **Format:** filter.serverId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverId&#x3D;$eq:John Doe&amp;filter.serverId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
 func (r EventAPIGetEventsRequest) FilterServerId(filterServerId []string) EventAPIGetEventsRequest {
 	r.filterServerId = &filterServerId
+	return r
+}
+
+// Filter by networkDeviceId query param.  **Format:** filter.networkDeviceId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkDeviceId&#x3D;$eq:John Doe&amp;filter.networkDeviceId&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r EventAPIGetEventsRequest) FilterNetworkDeviceId(filterNetworkDeviceId []string) EventAPIGetEventsRequest {
+	r.filterNetworkDeviceId = &filterNetworkDeviceId
 	return r
 }
 
@@ -239,7 +239,7 @@ func (r EventAPIGetEventsRequest) Search(search string) EventAPIGetEventsRequest
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,type,level,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - level  - visibility  - infrastructureId  - userId  - serverId  - jobId  - siteId  - title  - message 
+// List of fields to search by term to filter result values  **Example:** id,type,level,visibility,infrastructureId   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - type  - level  - visibility  - infrastructureId  - userId  - serverId  - networkDeviceId  - jobId  - siteId  - title  - message 
 func (r EventAPIGetEventsRequest) SearchBy(searchBy []string) EventAPIGetEventsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -368,17 +368,6 @@ func (a *EventAPIService) GetEventsExecute(r EventAPIGetEventsRequest) (*EventPa
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.userId", t, "form", "multi")
 		}
 	}
-	if r.filterStoragePoolId != nil {
-		t := *r.filterStoragePoolId
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storagePoolId", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storagePoolId", t, "form", "multi")
-		}
-	}
 	if r.filterServerId != nil {
 		t := *r.filterServerId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -388,6 +377,17 @@ func (a *EventAPIService) GetEventsExecute(r EventAPIGetEventsRequest) (*EventPa
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkDeviceId != nil {
+		t := *r.filterNetworkDeviceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceId", t, "form", "multi")
 		}
 	}
 	if r.filterJobId != nil {

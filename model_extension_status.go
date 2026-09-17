@@ -26,7 +26,7 @@ const (
 	EXTENSIONSTATUS_SUSPENDED ExtensionStatus = "suspended"
 	EXTENSIONSTATUS_ARCHIVED ExtensionStatus = "archived"
 	EXTENSIONSTATUS_DELETED ExtensionStatus = "deleted"
-	EXTENSIONSTATUS_UNKNOWN_DEFAULT_OPEN_API ExtensionStatus = "unknown_default_open_api"
+	EXTENSIONSTATUS_UNKNOWN_DEFAULT_OPEN_API ExtensionStatus = "11184809"
 )
 
 // All allowed values of ExtensionStatus enum
@@ -36,7 +36,7 @@ var AllowedExtensionStatusEnumValues = []ExtensionStatus{
 	"suspended",
 	"archived",
 	"deleted",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *ExtensionStatus) UnmarshalJSON(src []byte) error {
@@ -53,8 +53,7 @@ func (v *ExtensionStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = EXTENSIONSTATUS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid ExtensionStatus", value)
 }
 
 // NewExtensionStatusFromValue returns a pointer to a valid ExtensionStatus

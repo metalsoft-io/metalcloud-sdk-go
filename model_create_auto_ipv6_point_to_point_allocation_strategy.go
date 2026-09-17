@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateAutoIpv6PointToPointAllocationStrategy{}
 
 // CreateAutoIpv6PointToPointAllocationStrategy struct for CreateAutoIpv6PointToPointAllocationStrategy
 type CreateAutoIpv6PointToPointAllocationStrategy struct {
-	Kind PointToPointAllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	// SubnetPool IDs to carve /127 prefixes from. The first pool with availability is used.
 	SubnetPoolIds []int64 `json:"subnetPoolIds"`
@@ -36,7 +36,7 @@ type _CreateAutoIpv6PointToPointAllocationStrategy CreateAutoIpv6PointToPointAll
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutoIpv6PointToPointAllocationStrategy(kind PointToPointAllocationStrategyKind, scope CreateResourceScope, subnetPoolIds []int64) *CreateAutoIpv6PointToPointAllocationStrategy {
+func NewCreateAutoIpv6PointToPointAllocationStrategy(kind string, scope CreateResourceScope, subnetPoolIds []int64) *CreateAutoIpv6PointToPointAllocationStrategy {
 	this := CreateAutoIpv6PointToPointAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -57,9 +57,9 @@ func NewCreateAutoIpv6PointToPointAllocationStrategyWithDefaults() *CreateAutoIp
 }
 
 // GetKind returns the Kind field value
-func (o *CreateAutoIpv6PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind {
+func (o *CreateAutoIpv6PointToPointAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret PointToPointAllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *CreateAutoIpv6PointToPointAllocationStrategy) GetKind() PointToPointAll
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutoIpv6PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool) {
+func (o *CreateAutoIpv6PointToPointAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *CreateAutoIpv6PointToPointAllocationStrategy) GetKindOk() (*PointToPoin
 }
 
 // SetKind sets field value
-func (o *CreateAutoIpv6PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind) {
+func (o *CreateAutoIpv6PointToPointAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

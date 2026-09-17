@@ -22,7 +22,7 @@ var _ MappedNullable = &FibreChannelFabric{}
 // FibreChannelFabric struct for FibreChannelFabric
 type FibreChannelFabric struct {
 	// The type of network fabric
-	FabricType FabricType `json:"fabricType"`
+	FabricType string `json:"fabricType"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
 	// Enables server-only operation mode on the network fabric.
@@ -38,7 +38,7 @@ type _FibreChannelFabric FibreChannelFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFibreChannelFabric(fabricType FabricType) *FibreChannelFabric {
+func NewFibreChannelFabric(fabricType string) *FibreChannelFabric {
 	this := FibreChannelFabric{}
 	this.FabricType = fabricType
 	return &this
@@ -53,9 +53,9 @@ func NewFibreChannelFabricWithDefaults() *FibreChannelFabric {
 }
 
 // GetFabricType returns the FabricType field value
-func (o *FibreChannelFabric) GetFabricType() FabricType {
+func (o *FibreChannelFabric) GetFabricType() string {
 	if o == nil {
-		var ret FabricType
+		var ret string
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *FibreChannelFabric) GetFabricType() FabricType {
 
 // GetFabricTypeOk returns a tuple with the FabricType field value
 // and a boolean to check if the value has been set.
-func (o *FibreChannelFabric) GetFabricTypeOk() (*FabricType, bool) {
+func (o *FibreChannelFabric) GetFabricTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *FibreChannelFabric) GetFabricTypeOk() (*FabricType, bool) {
 }
 
 // SetFabricType sets field value
-func (o *FibreChannelFabric) SetFabricType(v FabricType) {
+func (o *FibreChannelFabric) SetFabricType(v string) {
 	o.FabricType = v
 }
 

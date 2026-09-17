@@ -44,6 +44,8 @@ type PlatformConfiguration struct {
 	AFC *PlatformAFC `json:"AFC,omitempty"`
 	// Whether self-service user registration is disabled
 	DisablePublicUserSignup *bool `json:"disablePublicUserSignup,omitempty"`
+	// Rules that prevent server allocation based on health issues and firmware-baseline drift
+	ServerAllocationPolicy *PlatformServerAllocationPolicy `json:"serverAllocationPolicy,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -450,6 +452,38 @@ func (o *PlatformConfiguration) SetDisablePublicUserSignup(v bool) {
 	o.DisablePublicUserSignup = &v
 }
 
+// GetServerAllocationPolicy returns the ServerAllocationPolicy field value if set, zero value otherwise.
+func (o *PlatformConfiguration) GetServerAllocationPolicy() PlatformServerAllocationPolicy {
+	if o == nil || IsNil(o.ServerAllocationPolicy) {
+		var ret PlatformServerAllocationPolicy
+		return ret
+	}
+	return *o.ServerAllocationPolicy
+}
+
+// GetServerAllocationPolicyOk returns a tuple with the ServerAllocationPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlatformConfiguration) GetServerAllocationPolicyOk() (*PlatformServerAllocationPolicy, bool) {
+	if o == nil || IsNil(o.ServerAllocationPolicy) {
+		return nil, false
+	}
+	return o.ServerAllocationPolicy, true
+}
+
+// HasServerAllocationPolicy returns a boolean if a field has been set.
+func (o *PlatformConfiguration) HasServerAllocationPolicy() bool {
+	if o != nil && !IsNil(o.ServerAllocationPolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerAllocationPolicy gets a reference to the given PlatformServerAllocationPolicy and assigns it to the ServerAllocationPolicy field.
+func (o *PlatformConfiguration) SetServerAllocationPolicy(v PlatformServerAllocationPolicy) {
+	o.ServerAllocationPolicy = &v
+}
+
 func (o PlatformConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -496,6 +530,9 @@ func (o PlatformConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisablePublicUserSignup) {
 		toSerialize["disablePublicUserSignup"] = o.DisablePublicUserSignup
 	}
+	if !IsNil(o.ServerAllocationPolicy) {
+		toSerialize["serverAllocationPolicy"] = o.ServerAllocationPolicy
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -530,6 +567,7 @@ func (o *PlatformConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "allowServersWithOneInterface")
 		delete(additionalProperties, "AFC")
 		delete(additionalProperties, "disablePublicUserSignup")
+		delete(additionalProperties, "serverAllocationPolicy")
 		o.AdditionalProperties = additionalProperties
 	}
 

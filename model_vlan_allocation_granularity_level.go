@@ -23,14 +23,14 @@ type VlanAllocationGranularityLevel string
 const (
 	VLANALLOCATIONGRANULARITYLEVEL_FABRIC VlanAllocationGranularityLevel = "fabric"
 	VLANALLOCATIONGRANULARITYLEVEL_NETWORK_DEVICE VlanAllocationGranularityLevel = "network_device"
-	VLANALLOCATIONGRANULARITYLEVEL_UNKNOWN_DEFAULT_OPEN_API VlanAllocationGranularityLevel = "unknown_default_open_api"
+	VLANALLOCATIONGRANULARITYLEVEL_UNKNOWN_DEFAULT_OPEN_API VlanAllocationGranularityLevel = "11184809"
 )
 
 // All allowed values of VlanAllocationGranularityLevel enum
 var AllowedVlanAllocationGranularityLevelEnumValues = []VlanAllocationGranularityLevel{
 	"fabric",
 	"network_device",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *VlanAllocationGranularityLevel) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *VlanAllocationGranularityLevel) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = VLANALLOCATIONGRANULARITYLEVEL_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid VlanAllocationGranularityLevel", value)
 }
 
 // NewVlanAllocationGranularityLevelFromValue returns a pointer to a valid VlanAllocationGranularityLevel

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **TargetNqn** | Pointer to **string** | The NQN of the target storage. | [optional] 
 **DriveType** | **string** | The type of the drive. | 
 **IsFibreChannel** | **bool** | Indicates if the drive is using Fibre Channel. | 
+**PortIdentifier** | Pointer to **string** | The identifier of the storage port used for mounting. | [optional] 
 
 ## Methods
 
@@ -195,6 +196,31 @@ and a boolean to check if the value has been set.
 
 SetIsFibreChannel sets IsFibreChannel field to given value.
 
+
+### GetPortIdentifier
+
+`func (o *GenericDriveDiscoverInformation) GetPortIdentifier() string`
+
+GetPortIdentifier returns the PortIdentifier field if non-nil, zero value otherwise.
+
+### GetPortIdentifierOk
+
+`func (o *GenericDriveDiscoverInformation) GetPortIdentifierOk() (*string, bool)`
+
+GetPortIdentifierOk returns a tuple with the PortIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPortIdentifier
+
+`func (o *GenericDriveDiscoverInformation) SetPortIdentifier(v string)`
+
+SetPortIdentifier sets PortIdentifier field to given value.
+
+### HasPortIdentifier
+
+`func (o *GenericDriveDiscoverInformation) HasPortIdentifier() bool`
+
+HasPortIdentifier returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

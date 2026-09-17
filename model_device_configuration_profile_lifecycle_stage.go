@@ -24,7 +24,7 @@ const (
 	DEVICECONFIGURATIONPROFILELIFECYCLESTAGE_PROVISIONING DeviceConfigurationProfileLifecycleStage = "provisioning"
 	DEVICECONFIGURATIONPROFILELIFECYCLESTAGE_CONFIGURATION DeviceConfigurationProfileLifecycleStage = "configuration"
 	DEVICECONFIGURATIONPROFILELIFECYCLESTAGE_DECOMMISSIONING DeviceConfigurationProfileLifecycleStage = "decommissioning"
-	DEVICECONFIGURATIONPROFILELIFECYCLESTAGE_UNKNOWN_DEFAULT_OPEN_API DeviceConfigurationProfileLifecycleStage = "unknown_default_open_api"
+	DEVICECONFIGURATIONPROFILELIFECYCLESTAGE_UNKNOWN_DEFAULT_OPEN_API DeviceConfigurationProfileLifecycleStage = "11184809"
 )
 
 // All allowed values of DeviceConfigurationProfileLifecycleStage enum
@@ -32,7 +32,7 @@ var AllowedDeviceConfigurationProfileLifecycleStageEnumValues = []DeviceConfigur
 	"provisioning",
 	"configuration",
 	"decommissioning",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *DeviceConfigurationProfileLifecycleStage) UnmarshalJSON(src []byte) error {
@@ -49,8 +49,7 @@ func (v *DeviceConfigurationProfileLifecycleStage) UnmarshalJSON(src []byte) err
 		}
 	}
 
-	*v = DEVICECONFIGURATIONPROFILELIFECYCLESTAGE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid DeviceConfigurationProfileLifecycleStage", value)
 }
 
 // NewDeviceConfigurationProfileLifecycleStageFromValue returns a pointer to a valid DeviceConfigurationProfileLifecycleStage

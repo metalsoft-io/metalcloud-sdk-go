@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Label of the extension. | 
 **ExtensionType** | **string** | Type of the extension. | 
 **Vendor** | **string** | Vendor of the extension. | 
-**ExtensionVersion** | **string** | Version of the extension. | 
+**ExtensionVersion** | **string** | Version of the extension. Must be a valid semantic version (e.g. 1.2.3). | 
 **Description** | Pointer to **string** | Description of the extension. | [optional] 
 **Icon** | **string** | Icon of the extension. | 
 **Dependencies** | [**ExtensionDependency**](ExtensionDependency.md) |  | 

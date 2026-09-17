@@ -1189,7 +1189,7 @@ type ResourcePoolAPIGetUserResourcePoolsRequest struct {
 	userId int64
 }
 
-func (r ResourcePoolAPIGetUserResourcePoolsRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
+func (r ResourcePoolAPIGetUserResourcePoolsRequest) Execute() ([]ResourcePool, *http.Response, error) {
 	return r.ApiService.GetUserResourcePoolsExecute(r)
 }
 
@@ -1211,13 +1211,13 @@ func (a *ResourcePoolAPIService) GetUserResourcePools(ctx context.Context, userI
 }
 
 // Execute executes the request
-//  @return []map[string]interface{}
-func (a *ResourcePoolAPIService) GetUserResourcePoolsExecute(r ResourcePoolAPIGetUserResourcePoolsRequest) ([]map[string]interface{}, *http.Response, error) {
+//  @return []ResourcePool
+func (a *ResourcePoolAPIService) GetUserResourcePoolsExecute(r ResourcePoolAPIGetUserResourcePoolsRequest) ([]ResourcePool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  []ResourcePool
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ResourcePoolAPIService.GetUserResourcePools")

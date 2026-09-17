@@ -30,9 +30,12 @@ Name | Type | Description | Notes
 **EndpointId** | Pointer to **int64** | The id of the Endpoint | [optional] 
 **ClusterCustomInfo** | Pointer to **map[string]interface{}** |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
-**OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
-**OsInstallImageBuildError** | Pointer to **string** | Last error message during OS image build. | [optional] 
-**OsInstallImageBuildInfo** | Pointer to [**ServerInstanceOsInstallImageBuildInfo**](ServerInstanceOsInstallImageBuildInfo.md) | Build info regarding the OS image. | [optional] 
+**OsInstallImageUrl** | Pointer to **string** | URL where the OS install image is available. | [optional] 
+**OsInstallImageBuildError** | Pointer to **string** | Last error message during OS install image build. | [optional] 
+**OsInstallImageBuildInfo** | Pointer to [**ServerInstanceOsInstallImageBuildInfo**](ServerInstanceOsInstallImageBuildInfo.md) | Build info regarding the OS install image. | [optional] 
+**OsSecondaryImageUrl** | Pointer to **string** | URL where the OS secondary image is available. | [optional] 
+**OsSecondaryImageBuildError** | Pointer to **string** | Last error message during OS secondary image build. | [optional] 
+**OsSecondaryImageBuildInfo** | Pointer to [**ServerInstanceOsSecondaryImageBuildInfo**](ServerInstanceOsSecondaryImageBuildInfo.md) | Build info regarding the OS secondary image. | [optional] 
 **OsReinstallRequired** | Pointer to **int32** | OS reinstall is required. | [optional] 
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
@@ -736,6 +739,81 @@ SetOsInstallImageBuildInfo sets OsInstallImageBuildInfo field to given value.
 `func (o *ServerInstanceVariables) HasOsInstallImageBuildInfo() bool`
 
 HasOsInstallImageBuildInfo returns a boolean if a field has been set.
+
+### GetOsSecondaryImageUrl
+
+`func (o *ServerInstanceVariables) GetOsSecondaryImageUrl() string`
+
+GetOsSecondaryImageUrl returns the OsSecondaryImageUrl field if non-nil, zero value otherwise.
+
+### GetOsSecondaryImageUrlOk
+
+`func (o *ServerInstanceVariables) GetOsSecondaryImageUrlOk() (*string, bool)`
+
+GetOsSecondaryImageUrlOk returns a tuple with the OsSecondaryImageUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsSecondaryImageUrl
+
+`func (o *ServerInstanceVariables) SetOsSecondaryImageUrl(v string)`
+
+SetOsSecondaryImageUrl sets OsSecondaryImageUrl field to given value.
+
+### HasOsSecondaryImageUrl
+
+`func (o *ServerInstanceVariables) HasOsSecondaryImageUrl() bool`
+
+HasOsSecondaryImageUrl returns a boolean if a field has been set.
+
+### GetOsSecondaryImageBuildError
+
+`func (o *ServerInstanceVariables) GetOsSecondaryImageBuildError() string`
+
+GetOsSecondaryImageBuildError returns the OsSecondaryImageBuildError field if non-nil, zero value otherwise.
+
+### GetOsSecondaryImageBuildErrorOk
+
+`func (o *ServerInstanceVariables) GetOsSecondaryImageBuildErrorOk() (*string, bool)`
+
+GetOsSecondaryImageBuildErrorOk returns a tuple with the OsSecondaryImageBuildError field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsSecondaryImageBuildError
+
+`func (o *ServerInstanceVariables) SetOsSecondaryImageBuildError(v string)`
+
+SetOsSecondaryImageBuildError sets OsSecondaryImageBuildError field to given value.
+
+### HasOsSecondaryImageBuildError
+
+`func (o *ServerInstanceVariables) HasOsSecondaryImageBuildError() bool`
+
+HasOsSecondaryImageBuildError returns a boolean if a field has been set.
+
+### GetOsSecondaryImageBuildInfo
+
+`func (o *ServerInstanceVariables) GetOsSecondaryImageBuildInfo() ServerInstanceOsSecondaryImageBuildInfo`
+
+GetOsSecondaryImageBuildInfo returns the OsSecondaryImageBuildInfo field if non-nil, zero value otherwise.
+
+### GetOsSecondaryImageBuildInfoOk
+
+`func (o *ServerInstanceVariables) GetOsSecondaryImageBuildInfoOk() (*ServerInstanceOsSecondaryImageBuildInfo, bool)`
+
+GetOsSecondaryImageBuildInfoOk returns a tuple with the OsSecondaryImageBuildInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsSecondaryImageBuildInfo
+
+`func (o *ServerInstanceVariables) SetOsSecondaryImageBuildInfo(v ServerInstanceOsSecondaryImageBuildInfo)`
+
+SetOsSecondaryImageBuildInfo sets OsSecondaryImageBuildInfo field to given value.
+
+### HasOsSecondaryImageBuildInfo
+
+`func (o *ServerInstanceVariables) HasOsSecondaryImageBuildInfo() bool`
+
+HasOsSecondaryImageBuildInfo returns a boolean if a field has been set.
 
 ### GetOsReinstallRequired
 

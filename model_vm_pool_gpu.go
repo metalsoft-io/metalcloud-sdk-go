@@ -33,12 +33,18 @@ type VMPoolGPU struct {
 	Vendor *string `json:"vendor,omitempty"`
 	// PCI address of the GPU
 	PciAddress *string `json:"pciAddress,omitempty"`
+	// Module ID of the GPU
+	ModuleId *float32 `json:"moduleId,omitempty"`
 	// NUMA node of the GPU
 	NumaNode *float32 `json:"numaNode,omitempty"`
 	// Deployment status of the GPU
 	DeploymentStatus string `json:"deploymentStatus"`
 	// ID of the VM Instance linked to the GPU
 	VmInstanceId *int64 `json:"vmInstanceId,omitempty"`
+	// ID of the Container Instance linked to the GPU
+	ContainerInstanceId *int64 `json:"containerInstanceId,omitempty"`
+	// Labels of the GPU partitions this GPU belongs to
+	PartitionLabels []float32 `json:"partitionLabels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -240,6 +246,38 @@ func (o *VMPoolGPU) SetPciAddress(v string) {
 	o.PciAddress = &v
 }
 
+// GetModuleId returns the ModuleId field value if set, zero value otherwise.
+func (o *VMPoolGPU) GetModuleId() float32 {
+	if o == nil || IsNil(o.ModuleId) {
+		var ret float32
+		return ret
+	}
+	return *o.ModuleId
+}
+
+// GetModuleIdOk returns a tuple with the ModuleId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolGPU) GetModuleIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ModuleId) {
+		return nil, false
+	}
+	return o.ModuleId, true
+}
+
+// HasModuleId returns a boolean if a field has been set.
+func (o *VMPoolGPU) HasModuleId() bool {
+	if o != nil && !IsNil(o.ModuleId) {
+		return true
+	}
+
+	return false
+}
+
+// SetModuleId gets a reference to the given float32 and assigns it to the ModuleId field.
+func (o *VMPoolGPU) SetModuleId(v float32) {
+	o.ModuleId = &v
+}
+
 // GetNumaNode returns the NumaNode field value if set, zero value otherwise.
 func (o *VMPoolGPU) GetNumaNode() float32 {
 	if o == nil || IsNil(o.NumaNode) {
@@ -328,6 +366,70 @@ func (o *VMPoolGPU) SetVmInstanceId(v int64) {
 	o.VmInstanceId = &v
 }
 
+// GetContainerInstanceId returns the ContainerInstanceId field value if set, zero value otherwise.
+func (o *VMPoolGPU) GetContainerInstanceId() int64 {
+	if o == nil || IsNil(o.ContainerInstanceId) {
+		var ret int64
+		return ret
+	}
+	return *o.ContainerInstanceId
+}
+
+// GetContainerInstanceIdOk returns a tuple with the ContainerInstanceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolGPU) GetContainerInstanceIdOk() (*int64, bool) {
+	if o == nil || IsNil(o.ContainerInstanceId) {
+		return nil, false
+	}
+	return o.ContainerInstanceId, true
+}
+
+// HasContainerInstanceId returns a boolean if a field has been set.
+func (o *VMPoolGPU) HasContainerInstanceId() bool {
+	if o != nil && !IsNil(o.ContainerInstanceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetContainerInstanceId gets a reference to the given int64 and assigns it to the ContainerInstanceId field.
+func (o *VMPoolGPU) SetContainerInstanceId(v int64) {
+	o.ContainerInstanceId = &v
+}
+
+// GetPartitionLabels returns the PartitionLabels field value if set, zero value otherwise.
+func (o *VMPoolGPU) GetPartitionLabels() []float32 {
+	if o == nil || IsNil(o.PartitionLabels) {
+		var ret []float32
+		return ret
+	}
+	return o.PartitionLabels
+}
+
+// GetPartitionLabelsOk returns a tuple with the PartitionLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolGPU) GetPartitionLabelsOk() ([]float32, bool) {
+	if o == nil || IsNil(o.PartitionLabels) {
+		return nil, false
+	}
+	return o.PartitionLabels, true
+}
+
+// HasPartitionLabels returns a boolean if a field has been set.
+func (o *VMPoolGPU) HasPartitionLabels() bool {
+	if o != nil && !IsNil(o.PartitionLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPartitionLabels gets a reference to the given []float32 and assigns it to the PartitionLabels field.
+func (o *VMPoolGPU) SetPartitionLabels(v []float32) {
+	o.PartitionLabels = v
+}
+
 func (o VMPoolGPU) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -352,12 +454,21 @@ func (o VMPoolGPU) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PciAddress) {
 		toSerialize["pciAddress"] = o.PciAddress
 	}
+	if !IsNil(o.ModuleId) {
+		toSerialize["moduleId"] = o.ModuleId
+	}
 	if !IsNil(o.NumaNode) {
 		toSerialize["numaNode"] = o.NumaNode
 	}
 	toSerialize["deploymentStatus"] = o.DeploymentStatus
 	if !IsNil(o.VmInstanceId) {
 		toSerialize["vmInstanceId"] = o.VmInstanceId
+	}
+	if !IsNil(o.ContainerInstanceId) {
+		toSerialize["containerInstanceId"] = o.ContainerInstanceId
+	}
+	if !IsNil(o.PartitionLabels) {
+		toSerialize["partitionLabels"] = o.PartitionLabels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -410,9 +521,12 @@ func (o *VMPoolGPU) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "pciAddress")
+		delete(additionalProperties, "moduleId")
 		delete(additionalProperties, "numaNode")
 		delete(additionalProperties, "deploymentStatus")
 		delete(additionalProperties, "vmInstanceId")
+		delete(additionalProperties, "containerInstanceId")
+		delete(additionalProperties, "partitionLabels")
 		o.AdditionalProperties = additionalProperties
 	}
 

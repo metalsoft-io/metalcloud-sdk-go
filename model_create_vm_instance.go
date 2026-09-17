@@ -25,9 +25,9 @@ type CreateVMInstance struct {
 	TypeId int64 `json:"typeId"`
 	// Id of the VM Instance Group.
 	GroupId int64 `json:"groupId"`
-	// Disk size in GB of the VM Instance. If not passed, the default disk size from the group will be used
+	// Disk size in GB of the Instance. If not passed, the default disk size from the group will be used
 	DiskSizeGB *float32 `json:"diskSizeGB,omitempty"`
-	// Tags for the VM Instance.
+	// Tags for the Instance.
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the VM Pool | 
 **Driver** | **string** | Driver of the VM Pool | 
 **FabricId** | **int64** | Fabric ID of the VM Pool | 
+**Technologies** | **[]string** | VM Pool technology | 
 
 ## Methods
 
 ### NewVMPoolForUsage
 
-`func NewVMPoolForUsage(id int64, name string, driver string, fabricId int64, ) *VMPoolForUsage`
+`func NewVMPoolForUsage(id int64, name string, driver string, fabricId int64, technologies []string, ) *VMPoolForUsage`
 
 NewVMPoolForUsage instantiates a new VMPoolForUsage object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +107,26 @@ and a boolean to check if the value has been set.
 `func (o *VMPoolForUsage) SetFabricId(v int64)`
 
 SetFabricId sets FabricId field to given value.
+
+
+### GetTechnologies
+
+`func (o *VMPoolForUsage) GetTechnologies() []string`
+
+GetTechnologies returns the Technologies field if non-nil, zero value otherwise.
+
+### GetTechnologiesOk
+
+`func (o *VMPoolForUsage) GetTechnologiesOk() (*[]string, bool)`
+
+GetTechnologiesOk returns a tuple with the Technologies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTechnologies
+
+`func (o *VMPoolForUsage) SetTechnologies(v []string)`
+
+SetTechnologies sets Technologies field to given value.
 
 
 

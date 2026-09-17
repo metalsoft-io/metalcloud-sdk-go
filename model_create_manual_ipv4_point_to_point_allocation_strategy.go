@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateManualIpv4PointToPointAllocationStrategy{}
 
 // CreateManualIpv4PointToPointAllocationStrategy struct for CreateManualIpv4PointToPointAllocationStrategy
 type CreateManualIpv4PointToPointAllocationStrategy struct {
-	Kind PointToPointAllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	// ID of a pre-existing IPAM subnet to use for the link. Must be a /31. The subnet is tracked in the IPAM allocation registry but its lifecycle stays external (it is not deleted when the link is).
 	SubnetId int64 `json:"subnetId"`
@@ -36,7 +36,7 @@ type _CreateManualIpv4PointToPointAllocationStrategy CreateManualIpv4PointToPoin
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateManualIpv4PointToPointAllocationStrategy(kind PointToPointAllocationStrategyKind, scope CreateResourceScope, subnetId int64) *CreateManualIpv4PointToPointAllocationStrategy {
+func NewCreateManualIpv4PointToPointAllocationStrategy(kind string, scope CreateResourceScope, subnetId int64) *CreateManualIpv4PointToPointAllocationStrategy {
 	this := CreateManualIpv4PointToPointAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -57,9 +57,9 @@ func NewCreateManualIpv4PointToPointAllocationStrategyWithDefaults() *CreateManu
 }
 
 // GetKind returns the Kind field value
-func (o *CreateManualIpv4PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind {
+func (o *CreateManualIpv4PointToPointAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret PointToPointAllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *CreateManualIpv4PointToPointAllocationStrategy) GetKind() PointToPointA
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateManualIpv4PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool) {
+func (o *CreateManualIpv4PointToPointAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *CreateManualIpv4PointToPointAllocationStrategy) GetKindOk() (*PointToPo
 }
 
 // SetKind sets field value
-func (o *CreateManualIpv4PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind) {
+func (o *CreateManualIpv4PointToPointAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

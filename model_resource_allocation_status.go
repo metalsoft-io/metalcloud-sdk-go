@@ -24,7 +24,7 @@ const (
 	RESOURCEALLOCATIONSTATUS_ALLOCATED ResourceAllocationStatus = "allocated"
 	RESOURCEALLOCATIONSTATUS_PENDING_ALLOCATION ResourceAllocationStatus = "pending_allocation"
 	RESOURCEALLOCATIONSTATUS_DELETING ResourceAllocationStatus = "deleting"
-	RESOURCEALLOCATIONSTATUS_UNKNOWN_DEFAULT_OPEN_API ResourceAllocationStatus = "unknown_default_open_api"
+	RESOURCEALLOCATIONSTATUS_UNKNOWN_DEFAULT_OPEN_API ResourceAllocationStatus = "11184809"
 )
 
 // All allowed values of ResourceAllocationStatus enum
@@ -32,7 +32,7 @@ var AllowedResourceAllocationStatusEnumValues = []ResourceAllocationStatus{
 	"allocated",
 	"pending_allocation",
 	"deleting",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *ResourceAllocationStatus) UnmarshalJSON(src []byte) error {
@@ -49,8 +49,7 @@ func (v *ResourceAllocationStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = RESOURCEALLOCATIONSTATUS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid ResourceAllocationStatus", value)
 }
 
 // NewResourceAllocationStatusFromValue returns a pointer to a valid ResourceAllocationStatus

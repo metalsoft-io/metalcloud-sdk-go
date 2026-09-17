@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Status** | **string** | Status of the network fabric link aggregation | 
 **NetworkFabricLink** | Pointer to [**NetworkFabricLink**](NetworkFabricLink.md) | Associated network fabric link | [optional] 
 **LinkAggregation** | Pointer to [**NetworkFabricLinkAggregation**](NetworkFabricLinkAggregation.md) | Associated network fabric link aggregation | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables exposed to network device configuration templates as bgp_session_custom_variables | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -317,6 +318,31 @@ SetLinkAggregation sets LinkAggregation field to given value.
 `func (o *NetworkFabricBGPSession) HasLinkAggregation() bool`
 
 HasLinkAggregation returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *NetworkFabricBGPSession) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *NetworkFabricBGPSession) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *NetworkFabricBGPSession) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *NetworkFabricBGPSession) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 ### GetLinks
 

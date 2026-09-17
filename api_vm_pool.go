@@ -665,6 +665,377 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostExecute(r VMPoolAPIGetVMPoolClust
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMPoolAPIGetVMPoolClusterHostContainersRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId int64
+	vmPoolClusterHostId int64
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterSiteId *[]string
+	filterName *[]string
+	filterAddress *[]string
+	filterHost *[]string
+	filterHosts *[]string
+	filterTypeId *[]string
+	filterPoolId *[]string
+	filterAdministrationState *[]string
+	filterNumaNodes *[]string
+	filterInfrastructureId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) Page(page float32) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) Limit(limit float32) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterId(filterId []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterSiteId(filterSiteId []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterSiteId = &filterSiteId
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterName(filterName []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by address query param.  **Format:** filter.address&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.address&#x3D;$btw:John Doe&amp;filter.address&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterAddress(filterAddress []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterAddress = &filterAddress
+	return r
+}
+
+// Filter by host query param.  **Format:** filter.host&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.host&#x3D;$btw:John Doe&amp;filter.host&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterHost(filterHost []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterHost = &filterHost
+	return r
+}
+
+// Filter by hosts query param.  **Format:** filter.hosts&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.hosts&#x3D;$btw:John Doe&amp;filter.hosts&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterHosts(filterHosts []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterHosts = &filterHosts
+	return r
+}
+
+// Filter by typeId query param.  **Format:** filter.typeId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.typeId&#x3D;$btw:John Doe&amp;filter.typeId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterTypeId(filterTypeId []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterTypeId = &filterTypeId
+	return r
+}
+
+// Filter by poolId query param.  **Format:** filter.poolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.poolId&#x3D;$btw:John Doe&amp;filter.poolId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterPoolId(filterPoolId []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterPoolId = &filterPoolId
+	return r
+}
+
+// Filter by administrationState query param.  **Format:** filter.administrationState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.administrationState&#x3D;$btw:John Doe&amp;filter.administrationState&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterAdministrationState(filterAdministrationState []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterAdministrationState = &filterAdministrationState
+	return r
+}
+
+// Filter by numaNodes query param.  **Format:** filter.numaNodes&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.numaNodes&#x3D;$btw:John Doe&amp;filter.numaNodes&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterNumaNodes(filterNumaNodes []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterNumaNodes = &filterNumaNodes
+	return r
+}
+
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) FilterInfrastructureId(filterInfrastructureId []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - host  - administrationState 
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) SortBy(sortBy []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) Search(search string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,name,host,hosts,administrationState   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - host  - hosts  - administrationState 
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) SearchBy(searchBy []string) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r VMPoolAPIGetVMPoolClusterHostContainersRequest) Execute() (*ContainerPaginatedList, *http.Response, error) {
+	return r.ApiService.GetVMPoolClusterHostContainersExecute(r)
+}
+
+/*
+GetVMPoolClusterHostContainers Retrieves a list of VM Cluster Host Containers
+
+Returns a list of VM Cluster Host Containers
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @param vmPoolClusterHostId
+ @return VMPoolAPIGetVMPoolClusterHostContainersRequest
+*/
+func (a *VMPoolAPIService) GetVMPoolClusterHostContainers(ctx context.Context, vmPoolId int64, vmPoolClusterHostId int64) VMPoolAPIGetVMPoolClusterHostContainersRequest {
+	return VMPoolAPIGetVMPoolClusterHostContainersRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+		vmPoolClusterHostId: vmPoolClusterHostId,
+	}
+}
+
+// Execute executes the request
+//  @return ContainerPaginatedList
+func (a *VMPoolAPIService) GetVMPoolClusterHostContainersExecute(r VMPoolAPIGetVMPoolClusterHostContainersRequest) (*ContainerPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ContainerPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.GetVMPoolClusterHostContainers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/containers"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostId, "vmPoolClusterHostId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterAddress != nil {
+		t := *r.filterAddress
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", t, "form", "multi")
+		}
+	}
+	if r.filterHost != nil {
+		t := *r.filterHost
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", t, "form", "multi")
+		}
+	}
+	if r.filterHosts != nil {
+		t := *r.filterHosts
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", t, "form", "multi")
+		}
+	}
+	if r.filterTypeId != nil {
+		t := *r.filterTypeId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", t, "form", "multi")
+		}
+	}
+	if r.filterPoolId != nil {
+		t := *r.filterPoolId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", t, "form", "multi")
+		}
+	}
+	if r.filterAdministrationState != nil {
+		t := *r.filterAdministrationState
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", t, "form", "multi")
+		}
+	}
+	if r.filterNumaNodes != nil {
+		t := *r.filterNumaNodes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMPoolAPIGetVMPoolClusterHostInterfaceRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
@@ -1803,6 +2174,373 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostsExecute(r VMPoolAPIGetVMPoolClus
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMPoolAPIGetVMPoolContainersRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId int64
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterSiteId *[]string
+	filterName *[]string
+	filterAddress *[]string
+	filterHost *[]string
+	filterHosts *[]string
+	filterTypeId *[]string
+	filterPoolId *[]string
+	filterAdministrationState *[]string
+	filterNumaNodes *[]string
+	filterInfrastructureId *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r VMPoolAPIGetVMPoolContainersRequest) Page(page float32) VMPoolAPIGetVMPoolContainersRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r VMPoolAPIGetVMPoolContainersRequest) Limit(limit float32) VMPoolAPIGetVMPoolContainersRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterId(filterId []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by siteId query param.  **Format:** filter.siteId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.siteId&#x3D;$btw:John Doe&amp;filter.siteId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterSiteId(filterSiteId []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterSiteId = &filterSiteId
+	return r
+}
+
+// Filter by name query param.  **Format:** filter.name&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.name&#x3D;$btw:John Doe&amp;filter.name&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterName(filterName []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by address query param.  **Format:** filter.address&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.address&#x3D;$btw:John Doe&amp;filter.address&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterAddress(filterAddress []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterAddress = &filterAddress
+	return r
+}
+
+// Filter by host query param.  **Format:** filter.host&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.host&#x3D;$btw:John Doe&amp;filter.host&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterHost(filterHost []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterHost = &filterHost
+	return r
+}
+
+// Filter by hosts query param.  **Format:** filter.hosts&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.hosts&#x3D;$btw:John Doe&amp;filter.hosts&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterHosts(filterHosts []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterHosts = &filterHosts
+	return r
+}
+
+// Filter by typeId query param.  **Format:** filter.typeId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.typeId&#x3D;$btw:John Doe&amp;filter.typeId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterTypeId(filterTypeId []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterTypeId = &filterTypeId
+	return r
+}
+
+// Filter by poolId query param.  **Format:** filter.poolId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.poolId&#x3D;$btw:John Doe&amp;filter.poolId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterPoolId(filterPoolId []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterPoolId = &filterPoolId
+	return r
+}
+
+// Filter by administrationState query param.  **Format:** filter.administrationState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.administrationState&#x3D;$btw:John Doe&amp;filter.administrationState&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterAdministrationState(filterAdministrationState []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterAdministrationState = &filterAdministrationState
+	return r
+}
+
+// Filter by numaNodes query param.  **Format:** filter.numaNodes&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.numaNodes&#x3D;$btw:John Doe&amp;filter.numaNodes&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterNumaNodes(filterNumaNodes []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterNumaNodes = &filterNumaNodes
+	return r
+}
+
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r VMPoolAPIGetVMPoolContainersRequest) FilterInfrastructureId(filterInfrastructureId []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;name:DESC   **Default Value:** id:DESC  **Available Fields** - id  - name  - host  - administrationState 
+func (r VMPoolAPIGetVMPoolContainersRequest) SortBy(sortBy []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r VMPoolAPIGetVMPoolContainersRequest) Search(search string) VMPoolAPIGetVMPoolContainersRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,name,host,hosts,administrationState   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - name  - host  - hosts  - administrationState 
+func (r VMPoolAPIGetVMPoolContainersRequest) SearchBy(searchBy []string) VMPoolAPIGetVMPoolContainersRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r VMPoolAPIGetVMPoolContainersRequest) Execute() (*ContainerPaginatedList, *http.Response, error) {
+	return r.ApiService.GetVMPoolContainersExecute(r)
+}
+
+/*
+GetVMPoolContainers Returns all Containers linked to the VM Pool
+
+Returns all Containers linked to the VM Pool
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @return VMPoolAPIGetVMPoolContainersRequest
+*/
+func (a *VMPoolAPIService) GetVMPoolContainers(ctx context.Context, vmPoolId int64) VMPoolAPIGetVMPoolContainersRequest {
+	return VMPoolAPIGetVMPoolContainersRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+	}
+}
+
+// Execute executes the request
+//  @return ContainerPaginatedList
+func (a *VMPoolAPIService) GetVMPoolContainersExecute(r VMPoolAPIGetVMPoolContainersRequest) (*ContainerPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ContainerPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.GetVMPoolContainers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/containers"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterSiteId != nil {
+		t := *r.filterSiteId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterAddress != nil {
+		t := *r.filterAddress
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.address", t, "form", "multi")
+		}
+	}
+	if r.filterHost != nil {
+		t := *r.filterHost
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.host", t, "form", "multi")
+		}
+	}
+	if r.filterHosts != nil {
+		t := *r.filterHosts
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.hosts", t, "form", "multi")
+		}
+	}
+	if r.filterTypeId != nil {
+		t := *r.filterTypeId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.typeId", t, "form", "multi")
+		}
+	}
+	if r.filterPoolId != nil {
+		t := *r.filterPoolId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.poolId", t, "form", "multi")
+		}
+	}
+	if r.filterAdministrationState != nil {
+		t := *r.filterAdministrationState
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.administrationState", t, "form", "multi")
+		}
+	}
+	if r.filterNumaNodes != nil {
+		t := *r.filterNumaNodes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.numaNodes", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

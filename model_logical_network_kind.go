@@ -25,7 +25,7 @@ const (
 	LOGICALNETWORKKIND_VXLAN LogicalNetworkKind = "vxlan"
 	LOGICALNETWORKKIND_FIBRE_CHANNEL LogicalNetworkKind = "fibre_channel"
 	LOGICALNETWORKKIND_INFINIBAND LogicalNetworkKind = "infiniband"
-	LOGICALNETWORKKIND_UNKNOWN_DEFAULT_OPEN_API LogicalNetworkKind = "unknown_default_open_api"
+	LOGICALNETWORKKIND_UNKNOWN_DEFAULT_OPEN_API LogicalNetworkKind = "11184809"
 )
 
 // All allowed values of LogicalNetworkKind enum
@@ -34,7 +34,7 @@ var AllowedLogicalNetworkKindEnumValues = []LogicalNetworkKind{
 	"vxlan",
 	"fibre_channel",
 	"infiniband",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *LogicalNetworkKind) UnmarshalJSON(src []byte) error {
@@ -51,8 +51,7 @@ func (v *LogicalNetworkKind) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = LOGICALNETWORKKIND_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid LogicalNetworkKind", value)
 }
 
 // NewLogicalNetworkKindFromValue returns a pointer to a valid LogicalNetworkKind

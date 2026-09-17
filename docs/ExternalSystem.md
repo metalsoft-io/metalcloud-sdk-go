@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **Label** | **string** | The external system unique label | 
 **Name** | **string** | The external system name | 
 **Annotations** | **map[string]interface{}** | Annotations - key/value pairs of additional metadata | 
+**Asn** | Pointer to **int64** | The BGP Autonomous System Number of the external system. Required to peer with it: a BGP session against this system renders its neighbor remote-as from this value. | [optional] 
+**LoopbackAddress** | Pointer to **string** | The loopback IPv4 address of the external system. Used as the peer address of a multihop BGP session against it; a session running over the link itself takes its peer address from the link&#39;s point-to-point /31 instead. | [optional] 
+**LoopbackAddressIpv6** | Pointer to **string** | The loopback IPv6 address of the external system. | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables exposed to network device configuration templates as the remote side of a link or BGP session terminating on this external system. | [optional] 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedAt** | **time.Time** | The date and time the entity was created | [readonly] 
 **UpdatedAt** | **time.Time** | The date and time the entity was last updated | [readonly] 
@@ -111,6 +115,106 @@ and a boolean to check if the value has been set.
 
 SetAnnotations sets Annotations field to given value.
 
+
+### GetAsn
+
+`func (o *ExternalSystem) GetAsn() int64`
+
+GetAsn returns the Asn field if non-nil, zero value otherwise.
+
+### GetAsnOk
+
+`func (o *ExternalSystem) GetAsnOk() (*int64, bool)`
+
+GetAsnOk returns a tuple with the Asn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAsn
+
+`func (o *ExternalSystem) SetAsn(v int64)`
+
+SetAsn sets Asn field to given value.
+
+### HasAsn
+
+`func (o *ExternalSystem) HasAsn() bool`
+
+HasAsn returns a boolean if a field has been set.
+
+### GetLoopbackAddress
+
+`func (o *ExternalSystem) GetLoopbackAddress() string`
+
+GetLoopbackAddress returns the LoopbackAddress field if non-nil, zero value otherwise.
+
+### GetLoopbackAddressOk
+
+`func (o *ExternalSystem) GetLoopbackAddressOk() (*string, bool)`
+
+GetLoopbackAddressOk returns a tuple with the LoopbackAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoopbackAddress
+
+`func (o *ExternalSystem) SetLoopbackAddress(v string)`
+
+SetLoopbackAddress sets LoopbackAddress field to given value.
+
+### HasLoopbackAddress
+
+`func (o *ExternalSystem) HasLoopbackAddress() bool`
+
+HasLoopbackAddress returns a boolean if a field has been set.
+
+### GetLoopbackAddressIpv6
+
+`func (o *ExternalSystem) GetLoopbackAddressIpv6() string`
+
+GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field if non-nil, zero value otherwise.
+
+### GetLoopbackAddressIpv6Ok
+
+`func (o *ExternalSystem) GetLoopbackAddressIpv6Ok() (*string, bool)`
+
+GetLoopbackAddressIpv6Ok returns a tuple with the LoopbackAddressIpv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoopbackAddressIpv6
+
+`func (o *ExternalSystem) SetLoopbackAddressIpv6(v string)`
+
+SetLoopbackAddressIpv6 sets LoopbackAddressIpv6 field to given value.
+
+### HasLoopbackAddressIpv6
+
+`func (o *ExternalSystem) HasLoopbackAddressIpv6() bool`
+
+HasLoopbackAddressIpv6 returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *ExternalSystem) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *ExternalSystem) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *ExternalSystem) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *ExternalSystem) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 ### GetRevision
 

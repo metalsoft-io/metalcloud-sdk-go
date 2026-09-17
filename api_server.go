@@ -25,6 +25,111 @@ import (
 // ServerAPIService ServerAPI service
 type ServerAPIService service
 
+type ServerAPIAcknowledgeServerDriftRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId int64
+	driftId int64
+}
+
+func (r ServerAPIAcknowledgeServerDriftRequest) Execute() (*ServerDriftHistory, *http.Response, error) {
+	return r.ApiService.AcknowledgeServerDriftExecute(r)
+}
+
+/*
+AcknowledgeServerDrift Acknowledge a server drift
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId Server ID
+ @param driftId Server drift history ID
+ @return ServerAPIAcknowledgeServerDriftRequest
+*/
+func (a *ServerAPIService) AcknowledgeServerDrift(ctx context.Context, serverId int64, driftId int64) ServerAPIAcknowledgeServerDriftRequest {
+	return ServerAPIAcknowledgeServerDriftRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+		driftId: driftId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerDriftHistory
+func (a *ServerAPIService) AcknowledgeServerDriftExecute(r ServerAPIAcknowledgeServerDriftRequest) (*ServerDriftHistory, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerDriftHistory
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.AcknowledgeServerDrift")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/drift-history/{driftId}/actions/acknowledge"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driftId"+"}", url.PathEscape(parameterValueToString(r.driftId, "driftId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerAPIArchiveServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
@@ -641,6 +746,332 @@ func (a *ServerAPIService) GetServerCredentialsExecute(r ServerAPIGetServerCrede
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerAPIGetServerDriftHistoryRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId float32
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterSnapshotId *[]string
+	filterAcknowledgedBy *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r ServerAPIGetServerDriftHistoryRequest) Page(page float32) ServerAPIGetServerDriftHistoryRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r ServerAPIGetServerDriftHistoryRequest) Limit(limit float32) ServerAPIGetServerDriftHistoryRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r ServerAPIGetServerDriftHistoryRequest) FilterId(filterId []string) ServerAPIGetServerDriftHistoryRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by snapshotId query param.  **Format:** filter.snapshotId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.snapshotId&#x3D;$btw:John Doe&amp;filter.snapshotId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r ServerAPIGetServerDriftHistoryRequest) FilterSnapshotId(filterSnapshotId []string) ServerAPIGetServerDriftHistoryRequest {
+	r.filterSnapshotId = &filterSnapshotId
+	return r
+}
+
+// Filter by acknowledgedBy query param.  **Format:** filter.acknowledgedBy&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.acknowledgedBy&#x3D;$btw:John Doe&amp;filter.acknowledgedBy&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r ServerAPIGetServerDriftHistoryRequest) FilterAcknowledgedBy(filterAcknowledgedBy []string) ServerAPIGetServerDriftHistoryRequest {
+	r.filterAcknowledgedBy = &filterAcknowledgedBy
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;snapshotId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - snapshotId  - acknowledgedBy 
+func (r ServerAPIGetServerDriftHistoryRequest) SortBy(sortBy []string) ServerAPIGetServerDriftHistoryRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r ServerAPIGetServerDriftHistoryRequest) Search(search string) ServerAPIGetServerDriftHistoryRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,snapshotId,acknowledgedBy   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - snapshotId  - acknowledgedBy 
+func (r ServerAPIGetServerDriftHistoryRequest) SearchBy(searchBy []string) ServerAPIGetServerDriftHistoryRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r ServerAPIGetServerDriftHistoryRequest) Execute() (*ServerDriftHistoryPaginatedList, *http.Response, error) {
+	return r.ApiService.GetServerDriftHistoryExecute(r)
+}
+
+/*
+GetServerDriftHistory Get drift history for a specific server
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId
+ @return ServerAPIGetServerDriftHistoryRequest
+*/
+func (a *ServerAPIService) GetServerDriftHistory(ctx context.Context, serverId float32) ServerAPIGetServerDriftHistoryRequest {
+	return ServerAPIGetServerDriftHistoryRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerDriftHistoryPaginatedList
+func (a *ServerAPIService) GetServerDriftHistoryExecute(r ServerAPIGetServerDriftHistoryRequest) (*ServerDriftHistoryPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerDriftHistoryPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.GetServerDriftHistory")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/drift-history"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterSnapshotId != nil {
+		t := *r.filterSnapshotId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.snapshotId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.snapshotId", t, "form", "multi")
+		}
+	}
+	if r.filterAcknowledgedBy != nil {
+		t := *r.filterAcknowledgedBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.acknowledgedBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.acknowledgedBy", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerAPIGetServerDriftHistoryByIdRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId float32
+	driftId float32
+}
+
+func (r ServerAPIGetServerDriftHistoryByIdRequest) Execute() (*ServerDriftHistory, *http.Response, error) {
+	return r.ApiService.GetServerDriftHistoryByIdExecute(r)
+}
+
+/*
+GetServerDriftHistoryById Get a specific drift history for a specific server
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId
+ @param driftId
+ @return ServerAPIGetServerDriftHistoryByIdRequest
+*/
+func (a *ServerAPIService) GetServerDriftHistoryById(ctx context.Context, serverId float32, driftId float32) ServerAPIGetServerDriftHistoryByIdRequest {
+	return ServerAPIGetServerDriftHistoryByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+		driftId: driftId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerDriftHistory
+func (a *ServerAPIService) GetServerDriftHistoryByIdExecute(r ServerAPIGetServerDriftHistoryByIdRequest) (*ServerDriftHistory, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerDriftHistory
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.GetServerDriftHistoryById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/drift-history/{driftId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driftId"+"}", url.PathEscape(parameterValueToString(r.driftId, "driftId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerAPIGetServerInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
@@ -950,6 +1381,157 @@ func (a *ServerAPIService) GetServerRemoteConsoleInfoExecute(r ServerAPIGetServe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerAPIGetServerSnapshotsRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId int64
+	page *float32
+	limit *float32
+	kind *string
+	search *string
+}
+
+// Page number (1-based)
+func (r ServerAPIGetServerSnapshotsRequest) Page(page float32) ServerAPIGetServerSnapshotsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of items per page
+func (r ServerAPIGetServerSnapshotsRequest) Limit(limit float32) ServerAPIGetServerSnapshotsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter snapshots by commit kind
+func (r ServerAPIGetServerSnapshotsRequest) Kind(kind string) ServerAPIGetServerSnapshotsRequest {
+	r.kind = &kind
+	return r
+}
+
+// Search term matched as a case-insensitive substring against oid and message
+func (r ServerAPIGetServerSnapshotsRequest) Search(search string) ServerAPIGetServerSnapshotsRequest {
+	r.search = &search
+	return r
+}
+
+func (r ServerAPIGetServerSnapshotsRequest) Execute() (*ServerSnapshotPaginatedList, *http.Response, error) {
+	return r.ApiService.GetServerSnapshotsExecute(r)
+}
+
+/*
+GetServerSnapshots Get server backup snapshots
+
+Returns the git-backed snapshots for a server (paginated).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId
+ @return ServerAPIGetServerSnapshotsRequest
+*/
+func (a *ServerAPIService) GetServerSnapshots(ctx context.Context, serverId int64) ServerAPIGetServerSnapshotsRequest {
+	return ServerAPIGetServerSnapshotsRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerSnapshotPaginatedList
+func (a *ServerAPIService) GetServerSnapshotsExecute(r ServerAPIGetServerSnapshotsRequest) (*ServerSnapshotPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerSnapshotPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.GetServerSnapshots")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/snapshots"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue float32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue float32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+		r.limit = &defaultValue
+	}
+	if r.kind != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "kind", r.kind, "form", "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerAPIGetServerVNCInfoRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
@@ -1072,6 +1654,11 @@ type ServerAPIGetServersRequest struct {
 	filterServerClass *[]string
 	filterServerStatus *[]string
 	filterRequiresManualCleaning *[]string
+	filterDriftDetectionSyncStatus *[]string
+	filterFirmwareBaselineComplianceStatus *[]string
+	filterFirmwareBackupEnabled *[]string
+	filterFirmwareDriftDetectionEnabled *[]string
+	filterTags *[]string
 	filterInstanceInfrastructureInfrastructureId *[]string
 	filterInstanceInfrastructureUserIdOwner *[]string
 	sortBy *[]string
@@ -1172,6 +1759,36 @@ func (r ServerAPIGetServersRequest) FilterServerStatus(filterServerStatus []stri
 // Filter by requiresManualCleaning query param.  **Format:** filter.requiresManualCleaning&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.requiresManualCleaning&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterRequiresManualCleaning(filterRequiresManualCleaning []string) ServerAPIGetServersRequest {
 	r.filterRequiresManualCleaning = &filterRequiresManualCleaning
+	return r
+}
+
+// Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$eq:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r ServerAPIGetServersRequest) FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus []string) ServerAPIGetServersRequest {
+	r.filterDriftDetectionSyncStatus = &filterDriftDetectionSyncStatus
+	return r
+}
+
+// Filter by firmwareBaselineComplianceStatus query param.  **Format:** filter.firmwareBaselineComplianceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareBaselineComplianceStatus&#x3D;$eq:John Doe&amp;filter.firmwareBaselineComplianceStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r ServerAPIGetServersRequest) FilterFirmwareBaselineComplianceStatus(filterFirmwareBaselineComplianceStatus []string) ServerAPIGetServersRequest {
+	r.filterFirmwareBaselineComplianceStatus = &filterFirmwareBaselineComplianceStatus
+	return r
+}
+
+// Filter by firmwareBackupEnabled query param.  **Format:** filter.firmwareBackupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareBackupEnabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r ServerAPIGetServersRequest) FilterFirmwareBackupEnabled(filterFirmwareBackupEnabled []string) ServerAPIGetServersRequest {
+	r.filterFirmwareBackupEnabled = &filterFirmwareBackupEnabled
+	return r
+}
+
+// Filter by firmwareDriftDetectionEnabled query param.  **Format:** filter.firmwareDriftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareDriftDetectionEnabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
+func (r ServerAPIGetServersRequest) FilterFirmwareDriftDetectionEnabled(filterFirmwareDriftDetectionEnabled []string) ServerAPIGetServersRequest {
+	r.filterFirmwareDriftDetectionEnabled = &filterFirmwareDriftDetectionEnabled
+	return r
+}
+
+// Filter by tags query param.  **Format:** filter.tags&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.tags&#x3D;$eq:John Doe&amp;filter.tags&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or
+func (r ServerAPIGetServersRequest) FilterTags(filterTags []string) ServerAPIGetServersRequest {
+	r.filterTags = &filterTags
 	return r
 }
 
@@ -1403,6 +2020,61 @@ func (a *ServerAPIService) GetServersExecute(r ServerAPIGetServersRequest) (*Ser
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.requiresManualCleaning", t, "form", "multi")
+		}
+	}
+	if r.filterDriftDetectionSyncStatus != nil {
+		t := *r.filterDriftDetectionSyncStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionSyncStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionSyncStatus", t, "form", "multi")
+		}
+	}
+	if r.filterFirmwareBaselineComplianceStatus != nil {
+		t := *r.filterFirmwareBaselineComplianceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.firmwareBaselineComplianceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.firmwareBaselineComplianceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterFirmwareBackupEnabled != nil {
+		t := *r.filterFirmwareBackupEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.firmwareBackupEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.firmwareBackupEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterFirmwareDriftDetectionEnabled != nil {
+		t := *r.filterFirmwareDriftDetectionEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.firmwareDriftDetectionEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.firmwareDriftDetectionEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterTags != nil {
+		t := *r.filterTags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.tags", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.tags", t, "form", "multi")
 		}
 	}
 	if r.filterInstanceInfrastructureInfrastructureId != nil {
@@ -2253,6 +2925,98 @@ func (a *ServerAPIService) ServerHardwareRescanExecute(r ServerAPIServerHardware
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerAPIServerSyncTargetSnapshotWithLatestSnapshotRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId int64
+}
+
+func (r ServerAPIServerSyncTargetSnapshotWithLatestSnapshotRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ServerSyncTargetSnapshotWithLatestSnapshotExecute(r)
+}
+
+/*
+ServerSyncTargetSnapshotWithLatestSnapshot Accept the current server configuration as the drift-detection target
+
+Points the server's drift-detection target snapshot at the latest snapshot, so a previously-detected out-of-band change is no longer reported as drift.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId
+ @return ServerAPIServerSyncTargetSnapshotWithLatestSnapshotRequest
+*/
+func (a *ServerAPIService) ServerSyncTargetSnapshotWithLatestSnapshot(ctx context.Context, serverId int64) ServerAPIServerSyncTargetSnapshotWithLatestSnapshotRequest {
+	return ServerAPIServerSyncTargetSnapshotWithLatestSnapshotRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerAPIService) ServerSyncTargetSnapshotWithLatestSnapshotExecute(r ServerAPIServerSyncTargetSnapshotWithLatestSnapshotRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.ServerSyncTargetSnapshotWithLatestSnapshot")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/actions/sync-target-snapshot-with-latest-snapshot"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ServerAPISetServerInterfacesDefaultFabricRequest struct {

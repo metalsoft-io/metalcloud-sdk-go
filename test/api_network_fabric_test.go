@@ -383,6 +383,21 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricAPIService UpdateNetworkFabricBgpSession", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int64
+		var bgpSessionId int64
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.UpdateNetworkFabricBgpSession(context.Background(), networkFabricId, bgpSessionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService UpdateNetworkFabricLinkAggregation", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

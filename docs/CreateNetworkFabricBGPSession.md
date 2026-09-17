@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BgpNumbering** | **string** | BGP numbering type for the link | 
 **BgpLinkConfiguration** | **string** | BGP link configuration type | 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables exposed to network device configuration templates as bgp_session_custom_variables | [optional] 
 **LinkId** | Pointer to **int64** | The ID of the link to associate with the BGP session. Either linkId or linkAggregationId should be provided. | [optional] 
 **LinkAggregationId** | Pointer to **int64** | The ID of the link aggregation to associate with the BGP session. Either linkId or linkAggregationId should be provided. | [optional] 
 
@@ -67,6 +68,31 @@ and a boolean to check if the value has been set.
 
 SetBgpLinkConfiguration sets BgpLinkConfiguration field to given value.
 
+
+### GetCustomVariables
+
+`func (o *CreateNetworkFabricBGPSession) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *CreateNetworkFabricBGPSession) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *CreateNetworkFabricBGPSession) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *CreateNetworkFabricBGPSession) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
 
 ### GetLinkId
 

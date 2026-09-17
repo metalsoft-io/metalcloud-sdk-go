@@ -24,7 +24,7 @@ const (
 	VMPOOLHOSTINTERFACESTATUS_INACTIVE VMPoolHostInterfaceStatus = "inactive"
 	VMPOOLHOSTINTERFACESTATUS_UNMANAGED VMPoolHostInterfaceStatus = "unmanaged"
 	VMPOOLHOSTINTERFACESTATUS_MANAGED VMPoolHostInterfaceStatus = "managed"
-	VMPOOLHOSTINTERFACESTATUS_UNKNOWN_DEFAULT_OPEN_API VMPoolHostInterfaceStatus = "unknown_default_open_api"
+	VMPOOLHOSTINTERFACESTATUS_UNKNOWN_DEFAULT_OPEN_API VMPoolHostInterfaceStatus = "11184809"
 )
 
 // All allowed values of VMPoolHostInterfaceStatus enum
@@ -32,7 +32,7 @@ var AllowedVMPoolHostInterfaceStatusEnumValues = []VMPoolHostInterfaceStatus{
 	"inactive",
 	"unmanaged",
 	"managed",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *VMPoolHostInterfaceStatus) UnmarshalJSON(src []byte) error {
@@ -49,8 +49,7 @@ func (v *VMPoolHostInterfaceStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = VMPOOLHOSTINTERFACESTATUS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid VMPoolHostInterfaceStatus", value)
 }
 
 // NewVMPoolHostInterfaceStatusFromValue returns a pointer to a valid VMPoolHostInterfaceStatus

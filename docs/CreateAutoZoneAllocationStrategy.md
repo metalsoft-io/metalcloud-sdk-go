@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 
 ## Methods
 
 ### NewCreateAutoZoneAllocationStrategy
 
-`func NewCreateAutoZoneAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, ) *CreateAutoZoneAllocationStrategy`
+`func NewCreateAutoZoneAllocationStrategy(kind string, scope CreateResourceScope, ) *CreateAutoZoneAllocationStrategy`
 
 NewCreateAutoZoneAllocationStrategy instantiates a new CreateAutoZoneAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateAutoZoneAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateAutoZoneAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateAutoZoneAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateAutoZoneAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateAutoZoneAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateAutoZoneAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

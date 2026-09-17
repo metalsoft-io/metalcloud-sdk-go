@@ -25,7 +25,7 @@ const (
 	ACLFORWARDINGACTION_DENY ACLForwardingAction = "deny"
 	ACLFORWARDINGACTION_TRANSIT ACLForwardingAction = "transit"
 	ACLFORWARDINGACTION_DISCARD ACLForwardingAction = "discard"
-	ACLFORWARDINGACTION_UNKNOWN_DEFAULT_OPEN_API ACLForwardingAction = "unknown_default_open_api"
+	ACLFORWARDINGACTION_UNKNOWN_DEFAULT_OPEN_API ACLForwardingAction = "11184809"
 )
 
 // All allowed values of ACLForwardingAction enum
@@ -34,7 +34,7 @@ var AllowedACLForwardingActionEnumValues = []ACLForwardingAction{
 	"deny",
 	"transit",
 	"discard",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *ACLForwardingAction) UnmarshalJSON(src []byte) error {
@@ -51,8 +51,7 @@ func (v *ACLForwardingAction) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = ACLFORWARDINGACTION_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid ACLForwardingAction", value)
 }
 
 // NewACLForwardingActionFromValue returns a pointer to a valid ACLForwardingAction

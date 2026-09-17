@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Provider** | **string** | The provider name | 
+**Provider** | [**UserProviderName**](UserProviderName.md) | The provider name | 
 **SsoEntryPoint** | Pointer to **string** | The SSO entry point URL for SAML authentication | [optional] 
 
 ## Methods
 
 ### NewAuthenticationUserProvider
 
-`func NewAuthenticationUserProvider(provider string, ) *AuthenticationUserProvider`
+`func NewAuthenticationUserProvider(provider UserProviderName, ) *AuthenticationUserProvider`
 
 NewAuthenticationUserProvider instantiates a new AuthenticationUserProvider object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetProvider
 
-`func (o *AuthenticationUserProvider) GetProvider() string`
+`func (o *AuthenticationUserProvider) GetProvider() UserProviderName`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### GetProviderOk
 
-`func (o *AuthenticationUserProvider) GetProviderOk() (*string, bool)`
+`func (o *AuthenticationUserProvider) GetProviderOk() (*UserProviderName, bool)`
 
 GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvider
 
-`func (o *AuthenticationUserProvider) SetProvider(v string)`
+`func (o *AuthenticationUserProvider) SetProvider(v UserProviderName)`
 
 SetProvider sets Provider field to given value.
 

@@ -35,6 +35,8 @@ type GenericDriveDiscoverInformation struct {
 	DriveType string `json:"driveType"`
 	// Indicates if the drive is using Fibre Channel.
 	IsFibreChannel bool `json:"isFibreChannel"`
+	// The identifier of the storage port used for mounting.
+	PortIdentifier *string `json:"portIdentifier,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -267,6 +269,38 @@ func (o *GenericDriveDiscoverInformation) SetIsFibreChannel(v bool) {
 	o.IsFibreChannel = v
 }
 
+// GetPortIdentifier returns the PortIdentifier field value if set, zero value otherwise.
+func (o *GenericDriveDiscoverInformation) GetPortIdentifier() string {
+	if o == nil || IsNil(o.PortIdentifier) {
+		var ret string
+		return ret
+	}
+	return *o.PortIdentifier
+}
+
+// GetPortIdentifierOk returns a tuple with the PortIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericDriveDiscoverInformation) GetPortIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.PortIdentifier) {
+		return nil, false
+	}
+	return o.PortIdentifier, true
+}
+
+// HasPortIdentifier returns a boolean if a field has been set.
+func (o *GenericDriveDiscoverInformation) HasPortIdentifier() bool {
+	if o != nil && !IsNil(o.PortIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortIdentifier gets a reference to the given string and assigns it to the PortIdentifier field.
+func (o *GenericDriveDiscoverInformation) SetPortIdentifier(v string) {
+	o.PortIdentifier = &v
+}
+
 func (o GenericDriveDiscoverInformation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -294,6 +328,9 @@ func (o GenericDriveDiscoverInformation) ToMap() (map[string]interface{}, error)
 	}
 	toSerialize["driveType"] = o.DriveType
 	toSerialize["isFibreChannel"] = o.IsFibreChannel
+	if !IsNil(o.PortIdentifier) {
+		toSerialize["portIdentifier"] = o.PortIdentifier
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -345,6 +382,7 @@ func (o *GenericDriveDiscoverInformation) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "targetNqn")
 		delete(additionalProperties, "driveType")
 		delete(additionalProperties, "isFibreChannel")
+		delete(additionalProperties, "portIdentifier")
 		o.AdditionalProperties = additionalProperties
 	}
 

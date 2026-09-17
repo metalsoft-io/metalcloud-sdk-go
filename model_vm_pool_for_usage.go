@@ -29,6 +29,8 @@ type VMPoolForUsage struct {
 	Driver string `json:"driver"`
 	// Fabric ID of the VM Pool
 	FabricId int64 `json:"fabricId"`
+	// VM Pool technology
+	Technologies []string `json:"technologies"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,12 +40,13 @@ type _VMPoolForUsage VMPoolForUsage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolForUsage(id int64, name string, driver string, fabricId int64) *VMPoolForUsage {
+func NewVMPoolForUsage(id int64, name string, driver string, fabricId int64, technologies []string) *VMPoolForUsage {
 	this := VMPoolForUsage{}
 	this.Id = id
 	this.Name = name
 	this.Driver = driver
 	this.FabricId = fabricId
+	this.Technologies = technologies
 	return &this
 }
 
@@ -151,6 +154,30 @@ func (o *VMPoolForUsage) SetFabricId(v int64) {
 	o.FabricId = v
 }
 
+// GetTechnologies returns the Technologies field value
+func (o *VMPoolForUsage) GetTechnologies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Technologies
+}
+
+// GetTechnologiesOk returns a tuple with the Technologies field value
+// and a boolean to check if the value has been set.
+func (o *VMPoolForUsage) GetTechnologiesOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Technologies, true
+}
+
+// SetTechnologies sets field value
+func (o *VMPoolForUsage) SetTechnologies(v []string) {
+	o.Technologies = v
+}
+
 func (o VMPoolForUsage) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -165,6 +192,7 @@ func (o VMPoolForUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["driver"] = o.Driver
 	toSerialize["fabricId"] = o.FabricId
+	toSerialize["technologies"] = o.Technologies
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -182,6 +210,7 @@ func (o *VMPoolForUsage) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"driver",
 		"fabricId",
+		"technologies",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -215,6 +244,7 @@ func (o *VMPoolForUsage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "fabricId")
+		delete(additionalProperties, "technologies")
 		o.AdditionalProperties = additionalProperties
 	}
 

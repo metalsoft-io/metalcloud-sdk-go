@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **NetworkDeviceId** | **NullableInt64** |  | 
 **NetworkFabricId** | **NullableInt64** |  | 
 **LifecycleStage** | [**DeviceConfigurationProfileLifecycleStage**](DeviceConfigurationProfileLifecycleStage.md) |  | 
-**Priority** | **float32** |  | 
+**Priority** | **int32** |  | 
 **Annotations** | **map[string]string** | Key-value annotations copied from the profile. | 
 **Tags** | **[]string** | Tags copied from the profile. Empty array when the profile has no tags. | 
 **Rendered** | **string** | Rendered template output as UTF-8 plain text. | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewRenderedApplicableDeviceConfigurationTemplateProfileItem
 
-`func NewRenderedApplicableDeviceConfigurationTemplateProfileItem(id int64, deviceConfigurationTemplateId int64, networkDeviceId NullableInt64, networkFabricId NullableInt64, lifecycleStage DeviceConfigurationProfileLifecycleStage, priority float32, annotations map[string]string, tags []string, rendered string, ) *RenderedApplicableDeviceConfigurationTemplateProfileItem`
+`func NewRenderedApplicableDeviceConfigurationTemplateProfileItem(id int64, deviceConfigurationTemplateId int64, networkDeviceId NullableInt64, networkFabricId NullableInt64, lifecycleStage DeviceConfigurationProfileLifecycleStage, priority int32, annotations map[string]string, tags []string, rendered string, ) *RenderedApplicableDeviceConfigurationTemplateProfileItem`
 
 NewRenderedApplicableDeviceConfigurationTemplateProfileItem instantiates a new RenderedApplicableDeviceConfigurationTemplateProfileItem object
 This constructor will assign default values to properties that have it defined,
@@ -157,20 +157,20 @@ SetLifecycleStage sets LifecycleStage field to given value.
 
 ### GetPriority
 
-`func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriority() float32`
+`func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriority() int32`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriorityOk() (*float32, bool)`
+`func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriorityOk() (*int32, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) SetPriority(v float32)`
+`func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) SetPriority(v int32)`
 
 SetPriority sets Priority field to given value.
 

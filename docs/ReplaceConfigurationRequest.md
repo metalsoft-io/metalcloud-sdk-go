@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Users** | Pointer to [**Users**](Users.md) | User management and authentication provider settings | [optional] 
 **Ldap** | Pointer to [**Ldap**](Ldap.md) | LDAP directory integration settings | [optional] 
 **Saml** | Pointer to [**Saml**](Saml.md) | SAML SSO integration settings | [optional] 
+**Oidc** | Pointer to [**Oidc**](Oidc.md) | OpenID Connect SSO integration settings | [optional] 
 **MailClient** | Pointer to [**PlatformMailClient**](PlatformMailClient.md) | Outbound email (SMTP) settings | [optional] 
 **PowerDNS** | Pointer to [**PlatformPowerDNS**](PlatformPowerDNS.md) | PowerDNS integration settings | [optional] 
 **BSIAdminURLRoot** | Pointer to **string** | Base URL for the platform admin interface | [optional] 
@@ -19,14 +20,20 @@ Name | Type | Description | Notes
 **AllowServersWithOneInterface** | Pointer to **bool** | Whether single-interface servers are permitted in the platform | [optional] 
 **AFC** | Pointer to [**PlatformAFC**](PlatformAFC.md) | Automated Fulfillment Center notification settings | [optional] 
 **DisablePublicUserSignup** | Pointer to **bool** | Whether self-service user registration is disabled | [optional] 
+**ServerAllocationPolicy** | Pointer to [**PlatformServerAllocationPolicy**](PlatformServerAllocationPolicy.md) | Rules that prevent server allocation based on health issues and firmware-baseline drift | [optional] 
 **SyslogNotificationRules** | Pointer to [**[]SyslogRule**](SyslogRule.md) | Syslog notification rules for email alerting | [optional] 
 **ServerHealthNotificationEmails** | Pointer to **[]string** | Email addresses to notify about server health events | [optional] 
 **NetworkDeviceHealthNotificationEmails** | Pointer to **[]string** | Email addresses to notify about network device health events | [optional] 
 **NetworkDeviceConfigurationDriftNotificationEmails** | Pointer to **[]string** | Email addresses to notify about network device configuration drift | [optional] 
+**ServerFirmwareBaselineDriftNotificationEmails** | Pointer to **[]string** | Email addresses to notify when a server falls below the minimum versions of its firmware baseline | [optional] 
+**ServerConfigurationDriftNotificationEmails** | Pointer to **[]string** | Email addresses to notify when a server’s configuration changes outside of a planned change. | [optional] 
 **VmPoolHealthNotificationEmails** | Pointer to **[]string** | Email addresses to notify about VM pool health events | [optional] 
 **EventRetention** | Pointer to **map[string]interface{}** | Event retention policy configuration | [optional] 
 **SyslogBufferTtlMs** | Pointer to **float32** | Time-to-live for buffered syslog messages in milliseconds | [optional] 
 **SyslogBufferMaxUnique** | Pointer to **float32** | Maximum number of unique syslog messages to buffer before flushing | [optional] 
+**ServerMonitoringAgentDiagnosticsEnabled** | Pointer to **bool** | Whether to invoke the monitoring agent for a diagnostic when a server health check degrades. When disabled the alert email is still sent, using the plain template. | [optional] 
+**NetworkDeviceMonitoringAgentDiagnosticsEnabled** | Pointer to **bool** | Whether to invoke the monitoring agent for a diagnostic when a network device health check degrades. When disabled the alert email is still sent, using the plain template. | [optional] 
+**MonitoringAgentHealthDiagnosticsTimeoutMs** | Pointer to **float32** | How long to wait for the monitoring agent diagnostic, in milliseconds. Once it elapses the alert email is sent without the monitoring agent section rather than being held back. | [optional] 
 **SharedSecret** | **string** | Shared secret used for tunnel authentication | 
 **Bdk** | [**TunnelBdk**](TunnelBdk.md) | BDK service credentials | 
 **Syslog** | [**TunnelSyslog**](TunnelSyslog.md) | Syslog message filtering configuration | 
@@ -130,6 +137,31 @@ SetSaml sets Saml field to given value.
 `func (o *ReplaceConfigurationRequest) HasSaml() bool`
 
 HasSaml returns a boolean if a field has been set.
+
+### GetOidc
+
+`func (o *ReplaceConfigurationRequest) GetOidc() Oidc`
+
+GetOidc returns the Oidc field if non-nil, zero value otherwise.
+
+### GetOidcOk
+
+`func (o *ReplaceConfigurationRequest) GetOidcOk() (*Oidc, bool)`
+
+GetOidcOk returns a tuple with the Oidc field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOidc
+
+`func (o *ReplaceConfigurationRequest) SetOidc(v Oidc)`
+
+SetOidc sets Oidc field to given value.
+
+### HasOidc
+
+`func (o *ReplaceConfigurationRequest) HasOidc() bool`
+
+HasOidc returns a boolean if a field has been set.
 
 ### GetMailClient
 
@@ -431,6 +463,31 @@ SetDisablePublicUserSignup sets DisablePublicUserSignup field to given value.
 
 HasDisablePublicUserSignup returns a boolean if a field has been set.
 
+### GetServerAllocationPolicy
+
+`func (o *ReplaceConfigurationRequest) GetServerAllocationPolicy() PlatformServerAllocationPolicy`
+
+GetServerAllocationPolicy returns the ServerAllocationPolicy field if non-nil, zero value otherwise.
+
+### GetServerAllocationPolicyOk
+
+`func (o *ReplaceConfigurationRequest) GetServerAllocationPolicyOk() (*PlatformServerAllocationPolicy, bool)`
+
+GetServerAllocationPolicyOk returns a tuple with the ServerAllocationPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerAllocationPolicy
+
+`func (o *ReplaceConfigurationRequest) SetServerAllocationPolicy(v PlatformServerAllocationPolicy)`
+
+SetServerAllocationPolicy sets ServerAllocationPolicy field to given value.
+
+### HasServerAllocationPolicy
+
+`func (o *ReplaceConfigurationRequest) HasServerAllocationPolicy() bool`
+
+HasServerAllocationPolicy returns a boolean if a field has been set.
+
 ### GetSyslogNotificationRules
 
 `func (o *ReplaceConfigurationRequest) GetSyslogNotificationRules() []SyslogRule`
@@ -531,6 +588,56 @@ SetNetworkDeviceConfigurationDriftNotificationEmails sets NetworkDeviceConfigura
 
 HasNetworkDeviceConfigurationDriftNotificationEmails returns a boolean if a field has been set.
 
+### GetServerFirmwareBaselineDriftNotificationEmails
+
+`func (o *ReplaceConfigurationRequest) GetServerFirmwareBaselineDriftNotificationEmails() []string`
+
+GetServerFirmwareBaselineDriftNotificationEmails returns the ServerFirmwareBaselineDriftNotificationEmails field if non-nil, zero value otherwise.
+
+### GetServerFirmwareBaselineDriftNotificationEmailsOk
+
+`func (o *ReplaceConfigurationRequest) GetServerFirmwareBaselineDriftNotificationEmailsOk() (*[]string, bool)`
+
+GetServerFirmwareBaselineDriftNotificationEmailsOk returns a tuple with the ServerFirmwareBaselineDriftNotificationEmails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerFirmwareBaselineDriftNotificationEmails
+
+`func (o *ReplaceConfigurationRequest) SetServerFirmwareBaselineDriftNotificationEmails(v []string)`
+
+SetServerFirmwareBaselineDriftNotificationEmails sets ServerFirmwareBaselineDriftNotificationEmails field to given value.
+
+### HasServerFirmwareBaselineDriftNotificationEmails
+
+`func (o *ReplaceConfigurationRequest) HasServerFirmwareBaselineDriftNotificationEmails() bool`
+
+HasServerFirmwareBaselineDriftNotificationEmails returns a boolean if a field has been set.
+
+### GetServerConfigurationDriftNotificationEmails
+
+`func (o *ReplaceConfigurationRequest) GetServerConfigurationDriftNotificationEmails() []string`
+
+GetServerConfigurationDriftNotificationEmails returns the ServerConfigurationDriftNotificationEmails field if non-nil, zero value otherwise.
+
+### GetServerConfigurationDriftNotificationEmailsOk
+
+`func (o *ReplaceConfigurationRequest) GetServerConfigurationDriftNotificationEmailsOk() (*[]string, bool)`
+
+GetServerConfigurationDriftNotificationEmailsOk returns a tuple with the ServerConfigurationDriftNotificationEmails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerConfigurationDriftNotificationEmails
+
+`func (o *ReplaceConfigurationRequest) SetServerConfigurationDriftNotificationEmails(v []string)`
+
+SetServerConfigurationDriftNotificationEmails sets ServerConfigurationDriftNotificationEmails field to given value.
+
+### HasServerConfigurationDriftNotificationEmails
+
+`func (o *ReplaceConfigurationRequest) HasServerConfigurationDriftNotificationEmails() bool`
+
+HasServerConfigurationDriftNotificationEmails returns a boolean if a field has been set.
+
 ### GetVmPoolHealthNotificationEmails
 
 `func (o *ReplaceConfigurationRequest) GetVmPoolHealthNotificationEmails() []string`
@@ -630,6 +737,81 @@ SetSyslogBufferMaxUnique sets SyslogBufferMaxUnique field to given value.
 `func (o *ReplaceConfigurationRequest) HasSyslogBufferMaxUnique() bool`
 
 HasSyslogBufferMaxUnique returns a boolean if a field has been set.
+
+### GetServerMonitoringAgentDiagnosticsEnabled
+
+`func (o *ReplaceConfigurationRequest) GetServerMonitoringAgentDiagnosticsEnabled() bool`
+
+GetServerMonitoringAgentDiagnosticsEnabled returns the ServerMonitoringAgentDiagnosticsEnabled field if non-nil, zero value otherwise.
+
+### GetServerMonitoringAgentDiagnosticsEnabledOk
+
+`func (o *ReplaceConfigurationRequest) GetServerMonitoringAgentDiagnosticsEnabledOk() (*bool, bool)`
+
+GetServerMonitoringAgentDiagnosticsEnabledOk returns a tuple with the ServerMonitoringAgentDiagnosticsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerMonitoringAgentDiagnosticsEnabled
+
+`func (o *ReplaceConfigurationRequest) SetServerMonitoringAgentDiagnosticsEnabled(v bool)`
+
+SetServerMonitoringAgentDiagnosticsEnabled sets ServerMonitoringAgentDiagnosticsEnabled field to given value.
+
+### HasServerMonitoringAgentDiagnosticsEnabled
+
+`func (o *ReplaceConfigurationRequest) HasServerMonitoringAgentDiagnosticsEnabled() bool`
+
+HasServerMonitoringAgentDiagnosticsEnabled returns a boolean if a field has been set.
+
+### GetNetworkDeviceMonitoringAgentDiagnosticsEnabled
+
+`func (o *ReplaceConfigurationRequest) GetNetworkDeviceMonitoringAgentDiagnosticsEnabled() bool`
+
+GetNetworkDeviceMonitoringAgentDiagnosticsEnabled returns the NetworkDeviceMonitoringAgentDiagnosticsEnabled field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk
+
+`func (o *ReplaceConfigurationRequest) GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk() (*bool, bool)`
+
+GetNetworkDeviceMonitoringAgentDiagnosticsEnabledOk returns a tuple with the NetworkDeviceMonitoringAgentDiagnosticsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceMonitoringAgentDiagnosticsEnabled
+
+`func (o *ReplaceConfigurationRequest) SetNetworkDeviceMonitoringAgentDiagnosticsEnabled(v bool)`
+
+SetNetworkDeviceMonitoringAgentDiagnosticsEnabled sets NetworkDeviceMonitoringAgentDiagnosticsEnabled field to given value.
+
+### HasNetworkDeviceMonitoringAgentDiagnosticsEnabled
+
+`func (o *ReplaceConfigurationRequest) HasNetworkDeviceMonitoringAgentDiagnosticsEnabled() bool`
+
+HasNetworkDeviceMonitoringAgentDiagnosticsEnabled returns a boolean if a field has been set.
+
+### GetMonitoringAgentHealthDiagnosticsTimeoutMs
+
+`func (o *ReplaceConfigurationRequest) GetMonitoringAgentHealthDiagnosticsTimeoutMs() float32`
+
+GetMonitoringAgentHealthDiagnosticsTimeoutMs returns the MonitoringAgentHealthDiagnosticsTimeoutMs field if non-nil, zero value otherwise.
+
+### GetMonitoringAgentHealthDiagnosticsTimeoutMsOk
+
+`func (o *ReplaceConfigurationRequest) GetMonitoringAgentHealthDiagnosticsTimeoutMsOk() (*float32, bool)`
+
+GetMonitoringAgentHealthDiagnosticsTimeoutMsOk returns a tuple with the MonitoringAgentHealthDiagnosticsTimeoutMs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitoringAgentHealthDiagnosticsTimeoutMs
+
+`func (o *ReplaceConfigurationRequest) SetMonitoringAgentHealthDiagnosticsTimeoutMs(v float32)`
+
+SetMonitoringAgentHealthDiagnosticsTimeoutMs sets MonitoringAgentHealthDiagnosticsTimeoutMs field to given value.
+
+### HasMonitoringAgentHealthDiagnosticsTimeoutMs
+
+`func (o *ReplaceConfigurationRequest) HasMonitoringAgentHealthDiagnosticsTimeoutMs() bool`
+
+HasMonitoringAgentHealthDiagnosticsTimeoutMs returns a boolean if a field has been set.
 
 ### GetSharedSecret
 

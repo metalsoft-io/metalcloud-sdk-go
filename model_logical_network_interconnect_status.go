@@ -25,7 +25,7 @@ const (
 	LOGICALNETWORKINTERCONNECTSTATUS_ACTIVE LogicalNetworkInterconnectStatus = "active"
 	LOGICALNETWORKINTERCONNECTSTATUS_PENDING_DELETION LogicalNetworkInterconnectStatus = "pending_deletion"
 	LOGICALNETWORKINTERCONNECTSTATUS_DELETING LogicalNetworkInterconnectStatus = "deleting"
-	LOGICALNETWORKINTERCONNECTSTATUS_UNKNOWN_DEFAULT_OPEN_API LogicalNetworkInterconnectStatus = "unknown_default_open_api"
+	LOGICALNETWORKINTERCONNECTSTATUS_UNKNOWN_DEFAULT_OPEN_API LogicalNetworkInterconnectStatus = "11184809"
 )
 
 // All allowed values of LogicalNetworkInterconnectStatus enum
@@ -34,7 +34,7 @@ var AllowedLogicalNetworkInterconnectStatusEnumValues = []LogicalNetworkIntercon
 	"active",
 	"pending_deletion",
 	"deleting",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *LogicalNetworkInterconnectStatus) UnmarshalJSON(src []byte) error {
@@ -51,8 +51,7 @@ func (v *LogicalNetworkInterconnectStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = LOGICALNETWORKINTERCONNECTSTATUS_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid LogicalNetworkInterconnectStatus", value)
 }
 
 // NewLogicalNetworkInterconnectStatusFromValue returns a pointer to a valid LogicalNetworkInterconnectStatus

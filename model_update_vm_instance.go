@@ -20,11 +20,11 @@ var _ MappedNullable = &UpdateVMInstance{}
 
 // UpdateVMInstance struct for UpdateVMInstance
 type UpdateVMInstance struct {
-	// Label for the VM Instance Group.
+	// Label for the Instance Group.
 	Label *string `json:"label,omitempty"`
-	// Disk size in GB for the VM Instance.
+	// Disk size in GB for the Instance.
 	DiskSizeGB *float32 `json:"diskSizeGB,omitempty"`
-	// Custom variables for the VM Instance.
+	// Custom variables for the Instance.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

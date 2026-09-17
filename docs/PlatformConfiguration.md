@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **AllowServersWithOneInterface** | Pointer to **bool** | Whether single-interface servers are permitted in the platform | [optional] 
 **AFC** | Pointer to [**PlatformAFC**](PlatformAFC.md) | Automated Fulfillment Center notification settings | [optional] 
 **DisablePublicUserSignup** | Pointer to **bool** | Whether self-service user registration is disabled | [optional] 
+**ServerAllocationPolicy** | Pointer to [**PlatformServerAllocationPolicy**](PlatformServerAllocationPolicy.md) | Rules that prevent server allocation based on health issues and firmware-baseline drift | [optional] 
 
 ## Methods
 
@@ -335,6 +336,31 @@ SetDisablePublicUserSignup sets DisablePublicUserSignup field to given value.
 `func (o *PlatformConfiguration) HasDisablePublicUserSignup() bool`
 
 HasDisablePublicUserSignup returns a boolean if a field has been set.
+
+### GetServerAllocationPolicy
+
+`func (o *PlatformConfiguration) GetServerAllocationPolicy() PlatformServerAllocationPolicy`
+
+GetServerAllocationPolicy returns the ServerAllocationPolicy field if non-nil, zero value otherwise.
+
+### GetServerAllocationPolicyOk
+
+`func (o *PlatformConfiguration) GetServerAllocationPolicyOk() (*PlatformServerAllocationPolicy, bool)`
+
+GetServerAllocationPolicyOk returns a tuple with the ServerAllocationPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerAllocationPolicy
+
+`func (o *PlatformConfiguration) SetServerAllocationPolicy(v PlatformServerAllocationPolicy)`
+
+SetServerAllocationPolicy sets ServerAllocationPolicy field to given value.
+
+### HasServerAllocationPolicy
+
+`func (o *PlatformConfiguration) HasServerAllocationPolicy() bool`
+
+HasServerAllocationPolicy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

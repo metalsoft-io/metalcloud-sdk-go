@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | Label for the VM Instance Group. | [optional] 
-**DiskSizeGB** | Pointer to **float32** | Disk size in GB for the VM Instance. | [optional] 
-**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the VM Instance. | [optional] 
+**Label** | Pointer to **string** | Label for the Instance Group. | [optional] 
+**DiskSizeGB** | Pointer to **float32** | Disk size in GB for the Instance. | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the Instance. | [optional] 
 
 ## Methods
 

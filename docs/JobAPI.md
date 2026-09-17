@@ -4,11 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCronJob**](JobAPI.md#CreateCronJob) | **Post** /api/v2/cron-jobs | Creates a new cron job
-[**DeleteCronJob**](JobAPI.md#DeleteCronJob) | **Delete** /api/v2/cron-jobs/{cronJobId} | Delete cron job
-[**GetCronJob**](JobAPI.md#GetCronJob) | **Get** /api/v2/cron-jobs/{cronJobId} | Get cron job information
-[**GetCronJobs**](JobAPI.md#GetCronJobs) | **Get** /api/v2/cron-jobs | Get a list of cron jobs
-[**GetCronJobsSupportedFunctions**](JobAPI.md#GetCronJobsSupportedFunctions) | **Get** /api/v2/cron-jobs/supported-functions | Get a list of supported functions for cron jobs
+[**CreateScheduledJob**](JobAPI.md#CreateScheduledJob) | **Post** /api/v2/scheduled-jobs | Creates a new scheduled job
+[**DeleteScheduledJob**](JobAPI.md#DeleteScheduledJob) | **Delete** /api/v2/scheduled-jobs/{scheduledJobId} | Delete scheduled job
 [**GetJob**](JobAPI.md#GetJob) | **Get** /api/v2/jobs/{jobId} | Get Job information
 [**GetJobExceptions**](JobAPI.md#GetJobExceptions) | **Get** /api/v2/jobs/{jobId}/exceptions | Get a list of Job Exceptions
 [**GetJobFromArchive**](JobAPI.md#GetJobFromArchive) | **Get** /api/v2/jobs/archive/{jobId} | Get Job from archive information
@@ -18,18 +15,21 @@ Method | HTTP request | Description
 [**GetJobs**](JobAPI.md#GetJobs) | **Get** /api/v2/jobs | Get a list of Jobs
 [**GetJobsFromArchive**](JobAPI.md#GetJobsFromArchive) | **Get** /api/v2/jobs/archive | Get a list of Jobs from archive
 [**GetJobsStatistics**](JobAPI.md#GetJobsStatistics) | **Get** /api/v2/jobs/statistics | Get Jobs statistics
+[**GetScheduledJob**](JobAPI.md#GetScheduledJob) | **Get** /api/v2/scheduled-jobs/{scheduledJobId} | Get scheduled job information
+[**GetScheduledJobs**](JobAPI.md#GetScheduledJobs) | **Get** /api/v2/scheduled-jobs | Get a list of scheduled jobs
+[**GetScheduledJobsSupportedFunctions**](JobAPI.md#GetScheduledJobsSupportedFunctions) | **Get** /api/v2/scheduled-jobs/supported-functions | Get a list of supported functions for scheduled jobs
 [**IssueCommandForJob**](JobAPI.md#IssueCommandForJob) | **Post** /api/v2/jobs/{jobId}/actions/issue-command | Issues a command for a job that changes the operational state of the job
 [**RetryJob**](JobAPI.md#RetryJob) | **Post** /api/v2/jobs/{jobId}/actions/retry | Retries a job
 [**SkipJob**](JobAPI.md#SkipJob) | **Post** /api/v2/jobs/{jobId}/actions/skip | Skips a job
-[**UpdateCronJob**](JobAPI.md#UpdateCronJob) | **Patch** /api/v2/cron-jobs/{cronJobId} | Updates an existing cron job
+[**UpdateScheduledJob**](JobAPI.md#UpdateScheduledJob) | **Patch** /api/v2/scheduled-jobs/{scheduledJobId} | Updates an existing scheduled job
 
 
 
-## CreateCronJob
+## CreateScheduledJob
 
-> CronJob CreateCronJob(ctx).CreateCronJob(createCronJob).Execute()
+> ScheduledJob CreateScheduledJob(ctx).ScheduledCronJob(scheduledCronJob).Execute()
 
-Creates a new cron job
+Creates a new scheduled job
 
 
 
@@ -46,17 +46,17 @@ import (
 )
 
 func main() {
-	createCronJob := *openapiclient.NewCreateCronJob("Label_example", "FunctionName_example", []map[string]interface{}{map[string]interface{}(123)}, "Schedule_example", float32(123), float32(123), float32(123)) // CreateCronJob | The cron job details
+	scheduledCronJob := *openapiclient.NewScheduledCronJob("Label_example", "FunctionName_example", []map[string]interface{}{map[string]interface{}(123)}, "Schedule_example", float32(123), float32(123), float32(123)) // ScheduledCronJob | The scheduled job details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.JobAPI.CreateCronJob(context.Background()).CreateCronJob(createCronJob).Execute()
+	resp, r, err := apiClient.JobAPI.CreateScheduledJob(context.Background()).ScheduledCronJob(scheduledCronJob).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.CreateCronJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.CreateScheduledJob``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateCronJob`: CronJob
-	fmt.Fprintf(os.Stdout, "Response from `JobAPI.CreateCronJob`: %v\n", resp)
+	// response from `CreateScheduledJob`: ScheduledJob
+	fmt.Fprintf(os.Stdout, "Response from `JobAPI.CreateScheduledJob`: %v\n", resp)
 }
 ```
 
@@ -66,16 +66,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateCronJobRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateScheduledJobRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createCronJob** | [**CreateCronJob**](CreateCronJob.md) | The cron job details | 
+ **scheduledCronJob** | [**ScheduledCronJob**](ScheduledCronJob.md) | The scheduled job details | 
 
 ### Return type
 
-[**CronJob**](CronJob.md)
+[**ScheduledJob**](ScheduledJob.md)
 
 ### Authorization
 
@@ -91,11 +91,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteCronJob
+## DeleteScheduledJob
 
-> DeleteCronJob(ctx, cronJobId).Execute()
+> DeleteScheduledJob(ctx, scheduledJobId).Execute()
 
-Delete cron job
+Delete scheduled job
 
 
 
@@ -112,13 +112,13 @@ import (
 )
 
 func main() {
-	cronJobId := int64(789) // int64 | 
+	scheduledJobId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.JobAPI.DeleteCronJob(context.Background(), cronJobId).Execute()
+	r, err := apiClient.JobAPI.DeleteScheduledJob(context.Background(), scheduledJobId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.DeleteCronJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.DeleteScheduledJob``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -130,11 +130,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cronJobId** | **int64** |  | 
+**scheduledJobId** | **int64** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteCronJobRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteScheduledJobRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -153,219 +153,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetCronJob
-
-> CronJob GetCronJob(ctx, cronJobId).Execute()
-
-Get cron job information
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	cronJobId := int64(789) // int64 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.JobAPI.GetCronJob(context.Background(), cronJobId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.GetCronJob``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetCronJob`: CronJob
-	fmt.Fprintf(os.Stdout, "Response from `JobAPI.GetCronJob`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cronJobId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetCronJobRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**CronJob**](CronJob.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetCronJobs
-
-> CronJobPaginatedList GetCronJobs(ctx).Page(page).Limit(limit).FilterLabel(filterLabel).FilterDescription(filterDescription).FilterFunctionName(filterFunctionName).FilterDisabled(filterDisabled).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
-
-Get a list of cron jobs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
-	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
-	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or (optional)
-	filterDescription := []string{"Inner_example"} // []string | Filter by description query param.  **Format:** filter.description={$not}:OPERATION:VALUE    **Example:** filter.description=$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or (optional)
-	filterFunctionName := []string{"Inner_example"} // []string | Filter by functionName query param.  **Format:** filter.functionName={$not}:OPERATION:VALUE    **Example:** filter.functionName=$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or (optional)
-	filterDisabled := []string{"Inner_example"} // []string | Filter by disabled query param.  **Format:** filter.disabled={$not}:OPERATION:VALUE    **Example:** filter.disabled=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=label:DESC&sortBy=functionName:DESC   **Default Value:** id:ASC  **Available Fields** - label  - functionName  - disabled  (optional)
-	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** label,description,functionName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - description  - functionName  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.JobAPI.GetCronJobs(context.Background()).Page(page).Limit(limit).FilterLabel(filterLabel).FilterDescription(filterDescription).FilterFunctionName(filterFunctionName).FilterDisabled(filterDisabled).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.GetCronJobs``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetCronJobs`: CronJobPaginatedList
-	fmt.Fprintf(os.Stdout, "Response from `JobAPI.GetCronJobs`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetCronJobsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
- **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
- **filterLabel** | **[]string** | Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or | 
- **filterDescription** | **[]string** | Filter by description query param.  **Format:** filter.description&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.description&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or | 
- **filterFunctionName** | **[]string** | Filter by functionName query param.  **Format:** filter.functionName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.functionName&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or | 
- **filterDisabled** | **[]string** | Filter by disabled query param.  **Format:** filter.disabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.disabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
- **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;label:DESC&amp;sortBy&#x3D;functionName:DESC   **Default Value:** id:ASC  **Available Fields** - label  - functionName  - disabled  | 
- **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** label,description,functionName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - description  - functionName  | 
-
-### Return type
-
-[**CronJobPaginatedList**](CronJobPaginatedList.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetCronJobsSupportedFunctions
-
-> []CronJobFunction GetCronJobsSupportedFunctions(ctx).Execute()
-
-Get a list of supported functions for cron jobs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.JobAPI.GetCronJobsSupportedFunctions(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.GetCronJobsSupportedFunctions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetCronJobsSupportedFunctions`: []CronJobFunction
-	fmt.Fprintf(os.Stdout, "Response from `JobAPI.GetCronJobsSupportedFunctions`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetCronJobsSupportedFunctionsRequest struct via the builder pattern
-
-
-### Return type
-
-[**[]CronJobFunction**](CronJobFunction.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1093,6 +880,219 @@ Other parameters are passed through a pointer to a apiGetJobsStatisticsRequest s
 [[Back to README]](../README.md)
 
 
+## GetScheduledJob
+
+> ScheduledJob GetScheduledJob(ctx, scheduledJobId).Execute()
+
+Get scheduled job information
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	scheduledJobId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.JobAPI.GetScheduledJob(context.Background(), scheduledJobId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.GetScheduledJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetScheduledJob`: ScheduledJob
+	fmt.Fprintf(os.Stdout, "Response from `JobAPI.GetScheduledJob`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**scheduledJobId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetScheduledJobRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ScheduledJob**](ScheduledJob.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetScheduledJobs
+
+> ScheduledJobPaginatedList GetScheduledJobs(ctx).Page(page).Limit(limit).FilterLabel(filterLabel).FilterDescription(filterDescription).FilterFunctionName(filterFunctionName).FilterDisabled(filterDisabled).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+
+Get a list of scheduled jobs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.  **Format:** filter.label={$not}:OPERATION:VALUE    **Example:** filter.label=$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or (optional)
+	filterDescription := []string{"Inner_example"} // []string | Filter by description query param.  **Format:** filter.description={$not}:OPERATION:VALUE    **Example:** filter.description=$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or (optional)
+	filterFunctionName := []string{"Inner_example"} // []string | Filter by functionName query param.  **Format:** filter.functionName={$not}:OPERATION:VALUE    **Example:** filter.functionName=$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or (optional)
+	filterDisabled := []string{"Inner_example"} // []string | Filter by disabled query param.  **Format:** filter.disabled={$not}:OPERATION:VALUE    **Example:** filter.disabled=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=label:DESC&sortBy=functionName:DESC   **Default Value:** id:ASC  **Available Fields** - label  - functionName  - disabled  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** label,description,functionName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - description  - functionName  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.JobAPI.GetScheduledJobs(context.Background()).Page(page).Limit(limit).FilterLabel(filterLabel).FilterDescription(filterDescription).FilterFunctionName(filterFunctionName).FilterDisabled(filterDisabled).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.GetScheduledJobs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetScheduledJobs`: ScheduledJobPaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `JobAPI.GetScheduledJobs`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetScheduledJobsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterLabel** | **[]string** | Filter by label query param.  **Format:** filter.label&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.label&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or | 
+ **filterDescription** | **[]string** | Filter by description query param.  **Format:** filter.description&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.description&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or | 
+ **filterFunctionName** | **[]string** | Filter by functionName query param.  **Format:** filter.functionName&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.functionName&#x3D;$ilike:John Doe  **Available Operations** - $ilike  - $and  - $or | 
+ **filterDisabled** | **[]string** | Filter by disabled query param.  **Format:** filter.disabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.disabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;label:DESC&amp;sortBy&#x3D;functionName:DESC   **Default Value:** id:ASC  **Available Fields** - label  - functionName  - disabled  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** label,description,functionName   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - label  - description  - functionName  | 
+
+### Return type
+
+[**ScheduledJobPaginatedList**](ScheduledJobPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetScheduledJobsSupportedFunctions
+
+> []ScheduledJobFunction GetScheduledJobsSupportedFunctions(ctx).Execute()
+
+Get a list of supported functions for scheduled jobs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.JobAPI.GetScheduledJobsSupportedFunctions(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.GetScheduledJobsSupportedFunctions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetScheduledJobsSupportedFunctions`: []ScheduledJobFunction
+	fmt.Fprintf(os.Stdout, "Response from `JobAPI.GetScheduledJobsSupportedFunctions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetScheduledJobsSupportedFunctionsRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]ScheduledJobFunction**](ScheduledJobFunction.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## IssueCommandForJob
 
 > IssueCommandForJob(ctx, jobId).JobCommandInfo(jobCommandInfo).Execute()
@@ -1301,11 +1301,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateCronJob
+## UpdateScheduledJob
 
-> CronJob UpdateCronJob(ctx, cronJobId).UpdateCronJob(updateCronJob).Execute()
+> ScheduledJob UpdateScheduledJob(ctx, scheduledJobId).UpdateScheduledJob(updateScheduledJob).Execute()
 
-Updates an existing cron job
+Updates an existing scheduled job
 
 
 
@@ -1322,18 +1322,18 @@ import (
 )
 
 func main() {
-	cronJobId := float32(8.14) // float32 | 
-	updateCronJob := *openapiclient.NewUpdateCronJob() // UpdateCronJob | The cron job details
+	scheduledJobId := float32(8.14) // float32 | 
+	updateScheduledJob := *openapiclient.NewUpdateScheduledJob() // UpdateScheduledJob | The scheduled job details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.JobAPI.UpdateCronJob(context.Background(), cronJobId).UpdateCronJob(updateCronJob).Execute()
+	resp, r, err := apiClient.JobAPI.UpdateScheduledJob(context.Background(), scheduledJobId).UpdateScheduledJob(updateScheduledJob).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.UpdateCronJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `JobAPI.UpdateScheduledJob``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateCronJob`: CronJob
-	fmt.Fprintf(os.Stdout, "Response from `JobAPI.UpdateCronJob`: %v\n", resp)
+	// response from `UpdateScheduledJob`: ScheduledJob
+	fmt.Fprintf(os.Stdout, "Response from `JobAPI.UpdateScheduledJob`: %v\n", resp)
 }
 ```
 
@@ -1343,21 +1343,21 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cronJobId** | **float32** |  | 
+**scheduledJobId** | **float32** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateCronJobRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateScheduledJobRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateCronJob** | [**UpdateCronJob**](UpdateCronJob.md) | The cron job details | 
+ **updateScheduledJob** | [**UpdateScheduledJob**](UpdateScheduledJob.md) | The scheduled job details | 
 
 ### Return type
 
-[**CronJob**](CronJob.md)
+[**ScheduledJob**](ScheduledJob.md)
 
 ### Authorization
 

@@ -60,7 +60,17 @@ type APIClient struct {
 
 	ConfigurationAPI *ConfigurationAPIService
 
+	ContainerAPI *ContainerAPIService
+
+	ContainerInstanceAPI *ContainerInstanceAPIService
+
+	ContainerInstanceGroupAPI *ContainerInstanceGroupAPIService
+
+	ContainerTypeAPI *ContainerTypeAPIService
+
 	CustomIsoAPI *CustomIsoAPIService
+
+	DHCPReservationAPI *DHCPReservationAPIService
 
 	DNSRecordSetAPI *DNSRecordSetAPIService
 
@@ -115,8 +125,6 @@ type APIClient struct {
 	NetworkDeviceBGPInterconnectConfigurationTemplateAPI *NetworkDeviceBGPInterconnectConfigurationTemplateAPIService
 
 	NetworkDeviceControllerAPI *NetworkDeviceControllerAPIService
-
-	NetworkDeviceDefaultSecretsAPI *NetworkDeviceDefaultSecretsAPIService
 
 	NetworkDeviceLinkAggregationConfigurationTemplateAPI *NetworkDeviceLinkAggregationConfigurationTemplateAPIService
 
@@ -204,7 +212,12 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
 	c.BucketAPI = (*BucketAPIService)(&c.common)
 	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
+	c.ContainerAPI = (*ContainerAPIService)(&c.common)
+	c.ContainerInstanceAPI = (*ContainerInstanceAPIService)(&c.common)
+	c.ContainerInstanceGroupAPI = (*ContainerInstanceGroupAPIService)(&c.common)
+	c.ContainerTypeAPI = (*ContainerTypeAPIService)(&c.common)
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
+	c.DHCPReservationAPI = (*DHCPReservationAPIService)(&c.common)
 	c.DNSRecordSetAPI = (*DNSRecordSetAPIService)(&c.common)
 	c.DNSZoneAPI = (*DNSZoneAPIService)(&c.common)
 	c.DeviceConfigurationTemplateAPI = (*DeviceConfigurationTemplateAPIService)(&c.common)
@@ -232,7 +245,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NetworkDeviceBGPConfigurationTemplateAPI = (*NetworkDeviceBGPConfigurationTemplateAPIService)(&c.common)
 	c.NetworkDeviceBGPInterconnectConfigurationTemplateAPI = (*NetworkDeviceBGPInterconnectConfigurationTemplateAPIService)(&c.common)
 	c.NetworkDeviceControllerAPI = (*NetworkDeviceControllerAPIService)(&c.common)
-	c.NetworkDeviceDefaultSecretsAPI = (*NetworkDeviceDefaultSecretsAPIService)(&c.common)
 	c.NetworkDeviceLinkAggregationConfigurationTemplateAPI = (*NetworkDeviceLinkAggregationConfigurationTemplateAPIService)(&c.common)
 	c.NetworkEndpointGroupAPI = (*NetworkEndpointGroupAPIService)(&c.common)
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)

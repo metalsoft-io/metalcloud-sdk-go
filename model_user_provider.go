@@ -22,7 +22,7 @@ var _ MappedNullable = &UserProvider{}
 // UserProvider struct for UserProvider
 type UserProvider struct {
 	// Authentication provider identifier
-	Name string `json:"name"`
+	Name UserProviderName `json:"name"`
 	// Whether this provider is active
 	Enabled bool `json:"enabled"`
 	// Email domains handled by this provider
@@ -40,7 +40,7 @@ type _UserProvider UserProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserProvider(name string, enabled bool, domains []string) *UserProvider {
+func NewUserProvider(name UserProviderName, enabled bool, domains []string) *UserProvider {
 	this := UserProvider{}
 	this.Name = name
 	this.Enabled = enabled
@@ -57,9 +57,9 @@ func NewUserProviderWithDefaults() *UserProvider {
 }
 
 // GetName returns the Name field value
-func (o *UserProvider) GetName() string {
+func (o *UserProvider) GetName() UserProviderName {
 	if o == nil {
-		var ret string
+		var ret UserProviderName
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *UserProvider) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *UserProvider) GetNameOk() (*string, bool) {
+func (o *UserProvider) GetNameOk() (*UserProviderName, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *UserProvider) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *UserProvider) SetName(v string) {
+func (o *UserProvider) SetName(v UserProviderName) {
 	o.Name = v
 }
 

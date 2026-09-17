@@ -25,10 +25,14 @@ type ExtensionOutput struct {
 	Label string `json:"label"`
 	// Name of the output.
 	Name string `json:"name"`
-	// Type of the output.
+	// Help text describing the output.
+	HelpText *string `json:"helpText,omitempty"`
+	// Type of the output to be used as UI hint. Well known values include: boolean, integer, string, base64, password, secret, text, url, object, unknown
 	OutputType string `json:"outputType"`
 	// Template of the output.
 	Template *string `json:"template,omitempty"`
+	// Flag to indicate if the output is a password/secret.
+	IsPassword *bool `json:"isPassword,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,6 +47,8 @@ func NewExtensionOutput(label string, name string, outputType string) *Extension
 	this.Label = label
 	this.Name = name
 	this.OutputType = outputType
+	var isPassword bool = false
+	this.IsPassword = &isPassword
 	return &this
 }
 
@@ -51,6 +57,8 @@ func NewExtensionOutput(label string, name string, outputType string) *Extension
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionOutputWithDefaults() *ExtensionOutput {
 	this := ExtensionOutput{}
+	var isPassword bool = false
+	this.IsPassword = &isPassword
 	return &this
 }
 
@@ -100,6 +108,38 @@ func (o *ExtensionOutput) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *ExtensionOutput) SetName(v string) {
 	o.Name = v
+}
+
+// GetHelpText returns the HelpText field value if set, zero value otherwise.
+func (o *ExtensionOutput) GetHelpText() string {
+	if o == nil || IsNil(o.HelpText) {
+		var ret string
+		return ret
+	}
+	return *o.HelpText
+}
+
+// GetHelpTextOk returns a tuple with the HelpText field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionOutput) GetHelpTextOk() (*string, bool) {
+	if o == nil || IsNil(o.HelpText) {
+		return nil, false
+	}
+	return o.HelpText, true
+}
+
+// HasHelpText returns a boolean if a field has been set.
+func (o *ExtensionOutput) HasHelpText() bool {
+	if o != nil && !IsNil(o.HelpText) {
+		return true
+	}
+
+	return false
+}
+
+// SetHelpText gets a reference to the given string and assigns it to the HelpText field.
+func (o *ExtensionOutput) SetHelpText(v string) {
+	o.HelpText = &v
 }
 
 // GetOutputType returns the OutputType field value
@@ -158,6 +198,38 @@ func (o *ExtensionOutput) SetTemplate(v string) {
 	o.Template = &v
 }
 
+// GetIsPassword returns the IsPassword field value if set, zero value otherwise.
+func (o *ExtensionOutput) GetIsPassword() bool {
+	if o == nil || IsNil(o.IsPassword) {
+		var ret bool
+		return ret
+	}
+	return *o.IsPassword
+}
+
+// GetIsPasswordOk returns a tuple with the IsPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionOutput) GetIsPasswordOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsPassword) {
+		return nil, false
+	}
+	return o.IsPassword, true
+}
+
+// HasIsPassword returns a boolean if a field has been set.
+func (o *ExtensionOutput) HasIsPassword() bool {
+	if o != nil && !IsNil(o.IsPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPassword gets a reference to the given bool and assigns it to the IsPassword field.
+func (o *ExtensionOutput) SetIsPassword(v bool) {
+	o.IsPassword = &v
+}
+
 func (o ExtensionOutput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -170,9 +242,15 @@ func (o ExtensionOutput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
+	if !IsNil(o.HelpText) {
+		toSerialize["helpText"] = o.HelpText
+	}
 	toSerialize["outputType"] = o.OutputType
 	if !IsNil(o.Template) {
 		toSerialize["template"] = o.Template
+	}
+	if !IsNil(o.IsPassword) {
+		toSerialize["isPassword"] = o.IsPassword
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -221,8 +299,10 @@ func (o *ExtensionOutput) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "helpText")
 		delete(additionalProperties, "outputType")
 		delete(additionalProperties, "template")
+		delete(additionalProperties, "isPassword")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -37,16 +37,16 @@ type NetworkDeviceLinkAggregationConfigurationTemplateRecordSet struct {
 	LocalSwitchInterfaceLagId int64 `json:"local_switch_interface_lag_id"`
 	// The local switch loopback IPv4 address.
 	LocalSwitchLoopbackAddressIpv4 *string `json:"local_switch_loopback_address_ipv4,omitempty"`
-	// The ID of the remote switch.
-	RemoteSwitchId int64 `json:"remote_switch_id"`
-	// The identifier of the remote switch.
-	RemoteSwitchIdentifier string `json:"remote_switch_identifier"`
-	// The role of the remote switch.
+	// The ID of the remote switch. Unset when the remote side is an external system.
+	RemoteSwitchId *int64 `json:"remote_switch_id,omitempty"`
+	// The identifier of the remote switch. Unset when the remote side is an external system.
+	RemoteSwitchIdentifier *string `json:"remote_switch_identifier,omitempty"`
+	// The role of the remote switch — its position in the fabric. `other` when the remote side is an external system, which is the position the template library uses for a peer we do not manage.
 	RemoteSwitchRole string `json:"remote_switch_role"`
-	// The name of the remote switch interface.
-	RemoteSwitchInterfaceName string `json:"remote_switch_interface_name"`
-	// The LAG ID of the remote switch interface.
-	RemoteSwitchInterfaceLagId int64 `json:"remote_switch_interface_lag_id"`
+	// The name of the remote switch interface. Unset when the remote side is an external system, which has no interfaces of its own.
+	RemoteSwitchInterfaceName *string `json:"remote_switch_interface_name,omitempty"`
+	// The LAG ID of the remote switch interface. Unset when the remote side is an external system.
+	RemoteSwitchInterfaceLagId *int64 `json:"remote_switch_interface_lag_id,omitempty"`
 	// The remote switch loopback IPv4 address.
 	RemoteSwitchLoopbackAddressIpv4 *string `json:"remote_switch_loopback_address_ipv4,omitempty"`
 	// Custom variables for the fabric.
@@ -57,6 +57,8 @@ type NetworkDeviceLinkAggregationConfigurationTemplateRecordSet struct {
 	LocalSwitchCustomVariables map[string]interface{} `json:"local_switch_custom_variables,omitempty"`
 	// Custom variables for the remote switch.
 	RemoteSwitchCustomVariables map[string]interface{} `json:"remote_switch_custom_variables,omitempty"`
+	// Custom variables for the link aggregation itself, as opposed to link_custom_variables, which belongs to the single member link this record set was resolved for.
+	LinkAggregationCustomVariables map[string]interface{} `json:"link_aggregation_custom_variables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -66,7 +68,7 @@ type _NetworkDeviceLinkAggregationConfigurationTemplateRecordSet NetworkDeviceLi
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(aggregationType string, localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, localSwitchInterfaceLagId int64, remoteSwitchId int64, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, remoteSwitchInterfaceLagId int64) *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet {
+func NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(aggregationType string, localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, localSwitchInterfaceLagId int64, remoteSwitchRole string) *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet {
 	this := NetworkDeviceLinkAggregationConfigurationTemplateRecordSet{}
 	this.AggregationType = aggregationType
 	this.LocalSwitchId = localSwitchId
@@ -74,11 +76,7 @@ func NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(aggregationTy
 	this.LocalSwitchRole = localSwitchRole
 	this.LocalSwitchInterfaceName = localSwitchInterfaceName
 	this.LocalSwitchInterfaceLagId = localSwitchInterfaceLagId
-	this.RemoteSwitchId = remoteSwitchId
-	this.RemoteSwitchIdentifier = remoteSwitchIdentifier
 	this.RemoteSwitchRole = remoteSwitchRole
-	this.RemoteSwitchInterfaceName = remoteSwitchInterfaceName
-	this.RemoteSwitchInterfaceLagId = remoteSwitchInterfaceLagId
 	return &this
 }
 
@@ -298,52 +296,68 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLocalSwi
 	o.LocalSwitchLoopbackAddressIpv4 = &v
 }
 
-// GetRemoteSwitchId returns the RemoteSwitchId field value
+// GetRemoteSwitchId returns the RemoteSwitchId field value if set, zero value otherwise.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchId) {
 		var ret int64
 		return ret
 	}
-
-	return o.RemoteSwitchId
+	return *o.RemoteSwitchId
 }
 
-// GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field value
+// GetRemoteSwitchIdOk returns a tuple with the RemoteSwitchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchId) {
 		return nil, false
 	}
-	return &o.RemoteSwitchId, true
+	return o.RemoteSwitchId, true
 }
 
-// SetRemoteSwitchId sets field value
+// HasRemoteSwitchId returns a boolean if a field has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchId() bool {
+	if o != nil && !IsNil(o.RemoteSwitchId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchId gets a reference to the given int64 and assigns it to the RemoteSwitchId field.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchId(v int64) {
-	o.RemoteSwitchId = v
+	o.RemoteSwitchId = &v
 }
 
-// GetRemoteSwitchIdentifier returns the RemoteSwitchIdentifier field value
+// GetRemoteSwitchIdentifier returns the RemoteSwitchIdentifier field value if set, zero value otherwise.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchIdentifier() string {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchIdentifier) {
 		var ret string
 		return ret
 	}
-
-	return o.RemoteSwitchIdentifier
+	return *o.RemoteSwitchIdentifier
 }
 
-// GetRemoteSwitchIdentifierOk returns a tuple with the RemoteSwitchIdentifier field value
+// GetRemoteSwitchIdentifierOk returns a tuple with the RemoteSwitchIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchIdentifierOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchIdentifier) {
 		return nil, false
 	}
-	return &o.RemoteSwitchIdentifier, true
+	return o.RemoteSwitchIdentifier, true
 }
 
-// SetRemoteSwitchIdentifier sets field value
+// HasRemoteSwitchIdentifier returns a boolean if a field has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchIdentifier() bool {
+	if o != nil && !IsNil(o.RemoteSwitchIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchIdentifier gets a reference to the given string and assigns it to the RemoteSwitchIdentifier field.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchIdentifier(v string) {
-	o.RemoteSwitchIdentifier = v
+	o.RemoteSwitchIdentifier = &v
 }
 
 // GetRemoteSwitchRole returns the RemoteSwitchRole field value
@@ -370,52 +384,68 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSw
 	o.RemoteSwitchRole = v
 }
 
-// GetRemoteSwitchInterfaceName returns the RemoteSwitchInterfaceName field value
+// GetRemoteSwitchInterfaceName returns the RemoteSwitchInterfaceName field value if set, zero value otherwise.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceName() string {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchInterfaceName) {
 		var ret string
 		return ret
 	}
-
-	return o.RemoteSwitchInterfaceName
+	return *o.RemoteSwitchInterfaceName
 }
 
-// GetRemoteSwitchInterfaceNameOk returns a tuple with the RemoteSwitchInterfaceName field value
+// GetRemoteSwitchInterfaceNameOk returns a tuple with the RemoteSwitchInterfaceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchInterfaceName) {
 		return nil, false
 	}
-	return &o.RemoteSwitchInterfaceName, true
+	return o.RemoteSwitchInterfaceName, true
 }
 
-// SetRemoteSwitchInterfaceName sets field value
+// HasRemoteSwitchInterfaceName returns a boolean if a field has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchInterfaceName() bool {
+	if o != nil && !IsNil(o.RemoteSwitchInterfaceName) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchInterfaceName gets a reference to the given string and assigns it to the RemoteSwitchInterfaceName field.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceName(v string) {
-	o.RemoteSwitchInterfaceName = v
+	o.RemoteSwitchInterfaceName = &v
 }
 
-// GetRemoteSwitchInterfaceLagId returns the RemoteSwitchInterfaceLagId field value
+// GetRemoteSwitchInterfaceLagId returns the RemoteSwitchInterfaceLagId field value if set, zero value otherwise.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchInterfaceLagId) {
 		var ret int64
 		return ret
 	}
-
-	return o.RemoteSwitchInterfaceLagId
+	return *o.RemoteSwitchInterfaceLagId
 }
 
-// GetRemoteSwitchInterfaceLagIdOk returns a tuple with the RemoteSwitchInterfaceLagId field value
+// GetRemoteSwitchInterfaceLagIdOk returns a tuple with the RemoteSwitchInterfaceLagId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetRemoteSwitchInterfaceLagIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RemoteSwitchInterfaceLagId) {
 		return nil, false
 	}
-	return &o.RemoteSwitchInterfaceLagId, true
+	return o.RemoteSwitchInterfaceLagId, true
 }
 
-// SetRemoteSwitchInterfaceLagId sets field value
+// HasRemoteSwitchInterfaceLagId returns a boolean if a field has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchInterfaceLagId() bool {
+	if o != nil && !IsNil(o.RemoteSwitchInterfaceLagId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSwitchInterfaceLagId gets a reference to the given int64 and assigns it to the RemoteSwitchInterfaceLagId field.
 func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSwitchInterfaceLagId(v int64) {
-	o.RemoteSwitchInterfaceLagId = v
+	o.RemoteSwitchInterfaceLagId = &v
 }
 
 // GetRemoteSwitchLoopbackAddressIpv4 returns the RemoteSwitchLoopbackAddressIpv4 field value if set, zero value otherwise.
@@ -578,6 +608,38 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetRemoteSw
 	o.RemoteSwitchCustomVariables = v
 }
 
+// GetLinkAggregationCustomVariables returns the LinkAggregationCustomVariables field value if set, zero value otherwise.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLinkAggregationCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.LinkAggregationCustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.LinkAggregationCustomVariables
+}
+
+// GetLinkAggregationCustomVariablesOk returns a tuple with the LinkAggregationCustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLinkAggregationCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.LinkAggregationCustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.LinkAggregationCustomVariables, true
+}
+
+// HasLinkAggregationCustomVariables returns a boolean if a field has been set.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasLinkAggregationCustomVariables() bool {
+	if o != nil && !IsNil(o.LinkAggregationCustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkAggregationCustomVariables gets a reference to the given map[string]interface{} and assigns it to the LinkAggregationCustomVariables field.
+func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLinkAggregationCustomVariables(v map[string]interface{}) {
+	o.LinkAggregationCustomVariables = v
+}
+
 func (o NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -600,11 +662,19 @@ func (o NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) ToMap() (map
 	if !IsNil(o.LocalSwitchLoopbackAddressIpv4) {
 		toSerialize["local_switch_loopback_address_ipv4"] = o.LocalSwitchLoopbackAddressIpv4
 	}
-	toSerialize["remote_switch_id"] = o.RemoteSwitchId
-	toSerialize["remote_switch_identifier"] = o.RemoteSwitchIdentifier
+	if !IsNil(o.RemoteSwitchId) {
+		toSerialize["remote_switch_id"] = o.RemoteSwitchId
+	}
+	if !IsNil(o.RemoteSwitchIdentifier) {
+		toSerialize["remote_switch_identifier"] = o.RemoteSwitchIdentifier
+	}
 	toSerialize["remote_switch_role"] = o.RemoteSwitchRole
-	toSerialize["remote_switch_interface_name"] = o.RemoteSwitchInterfaceName
-	toSerialize["remote_switch_interface_lag_id"] = o.RemoteSwitchInterfaceLagId
+	if !IsNil(o.RemoteSwitchInterfaceName) {
+		toSerialize["remote_switch_interface_name"] = o.RemoteSwitchInterfaceName
+	}
+	if !IsNil(o.RemoteSwitchInterfaceLagId) {
+		toSerialize["remote_switch_interface_lag_id"] = o.RemoteSwitchInterfaceLagId
+	}
 	if !IsNil(o.RemoteSwitchLoopbackAddressIpv4) {
 		toSerialize["remote_switch_loopback_address_ipv4"] = o.RemoteSwitchLoopbackAddressIpv4
 	}
@@ -619,6 +689,9 @@ func (o NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) ToMap() (map
 	}
 	if !IsNil(o.RemoteSwitchCustomVariables) {
 		toSerialize["remote_switch_custom_variables"] = o.RemoteSwitchCustomVariables
+	}
+	if !IsNil(o.LinkAggregationCustomVariables) {
+		toSerialize["link_aggregation_custom_variables"] = o.LinkAggregationCustomVariables
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -639,11 +712,7 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) UnmarshalJS
 		"local_switch_role",
 		"local_switch_interface_name",
 		"local_switch_interface_lag_id",
-		"remote_switch_id",
-		"remote_switch_identifier",
 		"remote_switch_role",
-		"remote_switch_interface_name",
-		"remote_switch_interface_lag_id",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -691,6 +760,7 @@ func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) UnmarshalJS
 		delete(additionalProperties, "link_custom_variables")
 		delete(additionalProperties, "local_switch_custom_variables")
 		delete(additionalProperties, "remote_switch_custom_variables")
+		delete(additionalProperties, "link_aggregation_custom_variables")
 		o.AdditionalProperties = additionalProperties
 	}
 

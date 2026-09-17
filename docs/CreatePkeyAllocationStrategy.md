@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **Pkey** | **int32** |  | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewCreatePkeyAllocationStrategy
 
-`func NewCreatePkeyAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, pkey int32, ) *CreatePkeyAllocationStrategy`
+`func NewCreatePkeyAllocationStrategy(kind string, scope CreateResourceScope, pkey int32, ) *CreatePkeyAllocationStrategy`
 
 NewCreatePkeyAllocationStrategy instantiates a new CreatePkeyAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreatePkeyAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreatePkeyAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreatePkeyAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreatePkeyAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreatePkeyAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreatePkeyAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

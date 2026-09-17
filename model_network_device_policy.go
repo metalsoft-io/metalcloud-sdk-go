@@ -31,6 +31,10 @@ type NetworkDevicePolicy struct {
 	LeafSwitchesHaveMlagPairs bool `json:"leafSwitchesHaveMlagPairs"`
 	// Minimum number of spines needed to bootstrap leafs
 	MinimumNumberOfSpinesNeededToBootstrapLeafs int32 `json:"minimumNumberOfSpinesNeededToBootstrapLeafs"`
+	// Whether backup is enabled
+	BackupEnabled bool `json:"backupEnabled"`
+	// Whether drift detection is enabled
+	DriftDetectionEnabled bool `json:"driftDetectionEnabled"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,13 +44,15 @@ type _NetworkDevicePolicy NetworkDevicePolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs int32) *NetworkDevicePolicy {
+func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs int32, backupEnabled bool, driftDetectionEnabled bool) *NetworkDevicePolicy {
 	this := NetworkDevicePolicy{}
 	this.ZeroTouchRegistrationEnabled = zeroTouchRegistrationEnabled
 	this.GNMISubscriptionEnabled = gNMISubscriptionEnabled
 	this.SyslogMonitoringEnabled = syslogMonitoringEnabled
 	this.LeafSwitchesHaveMlagPairs = leafSwitchesHaveMlagPairs
 	this.MinimumNumberOfSpinesNeededToBootstrapLeafs = minimumNumberOfSpinesNeededToBootstrapLeafs
+	this.BackupEnabled = backupEnabled
+	this.DriftDetectionEnabled = driftDetectionEnabled
 	return &this
 }
 
@@ -178,6 +184,54 @@ func (o *NetworkDevicePolicy) SetMinimumNumberOfSpinesNeededToBootstrapLeafs(v i
 	o.MinimumNumberOfSpinesNeededToBootstrapLeafs = v
 }
 
+// GetBackupEnabled returns the BackupEnabled field value
+func (o *NetworkDevicePolicy) GetBackupEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.BackupEnabled
+}
+
+// GetBackupEnabledOk returns a tuple with the BackupEnabled field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevicePolicy) GetBackupEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BackupEnabled, true
+}
+
+// SetBackupEnabled sets field value
+func (o *NetworkDevicePolicy) SetBackupEnabled(v bool) {
+	o.BackupEnabled = v
+}
+
+// GetDriftDetectionEnabled returns the DriftDetectionEnabled field value
+func (o *NetworkDevicePolicy) GetDriftDetectionEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DriftDetectionEnabled
+}
+
+// GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevicePolicy) GetDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DriftDetectionEnabled, true
+}
+
+// SetDriftDetectionEnabled sets field value
+func (o *NetworkDevicePolicy) SetDriftDetectionEnabled(v bool) {
+	o.DriftDetectionEnabled = v
+}
+
 func (o NetworkDevicePolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -193,6 +247,8 @@ func (o NetworkDevicePolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["syslogMonitoringEnabled"] = o.SyslogMonitoringEnabled
 	toSerialize["leafSwitchesHaveMlagPairs"] = o.LeafSwitchesHaveMlagPairs
 	toSerialize["minimumNumberOfSpinesNeededToBootstrapLeafs"] = o.MinimumNumberOfSpinesNeededToBootstrapLeafs
+	toSerialize["backupEnabled"] = o.BackupEnabled
+	toSerialize["driftDetectionEnabled"] = o.DriftDetectionEnabled
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -211,6 +267,8 @@ func (o *NetworkDevicePolicy) UnmarshalJSON(data []byte) (err error) {
 		"syslogMonitoringEnabled",
 		"leafSwitchesHaveMlagPairs",
 		"minimumNumberOfSpinesNeededToBootstrapLeafs",
+		"backupEnabled",
+		"driftDetectionEnabled",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -245,6 +303,8 @@ func (o *NetworkDevicePolicy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "leafSwitchesHaveMlagPairs")
 		delete(additionalProperties, "minimumNumberOfSpinesNeededToBootstrapLeafs")
+		delete(additionalProperties, "backupEnabled")
+		delete(additionalProperties, "driftDetectionEnabled")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -71,6 +71,10 @@ type User struct {
 	Provider string `json:"provider"`
 	// The timestamp when the user last changed their password
 	PasswordLastChangedTimestamp string `json:"passwordLastChangedTimestamp"`
+	// The timestamp when the user API key was last regenerated
+	ApiKeyLastChangedTimestamp *string `json:"apiKeyLastChangedTimestamp,omitempty"`
+	// Per-user override for the API key validity duration in seconds; 0 means the API key never expires; unset means the account or global setting applies (MS-10501). Accepted range: 0 - 4294967295.
+	ApiKeyValidityDuration *int32 `json:"apiKeyValidityDuration,omitempty"`
 	// User ID
 	Id int64 `json:"id"`
 	// Revision of the user
@@ -93,6 +97,8 @@ type User struct {
 	AuthenticatorEnabled bool `json:"authenticatorEnabled"`
 	// The resources accessible by the user
 	AccessibleResources *map[string][]string `json:"accessibleResources,omitempty"`
+	// The resources granted by the user's role/permissions, excluding the baseline policies granted to every user
+	RoleAccessibleResources *map[string][]string `json:"roleAccessibleResources,omitempty"`
 	// The new configuration of the user.
 	Config UserConfiguration `json:"config"`
 	// Meta information of the user.
@@ -152,7 +158,7 @@ func NewUserWithDefaults() *User {
 	this.Brand = brand
 	var lastLoginType string = "md5"
 	this.LastLoginType = lastLoginType
-	var provider string = "mysql"
+	var provider string = "built-in"
 	this.Provider = provider
 	var planType string = "vanilla"
 	this.PlanType = planType
@@ -799,6 +805,70 @@ func (o *User) SetPasswordLastChangedTimestamp(v string) {
 	o.PasswordLastChangedTimestamp = v
 }
 
+// GetApiKeyLastChangedTimestamp returns the ApiKeyLastChangedTimestamp field value if set, zero value otherwise.
+func (o *User) GetApiKeyLastChangedTimestamp() string {
+	if o == nil || IsNil(o.ApiKeyLastChangedTimestamp) {
+		var ret string
+		return ret
+	}
+	return *o.ApiKeyLastChangedTimestamp
+}
+
+// GetApiKeyLastChangedTimestampOk returns a tuple with the ApiKeyLastChangedTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetApiKeyLastChangedTimestampOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiKeyLastChangedTimestamp) {
+		return nil, false
+	}
+	return o.ApiKeyLastChangedTimestamp, true
+}
+
+// HasApiKeyLastChangedTimestamp returns a boolean if a field has been set.
+func (o *User) HasApiKeyLastChangedTimestamp() bool {
+	if o != nil && !IsNil(o.ApiKeyLastChangedTimestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKeyLastChangedTimestamp gets a reference to the given string and assigns it to the ApiKeyLastChangedTimestamp field.
+func (o *User) SetApiKeyLastChangedTimestamp(v string) {
+	o.ApiKeyLastChangedTimestamp = &v
+}
+
+// GetApiKeyValidityDuration returns the ApiKeyValidityDuration field value if set, zero value otherwise.
+func (o *User) GetApiKeyValidityDuration() int32 {
+	if o == nil || IsNil(o.ApiKeyValidityDuration) {
+		var ret int32
+		return ret
+	}
+	return *o.ApiKeyValidityDuration
+}
+
+// GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetApiKeyValidityDurationOk() (*int32, bool) {
+	if o == nil || IsNil(o.ApiKeyValidityDuration) {
+		return nil, false
+	}
+	return o.ApiKeyValidityDuration, true
+}
+
+// HasApiKeyValidityDuration returns a boolean if a field has been set.
+func (o *User) HasApiKeyValidityDuration() bool {
+	if o != nil && !IsNil(o.ApiKeyValidityDuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKeyValidityDuration gets a reference to the given int32 and assigns it to the ApiKeyValidityDuration field.
+func (o *User) SetApiKeyValidityDuration(v int32) {
+	o.ApiKeyValidityDuration = &v
+}
+
 // GetId returns the Id field value
 func (o *User) GetId() int64 {
 	if o == nil {
@@ -1087,6 +1157,38 @@ func (o *User) SetAccessibleResources(v map[string][]string) {
 	o.AccessibleResources = &v
 }
 
+// GetRoleAccessibleResources returns the RoleAccessibleResources field value if set, zero value otherwise.
+func (o *User) GetRoleAccessibleResources() map[string][]string {
+	if o == nil || IsNil(o.RoleAccessibleResources) {
+		var ret map[string][]string
+		return ret
+	}
+	return *o.RoleAccessibleResources
+}
+
+// GetRoleAccessibleResourcesOk returns a tuple with the RoleAccessibleResources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetRoleAccessibleResourcesOk() (*map[string][]string, bool) {
+	if o == nil || IsNil(o.RoleAccessibleResources) {
+		return nil, false
+	}
+	return o.RoleAccessibleResources, true
+}
+
+// HasRoleAccessibleResources returns a boolean if a field has been set.
+func (o *User) HasRoleAccessibleResources() bool {
+	if o != nil && !IsNil(o.RoleAccessibleResources) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoleAccessibleResources gets a reference to the given map[string][]string and assigns it to the RoleAccessibleResources field.
+func (o *User) SetRoleAccessibleResources(v map[string][]string) {
+	o.RoleAccessibleResources = &v
+}
+
 // GetConfig returns the Config field value
 func (o *User) GetConfig() UserConfiguration {
 	if o == nil {
@@ -1212,6 +1314,12 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["provider"] = o.Provider
 	toSerialize["passwordLastChangedTimestamp"] = o.PasswordLastChangedTimestamp
+	if !IsNil(o.ApiKeyLastChangedTimestamp) {
+		toSerialize["apiKeyLastChangedTimestamp"] = o.ApiKeyLastChangedTimestamp
+	}
+	if !IsNil(o.ApiKeyValidityDuration) {
+		toSerialize["apiKeyValidityDuration"] = o.ApiKeyValidityDuration
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["email"] = o.Email
@@ -1228,6 +1336,9 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
 	if !IsNil(o.AccessibleResources) {
 		toSerialize["accessibleResources"] = o.AccessibleResources
+	}
+	if !IsNil(o.RoleAccessibleResources) {
+		toSerialize["roleAccessibleResources"] = o.RoleAccessibleResources
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
@@ -1331,6 +1442,8 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "accountId")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "passwordLastChangedTimestamp")
+		delete(additionalProperties, "apiKeyLastChangedTimestamp")
+		delete(additionalProperties, "apiKeyValidityDuration")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "email")
@@ -1342,6 +1455,7 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isSuspended")
 		delete(additionalProperties, "authenticatorEnabled")
 		delete(additionalProperties, "accessibleResources")
+		delete(additionalProperties, "roleAccessibleResources")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "links")

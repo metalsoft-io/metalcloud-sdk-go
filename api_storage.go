@@ -1857,6 +1857,443 @@ func (a *StorageAPIService) GetStorageInterfacesExecute(r StorageAPIGetStorageIn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type StorageAPIGetStorageScopedAccessUserRequest struct {
+	ctx context.Context
+	ApiService *StorageAPIService
+	storageId int64
+	scopedAccessUserId int64
+}
+
+func (r StorageAPIGetStorageScopedAccessUserRequest) Execute() (*StorageScopedAccessUser, *http.Response, error) {
+	return r.ApiService.GetStorageScopedAccessUserExecute(r)
+}
+
+/*
+GetStorageScopedAccessUser Retrieves a Storage Scoped Access User
+
+Retrieves a Storage Scoped Access User
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param storageId
+ @param scopedAccessUserId
+ @return StorageAPIGetStorageScopedAccessUserRequest
+*/
+func (a *StorageAPIService) GetStorageScopedAccessUser(ctx context.Context, storageId int64, scopedAccessUserId int64) StorageAPIGetStorageScopedAccessUserRequest {
+	return StorageAPIGetStorageScopedAccessUserRequest{
+		ApiService: a,
+		ctx: ctx,
+		storageId: storageId,
+		scopedAccessUserId: scopedAccessUserId,
+	}
+}
+
+// Execute executes the request
+//  @return StorageScopedAccessUser
+func (a *StorageAPIService) GetStorageScopedAccessUserExecute(r StorageAPIGetStorageScopedAccessUserRequest) (*StorageScopedAccessUser, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageScopedAccessUser
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageScopedAccessUser")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/scoped-access-users/{scopedAccessUserId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scopedAccessUserId"+"}", url.PathEscape(parameterValueToString(r.scopedAccessUserId, "scopedAccessUserId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type StorageAPIGetStorageScopedAccessUserCredentialsRequest struct {
+	ctx context.Context
+	ApiService *StorageAPIService
+	storageId int64
+	scopedAccessUserId int64
+}
+
+func (r StorageAPIGetStorageScopedAccessUserCredentialsRequest) Execute() (*StorageScopedAccessUserCredentials, *http.Response, error) {
+	return r.ApiService.GetStorageScopedAccessUserCredentialsExecute(r)
+}
+
+/*
+GetStorageScopedAccessUserCredentials Get Storage Scoped Access User credentials
+
+Returns Storage Scoped Access User credentials
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param storageId
+ @param scopedAccessUserId
+ @return StorageAPIGetStorageScopedAccessUserCredentialsRequest
+*/
+func (a *StorageAPIService) GetStorageScopedAccessUserCredentials(ctx context.Context, storageId int64, scopedAccessUserId int64) StorageAPIGetStorageScopedAccessUserCredentialsRequest {
+	return StorageAPIGetStorageScopedAccessUserCredentialsRequest{
+		ApiService: a,
+		ctx: ctx,
+		storageId: storageId,
+		scopedAccessUserId: scopedAccessUserId,
+	}
+}
+
+// Execute executes the request
+//  @return StorageScopedAccessUserCredentials
+func (a *StorageAPIService) GetStorageScopedAccessUserCredentialsExecute(r StorageAPIGetStorageScopedAccessUserCredentialsRequest) (*StorageScopedAccessUserCredentials, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageScopedAccessUserCredentials
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageScopedAccessUserCredentials")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/scoped-access-users/{scopedAccessUserId}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"scopedAccessUserId"+"}", url.PathEscape(parameterValueToString(r.scopedAccessUserId, "scopedAccessUserId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type StorageAPIGetStorageScopedAccessUsersRequest struct {
+	ctx context.Context
+	ApiService *StorageAPIService
+	storageId int64
+	page *float32
+	limit *float32
+	filterId *[]string
+	filterInfrastructureId *[]string
+	filterUsername *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1  
+func (r StorageAPIGetStorageScopedAccessUsersRequest) Page(page float32) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied. 
+func (r StorageAPIGetStorageScopedAccessUsersRequest) Limit(limit float32) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r StorageAPIGetStorageScopedAccessUsersRequest) FilterId(filterId []string) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r StorageAPIGetStorageScopedAccessUsersRequest) FilterInfrastructureId(filterInfrastructureId []string) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Filter by username query param.  **Format:** filter.username&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.username&#x3D;$btw:John Doe&amp;filter.username&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r StorageAPIGetStorageScopedAccessUsersRequest) FilterUsername(filterUsername []string) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.filterUsername = &filterUsername
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;infrastructureId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - infrastructureId  - username 
+func (r StorageAPIGetStorageScopedAccessUsersRequest) SortBy(sortBy []string) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values  **Example:** John   **Default Value:** No default value  
+func (r StorageAPIGetStorageScopedAccessUsersRequest) Search(search string) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values  **Example:** id,infrastructureId,username   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - infrastructureId  - username 
+func (r StorageAPIGetStorageScopedAccessUsersRequest) SearchBy(searchBy []string) StorageAPIGetStorageScopedAccessUsersRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r StorageAPIGetStorageScopedAccessUsersRequest) Execute() (*StorageScopedAccessUserPaginatedList, *http.Response, error) {
+	return r.ApiService.GetStorageScopedAccessUsersExecute(r)
+}
+
+/*
+GetStorageScopedAccessUsers Get a list of Storage Scoped Access Users
+
+Returns a list of Storage Scoped Access Users
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param storageId
+ @return StorageAPIGetStorageScopedAccessUsersRequest
+*/
+func (a *StorageAPIService) GetStorageScopedAccessUsers(ctx context.Context, storageId int64) StorageAPIGetStorageScopedAccessUsersRequest {
+	return StorageAPIGetStorageScopedAccessUsersRequest{
+		ApiService: a,
+		ctx: ctx,
+		storageId: storageId,
+	}
+}
+
+// Execute executes the request
+//  @return StorageScopedAccessUserPaginatedList
+func (a *StorageAPIService) GetStorageScopedAccessUsersExecute(r StorageAPIGetStorageScopedAccessUsersRequest) (*StorageScopedAccessUserPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageScopedAccessUserPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageScopedAccessUsers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/scoped-access-users"
+	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.filterUsername != nil {
+		t := *r.filterUsername
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.username", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.username", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type StorageAPIGetStorageStatisticsRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService

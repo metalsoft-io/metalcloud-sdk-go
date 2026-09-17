@@ -27,7 +27,7 @@ type RenderedApplicableDeviceConfigurationTemplateProfileItem struct {
 	NetworkDeviceId NullableInt64 `json:"networkDeviceId"`
 	NetworkFabricId NullableInt64 `json:"networkFabricId"`
 	LifecycleStage DeviceConfigurationProfileLifecycleStage `json:"lifecycleStage"`
-	Priority float32 `json:"priority"`
+	Priority int32 `json:"priority"`
 	// Key-value annotations copied from the profile.
 	Annotations map[string]string `json:"annotations"`
 	// Tags copied from the profile. Empty array when the profile has no tags.
@@ -47,7 +47,7 @@ type _RenderedApplicableDeviceConfigurationTemplateProfileItem RenderedApplicabl
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRenderedApplicableDeviceConfigurationTemplateProfileItem(id int64, deviceConfigurationTemplateId int64, networkDeviceId NullableInt64, networkFabricId NullableInt64, lifecycleStage DeviceConfigurationProfileLifecycleStage, priority float32, annotations map[string]string, tags []string, rendered string) *RenderedApplicableDeviceConfigurationTemplateProfileItem {
+func NewRenderedApplicableDeviceConfigurationTemplateProfileItem(id int64, deviceConfigurationTemplateId int64, networkDeviceId NullableInt64, networkFabricId NullableInt64, lifecycleStage DeviceConfigurationProfileLifecycleStage, priority int32, annotations map[string]string, tags []string, rendered string) *RenderedApplicableDeviceConfigurationTemplateProfileItem {
 	this := RenderedApplicableDeviceConfigurationTemplateProfileItem{}
 	this.Id = id
 	this.DeviceConfigurationTemplateId = deviceConfigurationTemplateId
@@ -194,9 +194,9 @@ func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) SetLifecycleS
 }
 
 // GetPriority returns the Priority field value
-func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriority() float32 {
+func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriority() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -205,7 +205,7 @@ func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriority()
 
 // GetPriorityOk returns a tuple with the Priority field value
 // and a boolean to check if the value has been set.
-func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriorityOk() (*float32, bool) {
+func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriorityOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -213,7 +213,7 @@ func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) GetPriorityOk
 }
 
 // SetPriority sets field value
-func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) SetPriority(v float32) {
+func (o *RenderedApplicableDeviceConfigurationTemplateProfileItem) SetPriority(v int32) {
 	o.Priority = v
 }
 

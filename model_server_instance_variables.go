@@ -67,12 +67,18 @@ type ServerInstanceVariables struct {
 	ClusterCustomInfo map[string]interface{} `json:"clusterCustomInfo,omitempty"`
 	// Last error message during OS install.
 	OsInstallError *string `json:"osInstallError,omitempty"`
-	// URL where the OS image is available.
+	// URL where the OS install image is available.
 	OsInstallImageUrl *string `json:"osInstallImageUrl,omitempty"`
-	// Last error message during OS image build.
+	// Last error message during OS install image build.
 	OsInstallImageBuildError *string `json:"osInstallImageBuildError,omitempty"`
-	// Build info regarding the OS image.
+	// Build info regarding the OS install image.
 	OsInstallImageBuildInfo *ServerInstanceOsInstallImageBuildInfo `json:"osInstallImageBuildInfo,omitempty"`
+	// URL where the OS secondary image is available.
+	OsSecondaryImageUrl *string `json:"osSecondaryImageUrl,omitempty"`
+	// Last error message during OS secondary image build.
+	OsSecondaryImageBuildError *string `json:"osSecondaryImageBuildError,omitempty"`
+	// Build info regarding the OS secondary image.
+	OsSecondaryImageBuildInfo *ServerInstanceOsSecondaryImageBuildInfo `json:"osSecondaryImageBuildInfo,omitempty"`
 	// OS reinstall is required.
 	OsReinstallRequired *int32 `json:"osReinstallRequired,omitempty"`
 	// NVMe Initiator NQN for the Instance.
@@ -970,6 +976,102 @@ func (o *ServerInstanceVariables) SetOsInstallImageBuildInfo(v ServerInstanceOsI
 	o.OsInstallImageBuildInfo = &v
 }
 
+// GetOsSecondaryImageUrl returns the OsSecondaryImageUrl field value if set, zero value otherwise.
+func (o *ServerInstanceVariables) GetOsSecondaryImageUrl() string {
+	if o == nil || IsNil(o.OsSecondaryImageUrl) {
+		var ret string
+		return ret
+	}
+	return *o.OsSecondaryImageUrl
+}
+
+// GetOsSecondaryImageUrlOk returns a tuple with the OsSecondaryImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceVariables) GetOsSecondaryImageUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.OsSecondaryImageUrl) {
+		return nil, false
+	}
+	return o.OsSecondaryImageUrl, true
+}
+
+// HasOsSecondaryImageUrl returns a boolean if a field has been set.
+func (o *ServerInstanceVariables) HasOsSecondaryImageUrl() bool {
+	if o != nil && !IsNil(o.OsSecondaryImageUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsSecondaryImageUrl gets a reference to the given string and assigns it to the OsSecondaryImageUrl field.
+func (o *ServerInstanceVariables) SetOsSecondaryImageUrl(v string) {
+	o.OsSecondaryImageUrl = &v
+}
+
+// GetOsSecondaryImageBuildError returns the OsSecondaryImageBuildError field value if set, zero value otherwise.
+func (o *ServerInstanceVariables) GetOsSecondaryImageBuildError() string {
+	if o == nil || IsNil(o.OsSecondaryImageBuildError) {
+		var ret string
+		return ret
+	}
+	return *o.OsSecondaryImageBuildError
+}
+
+// GetOsSecondaryImageBuildErrorOk returns a tuple with the OsSecondaryImageBuildError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceVariables) GetOsSecondaryImageBuildErrorOk() (*string, bool) {
+	if o == nil || IsNil(o.OsSecondaryImageBuildError) {
+		return nil, false
+	}
+	return o.OsSecondaryImageBuildError, true
+}
+
+// HasOsSecondaryImageBuildError returns a boolean if a field has been set.
+func (o *ServerInstanceVariables) HasOsSecondaryImageBuildError() bool {
+	if o != nil && !IsNil(o.OsSecondaryImageBuildError) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsSecondaryImageBuildError gets a reference to the given string and assigns it to the OsSecondaryImageBuildError field.
+func (o *ServerInstanceVariables) SetOsSecondaryImageBuildError(v string) {
+	o.OsSecondaryImageBuildError = &v
+}
+
+// GetOsSecondaryImageBuildInfo returns the OsSecondaryImageBuildInfo field value if set, zero value otherwise.
+func (o *ServerInstanceVariables) GetOsSecondaryImageBuildInfo() ServerInstanceOsSecondaryImageBuildInfo {
+	if o == nil || IsNil(o.OsSecondaryImageBuildInfo) {
+		var ret ServerInstanceOsSecondaryImageBuildInfo
+		return ret
+	}
+	return *o.OsSecondaryImageBuildInfo
+}
+
+// GetOsSecondaryImageBuildInfoOk returns a tuple with the OsSecondaryImageBuildInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceVariables) GetOsSecondaryImageBuildInfoOk() (*ServerInstanceOsSecondaryImageBuildInfo, bool) {
+	if o == nil || IsNil(o.OsSecondaryImageBuildInfo) {
+		return nil, false
+	}
+	return o.OsSecondaryImageBuildInfo, true
+}
+
+// HasOsSecondaryImageBuildInfo returns a boolean if a field has been set.
+func (o *ServerInstanceVariables) HasOsSecondaryImageBuildInfo() bool {
+	if o != nil && !IsNil(o.OsSecondaryImageBuildInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsSecondaryImageBuildInfo gets a reference to the given ServerInstanceOsSecondaryImageBuildInfo and assigns it to the OsSecondaryImageBuildInfo field.
+func (o *ServerInstanceVariables) SetOsSecondaryImageBuildInfo(v ServerInstanceOsSecondaryImageBuildInfo) {
+	o.OsSecondaryImageBuildInfo = &v
+}
+
 // GetOsReinstallRequired returns the OsReinstallRequired field value if set, zero value otherwise.
 func (o *ServerInstanceVariables) GetOsReinstallRequired() int32 {
 	if o == nil || IsNil(o.OsReinstallRequired) {
@@ -1335,6 +1437,15 @@ func (o ServerInstanceVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OsInstallImageBuildInfo) {
 		toSerialize["osInstallImageBuildInfo"] = o.OsInstallImageBuildInfo
 	}
+	if !IsNil(o.OsSecondaryImageUrl) {
+		toSerialize["osSecondaryImageUrl"] = o.OsSecondaryImageUrl
+	}
+	if !IsNil(o.OsSecondaryImageBuildError) {
+		toSerialize["osSecondaryImageBuildError"] = o.OsSecondaryImageBuildError
+	}
+	if !IsNil(o.OsSecondaryImageBuildInfo) {
+		toSerialize["osSecondaryImageBuildInfo"] = o.OsSecondaryImageBuildInfo
+	}
 	if !IsNil(o.OsReinstallRequired) {
 		toSerialize["osReinstallRequired"] = o.OsReinstallRequired
 	}
@@ -1443,6 +1554,9 @@ func (o *ServerInstanceVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "osInstallImageUrl")
 		delete(additionalProperties, "osInstallImageBuildError")
 		delete(additionalProperties, "osInstallImageBuildInfo")
+		delete(additionalProperties, "osSecondaryImageUrl")
+		delete(additionalProperties, "osSecondaryImageBuildError")
+		delete(additionalProperties, "osSecondaryImageBuildInfo")
 		delete(additionalProperties, "osReinstallRequired")
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")

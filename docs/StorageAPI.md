@@ -13,6 +13,9 @@ Method | HTTP request | Description
 [**GetStorageFileShares**](StorageAPI.md#GetStorageFileShares) | **Get** /api/v2/storages/{storageId}/file-shares | Get all File Shares linked to the specified storage
 [**GetStorageInterface**](StorageAPI.md#GetStorageInterface) | **Get** /api/v2/storages/{storageId}/interfaces/{interfaceId} | Retrieves a Storage Interface
 [**GetStorageInterfaces**](StorageAPI.md#GetStorageInterfaces) | **Get** /api/v2/storages/{storageId}/interfaces | Retrieves Storage interfaces
+[**GetStorageScopedAccessUser**](StorageAPI.md#GetStorageScopedAccessUser) | **Get** /api/v2/storages/{storageId}/scoped-access-users/{scopedAccessUserId} | Retrieves a Storage Scoped Access User
+[**GetStorageScopedAccessUserCredentials**](StorageAPI.md#GetStorageScopedAccessUserCredentials) | **Get** /api/v2/storages/{storageId}/scoped-access-users/{scopedAccessUserId}/credentials | Get Storage Scoped Access User credentials
+[**GetStorageScopedAccessUsers**](StorageAPI.md#GetStorageScopedAccessUsers) | **Get** /api/v2/storages/{storageId}/scoped-access-users | Get a list of Storage Scoped Access Users
 [**GetStorageStatistics**](StorageAPI.md#GetStorageStatistics) | **Get** /api/v2/storages/{storageId}/statistics | Get Storages statistics
 [**GetStorages**](StorageAPI.md#GetStorages) | **Get** /api/v2/storages | Get a list of Storages
 [**GetStoragesStatistics**](StorageAPI.md#GetStoragesStatistics) | **Get** /api/v2/storages/statistics | Get statistics for all Storages
@@ -745,6 +748,238 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**StorageInterfacePaginatedList**](StorageInterfacePaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStorageScopedAccessUser
+
+> StorageScopedAccessUser GetStorageScopedAccessUser(ctx, storageId, scopedAccessUserId).Execute()
+
+Retrieves a Storage Scoped Access User
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	storageId := int64(789) // int64 | 
+	scopedAccessUserId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StorageAPI.GetStorageScopedAccessUser(context.Background(), storageId, scopedAccessUserId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageScopedAccessUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetStorageScopedAccessUser`: StorageScopedAccessUser
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageScopedAccessUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storageId** | **int64** |  | 
+**scopedAccessUserId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStorageScopedAccessUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**StorageScopedAccessUser**](StorageScopedAccessUser.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStorageScopedAccessUserCredentials
+
+> StorageScopedAccessUserCredentials GetStorageScopedAccessUserCredentials(ctx, storageId, scopedAccessUserId).Execute()
+
+Get Storage Scoped Access User credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	storageId := int64(789) // int64 | 
+	scopedAccessUserId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StorageAPI.GetStorageScopedAccessUserCredentials(context.Background(), storageId, scopedAccessUserId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageScopedAccessUserCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetStorageScopedAccessUserCredentials`: StorageScopedAccessUserCredentials
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageScopedAccessUserCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storageId** | **int64** |  | 
+**scopedAccessUserId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStorageScopedAccessUserCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**StorageScopedAccessUserCredentials**](StorageScopedAccessUserCredentials.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStorageScopedAccessUsers
+
+> StorageScopedAccessUserPaginatedList GetStorageScopedAccessUsers(ctx, storageId).Page(page).Limit(limit).FilterId(filterId).FilterInfrastructureId(filterInfrastructureId).FilterUsername(filterUsername).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+
+Get a list of Storage Scoped Access Users
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	storageId := int64(789) // int64 | 
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.  **Format:** filter.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.infrastructureId=$btw:John Doe&filter.infrastructureId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterUsername := []string{"Inner_example"} // []string | Filter by username query param.  **Format:** filter.username={$not}:OPERATION:VALUE    **Example:** filter.username=$btw:John Doe&filter.username=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=infrastructureId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - infrastructureId  - username  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,infrastructureId,username   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - infrastructureId  - username  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StorageAPI.GetStorageScopedAccessUsers(context.Background(), storageId).Page(page).Limit(limit).FilterId(filterId).FilterInfrastructureId(filterInfrastructureId).FilterUsername(filterUsername).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageScopedAccessUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetStorageScopedAccessUsers`: StorageScopedAccessUserPaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageScopedAccessUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storageId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStorageScopedAccessUsersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterInfrastructureId** | **[]string** | Filter by infrastructureId query param.  **Format:** filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.infrastructureId&#x3D;$btw:John Doe&amp;filter.infrastructureId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterUsername** | **[]string** | Filter by username query param.  **Format:** filter.username&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.username&#x3D;$btw:John Doe&amp;filter.username&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;infrastructureId:DESC   **Default Value:** id:DESC  **Available Fields** - id  - infrastructureId  - username  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,infrastructureId,username   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - infrastructureId  - username  | 
+
+### Return type
+
+[**StorageScopedAccessUserPaginatedList**](StorageScopedAccessUserPaginatedList.md)
 
 ### Authorization
 

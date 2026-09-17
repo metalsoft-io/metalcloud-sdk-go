@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Token** | **string** | The 2FA token | 
+**Token** | Pointer to **string** | The 2FA token. Required unless a recovery code is supplied instead. | [optional] 
+**RecoveryCode** | Pointer to **string** | A single-use recovery code, used in place of the 2FA token when the authenticator is unavailable. | [optional] 
 
 ## Methods
 
 ### NewTwoFactorAuthenticationToken
 
-`func NewTwoFactorAuthenticationToken(token string, ) *TwoFactorAuthenticationToken`
+`func NewTwoFactorAuthenticationToken() *TwoFactorAuthenticationToken`
 
 NewTwoFactorAuthenticationToken instantiates a new TwoFactorAuthenticationToken object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +45,36 @@ and a boolean to check if the value has been set.
 
 SetToken sets Token field to given value.
 
+### HasToken
+
+`func (o *TwoFactorAuthenticationToken) HasToken() bool`
+
+HasToken returns a boolean if a field has been set.
+
+### GetRecoveryCode
+
+`func (o *TwoFactorAuthenticationToken) GetRecoveryCode() string`
+
+GetRecoveryCode returns the RecoveryCode field if non-nil, zero value otherwise.
+
+### GetRecoveryCodeOk
+
+`func (o *TwoFactorAuthenticationToken) GetRecoveryCodeOk() (*string, bool)`
+
+GetRecoveryCodeOk returns a tuple with the RecoveryCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRecoveryCode
+
+`func (o *TwoFactorAuthenticationToken) SetRecoveryCode(v string)`
+
+SetRecoveryCode sets RecoveryCode field to given value.
+
+### HasRecoveryCode
+
+`func (o *TwoFactorAuthenticationToken) HasRecoveryCode() bool`
+
+HasRecoveryCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

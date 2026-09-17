@@ -27,8 +27,10 @@ Name | Type | Description | Notes
 **IsArchived** | **bool** | Whether the user is a archived | 
 **IsDatastorePublisher** | **bool** | Whether the user is a datastore publisher | 
 **AccountId** | Pointer to **int64** | The account ID of the user | [optional] 
-**Provider** | **string** | The provider of the user | [default to "mysql"]
+**Provider** | **string** | The provider of the user | [default to "built-in"]
 **PasswordLastChangedTimestamp** | **string** | The timestamp when the user last changed their password | 
+**ApiKeyLastChangedTimestamp** | Pointer to **string** | The timestamp when the user API key was last regenerated | [optional] 
+**ApiKeyValidityDuration** | Pointer to **int32** | Per-user override for the API key validity duration in seconds; 0 means the API key never expires; unset means the account or global setting applies (MS-10501). Accepted range: 0 - 4294967295. | [optional] 
 **Id** | **int64** | User ID | 
 **Revision** | **int64** | Revision of the user | 
 **Email** | **string** | The email address of the user | 
@@ -40,6 +42,7 @@ Name | Type | Description | Notes
 **IsSuspended** | **bool** | Whether the user is suspended | 
 **AuthenticatorEnabled** | **bool** | Whether the user has an authenticator | 
 **AccessibleResources** | Pointer to **map[string][]string** | The resources accessible by the user | [optional] 
+**RoleAccessibleResources** | Pointer to **map[string][]string** | The resources granted by the user&#39;s role/permissions, excluding the baseline policies granted to every user | [optional] 
 **Config** | [**UserConfiguration**](UserConfiguration.md) | The new configuration of the user. | 
 **Meta** | [**UserMeta**](UserMeta.md) | Meta information of the user. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -588,6 +591,56 @@ and a boolean to check if the value has been set.
 SetPasswordLastChangedTimestamp sets PasswordLastChangedTimestamp field to given value.
 
 
+### GetApiKeyLastChangedTimestamp
+
+`func (o *User) GetApiKeyLastChangedTimestamp() string`
+
+GetApiKeyLastChangedTimestamp returns the ApiKeyLastChangedTimestamp field if non-nil, zero value otherwise.
+
+### GetApiKeyLastChangedTimestampOk
+
+`func (o *User) GetApiKeyLastChangedTimestampOk() (*string, bool)`
+
+GetApiKeyLastChangedTimestampOk returns a tuple with the ApiKeyLastChangedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyLastChangedTimestamp
+
+`func (o *User) SetApiKeyLastChangedTimestamp(v string)`
+
+SetApiKeyLastChangedTimestamp sets ApiKeyLastChangedTimestamp field to given value.
+
+### HasApiKeyLastChangedTimestamp
+
+`func (o *User) HasApiKeyLastChangedTimestamp() bool`
+
+HasApiKeyLastChangedTimestamp returns a boolean if a field has been set.
+
+### GetApiKeyValidityDuration
+
+`func (o *User) GetApiKeyValidityDuration() int32`
+
+GetApiKeyValidityDuration returns the ApiKeyValidityDuration field if non-nil, zero value otherwise.
+
+### GetApiKeyValidityDurationOk
+
+`func (o *User) GetApiKeyValidityDurationOk() (*int32, bool)`
+
+GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyValidityDuration
+
+`func (o *User) SetApiKeyValidityDuration(v int32)`
+
+SetApiKeyValidityDuration sets ApiKeyValidityDuration field to given value.
+
+### HasApiKeyValidityDuration
+
+`func (o *User) HasApiKeyValidityDuration() bool`
+
+HasApiKeyValidityDuration returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *User) GetId() int64`
@@ -822,6 +875,31 @@ SetAccessibleResources sets AccessibleResources field to given value.
 `func (o *User) HasAccessibleResources() bool`
 
 HasAccessibleResources returns a boolean if a field has been set.
+
+### GetRoleAccessibleResources
+
+`func (o *User) GetRoleAccessibleResources() map[string][]string`
+
+GetRoleAccessibleResources returns the RoleAccessibleResources field if non-nil, zero value otherwise.
+
+### GetRoleAccessibleResourcesOk
+
+`func (o *User) GetRoleAccessibleResourcesOk() (*map[string][]string, bool)`
+
+GetRoleAccessibleResourcesOk returns a tuple with the RoleAccessibleResources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoleAccessibleResources
+
+`func (o *User) SetRoleAccessibleResources(v map[string][]string)`
+
+SetRoleAccessibleResources sets RoleAccessibleResources field to given value.
+
+### HasRoleAccessibleResources
+
+`func (o *User) HasRoleAccessibleResources() bool`
+
+HasRoleAccessibleResources returns a boolean if a field has been set.
 
 ### GetConfig
 

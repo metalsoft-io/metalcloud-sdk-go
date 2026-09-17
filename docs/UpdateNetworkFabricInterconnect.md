@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | Unique label for the network fabric interconnect | [optional] 
 **Name** | Pointer to **string** | Name of the network fabric interconnect | [optional] 
 **Description** | Pointer to **string** | Short description of the network fabric interconnect | [optional] 
-**BgpConfigurationTemplateId** | Pointer to **int64** | ID of the BGP interconnect configuration template assigned to this interconnect | [optional] 
+**BgpConfigurationTemplateId** | Pointer to **int64** | ID of the BGP interconnect configuration template assigned to this interconnect. | [optional] 
 
 ## Methods
 

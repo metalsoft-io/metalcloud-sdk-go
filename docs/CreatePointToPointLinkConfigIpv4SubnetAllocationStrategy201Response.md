@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Kind** | [**PointToPointAllocationStrategyKind**](PointToPointAllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **SubnetId** | **int64** | ID of the IPAM subnet backing the link. | 
 **InterfaceABinding** | [**PointToPointInterfaceBinding**](PointToPointInterfaceBinding.md) |  | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewCreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response
 
-`func NewCreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response(id int64, createdAt time.Time, updatedAt time.Time, kind PointToPointAllocationStrategyKind, scope ResourceScope, subnetId int64, interfaceABinding PointToPointInterfaceBinding, subnetPoolIds []int64, prefixLength int32, ) *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response`
+`func NewCreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, subnetId int64, interfaceABinding PointToPointInterfaceBinding, subnetPoolIds []int64, prefixLength int32, ) *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response`
 
 NewCreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response instantiates a new CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response object
 This constructor will assign default values to properties that have it defined,
@@ -95,20 +95,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetKind
 
-`func (o *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response) GetKind() PointToPointAllocationStrategyKind`
+`func (o *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response) GetKindOk() (*PointToPointAllocationStrategyKind, bool)`
+`func (o *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response) SetKind(v PointToPointAllocationStrategyKind)`
+`func (o *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

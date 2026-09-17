@@ -33,7 +33,7 @@ const (
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_UPDATE_DNS AssetExtensionActionStage = "serverInstanceUpdateDNS"
 	ASSETEXTENSIONACTIONSTAGE_CLUSTER_UPDATE_DNS AssetExtensionActionStage = "clusterUpdateDNS"
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_UPDATE AssetExtensionActionStage = "serverInstanceUpdate"
-	ASSETEXTENSIONACTIONSTAGE_UNKNOWN_DEFAULT_OPEN_API AssetExtensionActionStage = "unknown_default_open_api"
+	ASSETEXTENSIONACTIONSTAGE_UNKNOWN_DEFAULT_OPEN_API AssetExtensionActionStage = "11184809"
 )
 
 // All allowed values of AssetExtensionActionStage enum
@@ -50,7 +50,7 @@ var AllowedAssetExtensionActionStageEnumValues = []AssetExtensionActionStage{
 	"serverInstanceUpdateDNS",
 	"clusterUpdateDNS",
 	"serverInstanceUpdate",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *AssetExtensionActionStage) UnmarshalJSON(src []byte) error {
@@ -67,8 +67,7 @@ func (v *AssetExtensionActionStage) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = ASSETEXTENSIONACTIONSTAGE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid AssetExtensionActionStage", value)
 }
 
 // NewAssetExtensionActionStageFromValue returns a pointer to a valid AssetExtensionActionStage

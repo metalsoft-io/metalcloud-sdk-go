@@ -21,8 +21,10 @@ var _ MappedNullable = &ExtensionInstanceCredentials{}
 
 // ExtensionInstanceCredentials struct for ExtensionInstanceCredentials
 type ExtensionInstanceCredentials struct {
-	// Input variables values to be updated.
+	// Input credential variable values.
 	InputVariables map[string]interface{} `json:"inputVariables"`
+	// Output credential variable values.
+	OutputVariables map[string]interface{} `json:"outputVariables"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,9 +34,10 @@ type _ExtensionInstanceCredentials ExtensionInstanceCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstanceCredentials(inputVariables map[string]interface{}) *ExtensionInstanceCredentials {
+func NewExtensionInstanceCredentials(inputVariables map[string]interface{}, outputVariables map[string]interface{}) *ExtensionInstanceCredentials {
 	this := ExtensionInstanceCredentials{}
 	this.InputVariables = inputVariables
+	this.OutputVariables = outputVariables
 	return &this
 }
 
@@ -70,6 +73,30 @@ func (o *ExtensionInstanceCredentials) SetInputVariables(v map[string]interface{
 	o.InputVariables = v
 }
 
+// GetOutputVariables returns the OutputVariables field value
+func (o *ExtensionInstanceCredentials) GetOutputVariables() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.OutputVariables
+}
+
+// GetOutputVariablesOk returns a tuple with the OutputVariables field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInstanceCredentials) GetOutputVariablesOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
+	}
+	return o.OutputVariables, true
+}
+
+// SetOutputVariables sets field value
+func (o *ExtensionInstanceCredentials) SetOutputVariables(v map[string]interface{}) {
+	o.OutputVariables = v
+}
+
 func (o ExtensionInstanceCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -81,6 +108,7 @@ func (o ExtensionInstanceCredentials) MarshalJSON() ([]byte, error) {
 func (o ExtensionInstanceCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["inputVariables"] = o.InputVariables
+	toSerialize["outputVariables"] = o.OutputVariables
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -95,6 +123,7 @@ func (o *ExtensionInstanceCredentials) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"inputVariables",
+		"outputVariables",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -125,6 +154,7 @@ func (o *ExtensionInstanceCredentials) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "inputVariables")
+		delete(additionalProperties, "outputVariables")
 		o.AdditionalProperties = additionalProperties
 	}
 

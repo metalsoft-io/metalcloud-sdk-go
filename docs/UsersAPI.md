@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**ArchiveUser**](UsersAPI.md#ArchiveUser) | **Post** /api/v2/users/{userId}/actions/archive | Archive user
 [**ChangeUserAccount**](UsersAPI.md#ChangeUserAccount) | **Post** /api/v2/users/{userId}/actions/change-account | Change account for user
 [**CreateUserAuthorized**](UsersAPI.md#CreateUserAuthorized) | **Post** /api/v2/users | Creates another user
+[**DeleteUser**](UsersAPI.md#DeleteUser) | **Post** /api/v2/users/{userId}/actions/delete | Delete user
 [**DeleteUserSshKey**](UsersAPI.md#DeleteUserSshKey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
 [**GetQuotaLimitsBreakdown**](UsersAPI.md#GetQuotaLimitsBreakdown) | **Get** /api/v2/users/{userId}/quota-limits-breakdown | Get quota limits breakdown for a user
 [**GetUser**](UsersAPI.md#GetUser) | **Get** /api/v2/users/{userId} | Get user
@@ -378,6 +379,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteUser
+
+> User DeleteUser(ctx, userId).IfMatch(ifMatch).Execute()
+
+Delete user
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := int64(789) // int64 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.DeleteUser(context.Background(), userId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.DeleteUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteUser`: User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.DeleteUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

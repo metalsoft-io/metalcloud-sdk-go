@@ -69,8 +69,8 @@ type Server struct {
 	InstanceCustomInfo map[string]interface{} `json:"instanceCustomInfo,omitempty"`
 	// The custom info of the server.
 	CustomInfo map[string]interface{} `json:"customInfo,omitempty"`
-	// DPU credentials. Only use if the server has a DPU installed.
-	DpuInfo []ServerDPUCredentials `json:"dpuInfo,omitempty"`
+	// DPU information. Only present if the server has a DPU installed.
+	DpuInfo []ServerDPUInfo `json:"dpuInfo,omitempty"`
 	// The vendor of the server.
 	Vendor *string `json:"vendor,omitempty"`
 	// The vendor sku id of the server.
@@ -87,6 +87,16 @@ type Server struct {
 	CurrentFirmwareBaselineId *int64 `json:"currentFirmwareBaselineId,omitempty"`
 	// The target firmware baseline id on the server.
 	TargetFirmwareBaselineId *int64 `json:"targetFirmwareBaselineId,omitempty"`
+	// Whether the server firmware meets the minimum versions of its configured baseline. Judged only against the baseline — independent of whether the configuration has drifted.
+	FirmwareBaselineComplianceStatus *string `json:"firmwareBaselineComplianceStatus,omitempty"`
+	// Whether the server configuration still matches the accepted snapshot. Set out_of_sync when an unplanned change is detected, in_sync when a planned change completes or the target is synced. Says nothing about baseline compliance — see firmwareBaselineComplianceStatus.
+	DriftDetectionSyncStatus *string `json:"driftDetectionSyncStatus,omitempty"`
+	// The OID of the git snapshot accepted as the drift-detection target.
+	DriftDetectionTargetSnapshotId *string `json:"driftDetectionTargetSnapshotId,omitempty"`
+	// Whether firmware backup is enabled for this server. Combined with the site policy: the backup runs only when both allow it. Disabling it also stops drift detection. Defaults to true.
+	FirmwareBackupEnabled *bool `json:"firmwareBackupEnabled,omitempty"`
+	// Whether drift detection is enabled for this server. Gates both checks: the configuration drift alert (this snapshot against the previous one) and the firmware baseline check (installed versions against the baseline minimums). Combined with the site policy: a check runs only when both allow it. Requires firmwareBackupEnabled. Defaults to true.
+	FirmwareDriftDetectionEnabled *bool `json:"firmwareDriftDetectionEnabled,omitempty"`
 	// The registration profile id of the server.
 	RegistrationProfileId *int64 `json:"registrationProfileId,omitempty"`
 	// Flag to indicate if the server required re-registration.
@@ -196,6 +206,10 @@ func NewServer(serverId int64, revision int64, siteId int64, datacenterName stri
 	this.SiteId = siteId
 	this.DatacenterName = datacenterName
 	this.BdkDebug = bdkDebug
+	var firmwareBackupEnabled bool = true
+	this.FirmwareBackupEnabled = &firmwareBackupEnabled
+	var firmwareDriftDetectionEnabled bool = true
+	this.FirmwareDriftDetectionEnabled = &firmwareDriftDetectionEnabled
 	this.RequiresReRegister = requiresReRegister
 	this.ServerClass = serverClass
 	this.ServerStatus = serverStatus
@@ -213,6 +227,10 @@ func NewServer(serverId int64, revision int64, siteId int64, datacenterName stri
 // but it doesn't guarantee that properties required by API are set
 func NewServerWithDefaults() *Server {
 	this := Server{}
+	var firmwareBackupEnabled bool = true
+	this.FirmwareBackupEnabled = &firmwareBackupEnabled
+	var firmwareDriftDetectionEnabled bool = true
+	this.FirmwareDriftDetectionEnabled = &firmwareDriftDetectionEnabled
 	return &this
 }
 
@@ -945,9 +963,9 @@ func (o *Server) SetCustomInfo(v map[string]interface{}) {
 }
 
 // GetDpuInfo returns the DpuInfo field value if set, zero value otherwise.
-func (o *Server) GetDpuInfo() []ServerDPUCredentials {
+func (o *Server) GetDpuInfo() []ServerDPUInfo {
 	if o == nil || IsNil(o.DpuInfo) {
-		var ret []ServerDPUCredentials
+		var ret []ServerDPUInfo
 		return ret
 	}
 	return o.DpuInfo
@@ -955,7 +973,7 @@ func (o *Server) GetDpuInfo() []ServerDPUCredentials {
 
 // GetDpuInfoOk returns a tuple with the DpuInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetDpuInfoOk() ([]ServerDPUCredentials, bool) {
+func (o *Server) GetDpuInfoOk() ([]ServerDPUInfo, bool) {
 	if o == nil || IsNil(o.DpuInfo) {
 		return nil, false
 	}
@@ -971,8 +989,8 @@ func (o *Server) HasDpuInfo() bool {
 	return false
 }
 
-// SetDpuInfo gets a reference to the given []ServerDPUCredentials and assigns it to the DpuInfo field.
-func (o *Server) SetDpuInfo(v []ServerDPUCredentials) {
+// SetDpuInfo gets a reference to the given []ServerDPUInfo and assigns it to the DpuInfo field.
+func (o *Server) SetDpuInfo(v []ServerDPUInfo) {
 	o.DpuInfo = v
 }
 
@@ -1230,6 +1248,166 @@ func (o *Server) HasTargetFirmwareBaselineId() bool {
 // SetTargetFirmwareBaselineId gets a reference to the given int64 and assigns it to the TargetFirmwareBaselineId field.
 func (o *Server) SetTargetFirmwareBaselineId(v int64) {
 	o.TargetFirmwareBaselineId = &v
+}
+
+// GetFirmwareBaselineComplianceStatus returns the FirmwareBaselineComplianceStatus field value if set, zero value otherwise.
+func (o *Server) GetFirmwareBaselineComplianceStatus() string {
+	if o == nil || IsNil(o.FirmwareBaselineComplianceStatus) {
+		var ret string
+		return ret
+	}
+	return *o.FirmwareBaselineComplianceStatus
+}
+
+// GetFirmwareBaselineComplianceStatusOk returns a tuple with the FirmwareBaselineComplianceStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetFirmwareBaselineComplianceStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.FirmwareBaselineComplianceStatus) {
+		return nil, false
+	}
+	return o.FirmwareBaselineComplianceStatus, true
+}
+
+// HasFirmwareBaselineComplianceStatus returns a boolean if a field has been set.
+func (o *Server) HasFirmwareBaselineComplianceStatus() bool {
+	if o != nil && !IsNil(o.FirmwareBaselineComplianceStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareBaselineComplianceStatus gets a reference to the given string and assigns it to the FirmwareBaselineComplianceStatus field.
+func (o *Server) SetFirmwareBaselineComplianceStatus(v string) {
+	o.FirmwareBaselineComplianceStatus = &v
+}
+
+// GetDriftDetectionSyncStatus returns the DriftDetectionSyncStatus field value if set, zero value otherwise.
+func (o *Server) GetDriftDetectionSyncStatus() string {
+	if o == nil || IsNil(o.DriftDetectionSyncStatus) {
+		var ret string
+		return ret
+	}
+	return *o.DriftDetectionSyncStatus
+}
+
+// GetDriftDetectionSyncStatusOk returns a tuple with the DriftDetectionSyncStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetDriftDetectionSyncStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.DriftDetectionSyncStatus) {
+		return nil, false
+	}
+	return o.DriftDetectionSyncStatus, true
+}
+
+// HasDriftDetectionSyncStatus returns a boolean if a field has been set.
+func (o *Server) HasDriftDetectionSyncStatus() bool {
+	if o != nil && !IsNil(o.DriftDetectionSyncStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriftDetectionSyncStatus gets a reference to the given string and assigns it to the DriftDetectionSyncStatus field.
+func (o *Server) SetDriftDetectionSyncStatus(v string) {
+	o.DriftDetectionSyncStatus = &v
+}
+
+// GetDriftDetectionTargetSnapshotId returns the DriftDetectionTargetSnapshotId field value if set, zero value otherwise.
+func (o *Server) GetDriftDetectionTargetSnapshotId() string {
+	if o == nil || IsNil(o.DriftDetectionTargetSnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.DriftDetectionTargetSnapshotId
+}
+
+// GetDriftDetectionTargetSnapshotIdOk returns a tuple with the DriftDetectionTargetSnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetDriftDetectionTargetSnapshotIdOk() (*string, bool) {
+	if o == nil || IsNil(o.DriftDetectionTargetSnapshotId) {
+		return nil, false
+	}
+	return o.DriftDetectionTargetSnapshotId, true
+}
+
+// HasDriftDetectionTargetSnapshotId returns a boolean if a field has been set.
+func (o *Server) HasDriftDetectionTargetSnapshotId() bool {
+	if o != nil && !IsNil(o.DriftDetectionTargetSnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriftDetectionTargetSnapshotId gets a reference to the given string and assigns it to the DriftDetectionTargetSnapshotId field.
+func (o *Server) SetDriftDetectionTargetSnapshotId(v string) {
+	o.DriftDetectionTargetSnapshotId = &v
+}
+
+// GetFirmwareBackupEnabled returns the FirmwareBackupEnabled field value if set, zero value otherwise.
+func (o *Server) GetFirmwareBackupEnabled() bool {
+	if o == nil || IsNil(o.FirmwareBackupEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.FirmwareBackupEnabled
+}
+
+// GetFirmwareBackupEnabledOk returns a tuple with the FirmwareBackupEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetFirmwareBackupEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.FirmwareBackupEnabled) {
+		return nil, false
+	}
+	return o.FirmwareBackupEnabled, true
+}
+
+// HasFirmwareBackupEnabled returns a boolean if a field has been set.
+func (o *Server) HasFirmwareBackupEnabled() bool {
+	if o != nil && !IsNil(o.FirmwareBackupEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareBackupEnabled gets a reference to the given bool and assigns it to the FirmwareBackupEnabled field.
+func (o *Server) SetFirmwareBackupEnabled(v bool) {
+	o.FirmwareBackupEnabled = &v
+}
+
+// GetFirmwareDriftDetectionEnabled returns the FirmwareDriftDetectionEnabled field value if set, zero value otherwise.
+func (o *Server) GetFirmwareDriftDetectionEnabled() bool {
+	if o == nil || IsNil(o.FirmwareDriftDetectionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.FirmwareDriftDetectionEnabled
+}
+
+// GetFirmwareDriftDetectionEnabledOk returns a tuple with the FirmwareDriftDetectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetFirmwareDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.FirmwareDriftDetectionEnabled) {
+		return nil, false
+	}
+	return o.FirmwareDriftDetectionEnabled, true
+}
+
+// HasFirmwareDriftDetectionEnabled returns a boolean if a field has been set.
+func (o *Server) HasFirmwareDriftDetectionEnabled() bool {
+	if o != nil && !IsNil(o.FirmwareDriftDetectionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareDriftDetectionEnabled gets a reference to the given bool and assigns it to the FirmwareDriftDetectionEnabled field.
+func (o *Server) SetFirmwareDriftDetectionEnabled(v bool) {
+	o.FirmwareDriftDetectionEnabled = &v
 }
 
 // GetRegistrationProfileId returns the RegistrationProfileId field value if set, zero value otherwise.
@@ -2763,6 +2941,21 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TargetFirmwareBaselineId) {
 		toSerialize["targetFirmwareBaselineId"] = o.TargetFirmwareBaselineId
 	}
+	if !IsNil(o.FirmwareBaselineComplianceStatus) {
+		toSerialize["firmwareBaselineComplianceStatus"] = o.FirmwareBaselineComplianceStatus
+	}
+	if !IsNil(o.DriftDetectionSyncStatus) {
+		toSerialize["driftDetectionSyncStatus"] = o.DriftDetectionSyncStatus
+	}
+	if !IsNil(o.DriftDetectionTargetSnapshotId) {
+		toSerialize["driftDetectionTargetSnapshotId"] = o.DriftDetectionTargetSnapshotId
+	}
+	if !IsNil(o.FirmwareBackupEnabled) {
+		toSerialize["firmwareBackupEnabled"] = o.FirmwareBackupEnabled
+	}
+	if !IsNil(o.FirmwareDriftDetectionEnabled) {
+		toSerialize["firmwareDriftDetectionEnabled"] = o.FirmwareDriftDetectionEnabled
+	}
 	if !IsNil(o.RegistrationProfileId) {
 		toSerialize["registrationProfileId"] = o.RegistrationProfileId
 	}
@@ -2975,6 +3168,11 @@ func (o *Server) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverCleanupPolicyId")
 		delete(additionalProperties, "currentFirmwareBaselineId")
 		delete(additionalProperties, "targetFirmwareBaselineId")
+		delete(additionalProperties, "firmwareBaselineComplianceStatus")
+		delete(additionalProperties, "driftDetectionSyncStatus")
+		delete(additionalProperties, "driftDetectionTargetSnapshotId")
+		delete(additionalProperties, "firmwareBackupEnabled")
+		delete(additionalProperties, "firmwareDriftDetectionEnabled")
 		delete(additionalProperties, "registrationProfileId")
 		delete(additionalProperties, "requiresReRegister")
 		delete(additionalProperties, "serverSupportsSol")

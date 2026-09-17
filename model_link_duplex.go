@@ -23,14 +23,14 @@ type LinkDuplex string
 const (
 	LINKDUPLEX_HALF LinkDuplex = "half"
 	LINKDUPLEX_FULL LinkDuplex = "full"
-	LINKDUPLEX_UNKNOWN_DEFAULT_OPEN_API LinkDuplex = "unknown_default_open_api"
+	LINKDUPLEX_UNKNOWN_DEFAULT_OPEN_API LinkDuplex = "11184809"
 )
 
 // All allowed values of LinkDuplex enum
 var AllowedLinkDuplexEnumValues = []LinkDuplex{
 	"half",
 	"full",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *LinkDuplex) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *LinkDuplex) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = LINKDUPLEX_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid LinkDuplex", value)
 }
 
 // NewLinkDuplexFromValue returns a pointer to a valid LinkDuplex

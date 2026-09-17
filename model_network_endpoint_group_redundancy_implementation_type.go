@@ -24,7 +24,8 @@ const (
 	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_LINK_AGGREGATION NetworkEndpointGroupRedundancyImplementationType = "link-aggregation"
 	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_DISTRIBUTED_LINK_AGGREGATION NetworkEndpointGroupRedundancyImplementationType = "distributed-link-aggregation"
 	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_ECMP NetworkEndpointGroupRedundancyImplementationType = "ecmp"
-	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_UNKNOWN_DEFAULT_OPEN_API NetworkEndpointGroupRedundancyImplementationType = "unknown_default_open_api"
+	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_SERVER_ONLY_BOND NetworkEndpointGroupRedundancyImplementationType = "server-only-bond"
+	NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_UNKNOWN_DEFAULT_OPEN_API NetworkEndpointGroupRedundancyImplementationType = "11184809"
 )
 
 // All allowed values of NetworkEndpointGroupRedundancyImplementationType enum
@@ -32,7 +33,8 @@ var AllowedNetworkEndpointGroupRedundancyImplementationTypeEnumValues = []Networ
 	"link-aggregation",
 	"distributed-link-aggregation",
 	"ecmp",
-	"unknown_default_open_api",
+	"server-only-bond",
+	"11184809",
 }
 
 func (v *NetworkEndpointGroupRedundancyImplementationType) UnmarshalJSON(src []byte) error {
@@ -49,8 +51,7 @@ func (v *NetworkEndpointGroupRedundancyImplementationType) UnmarshalJSON(src []b
 		}
 	}
 
-	*v = NETWORKENDPOINTGROUPREDUNDANCYIMPLEMENTATIONTYPE_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid NetworkEndpointGroupRedundancyImplementationType", value)
 }
 
 // NewNetworkEndpointGroupRedundancyImplementationTypeFromValue returns a pointer to a valid NetworkEndpointGroupRedundancyImplementationType

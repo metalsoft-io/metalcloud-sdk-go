@@ -40,6 +40,8 @@ type NetworkFabricLinkAggregation struct {
 	MlagDomainIdentifier *string `json:"mlagDomainIdentifier,omitempty"`
 	// Status of the network fabric link aggregation
 	Status string `json:"status"`
+	// Link aggregation options
+	Options *NetworkFabricLinkAggregationOptions `json:"options,omitempty"`
 	// List of links associated with the network fabric link aggregation
 	NetworkFabricLinks []NetworkFabricLink `json:"networkFabricLinks,omitempty"`
 	// History of link configuration changes associated with this link aggregation
@@ -48,6 +50,8 @@ type NetworkFabricLinkAggregation struct {
 	BgpSession *NetworkFabricBGPSession `json:"bgpSession,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
+	// Custom variables exposed to network device configuration templates as link_aggregation_custom_variables
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -302,6 +306,38 @@ func (o *NetworkFabricLinkAggregation) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *NetworkFabricLinkAggregation) GetOptions() NetworkFabricLinkAggregationOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret NetworkFabricLinkAggregationOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricLinkAggregation) GetOptionsOk() (*NetworkFabricLinkAggregationOptions, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *NetworkFabricLinkAggregation) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given NetworkFabricLinkAggregationOptions and assigns it to the Options field.
+func (o *NetworkFabricLinkAggregation) SetOptions(v NetworkFabricLinkAggregationOptions) {
+	o.Options = &v
+}
+
 // GetNetworkFabricLinks returns the NetworkFabricLinks field value if set, zero value otherwise.
 func (o *NetworkFabricLinkAggregation) GetNetworkFabricLinks() []NetworkFabricLink {
 	if o == nil || IsNil(o.NetworkFabricLinks) {
@@ -430,6 +466,38 @@ func (o *NetworkFabricLinkAggregation) SetLinks(v []Link) {
 	o.Links = v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *NetworkFabricLinkAggregation) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabricLinkAggregation) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *NetworkFabricLinkAggregation) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *NetworkFabricLinkAggregation) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 func (o NetworkFabricLinkAggregation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -451,6 +519,9 @@ func (o NetworkFabricLinkAggregation) ToMap() (map[string]interface{}, error) {
 		toSerialize["mlagDomainIdentifier"] = o.MlagDomainIdentifier
 	}
 	toSerialize["status"] = o.Status
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
 	if !IsNil(o.NetworkFabricLinks) {
 		toSerialize["networkFabricLinks"] = o.NetworkFabricLinks
 	}
@@ -462,6 +533,9 @@ func (o NetworkFabricLinkAggregation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -522,10 +596,12 @@ func (o *NetworkFabricLinkAggregation) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "mlagDomainIdentifier")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "options")
 		delete(additionalProperties, "networkFabricLinks")
 		delete(additionalProperties, "networkFabricLinkConfigs")
 		delete(additionalProperties, "bgpSession")
 		delete(additionalProperties, "links")
+		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}
 

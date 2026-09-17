@@ -25,7 +25,7 @@ type ManualVniAllocationStrategy struct {
 	Id int64 `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope ResourceScope `json:"scope"`
 	GranularityLevel NullableVniAllocationGranularityLevel `json:"granularityLevel,omitempty"`
 	Vni int32 `json:"vni"`
@@ -38,7 +38,7 @@ type _ManualVniAllocationStrategy ManualVniAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualVniAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, vni int32) *ManualVniAllocationStrategy {
+func NewManualVniAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, vni int32) *ManualVniAllocationStrategy {
 	this := ManualVniAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -130,9 +130,9 @@ func (o *ManualVniAllocationStrategy) SetUpdatedAt(v time.Time) {
 }
 
 // GetKind returns the Kind field value
-func (o *ManualVniAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *ManualVniAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -141,7 +141,7 @@ func (o *ManualVniAllocationStrategy) GetKind() AllocationStrategyKind {
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *ManualVniAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *ManualVniAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,7 +149,7 @@ func (o *ManualVniAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool
 }
 
 // SetKind sets field value
-func (o *ManualVniAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *ManualVniAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

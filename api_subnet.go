@@ -554,6 +554,119 @@ func (a *SubnetAPIService) GetSubnetExecute(r SubnetAPIGetSubnetRequest) (*Subne
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type SubnetAPIGetSubnetCapacityRequest struct {
+	ctx context.Context
+	ApiService *SubnetAPIService
+	subnetId int64
+	prefixLength *int32
+}
+
+// Pools only: also report how many blocks of this prefix length still fit. Must not be shorter than the pool prefix itself.
+func (r SubnetAPIGetSubnetCapacityRequest) PrefixLength(prefixLength int32) SubnetAPIGetSubnetCapacityRequest {
+	r.prefixLength = &prefixLength
+	return r
+}
+
+func (r SubnetAPIGetSubnetCapacityRequest) Execute() (*SubnetCapacity, *http.Response, error) {
+	return r.ApiService.GetSubnetCapacityExecute(r)
+}
+
+/*
+GetSubnetCapacity Retrieves the Subnet capacity
+
+Reports how much of the Subnet is still available. A Subnet that is not a pool reports ip counts (total, free, used); a pool reports its free blocks instead, since what matters there is which child Subnets still fit. Counts are decimal strings, because a large IPv6 Subnet holds more addresses than a JSON number can carry exactly.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subnetId
+ @return SubnetAPIGetSubnetCapacityRequest
+*/
+func (a *SubnetAPIService) GetSubnetCapacity(ctx context.Context, subnetId int64) SubnetAPIGetSubnetCapacityRequest {
+	return SubnetAPIGetSubnetCapacityRequest{
+		ApiService: a,
+		ctx: ctx,
+		subnetId: subnetId,
+	}
+}
+
+// Execute executes the request
+//  @return SubnetCapacity
+func (a *SubnetAPIService) GetSubnetCapacityExecute(r SubnetAPIGetSubnetCapacityRequest) (*SubnetCapacity, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubnetCapacity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.GetSubnetCapacity")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/subnets/{subnetId}/capacity"
+	localVarPath = strings.Replace(localVarPath, "{"+"subnetId"+"}", url.PathEscape(parameterValueToString(r.subnetId, "subnetId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.prefixLength != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prefixLength", r.prefixLength, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SubnetAPIGetSubnetIpRangesRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService

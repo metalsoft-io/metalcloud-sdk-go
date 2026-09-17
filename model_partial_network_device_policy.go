@@ -30,6 +30,10 @@ type PartialNetworkDevicePolicy struct {
 	LeafSwitchesHaveMlagPairs *bool `json:"leafSwitchesHaveMlagPairs,omitempty"`
 	// Minimum number of spines needed to bootstrap leafs
 	MinimumNumberOfSpinesNeededToBootstrapLeafs *int32 `json:"minimumNumberOfSpinesNeededToBootstrapLeafs,omitempty"`
+	// Whether backup is enabled
+	BackupEnabled *bool `json:"backupEnabled,omitempty"`
+	// Whether drift detection is enabled
+	DriftDetectionEnabled *bool `json:"driftDetectionEnabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -212,6 +216,70 @@ func (o *PartialNetworkDevicePolicy) SetMinimumNumberOfSpinesNeededToBootstrapLe
 	o.MinimumNumberOfSpinesNeededToBootstrapLeafs = &v
 }
 
+// GetBackupEnabled returns the BackupEnabled field value if set, zero value otherwise.
+func (o *PartialNetworkDevicePolicy) GetBackupEnabled() bool {
+	if o == nil || IsNil(o.BackupEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.BackupEnabled
+}
+
+// GetBackupEnabledOk returns a tuple with the BackupEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialNetworkDevicePolicy) GetBackupEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.BackupEnabled) {
+		return nil, false
+	}
+	return o.BackupEnabled, true
+}
+
+// HasBackupEnabled returns a boolean if a field has been set.
+func (o *PartialNetworkDevicePolicy) HasBackupEnabled() bool {
+	if o != nil && !IsNil(o.BackupEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackupEnabled gets a reference to the given bool and assigns it to the BackupEnabled field.
+func (o *PartialNetworkDevicePolicy) SetBackupEnabled(v bool) {
+	o.BackupEnabled = &v
+}
+
+// GetDriftDetectionEnabled returns the DriftDetectionEnabled field value if set, zero value otherwise.
+func (o *PartialNetworkDevicePolicy) GetDriftDetectionEnabled() bool {
+	if o == nil || IsNil(o.DriftDetectionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.DriftDetectionEnabled
+}
+
+// GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialNetworkDevicePolicy) GetDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.DriftDetectionEnabled) {
+		return nil, false
+	}
+	return o.DriftDetectionEnabled, true
+}
+
+// HasDriftDetectionEnabled returns a boolean if a field has been set.
+func (o *PartialNetworkDevicePolicy) HasDriftDetectionEnabled() bool {
+	if o != nil && !IsNil(o.DriftDetectionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriftDetectionEnabled gets a reference to the given bool and assigns it to the DriftDetectionEnabled field.
+func (o *PartialNetworkDevicePolicy) SetDriftDetectionEnabled(v bool) {
+	o.DriftDetectionEnabled = &v
+}
+
 func (o PartialNetworkDevicePolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -236,6 +304,12 @@ func (o PartialNetworkDevicePolicy) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.MinimumNumberOfSpinesNeededToBootstrapLeafs) {
 		toSerialize["minimumNumberOfSpinesNeededToBootstrapLeafs"] = o.MinimumNumberOfSpinesNeededToBootstrapLeafs
+	}
+	if !IsNil(o.BackupEnabled) {
+		toSerialize["backupEnabled"] = o.BackupEnabled
+	}
+	if !IsNil(o.DriftDetectionEnabled) {
+		toSerialize["driftDetectionEnabled"] = o.DriftDetectionEnabled
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -264,6 +338,8 @@ func (o *PartialNetworkDevicePolicy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "leafSwitchesHaveMlagPairs")
 		delete(additionalProperties, "minimumNumberOfSpinesNeededToBootstrapLeafs")
+		delete(additionalProperties, "backupEnabled")
+		delete(additionalProperties, "driftDetectionEnabled")
 		o.AdditionalProperties = additionalProperties
 	}
 

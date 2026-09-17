@@ -32,10 +32,14 @@ type UpdateNetworkDevice struct {
 	ChassisIdentifier NullableString `json:"chassisIdentifier,omitempty"`
 	// Driver software used to communicate with the network device
 	Driver *NetworkDeviceDriver `json:"driver,omitempty"`
-	// The physical or logical position of the network device in the network topology.
+	// The physical or logical position of the network device in the network topology. Optional for planned devices.
 	Position *string `json:"position,omitempty"`
 	// Indicates if this network device acts as a gateway for external network traffic
 	IsGateway *bool `json:"isGateway,omitempty"`
+	// Whether backup is enabled on the device
+	BackupEnabled *bool `json:"backupEnabled,omitempty"`
+	// Whether drift detection is enabled on the device
+	DriftDetectionEnabled *bool `json:"driftDetectionEnabled,omitempty"`
 	// Is storage network device
 	IsStorageSwitch *bool `json:"isStorageSwitch,omitempty"`
 	// Is border device
@@ -46,9 +50,9 @@ type UpdateNetworkDevice struct {
 	ManagementAddress NullableString `json:"managementAddress,omitempty"`
 	// Management Port
 	ManagementPort NullableFloat32 `json:"managementPort,omitempty"`
-	// The username used for management authentication
+	// The username used for management authentication. Optional for planned devices.
 	Username NullableString `json:"username,omitempty"`
-	// The password used for management authentication
+	// The password used for management authentication. Optional for planned devices.
 	ManagementPassword *string `json:"managementPassword,omitempty"`
 	// The username to access the network device API, if different from the management username.
 	ApiUsername *string `json:"apiUsername,omitempty"`
@@ -94,6 +98,8 @@ type UpdateNetworkDevice struct {
 	SerialNumber *string `json:"serialNumber,omitempty"`
 	// Order index
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
+	// OS template used for zero-touch installation (must use the ONIE install method). Must be set on a planned device before the hardware is powered on.
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Tags for categorizing and filtering network devices
 	Tags []string `json:"tags,omitempty"`
 	// Indicates if the device requires OS installation before provisioning
@@ -408,6 +414,70 @@ func (o *UpdateNetworkDevice) HasIsGateway() bool {
 // SetIsGateway gets a reference to the given bool and assigns it to the IsGateway field.
 func (o *UpdateNetworkDevice) SetIsGateway(v bool) {
 	o.IsGateway = &v
+}
+
+// GetBackupEnabled returns the BackupEnabled field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetBackupEnabled() bool {
+	if o == nil || IsNil(o.BackupEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.BackupEnabled
+}
+
+// GetBackupEnabledOk returns a tuple with the BackupEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetBackupEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.BackupEnabled) {
+		return nil, false
+	}
+	return o.BackupEnabled, true
+}
+
+// HasBackupEnabled returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasBackupEnabled() bool {
+	if o != nil && !IsNil(o.BackupEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackupEnabled gets a reference to the given bool and assigns it to the BackupEnabled field.
+func (o *UpdateNetworkDevice) SetBackupEnabled(v bool) {
+	o.BackupEnabled = &v
+}
+
+// GetDriftDetectionEnabled returns the DriftDetectionEnabled field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetDriftDetectionEnabled() bool {
+	if o == nil || IsNil(o.DriftDetectionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.DriftDetectionEnabled
+}
+
+// GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.DriftDetectionEnabled) {
+		return nil, false
+	}
+	return o.DriftDetectionEnabled, true
+}
+
+// HasDriftDetectionEnabled returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasDriftDetectionEnabled() bool {
+	if o != nil && !IsNil(o.DriftDetectionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriftDetectionEnabled gets a reference to the given bool and assigns it to the DriftDetectionEnabled field.
+func (o *UpdateNetworkDevice) SetDriftDetectionEnabled(v bool) {
+	o.DriftDetectionEnabled = &v
 }
 
 // GetIsStorageSwitch returns the IsStorageSwitch field value if set, zero value otherwise.
@@ -1512,6 +1582,38 @@ func (o *UpdateNetworkDevice) SetOrderIndex(v float32) {
 	o.OrderIndex = &v
 }
 
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetOsTemplateId() int64 {
+	if o == nil || IsNil(o.OsTemplateId) {
+		var ret int64
+		return ret
+	}
+	return *o.OsTemplateId
+}
+
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetOsTemplateIdOk() (*int64, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
+		return nil, false
+	}
+	return o.OsTemplateId, true
+}
+
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *UpdateNetworkDevice) SetOsTemplateId(v int64) {
+	o.OsTemplateId = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetTags() []string {
 	if o == nil {
@@ -2005,6 +2107,12 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsGateway) {
 		toSerialize["isGateway"] = o.IsGateway
 	}
+	if !IsNil(o.BackupEnabled) {
+		toSerialize["backupEnabled"] = o.BackupEnabled
+	}
+	if !IsNil(o.DriftDetectionEnabled) {
+		toSerialize["driftDetectionEnabled"] = o.DriftDetectionEnabled
+	}
 	if !IsNil(o.IsStorageSwitch) {
 		toSerialize["isStorageSwitch"] = o.IsStorageSwitch
 	}
@@ -2089,6 +2197,9 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderIndex) {
 		toSerialize["orderIndex"] = o.OrderIndex
 	}
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -2161,6 +2272,8 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
 		delete(additionalProperties, "isGateway")
+		delete(additionalProperties, "backupEnabled")
+		delete(additionalProperties, "driftDetectionEnabled")
 		delete(additionalProperties, "isStorageSwitch")
 		delete(additionalProperties, "isBorderDevice")
 		delete(additionalProperties, "quarantineVlan")
@@ -2189,6 +2302,7 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "rackPositionLowerUnit")
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "orderIndex")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "requiresOsInstall")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")

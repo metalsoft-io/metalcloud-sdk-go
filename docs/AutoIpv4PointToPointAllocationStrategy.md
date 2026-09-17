@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Kind** | [**PointToPointAllocationStrategyKind**](PointToPointAllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **SubnetPoolIds** | **[]int64** |  | 
 **PrefixLength** | **int32** |  | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewAutoIpv4PointToPointAllocationStrategy
 
-`func NewAutoIpv4PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind PointToPointAllocationStrategyKind, scope ResourceScope, subnetPoolIds []int64, prefixLength int32, ) *AutoIpv4PointToPointAllocationStrategy`
+`func NewAutoIpv4PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, subnetPoolIds []int64, prefixLength int32, ) *AutoIpv4PointToPointAllocationStrategy`
 
 NewAutoIpv4PointToPointAllocationStrategy instantiates a new AutoIpv4PointToPointAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -93,20 +93,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetKind
 
-`func (o *AutoIpv4PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind`
+`func (o *AutoIpv4PointToPointAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *AutoIpv4PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool)`
+`func (o *AutoIpv4PointToPointAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *AutoIpv4PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind)`
+`func (o *AutoIpv4PointToPointAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

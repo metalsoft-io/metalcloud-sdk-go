@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
-**Kind** | [**PointToPointAllocationStrategyKind**](PointToPointAllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **SubnetId** | **int64** | ID of the IPAM subnet backing the link. | 
 **InterfaceABinding** | [**PointToPointInterfaceBinding**](PointToPointInterfaceBinding.md) |  | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewManualIpv6PointToPointAllocationStrategy
 
-`func NewManualIpv6PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind PointToPointAllocationStrategyKind, scope ResourceScope, subnetId int64, interfaceABinding PointToPointInterfaceBinding, ) *ManualIpv6PointToPointAllocationStrategy`
+`func NewManualIpv6PointToPointAllocationStrategy(id int64, createdAt time.Time, updatedAt time.Time, kind string, scope ResourceScope, subnetId int64, interfaceABinding PointToPointInterfaceBinding, ) *ManualIpv6PointToPointAllocationStrategy`
 
 NewManualIpv6PointToPointAllocationStrategy instantiates a new ManualIpv6PointToPointAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -93,20 +93,20 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetKind
 
-`func (o *ManualIpv6PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind`
+`func (o *ManualIpv6PointToPointAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *ManualIpv6PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool)`
+`func (o *ManualIpv6PointToPointAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *ManualIpv6PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind)`
+`func (o *ManualIpv6PointToPointAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

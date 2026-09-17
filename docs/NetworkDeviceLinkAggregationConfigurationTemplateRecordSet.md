@@ -12,22 +12,23 @@ Name | Type | Description | Notes
 **LocalSwitchInterfaceName** | **string** | The name of the local switch interface. | 
 **LocalSwitchInterfaceLagId** | **int64** | The LAG ID of the local switch interface. | 
 **LocalSwitchLoopbackAddressIpv4** | Pointer to **string** | The local switch loopback IPv4 address. | [optional] 
-**RemoteSwitchId** | **int64** | The ID of the remote switch. | 
-**RemoteSwitchIdentifier** | **string** | The identifier of the remote switch. | 
-**RemoteSwitchRole** | **string** | The role of the remote switch. | 
-**RemoteSwitchInterfaceName** | **string** | The name of the remote switch interface. | 
-**RemoteSwitchInterfaceLagId** | **int64** | The LAG ID of the remote switch interface. | 
+**RemoteSwitchId** | Pointer to **int64** | The ID of the remote switch. Unset when the remote side is an external system. | [optional] 
+**RemoteSwitchIdentifier** | Pointer to **string** | The identifier of the remote switch. Unset when the remote side is an external system. | [optional] 
+**RemoteSwitchRole** | **string** | The role of the remote switch — its position in the fabric. &#x60;other&#x60; when the remote side is an external system, which is the position the template library uses for a peer we do not manage. | 
+**RemoteSwitchInterfaceName** | Pointer to **string** | The name of the remote switch interface. Unset when the remote side is an external system, which has no interfaces of its own. | [optional] 
+**RemoteSwitchInterfaceLagId** | Pointer to **int64** | The LAG ID of the remote switch interface. Unset when the remote side is an external system. | [optional] 
 **RemoteSwitchLoopbackAddressIpv4** | Pointer to **string** | The remote switch loopback IPv4 address. | [optional] 
 **FabricCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the fabric. | [optional] 
 **LinkCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the link. | [optional] 
 **LocalSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the local switch. | [optional] 
 **RemoteSwitchCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the remote switch. | [optional] 
+**LinkAggregationCustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the link aggregation itself, as opposed to link_custom_variables, which belongs to the single member link this record set was resolved for. | [optional] 
 
 ## Methods
 
 ### NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet
 
-`func NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(aggregationType string, localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, localSwitchInterfaceLagId int64, remoteSwitchId int64, remoteSwitchIdentifier string, remoteSwitchRole string, remoteSwitchInterfaceName string, remoteSwitchInterfaceLagId int64, ) *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet`
+`func NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet(aggregationType string, localSwitchId int64, localSwitchIdentifier string, localSwitchRole string, localSwitchInterfaceName string, localSwitchInterfaceLagId int64, remoteSwitchRole string, ) *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet`
 
 NewNetworkDeviceLinkAggregationConfigurationTemplateRecordSet instantiates a new NetworkDeviceLinkAggregationConfigurationTemplateRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -231,6 +232,11 @@ and a boolean to check if the value has been set.
 
 SetRemoteSwitchId sets RemoteSwitchId field to given value.
 
+### HasRemoteSwitchId
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchId() bool`
+
+HasRemoteSwitchId returns a boolean if a field has been set.
 
 ### GetRemoteSwitchIdentifier
 
@@ -251,6 +257,11 @@ and a boolean to check if the value has been set.
 
 SetRemoteSwitchIdentifier sets RemoteSwitchIdentifier field to given value.
 
+### HasRemoteSwitchIdentifier
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchIdentifier() bool`
+
+HasRemoteSwitchIdentifier returns a boolean if a field has been set.
 
 ### GetRemoteSwitchRole
 
@@ -291,6 +302,11 @@ and a boolean to check if the value has been set.
 
 SetRemoteSwitchInterfaceName sets RemoteSwitchInterfaceName field to given value.
 
+### HasRemoteSwitchInterfaceName
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchInterfaceName() bool`
+
+HasRemoteSwitchInterfaceName returns a boolean if a field has been set.
 
 ### GetRemoteSwitchInterfaceLagId
 
@@ -311,6 +327,11 @@ and a boolean to check if the value has been set.
 
 SetRemoteSwitchInterfaceLagId sets RemoteSwitchInterfaceLagId field to given value.
 
+### HasRemoteSwitchInterfaceLagId
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchInterfaceLagId() bool`
+
+HasRemoteSwitchInterfaceLagId returns a boolean if a field has been set.
 
 ### GetRemoteSwitchLoopbackAddressIpv4
 
@@ -436,6 +457,31 @@ SetRemoteSwitchCustomVariables sets RemoteSwitchCustomVariables field to given v
 `func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasRemoteSwitchCustomVariables() bool`
 
 HasRemoteSwitchCustomVariables returns a boolean if a field has been set.
+
+### GetLinkAggregationCustomVariables
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLinkAggregationCustomVariables() map[string]interface{}`
+
+GetLinkAggregationCustomVariables returns the LinkAggregationCustomVariables field if non-nil, zero value otherwise.
+
+### GetLinkAggregationCustomVariablesOk
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) GetLinkAggregationCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetLinkAggregationCustomVariablesOk returns a tuple with the LinkAggregationCustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkAggregationCustomVariables
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) SetLinkAggregationCustomVariables(v map[string]interface{})`
+
+SetLinkAggregationCustomVariables sets LinkAggregationCustomVariables field to given value.
+
+### HasLinkAggregationCustomVariables
+
+`func (o *NetworkDeviceLinkAggregationConfigurationTemplateRecordSet) HasLinkAggregationCustomVariables() bool`
+
+HasLinkAggregationCustomVariables returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,18 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DefaultServerRegistrationProfileId** | Pointer to **int64** | ID of the default server registration profile | [optional] 
-**DhcpOption82ToIPMapping** | **map[string]interface{}** | Option82 to IP mapping | 
+**DhcpOption82ToIPMapping** | Pointer to **map[string]interface{}** | DEPRECATED — use DHCP reservations instead. Option82 to IP mapping. | [optional] 
+**DhcpAllocateUnmatched** | Pointer to **bool** | Whether to allocate an IP for a DHCP request that matches no reservation. Defaults to true (allocate the next free IP across all site OOB subnets); set to false to reject unmatched requests. | [optional] [default to true]
 **DhcpBmcMacAddressWhitelistEnabled** | **bool** | Whether to enable DHCP BMC MAC address whitelist | 
 **DhcpBmcMacAddressWhitelist** | **[]string** | List of DHCP BMC MAC address whitelist | 
 **DefaultServerCleanupPolicyID** | Pointer to **int64** | Default server cleanup policy ID | [optional] 
 **AutomaticallyAllocateServerTypes** | **bool** | Automatically allocate server types | 
 **AutomaticallySetServersAsAvailable** | **bool** | Automatically set servers as available | 
+**FirmwareBackupEnabled** | Pointer to **bool** | Whether periodic server firmware backup (snapshotting the observed firmware to git) is enabled for             the site. Disabling it also stops firmware drift detection. Defaults to true. | [optional] [default to true]
+**FirmwareDriftDetectionEnabled** | Pointer to **bool** | Whether server drift detection is enabled for the site. Gates both checks: the configuration             drift alert (each snapshot against the previous one) and the firmware baseline check (installed             versions against the baseline minimums). Requires firmwareBackupEnabled. Defaults to true. | [optional] [default to true]
 
 ## Methods
 
 ### NewServerPolicy
 
-`func NewServerPolicy(dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, ) *ServerPolicy`
+`func NewServerPolicy(dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, ) *ServerPolicy`
 
 NewServerPolicy instantiates a new ServerPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -75,6 +78,36 @@ and a boolean to check if the value has been set.
 
 SetDhcpOption82ToIPMapping sets DhcpOption82ToIPMapping field to given value.
 
+### HasDhcpOption82ToIPMapping
+
+`func (o *ServerPolicy) HasDhcpOption82ToIPMapping() bool`
+
+HasDhcpOption82ToIPMapping returns a boolean if a field has been set.
+
+### GetDhcpAllocateUnmatched
+
+`func (o *ServerPolicy) GetDhcpAllocateUnmatched() bool`
+
+GetDhcpAllocateUnmatched returns the DhcpAllocateUnmatched field if non-nil, zero value otherwise.
+
+### GetDhcpAllocateUnmatchedOk
+
+`func (o *ServerPolicy) GetDhcpAllocateUnmatchedOk() (*bool, bool)`
+
+GetDhcpAllocateUnmatchedOk returns a tuple with the DhcpAllocateUnmatched field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDhcpAllocateUnmatched
+
+`func (o *ServerPolicy) SetDhcpAllocateUnmatched(v bool)`
+
+SetDhcpAllocateUnmatched sets DhcpAllocateUnmatched field to given value.
+
+### HasDhcpAllocateUnmatched
+
+`func (o *ServerPolicy) HasDhcpAllocateUnmatched() bool`
+
+HasDhcpAllocateUnmatched returns a boolean if a field has been set.
 
 ### GetDhcpBmcMacAddressWhitelistEnabled
 
@@ -180,6 +213,56 @@ and a boolean to check if the value has been set.
 
 SetAutomaticallySetServersAsAvailable sets AutomaticallySetServersAsAvailable field to given value.
 
+
+### GetFirmwareBackupEnabled
+
+`func (o *ServerPolicy) GetFirmwareBackupEnabled() bool`
+
+GetFirmwareBackupEnabled returns the FirmwareBackupEnabled field if non-nil, zero value otherwise.
+
+### GetFirmwareBackupEnabledOk
+
+`func (o *ServerPolicy) GetFirmwareBackupEnabledOk() (*bool, bool)`
+
+GetFirmwareBackupEnabledOk returns a tuple with the FirmwareBackupEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareBackupEnabled
+
+`func (o *ServerPolicy) SetFirmwareBackupEnabled(v bool)`
+
+SetFirmwareBackupEnabled sets FirmwareBackupEnabled field to given value.
+
+### HasFirmwareBackupEnabled
+
+`func (o *ServerPolicy) HasFirmwareBackupEnabled() bool`
+
+HasFirmwareBackupEnabled returns a boolean if a field has been set.
+
+### GetFirmwareDriftDetectionEnabled
+
+`func (o *ServerPolicy) GetFirmwareDriftDetectionEnabled() bool`
+
+GetFirmwareDriftDetectionEnabled returns the FirmwareDriftDetectionEnabled field if non-nil, zero value otherwise.
+
+### GetFirmwareDriftDetectionEnabledOk
+
+`func (o *ServerPolicy) GetFirmwareDriftDetectionEnabledOk() (*bool, bool)`
+
+GetFirmwareDriftDetectionEnabledOk returns a tuple with the FirmwareDriftDetectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareDriftDetectionEnabled
+
+`func (o *ServerPolicy) SetFirmwareDriftDetectionEnabled(v bool)`
+
+SetFirmwareDriftDetectionEnabled sets FirmwareDriftDetectionEnabled field to given value.
+
+### HasFirmwareDriftDetectionEnabled
+
+`func (o *ServerPolicy) HasFirmwareDriftDetectionEnabled() bool`
+
+HasFirmwareDriftDetectionEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

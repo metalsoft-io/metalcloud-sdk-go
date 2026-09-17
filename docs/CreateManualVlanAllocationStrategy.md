@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
+**Kind** | **string** |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
 **GranularityLevel** | Pointer to [**NullableVlanAllocationGranularityLevel**](VlanAllocationGranularityLevel.md) |  | [optional] 
 **VlanId** | **int32** |  | 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCreateManualVlanAllocationStrategy
 
-`func NewCreateManualVlanAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, vlanId int32, ) *CreateManualVlanAllocationStrategy`
+`func NewCreateManualVlanAllocationStrategy(kind string, scope CreateResourceScope, vlanId int32, ) *CreateManualVlanAllocationStrategy`
 
 NewCreateManualVlanAllocationStrategy instantiates a new CreateManualVlanAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKind
 
-`func (o *CreateManualVlanAllocationStrategy) GetKind() AllocationStrategyKind`
+`func (o *CreateManualVlanAllocationStrategy) GetKind() string`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *CreateManualVlanAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateManualVlanAllocationStrategy) GetKindOk() (*string, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *CreateManualVlanAllocationStrategy) SetKind(v AllocationStrategyKind)`
+`func (o *CreateManualVlanAllocationStrategy) SetKind(v string)`
 
 SetKind sets Kind field to given value.
 

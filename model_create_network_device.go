@@ -25,6 +25,8 @@ type CreateNetworkDevice struct {
 	SiteId *int64 `json:"siteId,omitempty"`
 	// Name of the datacenter
 	DatacenterName *string `json:"datacenterName,omitempty"`
+	// Initial status of the network device. `planned` = draft, not installed yet (identified by MAC address or serial number, other fields optional). `install_ready` = like planned but immediately ready for the zero-touch install, so an ONIE OS template is required. `register_ready` = an already installed, reachable switch that starts registration right away, entering the graph one step earlier than `active` does; it needs a driver that supports the start-registration action. Defaults to `active`, meaning a reachable device — note such a device is created in `registering` and becomes `active` only once its registration completes, unless its driver supports no start-registration action, in which case it is created `active` outright.
+	Status *string `json:"status,omitempty"`
 	// Unique identifier string for the network device
 	IdentifierString *string `json:"identifierString,omitempty"`
 	// ID of the rack where the network device chassis is installed
@@ -33,12 +35,16 @@ type CreateNetworkDevice struct {
 	ChassisIdentifier NullableString `json:"chassisIdentifier,omitempty"`
 	// Driver software used to communicate with the network device
 	Driver NetworkDeviceDriver `json:"driver"`
-	// The physical or logical position of the network device in the network topology.
+	// The physical or logical position of the network device in the network topology. Optional for planned devices.
 	Position string `json:"position"`
 	// Indicates if this network device acts as a gateway for external network traffic
 	IsGateway *bool `json:"isGateway,omitempty"`
 	// Indicates if syslog logging is enabled for this network device
 	SyslogEnabled NullableBool `json:"syslogEnabled,omitempty"`
+	// Whether backup is enabled on the device
+	BackupEnabled *bool `json:"backupEnabled,omitempty"`
+	// Whether drift detection is enabled on the device
+	DriftDetectionEnabled *bool `json:"driftDetectionEnabled,omitempty"`
 	// Indicates if SNMP service is enabled for this network device
 	SnmpServiceEnabled NullableBool `json:"snmpServiceEnabled,omitempty"`
 	// Indicates if SNMP monitoring is enabled for this network device
@@ -53,9 +59,9 @@ type CreateNetworkDevice struct {
 	ManagementAddress NullableString `json:"managementAddress,omitempty"`
 	// The port number used for management connections
 	ManagementPort NullableInt32 `json:"managementPort,omitempty"`
-	// The username used for management authentication
+	// The username used for management authentication. Optional for planned devices.
 	Username NullableString `json:"username"`
-	// The password used for management authentication
+	// The password used for management authentication. Optional for planned devices.
 	ManagementPassword string `json:"managementPassword"`
 	// The username to access the network device API, if different from the management username.
 	ApiUsername *string `json:"apiUsername,omitempty"`
@@ -101,6 +107,8 @@ type CreateNetworkDevice struct {
 	SerialNumber *string `json:"serialNumber,omitempty"`
 	// The order index for sorting network devices
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
+	// OS template used for zero-touch installation (must use the ONIE install method). Must be set on a planned device before the hardware is powered on.
+	OsTemplateId *int64 `json:"osTemplateId,omitempty"`
 	// Tags for categorizing and filtering network devices
 	Tags []string `json:"tags,omitempty"`
 	// Key/value tags (key-map). The forthcoming replacement for the legacy string[] `tags`.
@@ -140,6 +148,8 @@ type _CreateNetworkDevice CreateNetworkDevice
 // will change when the set of required properties is changed
 func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, username NullableString, managementPassword string) *CreateNetworkDevice {
 	this := CreateNetworkDevice{}
+	var status string = "active"
+	this.Status = &status
 	this.Driver = driver
 	this.Position = position
 	this.Username = username
@@ -152,6 +162,8 @@ func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, usernam
 // but it doesn't guarantee that properties required by API are set
 func NewCreateNetworkDeviceWithDefaults() *CreateNetworkDevice {
 	this := CreateNetworkDevice{}
+	var status string = "active"
+	this.Status = &status
 	return &this
 }
 
@@ -217,6 +229,38 @@ func (o *CreateNetworkDevice) HasDatacenterName() bool {
 // SetDatacenterName gets a reference to the given string and assigns it to the DatacenterName field.
 func (o *CreateNetworkDevice) SetDatacenterName(v string) {
 	o.DatacenterName = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetStatus() string {
+	if o == nil || IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *CreateNetworkDevice) SetStatus(v string) {
+	o.Status = &v
 }
 
 // GetIdentifierString returns the IdentifierString field value if set, zero value otherwise.
@@ -445,6 +489,70 @@ func (o *CreateNetworkDevice) SetSyslogEnabledNil() {
 // UnsetSyslogEnabled ensures that no value is present for SyslogEnabled, not even an explicit nil
 func (o *CreateNetworkDevice) UnsetSyslogEnabled() {
 	o.SyslogEnabled.Unset()
+}
+
+// GetBackupEnabled returns the BackupEnabled field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetBackupEnabled() bool {
+	if o == nil || IsNil(o.BackupEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.BackupEnabled
+}
+
+// GetBackupEnabledOk returns a tuple with the BackupEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetBackupEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.BackupEnabled) {
+		return nil, false
+	}
+	return o.BackupEnabled, true
+}
+
+// HasBackupEnabled returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasBackupEnabled() bool {
+	if o != nil && !IsNil(o.BackupEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackupEnabled gets a reference to the given bool and assigns it to the BackupEnabled field.
+func (o *CreateNetworkDevice) SetBackupEnabled(v bool) {
+	o.BackupEnabled = &v
+}
+
+// GetDriftDetectionEnabled returns the DriftDetectionEnabled field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetDriftDetectionEnabled() bool {
+	if o == nil || IsNil(o.DriftDetectionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.DriftDetectionEnabled
+}
+
+// GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetDriftDetectionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.DriftDetectionEnabled) {
+		return nil, false
+	}
+	return o.DriftDetectionEnabled, true
+}
+
+// HasDriftDetectionEnabled returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasDriftDetectionEnabled() bool {
+	if o != nil && !IsNil(o.DriftDetectionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriftDetectionEnabled gets a reference to the given bool and assigns it to the DriftDetectionEnabled field.
+func (o *CreateNetworkDevice) SetDriftDetectionEnabled(v bool) {
+	o.DriftDetectionEnabled = &v
 }
 
 // GetSnmpServiceEnabled returns the SnmpServiceEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1609,6 +1717,38 @@ func (o *CreateNetworkDevice) SetOrderIndex(v float32) {
 	o.OrderIndex = &v
 }
 
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *CreateNetworkDevice) GetOsTemplateId() int64 {
+	if o == nil || IsNil(o.OsTemplateId) {
+		var ret int64
+		return ret
+	}
+	return *o.OsTemplateId
+}
+
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkDevice) GetOsTemplateIdOk() (*int64, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
+		return nil, false
+	}
+	return o.OsTemplateId, true
+}
+
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *CreateNetworkDevice) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsTemplateId gets a reference to the given int64 and assigns it to the OsTemplateId field.
+func (o *CreateNetworkDevice) SetOsTemplateId(v int64) {
+	o.OsTemplateId = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateNetworkDevice) GetTags() []string {
 	if o == nil {
@@ -2084,6 +2224,9 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DatacenterName) {
 		toSerialize["datacenterName"] = o.DatacenterName
 	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.IdentifierString) {
 		toSerialize["identifierString"] = o.IdentifierString
 	}
@@ -2100,6 +2243,12 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if o.SyslogEnabled.IsSet() {
 		toSerialize["syslogEnabled"] = o.SyslogEnabled.Get()
+	}
+	if !IsNil(o.BackupEnabled) {
+		toSerialize["backupEnabled"] = o.BackupEnabled
+	}
+	if !IsNil(o.DriftDetectionEnabled) {
+		toSerialize["driftDetectionEnabled"] = o.DriftDetectionEnabled
 	}
 	if o.SnmpServiceEnabled.IsSet() {
 		toSerialize["snmpServiceEnabled"] = o.SnmpServiceEnabled.Get()
@@ -2186,6 +2335,9 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.OrderIndex) {
 		toSerialize["orderIndex"] = o.OrderIndex
+	}
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
@@ -2277,6 +2429,7 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "datacenterName")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "chassisRackId")
 		delete(additionalProperties, "chassisIdentifier")
@@ -2284,6 +2437,8 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "position")
 		delete(additionalProperties, "isGateway")
 		delete(additionalProperties, "syslogEnabled")
+		delete(additionalProperties, "backupEnabled")
+		delete(additionalProperties, "driftDetectionEnabled")
 		delete(additionalProperties, "snmpServiceEnabled")
 		delete(additionalProperties, "snmpMonitoringEnabled")
 		delete(additionalProperties, "isStorageSwitch")
@@ -2314,6 +2469,7 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "rackPositionLowerUnit")
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "orderIndex")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "tagsMap")
 		delete(additionalProperties, "requiresOsInstall")

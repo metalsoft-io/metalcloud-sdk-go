@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the task. | 
-**TaskType** | [**ExtensionTaskType**](ExtensionTaskType.md) |  | 
+**TaskType** | **string** |  | 
 **Options** | [**ExtensionTaskOptionSsh**](ExtensionTaskOptionSsh.md) |  | 
 
 ## Methods
 
 ### NewInfrastructureExtensionActionsTasksDataItem
 
-`func NewInfrastructureExtensionActionsTasksDataItem(label string, taskType ExtensionTaskType, options ExtensionTaskOptionSsh, ) *InfrastructureExtensionActionsTasksDataItem`
+`func NewInfrastructureExtensionActionsTasksDataItem(label string, taskType string, options ExtensionTaskOptionSsh, ) *InfrastructureExtensionActionsTasksDataItem`
 
 NewInfrastructureExtensionActionsTasksDataItem instantiates a new InfrastructureExtensionActionsTasksDataItem object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetLabel sets Label field to given value.
 
 ### GetTaskType
 
-`func (o *InfrastructureExtensionActionsTasksDataItem) GetTaskType() ExtensionTaskType`
+`func (o *InfrastructureExtensionActionsTasksDataItem) GetTaskType() string`
 
 GetTaskType returns the TaskType field if non-nil, zero value otherwise.
 
 ### GetTaskTypeOk
 
-`func (o *InfrastructureExtensionActionsTasksDataItem) GetTaskTypeOk() (*ExtensionTaskType, bool)`
+`func (o *InfrastructureExtensionActionsTasksDataItem) GetTaskTypeOk() (*string, bool)`
 
 GetTaskTypeOk returns a tuple with the TaskType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaskType
 
-`func (o *InfrastructureExtensionActionsTasksDataItem) SetTaskType(v ExtensionTaskType)`
+`func (o *InfrastructureExtensionActionsTasksDataItem) SetTaskType(v string)`
 
 SetTaskType sets TaskType field to given value.
 

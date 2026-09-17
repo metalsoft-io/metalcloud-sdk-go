@@ -26,6 +26,8 @@ type AuthConfiguration struct {
 	Ldap *Ldap `json:"ldap,omitempty"`
 	// SAML SSO integration settings
 	Saml *Saml `json:"saml,omitempty"`
+	// OpenID Connect SSO integration settings
+	Oidc *Oidc `json:"oidc,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -144,6 +146,38 @@ func (o *AuthConfiguration) SetSaml(v Saml) {
 	o.Saml = &v
 }
 
+// GetOidc returns the Oidc field value if set, zero value otherwise.
+func (o *AuthConfiguration) GetOidc() Oidc {
+	if o == nil || IsNil(o.Oidc) {
+		var ret Oidc
+		return ret
+	}
+	return *o.Oidc
+}
+
+// GetOidcOk returns a tuple with the Oidc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthConfiguration) GetOidcOk() (*Oidc, bool) {
+	if o == nil || IsNil(o.Oidc) {
+		return nil, false
+	}
+	return o.Oidc, true
+}
+
+// HasOidc returns a boolean if a field has been set.
+func (o *AuthConfiguration) HasOidc() bool {
+	if o != nil && !IsNil(o.Oidc) {
+		return true
+	}
+
+	return false
+}
+
+// SetOidc gets a reference to the given Oidc and assigns it to the Oidc field.
+func (o *AuthConfiguration) SetOidc(v Oidc) {
+	o.Oidc = &v
+}
+
 func (o AuthConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -162,6 +196,9 @@ func (o AuthConfiguration) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Saml) {
 		toSerialize["saml"] = o.Saml
+	}
+	if !IsNil(o.Oidc) {
+		toSerialize["oidc"] = o.Oidc
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -188,6 +225,7 @@ func (o *AuthConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "users")
 		delete(additionalProperties, "ldap")
 		delete(additionalProperties, "saml")
+		delete(additionalProperties, "oidc")
 		o.AdditionalProperties = additionalProperties
 	}
 

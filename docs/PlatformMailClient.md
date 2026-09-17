@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Enabled** | Pointer to **bool** | Whether outgoing email delivery is enabled | [optional] 
 **StrHostname** | Pointer to **string** | SMTP server hostname | [optional] 
 **NPort** | Pointer to **float32** | SMTP server port | [optional] 
 **StrUsername** | Pointer to **string** | SMTP authentication username | [optional] 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed
 NewPlatformMailClientWithDefaults instantiates a new PlatformMailClient object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEnabled
+
+`func (o *PlatformMailClient) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *PlatformMailClient) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *PlatformMailClient) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+### HasEnabled
+
+`func (o *PlatformMailClient) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
 
 ### GetStrHostname
 

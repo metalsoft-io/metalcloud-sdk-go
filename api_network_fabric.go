@@ -1296,6 +1296,9 @@ type NetworkFabricAPIGetFabricNetworkDevicesRequest struct {
 	filterServerId *[]string
 	filterHealthStatus *[]string
 	filterDriftDetectionSyncStatus *[]string
+	filterBackupEnabled *[]string
+	filterDriftDetectionEnabled *[]string
+	filterNetworkFabricId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1397,7 +1400,25 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterDriftDetectionSync
 	return r
 }
 
-// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus 
+// Filter by backupEnabled query param.  **Format:** filter.backupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.backupEnabled&#x3D;$btw:John Doe&amp;filter.backupEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterBackupEnabled(filterBackupEnabled []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterBackupEnabled = &filterBackupEnabled
+	return r
+}
+
+// Filter by driftDetectionEnabled query param.  **Format:** filter.driftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionEnabled&#x3D;$btw:John Doe&amp;filter.driftDetectionEnabled&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterDriftDetectionEnabled(filterDriftDetectionEnabled []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterDriftDetectionEnabled = &filterDriftDetectionEnabled
+	return r
+}
+
+// Filter by networkFabricId query param.  **Format:** filter.networkFabricId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.networkFabricId&#x3D;$eq:John Doe&amp;filter.networkFabricId&#x3D;$null:John Doe  **Available Operations** - $eq  - $null  - $and  - $or
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterNetworkFabricId(filterNetworkFabricId []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterNetworkFabricId = &filterNetworkFabricId
+	return r
+}
+
+// Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;identifierString:DESC   **Default Value:** id:ASC  **Available Fields** - id  - identifierString  - status  - siteId  - position  - driver  - managementAddress  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SortBy(sortBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1409,7 +1430,7 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) Search(search string) Ne
 	return r
 }
 
-// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus 
+// List of fields to search by term to filter result values  **Example:** id,identifierString,status,position,driver   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - identifierString  - status  - position  - driver  - managementAddress  - description  - driver  - healthStatus  - driftDetectionSyncStatus  - backupEnabled  - driftDetectionEnabled 
 func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) SearchBy(searchBy []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -1614,6 +1635,39 @@ func (a *NetworkFabricAPIService) GetFabricNetworkDevicesExecute(r NetworkFabric
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionSyncStatus", t, "form", "multi")
+		}
+	}
+	if r.filterBackupEnabled != nil {
+		t := *r.filterBackupEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.backupEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.backupEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterDriftDetectionEnabled != nil {
+		t := *r.filterDriftDetectionEnabled
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionEnabled", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.driftDetectionEnabled", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkFabricId != nil {
+		t := *r.filterNetworkFabricId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkFabricId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -3772,6 +3826,125 @@ func (a *NetworkFabricAPIService) UpdateNetworkFabricExecute(r NetworkFabricAPIU
 	}
 	// body params
 	localVarPostBody = r.updateNetworkFabric
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int64
+	bgpSessionId int64
+	updateNetworkFabricBGPSession *UpdateNetworkFabricBGPSession
+}
+
+// The network fabric BGP session fields to update
+func (r NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest) UpdateNetworkFabricBGPSession(updateNetworkFabricBGPSession UpdateNetworkFabricBGPSession) NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest {
+	r.updateNetworkFabricBGPSession = &updateNetworkFabricBGPSession
+	return r
+}
+
+func (r NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest) Execute() (*NetworkFabricBGPSession, *http.Response, error) {
+	return r.ApiService.UpdateNetworkFabricBgpSessionExecute(r)
+}
+
+/*
+UpdateNetworkFabricBgpSession Update a network fabric BGP session
+
+Rewrites the custom variables of a BGP session. The variables are read by network device configuration templates as bgp_session_custom_variables the next time a fabric deployment renders this session; an already active session is not itself re-pushed to the switch by this call.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @param bgpSessionId The ID of the network fabric BGP session
+ @return NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest
+*/
+func (a *NetworkFabricAPIService) UpdateNetworkFabricBgpSession(ctx context.Context, networkFabricId int64, bgpSessionId int64) NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest {
+	return NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		bgpSessionId: bgpSessionId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabricBGPSession
+func (a *NetworkFabricAPIService) UpdateNetworkFabricBgpSessionExecute(r NetworkFabricAPIUpdateNetworkFabricBgpSessionRequest) (*NetworkFabricBGPSession, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabricBGPSession
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.UpdateNetworkFabricBgpSession")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/bgp-sessions/{bgpSessionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bgpSessionId"+"}", url.PathEscape(parameterValueToString(r.bgpSessionId, "bgpSessionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateNetworkFabricBGPSession == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkFabricBGPSession is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateNetworkFabricBGPSession
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

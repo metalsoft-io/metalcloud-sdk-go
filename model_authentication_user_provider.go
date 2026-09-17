@@ -22,7 +22,7 @@ var _ MappedNullable = &AuthenticationUserProvider{}
 // AuthenticationUserProvider struct for AuthenticationUserProvider
 type AuthenticationUserProvider struct {
 	// The provider name
-	Provider string `json:"provider"`
+	Provider UserProviderName `json:"provider"`
 	// The SSO entry point URL for SAML authentication
 	SsoEntryPoint *string `json:"ssoEntryPoint,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _AuthenticationUserProvider AuthenticationUserProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthenticationUserProvider(provider string) *AuthenticationUserProvider {
+func NewAuthenticationUserProvider(provider UserProviderName) *AuthenticationUserProvider {
 	this := AuthenticationUserProvider{}
 	this.Provider = provider
 	return &this
@@ -49,9 +49,9 @@ func NewAuthenticationUserProviderWithDefaults() *AuthenticationUserProvider {
 }
 
 // GetProvider returns the Provider field value
-func (o *AuthenticationUserProvider) GetProvider() string {
+func (o *AuthenticationUserProvider) GetProvider() UserProviderName {
 	if o == nil {
-		var ret string
+		var ret UserProviderName
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *AuthenticationUserProvider) GetProvider() string {
 
 // GetProviderOk returns a tuple with the Provider field value
 // and a boolean to check if the value has been set.
-func (o *AuthenticationUserProvider) GetProviderOk() (*string, bool) {
+func (o *AuthenticationUserProvider) GetProviderOk() (*UserProviderName, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *AuthenticationUserProvider) GetProviderOk() (*string, bool) {
 }
 
 // SetProvider sets field value
-func (o *AuthenticationUserProvider) SetProvider(v string) {
+func (o *AuthenticationUserProvider) SetProvider(v UserProviderName) {
 	o.Provider = v
 }
 

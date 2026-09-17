@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerIds** | Pointer to **[]int64** | The list of server ids for which firmware upgrade audit should be generated. | [optional] 
-**VendorPattern** | Pointer to **string** | Vendor name pattern to match servers (e.g., \&quot;HPE\&quot;, \&quot;Dell\&quot;). Used with vendorModelPattern. Cannot be used with serverIds. | [optional] 
+**ServerIds** | Pointer to **[]int64** | The list of server ids for which firmware upgrade audit should be generated. Cannot be used with vendorPattern/modelPattern. | [optional] 
+**VendorPattern** | Pointer to **string** | Vendor name pattern to match servers (e.g., \&quot;HPE\&quot;, \&quot;Dell\&quot;). Used with modelPattern. Cannot be used with serverIds. | [optional] 
 **ModelPattern** | Pointer to **string** | Model name pattern with wildcards to match servers (e.g., \&quot;DL360*\&quot;, \&quot;*Gen10\&quot;, \&quot;PowerEdge.*\&quot;). Used with vendorPattern. Cannot be used with serverIds. | [optional] 
 
 ## Methods

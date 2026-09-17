@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | DNS name, allows the use of placeholder variables | 
-**RecordType** | [**DNSRecordType**](DNSRecordType.md) | The type of DNS record (e.g., A, AAAA, CNAME, NS, PTR, TXT, SOA) to create | 
+**RecordType** | [**DNSRecordType**](DNSRecordType.md) | The type of DNS record (A, AAAA, CNAME, PTR) to create | 
 **GeneratePtrRecord** | Pointer to **bool** | Whether to generate a PTR record for this DNS record | [optional] [default to false]
 **Aliases** | Pointer to **[]string** | CNAME aliases for the DNS record | [optional] 
 **Ttl** | Pointer to **int32** | TTL (Time to Live) for the DNS Record Set. | [optional] [default to 3600]

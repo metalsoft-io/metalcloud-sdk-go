@@ -30,14 +30,20 @@ type PatchQuotaProfileLimitsDto struct {
 	InfrastructureBucketMaxCount *float32 `json:"infrastructureBucketMaxCount,omitempty"`
 	// Maximum number of VM instance groups per infrastructure
 	InfrastructureVmInstanceGroupMaxCount *float32 `json:"infrastructureVmInstanceGroupMaxCount,omitempty"`
+	// Maximum number of Container instance groups per infrastructure
+	InfrastructureContainerInstanceGroupMaxCount *float32 `json:"infrastructureContainerInstanceGroupMaxCount,omitempty"`
 	// Maximum number of instances per server group
 	ServerGroupInstancesMaxCount *float32 `json:"serverGroupInstancesMaxCount,omitempty"`
 	// Minimum number of instances per server group
 	ServerGroupInstancesMinCount *float32 `json:"serverGroupInstancesMinCount,omitempty"`
 	// Maximum number of VM instances per VM instance group
 	VmInstanceGroupVmInstancesMaxCount *float32 `json:"vmInstanceGroupVmInstancesMaxCount,omitempty"`
+	// Maximum number of Container instances per Container instance group
+	ContainerInstanceGroupContainerInstancesMaxCount *float32 `json:"containerInstanceGroupContainerInstancesMaxCount,omitempty"`
 	// Maximum disk size for a VM instance in megabytes
 	VmInstanceMaxDiskSizeMbytes *float32 `json:"vmInstanceMaxDiskSizeMbytes,omitempty"`
+	// Maximum disk size for a Container instance in megabytes
+	ContainerInstanceMaxDiskSizeMbytes *float32 `json:"containerInstanceMaxDiskSizeMbytes,omitempty"`
 	// Maximum shared drive size in megabytes
 	DriveMaxSizeMbytes *float32 `json:"driveMaxSizeMbytes,omitempty"`
 	// Minimum shared drive size in megabytes
@@ -66,6 +72,8 @@ type PatchQuotaProfileLimitsDto struct {
 	EnableCustomRaidConfiguration *bool `json:"enableCustomRaidConfiguration,omitempty"`
 	// Whether VM instance groups can be created in infrastructures
 	EnableInfrastructureVmInstance *bool `json:"enableInfrastructureVmInstance,omitempty"`
+	// Whether Container instance groups can be created in infrastructures
+	EnableInfrastructureContainerInstance *bool `json:"enableInfrastructureContainerInstance,omitempty"`
 	// Whether extensions can be deployed in infrastructures
 	EnableInfrastructureExtensions *bool `json:"enableInfrastructureExtensions,omitempty"`
 	// Allowed extension IDs. Empty array means all extensions are permitted
@@ -260,6 +268,38 @@ func (o *PatchQuotaProfileLimitsDto) SetInfrastructureVmInstanceGroupMaxCount(v 
 	o.InfrastructureVmInstanceGroupMaxCount = &v
 }
 
+// GetInfrastructureContainerInstanceGroupMaxCount returns the InfrastructureContainerInstanceGroupMaxCount field value if set, zero value otherwise.
+func (o *PatchQuotaProfileLimitsDto) GetInfrastructureContainerInstanceGroupMaxCount() float32 {
+	if o == nil || IsNil(o.InfrastructureContainerInstanceGroupMaxCount) {
+		var ret float32
+		return ret
+	}
+	return *o.InfrastructureContainerInstanceGroupMaxCount
+}
+
+// GetInfrastructureContainerInstanceGroupMaxCountOk returns a tuple with the InfrastructureContainerInstanceGroupMaxCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchQuotaProfileLimitsDto) GetInfrastructureContainerInstanceGroupMaxCountOk() (*float32, bool) {
+	if o == nil || IsNil(o.InfrastructureContainerInstanceGroupMaxCount) {
+		return nil, false
+	}
+	return o.InfrastructureContainerInstanceGroupMaxCount, true
+}
+
+// HasInfrastructureContainerInstanceGroupMaxCount returns a boolean if a field has been set.
+func (o *PatchQuotaProfileLimitsDto) HasInfrastructureContainerInstanceGroupMaxCount() bool {
+	if o != nil && !IsNil(o.InfrastructureContainerInstanceGroupMaxCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureContainerInstanceGroupMaxCount gets a reference to the given float32 and assigns it to the InfrastructureContainerInstanceGroupMaxCount field.
+func (o *PatchQuotaProfileLimitsDto) SetInfrastructureContainerInstanceGroupMaxCount(v float32) {
+	o.InfrastructureContainerInstanceGroupMaxCount = &v
+}
+
 // GetServerGroupInstancesMaxCount returns the ServerGroupInstancesMaxCount field value if set, zero value otherwise.
 func (o *PatchQuotaProfileLimitsDto) GetServerGroupInstancesMaxCount() float32 {
 	if o == nil || IsNil(o.ServerGroupInstancesMaxCount) {
@@ -356,6 +396,38 @@ func (o *PatchQuotaProfileLimitsDto) SetVmInstanceGroupVmInstancesMaxCount(v flo
 	o.VmInstanceGroupVmInstancesMaxCount = &v
 }
 
+// GetContainerInstanceGroupContainerInstancesMaxCount returns the ContainerInstanceGroupContainerInstancesMaxCount field value if set, zero value otherwise.
+func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceGroupContainerInstancesMaxCount() float32 {
+	if o == nil || IsNil(o.ContainerInstanceGroupContainerInstancesMaxCount) {
+		var ret float32
+		return ret
+	}
+	return *o.ContainerInstanceGroupContainerInstancesMaxCount
+}
+
+// GetContainerInstanceGroupContainerInstancesMaxCountOk returns a tuple with the ContainerInstanceGroupContainerInstancesMaxCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceGroupContainerInstancesMaxCountOk() (*float32, bool) {
+	if o == nil || IsNil(o.ContainerInstanceGroupContainerInstancesMaxCount) {
+		return nil, false
+	}
+	return o.ContainerInstanceGroupContainerInstancesMaxCount, true
+}
+
+// HasContainerInstanceGroupContainerInstancesMaxCount returns a boolean if a field has been set.
+func (o *PatchQuotaProfileLimitsDto) HasContainerInstanceGroupContainerInstancesMaxCount() bool {
+	if o != nil && !IsNil(o.ContainerInstanceGroupContainerInstancesMaxCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetContainerInstanceGroupContainerInstancesMaxCount gets a reference to the given float32 and assigns it to the ContainerInstanceGroupContainerInstancesMaxCount field.
+func (o *PatchQuotaProfileLimitsDto) SetContainerInstanceGroupContainerInstancesMaxCount(v float32) {
+	o.ContainerInstanceGroupContainerInstancesMaxCount = &v
+}
+
 // GetVmInstanceMaxDiskSizeMbytes returns the VmInstanceMaxDiskSizeMbytes field value if set, zero value otherwise.
 func (o *PatchQuotaProfileLimitsDto) GetVmInstanceMaxDiskSizeMbytes() float32 {
 	if o == nil || IsNil(o.VmInstanceMaxDiskSizeMbytes) {
@@ -386,6 +458,38 @@ func (o *PatchQuotaProfileLimitsDto) HasVmInstanceMaxDiskSizeMbytes() bool {
 // SetVmInstanceMaxDiskSizeMbytes gets a reference to the given float32 and assigns it to the VmInstanceMaxDiskSizeMbytes field.
 func (o *PatchQuotaProfileLimitsDto) SetVmInstanceMaxDiskSizeMbytes(v float32) {
 	o.VmInstanceMaxDiskSizeMbytes = &v
+}
+
+// GetContainerInstanceMaxDiskSizeMbytes returns the ContainerInstanceMaxDiskSizeMbytes field value if set, zero value otherwise.
+func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceMaxDiskSizeMbytes() float32 {
+	if o == nil || IsNil(o.ContainerInstanceMaxDiskSizeMbytes) {
+		var ret float32
+		return ret
+	}
+	return *o.ContainerInstanceMaxDiskSizeMbytes
+}
+
+// GetContainerInstanceMaxDiskSizeMbytesOk returns a tuple with the ContainerInstanceMaxDiskSizeMbytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceMaxDiskSizeMbytesOk() (*float32, bool) {
+	if o == nil || IsNil(o.ContainerInstanceMaxDiskSizeMbytes) {
+		return nil, false
+	}
+	return o.ContainerInstanceMaxDiskSizeMbytes, true
+}
+
+// HasContainerInstanceMaxDiskSizeMbytes returns a boolean if a field has been set.
+func (o *PatchQuotaProfileLimitsDto) HasContainerInstanceMaxDiskSizeMbytes() bool {
+	if o != nil && !IsNil(o.ContainerInstanceMaxDiskSizeMbytes) {
+		return true
+	}
+
+	return false
+}
+
+// SetContainerInstanceMaxDiskSizeMbytes gets a reference to the given float32 and assigns it to the ContainerInstanceMaxDiskSizeMbytes field.
+func (o *PatchQuotaProfileLimitsDto) SetContainerInstanceMaxDiskSizeMbytes(v float32) {
+	o.ContainerInstanceMaxDiskSizeMbytes = &v
 }
 
 // GetDriveMaxSizeMbytes returns the DriveMaxSizeMbytes field value if set, zero value otherwise.
@@ -836,6 +940,38 @@ func (o *PatchQuotaProfileLimitsDto) SetEnableInfrastructureVmInstance(v bool) {
 	o.EnableInfrastructureVmInstance = &v
 }
 
+// GetEnableInfrastructureContainerInstance returns the EnableInfrastructureContainerInstance field value if set, zero value otherwise.
+func (o *PatchQuotaProfileLimitsDto) GetEnableInfrastructureContainerInstance() bool {
+	if o == nil || IsNil(o.EnableInfrastructureContainerInstance) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableInfrastructureContainerInstance
+}
+
+// GetEnableInfrastructureContainerInstanceOk returns a tuple with the EnableInfrastructureContainerInstance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchQuotaProfileLimitsDto) GetEnableInfrastructureContainerInstanceOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableInfrastructureContainerInstance) {
+		return nil, false
+	}
+	return o.EnableInfrastructureContainerInstance, true
+}
+
+// HasEnableInfrastructureContainerInstance returns a boolean if a field has been set.
+func (o *PatchQuotaProfileLimitsDto) HasEnableInfrastructureContainerInstance() bool {
+	if o != nil && !IsNil(o.EnableInfrastructureContainerInstance) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableInfrastructureContainerInstance gets a reference to the given bool and assigns it to the EnableInfrastructureContainerInstance field.
+func (o *PatchQuotaProfileLimitsDto) SetEnableInfrastructureContainerInstance(v bool) {
+	o.EnableInfrastructureContainerInstance = &v
+}
+
 // GetEnableInfrastructureExtensions returns the EnableInfrastructureExtensions field value if set, zero value otherwise.
 func (o *PatchQuotaProfileLimitsDto) GetEnableInfrastructureExtensions() bool {
 	if o == nil || IsNil(o.EnableInfrastructureExtensions) {
@@ -1053,6 +1189,9 @@ func (o PatchQuotaProfileLimitsDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InfrastructureVmInstanceGroupMaxCount) {
 		toSerialize["infrastructureVmInstanceGroupMaxCount"] = o.InfrastructureVmInstanceGroupMaxCount
 	}
+	if !IsNil(o.InfrastructureContainerInstanceGroupMaxCount) {
+		toSerialize["infrastructureContainerInstanceGroupMaxCount"] = o.InfrastructureContainerInstanceGroupMaxCount
+	}
 	if !IsNil(o.ServerGroupInstancesMaxCount) {
 		toSerialize["serverGroupInstancesMaxCount"] = o.ServerGroupInstancesMaxCount
 	}
@@ -1062,8 +1201,14 @@ func (o PatchQuotaProfileLimitsDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VmInstanceGroupVmInstancesMaxCount) {
 		toSerialize["vmInstanceGroupVmInstancesMaxCount"] = o.VmInstanceGroupVmInstancesMaxCount
 	}
+	if !IsNil(o.ContainerInstanceGroupContainerInstancesMaxCount) {
+		toSerialize["containerInstanceGroupContainerInstancesMaxCount"] = o.ContainerInstanceGroupContainerInstancesMaxCount
+	}
 	if !IsNil(o.VmInstanceMaxDiskSizeMbytes) {
 		toSerialize["vmInstanceMaxDiskSizeMbytes"] = o.VmInstanceMaxDiskSizeMbytes
+	}
+	if !IsNil(o.ContainerInstanceMaxDiskSizeMbytes) {
+		toSerialize["containerInstanceMaxDiskSizeMbytes"] = o.ContainerInstanceMaxDiskSizeMbytes
 	}
 	if !IsNil(o.DriveMaxSizeMbytes) {
 		toSerialize["driveMaxSizeMbytes"] = o.DriveMaxSizeMbytes
@@ -1106,6 +1251,9 @@ func (o PatchQuotaProfileLimitsDto) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EnableInfrastructureVmInstance) {
 		toSerialize["enableInfrastructureVmInstance"] = o.EnableInfrastructureVmInstance
+	}
+	if !IsNil(o.EnableInfrastructureContainerInstance) {
+		toSerialize["enableInfrastructureContainerInstance"] = o.EnableInfrastructureContainerInstance
 	}
 	if !IsNil(o.EnableInfrastructureExtensions) {
 		toSerialize["enableInfrastructureExtensions"] = o.EnableInfrastructureExtensions
@@ -1152,10 +1300,13 @@ func (o *PatchQuotaProfileLimitsDto) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureFileShareMaxCount")
 		delete(additionalProperties, "infrastructureBucketMaxCount")
 		delete(additionalProperties, "infrastructureVmInstanceGroupMaxCount")
+		delete(additionalProperties, "infrastructureContainerInstanceGroupMaxCount")
 		delete(additionalProperties, "serverGroupInstancesMaxCount")
 		delete(additionalProperties, "serverGroupInstancesMinCount")
 		delete(additionalProperties, "vmInstanceGroupVmInstancesMaxCount")
+		delete(additionalProperties, "containerInstanceGroupContainerInstancesMaxCount")
 		delete(additionalProperties, "vmInstanceMaxDiskSizeMbytes")
+		delete(additionalProperties, "containerInstanceMaxDiskSizeMbytes")
 		delete(additionalProperties, "driveMaxSizeMbytes")
 		delete(additionalProperties, "driveMinSizeMbytes")
 		delete(additionalProperties, "fileShareMinSizeGb")
@@ -1170,6 +1321,7 @@ func (o *PatchQuotaProfileLimitsDto) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "showEliChatBot")
 		delete(additionalProperties, "enableCustomRaidConfiguration")
 		delete(additionalProperties, "enableInfrastructureVmInstance")
+		delete(additionalProperties, "enableInfrastructureContainerInstance")
 		delete(additionalProperties, "enableInfrastructureExtensions")
 		delete(additionalProperties, "allowedInfrastructureExtensions")
 		delete(additionalProperties, "allowedServerTypes")

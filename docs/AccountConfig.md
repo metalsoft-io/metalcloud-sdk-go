@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **PrimaryContactId** | Pointer to **int64** | The user ID of the primary contact | [optional] 
 **SecondaryContactId** | Pointer to **int64** | The user ID of the secondary contact | [optional] 
 **QuotaProfileId** | Pointer to **string** | The ID of the quota profile assigned to this account | [optional] 
+**ApiKeyValidityDuration** | Pointer to **int32** | Per-account override for the API key validity duration in seconds; 0 means API keys of users in this account never expire; unset means the global setting applies (MS-10501). Accepted range: 0 - 4294967295. | [optional] 
 **IsArchived** | Pointer to **bool** | Whether the account is archived | [optional] 
 
 ## Methods
@@ -248,6 +249,31 @@ SetQuotaProfileId sets QuotaProfileId field to given value.
 `func (o *AccountConfig) HasQuotaProfileId() bool`
 
 HasQuotaProfileId returns a boolean if a field has been set.
+
+### GetApiKeyValidityDuration
+
+`func (o *AccountConfig) GetApiKeyValidityDuration() int32`
+
+GetApiKeyValidityDuration returns the ApiKeyValidityDuration field if non-nil, zero value otherwise.
+
+### GetApiKeyValidityDurationOk
+
+`func (o *AccountConfig) GetApiKeyValidityDurationOk() (*int32, bool)`
+
+GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyValidityDuration
+
+`func (o *AccountConfig) SetApiKeyValidityDuration(v int32)`
+
+SetApiKeyValidityDuration sets ApiKeyValidityDuration field to given value.
+
+### HasApiKeyValidityDuration
+
+`func (o *AccountConfig) HasApiKeyValidityDuration() bool`
+
+HasApiKeyValidityDuration returns a boolean if a field has been set.
 
 ### GetIsArchived
 

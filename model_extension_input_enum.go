@@ -25,7 +25,9 @@ type ExtensionInputEnum struct {
 	Label string `json:"label"`
 	// Name of the input.
 	Name string `json:"name"`
-	InputType ExtensionInputType `json:"inputType"`
+	// Help text describing the input.
+	HelpText *string `json:"helpText,omitempty"`
+	InputType string `json:"inputType"`
 	// Flag to indicate if the input can be set only during extension instance creation.
 	SetOnly *bool `json:"setOnly,omitempty"`
 	// Flag to indicate if the input is hidden in the UI.
@@ -43,7 +45,7 @@ type _ExtensionInputEnum ExtensionInputEnum
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInputEnum(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionEnum) *ExtensionInputEnum {
+func NewExtensionInputEnum(label string, name string, inputType string, options ExtensionInputOptionEnum) *ExtensionInputEnum {
 	this := ExtensionInputEnum{}
 	this.Label = label
 	this.Name = name
@@ -120,10 +122,42 @@ func (o *ExtensionInputEnum) SetName(v string) {
 	o.Name = v
 }
 
+// GetHelpText returns the HelpText field value if set, zero value otherwise.
+func (o *ExtensionInputEnum) GetHelpText() string {
+	if o == nil || IsNil(o.HelpText) {
+		var ret string
+		return ret
+	}
+	return *o.HelpText
+}
+
+// GetHelpTextOk returns a tuple with the HelpText field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputEnum) GetHelpTextOk() (*string, bool) {
+	if o == nil || IsNil(o.HelpText) {
+		return nil, false
+	}
+	return o.HelpText, true
+}
+
+// HasHelpText returns a boolean if a field has been set.
+func (o *ExtensionInputEnum) HasHelpText() bool {
+	if o != nil && !IsNil(o.HelpText) {
+		return true
+	}
+
+	return false
+}
+
+// SetHelpText gets a reference to the given string and assigns it to the HelpText field.
+func (o *ExtensionInputEnum) SetHelpText(v string) {
+	o.HelpText = &v
+}
+
 // GetInputType returns the InputType field value
-func (o *ExtensionInputEnum) GetInputType() ExtensionInputType {
+func (o *ExtensionInputEnum) GetInputType() string {
 	if o == nil {
-		var ret ExtensionInputType
+		var ret string
 		return ret
 	}
 
@@ -132,7 +166,7 @@ func (o *ExtensionInputEnum) GetInputType() ExtensionInputType {
 
 // GetInputTypeOk returns a tuple with the InputType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputEnum) GetInputTypeOk() (*ExtensionInputType, bool) {
+func (o *ExtensionInputEnum) GetInputTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -140,7 +174,7 @@ func (o *ExtensionInputEnum) GetInputTypeOk() (*ExtensionInputType, bool) {
 }
 
 // SetInputType sets field value
-func (o *ExtensionInputEnum) SetInputType(v ExtensionInputType) {
+func (o *ExtensionInputEnum) SetInputType(v string) {
 	o.InputType = v
 }
 
@@ -308,6 +342,9 @@ func (o ExtensionInputEnum) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
+	if !IsNil(o.HelpText) {
+		toSerialize["helpText"] = o.HelpText
+	}
 	toSerialize["inputType"] = o.InputType
 	if !IsNil(o.SetOnly) {
 		toSerialize["setOnly"] = o.SetOnly
@@ -370,6 +407,7 @@ func (o *ExtensionInputEnum) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "helpText")
 		delete(additionalProperties, "inputType")
 		delete(additionalProperties, "setOnly")
 		delete(additionalProperties, "hidden")

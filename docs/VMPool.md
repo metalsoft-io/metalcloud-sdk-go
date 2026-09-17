@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
 **Options** | Pointer to [**VMPoolOptions**](VMPoolOptions.md) | Options for the vm pool | [optional] 
 **Gpus** | Pointer to [**[]VMPoolGPU**](VMPoolGPU.md) | The GPUs registered inside the VM Pool. | [optional] 
+**GpuPartitions** | Pointer to [**[]VMPoolGPUPartition**](VMPoolGPUPartition.md) | The GPU partitions registered inside the VM Pool. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -463,6 +464,31 @@ SetGpus sets Gpus field to given value.
 `func (o *VMPool) HasGpus() bool`
 
 HasGpus returns a boolean if a field has been set.
+
+### GetGpuPartitions
+
+`func (o *VMPool) GetGpuPartitions() []VMPoolGPUPartition`
+
+GetGpuPartitions returns the GpuPartitions field if non-nil, zero value otherwise.
+
+### GetGpuPartitionsOk
+
+`func (o *VMPool) GetGpuPartitionsOk() (*[]VMPoolGPUPartition, bool)`
+
+GetGpuPartitionsOk returns a tuple with the GpuPartitions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpuPartitions
+
+`func (o *VMPool) SetGpuPartitions(v []VMPoolGPUPartition)`
+
+SetGpuPartitions sets GpuPartitions field to given value.
+
+### HasGpuPartitions
+
+`func (o *VMPool) HasGpuPartitions() bool`
+
+HasGpuPartitions returns a boolean if a field has been set.
 
 ### GetLinks
 

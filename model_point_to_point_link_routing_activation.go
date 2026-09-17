@@ -23,14 +23,14 @@ type PointToPointLinkRoutingActivation string
 const (
 	POINTTOPOINTLINKROUTINGACTIVATION_DEFAULT PointToPointLinkRoutingActivation = "default"
 	POINTTOPOINTLINKROUTINGACTIVATION_WHILE_TRANSPORTING_LOGICAL_NETWORK PointToPointLinkRoutingActivation = "while_transporting_logical_network"
-	POINTTOPOINTLINKROUTINGACTIVATION_UNKNOWN_DEFAULT_OPEN_API PointToPointLinkRoutingActivation = "unknown_default_open_api"
+	POINTTOPOINTLINKROUTINGACTIVATION_UNKNOWN_DEFAULT_OPEN_API PointToPointLinkRoutingActivation = "11184809"
 )
 
 // All allowed values of PointToPointLinkRoutingActivation enum
 var AllowedPointToPointLinkRoutingActivationEnumValues = []PointToPointLinkRoutingActivation{
 	"default",
 	"while_transporting_logical_network",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *PointToPointLinkRoutingActivation) UnmarshalJSON(src []byte) error {
@@ -47,8 +47,7 @@ func (v *PointToPointLinkRoutingActivation) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = POINTTOPOINTLINKROUTINGACTIVATION_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid PointToPointLinkRoutingActivation", value)
 }
 
 // NewPointToPointLinkRoutingActivationFromValue returns a pointer to a valid PointToPointLinkRoutingActivation

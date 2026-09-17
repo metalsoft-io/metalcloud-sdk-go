@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateAutoIpv6SubnetAllocationStrategy{}
 
 // CreateAutoIpv6SubnetAllocationStrategy struct for CreateAutoIpv6SubnetAllocationStrategy
 type CreateAutoIpv6SubnetAllocationStrategy struct {
-	Kind AllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	GatewayPlacement *SubnetGatewayPlacement `json:"gatewayPlacement,omitempty"`
 	SubnetPoolIds []int64 `json:"subnetPoolIds"`
@@ -35,7 +35,7 @@ type _CreateAutoIpv6SubnetAllocationStrategy CreateAutoIpv6SubnetAllocationStrat
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutoIpv6SubnetAllocationStrategy(kind AllocationStrategyKind, scope CreateResourceScope, subnetPoolIds []int64, prefixLength int32) *CreateAutoIpv6SubnetAllocationStrategy {
+func NewCreateAutoIpv6SubnetAllocationStrategy(kind string, scope CreateResourceScope, subnetPoolIds []int64, prefixLength int32) *CreateAutoIpv6SubnetAllocationStrategy {
 	this := CreateAutoIpv6SubnetAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -57,9 +57,9 @@ func NewCreateAutoIpv6SubnetAllocationStrategyWithDefaults() *CreateAutoIpv6Subn
 }
 
 // GetKind returns the Kind field value
-func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKind() AllocationStrategyKind {
+func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret AllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKind() AllocationStrategyKin
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKindOk() (*AllocationStrategyKind, bool) {
+func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *CreateAutoIpv6SubnetAllocationStrategy) GetKindOk() (*AllocationStrateg
 }
 
 // SetKind sets field value
-func (o *CreateAutoIpv6SubnetAllocationStrategy) SetKind(v AllocationStrategyKind) {
+func (o *CreateAutoIpv6SubnetAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

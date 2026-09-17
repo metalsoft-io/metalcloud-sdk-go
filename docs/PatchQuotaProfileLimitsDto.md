@@ -9,10 +9,13 @@ Name | Type | Description | Notes
 **InfrastructureFileShareMaxCount** | Pointer to **float32** | Maximum number of file shares per infrastructure | [optional] 
 **InfrastructureBucketMaxCount** | Pointer to **float32** | Maximum number of buckets per infrastructure | [optional] 
 **InfrastructureVmInstanceGroupMaxCount** | Pointer to **float32** | Maximum number of VM instance groups per infrastructure | [optional] 
+**InfrastructureContainerInstanceGroupMaxCount** | Pointer to **float32** | Maximum number of Container instance groups per infrastructure | [optional] 
 **ServerGroupInstancesMaxCount** | Pointer to **float32** | Maximum number of instances per server group | [optional] 
 **ServerGroupInstancesMinCount** | Pointer to **float32** | Minimum number of instances per server group | [optional] 
 **VmInstanceGroupVmInstancesMaxCount** | Pointer to **float32** | Maximum number of VM instances per VM instance group | [optional] 
+**ContainerInstanceGroupContainerInstancesMaxCount** | Pointer to **float32** | Maximum number of Container instances per Container instance group | [optional] 
 **VmInstanceMaxDiskSizeMbytes** | Pointer to **float32** | Maximum disk size for a VM instance in megabytes | [optional] 
+**ContainerInstanceMaxDiskSizeMbytes** | Pointer to **float32** | Maximum disk size for a Container instance in megabytes | [optional] 
 **DriveMaxSizeMbytes** | Pointer to **float32** | Maximum shared drive size in megabytes | [optional] 
 **DriveMinSizeMbytes** | Pointer to **float32** | Minimum shared drive size in megabytes | [optional] 
 **FileShareMinSizeGb** | Pointer to **float32** | Minimum file share size in gigabytes | [optional] 
@@ -27,6 +30,7 @@ Name | Type | Description | Notes
 **ShowEliChatBot** | Pointer to **bool** | Whether the ELI AI chat bot is visible | [optional] 
 **EnableCustomRaidConfiguration** | Pointer to **bool** | Whether custom RAID configuration is allowed | [optional] 
 **EnableInfrastructureVmInstance** | Pointer to **bool** | Whether VM instance groups can be created in infrastructures | [optional] 
+**EnableInfrastructureContainerInstance** | Pointer to **bool** | Whether Container instance groups can be created in infrastructures | [optional] 
 **EnableInfrastructureExtensions** | Pointer to **bool** | Whether extensions can be deployed in infrastructures | [optional] 
 **AllowedInfrastructureExtensions** | Pointer to **[]string** | Allowed extension IDs. Empty array means all extensions are permitted | [optional] 
 **AllowedServerTypes** | Pointer to **[]string** | Allowed server type names. Empty array means all server types are permitted | [optional] 
@@ -178,6 +182,31 @@ SetInfrastructureVmInstanceGroupMaxCount sets InfrastructureVmInstanceGroupMaxCo
 
 HasInfrastructureVmInstanceGroupMaxCount returns a boolean if a field has been set.
 
+### GetInfrastructureContainerInstanceGroupMaxCount
+
+`func (o *PatchQuotaProfileLimitsDto) GetInfrastructureContainerInstanceGroupMaxCount() float32`
+
+GetInfrastructureContainerInstanceGroupMaxCount returns the InfrastructureContainerInstanceGroupMaxCount field if non-nil, zero value otherwise.
+
+### GetInfrastructureContainerInstanceGroupMaxCountOk
+
+`func (o *PatchQuotaProfileLimitsDto) GetInfrastructureContainerInstanceGroupMaxCountOk() (*float32, bool)`
+
+GetInfrastructureContainerInstanceGroupMaxCountOk returns a tuple with the InfrastructureContainerInstanceGroupMaxCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureContainerInstanceGroupMaxCount
+
+`func (o *PatchQuotaProfileLimitsDto) SetInfrastructureContainerInstanceGroupMaxCount(v float32)`
+
+SetInfrastructureContainerInstanceGroupMaxCount sets InfrastructureContainerInstanceGroupMaxCount field to given value.
+
+### HasInfrastructureContainerInstanceGroupMaxCount
+
+`func (o *PatchQuotaProfileLimitsDto) HasInfrastructureContainerInstanceGroupMaxCount() bool`
+
+HasInfrastructureContainerInstanceGroupMaxCount returns a boolean if a field has been set.
+
 ### GetServerGroupInstancesMaxCount
 
 `func (o *PatchQuotaProfileLimitsDto) GetServerGroupInstancesMaxCount() float32`
@@ -253,6 +282,31 @@ SetVmInstanceGroupVmInstancesMaxCount sets VmInstanceGroupVmInstancesMaxCount fi
 
 HasVmInstanceGroupVmInstancesMaxCount returns a boolean if a field has been set.
 
+### GetContainerInstanceGroupContainerInstancesMaxCount
+
+`func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceGroupContainerInstancesMaxCount() float32`
+
+GetContainerInstanceGroupContainerInstancesMaxCount returns the ContainerInstanceGroupContainerInstancesMaxCount field if non-nil, zero value otherwise.
+
+### GetContainerInstanceGroupContainerInstancesMaxCountOk
+
+`func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceGroupContainerInstancesMaxCountOk() (*float32, bool)`
+
+GetContainerInstanceGroupContainerInstancesMaxCountOk returns a tuple with the ContainerInstanceGroupContainerInstancesMaxCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainerInstanceGroupContainerInstancesMaxCount
+
+`func (o *PatchQuotaProfileLimitsDto) SetContainerInstanceGroupContainerInstancesMaxCount(v float32)`
+
+SetContainerInstanceGroupContainerInstancesMaxCount sets ContainerInstanceGroupContainerInstancesMaxCount field to given value.
+
+### HasContainerInstanceGroupContainerInstancesMaxCount
+
+`func (o *PatchQuotaProfileLimitsDto) HasContainerInstanceGroupContainerInstancesMaxCount() bool`
+
+HasContainerInstanceGroupContainerInstancesMaxCount returns a boolean if a field has been set.
+
 ### GetVmInstanceMaxDiskSizeMbytes
 
 `func (o *PatchQuotaProfileLimitsDto) GetVmInstanceMaxDiskSizeMbytes() float32`
@@ -277,6 +331,31 @@ SetVmInstanceMaxDiskSizeMbytes sets VmInstanceMaxDiskSizeMbytes field to given v
 `func (o *PatchQuotaProfileLimitsDto) HasVmInstanceMaxDiskSizeMbytes() bool`
 
 HasVmInstanceMaxDiskSizeMbytes returns a boolean if a field has been set.
+
+### GetContainerInstanceMaxDiskSizeMbytes
+
+`func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceMaxDiskSizeMbytes() float32`
+
+GetContainerInstanceMaxDiskSizeMbytes returns the ContainerInstanceMaxDiskSizeMbytes field if non-nil, zero value otherwise.
+
+### GetContainerInstanceMaxDiskSizeMbytesOk
+
+`func (o *PatchQuotaProfileLimitsDto) GetContainerInstanceMaxDiskSizeMbytesOk() (*float32, bool)`
+
+GetContainerInstanceMaxDiskSizeMbytesOk returns a tuple with the ContainerInstanceMaxDiskSizeMbytes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainerInstanceMaxDiskSizeMbytes
+
+`func (o *PatchQuotaProfileLimitsDto) SetContainerInstanceMaxDiskSizeMbytes(v float32)`
+
+SetContainerInstanceMaxDiskSizeMbytes sets ContainerInstanceMaxDiskSizeMbytes field to given value.
+
+### HasContainerInstanceMaxDiskSizeMbytes
+
+`func (o *PatchQuotaProfileLimitsDto) HasContainerInstanceMaxDiskSizeMbytes() bool`
+
+HasContainerInstanceMaxDiskSizeMbytes returns a boolean if a field has been set.
 
 ### GetDriveMaxSizeMbytes
 
@@ -627,6 +706,31 @@ SetEnableInfrastructureVmInstance sets EnableInfrastructureVmInstance field to g
 `func (o *PatchQuotaProfileLimitsDto) HasEnableInfrastructureVmInstance() bool`
 
 HasEnableInfrastructureVmInstance returns a boolean if a field has been set.
+
+### GetEnableInfrastructureContainerInstance
+
+`func (o *PatchQuotaProfileLimitsDto) GetEnableInfrastructureContainerInstance() bool`
+
+GetEnableInfrastructureContainerInstance returns the EnableInfrastructureContainerInstance field if non-nil, zero value otherwise.
+
+### GetEnableInfrastructureContainerInstanceOk
+
+`func (o *PatchQuotaProfileLimitsDto) GetEnableInfrastructureContainerInstanceOk() (*bool, bool)`
+
+GetEnableInfrastructureContainerInstanceOk returns a tuple with the EnableInfrastructureContainerInstance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableInfrastructureContainerInstance
+
+`func (o *PatchQuotaProfileLimitsDto) SetEnableInfrastructureContainerInstance(v bool)`
+
+SetEnableInfrastructureContainerInstance sets EnableInfrastructureContainerInstance field to given value.
+
+### HasEnableInfrastructureContainerInstance
+
+`func (o *PatchQuotaProfileLimitsDto) HasEnableInfrastructureContainerInstance() bool`
+
+HasEnableInfrastructureContainerInstance returns a boolean if a field has been set.
 
 ### GetEnableInfrastructureExtensions
 

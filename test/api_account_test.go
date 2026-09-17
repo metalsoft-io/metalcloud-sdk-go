@@ -76,6 +76,20 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test AccountAPIService GetAccountQuotaLimitsBreakdown", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int64
+
+		resp, httpRes, err := apiClient.AccountAPI.GetAccountQuotaLimitsBreakdown(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AccountAPIService GetAccountUsers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

@@ -9,10 +9,13 @@ Name | Type | Description | Notes
 **InfrastructureFileShareMaxCount** | **float32** | Maximum number of file shares per infrastructure | 
 **InfrastructureBucketMaxCount** | **float32** | Maximum number of buckets per infrastructure | 
 **InfrastructureVmInstanceGroupMaxCount** | **float32** | Maximum number of VM instance groups per infrastructure | 
+**InfrastructureContainerInstanceGroupMaxCount** | **float32** | Maximum number of Container instance groups per infrastructure | 
 **ServerGroupInstancesMaxCount** | **float32** | Maximum number of instances per server group | 
 **ServerGroupInstancesMinCount** | **float32** | Minimum number of instances per server group | 
 **VmInstanceGroupVmInstancesMaxCount** | **float32** | Maximum number of VM instances per VM instance group | 
+**ContainerInstanceGroupContainerInstancesMaxCount** | **float32** | Maximum number of Container instances per Container instance group | 
 **VmInstanceMaxDiskSizeMbytes** | **float32** | Maximum disk size for a VM instance in megabytes | 
+**ContainerInstanceMaxDiskSizeMbytes** | **float32** | Maximum disk size for a Container instance in megabytes | 
 **DriveMaxSizeMbytes** | **float32** | Maximum shared drive size in megabytes | 
 **DriveMinSizeMbytes** | **float32** | Minimum shared drive size in megabytes | 
 **FileShareMinSizeGb** | **float32** | Minimum file share size in gigabytes | 
@@ -27,6 +30,7 @@ Name | Type | Description | Notes
 **ShowEliChatBot** | **bool** | Whether the ELI AI chat bot is visible | 
 **EnableCustomRaidConfiguration** | **bool** | Whether custom RAID configuration is allowed | 
 **EnableInfrastructureVmInstance** | **bool** | Whether VM instance groups can be created in infrastructures | 
+**EnableInfrastructureContainerInstance** | **bool** | Whether Container instance groups can be created in infrastructures | 
 **EnableInfrastructureExtensions** | **bool** | Whether extensions can be deployed in infrastructures | 
 **AllowedInfrastructureExtensions** | **[]string** | Allowed extension IDs. Empty array means all extensions are permitted | 
 **AllowedServerTypes** | **[]string** | Allowed server type names. Empty array means all server types are permitted | 
@@ -38,7 +42,7 @@ Name | Type | Description | Notes
 
 ### NewQuotaProfileLimits
 
-`func NewQuotaProfileLimits(infrastructureServerGroupMaxCount float32, infrastructureDriveMaxCount float32, infrastructureFileShareMaxCount float32, infrastructureBucketMaxCount float32, infrastructureVmInstanceGroupMaxCount float32, serverGroupInstancesMaxCount float32, serverGroupInstancesMinCount float32, vmInstanceGroupVmInstancesMaxCount float32, vmInstanceMaxDiskSizeMbytes float32, driveMaxSizeMbytes float32, driveMinSizeMbytes float32, fileShareMinSizeGb float32, fileShareMaxSizeGb float32, bucketMinSizeGb float32, bucketMaxSizeGb float32, showOperatingSystemImagesTab bool, showTemplateAssetsView bool, userResourceServerTypeNameToMaxCount map[string]interface{}, userSshKeysCountMax float32, showLegacyPages bool, showEliChatBot bool, enableCustomRaidConfiguration bool, enableInfrastructureVmInstance bool, enableInfrastructureExtensions bool, allowedInfrastructureExtensions []string, allowedServerTypes []string, allowedSites []string, allowedLogicalNetworkProfiles []string, allowedPreCreatedLogicalNetworks []string, ) *QuotaProfileLimits`
+`func NewQuotaProfileLimits(infrastructureServerGroupMaxCount float32, infrastructureDriveMaxCount float32, infrastructureFileShareMaxCount float32, infrastructureBucketMaxCount float32, infrastructureVmInstanceGroupMaxCount float32, infrastructureContainerInstanceGroupMaxCount float32, serverGroupInstancesMaxCount float32, serverGroupInstancesMinCount float32, vmInstanceGroupVmInstancesMaxCount float32, containerInstanceGroupContainerInstancesMaxCount float32, vmInstanceMaxDiskSizeMbytes float32, containerInstanceMaxDiskSizeMbytes float32, driveMaxSizeMbytes float32, driveMinSizeMbytes float32, fileShareMinSizeGb float32, fileShareMaxSizeGb float32, bucketMinSizeGb float32, bucketMaxSizeGb float32, showOperatingSystemImagesTab bool, showTemplateAssetsView bool, userResourceServerTypeNameToMaxCount map[string]interface{}, userSshKeysCountMax float32, showLegacyPages bool, showEliChatBot bool, enableCustomRaidConfiguration bool, enableInfrastructureVmInstance bool, enableInfrastructureContainerInstance bool, enableInfrastructureExtensions bool, allowedInfrastructureExtensions []string, allowedServerTypes []string, allowedSites []string, allowedLogicalNetworkProfiles []string, allowedPreCreatedLogicalNetworks []string, ) *QuotaProfileLimits`
 
 NewQuotaProfileLimits instantiates a new QuotaProfileLimits object
 This constructor will assign default values to properties that have it defined,
@@ -153,6 +157,26 @@ and a boolean to check if the value has been set.
 SetInfrastructureVmInstanceGroupMaxCount sets InfrastructureVmInstanceGroupMaxCount field to given value.
 
 
+### GetInfrastructureContainerInstanceGroupMaxCount
+
+`func (o *QuotaProfileLimits) GetInfrastructureContainerInstanceGroupMaxCount() float32`
+
+GetInfrastructureContainerInstanceGroupMaxCount returns the InfrastructureContainerInstanceGroupMaxCount field if non-nil, zero value otherwise.
+
+### GetInfrastructureContainerInstanceGroupMaxCountOk
+
+`func (o *QuotaProfileLimits) GetInfrastructureContainerInstanceGroupMaxCountOk() (*float32, bool)`
+
+GetInfrastructureContainerInstanceGroupMaxCountOk returns a tuple with the InfrastructureContainerInstanceGroupMaxCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureContainerInstanceGroupMaxCount
+
+`func (o *QuotaProfileLimits) SetInfrastructureContainerInstanceGroupMaxCount(v float32)`
+
+SetInfrastructureContainerInstanceGroupMaxCount sets InfrastructureContainerInstanceGroupMaxCount field to given value.
+
+
 ### GetServerGroupInstancesMaxCount
 
 `func (o *QuotaProfileLimits) GetServerGroupInstancesMaxCount() float32`
@@ -213,6 +237,26 @@ and a boolean to check if the value has been set.
 SetVmInstanceGroupVmInstancesMaxCount sets VmInstanceGroupVmInstancesMaxCount field to given value.
 
 
+### GetContainerInstanceGroupContainerInstancesMaxCount
+
+`func (o *QuotaProfileLimits) GetContainerInstanceGroupContainerInstancesMaxCount() float32`
+
+GetContainerInstanceGroupContainerInstancesMaxCount returns the ContainerInstanceGroupContainerInstancesMaxCount field if non-nil, zero value otherwise.
+
+### GetContainerInstanceGroupContainerInstancesMaxCountOk
+
+`func (o *QuotaProfileLimits) GetContainerInstanceGroupContainerInstancesMaxCountOk() (*float32, bool)`
+
+GetContainerInstanceGroupContainerInstancesMaxCountOk returns a tuple with the ContainerInstanceGroupContainerInstancesMaxCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainerInstanceGroupContainerInstancesMaxCount
+
+`func (o *QuotaProfileLimits) SetContainerInstanceGroupContainerInstancesMaxCount(v float32)`
+
+SetContainerInstanceGroupContainerInstancesMaxCount sets ContainerInstanceGroupContainerInstancesMaxCount field to given value.
+
+
 ### GetVmInstanceMaxDiskSizeMbytes
 
 `func (o *QuotaProfileLimits) GetVmInstanceMaxDiskSizeMbytes() float32`
@@ -231,6 +275,26 @@ and a boolean to check if the value has been set.
 `func (o *QuotaProfileLimits) SetVmInstanceMaxDiskSizeMbytes(v float32)`
 
 SetVmInstanceMaxDiskSizeMbytes sets VmInstanceMaxDiskSizeMbytes field to given value.
+
+
+### GetContainerInstanceMaxDiskSizeMbytes
+
+`func (o *QuotaProfileLimits) GetContainerInstanceMaxDiskSizeMbytes() float32`
+
+GetContainerInstanceMaxDiskSizeMbytes returns the ContainerInstanceMaxDiskSizeMbytes field if non-nil, zero value otherwise.
+
+### GetContainerInstanceMaxDiskSizeMbytesOk
+
+`func (o *QuotaProfileLimits) GetContainerInstanceMaxDiskSizeMbytesOk() (*float32, bool)`
+
+GetContainerInstanceMaxDiskSizeMbytesOk returns a tuple with the ContainerInstanceMaxDiskSizeMbytes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainerInstanceMaxDiskSizeMbytes
+
+`func (o *QuotaProfileLimits) SetContainerInstanceMaxDiskSizeMbytes(v float32)`
+
+SetContainerInstanceMaxDiskSizeMbytes sets ContainerInstanceMaxDiskSizeMbytes field to given value.
 
 
 ### GetDriveMaxSizeMbytes
@@ -511,6 +575,26 @@ and a boolean to check if the value has been set.
 `func (o *QuotaProfileLimits) SetEnableInfrastructureVmInstance(v bool)`
 
 SetEnableInfrastructureVmInstance sets EnableInfrastructureVmInstance field to given value.
+
+
+### GetEnableInfrastructureContainerInstance
+
+`func (o *QuotaProfileLimits) GetEnableInfrastructureContainerInstance() bool`
+
+GetEnableInfrastructureContainerInstance returns the EnableInfrastructureContainerInstance field if non-nil, zero value otherwise.
+
+### GetEnableInfrastructureContainerInstanceOk
+
+`func (o *QuotaProfileLimits) GetEnableInfrastructureContainerInstanceOk() (*bool, bool)`
+
+GetEnableInfrastructureContainerInstanceOk returns a tuple with the EnableInfrastructureContainerInstance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableInfrastructureContainerInstance
+
+`func (o *QuotaProfileLimits) SetEnableInfrastructureContainerInstance(v bool)`
+
+SetEnableInfrastructureContainerInstance sets EnableInfrastructureContainerInstance field to given value.
 
 
 ### GetEnableInfrastructureExtensions

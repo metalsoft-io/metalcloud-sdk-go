@@ -25,8 +25,12 @@ type CreateNetworkFabricLinkAggregation struct {
 	Type string `json:"type"`
 	// Identifier for the MLAG domain (applicable only for mlag-peer-link type)
 	MlagDomainIdentifier *string `json:"mlagDomainIdentifier,omitempty"`
+	// Custom variables exposed to network device configuration templates as link_aggregation_custom_variables
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// List of link IDs to be associated with the link aggregation
 	LinkIds []int64 `json:"linkIds"`
+	// Link aggregation options
+	Options *NetworkFabricLinkAggregationOptions `json:"options,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -107,6 +111,38 @@ func (o *CreateNetworkFabricLinkAggregation) SetMlagDomainIdentifier(v string) {
 	o.MlagDomainIdentifier = &v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *CreateNetworkFabricLinkAggregation) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricLinkAggregation) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLinkAggregation) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *CreateNetworkFabricLinkAggregation) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
 // GetLinkIds returns the LinkIds field value
 func (o *CreateNetworkFabricLinkAggregation) GetLinkIds() []int64 {
 	if o == nil {
@@ -131,6 +167,38 @@ func (o *CreateNetworkFabricLinkAggregation) SetLinkIds(v []int64) {
 	o.LinkIds = v
 }
 
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *CreateNetworkFabricLinkAggregation) GetOptions() NetworkFabricLinkAggregationOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret NetworkFabricLinkAggregationOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabricLinkAggregation) GetOptionsOk() (*NetworkFabricLinkAggregationOptions, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *CreateNetworkFabricLinkAggregation) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given NetworkFabricLinkAggregationOptions and assigns it to the Options field.
+func (o *CreateNetworkFabricLinkAggregation) SetOptions(v NetworkFabricLinkAggregationOptions) {
+	o.Options = &v
+}
+
 func (o CreateNetworkFabricLinkAggregation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -145,7 +213,13 @@ func (o CreateNetworkFabricLinkAggregation) ToMap() (map[string]interface{}, err
 	if !IsNil(o.MlagDomainIdentifier) {
 		toSerialize["mlagDomainIdentifier"] = o.MlagDomainIdentifier
 	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
 	toSerialize["linkIds"] = o.LinkIds
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -192,7 +266,9 @@ func (o *CreateNetworkFabricLinkAggregation) UnmarshalJSON(data []byte) (err err
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "mlagDomainIdentifier")
+		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "linkIds")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 

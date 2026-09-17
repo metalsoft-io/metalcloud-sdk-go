@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateUnnumberedIpv4PointToPointAllocationStrategy{}
 
 // CreateUnnumberedIpv4PointToPointAllocationStrategy struct for CreateUnnumberedIpv4PointToPointAllocationStrategy
 type CreateUnnumberedIpv4PointToPointAllocationStrategy struct {
-	Kind PointToPointAllocationStrategyKind `json:"kind"`
+	Kind string `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
 	AdditionalProperties map[string]interface{}
 }
@@ -32,7 +32,7 @@ type _CreateUnnumberedIpv4PointToPointAllocationStrategy CreateUnnumberedIpv4Poi
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateUnnumberedIpv4PointToPointAllocationStrategy(kind PointToPointAllocationStrategyKind, scope CreateResourceScope) *CreateUnnumberedIpv4PointToPointAllocationStrategy {
+func NewCreateUnnumberedIpv4PointToPointAllocationStrategy(kind string, scope CreateResourceScope) *CreateUnnumberedIpv4PointToPointAllocationStrategy {
 	this := CreateUnnumberedIpv4PointToPointAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
@@ -48,9 +48,9 @@ func NewCreateUnnumberedIpv4PointToPointAllocationStrategyWithDefaults() *Create
 }
 
 // GetKind returns the Kind field value
-func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) GetKind() PointToPointAllocationStrategyKind {
+func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) GetKind() string {
 	if o == nil {
-		var ret PointToPointAllocationStrategyKind
+		var ret string
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) GetKind() PointToPo
 
 // GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) GetKindOk() (*PointToPointAllocationStrategyKind, bool) {
+func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) GetKindOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) GetKindOk() (*Point
 }
 
 // SetKind sets field value
-func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) SetKind(v PointToPointAllocationStrategyKind) {
+func (o *CreateUnnumberedIpv4PointToPointAllocationStrategy) SetKind(v string) {
 	o.Kind = v
 }
 

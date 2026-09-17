@@ -11,9 +11,15 @@ Method | HTTP request | Description
 [**GetPublicSignupDisabled**](AuthenticationAPI.md#GetPublicSignupDisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
 [**Login2FA**](AuthenticationAPI.md#Login2FA) | **Post** /api/v2/login-2fa | User login with 2FA
+[**LoginOidc**](AuthenticationAPI.md#LoginOidc) | **Get** /api/v2/login-oidc | Start an OIDC login
+[**LoginOidcCallback**](AuthenticationAPI.md#LoginOidcCallback) | **Get** /api/v2/login-oidc/callback | OIDC login callback URL
 [**LoginSaml**](AuthenticationAPI.md#LoginSaml) | **Post** /api/v2/login-saml | User SAML login callback URL
 [**Logout**](AuthenticationAPI.md#Logout) | **Post** /api/v2/logout | Logout user
 [**SignUp**](AuthenticationAPI.md#SignUp) | **Post** /api/v2/sign-up | Sign up
+[**TestLdap**](AuthenticationAPI.md#TestLdap) | **Post** /api/v2/authentication/ldap/actions/test | Test authentication against the stored LDAP configuration
+[**ValidateLdap**](AuthenticationAPI.md#ValidateLdap) | **Post** /api/v2/authentication/ldap/actions/validate | Validate the stored LDAP configuration
+[**ValidateOidc**](AuthenticationAPI.md#ValidateOidc) | **Post** /api/v2/authentication/oidc/actions/validate | Validate the stored OIDC configuration
+[**ValidateSaml**](AuthenticationAPI.md#ValidateSaml) | **Post** /api/v2/authentication/saml/actions/validate | Validate the stored SAML configuration
 
 
 
@@ -414,7 +420,7 @@ import (
 )
 
 func main() {
-	twoFactorAuthenticationToken := *openapiclient.NewTwoFactorAuthenticationToken("Token_example") // TwoFactorAuthenticationToken | The 2FA token request
+	twoFactorAuthenticationToken := *openapiclient.NewTwoFactorAuthenticationToken() // TwoFactorAuthenticationToken | The 2FA token request
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -453,6 +459,133 @@ No authorization required
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## LoginOidc
+
+> LoginOidc(ctx).Execute()
+
+Start an OIDC login
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AuthenticationAPI.LoginOidc(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.LoginOidc``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLoginOidcRequest struct via the builder pattern
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## LoginOidcCallback
+
+> LoginOidcCallback(ctx).Error_(error_).Code(code).State(state).Execute()
+
+OIDC login callback URL
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	error_ := "error__example" // string | 
+	code := "code_example" // string | Authorization code from the IdP (optional)
+	state := "state_example" // string | State issued when the flow started (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AuthenticationAPI.LoginOidcCallback(context.Background()).Error_(error_).Code(code).State(state).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.LoginOidcCallback``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLoginOidcCallbackRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **error_** | **string** |  | 
+ **code** | **string** | Authorization code from the IdP | 
+ **state** | **string** | State issued when the flow started | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -643,6 +776,255 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TestLdap
+
+> LdapTestResult TestLdap(ctx).LdapTestRequest(ldapTestRequest).Execute()
+
+Test authentication against the stored LDAP configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	ldapTestRequest := *openapiclient.NewLdapTestRequest("Username_example", "Password_example") // LdapTestRequest | Credentials to authenticate against the configured LDAP directory
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.TestLdap(context.Background()).LdapTestRequest(ldapTestRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.TestLdap``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TestLdap`: LdapTestResult
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.TestLdap`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTestLdapRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ldapTestRequest** | [**LdapTestRequest**](LdapTestRequest.md) | Credentials to authenticate against the configured LDAP directory | 
+
+### Return type
+
+[**LdapTestResult**](LdapTestResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateLdap
+
+> AuthConfigValidationResult ValidateLdap(ctx).Execute()
+
+Validate the stored LDAP configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.ValidateLdap(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.ValidateLdap``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateLdap`: AuthConfigValidationResult
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.ValidateLdap`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateLdapRequest struct via the builder pattern
+
+
+### Return type
+
+[**AuthConfigValidationResult**](AuthConfigValidationResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateOidc
+
+> AuthConfigValidationResult ValidateOidc(ctx).Execute()
+
+Validate the stored OIDC configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.ValidateOidc(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.ValidateOidc``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateOidc`: AuthConfigValidationResult
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.ValidateOidc`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateOidcRequest struct via the builder pattern
+
+
+### Return type
+
+[**AuthConfigValidationResult**](AuthConfigValidationResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSaml
+
+> AuthConfigValidationResult ValidateSaml(ctx).Execute()
+
+Validate the stored SAML configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.ValidateSaml(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.ValidateSaml``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSaml`: AuthConfigValidationResult
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.ValidateSaml`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSamlRequest struct via the builder pattern
+
+
+### Return type
+
+[**AuthConfigValidationResult**](AuthConfigValidationResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

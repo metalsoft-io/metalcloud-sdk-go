@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bsi** | [**MicroservicesBsi**](MicroservicesBsi.md) | Platform service connection settings | 
 **Auth** | [**MicroservicesAuth**](MicroservicesAuth.md) | Authentication microservice settings | 
 
 ## Methods
 
 ### NewMicroservices
 
-`func NewMicroservices(bsi MicroservicesBsi, auth MicroservicesAuth, ) *Microservices`
+`func NewMicroservices(auth MicroservicesAuth, ) *Microservices`
 
 NewMicroservices instantiates a new Microservices object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +24,6 @@ will change when the set of required properties is changed
 NewMicroservicesWithDefaults instantiates a new Microservices object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetBsi
-
-`func (o *Microservices) GetBsi() MicroservicesBsi`
-
-GetBsi returns the Bsi field if non-nil, zero value otherwise.
-
-### GetBsiOk
-
-`func (o *Microservices) GetBsiOk() (*MicroservicesBsi, bool)`
-
-GetBsiOk returns a tuple with the Bsi field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBsi
-
-`func (o *Microservices) SetBsi(v MicroservicesBsi)`
-
-SetBsi sets Bsi field to given value.
-
 
 ### GetAuth
 

@@ -23,7 +23,7 @@ var _ MappedNullable = &ExtensionTaskWebhook{}
 type ExtensionTaskWebhook struct {
 	// Label of the task.
 	Label string `json:"label"`
-	TaskType ExtensionTaskType `json:"taskType"`
+	TaskType string `json:"taskType"`
 	Options ExtensionTaskOptionWebhook `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,7 +34,7 @@ type _ExtensionTaskWebhook ExtensionTaskWebhook
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionTaskWebhook(label string, taskType ExtensionTaskType, options ExtensionTaskOptionWebhook) *ExtensionTaskWebhook {
+func NewExtensionTaskWebhook(label string, taskType string, options ExtensionTaskOptionWebhook) *ExtensionTaskWebhook {
 	this := ExtensionTaskWebhook{}
 	this.Label = label
 	this.TaskType = taskType
@@ -75,9 +75,9 @@ func (o *ExtensionTaskWebhook) SetLabel(v string) {
 }
 
 // GetTaskType returns the TaskType field value
-func (o *ExtensionTaskWebhook) GetTaskType() ExtensionTaskType {
+func (o *ExtensionTaskWebhook) GetTaskType() string {
 	if o == nil {
-		var ret ExtensionTaskType
+		var ret string
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *ExtensionTaskWebhook) GetTaskType() ExtensionTaskType {
 
 // GetTaskTypeOk returns a tuple with the TaskType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskWebhook) GetTaskTypeOk() (*ExtensionTaskType, bool) {
+func (o *ExtensionTaskWebhook) GetTaskTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *ExtensionTaskWebhook) GetTaskTypeOk() (*ExtensionTaskType, bool) {
 }
 
 // SetTaskType sets field value
-func (o *ExtensionTaskWebhook) SetTaskType(v ExtensionTaskType) {
+func (o *ExtensionTaskWebhook) SetTaskType(v string) {
 	o.TaskType = v
 }
 

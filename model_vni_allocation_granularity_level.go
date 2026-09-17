@@ -22,13 +22,13 @@ type VniAllocationGranularityLevel string
 // List of VniAllocationGranularityLevel
 const (
 	VNIALLOCATIONGRANULARITYLEVEL_FABRIC VniAllocationGranularityLevel = "fabric"
-	VNIALLOCATIONGRANULARITYLEVEL_UNKNOWN_DEFAULT_OPEN_API VniAllocationGranularityLevel = "unknown_default_open_api"
+	VNIALLOCATIONGRANULARITYLEVEL_UNKNOWN_DEFAULT_OPEN_API VniAllocationGranularityLevel = "11184809"
 )
 
 // All allowed values of VniAllocationGranularityLevel enum
 var AllowedVniAllocationGranularityLevelEnumValues = []VniAllocationGranularityLevel{
 	"fabric",
-	"unknown_default_open_api",
+	"11184809",
 }
 
 func (v *VniAllocationGranularityLevel) UnmarshalJSON(src []byte) error {
@@ -45,8 +45,7 @@ func (v *VniAllocationGranularityLevel) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	*v = VNIALLOCATIONGRANULARITYLEVEL_UNKNOWN_DEFAULT_OPEN_API
-	return nil
+	return fmt.Errorf("%+v is not a valid VniAllocationGranularityLevel", value)
 }
 
 // NewVniAllocationGranularityLevelFromValue returns a pointer to a valid VniAllocationGranularityLevel

@@ -735,7 +735,7 @@ Name | Type | Description  | Notes
 
 ## GetUserResourcePools
 
-> []map[string]interface{} GetUserResourcePools(ctx, userId).Execute()
+> []ResourcePool GetUserResourcePools(ctx, userId).Execute()
 
 Get all Resource Pools that a user has access to
 
@@ -763,7 +763,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ResourcePoolAPI.GetUserResourcePools``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetUserResourcePools`: []map[string]interface{}
+	// response from `GetUserResourcePools`: []ResourcePool
 	fmt.Fprintf(os.Stdout, "Response from `ResourcePoolAPI.GetUserResourcePools`: %v\n", resp)
 }
 ```
@@ -787,7 +787,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]ResourcePool**](ResourcePool.md)
 
 ### Authorization
 

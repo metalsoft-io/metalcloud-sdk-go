@@ -22,7 +22,7 @@ var _ MappedNullable = &InfinibandFabric{}
 // InfinibandFabric struct for InfinibandFabric
 type InfinibandFabric struct {
 	// The type of network fabric
-	FabricType FabricType `json:"fabricType"`
+	FabricType string `json:"fabricType"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
 	// Enables server-only operation mode on the network fabric.
@@ -46,7 +46,7 @@ type _InfinibandFabric InfinibandFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfinibandFabric(fabricType FabricType) *InfinibandFabric {
+func NewInfinibandFabric(fabricType string) *InfinibandFabric {
 	this := InfinibandFabric{}
 	this.FabricType = fabricType
 	return &this
@@ -61,9 +61,9 @@ func NewInfinibandFabricWithDefaults() *InfinibandFabric {
 }
 
 // GetFabricType returns the FabricType field value
-func (o *InfinibandFabric) GetFabricType() FabricType {
+func (o *InfinibandFabric) GetFabricType() string {
 	if o == nil {
-		var ret FabricType
+		var ret string
 		return ret
 	}
 
@@ -72,7 +72,7 @@ func (o *InfinibandFabric) GetFabricType() FabricType {
 
 // GetFabricTypeOk returns a tuple with the FabricType field value
 // and a boolean to check if the value has been set.
-func (o *InfinibandFabric) GetFabricTypeOk() (*FabricType, bool) {
+func (o *InfinibandFabric) GetFabricTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *InfinibandFabric) GetFabricTypeOk() (*FabricType, bool) {
 }
 
 // SetFabricType sets field value
-func (o *InfinibandFabric) SetFabricType(v FabricType) {
+func (o *InfinibandFabric) SetFabricType(v string) {
 	o.FabricType = v
 }
 

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Ipv6Addresses** | Pointer to [**[]ServerInstanceNetworkConfigIpInfo**](ServerInstanceNetworkConfigIpInfo.md) | The list of IPv6 addresses. | [optional] 
 **Routes** | Pointer to [**[]ServerInstanceNetworkConfigRoute**](ServerInstanceNetworkConfigRoute.md) | The list of static routes. | [optional] 
 **Members** | Pointer to [**[]ServerInstanceNetworkConfigMembers**](ServerInstanceNetworkConfigMembers.md) | The list of network configuration members. | [optional] 
+**BondMode** | Pointer to [**ServerInstanceBondMode**](ServerInstanceBondMode.md) | The bonding mode the OS should configure: 802.3ad when the switch side is a LAG, active-backup when the bond exists only on the server. | [optional] 
 
 ## Methods
 
@@ -247,6 +248,31 @@ SetMembers sets Members field to given value.
 `func (o *ServerInstanceBondNetworkConfig) HasMembers() bool`
 
 HasMembers returns a boolean if a field has been set.
+
+### GetBondMode
+
+`func (o *ServerInstanceBondNetworkConfig) GetBondMode() ServerInstanceBondMode`
+
+GetBondMode returns the BondMode field if non-nil, zero value otherwise.
+
+### GetBondModeOk
+
+`func (o *ServerInstanceBondNetworkConfig) GetBondModeOk() (*ServerInstanceBondMode, bool)`
+
+GetBondModeOk returns a tuple with the BondMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBondMode
+
+`func (o *ServerInstanceBondNetworkConfig) SetBondMode(v ServerInstanceBondMode)`
+
+SetBondMode sets BondMode field to given value.
+
+### HasBondMode
+
+`func (o *ServerInstanceBondNetworkConfig) HasBondMode() bool`
+
+HasBondMode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

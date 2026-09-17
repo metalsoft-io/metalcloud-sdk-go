@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Slug** | Pointer to **string** | The extension unique slug | [optional] 
 **Name** | **string** | The extension name | 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
+**Version** | Pointer to **string** | The extension version (semver). Multiple versions may share a label. | [optional] 
 **Description** | **string** | The extension description | 
 **Status** | [**ExtensionStatus**](ExtensionStatus.md) | Extension status | 
 **Kind** | **string** | Extension kind | 
@@ -143,6 +144,31 @@ SetLabel sets Label field to given value.
 `func (o *Extension) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetVersion
+
+`func (o *Extension) GetVersion() string`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *Extension) GetVersionOk() (*string, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *Extension) SetVersion(v string)`
+
+SetVersion sets Version field to given value.
+
+### HasVersion
+
+`func (o *Extension) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### GetDescription
 

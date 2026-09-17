@@ -20,9 +20,9 @@ var _ MappedNullable = &GenerateFirmwareUpgradeAudit{}
 
 // GenerateFirmwareUpgradeAudit struct for GenerateFirmwareUpgradeAudit
 type GenerateFirmwareUpgradeAudit struct {
-	// The list of server ids for which firmware upgrade audit should be generated.
+	// The list of server ids for which firmware upgrade audit should be generated. Cannot be used with vendorPattern/modelPattern.
 	ServerIds []int64 `json:"serverIds,omitempty"`
-	// Vendor name pattern to match servers (e.g., \"HPE\", \"Dell\"). Used with vendorModelPattern. Cannot be used with serverIds.
+	// Vendor name pattern to match servers (e.g., \"HPE\", \"Dell\"). Used with modelPattern. Cannot be used with serverIds.
 	VendorPattern *string `json:"vendorPattern,omitempty"`
 	// Model name pattern with wildcards to match servers (e.g., \"DL360*\", \"*Gen10\", \"PowerEdge.*\"). Used with vendorPattern. Cannot be used with serverIds.
 	ModelPattern *string `json:"modelPattern,omitempty"`

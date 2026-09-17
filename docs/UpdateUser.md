@@ -27,8 +27,10 @@ Name | Type | Description | Notes
 **IsArchived** | Pointer to **bool** | Whether the user is a archived | [optional] 
 **IsDatastorePublisher** | Pointer to **bool** | Whether the user is a datastore publisher | [optional] 
 **AccountId** | Pointer to **int64** | The account ID of the user | [optional] 
-**Provider** | Pointer to **string** | The provider of the user | [optional] [default to "mysql"]
+**Provider** | Pointer to **string** | The provider of the user | [optional] [default to "built-in"]
 **PasswordLastChangedTimestamp** | Pointer to **string** | The timestamp when the user last changed their password | [optional] 
+**ApiKeyLastChangedTimestamp** | Pointer to **string** | The timestamp when the user API key was last regenerated | [optional] 
+**ApiKeyValidityDuration** | Pointer to **int32** | Per-user override for the API key validity duration in seconds; 0 means the API key never expires; unset means the account or global setting applies (MS-10501). Accepted range: 0 - 4294967295. | [optional] 
 
 ## Methods
 
@@ -673,6 +675,56 @@ SetPasswordLastChangedTimestamp sets PasswordLastChangedTimestamp field to given
 `func (o *UpdateUser) HasPasswordLastChangedTimestamp() bool`
 
 HasPasswordLastChangedTimestamp returns a boolean if a field has been set.
+
+### GetApiKeyLastChangedTimestamp
+
+`func (o *UpdateUser) GetApiKeyLastChangedTimestamp() string`
+
+GetApiKeyLastChangedTimestamp returns the ApiKeyLastChangedTimestamp field if non-nil, zero value otherwise.
+
+### GetApiKeyLastChangedTimestampOk
+
+`func (o *UpdateUser) GetApiKeyLastChangedTimestampOk() (*string, bool)`
+
+GetApiKeyLastChangedTimestampOk returns a tuple with the ApiKeyLastChangedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyLastChangedTimestamp
+
+`func (o *UpdateUser) SetApiKeyLastChangedTimestamp(v string)`
+
+SetApiKeyLastChangedTimestamp sets ApiKeyLastChangedTimestamp field to given value.
+
+### HasApiKeyLastChangedTimestamp
+
+`func (o *UpdateUser) HasApiKeyLastChangedTimestamp() bool`
+
+HasApiKeyLastChangedTimestamp returns a boolean if a field has been set.
+
+### GetApiKeyValidityDuration
+
+`func (o *UpdateUser) GetApiKeyValidityDuration() int32`
+
+GetApiKeyValidityDuration returns the ApiKeyValidityDuration field if non-nil, zero value otherwise.
+
+### GetApiKeyValidityDurationOk
+
+`func (o *UpdateUser) GetApiKeyValidityDurationOk() (*int32, bool)`
+
+GetApiKeyValidityDurationOk returns a tuple with the ApiKeyValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKeyValidityDuration
+
+`func (o *UpdateUser) SetApiKeyValidityDuration(v int32)`
+
+SetApiKeyValidityDuration sets ApiKeyValidityDuration field to given value.
+
+### HasApiKeyValidityDuration
+
+`func (o *UpdateUser) HasApiKeyValidityDuration() bool`
+
+HasApiKeyValidityDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

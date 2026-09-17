@@ -4,15 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AcknowledgeServerDrift**](ServerAPI.md#AcknowledgeServerDrift) | **Post** /api/v2/servers/{serverId}/drift-history/{driftId}/actions/acknowledge | Acknowledge a server drift
 [**ArchiveServer**](ServerAPI.md#ArchiveServer) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
 [**ConnectServerInterface**](ServerAPI.md#ConnectServerInterface) | **Post** /api/v2/servers/{serverId}/actions/connect-interface | Connects a server interface to a switch
 [**DeleteServer**](ServerAPI.md#DeleteServer) | **Delete** /api/v2/servers/{serverId} | Deletes a Server
 [**EnableServerSyslog**](ServerAPI.md#EnableServerSyslog) | **Post** /api/v2/servers/{serverId}/actions/syslog-subscribe | Enables remote syslog for a server
 [**GetServerCapabilities**](ServerAPI.md#GetServerCapabilities) | **Get** /api/v2/servers/{serverId}/capabilities | Get Server capabilities
 [**GetServerCredentials**](ServerAPI.md#GetServerCredentials) | **Get** /api/v2/servers/{serverId}/credentials | Get Server credentials
+[**GetServerDriftHistory**](ServerAPI.md#GetServerDriftHistory) | **Get** /api/v2/servers/{serverId}/drift-history | Get drift history for a specific server
+[**GetServerDriftHistoryById**](ServerAPI.md#GetServerDriftHistoryById) | **Get** /api/v2/servers/{serverId}/drift-history/{driftId} | Get a specific drift history for a specific server
 [**GetServerInfo**](ServerAPI.md#GetServerInfo) | **Get** /api/v2/servers/{serverId} | Get Server information
 [**GetServerPowerStatus**](ServerAPI.md#GetServerPowerStatus) | **Post** /api/v2/servers/{serverId}/actions/get-power | Gets the power state of a server
 [**GetServerRemoteConsoleInfo**](ServerAPI.md#GetServerRemoteConsoleInfo) | **Get** /api/v2/servers/{serverId}/remote-console-info | Get Remote Console information
+[**GetServerSnapshots**](ServerAPI.md#GetServerSnapshots) | **Get** /api/v2/servers/{serverId}/snapshots | Get server backup snapshots
 [**GetServerVNCInfo**](ServerAPI.md#GetServerVNCInfo) | **Get** /api/v2/servers/{serverId}/vnc-info | Get VNC information
 [**GetServers**](ServerAPI.md#GetServers) | **Get** /api/v2/servers | Get a list of Servers
 [**GetServersStatistics**](ServerAPI.md#GetServersStatistics) | **Get** /api/v2/servers/statistics | Get Servers statistics
@@ -22,6 +26,7 @@ Method | HTTP request | Description
 [**RegisterServer**](ServerAPI.md#RegisterServer) | **Post** /api/v2/servers | Initialize server registration
 [**ResetServerToFactoryDefaults**](ServerAPI.md#ResetServerToFactoryDefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
 [**ServerHardwareRescan**](ServerAPI.md#ServerHardwareRescan) | **Post** /api/v2/servers/{serverId}/actions/hardware-rescan | Hardware rescan a server
+[**ServerSyncTargetSnapshotWithLatestSnapshot**](ServerAPI.md#ServerSyncTargetSnapshotWithLatestSnapshot) | **Post** /api/v2/servers/{serverId}/actions/sync-target-snapshot-with-latest-snapshot | Accept the current server configuration as the drift-detection target
 [**SetServerInterfacesDefaultFabric**](ServerAPI.md#SetServerInterfacesDefaultFabric) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-default-fabric | Sets the default fabric for the specified server interfaces
 [**SetServerInterfacesRedundancyGroup**](ServerAPI.md#SetServerInterfacesRedundancyGroup) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-redundancy-group | Sets the redundancy group index for the specified server interfaces
 [**SetServerPowerState**](ServerAPI.md#SetServerPowerState) | **Post** /api/v2/servers/{serverId}/actions/set-power | Sets the power state of a server
@@ -29,6 +34,77 @@ Method | HTTP request | Description
 [**UpdateServerEnableSnmp**](ServerAPI.md#UpdateServerEnableSnmp) | **Post** /api/v2/servers/{serverId}/actions/enable-snmp | Enables SNMP on a Server
 [**UpdateServerIpmiCredentials**](ServerAPI.md#UpdateServerIpmiCredentials) | **Post** /api/v2/servers/{serverId}/actions/update-ipmi-credentials | Update Server ipmi credentials
 
+
+
+## AcknowledgeServerDrift
+
+> ServerDriftHistory AcknowledgeServerDrift(ctx, serverId, driftId).Execute()
+
+Acknowledge a server drift
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := int64(789) // int64 | Server ID
+	driftId := int64(789) // int64 | Server drift history ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerAPI.AcknowledgeServerDrift(context.Background(), serverId, driftId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.AcknowledgeServerDrift``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcknowledgeServerDrift`: ServerDriftHistory
+	fmt.Fprintf(os.Stdout, "Response from `ServerAPI.AcknowledgeServerDrift`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **int64** | Server ID | 
+**driftId** | **int64** | Server drift history ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAcknowledgeServerDriftRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**ServerDriftHistory**](ServerDriftHistory.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ArchiveServer
@@ -451,6 +527,161 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetServerDriftHistory
+
+> ServerDriftHistoryPaginatedList GetServerDriftHistory(ctx, serverId).Page(page).Limit(limit).FilterId(filterId).FilterSnapshotId(filterSnapshotId).FilterAcknowledgedBy(filterAcknowledgedBy).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+
+Get drift history for a specific server
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := float32(8.14) // float32 | 
+	page := float32(8.14) // float32 | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   (optional)
+	limit := float32(8.14) // float32 | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.  **Format:** filter.id={$not}:OPERATION:VALUE    **Example:** filter.id=$btw:John Doe&filter.id=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterSnapshotId := []string{"Inner_example"} // []string | Filter by snapshotId query param.  **Format:** filter.snapshotId={$not}:OPERATION:VALUE    **Example:** filter.snapshotId=$btw:John Doe&filter.snapshotId=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	filterAcknowledgedBy := []string{"Inner_example"} // []string | Filter by acknowledgedBy query param.  **Format:** filter.acknowledgedBy={$not}:OPERATION:VALUE    **Example:** filter.acknowledgedBy=$btw:John Doe&filter.acknowledgedBy=$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=id:DESC&sortBy=snapshotId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - snapshotId  - acknowledgedBy  (optional)
+	search := "search_example" // string | Search term to filter result values  **Example:** John   **Default Value:** No default value   (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values  **Example:** id,snapshotId,acknowledgedBy   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - snapshotId  - acknowledgedBy  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerAPI.GetServerDriftHistory(context.Background(), serverId).Page(page).Limit(limit).FilterId(filterId).FilterSnapshotId(filterSnapshotId).FilterAcknowledgedBy(filterAcknowledgedBy).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.GetServerDriftHistory``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerDriftHistory`: ServerDriftHistoryPaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `ServerAPI.GetServerDriftHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerDriftHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **float32** | Page number to retrieve. If you provide invalid value the default page number will applied  **Example:** 1   **Default Value:** 1   | 
+ **limit** | **float32** | Number of records per page.   **Example:** 20    **Default Value:** 20    **Max Value:** 100   If provided value is greater than max value, max value will be applied.  | 
+ **filterId** | **[]string** | Filter by id query param.  **Format:** filter.id&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.id&#x3D;$btw:John Doe&amp;filter.id&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterSnapshotId** | **[]string** | Filter by snapshotId query param.  **Format:** filter.snapshotId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.snapshotId&#x3D;$btw:John Doe&amp;filter.snapshotId&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **filterAcknowledgedBy** | **[]string** | Filter by acknowledgedBy query param.  **Format:** filter.acknowledgedBy&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.acknowledgedBy&#x3D;$btw:John Doe&amp;filter.acknowledgedBy&#x3D;$contains:John Doe  **Available Operations** - $eq  - $gt  - $gte  - $in  - $null  - $lt  - $lte  - $btw  - $ilike  - $sw  - $contains  - $not  - $and  - $or | 
+ **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;id:DESC&amp;sortBy&#x3D;snapshotId:DESC   **Default Value:** id:ASC  **Available Fields** - id  - snapshotId  - acknowledgedBy  | 
+ **search** | **string** | Search term to filter result values  **Example:** John   **Default Value:** No default value   | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values  **Example:** id,snapshotId,acknowledgedBy   **Default Value:** By default all fields mentioned below will be used to search by term  **Available Fields** - id  - snapshotId  - acknowledgedBy  | 
+
+### Return type
+
+[**ServerDriftHistoryPaginatedList**](ServerDriftHistoryPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerDriftHistoryById
+
+> ServerDriftHistory GetServerDriftHistoryById(ctx, serverId, driftId).Execute()
+
+Get a specific drift history for a specific server
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := float32(8.14) // float32 | 
+	driftId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerAPI.GetServerDriftHistoryById(context.Background(), serverId, driftId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.GetServerDriftHistoryById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerDriftHistoryById`: ServerDriftHistory
+	fmt.Fprintf(os.Stdout, "Response from `ServerAPI.GetServerDriftHistoryById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **float32** |  | 
+**driftId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerDriftHistoryByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**ServerDriftHistory**](ServerDriftHistory.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServerInfo
 
 > Server GetServerInfo(ctx, serverId).Execute()
@@ -661,6 +892,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetServerSnapshots
+
+> ServerSnapshotPaginatedList GetServerSnapshots(ctx, serverId).Page(page).Limit(limit).Kind(kind).Search(search).Execute()
+
+Get server backup snapshots
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := int64(789) // int64 | 
+	page := float32(8.14) // float32 | Page number (1-based) (optional) (default to 1)
+	limit := float32(8.14) // float32 | Number of items per page (optional) (default to 20)
+	kind := "kind_example" // string | Filter snapshots by commit kind (optional)
+	search := "search_example" // string | Search term matched as a case-insensitive substring against oid and message (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerAPI.GetServerSnapshots(context.Background(), serverId).Page(page).Limit(limit).Kind(kind).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.GetServerSnapshots``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerSnapshots`: ServerSnapshotPaginatedList
+	fmt.Fprintf(os.Stdout, "Response from `ServerAPI.GetServerSnapshots`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerSnapshotsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **float32** | Page number (1-based) | [default to 1]
+ **limit** | **float32** | Number of items per page | [default to 20]
+ **kind** | **string** | Filter snapshots by commit kind | 
+ **search** | **string** | Search term matched as a case-insensitive substring against oid and message | 
+
+### Return type
+
+[**ServerSnapshotPaginatedList**](ServerSnapshotPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServerVNCInfo
 
 > ServerVNCInfo GetServerVNCInfo(ctx, serverId).Execute()
@@ -733,7 +1042,7 @@ Name | Type | Description  | Notes
 
 ## GetServers
 
-> ServerPaginatedList GetServers(ctx).Page(page).Limit(limit).FilterServerTypeId(filterServerTypeId).FilterServerId(filterServerId).FilterSiteId(filterSiteId).FilterVendor(filterVendor).FilterSerialNumber(filterSerialNumber).FilterManagementAddress(filterManagementAddress).FilterModel(filterModel).FilterAdministrationState(filterAdministrationState).FilterServerDiskWipe(filterServerDiskWipe).FilterPowerStatus(filterPowerStatus).FilterServerDhcpStatus(filterServerDhcpStatus).FilterServerClass(filterServerClass).FilterServerStatus(filterServerStatus).FilterRequiresManualCleaning(filterRequiresManualCleaning).FilterInstanceInfrastructureInfrastructureId(filterInstanceInfrastructureInfrastructureId).FilterInstanceInfrastructureUserIdOwner(filterInstanceInfrastructureUserIdOwner).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> ServerPaginatedList GetServers(ctx).Page(page).Limit(limit).FilterServerTypeId(filterServerTypeId).FilterServerId(filterServerId).FilterSiteId(filterSiteId).FilterVendor(filterVendor).FilterSerialNumber(filterSerialNumber).FilterManagementAddress(filterManagementAddress).FilterModel(filterModel).FilterAdministrationState(filterAdministrationState).FilterServerDiskWipe(filterServerDiskWipe).FilterPowerStatus(filterPowerStatus).FilterServerDhcpStatus(filterServerDhcpStatus).FilterServerClass(filterServerClass).FilterServerStatus(filterServerStatus).FilterRequiresManualCleaning(filterRequiresManualCleaning).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterFirmwareBaselineComplianceStatus(filterFirmwareBaselineComplianceStatus).FilterFirmwareBackupEnabled(filterFirmwareBackupEnabled).FilterFirmwareDriftDetectionEnabled(filterFirmwareDriftDetectionEnabled).FilterTags(filterTags).FilterInstanceInfrastructureInfrastructureId(filterInstanceInfrastructureInfrastructureId).FilterInstanceInfrastructureUserIdOwner(filterInstanceInfrastructureUserIdOwner).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get a list of Servers
 
@@ -768,6 +1077,11 @@ func main() {
 	filterServerClass := []string{"Inner_example"} // []string | Filter by serverClass query param.  **Format:** filter.serverClass={$not}:OPERATION:VALUE    **Example:** filter.serverClass=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterServerStatus := []string{"Inner_example"} // []string | Filter by serverStatus query param.  **Format:** filter.serverStatus={$not}:OPERATION:VALUE    **Example:** filter.serverStatus=$eq:John Doe&filter.serverStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterRequiresManualCleaning := []string{"Inner_example"} // []string | Filter by requiresManualCleaning query param.  **Format:** filter.requiresManualCleaning={$not}:OPERATION:VALUE    **Example:** filter.requiresManualCleaning=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterDriftDetectionSyncStatus := []string{"Inner_example"} // []string | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus={$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus=$eq:John Doe&filter.driftDetectionSyncStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterFirmwareBaselineComplianceStatus := []string{"Inner_example"} // []string | Filter by firmwareBaselineComplianceStatus query param.  **Format:** filter.firmwareBaselineComplianceStatus={$not}:OPERATION:VALUE    **Example:** filter.firmwareBaselineComplianceStatus=$eq:John Doe&filter.firmwareBaselineComplianceStatus=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
+	filterFirmwareBackupEnabled := []string{"Inner_example"} // []string | Filter by firmwareBackupEnabled query param.  **Format:** filter.firmwareBackupEnabled={$not}:OPERATION:VALUE    **Example:** filter.firmwareBackupEnabled=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterFirmwareDriftDetectionEnabled := []string{"Inner_example"} // []string | Filter by firmwareDriftDetectionEnabled query param.  **Format:** filter.firmwareDriftDetectionEnabled={$not}:OPERATION:VALUE    **Example:** filter.firmwareDriftDetectionEnabled=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
+	filterTags := []string{"Inner_example"} // []string | Filter by tags query param.  **Format:** filter.tags={$not}:OPERATION:VALUE    **Example:** filter.tags=$eq:John Doe&filter.tags=$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or (optional)
 	filterInstanceInfrastructureInfrastructureId := []string{"Inner_example"} // []string | Filter by instance.infrastructure.infrastructureId query param.  **Format:** filter.instance.infrastructure.infrastructureId={$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.infrastructureId=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	filterInstanceInfrastructureUserIdOwner := []string{"Inner_example"} // []string | Filter by instance.infrastructure.userIdOwner query param.  **Format:** filter.instance.infrastructure.userIdOwner={$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.userIdOwner=$eq:John Doe  **Available Operations** - $eq  - $and  - $or (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy=serverId:DESC&sortBy=serverTypeId:DESC   **Default Value:** serverId:DESC  **Available Fields** - serverId  - serverTypeId  (optional)
@@ -776,7 +1090,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerAPI.GetServers(context.Background()).Page(page).Limit(limit).FilterServerTypeId(filterServerTypeId).FilterServerId(filterServerId).FilterSiteId(filterSiteId).FilterVendor(filterVendor).FilterSerialNumber(filterSerialNumber).FilterManagementAddress(filterManagementAddress).FilterModel(filterModel).FilterAdministrationState(filterAdministrationState).FilterServerDiskWipe(filterServerDiskWipe).FilterPowerStatus(filterPowerStatus).FilterServerDhcpStatus(filterServerDhcpStatus).FilterServerClass(filterServerClass).FilterServerStatus(filterServerStatus).FilterRequiresManualCleaning(filterRequiresManualCleaning).FilterInstanceInfrastructureInfrastructureId(filterInstanceInfrastructureInfrastructureId).FilterInstanceInfrastructureUserIdOwner(filterInstanceInfrastructureUserIdOwner).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.ServerAPI.GetServers(context.Background()).Page(page).Limit(limit).FilterServerTypeId(filterServerTypeId).FilterServerId(filterServerId).FilterSiteId(filterSiteId).FilterVendor(filterVendor).FilterSerialNumber(filterSerialNumber).FilterManagementAddress(filterManagementAddress).FilterModel(filterModel).FilterAdministrationState(filterAdministrationState).FilterServerDiskWipe(filterServerDiskWipe).FilterPowerStatus(filterPowerStatus).FilterServerDhcpStatus(filterServerDhcpStatus).FilterServerClass(filterServerClass).FilterServerStatus(filterServerStatus).FilterRequiresManualCleaning(filterRequiresManualCleaning).FilterDriftDetectionSyncStatus(filterDriftDetectionSyncStatus).FilterFirmwareBaselineComplianceStatus(filterFirmwareBaselineComplianceStatus).FilterFirmwareBackupEnabled(filterFirmwareBackupEnabled).FilterFirmwareDriftDetectionEnabled(filterFirmwareDriftDetectionEnabled).FilterTags(filterTags).FilterInstanceInfrastructureInfrastructureId(filterInstanceInfrastructureInfrastructureId).FilterInstanceInfrastructureUserIdOwner(filterInstanceInfrastructureUserIdOwner).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.GetServers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -813,6 +1127,11 @@ Name | Type | Description  | Notes
  **filterServerClass** | **[]string** | Filter by serverClass query param.  **Format:** filter.serverClass&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverClass&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterServerStatus** | **[]string** | Filter by serverStatus query param.  **Format:** filter.serverStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.serverStatus&#x3D;$eq:John Doe&amp;filter.serverStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterRequiresManualCleaning** | **[]string** | Filter by requiresManualCleaning query param.  **Format:** filter.requiresManualCleaning&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.requiresManualCleaning&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterDriftDetectionSyncStatus** | **[]string** | Filter by driftDetectionSyncStatus query param.  **Format:** filter.driftDetectionSyncStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.driftDetectionSyncStatus&#x3D;$eq:John Doe&amp;filter.driftDetectionSyncStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterFirmwareBaselineComplianceStatus** | **[]string** | Filter by firmwareBaselineComplianceStatus query param.  **Format:** filter.firmwareBaselineComplianceStatus&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareBaselineComplianceStatus&#x3D;$eq:John Doe&amp;filter.firmwareBaselineComplianceStatus&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
+ **filterFirmwareBackupEnabled** | **[]string** | Filter by firmwareBackupEnabled query param.  **Format:** filter.firmwareBackupEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareBackupEnabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterFirmwareDriftDetectionEnabled** | **[]string** | Filter by firmwareDriftDetectionEnabled query param.  **Format:** filter.firmwareDriftDetectionEnabled&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.firmwareDriftDetectionEnabled&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
+ **filterTags** | **[]string** | Filter by tags query param.  **Format:** filter.tags&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.tags&#x3D;$eq:John Doe&amp;filter.tags&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $and  - $or | 
  **filterInstanceInfrastructureInfrastructureId** | **[]string** | Filter by instance.infrastructure.infrastructureId query param.  **Format:** filter.instance.infrastructure.infrastructureId&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.infrastructureId&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **filterInstanceInfrastructureUserIdOwner** | **[]string** | Filter by instance.infrastructure.userIdOwner query param.  **Format:** filter.instance.infrastructure.userIdOwner&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.instance.infrastructure.userIdOwner&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or | 
  **sortBy** | **[]string** | Parameter to sort by. To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting  **Format:** {fieldName}:{DIRECTION}   **Example:** sortBy&#x3D;serverId:DESC&amp;sortBy&#x3D;serverTypeId:DESC   **Default Value:** serverId:DESC  **Available Fields** - serverId  - serverTypeId  | 
@@ -1308,6 +1627,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ServerSyncTargetSnapshotWithLatestSnapshot
+
+> ServerSyncTargetSnapshotWithLatestSnapshot(ctx, serverId).Execute()
+
+Accept the current server configuration as the drift-detection target
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := int64(789) // int64 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerAPI.ServerSyncTargetSnapshotWithLatestSnapshot(context.Background(), serverId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.ServerSyncTargetSnapshotWithLatestSnapshot``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiServerSyncTargetSnapshotWithLatestSnapshotRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

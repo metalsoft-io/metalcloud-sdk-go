@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **SyslogMonitoringEnabled** | Pointer to **bool** | Whether syslog monitoring is enabled | [optional] 
 **LeafSwitchesHaveMlagPairs** | Pointer to **bool** | Whether leaf switches have MLAG pairs | [optional] 
 **MinimumNumberOfSpinesNeededToBootstrapLeafs** | Pointer to **int32** | Minimum number of spines needed to bootstrap leafs | [optional] 
+**BackupEnabled** | Pointer to **bool** | Whether backup is enabled | [optional] 
+**DriftDetectionEnabled** | Pointer to **bool** | Whether drift detection is enabled | [optional] 
 
 ## Methods
 
@@ -153,6 +155,56 @@ SetMinimumNumberOfSpinesNeededToBootstrapLeafs sets MinimumNumberOfSpinesNeededT
 `func (o *PartialNetworkDevicePolicy) HasMinimumNumberOfSpinesNeededToBootstrapLeafs() bool`
 
 HasMinimumNumberOfSpinesNeededToBootstrapLeafs returns a boolean if a field has been set.
+
+### GetBackupEnabled
+
+`func (o *PartialNetworkDevicePolicy) GetBackupEnabled() bool`
+
+GetBackupEnabled returns the BackupEnabled field if non-nil, zero value otherwise.
+
+### GetBackupEnabledOk
+
+`func (o *PartialNetworkDevicePolicy) GetBackupEnabledOk() (*bool, bool)`
+
+GetBackupEnabledOk returns a tuple with the BackupEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBackupEnabled
+
+`func (o *PartialNetworkDevicePolicy) SetBackupEnabled(v bool)`
+
+SetBackupEnabled sets BackupEnabled field to given value.
+
+### HasBackupEnabled
+
+`func (o *PartialNetworkDevicePolicy) HasBackupEnabled() bool`
+
+HasBackupEnabled returns a boolean if a field has been set.
+
+### GetDriftDetectionEnabled
+
+`func (o *PartialNetworkDevicePolicy) GetDriftDetectionEnabled() bool`
+
+GetDriftDetectionEnabled returns the DriftDetectionEnabled field if non-nil, zero value otherwise.
+
+### GetDriftDetectionEnabledOk
+
+`func (o *PartialNetworkDevicePolicy) GetDriftDetectionEnabledOk() (*bool, bool)`
+
+GetDriftDetectionEnabledOk returns a tuple with the DriftDetectionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriftDetectionEnabled
+
+`func (o *PartialNetworkDevicePolicy) SetDriftDetectionEnabled(v bool)`
+
+SetDriftDetectionEnabled sets DriftDetectionEnabled field to given value.
+
+### HasDriftDetectionEnabled
+
+`func (o *PartialNetworkDevicePolicy) HasDriftDetectionEnabled() bool`
+
+HasDriftDetectionEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

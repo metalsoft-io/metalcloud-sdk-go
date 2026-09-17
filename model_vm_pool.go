@@ -59,6 +59,8 @@ type VMPool struct {
 	Options *VMPoolOptions `json:"options,omitempty"`
 	// The GPUs registered inside the VM Pool.
 	Gpus []VMPoolGPU `json:"gpus,omitempty"`
+	// The GPU partitions registered inside the VM Pool.
+	GpuPartitions []VMPoolGPUPartition `json:"gpuPartitions,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -614,6 +616,38 @@ func (o *VMPool) SetGpus(v []VMPoolGPU) {
 	o.Gpus = v
 }
 
+// GetGpuPartitions returns the GpuPartitions field value if set, zero value otherwise.
+func (o *VMPool) GetGpuPartitions() []VMPoolGPUPartition {
+	if o == nil || IsNil(o.GpuPartitions) {
+		var ret []VMPoolGPUPartition
+		return ret
+	}
+	return o.GpuPartitions
+}
+
+// GetGpuPartitionsOk returns a tuple with the GpuPartitions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPool) GetGpuPartitionsOk() ([]VMPoolGPUPartition, bool) {
+	if o == nil || IsNil(o.GpuPartitions) {
+		return nil, false
+	}
+	return o.GpuPartitions, true
+}
+
+// HasGpuPartitions returns a boolean if a field has been set.
+func (o *VMPool) HasGpuPartitions() bool {
+	if o != nil && !IsNil(o.GpuPartitions) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuPartitions gets a reference to the given []VMPoolGPUPartition and assigns it to the GpuPartitions field.
+func (o *VMPool) SetGpuPartitions(v []VMPoolGPUPartition) {
+	o.GpuPartitions = v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *VMPool) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -691,6 +725,9 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Gpus) {
 		toSerialize["gpus"] = o.Gpus
 	}
+	if !IsNil(o.GpuPartitions) {
+		toSerialize["gpuPartitions"] = o.GpuPartitions
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -766,6 +803,7 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "gpus")
+		delete(additionalProperties, "gpuPartitions")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

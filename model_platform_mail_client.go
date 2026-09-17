@@ -20,6 +20,8 @@ var _ MappedNullable = &PlatformMailClient{}
 
 // PlatformMailClient struct for PlatformMailClient
 type PlatformMailClient struct {
+	// Whether outgoing email delivery is enabled
+	Enabled *bool `json:"enabled,omitempty"`
 	// SMTP server hostname
 	StrHostname *string `json:"strHostname,omitempty"`
 	// SMTP server port
@@ -54,6 +56,38 @@ func NewPlatformMailClient() *PlatformMailClient {
 func NewPlatformMailClientWithDefaults() *PlatformMailClient {
 	this := PlatformMailClient{}
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *PlatformMailClient) GetEnabled() bool {
+	if o == nil || IsNil(o.Enabled) {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlatformMailClient) GetEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *PlatformMailClient) HasEnabled() bool {
+	if o != nil && !IsNil(o.Enabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *PlatformMailClient) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetStrHostname returns the StrHostname field value if set, zero value otherwise.
@@ -290,6 +324,9 @@ func (o PlatformMailClient) MarshalJSON() ([]byte, error) {
 
 func (o PlatformMailClient) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
 	if !IsNil(o.StrHostname) {
 		toSerialize["strHostname"] = o.StrHostname
 	}
@@ -333,6 +370,7 @@ func (o *PlatformMailClient) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "strHostname")
 		delete(additionalProperties, "nPort")
 		delete(additionalProperties, "strUsername")

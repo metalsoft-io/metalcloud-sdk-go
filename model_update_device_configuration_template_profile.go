@@ -29,7 +29,7 @@ type UpdateDeviceConfigurationTemplateProfile struct {
 	// Disable to skip applying this profile without deleting it from the system.
 	IsEnabled *bool `json:"isEnabled,omitempty"`
 	// Ordering hint when multiple enabled profiles match the same (device, lifecycleStage) tuple at deploy time — lower values apply first. Integer in the range [0, 1000]. Defaults to 100, which leaves headroom in both directions.  Recommended bands (convention, not enforced): - 0–49: system-level overrides — first thing on the wire after baseline reset. - 50–99: high-priority operator rules (e.g. emergency policy push). - 100: default — use this unless you have a reason not to. - 101–500: standard operator customizations. - 501–1000: low-priority fallbacks, applied last.  Ties (two profiles with the same priority for the same device + lifecycleStage) resolve in undefined order. Use distinct priorities if order matters.
-	Priority *float32 `json:"priority,omitempty"`
+	Priority *int32 `json:"priority,omitempty"`
 	// How often this profile applies during fabric deploys. - 'always' (default): re-applied on every deploy that matches. - 'once': applied to each matching device exactly once across all deploys, then skipped. Tracking lives in `device_configuration_template_history` — one row per successful apply, keyed on the profile id and the network device id. Reset by deleting those history rows.
 	ApplyMode *DeviceConfigurationProfileApplyMode `json:"applyMode,omitempty"`
 	// Key-value annotations for storing additional metadata.
@@ -49,7 +49,7 @@ func NewUpdateDeviceConfigurationTemplateProfile() *UpdateDeviceConfigurationTem
 	this := UpdateDeviceConfigurationTemplateProfile{}
 	var isEnabled bool = true
 	this.IsEnabled = &isEnabled
-	var priority float32 = 100
+	var priority int32 = 100
 	this.Priority = &priority
 	var applyMode DeviceConfigurationProfileApplyMode = DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS
 	this.ApplyMode = &applyMode
@@ -63,7 +63,7 @@ func NewUpdateDeviceConfigurationTemplateProfileWithDefaults() *UpdateDeviceConf
 	this := UpdateDeviceConfigurationTemplateProfile{}
 	var isEnabled bool = true
 	this.IsEnabled = &isEnabled
-	var priority float32 = 100
+	var priority int32 = 100
 	this.Priority = &priority
 	var applyMode DeviceConfigurationProfileApplyMode = DEVICECONFIGURATIONPROFILEAPPLYMODE_ALWAYS
 	this.ApplyMode = &applyMode
@@ -209,9 +209,9 @@ func (o *UpdateDeviceConfigurationTemplateProfile) SetIsEnabled(v bool) {
 }
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *UpdateDeviceConfigurationTemplateProfile) GetPriority() float32 {
+func (o *UpdateDeviceConfigurationTemplateProfile) GetPriority() int32 {
 	if o == nil || IsNil(o.Priority) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.Priority
@@ -219,7 +219,7 @@ func (o *UpdateDeviceConfigurationTemplateProfile) GetPriority() float32 {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDeviceConfigurationTemplateProfile) GetPriorityOk() (*float32, bool) {
+func (o *UpdateDeviceConfigurationTemplateProfile) GetPriorityOk() (*int32, bool) {
 	if o == nil || IsNil(o.Priority) {
 		return nil, false
 	}
@@ -235,8 +235,8 @@ func (o *UpdateDeviceConfigurationTemplateProfile) HasPriority() bool {
 	return false
 }
 
-// SetPriority gets a reference to the given float32 and assigns it to the Priority field.
-func (o *UpdateDeviceConfigurationTemplateProfile) SetPriority(v float32) {
+// SetPriority gets a reference to the given int32 and assigns it to the Priority field.
+func (o *UpdateDeviceConfigurationTemplateProfile) SetPriority(v int32) {
 	o.Priority = &v
 }
 
