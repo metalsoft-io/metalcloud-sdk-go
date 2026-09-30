@@ -28,7 +28,7 @@ type ResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
-	Tags *string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -227,17 +227,17 @@ func (o *ResourceItem) SetQuantity(v float32) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ResourceItem) GetTags() string {
+func (o *ResourceItem) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResourceItem) GetTagsOk() (*string, bool) {
+func (o *ResourceItem) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -253,9 +253,9 @@ func (o *ResourceItem) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *ResourceItem) SetTags(v string) {
-	o.Tags = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *ResourceItem) SetTags(v []string) {
+	o.Tags = v
 }
 
 func (o ResourceItem) MarshalJSON() ([]byte, error) {

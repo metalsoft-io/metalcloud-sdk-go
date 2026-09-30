@@ -28,7 +28,7 @@ type InstanceLicenseResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
-	Tags *string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	LicenseId string `json:"licenseId"`
 	LicenseType string `json:"licenseType"`
 	LicenseUtilizationType string `json:"licenseUtilizationType"`
@@ -233,17 +233,17 @@ func (o *InstanceLicenseResourceItem) SetQuantity(v float32) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *InstanceLicenseResourceItem) GetTags() string {
+func (o *InstanceLicenseResourceItem) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceLicenseResourceItem) GetTagsOk() (*string, bool) {
+func (o *InstanceLicenseResourceItem) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -259,9 +259,9 @@ func (o *InstanceLicenseResourceItem) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *InstanceLicenseResourceItem) SetTags(v string) {
-	o.Tags = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *InstanceLicenseResourceItem) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetLicenseId returns the LicenseId field value

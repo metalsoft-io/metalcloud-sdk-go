@@ -24,8 +24,8 @@ type UpdateStorageInterface struct {
 	IsUplink *bool `json:"isUplink,omitempty"`
 	// Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource).
 	UseForDeploys *bool `json:"useForDeploys,omitempty"`
-	// Id of the Network Equipment Interface associated to this Storage Interface
-	NetworkEquipmentInterfaceId *int64 `json:"networkEquipmentInterfaceId,omitempty"`
+	// Ids of every Network Equipment Interface this Storage Interface is reachable through. More than one is normal: an MLAG pair contributes one port per switch, and a bond on the storage side may face several independent switch ports. Sending this field replaces the whole set.
+	NetworkEquipmentInterfaceIds []float32 `json:"networkEquipmentInterfaceIds,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -112,36 +112,36 @@ func (o *UpdateStorageInterface) SetUseForDeploys(v bool) {
 	o.UseForDeploys = &v
 }
 
-// GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field value if set, zero value otherwise.
-func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceId() int64 {
-	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
-		var ret int64
+// GetNetworkEquipmentInterfaceIds returns the NetworkEquipmentInterfaceIds field value if set, zero value otherwise.
+func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIds() []float32 {
+	if o == nil || IsNil(o.NetworkEquipmentInterfaceIds) {
+		var ret []float32
 		return ret
 	}
-	return *o.NetworkEquipmentInterfaceId
+	return o.NetworkEquipmentInterfaceIds
 }
 
-// GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field value if set, nil otherwise
+// GetNetworkEquipmentInterfaceIdsOk returns a tuple with the NetworkEquipmentInterfaceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
+func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdsOk() ([]float32, bool) {
+	if o == nil || IsNil(o.NetworkEquipmentInterfaceIds) {
 		return nil, false
 	}
-	return o.NetworkEquipmentInterfaceId, true
+	return o.NetworkEquipmentInterfaceIds, true
 }
 
-// HasNetworkEquipmentInterfaceId returns a boolean if a field has been set.
-func (o *UpdateStorageInterface) HasNetworkEquipmentInterfaceId() bool {
-	if o != nil && !IsNil(o.NetworkEquipmentInterfaceId) {
+// HasNetworkEquipmentInterfaceIds returns a boolean if a field has been set.
+func (o *UpdateStorageInterface) HasNetworkEquipmentInterfaceIds() bool {
+	if o != nil && !IsNil(o.NetworkEquipmentInterfaceIds) {
 		return true
 	}
 
 	return false
 }
 
-// SetNetworkEquipmentInterfaceId gets a reference to the given int64 and assigns it to the NetworkEquipmentInterfaceId field.
-func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceId(v int64) {
-	o.NetworkEquipmentInterfaceId = &v
+// SetNetworkEquipmentInterfaceIds gets a reference to the given []float32 and assigns it to the NetworkEquipmentInterfaceIds field.
+func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceIds(v []float32) {
+	o.NetworkEquipmentInterfaceIds = v
 }
 
 func (o UpdateStorageInterface) MarshalJSON() ([]byte, error) {
@@ -160,8 +160,8 @@ func (o UpdateStorageInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UseForDeploys) {
 		toSerialize["useForDeploys"] = o.UseForDeploys
 	}
-	if !IsNil(o.NetworkEquipmentInterfaceId) {
-		toSerialize["networkEquipmentInterfaceId"] = o.NetworkEquipmentInterfaceId
+	if !IsNil(o.NetworkEquipmentInterfaceIds) {
+		toSerialize["networkEquipmentInterfaceIds"] = o.NetworkEquipmentInterfaceIds
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -187,7 +187,7 @@ func (o *UpdateStorageInterface) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "isUplink")
 		delete(additionalProperties, "useForDeploys")
-		delete(additionalProperties, "networkEquipmentInterfaceId")
+		delete(additionalProperties, "networkEquipmentInterfaceIds")
 		o.AdditionalProperties = additionalProperties
 	}
 

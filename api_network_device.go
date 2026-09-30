@@ -6899,7 +6899,7 @@ func (a *NetworkDeviceAPIService) ReturnNetworkDeviceToPlannedExecute(r NetworkD
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest struct {
+type NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
 	networkDeviceId int64
@@ -6907,26 +6907,26 @@ type NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest struct {
 }
 
 // Entity tag
-func (r NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest) IfMatch(ifMatch string) NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest {
+func (r NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest) IfMatch(ifMatch string) NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest) Execute() (*NetworkDevice, *http.Response, error) {
-	return r.ApiService.RevertNetworkDeviceFailedStateExecute(r)
+func (r NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest) Execute() (*NetworkDevice, *http.Response, error) {
+	return r.ApiService.RevertNetworkDeviceDefectiveStateExecute(r)
 }
 
 /*
-RevertNetworkDeviceFailedState Revert network device failed state
+RevertNetworkDeviceDefectiveState Revert network device defective state
 
-Reverts a failed network device back to active status. This operation can only be performed on devices currently in failed status.
+Moves a defective network device back to active. Only a device currently in defective status is accepted.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkDeviceId Network device ID
- @return NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest
+ @return NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest
 */
-func (a *NetworkDeviceAPIService) RevertNetworkDeviceFailedState(ctx context.Context, networkDeviceId int64) NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest {
-	return NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest{
+func (a *NetworkDeviceAPIService) RevertNetworkDeviceDefectiveState(ctx context.Context, networkDeviceId int64) NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest {
+	return NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkDeviceId: networkDeviceId,
@@ -6935,7 +6935,7 @@ func (a *NetworkDeviceAPIService) RevertNetworkDeviceFailedState(ctx context.Con
 
 // Execute executes the request
 //  @return NetworkDevice
-func (a *NetworkDeviceAPIService) RevertNetworkDeviceFailedStateExecute(r NetworkDeviceAPIRevertNetworkDeviceFailedStateRequest) (*NetworkDevice, *http.Response, error) {
+func (a *NetworkDeviceAPIService) RevertNetworkDeviceDefectiveStateExecute(r NetworkDeviceAPIRevertNetworkDeviceDefectiveStateRequest) (*NetworkDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6943,12 +6943,12 @@ func (a *NetworkDeviceAPIService) RevertNetworkDeviceFailedStateExecute(r Networ
 		localVarReturnValue  *NetworkDevice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.RevertNetworkDeviceFailedState")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.RevertNetworkDeviceDefectiveState")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state"
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/revert-defective-state"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -7135,7 +7135,7 @@ func (a *NetworkDeviceAPIService) RunExtensionOnNetworkDeviceExecute(r NetworkDe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkDeviceAPISetNetworkDeviceAsFailedRequest struct {
+type NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
 	networkDeviceId int64
@@ -7143,26 +7143,26 @@ type NetworkDeviceAPISetNetworkDeviceAsFailedRequest struct {
 }
 
 // Entity tag
-func (r NetworkDeviceAPISetNetworkDeviceAsFailedRequest) IfMatch(ifMatch string) NetworkDeviceAPISetNetworkDeviceAsFailedRequest {
+func (r NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest) IfMatch(ifMatch string) NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r NetworkDeviceAPISetNetworkDeviceAsFailedRequest) Execute() (*NetworkDevice, *http.Response, error) {
-	return r.ApiService.SetNetworkDeviceAsFailedExecute(r)
+func (r NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest) Execute() (*NetworkDevice, *http.Response, error) {
+	return r.ApiService.SetNetworkDeviceAsDefectiveExecute(r)
 }
 
 /*
-SetNetworkDeviceAsFailed Set network device as failed
+SetNetworkDeviceAsDefective Set network device as defective
 
-Sets the network device status to failed. This is a safe operation specifically for setting devices as failed when hardware issues are detected.
+Marks an active network device as defective (broken hardware). Nothing is pushed to the device. A defective device is the precondition for the switch replace flow.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkDeviceId Network device ID
- @return NetworkDeviceAPISetNetworkDeviceAsFailedRequest
+ @return NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest
 */
-func (a *NetworkDeviceAPIService) SetNetworkDeviceAsFailed(ctx context.Context, networkDeviceId int64) NetworkDeviceAPISetNetworkDeviceAsFailedRequest {
-	return NetworkDeviceAPISetNetworkDeviceAsFailedRequest{
+func (a *NetworkDeviceAPIService) SetNetworkDeviceAsDefective(ctx context.Context, networkDeviceId int64) NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest {
+	return NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkDeviceId: networkDeviceId,
@@ -7171,7 +7171,7 @@ func (a *NetworkDeviceAPIService) SetNetworkDeviceAsFailed(ctx context.Context, 
 
 // Execute executes the request
 //  @return NetworkDevice
-func (a *NetworkDeviceAPIService) SetNetworkDeviceAsFailedExecute(r NetworkDeviceAPISetNetworkDeviceAsFailedRequest) (*NetworkDevice, *http.Response, error) {
+func (a *NetworkDeviceAPIService) SetNetworkDeviceAsDefectiveExecute(r NetworkDeviceAPISetNetworkDeviceAsDefectiveRequest) (*NetworkDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7179,12 +7179,12 @@ func (a *NetworkDeviceAPIService) SetNetworkDeviceAsFailedExecute(r NetworkDevic
 		localVarReturnValue  *NetworkDevice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.SetNetworkDeviceAsFailed")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.SetNetworkDeviceAsDefective")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/set-as-failed"
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/set-as-defective"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

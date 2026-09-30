@@ -28,15 +28,21 @@ type InstanceResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
-	Tags *string `json:"tags,omitempty"`
-	ServerTypeId int64 `json:"serverTypeId"`
-	ServerId int64 `json:"serverId"`
-	ServerTypeName string `json:"serverTypeName"`
-	OperatingSystemType string `json:"operatingSystemType"`
-	OperatingSystemVersion string `json:"operatingSystemVersion"`
-	OperatingSystemDisplayName string `json:"operatingSystemDisplayName"`
-	OperatingSystemTemplateId int64 `json:"operatingSystemTemplateId"`
-	OriginalStartTimestamp string `json:"originalStartTimestamp"`
+	Tags []string `json:"tags,omitempty"`
+	ServerTypeId NullableInt64 `json:"serverTypeId"`
+	ServerTypeName NullableString `json:"serverTypeName"`
+	ServerId NullableInt64 `json:"serverId"`
+	ServerResourcePoolId NullableInt64 `json:"serverResourcePoolId"`
+	ServerResourcePoolName NullableString `json:"serverResourcePoolName"`
+	VmTypeId NullableInt64 `json:"vmTypeId"`
+	VmTypeName NullableString `json:"vmTypeName"`
+	VmPoolId NullableInt64 `json:"vmPoolId"`
+	VmPoolName NullableString `json:"vmPoolName"`
+	OperatingSystemType NullableString `json:"operatingSystemType"`
+	OperatingSystemVersion NullableString `json:"operatingSystemVersion"`
+	OperatingSystemDisplayName NullableString `json:"operatingSystemDisplayName"`
+	OperatingSystemTemplateId NullableInt64 `json:"operatingSystemTemplateId"`
+	OriginalStartTimestamp NullableString `json:"originalStartTimestamp"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,7 +52,7 @@ type _InstanceResourceItem InstanceResourceItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId int64, serverId int64, serverTypeName string, operatingSystemType string, operatingSystemVersion string, operatingSystemDisplayName string, operatingSystemTemplateId int64, originalStartTimestamp string) *InstanceResourceItem {
+func NewInstanceResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId NullableInt64, serverTypeName NullableString, serverId NullableInt64, serverResourcePoolId NullableInt64, serverResourcePoolName NullableString, vmTypeId NullableInt64, vmTypeName NullableString, vmPoolId NullableInt64, vmPoolName NullableString, operatingSystemType NullableString, operatingSystemVersion NullableString, operatingSystemDisplayName NullableString, operatingSystemTemplateId NullableInt64, originalStartTimestamp NullableString) *InstanceResourceItem {
 	this := InstanceResourceItem{}
 	this.Id = id
 	this.Label = label
@@ -56,8 +62,14 @@ func NewInstanceResourceItem(id int64, label string, startTimestamp string, endT
 	this.MeasurementUnit = measurementUnit
 	this.Quantity = quantity
 	this.ServerTypeId = serverTypeId
-	this.ServerId = serverId
 	this.ServerTypeName = serverTypeName
+	this.ServerId = serverId
+	this.ServerResourcePoolId = serverResourcePoolId
+	this.ServerResourcePoolName = serverResourcePoolName
+	this.VmTypeId = vmTypeId
+	this.VmTypeName = vmTypeName
+	this.VmPoolId = vmPoolId
+	this.VmPoolName = vmPoolName
 	this.OperatingSystemType = operatingSystemType
 	this.OperatingSystemVersion = operatingSystemVersion
 	this.OperatingSystemDisplayName = operatingSystemDisplayName
@@ -243,17 +255,17 @@ func (o *InstanceResourceItem) SetQuantity(v float32) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *InstanceResourceItem) GetTags() string {
+func (o *InstanceResourceItem) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetTagsOk() (*string, bool) {
+func (o *InstanceResourceItem) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -269,201 +281,373 @@ func (o *InstanceResourceItem) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *InstanceResourceItem) SetTags(v string) {
-	o.Tags = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *InstanceResourceItem) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetServerTypeId returns the ServerTypeId field value
+// If the value is explicit nil, the zero value for int64 will be returned
 func (o *InstanceResourceItem) GetServerTypeId() int64 {
-	if o == nil {
+	if o == nil || o.ServerTypeId.Get() == nil {
 		var ret int64
 		return ret
 	}
 
-	return o.ServerTypeId
+	return *o.ServerTypeId.Get()
 }
 
 // GetServerTypeIdOk returns a tuple with the ServerTypeId field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InstanceResourceItem) GetServerTypeIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerTypeId, true
+	return o.ServerTypeId.Get(), o.ServerTypeId.IsSet()
 }
 
 // SetServerTypeId sets field value
 func (o *InstanceResourceItem) SetServerTypeId(v int64) {
-	o.ServerTypeId = v
-}
-
-// GetServerId returns the ServerId field value
-func (o *InstanceResourceItem) GetServerId() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.ServerId
-}
-
-// GetServerIdOk returns a tuple with the ServerId field value
-// and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetServerIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ServerId, true
-}
-
-// SetServerId sets field value
-func (o *InstanceResourceItem) SetServerId(v int64) {
-	o.ServerId = v
+	o.ServerTypeId.Set(&v)
 }
 
 // GetServerTypeName returns the ServerTypeName field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *InstanceResourceItem) GetServerTypeName() string {
-	if o == nil {
+	if o == nil || o.ServerTypeName.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ServerTypeName
+	return *o.ServerTypeName.Get()
 }
 
 // GetServerTypeNameOk returns a tuple with the ServerTypeName field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InstanceResourceItem) GetServerTypeNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerTypeName, true
+	return o.ServerTypeName.Get(), o.ServerTypeName.IsSet()
 }
 
 // SetServerTypeName sets field value
 func (o *InstanceResourceItem) SetServerTypeName(v string) {
-	o.ServerTypeName = v
+	o.ServerTypeName.Set(&v)
 }
 
-// GetOperatingSystemType returns the OperatingSystemType field value
-func (o *InstanceResourceItem) GetOperatingSystemType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OperatingSystemType
-}
-
-// GetOperatingSystemTypeOk returns a tuple with the OperatingSystemType field value
-// and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetOperatingSystemTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.OperatingSystemType, true
-}
-
-// SetOperatingSystemType sets field value
-func (o *InstanceResourceItem) SetOperatingSystemType(v string) {
-	o.OperatingSystemType = v
-}
-
-// GetOperatingSystemVersion returns the OperatingSystemVersion field value
-func (o *InstanceResourceItem) GetOperatingSystemVersion() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OperatingSystemVersion
-}
-
-// GetOperatingSystemVersionOk returns a tuple with the OperatingSystemVersion field value
-// and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetOperatingSystemVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.OperatingSystemVersion, true
-}
-
-// SetOperatingSystemVersion sets field value
-func (o *InstanceResourceItem) SetOperatingSystemVersion(v string) {
-	o.OperatingSystemVersion = v
-}
-
-// GetOperatingSystemDisplayName returns the OperatingSystemDisplayName field value
-func (o *InstanceResourceItem) GetOperatingSystemDisplayName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OperatingSystemDisplayName
-}
-
-// GetOperatingSystemDisplayNameOk returns a tuple with the OperatingSystemDisplayName field value
-// and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetOperatingSystemDisplayNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.OperatingSystemDisplayName, true
-}
-
-// SetOperatingSystemDisplayName sets field value
-func (o *InstanceResourceItem) SetOperatingSystemDisplayName(v string) {
-	o.OperatingSystemDisplayName = v
-}
-
-// GetOperatingSystemTemplateId returns the OperatingSystemTemplateId field value
-func (o *InstanceResourceItem) GetOperatingSystemTemplateId() int64 {
-	if o == nil {
+// GetServerId returns the ServerId field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InstanceResourceItem) GetServerId() int64 {
+	if o == nil || o.ServerId.Get() == nil {
 		var ret int64
 		return ret
 	}
 
-	return o.OperatingSystemTemplateId
+	return *o.ServerId.Get()
 }
 
-// GetOperatingSystemTemplateIdOk returns a tuple with the OperatingSystemTemplateId field value
+// GetServerIdOk returns a tuple with the ServerId field value
 // and a boolean to check if the value has been set.
-func (o *InstanceResourceItem) GetOperatingSystemTemplateIdOk() (*int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetServerIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.OperatingSystemTemplateId, true
+	return o.ServerId.Get(), o.ServerId.IsSet()
 }
 
-// SetOperatingSystemTemplateId sets field value
-func (o *InstanceResourceItem) SetOperatingSystemTemplateId(v int64) {
-	o.OperatingSystemTemplateId = v
+// SetServerId sets field value
+func (o *InstanceResourceItem) SetServerId(v int64) {
+	o.ServerId.Set(&v)
 }
 
-// GetOriginalStartTimestamp returns the OriginalStartTimestamp field value
-func (o *InstanceResourceItem) GetOriginalStartTimestamp() string {
+// GetServerResourcePoolId returns the ServerResourcePoolId field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InstanceResourceItem) GetServerResourcePoolId() int64 {
+	if o == nil || o.ServerResourcePoolId.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.ServerResourcePoolId.Get()
+}
+
+// GetServerResourcePoolIdOk returns a tuple with the ServerResourcePoolId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetServerResourcePoolIdOk() (*int64, bool) {
 	if o == nil {
+		return nil, false
+	}
+	return o.ServerResourcePoolId.Get(), o.ServerResourcePoolId.IsSet()
+}
+
+// SetServerResourcePoolId sets field value
+func (o *InstanceResourceItem) SetServerResourcePoolId(v int64) {
+	o.ServerResourcePoolId.Set(&v)
+}
+
+// GetServerResourcePoolName returns the ServerResourcePoolName field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *InstanceResourceItem) GetServerResourcePoolName() string {
+	if o == nil || o.ServerResourcePoolName.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.OriginalStartTimestamp
+	return *o.ServerResourcePoolName.Get()
+}
+
+// GetServerResourcePoolNameOk returns a tuple with the ServerResourcePoolName field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetServerResourcePoolNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServerResourcePoolName.Get(), o.ServerResourcePoolName.IsSet()
+}
+
+// SetServerResourcePoolName sets field value
+func (o *InstanceResourceItem) SetServerResourcePoolName(v string) {
+	o.ServerResourcePoolName.Set(&v)
+}
+
+// GetVmTypeId returns the VmTypeId field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InstanceResourceItem) GetVmTypeId() int64 {
+	if o == nil || o.VmTypeId.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.VmTypeId.Get()
+}
+
+// GetVmTypeIdOk returns a tuple with the VmTypeId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetVmTypeIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VmTypeId.Get(), o.VmTypeId.IsSet()
+}
+
+// SetVmTypeId sets field value
+func (o *InstanceResourceItem) SetVmTypeId(v int64) {
+	o.VmTypeId.Set(&v)
+}
+
+// GetVmTypeName returns the VmTypeName field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *InstanceResourceItem) GetVmTypeName() string {
+	if o == nil || o.VmTypeName.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VmTypeName.Get()
+}
+
+// GetVmTypeNameOk returns a tuple with the VmTypeName field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetVmTypeNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VmTypeName.Get(), o.VmTypeName.IsSet()
+}
+
+// SetVmTypeName sets field value
+func (o *InstanceResourceItem) SetVmTypeName(v string) {
+	o.VmTypeName.Set(&v)
+}
+
+// GetVmPoolId returns the VmPoolId field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InstanceResourceItem) GetVmPoolId() int64 {
+	if o == nil || o.VmPoolId.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.VmPoolId.Get()
+}
+
+// GetVmPoolIdOk returns a tuple with the VmPoolId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetVmPoolIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VmPoolId.Get(), o.VmPoolId.IsSet()
+}
+
+// SetVmPoolId sets field value
+func (o *InstanceResourceItem) SetVmPoolId(v int64) {
+	o.VmPoolId.Set(&v)
+}
+
+// GetVmPoolName returns the VmPoolName field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *InstanceResourceItem) GetVmPoolName() string {
+	if o == nil || o.VmPoolName.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VmPoolName.Get()
+}
+
+// GetVmPoolNameOk returns a tuple with the VmPoolName field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetVmPoolNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VmPoolName.Get(), o.VmPoolName.IsSet()
+}
+
+// SetVmPoolName sets field value
+func (o *InstanceResourceItem) SetVmPoolName(v string) {
+	o.VmPoolName.Set(&v)
+}
+
+// GetOperatingSystemType returns the OperatingSystemType field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *InstanceResourceItem) GetOperatingSystemType() string {
+	if o == nil || o.OperatingSystemType.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.OperatingSystemType.Get()
+}
+
+// GetOperatingSystemTypeOk returns a tuple with the OperatingSystemType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetOperatingSystemTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OperatingSystemType.Get(), o.OperatingSystemType.IsSet()
+}
+
+// SetOperatingSystemType sets field value
+func (o *InstanceResourceItem) SetOperatingSystemType(v string) {
+	o.OperatingSystemType.Set(&v)
+}
+
+// GetOperatingSystemVersion returns the OperatingSystemVersion field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *InstanceResourceItem) GetOperatingSystemVersion() string {
+	if o == nil || o.OperatingSystemVersion.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.OperatingSystemVersion.Get()
+}
+
+// GetOperatingSystemVersionOk returns a tuple with the OperatingSystemVersion field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetOperatingSystemVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OperatingSystemVersion.Get(), o.OperatingSystemVersion.IsSet()
+}
+
+// SetOperatingSystemVersion sets field value
+func (o *InstanceResourceItem) SetOperatingSystemVersion(v string) {
+	o.OperatingSystemVersion.Set(&v)
+}
+
+// GetOperatingSystemDisplayName returns the OperatingSystemDisplayName field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *InstanceResourceItem) GetOperatingSystemDisplayName() string {
+	if o == nil || o.OperatingSystemDisplayName.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.OperatingSystemDisplayName.Get()
+}
+
+// GetOperatingSystemDisplayNameOk returns a tuple with the OperatingSystemDisplayName field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetOperatingSystemDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OperatingSystemDisplayName.Get(), o.OperatingSystemDisplayName.IsSet()
+}
+
+// SetOperatingSystemDisplayName sets field value
+func (o *InstanceResourceItem) SetOperatingSystemDisplayName(v string) {
+	o.OperatingSystemDisplayName.Set(&v)
+}
+
+// GetOperatingSystemTemplateId returns the OperatingSystemTemplateId field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *InstanceResourceItem) GetOperatingSystemTemplateId() int64 {
+	if o == nil || o.OperatingSystemTemplateId.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.OperatingSystemTemplateId.Get()
+}
+
+// GetOperatingSystemTemplateIdOk returns a tuple with the OperatingSystemTemplateId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InstanceResourceItem) GetOperatingSystemTemplateIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OperatingSystemTemplateId.Get(), o.OperatingSystemTemplateId.IsSet()
+}
+
+// SetOperatingSystemTemplateId sets field value
+func (o *InstanceResourceItem) SetOperatingSystemTemplateId(v int64) {
+	o.OperatingSystemTemplateId.Set(&v)
+}
+
+// GetOriginalStartTimestamp returns the OriginalStartTimestamp field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *InstanceResourceItem) GetOriginalStartTimestamp() string {
+	if o == nil || o.OriginalStartTimestamp.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.OriginalStartTimestamp.Get()
 }
 
 // GetOriginalStartTimestampOk returns a tuple with the OriginalStartTimestamp field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InstanceResourceItem) GetOriginalStartTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.OriginalStartTimestamp, true
+	return o.OriginalStartTimestamp.Get(), o.OriginalStartTimestamp.IsSet()
 }
 
 // SetOriginalStartTimestamp sets field value
 func (o *InstanceResourceItem) SetOriginalStartTimestamp(v string) {
-	o.OriginalStartTimestamp = v
+	o.OriginalStartTimestamp.Set(&v)
 }
 
 func (o InstanceResourceItem) MarshalJSON() ([]byte, error) {
@@ -486,14 +670,20 @@ func (o InstanceResourceItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	toSerialize["serverTypeId"] = o.ServerTypeId
-	toSerialize["serverId"] = o.ServerId
-	toSerialize["serverTypeName"] = o.ServerTypeName
-	toSerialize["operatingSystemType"] = o.OperatingSystemType
-	toSerialize["operatingSystemVersion"] = o.OperatingSystemVersion
-	toSerialize["operatingSystemDisplayName"] = o.OperatingSystemDisplayName
-	toSerialize["operatingSystemTemplateId"] = o.OperatingSystemTemplateId
-	toSerialize["originalStartTimestamp"] = o.OriginalStartTimestamp
+	toSerialize["serverTypeId"] = o.ServerTypeId.Get()
+	toSerialize["serverTypeName"] = o.ServerTypeName.Get()
+	toSerialize["serverId"] = o.ServerId.Get()
+	toSerialize["serverResourcePoolId"] = o.ServerResourcePoolId.Get()
+	toSerialize["serverResourcePoolName"] = o.ServerResourcePoolName.Get()
+	toSerialize["vmTypeId"] = o.VmTypeId.Get()
+	toSerialize["vmTypeName"] = o.VmTypeName.Get()
+	toSerialize["vmPoolId"] = o.VmPoolId.Get()
+	toSerialize["vmPoolName"] = o.VmPoolName.Get()
+	toSerialize["operatingSystemType"] = o.OperatingSystemType.Get()
+	toSerialize["operatingSystemVersion"] = o.OperatingSystemVersion.Get()
+	toSerialize["operatingSystemDisplayName"] = o.OperatingSystemDisplayName.Get()
+	toSerialize["operatingSystemTemplateId"] = o.OperatingSystemTemplateId.Get()
+	toSerialize["originalStartTimestamp"] = o.OriginalStartTimestamp.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -515,8 +705,14 @@ func (o *InstanceResourceItem) UnmarshalJSON(data []byte) (err error) {
 		"measurementUnit",
 		"quantity",
 		"serverTypeId",
-		"serverId",
 		"serverTypeName",
+		"serverId",
+		"serverResourcePoolId",
+		"serverResourcePoolName",
+		"vmTypeId",
+		"vmTypeName",
+		"vmPoolId",
+		"vmPoolName",
 		"operatingSystemType",
 		"operatingSystemVersion",
 		"operatingSystemDisplayName",
@@ -560,8 +756,14 @@ func (o *InstanceResourceItem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "serverTypeId")
-		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "serverTypeName")
+		delete(additionalProperties, "serverId")
+		delete(additionalProperties, "serverResourcePoolId")
+		delete(additionalProperties, "serverResourcePoolName")
+		delete(additionalProperties, "vmTypeId")
+		delete(additionalProperties, "vmTypeName")
+		delete(additionalProperties, "vmPoolId")
+		delete(additionalProperties, "vmPoolName")
 		delete(additionalProperties, "operatingSystemType")
 		delete(additionalProperties, "operatingSystemVersion")
 		delete(additionalProperties, "operatingSystemDisplayName")

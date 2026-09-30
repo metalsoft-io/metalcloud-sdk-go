@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **InfrastructureId** | **int64** | Infrastructure ID | 
 **InfrastructureLabel** | **string** | Infrastructure label | 
 **InfrastructureServiceStatus** | **string** | Infrastructure service status | 
-**Tags** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -90,20 +90,20 @@ SetInfrastructureServiceStatus sets InfrastructureServiceStatus field to given v
 
 ### GetTags
 
-`func (o *InfrastructureItem) GetTags() string`
+`func (o *InfrastructureItem) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *InfrastructureItem) GetTagsOk() (*string, bool)`
+`func (o *InfrastructureItem) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *InfrastructureItem) SetTags(v string)`
+`func (o *InfrastructureItem) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 

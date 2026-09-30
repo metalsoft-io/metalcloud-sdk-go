@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsUplink** | Pointer to **bool** | Specifies if the Storage Interface is an uplink. Uplink interfaces will be provisioned on network device. | [optional] 
 **UseForDeploys** | Pointer to **bool** | Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource). | [optional] 
-**NetworkEquipmentInterfaceId** | Pointer to **int64** | Id of the Network Equipment Interface associated to this Storage Interface | [optional] 
+**NetworkEquipmentInterfaceIds** | Pointer to **[]float32** | Ids of every Network Equipment Interface this Storage Interface is reachable through. More than one is normal: an MLAG pair contributes one port per switch, and a bond on the storage side may face several independent switch ports. Sending this field replaces the whole set. | [optional] 
 
 ## Methods
 
@@ -77,30 +77,30 @@ SetUseForDeploys sets UseForDeploys field to given value.
 
 HasUseForDeploys returns a boolean if a field has been set.
 
-### GetNetworkEquipmentInterfaceId
+### GetNetworkEquipmentInterfaceIds
 
-`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceId() int64`
+`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIds() []float32`
 
-GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field if non-nil, zero value otherwise.
+GetNetworkEquipmentInterfaceIds returns the NetworkEquipmentInterfaceIds field if non-nil, zero value otherwise.
 
-### GetNetworkEquipmentInterfaceIdOk
+### GetNetworkEquipmentInterfaceIdsOk
 
-`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool)`
+`func (o *UpdateStorageInterface) GetNetworkEquipmentInterfaceIdsOk() (*[]float32, bool)`
 
-GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field if it's non-nil, zero value otherwise
+GetNetworkEquipmentInterfaceIdsOk returns a tuple with the NetworkEquipmentInterfaceIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkEquipmentInterfaceId
+### SetNetworkEquipmentInterfaceIds
 
-`func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceId(v int64)`
+`func (o *UpdateStorageInterface) SetNetworkEquipmentInterfaceIds(v []float32)`
 
-SetNetworkEquipmentInterfaceId sets NetworkEquipmentInterfaceId field to given value.
+SetNetworkEquipmentInterfaceIds sets NetworkEquipmentInterfaceIds field to given value.
 
-### HasNetworkEquipmentInterfaceId
+### HasNetworkEquipmentInterfaceIds
 
-`func (o *UpdateStorageInterface) HasNetworkEquipmentInterfaceId() bool`
+`func (o *UpdateStorageInterface) HasNetworkEquipmentInterfaceIds() bool`
 
-HasNetworkEquipmentInterfaceId returns a boolean if a field has been set.
+HasNetworkEquipmentInterfaceIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

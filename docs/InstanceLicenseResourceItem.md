@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **MeasurementPeriod** | **float32** |  | 
 **MeasurementUnit** | **string** |  | 
 **Quantity** | **float32** |  | 
-**Tags** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **LicenseId** | **string** |  | 
 **LicenseType** | **string** |  | 
 **LicenseUtilizationType** | **string** |  | 
@@ -177,20 +177,20 @@ SetQuantity sets Quantity field to given value.
 
 ### GetTags
 
-`func (o *InstanceLicenseResourceItem) GetTags() string`
+`func (o *InstanceLicenseResourceItem) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *InstanceLicenseResourceItem) GetTagsOk() (*string, bool)`
+`func (o *InstanceLicenseResourceItem) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *InstanceLicenseResourceItem) SetTags(v string)`
+`func (o *InstanceLicenseResourceItem) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 

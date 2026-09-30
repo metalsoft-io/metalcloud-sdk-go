@@ -11,15 +11,17 @@ Name | Type | Description | Notes
 **MeasurementPeriod** | **float32** |  | 
 **MeasurementUnit** | **string** |  | 
 **Quantity** | **float32** |  | 
-**Tags** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **SharedDriveSizeMbytes** | **float32** |  | 
 **SharedDriveStorageType** | **string** |  | 
+**StoragePoolId** | **NullableInt64** |  | 
+**StoragePoolName** | **NullableString** |  | 
 
 ## Methods
 
 ### NewSharedDriveResourceItem
 
-`func NewSharedDriveResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, sharedDriveSizeMbytes float32, sharedDriveStorageType string, ) *SharedDriveResourceItem`
+`func NewSharedDriveResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, sharedDriveSizeMbytes float32, sharedDriveStorageType string, storagePoolId NullableInt64, storagePoolName NullableString, ) *SharedDriveResourceItem`
 
 NewSharedDriveResourceItem instantiates a new SharedDriveResourceItem object
 This constructor will assign default values to properties that have it defined,
@@ -176,20 +178,20 @@ SetQuantity sets Quantity field to given value.
 
 ### GetTags
 
-`func (o *SharedDriveResourceItem) GetTags() string`
+`func (o *SharedDriveResourceItem) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *SharedDriveResourceItem) GetTagsOk() (*string, bool)`
+`func (o *SharedDriveResourceItem) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *SharedDriveResourceItem) SetTags(v string)`
+`func (o *SharedDriveResourceItem) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 
@@ -239,6 +241,66 @@ and a boolean to check if the value has been set.
 SetSharedDriveStorageType sets SharedDriveStorageType field to given value.
 
 
+### GetStoragePoolId
+
+`func (o *SharedDriveResourceItem) GetStoragePoolId() int64`
+
+GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
+
+### GetStoragePoolIdOk
+
+`func (o *SharedDriveResourceItem) GetStoragePoolIdOk() (*int64, bool)`
+
+GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStoragePoolId
+
+`func (o *SharedDriveResourceItem) SetStoragePoolId(v int64)`
+
+SetStoragePoolId sets StoragePoolId field to given value.
+
+
+### SetStoragePoolIdNil
+
+`func (o *SharedDriveResourceItem) SetStoragePoolIdNil(b bool)`
+
+ SetStoragePoolIdNil sets the value for StoragePoolId to be an explicit nil
+
+### UnsetStoragePoolId
+`func (o *SharedDriveResourceItem) UnsetStoragePoolId()`
+
+UnsetStoragePoolId ensures that no value is present for StoragePoolId, not even an explicit nil
+### GetStoragePoolName
+
+`func (o *SharedDriveResourceItem) GetStoragePoolName() string`
+
+GetStoragePoolName returns the StoragePoolName field if non-nil, zero value otherwise.
+
+### GetStoragePoolNameOk
+
+`func (o *SharedDriveResourceItem) GetStoragePoolNameOk() (*string, bool)`
+
+GetStoragePoolNameOk returns a tuple with the StoragePoolName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStoragePoolName
+
+`func (o *SharedDriveResourceItem) SetStoragePoolName(v string)`
+
+SetStoragePoolName sets StoragePoolName field to given value.
+
+
+### SetStoragePoolNameNil
+
+`func (o *SharedDriveResourceItem) SetStoragePoolNameNil(b bool)`
+
+ SetStoragePoolNameNil sets the value for StoragePoolName to be an explicit nil
+
+### UnsetStoragePoolName
+`func (o *SharedDriveResourceItem) UnsetStoragePoolName()`
+
+UnsetStoragePoolName ensures that no value is present for StoragePoolName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

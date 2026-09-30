@@ -788,13 +788,13 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkDeviceAPIService RevertNetworkDeviceFailedState", func(t *testing.T) {
+	t.Run("Test NetworkDeviceAPIService RevertNetworkDeviceDefectiveState", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var networkDeviceId int64
 
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.RevertNetworkDeviceFailedState(context.Background(), networkDeviceId).Execute()
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.RevertNetworkDeviceDefectiveState(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -816,13 +816,13 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkDeviceAPIService SetNetworkDeviceAsFailed", func(t *testing.T) {
+	t.Run("Test NetworkDeviceAPIService SetNetworkDeviceAsDefective", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var networkDeviceId int64
 
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceAsFailed(context.Background(), networkDeviceId).Execute()
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceAsDefective(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -27,7 +27,7 @@ type InfrastructureItem struct {
 	InfrastructureLabel string `json:"infrastructureLabel"`
 	// Infrastructure service status
 	InfrastructureServiceStatus string `json:"infrastructureServiceStatus"`
-	Tags *string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -126,17 +126,17 @@ func (o *InfrastructureItem) SetInfrastructureServiceStatus(v string) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *InfrastructureItem) GetTags() string {
+func (o *InfrastructureItem) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InfrastructureItem) GetTagsOk() (*string, bool) {
+func (o *InfrastructureItem) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -152,9 +152,9 @@ func (o *InfrastructureItem) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *InfrastructureItem) SetTags(v string) {
-	o.Tags = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *InfrastructureItem) SetTags(v []string) {
+	o.Tags = v
 }
 
 func (o InfrastructureItem) MarshalJSON() ([]byte, error) {

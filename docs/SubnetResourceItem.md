@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **MeasurementPeriod** | **float32** |  | 
 **MeasurementUnit** | **string** |  | 
 **Quantity** | **float32** |  | 
-**Tags** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **SubnetIpCount** | **string** |  | 
 **SubnetPrefixSize** | **float32** |  | 
 **SubnetType** | **string** |  | 
@@ -177,20 +177,20 @@ SetQuantity sets Quantity field to given value.
 
 ### GetTags
 
-`func (o *SubnetResourceItem) GetTags() string`
+`func (o *SubnetResourceItem) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *SubnetResourceItem) GetTagsOk() (*string, bool)`
+`func (o *SubnetResourceItem) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *SubnetResourceItem) SetTags(v string)`
+`func (o *SubnetResourceItem) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 

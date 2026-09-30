@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **Protocols** | **[]string** | Types of the Storage Interface | 
 **IsUplink** | **bool** | Specifies if the Storage Interface is an uplink. Uplink interfaces will be provisioned on network device. | 
 **UseForDeploys** | **bool** | Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource). | 
-**NetworkEquipmentInterfaceId** | Pointer to **int64** | Id of the Network Equipment Interface associated to this Storage Interface | [optional] 
-**LinkedNetworkDeviceInformation** | Pointer to [**StorageInterfaceNetworkDeviceInformation**](StorageInterfaceNetworkDeviceInformation.md) | Network device information | [optional] 
+**NetworkEquipmentInterfaceIds** | Pointer to **[]float32** | Ids of every Network Equipment Interface this Storage Interface is reachable through. More than one is normal: an MLAG pair contributes one port per switch, and a bond on the storage side may face several independent switch ports. Sending this field replaces the whole set. | [optional] 
+**LinkedNetworkDeviceInformation** | Pointer to [**[]StorageInterfaceNetworkDeviceInformation**](StorageInterfaceNetworkDeviceInformation.md) | Network device information, one entry per linked Network Equipment Interface | [optional] 
+**Aggregation** | Pointer to **string** | How the linked switch ports are aggregated. Read-only and derived from the switch side: ports sharing a link aggregation group report \&quot;lag\&quot; (or \&quot;mlag\&quot; when that group is distributed across two switches), and ports in no group report \&quot;none\&quot;. A set of ports expected to be bonded but reporting \&quot;none\&quot; means the link aggregation group is missing on the switches. | [optional] 
+**LagIdentifier** | Pointer to **int32** | Switch-facing port-channel number of the derived link aggregation group, if any. Read-only. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -195,47 +197,47 @@ and a boolean to check if the value has been set.
 SetUseForDeploys sets UseForDeploys field to given value.
 
 
-### GetNetworkEquipmentInterfaceId
+### GetNetworkEquipmentInterfaceIds
 
-`func (o *StorageInterface) GetNetworkEquipmentInterfaceId() int64`
+`func (o *StorageInterface) GetNetworkEquipmentInterfaceIds() []float32`
 
-GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field if non-nil, zero value otherwise.
+GetNetworkEquipmentInterfaceIds returns the NetworkEquipmentInterfaceIds field if non-nil, zero value otherwise.
 
-### GetNetworkEquipmentInterfaceIdOk
+### GetNetworkEquipmentInterfaceIdsOk
 
-`func (o *StorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool)`
+`func (o *StorageInterface) GetNetworkEquipmentInterfaceIdsOk() (*[]float32, bool)`
 
-GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field if it's non-nil, zero value otherwise
+GetNetworkEquipmentInterfaceIdsOk returns a tuple with the NetworkEquipmentInterfaceIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkEquipmentInterfaceId
+### SetNetworkEquipmentInterfaceIds
 
-`func (o *StorageInterface) SetNetworkEquipmentInterfaceId(v int64)`
+`func (o *StorageInterface) SetNetworkEquipmentInterfaceIds(v []float32)`
 
-SetNetworkEquipmentInterfaceId sets NetworkEquipmentInterfaceId field to given value.
+SetNetworkEquipmentInterfaceIds sets NetworkEquipmentInterfaceIds field to given value.
 
-### HasNetworkEquipmentInterfaceId
+### HasNetworkEquipmentInterfaceIds
 
-`func (o *StorageInterface) HasNetworkEquipmentInterfaceId() bool`
+`func (o *StorageInterface) HasNetworkEquipmentInterfaceIds() bool`
 
-HasNetworkEquipmentInterfaceId returns a boolean if a field has been set.
+HasNetworkEquipmentInterfaceIds returns a boolean if a field has been set.
 
 ### GetLinkedNetworkDeviceInformation
 
-`func (o *StorageInterface) GetLinkedNetworkDeviceInformation() StorageInterfaceNetworkDeviceInformation`
+`func (o *StorageInterface) GetLinkedNetworkDeviceInformation() []StorageInterfaceNetworkDeviceInformation`
 
 GetLinkedNetworkDeviceInformation returns the LinkedNetworkDeviceInformation field if non-nil, zero value otherwise.
 
 ### GetLinkedNetworkDeviceInformationOk
 
-`func (o *StorageInterface) GetLinkedNetworkDeviceInformationOk() (*StorageInterfaceNetworkDeviceInformation, bool)`
+`func (o *StorageInterface) GetLinkedNetworkDeviceInformationOk() (*[]StorageInterfaceNetworkDeviceInformation, bool)`
 
 GetLinkedNetworkDeviceInformationOk returns a tuple with the LinkedNetworkDeviceInformation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkedNetworkDeviceInformation
 
-`func (o *StorageInterface) SetLinkedNetworkDeviceInformation(v StorageInterfaceNetworkDeviceInformation)`
+`func (o *StorageInterface) SetLinkedNetworkDeviceInformation(v []StorageInterfaceNetworkDeviceInformation)`
 
 SetLinkedNetworkDeviceInformation sets LinkedNetworkDeviceInformation field to given value.
 
@@ -244,6 +246,56 @@ SetLinkedNetworkDeviceInformation sets LinkedNetworkDeviceInformation field to g
 `func (o *StorageInterface) HasLinkedNetworkDeviceInformation() bool`
 
 HasLinkedNetworkDeviceInformation returns a boolean if a field has been set.
+
+### GetAggregation
+
+`func (o *StorageInterface) GetAggregation() string`
+
+GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+
+### GetAggregationOk
+
+`func (o *StorageInterface) GetAggregationOk() (*string, bool)`
+
+GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAggregation
+
+`func (o *StorageInterface) SetAggregation(v string)`
+
+SetAggregation sets Aggregation field to given value.
+
+### HasAggregation
+
+`func (o *StorageInterface) HasAggregation() bool`
+
+HasAggregation returns a boolean if a field has been set.
+
+### GetLagIdentifier
+
+`func (o *StorageInterface) GetLagIdentifier() int32`
+
+GetLagIdentifier returns the LagIdentifier field if non-nil, zero value otherwise.
+
+### GetLagIdentifierOk
+
+`func (o *StorageInterface) GetLagIdentifierOk() (*int32, bool)`
+
+GetLagIdentifierOk returns a tuple with the LagIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLagIdentifier
+
+`func (o *StorageInterface) SetLagIdentifier(v int32)`
+
+SetLagIdentifier sets LagIdentifier field to given value.
+
+### HasLagIdentifier
+
+`func (o *StorageInterface) HasLagIdentifier() bool`
+
+HasLagIdentifier returns a boolean if a field has been set.
 
 ### GetLinks
 

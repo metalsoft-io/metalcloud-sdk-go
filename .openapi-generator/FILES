@@ -820,6 +820,7 @@ docs/RunExtensionOnPhysicalDevice.md
 docs/SNMPOIDGroupConfig.md
 docs/SNMPOIDToMetricMapping.md
 docs/Saml.md
+docs/SamlCertificateRotationResult.md
 docs/SamlProfileMapping.md
 docs/ScheduleFirmwareUpgrade.md
 docs/ScheduledCronJob.md
@@ -1890,6 +1891,7 @@ model_route_domain_config.go
 model_route_domain_kind.go
 model_run_extension_on_physical_device.go
 model_saml.go
+model_saml_certificate_rotation_result.go
 model_saml_profile_mapping.go
 model_schedule_firmware_upgrade.go
 model_scheduled_cron_job.go

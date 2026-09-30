@@ -1156,6 +1156,105 @@ func (a *AuthenticationAPIService) LogoutExecute(r AuthenticationAPILogoutReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type AuthenticationAPIRegenerateSamlCertificateRequest struct {
+	ctx context.Context
+	ApiService *AuthenticationAPIService
+}
+
+func (r AuthenticationAPIRegenerateSamlCertificateRequest) Execute() (*SamlCertificateRotationResult, *http.Response, error) {
+	return r.ApiService.RegenerateSamlCertificateExecute(r)
+}
+
+/*
+RegenerateSamlCertificate Replace the SAML service provider certificate
+
+Discards the stored service provider key pair, generates a new one named after this deployment, and returns the new certificate. The private key is not returned. Single sign-on logins fail until the returned certificate has been loaded at the identity provider, so this is an explicit action rather than a side effect of saving configuration.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return AuthenticationAPIRegenerateSamlCertificateRequest
+*/
+func (a *AuthenticationAPIService) RegenerateSamlCertificate(ctx context.Context) AuthenticationAPIRegenerateSamlCertificateRequest {
+	return AuthenticationAPIRegenerateSamlCertificateRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return SamlCertificateRotationResult
+func (a *AuthenticationAPIService) RegenerateSamlCertificateExecute(r AuthenticationAPIRegenerateSamlCertificateRequest) (*SamlCertificateRotationResult, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SamlCertificateRotationResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.RegenerateSamlCertificate")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/authentication/saml/actions/regenerate-certificate"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type AuthenticationAPISignUpRequest struct {
 	ctx context.Context
 	ApiService *AuthenticationAPIService

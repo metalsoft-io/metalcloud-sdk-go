@@ -11,21 +11,27 @@ Name | Type | Description | Notes
 **MeasurementPeriod** | **float32** |  | 
 **MeasurementUnit** | **string** |  | 
 **Quantity** | **float32** |  | 
-**Tags** | Pointer to **string** |  | [optional] 
-**ServerTypeId** | **int64** |  | 
-**ServerId** | **int64** |  | 
-**ServerTypeName** | **string** |  | 
-**OperatingSystemType** | **string** |  | 
-**OperatingSystemVersion** | **string** |  | 
-**OperatingSystemDisplayName** | **string** |  | 
-**OperatingSystemTemplateId** | **int64** |  | 
-**OriginalStartTimestamp** | **string** |  | 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**ServerTypeId** | **NullableInt64** |  | 
+**ServerTypeName** | **NullableString** |  | 
+**ServerId** | **NullableInt64** |  | 
+**ServerResourcePoolId** | **NullableInt64** |  | 
+**ServerResourcePoolName** | **NullableString** |  | 
+**VmTypeId** | **NullableInt64** |  | 
+**VmTypeName** | **NullableString** |  | 
+**VmPoolId** | **NullableInt64** |  | 
+**VmPoolName** | **NullableString** |  | 
+**OperatingSystemType** | **NullableString** |  | 
+**OperatingSystemVersion** | **NullableString** |  | 
+**OperatingSystemDisplayName** | **NullableString** |  | 
+**OperatingSystemTemplateId** | **NullableInt64** |  | 
+**OriginalStartTimestamp** | **NullableString** |  | 
 
 ## Methods
 
 ### NewInstanceResourceItem
 
-`func NewInstanceResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId int64, serverId int64, serverTypeName string, operatingSystemType string, operatingSystemVersion string, operatingSystemDisplayName string, operatingSystemTemplateId int64, originalStartTimestamp string, ) *InstanceResourceItem`
+`func NewInstanceResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, serverTypeId NullableInt64, serverTypeName NullableString, serverId NullableInt64, serverResourcePoolId NullableInt64, serverResourcePoolName NullableString, vmTypeId NullableInt64, vmTypeName NullableString, vmPoolId NullableInt64, vmPoolName NullableString, operatingSystemType NullableString, operatingSystemVersion NullableString, operatingSystemDisplayName NullableString, operatingSystemTemplateId NullableInt64, originalStartTimestamp NullableString, ) *InstanceResourceItem`
 
 NewInstanceResourceItem instantiates a new InstanceResourceItem object
 This constructor will assign default values to properties that have it defined,
@@ -182,20 +188,20 @@ SetQuantity sets Quantity field to given value.
 
 ### GetTags
 
-`func (o *InstanceResourceItem) GetTags() string`
+`func (o *InstanceResourceItem) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *InstanceResourceItem) GetTagsOk() (*string, bool)`
+`func (o *InstanceResourceItem) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *InstanceResourceItem) SetTags(v string)`
+`func (o *InstanceResourceItem) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 
@@ -225,26 +231,16 @@ and a boolean to check if the value has been set.
 SetServerTypeId sets ServerTypeId field to given value.
 
 
-### GetServerId
+### SetServerTypeIdNil
 
-`func (o *InstanceResourceItem) GetServerId() int64`
+`func (o *InstanceResourceItem) SetServerTypeIdNil(b bool)`
 
-GetServerId returns the ServerId field if non-nil, zero value otherwise.
+ SetServerTypeIdNil sets the value for ServerTypeId to be an explicit nil
 
-### GetServerIdOk
+### UnsetServerTypeId
+`func (o *InstanceResourceItem) UnsetServerTypeId()`
 
-`func (o *InstanceResourceItem) GetServerIdOk() (*int64, bool)`
-
-GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerId
-
-`func (o *InstanceResourceItem) SetServerId(v int64)`
-
-SetServerId sets ServerId field to given value.
-
-
+UnsetServerTypeId ensures that no value is present for ServerTypeId, not even an explicit nil
 ### GetServerTypeName
 
 `func (o *InstanceResourceItem) GetServerTypeName() string`
@@ -265,6 +261,226 @@ and a boolean to check if the value has been set.
 SetServerTypeName sets ServerTypeName field to given value.
 
 
+### SetServerTypeNameNil
+
+`func (o *InstanceResourceItem) SetServerTypeNameNil(b bool)`
+
+ SetServerTypeNameNil sets the value for ServerTypeName to be an explicit nil
+
+### UnsetServerTypeName
+`func (o *InstanceResourceItem) UnsetServerTypeName()`
+
+UnsetServerTypeName ensures that no value is present for ServerTypeName, not even an explicit nil
+### GetServerId
+
+`func (o *InstanceResourceItem) GetServerId() int64`
+
+GetServerId returns the ServerId field if non-nil, zero value otherwise.
+
+### GetServerIdOk
+
+`func (o *InstanceResourceItem) GetServerIdOk() (*int64, bool)`
+
+GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerId
+
+`func (o *InstanceResourceItem) SetServerId(v int64)`
+
+SetServerId sets ServerId field to given value.
+
+
+### SetServerIdNil
+
+`func (o *InstanceResourceItem) SetServerIdNil(b bool)`
+
+ SetServerIdNil sets the value for ServerId to be an explicit nil
+
+### UnsetServerId
+`func (o *InstanceResourceItem) UnsetServerId()`
+
+UnsetServerId ensures that no value is present for ServerId, not even an explicit nil
+### GetServerResourcePoolId
+
+`func (o *InstanceResourceItem) GetServerResourcePoolId() int64`
+
+GetServerResourcePoolId returns the ServerResourcePoolId field if non-nil, zero value otherwise.
+
+### GetServerResourcePoolIdOk
+
+`func (o *InstanceResourceItem) GetServerResourcePoolIdOk() (*int64, bool)`
+
+GetServerResourcePoolIdOk returns a tuple with the ServerResourcePoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerResourcePoolId
+
+`func (o *InstanceResourceItem) SetServerResourcePoolId(v int64)`
+
+SetServerResourcePoolId sets ServerResourcePoolId field to given value.
+
+
+### SetServerResourcePoolIdNil
+
+`func (o *InstanceResourceItem) SetServerResourcePoolIdNil(b bool)`
+
+ SetServerResourcePoolIdNil sets the value for ServerResourcePoolId to be an explicit nil
+
+### UnsetServerResourcePoolId
+`func (o *InstanceResourceItem) UnsetServerResourcePoolId()`
+
+UnsetServerResourcePoolId ensures that no value is present for ServerResourcePoolId, not even an explicit nil
+### GetServerResourcePoolName
+
+`func (o *InstanceResourceItem) GetServerResourcePoolName() string`
+
+GetServerResourcePoolName returns the ServerResourcePoolName field if non-nil, zero value otherwise.
+
+### GetServerResourcePoolNameOk
+
+`func (o *InstanceResourceItem) GetServerResourcePoolNameOk() (*string, bool)`
+
+GetServerResourcePoolNameOk returns a tuple with the ServerResourcePoolName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerResourcePoolName
+
+`func (o *InstanceResourceItem) SetServerResourcePoolName(v string)`
+
+SetServerResourcePoolName sets ServerResourcePoolName field to given value.
+
+
+### SetServerResourcePoolNameNil
+
+`func (o *InstanceResourceItem) SetServerResourcePoolNameNil(b bool)`
+
+ SetServerResourcePoolNameNil sets the value for ServerResourcePoolName to be an explicit nil
+
+### UnsetServerResourcePoolName
+`func (o *InstanceResourceItem) UnsetServerResourcePoolName()`
+
+UnsetServerResourcePoolName ensures that no value is present for ServerResourcePoolName, not even an explicit nil
+### GetVmTypeId
+
+`func (o *InstanceResourceItem) GetVmTypeId() int64`
+
+GetVmTypeId returns the VmTypeId field if non-nil, zero value otherwise.
+
+### GetVmTypeIdOk
+
+`func (o *InstanceResourceItem) GetVmTypeIdOk() (*int64, bool)`
+
+GetVmTypeIdOk returns a tuple with the VmTypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmTypeId
+
+`func (o *InstanceResourceItem) SetVmTypeId(v int64)`
+
+SetVmTypeId sets VmTypeId field to given value.
+
+
+### SetVmTypeIdNil
+
+`func (o *InstanceResourceItem) SetVmTypeIdNil(b bool)`
+
+ SetVmTypeIdNil sets the value for VmTypeId to be an explicit nil
+
+### UnsetVmTypeId
+`func (o *InstanceResourceItem) UnsetVmTypeId()`
+
+UnsetVmTypeId ensures that no value is present for VmTypeId, not even an explicit nil
+### GetVmTypeName
+
+`func (o *InstanceResourceItem) GetVmTypeName() string`
+
+GetVmTypeName returns the VmTypeName field if non-nil, zero value otherwise.
+
+### GetVmTypeNameOk
+
+`func (o *InstanceResourceItem) GetVmTypeNameOk() (*string, bool)`
+
+GetVmTypeNameOk returns a tuple with the VmTypeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmTypeName
+
+`func (o *InstanceResourceItem) SetVmTypeName(v string)`
+
+SetVmTypeName sets VmTypeName field to given value.
+
+
+### SetVmTypeNameNil
+
+`func (o *InstanceResourceItem) SetVmTypeNameNil(b bool)`
+
+ SetVmTypeNameNil sets the value for VmTypeName to be an explicit nil
+
+### UnsetVmTypeName
+`func (o *InstanceResourceItem) UnsetVmTypeName()`
+
+UnsetVmTypeName ensures that no value is present for VmTypeName, not even an explicit nil
+### GetVmPoolId
+
+`func (o *InstanceResourceItem) GetVmPoolId() int64`
+
+GetVmPoolId returns the VmPoolId field if non-nil, zero value otherwise.
+
+### GetVmPoolIdOk
+
+`func (o *InstanceResourceItem) GetVmPoolIdOk() (*int64, bool)`
+
+GetVmPoolIdOk returns a tuple with the VmPoolId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolId
+
+`func (o *InstanceResourceItem) SetVmPoolId(v int64)`
+
+SetVmPoolId sets VmPoolId field to given value.
+
+
+### SetVmPoolIdNil
+
+`func (o *InstanceResourceItem) SetVmPoolIdNil(b bool)`
+
+ SetVmPoolIdNil sets the value for VmPoolId to be an explicit nil
+
+### UnsetVmPoolId
+`func (o *InstanceResourceItem) UnsetVmPoolId()`
+
+UnsetVmPoolId ensures that no value is present for VmPoolId, not even an explicit nil
+### GetVmPoolName
+
+`func (o *InstanceResourceItem) GetVmPoolName() string`
+
+GetVmPoolName returns the VmPoolName field if non-nil, zero value otherwise.
+
+### GetVmPoolNameOk
+
+`func (o *InstanceResourceItem) GetVmPoolNameOk() (*string, bool)`
+
+GetVmPoolNameOk returns a tuple with the VmPoolName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolName
+
+`func (o *InstanceResourceItem) SetVmPoolName(v string)`
+
+SetVmPoolName sets VmPoolName field to given value.
+
+
+### SetVmPoolNameNil
+
+`func (o *InstanceResourceItem) SetVmPoolNameNil(b bool)`
+
+ SetVmPoolNameNil sets the value for VmPoolName to be an explicit nil
+
+### UnsetVmPoolName
+`func (o *InstanceResourceItem) UnsetVmPoolName()`
+
+UnsetVmPoolName ensures that no value is present for VmPoolName, not even an explicit nil
 ### GetOperatingSystemType
 
 `func (o *InstanceResourceItem) GetOperatingSystemType() string`
@@ -285,6 +501,16 @@ and a boolean to check if the value has been set.
 SetOperatingSystemType sets OperatingSystemType field to given value.
 
 
+### SetOperatingSystemTypeNil
+
+`func (o *InstanceResourceItem) SetOperatingSystemTypeNil(b bool)`
+
+ SetOperatingSystemTypeNil sets the value for OperatingSystemType to be an explicit nil
+
+### UnsetOperatingSystemType
+`func (o *InstanceResourceItem) UnsetOperatingSystemType()`
+
+UnsetOperatingSystemType ensures that no value is present for OperatingSystemType, not even an explicit nil
 ### GetOperatingSystemVersion
 
 `func (o *InstanceResourceItem) GetOperatingSystemVersion() string`
@@ -305,6 +531,16 @@ and a boolean to check if the value has been set.
 SetOperatingSystemVersion sets OperatingSystemVersion field to given value.
 
 
+### SetOperatingSystemVersionNil
+
+`func (o *InstanceResourceItem) SetOperatingSystemVersionNil(b bool)`
+
+ SetOperatingSystemVersionNil sets the value for OperatingSystemVersion to be an explicit nil
+
+### UnsetOperatingSystemVersion
+`func (o *InstanceResourceItem) UnsetOperatingSystemVersion()`
+
+UnsetOperatingSystemVersion ensures that no value is present for OperatingSystemVersion, not even an explicit nil
 ### GetOperatingSystemDisplayName
 
 `func (o *InstanceResourceItem) GetOperatingSystemDisplayName() string`
@@ -325,6 +561,16 @@ and a boolean to check if the value has been set.
 SetOperatingSystemDisplayName sets OperatingSystemDisplayName field to given value.
 
 
+### SetOperatingSystemDisplayNameNil
+
+`func (o *InstanceResourceItem) SetOperatingSystemDisplayNameNil(b bool)`
+
+ SetOperatingSystemDisplayNameNil sets the value for OperatingSystemDisplayName to be an explicit nil
+
+### UnsetOperatingSystemDisplayName
+`func (o *InstanceResourceItem) UnsetOperatingSystemDisplayName()`
+
+UnsetOperatingSystemDisplayName ensures that no value is present for OperatingSystemDisplayName, not even an explicit nil
 ### GetOperatingSystemTemplateId
 
 `func (o *InstanceResourceItem) GetOperatingSystemTemplateId() int64`
@@ -345,6 +591,16 @@ and a boolean to check if the value has been set.
 SetOperatingSystemTemplateId sets OperatingSystemTemplateId field to given value.
 
 
+### SetOperatingSystemTemplateIdNil
+
+`func (o *InstanceResourceItem) SetOperatingSystemTemplateIdNil(b bool)`
+
+ SetOperatingSystemTemplateIdNil sets the value for OperatingSystemTemplateId to be an explicit nil
+
+### UnsetOperatingSystemTemplateId
+`func (o *InstanceResourceItem) UnsetOperatingSystemTemplateId()`
+
+UnsetOperatingSystemTemplateId ensures that no value is present for OperatingSystemTemplateId, not even an explicit nil
 ### GetOriginalStartTimestamp
 
 `func (o *InstanceResourceItem) GetOriginalStartTimestamp() string`
@@ -365,6 +621,16 @@ and a boolean to check if the value has been set.
 SetOriginalStartTimestamp sets OriginalStartTimestamp field to given value.
 
 
+### SetOriginalStartTimestampNil
+
+`func (o *InstanceResourceItem) SetOriginalStartTimestampNil(b bool)`
+
+ SetOriginalStartTimestampNil sets the value for OriginalStartTimestamp to be an explicit nil
+
+### UnsetOriginalStartTimestamp
+`func (o *InstanceResourceItem) UnsetOriginalStartTimestamp()`
+
+UnsetOriginalStartTimestamp ensures that no value is present for OriginalStartTimestamp, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

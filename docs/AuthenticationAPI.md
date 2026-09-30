@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**LoginOidcCallback**](AuthenticationAPI.md#LoginOidcCallback) | **Get** /api/v2/login-oidc/callback | OIDC login callback URL
 [**LoginSaml**](AuthenticationAPI.md#LoginSaml) | **Post** /api/v2/login-saml | User SAML login callback URL
 [**Logout**](AuthenticationAPI.md#Logout) | **Post** /api/v2/logout | Logout user
+[**RegenerateSamlCertificate**](AuthenticationAPI.md#RegenerateSamlCertificate) | **Post** /api/v2/authentication/saml/actions/regenerate-certificate | Replace the SAML service provider certificate
 [**SignUp**](AuthenticationAPI.md#SignUp) | **Post** /api/v2/sign-up | Sign up
 [**TestLdap**](AuthenticationAPI.md#TestLdap) | **Post** /api/v2/authentication/ldap/actions/test | Test authentication against the stored LDAP configuration
 [**ValidateLdap**](AuthenticationAPI.md#ValidateLdap) | **Post** /api/v2/authentication/ldap/actions/validate | Validate the stored LDAP configuration
@@ -706,6 +707,67 @@ Other parameters are passed through a pointer to a apiLogoutRequest struct via t
 ### Authorization
 
 [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RegenerateSamlCertificate
+
+> SamlCertificateRotationResult RegenerateSamlCertificate(ctx).Execute()
+
+Replace the SAML service provider certificate
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.RegenerateSamlCertificate(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.RegenerateSamlCertificate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RegenerateSamlCertificate`: SamlCertificateRotationResult
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.RegenerateSamlCertificate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRegenerateSamlCertificateRequest struct via the builder pattern
+
+
+### Return type
+
+[**SamlCertificateRotationResult**](SamlCertificateRotationResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 

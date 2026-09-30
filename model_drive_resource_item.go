@@ -28,7 +28,7 @@ type DriveResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
-	Tags *string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	DriveSizeMbytes float32 `json:"driveSizeMbytes"`
 	DriveStorageType string `json:"driveStorageType"`
 	AdditionalProperties map[string]interface{}
@@ -231,17 +231,17 @@ func (o *DriveResourceItem) SetQuantity(v float32) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *DriveResourceItem) GetTags() string {
+func (o *DriveResourceItem) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveResourceItem) GetTagsOk() (*string, bool) {
+func (o *DriveResourceItem) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -257,9 +257,9 @@ func (o *DriveResourceItem) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *DriveResourceItem) SetTags(v string) {
-	o.Tags = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *DriveResourceItem) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetDriveSizeMbytes returns the DriveSizeMbytes field value

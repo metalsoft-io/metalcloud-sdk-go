@@ -28,7 +28,7 @@ type SubnetResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
-	Tags *string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	SubnetIpCount string `json:"subnetIpCount"`
 	SubnetPrefixSize float32 `json:"subnetPrefixSize"`
 	SubnetType string `json:"subnetType"`
@@ -233,17 +233,17 @@ func (o *SubnetResourceItem) SetQuantity(v float32) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *SubnetResourceItem) GetTags() string {
+func (o *SubnetResourceItem) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubnetResourceItem) GetTagsOk() (*string, bool) {
+func (o *SubnetResourceItem) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -259,9 +259,9 @@ func (o *SubnetResourceItem) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *SubnetResourceItem) SetTags(v string) {
-	o.Tags = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *SubnetResourceItem) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetSubnetIpCount returns the SubnetIpCount field value

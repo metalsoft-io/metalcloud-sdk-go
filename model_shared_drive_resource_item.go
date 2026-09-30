@@ -28,9 +28,11 @@ type SharedDriveResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
-	Tags *string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	SharedDriveSizeMbytes float32 `json:"sharedDriveSizeMbytes"`
 	SharedDriveStorageType string `json:"sharedDriveStorageType"`
+	StoragePoolId NullableInt64 `json:"storagePoolId"`
+	StoragePoolName NullableString `json:"storagePoolName"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +42,7 @@ type _SharedDriveResourceItem SharedDriveResourceItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, sharedDriveSizeMbytes float32, sharedDriveStorageType string) *SharedDriveResourceItem {
+func NewSharedDriveResourceItem(id int64, label string, startTimestamp string, endTimestamp string, measurementPeriod float32, measurementUnit string, quantity float32, sharedDriveSizeMbytes float32, sharedDriveStorageType string, storagePoolId NullableInt64, storagePoolName NullableString) *SharedDriveResourceItem {
 	this := SharedDriveResourceItem{}
 	this.Id = id
 	this.Label = label
@@ -51,6 +53,8 @@ func NewSharedDriveResourceItem(id int64, label string, startTimestamp string, e
 	this.Quantity = quantity
 	this.SharedDriveSizeMbytes = sharedDriveSizeMbytes
 	this.SharedDriveStorageType = sharedDriveStorageType
+	this.StoragePoolId = storagePoolId
+	this.StoragePoolName = storagePoolName
 	return &this
 }
 
@@ -231,17 +235,17 @@ func (o *SharedDriveResourceItem) SetQuantity(v float32) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *SharedDriveResourceItem) GetTags() string {
+func (o *SharedDriveResourceItem) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SharedDriveResourceItem) GetTagsOk() (*string, bool) {
+func (o *SharedDriveResourceItem) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -257,9 +261,9 @@ func (o *SharedDriveResourceItem) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *SharedDriveResourceItem) SetTags(v string) {
-	o.Tags = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *SharedDriveResourceItem) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetSharedDriveSizeMbytes returns the SharedDriveSizeMbytes field value
@@ -310,6 +314,58 @@ func (o *SharedDriveResourceItem) SetSharedDriveStorageType(v string) {
 	o.SharedDriveStorageType = v
 }
 
+// GetStoragePoolId returns the StoragePoolId field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *SharedDriveResourceItem) GetStoragePoolId() int64 {
+	if o == nil || o.StoragePoolId.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.StoragePoolId.Get()
+}
+
+// GetStoragePoolIdOk returns a tuple with the StoragePoolId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SharedDriveResourceItem) GetStoragePoolIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StoragePoolId.Get(), o.StoragePoolId.IsSet()
+}
+
+// SetStoragePoolId sets field value
+func (o *SharedDriveResourceItem) SetStoragePoolId(v int64) {
+	o.StoragePoolId.Set(&v)
+}
+
+// GetStoragePoolName returns the StoragePoolName field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *SharedDriveResourceItem) GetStoragePoolName() string {
+	if o == nil || o.StoragePoolName.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.StoragePoolName.Get()
+}
+
+// GetStoragePoolNameOk returns a tuple with the StoragePoolName field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SharedDriveResourceItem) GetStoragePoolNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StoragePoolName.Get(), o.StoragePoolName.IsSet()
+}
+
+// SetStoragePoolName sets field value
+func (o *SharedDriveResourceItem) SetStoragePoolName(v string) {
+	o.StoragePoolName.Set(&v)
+}
+
 func (o SharedDriveResourceItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -332,6 +388,8 @@ func (o SharedDriveResourceItem) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["sharedDriveSizeMbytes"] = o.SharedDriveSizeMbytes
 	toSerialize["sharedDriveStorageType"] = o.SharedDriveStorageType
+	toSerialize["storagePoolId"] = o.StoragePoolId.Get()
+	toSerialize["storagePoolName"] = o.StoragePoolName.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -354,6 +412,8 @@ func (o *SharedDriveResourceItem) UnmarshalJSON(data []byte) (err error) {
 		"quantity",
 		"sharedDriveSizeMbytes",
 		"sharedDriveStorageType",
+		"storagePoolId",
+		"storagePoolName",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -393,6 +453,8 @@ func (o *SharedDriveResourceItem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "sharedDriveSizeMbytes")
 		delete(additionalProperties, "sharedDriveStorageType")
+		delete(additionalProperties, "storagePoolId")
+		delete(additionalProperties, "storagePoolName")
 		o.AdditionalProperties = additionalProperties
 	}
 

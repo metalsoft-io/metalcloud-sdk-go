@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **EndTimestamp** | **string** | End timestamp of the utilization period | 
 **Infrastructures** | [**map[string]InfrastructureItem**](InfrastructureItem.md) | Infrastructures information | 
 **ResourceUtilization** | [**map[string]UtilizationData**](UtilizationData.md) | Resource utilization summary | 
-**Internet** | [**NetworkEntry**](NetworkEntry.md) | Internet usage data | 
+**Internet** | Pointer to [**NetworkEntry**](NetworkEntry.md) | Internet usage data | [optional] 
 **ReservationInstallments** | Pointer to [**ReservationInstallments**](ReservationInstallments.md) | Reservation installments information | [optional] 
 **LicenseInstallments** | Pointer to [**LicenseInstallments**](LicenseInstallments.md) | License installments information | [optional] 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewInfrastructureResourceUtilizationSummaryResponse
 
-`func NewInfrastructureResourceUtilizationSummaryResponse(startTimestamp string, endTimestamp string, infrastructures map[string]InfrastructureItem, resourceUtilization map[string]UtilizationData, internet NetworkEntry, ) *InfrastructureResourceUtilizationSummaryResponse`
+`func NewInfrastructureResourceUtilizationSummaryResponse(startTimestamp string, endTimestamp string, infrastructures map[string]InfrastructureItem, resourceUtilization map[string]UtilizationData, ) *InfrastructureResourceUtilizationSummaryResponse`
 
 NewInfrastructureResourceUtilizationSummaryResponse instantiates a new InfrastructureResourceUtilizationSummaryResponse object
 This constructor will assign default values to properties that have it defined,
@@ -130,6 +130,11 @@ and a boolean to check if the value has been set.
 
 SetInternet sets Internet field to given value.
 
+### HasInternet
+
+`func (o *InfrastructureResourceUtilizationSummaryResponse) HasInternet() bool`
+
+HasInternet returns a boolean if a field has been set.
 
 ### GetReservationInstallments
 

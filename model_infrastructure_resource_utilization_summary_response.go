@@ -30,7 +30,7 @@ type InfrastructureResourceUtilizationSummaryResponse struct {
 	// Resource utilization summary
 	ResourceUtilization map[string]UtilizationData `json:"resourceUtilization"`
 	// Internet usage data
-	Internet NetworkEntry `json:"internet"`
+	Internet *NetworkEntry `json:"internet,omitempty"`
 	// Reservation installments information
 	ReservationInstallments *ReservationInstallments `json:"reservationInstallments,omitempty"`
 	// License installments information
@@ -44,13 +44,12 @@ type _InfrastructureResourceUtilizationSummaryResponse InfrastructureResourceUti
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureResourceUtilizationSummaryResponse(startTimestamp string, endTimestamp string, infrastructures map[string]InfrastructureItem, resourceUtilization map[string]UtilizationData, internet NetworkEntry) *InfrastructureResourceUtilizationSummaryResponse {
+func NewInfrastructureResourceUtilizationSummaryResponse(startTimestamp string, endTimestamp string, infrastructures map[string]InfrastructureItem, resourceUtilization map[string]UtilizationData) *InfrastructureResourceUtilizationSummaryResponse {
 	this := InfrastructureResourceUtilizationSummaryResponse{}
 	this.StartTimestamp = startTimestamp
 	this.EndTimestamp = endTimestamp
 	this.Infrastructures = infrastructures
 	this.ResourceUtilization = resourceUtilization
-	this.Internet = internet
 	return &this
 }
 
@@ -158,28 +157,36 @@ func (o *InfrastructureResourceUtilizationSummaryResponse) SetResourceUtilizatio
 	o.ResourceUtilization = v
 }
 
-// GetInternet returns the Internet field value
+// GetInternet returns the Internet field value if set, zero value otherwise.
 func (o *InfrastructureResourceUtilizationSummaryResponse) GetInternet() NetworkEntry {
-	if o == nil {
+	if o == nil || IsNil(o.Internet) {
 		var ret NetworkEntry
 		return ret
 	}
-
-	return o.Internet
+	return *o.Internet
 }
 
-// GetInternetOk returns a tuple with the Internet field value
+// GetInternetOk returns a tuple with the Internet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InfrastructureResourceUtilizationSummaryResponse) GetInternetOk() (*NetworkEntry, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Internet) {
 		return nil, false
 	}
-	return &o.Internet, true
+	return o.Internet, true
 }
 
-// SetInternet sets field value
+// HasInternet returns a boolean if a field has been set.
+func (o *InfrastructureResourceUtilizationSummaryResponse) HasInternet() bool {
+	if o != nil && !IsNil(o.Internet) {
+		return true
+	}
+
+	return false
+}
+
+// SetInternet gets a reference to the given NetworkEntry and assigns it to the Internet field.
 func (o *InfrastructureResourceUtilizationSummaryResponse) SetInternet(v NetworkEntry) {
-	o.Internet = v
+	o.Internet = &v
 }
 
 // GetReservationInstallments returns the ReservationInstallments field value if set, zero value otherwise.
@@ -260,7 +267,9 @@ func (o InfrastructureResourceUtilizationSummaryResponse) ToMap() (map[string]in
 	toSerialize["endTimestamp"] = o.EndTimestamp
 	toSerialize["infrastructures"] = o.Infrastructures
 	toSerialize["resourceUtilization"] = o.ResourceUtilization
-	toSerialize["internet"] = o.Internet
+	if !IsNil(o.Internet) {
+		toSerialize["internet"] = o.Internet
+	}
 	if !IsNil(o.ReservationInstallments) {
 		toSerialize["reservationInstallments"] = o.ReservationInstallments
 	}
@@ -284,7 +293,6 @@ func (o *InfrastructureResourceUtilizationSummaryResponse) UnmarshalJSON(data []
 		"endTimestamp",
 		"infrastructures",
 		"resourceUtilization",
-		"internet",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -100,6 +100,7 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**LoginOidcCallback**](docs/AuthenticationAPI.md#loginoidccallback) | **Get** /api/v2/login-oidc/callback | OIDC login callback URL
 *AuthenticationAPI* | [**LoginSaml**](docs/AuthenticationAPI.md#loginsaml) | **Post** /api/v2/login-saml | User SAML login callback URL
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
+*AuthenticationAPI* | [**RegenerateSamlCertificate**](docs/AuthenticationAPI.md#regeneratesamlcertificate) | **Post** /api/v2/authentication/saml/actions/regenerate-certificate | Replace the SAML service provider certificate
 *AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
 *AuthenticationAPI* | [**TestLdap**](docs/AuthenticationAPI.md#testldap) | **Post** /api/v2/authentication/ldap/actions/test | Test authentication against the stored LDAP configuration
 *AuthenticationAPI* | [**ValidateLdap**](docs/AuthenticationAPI.md#validateldap) | **Post** /api/v2/authentication/ldap/actions/validate | Validate the stored LDAP configuration
@@ -508,9 +509,9 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**ReplaceNetworkDevicePortIps**](docs/NetworkDeviceAPI.md#replacenetworkdeviceportips) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Replace the full IP-address set of an address family on a port (diff against current)
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**ReturnNetworkDeviceToPlanned**](docs/NetworkDeviceAPI.md#returnnetworkdevicetoplanned) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/return-to-planned | Returns a network device to planned
-*NetworkDeviceAPI* | [**RevertNetworkDeviceFailedState**](docs/NetworkDeviceAPI.md#revertnetworkdevicefailedstate) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state | Revert network device failed state
+*NetworkDeviceAPI* | [**RevertNetworkDeviceDefectiveState**](docs/NetworkDeviceAPI.md#revertnetworkdevicedefectivestate) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-defective-state | Revert network device defective state
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
-*NetworkDeviceAPI* | [**SetNetworkDeviceAsFailed**](docs/NetworkDeviceAPI.md#setnetworkdeviceasfailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
+*NetworkDeviceAPI* | [**SetNetworkDeviceAsDefective**](docs/NetworkDeviceAPI.md#setnetworkdeviceasdefective) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-defective | Set network device as defective
 *NetworkDeviceAPI* | [**SetNetworkDeviceHealthMonitoringFilter**](docs/NetworkDeviceAPI.md#setnetworkdevicehealthmonitoringfilter) | **Get** /api/v2/network-devices/health-monitoring-filter | Set the health monitoring WebSocket filter for the current user
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 *NetworkDeviceAPI* | [**SetNetworkDeviceSecret**](docs/NetworkDeviceAPI.md#setnetworkdevicesecret) | **Patch** /api/v2/network-devices/{networkDeviceId}/secrets | Create or replace one Network Device secret
@@ -1668,6 +1669,7 @@ Class | Method | HTTP request | Description
  - [SNMPOIDGroupConfig](docs/SNMPOIDGroupConfig.md)
  - [SNMPOIDToMetricMapping](docs/SNMPOIDToMetricMapping.md)
  - [Saml](docs/Saml.md)
+ - [SamlCertificateRotationResult](docs/SamlCertificateRotationResult.md)
  - [SamlProfileMapping](docs/SamlProfileMapping.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
  - [ScheduledCronJob](docs/ScheduledCronJob.md)

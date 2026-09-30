@@ -37,10 +37,14 @@ type StorageInterface struct {
 	IsUplink bool `json:"isUplink"`
 	// Specifies if the Storage Interface is used to deploy storage resources (if multiple interfaces are marked, one will be chosen at random. If no interface is marked, the system will pick a random one automatically for each resource).
 	UseForDeploys bool `json:"useForDeploys"`
-	// Id of the Network Equipment Interface associated to this Storage Interface
-	NetworkEquipmentInterfaceId *int64 `json:"networkEquipmentInterfaceId,omitempty"`
-	// Network device information
-	LinkedNetworkDeviceInformation *StorageInterfaceNetworkDeviceInformation `json:"linkedNetworkDeviceInformation,omitempty"`
+	// Ids of every Network Equipment Interface this Storage Interface is reachable through. More than one is normal: an MLAG pair contributes one port per switch, and a bond on the storage side may face several independent switch ports. Sending this field replaces the whole set.
+	NetworkEquipmentInterfaceIds []float32 `json:"networkEquipmentInterfaceIds,omitempty"`
+	// Network device information, one entry per linked Network Equipment Interface
+	LinkedNetworkDeviceInformation []StorageInterfaceNetworkDeviceInformation `json:"linkedNetworkDeviceInformation,omitempty"`
+	// How the linked switch ports are aggregated. Read-only and derived from the switch side: ports sharing a link aggregation group report \"lag\" (or \"mlag\" when that group is distributed across two switches), and ports in no group report \"none\". A set of ports expected to be bonded but reporting \"none\" means the link aggregation group is missing on the switches.
+	Aggregation *string `json:"aggregation,omitempty"`
+	// Switch-facing port-channel number of the derived link aggregation group, if any. Read-only.
+	LagIdentifier *int32 `json:"lagIdentifier,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -265,50 +269,50 @@ func (o *StorageInterface) SetUseForDeploys(v bool) {
 	o.UseForDeploys = v
 }
 
-// GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field value if set, zero value otherwise.
-func (o *StorageInterface) GetNetworkEquipmentInterfaceId() int64 {
-	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
-		var ret int64
+// GetNetworkEquipmentInterfaceIds returns the NetworkEquipmentInterfaceIds field value if set, zero value otherwise.
+func (o *StorageInterface) GetNetworkEquipmentInterfaceIds() []float32 {
+	if o == nil || IsNil(o.NetworkEquipmentInterfaceIds) {
+		var ret []float32
 		return ret
 	}
-	return *o.NetworkEquipmentInterfaceId
+	return o.NetworkEquipmentInterfaceIds
 }
 
-// GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field value if set, nil otherwise
+// GetNetworkEquipmentInterfaceIdsOk returns a tuple with the NetworkEquipmentInterfaceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageInterface) GetNetworkEquipmentInterfaceIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
+func (o *StorageInterface) GetNetworkEquipmentInterfaceIdsOk() ([]float32, bool) {
+	if o == nil || IsNil(o.NetworkEquipmentInterfaceIds) {
 		return nil, false
 	}
-	return o.NetworkEquipmentInterfaceId, true
+	return o.NetworkEquipmentInterfaceIds, true
 }
 
-// HasNetworkEquipmentInterfaceId returns a boolean if a field has been set.
-func (o *StorageInterface) HasNetworkEquipmentInterfaceId() bool {
-	if o != nil && !IsNil(o.NetworkEquipmentInterfaceId) {
+// HasNetworkEquipmentInterfaceIds returns a boolean if a field has been set.
+func (o *StorageInterface) HasNetworkEquipmentInterfaceIds() bool {
+	if o != nil && !IsNil(o.NetworkEquipmentInterfaceIds) {
 		return true
 	}
 
 	return false
 }
 
-// SetNetworkEquipmentInterfaceId gets a reference to the given int64 and assigns it to the NetworkEquipmentInterfaceId field.
-func (o *StorageInterface) SetNetworkEquipmentInterfaceId(v int64) {
-	o.NetworkEquipmentInterfaceId = &v
+// SetNetworkEquipmentInterfaceIds gets a reference to the given []float32 and assigns it to the NetworkEquipmentInterfaceIds field.
+func (o *StorageInterface) SetNetworkEquipmentInterfaceIds(v []float32) {
+	o.NetworkEquipmentInterfaceIds = v
 }
 
 // GetLinkedNetworkDeviceInformation returns the LinkedNetworkDeviceInformation field value if set, zero value otherwise.
-func (o *StorageInterface) GetLinkedNetworkDeviceInformation() StorageInterfaceNetworkDeviceInformation {
+func (o *StorageInterface) GetLinkedNetworkDeviceInformation() []StorageInterfaceNetworkDeviceInformation {
 	if o == nil || IsNil(o.LinkedNetworkDeviceInformation) {
-		var ret StorageInterfaceNetworkDeviceInformation
+		var ret []StorageInterfaceNetworkDeviceInformation
 		return ret
 	}
-	return *o.LinkedNetworkDeviceInformation
+	return o.LinkedNetworkDeviceInformation
 }
 
 // GetLinkedNetworkDeviceInformationOk returns a tuple with the LinkedNetworkDeviceInformation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageInterface) GetLinkedNetworkDeviceInformationOk() (*StorageInterfaceNetworkDeviceInformation, bool) {
+func (o *StorageInterface) GetLinkedNetworkDeviceInformationOk() ([]StorageInterfaceNetworkDeviceInformation, bool) {
 	if o == nil || IsNil(o.LinkedNetworkDeviceInformation) {
 		return nil, false
 	}
@@ -324,9 +328,73 @@ func (o *StorageInterface) HasLinkedNetworkDeviceInformation() bool {
 	return false
 }
 
-// SetLinkedNetworkDeviceInformation gets a reference to the given StorageInterfaceNetworkDeviceInformation and assigns it to the LinkedNetworkDeviceInformation field.
-func (o *StorageInterface) SetLinkedNetworkDeviceInformation(v StorageInterfaceNetworkDeviceInformation) {
-	o.LinkedNetworkDeviceInformation = &v
+// SetLinkedNetworkDeviceInformation gets a reference to the given []StorageInterfaceNetworkDeviceInformation and assigns it to the LinkedNetworkDeviceInformation field.
+func (o *StorageInterface) SetLinkedNetworkDeviceInformation(v []StorageInterfaceNetworkDeviceInformation) {
+	o.LinkedNetworkDeviceInformation = v
+}
+
+// GetAggregation returns the Aggregation field value if set, zero value otherwise.
+func (o *StorageInterface) GetAggregation() string {
+	if o == nil || IsNil(o.Aggregation) {
+		var ret string
+		return ret
+	}
+	return *o.Aggregation
+}
+
+// GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageInterface) GetAggregationOk() (*string, bool) {
+	if o == nil || IsNil(o.Aggregation) {
+		return nil, false
+	}
+	return o.Aggregation, true
+}
+
+// HasAggregation returns a boolean if a field has been set.
+func (o *StorageInterface) HasAggregation() bool {
+	if o != nil && !IsNil(o.Aggregation) {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregation gets a reference to the given string and assigns it to the Aggregation field.
+func (o *StorageInterface) SetAggregation(v string) {
+	o.Aggregation = &v
+}
+
+// GetLagIdentifier returns the LagIdentifier field value if set, zero value otherwise.
+func (o *StorageInterface) GetLagIdentifier() int32 {
+	if o == nil || IsNil(o.LagIdentifier) {
+		var ret int32
+		return ret
+	}
+	return *o.LagIdentifier
+}
+
+// GetLagIdentifierOk returns a tuple with the LagIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageInterface) GetLagIdentifierOk() (*int32, bool) {
+	if o == nil || IsNil(o.LagIdentifier) {
+		return nil, false
+	}
+	return o.LagIdentifier, true
+}
+
+// HasLagIdentifier returns a boolean if a field has been set.
+func (o *StorageInterface) HasLagIdentifier() bool {
+	if o != nil && !IsNil(o.LagIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetLagIdentifier gets a reference to the given int32 and assigns it to the LagIdentifier field.
+func (o *StorageInterface) SetLagIdentifier(v int32) {
+	o.LagIdentifier = &v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -379,11 +447,17 @@ func (o StorageInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize["protocols"] = o.Protocols
 	toSerialize["isUplink"] = o.IsUplink
 	toSerialize["useForDeploys"] = o.UseForDeploys
-	if !IsNil(o.NetworkEquipmentInterfaceId) {
-		toSerialize["networkEquipmentInterfaceId"] = o.NetworkEquipmentInterfaceId
+	if !IsNil(o.NetworkEquipmentInterfaceIds) {
+		toSerialize["networkEquipmentInterfaceIds"] = o.NetworkEquipmentInterfaceIds
 	}
 	if !IsNil(o.LinkedNetworkDeviceInformation) {
 		toSerialize["linkedNetworkDeviceInformation"] = o.LinkedNetworkDeviceInformation
+	}
+	if !IsNil(o.Aggregation) {
+		toSerialize["aggregation"] = o.Aggregation
+	}
+	if !IsNil(o.LagIdentifier) {
+		toSerialize["lagIdentifier"] = o.LagIdentifier
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -446,8 +520,10 @@ func (o *StorageInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "protocols")
 		delete(additionalProperties, "isUplink")
 		delete(additionalProperties, "useForDeploys")
-		delete(additionalProperties, "networkEquipmentInterfaceId")
+		delete(additionalProperties, "networkEquipmentInterfaceIds")
 		delete(additionalProperties, "linkedNetworkDeviceInformation")
+		delete(additionalProperties, "aggregation")
+		delete(additionalProperties, "lagIdentifier")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

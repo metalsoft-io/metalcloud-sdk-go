@@ -59,9 +59,9 @@ Method | HTTP request | Description
 [**ReplaceNetworkDevicePortIps**](NetworkDeviceAPI.md#ReplaceNetworkDevicePortIps) | **Put** /api/v2/network-devices/{networkDeviceId}/ports/{portId}/{family}/addresses | Replace the full IP-address set of an address family on a port (diff against current)
 [**ResetNetworkDevice**](NetworkDeviceAPI.md#ResetNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 [**ReturnNetworkDeviceToPlanned**](NetworkDeviceAPI.md#ReturnNetworkDeviceToPlanned) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/return-to-planned | Returns a network device to planned
-[**RevertNetworkDeviceFailedState**](NetworkDeviceAPI.md#RevertNetworkDeviceFailedState) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state | Revert network device failed state
+[**RevertNetworkDeviceDefectiveState**](NetworkDeviceAPI.md#RevertNetworkDeviceDefectiveState) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-defective-state | Revert network device defective state
 [**RunExtensionOnNetworkDevice**](NetworkDeviceAPI.md#RunExtensionOnNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
-[**SetNetworkDeviceAsFailed**](NetworkDeviceAPI.md#SetNetworkDeviceAsFailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
+[**SetNetworkDeviceAsDefective**](NetworkDeviceAPI.md#SetNetworkDeviceAsDefective) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-defective | Set network device as defective
 [**SetNetworkDeviceHealthMonitoringFilter**](NetworkDeviceAPI.md#SetNetworkDeviceHealthMonitoringFilter) | **Get** /api/v2/network-devices/health-monitoring-filter | Set the health monitoring WebSocket filter for the current user
 [**SetNetworkDevicePortStatus**](NetworkDeviceAPI.md#SetNetworkDevicePortStatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 [**SetNetworkDeviceSecret**](NetworkDeviceAPI.md#SetNetworkDeviceSecret) | **Patch** /api/v2/network-devices/{networkDeviceId}/secrets | Create or replace one Network Device secret
@@ -4036,11 +4036,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RevertNetworkDeviceFailedState
+## RevertNetworkDeviceDefectiveState
 
-> NetworkDevice RevertNetworkDeviceFailedState(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+> NetworkDevice RevertNetworkDeviceDefectiveState(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
 
-Revert network device failed state
+Revert network device defective state
 
 
 
@@ -4062,13 +4062,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.RevertNetworkDeviceFailedState(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.RevertNetworkDeviceDefectiveState(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.RevertNetworkDeviceFailedState``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.RevertNetworkDeviceDefectiveState``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RevertNetworkDeviceFailedState`: NetworkDevice
-	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.RevertNetworkDeviceFailedState`: %v\n", resp)
+	// response from `RevertNetworkDeviceDefectiveState`: NetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.RevertNetworkDeviceDefectiveState`: %v\n", resp)
 }
 ```
 
@@ -4082,7 +4082,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRevertNetworkDeviceFailedStateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRevertNetworkDeviceDefectiveStateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -4180,11 +4180,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SetNetworkDeviceAsFailed
+## SetNetworkDeviceAsDefective
 
-> NetworkDevice SetNetworkDeviceAsFailed(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+> NetworkDevice SetNetworkDeviceAsDefective(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
 
-Set network device as failed
+Set network device as defective
 
 
 
@@ -4206,13 +4206,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceAsFailed(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceAsDefective(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.SetNetworkDeviceAsFailed``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.SetNetworkDeviceAsDefective``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SetNetworkDeviceAsFailed`: NetworkDevice
-	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.SetNetworkDeviceAsFailed`: %v\n", resp)
+	// response from `SetNetworkDeviceAsDefective`: NetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.SetNetworkDeviceAsDefective`: %v\n", resp)
 }
 ```
 
@@ -4226,7 +4226,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSetNetworkDeviceAsFailedRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSetNetworkDeviceAsDefectiveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
