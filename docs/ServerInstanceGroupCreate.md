@@ -669,6 +669,16 @@ SetServerFilteringRules sets ServerFilteringRules field to given value.
 
 HasServerFilteringRules returns a boolean if a field has been set.
 
+### SetServerFilteringRulesNil
+
+`func (o *ServerInstanceGroupCreate) SetServerFilteringRulesNil(b bool)`
+
+ SetServerFilteringRulesNil sets the value for ServerFilteringRules to be an explicit nil
+
+### UnsetServerFilteringRules
+`func (o *ServerInstanceGroupCreate) UnsetServerFilteringRules()`
+
+UnsetServerFilteringRules ensures that no value is present for ServerFilteringRules, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,7 +28,7 @@ type CreateEndpoint struct {
 	// The endpoint name
 	Name string `json:"name"`
 	// The endpoint unique label
-	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// The endpoint interfaces associated with this endpoint
 	EndpointInterfaces []CreateEndpointInterface `json:"endpointInterfaces,omitempty"`
 	AdditionalProperties map[string]interface{}

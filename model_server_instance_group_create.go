@@ -891,9 +891,9 @@ func (o *ServerInstanceGroupCreate) SetDefaultCustomStorageProfile(v ServerInsta
 	o.DefaultCustomStorageProfile = &v
 }
 
-// GetServerFilteringRules returns the ServerFilteringRules field value if set, zero value otherwise.
+// GetServerFilteringRules returns the ServerFilteringRules field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerInstanceGroupCreate) GetServerFilteringRules() []ServerFilterRule {
-	if o == nil || IsNil(o.ServerFilteringRules) {
+	if o == nil {
 		var ret []ServerFilterRule
 		return ret
 	}
@@ -902,6 +902,7 @@ func (o *ServerInstanceGroupCreate) GetServerFilteringRules() []ServerFilterRule
 
 // GetServerFilteringRulesOk returns a tuple with the ServerFilteringRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServerInstanceGroupCreate) GetServerFilteringRulesOk() ([]ServerFilterRule, bool) {
 	if o == nil || IsNil(o.ServerFilteringRules) {
 		return nil, false
@@ -1003,7 +1004,7 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DefaultCustomStorageProfile) {
 		toSerialize["defaultCustomStorageProfile"] = o.DefaultCustomStorageProfile
 	}
-	if !IsNil(o.ServerFilteringRules) {
+	if o.ServerFilteringRules != nil {
 		toSerialize["serverFilteringRules"] = o.ServerFilteringRules
 	}
 

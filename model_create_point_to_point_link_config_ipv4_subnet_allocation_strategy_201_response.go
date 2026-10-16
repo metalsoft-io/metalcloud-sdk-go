@@ -98,6 +98,10 @@ func (dst *CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response) 
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response): %v", err)
+		}
+
 		return fmt.Errorf("data failed to match schemas in oneOf(CreatePointToPointLinkConfigIpv4SubnetAllocationStrategy201Response)")
 	}
 }

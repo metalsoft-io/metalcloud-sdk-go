@@ -8,12 +8,15 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Catalog** | Pointer to **[]string** |  | [optional] 
+**MinimumVersions** | Pointer to [**[]FirmwareMinimumVersion**](FirmwareMinimumVersion.md) | Array of minimum firmware version requirements for this baseline | [optional] 
+**CreatedTimestamp** | **time.Time** | Timestamp when the baseline was created | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewFirmwareBaseline
 
-`func NewFirmwareBaseline(id int64, name string, ) *FirmwareBaseline`
+`func NewFirmwareBaseline(id int64, name string, createdTimestamp time.Time, ) *FirmwareBaseline`
 
 NewFirmwareBaseline instantiates a new FirmwareBaseline object
 This constructor will assign default values to properties that have it defined,
@@ -117,6 +120,76 @@ SetCatalog sets Catalog field to given value.
 `func (o *FirmwareBaseline) HasCatalog() bool`
 
 HasCatalog returns a boolean if a field has been set.
+
+### GetMinimumVersions
+
+`func (o *FirmwareBaseline) GetMinimumVersions() []FirmwareMinimumVersion`
+
+GetMinimumVersions returns the MinimumVersions field if non-nil, zero value otherwise.
+
+### GetMinimumVersionsOk
+
+`func (o *FirmwareBaseline) GetMinimumVersionsOk() (*[]FirmwareMinimumVersion, bool)`
+
+GetMinimumVersionsOk returns a tuple with the MinimumVersions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinimumVersions
+
+`func (o *FirmwareBaseline) SetMinimumVersions(v []FirmwareMinimumVersion)`
+
+SetMinimumVersions sets MinimumVersions field to given value.
+
+### HasMinimumVersions
+
+`func (o *FirmwareBaseline) HasMinimumVersions() bool`
+
+HasMinimumVersions returns a boolean if a field has been set.
+
+### GetCreatedTimestamp
+
+`func (o *FirmwareBaseline) GetCreatedTimestamp() time.Time`
+
+GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
+
+### GetCreatedTimestampOk
+
+`func (o *FirmwareBaseline) GetCreatedTimestampOk() (*time.Time, bool)`
+
+GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedTimestamp
+
+`func (o *FirmwareBaseline) SetCreatedTimestamp(v time.Time)`
+
+SetCreatedTimestamp sets CreatedTimestamp field to given value.
+
+
+### GetLinks
+
+`func (o *FirmwareBaseline) GetLinks() []Link`
+
+GetLinks returns the Links field if non-nil, zero value otherwise.
+
+### GetLinksOk
+
+`func (o *FirmwareBaseline) GetLinksOk() (*[]Link, bool)`
+
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinks
+
+`func (o *FirmwareBaseline) SetLinks(v []Link)`
+
+SetLinks sets Links field to given value.
+
+### HasLinks
+
+`func (o *FirmwareBaseline) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

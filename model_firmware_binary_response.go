@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -47,12 +48,10 @@ type FirmwareBinaryResponse struct {
 	VendorSupportedDevices map[string]interface{} `json:"vendorSupportedDevices"`
 	// Vendor specific records for supported systems
 	VendorSupportedSystems []map[string]interface{} `json:"vendorSupportedSystems"`
-	// Vendor specific record containing all other firmware binary information
-	Vendor map[string]interface{} `json:"vendor"`
 	// Vendor release timestamp for the firmware binary
-	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
+	VendorReleaseTimestamp *time.Time `json:"vendorReleaseTimestamp,omitempty"`
 	// Timestamp when the firmware binary was created
-	CreatedTimestamp string `json:"createdTimestamp"`
+	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Associated firmware catalog
 	Catalog *FirmwareCatalog `json:"catalog,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -64,7 +63,7 @@ type _FirmwareBinaryResponse FirmwareBinaryResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBinaryResponse(id int64, catalogId int64, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, createdTimestamp string) *FirmwareBinaryResponse {
+func NewFirmwareBinaryResponse(id int64, catalogId int64, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, createdTimestamp time.Time) *FirmwareBinaryResponse {
 	this := FirmwareBinaryResponse{}
 	this.Id = id
 	this.CatalogId = catalogId
@@ -75,7 +74,6 @@ func NewFirmwareBinaryResponse(id int64, catalogId int64, vendorDownloadUrl stri
 	this.UpdateSeverity = updateSeverity
 	this.VendorSupportedDevices = vendorSupportedDevices
 	this.VendorSupportedSystems = vendorSupportedSystems
-	this.Vendor = vendor
 	this.CreatedTimestamp = createdTimestamp
 	return &this
 }
@@ -432,34 +430,10 @@ func (o *FirmwareBinaryResponse) SetVendorSupportedSystems(v []map[string]interf
 	o.VendorSupportedSystems = v
 }
 
-// GetVendor returns the Vendor field value
-func (o *FirmwareBinaryResponse) GetVendor() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Vendor
-}
-
-// GetVendorOk returns a tuple with the Vendor field value
-// and a boolean to check if the value has been set.
-func (o *FirmwareBinaryResponse) GetVendorOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
-	}
-	return o.Vendor, true
-}
-
-// SetVendor sets field value
-func (o *FirmwareBinaryResponse) SetVendor(v map[string]interface{}) {
-	o.Vendor = v
-}
-
 // GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field value if set, zero value otherwise.
-func (o *FirmwareBinaryResponse) GetVendorReleaseTimestamp() string {
+func (o *FirmwareBinaryResponse) GetVendorReleaseTimestamp() time.Time {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.VendorReleaseTimestamp
@@ -467,7 +441,7 @@ func (o *FirmwareBinaryResponse) GetVendorReleaseTimestamp() string {
 
 // GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinaryResponse) GetVendorReleaseTimestampOk() (*string, bool) {
+func (o *FirmwareBinaryResponse) GetVendorReleaseTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
 		return nil, false
 	}
@@ -483,15 +457,15 @@ func (o *FirmwareBinaryResponse) HasVendorReleaseTimestamp() bool {
 	return false
 }
 
-// SetVendorReleaseTimestamp gets a reference to the given string and assigns it to the VendorReleaseTimestamp field.
-func (o *FirmwareBinaryResponse) SetVendorReleaseTimestamp(v string) {
+// SetVendorReleaseTimestamp gets a reference to the given time.Time and assigns it to the VendorReleaseTimestamp field.
+func (o *FirmwareBinaryResponse) SetVendorReleaseTimestamp(v time.Time) {
 	o.VendorReleaseTimestamp = &v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *FirmwareBinaryResponse) GetCreatedTimestamp() string {
+func (o *FirmwareBinaryResponse) GetCreatedTimestamp() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -500,7 +474,7 @@ func (o *FirmwareBinaryResponse) GetCreatedTimestamp() string {
 
 // GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinaryResponse) GetCreatedTimestampOk() (*string, bool) {
+func (o *FirmwareBinaryResponse) GetCreatedTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -508,7 +482,7 @@ func (o *FirmwareBinaryResponse) GetCreatedTimestampOk() (*string, bool) {
 }
 
 // SetCreatedTimestamp sets field value
-func (o *FirmwareBinaryResponse) SetCreatedTimestamp(v string) {
+func (o *FirmwareBinaryResponse) SetCreatedTimestamp(v time.Time) {
 	o.CreatedTimestamp = v
 }
 
@@ -575,7 +549,6 @@ func (o FirmwareBinaryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["updateSeverity"] = o.UpdateSeverity
 	toSerialize["vendorSupportedDevices"] = o.VendorSupportedDevices
 	toSerialize["vendorSupportedSystems"] = o.VendorSupportedSystems
-	toSerialize["vendor"] = o.Vendor
 	if !IsNil(o.VendorReleaseTimestamp) {
 		toSerialize["vendorReleaseTimestamp"] = o.VendorReleaseTimestamp
 	}
@@ -605,7 +578,6 @@ func (o *FirmwareBinaryResponse) UnmarshalJSON(data []byte) (err error) {
 		"updateSeverity",
 		"vendorSupportedDevices",
 		"vendorSupportedSystems",
-		"vendor",
 		"createdTimestamp",
 	}
 
@@ -649,7 +621,6 @@ func (o *FirmwareBinaryResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updateSeverity")
 		delete(additionalProperties, "vendorSupportedDevices")
 		delete(additionalProperties, "vendorSupportedSystems")
-		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "vendorReleaseTimestamp")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "catalog")

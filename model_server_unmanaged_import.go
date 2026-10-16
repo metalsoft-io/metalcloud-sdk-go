@@ -27,7 +27,7 @@ type ServerUnmanagedImport struct {
 	SiteId int64 `json:"siteId"`
 	// The server type id.
 	ServerTypeId int64 `json:"serverTypeId"`
-	// Flag to indicate if the server supports SOL.
+	// Flag to indicate if the server supports OOB provisioning.
 	ServerSupportsOobProvisioning *float32 `json:"serverSupportsOobProvisioning,omitempty"`
 	// The interfaces of the server.
 	ServerInterfaces []ServerUnmanagedImportInternalInterface `json:"serverInterfaces"`

@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateRouteDomain{}
 type UpdateRouteDomain struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Annotations *map[string]string `json:"annotations,omitempty"`
+	Annotations *map[string]*string `json:"annotations,omitempty"`
 	// If true, VRFs belonging to this route domain will not be deleted from switches during cleanup.
 	PreventVrfCleanup *bool `json:"preventVrfCleanup,omitempty"`
 	// External identifier for this route domain on the controller
@@ -118,9 +118,9 @@ func (o *UpdateRouteDomain) SetName(v string) {
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *UpdateRouteDomain) GetAnnotations() map[string]string {
+func (o *UpdateRouteDomain) GetAnnotations() map[string]*string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Annotations
@@ -128,7 +128,7 @@ func (o *UpdateRouteDomain) GetAnnotations() map[string]string {
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateRouteDomain) GetAnnotationsOk() (*map[string]string, bool) {
+func (o *UpdateRouteDomain) GetAnnotationsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Annotations) {
 		return nil, false
 	}
@@ -144,8 +144,8 @@ func (o *UpdateRouteDomain) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
-func (o *UpdateRouteDomain) SetAnnotations(v map[string]string) {
+// SetAnnotations gets a reference to the given map[string]*string and assigns it to the Annotations field.
+func (o *UpdateRouteDomain) SetAnnotations(v map[string]*string) {
 	o.Annotations = &v
 }
 

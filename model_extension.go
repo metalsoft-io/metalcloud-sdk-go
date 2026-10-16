@@ -30,7 +30,7 @@ type Extension struct {
 	// The extension name
 	Name string `json:"name"`
 	// The extension unique label
-	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// The extension version (semver). Multiple versions may share a label.
 	Version *string `json:"version,omitempty"`
 	// The extension description

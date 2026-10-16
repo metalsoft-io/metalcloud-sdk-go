@@ -28,7 +28,7 @@ const (
 	VARIABLEUSAGETYPE_SSH_EXEC VariableUsageType = "SSHExec"
 	VARIABLEUSAGETYPE_COPY VariableUsageType = "Copy"
 	VARIABLEUSAGETYPE_OS_ASSET VariableUsageType = "OSAsset"
-	VARIABLEUSAGETYPE_UNKNOWN_DEFAULT_OPEN_API VariableUsageType = "11184809"
+	VARIABLEUSAGETYPE_UNKNOWN_DEFAULT_OPEN_API VariableUsageType = "unknown_default_open_api"
 )
 
 // All allowed values of VariableUsageType enum
@@ -40,7 +40,7 @@ var AllowedVariableUsageTypeEnumValues = []VariableUsageType{
 	"SSHExec",
 	"Copy",
 	"OSAsset",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *VariableUsageType) UnmarshalJSON(src []byte) error {
@@ -57,7 +57,8 @@ func (v *VariableUsageType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid VariableUsageType", value)
+	*v = VARIABLEUSAGETYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewVariableUsageTypeFromValue returns a pointer to a valid VariableUsageType

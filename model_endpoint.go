@@ -33,7 +33,7 @@ type Endpoint struct {
 	// The endpoint name
 	Name string `json:"name"`
 	// The endpoint unique label
-	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// Entity creation timestamp
 	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Entity last update timestamp

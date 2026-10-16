@@ -329,7 +329,7 @@ const (
 	EVENTTYPES_NETWORK_DEVICE_HEALTH_STATE_IMPROVED EventTypes = "network_device_health_state_improved"
 	EVENTTYPES_VM_POOL_HOST_HEALTH_STATE_DEGRADED EventTypes = "vm_pool_host_health_state_degraded"
 	EVENTTYPES_VM_POOL_HOST_HEALTH_STATE_IMPROVED EventTypes = "vm_pool_host_health_state_improved"
-	EVENTTYPES_UNKNOWN_DEFAULT_OPEN_API EventTypes = "11184809"
+	EVENTTYPES_UNKNOWN_DEFAULT_OPEN_API EventTypes = "unknown_default_open_api"
 )
 
 // All allowed values of EventTypes enum
@@ -642,7 +642,7 @@ var AllowedEventTypesEnumValues = []EventTypes{
 	"network_device_health_state_improved",
 	"vm_pool_host_health_state_degraded",
 	"vm_pool_host_health_state_improved",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *EventTypes) UnmarshalJSON(src []byte) error {
@@ -659,7 +659,8 @@ func (v *EventTypes) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid EventTypes", value)
+	*v = EVENTTYPES_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewEventTypesFromValue returns a pointer to a valid EventTypes

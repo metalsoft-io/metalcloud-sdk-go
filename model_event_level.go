@@ -25,7 +25,7 @@ const (
 	EVENTLEVEL_WARN EventLevel = "warn"
 	EVENTLEVEL_ERROR EventLevel = "error"
 	EVENTLEVEL_DEBUG EventLevel = "debug"
-	EVENTLEVEL_UNKNOWN_DEFAULT_OPEN_API EventLevel = "11184809"
+	EVENTLEVEL_UNKNOWN_DEFAULT_OPEN_API EventLevel = "unknown_default_open_api"
 )
 
 // All allowed values of EventLevel enum
@@ -34,7 +34,7 @@ var AllowedEventLevelEnumValues = []EventLevel{
 	"warn",
 	"error",
 	"debug",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *EventLevel) UnmarshalJSON(src []byte) error {
@@ -51,7 +51,8 @@ func (v *EventLevel) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid EventLevel", value)
+	*v = EVENTLEVEL_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewEventLevelFromValue returns a pointer to a valid EventLevel

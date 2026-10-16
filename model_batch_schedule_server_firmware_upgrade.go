@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -24,7 +25,7 @@ type BatchScheduleServerFirmwareUpgrade struct {
 	// The list of server ids to upgrade.
 	ServerIds []int64 `json:"serverIds"`
 	// The time when the firmware update is scheduled to run.
-	ScheduleUpdateTimestamp *string `json:"scheduleUpdateTimestamp,omitempty"`
+	ScheduleUpdateTimestamp *time.Time `json:"scheduleUpdateTimestamp,omitempty"`
 	// Flag to indicate if the firmware update requires confirmation.
 	ConfirmationRequired *bool `json:"confirmationRequired,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -75,9 +76,9 @@ func (o *BatchScheduleServerFirmwareUpgrade) SetServerIds(v []int64) {
 }
 
 // GetScheduleUpdateTimestamp returns the ScheduleUpdateTimestamp field value if set, zero value otherwise.
-func (o *BatchScheduleServerFirmwareUpgrade) GetScheduleUpdateTimestamp() string {
+func (o *BatchScheduleServerFirmwareUpgrade) GetScheduleUpdateTimestamp() time.Time {
 	if o == nil || IsNil(o.ScheduleUpdateTimestamp) {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.ScheduleUpdateTimestamp
@@ -85,7 +86,7 @@ func (o *BatchScheduleServerFirmwareUpgrade) GetScheduleUpdateTimestamp() string
 
 // GetScheduleUpdateTimestampOk returns a tuple with the ScheduleUpdateTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchScheduleServerFirmwareUpgrade) GetScheduleUpdateTimestampOk() (*string, bool) {
+func (o *BatchScheduleServerFirmwareUpgrade) GetScheduleUpdateTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ScheduleUpdateTimestamp) {
 		return nil, false
 	}
@@ -101,8 +102,8 @@ func (o *BatchScheduleServerFirmwareUpgrade) HasScheduleUpdateTimestamp() bool {
 	return false
 }
 
-// SetScheduleUpdateTimestamp gets a reference to the given string and assigns it to the ScheduleUpdateTimestamp field.
-func (o *BatchScheduleServerFirmwareUpgrade) SetScheduleUpdateTimestamp(v string) {
+// SetScheduleUpdateTimestamp gets a reference to the given time.Time and assigns it to the ScheduleUpdateTimestamp field.
+func (o *BatchScheduleServerFirmwareUpgrade) SetScheduleUpdateTimestamp(v time.Time) {
 	o.ScheduleUpdateTimestamp = &v
 }
 

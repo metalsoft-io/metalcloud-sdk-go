@@ -34,9 +34,9 @@ Name | Type | Description | Notes
 **Model** | Pointer to **string** | The model of the server. | [optional] 
 **VncPort** | Pointer to **float32** | The VNC port of the server. | [optional] 
 **IsBasicCampusEndpoint** | Pointer to **float32** | Flag to indicate if the server is basic campus endpoint. | [optional] 
-**ServerCleanupPolicyId** | Pointer to **int64** | The cleanup policy id of the server. | [optional] 
-**CurrentFirmwareBaselineId** | Pointer to **int64** | The last applied firmware baseline id on the server. | [optional] 
-**TargetFirmwareBaselineId** | Pointer to **int64** | The target firmware baseline id on the server. | [optional] 
+**ServerCleanupPolicyId** | Pointer to **NullableInt64** | The cleanup policy id of the server. | [optional] 
+**CurrentFirmwareBaselineId** | Pointer to **NullableInt64** | The last applied firmware baseline id on the server. | [optional] 
+**TargetFirmwareBaselineId** | Pointer to **NullableInt64** | The target firmware baseline id on the server. | [optional] 
 **FirmwareBaselineComplianceStatus** | Pointer to **string** | Whether the server firmware meets the minimum versions of its configured baseline. Judged only against the baseline — independent of whether the configuration has drifted. | [optional] 
 **DriftDetectionSyncStatus** | Pointer to **string** | Whether the server configuration still matches the accepted snapshot. Set out_of_sync when an unplanned change is detected, in_sync when a planned change completes or the target is synced. Says nothing about baseline compliance — see firmwareBaselineComplianceStatus. | [optional] 
 **DriftDetectionTargetSnapshotId** | Pointer to **string** | The OID of the git snapshot accepted as the drift-detection target. | [optional] 
@@ -54,7 +54,7 @@ Name | Type | Description | Notes
 **RegistrationResult** | Pointer to [**ServerRegistrationResult**](ServerRegistrationResult.md) | The registration result of the server. | [optional] 
 **ServerClass** | **string** | The class of the server. | 
 **ServerStatus** | **string** | The status of the server. | 
-**ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
+**ServerComments** | Pointer to **NullableString** | The comments of the server. | [optional] 
 **ServerCapacityMbps** | Pointer to **float32** | The capacity mbps of the server. | [optional] 
 **ServerDiskWipe** | Pointer to **float32** | Flag to indicate if the disks need to be wiped. | [optional] 
 **RequiresManualCleaning** | Pointer to **float32** | Flag to indicate if the server requires manual cleaning. | [optional] 
@@ -82,7 +82,7 @@ Name | Type | Description | Notes
 **Disks** | Pointer to [**[]ServerDisk**](ServerDisk.md) | The disks of the server. | [optional] 
 **StorageControllers** | Pointer to [**[]ServerStorageController**](ServerStorageController.md) | The storage controllers of the server. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the Server. | [optional] 
-**ResourcePoolId** | Pointer to **int64** | Resource Pool ID | [optional] 
+**ResourcePoolId** | Pointer to **NullableInt64** | Resource Pool ID | [optional] 
 **AllocationInfo** | Pointer to [**ServerAllocationInfo**](ServerAllocationInfo.md) | The server instance. | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the server. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -859,6 +859,16 @@ SetServerCleanupPolicyId sets ServerCleanupPolicyId field to given value.
 
 HasServerCleanupPolicyId returns a boolean if a field has been set.
 
+### SetServerCleanupPolicyIdNil
+
+`func (o *Server) SetServerCleanupPolicyIdNil(b bool)`
+
+ SetServerCleanupPolicyIdNil sets the value for ServerCleanupPolicyId to be an explicit nil
+
+### UnsetServerCleanupPolicyId
+`func (o *Server) UnsetServerCleanupPolicyId()`
+
+UnsetServerCleanupPolicyId ensures that no value is present for ServerCleanupPolicyId, not even an explicit nil
 ### GetCurrentFirmwareBaselineId
 
 `func (o *Server) GetCurrentFirmwareBaselineId() int64`
@@ -884,6 +894,16 @@ SetCurrentFirmwareBaselineId sets CurrentFirmwareBaselineId field to given value
 
 HasCurrentFirmwareBaselineId returns a boolean if a field has been set.
 
+### SetCurrentFirmwareBaselineIdNil
+
+`func (o *Server) SetCurrentFirmwareBaselineIdNil(b bool)`
+
+ SetCurrentFirmwareBaselineIdNil sets the value for CurrentFirmwareBaselineId to be an explicit nil
+
+### UnsetCurrentFirmwareBaselineId
+`func (o *Server) UnsetCurrentFirmwareBaselineId()`
+
+UnsetCurrentFirmwareBaselineId ensures that no value is present for CurrentFirmwareBaselineId, not even an explicit nil
 ### GetTargetFirmwareBaselineId
 
 `func (o *Server) GetTargetFirmwareBaselineId() int64`
@@ -909,6 +929,16 @@ SetTargetFirmwareBaselineId sets TargetFirmwareBaselineId field to given value.
 
 HasTargetFirmwareBaselineId returns a boolean if a field has been set.
 
+### SetTargetFirmwareBaselineIdNil
+
+`func (o *Server) SetTargetFirmwareBaselineIdNil(b bool)`
+
+ SetTargetFirmwareBaselineIdNil sets the value for TargetFirmwareBaselineId to be an explicit nil
+
+### UnsetTargetFirmwareBaselineId
+`func (o *Server) UnsetTargetFirmwareBaselineId()`
+
+UnsetTargetFirmwareBaselineId ensures that no value is present for TargetFirmwareBaselineId, not even an explicit nil
 ### GetFirmwareBaselineComplianceStatus
 
 `func (o *Server) GetFirmwareBaselineComplianceStatus() string`
@@ -1344,6 +1374,16 @@ SetServerComments sets ServerComments field to given value.
 
 HasServerComments returns a boolean if a field has been set.
 
+### SetServerCommentsNil
+
+`func (o *Server) SetServerCommentsNil(b bool)`
+
+ SetServerCommentsNil sets the value for ServerComments to be an explicit nil
+
+### UnsetServerComments
+`func (o *Server) UnsetServerComments()`
+
+UnsetServerComments ensures that no value is present for ServerComments, not even an explicit nil
 ### GetServerCapacityMbps
 
 `func (o *Server) GetServerCapacityMbps() float32`
@@ -2014,6 +2054,16 @@ SetResourcePoolId sets ResourcePoolId field to given value.
 
 HasResourcePoolId returns a boolean if a field has been set.
 
+### SetResourcePoolIdNil
+
+`func (o *Server) SetResourcePoolIdNil(b bool)`
+
+ SetResourcePoolIdNil sets the value for ResourcePoolId to be an explicit nil
+
+### UnsetResourcePoolId
+`func (o *Server) UnsetResourcePoolId()`
+
+UnsetResourcePoolId ensures that no value is present for ResourcePoolId, not even an explicit nil
 ### GetAllocationInfo
 
 `func (o *Server) GetAllocationInfo() ServerAllocationInfo`

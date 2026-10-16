@@ -22,13 +22,13 @@ type LogicalNetworkInterconnectKind string
 // List of LogicalNetworkInterconnectKind
 const (
 	LOGICALNETWORKINTERCONNECTKIND_DCI_EVPN LogicalNetworkInterconnectKind = "dci-evpn"
-	LOGICALNETWORKINTERCONNECTKIND_UNKNOWN_DEFAULT_OPEN_API LogicalNetworkInterconnectKind = "11184809"
+	LOGICALNETWORKINTERCONNECTKIND_UNKNOWN_DEFAULT_OPEN_API LogicalNetworkInterconnectKind = "unknown_default_open_api"
 )
 
 // All allowed values of LogicalNetworkInterconnectKind enum
 var AllowedLogicalNetworkInterconnectKindEnumValues = []LogicalNetworkInterconnectKind{
 	"dci-evpn",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *LogicalNetworkInterconnectKind) UnmarshalJSON(src []byte) error {
@@ -45,7 +45,8 @@ func (v *LogicalNetworkInterconnectKind) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid LogicalNetworkInterconnectKind", value)
+	*v = LOGICALNETWORKINTERCONNECTKIND_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewLogicalNetworkInterconnectKindFromValue returns a pointer to a valid LogicalNetworkInterconnectKind

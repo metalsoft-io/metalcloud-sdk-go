@@ -23,14 +23,14 @@ type ServerInstanceBondMode string
 const (
 	SERVERINSTANCEBONDMODE__802_3AD ServerInstanceBondMode = "802.3ad"
 	SERVERINSTANCEBONDMODE_ACTIVE_BACKUP ServerInstanceBondMode = "active-backup"
-	SERVERINSTANCEBONDMODE_UNKNOWN_DEFAULT_OPEN_API ServerInstanceBondMode = "11184809"
+	SERVERINSTANCEBONDMODE_UNKNOWN_DEFAULT_OPEN_API ServerInstanceBondMode = "unknown_default_open_api"
 )
 
 // All allowed values of ServerInstanceBondMode enum
 var AllowedServerInstanceBondModeEnumValues = []ServerInstanceBondMode{
 	"802.3ad",
 	"active-backup",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *ServerInstanceBondMode) UnmarshalJSON(src []byte) error {
@@ -47,7 +47,8 @@ func (v *ServerInstanceBondMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ServerInstanceBondMode", value)
+	*v = SERVERINSTANCEBONDMODE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewServerInstanceBondModeFromValue returns a pointer to a valid ServerInstanceBondMode

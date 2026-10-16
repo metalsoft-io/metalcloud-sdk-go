@@ -10,18 +10,18 @@ Name | Type | Description | Notes
 **Vendor** | **string** | Firmware catalog vendor: dell, lenovo, hp, supermicro | 
 **VendorId** | Pointer to **string** | Vendor identifier for the catalog | [optional] 
 **VendorUrl** | Pointer to **string** | Vendor URL for the firmware catalog | [optional] 
-**VendorReleaseTimestamp** | Pointer to **string** | Vendor release timestamp for the catalog | [optional] 
+**VendorReleaseTimestamp** | Pointer to **time.Time** | Vendor release timestamp for the catalog | [optional] 
 **UpdateType** | **string** | Catalog update type: online or offline | [default to "online"]
 **VendorServerTypesSupported** | Pointer to **[]string** | List of supported server types for which firmware binaries are available | [optional] 
 **VendorConfiguration** | Pointer to **map[string]interface{}** | Vendor configuration | [optional] 
-**CreatedTimestamp** | **string** | Timestamp when the catalog was created | 
+**CreatedTimestamp** | **time.Time** | Timestamp when the catalog was created | 
 **Links** | [**[]Link**](Link.md) | Links to other resources | 
 
 ## Methods
 
 ### NewFirmwareCatalog
 
-`func NewFirmwareCatalog(id int64, name string, vendor string, updateType string, createdTimestamp string, links []Link, ) *FirmwareCatalog`
+`func NewFirmwareCatalog(id int64, name string, vendor string, updateType string, createdTimestamp time.Time, links []Link, ) *FirmwareCatalog`
 
 NewFirmwareCatalog instantiates a new FirmwareCatalog object
 This constructor will assign default values to properties that have it defined,
@@ -173,20 +173,20 @@ HasVendorUrl returns a boolean if a field has been set.
 
 ### GetVendorReleaseTimestamp
 
-`func (o *FirmwareCatalog) GetVendorReleaseTimestamp() string`
+`func (o *FirmwareCatalog) GetVendorReleaseTimestamp() time.Time`
 
 GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field if non-nil, zero value otherwise.
 
 ### GetVendorReleaseTimestampOk
 
-`func (o *FirmwareCatalog) GetVendorReleaseTimestampOk() (*string, bool)`
+`func (o *FirmwareCatalog) GetVendorReleaseTimestampOk() (*time.Time, bool)`
 
 GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendorReleaseTimestamp
 
-`func (o *FirmwareCatalog) SetVendorReleaseTimestamp(v string)`
+`func (o *FirmwareCatalog) SetVendorReleaseTimestamp(v time.Time)`
 
 SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 
@@ -268,20 +268,20 @@ HasVendorConfiguration returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 
-`func (o *FirmwareCatalog) GetCreatedTimestamp() string`
+`func (o *FirmwareCatalog) GetCreatedTimestamp() time.Time`
 
 GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
 
 ### GetCreatedTimestampOk
 
-`func (o *FirmwareCatalog) GetCreatedTimestampOk() (*string, bool)`
+`func (o *FirmwareCatalog) GetCreatedTimestampOk() (*time.Time, bool)`
 
 GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedTimestamp
 
-`func (o *FirmwareCatalog) SetCreatedTimestamp(v string)`
+`func (o *FirmwareCatalog) SetCreatedTimestamp(v time.Time)`
 
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
 

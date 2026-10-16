@@ -22,8 +22,8 @@ var _ MappedNullable = &UpdateSubnet{}
 type UpdateSubnet struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Annotations *map[string]string `json:"annotations,omitempty"`
-	Tags *map[string]string `json:"tags,omitempty"`
+	Annotations *map[string]*string `json:"annotations,omitempty"`
+	Tags *map[string]*string `json:"tags,omitempty"`
 	AllocationDenylist []AddressRange `json:"allocationDenylist,omitempty"`
 	ChildOverlapAllowRules []string `json:"childOverlapAllowRules,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -113,9 +113,9 @@ func (o *UpdateSubnet) SetName(v string) {
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetAnnotations() map[string]string {
+func (o *UpdateSubnet) GetAnnotations() map[string]*string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Annotations
@@ -123,7 +123,7 @@ func (o *UpdateSubnet) GetAnnotations() map[string]string {
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]string, bool) {
+func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Annotations) {
 		return nil, false
 	}
@@ -139,15 +139,15 @@ func (o *UpdateSubnet) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
-func (o *UpdateSubnet) SetAnnotations(v map[string]string) {
+// SetAnnotations gets a reference to the given map[string]*string and assigns it to the Annotations field.
+func (o *UpdateSubnet) SetAnnotations(v map[string]*string) {
 	o.Annotations = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetTags() map[string]string {
+func (o *UpdateSubnet) GetTags() map[string]*string {
 	if o == nil || IsNil(o.Tags) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Tags
@@ -155,7 +155,7 @@ func (o *UpdateSubnet) GetTags() map[string]string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetTagsOk() (*map[string]string, bool) {
+func (o *UpdateSubnet) GetTagsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -171,8 +171,8 @@ func (o *UpdateSubnet) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given map[string]string and assigns it to the Tags field.
-func (o *UpdateSubnet) SetTags(v map[string]string) {
+// SetTags gets a reference to the given map[string]*string and assigns it to the Tags field.
+func (o *UpdateSubnet) SetTags(v map[string]*string) {
 	o.Tags = &v
 }
 

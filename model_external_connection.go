@@ -25,7 +25,7 @@ type ExternalConnection struct {
 	// The network external connection id.
 	Id string `json:"id"`
 	// The external connection unique label
-	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// The external connection name
 	Name string `json:"name"`
 	// The ID of the Fabric identifier this entity belongs to.

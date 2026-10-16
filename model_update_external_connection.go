@@ -23,7 +23,7 @@ type UpdateExternalConnection struct {
 	// The external connection name
 	Name *string `json:"name,omitempty"`
 	// The external connection unique label
-	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	AdditionalProperties map[string]interface{}
 }
 

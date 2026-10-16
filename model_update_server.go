@@ -27,9 +27,9 @@ type UpdateServer struct {
 	// The username to use.
 	Username *string `json:"username,omitempty"`
 	// The cleanup policy id of the server.
-	ServerCleanupPolicyId *int64 `json:"serverCleanupPolicyId,omitempty"`
+	ServerCleanupPolicyId NullableInt64 `json:"serverCleanupPolicyId,omitempty"`
 	// The target firmware baseline id on the server.
-	TargetFirmwareBaselineId *int64 `json:"targetFirmwareBaselineId,omitempty"`
+	TargetFirmwareBaselineId NullableInt64 `json:"targetFirmwareBaselineId,omitempty"`
 	// Whether firmware backup is enabled for this server. Combined with the site policy: the backup runs only when both allow it. Disabling it also stops drift detection. Defaults to true.
 	FirmwareBackupEnabled *bool `json:"firmwareBackupEnabled,omitempty"`
 	// Whether drift detection is enabled for this server. Gates both checks: the configuration drift alert (this snapshot against the previous one) and the firmware baseline check (installed versions against the baseline minimums). Combined with the site policy: a check runs only when both allow it. Requires firmwareBackupEnabled. Defaults to true.
@@ -37,7 +37,7 @@ type UpdateServer struct {
 	// The registration profile id of the server.
 	RegistrationProfileId *int64 `json:"registrationProfileId,omitempty"`
 	// The comments of the server.
-	ServerComments *string `json:"serverComments,omitempty"`
+	ServerComments NullableString `json:"serverComments,omitempty"`
 	// The chassis rack id of the server.
 	ChassisRackId *int64 `json:"chassisRackId,omitempty"`
 	// The chassis rack name of the server.
@@ -51,7 +51,9 @@ type UpdateServer struct {
 	// Tags for the Server.
 	Tags []string `json:"tags,omitempty"`
 	// Resource Pool ID
-	ResourcePoolId *int64 `json:"resourcePoolId,omitempty"`
+	ResourcePoolId NullableInt64 `json:"resourcePoolId,omitempty"`
+	// The password to use.
+	Password *string `json:"password,omitempty"`
 	// The status of the server.
 	ServerStatus *string `json:"serverStatus,omitempty"`
 	// The server class.
@@ -184,68 +186,88 @@ func (o *UpdateServer) SetUsername(v string) {
 	o.Username = &v
 }
 
-// GetServerCleanupPolicyId returns the ServerCleanupPolicyId field value if set, zero value otherwise.
+// GetServerCleanupPolicyId returns the ServerCleanupPolicyId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateServer) GetServerCleanupPolicyId() int64 {
-	if o == nil || IsNil(o.ServerCleanupPolicyId) {
+	if o == nil || IsNil(o.ServerCleanupPolicyId.Get()) {
 		var ret int64
 		return ret
 	}
-	return *o.ServerCleanupPolicyId
+	return *o.ServerCleanupPolicyId.Get()
 }
 
 // GetServerCleanupPolicyIdOk returns a tuple with the ServerCleanupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateServer) GetServerCleanupPolicyIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.ServerCleanupPolicyId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ServerCleanupPolicyId, true
+	return o.ServerCleanupPolicyId.Get(), o.ServerCleanupPolicyId.IsSet()
 }
 
 // HasServerCleanupPolicyId returns a boolean if a field has been set.
 func (o *UpdateServer) HasServerCleanupPolicyId() bool {
-	if o != nil && !IsNil(o.ServerCleanupPolicyId) {
+	if o != nil && o.ServerCleanupPolicyId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetServerCleanupPolicyId gets a reference to the given int64 and assigns it to the ServerCleanupPolicyId field.
+// SetServerCleanupPolicyId gets a reference to the given NullableInt64 and assigns it to the ServerCleanupPolicyId field.
 func (o *UpdateServer) SetServerCleanupPolicyId(v int64) {
-	o.ServerCleanupPolicyId = &v
+	o.ServerCleanupPolicyId.Set(&v)
+}
+// SetServerCleanupPolicyIdNil sets the value for ServerCleanupPolicyId to be an explicit nil
+func (o *UpdateServer) SetServerCleanupPolicyIdNil() {
+	o.ServerCleanupPolicyId.Set(nil)
 }
 
-// GetTargetFirmwareBaselineId returns the TargetFirmwareBaselineId field value if set, zero value otherwise.
+// UnsetServerCleanupPolicyId ensures that no value is present for ServerCleanupPolicyId, not even an explicit nil
+func (o *UpdateServer) UnsetServerCleanupPolicyId() {
+	o.ServerCleanupPolicyId.Unset()
+}
+
+// GetTargetFirmwareBaselineId returns the TargetFirmwareBaselineId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateServer) GetTargetFirmwareBaselineId() int64 {
-	if o == nil || IsNil(o.TargetFirmwareBaselineId) {
+	if o == nil || IsNil(o.TargetFirmwareBaselineId.Get()) {
 		var ret int64
 		return ret
 	}
-	return *o.TargetFirmwareBaselineId
+	return *o.TargetFirmwareBaselineId.Get()
 }
 
 // GetTargetFirmwareBaselineIdOk returns a tuple with the TargetFirmwareBaselineId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateServer) GetTargetFirmwareBaselineIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.TargetFirmwareBaselineId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TargetFirmwareBaselineId, true
+	return o.TargetFirmwareBaselineId.Get(), o.TargetFirmwareBaselineId.IsSet()
 }
 
 // HasTargetFirmwareBaselineId returns a boolean if a field has been set.
 func (o *UpdateServer) HasTargetFirmwareBaselineId() bool {
-	if o != nil && !IsNil(o.TargetFirmwareBaselineId) {
+	if o != nil && o.TargetFirmwareBaselineId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTargetFirmwareBaselineId gets a reference to the given int64 and assigns it to the TargetFirmwareBaselineId field.
+// SetTargetFirmwareBaselineId gets a reference to the given NullableInt64 and assigns it to the TargetFirmwareBaselineId field.
 func (o *UpdateServer) SetTargetFirmwareBaselineId(v int64) {
-	o.TargetFirmwareBaselineId = &v
+	o.TargetFirmwareBaselineId.Set(&v)
+}
+// SetTargetFirmwareBaselineIdNil sets the value for TargetFirmwareBaselineId to be an explicit nil
+func (o *UpdateServer) SetTargetFirmwareBaselineIdNil() {
+	o.TargetFirmwareBaselineId.Set(nil)
+}
+
+// UnsetTargetFirmwareBaselineId ensures that no value is present for TargetFirmwareBaselineId, not even an explicit nil
+func (o *UpdateServer) UnsetTargetFirmwareBaselineId() {
+	o.TargetFirmwareBaselineId.Unset()
 }
 
 // GetFirmwareBackupEnabled returns the FirmwareBackupEnabled field value if set, zero value otherwise.
@@ -344,36 +366,46 @@ func (o *UpdateServer) SetRegistrationProfileId(v int64) {
 	o.RegistrationProfileId = &v
 }
 
-// GetServerComments returns the ServerComments field value if set, zero value otherwise.
+// GetServerComments returns the ServerComments field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateServer) GetServerComments() string {
-	if o == nil || IsNil(o.ServerComments) {
+	if o == nil || IsNil(o.ServerComments.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ServerComments
+	return *o.ServerComments.Get()
 }
 
 // GetServerCommentsOk returns a tuple with the ServerComments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateServer) GetServerCommentsOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerComments) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ServerComments, true
+	return o.ServerComments.Get(), o.ServerComments.IsSet()
 }
 
 // HasServerComments returns a boolean if a field has been set.
 func (o *UpdateServer) HasServerComments() bool {
-	if o != nil && !IsNil(o.ServerComments) {
+	if o != nil && o.ServerComments.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetServerComments gets a reference to the given string and assigns it to the ServerComments field.
+// SetServerComments gets a reference to the given NullableString and assigns it to the ServerComments field.
 func (o *UpdateServer) SetServerComments(v string) {
-	o.ServerComments = &v
+	o.ServerComments.Set(&v)
+}
+// SetServerCommentsNil sets the value for ServerComments to be an explicit nil
+func (o *UpdateServer) SetServerCommentsNil() {
+	o.ServerComments.Set(nil)
+}
+
+// UnsetServerComments ensures that no value is present for ServerComments, not even an explicit nil
+func (o *UpdateServer) UnsetServerComments() {
+	o.ServerComments.Unset()
 }
 
 // GetChassisRackId returns the ChassisRackId field value if set, zero value otherwise.
@@ -568,36 +600,78 @@ func (o *UpdateServer) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise.
+// GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateServer) GetResourcePoolId() int64 {
-	if o == nil || IsNil(o.ResourcePoolId) {
+	if o == nil || IsNil(o.ResourcePoolId.Get()) {
 		var ret int64
 		return ret
 	}
-	return *o.ResourcePoolId
+	return *o.ResourcePoolId.Get()
 }
 
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateServer) GetResourcePoolIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.ResourcePoolId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ResourcePoolId, true
+	return o.ResourcePoolId.Get(), o.ResourcePoolId.IsSet()
 }
 
 // HasResourcePoolId returns a boolean if a field has been set.
 func (o *UpdateServer) HasResourcePoolId() bool {
-	if o != nil && !IsNil(o.ResourcePoolId) {
+	if o != nil && o.ResourcePoolId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetResourcePoolId gets a reference to the given int64 and assigns it to the ResourcePoolId field.
+// SetResourcePoolId gets a reference to the given NullableInt64 and assigns it to the ResourcePoolId field.
 func (o *UpdateServer) SetResourcePoolId(v int64) {
-	o.ResourcePoolId = &v
+	o.ResourcePoolId.Set(&v)
+}
+// SetResourcePoolIdNil sets the value for ResourcePoolId to be an explicit nil
+func (o *UpdateServer) SetResourcePoolIdNil() {
+	o.ResourcePoolId.Set(nil)
+}
+
+// UnsetResourcePoolId ensures that no value is present for ResourcePoolId, not even an explicit nil
+func (o *UpdateServer) UnsetResourcePoolId() {
+	o.ResourcePoolId.Unset()
+}
+
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *UpdateServer) GetPassword() string {
+	if o == nil || IsNil(o.Password) {
+		var ret string
+		return ret
+	}
+	return *o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServer) GetPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.Password) {
+		return nil, false
+	}
+	return o.Password, true
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *UpdateServer) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
+func (o *UpdateServer) SetPassword(v string) {
+	o.Password = &v
 }
 
 // GetServerStatus returns the ServerStatus field value if set, zero value otherwise.
@@ -715,11 +789,11 @@ func (o UpdateServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
-	if !IsNil(o.ServerCleanupPolicyId) {
-		toSerialize["serverCleanupPolicyId"] = o.ServerCleanupPolicyId
+	if o.ServerCleanupPolicyId.IsSet() {
+		toSerialize["serverCleanupPolicyId"] = o.ServerCleanupPolicyId.Get()
 	}
-	if !IsNil(o.TargetFirmwareBaselineId) {
-		toSerialize["targetFirmwareBaselineId"] = o.TargetFirmwareBaselineId
+	if o.TargetFirmwareBaselineId.IsSet() {
+		toSerialize["targetFirmwareBaselineId"] = o.TargetFirmwareBaselineId.Get()
 	}
 	if !IsNil(o.FirmwareBackupEnabled) {
 		toSerialize["firmwareBackupEnabled"] = o.FirmwareBackupEnabled
@@ -730,8 +804,8 @@ func (o UpdateServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RegistrationProfileId) {
 		toSerialize["registrationProfileId"] = o.RegistrationProfileId
 	}
-	if !IsNil(o.ServerComments) {
-		toSerialize["serverComments"] = o.ServerComments
+	if o.ServerComments.IsSet() {
+		toSerialize["serverComments"] = o.ServerComments.Get()
 	}
 	if !IsNil(o.ChassisRackId) {
 		toSerialize["chassisRackId"] = o.ChassisRackId
@@ -751,8 +825,11 @@ func (o UpdateServer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.ResourcePoolId) {
-		toSerialize["resourcePoolId"] = o.ResourcePoolId
+	if o.ResourcePoolId.IsSet() {
+		toSerialize["resourcePoolId"] = o.ResourcePoolId.Get()
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
 	}
 	if !IsNil(o.ServerStatus) {
 		toSerialize["serverStatus"] = o.ServerStatus
@@ -801,6 +878,7 @@ func (o *UpdateServer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "inventoryId")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "resourcePoolId")
+		delete(additionalProperties, "password")
 		delete(additionalProperties, "serverStatus")
 		delete(additionalProperties, "serverClass")
 		delete(additionalProperties, "dpuCredentials")

@@ -24,7 +24,7 @@ const (
 	NETWORKDEVICECONFIGURATIONTEMPLATETYPE_LINK NetworkDeviceConfigurationTemplateType = "link"
 	NETWORKDEVICECONFIGURATIONTEMPLATETYPE_LINK_AGGREGATION NetworkDeviceConfigurationTemplateType = "link_aggregation"
 	NETWORKDEVICECONFIGURATIONTEMPLATETYPE_BGP_SESSION NetworkDeviceConfigurationTemplateType = "bgp_session"
-	NETWORKDEVICECONFIGURATIONTEMPLATETYPE_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceConfigurationTemplateType = "11184809"
+	NETWORKDEVICECONFIGURATIONTEMPLATETYPE_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceConfigurationTemplateType = "unknown_default_open_api"
 )
 
 // All allowed values of NetworkDeviceConfigurationTemplateType enum
@@ -32,7 +32,7 @@ var AllowedNetworkDeviceConfigurationTemplateTypeEnumValues = []NetworkDeviceCon
 	"link",
 	"link_aggregation",
 	"bgp_session",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *NetworkDeviceConfigurationTemplateType) UnmarshalJSON(src []byte) error {
@@ -49,7 +49,8 @@ func (v *NetworkDeviceConfigurationTemplateType) UnmarshalJSON(src []byte) error
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NetworkDeviceConfigurationTemplateType", value)
+	*v = NETWORKDEVICECONFIGURATIONTEMPLATETYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNetworkDeviceConfigurationTemplateTypeFromValue returns a pointer to a valid NetworkDeviceConfigurationTemplateType

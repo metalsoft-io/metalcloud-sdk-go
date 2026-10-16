@@ -28,7 +28,6 @@ type ServerFirmwareAPIService service
 type ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest struct {
 	ctx context.Context
 	ApiService *ServerFirmwareAPIService
-	serverId int64
 	batchScheduleServerFirmwareUpgrade *BatchScheduleServerFirmwareUpgrade
 }
 
@@ -43,19 +42,17 @@ func (r ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest) Execute() (*
 }
 
 /*
-BatchScheduleServerFirmwareUpgrade Schedules a firmware upgrade for the specified Server
+BatchScheduleServerFirmwareUpgrade Schedules a firmware upgrade for the specified Servers
 
-Schedules a firmware upgrade for the specified Server
+Schedules a firmware upgrade for the specified Servers
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serverId
  @return ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest
 */
-func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgrade(ctx context.Context, serverId int64) ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest {
+func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgrade(ctx context.Context) ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest {
 	return ServerFirmwareAPIBatchScheduleServerFirmwareUpgradeRequest{
 		ApiService: a,
 		ctx: ctx,
-		serverId: serverId,
 	}
 }
 
@@ -74,8 +71,7 @@ func (a *ServerFirmwareAPIService) BatchScheduleServerFirmwareUpgradeExecute(r S
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/servers/{serverId}/firmware/actions/batch-schedule-upgrade"
-	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+	localVarPath := localBasePath + "/api/v2/servers/firmware/actions/batch-schedule-upgrade"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -244,7 +240,7 @@ func (r ServerFirmwareAPIGenerateServersFirmwareUpgradeAuditRequest) GenerateFir
 	return r
 }
 
-func (r ServerFirmwareAPIGenerateServersFirmwareUpgradeAuditRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ServerFirmwareAPIGenerateServersFirmwareUpgradeAuditRequest) Execute() ([]ServerFirmwareAudit, *http.Response, error) {
 	return r.ApiService.GenerateServersFirmwareUpgradeAuditExecute(r)
 }
 
@@ -264,13 +260,13 @@ func (a *ServerFirmwareAPIService) GenerateServersFirmwareUpgradeAudit(ctx conte
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ServerFirmwareAPIService) GenerateServersFirmwareUpgradeAuditExecute(r ServerFirmwareAPIGenerateServersFirmwareUpgradeAuditRequest) (map[string]interface{}, *http.Response, error) {
+//  @return []ServerFirmwareAudit
+func (a *ServerFirmwareAPIService) GenerateServersFirmwareUpgradeAuditExecute(r ServerFirmwareAPIGenerateServersFirmwareUpgradeAuditRequest) ([]ServerFirmwareAudit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  []ServerFirmwareAudit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerFirmwareAPIService.GenerateServersFirmwareUpgradeAudit")

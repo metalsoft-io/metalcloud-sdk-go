@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateExternalSystem{}
 // UpdateExternalSystem struct for UpdateExternalSystem
 type UpdateExternalSystem struct {
 	// The external system unique label
-	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// The external system name
 	Name *string `json:"name,omitempty"`
 	// Annotations - key/value pairs of additional metadata

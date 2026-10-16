@@ -81,20 +81,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetAnnotations
 
-`func (o *UpdateLogicalNetworkInterconnectDto) GetAnnotations() map[string]string`
+`func (o *UpdateLogicalNetworkInterconnectDto) GetAnnotations() map[string]*string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *UpdateLogicalNetworkInterconnectDto) GetAnnotationsOk() (*map[string]string, bool)`
+`func (o *UpdateLogicalNetworkInterconnectDto) GetAnnotationsOk() (*map[string]*string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *UpdateLogicalNetworkInterconnectDto) SetAnnotations(v map[string]string)`
+`func (o *UpdateLogicalNetworkInterconnectDto) SetAnnotations(v map[string]*string)`
 
 SetAnnotations sets Annotations field to given value.
 

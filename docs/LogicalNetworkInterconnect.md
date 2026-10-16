@@ -117,20 +117,20 @@ SetName sets Name field to given value.
 
 ### GetAnnotations
 
-`func (o *LogicalNetworkInterconnect) GetAnnotations() map[string]string`
+`func (o *LogicalNetworkInterconnect) GetAnnotations() map[string]*string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *LogicalNetworkInterconnect) GetAnnotationsOk() (*map[string]string, bool)`
+`func (o *LogicalNetworkInterconnect) GetAnnotationsOk() (*map[string]*string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *LogicalNetworkInterconnect) SetAnnotations(v map[string]string)`
+`func (o *LogicalNetworkInterconnect) SetAnnotations(v map[string]*string)`
 
 SetAnnotations sets Annotations field to given value.
 

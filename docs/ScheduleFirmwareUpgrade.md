@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ScheduleUpdateTimestamp** | Pointer to **string** | The time when the firmware update is scheduled to run. | [optional] 
+**ScheduleUpdateTimestamp** | Pointer to **time.Time** | The time when the firmware update is scheduled to run. | [optional] 
 **ConfirmationRequired** | Pointer to **bool** | Flag to indicate if the firmware update requires confirmation. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetScheduleUpdateTimestamp
 
-`func (o *ScheduleFirmwareUpgrade) GetScheduleUpdateTimestamp() string`
+`func (o *ScheduleFirmwareUpgrade) GetScheduleUpdateTimestamp() time.Time`
 
 GetScheduleUpdateTimestamp returns the ScheduleUpdateTimestamp field if non-nil, zero value otherwise.
 
 ### GetScheduleUpdateTimestampOk
 
-`func (o *ScheduleFirmwareUpgrade) GetScheduleUpdateTimestampOk() (*string, bool)`
+`func (o *ScheduleFirmwareUpgrade) GetScheduleUpdateTimestampOk() (*time.Time, bool)`
 
 GetScheduleUpdateTimestampOk returns a tuple with the ScheduleUpdateTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScheduleUpdateTimestamp
 
-`func (o *ScheduleFirmwareUpgrade) SetScheduleUpdateTimestamp(v string)`
+`func (o *ScheduleFirmwareUpgrade) SetScheduleUpdateTimestamp(v time.Time)`
 
 SetScheduleUpdateTimestamp sets ScheduleUpdateTimestamp field to given value.
 

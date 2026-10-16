@@ -82,20 +82,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetAnnotations
 
-`func (o *UpdateSubnet) GetAnnotations() map[string]string`
+`func (o *UpdateSubnet) GetAnnotations() map[string]*string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]string, bool)`
+`func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]*string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *UpdateSubnet) SetAnnotations(v map[string]string)`
+`func (o *UpdateSubnet) SetAnnotations(v map[string]*string)`
 
 SetAnnotations sets Annotations field to given value.
 
@@ -107,20 +107,20 @@ HasAnnotations returns a boolean if a field has been set.
 
 ### GetTags
 
-`func (o *UpdateSubnet) GetTags() map[string]string`
+`func (o *UpdateSubnet) GetTags() map[string]*string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *UpdateSubnet) GetTagsOk() (*map[string]string, bool)`
+`func (o *UpdateSubnet) GetTagsOk() (*map[string]*string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *UpdateSubnet) SetTags(v map[string]string)`
+`func (o *UpdateSubnet) SetTags(v map[string]*string)`
 
 SetTags sets Tags field to given value.
 

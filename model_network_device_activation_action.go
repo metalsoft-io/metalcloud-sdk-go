@@ -23,14 +23,14 @@ type NetworkDeviceActivationAction string
 const (
 	NETWORKDEVICEACTIVATIONACTION_MARK_INSTALL_READY NetworkDeviceActivationAction = "mark-install-ready"
 	NETWORKDEVICEACTIVATIONACTION_START_REGISTRATION NetworkDeviceActivationAction = "start-registration"
-	NETWORKDEVICEACTIVATIONACTION_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceActivationAction = "11184809"
+	NETWORKDEVICEACTIVATIONACTION_UNKNOWN_DEFAULT_OPEN_API NetworkDeviceActivationAction = "unknown_default_open_api"
 )
 
 // All allowed values of NetworkDeviceActivationAction enum
 var AllowedNetworkDeviceActivationActionEnumValues = []NetworkDeviceActivationAction{
 	"mark-install-ready",
 	"start-registration",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *NetworkDeviceActivationAction) UnmarshalJSON(src []byte) error {
@@ -47,7 +47,8 @@ func (v *NetworkDeviceActivationAction) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NetworkDeviceActivationAction", value)
+	*v = NETWORKDEVICEACTIVATIONACTION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewNetworkDeviceActivationActionFromValue returns a pointer to a valid NetworkDeviceActivationAction

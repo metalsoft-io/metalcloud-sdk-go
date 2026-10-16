@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateLogicalNetwork{}
 type UpdateLogicalNetwork struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Annotations *map[string]string `json:"annotations,omitempty"`
+	Annotations *map[string]*string `json:"annotations,omitempty"`
 	// External identifier for this logical network on the controller
 	ExternalId *string `json:"externalId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -112,9 +112,9 @@ func (o *UpdateLogicalNetwork) SetName(v string) {
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *UpdateLogicalNetwork) GetAnnotations() map[string]string {
+func (o *UpdateLogicalNetwork) GetAnnotations() map[string]*string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Annotations
@@ -122,7 +122,7 @@ func (o *UpdateLogicalNetwork) GetAnnotations() map[string]string {
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetwork) GetAnnotationsOk() (*map[string]string, bool) {
+func (o *UpdateLogicalNetwork) GetAnnotationsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Annotations) {
 		return nil, false
 	}
@@ -138,8 +138,8 @@ func (o *UpdateLogicalNetwork) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
-func (o *UpdateLogicalNetwork) SetAnnotations(v map[string]string) {
+// SetAnnotations gets a reference to the given map[string]*string and assigns it to the Annotations field.
+func (o *UpdateLogicalNetwork) SetAnnotations(v map[string]*string) {
 	o.Annotations = &v
 }
 

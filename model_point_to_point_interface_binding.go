@@ -24,7 +24,7 @@ const (
 	POINTTOPOINTINTERFACEBINDING_AUTO PointToPointInterfaceBinding = "auto"
 	POINTTOPOINTINTERFACEBINDING_A_FIRST PointToPointInterfaceBinding = "a_first"
 	POINTTOPOINTINTERFACEBINDING_B_FIRST PointToPointInterfaceBinding = "b_first"
-	POINTTOPOINTINTERFACEBINDING_UNKNOWN_DEFAULT_OPEN_API PointToPointInterfaceBinding = "11184809"
+	POINTTOPOINTINTERFACEBINDING_UNKNOWN_DEFAULT_OPEN_API PointToPointInterfaceBinding = "unknown_default_open_api"
 )
 
 // All allowed values of PointToPointInterfaceBinding enum
@@ -32,7 +32,7 @@ var AllowedPointToPointInterfaceBindingEnumValues = []PointToPointInterfaceBindi
 	"auto",
 	"a_first",
 	"b_first",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *PointToPointInterfaceBinding) UnmarshalJSON(src []byte) error {
@@ -49,7 +49,8 @@ func (v *PointToPointInterfaceBinding) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid PointToPointInterfaceBinding", value)
+	*v = POINTTOPOINTINTERFACEBINDING_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewPointToPointInterfaceBindingFromValue returns a pointer to a valid PointToPointInterfaceBinding

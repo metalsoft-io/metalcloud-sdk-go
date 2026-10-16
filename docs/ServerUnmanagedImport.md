@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ManagementAddress** | Pointer to **string** | The management address of the server. | [optional] 
 **SiteId** | **int64** | The site id where the server is located. | 
 **ServerTypeId** | **int64** | The server type id. | 
-**ServerSupportsOobProvisioning** | Pointer to **float32** | Flag to indicate if the server supports SOL. | [optional] 
+**ServerSupportsOobProvisioning** | Pointer to **float32** | Flag to indicate if the server supports OOB provisioning. | [optional] 
 **ServerInterfaces** | [**[]ServerUnmanagedImportInternalInterface**](ServerUnmanagedImportInternalInterface.md) | The interfaces of the server. | 
 **ServerSerialNumber** | Pointer to **string** | The server Serial Number. | [optional] 
 **ServerUUID** | Pointer to **string** | The server UUID. | [optional] 
