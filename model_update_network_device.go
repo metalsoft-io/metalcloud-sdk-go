@@ -125,7 +125,7 @@ type UpdateNetworkDevice struct {
 	// Ordered list of authentication options. Credentials are resolved from the first active entry.
 	AuthenticationOptions []NetworkDeviceAuthOption `json:"authenticationOptions,omitempty"`
 	// Partial key/value tag update. A null value deletes that key; a present value upserts it; omitted keys are left unchanged.
-	TagsMap *map[string]string `json:"tagsMap,omitempty"`
+	TagsMap *map[string]*string `json:"tagsMap,omitempty"`
 	// One-shot: when true, the next fabric deploy pushes identifierString as the switch system hostname (Cumulus Linux only) and the flag is cleared again after the successful push. Enabling requires a Cumulus Linux driver and a valid (hostname-shaped) identifierString.
 	ApplyIdentifierAsHostnameOnNextDeploy *bool `json:"applyIdentifierAsHostnameOnNextDeploy,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -2010,9 +2010,9 @@ func (o *UpdateNetworkDevice) SetAuthenticationOptions(v []NetworkDeviceAuthOpti
 }
 
 // GetTagsMap returns the TagsMap field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetTagsMap() map[string]string {
+func (o *UpdateNetworkDevice) GetTagsMap() map[string]*string {
 	if o == nil || IsNil(o.TagsMap) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.TagsMap
@@ -2020,7 +2020,7 @@ func (o *UpdateNetworkDevice) GetTagsMap() map[string]string {
 
 // GetTagsMapOk returns a tuple with the TagsMap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetTagsMapOk() (*map[string]string, bool) {
+func (o *UpdateNetworkDevice) GetTagsMapOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.TagsMap) {
 		return nil, false
 	}
@@ -2036,8 +2036,8 @@ func (o *UpdateNetworkDevice) HasTagsMap() bool {
 	return false
 }
 
-// SetTagsMap gets a reference to the given map[string]string and assigns it to the TagsMap field.
-func (o *UpdateNetworkDevice) SetTagsMap(v map[string]string) {
+// SetTagsMap gets a reference to the given map[string]*string and assigns it to the TagsMap field.
+func (o *UpdateNetworkDevice) SetTagsMap(v map[string]*string) {
 	o.TagsMap = &v
 }
 

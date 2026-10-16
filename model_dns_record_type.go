@@ -25,7 +25,7 @@ const (
 	DNSRECORDTYPE_AAAA DNSRecordType = "AAAA"
 	DNSRECORDTYPE_CNAME DNSRecordType = "CNAME"
 	DNSRECORDTYPE_PTR DNSRecordType = "PTR"
-	DNSRECORDTYPE_UNKNOWN_DEFAULT_OPEN_API DNSRecordType = "11184809"
+	DNSRECORDTYPE_UNKNOWN_DEFAULT_OPEN_API DNSRecordType = "unknown_default_open_api"
 )
 
 // All allowed values of DNSRecordType enum
@@ -34,7 +34,7 @@ var AllowedDNSRecordTypeEnumValues = []DNSRecordType{
 	"AAAA",
 	"CNAME",
 	"PTR",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *DNSRecordType) UnmarshalJSON(src []byte) error {
@@ -51,7 +51,8 @@ func (v *DNSRecordType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid DNSRecordType", value)
+	*v = DNSRECORDTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewDNSRecordTypeFromValue returns a pointer to a valid DNSRecordType

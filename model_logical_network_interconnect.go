@@ -31,7 +31,7 @@ type LogicalNetworkInterconnect struct {
 	// Name of the logical network interconnect
 	Name string `json:"name"`
 	// JSON object containing additional metadata or annotations
-	Annotations *map[string]string `json:"annotations,omitempty"`
+	Annotations *map[string]*string `json:"annotations,omitempty"`
 	// Kind of the logical network interconnect
 	Kind LogicalNetworkInterconnectKind `json:"kind"`
 	// Fabric Interconnect identifier
@@ -172,9 +172,9 @@ func (o *LogicalNetworkInterconnect) SetName(v string) {
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *LogicalNetworkInterconnect) GetAnnotations() map[string]string {
+func (o *LogicalNetworkInterconnect) GetAnnotations() map[string]*string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Annotations
@@ -182,7 +182,7 @@ func (o *LogicalNetworkInterconnect) GetAnnotations() map[string]string {
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogicalNetworkInterconnect) GetAnnotationsOk() (*map[string]string, bool) {
+func (o *LogicalNetworkInterconnect) GetAnnotationsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Annotations) {
 		return nil, false
 	}
@@ -198,8 +198,8 @@ func (o *LogicalNetworkInterconnect) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
-func (o *LogicalNetworkInterconnect) SetAnnotations(v map[string]string) {
+// SetAnnotations gets a reference to the given map[string]*string and assigns it to the Annotations field.
+func (o *LogicalNetworkInterconnect) SetAnnotations(v map[string]*string) {
 	o.Annotations = &v
 }
 

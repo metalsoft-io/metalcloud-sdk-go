@@ -17,16 +17,15 @@ Name | Type | Description | Notes
 **UpdateSeverity** | **string** | Severity of the firmware update | 
 **VendorSupportedDevices** | **map[string]interface{}** | Vendor specific record for supported devices | 
 **VendorSupportedSystems** | **[]map[string]interface{}** | Vendor specific records for supported systems | 
-**Vendor** | **map[string]interface{}** | Vendor specific record containing all other firmware binary information | 
-**VendorReleaseTimestamp** | Pointer to **string** | Vendor release timestamp for the firmware binary | [optional] 
-**CreatedTimestamp** | **string** | Timestamp when the firmware binary was created | 
+**VendorReleaseTimestamp** | Pointer to **time.Time** | Vendor release timestamp for the firmware binary | [optional] 
+**CreatedTimestamp** | **time.Time** | Timestamp when the firmware binary was created | 
 **Catalog** | Pointer to [**FirmwareCatalog**](FirmwareCatalog.md) | Associated firmware catalog | [optional] 
 
 ## Methods
 
 ### NewFirmwareBinaryResponse
 
-`func NewFirmwareBinaryResponse(id int64, catalogId int64, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, createdTimestamp string, ) *FirmwareBinaryResponse`
+`func NewFirmwareBinaryResponse(id int64, catalogId int64, vendorDownloadUrl string, name string, packageVersion string, rebootRequired bool, updateSeverity string, vendorSupportedDevices map[string]interface{}, vendorSupportedSystems []map[string]interface{}, createdTimestamp time.Time, ) *FirmwareBinaryResponse`
 
 NewFirmwareBinaryResponse instantiates a new FirmwareBinaryResponse object
 This constructor will assign default values to properties that have it defined,
@@ -321,42 +320,22 @@ and a boolean to check if the value has been set.
 SetVendorSupportedSystems sets VendorSupportedSystems field to given value.
 
 
-### GetVendor
-
-`func (o *FirmwareBinaryResponse) GetVendor() map[string]interface{}`
-
-GetVendor returns the Vendor field if non-nil, zero value otherwise.
-
-### GetVendorOk
-
-`func (o *FirmwareBinaryResponse) GetVendorOk() (*map[string]interface{}, bool)`
-
-GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVendor
-
-`func (o *FirmwareBinaryResponse) SetVendor(v map[string]interface{})`
-
-SetVendor sets Vendor field to given value.
-
-
 ### GetVendorReleaseTimestamp
 
-`func (o *FirmwareBinaryResponse) GetVendorReleaseTimestamp() string`
+`func (o *FirmwareBinaryResponse) GetVendorReleaseTimestamp() time.Time`
 
 GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field if non-nil, zero value otherwise.
 
 ### GetVendorReleaseTimestampOk
 
-`func (o *FirmwareBinaryResponse) GetVendorReleaseTimestampOk() (*string, bool)`
+`func (o *FirmwareBinaryResponse) GetVendorReleaseTimestampOk() (*time.Time, bool)`
 
 GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendorReleaseTimestamp
 
-`func (o *FirmwareBinaryResponse) SetVendorReleaseTimestamp(v string)`
+`func (o *FirmwareBinaryResponse) SetVendorReleaseTimestamp(v time.Time)`
 
 SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 
@@ -368,20 +347,20 @@ HasVendorReleaseTimestamp returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 
-`func (o *FirmwareBinaryResponse) GetCreatedTimestamp() string`
+`func (o *FirmwareBinaryResponse) GetCreatedTimestamp() time.Time`
 
 GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
 
 ### GetCreatedTimestampOk
 
-`func (o *FirmwareBinaryResponse) GetCreatedTimestampOk() (*string, bool)`
+`func (o *FirmwareBinaryResponse) GetCreatedTimestampOk() (*time.Time, bool)`
 
 GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedTimestamp
 
-`func (o *FirmwareBinaryResponse) SetCreatedTimestamp(v string)`
+`func (o *FirmwareBinaryResponse) SetCreatedTimestamp(v time.Time)`
 
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
 

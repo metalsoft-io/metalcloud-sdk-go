@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -44,9 +45,9 @@ type ServerCleanupPolicy struct {
 	// Raid odd number more than one drive
 	RaidOddNumberMoreThanOneDrive string `json:"raidOddNumberMoreThanOneDrive"`
 	// Created timestamp
-	CreatedTimestamp string `json:"createdTimestamp"`
+	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Updated timestamp
-	UpdatedTimestamp string `json:"updatedTimestamp"`
+	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
 	// Skip raid actions
 	SkipRaidActions []string `json:"skipRaidActions"`
 	// Reference links
@@ -60,7 +61,7 @@ type _ServerCleanupPolicy ServerCleanupPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerCleanupPolicy(id int64, label string, cleanupDrivesForOobEnabledServer float32, clearTpm float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string) *ServerCleanupPolicy {
+func NewServerCleanupPolicy(id int64, label string, cleanupDrivesForOobEnabledServer float32, clearTpm float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp time.Time, updatedTimestamp time.Time, skipRaidActions []string) *ServerCleanupPolicy {
 	this := ServerCleanupPolicy{}
 	this.Id = id
 	this.Label = label
@@ -352,9 +353,9 @@ func (o *ServerCleanupPolicy) SetRaidOddNumberMoreThanOneDrive(v string) {
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *ServerCleanupPolicy) GetCreatedTimestamp() string {
+func (o *ServerCleanupPolicy) GetCreatedTimestamp() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -363,7 +364,7 @@ func (o *ServerCleanupPolicy) GetCreatedTimestamp() string {
 
 // GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *ServerCleanupPolicy) GetCreatedTimestampOk() (*string, bool) {
+func (o *ServerCleanupPolicy) GetCreatedTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -371,14 +372,14 @@ func (o *ServerCleanupPolicy) GetCreatedTimestampOk() (*string, bool) {
 }
 
 // SetCreatedTimestamp sets field value
-func (o *ServerCleanupPolicy) SetCreatedTimestamp(v string) {
+func (o *ServerCleanupPolicy) SetCreatedTimestamp(v time.Time) {
 	o.CreatedTimestamp = v
 }
 
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
-func (o *ServerCleanupPolicy) GetUpdatedTimestamp() string {
+func (o *ServerCleanupPolicy) GetUpdatedTimestamp() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -387,7 +388,7 @@ func (o *ServerCleanupPolicy) GetUpdatedTimestamp() string {
 
 // GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *ServerCleanupPolicy) GetUpdatedTimestampOk() (*string, bool) {
+func (o *ServerCleanupPolicy) GetUpdatedTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -395,7 +396,7 @@ func (o *ServerCleanupPolicy) GetUpdatedTimestampOk() (*string, bool) {
 }
 
 // SetUpdatedTimestamp sets field value
-func (o *ServerCleanupPolicy) SetUpdatedTimestamp(v string) {
+func (o *ServerCleanupPolicy) SetUpdatedTimestamp(v time.Time) {
 	o.UpdatedTimestamp = v
 }
 

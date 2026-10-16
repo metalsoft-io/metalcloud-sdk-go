@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -27,7 +28,7 @@ type UpdateFirmwareCatalog struct {
 	UpdateType string `json:"updateType"`
 	VendorId *string `json:"vendorId,omitempty"`
 	VendorUrl *string `json:"vendorUrl,omitempty"`
-	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
+	VendorReleaseTimestamp *time.Time `json:"vendorReleaseTimestamp,omitempty"`
 	// Array of the server types supported by the vendor for this catalog
 	VendorServerTypesSupported []string `json:"vendorServerTypesSupported,omitempty"`
 	// Record of the vendor configuration for this catalog
@@ -226,9 +227,9 @@ func (o *UpdateFirmwareCatalog) SetVendorUrl(v string) {
 }
 
 // GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetVendorReleaseTimestamp() string {
+func (o *UpdateFirmwareCatalog) GetVendorReleaseTimestamp() time.Time {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.VendorReleaseTimestamp
@@ -236,7 +237,7 @@ func (o *UpdateFirmwareCatalog) GetVendorReleaseTimestamp() string {
 
 // GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetVendorReleaseTimestampOk() (*string, bool) {
+func (o *UpdateFirmwareCatalog) GetVendorReleaseTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
 		return nil, false
 	}
@@ -252,8 +253,8 @@ func (o *UpdateFirmwareCatalog) HasVendorReleaseTimestamp() bool {
 	return false
 }
 
-// SetVendorReleaseTimestamp gets a reference to the given string and assigns it to the VendorReleaseTimestamp field.
-func (o *UpdateFirmwareCatalog) SetVendorReleaseTimestamp(v string) {
+// SetVendorReleaseTimestamp gets a reference to the given time.Time and assigns it to the VendorReleaseTimestamp field.
+func (o *UpdateFirmwareCatalog) SetVendorReleaseTimestamp(v time.Time) {
 	o.VendorReleaseTimestamp = &v
 }
 

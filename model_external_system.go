@@ -25,7 +25,7 @@ type ExternalSystem struct {
 	// The external system id.
 	Id string `json:"id"`
 	// The external system unique label
-	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// The external system name
 	Name string `json:"name"`
 	// Annotations - key/value pairs of additional metadata

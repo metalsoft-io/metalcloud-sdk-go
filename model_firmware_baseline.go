@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -26,6 +27,12 @@ type FirmwareBaseline struct {
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
 	Catalog []string `json:"catalog,omitempty"`
+	// Array of minimum firmware version requirements for this baseline
+	MinimumVersions []FirmwareMinimumVersion `json:"minimumVersions,omitempty"`
+	// Timestamp when the baseline was created
+	CreatedTimestamp time.Time `json:"createdTimestamp"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,10 +42,11 @@ type _FirmwareBaseline FirmwareBaseline
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBaseline(id int64, name string) *FirmwareBaseline {
+func NewFirmwareBaseline(id int64, name string, createdTimestamp time.Time) *FirmwareBaseline {
 	this := FirmwareBaseline{}
 	this.Id = id
 	this.Name = name
+	this.CreatedTimestamp = createdTimestamp
 	return &this
 }
 
@@ -162,6 +170,94 @@ func (o *FirmwareBaseline) SetCatalog(v []string) {
 	o.Catalog = v
 }
 
+// GetMinimumVersions returns the MinimumVersions field value if set, zero value otherwise.
+func (o *FirmwareBaseline) GetMinimumVersions() []FirmwareMinimumVersion {
+	if o == nil || IsNil(o.MinimumVersions) {
+		var ret []FirmwareMinimumVersion
+		return ret
+	}
+	return o.MinimumVersions
+}
+
+// GetMinimumVersionsOk returns a tuple with the MinimumVersions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FirmwareBaseline) GetMinimumVersionsOk() ([]FirmwareMinimumVersion, bool) {
+	if o == nil || IsNil(o.MinimumVersions) {
+		return nil, false
+	}
+	return o.MinimumVersions, true
+}
+
+// HasMinimumVersions returns a boolean if a field has been set.
+func (o *FirmwareBaseline) HasMinimumVersions() bool {
+	if o != nil && !IsNil(o.MinimumVersions) {
+		return true
+	}
+
+	return false
+}
+
+// SetMinimumVersions gets a reference to the given []FirmwareMinimumVersion and assigns it to the MinimumVersions field.
+func (o *FirmwareBaseline) SetMinimumVersions(v []FirmwareMinimumVersion) {
+	o.MinimumVersions = v
+}
+
+// GetCreatedTimestamp returns the CreatedTimestamp field value
+func (o *FirmwareBaseline) GetCreatedTimestamp() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedTimestamp
+}
+
+// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *FirmwareBaseline) GetCreatedTimestampOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedTimestamp, true
+}
+
+// SetCreatedTimestamp sets field value
+func (o *FirmwareBaseline) SetCreatedTimestamp(v time.Time) {
+	o.CreatedTimestamp = v
+}
+
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *FirmwareBaseline) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FirmwareBaseline) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *FirmwareBaseline) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *FirmwareBaseline) SetLinks(v []Link) {
+	o.Links = v
+}
+
 func (o FirmwareBaseline) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -180,6 +276,13 @@ func (o FirmwareBaseline) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Catalog) {
 		toSerialize["catalog"] = o.Catalog
 	}
+	if !IsNil(o.MinimumVersions) {
+		toSerialize["minimumVersions"] = o.MinimumVersions
+	}
+	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -195,6 +298,7 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
+		"createdTimestamp",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -228,6 +332,9 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "catalog")
+		delete(additionalProperties, "minimumVersions")
+		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

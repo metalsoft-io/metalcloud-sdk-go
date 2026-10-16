@@ -23,7 +23,7 @@ type UpdateEndpoint struct {
 	// The endpoint name
 	Name *string `json:"name,omitempty"`
 	// The endpoint unique label
-	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
 	ExternalId *string `json:"externalId,omitempty"`
 	AdditionalProperties map[string]interface{}

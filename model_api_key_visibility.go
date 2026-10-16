@@ -23,14 +23,14 @@ type ApiKeyVisibility string
 const (
 	APIKEYVISIBILITY_ALWAYS ApiKeyVisibility = "always"
 	APIKEYVISIBILITY_ONCE ApiKeyVisibility = "once"
-	APIKEYVISIBILITY_UNKNOWN_DEFAULT_OPEN_API ApiKeyVisibility = "11184809"
+	APIKEYVISIBILITY_UNKNOWN_DEFAULT_OPEN_API ApiKeyVisibility = "unknown_default_open_api"
 )
 
 // All allowed values of ApiKeyVisibility enum
 var AllowedApiKeyVisibilityEnumValues = []ApiKeyVisibility{
 	"always",
 	"once",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *ApiKeyVisibility) UnmarshalJSON(src []byte) error {
@@ -47,7 +47,8 @@ func (v *ApiKeyVisibility) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ApiKeyVisibility", value)
+	*v = APIKEYVISIBILITY_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewApiKeyVisibilityFromValue returns a pointer to a valid ApiKeyVisibility

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BatchScheduleServerFirmwareUpgrade**](ServerFirmwareAPI.md#BatchScheduleServerFirmwareUpgrade) | **Post** /api/v2/servers/{serverId}/firmware/actions/batch-schedule-upgrade | Schedules a firmware upgrade for the specified Server
+[**BatchScheduleServerFirmwareUpgrade**](ServerFirmwareAPI.md#BatchScheduleServerFirmwareUpgrade) | **Post** /api/v2/servers/firmware/actions/batch-schedule-upgrade | Schedules a firmware upgrade for the specified Servers
 [**FetchAndUpdateServerFirmwareAvailableVersions**](ServerFirmwareAPI.md#FetchAndUpdateServerFirmwareAvailableVersions) | **Post** /api/v2/servers/{serverId}/firmware/actions/fetch-and-update-available-versions | Fetches and updates the available firmware versions for the specified Server
 [**GenerateServersFirmwareUpgradeAudit**](ServerFirmwareAPI.md#GenerateServersFirmwareUpgradeAudit) | **Post** /api/v2/servers/firmware/actions/generate-upgrade-audit | Generates a Firmware Upgrade Audit for the specified Servers
 [**GetServerComponentInfo**](ServerFirmwareAPI.md#GetServerComponentInfo) | **Get** /api/v2/servers/{serverId}/firmware/components/{componentId} | Get Server component information
@@ -21,9 +21,9 @@ Method | HTTP request | Description
 
 ## BatchScheduleServerFirmwareUpgrade
 
-> BatchScheduleServerFirmwareUpgradeDtoResponse BatchScheduleServerFirmwareUpgrade(ctx, serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
+> BatchScheduleServerFirmwareUpgradeDtoResponse BatchScheduleServerFirmwareUpgrade(ctx).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
 
-Schedules a firmware upgrade for the specified Server
+Schedules a firmware upgrade for the specified Servers
 
 
 
@@ -40,12 +40,11 @@ import (
 )
 
 func main() {
-	serverId := int64(789) // int64 | 
 	batchScheduleServerFirmwareUpgrade := *openapiclient.NewBatchScheduleServerFirmwareUpgrade([]int64{int64(123)}) // BatchScheduleServerFirmwareUpgrade | The Schedule Firmware Upgrade object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background(), serverId).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
+	resp, r, err := apiClient.ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade(context.Background()).BatchScheduleServerFirmwareUpgrade(batchScheduleServerFirmwareUpgrade).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerFirmwareAPI.BatchScheduleServerFirmwareUpgrade``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,10 +57,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -70,7 +65,6 @@ Other parameters are passed through a pointer to a apiBatchScheduleServerFirmwar
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **batchScheduleServerFirmwareUpgrade** | [**BatchScheduleServerFirmwareUpgrade**](BatchScheduleServerFirmwareUpgrade.md) | The Schedule Firmware Upgrade object | 
 
 ### Return type
@@ -161,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## GenerateServersFirmwareUpgradeAudit
 
-> map[string]interface{} GenerateServersFirmwareUpgradeAudit(ctx).GenerateFirmwareUpgradeAudit(generateFirmwareUpgradeAudit).Execute()
+> []ServerFirmwareAudit GenerateServersFirmwareUpgradeAudit(ctx).GenerateFirmwareUpgradeAudit(generateFirmwareUpgradeAudit).Execute()
 
 Generates a Firmware Upgrade Audit for the specified Servers
 
@@ -189,7 +183,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerFirmwareAPI.GenerateServersFirmwareUpgradeAudit``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GenerateServersFirmwareUpgradeAudit`: map[string]interface{}
+	// response from `GenerateServersFirmwareUpgradeAudit`: []ServerFirmwareAudit
 	fmt.Fprintf(os.Stdout, "Response from `ServerFirmwareAPI.GenerateServersFirmwareUpgradeAudit`: %v\n", resp)
 }
 ```
@@ -209,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**[]ServerFirmwareAudit**](ServerFirmwareAudit.md)
 
 ### Authorization
 

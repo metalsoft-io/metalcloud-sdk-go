@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Baseline** | Pointer to [**FirmwareBaseline**](FirmwareBaseline.md) | Baseline information (may omit links and createdTimestamp fields) | [optional] 
+**Baseline** | Pointer to [**FirmwareBaselineSummary**](FirmwareBaselineSummary.md) | Baseline information (may omit links and createdTimestamp fields) | [optional] 
 **ComponentBinaries** | Pointer to [**map[string][]FirmwareBinaryResponse**](array.md) | Mapping of component IDs (as strings) to arrays of firmware binaries | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBaseline
 
-`func (o *IServerFirmwareBinaryResponse) GetBaseline() FirmwareBaseline`
+`func (o *IServerFirmwareBinaryResponse) GetBaseline() FirmwareBaselineSummary`
 
 GetBaseline returns the Baseline field if non-nil, zero value otherwise.
 
 ### GetBaselineOk
 
-`func (o *IServerFirmwareBinaryResponse) GetBaselineOk() (*FirmwareBaseline, bool)`
+`func (o *IServerFirmwareBinaryResponse) GetBaselineOk() (*FirmwareBaselineSummary, bool)`
 
 GetBaselineOk returns a tuple with the Baseline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBaseline
 
-`func (o *IServerFirmwareBinaryResponse) SetBaseline(v FirmwareBaseline)`
+`func (o *IServerFirmwareBinaryResponse) SetBaseline(v FirmwareBaselineSummary)`
 
 SetBaseline sets Baseline field to given value.
 

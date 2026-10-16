@@ -17,15 +17,14 @@ Name | Type | Description | Notes
 **UpdateSeverity** | **string** |  | 
 **VendorSupportedDevices** | **[]map[string]interface{}** |  | 
 **VendorSupportedSystems** | **[]map[string]interface{}** |  | 
-**VendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
-**Vendor** | **map[string]interface{}** |  | 
+**VendorReleaseTimestamp** | Pointer to **time.Time** |  | [optional] 
 **Links** | [**[]Link**](Link.md) | Links to other resources | 
 
 ## Methods
 
 ### NewFirmwareBinary
 
-`func NewFirmwareBinary(id int64, catalogId int64, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity string, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links []Link, ) *FirmwareBinary`
+`func NewFirmwareBinary(id int64, catalogId int64, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity string, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, links []Link, ) *FirmwareBinary`
 
 NewFirmwareBinary instantiates a new FirmwareBinary object
 This constructor will assign default values to properties that have it defined,
@@ -327,20 +326,20 @@ SetVendorSupportedSystems sets VendorSupportedSystems field to given value.
 
 ### GetVendorReleaseTimestamp
 
-`func (o *FirmwareBinary) GetVendorReleaseTimestamp() string`
+`func (o *FirmwareBinary) GetVendorReleaseTimestamp() time.Time`
 
 GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field if non-nil, zero value otherwise.
 
 ### GetVendorReleaseTimestampOk
 
-`func (o *FirmwareBinary) GetVendorReleaseTimestampOk() (*string, bool)`
+`func (o *FirmwareBinary) GetVendorReleaseTimestampOk() (*time.Time, bool)`
 
 GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendorReleaseTimestamp
 
-`func (o *FirmwareBinary) SetVendorReleaseTimestamp(v string)`
+`func (o *FirmwareBinary) SetVendorReleaseTimestamp(v time.Time)`
 
 SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 
@@ -349,26 +348,6 @@ SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 `func (o *FirmwareBinary) HasVendorReleaseTimestamp() bool`
 
 HasVendorReleaseTimestamp returns a boolean if a field has been set.
-
-### GetVendor
-
-`func (o *FirmwareBinary) GetVendor() map[string]interface{}`
-
-GetVendor returns the Vendor field if non-nil, zero value otherwise.
-
-### GetVendorOk
-
-`func (o *FirmwareBinary) GetVendorOk() (*map[string]interface{}, bool)`
-
-GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVendor
-
-`func (o *FirmwareBinary) SetVendor(v map[string]interface{})`
-
-SetVendor sets Vendor field to given value.
-
 
 ### GetLinks
 

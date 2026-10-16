@@ -23,14 +23,14 @@ type IpVersion string
 const (
 	IPVERSION_IPV4 IpVersion = "ipv4"
 	IPVERSION_IPV6 IpVersion = "ipv6"
-	IPVERSION_UNKNOWN_DEFAULT_OPEN_API IpVersion = "11184809"
+	IPVERSION_UNKNOWN_DEFAULT_OPEN_API IpVersion = "unknown_default_open_api"
 )
 
 // All allowed values of IpVersion enum
 var AllowedIpVersionEnumValues = []IpVersion{
 	"ipv4",
 	"ipv6",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *IpVersion) UnmarshalJSON(src []byte) error {
@@ -47,7 +47,8 @@ func (v *IpVersion) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid IpVersion", value)
+	*v = IPVERSION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewIpVersionFromValue returns a pointer to a valid IpVersion

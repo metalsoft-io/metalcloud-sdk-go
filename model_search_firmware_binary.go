@@ -23,7 +23,8 @@ var _ MappedNullable = &SearchFirmwareBinary{}
 type SearchFirmwareBinary struct {
 	Vendor string `json:"vendor"`
 	BaselineIds []string `json:"baselineIds,omitempty"`
-	ServerComponentFilter *SearchFirmwareBinaryServerComponentFilter `json:"serverComponentFilter,omitempty"`
+	// Array of server component filters. Each item is a vendor specific filter. An empty array or omitting the field resolves the whole baseline.
+	ServerComponentFilter []SearchFirmwareBinaryServerComponentFilterDataItem `json:"serverComponentFilter,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,17 +105,17 @@ func (o *SearchFirmwareBinary) SetBaselineIds(v []string) {
 }
 
 // GetServerComponentFilter returns the ServerComponentFilter field value if set, zero value otherwise.
-func (o *SearchFirmwareBinary) GetServerComponentFilter() SearchFirmwareBinaryServerComponentFilter {
+func (o *SearchFirmwareBinary) GetServerComponentFilter() []SearchFirmwareBinaryServerComponentFilterDataItem {
 	if o == nil || IsNil(o.ServerComponentFilter) {
-		var ret SearchFirmwareBinaryServerComponentFilter
+		var ret []SearchFirmwareBinaryServerComponentFilterDataItem
 		return ret
 	}
-	return *o.ServerComponentFilter
+	return o.ServerComponentFilter
 }
 
 // GetServerComponentFilterOk returns a tuple with the ServerComponentFilter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchFirmwareBinary) GetServerComponentFilterOk() (*SearchFirmwareBinaryServerComponentFilter, bool) {
+func (o *SearchFirmwareBinary) GetServerComponentFilterOk() ([]SearchFirmwareBinaryServerComponentFilterDataItem, bool) {
 	if o == nil || IsNil(o.ServerComponentFilter) {
 		return nil, false
 	}
@@ -130,9 +131,9 @@ func (o *SearchFirmwareBinary) HasServerComponentFilter() bool {
 	return false
 }
 
-// SetServerComponentFilter gets a reference to the given SearchFirmwareBinaryServerComponentFilter and assigns it to the ServerComponentFilter field.
-func (o *SearchFirmwareBinary) SetServerComponentFilter(v SearchFirmwareBinaryServerComponentFilter) {
-	o.ServerComponentFilter = &v
+// SetServerComponentFilter gets a reference to the given []SearchFirmwareBinaryServerComponentFilterDataItem and assigns it to the ServerComponentFilter field.
+func (o *SearchFirmwareBinary) SetServerComponentFilter(v []SearchFirmwareBinaryServerComponentFilterDataItem) {
+	o.ServerComponentFilter = v
 }
 
 func (o SearchFirmwareBinary) MarshalJSON() ([]byte, error) {

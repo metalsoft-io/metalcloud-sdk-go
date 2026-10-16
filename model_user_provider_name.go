@@ -25,7 +25,7 @@ const (
 	USERPROVIDERNAME_LDAP UserProviderName = "ldap"
 	USERPROVIDERNAME_SAML UserProviderName = "saml"
 	USERPROVIDERNAME_OIDC UserProviderName = "oidc"
-	USERPROVIDERNAME_UNKNOWN_DEFAULT_OPEN_API UserProviderName = "11184809"
+	USERPROVIDERNAME_UNKNOWN_DEFAULT_OPEN_API UserProviderName = "unknown_default_open_api"
 )
 
 // All allowed values of UserProviderName enum
@@ -34,7 +34,7 @@ var AllowedUserProviderNameEnumValues = []UserProviderName{
 	"ldap",
 	"saml",
 	"oidc",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *UserProviderName) UnmarshalJSON(src []byte) error {
@@ -51,7 +51,8 @@ func (v *UserProviderName) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid UserProviderName", value)
+	*v = USERPROVIDERNAME_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewUserProviderNameFromValue returns a pointer to a valid UserProviderName

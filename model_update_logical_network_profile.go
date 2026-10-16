@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateLogicalNetworkProfile{}
 type UpdateLogicalNetworkProfile struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Annotations *map[string]string `json:"annotations,omitempty"`
+	Annotations *map[string]*string `json:"annotations,omitempty"`
 	RouteDomainId NullableInt64 `json:"routeDomainId,omitempty"`
 	// When true, logical networks created from this profile are routed-access (L3-only) over point-to-point links. VXLAN only. Create-time only: the value cannot be changed once the profile exists (a different value here is rejected; echoing the current value back is accepted).
 	L3Only *bool `json:"l3Only,omitempty"`
@@ -116,9 +116,9 @@ func (o *UpdateLogicalNetworkProfile) SetName(v string) {
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkProfile) GetAnnotations() map[string]string {
+func (o *UpdateLogicalNetworkProfile) GetAnnotations() map[string]*string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Annotations
@@ -126,7 +126,7 @@ func (o *UpdateLogicalNetworkProfile) GetAnnotations() map[string]string {
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkProfile) GetAnnotationsOk() (*map[string]string, bool) {
+func (o *UpdateLogicalNetworkProfile) GetAnnotationsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Annotations) {
 		return nil, false
 	}
@@ -142,8 +142,8 @@ func (o *UpdateLogicalNetworkProfile) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
-func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]string) {
+// SetAnnotations gets a reference to the given map[string]*string and assigns it to the Annotations field.
+func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]*string) {
 	o.Annotations = &v
 }
 

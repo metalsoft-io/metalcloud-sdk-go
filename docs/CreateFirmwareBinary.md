@@ -16,8 +16,7 @@ Name | Type | Description | Notes
 **UpdateSeverity** | **string** |  | 
 **VendorSupportedDevices** | **[]map[string]interface{}** |  | 
 **VendorSupportedSystems** | **[]map[string]interface{}** |  | 
-**VendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
-**Vendor** | Pointer to **map[string]interface{}** |  | [optional] 
+**VendorReleaseTimestamp** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -305,20 +304,20 @@ SetVendorSupportedSystems sets VendorSupportedSystems field to given value.
 
 ### GetVendorReleaseTimestamp
 
-`func (o *CreateFirmwareBinary) GetVendorReleaseTimestamp() string`
+`func (o *CreateFirmwareBinary) GetVendorReleaseTimestamp() time.Time`
 
 GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field if non-nil, zero value otherwise.
 
 ### GetVendorReleaseTimestampOk
 
-`func (o *CreateFirmwareBinary) GetVendorReleaseTimestampOk() (*string, bool)`
+`func (o *CreateFirmwareBinary) GetVendorReleaseTimestampOk() (*time.Time, bool)`
 
 GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendorReleaseTimestamp
 
-`func (o *CreateFirmwareBinary) SetVendorReleaseTimestamp(v string)`
+`func (o *CreateFirmwareBinary) SetVendorReleaseTimestamp(v time.Time)`
 
 SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 
@@ -327,31 +326,6 @@ SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 `func (o *CreateFirmwareBinary) HasVendorReleaseTimestamp() bool`
 
 HasVendorReleaseTimestamp returns a boolean if a field has been set.
-
-### GetVendor
-
-`func (o *CreateFirmwareBinary) GetVendor() map[string]interface{}`
-
-GetVendor returns the Vendor field if non-nil, zero value otherwise.
-
-### GetVendorOk
-
-`func (o *CreateFirmwareBinary) GetVendorOk() (*map[string]interface{}, bool)`
-
-GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVendor
-
-`func (o *CreateFirmwareBinary) SetVendor(v map[string]interface{})`
-
-SetVendor sets Vendor field to given value.
-
-### HasVendor
-
-`func (o *CreateFirmwareBinary) HasVendor() bool`
-
-HasVendor returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

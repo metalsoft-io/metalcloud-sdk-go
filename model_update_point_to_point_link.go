@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdatePointToPointLink{}
 type UpdatePointToPointLink struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Annotations *map[string]string `json:"annotations,omitempty"`
+	Annotations *map[string]*string `json:"annotations,omitempty"`
 	Description *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -111,9 +111,9 @@ func (o *UpdatePointToPointLink) SetName(v string) {
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *UpdatePointToPointLink) GetAnnotations() map[string]string {
+func (o *UpdatePointToPointLink) GetAnnotations() map[string]*string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Annotations
@@ -121,7 +121,7 @@ func (o *UpdatePointToPointLink) GetAnnotations() map[string]string {
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdatePointToPointLink) GetAnnotationsOk() (*map[string]string, bool) {
+func (o *UpdatePointToPointLink) GetAnnotationsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Annotations) {
 		return nil, false
 	}
@@ -137,8 +137,8 @@ func (o *UpdatePointToPointLink) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
-func (o *UpdatePointToPointLink) SetAnnotations(v map[string]string) {
+// SetAnnotations gets a reference to the given map[string]*string and assigns it to the Annotations field.
+func (o *UpdatePointToPointLink) SetAnnotations(v map[string]*string) {
 	o.Annotations = &v
 }
 

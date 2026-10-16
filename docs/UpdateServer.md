@@ -7,19 +7,20 @@ Name | Type | Description | Notes
 **ServerTypeId** | Pointer to **int64** | The id of the server type. | [optional] 
 **ManagementAddress** | Pointer to **string** | The Management Address of the server. | [optional] 
 **Username** | Pointer to **string** | The username to use. | [optional] 
-**ServerCleanupPolicyId** | Pointer to **int64** | The cleanup policy id of the server. | [optional] 
-**TargetFirmwareBaselineId** | Pointer to **int64** | The target firmware baseline id on the server. | [optional] 
+**ServerCleanupPolicyId** | Pointer to **NullableInt64** | The cleanup policy id of the server. | [optional] 
+**TargetFirmwareBaselineId** | Pointer to **NullableInt64** | The target firmware baseline id on the server. | [optional] 
 **FirmwareBackupEnabled** | Pointer to **bool** | Whether firmware backup is enabled for this server. Combined with the site policy: the backup runs only when both allow it. Disabling it also stops drift detection. Defaults to true. | [optional] [default to true]
 **FirmwareDriftDetectionEnabled** | Pointer to **bool** | Whether drift detection is enabled for this server. Gates both checks: the configuration drift alert (this snapshot against the previous one) and the firmware baseline check (installed versions against the baseline minimums). Combined with the site policy: a check runs only when both allow it. Requires firmwareBackupEnabled. Defaults to true. | [optional] [default to true]
 **RegistrationProfileId** | Pointer to **int64** | The registration profile id of the server. | [optional] 
-**ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
+**ServerComments** | Pointer to **NullableString** | The comments of the server. | [optional] 
 **ChassisRackId** | Pointer to **int64** | The chassis rack id of the server. | [optional] 
 **RackName** | Pointer to **string** | The chassis rack name of the server. | [optional] 
 **RackPositionUpperUnit** | Pointer to **string** | The chassis rack upper unit position of the server. | [optional] 
 **RackPositionLowerUnit** | Pointer to **string** | The chassis rack lower unit position of the server. | [optional] 
 **InventoryId** | Pointer to **string** | The inventory id of the server. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the Server. | [optional] 
-**ResourcePoolId** | Pointer to **int64** | Resource Pool ID | [optional] 
+**ResourcePoolId** | Pointer to **NullableInt64** | Resource Pool ID | [optional] 
+**Password** | Pointer to **string** | The password to use. | [optional] 
 **ServerStatus** | Pointer to **string** | The status of the server. | [optional] 
 **ServerClass** | Pointer to **string** | The server class. | [optional] 
 **DpuCredentials** | Pointer to [**[]ServerDPUCredentials**](ServerDPUCredentials.md) | DPU credentials. Only use if the server has a DPU installed. | [optional] 
@@ -143,6 +144,16 @@ SetServerCleanupPolicyId sets ServerCleanupPolicyId field to given value.
 
 HasServerCleanupPolicyId returns a boolean if a field has been set.
 
+### SetServerCleanupPolicyIdNil
+
+`func (o *UpdateServer) SetServerCleanupPolicyIdNil(b bool)`
+
+ SetServerCleanupPolicyIdNil sets the value for ServerCleanupPolicyId to be an explicit nil
+
+### UnsetServerCleanupPolicyId
+`func (o *UpdateServer) UnsetServerCleanupPolicyId()`
+
+UnsetServerCleanupPolicyId ensures that no value is present for ServerCleanupPolicyId, not even an explicit nil
 ### GetTargetFirmwareBaselineId
 
 `func (o *UpdateServer) GetTargetFirmwareBaselineId() int64`
@@ -168,6 +179,16 @@ SetTargetFirmwareBaselineId sets TargetFirmwareBaselineId field to given value.
 
 HasTargetFirmwareBaselineId returns a boolean if a field has been set.
 
+### SetTargetFirmwareBaselineIdNil
+
+`func (o *UpdateServer) SetTargetFirmwareBaselineIdNil(b bool)`
+
+ SetTargetFirmwareBaselineIdNil sets the value for TargetFirmwareBaselineId to be an explicit nil
+
+### UnsetTargetFirmwareBaselineId
+`func (o *UpdateServer) UnsetTargetFirmwareBaselineId()`
+
+UnsetTargetFirmwareBaselineId ensures that no value is present for TargetFirmwareBaselineId, not even an explicit nil
 ### GetFirmwareBackupEnabled
 
 `func (o *UpdateServer) GetFirmwareBackupEnabled() bool`
@@ -268,6 +289,16 @@ SetServerComments sets ServerComments field to given value.
 
 HasServerComments returns a boolean if a field has been set.
 
+### SetServerCommentsNil
+
+`func (o *UpdateServer) SetServerCommentsNil(b bool)`
+
+ SetServerCommentsNil sets the value for ServerComments to be an explicit nil
+
+### UnsetServerComments
+`func (o *UpdateServer) UnsetServerComments()`
+
+UnsetServerComments ensures that no value is present for ServerComments, not even an explicit nil
 ### GetChassisRackId
 
 `func (o *UpdateServer) GetChassisRackId() int64`
@@ -442,6 +473,41 @@ SetResourcePoolId sets ResourcePoolId field to given value.
 `func (o *UpdateServer) HasResourcePoolId() bool`
 
 HasResourcePoolId returns a boolean if a field has been set.
+
+### SetResourcePoolIdNil
+
+`func (o *UpdateServer) SetResourcePoolIdNil(b bool)`
+
+ SetResourcePoolIdNil sets the value for ResourcePoolId to be an explicit nil
+
+### UnsetResourcePoolId
+`func (o *UpdateServer) UnsetResourcePoolId()`
+
+UnsetResourcePoolId ensures that no value is present for ResourcePoolId, not even an explicit nil
+### GetPassword
+
+`func (o *UpdateServer) GetPassword() string`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *UpdateServer) GetPasswordOk() (*string, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *UpdateServer) SetPassword(v string)`
+
+SetPassword sets Password field to given value.
+
+### HasPassword
+
+`func (o *UpdateServer) HasPassword() bool`
+
+HasPassword returns a boolean if a field has been set.
 
 ### GetServerStatus
 

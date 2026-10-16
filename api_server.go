@@ -1654,6 +1654,7 @@ type ServerAPIGetServersRequest struct {
 	filterServerClass *[]string
 	filterServerStatus *[]string
 	filterRequiresManualCleaning *[]string
+	filterHealthState *[]string
 	filterDriftDetectionSyncStatus *[]string
 	filterFirmwareBaselineComplianceStatus *[]string
 	filterFirmwareBackupEnabled *[]string
@@ -1759,6 +1760,12 @@ func (r ServerAPIGetServersRequest) FilterServerStatus(filterServerStatus []stri
 // Filter by requiresManualCleaning query param.  **Format:** filter.requiresManualCleaning&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.requiresManualCleaning&#x3D;$eq:John Doe  **Available Operations** - $eq  - $and  - $or
 func (r ServerAPIGetServersRequest) FilterRequiresManualCleaning(filterRequiresManualCleaning []string) ServerAPIGetServersRequest {
 	r.filterRequiresManualCleaning = &filterRequiresManualCleaning
+	return r
+}
+
+// Filter by healthState query param.  **Format:** filter.healthState&#x3D;{$not}:OPERATION:VALUE    **Example:** filter.healthState&#x3D;$eq:John Doe&amp;filter.healthState&#x3D;$in:John Doe  **Available Operations** - $eq  - $in  - $null  - $and  - $or
+func (r ServerAPIGetServersRequest) FilterHealthState(filterHealthState []string) ServerAPIGetServersRequest {
+	r.filterHealthState = &filterHealthState
 	return r
 }
 
@@ -2020,6 +2027,17 @@ func (a *ServerAPIService) GetServersExecute(r ServerAPIGetServersRequest) (*Ser
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.requiresManualCleaning", t, "form", "multi")
+		}
+	}
+	if r.filterHealthState != nil {
+		t := *r.filterHealthState
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.healthState", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.healthState", t, "form", "multi")
 		}
 	}
 	if r.filterDriftDetectionSyncStatus != nil {

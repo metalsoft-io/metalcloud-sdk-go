@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **RaidTwoDrives** | **string** | Raid two drives | 
 **RaidEvenNumberMoreThanTwoDrives** | **string** | Raid even number more than two drives | 
 **RaidOddNumberMoreThanOneDrive** | **string** | Raid odd number more than one drive | 
-**CreatedTimestamp** | **string** | Created timestamp | 
-**UpdatedTimestamp** | **string** | Updated timestamp | 
+**CreatedTimestamp** | **time.Time** | Created timestamp | 
+**UpdatedTimestamp** | **time.Time** | Updated timestamp | 
 **SkipRaidActions** | **[]string** | Skip raid actions | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewServerCleanupPolicy
 
-`func NewServerCleanupPolicy(id int64, label string, cleanupDrivesForOobEnabledServer float32, clearTpm float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp string, updatedTimestamp string, skipRaidActions []string, ) *ServerCleanupPolicy`
+`func NewServerCleanupPolicy(id int64, label string, cleanupDrivesForOobEnabledServer float32, clearTpm float32, recreateRaid float32, resetRaidControllers float32, disableEmbeddedNics float32, raidOneDrive string, raidTwoDrives string, raidEvenNumberMoreThanTwoDrives string, raidOddNumberMoreThanOneDrive string, createdTimestamp time.Time, updatedTimestamp time.Time, skipRaidActions []string, ) *ServerCleanupPolicy`
 
 NewServerCleanupPolicy instantiates a new ServerCleanupPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -261,40 +261,40 @@ SetRaidOddNumberMoreThanOneDrive sets RaidOddNumberMoreThanOneDrive field to giv
 
 ### GetCreatedTimestamp
 
-`func (o *ServerCleanupPolicy) GetCreatedTimestamp() string`
+`func (o *ServerCleanupPolicy) GetCreatedTimestamp() time.Time`
 
 GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
 
 ### GetCreatedTimestampOk
 
-`func (o *ServerCleanupPolicy) GetCreatedTimestampOk() (*string, bool)`
+`func (o *ServerCleanupPolicy) GetCreatedTimestampOk() (*time.Time, bool)`
 
 GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedTimestamp
 
-`func (o *ServerCleanupPolicy) SetCreatedTimestamp(v string)`
+`func (o *ServerCleanupPolicy) SetCreatedTimestamp(v time.Time)`
 
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 
 ### GetUpdatedTimestamp
 
-`func (o *ServerCleanupPolicy) GetUpdatedTimestamp() string`
+`func (o *ServerCleanupPolicy) GetUpdatedTimestamp() time.Time`
 
 GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
 
 ### GetUpdatedTimestampOk
 
-`func (o *ServerCleanupPolicy) GetUpdatedTimestampOk() (*string, bool)`
+`func (o *ServerCleanupPolicy) GetUpdatedTimestampOk() (*time.Time, bool)`
 
 GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedTimestamp
 
-`func (o *ServerCleanupPolicy) SetUpdatedTimestamp(v string)`
+`func (o *ServerCleanupPolicy) SetUpdatedTimestamp(v time.Time)`
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 

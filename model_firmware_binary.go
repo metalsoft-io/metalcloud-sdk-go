@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -34,8 +35,7 @@ type FirmwareBinary struct {
 	UpdateSeverity string `json:"updateSeverity"`
 	VendorSupportedDevices []map[string]interface{} `json:"vendorSupportedDevices"`
 	VendorSupportedSystems []map[string]interface{} `json:"vendorSupportedSystems"`
-	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
-	Vendor map[string]interface{} `json:"vendor"`
+	VendorReleaseTimestamp *time.Time `json:"vendorReleaseTimestamp,omitempty"`
 	// Links to other resources
 	Links []Link `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -47,7 +47,7 @@ type _FirmwareBinary FirmwareBinary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBinary(id int64, catalogId int64, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity string, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links []Link) *FirmwareBinary {
+func NewFirmwareBinary(id int64, catalogId int64, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity string, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, links []Link) *FirmwareBinary {
 	this := FirmwareBinary{}
 	this.Id = id
 	this.CatalogId = catalogId
@@ -57,7 +57,6 @@ func NewFirmwareBinary(id int64, catalogId int64, vendorDownloadUrl string, name
 	this.UpdateSeverity = updateSeverity
 	this.VendorSupportedDevices = vendorSupportedDevices
 	this.VendorSupportedSystems = vendorSupportedSystems
-	this.Vendor = vendor
 	this.Links = links
 	return &this
 }
@@ -423,9 +422,9 @@ func (o *FirmwareBinary) SetVendorSupportedSystems(v []map[string]interface{}) {
 }
 
 // GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field value if set, zero value otherwise.
-func (o *FirmwareBinary) GetVendorReleaseTimestamp() string {
+func (o *FirmwareBinary) GetVendorReleaseTimestamp() time.Time {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.VendorReleaseTimestamp
@@ -433,7 +432,7 @@ func (o *FirmwareBinary) GetVendorReleaseTimestamp() string {
 
 // GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinary) GetVendorReleaseTimestampOk() (*string, bool) {
+func (o *FirmwareBinary) GetVendorReleaseTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
 		return nil, false
 	}
@@ -449,33 +448,9 @@ func (o *FirmwareBinary) HasVendorReleaseTimestamp() bool {
 	return false
 }
 
-// SetVendorReleaseTimestamp gets a reference to the given string and assigns it to the VendorReleaseTimestamp field.
-func (o *FirmwareBinary) SetVendorReleaseTimestamp(v string) {
+// SetVendorReleaseTimestamp gets a reference to the given time.Time and assigns it to the VendorReleaseTimestamp field.
+func (o *FirmwareBinary) SetVendorReleaseTimestamp(v time.Time) {
 	o.VendorReleaseTimestamp = &v
-}
-
-// GetVendor returns the Vendor field value
-func (o *FirmwareBinary) GetVendor() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Vendor
-}
-
-// GetVendorOk returns a tuple with the Vendor field value
-// and a boolean to check if the value has been set.
-func (o *FirmwareBinary) GetVendorOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
-	}
-	return o.Vendor, true
-}
-
-// SetVendor sets field value
-func (o *FirmwareBinary) SetVendor(v map[string]interface{}) {
-	o.Vendor = v
 }
 
 // GetLinks returns the Links field value
@@ -538,7 +513,6 @@ func (o FirmwareBinary) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VendorReleaseTimestamp) {
 		toSerialize["vendorReleaseTimestamp"] = o.VendorReleaseTimestamp
 	}
-	toSerialize["vendor"] = o.Vendor
 	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
@@ -561,7 +535,6 @@ func (o *FirmwareBinary) UnmarshalJSON(data []byte) (err error) {
 		"updateSeverity",
 		"vendorSupportedDevices",
 		"vendorSupportedSystems",
-		"vendor",
 		"links",
 	}
 
@@ -606,7 +579,6 @@ func (o *FirmwareBinary) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vendorSupportedDevices")
 		delete(additionalProperties, "vendorSupportedSystems")
 		delete(additionalProperties, "vendorReleaseTimestamp")
-		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

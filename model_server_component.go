@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -44,9 +45,9 @@ type ServerComponent struct {
 	// The flag indicating if the firmware upgrade of the server component requires confirmation.
 	FirmwareUpgradeNeedsConfirmation float32 `json:"firmwareUpgradeNeedsConfirmation"`
 	// The timestamp of the last firmware upgrade of the server component.
-	FirmwareUpdateTimestamp *string `json:"firmwareUpdateTimestamp,omitempty"`
+	FirmwareUpdateTimestamp *time.Time `json:"firmwareUpdateTimestamp,omitempty"`
 	// The timestamp of the scheduled firmware upgrade of the server component.
-	FirmwareScheduledTimestamp *string `json:"firmwareScheduledTimestamp,omitempty"`
+	FirmwareScheduledTimestamp *time.Time `json:"firmwareScheduledTimestamp,omitempty"`
 	// The status of the firmware upgrade of the server component.
 	FirmwareStatus string `json:"firmwareStatus"`
 	// The type of the server component.
@@ -408,9 +409,9 @@ func (o *ServerComponent) SetFirmwareUpgradeNeedsConfirmation(v float32) {
 }
 
 // GetFirmwareUpdateTimestamp returns the FirmwareUpdateTimestamp field value if set, zero value otherwise.
-func (o *ServerComponent) GetFirmwareUpdateTimestamp() string {
+func (o *ServerComponent) GetFirmwareUpdateTimestamp() time.Time {
 	if o == nil || IsNil(o.FirmwareUpdateTimestamp) {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.FirmwareUpdateTimestamp
@@ -418,7 +419,7 @@ func (o *ServerComponent) GetFirmwareUpdateTimestamp() string {
 
 // GetFirmwareUpdateTimestampOk returns a tuple with the FirmwareUpdateTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerComponent) GetFirmwareUpdateTimestampOk() (*string, bool) {
+func (o *ServerComponent) GetFirmwareUpdateTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.FirmwareUpdateTimestamp) {
 		return nil, false
 	}
@@ -434,15 +435,15 @@ func (o *ServerComponent) HasFirmwareUpdateTimestamp() bool {
 	return false
 }
 
-// SetFirmwareUpdateTimestamp gets a reference to the given string and assigns it to the FirmwareUpdateTimestamp field.
-func (o *ServerComponent) SetFirmwareUpdateTimestamp(v string) {
+// SetFirmwareUpdateTimestamp gets a reference to the given time.Time and assigns it to the FirmwareUpdateTimestamp field.
+func (o *ServerComponent) SetFirmwareUpdateTimestamp(v time.Time) {
 	o.FirmwareUpdateTimestamp = &v
 }
 
 // GetFirmwareScheduledTimestamp returns the FirmwareScheduledTimestamp field value if set, zero value otherwise.
-func (o *ServerComponent) GetFirmwareScheduledTimestamp() string {
+func (o *ServerComponent) GetFirmwareScheduledTimestamp() time.Time {
 	if o == nil || IsNil(o.FirmwareScheduledTimestamp) {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.FirmwareScheduledTimestamp
@@ -450,7 +451,7 @@ func (o *ServerComponent) GetFirmwareScheduledTimestamp() string {
 
 // GetFirmwareScheduledTimestampOk returns a tuple with the FirmwareScheduledTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerComponent) GetFirmwareScheduledTimestampOk() (*string, bool) {
+func (o *ServerComponent) GetFirmwareScheduledTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.FirmwareScheduledTimestamp) {
 		return nil, false
 	}
@@ -466,8 +467,8 @@ func (o *ServerComponent) HasFirmwareScheduledTimestamp() bool {
 	return false
 }
 
-// SetFirmwareScheduledTimestamp gets a reference to the given string and assigns it to the FirmwareScheduledTimestamp field.
-func (o *ServerComponent) SetFirmwareScheduledTimestamp(v string) {
+// SetFirmwareScheduledTimestamp gets a reference to the given time.Time and assigns it to the FirmwareScheduledTimestamp field.
+func (o *ServerComponent) SetFirmwareScheduledTimestamp(v time.Time) {
 	o.FirmwareScheduledTimestamp = &v
 }
 

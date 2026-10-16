@@ -24,7 +24,7 @@ const (
 	LOGICALOPERATOR_AND LogicalOperator = "and"
 	LOGICALOPERATOR_OR LogicalOperator = "or"
 	LOGICALOPERATOR_NOT LogicalOperator = "not"
-	LOGICALOPERATOR_UNKNOWN_DEFAULT_OPEN_API LogicalOperator = "11184809"
+	LOGICALOPERATOR_UNKNOWN_DEFAULT_OPEN_API LogicalOperator = "unknown_default_open_api"
 )
 
 // All allowed values of LogicalOperator enum
@@ -32,7 +32,7 @@ var AllowedLogicalOperatorEnumValues = []LogicalOperator{
 	"and",
 	"or",
 	"not",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *LogicalOperator) UnmarshalJSON(src []byte) error {
@@ -49,7 +49,8 @@ func (v *LogicalOperator) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid LogicalOperator", value)
+	*v = LOGICALOPERATOR_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewLogicalOperatorFromValue returns a pointer to a valid LogicalOperator

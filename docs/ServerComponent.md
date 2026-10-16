@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **FirmwareVersion** | Pointer to **string** | The current firmware version of the server component. | [optional] 
 **FirmwareInfo** | Pointer to **map[string]interface{}** | The firmware information of the server component. | [optional] 
 **FirmwareUpgradeNeedsConfirmation** | **float32** | The flag indicating if the firmware upgrade of the server component requires confirmation. | 
-**FirmwareUpdateTimestamp** | Pointer to **string** | The timestamp of the last firmware upgrade of the server component. | [optional] 
-**FirmwareScheduledTimestamp** | Pointer to **string** | The timestamp of the scheduled firmware upgrade of the server component. | [optional] 
+**FirmwareUpdateTimestamp** | Pointer to **time.Time** | The timestamp of the last firmware upgrade of the server component. | [optional] 
+**FirmwareScheduledTimestamp** | Pointer to **time.Time** | The timestamp of the scheduled firmware upgrade of the server component. | [optional] 
 **FirmwareStatus** | **string** | The status of the firmware upgrade of the server component. | 
 **Type** | Pointer to **string** | The type of the server component. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -302,20 +302,20 @@ SetFirmwareUpgradeNeedsConfirmation sets FirmwareUpgradeNeedsConfirmation field 
 
 ### GetFirmwareUpdateTimestamp
 
-`func (o *ServerComponent) GetFirmwareUpdateTimestamp() string`
+`func (o *ServerComponent) GetFirmwareUpdateTimestamp() time.Time`
 
 GetFirmwareUpdateTimestamp returns the FirmwareUpdateTimestamp field if non-nil, zero value otherwise.
 
 ### GetFirmwareUpdateTimestampOk
 
-`func (o *ServerComponent) GetFirmwareUpdateTimestampOk() (*string, bool)`
+`func (o *ServerComponent) GetFirmwareUpdateTimestampOk() (*time.Time, bool)`
 
 GetFirmwareUpdateTimestampOk returns a tuple with the FirmwareUpdateTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirmwareUpdateTimestamp
 
-`func (o *ServerComponent) SetFirmwareUpdateTimestamp(v string)`
+`func (o *ServerComponent) SetFirmwareUpdateTimestamp(v time.Time)`
 
 SetFirmwareUpdateTimestamp sets FirmwareUpdateTimestamp field to given value.
 
@@ -327,20 +327,20 @@ HasFirmwareUpdateTimestamp returns a boolean if a field has been set.
 
 ### GetFirmwareScheduledTimestamp
 
-`func (o *ServerComponent) GetFirmwareScheduledTimestamp() string`
+`func (o *ServerComponent) GetFirmwareScheduledTimestamp() time.Time`
 
 GetFirmwareScheduledTimestamp returns the FirmwareScheduledTimestamp field if non-nil, zero value otherwise.
 
 ### GetFirmwareScheduledTimestampOk
 
-`func (o *ServerComponent) GetFirmwareScheduledTimestampOk() (*string, bool)`
+`func (o *ServerComponent) GetFirmwareScheduledTimestampOk() (*time.Time, bool)`
 
 GetFirmwareScheduledTimestampOk returns a tuple with the FirmwareScheduledTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirmwareScheduledTimestamp
 
-`func (o *ServerComponent) SetFirmwareScheduledTimestamp(v string)`
+`func (o *ServerComponent) SetFirmwareScheduledTimestamp(v time.Time)`
 
 SetFirmwareScheduledTimestamp sets FirmwareScheduledTimestamp field to given value.
 

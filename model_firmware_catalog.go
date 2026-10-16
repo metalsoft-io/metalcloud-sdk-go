@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -34,7 +35,7 @@ type FirmwareCatalog struct {
 	// Vendor URL for the firmware catalog
 	VendorUrl *string `json:"vendorUrl,omitempty"`
 	// Vendor release timestamp for the catalog
-	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
+	VendorReleaseTimestamp *time.Time `json:"vendorReleaseTimestamp,omitempty"`
 	// Catalog update type: online or offline
 	UpdateType string `json:"updateType"`
 	// List of supported server types for which firmware binaries are available
@@ -42,7 +43,7 @@ type FirmwareCatalog struct {
 	// Vendor configuration
 	VendorConfiguration map[string]interface{} `json:"vendorConfiguration,omitempty"`
 	// Timestamp when the catalog was created
-	CreatedTimestamp string `json:"createdTimestamp"`
+	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Links to other resources
 	Links []Link `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -54,7 +55,7 @@ type _FirmwareCatalog FirmwareCatalog
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareCatalog(id int64, name string, vendor string, updateType string, createdTimestamp string, links []Link) *FirmwareCatalog {
+func NewFirmwareCatalog(id int64, name string, vendor string, updateType string, createdTimestamp time.Time, links []Link) *FirmwareCatalog {
 	this := FirmwareCatalog{}
 	this.Id = id
 	this.Name = name
@@ -244,9 +245,9 @@ func (o *FirmwareCatalog) SetVendorUrl(v string) {
 }
 
 // GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field value if set, zero value otherwise.
-func (o *FirmwareCatalog) GetVendorReleaseTimestamp() string {
+func (o *FirmwareCatalog) GetVendorReleaseTimestamp() time.Time {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.VendorReleaseTimestamp
@@ -254,7 +255,7 @@ func (o *FirmwareCatalog) GetVendorReleaseTimestamp() string {
 
 // GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FirmwareCatalog) GetVendorReleaseTimestampOk() (*string, bool) {
+func (o *FirmwareCatalog) GetVendorReleaseTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.VendorReleaseTimestamp) {
 		return nil, false
 	}
@@ -270,8 +271,8 @@ func (o *FirmwareCatalog) HasVendorReleaseTimestamp() bool {
 	return false
 }
 
-// SetVendorReleaseTimestamp gets a reference to the given string and assigns it to the VendorReleaseTimestamp field.
-func (o *FirmwareCatalog) SetVendorReleaseTimestamp(v string) {
+// SetVendorReleaseTimestamp gets a reference to the given time.Time and assigns it to the VendorReleaseTimestamp field.
+func (o *FirmwareCatalog) SetVendorReleaseTimestamp(v time.Time) {
 	o.VendorReleaseTimestamp = &v
 }
 
@@ -364,9 +365,9 @@ func (o *FirmwareCatalog) SetVendorConfiguration(v map[string]interface{}) {
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *FirmwareCatalog) GetCreatedTimestamp() string {
+func (o *FirmwareCatalog) GetCreatedTimestamp() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -375,7 +376,7 @@ func (o *FirmwareCatalog) GetCreatedTimestamp() string {
 
 // GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareCatalog) GetCreatedTimestampOk() (*string, bool) {
+func (o *FirmwareCatalog) GetCreatedTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -383,7 +384,7 @@ func (o *FirmwareCatalog) GetCreatedTimestampOk() (*string, bool) {
 }
 
 // SetCreatedTimestamp sets field value
-func (o *FirmwareCatalog) SetCreatedTimestamp(v string) {
+func (o *FirmwareCatalog) SetCreatedTimestamp(v time.Time) {
 	o.CreatedTimestamp = v
 }
 

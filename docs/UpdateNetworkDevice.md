@@ -1584,20 +1584,20 @@ HasAuthenticationOptions returns a boolean if a field has been set.
 
 ### GetTagsMap
 
-`func (o *UpdateNetworkDevice) GetTagsMap() map[string]string`
+`func (o *UpdateNetworkDevice) GetTagsMap() map[string]*string`
 
 GetTagsMap returns the TagsMap field if non-nil, zero value otherwise.
 
 ### GetTagsMapOk
 
-`func (o *UpdateNetworkDevice) GetTagsMapOk() (*map[string]string, bool)`
+`func (o *UpdateNetworkDevice) GetTagsMapOk() (*map[string]*string, bool)`
 
 GetTagsMapOk returns a tuple with the TagsMap field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagsMap
 
-`func (o *UpdateNetworkDevice) SetTagsMap(v map[string]string)`
+`func (o *UpdateNetworkDevice) SetTagsMap(v map[string]*string)`
 
 SetTagsMap sets TagsMap field to given value.
 

@@ -21,7 +21,7 @@ var _ MappedNullable = &IServerFirmwareBinaryResponse{}
 // IServerFirmwareBinaryResponse struct for IServerFirmwareBinaryResponse
 type IServerFirmwareBinaryResponse struct {
 	// Baseline information (may omit links and createdTimestamp fields)
-	Baseline *FirmwareBaseline `json:"baseline,omitempty"`
+	Baseline *FirmwareBaselineSummary `json:"baseline,omitempty"`
 	// Mapping of component IDs (as strings) to arrays of firmware binaries
 	ComponentBinaries *map[string][]FirmwareBinaryResponse `json:"componentBinaries,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -47,9 +47,9 @@ func NewIServerFirmwareBinaryResponseWithDefaults() *IServerFirmwareBinaryRespon
 }
 
 // GetBaseline returns the Baseline field value if set, zero value otherwise.
-func (o *IServerFirmwareBinaryResponse) GetBaseline() FirmwareBaseline {
+func (o *IServerFirmwareBinaryResponse) GetBaseline() FirmwareBaselineSummary {
 	if o == nil || IsNil(o.Baseline) {
-		var ret FirmwareBaseline
+		var ret FirmwareBaselineSummary
 		return ret
 	}
 	return *o.Baseline
@@ -57,7 +57,7 @@ func (o *IServerFirmwareBinaryResponse) GetBaseline() FirmwareBaseline {
 
 // GetBaselineOk returns a tuple with the Baseline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IServerFirmwareBinaryResponse) GetBaselineOk() (*FirmwareBaseline, bool) {
+func (o *IServerFirmwareBinaryResponse) GetBaselineOk() (*FirmwareBaselineSummary, bool) {
 	if o == nil || IsNil(o.Baseline) {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *IServerFirmwareBinaryResponse) HasBaseline() bool {
 	return false
 }
 
-// SetBaseline gets a reference to the given FirmwareBaseline and assigns it to the Baseline field.
-func (o *IServerFirmwareBinaryResponse) SetBaseline(v FirmwareBaseline) {
+// SetBaseline gets a reference to the given FirmwareBaselineSummary and assigns it to the Baseline field.
+func (o *IServerFirmwareBinaryResponse) SetBaseline(v FirmwareBaselineSummary) {
 	o.Baseline = &v
 }
 

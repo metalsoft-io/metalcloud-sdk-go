@@ -23,14 +23,14 @@ type AuthConfigValidationSeverity string
 const (
 	AUTHCONFIGVALIDATIONSEVERITY_ERROR AuthConfigValidationSeverity = "error"
 	AUTHCONFIGVALIDATIONSEVERITY_WARNING AuthConfigValidationSeverity = "warning"
-	AUTHCONFIGVALIDATIONSEVERITY_UNKNOWN_DEFAULT_OPEN_API AuthConfigValidationSeverity = "11184809"
+	AUTHCONFIGVALIDATIONSEVERITY_UNKNOWN_DEFAULT_OPEN_API AuthConfigValidationSeverity = "unknown_default_open_api"
 )
 
 // All allowed values of AuthConfigValidationSeverity enum
 var AllowedAuthConfigValidationSeverityEnumValues = []AuthConfigValidationSeverity{
 	"error",
 	"warning",
-	"11184809",
+	"unknown_default_open_api",
 }
 
 func (v *AuthConfigValidationSeverity) UnmarshalJSON(src []byte) error {
@@ -47,7 +47,8 @@ func (v *AuthConfigValidationSeverity) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid AuthConfigValidationSeverity", value)
+	*v = AUTHCONFIGVALIDATIONSEVERITY_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewAuthConfigValidationSeverityFromValue returns a pointer to a valid AuthConfigValidationSeverity

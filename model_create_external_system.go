@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateExternalSystem{}
 // CreateExternalSystem struct for CreateExternalSystem
 type CreateExternalSystem struct {
 	// The external system unique label
-	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0\\,62}$"`
 	// The external system name
 	Name string `json:"name"`
 	// The BGP Autonomous System Number of the external system. Required to peer with it: a BGP session against this system renders its neighbor remote-as from this value.

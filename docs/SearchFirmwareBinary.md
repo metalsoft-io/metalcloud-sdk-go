@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vendor** | **string** |  | 
 **BaselineIds** | Pointer to **[]string** |  | [optional] 
-**ServerComponentFilter** | Pointer to [**SearchFirmwareBinaryServerComponentFilter**](SearchFirmwareBinaryServerComponentFilter.md) |  | [optional] 
+**ServerComponentFilter** | Pointer to [**[]SearchFirmwareBinaryServerComponentFilterDataItem**](SearchFirmwareBinaryServerComponentFilterDataItem.md) | Array of server component filters. Each item is a vendor specific filter. An empty array or omitting the field resolves the whole baseline. | [optional] 
 
 ## Methods
 
@@ -74,20 +74,20 @@ HasBaselineIds returns a boolean if a field has been set.
 
 ### GetServerComponentFilter
 
-`func (o *SearchFirmwareBinary) GetServerComponentFilter() SearchFirmwareBinaryServerComponentFilter`
+`func (o *SearchFirmwareBinary) GetServerComponentFilter() []SearchFirmwareBinaryServerComponentFilterDataItem`
 
 GetServerComponentFilter returns the ServerComponentFilter field if non-nil, zero value otherwise.
 
 ### GetServerComponentFilterOk
 
-`func (o *SearchFirmwareBinary) GetServerComponentFilterOk() (*SearchFirmwareBinaryServerComponentFilter, bool)`
+`func (o *SearchFirmwareBinary) GetServerComponentFilterOk() (*[]SearchFirmwareBinaryServerComponentFilterDataItem, bool)`
 
 GetServerComponentFilterOk returns a tuple with the ServerComponentFilter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerComponentFilter
 
-`func (o *SearchFirmwareBinary) SetServerComponentFilter(v SearchFirmwareBinaryServerComponentFilter)`
+`func (o *SearchFirmwareBinary) SetServerComponentFilter(v []SearchFirmwareBinaryServerComponentFilterDataItem)`
 
 SetServerComponentFilter sets ServerComponentFilter field to given value.
 
